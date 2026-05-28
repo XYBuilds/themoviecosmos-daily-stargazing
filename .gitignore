@@ -1,0 +1,27 @@
+.obsidian/
+
+# 环境
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# 数据与索引（大文件不进 git）
+data/full/*
+!data/full/.gitkeep
+data/index/*
+!data/index/.gitkeep
+
+# 状态
+state/*.sqlite
+state/*.json
+!state/.gitkeep
+
+# 简报内容暂不入库（按需调整）
+output/Daily_Briefing/*.md
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
