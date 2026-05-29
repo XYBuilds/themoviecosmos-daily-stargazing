@@ -1,0 +1,57 @@
+---
+description: 单个 TODO 执行的标准流水线 —— 分支/测试/提交/状态/报告/合并
+alwaysApply: true
+---
+
+# 单 TODO 执行标准流水线
+
+对计划（`.cursor/plans/Phase*.md` 或 `.yaml`）中的每个 TODO 节点，无条件按顺序执行：
+
+`[1.Check&Branch] → [2.Code&Test] → [3.Commit] → [4.Update Plan] → [5.Write Report] → [6.Merge]`
+
+## 1. 分支管理
+
+- 命名：`feat/phase[N]-[todo]`（例：`feat/phase5.3-fetch-news`）。
+- 按「Phase 依赖与顺序执行」规则确定检出来源，检出新分支后开发。
+
+## 2. 执行与本地验证
+
+- 编写符合项目架构、高内聚低耦合的代码。
+- 完成后**必须主动在终端运行**相关测试/编译命令（如 `npm run test`、`pytest`、构建命令），确认无 regression。
+
+## 3. 代码提交（Conventional Commits）
+
+- 格式：`<type>(<scope>): <description>`
+- 示例：`feat(news): implement custom fetcher for rss feeds` / `fix(validation): correct threshold index range`
+
+## 4. 状态标记
+
+- 提交后立即修改对应 `.cursor/plans/Phase*.md` / `.yaml`，将 TODO 由 `[ ]`/`todo` 改为 `[x]`/`complete`。
+
+## 5. 交付报告
+
+- 路径：`docs/reports/Phase[N]-[todo-name]-report.md`（例：`docs/reports/Phase5-fetch-news-report.md`）。
+- 模板：
+
+```markdown
+# Phase [N] - [TODO 名称] 交付报告
+
+## 1. 改动范围 (Scope)
+- 改动的文件列表
+- 新增/删除的依赖包
+
+## 2. 技术实现 (Implementation)
+- 核心设计思路、新增的 API 或类说明
+
+## 3. 本地验证结果 (Verification)
+- 运行的测试命令及输出结果截图/日志片段
+
+## 4. 潜在影响或技术债 (Technical Debt & Caveats)
+- 是否对后续 Phase 有潜在影响？有无待重构项？
+```
+
+## 6. 合并主干
+
+- 检出至主干/上游目标分支，用 `git merge --no-ff feat/phase[N]-[todo-name]` 创建 Merge Commit，随后删除本地临时开发分支。
+
+> 注意：第 4–6 步受「人工验收阻断」规则约束 —— 标注 `[需人工验收]` 时须先暂停等待 approve。

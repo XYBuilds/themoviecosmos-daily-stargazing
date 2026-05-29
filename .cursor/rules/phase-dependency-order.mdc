@@ -1,0 +1,24 @@
+---
+description: Phase 依赖与分支继承规则 —— 严格顺序执行多 Phase 计划
+alwaysApply: true
+---
+
+# Phase 依赖与顺序执行
+
+项目的 Phase 之间存在依赖，必须严格顺序执行。
+
+## 严格顺序
+
+- 前一个 Phase 未**完全 complete** 且未**合并入 `main`** 之前，**禁止**启动或预研后续 Phase。
+
+## 新 TODO 的分支检出来源
+
+- **前置 Phase 已合并入 `main`**：从最新的 `main` 检出新分支。
+- **前置 Phase 已开发完毕但尚未合并**（等待人工验收中）：为不阻塞开发，从前置 Phase 的**最新开发分支**检出，并在交付报告中**记录分支继承关系**（基于哪个分支、对应哪个 TODO）。
+
+<example>
+前置 feat/phase4-index 已开发完但未合并 → 开发 phase5 时：
+git checkout feat/phase4-index
+git checkout -b feat/phase5.3-fetch-news
+（报告中注明：本分支继承自 feat/phase4-index）
+</example>
