@@ -50,8 +50,13 @@ alwaysApply: true
 - 是否对后续 Phase 有潜在影响？有无待重构项？
 ```
 
-## 6. 合并主干
+## 6. 合并主干（GitHub PR 流程）
 
-- 检出至主干/上游目标分支，用 `git merge --no-ff feat/phase[N.N]-[todo-name]` 创建 Merge Commit，随后删除本地临时开发分支。
+1. 推送开发分支到 GitHub：`git push -u origin feat/phase[N]-[todo-name]`
+2. 在 GitHub 创建 PR（可用 `gh pr create`），目标分支为 `main` 或上游目标分支。
+3. 在 GitHub 上 **Create a merge commit**（即 `--no-ff` 合并，保留分支拓扑）。
+4. 在 GitHub 上 **Delete branch**（删除远端开发分支）。
+5. 在本地切回 `main` 并更新：`git checkout main && git pull`
+6. 删除本地临时开发分支：`git branch -d feat/phase[N.N]-[todo-name]`
 
 > 注意：第 4–6 步受「人工验收阻断」规则约束 —— 标注 `[需人工验收]` 时须先暂停等待 approve。
