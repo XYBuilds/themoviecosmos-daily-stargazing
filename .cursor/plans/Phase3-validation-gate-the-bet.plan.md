@@ -4,7 +4,7 @@ overview: 实现评测管线 run_eval：新闻 → agents → retrieve → 评�
 todos:
   - id: f3a1b2c3-0001-4000-8003-000000000001
     content: "3.1 · run_eval.py：串联 agents + retrieve，渲染评测 Markdown 到 output/Eval/"
-    status: pending
+    status: complete
   - id: f3a1b2c3-0001-4000-8003-000000000002
     content: "3.2 · 评分汇总脚本 + 闸门判定（解析已填分 md，算通过率与 A1 vs 创作 2 分率）（依赖 3.1）"
     status: pending
