@@ -4,7 +4,7 @@ overview: 实现多 Agent 编剧室：加载 A1/A2/A4/A7 prompts，并发调用 
 todos:
   - id: f1a1b2c3-0001-4000-8001-000000000001
     content: "1.1 · 实现 agents.py 核心：Persona 加载、模板渲染、异步并发 LLM（A1/A2/A4/A7）"
-    status: pending
+    status: complete
   - id: f1a1b2c3-0001-4000-8001-000000000002
     content: "1.2 · 输出后处理与 errors：截断/去前言、去实体化启发式告警、失败跳过（依赖 1.1）"
     status: pending
