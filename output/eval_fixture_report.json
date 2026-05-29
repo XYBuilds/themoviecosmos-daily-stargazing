@@ -1,0 +1,42 @@
+{
+  "runs": [
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\tests\\eval_fixtures\\run-alpha.md",
+      "run_id": "run-alpha",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 3
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\tests\\eval_fixtures\\run-beta.md",
+      "run_id": "run-beta",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 2
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\tests\\eval_fixtures\\run-gamma.md",
+      "run_id": "run-gamma",
+      "has_any_score_2": false,
+      "missing_count": 1,
+      "candidate_count": 2
+    }
+  ],
+  "global": {
+    "total_runs": 3,
+    "runs_with_score_2": 2,
+    "batch_pass_rate": 0.6666666666666666,
+    "missing_scores_total": 1,
+    "baseline_2_rate": 0.0,
+    "creative_2_rate": 0.5,
+    "baseline_scored": 2,
+    "baseline_twos": 0,
+    "creative_scored": 4,
+    "creative_twos": 2
+  },
+  "gate": {
+    "pass": true,
+    "verdict": "GATE_PASS",
+    "reasons": []
+  }
+}

@@ -1,6 +1,6 @@
 # Eval 新闻集 · N=10 占位
 
-Phase 3 **验证闸门（The Bet）** 用手挑的 10 条新闻 JSON。总编自行填充内容；本目录仅约定文件名与格式。
+Phase 3 **验证闸门（The Bet）** 用手挑的 10 条新闻 JSON。本目录已预填 10 条 **2026 年 5 月**真实报道摘要（可替换）；格式见下表。
 
 **格式**：与 [`../sample_news.json`](../sample_news.json) 相同（`title`、`description` 必填；`pub_time`、`source_name`、`url` 推荐）。
 

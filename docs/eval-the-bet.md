@@ -128,9 +128,7 @@ python scripts/run_eval.py --news-file tests/sample_news.json --provider deepsee
 
 ## 5. 闸门汇总：`summarize_eval.py`
 
-> **说明**：`scripts/summarize_eval.py` 由 Todo **3.2** 交付。若该 PR 尚未合并，以下命令为**预期接口**（与 Phase 3 plan 一致）；合并后以脚本 `--help` 为准。
-
-全部 10 份 md 填分完成后，运行汇总：
+全部 10 份 md 填分完成后，运行汇总（接口以 `python scripts/summarize_eval.py --help` 为准）：
 
 ```powershell
 # 扫描整个目录（推荐）
