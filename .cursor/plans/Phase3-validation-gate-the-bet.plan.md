@@ -7,7 +7,7 @@ todos:
     status: complete
   - id: f3a1b2c3-0001-4000-8003-000000000002
     content: "3.2 · 评分汇总脚本 + 闸门判定（解析已填分 md，算通过率与 A1 vs 创作 2 分率）（依赖 3.1）"
-    status: pending
+    status: complete
   - id: f3a1b2c3-0001-4000-8003-000000000003
     content: "3.3 · 评测手册：N=10 手挑新闻流程、评分 rubric、README（依赖 3.1）"
     status: complete
