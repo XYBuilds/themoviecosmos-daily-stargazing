@@ -1,0 +1,61 @@
+{
+  "news": {
+    "title": "Regional grid operator warns of rolling outages after heat wave strains power plants",
+    "description": "Officials said several fossil-fuel units tripped offline during record demand, forcing utilities to ration electricity across major cities for the second night. Consumer groups demanded transparency on maintenance schedules while industrial lobbies pressed for emergency fuel imports.",
+    "pub_time": "2026-05-29T12:00:00Z",
+    "source_name": "Example Wire",
+    "url": "https://example.com/article/1"
+  },
+  "agents": [
+    {
+      "agent_id": "A2",
+      "persona_name": "The Sociologist",
+      "role": "creative",
+      "text": "",
+      "warnings": []
+    },
+    {
+      "agent_id": "A4",
+      "persona_name": "The Mythologist",
+      "role": "creative",
+      "text": "",
+      "warnings": []
+    },
+    {
+      "agent_id": "A7",
+      "persona_name": "The Chaos Theorist",
+      "role": "creative",
+      "text": "",
+      "warnings": []
+    },
+    {
+      "agent_id": "A1",
+      "persona_name": "The Reality Recorder (Baseline)",
+      "role": "baseline",
+      "text": "",
+      "warnings": []
+    }
+  ],
+  "errors": [
+    {
+      "agent_id": "A2",
+      "type": "config",
+      "message": "Missing MIMO_API_KEY for provider 'mimo'. Copy .env.example to .env and set your API credentials."
+    },
+    {
+      "agent_id": "A4",
+      "type": "config",
+      "message": "Missing MIMO_API_KEY for provider 'mimo'. Copy .env.example to .env and set your API credentials."
+    },
+    {
+      "agent_id": "A7",
+      "type": "config",
+      "message": "Missing MIMO_API_KEY for provider 'mimo'. Copy .env.example to .env and set your API credentials."
+    },
+    {
+      "agent_id": "A1",
+      "type": "config",
+      "message": "Missing MIMO_API_KEY for provider 'mimo'. Copy .env.example to .env and set your API credentials."
+    }
+  ]
+}
