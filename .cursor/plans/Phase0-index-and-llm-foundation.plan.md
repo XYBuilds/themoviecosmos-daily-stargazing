@@ -4,7 +4,7 @@ overview: 接通 59,341 部片单的检索索引（复用 cosmos 向量 + 生成
 todos:
   - id: f0a1b2c3-0001-4000-8000-000000000001
     content: "0.1 · 实现 build_index.py（ADR-0001 复用模式：meta.parquet + 索引目录接线 + 行数断言）"
-    status: pending
+    status: complete
   - id: f0a1b2c3-0001-4000-8000-000000000002
     content: "0.2 · 新增 scripts/lib 共享模块（paths、env、get_llm_client）并更新 .env.example 路径约定"
     status: pending
@@ -122,10 +122,10 @@ python -c "import numpy as np, pandas as pd; e=np.load('data/index/embeddings.np
 
 ### 完成定义
 
-- [ ] `data/index/meta.parquet` 存在且 9 列齐全
-- [ ] `data/index/embeddings.npy` 存在且 shape 正确
-- [ ] 断言脚本通过
-- [ ] `build_index.py` 有 `if __name__ == '__main__'` 与 `--help`
+- [x] `data/index/meta.parquet` 存在且 9 列齐全
+- [x] `data/index/embeddings.npy` 存在且 shape 正确
+- [x] 断言脚本通过
+- [x] `build_index.py` 有 `if __name__ == '__main__'` 与 `--help`
 
 ---
 
