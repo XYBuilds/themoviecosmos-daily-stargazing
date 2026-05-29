@@ -10,7 +10,7 @@ todos:
     status: pending
   - id: f3a1b2c3-0001-4000-8003-000000000003
     content: "3.3 · 评测手册：N=10 手挑新闻流程、评分 rubric、README（依赖 3.1）"
-    status: pending
+    status: complete
 isProject: true
 ---
 

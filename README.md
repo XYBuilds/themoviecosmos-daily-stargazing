@@ -116,27 +116,33 @@ Copy-Item .env.example .env
    ```
    在全量 59,341 索引上肉眼检查：候选与 pseudo 至少有表层相关，便于进入 Phase 3 闸门评分。
 
-4. **生成中文审核文案**
+4. **验证闸门（The Bet）** — N=10 手挑新闻、填共振分、汇总判定；详见 [`docs/eval-the-bet.md`](docs/eval-the-bet.md)。
+   ```powershell
+   python scripts/run_eval.py --news-file tests/sample_news.json
+   python scripts/summarize_eval.py --dir output/Eval
+   ```
+
+5. **生成中文审核文案**
    ```powershell
    python scripts/copywriter.py --stage review --candidates <retrieve_output>
    ```
    为每部候选产出一段中文文案，写进简报供总编勾选。
 
-5. **接 RSS**：`scripts/fetch_news.py`。
+6. **接 RSS**：`scripts/fetch_news.py`。
 
-6. **端到端跑通**
+7. **端到端跑通**
    ```powershell
    python scripts/main.py --url <news_url>
    ```
    产物：`output/Daily_Briefing/2026-MM-DD.md`，在 Obsidian 中阅读、勾选文案。
 
-7. **选定文案 → 多平台定稿（中/英）**
+8. **选定文案 → 多平台定稿（中/英）**
    ```powershell
    python scripts/copywriter.py --stage publish --selected <copy>
    ```
    产物：`output/Daily_Briefing/2026-MM-DD_copy.md`。
 
-8. **切全量索引**：把 `--csv` 换成 `data/full/TMDB_all_movies.csv`。
+9. **切全量索引**：把 `--csv` 换成 `data/full/TMDB_all_movies.csv`。
 
 ---
 

@@ -1,0 +1,225 @@
+# 验证闸门 · The Bet（Phase 3）
+
+> **目的**：在投入 Phase 4 中文文案（C1/C2）之前，用 **N=10** 条手挑新闻验证「多 Agent 伪剧情 → 向量召回 → 人类结构性共振评分」这条链是否值得继续。
+>
+> **总编角色**：你是唯一裁决者——手挑新闻、填 **共振分 0/1/2**、记录闸门结论。系统不做自动打分。
+
+详细术语见 [`CONTEXT.md`](../CONTEXT.md)；闸门指标定义与 Phase 3 plan 一致（[`.cursor/plans/Phase3-validation-gate-the-bet.plan.md`](../.cursor/plans/Phase3-validation-gate-the-bet.plan.md)）。
+
+---
+
+## 1. 前置条件
+
+在启动本评测前，确认以下 Phase 已验收：
+
+| Phase | 验收要点 |
+|-------|----------|
+| **Phase 0** | `.env` 已配置 LLM；`python scripts/smoke_llm.py` 通过 |
+| **Phase 1** | `python scripts/agents.py --news-file tests/sample_news.json` 产出 4 段英文 pseudo（A2/A4/A7 + 基线 A1） |
+| **Phase 2** | 全量索引已构建（`data/index/embeddings.npy` + `meta.parquet`）；`retrieve.py` 可召回候选 |
+
+**环境**：从仓库根目录运行；虚拟环境已激活；首次 `run_eval` 会加载 sentence-transformers 模型与 59,341 行索引（注意内存与首次下载耗时）。
+
+---
+
+## 2. 准备 N=10 条新闻 JSON
+
+评测批次固定 **N=10**。每条新闻一个 JSON 文件，格式与 `tests/sample_news.json` 相同：
+
+```json
+{
+  "title": "...",
+  "description": "...",
+  "pub_time": "2026-05-29T12:00:00Z",
+  "source_name": "Example Wire",
+  "url": "https://example.com/article/1"
+}
+```
+
+**必填**：`title`、`description`。**推荐**：`pub_time`、`source_name`、`url`（写入评测 Markdown 元信息）。
+
+### 新闻来源
+
+| 阶段 | 做法 |
+|------|------|
+| **评测早期**（Phase 5 RSS 未接） | 总编手写或改编 10 条 JSON，放入 `tests/eval_news/`（见该目录 README 占位文件名） |
+| **Phase 5 之后** | 从 `fetch_news.py` 抓取的 RSS 池中**手挑** 10 条，导出为上述 JSON 格式 |
+
+**挑选原则（建议，非硬规则）**：
+
+- 题材多样（政治、灾难、商业、文化等），避免 10 条全是同一类头条
+- 含足够「结构骨架」（权力博弈、命运转折、反讽落差），而非纯数据通报
+- 避免过于本地化专名堆叠——agents 会去实体化，但极端生僻事件可解释性较差
+
+---
+
+## 3. 评测循环（10 次）
+
+对每条新闻执行一次 `run_eval`，产出一份供填分的 Markdown。
+
+### 3.1 运行命令
+
+```powershell
+# 单条（输出默认 output/Eval/{run_id}.md，run_id 由 title slug 生成）
+python scripts/run_eval.py --news-file tests/eval_news/01-grid-outage.json
+
+# 指定 run_id（便于文件名对齐）
+python scripts/run_eval.py --news-file tests/eval_news/01-grid-outage.json --run-id 01-grid-outage
+
+# 指定输出路径
+python scripts/run_eval.py --news-file tests/sample_news.json --out output/Eval/sample.md
+
+# 切换 LLM 提供商（默认读 .env 的 DEFAULT_LLM_PROVIDER）
+python scripts/run_eval.py --news-file tests/sample_news.json --provider deepseek
+```
+
+**CLI 参数（`scripts/run_eval.py`）**：
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--news-file` | 是 | 新闻 JSON 路径 |
+| `--run-id` | 否 | 评测 slug；默认从 title 生成 ASCII slug，失败则用 UTC 时间戳 |
+| `--out` | 否 | 输出 Markdown；默认 `output/Eval/{run_id}.md` |
+| `--provider` | 否 | `mimo` 或 `deepseek` |
+
+**管线**：`agents.run_all` → `retrieve.from_agents` → 渲染 Eval 简报（与正式 `Daily_Briefing` 分离，目录为 `output/Eval/`）。
+
+**成本提示**：每条新闻 ≈ 4 次 LLM 调用 + 1 次全量向量检索；10 条 ≈ 10× 上述开销。
+
+### 3.2 在 Obsidian 中填分
+
+1. 用 Obsidian 打开 `output/Eval/` 下刚生成的 `.md` 文件（或把整个 `output/Eval/` 加为 vault 子文件夹）。
+2. 通读：**现实波澜** → 四段 **伪剧情（英文）** → **候选星轨** 列表。
+3. 对**每个** `### 电影标题 (年份) [A2, A4]` 候选块，找到：
+
+   ```markdown
+   - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+   ```
+
+4. 将占位改为 **`0`**、**`1`** 或 **`2`**（保留该行格式，例如 `- **共振分**: 2`）。
+
+**阅读顺序建议**：
+
+- 先看创作视角 pseudo（A2/A4/A7），再看 A1 `[baseline]` 对照
+- 点开 **跳转** 链接或 TMDB overview，判断的是「新闻骨架 ↔ 电影骨架」，不是字面题材
+- `[A2, A4]` 表示多创作视角撞车（中性展示）；`[baseline only]` / `also_baseline: true` 表示仅基线命中
+
+重复本步骤，直到 **10 份** md 全部填完共振分。
+
+---
+
+## 4. 共振分 Rubric（0 / 1 / 2）
+
+与 [`CONTEXT.md`](../CONTEXT.md) 中 **结构性共振 (Structural Resonance)** 一致：评的是抽象骨架同构，**不是**表层题材是否沾边。
+
+| 分 | 含义 | 判据示例 |
+|----|------|----------|
+| **0** | 毫无结构性共振 | 仅字面关键词碰巧重叠；换一条无关新闻同样能「解释」这部片 |
+| **1** | 表层题材沾边但平淡 | 类型/话题相关（如都是「灾难」「职场」），但权力/命运/反讽骨架对不上 |
+| **2** | 真正的结构性共振 | 能清晰说出同构骨架：如「中心权威在资源稀缺下被迫牺牲边缘群体」「个人命运被体制齿轮碾过」「公开 rhetoric 与 private 动机反讽撕裂」等 |
+
+**归属规则**（汇总脚本与闸门统计均按此）：
+
+- 每个 `(新闻, tmdb_id)` 候选打**一次**分
+- 该分同时计入所有在 `triggered_by` 中召回它的**创作视角**桶（A2 / A4 / A7）
+- 若候选**仅**被 A1 基线召回（`[baseline only]`），分计入 **baseline** 桶，**不计入**创作撞车展示
+
+---
+
+## 5. 闸门汇总：`summarize_eval.py`
+
+> **说明**：`scripts/summarize_eval.py` 由 Todo **3.2** 交付。若该 PR 尚未合并，以下命令为**预期接口**（与 Phase 3 plan 一致）；合并后以脚本 `--help` 为准。
+
+全部 10 份 md 填分完成后，运行汇总：
+
+```powershell
+# 扫描整个目录（推荐）
+python scripts/summarize_eval.py --dir output/Eval
+
+# 或显式列出文件
+python scripts/summarize_eval.py output/Eval/01-grid-outage.md output/Eval/02-*.md
+```
+
+**解析规则**：在每个 `### ` 候选块内，读取 `- **共振分**:` 后第一个 `0` / `1` / `2`；未填则报 `missing`，该 run 不参与通过率计算。
+
+**脚本输出（stdout 或 `--out report.json`）应包含**：
+
+- 每个 run：是否存在 ≥1 个 **2 分** 候选
+- 全局：**批次通过率** = 至少有一个 2 分的 run 数 ÷ 总 run 数
+- **baseline_2_rate**（仅 A1 桶）vs **creative_2_rate**（A2+A4+A7 合并桶）
+- 最终打印 **`GATE_PASS`** 或 **`GATE_FAIL`** 及简要原因
+
+### 5.1 通过线（N=10）
+
+同时满足以下两条方为 **GATE_PASS**：
+
+1. **批次通过率 ≥ 60%**：10 条新闻中至少 **6 条** 各自存在 **≥1 个** 共振分为 **2** 的候选
+2. **创作优于基线**：**A1 基线**候选集的 **2 分率** **<** **A2+A4+A7 创作**合并候选集的 **2 分率**
+
+未通过任一条 → **GATE_FAIL**。
+
+### 5.2 记录结论（人工）
+
+将书面结论写入 **`output/Eval/GATE_RESULT.md`**（人工维护，不纳入 git 亦可），例如：
+
+```markdown
+# Phase 3 闸门结论
+
+- 日期：2026-05-29
+- 批次：N=10（tests/eval_news/01–10）
+- summarize_eval 输出：GATE_PASS / GATE_FAIL
+- 批次通过率：6/10（60%）
+- baseline_2_rate：… vs creative_2_rate：…
+- 总编备注：…
+```
+
+---
+
+## 6. 未通过时的回流路径
+
+**GATE_FAIL** 时 **不要** 启动 Phase 4 `copywriter.py`（C1/C2）。按失败形态回流：
+
+| 现象 | 优先回流 |
+|------|----------|
+| pseudo 质量差：未去实体化、口吻趋同、骨架模糊 | **Phase 1** — 改 `prompts/_shared/` 或 A2/A4/A7 Persona |
+| pseudo 可读但候选普遍 0/1 分、与骨架无关 | **Phase 2** — 查 `retrieve.py` 模板、top-k、索引字段；确认 pseudo 套 `Overview: {pseudo}` |
+| 创作与基线 2 分率倒挂（A1 ≥ 创作） | **Phase 1** — 强化创作视角的隐喻/结构注入；对照 A1 是否「过于幸运」 |
+| 个别 run 全失败 / errors 非空 | 查 LLM 配置、单条 `--news-file` 重跑；必要时缩减 description 长度 |
+| 批次通过率略低于 60%（如 5/10） | 可增至 N=15 重测（手册约定：增 N 时需**同比例重算**通过线，如 15 条需 9 条有 2 分） |
+
+回流后从 **§3 评测循环** 重跑受影响的 news JSON，重新填分并 `summarize_eval`，更新 `GATE_RESULT.md`。
+
+---
+
+## 7. 通过后的下一步
+
+| 结果 | 动作 |
+|------|------|
+| **GATE_PASS** | 启动 Phase 4 `copywriter.py`（中文审核文案 C1） |
+| **GATE_FAIL** | 继续 Phase 1/2 迭代，不开 Copy |
+
+评测 Markdown 格式可供 Phase 6 `main.py` 复用渲染逻辑；闸门指标定义供产品记录与 prompt 迭代参考。
+
+---
+
+## 8. 快速检查清单
+
+- [ ] Phase 0–2 本地验收通过
+- [ ] `tests/eval_news/` 内 10 条 JSON 就绪
+- [ ] 10 次 `python scripts/run_eval.py --news-file ...` 均 exit 0
+- [ ] `output/Eval/` 内 10 份 md 共振分已填（无 `missing`）
+- [ ] `python scripts/summarize_eval.py --dir output/Eval` → `GATE_PASS` 或已知原因下的 `GATE_FAIL`
+- [ ] `output/Eval/GATE_RESULT.md` 已写书面结论
+
+---
+
+## 附录 · 人类工作流（一览）
+
+```text
+手挑 10 条（RSS 池或手写 JSON）
+    → run_eval × 10（output/Eval/*.md）
+    → Obsidian 填共振分 0/1/2
+    → summarize_eval --dir output/Eval
+    → 记录 GATE 于 output/Eval/GATE_RESULT.md
+    → PASS → Phase 4；FAIL → Phase 1/2
+```
