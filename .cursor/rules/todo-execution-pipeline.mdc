@@ -11,7 +11,7 @@ alwaysApply: true
 
 ## 1. 分支管理
 
-- 命名：`feat/phase[N]-[todo]`（例：`feat/phase5.3-fetch-news`）。
+- 命名：`feat/phase[N.N]-[todo]`（例：`feat/phase5.3-fetch-news`）。
 - 按「Phase 依赖与顺序执行」规则确定检出来源，检出新分支后开发。
 
 ## 2. 执行与本地验证
@@ -21,8 +21,8 @@ alwaysApply: true
 
 ## 3. 代码提交（Conventional Commits）
 
-- 格式：`<type>(<scope>): <description>`
-- 示例：`feat(news): implement custom fetcher for rss feeds` / `fix(validation): correct threshold index range`
+- 格式：`<type>(<scope>): <pN.N>-<description>`
+- 示例：`feat(news): p5.1-implement-custom-fetcher-for-rss-feeds` / `fix(validation): p3.2-correct-threshold-index-range`
 
 ## 4. 状态标记
 
@@ -30,11 +30,11 @@ alwaysApply: true
 
 ## 5. 交付报告
 
-- 路径：`docs/reports/Phase[N]-[todo-name]-report.md`（例：`docs/reports/Phase5-fetch-news-report.md`）。
+- 路径：`docs/reports/Phase[N.N]-[todo-name]-report.md`（例：`docs/reports/Phase5.1-fetch-news-report.md`）。
 - 模板：
 
 ```markdown
-# Phase [N] - [TODO 名称] 交付报告
+# Phase [N.N] - [TODO 名称] 交付报告
 
 ## 1. 改动范围 (Scope)
 - 改动的文件列表
@@ -52,6 +52,6 @@ alwaysApply: true
 
 ## 6. 合并主干
 
-- 检出至主干/上游目标分支，用 `git merge --no-ff feat/phase[N]-[todo-name]` 创建 Merge Commit，随后删除本地临时开发分支。
+- 检出至主干/上游目标分支，用 `git merge --no-ff feat/phase[N.N]-[todo-name]` 创建 Merge Commit，随后删除本地临时开发分支。
 
 > 注意：第 4–6 步受「人工验收阻断」规则约束 —— 标注 `[需人工验收]` 时须先暂停等待 approve。
