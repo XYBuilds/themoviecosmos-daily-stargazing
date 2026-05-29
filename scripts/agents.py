@@ -10,7 +10,9 @@ MVP scope: core models, persona load, template render, async LLM, post-processin
 
 from __future__ import annotations
 
+import argparse
 import asyncio
+import json
 import os
 import re
 import sys
@@ -488,3 +490,128 @@ async def run_all(
             errors.append(_error_record(out.agent_id, out.error))
 
     return outputs, errors
+
+
+def news_to_dict(news: NewsItem) -> dict[str, str]:
+    return {
+        "title": news.title,
+        "description": news.description,
+        "pub_time": news.pub_time,
+        "source_name": news.source_name,
+        "url": news.url,
+    }
+
+
+def agent_to_dict(output: AgentOutput) -> dict:
+    return {
+        "agent_id": output.agent_id,
+        "persona_name": output.persona_name,
+        "role": output.role,
+        "text": output.text,
+        "warnings": output.warnings,
+    }
+
+
+def load_news_from_file(path: Path) -> NewsItem:
+    """Load a news item from JSON (title and description required)."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError("news file must be a JSON object")
+    title = str(data.get("title", "")).strip()
+    description = str(data.get("description", "")).strip()
+    if not title or not description:
+        raise ValueError("news JSON requires non-empty title and description")
+    return NewsItem(
+        title=title,
+        description=description,
+        pub_time=str(data.get("pub_time", "") or ""),
+        source_name=str(data.get("source_name", "") or ""),
+        url=str(data.get("url", "") or ""),
+    )
+
+
+def build_result_payload(
+    news: NewsItem,
+    outputs: list[AgentOutput],
+    errors: list[dict],
+) -> dict:
+    return {
+        "news": news_to_dict(news),
+        "agents": [agent_to_dict(o) for o in outputs],
+        "errors": errors,
+    }
+
+
+def _parse_agent_ids(raw: str | None) -> list[str] | None:
+    if raw is None or not raw.strip():
+        return None
+    return [part.strip() for part in raw.split(",") if part.strip()]
+
+
+async def _run_cli(args: argparse.Namespace) -> int:
+    news_path = Path(args.news_file)
+    if not news_path.is_file():
+        print(f"error: news file not found: {news_path}", file=sys.stderr)
+        return 2
+
+    news = load_news_from_file(news_path)
+    outputs, errors = await run_all(
+        news,
+        provider=args.provider,
+        agent_ids=_parse_agent_ids(args.agents),
+    )
+    payload = build_result_payload(news, outputs, errors)
+    serialized = json.dumps(payload, ensure_ascii=False, indent=2)
+
+    if args.out:
+        out_path = Path(args.out)
+        if not out_path.is_absolute():
+            out_path = _REPO_ROOT / out_path
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(serialized + "\n", encoding="utf-8")
+        print(f"Wrote {out_path.resolve()}", file=sys.stderr)
+    else:
+        sys.stdout.buffer.write((serialized + "\n").encode("utf-8"))
+
+    successes = sum(1 for o in outputs if o.text.strip() and not o.error)
+    if outputs and successes == 0:
+        return 1
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="Run A1/A2/A4/A7 pseudo-overview agents on a news JSON file.",
+    )
+    parser.add_argument(
+        "--news-file",
+        required=True,
+        help="Path to news JSON (title and description required).",
+    )
+    parser.add_argument(
+        "--out",
+        help="Write JSON result to this path; otherwise print UTF-8 JSON to stdout.",
+    )
+    parser.add_argument(
+        "--provider",
+        choices=["mimo", "deepseek"],
+        help="LLM provider override (default: DEFAULT_LLM_PROVIDER from .env).",
+    )
+    parser.add_argument(
+        "--agents",
+        help="Comma-separated agent ids to run, e.g. A2,A4 (default: all MVP agents).",
+    )
+    args = parser.parse_args(argv)
+
+    try:
+        return asyncio.run(_run_cli(args))
+    except ValueError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+    except KeyboardInterrupt:
+        print("interrupted", file=sys.stderr)
+        return 130
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

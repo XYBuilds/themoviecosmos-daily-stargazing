@@ -92,17 +92,21 @@ Copy-Item .env.example .env
 
 ## MVP 执行顺序（每步独立可验证）
 
-1. **构建索引（先用 20 行样本）**
+1. **构建索引（全量片单，ADR-0001 复用向量）**
    ```powershell
-   python scripts/build_index.py --csv data/subsample/TMDB_all_movies_random20.csv
+   python scripts/build_index.py
    ```
-   产物：`data/index/embeddings.npy` + `data/index/meta.parquet`。
+   产物：`data/index/embeddings.npy` + `data/index/meta.parquet`（59,341 行）。  
+   仅调试索引管线时可用 `--csv data/subsample/TMDB_all_movies_random20.csv`。
 
-2. **跑一次 Agent**（先手喂一条新闻 JSON）
+2. **跑一次 Agent**（从仓库根目录；需已配置 `.env` 中 `MIMO_*` 或 `DEEPSEEK_*`）
    ```powershell
+   python scripts/smoke_llm.py --provider mimo
    python scripts/agents.py --news-file tests/sample_news.json
+   python scripts/agents.py --news-file tests/sample_news.json --out output/phase1_agents.json
+   python scripts/agents.py --news-file tests/sample_news.json --agents A2,A4
    ```
-   肉眼检查 4 段**英文** pseudo-overview（A2/A4/A7 + 基线 A1）的"去实体化质量"与"风格差异度"，并对比 A1 白描与创作视角的差异。
+   肉眼检查：4 段**英文单段** pseudo-overview（A2/A4/A7 + 基线 A1）；A1 更平实、创作视角口吻可区分；无明显未去实体化专名（或 JSON 中已有 `deentify_warning`）。
 
 3. **跑一次召回**
    ```powershell
