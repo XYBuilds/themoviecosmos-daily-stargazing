@@ -10,7 +10,7 @@ todos:
     status: complete
   - id: f1a1b2c3-0001-4000-8001-000000000003
     content: "1.3 · CLI + fixtures：--news-file、JSON  stdout、tests/sample_news.json、README（依赖 1.1）"
-    status: pending
+    status: complete
 isProject: true
 ---
 
@@ -266,9 +266,9 @@ python scripts/agents.py --news-file tests/sample_news.json
 
 ### 完成定义
 
-- [ ] `tests/sample_news.json` 已提交
-- [ ] `--help` 完整
-- [ ] 从仓库根目录运行无需 `PYTHONPATH` 手调（`python scripts/agents.py` 或 `python -m` 二选一，文档写清）
+- [x] `tests/sample_news.json` 已提交
+- [x] `--help` 完整
+- [x] 从仓库根目录运行无需 `PYTHONPATH` 手调（`python scripts/agents.py` 或 `python -m` 二选一，文档写清）
 
 ---
 
