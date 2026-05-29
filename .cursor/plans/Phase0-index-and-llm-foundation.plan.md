@@ -10,7 +10,7 @@ todos:
     status: complete
   - id: f0a1b2c3-0001-4000-8000-000000000003
     content: "0.3 · 新增 scripts/smoke_llm.py，验证 MiMo OpenAI 兼容 endpoint 可调用（依赖 0.2）"
-    status: pending
+    status: complete
 isProject: true
 ---
 
@@ -214,9 +214,9 @@ python scripts/smoke_llm.py --provider mimo
 
 ### 完成定义
 
-- [ ] MiMo smoke 在用户已配置 `.env` 时通过
-- [ ] `--help` 存在
-- [ ] 不修改 prompts、不写 agents 业务
+- [x] MiMo smoke 在用户已配置 `.env` 时通过
+- [x] `--help` 存在
+- [x] 不修改 prompts、不写 agents 业务
 
 ---
 
