@@ -7,7 +7,7 @@ todos:
     status: complete
   - id: f1a1b2c3-0001-4000-8001-000000000002
     content: "1.2 · 输出后处理与 errors：截断/去前言、去实体化启发式告警、失败跳过（依赖 1.1）"
-    status: pending
+    status: complete
   - id: f1a1b2c3-0001-4000-8001-000000000003
     content: "1.3 · CLI + fixtures：--news-file、JSON  stdout、tests/sample_news.json、README（依赖 1.1）"
     status: pending
@@ -184,9 +184,9 @@ python scripts/agents.py --news-file tests/sample_news.json --out out/agents_tes
 
 ### 完成定义
 
-- [ ] 失败单路不导致进程非零退出（除非**全部**失败）
-- [ ] `warnings` / `errors` 语义与 `output_contract.md` 一致
-- [ ] 无 JSON Schema 强校验（纯 dict / dataclass `asdict`）
+- [x] 失败单路不导致进程非零退出（除非**全部**失败）
+- [x] `warnings` / `errors` 语义与 `output_contract.md` 一致
+- [x] 无 JSON Schema 强校验（纯 dict / dataclass `asdict`）
 
 ---
 
