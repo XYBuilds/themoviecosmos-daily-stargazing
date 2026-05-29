@@ -1,46 +1,46 @@
-# 公共硬规则 · 去实体化（De-entification）
+# Shared Hard Rules · De-entification
 
-> 所有 Persona 的输出在被向量化召回前，必须先通过这层"匿名化"。
-> 目的：让 pseudo-overview 看起来像「电影简介」而不是「新闻播报」，从而和电影库的 overview 风格分布对齐，提升召回相关性。
+> Every Persona's output must pass through this "anonymization" layer before it is vectorized for retrieval.
+> Goal: make the pseudo-overview read like a "movie synopsis" rather than a "news bulletin," so it aligns with the style distribution of the movie library's overviews and improves retrieval relevance.
 
-## 硬规则（不可违反）
+## Hard Rules (must not be violated)
 
-1. **不得出现真实人名**
-   - 不允许：Elon Musk / 拜登 / 张三 / 习主席 / Taylor Swift
-   - 替换为身份角色："一位科技寡头" / "一名政治领袖" / "一位流行偶像"
+1. **No real personal names**
+   - Not allowed: Elon Musk / Biden / John Doe / a head of state / Taylor Swift
+   - Replace with a role identity: "a tech oligarch" / "a political leader" / "a pop idol"
 
-2. **不得出现真实地名 / 国家 / 城市**
-   - 不允许：纽约 / 加沙 / 中国 / 北京 / 硅谷
-   - 替换为环境特征："一座北方港口城市" / "一片饱受战火的内陆飞地" / "一个东方大国" / "一片技术飞地"
+2. **No real place names / countries / cities**
+   - Not allowed: New York / Gaza / China / Beijing / Silicon Valley
+   - Replace with environmental traits: "a northern port city" / "a war-torn inland enclave" / "a great eastern power" / "a technological enclave"
 
-3. **不得出现真实机构 / 品牌 / 政党 / 公司名**
-   - 不允许：Tesla / 联合国 / 共和党 / OpenAI / 字节跳动
-   - 替换为类型："一家跨国能源公司" / "一个由列强缔造的国际仲裁体" / "一个执政党" / "一家造物者公司"
+3. **No real institutions / brands / parties / company names**
+   - Not allowed: Tesla / the UN / the Republican Party / OpenAI / ByteDance
+   - Replace with a type: "a multinational energy company" / "an international arbitration body forged by great powers" / "a ruling party" / "a maker company"
 
-4. **不得出现具体日期 / 精确金额 / 精确数字**
-   - 不允许：2026 年 5 月 / 30 亿美元 / 17,234 人
-   - 模糊量级："近期" / "巨额" / "数以千计" / "十之有一"
+4. **No specific dates / exact amounts / precise numbers**
+   - Not allowed: May 2026 / 3 billion dollars / 17,234 people
+   - Blur to magnitude: "recently" / "a vast sum" / "thousands" / "one in ten"
 
-5. **不得出现新闻八股**
-   - 禁词：据报道 / 声明称 / 日前 / 本台讯 / 路透社消息 / 据知情人士透露 / sources said / according to / reportedly
+5. **No journalistic boilerplate**
+   - Banned: "it is reported" / "the statement said" / "the other day" / "sources said" / "according to" / "reportedly"
 
-6. **输出语种 = 新闻原文语种**
-   - 中文新闻 → 中文 pseudo-overview
-   - 英文新闻 → English pseudo-overview
-   - 不要主动翻译；多语言向量模型负责跨语对齐。
+6. **Output language = English (unified)**
+   - Regardless of the source news language (Chinese or English), the pseudo-overview is always written in **English**.
+   - Rationale: the movie index (TMDB tagline + overview) is English-only, so an English query is same-distribution and gives more stable Top-K retrieval. Display/copywriting in other languages happens in a later stage, not here.
 
-## 软规则（保电影简介的口吻）
+## Soft Rules (keep the movie-synopsis voice)
 
-* 主语必须是"一个 / 某个 / 一位 [角色]"，不要具名实体。
-* 优先使用现在时（电影简介的常见时态）。
-* 长度 **80 ~ 150 字**（中文）或 **60 ~ 120 words**（英文），**单段**。
-* 末尾不要出现元描述："这是一部关于……的电影" / "本片讲述……" / "A film about..."。
-* 不写"导演风格"、"摄影手法"等评论性话语，只写「故事内核」。
+* The subject must be "a / some / one [role]," never a named entity.
+* Prefer the present tense (common in movie synopses).
+* Length **60 – 120 words**, **single paragraph**.
+* No meta-description at the end: no "A film about…" / "This movie tells…".
+* Do not write about "directing style" or "cinematography"; write only the **core of the story**.
 
-## 自检清单（写完后默念一遍）
+## Self-check (recite after writing)
 
-- [ ] 通篇没有任何真实专有名词？
-- [ ] 主语是抽象角色而非具名实体？
-- [ ] 没有八股词？
-- [ ] 长度合规？
-- [ ] 读起来像 IMDb / TMDB 上的一条 overview，而不是一条新闻摘要？
+- [ ] No real proper nouns anywhere?
+- [ ] Subject is an abstract role, not a named entity?
+- [ ] No boilerplate words?
+- [ ] Length within bounds?
+- [ ] Written in English?
+- [ ] Reads like an IMDb / TMDB overview, not a news summary?

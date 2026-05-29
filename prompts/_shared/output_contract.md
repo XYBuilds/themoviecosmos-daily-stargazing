@@ -1,26 +1,26 @@
-# 输出契约（Output Contract）
+# Output Contract
 
-> MVP 极简版。等链路稳定后再加 JSON schema / 字段化约束。
+> MVP minimal version. Add JSON schema / field-level constraints once the pipeline is stable.
 
-## 输出格式
+## Output Format
 
-* **纯文本，单段**。
-* 不要 Markdown 标题 / 列表 / 代码块 / 引号包裹整段。
-* 不要前言（"好的，以下是..."）和后语（"希望对你有帮助"）。
-* 直接输出 pseudo-overview 本身。
+* **Plain text, single paragraph.**
+* No Markdown headings / lists / code blocks / wrapping the whole paragraph in quotes.
+* No preamble ("Sure, here is...") and no postscript ("Hope this helps").
+* Output the pseudo-overview itself, directly.
 
-## 长度
+## Language & Length
 
-* 中文：80 ~ 150 字。
-* 英文：60 ~ 120 words。
-* 超长 → 调用方会截断到最近的句号。
+* **Language: English** (the index is English-only; see `deentification_rules.md` rule 6).
+* Length: **60 – 120 words**.
+* Too long → the caller truncates at the nearest period.
 
-## 风格基线
+## Style Baseline
 
-* 像 TMDB / IMDb 的 overview：白描故事、克制评价、留下悬念。
-* 不写"这部电影"、"本片"、"导演用..."。
-* 不写题外话、不致辞、不解释自己的人格设定。
+* Like a TMDB / IMDb overview: describe the story plainly, judge sparingly, leave suspense.
+* Do not write "this movie," "this film," "the director uses...".
+* No digressions, no dedications, no explaining your own persona setup.
 
-## 失败时的行为（调用方约定）
+## Behavior on Failure (caller convention)
 
-* 若模型返回空字符串 / 全是拒绝语句 / 长度严重超界 / 检测到明显违反硬规则的实体名 → 调用方记录到当日简报的 `errors` 节，主流程继续，不重试（MVP）。
+* If the model returns an empty string / pure refusal text / a length far out of bounds / a clear hard-rule violation (a named entity) → the caller logs it in the day's briefing `errors` section, the main flow continues, no retry (MVP).

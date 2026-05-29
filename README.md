@@ -1,6 +1,6 @@
 # 电影宇宙 · 每日星轨观测（Daily Stargazing）
 
-> 一个「数字文化天文台」：每日抓取新闻热点，由 7 个人格各异的 LLM Agent 改写为去实体化的「伪剧情简介」，在 6 万部电影的纯文本向量库中召回与之结构共振的电影，由人类总编在 Obsidian 中拍板，引流至 [themoviecosmos.com](https://themoviecosmos.com) 的 3D 电影宇宙。
+> 一个「数字文化天文台」：每日抓取新闻热点，由 7 个人格各异的 LLM Agent 改写为去实体化的**英文**「伪剧情简介」，在 6 万部电影的纯文本向量库中召回与之结构共振的电影；再**用中文为每部候选写社媒文案供总编挑选审核**，选定后**按平台生成对应语言版本（MVP 仅中英）**，引流至 [themoviecosmos.com](https://themoviecosmos.com) 的 3D 电影宇宙。
 
 PRD 见 [`docs/SSOT/电影宇宙「每日星轨观测」系统 PRD.md`](docs/SSOT/电影宇宙「每日星轨观测」系统%20PRD.md)。
 
@@ -8,9 +8,11 @@ PRD 见 [`docs/SSOT/电影宇宙「每日星轨观测」系统 PRD.md`](docs/SSO
 
 ## MVP 目标
 
-> 验证「单条新闻 → 多 Agent 写 pseudo-overview → 向量召回电影」这条链是否可行。
+> 验证「单条新闻 → 多 Agent 写英文 pseudo-overview → 向量召回电影 → 中文文案供审核」这条链是否可行。
+>
+> **语种约定**：电影库为全英文，故检索侧（Persona prompts + pseudo）统一用英文；召回后用中文写审核文案；定稿按平台产出中、英两版。
 
-MVP 范围内**只跑 3 个 Persona**（A2 社会学家 / A4 神话学者 / A7 混沌理论家），先看链路是否真有差异化召回价值，再扩到 7 个。
+MVP 范围内跑 **3 个创作 Persona**（A2 社会学家 / A4 神话学者 / A7 混沌理论家）**+ 1 个基线 A1 现实记录员（对照组）**。A1 只做去实体化白描、不做隐喻，用来回答「创作视角召回的电影是否真比平铺直叙更妙」；它在简报里标 `[baseline]`，不计入跨 Agent 撞车强信号。确认有差异化召回价值后再扩到 7 个创作视角。
 
 非 MVP 事项见 PRD §12。
 
@@ -27,8 +29,9 @@ MVP 范围内**只跑 3 个 Persona**（A2 社会学家 / A4 神话学者 / A7 �
 ├── docs/SSOT/       # PRD 单一可信源
 ├── prompts/
 │   ├── _shared/     # 公共硬规则 + 输出契约
-│   └── A*.md        # Persona 文档
-├── scripts/         # build_index / fetch_news / agents / retrieve / main
+│   ├── A*.md        # 英文 Persona：A1 基线 + A2/A4/A7 创作视角
+│   └── C*.md        # 文案：C1 中文审核稿 / C2 中英多平台定稿
+├── scripts/         # build_index / fetch_news / agents / retrieve / copywriter / main
 ├── output/Daily_Briefing/   # 每日简报（Obsidian 阅读入口）
 └── state/           # URL/标题去重状态
 ```
@@ -99,7 +102,7 @@ Copy-Item .env.example .env
    ```powershell
    python scripts/agents.py --news-file tests/sample_news.json
    ```
-   肉眼检查 3 段 pseudo-overview 的"去实体化质量"与"风格差异度"。
+   肉眼检查 4 段**英文** pseudo-overview（A2/A4/A7 + 基线 A1）的"去实体化质量"与"风格差异度"，并对比 A1 白描与创作视角的差异。
 
 3. **跑一次召回**
    ```powershell
@@ -107,22 +110,35 @@ Copy-Item .env.example .env
    ```
    肉眼检查匹配是否"有味道"。
 
-4. **接 RSS**：`scripts/fetch_news.py`。
+4. **生成中文审核文案**
+   ```powershell
+   python scripts/copywriter.py --stage review --candidates <retrieve_output>
+   ```
+   为每部候选产出一段中文文案，写进简报供总编勾选。
 
-5. **端到端跑通**
+5. **接 RSS**：`scripts/fetch_news.py`。
+
+6. **端到端跑通**
    ```powershell
    python scripts/main.py --url <news_url>
    ```
-   产物：`output/Daily_Briefing/2026-MM-DD.md`，在 Obsidian 中阅读。
+   产物：`output/Daily_Briefing/2026-MM-DD.md`，在 Obsidian 中阅读、勾选文案。
 
-6. **切全量索引**：把 `--csv` 换成 `data/full/TMDB_all_movies.csv`。
+7. **选定文案 → 多平台定稿（中/英）**
+   ```powershell
+   python scripts/copywriter.py --stage publish --selected <copy>
+   ```
+   产物：`output/Daily_Briefing/2026-MM-DD_copy.md`。
+
+8. **切全量索引**：把 `--csv` 换成 `data/full/TMDB_all_movies.csv`。
 
 ---
 
 ## 设计原则备忘
 
-* **embedding 不翻译**：直接用 TMDB 原文，依赖多语言模型对齐。
+* **embedding 不翻译**：直接用 TMDB 英文原文；库为全英文，故检索侧 pseudo 也统一英文，同分布召回更稳。
+* **语种分层**：检索=英文，审核稿=中文，定稿=中+英（MVP）。三层各司其职，互不干扰。
 * **不引入 FAISS**：6 万级 NumPy `@` + `argpartition` 已是毫秒级。
 * **去实体化是核心质量门**：所有 Persona 共享 `prompts/_shared/deentification_rules.md`。
 * **跨 Agent 撞车 = 强信号**：同一部电影被多个视角召回，要在简报里聚合展示。
-* **人类总编不可替代**：MVP 不做自动甄选，简报最多列出候选 + 跳转链接。
+* **人类总编不可替代**：MVP 不做自动甄选与自动发布，总编从中文文案里勾选后再生成平台版本。
