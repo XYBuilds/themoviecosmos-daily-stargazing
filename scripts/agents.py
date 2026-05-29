@@ -4,8 +4,8 @@ Loads A1/A2/A4/A7 persona prompts, renders news placeholders, and calls the
 LLM concurrently. Single-agent failures are recorded in ``errors`` without
 blocking the rest.
 
-MVP scope (1.1): core models, persona load, template render, async LLM, minimal
-text cleaning. CLI and full post-processing live in 1.2 / 1.3.
+MVP scope: core models, persona load, template render, async LLM, post-processing
+(1.2), and CLI (1.3).
 """
 
 from __future__ import annotations
@@ -69,6 +69,58 @@ _PREFIX_PATTERNS: tuple[str, ...] = (
 )
 
 _AGENT_ID_RE = re.compile(r"^(A\d+)_", re.IGNORECASE)
+_CAPITALIZED_NAME_RE = re.compile(
+    r"\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\b"
+)
+_SENTENCE_END_RE = re.compile(r"[.!?](?:\s+|$)")
+
+MIN_WORDS_SHORT = 40
+MAX_WORDS = 120
+
+_BRAND_WORDS: frozenset[str] = frozenset(
+    {
+        "Tesla",
+        "Twitter",
+        "X",
+        "Apple",
+        "Google",
+        "Microsoft",
+        "Meta",
+        "Amazon",
+        "OpenAI",
+        "Facebook",
+        "Instagram",
+        "Netflix",
+        "Disney",
+        "Nvidia",
+        "SpaceX",
+    }
+)
+
+_NEWS_CLICHES: tuple[str, ...] = (
+    "reportedly",
+    "according to",
+    "sources say",
+    "sources said",
+    "it is reported",
+    "据报道",
+    "据说",
+    "消息称",
+)
+
+_REFUSAL_SNIPPETS: tuple[str, ...] = (
+    "i cannot",
+    "i can't",
+    "i am unable",
+    "i'm unable",
+    "as an ai",
+    "as a language model",
+    "i'm not able to",
+    "cannot fulfill",
+    "can't fulfill",
+    "cannot comply",
+    "can't comply",
+)
 
 
 @dataclass
@@ -214,9 +266,79 @@ def _strip_common_prefix(text: str) -> str:
 
 
 def minimal_clean(text: str) -> str:
-    """Minimal 1.1 cleaning: strip, single paragraph, drop common preambles."""
+    """Strip, single paragraph, drop common preambles."""
     cleaned = _collapse_paragraph(text)
     return _strip_common_prefix(cleaned)
+
+
+def word_count(text: str) -> int:
+    return len(text.split()) if text.strip() else 0
+
+
+def _truncate_at_sentence(text: str, max_words: int) -> str:
+    words = text.split()
+    if len(words) <= max_words:
+        return text
+    prefix = " ".join(words[:max_words])
+    last_end = None
+    for match in _SENTENCE_END_RE.finditer(prefix):
+        last_end = match.end()
+    if last_end and last_end > len(prefix) // 3:
+        return prefix[:last_end].strip()
+    return prefix.strip()
+
+
+def _looks_like_refusal(text: str) -> bool:
+    lower = text.lower()
+    return any(snippet in lower for snippet in _REFUSAL_SNIPPETS)
+
+
+def _collect_deentify_warnings(text: str) -> list[str]:
+    warnings: list[str] = []
+    for brand in _BRAND_WORDS:
+        if re.search(rf"\b{re.escape(brand)}\b", text):
+            warnings.append(f"deentify_warning: brand name {brand!r}")
+    for match in _CAPITALIZED_NAME_RE.finditer(text):
+        phrase = match.group(0)
+        if any(phrase == b or phrase.startswith(b + " ") for b in _BRAND_WORDS):
+            continue
+        warnings.append(f"deentify_warning: possible proper name {phrase!r}")
+    lower = text.lower()
+    for cliche in _NEWS_CLICHES:
+        if cliche in lower:
+            warnings.append(f"deentify_warning: news cliché {cliche!r}")
+    return warnings
+
+
+def post_process_output(output: AgentOutput) -> AgentOutput:
+    """Apply length truncation, short-output tag, and de-entity heuristics (1.2)."""
+    if output.error:
+        return output
+
+    text = output.text
+    warnings = list(output.warnings)
+
+    if not text.strip():
+        output.error = "empty text after cleaning"
+        return output
+
+    if _looks_like_refusal(text):
+        output.text = ""
+        output.error = "model refusal detected"
+        return output
+
+    wc = word_count(text)
+    if wc > MAX_WORDS:
+        text = _truncate_at_sentence(text, MAX_WORDS)
+        warnings.append("truncated_over_length")
+    elif wc < MIN_WORDS_SHORT:
+        warnings.append("short_output")
+
+    warnings.extend(_collect_deentify_warnings(text))
+
+    output.text = text
+    output.warnings = warnings
+    return output
 
 
 def _sync_llm_call(client: OpenAI, model: str, user_prompt: str) -> str:
@@ -297,11 +419,14 @@ async def _run_one_agent(
             error="empty LLM response",
         )
 
-    return AgentOutput(
-        agent_id=persona.agent_id,
-        persona_name=persona.persona_name,
-        role=persona.role,
-        text=minimal_clean(raw),
+    cleaned = minimal_clean(raw)
+    return post_process_output(
+        AgentOutput(
+            agent_id=persona.agent_id,
+            persona_name=persona.persona_name,
+            role=persona.role,
+            text=cleaned,
+        )
     )
 
 
