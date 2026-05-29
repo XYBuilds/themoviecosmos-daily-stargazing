@@ -108,11 +108,13 @@ Copy-Item .env.example .env
    ```
    肉眼检查：4 段**英文单段** pseudo-overview（A2/A4/A7 + 基线 A1）；A1 更平实、创作视角口吻可区分；无明显未去实体化专名（或 JSON 中已有 `deentify_warning`）。
 
-3. **跑一次召回**
+3. **跑一次召回**（依赖步骤 1 索引 + 步骤 2 `phase1_agents.json`）
    ```powershell
-   python scripts/retrieve.py --pseudo "..."
+   python scripts/retrieve.py --pseudo "A heat wave strains the grid..." --agent-id A2
+   python scripts/retrieve.py --agents-json output/phase1_agents.json --out output/phase2_retrieve.json
+   python -c "import json; d=json.load(open('output/phase2_retrieve.json')); print(len(d['candidates']), 'candidates')"
    ```
-   肉眼检查匹配是否"有味道"。
+   在全量 59,341 索引上肉眼检查：候选与 pseudo 至少有表层相关，便于进入 Phase 3 闸门评分。
 
 4. **生成中文审核文案**
    ```powershell

@@ -4,13 +4,13 @@ overview: 实现 retrieve.py：对 Phase 1 的 pseudo-overview 做向量召回�
 todos:
   - id: f2a1b2c3-0001-4000-8002-000000000001
     content: "2.1 · 召回核心：加载索引、MiniLM 编码查询、余弦 Top-K（每 Agent K=2）"
-    status: pending
+    status: completed
   - id: f2a1b2c3-0001-4000-8002-000000000002
     content: "2.2 · 候选聚合：按 tmdb_id 去重、撞车中性展示（A1 不计入）、可选发散度探针（依赖 2.1）"
-    status: pending
+    status: completed
   - id: f2a1b2c3-0001-4000-8002-000000000003
     content: "2.3 · CLI + JSON 契约：--agents-json、README、与 Phase 1 联调（依赖 2.1、2.2、Phase 1）"
-    status: pending
+    status: completed
 isProject: true
 ---
 
@@ -92,9 +92,9 @@ python scripts/retrieve.py --pseudo "A prophet of technology proclaims..." --age
 
 ### 完成定义
 
-- [ ] Top-2 返回 2 部不同电影（除非库极小）
-- [ ] `similarity` 在 [-1, 1] 且单调合理
-- [ ] 未改 `embeddings.npy` 行序
+- [x] Top-2 返回 2 部不同电影（除非库极小）
+- [x] `similarity` 在 [-1, 1] 且单调合理
+- [x] 未改 `embeddings.npy` 行序
 
 ---
 
@@ -117,8 +117,8 @@ python scripts/retrieve.py --pseudo "A prophet of technology proclaims..." --age
 
 ### 完成定义
 
-- [ ] 同一电影被 A2+A4 命中时，`triggered_by` 含二者且候选只出现一次
-- [ ] A1 单独命中时不在 `triggered_by` 创作列表中
+- [x] 同一电影被 A2+A4 命中时，`triggered_by` 含二者且候选只出现一次
+- [x] A1 单独命中时不在 `triggered_by` 创作列表中
 
 ---
 
@@ -186,8 +186,8 @@ python -c "import json; d=json.load(open('output/phase2_retrieve.json')); print(
 
 ## Phase 2 整体验收
 
-- [ ] 上述命令通过
-- [ ] `candidates` 非空（正常新闻下）
+- [x] 上述命令通过
+- [x] `candidates` 非空（正常新闻下）
 - [ ] 人工：候选与 pseudo 至少有表层相关，便于进入 Phase 3 闸门评分
 
 ## 交给下一 Phase
