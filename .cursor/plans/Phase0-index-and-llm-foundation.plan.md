@@ -7,7 +7,7 @@ todos:
     status: complete
   - id: f0a1b2c3-0001-4000-8000-000000000002
     content: "0.2 · 新增 scripts/lib 共享模块（paths、env、get_llm_client）并更新 .env.example 路径约定"
-    status: pending
+    status: complete
   - id: f0a1b2c3-0001-4000-8000-000000000003
     content: "0.3 · 新增 scripts/smoke_llm.py，验证 MiMo OpenAI 兼容 endpoint 可调用（依赖 0.2）"
     status: pending
@@ -181,9 +181,9 @@ python -c "from scripts.lib.paths import cleaned_csv, embeddings_npy; from scrip
 
 ### 完成定义
 
-- [ ] `scripts/lib/` 可被 `python -c` 导入（必要时在 `scripts/` 加 `__init__.py` 或文档说明从 repo root 运行）
-- [ ] `.env.example` 已更新
-- [ ] 不引入业务逻辑（agents/retrieve）
+- [x] `scripts/lib/` 可被 `python -c` 导入（必要时在 `scripts/` 加 `__init__.py` 或文档说明从 repo root 运行）
+- [x] `.env.example` 已更新
+- [x] 不引入业务逻辑（agents/retrieve）
 
 ---
 
