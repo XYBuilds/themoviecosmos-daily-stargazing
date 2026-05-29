@@ -41,7 +41,8 @@
   * 输入：与原 3D 宇宙项目对齐，**直接使用 TMDB 原文（清洗后的 tagline + overview），不做机器翻译**。库为**全英文**，故**检索侧（pseudo-overview）也统一用英文**，与索引同分布，召回更稳；多语言模型能力作为冗余保障。
   * 输出：`embeddings.npy`（L2 归一化）+ `meta.parquet`（仅保留检索/渲染必需字段）。
   * 不做 UMAP / 不拼接 Genres / 不拼接 Language——**打破类型壁垒，纯粹基于剧情结构和隐喻做跨界检索**。
-  * 数据规模：约 **60,000 部电影**，6 万级用 NumPy 矩阵乘法 + `argpartition` 毫秒级即可，**不引入 FAISS**。
+  * 数据规模：**59,341 部**（3D 宇宙策展片单，从 119 万行 Kaggle 原始表清洗而来；非"全量"）。6 万级用 NumPy 矩阵乘法 + `argpartition` 毫秒级即可，**不引入 FAISS**。
+  * **索引来源（ADR-0001）**：MVP **直接复用** 3D 宇宙项目产出的 `cleaned.csv` + `text_embeddings.npy`（同模型、同 384 维、已 L2 归一、行序对齐），不自建。详见 `docs/adr/0001-reuse-cosmos-text-embeddings.md`。`build_index.py` 重算逻辑降级为 Post-MVP 备用。
 
 ---
 
@@ -51,7 +52,7 @@
 
 * **来源 CSV schema**：见 `data/subsample/TMDB_all_movies_random20.csv`。
 * **进入索引的必需字段**：`id, title, original_title, overview, tagline, genres, original_language, release_date, poster_path`。
-* **数据库规模**：约 60k 行（MVP 用 20 行 subsample 跑通链路，再切全量）。
+* **数据库规模**：**59,341 行**（策展片单 `cleaned.csv`）。20 行 subsample 仅用于验证管线（plumbing），**召回质量/评分只在全量片单上才算数**（见 ADR-0001 与 §10）。
 
 ### 3.2 文本清洗与缺失值处理
 
@@ -65,11 +66,14 @@
 | 仅有原语种简介 | **保留原文**，依赖多语言模型对齐 |
 | 字符串前后空白、HTML 残片、引号变体 | 统一清洗 |
 
-embedding 输入文本拼接公式（建议）：
+embedding 输入文本模板（**已对齐 3D 宇宙索引,ADR-0001**）：
 
 ```
-text = (f"{tagline.strip()}. " if tagline else "") + (overview or title).strip()
+有 tagline:  f"Tagline: {tagline}\nOverview: {overview}"
+无 tagline:  f"Overview: {overview}"
 ```
+
+> ⚠️ 此模板**同时约束查询侧**:`retrieve.py` 必须把每段 pseudo-overview 套成 `Overview: {pseudo}` 再 encode,保证查询与索引同分布。早期的裸拼接公式 `(tagline + ". ") + overview` **已作废**。
 
 ### 3.3 索引产物
 
@@ -115,7 +119,7 @@ text = (f"{tagline.strip()}. " if tagline else "") + (overview or title).strip()
 
 **MVP 落地策略**：实现 **3 个创作视角（A2 社会学家 / A4 神话学者 / A7 混沌理论家）+ 1 个基线（A1 现实记录员）**。先跑通主链路、确认风格差异化有效后，再补齐剩余 Persona。**七个一开始全写容易风格趋同，且未验证 LLM 对人格设定的服从度。**
 
-> **A1 的定位 = 实验对照组**：A1 只做去实体化白描、不做任何隐喻，输出最接近 TMDB overview 的中性分布。它存在的唯一目的，是回答 MVP 的核心问题——「创作视角召回的电影，是否真比平铺直叙更妙？」。因此 A1 **不算创作视角**，在简报里单独标 `[baseline]`，且**不计入 §5.2 的跨 Agent 撞车强信号统计**（否则它的同分布高分会污染信号）。
+> **A1 的定位 = 实验对照组**：A1 只做去实体化白描、不做任何隐喻，输出最接近 TMDB overview 的中性分布。它存在的唯一目的，是回答 MVP 的核心问题——「创作视角召回的电影，是否真比平铺直叙更妙？」。因此 A1 **不算创作视角**，在简报里单独标 `[baseline]`，且**不计入 §5.2 的跨 Agent 撞车展示**（它是对照组，不是一条创作路径）。
 
 ### 4.3 去实体化（De-entification）规则
 
@@ -161,7 +165,7 @@ text = (f"{tagline.strip()}. " if tagline else "") + (overview or title).strip()
 
 | 议题 | MVP 决策 |
 | --- | --- |
-| 跨 Agent 撞车（同一部电影被多个视角召回） | **强信号**，保留并在 Markdown 里聚合展示「触发该电影的 Agent 视角列表」。可视为加权推荐线索。**A1 基线不计入此统计**（仅作对照展示）。 |
+| 跨 Agent 撞车（同一部电影被多个视角召回） | **仅作中性展示**：在 Markdown 里聚合标注「命中该电影的 Agent 视角列表」，**MVP 不据此加权或排序**。"撞车=强信号"的前提（多视角独立殊途同归）尚未验证，是否成立留待评测期观察。**A1 基线不计入此展示**（仅作对照）。 |
 | 相似度下限 | 不设，先看效果 |
 | 候选过滤（评分/年代/成人内容） | 不做，先看效果 |
 | 历史去重（同一部电影不再推荐） | 不做（Post-MVP 必做） |
@@ -294,7 +298,9 @@ source_name    (可选)
 
 ## 9. 网页端承接能力（现有基础）
 
-前端已支持通过 URL `?focus_movie=xxx`（或 path `/movie/xxx`）自动深层链接跳转、相机飞跃动画、详细信息面板展开。无需改动。
+前端稳定深链入口为 **`/movie/{tmdb_id}`**（Phase 30 契约,分享/OG/`_redirects` 均以此为准）。`{tmdb_id}` = `cleaned.csv` 的 `id` 列（TMDB 数字 id,非 imdb_id）。可附 `?lang=` / `?theme=` / `?timeline=` 等 query。
+
+> ⚠️ 旧版 PRD 写的 `?focus_movie=xxx` **当前代码库不存在该参数**,勿用。海报完整 URL = `https://image.tmdb.org/t/p/w780` + `poster_path`（MVP 简报不渲染图,低优先）。
 
 ---
 
@@ -302,17 +308,24 @@ source_name    (可选)
 
 ### Phase 1 · MVP 建造期（当前）
 
-**执行顺序刻意从底向上、每步独立可验证：**
+**执行顺序刻意从底向上、每步独立可验证；并显式区分「验证管线 plumbing」与「验证赌注 the bet」。**
 
-1. **[算法层 - 基建]** `scripts/build_index.py`：先在 `data/subsample/TMDB_all_movies_random20.csv` 上跑通 embedding + 落 `embeddings.npy` + `meta.parquet`；脚本设计成只换 csv 路径即可全量。
-2. **[大模型层]** `prompts/`：编写公共去实体化规则（英文输出）、输出契约，3 个创作 Persona（A2 / A4 / A7）+ 1 个基线（A1，英文），外加 C1（中文审核文案）、C2（中英多平台定稿）。
-3. **[逻辑层 - Agents]** `scripts/agents.py`：加载 prompts，异步并发调用 MiMo，手喂一段新闻验证英文 pseudo-overview 质量。
-4. **[逻辑层 - Retrieve]** `scripts/retrieve.py`：3 段英文 pseudo → 召回候选，肉眼检查匹配是否"有味道"。
-5. **[逻辑层 - Copy]** `scripts/copywriter.py`：C1 为候选批量生成中文审核文案；C2 把选定文案改写为中/英平台版本。
-6. **[逻辑层 - News]** `scripts/fetch_news.py`：feedparser + URL 去重 + 标题相似度去重。
-7. **[集成层]** `scripts/main.py`：串起来 → 输出 `output/Daily_Briefing/2026-MM-DD.md`。
+> 关键原则:**召回质量只在全量片单(59,341)上才算数**;20 行 subsample 仅用于验证脚本能跑(plumbing),不看召回质量、不评分。
 
-**该顺序的好处**：链路核心风险（LLM 输出质量、召回相关性）在花时间挑 RSS 源之前就会暴露。
+0. **[基建 · 索引复用,ADR-0001]** 把 cosmos 的 `cleaned.csv` + `text_embeddings.npy` 拷入 `data/output/`(已完成);`build_index.py` 仅负责:从 `cleaned.csv` 选 9 列生成 `meta.parquet`、把 `text_embeddings.npy` 接成索引、断言行数对齐(59,341,已实测)。从 CSV 重算的逻辑降级为 Post-MVP 备用。
+1. **[地基校验]** **endpoint smoke test**:拿配好的 MiMo OpenAI 兼容 endpoint 打一句 trivial prompt,确认 auth + 模型名 + 协议三件事都通,再写正式逻辑。
+2. **[Prompts]** `prompts/` **已写完**(公共去实体化规则 + 输出契约 + A1/A2/A4/A7 + C1/C2)。
+3. **[Agents]** `scripts/agents.py`:加载 prompts,异步并发调用 MiMo(默认 provider),产 4 段英文 pseudo(A2/A4/A7 + 基线 A1)。手喂新闻肉眼验去实体化质量与风格差异。
+4. **[Retrieve]** `scripts/retrieve.py`:每段 pseudo **套 `Overview: {pseudo}` 模板**(与索引同分布,ADR-0001)→ 召回 Top-2;**撞车仅作中性展示**(标命中视角列表,不加权);**可选**记一个发散度探针(查询两两余弦 + Top-K Jaccard)供观察。
+5. **[★ 验证闸门 · The Bet]** 在**全量片单**上,从真实抓取(不挑源)的新闻里**手挑 N=10 条**跑链路,总编评分,分数写进简报。
+   - **评分口径**:对每个去重后的 `(新闻, 电影)` 候选打**一次** 0/1/2 共振分(共振是 news↔电影 的属性,与召回它的 agent 无关),再把该分**归属给所有召回了它的视角**。
+   - **通过线**:≥60% 批次至少出 1 个 2 分候选,**且** A1 基线候选集的 2 分率 < 创作视角(A2/A4/A7)合并候选集的 2 分率(看频率差,A1 偶中 2 分无妨)。
+   - **没过 → 回到 step 3/4 调 prompt 或查召回,不要往下走。**
+6. **[Copy · 闸门后]** `scripts/copywriter.py`:**闸门过了才接** C1(为候选批量生成中文审核文案);C2(中英多平台定稿)更靠后,依赖总编已勾选定稿。
+7. **[News]** `scripts/fetch_news.py`:feedparser + **宽口径中立源(MVP 不对源做偏好)** + URL 去重 + 标题相似度去重;CLI 打印带序号清单 → 人工把选中 url 传给 main。
+8. **[集成]** `scripts/main.py`:串起来 → 输出 `output/Daily_Briefing/2026-MM-DD.md`。
+
+**该顺序的好处**:链路核心风险(LLM 输出质量、召回相关性)在花时间挑 RSS 源、写文案之前就会在 step 5 闸门处暴露。
 
 ### Phase 2 · Post-MVP（候选清单，按效果排期）
 
