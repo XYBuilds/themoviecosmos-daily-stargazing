@@ -3,14 +3,14 @@ name: Phase3-validation-gate-the-bet
 overview: 实现评测管线 run_eval：新闻 → agents → retrieve → 评测用 Markdown（含 0/1/2 评分位）；可选分数汇总脚本与 N=10 闸门判定说明。不含 C1/C2、不含 RSS 全自动。
 todos:
   - id: f3a1b2c3-0001-4000-8003-000000000001
-    content: "3.1 · run_eval.py：串联 agents + retrieve，渲染评测 Markdown 到 output/Eval/"
-    status: complete
+    content: 3.1 · run_eval.py：串联 agents + retrieve，渲染评测 Markdown 到 output/Eval/
+    status: completed
   - id: f3a1b2c3-0001-4000-8003-000000000002
-    content: "3.2 · 评分汇总脚本 + 闸门判定（解析已填分 md，算通过率与 A1 vs 创作 2 分率）（依赖 3.1）"
-    status: complete
+    content: 3.2 · 评分汇总脚本 + 闸门判定（解析已填分 md，算通过率与 A1 vs 创作 2 分率）（依赖 3.1）
+    status: completed
   - id: f3a1b2c3-0001-4000-8003-000000000003
-    content: "3.3 · 评测手册：N=10 手挑新闻流程、评分 rubric、README（依赖 3.1）"
-    status: complete
+    content: 3.3 · 评测手册：N=10 手挑新闻流程、评分 rubric、README（依赖 3.1）
+    status: completed
 isProject: true
 ---
 
@@ -54,20 +54,20 @@ flowchart LR
 
 ## SSOT
 
-| 文档 | 用途 |
-|------|------|
-| PRD §1.3、§7.2、§10 step 5 | 闸门与简报骨架 |
-| `CONTEXT.md` | 结构性共振、基线、评分归属 |
-| Phase 1/2 plan | JSON 输入输出契约 |
+| 文档                       | 用途                       |
+| -------------------------- | -------------------------- |
+| PRD §1.3、§7.2、§10 step 5 | 闸门与简报骨架             |
+| `CONTEXT.md`               | 结构性共振、基线、评分归属 |
+| Phase 1/2 plan             | JSON 输入输出契约          |
 
 ## 闸门定义（实现与文档须一致）
 
 **评分（每个去重候选一条）：**
 
-| 分 | 含义 |
-|----|------|
-| **0** | 毫无结构性共振 |
-| **1** | 表层题材沾边但平淡 |
+| 分    | 含义                                       |
+| ----- | ------------------------------------------ |
+| **0** | 毫无结构性共振                             |
+| **1** | 表层题材沾边但平淡                         |
 | **2** | 真正的结构性共振（权力/命运/反讽骨架同构） |
 
 **归属：** 对 `(新闻, tmdb_id)` 打**一次**分；该分同时计入所有召回了它的 agent 桶（创作 / 基线分开统计）。
@@ -180,15 +180,15 @@ python scripts/summarize_eval.py output/Eval/01-grid-outage/candidates.md
 
 ## 交给下一 Phase
 
-| 条件 | 下一动作 |
-|------|----------|
+| 条件          | 下一动作                         |
+| ------------- | -------------------------------- |
 | **GATE_PASS** | 开 Phase 4 `copywriter.py`（C1） |
-| **GATE_FAIL** | 回到 Phase 1/2，不建 Copy |
+| **GATE_FAIL** | 回到 Phase 1/2，不建 Copy        |
 
-| 产出 | 消费者 |
-|------|--------|
-| 评测 md 格式 | Phase 6 `main.py` 可复用渲染逻辑 |
-| `summarize_eval` 指标定义 | 产品记录 / 迭代 prompt |
+| 产出                      | 消费者                           |
+| ------------------------- | -------------------------------- |
+| 评测 md 格式              | Phase 6 `main.py` 可复用渲染逻辑 |
+| `summarize_eval` 指标定义 | 产品记录 / 迭代 prompt           |
 
 ## 风险与约束
 

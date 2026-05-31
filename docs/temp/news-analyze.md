@@ -20,7 +20,9 @@
 ```
 
 - **新增角色**：`现实解构 agent`（Reality Deconstructor），夹在新闻与编剧之间，产出 §1 契约。token 成本低，建议用 MiMo 2.5 Pro 这类强模型保抽取质量。
-- **产物格式（待你拍）**：契约本身是 JSON。建议落 **`reality-deconstructed.json`**（机器读，供编剧 agent 可靠解析）；若要在 Obsidian 给总编看，再渲染一份 **`.md` 视图**（沿用现有 `reality.json` / `reality.md` 双写惯例）。你写的 `reality-deconstructed.md` 我理解为那份人类视图。
+- **产物格式（已定 · 双写）**：沿用现有 `reality.json` / `reality.md` 双写惯例——
+  - `reality-deconstructed.json`：契约本体，机器读，供编剧 agent **逐字段可靠解析**（`where[].tags`、`why[]`…）。
+  - `reality-deconstructed.md`：JSON 的人类视图，给总编在 Obsidian 扫一眼。
 
 ---
 
