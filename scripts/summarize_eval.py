@@ -98,9 +98,17 @@ def _split_candidate_blocks(text: str) -> list[tuple[str, str]]:
     return blocks
 
 
-def parse_eval_markdown(path: Path, text: str) -> RunSummary:
+def _infer_run_id(path: Path, text: str) -> str:
     run_id_match = _RUN_ID_LINE.search(text)
-    run_id = run_id_match.group(1) if run_id_match else path.stem
+    if run_id_match:
+        return run_id_match.group(1)
+    if path.name == "candidates.md" and path.parent.name != path.parent.parent.name:
+        return path.parent.name
+    return path.stem
+
+
+def parse_eval_markdown(path: Path, text: str) -> RunSummary:
+    run_id = _infer_run_id(path, text)
 
     candidates: list[CandidateScore] = []
     for heading, body in _split_candidate_blocks(text):
@@ -269,6 +277,9 @@ def _collect_paths(args: argparse.Namespace) -> list[Path]:
             dir_path = _REPO_ROOT / dir_path
         if not dir_path.is_dir():
             raise FileNotFoundError(f"directory not found: {dir_path}")
+        # New layout: output/Eval/{run_id}/candidates.md
+        paths.extend(sorted(dir_path.glob("*/candidates.md")))
+        # Legacy flat fixtures: tests/eval_fixtures/*.md
         paths.extend(sorted(dir_path.glob("*.md")))
     paths.extend(Path(p) for p in args.files)
 
@@ -277,14 +288,24 @@ def _collect_paths(args: argparse.Namespace) -> list[Path]:
     for p in paths:
         path = p if p.is_absolute() else _REPO_ROOT / p
         path = path.resolve()
+        if path.is_dir():
+            candidate = path / "candidates.md"
+            if candidate.is_file():
+                path = candidate
+            else:
+                continue
         if path.suffix.lower() != ".md" or not path.is_file():
+            continue
+        if path.name == "GATE_RESULT.md":
             continue
         if path not in seen:
             seen.add(path)
             resolved.append(path)
 
     if not resolved:
-        raise FileNotFoundError("no eval markdown files found")
+        raise FileNotFoundError(
+            "no eval candidates markdown found (expected */candidates.md or fixture *.md)"
+        )
     return resolved
 
 
@@ -295,11 +316,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "files",
         nargs="*",
-        help="Eval markdown file(s), e.g. output/Eval/*.md",
+        help="candidates.md path(s), run dir(s), or legacy fixture .md",
     )
     parser.add_argument(
         "--dir",
-        help="Directory of Eval markdown files (e.g. output/Eval).",
+        help="Scan for */candidates.md (e.g. output/Eval) or top-level fixture .md",
     )
     parser.add_argument(
         "--out",

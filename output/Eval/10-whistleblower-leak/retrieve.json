@@ -1,0 +1,216 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A2",
+      "role": "creative",
+      "pseudo": "A single examination, gatekeeping entry into the white-coated class for millions of aspirants across an entire subcontinent, is found to be leaking at every joint — the very machinery of meritocratic sorting compromised from within. The coaching industry, which fattens itself on the scarcity of seats and the desperation of families, produces figures who publicly perform the role of student champion while privately selling the paper itself — a neat synthesis of profiteer and patron. The whistleblower who exposed the breach arrives from the same coaching epicenter, revealing how tightly the apparatus of access and the apparatus of subversion are fused.",
+      "hits": [
+        {
+          "tmdb_id": 995012,
+          "title": "The Tutor",
+          "similarity": 0.49342453479766846,
+          "movie_url": "https://themoviecosmos.com/movie/995012"
+        },
+        {
+          "tmdb_id": 72152,
+          "title": "Aarakshan",
+          "similarity": 0.5205715894699097,
+          "movie_url": "https://themoviecosmos.com/movie/72152"
+        }
+      ]
+    },
+    {
+      "agent_id": "A4",
+      "role": "creative",
+      "pseudo": "The sacred gate through which the young must pass has been defiled — not by strangers, but by those entrusted to guard it. An unnamed voice sends forth scrolls proving the oracles were sold before the rites began. Among the accused stands one who, in a prior season of scandal, had draped himself in righteous robes and spoken loudest for the wronged. Scribes and translators are summoned before the high court, and a new rite is appointed so the young may sit again, as though the temple could be cleansed before the next procession. Those who cry most fervently against the corruption are foreordained to be its chosen vessel — the wheel has turned thus before, and shall again.",
+      "hits": [
+        {
+          "tmdb_id": 1224993,
+          "title": "Dark Nuns",
+          "similarity": 0.5642499327659607,
+          "movie_url": "https://themoviecosmos.com/movie/1224993"
+        },
+        {
+          "tmdb_id": 416777,
+          "title": "Viking Legacy",
+          "similarity": 0.5940382480621338,
+          "movie_url": "https://themoviecosmos.com/movie/416777"
+        }
+      ]
+    },
+    {
+      "agent_id": "A7",
+      "role": "creative",
+      "pseudo": "A national medical-entrance examination is cancelled; millions of young aspirants must sit it again. The entire edifice collapses because of one email — a single message from a small coaching town, carrying PDFs that replicate the chemistry paper question for question. No one in the examining body had noticed the leak; no filter caught it; no supervisor questioned the timing. But the sender remembered. And the deepest irony: among the thirteen arrested is a private-tutoring figure who, two years earlier, had stood before cameras and loudly demanded justice for students cheated in the previous year's leak. He had championed fairness so convincingly that he was trusted with access — the very access that undid the exam.",
+      "hits": [
+        {
+          "tmdb_id": 73714,
+          "title": "Franz Kafka's a Country Doctor",
+          "similarity": 0.5076959133148193,
+          "movie_url": "https://themoviecosmos.com/movie/73714"
+        },
+        {
+          "tmdb_id": 1022103,
+          "title": "Conjuring: The Beyond",
+          "similarity": 0.5234359502792358,
+          "movie_url": "https://themoviecosmos.com/movie/1022103"
+        }
+      ]
+    },
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudo": "Four days after a nationwide medical entrance exam was held, the country's testing agency received an email from an individual in a provincial city. The message contained PDF files whose chemistry questions matched the administered paper in full, with partial overlap in biology. The agency referred the twenty-six to twenty-seven question setters and translators to the federal investigative body. Thirteen people were arrested, including a coaching figure who had publicly advocated for student justice during a previous leak scandal. The testing body cancelled the exam. A re-examination is scheduled for roughly six weeks later.",
+      "hits": [
+        {
+          "tmdb_id": 317903,
+          "title": "File 253",
+          "similarity": 0.439074844121933,
+          "movie_url": "https://themoviecosmos.com/movie/317903"
+        },
+        {
+          "tmdb_id": 20777,
+          "title": "The Killing Room",
+          "similarity": 0.4826708137989044,
+          "movie_url": "https://themoviecosmos.com/movie/20777"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 416777,
+      "title": "Viking Legacy",
+      "overview": "In ancient times, there were seven sacred scrolls believed to grant power and prosperity to those who possessed them. Prophecy told that a child born in pure Royal blood would one day harness power and rule over the nations. As men fought to claim the scrolls, Europe was pushed to the brink of war. In order to maintain peace, a Celtic King, the Father of a pure blood child, obtained the scrolls and gave them to the Christian Council for safe keeping. As word of the King’s actions spread, a warlord hell – bent on finding the scrolls murdered him in cold blood. And so, the King’s Daughter, like the scrolls, was taken into hiding until the day that the prophecy could be fulfilled ...",
+      "genres": "Action, Adventure",
+      "release_year": 2016,
+      "language": "en",
+      "poster_path": "/lMPPPBTgsDLPRtKz56KehsFEHO7.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/416777",
+      "similarity": 0.5940382480621338,
+      "triggered_by": [
+        "A4"
+      ],
+      "also_baseline": false
+    },
+    {
+      "tmdb_id": 1224993,
+      "title": "Dark Nuns",
+      "overview": "Desperation drives two nuns to perform an exorcism no nun should attempt. With a possessed child at the mercy of evil and the opposition of the Catholic Church, they take on the dangerous forbidden rituals themselves, putting their immortal souls in grave danger. They must confront the terrifying cost of their sacrilegious actions, but one goal remains: the boy must be saved at all costs.",
+      "genres": "Horror, Mystery, Thriller, Drama",
+      "release_year": 2025,
+      "language": "ko",
+      "poster_path": "/2Abt2GgscAGtGAXTrhH44qPhugI.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1224993",
+      "similarity": 0.5642499327659607,
+      "triggered_by": [
+        "A4"
+      ],
+      "also_baseline": false
+    },
+    {
+      "tmdb_id": 1022103,
+      "title": "Conjuring: The Beyond",
+      "overview": "A sleep study goes awry when participants start to go missing.",
+      "genres": "Horror",
+      "release_year": 2022,
+      "language": "en",
+      "poster_path": "/dNr0mqVSLfIaPlhcmJNRJVzCQBs.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1022103",
+      "similarity": 0.5234359502792358,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false
+    },
+    {
+      "tmdb_id": 72152,
+      "title": "Aarakshan",
+      "overview": "The decision by India's supreme court to establish caste-based reservations for jobs in education causes conflict between a teacher and his mentor.",
+      "genres": "Drama, Thriller",
+      "release_year": 2011,
+      "language": "hi",
+      "poster_path": "/accK9eB8qVpuxY3MdIK1RzFotTt.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/72152",
+      "similarity": 0.5205715894699097,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false
+    },
+    {
+      "tmdb_id": 73714,
+      "title": "Franz Kafka's a Country Doctor",
+      "overview": "A hapless country doctor describes with breathless urgency a night-time summons to attend a young patient. Events soon take on a surreal aspect as \"unearthly horses\" transport him instantaneously to the bedside. The doctor, preoccupied with personal distractions and grievances against those he is employed to care for, fails to find what is revealed to be a vile, fatal wound. He is humiliated by the villagers, who are \"always expecting the impossible from the doctor,\" and doomed to an endless return trip, losing everything.",
+      "genres": "Animation, Drama",
+      "release_year": 2007,
+      "language": "ja",
+      "poster_path": "/axVkLAB0aR51oq6BPZ92GZdMJMf.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/73714",
+      "similarity": 0.5076959133148193,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false
+    },
+    {
+      "tmdb_id": 995012,
+      "title": "The Tutor",
+      "overview": "When a professional tutor takes a job at a remote manor, he soon finds himself battling his disturbed student’s obsessions, which threaten to expose his darkest secrets and unravel his carefully crafted persona.",
+      "genres": "Mystery, Thriller, Action",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/wmTOuCeJnTPaAPMK19Y8Ixpi3Gl.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/995012",
+      "similarity": 0.49342453479766846,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false
+    },
+    {
+      "tmdb_id": 20777,
+      "title": "The Killing Room",
+      "overview": "Four volunteers sign up for what initially appears to be a typical paid research study, only to discover that they've unwittingly become involved with a classified government program that was said to have been terminated nearly two decades ago.",
+      "genres": "Thriller, Drama",
+      "release_year": 2009,
+      "language": "en",
+      "poster_path": "/ntBo3n4sz2T0JwTJX3GGZ2d2bfr.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/20777",
+      "similarity": 0.4826708137989044,
+      "triggered_by": [],
+      "also_baseline": true
+    },
+    {
+      "tmdb_id": 317903,
+      "title": "File 253",
+      "overview": "In 2013 a psychiatric clinic which served for more than 50 years caring for patients in Mexico City was demolished. A few months before its demolition, four young men came to investigate the clinic, determined to discover the truth about rumors of strange and paranormal events, recording everything with which they encounter. Today, the whereabouts of these four young men are unknown, remaining only fragments of their recordings.",
+      "genres": "Horror",
+      "release_year": 2015,
+      "language": "es",
+      "poster_path": "/15uFXE2wTPfPsjxzgm3DYp2TehQ.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/317903",
+      "similarity": 0.439074844121933,
+      "triggered_by": [],
+      "also_baseline": true
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A2-A4": 0.4154590666294098,
+      "A2-A7": 0.5203201174736023,
+      "A1-A2": 0.43447330594062805,
+      "A4-A7": 0.3358920216560364,
+      "A1-A4": 0.3298729658126831,
+      "A1-A7": 0.7968547344207764
+    },
+    "topk_jaccard": {
+      "A2-A4": 0.0,
+      "A2-A7": 0.0,
+      "A1-A2": 0.0,
+      "A4-A7": 0.0,
+      "A1-A4": 0.0,
+      "A1-A7": 0.0
+    }
+  }
+}

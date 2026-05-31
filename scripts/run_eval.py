@@ -1,6 +1,6 @@
-"""run_eval.py · 评测管线：新闻 → agents → retrieve → 评测 Markdown.
+"""run_eval.py · 评测管线：新闻 → agents → retrieve → Eval 目录产物.
 
-串联 Phase 1 agents 与 Phase 2 retrieve，输出供总编填分的 Eval 简报。
+每条新闻写入 output/Eval/{run_id}/：reality.json / reality.md、各 Agent 文档、聚合候选（填分）、retrieve.json。
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from scripts.agents import RUN_ORDER, agent_to_dict, load_news_from_file, run_all
+from scripts.agents import RUN_ORDER, agent_to_dict, load_news_from_file, news_to_dict, run_all
 from scripts.retrieve import retrieve_from_agents
 
 _PSEUDO_ORDER: tuple[str, ...] = RUN_ORDER
@@ -42,13 +42,13 @@ def default_run_id(title: str) -> str:
     return datetime.now(UTC).strftime("%Y%m%d-%H%M%S")
 
 
-def resolve_out_path(run_id: str, out: str | None) -> Path:
+def resolve_run_dir(run_id: str, out: str | None) -> Path:
     if out:
         path = Path(out)
         if not path.is_absolute():
             path = _REPO_ROOT / path
         return path
-    return _REPO_ROOT / "output" / "Eval" / f"{run_id}.md"
+    return _REPO_ROOT / "output" / "Eval" / run_id
 
 
 def _eval_date(pub_time: str) -> str:
@@ -61,73 +61,52 @@ def _agent_outputs_by_id(outputs: list) -> dict[str, Any]:
     return {o.agent_id.upper(): o for o in outputs}
 
 
-def _format_meta(run_id: str, news) -> str:
+def _format_reality_body(run_id: str, news) -> str:
+    source = news.source_name or "—"
+    pub_time = news.pub_time or "—"
     lines = [
+        f"# 现实波澜 · {run_id}",
+        "",
         "## 元信息",
         f"- date: {_eval_date(news.pub_time)}",
         f"- news_url: {news.url or '—'}",
         f"- run_id: {run_id}",
+        "",
+        "## 现实波澜",
+        f"- **title**: {news.title}",
+        f"- **source** / **pub_time**: {source} / {pub_time}",
+        f"- **summary**: {news.description}",
+        "",
     ]
     return "\n".join(lines)
 
 
-def _format_reality(news) -> str:
-    source = news.source_name or "—"
-    pub_time = news.pub_time or "—"
-    return "\n".join(
-        [
-            "## 现实波澜",
-            f"- **title**: {news.title}",
-            f"- **source** / **pub_time**: {source} / {pub_time}",
-            f"- **summary**: {news.description}",
-        ]
-    )
-
-
-def _format_pseudo(outputs: list) -> str:
-    by_id = _agent_outputs_by_id(outputs)
-    lines = ["## 伪剧情（英文）"]
-    for agent_id in _PSEUDO_ORDER:
-        out = by_id.get(agent_id)
-        if out is None:
-            continue
-        label = f"**{agent_id}** {out.persona_name}"
-        if out.role == "baseline":
-            label += " `[baseline]`"
-        text = out.text.strip() if out.text else "—"
-        if out.error:
-            text = f"*(error: {out.error})*"
-        lines.append(f"- {label}: {text}")
-    return "\n".join(lines)
-
-
 def _format_errors(errors: list[dict]) -> str:
-    lines = ["## errors"]
+    lines = ["# errors", ""]
     if not errors:
         lines.append("（无）")
-        return "\n".join(lines)
+        return "\n".join(lines) + "\n"
     for entry in errors:
         agent_id = entry.get("agent_id", "?")
         message = entry.get("message") or entry.get("error") or str(entry)
         lines.append(f"- **{agent_id}**: {message}")
+    lines.append("")
     return "\n".join(lines)
 
 
-def _format_divergence(divergence: dict[str, Any]) -> str:
-    payload = json.dumps(divergence, ensure_ascii=False, indent=2)
-    return "\n".join(
-        [
-            "## divergence",
-            "<details>",
-            "<summary>展开 JSON</summary>",
-            "",
-            "```json",
-            payload,
-            "```",
-            "",
-            "</details>",
-        ]
-    )
+def _hit_heading(hit: dict[str, Any]) -> str:
+    title = hit.get("title") or "Untitled"
+    return f"### {title}"
+
+
+def _format_hit_lines(hit: dict[str, Any]) -> list[str]:
+    sim = hit.get("similarity")
+    sim_text = f"{sim:.4f}" if isinstance(sim, (int, float)) else str(sim)
+    return [
+        f"- **tmdb_id**: {hit.get('tmdb_id', '')}",
+        f"- **相似度**: {sim_text}",
+        f"- **跳转**: {hit.get('movie_url', '')}",
+    ]
 
 
 def _candidate_heading(cand: dict[str, Any]) -> str:
@@ -137,8 +116,7 @@ def _candidate_heading(cand: dict[str, Any]) -> str:
 
     triggered = cand.get("triggered_by") or []
     if triggered:
-        agents_tag = ", ".join(triggered)
-        bracket = f"[{agents_tag}]"
+        bracket = f"[{', '.join(triggered)}]"
     elif cand.get("also_baseline"):
         bracket = "[baseline only]"
     else:
@@ -148,54 +126,140 @@ def _candidate_heading(cand: dict[str, Any]) -> str:
     return f"### {title}{year_part}{suffix}"
 
 
-def _format_candidates(candidates: list[dict[str, Any]]) -> str:
-    lines = [f"## 候选星轨（共 {len(candidates)} 部）"]
-    if not candidates:
-        lines.append("（无候选 — agents 可能全部失败或 pseudo 为空）")
-        return "\n".join(lines)
-
-    for cand in candidates:
-        lines.append("")
-        lines.append(_candidate_heading(cand))
-        lines.append(f"- **tmdb_id**: {cand.get('tmdb_id', '')}")
-        sim = cand.get("similarity")
-        sim_text = f"{sim:.4f}" if isinstance(sim, (int, float)) else str(sim)
-        lines.append(f"- **相似度**: {sim_text}")
-        lines.append(f"- **genres** / **language**: {cand.get('genres', '')} / {cand.get('language', '')}")
-        overview = (cand.get("overview") or "").replace("\n", " ").strip()
-        lines.append(f"- **overview**: {overview or '—'}")
-        lines.append(f"- **跳转**: {cand.get('movie_url', '')}")
-        lines.append(f"- **also_baseline**: {str(bool(cand.get('also_baseline'))).lower()}")
+def _format_candidate_block(cand: dict[str, Any], *, include_score: bool) -> list[str]:
+    lines = [_candidate_heading(cand)]
+    lines.append(f"- **tmdb_id**: {cand.get('tmdb_id', '')}")
+    sim = cand.get("similarity")
+    sim_text = f"{sim:.4f}" if isinstance(sim, (int, float)) else str(sim)
+    lines.append(f"- **相似度**: {sim_text}")
+    lines.append(
+        f"- **genres** / **language**: {cand.get('genres', '')} / {cand.get('language', '')}"
+    )
+    overview = (cand.get("overview") or "").replace("\n", " ").strip()
+    lines.append(f"- **overview**: {overview or '—'}")
+    lines.append(f"- **跳转**: {cand.get('movie_url', '')}")
+    lines.append(f"- **also_baseline**: {str(bool(cand.get('also_baseline'))).lower()}")
+    if include_score:
         lines.append("- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->")
+    return lines
 
+
+def _format_agent_markdown(
+    run_id: str,
+    agent_id: str,
+    output,
+    per_agent_entry: dict[str, Any] | None,
+) -> str:
+    persona = output.persona_name
+    baseline_note = " `[baseline]`" if output.role == "baseline" else ""
+    lines = [
+        f"# {agent_id} · {persona} · {run_id}{baseline_note}",
+        "",
+        "## 伪剧情（英文）",
+    ]
+    if output.error:
+        lines.append(f"*(error: {output.error})*")
+    else:
+        lines.append(output.text.strip() if output.text else "—")
+    lines.extend(["", "## 本视角召回（Top-K）"])
+
+    hits = (per_agent_entry or {}).get("hits") or []
+    if not hits:
+        lines.append("（无 — pseudo 为空或 retrieve 跳过）")
+    else:
+        for hit in hits:
+            lines.append("")
+            lines.extend([_hit_heading(hit), *_format_hit_lines(hit)])
+
+    lines.append("")
     return "\n".join(lines)
 
 
-def render_eval_markdown(
+def _format_candidates_markdown(run_id: str, candidates: list[dict[str, Any]]) -> str:
+    lines = [
+        f"# 候选星轨 · {run_id}",
+        "",
+        "## 元信息",
+        f"- run_id: {run_id}",
+        "",
+        f"## 候选星轨（共 {len(candidates)} 部）",
+    ]
+    if not candidates:
+        lines.append("（无候选 — agents 可能全部失败或 pseudo 为空）")
+    else:
+        for cand in candidates:
+            lines.append("")
+            lines.extend(_format_candidate_block(cand, include_score=True))
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _format_run_index(run_id: str, errors: list[dict]) -> str:
+    error_note = "（无）" if not errors else f"{len(errors)} 条 — 见 [[errors]]"
+    lines = [
+        f"# 评测 · {run_id}",
+        "",
+        "| 文档 | 说明 |",
+        "|------|------|",
+        "| [[reality]] | 现实波澜（人类可读） |",
+        "| `reality.json` | 新闻快照（JSON） |",
+        "| [[candidates]] | **总编填共振分** |",
+        "| `retrieve.json` | 完整 retrieve 输出 |",
+        "| [[errors]] | Agent 失败记录 |",
+        "| [[agents/A2]] | 社会学家 |",
+        "| [[agents/A4]] | 神话学者 |",
+        "| [[agents/A7]] | 混沌理论家 |",
+        "| [[agents/A1]] | 现实记录员（基线） |",
+        "",
+        f"- **errors**: {error_note}",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def write_eval_bundle(
+    run_dir: Path,
     run_id: str,
     news,
     outputs: list,
     errors: list[dict],
     retrieve_result: dict[str, Any],
-) -> str:
-    """Assemble the full eval briefing Markdown."""
-    sections = [
-        f"# 评测 · {run_id}",
-        "",
-        _format_meta(run_id, news),
-        "",
-        _format_reality(news),
-        "",
-        _format_pseudo(outputs),
-        "",
-        _format_errors(errors),
-        "",
-        _format_divergence(retrieve_result.get("divergence", {})),
-        "",
-        _format_candidates(retrieve_result.get("candidates", [])),
-        "",
-    ]
-    return "\n".join(sections)
+) -> None:
+    """Write all Eval artifacts under run_dir."""
+    run_dir.mkdir(parents=True, exist_ok=True)
+    agents_dir = run_dir / "agents"
+    agents_dir.mkdir(exist_ok=True)
+
+    (run_dir / "reality.json").write_text(
+        json.dumps(news_to_dict(news), ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    (run_dir / "reality.md").write_text(_format_reality_body(run_id, news), encoding="utf-8")
+    (run_dir / "errors.md").write_text(_format_errors(errors), encoding="utf-8")
+    (run_dir / "retrieve.json").write_text(
+        json.dumps(retrieve_result, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    (run_dir / "candidates.md").write_text(
+        _format_candidates_markdown(run_id, retrieve_result.get("candidates", [])),
+        encoding="utf-8",
+    )
+    (run_dir / "run.md").write_text(_format_run_index(run_id, errors), encoding="utf-8")
+
+    per_agent_by_id = {
+        str(entry["agent_id"]).upper(): entry
+        for entry in retrieve_result.get("per_agent", [])
+    }
+    by_output = _agent_outputs_by_id(outputs)
+    for agent_id in _PSEUDO_ORDER:
+        output = by_output.get(agent_id)
+        if output is None:
+            continue
+        agent_path = agents_dir / f"{agent_id}.md"
+        agent_path.write_text(
+            _format_agent_markdown(run_id, agent_id, output, per_agent_by_id.get(agent_id)),
+            encoding="utf-8",
+        )
 
 
 async def run_eval_pipeline(
@@ -218,17 +282,14 @@ async def _run_cli(args: argparse.Namespace) -> int:
 
     news = load_news_from_file(news_path)
     run_id = (args.run_id or "").strip() or default_run_id(news.title)
-    out_path = resolve_out_path(run_id, args.out)
+    run_dir = resolve_run_dir(run_id, args.out)
 
     outputs, errors, retrieve_result = await run_eval_pipeline(
         news,
         provider=args.provider,
     )
-    markdown = render_eval_markdown(run_id, news, outputs, errors, retrieve_result)
-
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(markdown, encoding="utf-8")
-    print(f"Wrote {out_path.resolve()}", file=sys.stderr)
+    write_eval_bundle(run_dir, run_id, news, outputs, errors, retrieve_result)
+    print(f"Wrote {run_dir.resolve()}/", file=sys.stderr)
 
     successes = sum(1 for o in outputs if o.text.strip() and not o.error)
     if outputs and successes == 0:
@@ -238,7 +299,7 @@ async def _run_cli(args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Run eval pipeline: news → agents → retrieve → Eval Markdown.",
+        description="Run eval pipeline: news → agents → retrieve → output/Eval/{run_id}/.",
     )
     parser.add_argument(
         "--news-file",
@@ -251,7 +312,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--out",
-        help="Output Markdown path (default: output/Eval/{run_id}.md).",
+        help="Run output directory (default: output/Eval/{run_id}).",
     )
     parser.add_argument(
         "--provider",

@@ -55,19 +55,19 @@
 
 ## 3. 评测循环（10 次）
 
-对每条新闻执行一次 `run_eval`，产出一份供填分的 Markdown。
+对每条新闻执行一次 `run_eval`，在 `output/Eval/{run_id}/` 下生成一组文档（见 §3.3）。
 
 ### 3.1 运行命令
 
 ```powershell
-# 单条（输出默认 output/Eval/{run_id}.md，run_id 由 title slug 生成）
+# 单条（默认 output/Eval/{run_id}/）
 python scripts/run_eval.py --news-file tests/eval_news/01-grid-outage.json
 
-# 指定 run_id（便于文件名对齐）
+# 指定 run_id（与 eval_news 文件名对齐）
 python scripts/run_eval.py --news-file tests/eval_news/01-grid-outage.json --run-id 01-grid-outage
 
-# 指定输出路径
-python scripts/run_eval.py --news-file tests/sample_news.json --out output/Eval/sample.md
+# 指定输出目录
+python scripts/run_eval.py --news-file tests/sample_news.json --out output/Eval/sample-run
 
 # 切换 LLM 提供商（默认读 .env 的 DEFAULT_LLM_PROVIDER）
 python scripts/run_eval.py --news-file tests/sample_news.json --provider deepseek
@@ -79,18 +79,35 @@ python scripts/run_eval.py --news-file tests/sample_news.json --provider deepsee
 |------|------|------|
 | `--news-file` | 是 | 新闻 JSON 路径 |
 | `--run-id` | 否 | 评测 slug；默认从 title 生成 ASCII slug，失败则用 UTC 时间戳 |
-| `--out` | 否 | 输出 Markdown；默认 `output/Eval/{run_id}.md` |
+| `--out` | 否 | 输出目录；默认 `output/Eval/{run_id}/` |
 | `--provider` | 否 | `mimo` 或 `deepseek` |
 
-**管线**：`agents.run_all` → `retrieve.from_agents` → 渲染 Eval 简报（与正式 `Daily_Briefing` 分离，目录为 `output/Eval/`）。
+**管线**：`agents.run_all` → `retrieve.from_agents` → 写入 Eval 目录（与正式 `Daily_Briefing` 分离）。
+
+### 3.3 产出目录结构
+
+```text
+output/Eval/{run_id}/
+├── run.md           # 索引（Obsidian 入口）
+├── reality.json     # 新闻快照（JSON，与 reality.md 同源）
+├── reality.md       # 现实波澜（人类可读）
+├── retrieve.json    # 完整 retrieve（per_agent + candidates + divergence）
+├── errors.md        # Agent 失败（若有）
+├── candidates.md    # 聚合候选 + 共振分（总编唯一填分处）
+└── agents/
+    ├── A2.md        # 伪剧情 + 本视角 Top-K
+    ├── A4.md
+    ├── A7.md
+    └── A1.md        # 基线
+```
 
 **成本提示**：每条新闻 ≈ 4 次 LLM 调用 + 1 次全量向量检索；10 条 ≈ 10× 上述开销。
 
 ### 3.2 在 Obsidian 中填分
 
-1. 用 Obsidian 打开 `output/Eval/` 下刚生成的 `.md` 文件（或把整个 `output/Eval/` 加为 vault 子文件夹）。
-2. 通读：**现实波澜** → 四段 **伪剧情（英文）** → **候选星轨** 列表。
-3. 对**每个** `### 电影标题 (年份) [A2, A4]` 候选块，找到：
+1. 用 Obsidian 打开 `output/Eval/{run_id}/`（从 **`run.md`** 或 **`candidates.md`** 进入）。
+2. 通读：**`reality.md`** → **`agents/A2.md`** … **`agents/A1.md`** → **`candidates.md`**。
+3. 仅在 **`candidates.md`** 中，对每个 `### 电影标题 (年份) [A2, A4]` 候选块，找到：
 
    ```markdown
    - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
@@ -104,7 +121,7 @@ python scripts/run_eval.py --news-file tests/sample_news.json --provider deepsee
 - 点开 **跳转** 链接或 TMDB overview，判断的是「新闻骨架 ↔ 电影骨架」，不是字面题材
 - `[A2, A4]` 表示多创作视角撞车（中性展示）；`[baseline only]` / `also_baseline: true` 表示仅基线命中
 
-重复本步骤，直到 **10 份** md 全部填完共振分。
+重复本步骤，直到 **10 个** `{run_id}/candidates.md` 全部填完共振分。
 
 ---
 
@@ -134,8 +151,9 @@ python scripts/run_eval.py --news-file tests/sample_news.json --provider deepsee
 # 扫描整个目录（推荐）
 python scripts/summarize_eval.py --dir output/Eval
 
-# 或显式列出文件
-python scripts/summarize_eval.py output/Eval/01-grid-outage.md output/Eval/02-*.md
+# 或显式列出 candidates.md / run 目录
+python scripts/summarize_eval.py output/Eval/01-grid-outage/candidates.md
+python scripts/summarize_eval.py output/Eval/01-grid-outage
 ```
 
 **解析规则**：在每个 `### ` 候选块内，读取 `- **共振分**:` 后第一个 `0` / `1` / `2`；未填则报 `missing`，该 run 不参与通过率计算。
@@ -205,7 +223,7 @@ python scripts/summarize_eval.py output/Eval/01-grid-outage.md output/Eval/02-*.
 - [ ] Phase 0–2 本地验收通过
 - [ ] `tests/eval_news/` 内 10 条 JSON 就绪
 - [ ] 10 次 `python scripts/run_eval.py --news-file ...` 均 exit 0
-- [ ] `output/Eval/` 内 10 份 md 共振分已填（无 `missing`）
+- [ ] `output/Eval/*/candidates.md` 共振分已填（无 `missing`）
 - [ ] `python scripts/summarize_eval.py --dir output/Eval` → `GATE_PASS` 或已知原因下的 `GATE_FAIL`
 - [ ] `output/Eval/GATE_RESULT.md` 已写书面结论
 
@@ -215,8 +233,8 @@ python scripts/summarize_eval.py output/Eval/01-grid-outage.md output/Eval/02-*.
 
 ```text
 手挑 10 条（RSS 池或手写 JSON）
-    → run_eval × 10（output/Eval/*.md）
-    → Obsidian 填共振分 0/1/2
+    → run_eval × 10（output/Eval/{run_id}/）
+    → Obsidian 填 candidates.md 共振分 0/1/2
     → summarize_eval --dir output/Eval
     → 记录 GATE 于 output/Eval/GATE_RESULT.md
     → PASS → Phase 4；FAIL → Phase 1/2

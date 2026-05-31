@@ -39,8 +39,8 @@ flowchart LR
 
 ### In scope
 
-- `scripts/run_eval.py`：单条新闻 → `agents` → `retrieve` → **评测简报** `.md`
-- 简报含：新闻、4 段 pseudo、`errors`、去重候选列表、**共振分占位**、撞车中性标注、`divergence`（若有）
+- `scripts/run_eval.py`：单条新闻 → `agents` → `retrieve` → **`output/Eval/{run_id}/` 目录**
+- 目录含：`reality.json`、`reality.md`、`agents/A*.md`、`candidates.md`（共振分占位）、`retrieve.json`、`errors.md`、`run.md`
 - `scripts/summarize_eval.py`（或同名）：扫描多份已评分 md → 闸门指标
 - `docs/eval-the-bet.md` 或 README 章节：N=10、手挑新闻、通过线、评分 rubric
 - 输出目录：`output/Eval/`（与正式 `Daily_Briefing` 区分）
@@ -90,62 +90,32 @@ flowchart LR
 ```text
 python scripts/run_eval.py --news-file tests/sample_news.json
 python scripts/run_eval.py --news-file path.json --run-id musk-layoff-01
-python scripts/run_eval.py --news-file path.json --out output/Eval/musk-layoff-01.md
+python scripts/run_eval.py --news-file path.json --out output/Eval/musk-layoff-01
 ```
 
-- `--run-id` 默认从新闻 title slug 或时间戳生成
+- `--run-id` 默认从新闻 title slug 或时间戳生成；默认输出目录 `output/Eval/{run_id}/`
 - 内部调用：`agents.run_all` + `retrieve.from_agents`（优先库内调用，避免重复加载索引）
 
-### Markdown 模板（最小骨架）
+### 产出目录（当前实现）
 
-```markdown
-# 评测 · {run_id}
-
-## 元信息
-- date: ...
-- news_url: ...
-
-## 现实波澜
-- **title**: ...
-- **source** / **pub_time**: ...
-- **summary**: ...
-
-## 伪剧情（英文）
-- **A2** The Sociologist: ...
-- **A4** The Mythologist: ...
-- **A7** The Chaos Theorist: ...
-- **A1** The Reality Recorder `[baseline]`: ...
-
-## errors
-（来自 agents）
-
-## divergence
-（来自 retrieve.json，可选折叠）
-
-## 候选星轨（共 N 部）
-
-### {Title} ({year}) [A2, A4]
-- **tmdb_id**: ...
-- **相似度**: 0.xx
-- **genres** / **language**: ...
-- **overview**: ...
-- **跳转**: https://themoviecosmos.com/movie/{id}
-- **also_baseline**: false
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-
-（无 C1 中文文案栏——闸门后再加）
+```text
+output/Eval/{run_id}/
+├── run.md, reality.json, reality.md, retrieve.json, errors.md
+├── candidates.md    # 聚合候选 + 共振分占位（唯一填分处）
+└── agents/A2.md … A1.md
 ```
 
 - 创作视角撞车：`[A2, A4]` 来自 `triggered_by`；**不含 A1**
-- 若仅 A1 命中：标题加 `[baseline only]` 或 `also_baseline: true`
+- 若仅 A1 命中：`[baseline only]` / `also_baseline: true`
+- `divergence` 仅在 `retrieve.json` 内，无单独文件
 
 ### 验收
 
 ```powershell
-python scripts/run_eval.py --news-file tests/sample_news.json --out output/Eval/sample.md
+python scripts/run_eval.py --news-file tests/sample_news.json --run-id sample
 ```
 
-- [ ] 文件生成且四段 pseudo + 候选非空（正常样本）
+- [ ] 目录生成且 `agents/` 四段 pseudo + `candidates.md` 非空（正常样本）
 - [ ] 每条候选有 `共振分:` 占位行
 
 ---
@@ -157,8 +127,8 @@ python scripts/run_eval.py --news-file tests/sample_news.json --out output/Eval/
 ### `scripts/summarize_eval.py`
 
 ```text
-python scripts/summarize_eval.py output/Eval/*.md
 python scripts/summarize_eval.py --dir output/Eval
+python scripts/summarize_eval.py output/Eval/01-grid-outage/candidates.md
 ```
 
 **解析规则（简单、可手写）：**

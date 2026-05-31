@@ -37,4 +37,4 @@ python scripts/run_eval.py --news-file tests/eval_news/01-grid-outage.json --run
 }
 ```
 
-产物默认写入 `output/Eval/{run_id}.md`。
+产物默认写入 `output/Eval/{run_id}/`（见 `run.md`、`reality.md`、`reality.json`、`candidates.md`、`agents/*.md`、`retrieve.json`）。
