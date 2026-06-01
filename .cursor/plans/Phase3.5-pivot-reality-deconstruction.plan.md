@@ -178,8 +178,8 @@ flowchart LR
 
 ### 验收
 
-- [ ] 对 2–3 份手填 fixture（含共振类型）跑通，`structural_2_rate` 与手算一致
-- [ ] 已生成的旧 10 份 candidates.md 不强制回填 `共振类型`（缺失走退回口径）
+- [x] 对 2–3 份手填 fixture（含共振类型）跑通，`structural_2_rate` 与手算一致
+- [x] 已生成的旧 10 份 candidates.md 不强制回填 `共振类型`（缺失走退回口径）
 
 ---
 

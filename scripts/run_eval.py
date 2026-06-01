@@ -162,6 +162,7 @@ def _format_candidate_block(cand: dict[str, Any], *, include_score: bool) -> lis
             )
     if include_score:
         lines.append("- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->")
+        lines.append("- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->")
     return lines
 
 
