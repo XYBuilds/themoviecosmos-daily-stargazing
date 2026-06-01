@@ -4,10 +4,10 @@ overview: Phase 3 闸门候选不满意后的方向转向（ADR-0002）。新增
 todos:
   - id: f35b1c2d-0001-4000-8035-000000000001
     content: 3.5.1 · 定稿解构契约 + 下游消费决策：promote news-analyze.md 出 temp；拍定碎片取舍/每 agent 产几段/抽象层级分配/聚合去重/经过取连续 等被延后的设计岔路
-    status: pending
+    status: completed
   - id: f35b1c2d-0001-4000-8035-000000000002
     content: 3.5.2 · 现实解构 agent：prompts/A0_reality_deconstructor.md + scripts/deconstruct.py → reality-deconstructed.json + .md（双写）（依赖 3.5.1）
-    status: pending
+    status: completed
   - id: f35b1c2d-0001-4000-8035-000000000003
     content: 3.5.3 · 改写编剧链：A1/A2/A4/A7 prompts 消费解构 JSON、按 persona 挑碎片产多段 pseudo；agents.py 适配；放宽 deentification 硬规则（承重时保留专名）（依赖 3.5.1、3.5.2）
     status: pending
