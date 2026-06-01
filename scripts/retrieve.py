@@ -1,10 +1,11 @@
 """retrieve.py · 跨类型纯文本召回.
 
-输入: 各 Agent 的 pseudo-overview 文本.
+输入: 各 Agent 的 pseudo-overview（`agents[].pseudos[]`，legacy 回退 `text`）.
 索引: data/index/embeddings.npy + data/index/meta.parquet.
 模型: paraphrase-multilingual-MiniLM-L12-v2 (与 build_index 严格同模型).
 
-输出: 每个 Agent 一组 Top-K (MVP K=2), 同时给一个聚合视图 (跨 Agent 撞车标识为强信号).
+输出: 每段 pseudo Top-K（默认 2）→ 按 tmdb_id 聚合去重 + containment（~15–19 候选/条）;
+      记录命中 `(agent_id, pseudo_id, fragments)`；撞车展示不含 A1（仅 creative triggered_by）.
 
 不做:
   - 相似度阈值过滤
@@ -35,6 +36,7 @@ from scripts.lib.paths import embeddings_npy, meta_parquet
 MODEL_NAME = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 QUERY_TEMPLATE = "Overview: {pseudo}"
 DEFAULT_TOP_K = 2
+DEFAULT_MAX_CANDIDATES = 19
 DEFAULT_MOVIE_LINK_PREFIX = "https://themoviecosmos.com/movie/"
 
 _AGENT_ORDER: tuple[str, ...] = ("A2", "A4", "A7", "A1")
@@ -187,20 +189,131 @@ def _error_agent_ids(errors: list[Any]) -> set[str]:
     return ids
 
 
-def _eligible_agents(
+def _normalize_fragments(source: object) -> list[str]:
+    if not isinstance(source, dict):
+        return []
+    fragments = source.get("fragments")
+    if not isinstance(fragments, list):
+        return []
+    return [str(item).strip() for item in fragments if str(item).strip()]
+
+
+def _expand_retrieval_queries(
     agents: list[dict[str, Any]],
     errors: list[Any],
 ) -> list[dict[str, Any]]:
+    """One retrieval query per pseudo segment (legacy: single agents[].text)."""
     failed = _error_agent_ids(errors)
-    eligible: list[dict[str, Any]] = []
+    queries: list[dict[str, Any]] = []
+
     for agent in agents:
         agent_id = str(agent.get("agent_id", "")).upper()
         if not agent_id or agent_id in failed:
             continue
-        if not str(agent.get("text", "")).strip():
+        role = str(agent.get("role") or _ROLE_BY_AGENT.get(agent_id, "creative"))
+        pseudos = agent.get("pseudos")
+        if isinstance(pseudos, list) and pseudos:
+            for row in pseudos:
+                if not isinstance(row, dict):
+                    continue
+                text = str(row.get("text", "")).strip()
+                if not text:
+                    continue
+                pseudo_id = str(row.get("id") or row.get("pseudo_id") or "").strip()
+                if not pseudo_id:
+                    pseudo_id = f"p{len(queries) + 1}"
+                source = row.get("source") if isinstance(row.get("source"), dict) else {}
+                queries.append(
+                    {
+                        "agent_id": agent_id,
+                        "role": role,
+                        "pseudo_id": pseudo_id,
+                        "text": text,
+                        "source": {
+                            "agent_id": agent_id,
+                            "fragments": _normalize_fragments(source),
+                        },
+                    }
+                )
             continue
-        eligible.append(agent)
-    return eligible
+
+        text = str(agent.get("text", "")).strip()
+        if not text:
+            continue
+        queries.append(
+            {
+                "agent_id": agent_id,
+                "role": role,
+                "pseudo_id": "legacy",
+                "text": text,
+                "source": {"agent_id": agent_id, "fragments": []},
+            }
+        )
+
+    return queries
+
+
+def _append_hit_source(
+    cand: dict[str, Any],
+    query: dict[str, Any],
+    similarity: float,
+) -> None:
+    entry = {
+        "agent_id": query["agent_id"],
+        "pseudo_id": query["pseudo_id"],
+        "fragments": list(query["source"].get("fragments") or []),
+        "similarity": float(similarity),
+    }
+    sources: list[dict[str, Any]] = cand.setdefault("hit_sources", [])
+    for existing in sources:
+        if (
+            existing.get("agent_id") == entry["agent_id"]
+            and existing.get("pseudo_id") == entry["pseudo_id"]
+        ):
+            existing["similarity"] = max(
+                float(existing.get("similarity", 0.0)),
+                entry["similarity"],
+            )
+            if entry["fragments"]:
+                merged = list(existing.get("fragments") or [])
+                for frag in entry["fragments"]:
+                    if frag not in merged:
+                        merged.append(frag)
+                existing["fragments"] = merged
+            return
+    sources.append(entry)
+
+
+def _apply_containment(
+    candidates: list[dict[str, Any]],
+    *,
+    max_candidates: int,
+) -> list[dict[str, Any]]:
+    if max_candidates <= 0 or len(candidates) <= max_candidates:
+        return candidates
+    return candidates[:max_candidates]
+
+
+def _group_per_agent(per_pseudo: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    buckets: dict[str, dict[str, Any]] = {}
+    for row in per_pseudo:
+        agent_id = row["agent_id"]
+        if agent_id not in buckets:
+            buckets[agent_id] = {
+                "agent_id": agent_id,
+                "role": row["role"],
+                "pseudos": [],
+            }
+        buckets[agent_id]["pseudos"].append(
+            {
+                "pseudo_id": row["pseudo_id"],
+                "pseudo": row["text"],
+                "source": row["source"],
+                "hits": row["hits"],
+            }
+        )
+
+    return [buckets[aid] for aid in _sort_agent_ids(list(buckets.keys()))]
 
 
 def _pair_key(a: str, b: str) -> str:
@@ -222,12 +335,13 @@ def _sort_agent_ids(agent_ids: list[str]) -> list[str]:
     return sorted(agent_ids, key=lambda aid: order.get(aid, 99))
 
 
-def _compute_divergence(
+def _compute_divergence_from_agents(
     per_agent: list[dict[str, Any]],
     query_vectors: dict[str, np.ndarray],
+    agent_topk_sets: dict[str, set[int]],
 ) -> dict[str, dict[str, float]]:
+    """Divergence probe uses first pseudo query vector per agent (see ADR-0001)."""
     agent_ids = [entry["agent_id"] for entry in per_agent]
-    hits_by_agent = {entry["agent_id"]: entry["hits"] for entry in per_agent}
 
     query_cosines: dict[str, float] = {}
     topk_jaccard: dict[str, float] = {}
@@ -238,8 +352,8 @@ def _compute_divergence(
             query_cosines[key] = float(
                 np.dot(query_vectors[left_id], query_vectors[right_id])
             )
-            set_left = {int(h["tmdb_id"]) for h in hits_by_agent[left_id]}
-            set_right = {int(h["tmdb_id"]) for h in hits_by_agent[right_id]}
+            set_left = agent_topk_sets.get(left_id, set())
+            set_right = agent_topk_sets.get(right_id, set())
             topk_jaccard[key] = _jaccard(set_left, set_right)
 
     return {"query_cosines": query_cosines, "topk_jaccard": topk_jaccard}
@@ -250,80 +364,105 @@ def retrieve_from_agents(
     errors: list[Any],
     *,
     top_k: int = DEFAULT_TOP_K,
+    max_candidates: int = DEFAULT_MAX_CANDIDATES,
 ) -> dict[str, Any]:
-    """Run retrieval for Phase 1 agent rows; returns per_agent, candidates, divergence."""
-    eligible = _eligible_agents(agents, errors)
-    if not eligible:
+    """Run retrieval for agent pseudos; returns per_agent, candidates, divergence."""
+    queries = _expand_retrieval_queries(agents, errors)
+    if not queries:
         return {
             "per_agent": [],
             "candidates": [],
             "divergence": {"query_cosines": {}, "topk_jaccard": {}},
+            "meta": {
+                "query_count": 0,
+                "raw_hit_count": 0,
+                "candidate_count": 0,
+                "max_candidates": max_candidates,
+            },
         }
 
     embeddings, meta = _load_index()
     model = _get_model()
     link_prefix = _movie_link_prefix()
 
-    per_agent: list[dict[str, Any]] = []
+    per_pseudo: list[dict[str, Any]] = []
     query_vectors: dict[str, np.ndarray] = {}
+    agent_topk_sets: dict[str, set[int]] = {}
     candidate_map: dict[int, dict[str, Any]] = {}
+    raw_hit_count = 0
 
-    for agent in eligible:
-        agent_id = str(agent["agent_id"]).upper()
-        role = str(agent.get("role") or _ROLE_BY_AGENT.get(agent_id, "creative"))
-        pseudo = str(agent["text"]).strip()
+    for query in queries:
+        agent_id = query["agent_id"]
+        role = query["role"]
+        pseudo = query["text"]
 
         query_vec = _encode_query(pseudo, model)
-        query_vectors[agent_id] = query_vec
+        if agent_id not in query_vectors:
+            query_vectors[agent_id] = query_vec
         scores = query_vec @ embeddings.T
         indices = _top_k_indices(scores, top_k)
 
         hits: list[dict[str, Any]] = []
+        topk_ids: set[int] = agent_topk_sets.setdefault(agent_id, set())
         for idx in indices:
             row = meta.iloc[int(idx)]
             similarity = float(scores[int(idx)])
             hit = _per_agent_hit(row, similarity, link_prefix)
             hits.append(hit)
+            raw_hit_count += 1
 
             tmdb_id = int(hit["tmdb_id"])
+            topk_ids.add(tmdb_id)
             if tmdb_id not in candidate_map:
                 fields = _candidate_fields(row, similarity, link_prefix)
                 fields["triggered_by"] = []
                 fields["also_baseline"] = False
+                fields["hit_sources"] = []
                 candidate_map[tmdb_id] = fields
             else:
                 cand = candidate_map[tmdb_id]
                 cand["similarity"] = max(cand["similarity"], similarity)
 
             cand = candidate_map[tmdb_id]
+            _append_hit_source(cand, query, similarity)
             if role == "creative" and agent_id not in cand["triggered_by"]:
                 cand["triggered_by"].append(agent_id)
             if role == "baseline":
                 cand["also_baseline"] = True
 
-        per_agent.append(
-            {
-                "agent_id": agent_id,
-                "role": role,
-                "pseudo": pseudo,
-                "hits": hits,
-            }
-        )
+        per_pseudo.append({**query, "hits": hits})
 
     for cand in candidate_map.values():
         cand["triggered_by"] = _sort_agent_ids(cand["triggered_by"])
+        cand["hit_sources"] = sorted(
+            cand.get("hit_sources") or [],
+            key=lambda item: (
+                _AGENT_ORDER.index(item["agent_id"])
+                if item.get("agent_id") in _AGENT_ORDER
+                else 99,
+                str(item.get("pseudo_id", "")),
+            ),
+        )
 
     candidates = sorted(
         candidate_map.values(),
         key=lambda item: (-item["similarity"], item["tmdb_id"]),
     )
+    candidates = _apply_containment(candidates, max_candidates=max_candidates)
 
-    divergence = _compute_divergence(per_agent, query_vectors)
+    per_agent = _group_per_agent(per_pseudo)
+    divergence = _compute_divergence_from_agents(per_agent, query_vectors, agent_topk_sets)
 
     return {
         "per_agent": per_agent,
         "candidates": candidates,
         "divergence": divergence,
+        "meta": {
+            "query_count": len(queries),
+            "raw_hit_count": raw_hit_count,
+            "candidate_count": len(candidates),
+            "max_candidates": max_candidates,
+        },
     }
 
 
@@ -343,8 +482,9 @@ def from_agents_json(
     payload: dict[str, Any] | str | Path,
     *,
     top_k: int = DEFAULT_TOP_K,
+    max_candidates: int = DEFAULT_MAX_CANDIDATES,
 ) -> dict[str, Any]:
-    """Public API: Phase 1 JSON (path or dict) → retrieve result."""
+    """Public API: agents JSON (path or dict) → retrieve result."""
     data = _load_agents_payload(payload)
     agents = data.get("agents", [])
     if not isinstance(agents, list):
@@ -354,7 +494,12 @@ def from_agents_json(
         errors = []
     if not isinstance(errors, list):
         raise ValueError("agents JSON 'errors' must be an array when present")
-    return retrieve_from_agents(agents, errors, top_k=top_k)
+    return retrieve_from_agents(
+        agents,
+        errors,
+        top_k=top_k,
+        max_candidates=max_candidates,
+    )
 
 
 def _write_json(payload: dict[str, Any], out: Path | None) -> None:
@@ -397,7 +542,11 @@ def _run_cli(args: argparse.Namespace) -> int:
         return 2
 
     try:
-        payload = from_agents_json(agents_path, top_k=top_k)
+        payload = from_agents_json(
+            agents_path,
+            top_k=top_k,
+            max_candidates=args.max_candidates,
+        )
     except (ValueError, FileNotFoundError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
@@ -419,7 +568,19 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--agents-json",
-        help="Phase 1 agents JSON (reads agents[].text; skips errors[] and empty text).",
+        help=(
+            "Agents JSON (reads agents[].pseudos[]; legacy agents[].text; "
+            "skips errors[] and empty segments)."
+        ),
+    )
+    parser.add_argument(
+        "--max-candidates",
+        type=int,
+        default=DEFAULT_MAX_CANDIDATES,
+        help=(
+            f"After tmdb_id dedupe, cap aggregated candidates "
+            f"(default: {DEFAULT_MAX_CANDIDATES}, plan ~15–19/news)."
+        ),
     )
     parser.add_argument(
         "--pseudo",
@@ -443,6 +604,9 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.top_k < 1:
         print("error: --top-k must be >= 1", file=sys.stderr)
+        return 2
+    if args.max_candidates < 1:
+        print("error: --max-candidates must be >= 1", file=sys.stderr)
         return 2
 
     try:

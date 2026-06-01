@@ -148,6 +148,18 @@ def _format_candidate_block(cand: dict[str, Any], *, include_score: bool) -> lis
     lines.append(f"- **overview**: {overview or '—'}")
     lines.append(f"- **跳转**: {cand.get('movie_url', '')}")
     lines.append(f"- **also_baseline**: {str(bool(cand.get('also_baseline'))).lower()}")
+    hit_sources = cand.get("hit_sources") or []
+    if hit_sources:
+        lines.append("- **命中视角/碎片**:")
+        for src in hit_sources:
+            frags = src.get("fragments") or []
+            frag_note = ", ".join(frags) if frags else "—"
+            sim = src.get("similarity")
+            sim_note = f"{sim:.4f}" if isinstance(sim, (int, float)) else "—"
+            lines.append(
+                f"  - {src.get('agent_id', '?')}/{src.get('pseudo_id', '?')}: "
+                f"fragments=[{frag_note}] · sim={sim_note}"
+            )
     if include_score:
         lines.append("- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->")
     return lines
@@ -183,15 +195,35 @@ def _format_agent_markdown(
                     pseudo.text.strip() or "—",
                 ]
             )
-    lines.extend(["", "## 本视角召回（Top-K · legacy: first pseudo only）"])
+    lines.extend(["", "## 本视角召回（Top-K · 按 pseudo）"])
 
-    hits = (per_agent_entry or {}).get("hits") or []
-    if not hits:
-        lines.append("（无 — pseudo 为空或 retrieve 跳过）")
-    else:
-        for hit in hits:
+    pseudo_rows = (per_agent_entry or {}).get("pseudos") or []
+    legacy_hits = (per_agent_entry or {}).get("hits") or []
+    if pseudo_rows:
+        for row in pseudo_rows:
+            pseudo_id = row.get("pseudo_id") or "?"
+            frags = (row.get("source") or {}).get("fragments") or []
+            frag_note = ", ".join(frags) if frags else "—"
+            lines.extend(
+                [
+                    "",
+                    f"#### {pseudo_id}",
+                    f"- **fragments**: {frag_note}",
+                ]
+            )
+            hits = row.get("hits") or []
+            if not hits:
+                lines.append("- （本段无召回）")
+            else:
+                for hit in hits:
+                    lines.append("")
+                    lines.extend([_hit_heading(hit), *_format_hit_lines(hit)])
+    elif legacy_hits:
+        for hit in legacy_hits:
             lines.append("")
             lines.extend([_hit_heading(hit), *_format_hit_lines(hit)])
+    else:
+        lines.append("（无 — pseudo 为空或 retrieve 跳过）")
 
     lines.append("")
     return "\n".join(lines)
