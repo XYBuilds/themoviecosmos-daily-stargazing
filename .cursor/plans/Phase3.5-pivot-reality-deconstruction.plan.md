@@ -3,25 +3,25 @@ name: Phase3.5-pivot-reality-deconstruction
 overview: Phase 3 闸门候选不满意后的方向转向（ADR-0002）。新增「现实解构 agent」把新闻拆成纯客观无损素材，改写 A1/A2/A4/A7 让其挑选并组合 起因/经过/结果 碎片产多段 pseudo，retrieve 多路召回聚合，评测加「共振类型」体温计、闸门重心移到第 2 条，再以新管线重跑 The Bet。契约见 docs/temp/news-analyze.md。
 todos:
   - id: f35b1c2d-0001-4000-8035-000000000001
-    content: "3.5.1 · 定稿解构契约 + 下游消费决策：promote news-analyze.md 出 temp；拍定碎片取舍/每 agent 产几段/抽象层级分配/聚合去重/经过取连续 等被延后的设计岔路"
+    content: 3.5.1 · 定稿解构契约 + 下游消费决策：promote news-analyze.md 出 temp；拍定碎片取舍/每 agent 产几段/抽象层级分配/聚合去重/经过取连续 等被延后的设计岔路
     status: pending
   - id: f35b1c2d-0001-4000-8035-000000000002
-    content: "3.5.2 · 现实解构 agent：prompts/A0_reality_deconstructor.md + scripts/deconstruct.py → reality-deconstructed.json + .md（双写）（依赖 3.5.1）"
+    content: 3.5.2 · 现实解构 agent：prompts/A0_reality_deconstructor.md + scripts/deconstruct.py → reality-deconstructed.json + .md（双写）（依赖 3.5.1）
     status: pending
   - id: f35b1c2d-0001-4000-8035-000000000003
-    content: "3.5.3 · 改写编剧链：A1/A2/A4/A7 prompts 消费解构 JSON、按 persona 挑碎片产多段 pseudo；agents.py 适配；放宽 deentification 硬规则（承重时保留专名）（依赖 3.5.1、3.5.2）"
+    content: 3.5.3 · 改写编剧链：A1/A2/A4/A7 prompts 消费解构 JSON、按 persona 挑碎片产多段 pseudo；agents.py 适配；放宽 deentification 硬规则（承重时保留专名）（依赖 3.5.1、3.5.2）
     status: pending
   - id: f35b1c2d-0001-4000-8035-000000000004
-    content: "3.5.4 · retrieve.py：多 pseudo 召回 + 候选聚合去重 + 爆炸 containment（记录命中碎片/视角）（依赖 3.5.3）"
+    content: 3.5.4 · retrieve.py：多 pseudo 召回 + 候选聚合去重 + 爆炸 containment（记录命中碎片/视角）（依赖 3.5.3）
     status: pending
   - id: f35b1c2d-0001-4000-8035-000000000005
-    content: "3.5.5 · 评测改造：run_eval candidates.md 加「共振类型」行；summarize_eval 解析 + structural_2_rate；闸门重心第 2 条（eval-the-bet.md §4/§5.1 已先行更新）（依赖 3.5.4）"
+    content: 3.5.5 · 评测改造：run_eval candidates.md 加「共振类型」行；summarize_eval 解析 + structural_2_rate；闸门重心第 2 条（eval-the-bet.md §4/§5.1 已先行更新）（依赖 3.5.4）
     status: pending
   - id: f35b1c2d-0001-4000-8035-000000000006
-    content: "3.5.6 · 重跑 The Bet（N=10，新管线）→ 总编填分 + 共振类型 → GATE 结论 [需人工验收]（依赖 3.5.2–3.5.5）"
+    content: 3.5.6 · 重跑 The Bet（N=10，新管线）→ 总编填分 + 共振类型 → GATE 结论 [需人工验收]（依赖 3.5.2–3.5.5）
     status: pending
   - id: f35b1c2d-0001-4000-8035-000000000007
-    content: "3.5.7 · SSOT 同步至 v0.4：PRD §1.2/§1.3/§4/§5/§8 + deentification 放宽 + CONTEXT 新术语（仅 GATE_PASS 后做）[需人工验收]（依赖 3.5.6）"
+    content: 3.5.7 · SSOT 同步至 v0.4：PRD §1.2/§1.3/§4/§5/§8 + deentification 放宽 + CONTEXT 新术语（仅 GATE_PASS 后做）[需人工验收]（依赖 3.5.6）
     status: pending
 isProject: true
 ---
@@ -81,13 +81,13 @@ flowchart LR
 
 ## SSOT
 
-| 文档 | 用途 |
-|------|------|
-| `docs/temp/news-analyze.md` | 现实解构产出契约（v3.1·纯客观无损·镜头中立）|
-| `docs/adr/0002-pivot-to-event-logic-resonance.md` | 产品转向 + SSOT 待改清单 |
-| `docs/eval-the-bet.md` §4/§5.1 | 两轴 rubric + 共振类型体温计 + 闸门重心第 2 条（已更新）|
-| `CONTEXT.md` | 共振（双层）、基线、撞车 |
-| Phase 1/2/3 plan | 既有 agents/retrieve/run_eval 契约（本 Phase 改写其一部分）|
+| 文档                                              | 用途                                                        |
+| ------------------------------------------------- | ----------------------------------------------------------- |
+| `docs/temp/news-analyze.md`                       | 现实解构产出契约（v3.1·纯客观无损·镜头中立）                |
+| `docs/adr/0002-pivot-to-event-logic-resonance.md` | 产品转向 + SSOT 待改清单                                    |
+| `docs/eval-the-bet.md` §4/§5.1                    | 两轴 rubric + 共振类型体温计 + 闸门重心第 2 条（已更新）    |
+| `CONTEXT.md`                                      | 共振（双层）、基线、撞车                                    |
+| Phase 1/2/3 plan                                  | 既有 agents/retrieve/run_eval 契约（本 Phase 改写其一部分） |
 
 ---
 
@@ -95,18 +95,29 @@ flowchart LR
 
 **依赖：** Phase 3 结论
 
-grill 已收口解构层契约（标签梯穷举客观、多值字段 list、零解读）。但**下游消费的几个岔路当时显式延后**，编码前必须先拍：
+上游解构契约已收口（标签梯穷举客观、多值字段 list、零解读）。下游消费的延后岔路，**在此定稿**：
 
-- **碎片取舍**：起因/经过/结果是否设上限？按什么挑（无 load_bearing 了，靠 persona 自选还是全给）？
-- **每 agent 产几段 pseudo**：现状 1 段 → 拟多段；定上限以控候选爆炸 + 总编评分负担。
-- **抽象层级分配**：A1 贴事实表层；A2/A4/A7 各自镜头——是否各 persona 自带固定层级（避免 agent×层级 笛卡尔积）。
-- **经过(how) 的取用**：`起因/结果任意组合，经过只能取连续多条`（已写入 §6）；并正视 **经过是三类里最弱的匹配器**（overview 多为钩子、罕述中段），定其期望值。
-- **promote**：`news-analyze.md` 从 `docs/temp/` 移到稳定位置（如 `docs/SSOT/` 或 prompts 蓝本）。
+### 决策表（定稿）
+
+| 项 | 定稿 |
+|---|---|
+| **A 碎片取舍** | 解构层给**全量** 起因/经过/结果，**不设 load_bearing、不预选**；挑选权 100% 在 persona。爆炸控制只在输出侧（B），不在输入侧。 |
+| **B 爆炸预算** | **每 agent 产 3 段 pseudo（含 A1，对称）、每段 Top-2**；`4×3×2 = 24` raw → 去重后 **~15–19 候选/条**（N=10 ≈ 170 个评分点）。现阶段**多写**，跑完看压缩空间。 |
+| **C 抽象层级** | **层级 = persona 身份，不做 `agent × 层级` 笛卡尔积**。每个 agent 的 3 段都用它**唯一**镜头；段间差异来自**挑了哪些碎片/碎片组合**，不是抽象程度。A1=表层直给；A2/A4/A7=各自镜头。 |
+| **D 三类对称匹配** | 起因/经过/结果**对称、无主次**（见下「匹配模型」）。`经过` 守"只取连续多条"（时序连贯），但**不弱化、不降期望**。 |
+| **E 命中溯源** | 每段 pseudo 带 `source = {agent_id, 用到的碎片 ids}`；retrieve 聚合时挂到候选上（喂将来的「共振类型」体温计 + 给总编解释）。 |
+| **F agents JSON 契约** | `agents[].text`（单段）→ `agents[].pseudos: [{id, text, source}]`；retrieve 遍历 pseudos、每段 Top-2、按 tmdb_id 聚合。 |
+| **G promote** | `docs/temp/news-analyze.md` → `docs/SSOT/reality-deconstruction-contract.md`。 |
+
+### 匹配模型（D 的概念对齐）
+
+电影 overview 本身可能是剧情的**任意一个切片**——起因式设定钩子 / 经过式中段场景 / 结果式悬念结尾。新闻解构出的 起因/经过/结果 **任意一类**都可能对上某部 overview 的对应切片：**切片对切片**。故三类对称，`经过` 不天生更弱（已写入 contract §0 原则 1）。
 
 ### 验收
 
-- [ ] 上述每条有书面决策（落到 plan 或 news-analyze.md 末节）
-- [ ] 契约离开 `docs/temp/`
+- [ ] 决策 A–G 写入本节，并与 contract §5/§6 一致
+- [ ] 契约 promote 至 `docs/SSOT/reality-deconstruction-contract.md`（离开 temp）
+- [ ] F 的新 agents/retrieve JSON 契约有书面定义（供 3.5.3 / 3.5.4 实现）
 
 ---
 
@@ -215,10 +226,10 @@ grill 已收口解构层契约（标签梯穷举客观、多值字段 list、零
 
 ## 交给下一 Phase
 
-| 条件 | 下一动作 |
-|------|----------|
-| **GATE_PASS** | 解封 Phase 4 `copywriter.py`（C1/C2）|
-| **GATE_FAIL** | 回 3.5.1/3.5.3，不建 Copy、不动 PRD |
+| 条件          | 下一动作                              |
+| ------------- | ------------------------------------- |
+| **GATE_PASS** | 解封 Phase 4 `copywriter.py`（C1/C2） |
+| **GATE_FAIL** | 回 3.5.1/3.5.3，不建 Copy、不动 PRD   |
 
 ## 风险与约束
 
