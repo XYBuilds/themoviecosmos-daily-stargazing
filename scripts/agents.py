@@ -300,6 +300,30 @@ def _how_contiguous(fragment_ids: list[str]) -> bool:
     return indices == list(range(indices[0], indices[-1] + 1))
 
 
+def _repair_how_contiguity(fragment_ids: list[str]) -> tuple[list[str], bool]:
+    """Expand how-* ids to a contiguous span when the model skips steps."""
+    indices = _how_indices(fragment_ids)
+    if len(indices) <= 1:
+        return fragment_ids, False
+    span = list(range(indices[0], indices[-1] + 1))
+    if indices == span:
+        return fragment_ids, False
+
+    expanded = [f"how-{i}" for i in span]
+    repaired: list[str] = []
+    how_block_done = False
+    for fid in fragment_ids:
+        if fid.startswith("how-"):
+            if not how_block_done:
+                repaired.extend(expanded)
+                how_block_done = True
+        else:
+            repaired.append(fid)
+    if not how_block_done:
+        repaired.extend(expanded)
+    return repaired, True
+
+
 def render_prompt(
     template: str,
     news: NewsItem | None = None,
@@ -388,10 +412,15 @@ def parse_pseudos_response(
             raise ValueError(
                 f"pseudo {pseudo_id}: unknown fragment ids {unknown}"
             )
+        warnings: list[str] = []
         if not _how_contiguous(frag_ids):
-            raise ValueError(
-                f"pseudo {pseudo_id}: how-* fragments must be contiguous"
-            )
+            frag_ids, repaired = _repair_how_contiguity(frag_ids)
+            if repaired:
+                warnings.append("how_fragments_expanded_to_contiguous_span")
+            if not _how_contiguous(frag_ids):
+                raise ValueError(
+                    f"pseudo {pseudo_id}: how-* fragments must be contiguous"
+                )
 
         segments.append(
             PseudoSegment(
@@ -401,6 +430,7 @@ def parse_pseudos_response(
                     "agent_id": agent_id,
                     "fragments": frag_ids,
                 },
+                warnings=warnings,
             )
         )
 

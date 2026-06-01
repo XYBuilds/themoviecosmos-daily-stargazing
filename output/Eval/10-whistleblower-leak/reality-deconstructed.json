@@ -1,0 +1,211 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Whistleblower tip led NTA to cancel NEET-UG 2026 after full chemistry paper match",
+    "description": "Four days after the May 3 medical entrance exam, India's National Testing Agency received an email from a whistleblower in Sikar with PDFs that matched 100% of the chemistry questions and part of biology. NTA referred 26–27 paper setters and translators to the CBI; thirteen people have been arrested, including a coaching figure who had publicly championed student justice during the 2024 leak scandal. A re-examination is scheduled for June 21.",
+    "pub_time": "2026-05-16T18:00:00+05:30",
+    "source_name": "Times Now",
+    "url": "https://www.timesnownews.com/education/how-nta-discovered-neet-ug-2026-chemistry-paper-leak-and-traced-it-to-its-own-system-article-154364673"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-16T18:00:00+05:30",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026-05-03",
+        "2026-06-21"
+      ],
+      "relative": [
+        "四天后"
+      ],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [],
+      "recurrence": [],
+      "modality": [
+        "已发生",
+        "取消",
+        "计划"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Sikar",
+        "tags": [
+          "Sikar",
+          "India",
+          "city"
+        ],
+        "geocode": {
+          "country": "India",
+          "state": null,
+          "city": "Sikar",
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": null,
+        "scene_archetype": [
+          "city"
+        ],
+        "role": [
+          "tip source"
+        ],
+        "intended_destination": null,
+        "scale": "city",
+        "trajectory": null,
+        "contested_name": null
+      },
+      {
+        "text": "India",
+        "tags": [
+          "India",
+          "country",
+          "South Asia"
+        ],
+        "geocode": {
+          "country": "India",
+          "state": null,
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "South Asia",
+        "scene_archetype": [
+          "country",
+          "administrative region"
+        ],
+        "role": [
+          "event location"
+        ],
+        "intended_destination": null,
+        "scale": "national",
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "whistleblower",
+        "tags": [
+          "个人",
+          "举报者"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      },
+      {
+        "text": "National Testing Agency",
+        "tags": [
+          "机构",
+          "考试机构"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "26–27 paper setters and translators",
+        "tags": [
+          "人员",
+          "考试相关人员"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "CBI",
+        "tags": [
+          "机构",
+          "执法机构"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "thirteen people",
+        "tags": [
+          "人员",
+          "嫌疑人"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "a coaching figure",
+        "tags": [
+          "个人",
+          "教育从业者"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "Whistleblower provided PDFs that matched 100% of chemistry questions and part of biology, indicating paper leak."
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "NEET-UG 2026 exam held on May 3."
+      },
+      {
+        "step": 2,
+        "text": "Four days after the exam, NTA received an email from a whistleblower in Sikar with matching PDFs."
+      },
+      {
+        "step": 3,
+        "text": "NTA cancelled the exam and referred 26–27 paper setters and translators to the CBI."
+      },
+      {
+        "step": 4,
+        "text": "Thirteen people arrested, including a coaching figure."
+      },
+      {
+        "step": 5,
+        "text": "Re-examination scheduled for June 21, 2026."
+      }
+    ],
+    "result": [
+      {
+        "text": "NEET-UG 2026 exam cancelled."
+      },
+      {
+        "text": "26-27 paper setters and translators referred to CBI for investigation."
+      },
+      {
+        "text": "Thirteen people arrested, including a coaching figure who championed student justice in 2024."
+      },
+      {
+        "text": "Re-examination scheduled for June 21, 2026."
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}
