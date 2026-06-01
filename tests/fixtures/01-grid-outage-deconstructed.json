@@ -1,0 +1,71 @@
+{
+  "agent": "A0",
+  "news": {
+    "title": "Rotational blackout risks rise in Visayas amid power crunch",
+    "description": "The Philippines grid operator placed the Visayas under red alert after Kepco SPC Power's Unit 2 tripped offline, leaving more than 950 megawatts unavailable alongside other long-running plant outages. Eleven generators have failed since May began, while seasonal heat drove demand into a thin operating margin. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading.",
+    "pub_time": "2026-05-29T18:00:00+08:00",
+    "source_name": "Manila Bulletin",
+    "url": "https://mb.com.ph/2026/05/29/rotational-blackout-risks-rise-in-visayas-amid-power-crunch"
+  },
+  "deconstruction": {
+    "anchor": { "dct": "2026-05-29", "report_locale": null },
+    "when": {
+      "absolute": ["2026年5月"],
+      "relative": [],
+      "daypart": [],
+      "season": ["盛夏"],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [],
+      "recurrence": [],
+      "modality": ["已发生"],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "菲律宾维萨亚斯群岛",
+        "tags": ["维萨亚斯", "菲律宾", "东南亚", "群岛", "人口稠密区"],
+        "geocode": {
+          "country": "菲律宾",
+          "state": null,
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "scene_archetype": ["公共", "基础设施"],
+        "role": ["发生地"],
+        "scale": "区域"
+      }
+    ],
+    "who": [
+      {
+        "text": "菲律宾电网运营商",
+        "tags": ["电网运营商", "政府机构"],
+        "role_in_event": ["发起·决策"],
+        "relations": []
+      },
+      {
+        "text": "Kepco SPC Power Unit 2 发电机组",
+        "tags": ["发电厂", "化石燃料机组"],
+        "role_in_event": ["受影响"],
+        "relations": []
+      }
+    ],
+    "why": [
+      { "text": "Kepco SPC Power Unit 2 跳闸脱网，叠加其他机组长期停运" },
+      { "text": "季节性高温推高用电需求，运行裕度收窄" }
+    ],
+    "how": [
+      { "step": 1, "text": "自5月以来已有11台发电机故障" },
+      { "step": 2, "text": "维萨亚斯电网被置于红色警报状态" },
+      { "step": 3, "text": "超过950兆瓦装机不可用" }
+    ],
+    "result": [
+      { "text": "官方下令紧急限电负荷以保230千伏关键输电线路不过载" },
+      { "text": "轮换停电风险上升" }
+    ]
+  },
+  "errors": []
+}
