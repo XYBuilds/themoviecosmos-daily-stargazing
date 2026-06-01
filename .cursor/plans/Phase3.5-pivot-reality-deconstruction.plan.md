@@ -7,7 +7,7 @@ todos:
     status: pending
   - id: f35b1c2d-0001-4000-8035-000000000002
     content: "3.5.2 · 现实解构 agent：prompts/A0_reality_deconstructor.md + scripts/deconstruct.py → reality-deconstructed.json + .md（双写）（依赖 3.5.1）"
-    status: pending
+    status: complete
   - id: f35b1c2d-0001-4000-8035-000000000003
     content: "3.5.3 · 改写编剧链：A1/A2/A4/A7 prompts 消费解构 JSON、按 persona 挑碎片产多段 pseudo；agents.py 适配；放宽 deentification 硬规则（承重时保留专名）（依赖 3.5.1、3.5.2）"
     status: pending
@@ -120,9 +120,9 @@ grill 已收口解构层契约（标签梯穷举客观、多值字段 list、零
 
 ### 验收
 
-- [ ] 喂 3 条真实新闻，产出合法 JSON 且字段符合契约（无 skeleton/load_bearing/共振类型；多值字段为 list）
-- [ ] `.md` 视图可读，总编能扫
-- [ ] 肉眼核「无主观/镜头中立」：无权力定性、无反讽框定
+- [x] 喂 3 条真实新闻，产出合法 JSON 且字段符合契约（无 skeleton/load_bearing/共振类型；多值字段为 list）
+- [x] `.md` 视图可读，总编能扫
+- [x] 肉眼核「无主观/镜头中立」：无权力定性、无反讽框定
 
 ---
 
