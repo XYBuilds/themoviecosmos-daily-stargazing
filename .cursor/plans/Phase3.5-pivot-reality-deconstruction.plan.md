@@ -1,10 +1,10 @@
 ---
 name: Phase3.5-pivot-reality-deconstruction
-overview: Phase 3 闸门候选不满意后的方向转向（ADR-0002）。新增「现实解构 agent」把新闻拆成纯客观无损素材，改写 A1/A2/A4/A7 让其挑选并组合 起因/经过/结果 碎片产多段 pseudo，retrieve 多路召回聚合，评测加「共振类型」体温计、闸门重心移到第 2 条，再以新管线重跑 The Bet。契约见 docs/temp/news-analyze.md。
+overview: Phase 3 闸门候选不满意后的方向转向（ADR-0002）。新增「现实解构 agent」把新闻拆成纯客观无损素材，改写 A1/A2/A4/A7 让其挑选并组合 起因/经过/结果 碎片产多段 pseudo，retrieve 多路召回聚合，评测加「共振类型」体温计、闸门重心移到第 2 条，再以新管线重跑 The Bet。契约见 docs/SSOT/reality-deconstruction-contract.md（附录 B = 下游消费决策）。
 todos:
   - id: f35b1c2d-0001-4000-8035-000000000001
     content: "3.5.1 · 定稿解构契约 + 下游消费决策：promote news-analyze.md 出 temp；拍定碎片取舍/每 agent 产几段/抽象层级分配/聚合去重/经过取连续 等被延后的设计岔路"
-    status: pending
+    status: complete
   - id: f35b1c2d-0001-4000-8035-000000000002
     content: "3.5.2 · 现实解构 agent：prompts/A0_reality_deconstructor.md + scripts/deconstruct.py → reality-deconstructed.json + .md（双写）（依赖 3.5.1）"
     status: pending
@@ -76,14 +76,14 @@ flowchart LR
 
 - C1/C2 `copywriter.py`（Phase 4，仍 gated）
 - `fetch_news.py` 全自动（评测期继续手写 `--news-file`）
-- 联网补全（`news-analyze.md §7` 占位，证据触发，本 Phase 不做）
+- 联网补全（`reality-deconstruction-contract.md §7` 占位，证据触发，本 Phase 不做）
 - 索引侧改动（沿用 ADR-0001 复用产物）
 
 ## SSOT
 
 | 文档 | 用途 |
 |------|------|
-| `docs/temp/news-analyze.md` | 现实解构产出契约（v3.1·纯客观无损·镜头中立）|
+| `docs/SSOT/reality-deconstruction-contract.md` | 现实解构产出契约 + **附录 B** 下游消费决策（3.5.1 定稿）|
 | `docs/adr/0002-pivot-to-event-logic-resonance.md` | 产品转向 + SSOT 待改清单 |
 | `docs/eval-the-bet.md` §4/§5.1 | 两轴 rubric + 共振类型体温计 + 闸门重心第 2 条（已更新）|
 | `CONTEXT.md` | 共振（双层）、基线、撞车 |
@@ -101,12 +101,22 @@ grill 已收口解构层契约（标签梯穷举客观、多值字段 list、零
 - **每 agent 产几段 pseudo**：现状 1 段 → 拟多段；定上限以控候选爆炸 + 总编评分负担。
 - **抽象层级分配**：A1 贴事实表层；A2/A4/A7 各自镜头——是否各 persona 自带固定层级（避免 agent×层级 笛卡尔积）。
 - **经过(how) 的取用**：`起因/结果任意组合，经过只能取连续多条`（已写入 §6）；并正视 **经过是三类里最弱的匹配器**（overview 多为钩子、罕述中段），定其期望值。
-- **promote**：`news-analyze.md` 从 `docs/temp/` 移到稳定位置（如 `docs/SSOT/` 或 prompts 蓝本）。
+- **promote**：`news-analyze.md` → `docs/SSOT/reality-deconstruction-contract.md`（`docs/temp/README.md` 留跳转）。
+
+**3.5.1 定稿摘要**（详表见契约附录 B）：
+
+| 岔路 | 决策 |
+|------|------|
+| 碎片取舍 | 解构层无上限；编剧全量 JSON + persona 自择；单段 why≤2、result≤2、how 连续≤3 |
+| 每 agent 段数 | A1×1；A2/A4/A7 各≤3；全条≤10 pseudo |
+| 抽象层级 | 固定档位 L0/L2/L3，禁止 agent×层级笛卡尔积 |
+| 经过 how | 连续子序列；默认不用（A7 优先）；弱匹配器，期望 ≤30% creative 段含 how |
+| 召回聚合 | 每段 Top-K=2；tmdb 去重；候选≤24；撞车不含 A1 |
 
 ### 验收
 
-- [ ] 上述每条有书面决策（落到 plan 或 news-analyze.md 末节）
-- [ ] 契约离开 `docs/temp/`
+- [x] 上述每条有书面决策（契约附录 B）
+- [x] 契约离开 `docs/temp/`
 
 ---
 
@@ -114,7 +124,7 @@ grill 已收口解构层契约（标签梯穷举客观、多值字段 list、零
 
 **依赖：** 3.5.1
 
-- `prompts/A0_reality_deconstructor.md`：身份/准则/few-shot（印度热浪 worked example）/任务注入，严格按 `news-analyze.md §1` 产出 JSON。
+- `prompts/A0_reality_deconstructor.md`：身份/准则/few-shot（印度热浪 worked example）/任务注入，严格按 `reality-deconstruction-contract.md §1` 产出 JSON。
 - `scripts/deconstruct.py`：news JSON → LLM（MiMo 2.5 Pro）→ 校验 JSON → 写 `reality-deconstructed.json` + 渲染 `.md` 人类视图。
 - 失败/非法 JSON → 记 `errors`，不阻断（MVP 宽松）。
 
