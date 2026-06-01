@@ -1,6 +1,6 @@
 ---
 name: Phase3.5-pivot-reality-deconstruction
-overview: Phase 3 闸门候选不满意后的方向转向（ADR-0002）。新增「现实解构 agent」把新闻拆成纯客观无损素材，改写 A1/A2/A4/A7 让其挑选并组合 起因/经过/结果 碎片产多段 pseudo，retrieve 多路召回聚合，评测加「共振类型」体温计、闸门重心移到第 2 条，再以新管线重跑 The Bet。契约见 docs/temp/news-analyze.md。
+overview: Phase 3 闸门候选不满意后的方向转向（ADR-0002）。新增「现实解构 agent」把新闻拆成纯客观无损素材，改写 A1/A2/A4/A7 让其挑选并组合 起因/经过/结果 碎片产多段 pseudo，retrieve 多路召回聚合，评测加「共振类型」体温计、闸门重心移到第 2 条，再以新管线重跑 The Bet。契约见 docs/SSOT/reality-deconstruction-contract.md。
 todos:
   - id: f35b1c2d-0001-4000-8035-000000000001
     content: 3.5.1 · 定稿解构契约 + 下游消费决策：promote news-analyze.md 出 temp；拍定碎片取舍/每 agent 产几段/抽象层级分配/聚合去重/经过取连续 等被延后的设计岔路
@@ -99,15 +99,15 @@ flowchart LR
 
 ### 决策表（定稿）
 
-| 项 | 定稿 |
-|---|---|
-| **A 碎片取舍** | 解构层给**全量** 起因/经过/结果，**不设 load_bearing、不预选**；挑选权 100% 在 persona。爆炸控制只在输出侧（B），不在输入侧。 |
-| **B 爆炸预算** | **每 agent 产 3 段 pseudo（含 A1，对称）、每段 Top-2**；`4×3×2 = 24` raw → 去重后 **~15–19 候选/条**（N=10 ≈ 170 个评分点）。现阶段**多写**，跑完看压缩空间。 |
-| **C 抽象层级** | **层级 = persona 身份，不做 `agent × 层级` 笛卡尔积**。每个 agent 的 3 段都用它**唯一**镜头；段间差异来自**挑了哪些碎片/碎片组合**，不是抽象程度。A1=表层直给；A2/A4/A7=各自镜头。 |
-| **D 三类对称匹配** | 起因/经过/结果**对称、无主次**（见下「匹配模型」）。`经过` 守"只取连续多条"（时序连贯），但**不弱化、不降期望**。 |
-| **E 命中溯源** | 每段 pseudo 带 `source = {agent_id, 用到的碎片 ids}`；retrieve 聚合时挂到候选上（喂将来的「共振类型」体温计 + 给总编解释）。 |
-| **F agents JSON 契约** | `agents[].text`（单段）→ `agents[].pseudos: [{id, text, source}]`；retrieve 遍历 pseudos、每段 Top-2、按 tmdb_id 聚合。 |
-| **G promote** | `docs/temp/news-analyze.md` → `docs/SSOT/reality-deconstruction-contract.md`。 |
+| 项                     | 定稿                                                                                                                                                                               |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A 碎片取舍**         | 解构层给**全量** 起因/经过/结果，**不设 load_bearing、不预选**；挑选权 100% 在 persona。爆炸控制只在输出侧（B），不在输入侧。                                                      |
+| **B 爆炸预算**         | **每 agent 产 3 段 pseudo（含 A1，对称）、每段 Top-2**；`4×3×2 = 24` raw → 去重后 **~15–19 候选/条**（N=10 ≈ 170 个评分点）。现阶段**多写**，跑完看压缩空间。                      |
+| **C 抽象层级**         | **层级 = persona 身份，不做 `agent × 层级` 笛卡尔积**。每个 agent 的 3 段都用它**唯一**镜头；段间差异来自**挑了哪些碎片/碎片组合**，不是抽象程度。A1=表层直给；A2/A4/A7=各自镜头。 |
+| **D 三类对称匹配**     | 起因/经过/结果**对称、无主次**（见下「匹配模型」）。`经过` 守"只取连续多条"（时序连贯），但**不弱化、不降期望**。                                                                  |
+| **E 命中溯源**         | 每段 pseudo 带 `source = {agent_id, 用到的碎片 ids}`；retrieve 聚合时挂到候选上（喂将来的「共振类型」体温计 + 给总编解释）。                                                       |
+| **F agents JSON 契约** | `agents[].text`（单段）→ `agents[].pseudos: [{id, text, source}]`；retrieve 遍历 pseudos、每段 Top-2、按 tmdb_id 聚合。                                                            |
+| **G promote**          | `docs/temp/news-analyze.md` → `docs/SSOT/reality-deconstruction-contract.md`。                                                                                                     |
 
 ### 匹配模型（D 的概念对齐）
 
@@ -125,7 +125,7 @@ flowchart LR
 
 **依赖：** 3.5.1
 
-- `prompts/A0_reality_deconstructor.md`：身份/准则/few-shot（印度热浪 worked example）/任务注入，严格按 `news-analyze.md §1` 产出 JSON。
+- `prompts/A0_reality_deconstructor.md`：身份/准则/few-shot（印度热浪 worked example）/任务注入，严格按 `reality-deconstruction-contract.md §1` 产出 JSON。
 - `scripts/deconstruct.py`：news JSON → LLM（MiMo 2.5 Pro）→ 校验 JSON → 写 `reality-deconstructed.json` + 渲染 `.md` 人类视图。
 - 失败/非法 JSON → 记 `errors`，不阻断（MVP 宽松）。
 
