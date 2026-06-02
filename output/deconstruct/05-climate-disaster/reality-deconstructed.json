@@ -1,0 +1,220 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Syria's president visits Euphrates flood zones after week of deadly high water",
+    "description": "Surging flows on the Euphrates flooded homes, farms, and schools in Deir Ezzor and Raqqa after one of the heaviest rainy seasons in three decades, with several children drowning despite official warnings. An earthen bridge collapsed, the navy deployed boats for evacuations, and Turkey agreed to reduce upstream releases. Reservoirs filled beyond 97% capacity before dam operations and seasonal rains pushed the river past protective embankments.",
+    "pub_time": "2026-05-29T12:00:00+04:00",
+    "source_name": "The National",
+    "url": "https://www.thenationalnews.com/news/mena/2026/05/29/al-shara-visits-syrias-flood-zones-after-week-of-mayhem-on-the-euphrates/"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-29T12:00:00+04:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [],
+      "relative": [
+        "after week of deadly high water",
+        "after one of the heaviest rainy seasons in three decades"
+      ],
+      "daypart": [],
+      "season": [
+        "rainy season"
+      ],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "week of deadly high water"
+      ],
+      "recurrence": [],
+      "modality": [
+        "已发生"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Deir Ezzor",
+        "tags": [
+          "Syria",
+          "Deir Ezzor Governorate",
+          "flood zone",
+          "Euphrates region"
+        ],
+        "geocode": {
+          "country": "Syria",
+          "state": "Deir Ezzor",
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "Middle East",
+        "scene_archetype": [
+          "riverine",
+          "floodplain",
+          "residential area"
+        ],
+        "role": [
+          "flood occurrence site"
+        ],
+        "intended_destination": null,
+        "scale": "regional",
+        "trajectory": null,
+        "contested_name": null
+      },
+      {
+        "text": "Raqqa",
+        "tags": [
+          "Syria",
+          "Raqqa Governorate",
+          "flood zone",
+          "Euphrates region"
+        ],
+        "geocode": {
+          "country": "Syria",
+          "state": "Raqqa",
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "Middle East",
+        "scene_archetype": [
+          "riverine",
+          "floodplain",
+          "agricultural area"
+        ],
+        "role": [
+          "flood occurrence site"
+        ],
+        "intended_destination": null,
+        "scale": "regional",
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "Syria's president",
+        "tags": [
+          "official",
+          "head of state"
+        ],
+        "role_in_event": [
+          "见证·旁观"
+        ],
+        "relations": []
+      },
+      {
+        "text": "several children",
+        "tags": [
+          "resident",
+          "child",
+          "victim"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Syrian navy",
+        "tags": [
+          "military",
+          "rescue force"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Turkey",
+        "tags": [
+          "country",
+          "upstream nation"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "One of the heaviest rainy seasons in three decades led to surging flows on the Euphrates."
+      },
+      {
+        "text": "Reservoirs filled beyond 97% capacity, and dam operations combined with seasonal rains pushed the river past protective embankments."
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "Heavy rainy season occurs over three decades."
+      },
+      {
+        "step": 2,
+        "text": "Reservoirs fill beyond 97% capacity."
+      },
+      {
+        "step": 3,
+        "text": "Dam operations and seasonal rains cause river to rise past protective embankments."
+      },
+      {
+        "step": 4,
+        "text": "Surging flows flood homes, farms, and schools in Deir Ezzor and Raqqa."
+      },
+      {
+        "step": 5,
+        "text": "Several children drown despite official warnings."
+      },
+      {
+        "step": 6,
+        "text": "An earthen bridge collapses."
+      },
+      {
+        "step": 7,
+        "text": "Syrian navy deploys boats for evacuations."
+      },
+      {
+        "step": 8,
+        "text": "Turkey agrees to reduce upstream releases."
+      },
+      {
+        "step": 9,
+        "text": "Syria's president visits the flood zones."
+      }
+    ],
+    "result": [
+      {
+        "text": "Homes, farms, and schools flooded in Deir Ezzor and Raqqa."
+      },
+      {
+        "text": "Several children drowned."
+      },
+      {
+        "text": "An earthen bridge collapsed."
+      },
+      {
+        "text": "Syrian navy deployed boats for evacuations."
+      },
+      {
+        "text": "Turkey agreed to reduce upstream releases."
+      },
+      {
+        "text": "Syria's president visited the flood zones."
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

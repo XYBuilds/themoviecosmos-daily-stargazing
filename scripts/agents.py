@@ -1,23 +1,24 @@
 """agents.py · Multi-agent writers' room (pseudo-overview).
 
-Loads A1/A2/A4/A7 persona prompts, renders news placeholders, and calls the
-LLM concurrently. Single-agent failures are recorded in ``errors`` without
-blocking the rest.
+Loads A1/A2/A4/A7 persona prompts, injects reality-deconstructed JSON, and calls the
+LLM concurrently. Each agent returns 3 pseudos with fragment provenance.
 
-MVP scope: core models, persona load, template render, async LLM, post-processing
-(1.2), and CLI (1.3).
+MVP scope: persona load, template render, async LLM, JSON parse, post-processing,
+and CLI.
 """
 
 from __future__ import annotations
 
 import argparse
 import asyncio
+import copy
 import json
 import os
 import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
@@ -29,7 +30,6 @@ from scripts.lib.env import default_llm_provider, load_env
 from scripts.lib.llm import get_llm_client
 from scripts.lib.paths import repo_root
 
-# Explicit MVP persona files (no C*, no _shared).
 PERSONA_FILENAMES: tuple[str, ...] = (
     "A1_reality_recorder.md",
     "A2_sociologist.md",
@@ -51,7 +51,10 @@ _MODEL_ENV: dict[str, str] = {
     "deepseek": "DEEPSEEK_MODEL",
 }
 
-_SYSTEM_MESSAGE = "Follow the instructions in the user message exactly."
+_SYSTEM_MESSAGE = (
+    "You are a screenwriter's-room agent. Follow the user message exactly. "
+    "Return only valid JSON matching the multi-pseudo output contract."
+)
 
 _PLACEHOLDER_EMPTY = "—"
 _SOURCE_EMPTY = "unknown"
@@ -75,9 +78,15 @@ _CAPITALIZED_NAME_RE = re.compile(
     r"\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\b"
 )
 _SENTENCE_END_RE = re.compile(r"[.!?](?:\s+|$)")
+_JSON_FENCE_RE = re.compile(
+    r"```(?:json)?\s*([\s\S]*?)\s*```",
+    re.IGNORECASE,
+)
 
 MIN_WORDS_SHORT = 40
 MAX_WORDS = 120
+EXPECTED_PSEUDO_COUNT = 3
+EXPECTED_PSEUDO_IDS: tuple[str, ...] = ("p1", "p2", "p3")
 
 _BRAND_WORDS: frozenset[str] = frozenset(
     {
@@ -144,13 +153,26 @@ class Persona:
 
 
 @dataclass
+class PseudoSegment:
+    id: str
+    text: str
+    source: dict[str, Any]
+    warnings: list[str] = field(default_factory=list)
+
+
+@dataclass
 class AgentOutput:
     agent_id: str
     persona_name: str
     role: str
-    text: str
+    pseudos: list[PseudoSegment] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
     error: str | None = None
+
+    @property
+    def text(self) -> str:
+        """First pseudo text (legacy retrieve until Phase 3.5.4)."""
+        return self.pseudos[0].text if self.pseudos else ""
 
 
 def _agent_llm_timeout() -> float:
@@ -233,18 +255,191 @@ def load_personas(prompts_dir: Path | None = None) -> list[Persona]:
     return personas
 
 
-def render_prompt(template: str, news: NewsItem) -> str:
-    """Replace news placeholders; empty fields become em-dash or 'unknown'."""
-    replacements = {
-        "{{title}}": _field_value(news.title),
-        "{{description}}": _field_value(news.description),
-        "{{pub_time}}": _field_value(news.pub_time),
-        "{{source_name}}": _field_value(news.source_name, source_name=True),
-    }
+def annotate_fragment_ids(deconstruction: dict[str, Any]) -> dict[str, Any]:
+    """Return a copy of deconstruction with stable why/how/result ids."""
+    annotated = copy.deepcopy(deconstruction)
+    for section in ("why", "result"):
+        items = annotated.get(section)
+        if not isinstance(items, list):
+            continue
+        for idx, item in enumerate(items):
+            if isinstance(item, dict):
+                item["id"] = f"{section}-{idx}"
+    how_items = annotated.get("how")
+    if isinstance(how_items, list):
+        for idx, item in enumerate(how_items):
+            if isinstance(item, dict):
+                item["id"] = f"how-{idx}"
+    return annotated
+
+
+def _known_fragment_ids(deconstruction: dict[str, Any]) -> set[str]:
+    ids: set[str] = set()
+    for section in ("why", "how", "result"):
+        for item in deconstruction.get(section) or []:
+            if isinstance(item, dict) and item.get("id"):
+                ids.add(str(item["id"]))
+    return ids
+
+
+def _how_indices(fragment_ids: list[str]) -> list[int]:
+    indices: list[int] = []
+    for fid in fragment_ids:
+        if fid.startswith("how-"):
+            try:
+                indices.append(int(fid.split("-", 1)[1]))
+            except ValueError:
+                continue
+    return sorted(indices)
+
+
+def _how_contiguous(fragment_ids: list[str]) -> bool:
+    indices = _how_indices(fragment_ids)
+    if len(indices) <= 1:
+        return True
+    return indices == list(range(indices[0], indices[-1] + 1))
+
+
+def _repair_how_contiguity(fragment_ids: list[str]) -> tuple[list[str], bool]:
+    """Expand how-* ids to a contiguous span when the model skips steps."""
+    indices = _how_indices(fragment_ids)
+    if len(indices) <= 1:
+        return fragment_ids, False
+    span = list(range(indices[0], indices[-1] + 1))
+    if indices == span:
+        return fragment_ids, False
+
+    expanded = [f"how-{i}" for i in span]
+    repaired: list[str] = []
+    how_block_done = False
+    for fid in fragment_ids:
+        if fid.startswith("how-"):
+            if not how_block_done:
+                repaired.extend(expanded)
+                how_block_done = True
+        else:
+            repaired.append(fid)
+    if not how_block_done:
+        repaired.extend(expanded)
+    return repaired, True
+
+
+def render_prompt(
+    template: str,
+    news: NewsItem | None = None,
+    *,
+    deconstruction: dict[str, Any] | None = None,
+) -> str:
+    """Replace template placeholders with news and/or annotated deconstruction JSON."""
     rendered = template
-    for key, value in replacements.items():
-        rendered = rendered.replace(key, value)
+    if deconstruction is not None:
+        annotated = annotate_fragment_ids(deconstruction)
+        payload = json.dumps(annotated, ensure_ascii=False, indent=2)
+        rendered = rendered.replace("{{deconstruction_json}}", payload)
+    if news is not None:
+        replacements = {
+            "{{title}}": _field_value(news.title),
+            "{{description}}": _field_value(news.description),
+            "{{pub_time}}": _field_value(news.pub_time),
+            "{{source_name}}": _field_value(news.source_name, source_name=True),
+        }
+        for key, value in replacements.items():
+            rendered = rendered.replace(key, value)
     return rendered
+
+
+def extract_json_object(raw: str) -> dict[str, Any]:
+    text = raw.strip()
+    if not text:
+        raise ValueError("empty LLM response")
+    fence = _JSON_FENCE_RE.search(text)
+    if fence:
+        text = fence.group(1).strip()
+    if not text.startswith("{"):
+        start = text.find("{")
+        end = text.rfind("}")
+        if start >= 0 and end > start:
+            text = text[start : end + 1]
+    data = json.loads(text)
+    if not isinstance(data, dict):
+        raise ValueError("top-level JSON must be an object")
+    return data
+
+
+def parse_pseudos_response(
+    raw: str,
+    *,
+    agent_id: str,
+    known_fragments: set[str],
+) -> list[PseudoSegment]:
+    """Parse LLM JSON into pseudo segments with validation."""
+    data = extract_json_object(raw)
+    rows = data.get("pseudos")
+    if not isinstance(rows, list):
+        raise ValueError("JSON must contain a 'pseudos' array")
+    if len(rows) != EXPECTED_PSEUDO_COUNT:
+        raise ValueError(
+            f"expected {EXPECTED_PSEUDO_COUNT} pseudos, got {len(rows)}"
+        )
+
+    segments: list[PseudoSegment] = []
+    seen_ids: set[str] = set()
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ValueError("each pseudo must be an object")
+        pseudo_id = str(row.get("id", "")).strip()
+        if pseudo_id not in EXPECTED_PSEUDO_IDS:
+            raise ValueError(f"invalid pseudo id {pseudo_id!r}")
+        if pseudo_id in seen_ids:
+            raise ValueError(f"duplicate pseudo id {pseudo_id!r}")
+        seen_ids.add(pseudo_id)
+
+        text = str(row.get("text", "")).strip()
+        if not text:
+            raise ValueError(f"pseudo {pseudo_id} has empty text")
+
+        source = row.get("source")
+        if not isinstance(source, dict):
+            source = {}
+        fragments = source.get("fragments")
+        if fragments is None:
+            fragments = source.get("fragment_ids", [])
+        if not isinstance(fragments, list):
+            raise ValueError(f"pseudo {pseudo_id}: source.fragments must be a list")
+        frag_ids = [str(f).strip() for f in fragments if str(f).strip()]
+        unknown = [f for f in frag_ids if f not in known_fragments]
+        if unknown:
+            raise ValueError(
+                f"pseudo {pseudo_id}: unknown fragment ids {unknown}"
+            )
+        warnings: list[str] = []
+        if not _how_contiguous(frag_ids):
+            frag_ids, repaired = _repair_how_contiguity(frag_ids)
+            if repaired:
+                warnings.append("how_fragments_expanded_to_contiguous_span")
+            if not _how_contiguous(frag_ids):
+                raise ValueError(
+                    f"pseudo {pseudo_id}: how-* fragments must be contiguous"
+                )
+
+        segments.append(
+            PseudoSegment(
+                id=pseudo_id,
+                text=text,
+                source={
+                    "agent_id": agent_id,
+                    "fragments": frag_ids,
+                },
+                warnings=warnings,
+            )
+        )
+
+    if seen_ids != set(EXPECTED_PSEUDO_IDS):
+        missing = set(EXPECTED_PSEUDO_IDS) - seen_ids
+        raise ValueError(f"missing pseudo ids: {sorted(missing)}")
+
+    segments.sort(key=lambda p: EXPECTED_PSEUDO_IDS.index(p.id))
+    return segments
 
 
 def _collapse_paragraph(text: str) -> str:
@@ -296,15 +491,11 @@ def _looks_like_refusal(text: str) -> bool:
 
 
 def _collect_deentify_warnings(text: str) -> list[str]:
+    """Heuristic warnings (load-bearing proper names are allowed per ADR-0002)."""
     warnings: list[str] = []
     for brand in _BRAND_WORDS:
         if re.search(rf"\b{re.escape(brand)}\b", text):
             warnings.append(f"deentify_warning: brand name {brand!r}")
-    for match in _CAPITALIZED_NAME_RE.finditer(text):
-        phrase = match.group(0)
-        if any(phrase == b or phrase.startswith(b + " ") for b in _BRAND_WORDS):
-            continue
-        warnings.append(f"deentify_warning: possible proper name {phrase!r}")
     lower = text.lower()
     for cliche in _NEWS_CLICHES:
         if cliche in lower:
@@ -312,22 +503,14 @@ def _collect_deentify_warnings(text: str) -> list[str]:
     return warnings
 
 
-def post_process_output(output: AgentOutput) -> AgentOutput:
-    """Apply length truncation, short-output tag, and de-entity heuristics (1.2)."""
-    if output.error:
-        return output
-
-    text = output.text
-    warnings = list(output.warnings)
-
-    if not text.strip():
-        output.error = "empty text after cleaning"
-        return output
+def post_process_pseudo(segment: PseudoSegment) -> PseudoSegment:
+    text = segment.text
+    warnings = list(segment.warnings)
 
     if _looks_like_refusal(text):
-        output.text = ""
-        output.error = "model refusal detected"
-        return output
+        segment.text = ""
+        segment.warnings = warnings + ["refusal_detected"]
+        return segment
 
     wc = word_count(text)
     if wc > MAX_WORDS:
@@ -337,20 +520,49 @@ def post_process_output(output: AgentOutput) -> AgentOutput:
         warnings.append("short_output")
 
     warnings.extend(_collect_deentify_warnings(text))
+    segment.text = text
+    segment.warnings = warnings
+    return segment
 
-    output.text = text
-    output.warnings = warnings
+
+def post_process_output(output: AgentOutput) -> AgentOutput:
+    if output.error:
+        return output
+
+    if not output.pseudos:
+        output.error = "no pseudos produced"
+        return output
+
+    agent_warnings: list[str] = []
+    processed: list[PseudoSegment] = []
+    for seg in output.pseudos:
+        seg = post_process_pseudo(seg)
+        if not seg.text.strip():
+            output.error = f"pseudo {seg.id} empty after cleaning"
+            return output
+        agent_warnings.extend(seg.warnings)
+        processed.append(seg)
+
+    output.pseudos = processed
+    output.warnings = agent_warnings
     return output
 
 
 def _sync_llm_call(client: OpenAI, model: str, user_prompt: str) -> str:
-    response = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": _SYSTEM_MESSAGE},
-            {"role": "user", "content": user_prompt},
-        ],
-    )
+    messages = [
+        {"role": "system", "content": _SYSTEM_MESSAGE},
+        {"role": "user", "content": user_prompt},
+    ]
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            response_format={"type": "json_object"},
+        )
+    except TypeError:
+        response = client.chat.completions.create(model=model, messages=messages)
+    except Exception:
+        response = client.chat.completions.create(model=model, messages=messages)
     return (response.choices[0].message.content or "").strip()
 
 
@@ -373,19 +585,25 @@ def _error_record(agent_id: str, message: str) -> dict[str, str]:
 
 async def _run_one_agent(
     persona: Persona,
-    news: NewsItem,
+    deconstruction: dict[str, Any],
     client: OpenAI,
     model: str,
     timeout: float,
+    *,
+    news: NewsItem | None = None,
 ) -> AgentOutput:
-    rendered = render_prompt(persona.template, news)
+    known = _known_fragment_ids(annotate_fragment_ids(deconstruction))
+    rendered = render_prompt(
+        persona.template,
+        news,
+        deconstruction=deconstruction,
+    )
     if not rendered.strip():
         msg = "rendered prompt is empty"
         return AgentOutput(
             agent_id=persona.agent_id,
             persona_name=persona.persona_name,
             role=persona.role,
-            text="",
             error=msg,
         )
 
@@ -400,7 +618,6 @@ async def _run_one_agent(
             agent_id=persona.agent_id,
             persona_name=persona.persona_name,
             role=persona.role,
-            text="",
             error=msg,
         )
     except Exception as exc:
@@ -408,7 +625,6 @@ async def _run_one_agent(
             agent_id=persona.agent_id,
             persona_name=persona.persona_name,
             role=persona.role,
-            text="",
             error=str(exc),
         )
 
@@ -417,17 +633,30 @@ async def _run_one_agent(
             agent_id=persona.agent_id,
             persona_name=persona.persona_name,
             role=persona.role,
-            text="",
             error="empty LLM response",
         )
 
-    cleaned = minimal_clean(raw)
+    try:
+        pseudos = parse_pseudos_response(
+            raw,
+            agent_id=persona.agent_id,
+            known_fragments=known,
+        )
+    except (json.JSONDecodeError, ValueError) as exc:
+        return AgentOutput(
+            agent_id=persona.agent_id,
+            persona_name=persona.persona_name,
+            role=persona.role,
+            error=f"parse_error: {exc}",
+        )
+
+    cleaned_segments = [PseudoSegment(p.id, minimal_clean(p.text), p.source) for p in pseudos]
     return post_process_output(
         AgentOutput(
             agent_id=persona.agent_id,
             persona_name=persona.persona_name,
             role=persona.role,
-            text=cleaned,
+            pseudos=cleaned_segments,
         )
     )
 
@@ -443,13 +672,17 @@ def _select_personas(
 
 
 async def run_all(
-    news: NewsItem,
+    news: NewsItem | None,
     provider: str | None = None,
     agent_ids: list[str] | None = None,
     *,
+    deconstruction: dict[str, Any],
     prompts_dir: Path | None = None,
 ) -> tuple[list[AgentOutput], list[dict]]:
     """Run all (or selected) personas concurrently; return outputs and errors."""
+    if not isinstance(deconstruction, dict) or not deconstruction:
+        raise ValueError("deconstruction must be a non-empty dict")
+
     load_env()
     resolved_provider = _resolve_provider(provider)
     timeout = _agent_llm_timeout()
@@ -466,7 +699,6 @@ async def run_all(
                 agent_id=p.agent_id,
                 persona_name=p.persona_name,
                 role=p.role,
-                text="",
                 error=msg,
             )
             for p in selected
@@ -480,7 +712,15 @@ async def run_all(
         return [], []
 
     tasks = [
-        _run_one_agent(p, news, client, model, timeout) for p in selected
+        _run_one_agent(
+            p,
+            deconstruction,
+            client,
+            model,
+            timeout,
+            news=news,
+        )
+        for p in selected
     ]
     outputs = list(await asyncio.gather(*tasks))
 
@@ -502,11 +742,22 @@ def news_to_dict(news: NewsItem) -> dict[str, str]:
     }
 
 
-def agent_to_dict(output: AgentOutput) -> dict:
+def pseudo_to_dict(segment: PseudoSegment) -> dict[str, Any]:
+    return {
+        "id": segment.id,
+        "text": segment.text,
+        "source": segment.source,
+        "warnings": segment.warnings,
+    }
+
+
+def agent_to_dict(output: AgentOutput) -> dict[str, Any]:
+    pseudos = [pseudo_to_dict(p) for p in output.pseudos]
     return {
         "agent_id": output.agent_id,
         "persona_name": output.persona_name,
         "role": output.role,
+        "pseudos": pseudos,
         "text": output.text,
         "warnings": output.warnings,
     }
@@ -530,16 +781,40 @@ def load_news_from_file(path: Path) -> NewsItem:
     )
 
 
+def load_deconstruction_from_file(path: Path) -> dict[str, Any]:
+    """Load deconstruction object from A0 output or raw contract JSON."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError("deconstruction file must be a JSON object")
+    if isinstance(data.get("deconstruction"), dict):
+        dec = data["deconstruction"]
+    else:
+        dec = data
+    if not dec:
+        raise ValueError("deconstruction JSON is empty")
+    required = ("anchor", "when", "where", "who", "why", "how", "result")
+    missing = [k for k in required if k not in dec]
+    if missing:
+        raise ValueError(f"deconstruction missing keys: {missing}")
+    return dec
+
+
 def build_result_payload(
-    news: NewsItem,
+    news: NewsItem | None,
     outputs: list[AgentOutput],
     errors: list[dict],
-) -> dict:
-    return {
-        "news": news_to_dict(news),
+    *,
+    deconstruction: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    payload: dict[str, Any] = {
         "agents": [agent_to_dict(o) for o in outputs],
         "errors": errors,
     }
+    if news is not None:
+        payload["news"] = news_to_dict(news)
+    if deconstruction is not None:
+        payload["deconstruction"] = annotate_fragment_ids(deconstruction)
+    return payload
 
 
 def _parse_agent_ids(raw: str | None) -> list[str] | None:
@@ -549,18 +824,32 @@ def _parse_agent_ids(raw: str | None) -> list[str] | None:
 
 
 async def _run_cli(args: argparse.Namespace) -> int:
-    news_path = Path(args.news_file)
-    if not news_path.is_file():
-        print(f"error: news file not found: {news_path}", file=sys.stderr)
+    decon_path = Path(args.deconstruction_file)
+    if not decon_path.is_file():
+        print(f"error: deconstruction file not found: {decon_path}", file=sys.stderr)
         return 2
 
-    news = load_news_from_file(news_path)
+    deconstruction = load_deconstruction_from_file(decon_path)
+    news: NewsItem | None = None
+    if args.news_file:
+        news_path = Path(args.news_file)
+        if not news_path.is_file():
+            print(f"error: news file not found: {news_path}", file=sys.stderr)
+            return 2
+        news = load_news_from_file(news_path)
+
     outputs, errors = await run_all(
         news,
         provider=args.provider,
         agent_ids=_parse_agent_ids(args.agents),
+        deconstruction=deconstruction,
     )
-    payload = build_result_payload(news, outputs, errors)
+    payload = build_result_payload(
+        news,
+        outputs,
+        errors,
+        deconstruction=deconstruction,
+    )
     serialized = json.dumps(payload, ensure_ascii=False, indent=2)
 
     if args.out:
@@ -573,7 +862,9 @@ async def _run_cli(args: argparse.Namespace) -> int:
     else:
         sys.stdout.buffer.write((serialized + "\n").encode("utf-8"))
 
-    successes = sum(1 for o in outputs if o.text.strip() and not o.error)
+    successes = sum(
+        1 for o in outputs if o.pseudos and not o.error
+    )
     if outputs and successes == 0:
         return 1
     return 0
@@ -581,12 +872,16 @@ async def _run_cli(args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Run A1/A2/A4/A7 pseudo-overview agents on a news JSON file.",
+        description="Run A1/A2/A4/A7 pseudo agents on reality-deconstructed JSON.",
+    )
+    parser.add_argument(
+        "--deconstruction-file",
+        required=True,
+        help="Path to reality-deconstructed.json (or raw deconstruction object).",
     )
     parser.add_argument(
         "--news-file",
-        required=True,
-        help="Path to news JSON (title and description required).",
+        help="Optional news JSON for payload metadata (not injected into prompts).",
     )
     parser.add_argument(
         "--out",

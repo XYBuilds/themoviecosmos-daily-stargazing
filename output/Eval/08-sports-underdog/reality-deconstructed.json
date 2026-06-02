@@ -1,0 +1,185 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Golden Knights sweep Presidents' Trophy Avalanche to reach Stanley Cup Final",
+    "description": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4, completing a four-game Western Conference Final sweep on May 26. The franchise fired its coach with eight regular-season games left before John Tortorella guided a 7-0-1 close and playoff runs past Utah and Anaheim. Colorado entered the series as heavy favorites after dominating the regular season but lost top stars Cale Makar and Nathan MacKinnon to injuries.",
+    "pub_time": "2026-05-27T06:00:00-07:00",
+    "source_name": "Boston Globe",
+    "url": "https://www.bostonglobe.com/2026/05/27/sports/nhl-playoffs-golden-knights-avalanche-game-4-score/"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-27T06:00:00-07:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026-05-26"
+      ],
+      "relative": [
+        "eight regular-season games left"
+      ],
+      "daypart": [],
+      "season": [
+        "季后赛"
+      ],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [],
+      "recurrence": [],
+      "modality": [
+        "已发生"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Vegas",
+        "tags": [
+          "Vegas",
+          "Nevada",
+          "USA"
+        ],
+        "geocode": {
+          "country": "USA",
+          "state": "Nevada",
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "North America",
+        "scene_archetype": [],
+        "role": [
+          "发生地"
+        ],
+        "intended_destination": null,
+        "scale": null,
+        "trajectory": null,
+        "contested_name": null
+      },
+      {
+        "text": "Colorado",
+        "tags": [
+          "Colorado",
+          "USA"
+        ],
+        "geocode": {
+          "country": "USA",
+          "state": "Colorado",
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "North America",
+        "scene_archetype": [],
+        "role": [
+          "发生地"
+        ],
+        "intended_destination": null,
+        "scale": null,
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "Vegas Golden Knights",
+        "tags": [
+          "ice hockey team",
+          "NHL team"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Colorado Avalanche",
+        "tags": [
+          "ice hockey team",
+          "NHL team"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "John Tortorella",
+        "tags": [
+          "coach",
+          "hockey coach"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": [
+          "coached Vegas Golden Knights"
+        ]
+      },
+      {
+        "text": "Cale Makar",
+        "tags": [
+          "player",
+          "hockey player"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": [
+          "player for Colorado Avalanche"
+        ]
+      },
+      {
+        "text": "Nathan MacKinnon",
+        "tags": [
+          "player",
+          "hockey player"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": [
+          "player for Colorado Avalanche"
+        ]
+      }
+    ],
+    "why": [
+      {
+        "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "The franchise fired its coach with eight regular-season games left"
+      },
+      {
+        "step": 2,
+        "text": "John Tortorella guided a 7-0-1 close and playoff runs past Utah and Anaheim"
+      },
+      {
+        "step": 3,
+        "text": "In the Western Conference Final, Vegas scored twice and held Colorado's offense to one goal in Game 4, completing the four-game sweep on May 26"
+      }
+    ],
+    "result": [
+      {
+        "text": "Vegas Golden Knights reached the Stanley Cup Final"
+      },
+      {
+        "text": "Colorado Avalanche were swept in the Western Conference Final"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

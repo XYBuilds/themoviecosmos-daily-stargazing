@@ -1,0 +1,179 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Syria's president visits Euphrates flood zones after week of deadly high water",
+    "description": "Surging flows on the Euphrates flooded homes, farms, and schools in Deir Ezzor and Raqqa after one of the heaviest rainy seasons in three decades, with several children drowning despite official warnings. An earthen bridge collapsed, the navy deployed boats for evacuations, and Turkey agreed to reduce upstream releases. Reservoirs filled beyond 97% capacity before dam operations and seasonal rains pushed the river past protective embankments.",
+    "pub_time": "2026-05-29T12:00:00+04:00",
+    "source_name": "The National",
+    "url": "https://www.thenationalnews.com/news/mena/2026/05/29/al-shara-visits-syrias-flood-zones-after-week-of-mayhem-on-the-euphrates/"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-29T12:00:00+04:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026-05-29"
+      ],
+      "relative": [
+        "after week of deadly high water"
+      ],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [
+        "one of the heaviest rainy seasons in three decades"
+      ],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "week of deadly high water"
+      ],
+      "recurrence": [],
+      "modality": [
+        "已发生"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Euphrates river flood zones in Deir Ezzor and Raqqa, Syria",
+        "tags": [
+          "河流",
+          "洪泛区",
+          "叙利亚",
+          "代尔祖尔",
+          "拉卡"
+        ],
+        "geocode": {
+          "country": "叙利亚",
+          "state": "代尔祖尔省, 拉卡省",
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "中东",
+        "scene_archetype": [
+          "野外",
+          "洪泛区",
+          "农业区"
+        ],
+        "role": [
+          "发生地",
+          "受影响区域"
+        ],
+        "intended_destination": null,
+        "scale": "区域",
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "Syria's president",
+        "tags": [
+          "国家元首",
+          "叙利亚"
+        ],
+        "role_in_event": [
+          "见证·旁观"
+        ],
+        "relations": []
+      },
+      {
+        "text": "several children",
+        "tags": [
+          "平民",
+          "儿童"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Syrian navy",
+        "tags": [
+          "军事",
+          "海军"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Turkey",
+        "tags": [
+          "国家",
+          "上游国家"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      },
+      {
+        "text": "officials",
+        "tags": [
+          "政府",
+          "警告方"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "one of the heaviest rainy seasons in three decades"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "Surging flows on the Euphrates flood homes, farms, and schools in Deir Ezzor and Raqqa"
+      },
+      {
+        "step": 2,
+        "text": "An earthen bridge collapses"
+      },
+      {
+        "step": 3,
+        "text": "The navy deploys boats for evacuations"
+      },
+      {
+        "step": 4,
+        "text": "Turkey agrees to reduce upstream releases"
+      }
+    ],
+    "result": [
+      {
+        "text": "several children drowned despite official warnings"
+      },
+      {
+        "text": "widespread flooding of homes, farms, and schools in Deir Ezzor and Raqqa"
+      },
+      {
+        "text": "infrastructure damage including earthen bridge collapse"
+      },
+      {
+        "text": "emergency evacuations by navy using boats"
+      },
+      {
+        "text": "Turkey agreed to reduce upstream releases"
+      },
+      {
+        "text": "Syria's president visits Euphrates flood zones"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

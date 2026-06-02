@@ -1,0 +1,160 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Rotational blackout risks rise in Visayas amid power crunch",
+    "description": "The Philippines grid operator placed the Visayas under red alert after Kepco SPC Power's Unit 2 tripped offline, leaving more than 950 megawatts unavailable alongside other long-running plant outages. Eleven generators have failed since May began, while seasonal heat drove demand into a thin operating margin. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading.",
+    "pub_time": "2026-05-29T18:00:00+08:00",
+    "source_name": "Manila Bulletin",
+    "url": "https://mb.com.ph/2026/05/29/rotational-blackout-risks-rise-in-visayas-amid-power-crunch"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-29T18:00:00+08:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026年5月"
+      ],
+      "relative": [
+        "since May began"
+      ],
+      "daypart": [],
+      "season": [
+        "热季"
+      ],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "自2026年5月初以来"
+      ],
+      "recurrence": [],
+      "modality": [
+        "已发生：红色警报已发布",
+        "已发生：应急减载已下令"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Visayas",
+        "tags": [
+          "菲律宾",
+          "米沙鄢群岛",
+          "群岛地区",
+          "电力需求区"
+        ],
+        "geocode": {
+          "country": "菲律宾",
+          "state": null,
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "东南亚",
+        "scene_archetype": [
+          "电网区域",
+          "群岛地区",
+          "基础设施区域"
+        ],
+        "role": [
+          "受影响区域"
+        ],
+        "intended_destination": null,
+        "scale": "区域",
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "Philippines grid operator",
+        "tags": [
+          "电网运营商",
+          "公共服务机构"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Kepco SPC Power",
+        "tags": [
+          "能源公司",
+          "电力生产商"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Officials",
+        "tags": [
+          "政府官员"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "Kepco SPC Power's Unit 2 tripped offline"
+      },
+      {
+        "text": "alongside other long-running plant outages"
+      },
+      {
+        "text": "seasonal heat drove demand into a thin operating margin"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "Kepco SPC Power's Unit 2 tripped offline"
+      },
+      {
+        "step": 2,
+        "text": "leaving more than 950 megawatts unavailable"
+      },
+      {
+        "step": 3,
+        "text": "eleven generators have failed since May began"
+      },
+      {
+        "step": 4,
+        "text": "seasonal heat drove demand into a thin operating margin"
+      },
+      {
+        "step": 5,
+        "text": "grid operator placed Visayas under red alert"
+      },
+      {
+        "step": 6,
+        "text": "officials ordered emergency load shedding to prevent 230-kilovolt transmission line overloading"
+      }
+    ],
+    "result": [
+      {
+        "text": "rotational blackout risks rise in Visayas"
+      },
+      {
+        "text": "Visayas under red alert"
+      },
+      {
+        "text": "emergency load shedding ordered"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

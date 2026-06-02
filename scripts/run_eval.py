@@ -1,6 +1,6 @@
-"""run_eval.py · 评测管线：新闻 → agents → retrieve → Eval 目录产物.
+"""run_eval.py · 评测管线：新闻 → deconstruct → agents → retrieve → Eval 目录产物.
 
-每条新闻写入 output/Eval/{run_id}/：reality.json / reality.md、各 Agent 文档、聚合候选（填分）、retrieve.json。
+每条新闻写入 output/Eval/{run_id}/：reality / reality-deconstructed、各 Agent 文档、聚合候选（填分）、retrieve.json。
 """
 
 from __future__ import annotations
@@ -19,7 +19,16 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from scripts.agents import RUN_ORDER, agent_to_dict, load_news_from_file, news_to_dict, run_all
+from scripts.agents import (
+    RUN_ORDER,
+    agent_to_dict,
+    annotate_fragment_ids,
+    load_deconstruction_from_file,
+    load_news_from_file,
+    news_to_dict,
+    run_all,
+)
+from scripts.deconstruct import render_deconstruction_md, run_deconstruct
 from scripts.retrieve import retrieve_from_agents
 
 _PSEUDO_ORDER: tuple[str, ...] = RUN_ORDER
@@ -139,8 +148,21 @@ def _format_candidate_block(cand: dict[str, Any], *, include_score: bool) -> lis
     lines.append(f"- **overview**: {overview or '—'}")
     lines.append(f"- **跳转**: {cand.get('movie_url', '')}")
     lines.append(f"- **also_baseline**: {str(bool(cand.get('also_baseline'))).lower()}")
+    hit_sources = cand.get("hit_sources") or []
+    if hit_sources:
+        lines.append("- **命中视角/碎片**:")
+        for src in hit_sources:
+            frags = src.get("fragments") or []
+            frag_note = ", ".join(frags) if frags else "—"
+            sim = src.get("similarity")
+            sim_note = f"{sim:.4f}" if isinstance(sim, (int, float)) else "—"
+            lines.append(
+                f"  - {src.get('agent_id', '?')}/{src.get('pseudo_id', '?')}: "
+                f"fragments=[{frag_note}] · sim={sim_note}"
+            )
     if include_score:
         lines.append("- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->")
+        lines.append("- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->")
     return lines
 
 
@@ -155,21 +177,54 @@ def _format_agent_markdown(
     lines = [
         f"# {agent_id} · {persona} · {run_id}{baseline_note}",
         "",
-        "## 伪剧情（英文）",
+        "## 伪剧情（英文 · 3 pseudos）",
     ]
     if output.error:
         lines.append(f"*(error: {output.error})*")
+    elif not output.pseudos:
+        lines.append("—")
     else:
-        lines.append(output.text.strip() if output.text else "—")
-    lines.extend(["", "## 本视角召回（Top-K）"])
+        for pseudo in output.pseudos:
+            frags = pseudo.source.get("fragments") or []
+            frag_note = ", ".join(frags) if frags else "—"
+            lines.extend(
+                [
+                    "",
+                    f"### {pseudo.id}",
+                    f"- **fragments**: {frag_note}",
+                    "",
+                    pseudo.text.strip() or "—",
+                ]
+            )
+    lines.extend(["", "## 本视角召回（Top-K · 按 pseudo）"])
 
-    hits = (per_agent_entry or {}).get("hits") or []
-    if not hits:
-        lines.append("（无 — pseudo 为空或 retrieve 跳过）")
-    else:
-        for hit in hits:
+    pseudo_rows = (per_agent_entry or {}).get("pseudos") or []
+    legacy_hits = (per_agent_entry or {}).get("hits") or []
+    if pseudo_rows:
+        for row in pseudo_rows:
+            pseudo_id = row.get("pseudo_id") or "?"
+            frags = (row.get("source") or {}).get("fragments") or []
+            frag_note = ", ".join(frags) if frags else "—"
+            lines.extend(
+                [
+                    "",
+                    f"#### {pseudo_id}",
+                    f"- **fragments**: {frag_note}",
+                ]
+            )
+            hits = row.get("hits") or []
+            if not hits:
+                lines.append("- （本段无召回）")
+            else:
+                for hit in hits:
+                    lines.append("")
+                    lines.extend([_hit_heading(hit), *_format_hit_lines(hit)])
+    elif legacy_hits:
+        for hit in legacy_hits:
             lines.append("")
             lines.extend([_hit_heading(hit), *_format_hit_lines(hit)])
+    else:
+        lines.append("（无 — pseudo 为空或 retrieve 跳过）")
 
     lines.append("")
     return "\n".join(lines)
@@ -203,6 +258,8 @@ def _format_run_index(run_id: str, errors: list[dict]) -> str:
         "|------|------|",
         "| [[reality]] | 现实波澜（人类可读） |",
         "| `reality.json` | 新闻快照（JSON） |",
+        "| [[reality-deconstructed]] | 现实解构（人类可读） |",
+        "| `reality-deconstructed.json` | 解构契约 JSON |",
         "| [[candidates]] | **总编填共振分** |",
         "| `retrieve.json` | 完整 retrieve 输出 |",
         "| [[errors]] | Agent 失败记录 |",
@@ -217,6 +274,36 @@ def _format_run_index(run_id: str, errors: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def _resolve_deconstruction(
+    news,
+    run_dir: Path,
+    *,
+    provider: str | None,
+    deconstruction_file: Path | None,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Load or run A0; return (deconstruction object, full A0 payload for disk)."""
+    if deconstruction_file is not None and deconstruction_file.is_file():
+        dec = load_deconstruction_from_file(deconstruction_file)
+        payload = {
+            "agent": "A0",
+            "news": news_to_dict(news),
+            "deconstruction": annotate_fragment_ids(dec),
+            "errors": [],
+        }
+        return dec, payload
+
+    cached = run_dir / "reality-deconstructed.json"
+    if cached.is_file():
+        dec = load_deconstruction_from_file(cached)
+        return dec, json.loads(cached.read_text(encoding="utf-8"))
+
+    payload = run_deconstruct(news, provider=provider)
+    dec = payload.get("deconstruction")
+    if not isinstance(dec, dict) or not dec:
+        raise ValueError("deconstruction failed — no valid deconstruction object")
+    return dec, payload
+
+
 def write_eval_bundle(
     run_dir: Path,
     run_id: str,
@@ -224,6 +311,8 @@ def write_eval_bundle(
     outputs: list,
     errors: list[dict],
     retrieve_result: dict[str, Any],
+    *,
+    deconstruction_payload: dict[str, Any] | None = None,
 ) -> None:
     """Write all Eval artifacts under run_dir."""
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -235,6 +324,16 @@ def write_eval_bundle(
         encoding="utf-8",
     )
     (run_dir / "reality.md").write_text(_format_reality_body(run_id, news), encoding="utf-8")
+
+    if deconstruction_payload is not None:
+        (run_dir / "reality-deconstructed.json").write_text(
+            json.dumps(deconstruction_payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        (run_dir / "reality-deconstructed.md").write_text(
+            render_deconstruction_md(deconstruction_payload, run_id=run_id),
+            encoding="utf-8",
+        )
     (run_dir / "errors.md").write_text(_format_errors(errors), encoding="utf-8")
     (run_dir / "retrieve.json").write_text(
         json.dumps(retrieve_result, ensure_ascii=False, indent=2) + "\n",
@@ -266,9 +365,14 @@ async def run_eval_pipeline(
     news,
     *,
     provider: str | None = None,
+    deconstruction: dict[str, Any],
 ) -> tuple[list, list[dict], dict[str, Any]]:
     """Run agents then retrieve; return outputs, errors, retrieve payload."""
-    outputs, errors = await run_all(news, provider=provider)
+    outputs, errors = await run_all(
+        news,
+        provider=provider,
+        deconstruction=deconstruction,
+    )
     agents_list = [agent_to_dict(o) for o in outputs]
     retrieve_result = retrieve_from_agents(agents_list, errors)
     return outputs, errors, retrieve_result
@@ -284,14 +388,34 @@ async def _run_cli(args: argparse.Namespace) -> int:
     run_id = (args.run_id or "").strip() or default_run_id(news.title)
     run_dir = resolve_run_dir(run_id, args.out)
 
+    decon_path = Path(args.deconstruction_file) if args.deconstruction_file else None
+    if decon_path and not decon_path.is_absolute():
+        decon_path = _REPO_ROOT / decon_path
+
+    deconstruction, decon_payload = _resolve_deconstruction(
+        news,
+        run_dir,
+        provider=args.provider,
+        deconstruction_file=decon_path,
+    )
+
     outputs, errors, retrieve_result = await run_eval_pipeline(
         news,
         provider=args.provider,
+        deconstruction=deconstruction,
     )
-    write_eval_bundle(run_dir, run_id, news, outputs, errors, retrieve_result)
+    write_eval_bundle(
+        run_dir,
+        run_id,
+        news,
+        outputs,
+        errors,
+        retrieve_result,
+        deconstruction_payload=decon_payload,
+    )
     print(f"Wrote {run_dir.resolve()}/", file=sys.stderr)
 
-    successes = sum(1 for o in outputs if o.text.strip() and not o.error)
+    successes = sum(1 for o in outputs if o.pseudos and not o.error)
     if outputs and successes == 0:
         return 1
     return 0
@@ -318,6 +442,10 @@ def main(argv: list[str] | None = None) -> int:
         "--provider",
         choices=["mimo", "deepseek"],
         help="LLM provider override (default: DEFAULT_LLM_PROVIDER from .env).",
+    )
+    parser.add_argument(
+        "--deconstruction-file",
+        help="Pre-built reality-deconstructed.json (skip A0 if set or if cached in run dir).",
     )
     args = parser.parse_args(argv)
 

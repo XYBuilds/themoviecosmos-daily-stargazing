@@ -4,6 +4,8 @@
 |------|------|
 | [[reality]] | 现实波澜（人类可读） |
 | `reality.json` | 新闻快照（JSON） |
+| [[reality-deconstructed]] | 现实解构（人类可读） |
+| `reality-deconstructed.json` | 解构契约 JSON |
 | [[candidates]] | **总编填共振分** |
 | `retrieve.json` | 完整 retrieve 输出 |
 | [[errors]] | Agent 失败记录 |

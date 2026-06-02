@@ -1,0 +1,163 @@
+{
+  "agents": [
+    {
+      "agent_id": "A2",
+      "persona_name": "The Sociologist",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The failure of a key fossil-fuel generating unit, compounded by the chronic idling of other capacity, exposes a structural dependency on centralized power. This is not a random technical fault but a symptom of underinvestment in redundant, distributed systems, leaving a dense island population vulnerable to cascading failures dictated by the fragility of a single grid.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "why-0"
+            ]
+          },
+          "warnings": []
+        },
+        {
+          "id": "p2",
+          "text": "A cascade of generator failures since May triggers the declaration of a red alert for the entire regional grid. The administrative designation of a crisis, however, precedes any concrete redistribution of burden, signaling a management structure that prioritizes systemic control over immediate equity in the distribution of power scarcity.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "how-0",
+              "how-1"
+            ]
+          },
+          "warnings": []
+        },
+        {
+          "id": "p3",
+          "text": "The official response is a preemptive rationing order to shield critical 230kV transmission infrastructure. The calculus is clear: the burden of blackout risk is shifted onto consumers to protect the core arterial network, a move that institutionalizes the periphery's sacrifice for the center's operational integrity.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": []
+        }
+      ],
+      "text": "The failure of a key fossil-fuel generating unit, compounded by the chronic idling of other capacity, exposes a structural dependency on centralized power. This is not a random technical fault but a symptom of underinvestment in redundant, distributed systems, leaving a dense island population vulnerable to cascading failures dictated by the fragility of a single grid.",
+      "warnings": []
+    }
+  ],
+  "errors": [],
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-29",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026年5月"
+      ],
+      "relative": [],
+      "daypart": [],
+      "season": [
+        "盛夏"
+      ],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [],
+      "recurrence": [],
+      "modality": [
+        "已发生"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "菲律宾维萨亚斯群岛",
+        "tags": [
+          "维萨亚斯",
+          "菲律宾",
+          "东南亚",
+          "群岛",
+          "人口稠密区"
+        ],
+        "geocode": {
+          "country": "菲律宾",
+          "state": null,
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "scene_archetype": [
+          "公共",
+          "基础设施"
+        ],
+        "role": [
+          "发生地"
+        ],
+        "scale": "区域"
+      }
+    ],
+    "who": [
+      {
+        "text": "菲律宾电网运营商",
+        "tags": [
+          "电网运营商",
+          "政府机构"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Kepco SPC Power Unit 2 发电机组",
+        "tags": [
+          "发电厂",
+          "化石燃料机组"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "Kepco SPC Power Unit 2 跳闸脱网，叠加其他机组长期停运",
+        "id": "why-0"
+      },
+      {
+        "text": "季节性高温推高用电需求，运行裕度收窄",
+        "id": "why-1"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "自5月以来已有11台发电机故障",
+        "id": "how-0"
+      },
+      {
+        "step": 2,
+        "text": "维萨亚斯电网被置于红色警报状态",
+        "id": "how-1"
+      },
+      {
+        "step": 3,
+        "text": "超过950兆瓦装机不可用",
+        "id": "how-2"
+      }
+    ],
+    "result": [
+      {
+        "text": "官方下令紧急限电负荷以保230千伏关键输电线路不过载",
+        "id": "result-0"
+      },
+      {
+        "text": "轮换停电风险上升",
+        "id": "result-1"
+      }
+    ]
+  }
+}

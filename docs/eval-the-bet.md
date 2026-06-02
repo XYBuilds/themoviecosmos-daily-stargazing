@@ -88,12 +88,13 @@ python scripts/run_eval.py --news-file tests/sample_news.json --provider deepsee
 
 ```text
 output/Eval/{run_id}/
-├── run.md           # 索引（Obsidian 入口）
-├── reality.json     # 新闻快照（JSON，与 reality.md 同源）
-├── reality.md       # 现实波澜（人类可读）
-├── retrieve.json    # 完整 retrieve（per_agent + candidates + divergence）
-├── errors.md        # Agent 失败（若有）
-├── candidates.md    # 聚合候选 + 共振分（总编唯一填分处）
+├── run.md                    # 索引（Obsidian 入口）
+├── reality.json              # 新闻快照
+├── reality.md                # 现实波澜
+├── reality-deconstructed.json / .md   # Phase 3.5 解构产物
+├── retrieve.json             # 完整 retrieve（含 hit_sources）
+├── errors.md
+├── candidates.md             # 聚合候选 + 共振分/类型（总编填分）
 └── agents/
     ├── A2.md        # 伪剧情 + 本视角 Top-K
     ├── A4.md
@@ -101,7 +102,17 @@ output/Eval/{run_id}/
     └── A1.md        # 基线
 ```
 
-**成本提示**：每条新闻 ≈ 4 次 LLM 调用 + 1 次全量向量检索；10 条 ≈ 10× 上述开销。
+**成本提示**：每条新闻 ≈ **1 次解构 + 4×3 段 pseudo** LLM + 多段向量检索；10 条 ≈ 10× 上述开销。
+
+### 3.4 Pseudo 命中分（审阅辅助，非闸门）
+
+闸门前可用脚本把 `retrieve.json` 的碎片命中写成 `candidates.md` 内的 **命中分** / **pseudo命中分合计**，并生成全批次 `high-hit-score-review.md`（默认阈值 ≥5）：
+
+```powershell
+python scripts/score_eval_candidates.py
+```
+
+详见 `output/Eval/README.md`。命中分**不替代** `共振分`；`summarize_eval.py` 仍只读共振分。Phase 3.5 书面结论见 `output/Eval/GATE_RESULT.md`（当前 **GATE_FAIL · 发布**）。
 
 ### 3.2 在 Obsidian 中填分
 
@@ -193,7 +204,7 @@ python scripts/summarize_eval.py output/Eval/01-grid-outage
 
 ### 5.2 记录结论（人工）
 
-将书面结论写入 **`output/Eval/GATE_RESULT.md`**（人工维护，不纳入 git 亦可），例如：
+将书面结论写入 **`output/Eval/GATE_RESULT.md`**（Phase 3.5 已维护；含脚本快照 + 总编/product 裁决），例如：
 
 ```markdown
 # Phase 3 闸门结论
