@@ -25,17 +25,17 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 
 ## Summary table (sorted by pseudo命中分合计 ↓)
 
-| rank | run_id | tmdb_id | title | agents | pseudo命中分合计 | per-agent | overlap |
-| ---: | --- | ---: | --- | --- | ---: | --- | --- |
-| 1 | 01-grid-outage | 429918 | Survival Family | A1, A7 | 17 | A1:12, A7:5 | A1 + creative (A4/A7) |
-| 2 | 08-sports-underdog | 32007 | Hurricane Season | A1, A7 | 15 | A1:9, A7:6 | A1 + creative (A4/A7) |
-| 3 | 06-tech-monopoly | 30858 | Terra Nova | A1, A4 | 13 | A1:6, A4:7 | A1 + creative (A4/A7) |
-| 4 | 01-grid-outage | 190738 | Assembling a Generator | A1, A7 | 10 | A1:4, A7:6 | A1 + creative (A4/A7) |
-| 5 | 09-cultural-backlash | 337191 | Alice's Adventures in Wonderland | A1, A7 | 9 | A1:3, A7:6 | A1 + creative (A4/A7) |
-| 6 | 02-corporate-layoff | 1002695 | Mirreyes contra Godínez 2: El retiro | A1, A2 | 8 | A1:3, A2:5 | includes A2 |
-| 7 | 03-election-upset | 23631 | Machete | A1, A2 | 8 | A1:5, A2:3 | includes A2 |
-| 8 | 05-climate-disaster | 257637 | Poem of the Sea | A1, A2 | 7 | A1:4, A2:3 | includes A2 |
-| 9 | 07-migration-border | 381018 | Transpecos | A1, A2 | 6 | A1:4, A2:2 | includes A2 |
+| rank | run_id               | tmdb_id | title                                | agents | pseudo命中分合计 | per-agent   | overlap               |
+| ---: | -------------------- | ------: | ------------------------------------ | ------ | ---------------: | ----------- | --------------------- |
+|    1 | 01-grid-outage       |  429918 | Survival Family                      | A1, A7 |               17 | A1:12, A7:5 | A1 + creative (A4/A7) |
+|    2 | 08-sports-underdog   |   32007 | Hurricane Season                     | A1, A7 |               15 | A1:9, A7:6  | A1 + creative (A4/A7) |
+|    3 | 06-tech-monopoly     |   30858 | Terra Nova                           | A1, A4 |               13 | A1:6, A4:7  | A1 + creative (A4/A7) |
+|    4 | 01-grid-outage       |  190738 | Assembling a Generator               | A1, A7 |               10 | A1:4, A7:6  | A1 + creative (A4/A7) |
+|    5 | 09-cultural-backlash |  337191 | Alice's Adventures in Wonderland     | A1, A7 |                9 | A1:3, A7:6  | A1 + creative (A4/A7) |
+|    6 | 02-corporate-layoff  | 1002695 | Mirreyes contra Godínez 2: El retiro | A1, A2 |                8 | A1:3, A2:5  | includes A2           |
+|    7 | 03-election-upset    |   23631 | Machete                              | A1, A2 |                8 | A1:5, A2:3  | includes A2           |
+|    8 | 05-climate-disaster  |  257637 | Poem of the Sea                      | A1, A2 |                7 | A1:4, A2:3  | includes A2           |
+|    9 | 07-migration-border  |  381018 | Transpecos                           | A1, A2 |                6 | A1:4, A2:2  | includes A2           |
 
 ## Candidates (global sort by pseudo命中分合计 ↓)
 
@@ -59,8 +59,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A7/p3: fragments=[how-4, how-5, result-0, result-1, result-2] · sim=0.4611 · **命中分=5**
   - A1/p1: fragments=[how-0, how-1, how-2, how-3, how-4] · sim=0.5681 · **命中分=5**
   - A1/p3: fragments=[how-0, how-1, how-2, how-3, how-4, how-5, result-0] · sim=0.4809 · **命中分=7**
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 
 <!-- run_id: 08-sports-underdog -->
 <!-- retrieve: A1, A7 -->
@@ -80,8 +80,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A7/p3: fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.5082 · **命中分=6**
   - A1/p2: fragments=[why-0, how-0, how-1, how-2, result-1] · sim=0.5020 · **命中分=5**
   - A1/p3: fragments=[how-0, how-1, why-0, result-1] · sim=0.4986 · **命中分=4**
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- retrieve: A1, A4 -->
@@ -100,7 +100,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p2: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5373 · **命中分=7**
   - A1/p1: fragments=[why-0, how-0, how-1, how-2, how-3, result-0] · sim=0.4402 · **命中分=6**
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
 <!-- run_id: 01-grid-outage -->
@@ -120,8 +120,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[how-0, how-1, how-2, how-3, how-4, how-5] · sim=0.3998 · **命中分=6**
   - A1/p2: fragments=[how-2, how-3, how-4, how-5] · sim=0.4605 · **命中分=4**
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- retrieve: A1, A7 -->
@@ -140,7 +140,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.6340 · **命中分=6**
   - A1/p1: fragments=[how-0, why-0, result-0] · sim=0.6042 · **命中分=3**
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
 <!-- run_id: 02-corporate-layoff -->
@@ -161,8 +161,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A2/p1: fragments=[why-0, why-1, why-2] · sim=0.4955 · **命中分=3**
   - A2/p3: fragments=[result-0, result-1] · sim=0.4781 · **命中分=2**
   - A1/p2: fragments=[why-0, how-3, result-0] · sim=0.4797 · **命中分=3**
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 
 <!-- run_id: 03-election-upset -->
 <!-- retrieve: A1, A2 -->
@@ -181,8 +181,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A2/p3: fragments=[result-0, result-1, result-2] · sim=0.4699 · **命中分=3**
   - A1/p2: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.4548 · **命中分=5**
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 
 <!-- run_id: 05-climate-disaster -->
 <!-- retrieve: A1, A2 -->
@@ -201,8 +201,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A2/p1: fragments=[why-0, how-0, result-1] · sim=0.5439 · **命中分=3**
   - A1/p3: fragments=[how-0, result-1, result-2, result-4] · sim=0.5202 · **命中分=4**
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 
 <!-- run_id: 07-migration-border -->
 <!-- retrieve: A1, A2 -->
@@ -222,5 +222,5 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A2/p2: fragments=[how-0, how-1] · sim=0.4354 · **命中分=2**
   - A1/p1: fragments=[how-0, how-1] · sim=0.5000 · **命中分=2**
   - A1/p3: fragments=[result-1, result-2] · sim=0.4925 · **命中分=2**
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
