@@ -1,10 +1,7 @@
 ---
 name: Phase 3.6 resonance quality
-overview: 实现 ADR-0003 的代码层（D1 优质候选定义、D2 闸门重写、D4 弹性 pseudo + 质量地板），跑一轮 N=10 eval 拿总编反馈，再据反馈决定是否改 PRD 和是否启动 D3。D3（去实体化下放 per-persona）与所有 PRD/SSOT 改动本阶段不做。
+overview: 实现 ADR-0003 的代码层（D1 优质候选定义、D2 闸门重写、D4 弹性 pseudo + 质量地板），跑一轮 N=10 eval 拿总编反馈；若结果 go 则按 ADR-0003 待改清单改 SSOT（no-go 由用户直接跳过）。D3（去实体化下放 per-persona）本阶段不做。
 todos:
-  - id: p36-0-planfile
-    content: 3.6.0 落 canonical plan 到 .cursor/plans/Phase3.6-resonance-quality-gate.plan.md（frontmatter + 节点 + 验收）
-    status: pending
   - id: p36-1-elastic
     content: 3.6.1 D4-1 弹性 pseudo 数量：agents.py 放宽 1–3 段校验 + multi_pseudo_output_contract/AX prompts/run_eval 文案同步（不引入生成前灵感自评）
     status: pending
@@ -20,8 +17,8 @@ todos:
   - id: p36-5-eval
     content: 3.6.5 跑 N=10 新管线 + 总编填共振分/类型 + summarize → GATE_RESULT 与反馈 [需人工验收]
     status: pending
-  - id: p36-6-decide
-    content: 3.6.6 据反馈决定是否改 PRD/SSOT 及是否启动 D3 子阶段 [需人工决策]
+  - id: p36-6-ssot
+    content: 3.6.6 改 SSOT：按 ADR-0003 待改清单同步 PRD/CONTEXT/eval-the-bet（GATE go 才执行；no-go 用户直接不跑）
     status: pending
 isProject: false
 ---
@@ -34,7 +31,7 @@ isProject: false
 
 - 上：**D1**（优质候选定义）+ **D2**（闸门重写：多 agent vs 单 agent）+ **D4**（弹性 pseudo + 质量地板 + 广度优先）。
 - 不上：**D3**（去实体化下放 per-persona）→ 延到 3.6 之后的子阶段，避免与 D4 一起改生成内容、混淆反馈归因。
-- 不上：**任何 PRD / SSOT / CONTEXT 改动** → 等 3.6.5 反馈后在 3.6.6 决策（用户工作流：代码 → eval → 反馈 → 才决定改 PRD）。
+- SSOT 改动收尾在 **3.6.6**：仅当 3.6.5 GATE go 才按 ADR-0003 待改清单改 PRD/CONTEXT/eval-the-bet；no-go 由用户直接跳过本节（代码 → eval → 反馈 → 才改 SSOT）。
 
 ## 关键现状（已核对）
 
@@ -47,14 +44,12 @@ isProject: false
 
 ```mermaid
 flowchart LR
-  A0["3.6.0 落 plan 文件"]
   T1["3.6.1 D4-1 弹性 pseudo 数量"]
   T2["3.6.2 D4-2 质量地板 + D4-3 广度 + D1 标记 (retrieve)"]
   T3["3.6.3 D1 展示 + 命中分降二级 (run_eval/score)"]
   T4["3.6.4 D2 闸门重写 (summarize_eval)"]
   T5["3.6.5 跑 N=10 + 填分 + GATE 反馈"]
-  T6["3.6.6 据反馈决策 PRD / D3"]
-  A0 --> T1
+  T6["3.6.6 改 SSOT (go 才执行)"]
   T1 --> T2
   T2 --> T3
   T2 --> T4
@@ -64,9 +59,6 @@ flowchart LR
 ```
 
 ## 各 TODO 细节
-
-### 3.6.0 · 落 canonical plan 文件
-把本计划写成 `.cursor/plans/Phase3.6-resonance-quality-gate.plan.md`（frontmatter + 节点 + 验收），使 pipeline 的状态标记/报告规则生效。
 
 ### 3.6.1 · D4-1 弹性 pseudo 数量（生成侧唯一改动）
 - `scripts/agents.py`：把「恰好 3」放宽为「**1–3 段、id ∈ {p1,p2,p3} 且唯一**」；删除 `count != 3` 与 `missing ids` 的硬报错，改为接受 ≥1 段；保留 fragment/how 连续性校验。
@@ -95,15 +87,16 @@ flowchart LR
 - 用 3.6.1–3.6.4 的新管线对 `tests/eval_news/01..10` 重跑 `run_eval` → `score_eval_candidates` → 总编填 `共振分`/`共振类型` → `summarize_eval` → 写 `output/Eval/GATE_RESULT.md`（或新目录，保留 3.5.6 旧结果对照）。
 - 产出**反馈**：优质候选(多 agent)是否确实质量更高、弹性 pseudo 是否减少注水、地板阈值是否合适。
 
-### 3.6.6 · 据反馈决策（PRD / D3）[需人工决策]
-- 依 3.6.5 反馈，决定：①是否按 ADR-0003 待改清单改 PRD/CONTEXT/eval-the-bet；②是否启动 D3（去实体化下放 per-persona）子阶段；③地板/广度参数是否调整。
-- 本阶段**到此为止不动 PRD**。
+### 3.6.6 · 改 SSOT（仅 GATE go 时执行）
+- **前置门槛**：3.6.5 结果为 go 才执行；no-go 时用户直接跳过本节，不改 SSOT。
+- 按 [ADR-0003](docs/adr/0003-multi-agent-resonance-quality-and-a1-as-peer.md) 末尾「SSOT/代码 待改清单」同步文档层：`PRD §4.1/§4.2`（A1 平权）、`§5.1/§5.2`（优质候选定义 + 命中分二级）、`§8` + `docs/eval-the-bet.md`（闸门改 multi-vs-single）、`CONTEXT.md`（术语）。
+- D3（去实体化下放 per-persona）不在本节，留作后续独立子阶段。
 
 ## Out of scope
-- D3 per-persona 去实体化；PRD/SSOT/CONTEXT 任何改动；C1/C2；fetch_news 全自动；索引侧改动。
+- D3 per-persona 去实体化（后续独立子阶段）；C1/C2；fetch_news 全自动；索引侧改动。SSOT 改动仅在 3.6.6 且 GATE go 时做。
 
 ## 风险
 - **反馈归因**：D1+D2+D4 同轮，仍混合「弹性 pseudo」与「优质判据」两个变量；3.6.5 评估时按 per-candidate 信号尽量区分。
 - **质量地板阈值**：数据显示相似度不分离精度（2 个 0 分候选 sim 反而高），故地板定位是「防注水」而非「提精度」，默认值需在 3.6.5 实测微调。
 - **小样本**：N=10 只够定方向；闸门第 2 条的「明显高于」阈值需谨慎，避免被 9 条样本过拟合。
-- 受人工验收阻断：3.6.5/3.6.6 标 `[需人工验收/决策]`，approve 前不标 complete、不写 report、不合并。
+- 受人工验收阻断：3.6.5 标 `[需人工验收]`，approve 前不标 complete、不写 report、不合并；3.6.6 仅在 GATE go 时由用户启动。
