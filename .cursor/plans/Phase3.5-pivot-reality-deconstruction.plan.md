@@ -10,19 +10,19 @@ todos:
     status: completed
   - id: f35b1c2d-0001-4000-8035-000000000003
     content: 3.5.3 · 改写编剧链：A1/A2/A4/A7 prompts 消费解构 JSON、按 persona 挑碎片产多段 pseudo；agents.py 适配；放宽 deentification 硬规则（承重时保留专名）（依赖 3.5.1、3.5.2）
-    status: pending
+    status: completed
   - id: f35b1c2d-0001-4000-8035-000000000004
     content: 3.5.4 · retrieve.py：多 pseudo 召回 + 候选聚合去重 + 爆炸 containment（记录命中碎片/视角）（依赖 3.5.3）
-    status: pending
+    status: completed
   - id: f35b1c2d-0001-4000-8035-000000000005
     content: 3.5.5 · 评测改造：run_eval candidates.md 加「共振类型」行；summarize_eval 解析 + structural_2_rate；闸门重心第 2 条（eval-the-bet.md §4/§5.1 已先行更新）（依赖 3.5.4）
-    status: pending
+    status: completed
   - id: f35b1c2d-0001-4000-8035-000000000006
-    content: 3.5.6 · 重跑 The Bet（N=10，新管线）→ 总编填分 + 共振类型 → GATE 结论 [需人工验收]（依赖 3.5.2–3.5.5）
-    status: pending
+    content: 3.5.6 · 重跑 The Bet（N=10，新管线）→ GATE 结论 GATE_FAIL（发布）[人工验收 2026-06-02]（依赖 3.5.2–3.5.5）
+    status: completed
   - id: f35b1c2d-0001-4000-8035-000000000007
-    content: 3.5.7 · SSOT 同步至 v0.4：PRD §1.2/§1.3/§4/§5/§8 + deentification 放宽 + CONTEXT 新术语（仅 GATE_PASS 后做）[需人工验收]（依赖 3.5.6）
-    status: pending
+    content: 3.5.7 · SSOT 同步至 v0.4（人工指令：GATE_FAIL 仍同步）[人工验收 2026-06-02]（依赖 3.5.6）
+    status: completed
 isProject: true
 ---
 
@@ -32,7 +32,7 @@ isProject: true
 
 Phase 3 闸门候选几乎只到 1、出不了 2。诊断为**新闻倒金字塔 vs overview 钩子的信息结构错位**，并据此做产品转向（[ADR-0002](../../docs/adr/0002-pivot-to-event-logic-resonance.md)）：表层共振合法、结构共振改由「事件逻辑解构 + agent 再加工」实现。
 
-本 Phase = Phase 3 `GATE_FAIL` 后「回到 Phase 1/2」回流路径的**放大版**：它**重写** Phase 1（编剧）+ Phase 2（召回）、**新增**上游解构阶段、**改造** Phase 3 评测口径，并以新管线**重跑闸门**。**Phase 4（copywriter）保持暂停**，直到 3.5.6 `GATE_PASS`。
+本 Phase = Phase 3 `GATE_FAIL` 后「回到 Phase 1/2」回流路径的**放大版**：它**重写** Phase 1（编剧）+ Phase 2（召回）、**新增**上游解构阶段、**改造** Phase 3 评测口径，并以新管线**重跑闸门**。**Phase 4（copywriter）保持暂停**，直至未来某轮 **GATE_PASS（发布）**。3.5.6 结论：**GATE_FAIL（发布）** — 方向验证成立、效果明显提升，未达发布标准；见 `output/Eval/GATE_RESULT.md`。
 
 ## Todo 依赖关系
 
@@ -57,8 +57,9 @@ flowchart LR
   T3 --> T6
   T4 --> T6
   T5 --> T6
-  T6 -->|GATE_PASS| T7
-  T6 -->|GATE_PASS| P4["Phase 4 解封"]
+  T6 --> T7
+  T6 -->|GATE_PASS 发布| P4["Phase 4 解封"]
+  T6 -->|GATE_FAIL 发布| Back["回 3.5.1/3.5.3 迭代"]
 ```
 
 ## Scope
@@ -192,17 +193,17 @@ flowchart LR
 
 ### 验收
 
-- [ ] 10 份评测产出 + 书面 GATE 结论（`output/Eval/GATE_RESULT.md`）
-- [ ] **GATE_FAIL** → 回 3.5.1/3.5.3 调契约或 prompt，**不开** 3.5.7 与 Phase 4
-- [ ] **GATE_PASS** → 进 3.5.7 并解封 Phase 4
+- [x] 10 份评测产出 + 书面 GATE 结论（`output/Eval/GATE_RESULT.md`）→ **GATE_FAIL（发布）**
+- [x] **GATE_FAIL** → 回 3.5.1/3.5.3 调契约或 prompt；**不解封** Phase 4
+- [ ] **GATE_PASS（发布）** → 解封 Phase 4（未达成）
 
 ---
 
 ## Todo 3.5.7 · SSOT 同步至 v0.4 [需人工验收]
 
-**依赖：** 3.5.6 `GATE_PASS`
+**依赖：** 3.5.6 完成（**人工指令：GATE_FAIL 仍同步 SSOT**）
 
-按 ADR-0002 待改清单一次性提进 PRD v0.4：
+按 ADR-0002 待改清单一次性提进 PRD v0.4（**记录已构建能力，不等于发布通过**）：
 
 - `PRD §1.2/§1.3`：去掉「**绝妙的**非显然共振」口径，改为转向后口径。
 - `PRD §4`：插入「现实解构 agent」阶段；编剧改为「挑碎片产多段 pseudo」。
@@ -213,23 +214,23 @@ flowchart LR
 
 ### 验收
 
-- [ ] PRD 升 v0.4，各节自洽、与代码一致
-- [ ] CONTEXT 新词条入表
+- [x] PRD 升 v0.4，各节自洽、与代码一致
+- [x] CONTEXT 新词条入表
 
 ---
 
 ## Phase 3.5 整体验收
 
-- [ ] 新管线端到端可跑（deconstruct → agents → retrieve → run_eval）
-- [ ] N=10 重跑有书面 GATE 结论
-- [ ] GATE_PASS 时 SSOT 已同步 v0.4
+- [x] 新管线端到端可跑（deconstruct → agents → retrieve → run_eval）
+- [x] N=10 重跑有书面 GATE 结论（**GATE_FAIL · 发布**）
+- [x] SSOT 已同步 v0.4（**GATE_FAIL 下仍完成**，见 `docs/reports/Phase3.5-ssot-v04-report.md`）
 
 ## 交给下一 Phase
 
 | 条件          | 下一动作                              |
 | ------------- | ------------------------------------- |
-| **GATE_PASS** | 解封 Phase 4 `copywriter.py`（C1/C2） |
-| **GATE_FAIL** | 回 3.5.1/3.5.3，不建 Copy、不动 PRD   |
+| **GATE_PASS（发布）** | 解封 Phase 4 `copywriter.py`（C1/C2） |
+| **GATE_FAIL（发布）** | 回 3.5.1/3.5.3 迭代；Phase 4 仍暂停；SSOT v0.4 已同步（2026-06-02 closeout） |
 
 ## 风险与约束
 

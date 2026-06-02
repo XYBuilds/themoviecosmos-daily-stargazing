@@ -22,3 +22,5 @@ python scripts/score_eval_candidates.py
 ```
 
 产出 `output/Eval/high-hit-score-review.md`（`pseudo命中分合计 ≥ 5`，全 run 汇总）。多 agent 专审见 `multi-agent-hits-review.md`（≥2 agents 准入，单独生成）。
+
+**闸门结论**：见 [`GATE_RESULT.md`](GATE_RESULT.md)（Phase 3.5：**GATE_FAIL · 发布**；Phase 4 暂停）。口径 SSOT：`docs/eval-the-bet.md` §5.1；产品规格 PRD **v0.4**。

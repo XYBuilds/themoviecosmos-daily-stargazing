@@ -1,5 +1,6 @@
 # Shared Hard Rules · De-entification
 
+> SSOT: PRD v0.4 §4.3 · ADR-0002 · Phase 3.5 已实现「承重保留」例外（规则 2/4）。
 > Every Persona's output must pass through this "anonymization" layer before it is vectorized for retrieval.
 > Goal: make the pseudo-overview read like a "movie synopsis" rather than a "news bulletin," so it aligns with the style distribution of the movie library's overviews and improves retrieval relevance.
 

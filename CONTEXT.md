@@ -41,3 +41,23 @@ _Avoid_: 全量、6 万、电影库
 
 **伪剧情模板 (Pseudo-overview Template)**:
 索引侧电影向量按 `Tagline: {tagline}\nOverview: {overview}`(无 tagline 时 `Overview: {overview}`)编码。查询侧 pseudo-overview **必须套同一模板**(`Overview: {pseudo}`)再 encode,以保证查询与索引同分布。作废 PRD §3.2 的裸拼接公式。
+
+**现实解构 agent (Reality Deconstructor, A0)**:
+在编剧之前把新闻拆成**纯客观、镜头中立**的结构化素材(`reality-deconstructed.json`)。产出起因/经过/结果碎片与实体**标签梯**,不做去实体化、不预选承重、不标共振类型。契约见 `docs/SSOT/reality-deconstruction-contract.md`。
+_Avoid_: 新闻摘要、骨架综合、skeleton
+
+**现实波澜 (Reality Ripple)**:
+单条热点新闻的人类可读快照(`reality.md` / Eval 内 `reality.json`),含 title、source、summary。解构前的「原文锚点」,与解构产物并列供总编扫读。
+_Avoid_: 解构 JSON、pseudo
+
+**标签梯 (Tag Ladder)**:
+现实解构层为地点/人物等实体挂的**从具体到抽象**的客观标签列表(如地理上位词 + 内在属性)。本层**穷举客观属性、不精选**;「挑哪一层来共振」是下游 Persona 的镜头。
+_Avoid_: 精选标签、主题框定
+
+**镜头中立 (Lens-neutral)**:
+现实解构层的铁律:不产出权力定性、反讽意味、戏剧 beat 等「换 persona 答案会变」的框定;那些全部下放给 A2/A4/A7。
+_Avoid_: 中立报道、客观新闻(此处指**结构化契约**,非媒体口吻)
+
+**pseudo命中分 (Pseudo Hit Score)**:
+评测辅助指标:按 `retrieve.json` 的 `hit_sources` 统计每个候选被多少**解构碎片**命中(每 fragment id = 1 分)。由 `scripts/score_eval_candidates.py` 写入 `candidates.md`,并汇总 `output/Eval/high-hit-score-review.md`。**不替代** 共振分 0/1/2 闸门。
+_Avoid_: 共振分、向量相似度

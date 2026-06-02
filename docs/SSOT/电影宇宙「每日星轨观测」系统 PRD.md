@@ -1,8 +1,8 @@
 # 电影宇宙「每日星轨观测」系统 PRD
 
-> **当前版本**：v0.3（语种工作流落地版）
-> **更新日期**：2026-05-29
-> **状态**：MVP 建造期。**首要目标是验证「新闻输入 → 多 Agent 写英文 pseudo-overview → 向量召回电影 → 中文文案供审核」这条链是否可行**。所有非必要环节（自动发布、视觉切片、运维告警、内容过滤、历史去重等）均显式延后到 Post-MVP。
+> **当前版本**：v0.4（现实解构 + 多 pseudo 管线）
+> **更新日期**：2026-06-02
+> **状态**：MVP 建造期 · Phase 3.5 已落地新管线，**发布闸门 GATE_FAIL**（方向验证成立，未达发布标准；Phase 4 仍暂停）。**首要目标是验证「新闻 → 现实解构 → 多 Agent 多段 pseudo → 聚合召回 → 人类共振评分」链是否值得继续迭代**。所有非必要环节（自动发布、视觉切片、运维告警、内容过滤、历史去重等）均显式延后到 Post-MVP。
 >
 > **v0.3 工作流要点（语种）**：电影库为全英文，故 **Persona prompts 与 pseudo-overview 统一用英文**做检索；召回电影后**用中文为每部候选写社媒文案供总编挑选审核**；总编选定后再**按平台生成对应语言版本（MVP 仅中英两种）**。
 
@@ -16,15 +16,15 @@
 
 ### 1.2 产品目标
 
-打造一个「数字文化天文台」。以每日热点事件为引，挖掘现实事件与某一部电影之间绝妙的讽刺、反差或隐喻联系。
+打造一个「数字文化天文台」。以每日热点事件为引，挖掘现实事件与某一部电影之间的**共振**——**表层语境同构与抽象骨架同构均合法**（见 [ADR-0002](../adr/0002-pivot-to-event-logic-resonance.md)），不再把「绝妙的、非显然的隐喻」作为唯一产品标准。
 
-**核心理念**：推荐不是为了催促观看，而是展示「现实世界与数字宇宙的结构性共振」，以此满足好奇心并完成对 3D 电影宇宙的引流。
+**核心理念**：推荐不是为了催促观看，而是展示「现实世界与数字宇宙的共振」（事件逻辑对齐 + Persona 再加工），以此满足好奇心并完成对 3D 电影宇宙的引流。
 
 ### 1.3 MVP 验证目标（v0.2 新增）
 
 本阶段**只需要回答一个问题**：
 
-> 在「单条新闻 → 7 个 Persona 视角的 pseudo-overview → 在 6 万部电影里做纯文本召回」的链路上，是否能稳定产出**至少 1 部具备「绝妙讽刺/宿命隐喻」感的候选电影**？
+> 在「单条新闻 → **现实解构** → 4 个 Persona（A2/A4/A7 + 基线 A1）各产**多段** pseudo-overview → **多路召回并聚合** → 在片单内做纯文本召回」的链路上，是否能稳定产出**值得展示的共振候选**（表层与/或结构），且**创作视角相对 A1 白描带来可测量的增量**（见 `docs/eval-the-bet.md` §5.1 第 2 条）？
 
 所有工程化、自动化、风控、UI 决策都让位于这个问题的回答。
 
@@ -91,6 +91,17 @@ embedding 输入文本模板（**已对齐 3D 宇宙索引,ADR-0001**）：
 
 ## 4. 多智能体编剧室（Multi-Agent Screenwriting Room）
 
+### 4.0 现实解构（Reality Deconstruction，Step 1.5）
+
+在编剧之前，**现实解构 agent**（`prompts/A0_reality_deconstructor.md`，`scripts/deconstruct.py`）把 RSS/手喂新闻转为 **`reality-deconstructed.json`**（+ 人类视图 `.md`）。
+
+| 要点 | 说明 |
+| --- | --- |
+| **契约** | `docs/SSOT/reality-deconstruction-contract.md` |
+| **铁律** | 无信息丢失、无主观解读、**镜头中立**（权力/反讽框定不下放本层） |
+| **结构** | 起因 / 经过 / 结果 碎片 + 实体 **标签梯**（客观属性穷举，不预选 load-bearing） |
+| **下游** | A1/A2/A4/A7 **自行挑选**碎片组合，每 agent **3 段** pseudo，带 `source` 碎片 id |
+
 ### 4.1 Persona 总览
 
 | 代号 | 人格 | 核心动作 |
@@ -126,9 +137,9 @@ embedding 输入文本模板（**已对齐 3D 宇宙索引,ADR-0001**）：
 **公共硬规则**（写入 `prompts/_shared/deentification_rules.md`，由所有 Persona 引用）：
 
 1. 不得出现真实人名 → 替换为身份角色（"一位政治领袖" / "一名科技寡头" / "一名记者"）
-2. 不得出现真实地名 / 国家 / 城市 → 替换为环境特征（"一个北方港口城市" / "一座内陆首都"）
+2. **地名**：默认抽象为环境特征；**承重时可有意识保留专名**（如孟买热浪 → Mumbai），见 `deentification_rules.md` 规则 2（ADR-0002）
 3. 不得出现真实机构 / 品牌 / 政党 / 公司名 → 替换为类型（"一家跨国能源公司" / "一个执政党"）
-4. 不得出现具体日期 / 精确金额 / 精确数字 → 模糊量级（"近期" / "巨额" / "数以千计"）
+4. **数字/日期**：默认模糊量级；**承重时可保留**（伤亡、温度记录等），见规则 4
 5. 不得出现新闻八股（"据报道" / "声明称" / "日前" / "本台讯"）
 6. **输出语种 = 英文（统一）**：无论新闻原文是中文还是英文，pseudo-overview 一律写**英文**。原因：电影库为全英文，英文查询与索引同分布，召回更稳；其他语种的展示/文案在下游阶段处理（见 §5.3 / §7.4）。
 
@@ -145,27 +156,29 @@ embedding 输入文本模板（**已对齐 3D 宇宙索引,ADR-0001**）：
 >
 > A2 社会学家输出（英文）：A prophet of technology proclaims, from the public square he himself built, that his empire of steel will spit out one in ten of its workers. The dream-machine, once wrapped in myth, shows its oldest face before a single cold earnings report — the reckoning of capital against labor.
 
-### 4.4 输出契约（Output Contract，MVP 极简版）
+### 4.4 输出契约（Output Contract，Phase 3.5）
 
-* 每个 Agent 返回**纯文本一段**，不强制 JSON，由 `agents.py` 做基础清洗（去多余空行 / 截断超长）。
-* 失败/超时/格式异常 → **MVP 阶段允许跳过该 Agent**，主流程继续；记录到当日简报的 `errors` 节里。
-* 重试与降级是工程问题，暂缓。
+* 每个 Agent 返回 **`pseudos: [{id, text, source}]`**（每 agent **3 段**，每段 60–120 words 英文）；`source` 记录用到的解构碎片 id（供 retrieve 聚合与评测溯源）。
+* `agents.py` 注入 `reality-deconstructed.json` 的 `deconstruction` 字段，不再直接喂原始新闻字段。
+* 失败/超时/格式异常 → **MVP 阶段允许跳过该 Agent**，主流程继续；记录到 `errors.md`。
 
 ---
 
 ## 5. 检索与候选处理（Retrieval & Candidates）
 
-### 5.1 召回
+### 5.1 召回（多 pseudo 聚合）
 
-* 每段**英文** pseudo-overview → 384 维向量（L2 归一化）。
-* 在 `embeddings.npy` 上做余弦相似度（= 内积）。
-* 每个 Agent 取 **Top 2**，7 Agent × 2 = **最多 14 部候选**。
+* 每段**英文** pseudo（`Overview: {pseudo}` 模板）→ 384 维向量（L2 归一化）→ 每 pseudo **Top 2**。
+* 按 **`tmdb_id` 聚合去重**，合并 `triggered_by` / **`hit_sources`**（agent、pseudo id、碎片 id、相似度）。
+* **containment**：控制每 agent/碎片上限，避免组合爆炸（目标约 **15–19 候选/条**）。
+* 评测期：`scripts/score_eval_candidates.py` 可写 **pseudo命中分**（碎片计数辅助审阅，**不替代** 共振分闸门）。
 
 ### 5.2 候选处理（MVP 决策）
 
 | 议题 | MVP 决策 |
 | --- | --- |
-| 跨 Agent 撞车（同一部电影被多个视角召回） | **仅作中性展示**：在 Markdown 里聚合标注「命中该电影的 Agent 视角列表」，**MVP 不据此加权或排序**。"撞车=强信号"的前提（多视角独立殊途同归）尚未验证，是否成立留待评测期观察。**A1 基线不计入此展示**（仅作对照）。 |
+| 跨 Agent 撞车（同一部电影被多个视角召回） | **仅作中性展示**：标注命中视角 / pseudo / 碎片来源，**MVP 不据此加权或排序**。**A1 基线不计入**跨创作撞车展示（仅作对照）。 |
+| 共振类型（评测体温计） | 总编在 `candidates.md` 对 1/2 分候选标注 `表层` / `结构` / `双重`；`summarize_eval.py` 优先比 **structural_2_rate**（闸门第 2 条）。见 `docs/eval-the-bet.md` §4–§5.1。 |
 | 相似度下限 | 不设，先看效果 |
 | 候选过滤（评分/年代/成人内容） | 不做，先看效果 |
 | 历史去重（同一部电影不再推荐） | 不做（Post-MVP 必做） |
@@ -283,16 +296,17 @@ source_name    (可选)
 
 | Step | 动作 | MVP 自动化级别 |
 | --- | --- | --- |
-| 1 | 拉取 RSS → 候选新闻列表 → 选 1 条 | 半自动（允许人工指定 url） |
-| 2 | 异步并发调用 4 个 Agent（3 创作 A2/A4/A7 + 基线 A1，英文）→ 4 段英文 pseudo-overview | 自动 |
-| 3 | 4 段英文文本 → 向量 → 在 npy 索引上召回 Top 2 × 4 = ≤ 8 部（A1 候选标 `[baseline]`） | 自动 |
-| 4 | C1 为每部候选写中文审核文案 | 自动 |
-| 5 | 渲染 Markdown 模板（含候选 + 中文文案）→ 写入 `output/Daily_Briefing/YYYY-MM-DD.md` | 自动 |
-| 6 | 人类总编在 Obsidian 中勾选 1 条文案 | 人工 |
-| 7 | C2 把选定文案改写为中/英平台版本 → `..._copy.md` | 自动（人工触发） |
+| 1 | 拉取 RSS → 候选新闻列表 → 选 1 条（评测期：`--news-file` 手喂 JSON） | 半自动 |
+| **1.5** | **现实解构**（A0）→ `reality-deconstructed.json` / `.md` | 自动 |
+| 2 | 异步并发 4 Agent（A2/A4/A7 + 基线 A1）消费解构 JSON → **每 agent 3 段** pseudo | 自动 |
+| 3 | 每段 pseudo → 向量 → Top 2 → **按 tmdb_id 聚合**（~15–19 候选/条；A1 标 `[baseline]`） | 自动 |
+| 4 | C1 为每部候选写中文审核文案 | 自动 · **Phase 4 gated（须 GATE_PASS）** |
+| 5 | 渲染 Markdown → `output/Daily_Briefing/` 或 `output/Eval/` | 自动 |
+| 6 | 人类总编填 **共振分** + **共振类型**；可选 `score_eval_candidates.py` 命中分审阅 | 人工 |
+| 7 | C2 多平台定稿 | 自动（人工触发）· **gated** |
 
-> 注 1：MVP 跑 3 个创作 Persona（A2/A4/A7）+ 1 个基线（A1），待主链路稳定后再扩展到 7 个创作视角。
-> 注 2：语种约定——Step 2/3（检索）走**英文**；Step 4（审核稿）走**中文**；Step 7（定稿）产出**中 + 英**两版。
+> 注 1：MVP 跑 A2/A4/A7 + 基线 A1；评测闸门见 `docs/eval-the-bet.md` 与 `output/Eval/GATE_RESULT.md`（当前 **GATE_FAIL · 发布**）。
+> 注 2：语种——Step 2/3 **英文**；Step 4/7 **中文审核 + 中英定稿**（Step 4/7 待闸门通过）。
 
 ---
 
