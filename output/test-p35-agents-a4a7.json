@@ -1,0 +1,137 @@
+{
+  "agents": [
+    {
+      "agent_id": "A4",
+      "persona_name": "The Mythologist",
+      "role": "creative",
+      "pseudos": [],
+      "text": "",
+      "warnings": []
+    },
+    {
+      "agent_id": "A7",
+      "persona_name": "The Chaos Theorist",
+      "role": "creative",
+      "pseudos": [],
+      "text": "",
+      "warnings": []
+    }
+  ],
+  "errors": [
+    {
+      "agent_id": "A4",
+      "type": "api_error",
+      "message": "parse_error: JSON must contain a 'pseudos' array"
+    },
+    {
+      "agent_id": "A7",
+      "type": "api_error",
+      "message": "parse_error: JSON must contain a 'pseudos' array"
+    }
+  ],
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026年4月",
+        "2026年5月"
+      ],
+      "relative": [],
+      "daypart": [],
+      "season": [
+        "盛夏/酷暑季"
+      ],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "历时约两个月的持续热浪"
+      ],
+      "recurrence": [],
+      "modality": [
+        "已发生：持续中的灾害"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "印度中北部",
+        "tags": [
+          "印度中北部",
+          "印度",
+          "南亚",
+          "内陆地区",
+          "人口稠密区"
+        ],
+        "geocode": {
+          "country": "印度",
+          "state": null,
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "scene_archetype": [
+          "野外",
+          "全域",
+          "人口稠密区"
+        ],
+        "role": [
+          "发生地"
+        ],
+        "scale": "全国"
+      }
+    ],
+    "who": [
+      {
+        "text": "印度中北部受灾居民",
+        "tags": [
+          "居民",
+          "平民"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "全国电力/供水系统",
+        "tags": [
+          "关键基础设施"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": [
+          "承载全国需求"
+        ]
+      }
+    ],
+    "why": [
+      {
+        "text": "顽固高压系统造成极端持续高温",
+        "id": "why-0"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "多地气温突破 45°C 并逼近 48°C",
+        "id": "how-0"
+      }
+    ],
+    "result": [
+      {
+        "text": "数千万人陷生存/供水危机、至少 37 人死亡",
+        "id": "result-0"
+      },
+      {
+        "text": "全国电力需求飙至 270.8 GW 历史新高",
+        "id": "result-1"
+      }
+    ]
+  }
+}

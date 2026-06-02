@@ -14,3 +14,11 @@
 ```
 
 汇总闸门：`python scripts/summarize_eval.py --dir output/Eval`
+
+**Pseudo 命中分**（`retrieve.json` → `candidates.md` 原地追加 `命中分` / `pseudo命中分合计`；不填共振分）：
+
+```bash
+python scripts/score_eval_candidates.py
+```
+
+产出 `output/Eval/high-hit-score-review.md`（`pseudo命中分合计 ≥ 5`，全 run 汇总）。多 agent 专审见 `multi-agent-hits-review.md`（≥2 agents 准入，单独生成）。

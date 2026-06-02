@@ -13,8 +13,9 @@
 - **跳转**: https://themoviecosmos.com/movie/337191
 - **also_baseline**: true
 - **命中视角/碎片**:
-  - A7/p1: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.6340
-  - A1/p1: fragments=[how-0, why-0, result-0] · sim=0.6042
+  - A7/p1: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.6340 · **命中分=6**
+  - A1/p1: fragments=[how-0, why-0, result-0] · sim=0.6042 · **命中分=3**
+- **pseudo命中分合计**: 9
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -26,9 +27,10 @@
 - **跳转**: https://themoviecosmos.com/movie/1047128
 - **also_baseline**: true
 - **命中视角/碎片**:
-  - A1/p1: fragments=[how-0, why-0, result-0] · sim=0.6170
-  - A1/p2: fragments=[how-0, how-1, how-2] · sim=0.5425
-  - A1/p3: fragments=[how-0, why-1, result-0] · sim=0.5693
+  - A1/p1: fragments=[how-0, why-0, result-0] · sim=0.6170 · **命中分=3**
+  - A1/p2: fragments=[how-0, how-1, how-2] · sim=0.5425 · **命中分=3**
+  - A1/p3: fragments=[how-0, why-1, result-0] · sim=0.5693 · **命中分=3**
+- **pseudo命中分合计**: 9
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -40,8 +42,9 @@
 - **跳转**: https://themoviecosmos.com/movie/197796
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A4/p1: fragments=[why-0, how-0, how-1, result-0] · sim=0.5788
-  - A4/p2: fragments=[why-0, how-0, how-1, how-2, result-0] · sim=0.5944
+  - A4/p1: fragments=[why-0, how-0, how-1, result-0] · sim=0.5788 · **命中分=4**
+  - A4/p2: fragments=[why-0, how-0, how-1, how-2, result-0] · sim=0.5944 · **命中分=5**
+- **pseudo命中分合计**: 9
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -53,7 +56,8 @@
 - **跳转**: https://themoviecosmos.com/movie/32598
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A4/p3: fragments=[how-0, why-1, how-1, result-0] · sim=0.5940
+  - A4/p3: fragments=[how-0, why-1, how-1, result-0] · sim=0.5940 · **命中分=4**
+- **pseudo命中分合计**: 4
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -65,7 +69,8 @@
 - **跳转**: https://themoviecosmos.com/movie/1124158
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A4/p3: fragments=[how-0, why-1, how-1, result-0] · sim=0.5926
+  - A4/p3: fragments=[how-0, why-1, how-1, result-0] · sim=0.5926 · **命中分=4**
+- **pseudo命中分合计**: 4
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -77,7 +82,8 @@
 - **跳转**: https://themoviecosmos.com/movie/780
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A4/p1: fragments=[why-0, how-0, how-1, result-0] · sim=0.5874
+  - A4/p1: fragments=[why-0, how-0, how-1, result-0] · sim=0.5874 · **命中分=4**
+- **pseudo命中分合计**: 4
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -89,7 +95,8 @@
 - **跳转**: https://themoviecosmos.com/movie/97481
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A4/p2: fragments=[why-0, how-0, how-1, how-2, result-0] · sim=0.5872
+  - A4/p2: fragments=[why-0, how-0, how-1, how-2, result-0] · sim=0.5872 · **命中分=5**
+- **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -101,7 +108,8 @@
 - **跳转**: https://themoviecosmos.com/movie/796278
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A2/p2: fragments=[how-0, how-1, how-2] · sim=0.5806
+  - A2/p2: fragments=[how-0, how-1, how-2] · sim=0.5806 · **命中分=3**
+- **pseudo命中分合计**: 3
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -113,7 +121,8 @@
 - **跳转**: https://themoviecosmos.com/movie/574109
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A2/p2: fragments=[how-0, how-1, how-2] · sim=0.5749
+  - A2/p2: fragments=[how-0, how-1, how-2] · sim=0.5749 · **命中分=3**
+- **pseudo命中分合计**: 3
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -125,7 +134,8 @@
 - **跳转**: https://themoviecosmos.com/movie/51477
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A7/p2: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.5684
+  - A7/p2: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.5684 · **命中分=6**
+- **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -137,7 +147,8 @@
 - **跳转**: https://themoviecosmos.com/movie/28468
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A7/p2: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.5658
+  - A7/p2: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.5658 · **命中分=6**
+- **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -149,7 +160,8 @@
 - **跳转**: https://themoviecosmos.com/movie/1002305
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A2/p3: fragments=[result-0] · sim=0.5653
+  - A2/p3: fragments=[result-0] · sim=0.5653 · **命中分=1**
+- **pseudo命中分合计**: 1
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -161,7 +173,8 @@
 - **跳转**: https://themoviecosmos.com/movie/134475
 - **also_baseline**: true
 - **命中视角/碎片**:
-  - A1/p2: fragments=[how-0, how-1, how-2] · sim=0.5641
+  - A1/p2: fragments=[how-0, how-1, how-2] · sim=0.5641 · **命中分=3**
+- **pseudo命中分合计**: 3
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -173,7 +186,8 @@
 - **跳转**: https://themoviecosmos.com/movie/14799
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A2/p3: fragments=[result-0] · sim=0.5589
+  - A2/p3: fragments=[result-0] · sim=0.5589 · **命中分=1**
+- **pseudo命中分合计**: 1
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -185,7 +199,8 @@
 - **跳转**: https://themoviecosmos.com/movie/1299046
 - **also_baseline**: true
 - **命中视角/碎片**:
-  - A1/p3: fragments=[how-0, why-1, result-0] · sim=0.5558
+  - A1/p3: fragments=[how-0, why-1, result-0] · sim=0.5558 · **命中分=3**
+- **pseudo命中分合计**: 3
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -197,7 +212,8 @@
 - **跳转**: https://themoviecosmos.com/movie/552687
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A7/p3: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.5536
+  - A7/p3: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.5536 · **命中分=6**
+- **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -209,7 +225,8 @@
 - **跳转**: https://themoviecosmos.com/movie/193315
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A7/p1: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.5534
+  - A7/p1: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.5534 · **命中分=6**
+- **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -221,7 +238,8 @@
 - **跳转**: https://themoviecosmos.com/movie/197082
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A7/p3: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.5443
+  - A7/p3: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.5443 · **命中分=6**
+- **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 
@@ -233,6 +251,8 @@
 - **跳转**: https://themoviecosmos.com/movie/174723
 - **also_baseline**: false
 - **命中视角/碎片**:
-  - A2/p1: fragments=[why-0, why-1] · sim=0.5378
+  - A2/p1: fragments=[why-0, why-1] · sim=0.5378 · **命中分=2**
+- **pseudo命中分合计**: 2
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+

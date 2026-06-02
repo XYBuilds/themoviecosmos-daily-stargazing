@@ -1,0 +1,503 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A2",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A persistent high-pressure system, an indifferent atmospheric structure, translates into extreme, sustained heat. This is not a random weather event but a cross-section of resource allocation: the heat's burden falls asymmetrically, with the dense populations of the interior bearing the initial thermal load. The crisis originates in a structure of climate that operates independently of the social structures it devastates.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "why-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 852445,
+              "title": "Acid",
+              "similarity": 0.5299617052078247,
+              "movie_url": "https://themoviecosmos.com/movie/852445"
+            },
+            {
+              "tmdb_id": 976854,
+              "title": "I Told You So",
+              "similarity": 0.5410976409912109,
+              "movie_url": "https://themoviecosmos.com/movie/976854"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The mechanism of impact is a direct thermal assault. Temperatures breach 45°C and approach 48°C, a threshold beyond which biological systems and basic infrastructure begin to fail. This is the point where ambient conditions cease to be a backdrop and become an active agent of social stratification, separating those who can insulate themselves from those whose labor or housing is directly exposed.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "how-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 107100,
+              "title": "Seattle Superstorm",
+              "similarity": 0.4876793622970581,
+              "movie_url": "https://themoviecosmos.com/movie/107100"
+            },
+            {
+              "tmdb_id": 210219,
+              "title": "Jet Stream",
+              "similarity": 0.48966458439826965,
+              "movie_url": "https://themoviecosmos.com/movie/210219"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The outcome reveals the stark gap between centralized consumption and decentralized survival. National power demand spikes to a record 270.8 GW, a number reflecting the aggregate draw of cooling and industry. Simultaneously, a far larger number—tens of millions—face a more fundamental crisis of water and life itself. The system's priority, measured in grid capacity, is laid bare against the bodies counted in the margins.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 418879,
+              "title": "The Current War",
+              "similarity": 0.43722888827323914,
+              "movie_url": "https://themoviecosmos.com/movie/418879"
+            },
+            {
+              "tmdb_id": 401544,
+              "title": "Death Race 2050",
+              "similarity": 0.45174306631088257,
+              "movie_url": "https://themoviecosmos.com/movie/401544"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "A7",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "It all began with a stubborn high-pressure system over the Indian Ocean, but that system was anchored by a slightly colder-than-usual patch of water off the coast of Sri Lanka, which was in turn caused by a distant Antarctic krill die-off altering ocean currents. The krill died because a research vessel's sonar pulse, intended for mapping, disrupted their spawning cycle. The sonar was activated because a crew member misread the schedule, thinking the survey was due on a Tuesday instead of a Thursday.",
+          "source": {
+            "agent_id": "A7",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 401200,
+              "title": "Kursk",
+              "similarity": 0.5487114787101746,
+              "movie_url": "https://themoviecosmos.com/movie/401200"
+            },
+            {
+              "tmdb_id": 222226,
+              "title": "Sea Countrymen",
+              "similarity": 0.5523289442062378,
+              "movie_url": "https://themoviecosmos.com/movie/222226"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "If not for a single misheard word in a control room in New Delhi, the national grid might have held. On April 18th, a technician, fatigued by the early summer heat, heard 'rebalance the northern sector' as 'reboot the northern sector.' He initiated a controlled shutdown of three key transmission lines for maintenance, which were never meant to be offline simultaneously. This created a critical vulnerability just as the heatwave peaked. The demand surged to an unprecedented 270.8 GW, the weakened grid failed, and the ensuing blackout crippled water pumps and cooling centers across the region, turning a deadly heatwave into a full-blown survival crisis for millions.",
+          "source": {
+            "agent_id": "A7",
+            "fragments": [
+              "how-0",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 87101,
+              "title": "Terminator Genisys",
+              "similarity": 0.48256587982177734,
+              "movie_url": "https://themoviecosmos.com/movie/87101"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.48501062393188477,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "No one remembers the page number. A meteorologist in Pune was compiling the seasonal forecast in late March. He accidentally left a crucial paragraph—detailing the model's adjustment for Pacific sea-surface temperatures—on page 14 of a 20-page report, a section his supervisor always skipped. That omitted data point showed a 0.5-degree warming bias, which, when fed into the national energy demand model, caused it to underestimate peak load by 12%. Power planners, relying on that flawed model, scheduled insufficient reserve capacity. When the heatwave arrived and temperatures soared past 45°C, the grid, already stressed, collapsed under the real demand, leading to the historic 270.8 GW spike and the widespread water and power shortages that followed.",
+          "source": {
+            "agent_id": "A7",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 25012,
+              "title": "Absolute Zero",
+              "similarity": 0.42432188987731934,
+              "movie_url": "https://themoviecosmos.com/movie/25012"
+            },
+            {
+              "tmdb_id": 14161,
+              "title": "2012",
+              "similarity": 0.4654442071914673,
+              "movie_url": "https://themoviecosmos.com/movie/14161"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 222226,
+      "title": "Sea Countrymen",
+      "overview": "Sicily, Granitola, 1955. At the first light of dawn, the fishermen set out in their boats for open water, timing the rhythm of their oars to murmured chants. They set their nets in the sea, regulate the cords, organize the boats in a square. The men’s work becomes increasingly harder as the tuna are hoisted onto the boats, wriggling, beating their tails until death arrives and the water is tinged with blood.",
+      "genres": "Documentary",
+      "release_year": 1955,
+      "language": "it",
+      "poster_path": "/q5RI1Z3sVUf61SiljRe3DN8mPOO.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/222226",
+      "similarity": 0.5523289442062378,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5523289442062378
+        }
+      ]
+    },
+    {
+      "tmdb_id": 401200,
+      "title": "Kursk",
+      "overview": "Barents Sea, August 12th, 2000. During a Russian naval exercise, and after suffering a serious accident, the K-141 Kursk submarine sinks with 118 crew members on board. While the few sailors who are still alive barely manage to survive, their families push for accurate information and a British officer struggles to obtain from the Russian government a permit to attempt a rescue before it is late. But general incompetence are against all their efforts.",
+      "genres": "Drama, History, Thriller, Action",
+      "release_year": 2018,
+      "language": "en",
+      "poster_path": "/1Y09MkMJ8CESSPW4fcbDm9s5cAS.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/401200",
+      "similarity": 0.5487114787101746,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5487114787101746
+        }
+      ]
+    },
+    {
+      "tmdb_id": 976854,
+      "title": "I Told You So",
+      "overview": "In Rome, during a January weekend a sudden heatwave arrives. The sun is initially pleasant, but the heat quickly escalates to a frightening degree, resulting in people and animals losing self-control.",
+      "genres": "Drama",
+      "release_year": 2024,
+      "language": "it",
+      "poster_path": "/eenQyFdrKc9xxX3yc9eSg1uPvsk.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/976854",
+      "similarity": 0.5410976409912109,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0"
+          ],
+          "similarity": 0.5410976409912109
+        }
+      ]
+    },
+    {
+      "tmdb_id": 852445,
+      "title": "Acid",
+      "overview": "During a heat wave, strange clouds start pouring down acid rain, wreaking devastation and panic throughout France. In a world teetering on the edge, a girl and her divorced parents must join forces to confront and try to escape this climate catastrophe.",
+      "genres": "Drama, Science Fiction, Fantasy",
+      "release_year": 2023,
+      "language": "fr",
+      "poster_path": "/6JrZMrk3ZlQFURI7nmKGMxnTUCs.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/852445",
+      "similarity": 0.5299617052078247,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0"
+          ],
+          "similarity": 0.5299617052078247
+        }
+      ]
+    },
+    {
+      "tmdb_id": 210219,
+      "title": "Jet Stream",
+      "overview": "A TV weatherman tries to prove his theory that a series of unexplained catastrophes are the result of powerful winds found in the upper atmosphere coming down to ground level. His claims attract the attention of government scientists, who need his help to control the phenomena before it destroys all life on Earth (Locatetv.com)",
+      "genres": "Action, Adventure, Drama, Science Fiction, TV Movie",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/qQWHDcGNJO5SW0urM5U8xNW9a8C.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/210219",
+      "similarity": 0.48966458439826965,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0"
+          ],
+          "similarity": 0.48966458439826965
+        }
+      ]
+    },
+    {
+      "tmdb_id": 107100,
+      "title": "Seattle Superstorm",
+      "overview": "An object is shot down over Seattle and the debris begins to affect the local weather, ultimately threatening the whole world.",
+      "genres": "Action, Science Fiction, TV Movie",
+      "release_year": 2012,
+      "language": "en",
+      "poster_path": "/1qDBcSvSfSutZ2UjhnZszNEHVtL.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/107100",
+      "similarity": 0.4876793622970581,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0"
+          ],
+          "similarity": 0.4876793622970581
+        }
+      ]
+    },
+    {
+      "tmdb_id": 429918,
+      "title": "Survival Family",
+      "overview": "A world wide electrical outage occurs. Everything that requires electricity comes to a stop. Tokyo is nearly ruined. Yoshiyuki Suzuki decides to escape from Tokyo with his family.",
+      "genres": "Comedy, Drama, Adventure",
+      "release_year": 2017,
+      "language": "ja",
+      "poster_path": "/wdJWsWODt3wAsAGQ2M9WZIOFSas.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/429918",
+      "similarity": 0.48501062393188477,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.48501062393188477
+        }
+      ]
+    },
+    {
+      "tmdb_id": 87101,
+      "title": "Terminator Genisys",
+      "overview": "The year is 2029. John Connor, leader of the resistance continues the war against the machines. At the Los Angeles offensive, John's fears of the unknown future begin to emerge when TECOM spies reveal a new plot by SkyNet that will attack him from both fronts; past and future, and will ultimately change warfare forever.",
+      "genres": "Science Fiction, Action, Thriller",
+      "release_year": 2015,
+      "language": "en",
+      "poster_path": "/oZRVDpNtmHk8M1VYy1aeOWUXgbC.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/87101",
+      "similarity": 0.48256587982177734,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.48256587982177734
+        }
+      ]
+    },
+    {
+      "tmdb_id": 14161,
+      "title": "2012",
+      "overview": "Dr. Adrian Helmsley, part of a worldwide geophysical team investigating the effect on the earth of radiation from unprecedented solar storms, learns that the earth's core is heating up. He warns U.S. President Thomas Wilson that the crust of the earth is becoming unstable and that without proper preparations for saving a fraction of the world's population, the entire race is doomed. Meanwhile, writer Jackson Curtis stumbles on the same information. While the world's leaders race to build \"arks\" to escape the impending cataclysm, Curtis struggles to find a way to save his family. Meanwhile, volcanic eruptions and earthquakes of unprecedented strength wreak havoc around the world.",
+      "genres": "Action, Adventure, Science Fiction",
+      "release_year": 2009,
+      "language": "en",
+      "poster_path": "/c2PkTPT5D9zB8SIm5wNlDAANEqM.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/14161",
+      "similarity": 0.4654442071914673,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4654442071914673
+        }
+      ]
+    },
+    {
+      "tmdb_id": 401544,
+      "title": "Death Race 2050",
+      "overview": "The year 2050 the planet has become overpopulated, to help control population the government develops a race. The Death Race. Annually competitors race across the country scoring points for killing people with their vehicles.",
+      "genres": "Action, Comedy, Science Fiction",
+      "release_year": 2017,
+      "language": "en",
+      "poster_path": "/5mI8yqZZBlZpvd0aT5YXbR8oEvT.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/401544",
+      "similarity": 0.45174306631088257,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p3",
+          "fragments": [
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.45174306631088257
+        }
+      ]
+    },
+    {
+      "tmdb_id": 418879,
+      "title": "The Current War",
+      "overview": "Electricity titans Thomas Edison and George Westinghouse compete to create a sustainable system and market it to the American people.",
+      "genres": "Drama, History",
+      "release_year": 2018,
+      "language": "en",
+      "poster_path": "/eqTjO8yTaPRSKWj7i6Qnr7R5cls.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/418879",
+      "similarity": 0.43722888827323914,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p3",
+          "fragments": [
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.43722888827323914
+        }
+      ]
+    },
+    {
+      "tmdb_id": 25012,
+      "title": "Absolute Zero",
+      "overview": "INTER SCI climatologist Dr. David Kotzman has evidence that a shift in the Earth's polarity triggered the last Ice Age...in a single day. Now, it's happening again, and there's no time to escape. As the temperature plummets, Miami is blasted with snow and ice. Evacuation routes are jammed. The only chance David, his old flame Bryn, and a few other hopeful survivors have is to hole themselves up in a special chamber at INTER SCI. A desperate race for survival is ignited as nature's fury rages and the temperature plunges toward -459.67° F...ABSOLUTE ZERO!",
+      "genres": "Action, Science Fiction, TV Movie",
+      "release_year": 2006,
+      "language": "en",
+      "poster_path": "/53me8imWkUXeO95pL12LK1V4Rav.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/25012",
+      "similarity": 0.42432188987731934,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.42432188987731934
+        }
+      ]
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A2-A7": 0.27030467987060547
+    },
+    "topk_jaccard": {
+      "A2-A7": 0.0
+    }
+  },
+  "meta": {
+    "query_count": 6,
+    "raw_hit_count": 12,
+    "candidate_count": 12,
+    "max_candidates": 19
+  }
+}

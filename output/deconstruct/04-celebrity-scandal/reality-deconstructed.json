@@ -1,0 +1,162 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "YouTuber arrested over alleged AI-fabricated claims against Kim Soo-hyun",
+    "description": "Seoul police secured an arrest warrant for the operator of a channel with nearly one million subscribers who allegedly used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. Prosecutors say the influencer knew the relationship began only when she was an adult but spread false claims for financial gain. The scandal had halted the star's endorsements and public appearances since early 2025.",
+    "pub_time": "2026-05-27T09:00:00+09:00",
+    "source_name": "BBC News",
+    "url": "https://www.bbc.co.uk/news/articles/c759y6pvezgo"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-27T09:00:00+09:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "early 2025"
+      ],
+      "relative": [],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "ongoing since early 2025"
+      ],
+      "recurrence": [],
+      "modality": [
+        "已发生"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Seoul, South Korea",
+        "tags": [
+          "Seoul",
+          "South Korea",
+          "East Asia",
+          "urban area"
+        ],
+        "geocode": {
+          "country": "South Korea",
+          "state": null,
+          "city": "Seoul",
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "East Asia",
+        "scene_archetype": [
+          "urban",
+          "populous area"
+        ],
+        "role": [
+          "location of arrest and police action"
+        ],
+        "intended_destination": null,
+        "scale": "city",
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "YouTuber/channel operator",
+        "tags": [
+          "YouTuber",
+          "content creator",
+          "influencer"
+        ],
+        "role_in_event": [
+          "发起·决策",
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Kim Soo-hyun",
+        "tags": [
+          "actor",
+          "celebrity"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": [
+          "dated a late co-star"
+        ]
+      },
+      {
+        "text": "late co-star",
+        "tags": [
+          "actor",
+          "deceased"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": [
+          "dated Kim Soo-hyun"
+        ]
+      },
+      {
+        "text": "Seoul police",
+        "tags": [
+          "law enforcement",
+          "police"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Prosecutors",
+        "tags": [
+          "prosecutors",
+          "legal authority"
+        ],
+        "role_in_event": [
+          "见证·旁观"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "spread false claims for financial gain"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "YouTuber allegedly uses AI-generated audio and manipulated chat screenshots to claim Kim Soo-hyun dated a late co-star while she was a minor"
+      },
+      {
+        "step": 2,
+        "text": "Scandal halts Kim Soo-hyun's endorsements and public appearances since early 2025"
+      },
+      {
+        "step": 3,
+        "text": "Seoul police secure arrest warrant for the YouTuber"
+      }
+    ],
+    "result": [
+      {
+        "text": "Scandal halts Kim Soo-hyun's endorsements and public appearances since early 2025"
+      },
+      {
+        "text": "Seoul police secure arrest warrant for the YouTuber"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}
