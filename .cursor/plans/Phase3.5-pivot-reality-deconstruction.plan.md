@@ -223,7 +223,7 @@ flowchart LR
 
 - [x] 新管线端到端可跑（deconstruct → agents → retrieve → run_eval）
 - [x] N=10 重跑有书面 GATE 结论（**GATE_FAIL · 发布**）
-- [x] SSOT 已同步 v0.4（**GATE_FAIL 下仍完成**，见 `docs/reports/Phase3.5-ssot-v04-report.md`）
+- [x] SSOT 已同步 v0.4（**GATE_FAIL 下仍完成**，见 `docs/reports/Phase3.5.7-ssot-v04-report.md`）
 
 ## 交给下一 Phase
 

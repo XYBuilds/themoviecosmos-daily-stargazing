@@ -1,4 +1,4 @@
-# Phase 3.5 - 重跑 The Bet（3.5.6）交付报告
+# Phase 3.5.6 - 重跑 The Bet 交付报告
 
 ## 1. 改动范围 (Scope)
 
@@ -37,4 +37,4 @@ python -m scripts.summarize_eval --dir output/Eval
 - **共振分 backlog**：需总编补填 10× `candidates.md` 后重跑 `summarize_eval` 才有可比的 baseline/creative 率。
 - **PR 栈 #10–#14**：仍 OPEN，closeout 文档/SSOT 在本分支；合并后 `main` 才含完整 3.5 代码。
 - **下一动作**：调 3.5.1/3.5.3 prompt 或再跑一轮 N=10；**不要**在 GATE_PASS 前启动 Phase 4。
-- **3.5.7**：按用户指令，**尽管 GATE_FAIL** 仍执行 SSOT v0.4 同步（见 `Phase3.5-ssot-v04-report.md`）。
+- **3.5.7**：按用户指令，**尽管 GATE_FAIL** 仍执行 SSOT v0.4 同步（见 `Phase3.5.7-ssot-v04-report.md`）。
