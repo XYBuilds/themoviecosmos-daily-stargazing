@@ -11,7 +11,7 @@ alwaysApply: true
 
 ## 1. 分支管理
 
-- 命名：`feat/phase[N.N]-[todo]`（例：`feat/phase5.3-fetch-news`）。
+- 命名：`feat/phase[N.N.N...]-[todo]`（例：`feat/phase5.3.2-fetch-news`）。
 - 按「Phase 依赖与顺序执行」规则确定检出来源，检出新分支后开发。
 
 ## 2. 执行与本地验证
@@ -30,11 +30,11 @@ alwaysApply: true
 
 ## 5. 交付报告
 
-- 路径：`docs/reports/Phase[N.N]-[todo-name]-report.md`（例：`docs/reports/Phase5.1-fetch-news-report.md`）。
+- 路径：`docs/reports/Phase[N.N.N...]-[todo-name]-report.md`（例：`docs/reports/Phase5.1-fetch-news-report.md`）。
 - 模板：
 
 ```markdown
-# Phase [N.N] - [TODO 名称] 交付报告
+# Phase [N.N.N...] - [TODO 名称] 交付报告
 
 ## 1. 改动范围 (Scope)
 - 改动的文件列表
@@ -57,6 +57,6 @@ alwaysApply: true
 3. 在 GitHub 上 **Create a merge commit**（即 `--no-ff` 合并，保留分支拓扑）。
 4. 在 GitHub 上 **Delete branch**（删除远端开发分支）。
 5. 在本地切回 `main` 并更新：`git checkout main && git pull`
-6. 删除本地临时开发分支：`git branch -d feat/phase[N.N]-[todo-name]`
+6. 删除本地临时开发分支：`git branch -d feat/phase[N.N.N...]-[todo-name]`
 
 > 注意：第 4–6 步受「人工验收阻断」规则约束 —— 标注 `[需人工验收]` 时须先暂停等待 approve。
