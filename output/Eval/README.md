@@ -1,6 +1,13 @@
 # Eval 产出目录
 
-每条 `run_eval` 写入 `output/Eval/{run_id}/`：
+按 Phase 分子目录，避免重跑覆盖历史批次：
+
+| 批次 | 路径 | 说明 |
+| --- | --- | --- |
+| Phase 3.5.6（只读对照） | `output/Eval/phase3.5/` | N=10 新管线闸门；**勿覆盖** |
+| Phase 3.6+ | `output/Eval/phase3.6/` | 3.6 管线重跑与书面闸门 |
+
+每条 `run_eval` 写入 `output/Eval/<phase-dir>/{run_id}/`（3.6.5 须显式 `--out`，见 Phase 3.6 plan）：
 
 ```text
 {run_id}/
@@ -13,14 +20,24 @@
 └── agents/A2.md … A1.md
 ```
 
-汇总闸门：`python scripts/summarize_eval.py --dir output/Eval`
+**Phase 3.5.6 汇总**（只读对照批次）：
+
+```bash
+python scripts/summarize_eval.py --dir output/Eval/phase3.5
+```
+
+**Phase 3.6 汇总**（当前开发批次）：
+
+```bash
+python scripts/summarize_eval.py --dir output/Eval/phase3.6
+```
 
 **Pseudo 命中分**（`retrieve.json` → `candidates.md` 原地追加 `命中分` / `pseudo命中分合计`；不填共振分）：
 
 ```bash
-python scripts/score_eval_candidates.py
+python scripts/score_eval_candidates.py --dir output/Eval/phase3.6
 ```
 
-产出 `output/Eval/high-hit-score-review.md`（`pseudo命中分合计 ≥ 5`，全 run 汇总）。多 agent 专审见 `multi-agent-hits-review.md`（≥2 agents 准入，单独生成）。
+产出 `high-hit-score-review.md` 于对应 `--dir` 批次根（3.5 对照见 `phase3.5/high-hit-score-review.md`）。多 agent 专审见 `phase3.5/multi-agent-hits-review.md`。
 
-**闸门结论**：见 [`GATE_RESULT.md`](GATE_RESULT.md)（Phase 3.5：**GATE_FAIL · 发布**；Phase 4 暂停）。口径 SSOT：`docs/eval-the-bet.md` §5.1；产品规格 PRD **v0.4**。
+**闸门结论**：Phase 3.5.6 → [`phase3.5/GATE_RESULT.md`](phase3.5/GATE_RESULT.md)（**GATE_FAIL · 发布**）；Phase 3.6 → `phase3.6/GATE_RESULT.md`（重跑后维护）。口径 SSOT：`docs/eval-the-bet.md` §5.1；产品规格 PRD **v0.4**。

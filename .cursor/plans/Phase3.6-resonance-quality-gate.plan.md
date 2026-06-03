@@ -74,7 +74,7 @@ flowchart LR
 - `scripts/run_eval.py` + `scripts/score_eval_candidates.py`：优质标记、排序、heading 含全 agent
 - `scripts/summarize_eval.py`：multi-agent vs single-agent 闸门 + `gate.compare_mode = multi_vs_single`
 - `tests/` 单测（retrieve 优质逻辑、summarize_eval 闸门 fixture）
-- N=10 重跑 `run_eval` → 总编填 `共振分`/`共振类型` → `summarize_eval` → `output/Eval/GATE_RESULT.md`（保留 3.5.6 产物作对照）
+- N=10 重跑 `run_eval` → 总编填 `共振分`/`共振类型` → `summarize_eval` → `output/Eval/phase3.6/GATE_RESULT.md`（3.5.6 对照只读：`output/Eval/phase3.5/`）
 - **3.6.6（条件）**：PRD / `CONTEXT.md` / `docs/eval-the-bet.md` 按 ADR-0003 待改清单同步
 
 ### Out of scope
@@ -93,7 +93,7 @@ flowchart LR
 | `docs/adr/0002-pivot-to-event-logic-resonance.md` | 表层合法、事件逻辑解构（前置） |
 | `docs/eval-the-bet.md` §4/§5.1 | 评分 rubric；3.6.4 后需与 multi-vs-single 闸门对齐（3.6.6） |
 | `docs/SSOT/电影宇宙「每日星轨观测」系统 PRD.md` v0.4 | 现行产品 SSOT；3.6.6 go 时升口径 |
-| `output/Eval/multi-agent-hits-review.md` | 9 条多 agent 打分 ground truth（方向验证） |
+| `output/Eval/phase3.5/multi-agent-hits-review.md` | 9 条多 agent 打分 ground truth（方向验证） |
 | Phase 3.5 plan | 解构 + 多 pseudo 管线基线 |
 
 ## 判据与闸门（本 Phase 定稿 · 实现须一致）
@@ -183,26 +183,26 @@ flowchart LR
 
 ### 输出路径约定（非破坏性 · 强制）
 
-Phase 3.5.6 产物保留在 **`output/Eval/` 根下**（`01-grid-outage` … `10-whistleblower-leak/`、`GATE_RESULT.md`、`high-hit-score-review.md`、`multi-agent-hits-review.md` 等）。**本 todo 不得覆盖、删除或原地重写上述文件。**
+Phase 3.5.6 产物位于 **`output/Eval/phase3.5/`**（`01-grid-outage` … `10-whistleblower-leak/`、`GATE_RESULT.md`、`high-hit-score-review.md`、`multi-agent-hits-review.md` 等）。**本 todo 不得覆盖、删除或改写 `phase3.5/` 内任何文件。**
 
 | 用途 | 路径 |
 | --- | --- |
 | **本 Phase 全部 run** | `output/Eval/phase3.6/{run_id}/`（`run_id` 与 `tests/eval_news/README.md` 表一致，如 `01-grid-outage`） |
-| **本 Phase 书面闸门** | `output/Eval/phase3.6/GATE_RESULT.md`（**不**改根目录 `output/Eval/GATE_RESULT.md`） |
-| **3.5.6 对照（只读）** | `output/Eval/{run_id}/`、`output/Eval/GATE_RESULT.md` |
+| **本 Phase 书面闸门** | `output/Eval/phase3.6/GATE_RESULT.md` |
+| **3.5.6 对照（只读）** | `output/Eval/phase3.5/{run_id}/`、`output/Eval/phase3.5/GATE_RESULT.md` |
 
 `scripts/run_eval.py` 默认写入 `output/Eval/{run_id}/`（见 `resolve_run_dir`：`--out` 未设时用 slug/title）。**若对 N=10 使用与 3.5.6 相同的 `run_id` 且不设 `--out`，会覆盖 3.5.6 的 `candidates.md`、`retrieve.json` 等。** 3.6.5 执行时必须对每条新闻显式传 **`--out`**。
 
-`scripts/summarize_eval.py --dir` 只扫描**一层**子目录下的 `*/candidates.md`；汇总 3.6 批次时 **`--dir` 必须且仅能**指向 `output/Eval/phase3.6`（勿用 `output/Eval`，否则会混入 3.5.6 的 10 份 run）。
+`scripts/summarize_eval.py --dir` 只扫描**一层**子目录下的 `*/candidates.md`；汇总 3.6 批次时 **`--dir` 必须且仅能**指向 `output/Eval/phase3.6`（勿用 `output/Eval` 或 `output/Eval/phase3.5`，否则会混入 3.5.6 对照批次）。
 
-`scripts/score_eval_candidates.py --dir` 可指向 `output/Eval/phase3.6`（只改该树下的 `candidates.md`）；但当前实现仍将 **`high-hit-score-review.md` 写到 `output/Eval/` 根**（硬编码）。3.6.5 跑命中分前须二选一：**(a)** 在 3.6.5 实现中增加 review 输出路径（如 `--review-out output/Eval/phase3.6/high-hit-score-review.md`），或 **(b)** 使用 `--dry-run` 仅本地查看、不执行会覆盖根的 `write_text`。**禁止**在未保护的情况下重跑 `score_eval_candidates` 默认命令。
+`scripts/score_eval_candidates.py --dir` 可指向 `output/Eval/phase3.6`（只改该树下的 `candidates.md`）；但当前实现仍将 **`high-hit-score-review.md` 写到 `output/Eval/` 根**（硬编码）。3.6.5 跑命中分前须二选一：**(a)** 在 3.6.5 实现中增加 review 输出路径（如 `--review-out output/Eval/phase3.6/high-hit-score-review.md`），或 **(b)** 使用 `--dry-run` 仅本地查看、不执行会覆盖根的 `write_text`。**禁止**在未保护的情况下重跑 `score_eval_candidates` 默认命令（避免污染 `output/Eval/` 根或 `phase3.5/`）。
 
 ### 执行步骤
 
 1. 对 `tests/eval_news/01..10` 重跑 `run_eval`（3.6 管线），每条 **`--out output/Eval/phase3.6/{run_id}`**（`run_id` = JSON 基名，与 3.5.6 一致便于对照）。
 2. `score_eval_candidates.py --dir output/Eval/phase3.6`（遵守上节 review 文件保护）。
 3. 总编在 **`output/Eval/phase3.6/*/candidates.md`** 填 `共振分` + `共振类型`。
-4. `summarize_eval --dir output/Eval/phase3.6` → 将结论与脚本快照写入 **`output/Eval/phase3.6/GATE_RESULT.md`**（文首注明对照批次：`output/Eval/GATE_RESULT.md` · Phase 3.5.6）。
+4. `summarize_eval --dir output/Eval/phase3.6` → 将结论与脚本快照写入 **`output/Eval/phase3.6/GATE_RESULT.md`**（文首注明对照批次：`output/Eval/phase3.5/GATE_RESULT.md` · Phase 3.5.6）。
 5. **反馈重点**：优质候选 2 分/双重率是否高于单 agent；弹性 pseudo 是否减注水；地板阈值是否合理。
 
 ### CLI 示例（N=10 · PowerShell）
@@ -236,7 +236,7 @@ python scripts/summarize_eval.py --dir output/Eval/phase3.6
 
 ### 验收
 
-- [ ] 10 份评测产出位于 `output/Eval/phase3.6/{run_id}/`（含 `retrieve.json` 的 `quality_candidate`）；**根下 3.5.6 的 10 个 run 目录与 `output/Eval/GATE_RESULT.md` 未被改写**
+- [ ] 10 份评测产出位于 `output/Eval/phase3.6/{run_id}/`（含 `retrieve.json` 的 `quality_candidate`）；**`output/Eval/phase3.5/` 内 10 个 run 与 `phase3.5/GATE_RESULT.md` 未被改写**
 - [ ] 书面 GATE 结论写入 `output/Eval/phase3.6/GATE_RESULT.md`（go / no-go（发布））
 - [ ] **GATE_FAIL** → 回 3.6.1/3.6.2 调 prompt 或 `--quality-floor`；**不解封** Phase 4
 - [ ] **GATE_PASS（发布）** → 可启动 3.6.6；仍 **不解封** Phase 4（除非产品另定发布线）

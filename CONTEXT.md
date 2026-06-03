@@ -59,5 +59,5 @@ _Avoid_: 精选标签、主题框定
 _Avoid_: 中立报道、客观新闻(此处指**结构化契约**,非媒体口吻)
 
 **pseudo命中分 (Pseudo Hit Score)**:
-评测辅助指标:按 `retrieve.json` 的 `hit_sources` 统计每个候选被多少**解构碎片**命中(每 fragment id = 1 分)。由 `scripts/score_eval_candidates.py` 写入 `candidates.md`,并汇总 `output/Eval/high-hit-score-review.md`。**不替代** 共振分 0/1/2 闸门。
+评测辅助指标:按 `retrieve.json` 的 `hit_sources` 统计每个候选被多少**解构碎片**命中(每 fragment id = 1 分)。由 `scripts/score_eval_candidates.py` 写入 `candidates.md`,并汇总 `output/Eval/<phase-dir>/high-hit-score-review.md`（Phase 3.5.6 对照：`phase3.5/`）。**不替代** 共振分 0/1/2 闸门。
 _Avoid_: 共振分、向量相似度
