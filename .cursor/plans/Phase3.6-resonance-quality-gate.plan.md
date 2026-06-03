@@ -13,7 +13,7 @@ todos:
     status: pending
   - id: f36b1c2d-0001-4000-8036-000000000004
     content: 3.6.4 · summarize_eval：闸门改 multi-agent vs single-agent + structural_2_rate 对比 + 单测（依赖 3.6.2）
-    status: pending
+    status: completed
   - id: f36b1c2d-0001-4000-8036-000000000005
     content: 3.6.5 · 重跑 The Bet（N=10，3.6 管线）→ 总编填分 → GATE_RESULT [需人工验收]（依赖 3.6.1–3.6.4）
     status: pending
@@ -172,8 +172,8 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python -m unittest tests.test_summarize_eval -v` 通过
-- [ ] 对手填 fixture stdout 显示 `Gate line 2 compare: multi_vs_single`
+- [x] `python -m unittest tests.test_summarize_eval -v` 通过
+- [x] 对手填 fixture stdout 显示 `Gate line 2 compare: multi_vs_single`
 
 ---
 
