@@ -1,0 +1,208 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Whistleblower tip led NTA to cancel NEET-UG 2026 after full chemistry paper match",
+    "description": "Four days after the May 3 medical entrance exam, India's National Testing Agency received an email from a whistleblower in Sikar with PDFs that matched 100% of the chemistry questions and part of biology. NTA referred 26–27 paper setters and translators to the CBI; thirteen people have been arrested, including a coaching figure who had publicly championed student justice during the 2024 leak scandal. A re-examination is scheduled for June 21.",
+    "pub_time": "2026-05-16T18:00:00+05:30",
+    "source_name": "Times Now",
+    "url": "https://www.timesnownews.com/education/how-nta-discovered-neet-ug-2026-chemistry-paper-leak-and-traced-it-to-its-own-system-article-154364673"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-16T18:00:00+05:30",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026-05-03",
+        "2026-06-21"
+      ],
+      "relative": [
+        "四天后"
+      ],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "四天"
+      ],
+      "recurrence": [],
+      "modality": [
+        "已发生：2026年5月3日考试",
+        "已发生：四天后收到举报",
+        "已发生：NTA移交CBI",
+        "已发生：十三人被逮捕",
+        "已发生：考试取消",
+        "计划：2026年6月21日重新考试"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "印度",
+        "tags": [
+          "国家",
+          "南亚",
+          "全国性考试发生地"
+        ],
+        "geocode": {
+          "country": "印度",
+          "state": null,
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "南亚",
+        "scene_archetype": [
+          "教育",
+          "全国范围"
+        ],
+        "role": [
+          "考试举办地"
+        ],
+        "intended_destination": null,
+        "scale": "全国",
+        "trajectory": null,
+        "contested_name": null
+      },
+      {
+        "text": "西卡尔",
+        "tags": [
+          "城市",
+          "印度",
+          "举报地点"
+        ],
+        "geocode": {
+          "country": "印度",
+          "state": null,
+          "city": "西卡尔",
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "南亚",
+        "scene_archetype": [
+          "城市",
+          "举报来源"
+        ],
+        "role": [
+          "举报发起地点"
+        ],
+        "intended_destination": null,
+        "scale": "城市",
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "举报人",
+        "tags": [
+          "个人",
+          "举报人"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      },
+      {
+        "text": "印度国家考试机构 (NTA)",
+        "tags": [
+          "政府机构",
+          "考试机构"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "中央调查局 (CBI)",
+        "tags": [
+          "执法机构",
+          "中央机构"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "26-27 名试卷制定者和翻译人员",
+        "tags": [
+          "教育工作者",
+          "试卷相关人员"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "十三名被逮捕人员（包括一名培训人士）",
+        "tags": [
+          "嫌疑人",
+          "被捕人员"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": [
+          "其中一名培训人士曾在 2024 年泄题丑闻中倡导学生正义"
+        ]
+      }
+    ],
+    "why": [
+      {
+        "text": "举报人发送的 PDF 文件与 NEET-UG 2026 化学试卷完全匹配，与生物试卷部分匹配"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "2026年5月3日，NEET-UG 医学入学考试进行"
+      },
+      {
+        "step": 2,
+        "text": "四天后，印度国家考试机构收到举报人邮件，附有匹配试卷的 PDF 文件"
+      },
+      {
+        "step": 3,
+        "text": "NTA 将 26-27 名试卷制定者和翻译人员移交中央调查局"
+      },
+      {
+        "step": 4,
+        "text": "十三人被逮捕，包括一名培训人士"
+      },
+      {
+        "step": 5,
+        "text": "重新考试定于2026年6月21日"
+      }
+    ],
+    "result": [
+      {
+        "text": "NEET-UG 2026 被取消"
+      },
+      {
+        "text": "相关人员被移交 CBI"
+      },
+      {
+        "text": "十三人被逮捕"
+      },
+      {
+        "text": "重新考试安排在2026年6月21日"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

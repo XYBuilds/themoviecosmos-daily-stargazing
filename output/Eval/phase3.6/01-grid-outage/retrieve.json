@@ -1,0 +1,760 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A2",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The seasonal surge in demand—driven by the heat endured by the island population—collides with the fragility of a privatized generation fleet. When a single corporate unit trips, the operational margin for the entire archipelago vanishes. The system's vulnerability is not random but a direct consequence of a structure where the profit motives of power companies dictate the reliability of a public good.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "how-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 491854,
+              "title": "Foxtrot Six",
+              "similarity": 0.5021663308143616,
+              "movie_url": "https://themoviecosmos.com/movie/491854"
+            },
+            {
+              "tmdb_id": 841793,
+              "title": "Stranded",
+              "similarity": 0.5777208805084229,
+              "movie_url": "https://themoviecosmos.com/movie/841793"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "A cascade of generator failures reveals the thin margin upon which the regional grid operates. The decision to impose emergency load shedding is a managerial act that distributes scarcity. The command flows from officials to the grid operator, translating a technical fault into a political allocation: whose lights go out, and whose stay on, is determined by the grid's topology, which itself reflects historical investment patterns and population density.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 312849,
+              "title": "Ivy",
+              "similarity": 0.46453148126602173,
+              "movie_url": "https://themoviecosmos.com/movie/312849"
+            },
+            {
+              "tmdb_id": 1223272,
+              "title": "Contagion of Fear",
+              "similarity": 0.46892136335372925,
+              "movie_url": "https://themoviecosmos.com/movie/1223272"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The archipelago enters a red alert, a formal state of emergency defined by the risk of rotational blackouts. This condition is the materialized resource gap: the capacity to generate power falls critically short of the capacity to consume it, a deficit borne entirely by the end-users. The grid's precariousness becomes a lived reality, not an abstract metric, imposed upon the population by a system operating on the brink.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 841793,
+              "title": "Stranded",
+              "similarity": 0.5446387529373169,
+              "movie_url": "https://themoviecosmos.com/movie/841793"
+            },
+            {
+              "tmdb_id": 623464,
+              "title": "Zombie Tidal Wave",
+              "similarity": 0.5470062494277954,
+              "movie_url": "https://themoviecosmos.com/movie/623464"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "A4",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In the height of summer's scorch, when the sun-god's chariot burns hottest, a great vessel in the isles — once pledged to give light to the many — stumbles. The first falter is but a tremor; yet eleven, then twelve, soon follow, each a step in a dance foretold. The mighty generator, keeper of a thousand hearths, trips and falls silent. The demand, a beast fed by the relentless heat, presses against the fragile margin. The stewards of power, seeing the veins of light begin to glow too fiercely, must choose: cut the flow to some, lest the whole grid — the very artery of the isles — overloads and plunges all into darkness. A red vigil is declared.",
+          "source": {
+            "agent_id": "A4",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 278154,
+              "title": "Ice Age: Collision Course",
+              "similarity": 0.5573538541793823,
+              "movie_url": "https://themoviecosmos.com/movie/278154"
+            },
+            {
+              "tmdb_id": 190683,
+              "title": "Jupiter's Thunderballs",
+              "similarity": 0.565898597240448,
+              "movie_url": "https://themoviecosmos.com/movie/190683"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "A7",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "It all began with a single overlooked sensor reading, a fractional vibration in a bearing that was deemed 'within tolerance' on a humid May morning. This tiny, insignificant vibration—perhaps from a misaligned cooling fan or a microscopic imbalance in the turbine rotor—slowly, imperceptibly, escalated over weeks of relentless heat. By late May, the cumulative stress caused the Kepco SPC Power's Unit 2 to trip unexpectedly, instantly removing over 950 megawatts from a grid already stretched thin by a sweltering summer. This sudden, massive loss, on top of ten other generator failures that month, pushed the entire Visayan grid to the brink.",
+          "source": {
+            "agent_id": "A7",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 24580,
+              "title": "The Quatermass Xperiment",
+              "similarity": 0.44448912143707275,
+              "movie_url": "https://themoviecosmos.com/movie/24580"
+            },
+            {
+              "tmdb_id": 26130,
+              "title": "Summer Time Machine Blues",
+              "similarity": 0.4521794319152832,
+              "movie_url": "https://themoviecosmos.com/movie/26130"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "No one remembers the small administrative delay: a purchase order for a critical replacement capacitor for the Unit 2 exciter system, held up for three extra days in early May because a clerk misread a file number. That 72-hour delay meant the part arrived just as a heatwave intensified demand. The generator, running on degraded components, could not handle the sudden thermal stress and tripped offline. This was the eleventh failure that month, a chain of outages that had hollowed out the grid's reserve. With demand now at the razor's edge of the system's capacity, the loss of 950 megawatts was catastrophic.",
+          "source": {
+            "agent_id": "A7",
+            "fragments": [
+              "why-0",
+              "why-2",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 37605,
+              "title": "The Last Voyage",
+              "similarity": 0.4658072292804718,
+              "movie_url": "https://themoviecosmos.com/movie/37605"
+            },
+            {
+              "tmdb_id": 940241,
+              "title": "97 Minutes",
+              "similarity": 0.4730096161365509,
+              "movie_url": "https://themoviecosmos.com/movie/940241"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Since the start of May, eleven generators have failed. A unit at the Kepco SPC Power plant tripped, making over 950 megawatts unavailable. Seasonal high temperatures pushed demand into a thin operating margin. Officials ordered emergency load-shedding to prevent overloading of a 230-kilovolt transmission line. The Visayas islands are under a red alert status. The risk of rolling blackouts has increased. Emergency load-shedding has been ordered.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 720321,
+              "title": "Breathe",
+              "similarity": 0.456106573343277,
+              "movie_url": "https://themoviecosmos.com/movie/720321"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.4985042214393616,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "A unit at the Kepco SPC Power plant tripped. Seasonal high temperatures pushed demand into a thin operating margin. Other long-running power plants went offline. The Visayas islands are under a red alert status. The risk of rolling blackouts has increased.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 841793,
+              "title": "Stranded",
+              "similarity": 0.4782481789588928,
+              "movie_url": "https://themoviecosmos.com/movie/841793"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.5253074765205383,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 841793,
+      "title": "Stranded",
+      "overview": "Tensions run high while food runs low as six influencers find themselves stranded on a secluded island after plans for a weekend escape go awry.",
+      "genres": "Drama",
+      "release_year": 2021,
+      "language": "pt",
+      "poster_path": "/jZonuUeC9bH2D5A609w7nkplhyj.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/841793",
+      "similarity": 0.5777208805084229,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-1"
+          ],
+          "similarity": 0.5777208805084229
+        },
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p3",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "how-2"
+          ],
+          "similarity": 0.5446387529373169
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4782481789588928
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): A2,A1"
+    },
+    {
+      "tmdb_id": 190683,
+      "title": "Jupiter's Thunderballs",
+      "overview": "With godly entrapments, Zeus appears on the horizon, engages Hermes as an audience, and tries to throw some thunderbolts. They fizzle. Hephaestus tries to make some repairs but succeeds only in heating the bolts and burning Zeus's hands. Zeus conjures nine muses, but do their incantations help? He dismisses them as well as a visiting Pan, and his fits of pique become counter-productive. Can he get his powers back?",
+      "genres": "Comedy, Fantasy",
+      "release_year": 1903,
+      "language": "fr",
+      "poster_path": "/kdQ1GpIl10dOYG1N3g6ATGj97Ij.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/190683",
+      "similarity": 0.565898597240448,
+      "triggered_by": [
+        "A4"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A4",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.565898597240448
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 278154,
+      "title": "Ice Age: Collision Course",
+      "overview": "Set after the events of Continental Drift, Scrat's epic pursuit of his elusive acorn catapults him outside of Earth, where he accidentally sets off a series of cosmic events that transform and threaten the planet. To save themselves from peril, Manny, Sid, Diego, and the rest of the herd leave their home and embark on a quest full of thrills and spills, highs and lows, laughter and adventure while traveling to exotic new lands and locations.",
+      "genres": "Adventure, Animation, Family, Comedy, Science Fiction",
+      "release_year": 2016,
+      "language": "en",
+      "poster_path": "/okF78W1AcXAenlYFE3vna9Uuqjp.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/278154",
+      "similarity": 0.5573538541793823,
+      "triggered_by": [
+        "A4"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A4",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5573538541793823
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 623464,
+      "title": "Zombie Tidal Wave",
+      "overview": "A fisherman contends with an ocean-borne outbreak that threatens his seaside island community.",
+      "genres": "Action, Adventure, Science Fiction, Horror, Thriller",
+      "release_year": 2019,
+      "language": "en",
+      "poster_path": "/bdlWPVFMsBchv07HxF2khcdCEwZ.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/623464",
+      "similarity": 0.5470062494277954,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p3",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "how-2"
+          ],
+          "similarity": 0.5470062494277954
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 429918,
+      "title": "Survival Family",
+      "overview": "A world wide electrical outage occurs. Everything that requires electricity comes to a stop. Tokyo is nearly ruined. Yoshiyuki Suzuki decides to escape from Tokyo with his family.",
+      "genres": "Comedy, Drama, Adventure",
+      "release_year": 2017,
+      "language": "ja",
+      "poster_path": "/wdJWsWODt3wAsAGQ2M9WZIOFSas.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/429918",
+      "similarity": 0.5253074765205383,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.4985042214393616
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5253074765205383
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 491854,
+      "title": "Foxtrot Six",
+      "overview": "Escalating climate change is turning the world economy upside down. With crops dying and food price spiking, FOOD has replaced oil as the world's most valuable commodity.  Among the very few lands still left fertile, Indonesia is quickly rising as the next economic superpower, when its government is suddenly and ruthlessly overtaken by a popular rogue political party.  In just three days, six former Marines must work together, find their long-lost brotherhood, stop a nationwide government- sanctioned genocide, and save millions of lives, for one last shot at redemption. Or die trying.",
+      "genres": "Action, Drama, Science Fiction",
+      "release_year": 2019,
+      "language": "en",
+      "poster_path": "/o7c8FKCZFIrLKrZSzgqufvNo4mr.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/491854",
+      "similarity": 0.5021663308143616,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-1"
+          ],
+          "similarity": 0.5021663308143616
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 940241,
+      "title": "97 Minutes",
+      "overview": "A hijacked 767 will crash in just 97 minutes when its fuel runs out. Against the strong will of NSA Deputy Toyin, NSA Director Hawkins prepares to have the plane shot down before it does any catastrophic damage on the ground, leaving the fate of the innocent passengers in the hands of Tyler, one of the alleged hijackers on board who is an undercover Interpol agent - or is he?",
+      "genres": "Action, Thriller, Drama",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/eYGyR8xF8emNs9AJAJSyLXu56kR.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/940241",
+      "similarity": 0.4730096161365509,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.4730096161365509
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1223272,
+      "title": "Contagion of Fear",
+      "overview": "A catastrophic train derailment sends the city spiraling into chaos. But the derailment is just the beginning. A biological gas attack sees crash survivors collapsing and dying within minutes. And the sickness is rapidly spreading.",
+      "genres": "Science Fiction, Thriller",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/A5muc6PtApC9ubfmJW3ADRnIIfi.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1223272",
+      "similarity": 0.46892136335372925,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-2"
+          ],
+          "similarity": 0.46892136335372925
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 37605,
+      "title": "The Last Voyage",
+      "overview": "The S. S. Claridon is scheduled for her five last voyages after thirty-eight years of service. After an explosion in the boiler room, Captain Robert Adams is reluctant to evacuate the steamship. While the crew fights to hold a bulkhead between the flooded boiler room and the engine room and avoid the sinking of the vessel, the passenger Cliff Henderson struggles against time trying to save his beloved wife Laurie Henderson, who is trapped under a steel beam in her cabin, with the support of the crew member Hank Lawson.",
+      "genres": "Thriller, Drama, Action",
+      "release_year": 1960,
+      "language": "en",
+      "poster_path": "/a4hwHvo4KdaQK4fRjvFH5hkTXMn.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/37605",
+      "similarity": 0.4658072292804718,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.4658072292804718
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 312849,
+      "title": "Ivy",
+      "overview": "When the crew of a bankrupt cargo ship gets stuck on board for months, isolation breeds pressures that sink the men into a sea of madness and terror.",
+      "genres": "Drama, Fantasy, Thriller",
+      "release_year": 2015,
+      "language": "tr",
+      "poster_path": "/jsqgoFLDX4o0dNkdjB8UG83Rzng.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/312849",
+      "similarity": 0.46453148126602173,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-2"
+          ],
+          "similarity": 0.46453148126602173
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 720321,
+      "title": "Breathe",
+      "overview": "Air-supply is scarce in the near future, forcing a mother and daughter to fight for survival when two strangers arrive desperate for an oxygenated haven.",
+      "genres": "Action, Science Fiction, Mystery, Thriller",
+      "release_year": 2024,
+      "language": "en",
+      "poster_path": "/wTW2t8ocWDlHns8I7vQxuqkyK58.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/720321",
+      "similarity": 0.456106573343277,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.456106573343277
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 26130,
+      "title": "Summer Time Machine Blues",
+      "overview": "The members of a sci-fi club accidentally spill Coke on the remote controller of an air-conditioner during summer and suddenly a time machine appears in their sweating bath-like clubroom.",
+      "genres": "Comedy, Science Fiction",
+      "release_year": 2005,
+      "language": "ja",
+      "poster_path": "/7RIMLwD9myn20D9Z53Gu5pKr8bG.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/26130",
+      "similarity": 0.4521794319152832,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.4521794319152832
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 24580,
+      "title": "The Quatermass Xperiment",
+      "overview": "The first manned spacecraft, fired from an English launchpad, is first lost from radar, then roars back to Earth and crashes in a farmer's field, and is found to contain only one of the three men who took off in it; and he is unable to talk but appears to be undergoing a torturous physical and mental metamorphosis.",
+      "genres": "Science Fiction, Horror",
+      "release_year": 1955,
+      "language": "en",
+      "poster_path": "/lm6cQiUjJ0AUUqESI9WWM7veIbp.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/24580",
+      "similarity": 0.44448912143707275,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.44448912143707275
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A2-A4": 0.42718034982681274,
+      "A2-A7": 0.34610530734062195,
+      "A1-A2": 0.4973159432411194,
+      "A4-A7": 0.48579034209251404,
+      "A1-A4": 0.31385621428489685,
+      "A1-A7": 0.4424913823604584
+    },
+    "topk_jaccard": {
+      "A2-A4": 0.0,
+      "A2-A7": 0.0,
+      "A1-A2": 0.14285714285714285,
+      "A4-A7": 0.0,
+      "A1-A4": 0.0,
+      "A1-A7": 0.0
+    }
+  },
+  "meta": {
+    "query_count": 8,
+    "raw_hit_count": 16,
+    "candidate_count": 13,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

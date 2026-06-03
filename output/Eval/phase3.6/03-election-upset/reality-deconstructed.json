@@ -1,0 +1,141 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Ken Paxton defeats John Cornyn in Texas Senate Republican runoff",
+    "description": "Texas Attorney General Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term, aided by a late endorsement from the sitting president. Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970 despite substantially outraising and outspending his rival. Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate.",
+    "pub_time": "2026-05-27T03:00:00-05:00",
+    "source_name": "Al Jazeera",
+    "url": "https://www.aljazeera.com/news/2026/5/27/trump-backed-paxton-topples-senator-cornyn-in-texas-primary-run-off"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-27T03:00:00-05:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [],
+      "relative": [],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [],
+      "recurrence": [],
+      "modality": [
+        "已发生",
+        "计划"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Texas",
+        "tags": [
+          "德克萨斯州",
+          "美国",
+          "北美",
+          "州级行政区"
+        ],
+        "geocode": {
+          "country": "美国",
+          "state": "德克萨斯州",
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "北美",
+        "scene_archetype": [
+          "州级行政区域"
+        ],
+        "role": [
+          "事件发生地"
+        ],
+        "intended_destination": null,
+        "scale": "州级",
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "Ken Paxton",
+        "tags": [
+          "德克萨斯州总检察长",
+          "政治人物",
+          "共和党人"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "John Cornyn",
+        "tags": [
+          "参议员",
+          "政治人物",
+          "共和党人"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "James Talarico",
+        "tags": [
+          "州众议员",
+          "政治人物",
+          "民主党人"
+        ],
+        "role_in_event": [
+          "见证·旁观"
+        ],
+        "relations": []
+      },
+      {
+        "text": "sitting president",
+        "tags": [
+          "政治人物",
+          "总统"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": [
+          "endorsed Ken Paxton"
+        ]
+      }
+    ],
+    "why": [
+      {
+        "text": "aided by a late endorsement from the sitting president"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "Ken Paxton won approximately 64% of the vote in the Texas Senate Republican runoff"
+      }
+    ],
+    "result": [
+      {
+        "text": "Ken Paxton won the Texas Senate Republican runoff"
+      },
+      {
+        "text": "John Cornyn lost renomination, becoming the first sitting Republican senator from Texas to do so since 1970"
+      },
+      {
+        "text": "Paxton will face James Talarico in the November general election"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

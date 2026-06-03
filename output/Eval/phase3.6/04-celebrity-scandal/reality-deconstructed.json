@@ -1,0 +1,166 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "YouTuber arrested over alleged AI-fabricated claims against Kim Soo-hyun",
+    "description": "Seoul police secured an arrest warrant for the operator of a channel with nearly one million subscribers who allegedly used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. Prosecutors say the influencer knew the relationship began only when she was an adult but spread false claims for financial gain. The scandal had halted the star's endorsements and public appearances since early 2025.",
+    "pub_time": "2026-05-27T09:00:00+09:00",
+    "source_name": "BBC News",
+    "url": "https://www.bbc.co.uk/news/articles/c759y6pvezgo"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-27T09:00:00+09:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026-05-27T09:00:00+09:00"
+      ],
+      "relative": [
+        "since early 2025"
+      ],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "ongoing since early 2025"
+      ],
+      "recurrence": [],
+      "modality": [
+        "已发生：逮捕令签发",
+        "假设：AI伪造指控"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Seoul",
+        "tags": [
+          "Seoul",
+          "South Korea",
+          "东亚",
+          "城市"
+        ],
+        "geocode": {
+          "country": "South Korea",
+          "state": null,
+          "city": "Seoul",
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "东亚",
+        "scene_archetype": [
+          "司法机构",
+          "数字媒体"
+        ],
+        "role": [
+          "发生地",
+          "司法管辖地"
+        ],
+        "intended_destination": null,
+        "scale": "城市级",
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "operator of a channel with nearly one million subscribers",
+        "tags": [
+          "YouTuber",
+          "influencer",
+          "content creator"
+        ],
+        "role_in_event": [
+          "发起·决策",
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Kim Soo-hyun",
+        "tags": [
+          "actor",
+          "celebrity"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": [
+          "alleged to have dated late co-star while she was a minor"
+        ]
+      },
+      {
+        "text": "late co-star",
+        "tags": [
+          "co-star",
+          "deceased"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": [
+          "alleged dating relationship with Kim Soo-hyun"
+        ]
+      },
+      {
+        "text": "Prosecutors",
+        "tags": [
+          "legal authority",
+          "prosecutor"
+        ],
+        "role_in_event": [
+          "见证·旁观"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Seoul police",
+        "tags": [
+          "police",
+          "law enforcement"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "spread false claims for financial gain"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "YouTuber allegedly used AI-generated audio and manipulated chat screenshots to claim actor dated late co-star while she was a minor"
+      },
+      {
+        "step": 2,
+        "text": "Scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025"
+      },
+      {
+        "step": 3,
+        "text": "Seoul police secured an arrest warrant for the YouTuber"
+      }
+    ],
+    "result": [
+      {
+        "text": "Seoul police secured arrest warrant for YouTuber"
+      },
+      {
+        "text": "Kim Soo-hyun's endorsements and public appearances halted since early 2025"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}
