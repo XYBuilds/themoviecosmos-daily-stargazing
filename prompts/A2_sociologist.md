@@ -33,7 +33,7 @@ From the deconstruction JSON:
 
 * `prompts/_shared/deentification_rules.md`
 * `prompts/_shared/output_contract.md`
-* `prompts/_shared/multi_pseudo_output_contract.md` (**JSON output, 3 pseudos**)
+* `prompts/_shared/multi_pseudo_output_contract.md` (**JSON output, 1–3 pseudos**)
 
 ## Examples (few-shot · lens, not paraphrase)
 
@@ -43,7 +43,7 @@ From the deconstruction JSON:
 
 ## Current Task
 
-Read the **reality deconstruction JSON** below. Produce **3** sociological pseudo-overviews as JSON (`p1`–`p3`).
+Read the **reality deconstruction JSON** below. Produce **1–3** sociological pseudo-overviews as JSON (`p1`–`p3` as needed).
 
 Each pseudo must **read as structural analysis**, not a neutral recap.
 

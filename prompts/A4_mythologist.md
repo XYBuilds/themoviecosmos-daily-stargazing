@@ -16,7 +16,7 @@ You are a mythologist. Every contemporary event, in your eyes, is a present-day 
 
 From the deconstruction JSON:
 
-* **3 pseudos**, each from a **different** fragment bundle.
+* **1–3 pseudos**, each from a **different** fragment bundle when you write more than one.
 * **How**: only contiguous `how-*` steps per pseudo.
 * In `source.fragments`, list **only** `why-*` / `how-*` / `result-*` ids.
 * Solemn, cyclic time; words like "destined," "foreordained," "already."
@@ -30,11 +30,11 @@ From the deconstruction JSON:
 
 * `prompts/_shared/deentification_rules.md`
 * `prompts/_shared/output_contract.md`
-* `prompts/_shared/multi_pseudo_output_contract.md` (**JSON output, 3 pseudos**)
+* `prompts/_shared/multi_pseudo_output_contract.md` (**JSON output, 1–3 pseudos**)
 
 ## Current Task
 
-Read the **reality deconstruction JSON** below. Produce **3** mythological pseudo-overviews as JSON (`p1`–`p3`).
+Read the **reality deconstruction JSON** below. Produce **1–3** mythological pseudo-overviews as JSON (`p1`–`p3` as needed).
 
 Each pseudo must **feel fated/archetypal**, not like a wire rewrite.
 

@@ -1,7 +1,7 @@
 """agents.py · Multi-agent writers' room (pseudo-overview).
 
 Loads A1/A2/A4/A7 persona prompts, injects reality-deconstructed JSON, and calls the
-LLM concurrently. Each agent returns 3 pseudos with fragment provenance.
+LLM concurrently. Each agent returns 1–3 pseudos with fragment provenance.
 
 MVP scope: persona load, template render, async LLM, JSON parse, post-processing,
 and CLI.
@@ -85,8 +85,12 @@ _JSON_FENCE_RE = re.compile(
 
 MIN_WORDS_SHORT = 40
 MAX_WORDS = 120
-EXPECTED_PSEUDO_COUNT = 3
-EXPECTED_PSEUDO_IDS: tuple[str, ...] = ("p1", "p2", "p3")
+MIN_PSEUDO_COUNT = 1
+MAX_PSEUDO_COUNT = 3
+VALID_PSEUDO_IDS: tuple[str, ...] = ("p1", "p2", "p3")
+# Backward-compatible aliases (Phase 3.5 callers/tests)
+EXPECTED_PSEUDO_COUNT = MAX_PSEUDO_COUNT
+EXPECTED_PSEUDO_IDS = VALID_PSEUDO_IDS
 
 _BRAND_WORDS: frozenset[str] = frozenset(
     {
@@ -377,9 +381,9 @@ def parse_pseudos_response(
     rows = data.get("pseudos")
     if not isinstance(rows, list):
         raise ValueError("JSON must contain a 'pseudos' array")
-    if len(rows) != EXPECTED_PSEUDO_COUNT:
+    if len(rows) < MIN_PSEUDO_COUNT or len(rows) > MAX_PSEUDO_COUNT:
         raise ValueError(
-            f"expected {EXPECTED_PSEUDO_COUNT} pseudos, got {len(rows)}"
+            f"expected {MIN_PSEUDO_COUNT}–{MAX_PSEUDO_COUNT} pseudos, got {len(rows)}"
         )
 
     segments: list[PseudoSegment] = []
@@ -388,7 +392,7 @@ def parse_pseudos_response(
         if not isinstance(row, dict):
             raise ValueError("each pseudo must be an object")
         pseudo_id = str(row.get("id", "")).strip()
-        if pseudo_id not in EXPECTED_PSEUDO_IDS:
+        if pseudo_id not in VALID_PSEUDO_IDS:
             raise ValueError(f"invalid pseudo id {pseudo_id!r}")
         if pseudo_id in seen_ids:
             raise ValueError(f"duplicate pseudo id {pseudo_id!r}")
@@ -434,11 +438,7 @@ def parse_pseudos_response(
             )
         )
 
-    if seen_ids != set(EXPECTED_PSEUDO_IDS):
-        missing = set(EXPECTED_PSEUDO_IDS) - seen_ids
-        raise ValueError(f"missing pseudo ids: {sorted(missing)}")
-
-    segments.sort(key=lambda p: EXPECTED_PSEUDO_IDS.index(p.id))
+    segments.sort(key=lambda p: VALID_PSEUDO_IDS.index(p.id))
     return segments
 
 
