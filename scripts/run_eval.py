@@ -177,7 +177,7 @@ def _format_agent_markdown(
     lines = [
         f"# {agent_id} · {persona} · {run_id}{baseline_note}",
         "",
-        "## 伪剧情（英文 · 3 pseudos）",
+        "## 伪剧情（英文 · 1–3 pseudos）",
     ]
     if output.error:
         lines.append(f"*(error: {output.error})*")

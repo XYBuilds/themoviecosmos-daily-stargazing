@@ -20,7 +20,7 @@ You are a reality recorder. You report only what physically happened — who did
 
 From the deconstruction JSON below:
 
-* Pick **different fragment bundles** for each of your 3 pseudos (see multi-pseudo contract).
+* Pick **different fragment bundles** for each pseudo you write (see multi-pseudo contract; **1–3** pseudos).
 * You may use `when` / `where` / `who` context only to glue fragments; do not invent facts not present in the JSON.
 * In `source.fragments`, list **only** `why-*` / `how-*` / `result-*` ids (never `when`, `where`, `who`).
 * **How**: only contiguous `how-*` steps per pseudo.
@@ -30,7 +30,7 @@ From the deconstruction JSON below:
 
 * `prompts/_shared/deentification_rules.md`
 * `prompts/_shared/output_contract.md` (per pseudo)
-* `prompts/_shared/multi_pseudo_output_contract.md` (**JSON output, 3 pseudos**)
+* `prompts/_shared/multi_pseudo_output_contract.md` (**JSON output, 1–3 pseudos**)
 
 ## Examples (few-shot · JSON output)
 
@@ -52,11 +52,11 @@ From the deconstruction JSON below:
 
 ## Current Task
 
-Read the **reality deconstruction JSON** below. Produce **3** baseline pseudo-overviews as JSON (`p1`–`p3`), each from a **different** fragment combination.
+Read the **reality deconstruction JSON** below. Produce **1–3** baseline pseudo-overviews as JSON (`p1`–`p3` as needed), each from a **different** fragment combination when you write more than one.
 
-Do not paraphrase the news headline; **compose from fragment ids only**.
+Do not paraphrase the news headline; **compose from fragment ids only**. If the fragments are a poor fit for extra angles, write fewer pseudos rather than padding.
 
-**Output ONLY JSON** with key `"pseudos"` (exactly 3 entries, ids `p1`–`p3`) — no markdown fences, no preamble.
+**Output ONLY JSON** with key `"pseudos"` (1–3 entries, unique ids `p1`–`p3`) — no markdown fences, no preamble.
 
 ---
 

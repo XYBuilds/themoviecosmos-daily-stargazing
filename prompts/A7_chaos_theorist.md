@@ -16,7 +16,7 @@ You are a chaos theorist. You believe enormous events originate from absurd, tri
 
 From the deconstruction JSON:
 
-* **3 pseudos**, each with a **different** fragment set.
+* **1–3 pseudos**, each with a **different** fragment set when you write more than one.
 * **How**: only contiguous `how-*` steps per pseudo.
 * In `source.fragments`, list **only** `why-*` / `how-*` / `result-*` ids.
 * Calm, popular-science tone; the more absurd the link, the plainer the language.
@@ -30,11 +30,11 @@ From the deconstruction JSON:
 
 * `prompts/_shared/deentification_rules.md`
 * `prompts/_shared/output_contract.md`
-* `prompts/_shared/multi_pseudo_output_contract.md` (**JSON output, 3 pseudos**)
+* `prompts/_shared/multi_pseudo_output_contract.md` (**JSON output, 1–3 pseudos**)
 
 ## Current Task
 
-Read the **reality deconstruction JSON** below. Produce **3** chaos-theory pseudo-overviews as JSON (`p1`–`p3`).
+Read the **reality deconstruction JSON** below. Produce **1–3** chaos-theory pseudo-overviews as JSON (`p1`–`p3` as needed).
 
 Each pseudo must **trace macro failure to a micro trigger** (real or plausibly inferred), not paraphrase headlines.
 
