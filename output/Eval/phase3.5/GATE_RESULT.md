@@ -1,9 +1,9 @@
 # Phase 3.5 闸门结论 · The Bet（新管线重跑）
 
 - **日期**：2026-06-02
-- **批次**：N=10（`tests/eval_news/01`–`10` → `output/Eval/{run_id}/`）
+- **批次**：N=10（`tests/eval_news/01`–`10` → `output/Eval/phase3.5/{run_id}/`）
 - **管线**：`deconstruct.py` → `agents.py`（多段 pseudo）→ `retrieve.py`（聚合 + containment）→ `run_eval.py` → 总编评分 / 辅助审阅
-- **脚本自动结论**：`python scripts/summarize_eval.py --dir output/Eval` → **GATE_FAIL**（共振分未系统填完，见下）
+- **脚本自动结论**：`python scripts/summarize_eval.py --dir output/Eval/phase3.5` → **GATE_FAIL**（共振分未系统填完，见下）
 - **产品裁决（总编 / 人工验收）**：**GATE_FAIL（发布）** — 新管线**效果明显提升**，方向验证成立，但**尚未达到发布标准**
 
 ---
@@ -54,7 +54,7 @@
 |------|------|
 | `candidates.md` · **共振分** | **未系统填写**（184 个候选 `missing`；`summarize_eval` 自动 GATE_FAIL） |
 | `candidates.md` · **共振类型** | 同上（闸门第 2 条 structural 口径未启用） |
-| **pseudo命中分** | 已由 `scripts/score_eval_candidates.py` 写入各 run；`output/Eval/high-hit-score-review.md`（≥5 分，91 候选） |
+| **pseudo命中分** | 已由 `scripts/score_eval_candidates.py` 写入各 run；`output/Eval/phase3.5/high-hit-score-review.md`（≥5 分，91 候选） |
 | **multi-agent-hits-review.md** | 多 agent 专审（≥2 agents） |
 
 **本 GATE 结论性质**：在 `summarize_eval` 未完整填分的前提下，结论为 **editorial + product judgment（人工验收）**，辅以命中分审阅与管线肉眼验收；不以脚本输出 alone 作为发布通过依据。
