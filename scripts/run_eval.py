@@ -29,6 +29,7 @@ from scripts.agents import (
     run_all,
 )
 from scripts.deconstruct import render_deconstruction_md, run_deconstruct
+from scripts.eval_editor_fields import append_resonance_editor_lines
 from scripts.retrieve import retrieve_from_agents
 
 _PSEUDO_ORDER: tuple[str, ...] = RUN_ORDER
@@ -199,8 +200,7 @@ def _format_candidate_block(cand: dict[str, Any], *, include_score: bool) -> lis
                 f"fragments=[{frag_note}] · sim={sim_note}"
             )
     if include_score:
-        lines.append("- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->")
-        lines.append("- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->")
+        append_resonance_editor_lines(lines)
     return lines
 
 

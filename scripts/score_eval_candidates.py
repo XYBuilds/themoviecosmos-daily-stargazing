@@ -21,6 +21,7 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from scripts.eval_batch_manifest import load_manifest
+from scripts.eval_editor_fields import ensure_scoring_remark_in_block
 _EVAL_ROOT = _REPO_ROOT / "output" / "Eval"
 _LEGACY_HIGH_HIT_REVIEW = _EVAL_ROOT / "high-hit-score-review.md"
 _MIN_TOTAL_SCORE = 5
@@ -220,7 +221,7 @@ def _patch_candidate_block(
     text = "\n".join(out)
     if text and not text.endswith("\n"):
         text += "\n"
-    return text
+    return ensure_scoring_remark_in_block(text)
 
 
 def score_candidates_md(
@@ -384,7 +385,7 @@ def _format_high_hit_review(
         "### Sources",
         "",
         "- **Primary:** `hit_sources` in each run's `retrieve.json` (fragment arrays).",
-        "- **Editor fields:** 共振分 / 共振类型 are placeholders only (not filled by this script).",
+        "- **Editor fields:** 共振分 / 共振类型 / 打分备注 are placeholders only (not filled by this script).",
         "",
         f"- **Generation date:** {today}",
         f"- **Total candidates (≥{min_score}):** {total_candidates}",

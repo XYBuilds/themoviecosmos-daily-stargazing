@@ -6,6 +6,7 @@ import re
 import unittest
 from pathlib import Path
 
+from scripts.eval_editor_fields import SCORING_REMARK_PLACEHOLDER
 from scripts.score_eval_candidates import (
     _format_high_hit_review,
     _is_multi_agent_hit,
@@ -100,6 +101,19 @@ class HighHitReviewFormatTests(unittest.TestCase):
             for m in re.finditer(r"<!-- pseudo命中分合计: (\d+) -->", multi_block)
         ]
         self.assertEqual(multi_scores, sorted(multi_scores, reverse=True))
+
+    def test_scoring_remark_after_resonance_type_in_review(self):
+        self.assertIn(f"- **打分备注**: {SCORING_REMARK_PLACEHOLDER}", self.review)
+        type_positions = [
+            m.start() for m in re.finditer(r"^- \*\*共振类型\*\*:", self.review, re.MULTILINE)
+        ]
+        remark_positions = [
+            m.start() for m in re.finditer(r"^- \*\*打分备注\*\*:", self.review, re.MULTILINE)
+        ]
+        self.assertGreater(len(type_positions), 0)
+        self.assertEqual(len(type_positions), len(remark_positions))
+        for t_pos, r_pos in zip(type_positions, remark_positions, strict=True):
+            self.assertLess(t_pos, r_pos)
 
 
 if __name__ == "__main__":
