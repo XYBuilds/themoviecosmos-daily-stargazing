@@ -104,6 +104,25 @@ output/Eval/{run_id}/
 
 **成本提示**：每条新闻 ≈ **1 次解构 + 4×3 段 pseudo** LLM + 多段向量检索；10 条 ≈ 10× 上述开销。
 
+### 3.1.1 Phase 3.6.5 并行批量（`run_eval_batch.ps1`）
+
+Phase 3.6 重跑须写入 **`output/Eval/phase3.6/{run_id}/`**（勿用默认 `output/Eval/{run_id}/`，以免覆盖 3.5.6 对照）。推荐用批量脚本（PowerShell 7+）：
+
+```powershell
+pwsh -NoProfile -File scripts/run_eval_batch.ps1 -WhatIf   # 预览（需 PowerShell 7+）
+pwsh -NoProfile -File scripts/run_eval_batch.ps1             # 正式 N=10
+```
+
+| 项 | 说明 |
+| --- | --- |
+| 并行度 | `ForEach-Object -Parallel`，默认 **ThrottleLimit 3** |
+| 抖动 | 每任务开始前随机 sleep **5–15s**（减轻 429） |
+| 日志 | `output/Eval/phase3.6/_logs/{run_id}.log` |
+| 命中分 | 仅当 **10/10 成功** 后自动：`score_eval_candidates.py --dir output/Eval/phase3.6 --review-out output/Eval/phase3.6/high-hit-score-review.md` |
+| 重试 | `-RetryFailed`：读 `_logs/batch-summary.json` 中失败项，**K=4**；或 `-RunIds 02-corporate-layoff,05-climate-disaster` |
+
+**环境**：`.env`（`DEFAULT_LLM_PROVIDER`、对应 API key）、`python scripts/smoke_llm.py`、Phase 2 索引就绪（§1）。详见 `output/Eval/README.md`。
+
 ### 3.4 Pseudo 命中分（审阅辅助，非闸门）
 
 闸门前可用脚本把 `retrieve.json` 的碎片命中写成 `candidates.md` 内的 **命中分** / **pseudo命中分合计**，并生成全批次 `high-hit-score-review.md`（默认阈值 ≥5）：

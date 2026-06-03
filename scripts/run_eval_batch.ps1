@@ -267,7 +267,7 @@ if ($fullBatchOk) {
 if ($failed.Count -gt 0) {
     Write-Host ""
     Write-Host "Retry failures only (K=4):"
-    Write-Host "  powershell -File scripts/run_eval_batch.ps1 -RetryFailed"
+    Write-Host "  pwsh -File scripts/run_eval_batch.ps1 -RetryFailed"
     exit 1
 }
 
