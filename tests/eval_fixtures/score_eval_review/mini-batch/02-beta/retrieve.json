@@ -1,0 +1,23 @@
+{
+  "candidates": [
+    {
+      "tmdb_id": 300,
+      "title": "Beta Multi",
+      "quality_candidate": false,
+      "hit_sources": [
+        {
+          "agent_id": "A4",
+          "pseudo_id": "p1",
+          "fragments": ["a", "b", "c", "d", "e", "f", "g"],
+          "similarity": 0.45
+        },
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p1",
+          "fragments": ["x", "y"],
+          "similarity": 0.42
+        }
+      ]
+    }
+  ]
+}

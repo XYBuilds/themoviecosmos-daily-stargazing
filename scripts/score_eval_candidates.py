@@ -17,6 +17,10 @@ from pathlib import Path
 from typing import Any
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
+from scripts.eval_batch_manifest import load_manifest
 _EVAL_ROOT = _REPO_ROOT / "output" / "Eval"
 _LEGACY_HIGH_HIT_REVIEW = _EVAL_ROOT / "high-hit-score-review.md"
 _MIN_TOTAL_SCORE = 5
@@ -55,14 +59,43 @@ class ScoredCandidate:
     agents: list[str]
     total_score: int
     block_text: str
+    is_multi_agent: bool = False
     per_agent: dict[str, int] = field(default_factory=dict)
 
 
-def _load_hit_scores(retrieve_path: Path) -> dict[int, list[HitScore]]:
+@dataclass
+class RunHighHitReview:
+    run_id: str
+    reality_text: str
+    multi_agent: list[ScoredCandidate] = field(default_factory=list)
+    single_agent: list[ScoredCandidate] = field(default_factory=list)
+
+
+def _agents_from_hit_sources(hits: list[HitScore]) -> list[str]:
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for h in hits:
+        aid = h.agent_id.upper()
+        if aid and aid not in seen:
+            seen.add(aid)
+            ordered.append(aid)
+    return ordered
+
+
+def _is_multi_agent_hit(*, quality_candidate: bool, agents: list[str]) -> bool:
+    """D1 bucketing aligned with run_eval / retrieve quality_candidate."""
+    if quality_candidate:
+        return True
+    return len(agents) >= 2
+
+
+def _load_retrieve_meta(retrieve_path: Path) -> tuple[dict[int, list[HitScore]], dict[int, bool]]:
     data = json.loads(retrieve_path.read_text(encoding="utf-8"))
-    by_tmdb: dict[int, list[HitScore]] = {}
+    hits_by_tmdb: dict[int, list[HitScore]] = {}
+    quality_by_tmdb: dict[int, bool] = {}
     for cand in data.get("candidates") or []:
         tmdb_id = int(cand["tmdb_id"])
+        quality_by_tmdb[tmdb_id] = bool(cand.get("quality_candidate"))
         hits: list[HitScore] = []
         for src in cand.get("hit_sources") or []:
             frags = list(src.get("fragments") or [])
@@ -76,8 +109,13 @@ def _load_hit_scores(retrieve_path: Path) -> dict[int, list[HitScore]]:
                     score=len(frags),
                 )
             )
-        by_tmdb[tmdb_id] = hits
-    return by_tmdb
+        hits_by_tmdb[tmdb_id] = hits
+    return hits_by_tmdb, quality_by_tmdb
+
+
+def _load_hit_scores(retrieve_path: Path) -> dict[int, list[HitScore]]:
+    hits_by_tmdb, _ = _load_retrieve_meta(retrieve_path)
+    return hits_by_tmdb
 
 
 def _hit_key(agent_id: str, pseudo_id: str) -> tuple[str, str]:
@@ -189,6 +227,7 @@ def score_candidates_md(
     candidates_path: Path,
     hits_by_tmdb: dict[int, list[HitScore]],
     *,
+    quality_by_tmdb: dict[int, bool] | None = None,
     min_total_score: int = _MIN_TOTAL_SCORE,
 ) -> tuple[str, list[ScoredCandidate]]:
     text = candidates_path.read_text(encoding="utf-8")
@@ -228,7 +267,9 @@ def score_candidates_md(
 
         agents = _agents_from_heading(heading)
         if not agents and hits:
-            agents = sorted({h.agent_id for h in hits})
+            agents = _agents_from_hit_sources(hits)
+        quality = (quality_by_tmdb or {}).get(tmdb_id, False)
+        is_multi = _is_multi_agent_hit(quality_candidate=quality, agents=agents)
         if total >= min_total_score:
             scored.append(
                 ScoredCandidate(
@@ -238,6 +279,7 @@ def score_candidates_md(
                     agents=agents,
                     total_score=total,
                     block_text=patched.rstrip(),
+                    is_multi_agent=is_multi,
                     per_agent=_per_agent_totals(hits),
                 )
             )
@@ -251,13 +293,68 @@ def score_candidates_md(
     return new_text, scored
 
 
+def _sort_scored(candidates: list[ScoredCandidate]) -> list[ScoredCandidate]:
+    return sorted(candidates, key=lambda c: (-c.total_score, c.tmdb_id))
+
+
+def _read_reality(run_dir: Path) -> str:
+    reality_path = run_dir / "reality.md"
+    if reality_path.is_file():
+        return reality_path.read_text(encoding="utf-8").strip()
+    return "_No `reality.md` for this run._"
+
+
+def _split_multi_single(high: list[ScoredCandidate]) -> tuple[list[ScoredCandidate], list[ScoredCandidate]]:
+    multi = [c for c in high if c.is_multi_agent]
+    single = [c for c in high if not c.is_multi_agent]
+    return _sort_scored(multi), _sort_scored(single)
+
+
+def _append_candidate_blocks(lines: list[str], candidates: list[ScoredCandidate]) -> None:
+    for c in candidates:
+        lines.extend(
+            [
+                f"<!-- run_id: {c.run_id} -->",
+                f"<!-- pseudo命中分合计: {c.total_score} -->",
+                c.block_text,
+                "",
+            ]
+        )
+
+
+def _ordered_run_dirs(eval_dir: Path, manifest_path: Path | None = None) -> list[Path]:
+    """Run folders in batch-manifest order, then any extras alphabetically."""
+    try:
+        manifest_ids = load_manifest(manifest_path)
+    except (OSError, json.JSONDecodeError, ValueError):
+        manifest_ids = []
+
+    dirs_by_name = {
+        p.name: p
+        for p in eval_dir.iterdir()
+        if p.is_dir() and (p / "candidates.md").is_file()
+    }
+    ordered: list[Path] = []
+    seen: set[str] = set()
+    for run_id in manifest_ids:
+        if run_id in dirs_by_name:
+            ordered.append(dirs_by_name[run_id])
+            seen.add(run_id)
+    for name in sorted(dirs_by_name):
+        if name not in seen:
+            ordered.append(dirs_by_name[name])
+    if not ordered:
+        return sorted(dirs_by_name.values(), key=lambda p: p.name)
+    return ordered
+
+
 def _format_high_hit_review(
-    all_scored: list[ScoredCandidate],
+    runs: list[RunHighHitReview],
     *,
     runs_scanned: int,
     min_score: int = _MIN_TOTAL_SCORE,
 ) -> str:
-    all_scored.sort(key=lambda c: (-c.total_score, c.run_id, c.tmdb_id))
+    total_candidates = sum(len(r.multi_agent) + len(r.single_agent) for r in runs)
     today = date.today().isoformat()
     lines = [
         "# High Pseudo Hit Score — Unified Review",
@@ -276,44 +373,49 @@ def _format_high_hit_review(
         "- **Candidate 总分** (`pseudo命中分合计`) = sum of pseudo 命中分 across all hit lines.",
         "- Shown inline per line, e.g. `A2/p1: fragments=[...] · sim=... · **命中分=3**`.",
         "",
+        "### Per-news layout",
+        "",
+        "- News sections follow `tests/eval_news/batch-manifest.json` order (01–10).",
+        "- Each section opens with that run's `reality.md`.",
+        "- **多 agents 命中**: `quality_candidate` or ≥2 agents in heading / hit_sources.",
+        "- **单 agent 命中**: all other high-hit candidates.",
+        "- Within each subsection, sort by **pseudo命中分合计** descending.",
+        "",
         "### Sources",
         "",
         "- **Primary:** `hit_sources` in each run's `retrieve.json` (fragment arrays).",
         "- **Editor fields:** 共振分 / 共振类型 are placeholders only (not filled by this script).",
         "",
         f"- **Generation date:** {today}",
-        f"- **Total candidates (≥{min_score}):** {len(all_scored)}",
+        f"- **Total candidates (≥{min_score}):** {total_candidates}",
         f"- **Runs scanned:** {runs_scanned}",
         "",
-        "## Summary table (sorted by pseudo命中分合计 ↓)",
-        "",
-        "| rank | run_id | tmdb_id | title | 总分 | agents |",
-        "| ---: | --- | ---: | --- | ---: | --- |",
     ]
-    for rank, c in enumerate(all_scored, start=1):
-        agents = ", ".join(c.agents) if c.agents else "—"
-        title = c.title.replace("|", "\\|")
-        lines.append(
-            f"| {rank} | {c.run_id} | {c.tmdb_id} | {title} | {c.total_score} | {agents} |"
-        )
-    lines.extend(
-        [
-            "",
-            "## Candidates (global sort by pseudo命中分合计 ↓)",
-            "",
-            f"**Count:** {len(all_scored)} candidate(s)",
-            "",
-        ]
-    )
-    for c in all_scored:
+    for run in runs:
+        multi_n = len(run.multi_agent)
+        single_n = len(run.single_agent)
         lines.extend(
             [
-                f"<!-- run_id: {c.run_id} -->",
-                f"<!-- pseudo命中分合计: {c.total_score} -->",
-                c.block_text,
+                f"## {run.run_id}",
+                "",
+                run.reality_text,
+                "",
+                "### 多 agents 命中",
+                "",
+                f"**Count:** {multi_n} candidate(s)",
                 "",
             ]
         )
+        _append_candidate_blocks(lines, run.multi_agent)
+        lines.extend(
+            [
+                "### 单 agent 命中",
+                "",
+                f"**Count:** {single_n} candidate(s)",
+                "",
+            ]
+        )
+        _append_candidate_blocks(lines, run.single_agent)
     return "\n".join(lines) + "\n"
 
 
@@ -322,31 +424,42 @@ def process_eval_dir(
     *,
     write_candidates: bool = True,
     min_total_score: int = _MIN_TOTAL_SCORE,
-) -> tuple[list[ScoredCandidate], list[str], int]:
-    """Score all runs; return high-score candidates and run_ids missing retrieve.json."""
+    manifest_path: Path | None = None,
+) -> tuple[list[RunHighHitReview], list[ScoredCandidate], list[str], int]:
+    """Score all runs; return per-run review rows, flat high list, missing retrieve ids."""
     missing_retrieve: list[str] = []
     all_high: list[ScoredCandidate] = []
+    run_reviews: list[RunHighHitReview] = []
     runs_scanned = 0
 
-    run_dirs = sorted(
-        p for p in eval_dir.iterdir() if p.is_dir() and (p / "candidates.md").is_file()
-    )
-    for run_dir in run_dirs:
+    for run_dir in _ordered_run_dirs(eval_dir, manifest_path):
         retrieve_path = run_dir / "retrieve.json"
         candidates_path = run_dir / "candidates.md"
         if not retrieve_path.is_file():
             missing_retrieve.append(run_dir.name)
             continue
         runs_scanned += 1
-        hits_by_tmdb = _load_hit_scores(retrieve_path)
+        hits_by_tmdb, quality_by_tmdb = _load_retrieve_meta(retrieve_path)
         new_text, high = score_candidates_md(
-            candidates_path, hits_by_tmdb, min_total_score=min_total_score
+            candidates_path,
+            hits_by_tmdb,
+            quality_by_tmdb=quality_by_tmdb,
+            min_total_score=min_total_score,
         )
         if write_candidates:
             candidates_path.write_text(new_text, encoding="utf-8")
+        multi, single = _split_multi_single(high)
+        run_reviews.append(
+            RunHighHitReview(
+                run_id=run_dir.name,
+                reality_text=_read_reality(run_dir),
+                multi_agent=multi,
+                single_agent=single,
+            )
+        )
         all_high.extend(high)
 
-    return all_high, missing_retrieve, runs_scanned
+    return run_reviews, all_high, missing_retrieve, runs_scanned
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -389,13 +502,13 @@ def main(argv: list[str] | None = None) -> int:
     )
     if not review_path.is_absolute():
         review_path = _REPO_ROOT / review_path
-    all_high, missing, runs_scanned = process_eval_dir(
+    run_reviews, all_high, missing, runs_scanned = process_eval_dir(
         eval_dir,
         write_candidates=not args.dry_run,
         min_total_score=args.min_score,
     )
     review_text = _format_high_hit_review(
-        all_high, runs_scanned=runs_scanned, min_score=args.min_score
+        run_reviews, runs_scanned=runs_scanned, min_score=args.min_score
     )
     if not args.dry_run:
         review_path.parent.mkdir(parents=True, exist_ok=True)
