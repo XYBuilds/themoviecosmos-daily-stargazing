@@ -62,7 +62,7 @@ class ExpandQueriesTests(unittest.TestCase):
 
 class ContainmentTests(unittest.TestCase):
     def test_caps_candidate_list(self) -> None:
-        items = [{"tmdb_id": i, "similarity": 1.0 - i * 0.01} for i in range(30)]
+        items = [{"tmdb_id": i, "similarity": 1.0 - i * 0.01, "quality_candidate": False} for i in range(30)]
         capped = _apply_containment(items, max_candidates=19)
         self.assertEqual(len(capped), 19)
         self.assertEqual(capped[0]["tmdb_id"], 0)
@@ -122,6 +122,12 @@ class RetrieveAggregateTests(unittest.TestCase):
         self.assertIn("A2", movie_a["triggered_by"])
         self.assertNotIn("A1", movie_a["triggered_by"])
         self.assertTrue(any(h["agent_id"] == "A2" for h in movie_a["hit_sources"]))
+
+        self.assertIn("quality_candidate", movie_a)
+        self.assertIn("distinct_agents", movie_a)
+        self.assertIn("quality_reason", movie_a)
+        self.assertEqual(movie_a["distinct_agents"], 1)
+        self.assertFalse(movie_a["quality_candidate"])
 
         per_a2 = next(p for p in result["per_agent"] if p["agent_id"] == "A2")
         self.assertEqual(len(per_a2["pseudos"]), 2)
