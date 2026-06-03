@@ -10,7 +10,7 @@ todos:
     status: completed
   - id: f36b1c2d-0001-4000-8036-000000000003
     content: 3.6.3 · run_eval/score：candidates.md 优质标记与排序、heading 列全 agent、命中分降二级（依赖 3.6.2）
-    status: pending
+    status: completed
   - id: f36b1c2d-0001-4000-8036-000000000004
     content: 3.6.4 · summarize_eval：闸门改 multi-agent vs single-agent + structural_2_rate 对比 + 单测（依赖 3.6.2）
     status: completed
@@ -154,8 +154,8 @@ flowchart LR
 
 ### 验收
 
-- [ ] 单条 `run_eval` 产出 `candidates.md`：优质候选可见标记；heading agent 列表含 A1
-- [ ] `score_eval_candidates.py` 仍可从 `hit_sources` 写命中分
+- [x] 单条 `run_eval` 产出 `candidates.md`：优质候选可见标记；heading agent 列表含 A1
+- [x] `score_eval_candidates.py` 仍可从 `hit_sources` 写命中分
 
 ---
 
