@@ -1,4 +1,9 @@
-"""score_eval_candidates.py · Pseudo hit scores from retrieve.json → candidates.md + high-hit review."""
+"""score_eval_candidates.py · Pseudo hit scores from retrieve.json → candidates.md + high-hit review.
+
+pseudo命中分 is a **secondary review/sort key** (ADR-0003 D1): it helps editors triage
+candidates but does **not** gate quality_candidate or eval summarize gates. 共振分 remains
+the primary human score for publish gates.
+"""
 
 from __future__ import annotations
 
@@ -92,18 +97,23 @@ def _infer_run_id(candidates_path: Path, text: str) -> str:
 
 
 def _agents_from_heading(heading: str) -> list[str]:
-    match = _AGENTS_TAG.search(heading)
-    if not match:
-        return []
-    tag = match.group(1).strip()
-    if re.search(r"baseline\s+only", tag, re.IGNORECASE):
-        return []
-    return [p.strip() for p in tag.split(",") if p.strip()]
+    for match in _AGENTS_TAG.finditer(heading):
+        tag = match.group(1).strip()
+        if re.search(r"baseline\s+only", tag, re.IGNORECASE):
+            continue
+        if "优质" in tag or "多agent" in tag:
+            continue
+        return [p.strip() for p in tag.split(",") if p.strip()]
+    return []
 
 
 def _title_from_heading(heading: str) -> str:
     raw = heading.strip()
-    raw = re.sub(r"\s*\[[^\]]*\]\s*$", "", raw)
+    while True:
+        stripped = re.sub(r"\s*\[[^\]]*\]\s*$", "", raw)
+        if stripped == raw:
+            break
+        raw = stripped
     return re.sub(r"\s*\(\d{4}\)\s*$", "", raw).strip()
 
 
@@ -248,10 +258,11 @@ def _format_high_hit_review(
         "",
         "## Criteria",
         "",
-        "### Pseudo 命中分（准入）",
+        "### Pseudo 命中分（二级审阅键 · 非质量闸）",
         "",
-        f"Candidate **enters this review** when **pseudo命中分合计 ≥ {min_score}**",
-        "(single-agent hits included; multi-agent filter does not apply).",
+        f"**High-hit review** lists candidates with **pseudo命中分合计 ≥ {min_score}**",
+        "as an editor triage aid. Inclusion here is **not** a quality gate; D1",
+        "`quality_candidate` (≥2 agents above floor) is computed in retrieve/run_eval.",
         "",
         "For each hit line under **命中视角/碎片**, count entries in `fragments=[...]`",
         "— **each fragment id = 1 point** for that pseudo.",

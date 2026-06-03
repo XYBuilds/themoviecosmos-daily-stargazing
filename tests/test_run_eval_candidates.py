@@ -1,0 +1,153 @@
+"""Unit tests for Phase 3.6.3 run_eval candidate display (headings, quality, sort)."""
+
+from __future__ import annotations
+
+import unittest
+
+from scripts.run_eval import (
+    _candidate_heading,
+    _format_candidate_block,
+    _format_candidates_markdown,
+    _pseudo_hit_total,
+    _sort_candidates_for_display,
+)
+from scripts.score_eval_candidates import _agents_from_heading, _title_from_heading
+
+
+class CandidateHeadingTests(unittest.TestCase):
+    def test_heading_lists_all_hit_agents_including_a1(self) -> None:
+        cand = {
+            "title": "Shared Movie",
+            "release_year": 2020,
+            "quality_candidate": True,
+            "hit_sources": [
+                {"agent_id": "A2", "pseudo_id": "p1", "fragments": ["f1"]},
+                {"agent_id": "A1", "pseudo_id": "p1", "fragments": ["f2"]},
+            ],
+        }
+        heading = _candidate_heading(cand)
+        self.assertIn("[A2, A1]", heading)
+        self.assertIn("[优质·多agent]", heading)
+        self.assertNotIn("baseline only", heading)
+
+    def test_single_agent_heading_no_quality_tag(self) -> None:
+        cand = {
+            "title": "Solo",
+            "quality_candidate": False,
+            "also_baseline": True,
+            "hit_sources": [{"agent_id": "A1", "pseudo_id": "p1", "fragments": []}],
+        }
+        heading = _candidate_heading(cand)
+        self.assertIn("[A1]", heading)
+        self.assertNotIn("优质", heading)
+        self.assertNotIn("baseline only", heading)
+
+    def test_format_block_includes_quality_field(self) -> None:
+        cand = {
+            "title": "X",
+            "tmdb_id": 42,
+            "quality_candidate": True,
+            "distinct_agents": 2,
+            "similarity": 0.9,
+            "genres": "drama",
+            "language": "en",
+            "overview": "test",
+            "movie_url": "http://x",
+            "also_baseline": False,
+            "hit_sources": [],
+        }
+        text = "\n".join(_format_candidate_block(cand, include_score=False))
+        self.assertIn("- **优质候选**: true", text)
+        self.assertIn("- **distinct_agents**: 2", text)
+
+
+class CandidateSortTests(unittest.TestCase):
+    def test_quality_first_then_pseudo_hit_total(self) -> None:
+        candidates = [
+            {
+                "tmdb_id": 1,
+                "quality_candidate": False,
+                "similarity": 0.99,
+                "hit_sources": [{"fragments": ["a", "b", "c", "d", "e"]}],
+            },
+            {
+                "tmdb_id": 2,
+                "quality_candidate": True,
+                "similarity": 0.50,
+                "hit_sources": [{"fragments": ["a"]}],
+            },
+            {
+                "tmdb_id": 3,
+                "quality_candidate": True,
+                "similarity": 0.40,
+                "hit_sources": [{"fragments": ["a", "b", "c"]}],
+            },
+        ]
+        ordered = _sort_candidates_for_display(candidates)
+        self.assertEqual([c["tmdb_id"] for c in ordered], [3, 2, 1])
+
+    def test_pseudo_hit_total_sums_fragments(self) -> None:
+        cand = {
+            "hit_sources": [
+                {"fragments": ["f1", "f2"]},
+                {"fragments": ["f3"]},
+            ]
+        }
+        self.assertEqual(_pseudo_hit_total(cand), 3)
+
+
+class CandidatesMarkdownTests(unittest.TestCase):
+    def test_markdown_order_matches_sort(self) -> None:
+        md = _format_candidates_markdown(
+            "test-run",
+            [
+                {
+                    "title": "Low Quality High Sim",
+                    "tmdb_id": 1,
+                    "quality_candidate": False,
+                    "distinct_agents": 1,
+                    "similarity": 0.99,
+                    "genres": "",
+                    "language": "en",
+                    "overview": "",
+                    "movie_url": "",
+                    "also_baseline": False,
+                    "hit_sources": [{"agent_id": "A2", "pseudo_id": "p1", "fragments": []}],
+                },
+                {
+                    "title": "Quality Multi",
+                    "release_year": 2019,
+                    "tmdb_id": 2,
+                    "quality_candidate": True,
+                    "distinct_agents": 2,
+                    "similarity": 0.60,
+                    "genres": "",
+                    "language": "en",
+                    "overview": "",
+                    "movie_url": "",
+                    "also_baseline": True,
+                    "hit_sources": [
+                        {"agent_id": "A2", "pseudo_id": "p1", "fragments": ["a"]},
+                        {"agent_id": "A1", "pseudo_id": "p1", "fragments": ["b"]},
+                    ],
+                },
+            ],
+        )
+        quality_pos = md.find("Quality Multi")
+        low_pos = md.find("Low Quality High Sim")
+        self.assertLess(quality_pos, low_pos)
+        self.assertIn("[A2, A1] [优质·多agent]", md)
+
+
+class ScoreEvalHeadingParseTests(unittest.TestCase):
+    def test_agents_from_new_heading_skips_quality_bracket(self) -> None:
+        heading = "Movie (2020) [A1, A2, A4] [优质·多agent]"
+        self.assertEqual(_agents_from_heading(heading), ["A1", "A2", "A4"])
+
+    def test_title_strips_agent_and_quality_brackets(self) -> None:
+        heading = "Movie (2020) [A1, A2] [优质·多agent]"
+        self.assertEqual(_title_from_heading(heading), "Movie")
+
+
+if __name__ == "__main__":
+    unittest.main()

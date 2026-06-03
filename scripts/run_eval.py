@@ -118,26 +118,64 @@ def _format_hit_lines(hit: dict[str, Any]) -> list[str]:
     ]
 
 
+def _agents_from_hit_sources(cand: dict[str, Any]) -> list[str]:
+    """All distinct agent_ids that hit this candidate (A1 included, display order)."""
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for src in cand.get("hit_sources") or []:
+        agent_id = str(src.get("agent_id", "")).upper()
+        if agent_id and agent_id not in seen:
+            seen.add(agent_id)
+            ordered.append(agent_id)
+    order = {aid: idx for idx, aid in enumerate(_PSEUDO_ORDER)}
+    return sorted(ordered, key=lambda aid: order.get(aid, 99))
+
+
+def _pseudo_hit_total(cand: dict[str, Any]) -> int:
+    """Secondary sort key: sum of fragment ids across hit_sources (ADR-0003 D1)."""
+    total = 0
+    for src in cand.get("hit_sources") or []:
+        total += len(src.get("fragments") or [])
+    return total
+
+
+def _sort_candidates_for_display(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Quality-first, then pseudo hit total (secondary), then similarity."""
+    return sorted(
+        candidates,
+        key=lambda c: (
+            -int(bool(c.get("quality_candidate"))),
+            -_pseudo_hit_total(c),
+            -(c.get("similarity") or 0.0),
+            c.get("tmdb_id") or 0,
+        ),
+    )
+
+
 def _candidate_heading(cand: dict[str, Any]) -> str:
     title = cand.get("title") or "Untitled"
     year = cand.get("release_year")
     year_part = f" ({year})" if year is not None else ""
 
-    triggered = cand.get("triggered_by") or []
-    if triggered:
-        bracket = f"[{', '.join(triggered)}]"
-    elif cand.get("also_baseline"):
-        bracket = "[baseline only]"
-    else:
-        bracket = ""
+    agents = _agents_from_hit_sources(cand)
+    suffix_parts: list[str] = []
+    if agents:
+        suffix_parts.append(f"[{', '.join(agents)}]")
+    if cand.get("quality_candidate"):
+        suffix_parts.append("[优质·多agent]")
 
-    suffix = f" {bracket}" if bracket else ""
+    suffix = f" {' '.join(suffix_parts)}" if suffix_parts else ""
     return f"### {title}{year_part}{suffix}"
 
 
 def _format_candidate_block(cand: dict[str, Any], *, include_score: bool) -> list[str]:
     lines = [_candidate_heading(cand)]
     lines.append(f"- **tmdb_id**: {cand.get('tmdb_id', '')}")
+    quality = bool(cand.get("quality_candidate"))
+    lines.append(f"- **优质候选**: {str(quality).lower()}")
+    distinct = cand.get("distinct_agents")
+    if distinct is not None:
+        lines.append(f"- **distinct_agents**: {distinct}")
     sim = cand.get("similarity")
     sim_text = f"{sim:.4f}" if isinstance(sim, (int, float)) else str(sim)
     lines.append(f"- **相似度**: {sim_text}")
@@ -242,7 +280,7 @@ def _format_candidates_markdown(run_id: str, candidates: list[dict[str, Any]]) -
     if not candidates:
         lines.append("（无候选 — agents 可能全部失败或 pseudo 为空）")
     else:
-        for cand in candidates:
+        for cand in _sort_candidates_for_display(candidates):
             lines.append("")
             lines.extend(_format_candidate_block(cand, include_score=True))
     lines.append("")
