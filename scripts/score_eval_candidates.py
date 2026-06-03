@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
@@ -17,8 +18,13 @@ from typing import Any
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 _EVAL_ROOT = _REPO_ROOT / "output" / "Eval"
-_HIGH_HIT_REVIEW = _EVAL_ROOT / "high-hit-score-review.md"
+_LEGACY_HIGH_HIT_REVIEW = _EVAL_ROOT / "high-hit-score-review.md"
 _MIN_TOTAL_SCORE = 5
+
+
+def _default_review_path(eval_dir: Path) -> Path:
+    """Phase-scoped review file; avoids clobbering output/Eval/high-hit-score-review.md."""
+    return eval_dir / "high-hit-score-review.md"
 
 _HIT_LINE = re.compile(
     r"^(\s+-\s+)([A-Z0-9]+)/(p\d+):\s+fragments=\[(.*?)\]\s*·\s*sim=([\d.]+)"
@@ -360,6 +366,15 @@ def main(argv: list[str] | None = None) -> int:
         help="Minimum pseudo命中分合计 for high-hit review (default: 5)",
     )
     parser.add_argument(
+        "--review-out",
+        type=Path,
+        default=None,
+        help=(
+            "High-hit review markdown path (default: <eval-dir>/high-hit-score-review.md). "
+            "Use an explicit path when --dir is not the batch root you want reviewed."
+        ),
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Do not write candidates.md or review file",
@@ -367,6 +382,13 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     eval_dir = args.dir if args.dir.is_absolute() else _REPO_ROOT / args.dir
+    review_path = (
+        args.review_out
+        if args.review_out is not None
+        else _default_review_path(eval_dir)
+    )
+    if not review_path.is_absolute():
+        review_path = _REPO_ROOT / review_path
     all_high, missing, runs_scanned = process_eval_dir(
         eval_dir,
         write_candidates=not args.dry_run,
@@ -376,7 +398,8 @@ def main(argv: list[str] | None = None) -> int:
         all_high, runs_scanned=runs_scanned, min_score=args.min_score
     )
     if not args.dry_run:
-        _HIGH_HIT_REVIEW.write_text(review_text, encoding="utf-8")
+        review_path.parent.mkdir(parents=True, exist_ok=True)
+        review_path.write_text(review_text, encoding="utf-8")
 
     all_high.sort(key=lambda c: (-c.total_score, c.run_id, c.tmdb_id))
     print(f"Runs scanned: {runs_scanned}")
@@ -387,7 +410,13 @@ def main(argv: list[str] | None = None) -> int:
     for c in all_high[:5]:
         print(f"  {c.total_score:3d}  {c.run_id}  {c.tmdb_id}  {c.title}")
     if not args.dry_run:
-        print(f"Wrote {_HIGH_HIT_REVIEW.relative_to(_REPO_ROOT)}")
+        print(f"Wrote {review_path.relative_to(_REPO_ROOT)}")
+        if review_path.resolve() == _LEGACY_HIGH_HIT_REVIEW.resolve():
+            print(
+                "Note: wrote legacy output/Eval/high-hit-score-review.md; "
+                "prefer --dir output/Eval/phase3.6 for phase-scoped review.",
+                file=sys.stderr,
+            )
     return 0
 
 
