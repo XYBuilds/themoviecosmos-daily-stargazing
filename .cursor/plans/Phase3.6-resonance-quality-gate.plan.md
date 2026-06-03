@@ -4,7 +4,7 @@ overview: 落地 ADR-0003 代码层（D1 优质候选、D2 闸门 multi-vs-singl
 todos:
   - id: f36b1c2d-0001-4000-8036-000000000001
     content: 3.6.1 · D4-1 弹性 pseudo：agents.py 放宽 1–3 段 + multi_pseudo_output_contract / AX prompts / run_eval 文案（不引入生成前灵感自评）
-    status: pending
+    status: completed
   - id: f36b1c2d-0001-4000-8036-000000000002
     content: 3.6.2 · retrieve：质量地板 + 广度优先 containment + D1 优质标记（distinct_agents/quality_candidate）+ 单测（依赖 3.6.1）
     status: pending
@@ -119,8 +119,8 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python tests/test_agents_p35.py`（或新增用例）通过：1 段、2 段、3 段 JSON 均可解析
-- [ ] 0 段仍报错；重复 id / 非法 fragment 仍报错
+- [x] `python tests/test_agents_p35.py`（或新增用例）通过：1 段、2 段、3 段 JSON 均可解析
+- [x] 0 段仍报错；重复 id / 非法 fragment 仍报错
 
 ---
 
