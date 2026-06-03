@@ -37,6 +37,7 @@ MODEL_NAME = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 QUERY_TEMPLATE = "Overview: {pseudo}"
 DEFAULT_TOP_K = 2
 DEFAULT_MAX_CANDIDATES = 19
+DEFAULT_QUALITY_FLOOR = 0.40
 DEFAULT_MOVIE_LINK_PREFIX = "https://themoviecosmos.com/movie/"
 
 _AGENT_ORDER: tuple[str, ...] = ("A2", "A4", "A7", "A1")
@@ -284,6 +285,38 @@ def _append_hit_source(
     sources.append(entry)
 
 
+def _distinct_agents_above_floor(
+    cand: dict[str, Any],
+    *,
+    quality_floor: float,
+) -> set[str]:
+    agents: set[str] = set()
+    for source in cand.get("hit_sources") or []:
+        if float(source.get("similarity", 0.0)) >= quality_floor:
+            agent_id = str(source.get("agent_id", "")).upper()
+            if agent_id:
+                agents.add(agent_id)
+    return agents
+
+
+def _apply_quality_fields(
+    cand: dict[str, Any],
+    *,
+    quality_floor: float,
+) -> None:
+    agents = _distinct_agents_above_floor(cand, quality_floor=quality_floor)
+    distinct = len(agents)
+    cand["distinct_agents"] = distinct
+    cand["quality_candidate"] = distinct >= 2
+    if distinct >= 2:
+        agent_list = ",".join(_sort_agent_ids(list(agents)))
+        cand["quality_reason"] = (
+            f"distinct_agents={distinct} (>={2}): {agent_list}"
+        )
+    else:
+        cand["quality_reason"] = f"distinct_agents={distinct} (<2 required)"
+
+
 def _apply_containment(
     candidates: list[dict[str, Any]],
     *,
@@ -291,7 +324,12 @@ def _apply_containment(
 ) -> list[dict[str, Any]]:
     if max_candidates <= 0 or len(candidates) <= max_candidates:
         return candidates
-    return candidates[:max_candidates]
+    quality = [c for c in candidates if c.get("quality_candidate")]
+    non_quality = [c for c in candidates if not c.get("quality_candidate")]
+    sort_key = lambda item: (-item["similarity"], item["tmdb_id"])
+    quality.sort(key=sort_key)
+    non_quality.sort(key=sort_key)
+    return (quality + non_quality)[:max_candidates]
 
 
 def _group_per_agent(per_pseudo: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -365,6 +403,7 @@ def retrieve_from_agents(
     *,
     top_k: int = DEFAULT_TOP_K,
     max_candidates: int = DEFAULT_MAX_CANDIDATES,
+    quality_floor: float = DEFAULT_QUALITY_FLOOR,
 ) -> dict[str, Any]:
     """Run retrieval for agent pseudos; returns per_agent, candidates, divergence."""
     queries = _expand_retrieval_queries(agents, errors)
@@ -378,6 +417,7 @@ def retrieve_from_agents(
                 "raw_hit_count": 0,
                 "candidate_count": 0,
                 "max_candidates": max_candidates,
+                "quality_floor": quality_floor,
             },
         }
 
@@ -443,6 +483,7 @@ def retrieve_from_agents(
                 str(item.get("pseudo_id", "")),
             ),
         )
+        _apply_quality_fields(cand, quality_floor=quality_floor)
 
     candidates = sorted(
         candidate_map.values(),
@@ -462,6 +503,7 @@ def retrieve_from_agents(
             "raw_hit_count": raw_hit_count,
             "candidate_count": len(candidates),
             "max_candidates": max_candidates,
+            "quality_floor": quality_floor,
         },
     }
 
@@ -483,6 +525,7 @@ def from_agents_json(
     *,
     top_k: int = DEFAULT_TOP_K,
     max_candidates: int = DEFAULT_MAX_CANDIDATES,
+    quality_floor: float = DEFAULT_QUALITY_FLOOR,
 ) -> dict[str, Any]:
     """Public API: agents JSON (path or dict) → retrieve result."""
     data = _load_agents_payload(payload)
@@ -499,6 +542,7 @@ def from_agents_json(
         errors,
         top_k=top_k,
         max_candidates=max_candidates,
+        quality_floor=quality_floor,
     )
 
 
@@ -546,6 +590,7 @@ def _run_cli(args: argparse.Namespace) -> int:
             agents_path,
             top_k=top_k,
             max_candidates=args.max_candidates,
+            quality_floor=args.quality_floor,
         )
     except (ValueError, FileNotFoundError) as exc:
         print(f"error: {exc}", file=sys.stderr)
@@ -583,6 +628,16 @@ def main(argv: list[str] | None = None) -> int:
         ),
     )
     parser.add_argument(
+        "--quality-floor",
+        type=float,
+        default=DEFAULT_QUALITY_FLOOR,
+        dest="quality_floor",
+        help=(
+            f"Similarity floor for D1 multi-agent counting "
+            f"(default: {DEFAULT_QUALITY_FLOOR})."
+        ),
+    )
+    parser.add_argument(
         "--pseudo",
         help="Single pseudo-overview text (debug; requires --agent-id).",
     )
@@ -607,6 +662,9 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     if args.max_candidates < 1:
         print("error: --max-candidates must be >= 1", file=sys.stderr)
+        return 2
+    if args.quality_floor < 0.0 or args.quality_floor > 1.0:
+        print("error: --quality-floor must be in [0.0, 1.0]", file=sys.stderr)
         return 2
 
     try:

@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: f36b1c2d-0001-4000-8036-000000000002
     content: 3.6.2 · retrieve：质量地板 + 广度优先 containment + D1 优质标记（distinct_agents/quality_candidate）+ 单测（依赖 3.6.1）
-    status: pending
+    status: completed
   - id: f36b1c2d-0001-4000-8036-000000000003
     content: 3.6.3 · run_eval/score：candidates.md 优质标记与排序、heading 列全 agent、命中分降二级（依赖 3.6.2）
     status: pending
@@ -137,8 +137,8 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python -m unittest tests.test_retrieve_multi_pseudo tests.test_retrieve_quality -v`（新建 quality 用例）通过
-- [ ] 样例 `retrieve.json` 含 `quality_candidate`；注水低 sim hit 不抬升 `distinct_agents`
+- [x] `python -m unittest tests.test_retrieve_multi_pseudo tests.test_retrieve_quality -v`（新建 quality 用例）通过
+- [x] 样例 `retrieve.json` 含 `quality_candidate`；注水低 sim hit 不抬升 `distinct_agents`
 
 ---
 
