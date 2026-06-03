@@ -20,6 +20,10 @@ _ALSO_BASELINE_LINE = re.compile(
     r"^-\s*\*\*also_baseline\*\*:\s*(true|false)",
     re.MULTILINE | re.IGNORECASE,
 )
+_QUALITY_CANDIDATE_LINE = re.compile(
+    r"^-\s*\*\*quality_candidate\*\*:\s*(true|false)",
+    re.MULTILINE | re.IGNORECASE,
+)
 _AGENTS_TAG = re.compile(r"\[([^\]]+)\]")
 _BASELINE_ONLY_TAG = re.compile(r"baseline\s+only", re.IGNORECASE)
 _RUN_ID_LINE = re.compile(r"^-\s*run_id:\s*(\S+)", re.MULTILINE)
@@ -34,6 +38,7 @@ class CandidateScore:
     also_baseline: bool
     score: int | None  # None = missing
     resonance_type: str | None = None  # 表层 / 结构 / 双重; None = unset
+    quality_candidate: bool | None = None  # None = infer from heading agents
 
 
 @dataclass
@@ -87,13 +92,10 @@ def _is_structural_resonance(cand: CandidateScore) -> bool:
     return cand.score == 2 and cand.resonance_type in _STRUCTURAL_TYPES
 
 
-def _is_creative_candidate(cand: CandidateScore) -> bool:
-    if cand.triggered_by:
-        return True
-    if cand.also_baseline and not cand.triggered_by:
-        return False
-    heading_agents = cand.triggered_by
-    return bool(heading_agents)
+def _is_multi_agent_candidate(cand: CandidateScore) -> bool:
+    if cand.quality_candidate is not None:
+        return cand.quality_candidate
+    return len(cand.triggered_by) >= 2
 
 
 def _split_candidate_blocks(text: str) -> list[tuple[str, str]]:
@@ -138,6 +140,11 @@ def parse_eval_markdown(path: Path, text: str) -> RunSummary:
         )
         triggered_by = _parse_agents_from_heading(title)
 
+        quality_candidate: bool | None = None
+        quality_match = _QUALITY_CANDIDATE_LINE.search(body)
+        if quality_match:
+            quality_candidate = quality_match.group(1).lower() == "true"
+
         score: int | None = None
         score_match = _SCORE_LINE.search(body)
         if score_match:
@@ -156,6 +163,7 @@ def parse_eval_markdown(path: Path, text: str) -> RunSummary:
                 also_baseline=also_baseline,
                 score=score,
                 resonance_type=resonance_type,
+                quality_candidate=quality_candidate,
             )
         )
 
@@ -173,53 +181,53 @@ def _any_resonance_types_filled(runs: list[RunSummary]) -> bool:
 def _bucket_rates(
     runs: list[RunSummary],
 ) -> tuple[float, float, float, float, dict[str, int]]:
-    """Return baseline/creative total and structural 2-rates plus counts."""
-    baseline_scored = 0
-    baseline_twos = 0
-    baseline_structural_twos = 0
-    creative_scored = 0
-    creative_twos = 0
-    creative_structural_twos = 0
+    """Return single/multi total and structural 2-rates plus counts."""
+    single_scored = 0
+    single_twos = 0
+    single_structural_twos = 0
+    multi_scored = 0
+    multi_twos = 0
+    multi_structural_twos = 0
 
     for run in runs:
         for cand in run.candidates:
             if cand.score is None:
                 continue
-            creative = _is_creative_candidate(cand)
-            if creative:
-                creative_scored += 1
+            multi = _is_multi_agent_candidate(cand)
+            if multi:
+                multi_scored += 1
                 if cand.score == 2:
-                    creative_twos += 1
+                    multi_twos += 1
                     if _is_structural_resonance(cand):
-                        creative_structural_twos += 1
+                        multi_structural_twos += 1
             else:
-                baseline_scored += 1
+                single_scored += 1
                 if cand.score == 2:
-                    baseline_twos += 1
+                    single_twos += 1
                     if _is_structural_resonance(cand):
-                        baseline_structural_twos += 1
+                        single_structural_twos += 1
 
-    baseline_rate = baseline_twos / baseline_scored if baseline_scored else 0.0
-    creative_rate = creative_twos / creative_scored if creative_scored else 0.0
-    baseline_structural_rate = (
-        baseline_structural_twos / baseline_scored if baseline_scored else 0.0
+    single_rate = single_twos / single_scored if single_scored else 0.0
+    multi_rate = multi_twos / multi_scored if multi_scored else 0.0
+    single_structural_rate = (
+        single_structural_twos / single_scored if single_scored else 0.0
     )
-    creative_structural_rate = (
-        creative_structural_twos / creative_scored if creative_scored else 0.0
+    multi_structural_rate = (
+        multi_structural_twos / multi_scored if multi_scored else 0.0
     )
     counts = {
-        "baseline_scored": baseline_scored,
-        "baseline_twos": baseline_twos,
-        "baseline_structural_twos": baseline_structural_twos,
-        "creative_scored": creative_scored,
-        "creative_twos": creative_twos,
-        "creative_structural_twos": creative_structural_twos,
+        "single_scored": single_scored,
+        "single_twos": single_twos,
+        "single_structural_twos": single_structural_twos,
+        "multi_scored": multi_scored,
+        "multi_twos": multi_twos,
+        "multi_structural_twos": multi_structural_twos,
     }
     return (
-        baseline_rate,
-        creative_rate,
-        baseline_structural_rate,
-        creative_structural_rate,
+        single_rate,
+        multi_rate,
+        single_structural_rate,
+        multi_structural_rate,
         counts,
     )
 
@@ -229,27 +237,28 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
     runs_with_2 = sum(1 for r in runs if r.has_any_score_2)
     batch_pass_rate = runs_with_2 / total_runs if total_runs else 0.0
     (
-        baseline_2_rate,
-        creative_2_rate,
-        baseline_structural_2_rate,
-        creative_structural_2_rate,
+        single_2_rate,
+        multi_2_rate,
+        single_structural_2_rate,
+        multi_structural_2_rate,
         bucket_counts,
     ) = _bucket_rates(runs)
     missing_total = sum(r.missing_count for r in runs)
     use_structural_gate = _any_resonance_types_filled(runs)
+    gate_compare_mode = "multi_vs_single"
 
     gate_reasons: list[str] = []
     batch_ok = batch_pass_rate >= _GATE_BATCH_PASS_RATE
     if use_structural_gate:
-        rate_ok = baseline_structural_2_rate < creative_structural_2_rate
-        gate_compare_mode = "structural_2_rate"
-        baseline_gate_rate = baseline_structural_2_rate
-        creative_gate_rate = creative_structural_2_rate
+        rate_ok = single_structural_2_rate < multi_structural_2_rate
+        single_gate_rate = single_structural_2_rate
+        multi_gate_rate = multi_structural_2_rate
+        rate_metric = "structural_2_rate"
     else:
-        rate_ok = baseline_2_rate < creative_2_rate
-        gate_compare_mode = "total_2_rate"
-        baseline_gate_rate = baseline_2_rate
-        creative_gate_rate = creative_2_rate
+        rate_ok = single_2_rate < multi_2_rate
+        single_gate_rate = single_2_rate
+        multi_gate_rate = multi_2_rate
+        rate_metric = "total_2_rate"
 
     if not batch_ok:
         gate_reasons.append(
@@ -258,8 +267,8 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
         )
     if not rate_ok:
         gate_reasons.append(
-            f"baseline_{gate_compare_mode} {baseline_gate_rate:.1%} not < "
-            f"creative_{gate_compare_mode} {creative_gate_rate:.1%}"
+            f"single_{rate_metric} {single_gate_rate:.1%} not < "
+            f"multi_{rate_metric} {multi_gate_rate:.1%}"
         )
 
     gate_pass = batch_ok and rate_ok
@@ -280,10 +289,10 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
             "runs_with_score_2": runs_with_2,
             "batch_pass_rate": batch_pass_rate,
             "missing_scores_total": missing_total,
-            "baseline_2_rate": baseline_2_rate,
-            "creative_2_rate": creative_2_rate,
-            "baseline_structural_2_rate": baseline_structural_2_rate,
-            "creative_structural_2_rate": creative_structural_2_rate,
+            "single_2_rate": single_2_rate,
+            "multi_2_rate": multi_2_rate,
+            "single_structural_2_rate": single_structural_2_rate,
+            "multi_structural_2_rate": multi_structural_2_rate,
             "resonance_types_filled": use_structural_gate,
             **bucket_counts,
         },
@@ -318,24 +327,24 @@ def _format_stdout(report: dict[str, Any]) -> str:
         f"({g['runs_with_score_2']}/{g['total_runs']} runs with >=1 score-2)"
     )
     lines.append(
-        f"baseline_2_rate: {g['baseline_2_rate']:.1%} "
-        f"({g['baseline_twos']}/{g['baseline_scored']} scored baseline candidates)"
+        f"single_2_rate: {g['single_2_rate']:.1%} "
+        f"({g['single_twos']}/{g['single_scored']} scored single-agent candidates)"
     )
     lines.append(
-        f"creative_2_rate: {g['creative_2_rate']:.1%} "
-        f"({g['creative_twos']}/{g['creative_scored']} scored creative candidates)"
+        f"multi_2_rate: {g['multi_2_rate']:.1%} "
+        f"({g['multi_twos']}/{g['multi_scored']} scored multi-agent candidates)"
     )
     lines.append(
-        f"baseline_structural_2_rate: {g['baseline_structural_2_rate']:.1%} "
-        f"({g['baseline_structural_twos']}/{g['baseline_scored']} scored baseline; "
+        f"single_structural_2_rate: {g['single_structural_2_rate']:.1%} "
+        f"({g['single_structural_twos']}/{g['single_scored']} scored single-agent; "
         "type in 结构|双重)"
     )
     lines.append(
-        f"creative_structural_2_rate: {g['creative_structural_2_rate']:.1%} "
-        f"({g['creative_structural_twos']}/{g['creative_scored']} scored creative; "
+        f"multi_structural_2_rate: {g['multi_structural_2_rate']:.1%} "
+        f"({g['multi_structural_twos']}/{g['multi_scored']} scored multi-agent; "
         "type in 结构|双重)"
     )
-    compare_mode = report["gate"].get("compare_mode", "total_2_rate")
+    compare_mode = report["gate"].get("compare_mode", "multi_vs_single")
     lines.append(
         f"Gate line 2 compare: {compare_mode}"
         + (" (共振类型 present)" if g.get("resonance_types_filled") else " (fallback: no 共振类型)")
@@ -350,10 +359,14 @@ def _format_stdout(report: dict[str, Any]) -> str:
         for reason in gate["reasons"]:
             lines.append(f"  - {reason}")
     elif gate["pass"]:
-        mode = gate.get("compare_mode", "total_2_rate")
+        metric = (
+            "structural_2_rate"
+            if g.get("resonance_types_filled")
+            else "total_2_rate"
+        )
         lines.append(
             f"  - batch pass rate >= {_GATE_BATCH_PASS_RATE:.0%}; "
-            f"baseline_{mode} < creative_{mode}"
+            f"single_{metric} < multi_{metric}"
         )
 
     return "\n".join(lines)

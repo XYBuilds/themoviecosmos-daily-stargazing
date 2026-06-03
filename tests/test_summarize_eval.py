@@ -5,7 +5,11 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from scripts.summarize_eval import parse_eval_markdown, summarize_runs
+from scripts.summarize_eval import (
+    _format_stdout,
+    parse_eval_markdown,
+    summarize_runs,
+)
 
 _FIXTURES = Path(__file__).resolve().parent / "eval_fixtures"
 
@@ -25,38 +29,68 @@ class SummarizeEvalResonanceTypeTests(unittest.TestCase):
         report = summarize_runs(runs)
         g = report["global"]
         self.assertFalse(g["resonance_types_filled"])
-        self.assertEqual(report["gate"]["compare_mode"], "total_2_rate")
-        self.assertAlmostEqual(g["baseline_2_rate"], 0.0)
-        self.assertAlmostEqual(g["creative_2_rate"], 0.5)
-        self.assertAlmostEqual(g["baseline_structural_2_rate"], 0.0)
-        self.assertAlmostEqual(g["creative_structural_2_rate"], 0.0)
+        self.assertEqual(report["gate"]["compare_mode"], "multi_vs_single")
+        self.assertAlmostEqual(g["single_2_rate"], 0.2)
+        self.assertAlmostEqual(g["multi_2_rate"], 1.0)
+        self.assertAlmostEqual(g["single_structural_2_rate"], 0.0)
+        self.assertAlmostEqual(g["multi_structural_2_rate"], 0.0)
         self.assertEqual(report["gate"]["verdict"], "GATE_PASS")
+        stdout = _format_stdout(report)
+        self.assertIn("Gate line 2 compare: multi_vs_single", stdout)
+        self.assertIn("(fallback: no 共振类型)", stdout)
 
-    def test_structural_fixture_rates_match_hand_calc(self):
-        run = _load_run("resonance-structural/candidates.md")
+    def test_multi_vs_single_pass_structural_rates(self):
+        run = _load_run("multi-vs-single-pass/candidates.md")
         report = summarize_runs([run])
         g = report["global"]
         self.assertTrue(g["resonance_types_filled"])
-        self.assertEqual(report["gate"]["compare_mode"], "structural_2_rate")
-        self.assertAlmostEqual(g["baseline_2_rate"], 1.0)
-        self.assertAlmostEqual(g["baseline_structural_2_rate"], 0.0)
-        self.assertEqual(g["baseline_structural_twos"], 0)
-        self.assertAlmostEqual(g["creative_2_rate"], 1.0)
-        self.assertAlmostEqual(g["creative_structural_2_rate"], 1.0)
-        self.assertEqual(g["creative_structural_twos"], 2)
+        self.assertEqual(report["gate"]["compare_mode"], "multi_vs_single")
+        self.assertAlmostEqual(g["single_2_rate"], 0.5)
+        self.assertAlmostEqual(g["single_structural_2_rate"], 0.0)
+        self.assertAlmostEqual(g["multi_2_rate"], 1.0)
+        self.assertAlmostEqual(g["multi_structural_2_rate"], 1.0)
+        self.assertEqual(g["multi_structural_twos"], 2)
         self.assertEqual(report["gate"]["verdict"], "GATE_PASS")
+        stdout = _format_stdout(report)
+        self.assertIn("Gate line 2 compare: multi_vs_single", stdout)
+        self.assertIn("(共振类型 present)", stdout)
 
-    def test_structural_gate_fails_when_only_surface_twos(self):
-        run = _load_run("resonance-mixed/candidates.md")
+    def test_multi_vs_single_fail_when_single_structural_beats_multi(self):
+        run = _load_run("multi-vs-single-fail/candidates.md")
         report = summarize_runs([run])
         g = report["global"]
         self.assertTrue(g["resonance_types_filled"])
-        self.assertAlmostEqual(g["baseline_structural_2_rate"], 1.0)
-        self.assertAlmostEqual(g["creative_structural_2_rate"], 0.0)
-        self.assertAlmostEqual(g["baseline_2_rate"], 1.0)
-        self.assertAlmostEqual(g["creative_2_rate"], 1.0)
+        self.assertAlmostEqual(g["single_structural_2_rate"], 1.0)
+        self.assertAlmostEqual(g["multi_structural_2_rate"], 0.0)
+        self.assertAlmostEqual(g["single_2_rate"], 1.0)
+        self.assertAlmostEqual(g["multi_2_rate"], 1.0)
         self.assertEqual(report["gate"]["verdict"], "GATE_FAIL")
-        self.assertEqual(report["gate"]["compare_mode"], "structural_2_rate")
+        self.assertEqual(report["gate"]["compare_mode"], "multi_vs_single")
+
+    def test_quality_candidate_field_overrides_heading_agent_count(self):
+        text = """# fixture
+
+## 候选星轨（共 2 部）
+
+### One Agent Marked Quality (2020) [A1]
+- **tmdb_id**: 800001
+- **quality_candidate**: true
+- **共振分**: 2
+- **共振类型**: 结构
+
+### Two Agents Not Quality (2019) [A2, A4]
+- **tmdb_id**: 800002
+- **quality_candidate**: false
+- **共振分**: 2
+- **共振类型**: 双重
+"""
+        run = parse_eval_markdown(Path("fixture.md"), text)
+        report = summarize_runs([run])
+        g = report["global"]
+        self.assertEqual(g["multi_scored"], 1)
+        self.assertEqual(g["single_scored"], 1)
+        self.assertEqual(g["multi_structural_twos"], 1)
+        self.assertEqual(g["single_structural_twos"], 1)
 
 
 if __name__ == "__main__":
