@@ -23,8 +23,8 @@
   - THE-RULER/p1 · fit=0.88 · fragments=[why-0, how-0, how-1, how-2, result-0] · sim=0.5883 · **命中分=5**
 - **pseudo 摘录** (p1): A rumor spreader profiting from disorder orchestrated a campaign of digital forgery, using AI-generated audio to level false claims that destabilized the celebrity's reputation. The fallout from this unmanaged chaos froze the actor's career… order was restored through legal intervention when Seoul police secured an arrest warrant.
 - **pseudo命中分合计**: 5
-- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**: <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重<!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**:
 
 ### I Like Mountain Music (1933) [THE-RULER]
@@ -43,7 +43,7 @@
 - **pseudo命中分合计**: 5
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**:
+- **打分备注**: 完全无关
 
 ### Gabbar Is Back (2015) [THE-RULER]
 - **tmdb_id**: 337876
@@ -59,9 +59,9 @@
   - THE-RULER/p2 · fit=0.82 · fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.5533 · **命中分=6**
 - **pseudo 摘录** (p2): The state's enforcement arm acted to penalize the rule-breaker after a YouTuber with a substantial subscriber base allegedly spread false claims for financial gain… The disruptive actor now faces state-sanctioned repercussions as the system reasserts control.
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: overview 太短，根据现有overview判断无关
 
 ### Long Arm of the Law (1909) [THE-RULER]
 - **tmdb_id**: 222085
@@ -77,9 +77,9 @@
   - THE-RULER/p3 · fit=0.75 · fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.5432 · **命中分=6**
 - **pseudo 摘录** (p3): Law enforcement obtained a warrant for arrest after a digital entrepreneur leveraged audience reach to profit from a destabilizing fabrication… An arrest warrant was issued for the content creator, reaffirming institutional control.
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: overview 太短，根据现有overview判断无关
 
 ### Blackmail (1947) [THE-RULER]
 - **tmdb_id**: 44137
@@ -95,9 +95,9 @@
   - THE-RULER/p3 · fit=0.75 · fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.5397 · **命中分=6**
 - **pseudo 摘录** (p3): （同 Long Arm of the Law · p3 伪叙事）
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 结构  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 可能有一点点共振，low 1
 
 ### American Sweatshop (2025) [THE-RULER]
 - **tmdb_id**: 1215020
@@ -113,17 +113,17 @@
   - THE-RULER/p2 · fit=0.82 · fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.5362 · **命中分=6**
 - **pseudo 摘录** (p2): （同 Gabbar Is Back · p2 伪叙事）
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**:  1 <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 视角变换 - 可能是之前没有注意到的共振方式。overview中说的是审核员的视角，原新闻中虽然没有单独提及，但是也涵盖了网络内容审核的主题。
 
 ## Persona 伪叙事索引（The-Ruler）
 
-| pseudo | fit | fragments | 全文见 |
-| --- | ---: | --- | --- |
-| p1 | 0.88 | why-0, how-0, how-1, how-2, result-0 | `agents/The-Ruler.md` · `persona-pipeline.json` |
-| p2 | 0.82 | why-0, how-0, how-1, how-2, result-0, result-1 | 同上 |
-| p3 | 0.75 | why-0, how-0, how-1, how-2, result-0, result-1 | 同上 |
+| pseudo |  fit | fragments                                      | 全文见                                          |
+| ------ | ---: | ---------------------------------------------- | ----------------------------------------------- |
+| p1     | 0.88 | why-0, how-0, how-1, how-2, result-0           | `agents/The-Ruler.md` · `persona-pipeline.json` |
+| p2     | 0.82 | why-0, how-0, how-1, how-2, result-0, result-1 | 同上                                            |
+| p3     | 0.75 | why-0, how-0, how-1, how-2, result-0, result-1 | 同上                                            |
 
 **p1 全文**: A rumor spreader profiting from disorder orchestrated a campaign of digital forgery, using AI-generated audio to level false claims that destabilized the celebrity's reputation. The fallout from this unmanaged chaos froze the actor's career, leading to a necessary pause in commercial and public life. Authorities moved decisively to contain the threat, and order was restored through legal intervention when Seoul police secured an arrest warrant.
 
@@ -133,12 +133,12 @@
 
 ## Pilot 检索摘要
 
-| 指标 | 值 |
-| --- | --- |
-| query_count | 3 |
-| raw_hit_count | 6 |
-| candidate_count | 6 |
-| max_candidates | 19 |
-| quality_floor | 0.4 |
+| 指标            | 值  |
+| --------------- | --- |
+| query_count     | 3   |
+| raw_hit_count   | 6   |
+| candidate_count | 6   |
+| max_candidates  | 19  |
+| quality_floor   | 0.4 |
 
 _steering 预期：Ruler 叙事偏秩序/执法/丑闻收束；与 phase3.6 A1 中性复述候选集重叠见 `pilot-notes.md`（仅 **Scandal** 标题重叠）。_
