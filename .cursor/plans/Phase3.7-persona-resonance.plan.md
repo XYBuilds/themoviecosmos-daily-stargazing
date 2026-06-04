@@ -10,7 +10,7 @@ todos:
     status: completed
   - id: f37b1c2d-0001-4000-8037-000000000002
     content: 3.7.2 · 双步 persona 管线脚手架（alt-creator + screenwriter 契约、fit 字段、flavored-decon overlay）+ 单测
-    status: pending
+    status: completed
   - id: f37b1c2d-0001-4000-8037-000000000003
     content: 3.7.3 · The Ruler persona card + 04 单点 pilot（格式/steering/fit/无注入）→ Go/No-Go [需人工验收]
     status: pending
@@ -184,9 +184,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python -m unittest tests.test_personas -v` 通过
-- [ ] overlay JSON 仅含 alt-pool + id 引用，不复制中性 decon 全文
-- [ ] screenwriter 输出含合法 `fit ∈ [0,1]`，pseudo 通过既有 fragment/how 校验
+- [x] `python -m unittest tests.test_personas -v` 通过
+- [x] overlay JSON 仅含 alt-pool + id 引用，不复制中性 decon 全文
+- [x] screenwriter 输出含合法 `fit ∈ [0,1]`，pseudo 通过既有 fragment/how 校验
 
 ---
 
