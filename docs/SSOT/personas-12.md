@@ -2,7 +2,7 @@
 
 > **SSOT 用途**：`persona_id`、情绪与价值倾向、视角摘要、典型替换取向。实现见 `prompts/personas/<persona_id>/persona_card.md`（3.7.3 起逐张落地）。
 >
-> **设定对齐**：`docs/temp/12原型视角、追求与双面设定集.md`；设计决策见 [ADR-0004](../adr/0004-persona-emotional-diffusion.md)。
+> **设计决策**：[ADR-0004](../adr/0004-persona-emotional-diffusion.md)（`Status: proposed` 至 3.7.5 GATE）。
 >
 > **示例新闻**：`04-celebrity-scandal`（YouTuber 深度伪造诽谤案）— 用于说明 **典型替换取向**；天然弱契合的原型用 `—` 标注，由下游 **`fit`** 体现，不硬凑。
 

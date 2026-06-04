@@ -28,20 +28,22 @@
 
 ## 12 原型 roster
 
-权威清单见 [`docs/SSOT/personas-12.md`](../SSOT/personas-12.md)（与 `docs/temp/12原型视角、追求与双面设定集.md` 对齐）。`persona_id` 与 `prompts/personas/<persona_id>/` 目录名一致。
+权威清单见 [`docs/SSOT/personas-12.md`](../SSOT/personas-12.md)（**canonical SSOT**；下游代码/文档仅引用此文件）。`persona_id` 与 `prompts/personas/<persona_id>/` 目录名一致。
 
 Pilot 首卡：**The-Ruler**（`04-celebrity-scandal`）。
 
 ## 评测留出集纪律
 
-防止观察集规律被样本外推翻（Phase 3.6 已演示过拟合）：
+防止观察集规律被样本外推翻（Phase 3.6 已演示过拟合）。`run_id` 前缀与 [`tests/eval_news/batch-manifest.json`](../../tests/eval_news/batch-manifest.json) 一致（`01-grid-outage` … `10-whistleblower-leak`）。
 
-| 集合 | `tests/eval_news/` run_id | 用途 |
+| 集合 | news 序号 / run_id | 用途 |
 | --- | --- | --- |
-| **观察集** | `01`–`07` | 开发、契约迭代、pilot 调试；总编可选填分 |
-| **留出集** | `08`–`10` | **仅在此填共振分**做 3.7.4/3.7.5 闸门与 P-Abstain 判定；不在观察集上自证 |
+| **观察集** | `01`–`04`（`01-grid-outage` … `04-celebrity-scandal`） | 开发、契约迭代、pilot 调试；总编可选填分 |
+| **留出集** | `05`–`10`（`05-climate-disaster` … `10-whistleblower-leak`） | **闸门与 P-Abstain 的共振分仅来自留出集**；不在观察集上自证 |
 
-与现有 N=10 打分目录一致；`run_eval` 输出写 `output/Eval/phase3.7/{run_id}/`，**只读** `phase3.5` / `phase3.6`。
+**多轮打分（用户定稿）**：Phase 3.7 可能跑多轮迭代。每轮在留出集上**至少填 2 条新闻**的 `candidates.md` 共振分（不必每轮覆盖全部 6 条）；3.7.5 汇总时以**已打分的留出集 run** 为准。观察集可在任意轮次填分作对照，**不计入**闸门 1/2 与 P-Abstain 判定。
+
+`run_eval` 输出写 `output/Eval/phase3.7/{run_id}/`，**只读** `phase3.5` / `phase3.6`。
 
 ## 共振 rubric（与 eval-the-bet 对齐）
 
@@ -57,7 +59,7 @@ Pilot 首卡：**The-Ruler**（`04-celebrity-scandal`）。
 ## 后果 / 已知局限
 
 - **3.7.0 No-Go 仍成立为历史锚**；继续推进是 **显式产品赌注**，须在 3.7.5 `GATE_RESULT.md` 用 persona vs A1 重新裁决。
-- **小样本**：留出集仅 3 条；结论按 per-candidate 对照，必要时扩样。
+- **小样本**：留出集 6 条新闻，但每轮可只评其中 2 条；结论按 per-candidate 对照，必要时扩样或补全未评 run。
 - **P-Select 边界**：alt-creator 是唯一注入风险点；契约 + pilot 人工双重核查。
 - **不解封 Phase 4**；**不改 PRD/CONTEXT/contract** 直至 3.7.5 GATE go → 3.7.6。
 - **SSOT 待改清单（3.7.6 · GATE go 后）**：`reality-deconstruction-contract.md`（alternatives/overlay）；`PRD` / `CONTEXT.md`（12 原型、An 退场、`fit`、闸门 2）；本 ADR `Status` → `accepted`。
