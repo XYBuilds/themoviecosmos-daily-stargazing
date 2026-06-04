@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: f37b1c2d-0001-4000-8037-000000000001
     content: 3.7.1 · ADR-0004 决策定稿 + 12 原型清单（名称/情绪/价值倾向）+ 留出集切分 + rubric 去"讽刺" [需人工验收]
-    status: pending
+    status: completed
   - id: f37b1c2d-0001-4000-8037-000000000002
     content: 3.7.2 · 双步 persona 管线脚手架（alt-creator + screenwriter 契约、fit 字段、flavored-decon overlay）+ 单测
     status: pending
@@ -162,14 +162,14 @@ flowchart LR
   | The-Everyman | 凡人 | 归属 / 排斥 | — |
 
   （"—" = 该原型对此新闻天然弱契合，正好用 `fit` 体现，不硬凑。）
-- **留出集切分**：`01–07` 观察集 / `08–10` 留出集（与现有打分一致；写入 ADR）。
+- **留出集切分**：`01–04` 观察集 / `05–10` 留出集（写入 ADR；多轮迭代时每轮至少评 2 条留出新闻）。
 - `docs/eval-the-bet.md` §4/§5.1：删除"讽刺"作为目标的措辞，统一为"关联/共振"（讽刺仅作为关联的一种，不单列）。
 
 ### 验收
 
-- [ ] ADR-0004 落盘（proposed）；12 原型清单经用户确认
-- [ ] 留出集切分写入 ADR；rubric 去"讽刺"
-- [ ] `[需人工验收]`：用户 approve 原型清单与切分后再进 3.7.2
+- [x] ADR-0004 落盘（proposed）；12 原型清单经用户确认（`docs/SSOT/personas-12.md`）
+- [x] 留出集切分写入 ADR（01–04 观察 / 05–10 留出；多轮每轮 ≥2 条留出）；rubric 去"讽刺"
+- [x] 用户 approve（含 holdout 覆盖 01–04/05–10）→ 可进 3.7.2
 
 ---
 
@@ -224,13 +224,13 @@ flowchart LR
 1. 补齐 `prompts/personas/<其余 11 原型>/persona_card.md`。
 2. 12 原型 × `tests/eval_news/01..10` 跑 persona 管线 → retrieve → `run_eval`（含 A1 中性基线以支撑闸门 2 对比）。
 3. `score_eval_candidates.py --dir output/Eval/phase3.7 --review-out …`。
-4. 总编**仅在留出集 08–10**（必填）+ 观察集（可选）填 `共振分` / `共振类型`。
+4. 总编**仅在留出集 05–10**（必填；每轮至少 2 条）+ 观察集 01–04（可选）填 `共振分` / `共振类型`。
 5. 反馈重点：persona 候选 2 分/双重率是否高于 A1 中性基线；`fit` 与共振是否相关；是否出现 Dead Mail 式流畅伪关联。
 
 ### 验收
 
 - [ ] 10 份产出位于 `output/Eval/phase3.7/{run_id}/`；3.5/3.6 树未改写
-- [ ] 留出集 08–10 完成打分
+- [ ] 留出集 05–10 完成打分（可多轮；每轮 ≥2 条留出新闻）
 - [ ] `[需人工验收]`：总编确认数据可用于 3.7.5 判定
 
 ---
@@ -270,7 +270,7 @@ flowchart LR
 
 ## Phase 3.7 整体验收
 
-- [ ] 3.7.0 Go + 3.7.1 原型清单/留出集 approve
+- [x] 3.7.0 Go + 3.7.1 原型清单/留出集 approve（holdout 01–04 obs / 05–10；personas-12 SSOT）
 - [ ] 3.7.2 脚手架端到端可跑（decon → alt-creator → screenwriter → retrieve）
 - [ ] 3.7.3 04 pilot 四项核查通过
 - [ ] 3.7.4 N=10 + 留出集打分
@@ -287,9 +287,9 @@ flowchart LR
 
 ## 风险与约束
 
-- **过拟合**：规律先在 **08–10 留出集** 验证，不在观察集自证（3.6 已演示过拟合翻车）。
+- **过拟合**：规律先在 **05–10 留出集** 验证，不在 01–04 观察集自证（3.6 已演示过拟合翻车）；可多轮，每轮 ≥2 条留出新闻打分。
 - **流畅伪关联（Dead Mail 型）**：强迫生产会造，靠 `fit × 相似度` 在下游压，不靠上游硬弃权（防 false negative）。
 - **P-Select 边界**：alt-creator 是唯一注入风险点，"事实蕴含 vs fact-additive" 须在契约 + pilot 人工核查双重把关。
 - **归因**：闸门 2 必须有 **A1 中性基线同跑** 才能隔离"情绪 steering 增量"。
-- **小样本**：留出集仅 3 条新闻；结论按 per-candidate 对照，必要时扩样。
+- **小样本**：留出集 6 条新闻，每轮可只评 2 条；结论按 per-candidate 对照，必要时扩样或补全未评 run。
 - 受「人工验收阻断」约束：**3.7.1 / 3.7.3 / 3.7.4 / 3.7.5** 标 `[需人工验收]`，approve 前不标 complete、不写 report、不合并；**3.7.6** 仅 GATE go 后启动。
