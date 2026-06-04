@@ -16,10 +16,10 @@ todos:
     status: completed
   - id: f36b1c2d-0001-4000-8036-000000000005
     content: 3.6.5 · 重跑 The Bet（N=10，3.6 管线）→ 总编填分 → GATE_RESULT [需人工验收]（依赖 3.6.1–3.6.4）
-    status: pending
+    status: completed
   - id: f36b1c2d-0001-4000-8036-000000000006
     content: 3.6.6 · 改 SSOT：ADR-0003 待改清单同步 PRD/CONTEXT/eval-the-bet（仅 GATE go；no-go 跳过）（依赖 3.6.5）
-    status: pending
+    status: cancelled
 isProject: true
 ---
 
@@ -195,7 +195,7 @@ Phase 3.5.6 产物位于 **`output/Eval/phase3.5/`**（`01-grid-outage` … `10-
 
 `scripts/summarize_eval.py --dir` 只扫描**一层**子目录下的 `*/candidates.md`；汇总 3.6 批次时 **`--dir` 必须且仅能**指向 `output/Eval/phase3.6`（勿用 `output/Eval` 或 `output/Eval/phase3.5`，否则会混入 3.5.6 对照批次）。
 
-`scripts/score_eval_candidates.py --dir` 可指向 `output/Eval/phase3.6`（只改该树下的 `candidates.md`）；但当前实现仍将 **`high-hit-score-review.md` 写到 `output/Eval/` 根**（硬编码）。3.6.5 跑命中分前须二选一：**(a)** 在 3.6.5 实现中增加 review 输出路径（如 `--review-out output/Eval/phase3.6/high-hit-score-review.md`），或 **(b)** 使用 `--dry-run` 仅本地查看、不执行会覆盖根的 `write_text`。**禁止**在未保护的情况下重跑 `score_eval_candidates` 默认命令（避免污染 `output/Eval/` 根或 `phase3.5/`）。
+`scripts/score_eval_candidates.py --dir` 可指向 `output/Eval/phase3.6`（只改该树下的 `candidates.md`）。**必须**显式 `--review-out output/Eval/phase3.6/high-hit-score-review.md`（或由 `run_eval_batch.ps1` 在 10/10 成功后自动传入），避免写入 `output/Eval/` 根。**禁止**在未保护的情况下使用无 `--review-out` 的默认命令（避免污染根或 `phase3.5/`）。
 
 ### 执行步骤
 
@@ -213,19 +213,21 @@ Phase 3.5.6 产物位于 **`output/Eval/phase3.5/`**（`01-grid-outage` … `10-
 python scripts/run_eval.py --news-file tests/eval_news/01-grid-outage.json --run-id 01-grid-outage --out output/Eval/phase3.6/01-grid-outage
 ```
 
-批量（与 `tests/eval_news/README.md` 相同 `run_id`，输出进 `phase3.6/`）：
+批量（推荐 · 并行 + 抖动 + 阶段内 review 路径；`tests/eval_news/batch-manifest.json` 与 3.5.6 `run_id` 一致）：
 
 ```powershell
-Get-ChildItem tests/eval_news/*.json | ForEach-Object {
-  $rid = $_.BaseName
-  python scripts/run_eval.py --news-file $_.FullName --run-id $rid --out "output/Eval/phase3.6/$rid"
-}
+pwsh -NoProfile -File scripts/run_eval_batch.ps1 -WhatIf
+pwsh -NoProfile -File scripts/run_eval_batch.ps1
+# 429 后仅重试失败项（K=4）：
+pwsh -NoProfile -File scripts/run_eval_batch.ps1 -RetryFailed
 ```
 
-命中分（实现 review 路径保护后再去掉 `--dry-run`，或已加 `--review-out`）：
+（串行备选：对每条 `run_eval.py --news-file tests/eval_news/{run_id}.json --run-id {run_id} --out output/Eval/phase3.6/{run_id}`。）
+
+命中分（10/10 成功后由 batch 脚本自动调用，或手动）：
 
 ```powershell
-python scripts/score_eval_candidates.py --dir output/Eval/phase3.6
+python scripts/score_eval_candidates.py --dir output/Eval/phase3.6 --review-out output/Eval/phase3.6/high-hit-score-review.md
 ```
 
 闸门汇总（**仅** 3.6 批次）：
@@ -236,10 +238,10 @@ python scripts/summarize_eval.py --dir output/Eval/phase3.6
 
 ### 验收
 
-- [ ] 10 份评测产出位于 `output/Eval/phase3.6/{run_id}/`（含 `retrieve.json` 的 `quality_candidate`）；**`output/Eval/phase3.5/` 内 10 个 run 与 `phase3.5/GATE_RESULT.md` 未被改写**
-- [ ] 书面 GATE 结论写入 `output/Eval/phase3.6/GATE_RESULT.md`（go / no-go（发布））
-- [ ] **GATE_FAIL** → 回 3.6.1/3.6.2 调 prompt 或 `--quality-floor`；**不解封** Phase 4
-- [ ] **GATE_PASS（发布）** → 可启动 3.6.6；仍 **不解封** Phase 4（除非产品另定发布线）
+- [x] 10 份评测产出位于 `output/Eval/phase3.6/{run_id}/`（含 `retrieve.json` 的 `quality_candidate`）；**`output/Eval/phase3.5/` 内 10 个 run 与 `phase3.5/GATE_RESULT.md` 未被改写**
+- [x] 书面 GATE 结论写入 `output/Eval/phase3.6/GATE_RESULT.md`（**no-go · GATE_FAIL（发布）**）
+- [x] **GATE_FAIL** → 回 3.6.1/3.6.2 调参或后续关联性/原型子阶段；**不解封** Phase 4
+- [ ] **GATE_PASS（发布）** → 可启动 3.6.6（本轮未达成）
 
 ---
 
@@ -256,16 +258,16 @@ python scripts/summarize_eval.py --dir output/Eval/phase3.6
 
 ### 验收
 
-- [ ] PRD / eval-the-bet / CONTEXT 与代码、`summarize_eval` 输出一致
-- [ ] ADR-0003 `Status` 可升为 `accepted`（若用户确认）
+- [ ] PRD / eval-the-bet / CONTEXT 与代码、`summarize_eval` 输出一致 — **cancelled（3.6.5 no-go）**
+- [ ] ADR-0003 `Status` 可升为 `accepted`（若用户确认） — **cancelled**
 
 ---
 
 ## Phase 3.6 整体验收
 
-- [ ] 3.6.1–3.6.4 端到端可跑（deconstruct → agents → retrieve → run_eval → summarize_eval）
-- [ ] N=10 重跑 + 总编填分 + 书面 GATE（3.6.5）
-- [ ] GATE go 时完成 3.6.6 SSOT；no-go 时 3.6.6 显式跳过并记录于 `output/Eval/phase3.6/GATE_RESULT.md`
+- [x] 3.6.1–3.6.4 端到端可跑（deconstruct → agents → retrieve → run_eval → summarize_eval）
+- [x] N=10 重跑 + 总编填分 + 书面 GATE（3.6.5 · **no-go**）
+- [x] 3.6.6 **cancelled**（用户指令 · 2026-06-04）；记录于 `output/Eval/phase3.6/GATE_RESULT.md`
 
 ## 交给下一 Phase
 

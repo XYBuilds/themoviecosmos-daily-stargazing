@@ -399,7 +399,11 @@ def _collect_paths(args: argparse.Namespace) -> list[Path]:
                 continue
         if path.suffix.lower() != ".md" or not path.is_file():
             continue
-        if path.name == "GATE_RESULT.md":
+        if path.name in {
+            "GATE_RESULT.md",
+            "high-hit-score-review.md",
+            "multi-agent-hits-review.md",
+        }:
             continue
         if path not in seen:
             seen.add(path)

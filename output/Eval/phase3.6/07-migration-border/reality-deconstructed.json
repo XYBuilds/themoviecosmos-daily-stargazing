@@ -1,0 +1,164 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Border apprehensions tick up 25% as seasonal migration meets hardened enforcement",
+    "description": "U.S. Border Patrol apprehended 8,268 people along the southwest border in March 2026, up from 6,598 in February, even as year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies. Analysts attribute the month-on-month rise to milder spring weather rather than a reversal of the broader collapse in unauthorized crossings since 2024. Lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package.",
+    "pub_time": "2026-04-03T12:00:00-04:00",
+    "source_name": "WOLA",
+    "url": "https://www.wola.org/2026/04/u-s-mexico-border-update-border-data-reconciliation-bill-dhs-transition-ice-detention-wall-migration-route/"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-04-03T12:00:00-04:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026年3月",
+        "2026年2月",
+        "2024年"
+      ],
+      "relative": [
+        "月度上升",
+        "自2024年以来"
+      ],
+      "daypart": [],
+      "season": [
+        "春季"
+      ],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [],
+      "recurrence": [
+        "季节性迁移"
+      ],
+      "modality": [
+        "已发生",
+        "持续僵持"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "美国西南边境",
+        "tags": [
+          "美国西南边境",
+          "美国",
+          "北美",
+          "边境地区"
+        ],
+        "geocode": {
+          "country": "美国",
+          "state": null,
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "北美",
+        "scene_archetype": [
+          "边境地区",
+          "人口流动区"
+        ],
+        "role": [
+          "发生地"
+        ],
+        "intended_destination": null,
+        "scale": "边境",
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "美国边境巡逻队",
+        "tags": [
+          "执法机构",
+          "边境巡逻"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "被逮捕者",
+        "tags": [
+          "移民",
+          "被拘留者"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "分析师",
+        "tags": [
+          "分析师",
+          "观察者"
+        ],
+        "role_in_event": [
+          "见证·旁观"
+        ],
+        "relations": []
+      },
+      {
+        "text": "立法者",
+        "tags": [
+          "立法者",
+          "政治人物"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "分析师将月度逮捕人数上升归因于春季天气变暖"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "2026年3月，美国边境巡逻队在西南边境逮捕了8,268人"
+      },
+      {
+        "step": 2,
+        "text": "这比2026年2月的6,598人增加了25%"
+      },
+      {
+        "step": 3,
+        "text": "年初至今的越境人数仍接近数十年低点，归因于庇护关闭和驱逐政策"
+      },
+      {
+        "step": 4,
+        "text": "分析师指出月度上升是由于春季天气变暖"
+      },
+      {
+        "step": 5,
+        "text": "立法者在移民执法机构资金问题上僵持不下，相关资金法案待决"
+      }
+    ],
+    "result": [
+      {
+        "text": "2026年3月逮捕人数上升25%至8,268人"
+      },
+      {
+        "text": "年初至今越境人数保持在数十年低点附近"
+      },
+      {
+        "text": "立法者在资金问题上僵持不下"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

@@ -1,0 +1,830 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A2",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The rationale for restructuring, articulated from the executive suite, frames the elimination of thousands of positions as a strategic necessity to accelerate AI-driven growth. This narrative justifies the dissolution of existing roles by positioning capital's pursuit of technological dominance over the immediate security of labor, rendering the workforce a variable cost to be optimized in service of a future-oriented vision conceived by the ruling class.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 209504,
+              "title": "Bounty Killer",
+              "similarity": 0.47429588437080383,
+              "movie_url": "https://themoviecosmos.com/movie/209504"
+            },
+            {
+              "tmdb_id": 1209423,
+              "title": "Artificial Justice",
+              "similarity": 0.49542486667633057,
+              "movie_url": "https://themoviecosmos.com/movie/1209423"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The operational mechanism of the restructuring concentrates decision-making power at the top, where a single executive communicates the restructuring to staff, while the prescribed severance—a formulaic 16 weeks plus tenure-based increments—serves as a formalized transaction for the commodified labor it displaces. This process underscores the power gap between the architects of change, who design the terms of displacement, and the affected employees, who must accept the defined terms of their exit.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 513349,
+              "title": "The Factory",
+              "similarity": 0.4857095181941986,
+              "movie_url": "https://themoviecosmos.com/movie/513349"
+            },
+            {
+              "tmdb_id": 664506,
+              "title": "Another World",
+              "similarity": 0.49519848823547363,
+              "movie_url": "https://themoviecosmos.com/movie/664506"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The result is a stark material redistribution: approximately one-sixth of the workforce is cut, a quantitative shedding of human capital deemed non-essential for the new strategic direction. The winding down of specific offices in Reno and Woodland Hills illustrates the geographic and infrastructural footprint of this capital reallocation, where the periphery is sacrificed to consolidate resources toward a centrally-defined technological future.",
+          "source": {
+            "agent_id": "A2",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 67443,
+              "title": "La Belle Équipe",
+              "similarity": 0.46203306317329407,
+              "movie_url": "https://themoviecosmos.com/movie/67443"
+            },
+            {
+              "tmdb_id": 250219,
+              "title": "I Can Quit Whenever I Want",
+              "similarity": 0.49704110622406006,
+              "movie_url": "https://themoviecosmos.com/movie/250219"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "A4",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In the hushed chambers of the corporate citadel, a decree was issued, not by a king but by a chief executive, to reshape the realm for a new age of machines. It was foretold that the old pathways would close, and the hearths in distant outposts would be extinguished, their flames gathered to feed a central, greater fire. This was a ritual of necessity, a shedding of the familiar to court the unknown, where those who once served were offered a portion as they departed, a severance that was both a farewell and a blessing to carry into the wilderness.",
+          "source": {
+            "agent_id": "A4",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1064517,
+              "title": "Fist of the Condor",
+              "similarity": 0.5556319952011108,
+              "movie_url": "https://themoviecosmos.com/movie/1064517"
+            },
+            {
+              "tmdb_id": 37839,
+              "title": "Bunker Palace Hotel",
+              "similarity": 0.5556524991989136,
+              "movie_url": "https://themoviecosmos.com/movie/37839"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "A7",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "It all began with a misdirected email about a summer interns' game night. A junior data scientist, eager to impress, typed 'AI-driven product work' into the subject line instead of 'A.I. — Ackerman & Interns.' The phrase bounced up the chain to a VP skimming messages on a treadmill, who read it as a mandate. Months later, when the CEO announced the layoffs of 3,000 employees, the internal memo cited 'accelerating AI-driven product work' as the reason. No one remembers the original typo, or the interns' aborted kickball league.",
+          "source": {
+            "agent_id": "A7",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 63333,
+              "title": "Gog",
+              "similarity": 0.5223862528800964,
+              "movie_url": "https://themoviecosmos.com/movie/63333"
+            },
+            {
+              "tmdb_id": 64239,
+              "title": "Kamikaze",
+              "similarity": 0.5230904817581177,
+              "movie_url": "https://themoviecosmos.com/movie/64239"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "If not for one loose screw in a printer tray at the Reno office, the restructuring might never have happened. The printer jammed on a draft of a strategic roadmap, spitting out pages in reverse order. A facilities manager, trying to fix it, misread 'Phase 3: Evaluate redundancy' as 'Phase 3: Eliminate redundancy' and filed a report with that verb. The report sat in a shared drive for months, surfacing during the review that led to the elimination of 3,000 roles and the winding down of two offices.",
+          "source": {
+            "agent_id": "A7",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1274837,
+              "title": "Million Dollar Madness",
+              "similarity": 0.44218921661376953,
+              "movie_url": "https://themoviecosmos.com/movie/1274837"
+            },
+            {
+              "tmdb_id": 193982,
+              "title": "The Stenographer's Friend; Or, What Was Accomplished by an Edison Business Phonograph",
+              "similarity": 0.449133962392807,
+              "movie_url": "https://themoviecosmos.com/movie/193982"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "No one remembers the page number. During a long review meeting, a consultant pointed to slide 47 — a chart showing team locations. Someone in the back muttered 'Reno and Woodland Hills are outliers,' and the phrase stuck. It was never meant as a recommendation, just a comment on the data points. But it became the justification for winding down those offices and offering 16-week severance packages, all in the name of co-locating teams. The origin? A half-heard remark and a misplaced coffee cup obscuring the legend.",
+          "source": {
+            "agent_id": "A7",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1186774,
+              "title": "Reunión 10 años – No se aceptan devoluciones",
+              "similarity": 0.4524495005607605,
+              "movie_url": "https://themoviecosmos.com/movie/1186774"
+            },
+            {
+              "tmdb_id": 22004,
+              "title": "Trespass",
+              "similarity": 0.46789079904556274,
+              "movie_url": "https://themoviecosmos.com/movie/22004"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "After months of internal review, the chief executive of a tax-software company told staff about a restructuring to co-locate teams in strategic hubs and accelerate AI-driven product work. The plan includes the elimination of approximately 3,000 full-time roles. Affected U.S. employees are offered a severance package of 16 weeks base pay plus two weeks per year of tenure.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 116741,
+              "title": "The Internship",
+              "similarity": 0.43387266993522644,
+              "movie_url": "https://themoviecosmos.com/movie/116741"
+            },
+            {
+              "tmdb_id": 209504,
+              "title": "Bounty Killer",
+              "similarity": 0.48247846961021423,
+              "movie_url": "https://themoviecosmos.com/movie/209504"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The company's plan involves the elimination of approximately 3,000 full-time roles, representing approximately 17% of its workforce. Offices in Reno and Woodland Hills are designated for winding down. Affected U.S. employees are offered a severance package.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-1",
+              "result-0",
+              "result-3",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 619090,
+              "title": "The Plan",
+              "similarity": 0.463542640209198,
+              "movie_url": "https://themoviecosmos.com/movie/619090"
+            },
+            {
+              "tmdb_id": 56589,
+              "title": "The Seventh Company Outdoors",
+              "similarity": 0.47845250368118286,
+              "movie_url": "https://themoviecosmos.com/movie/56589"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 37839,
+      "title": "Bunker Palace Hotel",
+      "overview": "In an imaginary dictature of a futuristic world, rebellion has broken out. The men in power scramble to the Bunker Palace Hotel, a bunker built long ago for just this kind of contingency. But a rebel spy sneaks in, and although her nature is very quickly suspected, she is left to observe the raving of the decadent power class, who keeps wondering what happened to their leader, who has failed to show up.",
+      "genres": "Science Fiction",
+      "release_year": 1989,
+      "language": "fr",
+      "poster_path": "/hMPgo5p28nbS7AK6xOXxXPx7zVt.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/37839",
+      "similarity": 0.5556524991989136,
+      "triggered_by": [
+        "A4"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A4",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.5556524991989136
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1064517,
+      "title": "Fist of the Condor",
+      "overview": "Upon the empire’s fall to invading conquistadors, the 16th-century Incas quickly concealed a sacred manual containing the secrets behind their deadly fighting technique. But after centuries of careful safeguarding, the manual is again at risk of falling into the wrong hands, leaving its rightful guardian to battle the world’s greatest assassins to protect the ancient secrets within.",
+      "genres": "Action",
+      "release_year": 2023,
+      "language": "es",
+      "poster_path": "/odpaGY2lG32NG4GL2PuGPt7UUTy.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1064517",
+      "similarity": 0.5556319952011108,
+      "triggered_by": [
+        "A4"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A4",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.5556319952011108
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 64239,
+      "title": "Kamikaze",
+      "overview": "A disgruntled scientist is fired from his job; slipping into madness, he invents a machine which harnesses the airwaves and can shoot people through the TV screen.",
+      "genres": "Thriller, Science Fiction",
+      "release_year": 1986,
+      "language": "fr",
+      "poster_path": "/dFlp634hsv9eCOItzhNdhh4QurQ.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/64239",
+      "similarity": 0.5230904817581177,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5230904817581177
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 63333,
+      "title": "Gog",
+      "overview": "A mechanical brain is programmed to sabotage the government's secret lab while working on the first space station.",
+      "genres": "Thriller, Science Fiction, Horror",
+      "release_year": 1954,
+      "language": "en",
+      "poster_path": "/9CUqQa7Ho5ZB3kuS490nxFOSjUb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/63333",
+      "similarity": 0.5223862528800964,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5223862528800964
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 250219,
+      "title": "I Can Quit Whenever I Want",
+      "overview": "A university researcher is fired because of the cuts to university. To earn a living he decides to produce drugs recruiting his former colleagues, who despite their skills are living at the margins of society.",
+      "genres": "Comedy",
+      "release_year": 2014,
+      "language": "it",
+      "poster_path": "/zcDqnuSpdRoXuw3kmbMDxLkdgXR.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/250219",
+      "similarity": 0.49704110622406006,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p3",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.49704110622406006
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1209423,
+      "title": "Artificial Justice",
+      "overview": "In the near future, the Government aims to replace judges with Artificial Intelligence software, pledging to effectively automate and depoliticize the justice system. Carmen Costa, a distinguished judge, has been invited to assess this new procedure. However, when the software’s creator is found dead, she realizes her life is in danger and that she will have to fight the powerful interests that are at play in the highest echelons of the State.",
+      "genres": "Thriller, Science Fiction",
+      "release_year": 2024,
+      "language": "es",
+      "poster_path": "/x7twpnxfyDDCzzQnX9T3Zl9db1F.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1209423",
+      "similarity": 0.49542486667633057,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.49542486667633057
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 664506,
+      "title": "Another World",
+      "overview": "An executive manager, his wife and his family, at the point when his professional choices are about to overturn all their lives. Philippe Lemesle and his wife are separating, their love irretrievably damaged by pressures of work. A successful executive in industrial conglomerate, Philippe no longer knows how to respond to the contradictory demands of his bosses. Yesterday they wanted a manager, today an enforcer. Now he must decide what his life really means.",
+      "genres": "Drama",
+      "release_year": 2022,
+      "language": "fr",
+      "poster_path": "/xhzf8sgqmDnluRsZv6ZHOPzms3q.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/664506",
+      "similarity": 0.49519848823547363,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.49519848823547363
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 513349,
+      "title": "The Factory",
+      "overview": "When a factory is bound to close, a group of workers decides to take action against the owner.",
+      "genres": "Thriller, Drama, Crime",
+      "release_year": 2018,
+      "language": "ru",
+      "poster_path": "/xWUPJmVA93U8QpzaUIqcR2iCeyG.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/513349",
+      "similarity": 0.4857095181941986,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.4857095181941986
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 209504,
+      "title": "Bounty Killer",
+      "overview": "It’s been 20 years since the corporations took over the world’s governments. Their thirst for power and profits led to the Corporate Wars, a fierce global battle that laid waste to society as we know it. Born from the ash, the Council of Nine rose as a new law and order for this dark age. To avenge the corporations’ reckless destruction, the Council issues death warrants for all white collar criminals. Their hunters—the bounty killer. From amateur savage to graceful assassin, the bounty killers now compete for body count, fame and a fat stack of cash. They’re ending the plague of corporate greed and providing the survivors of the apocalypse with retribution. These are the new heroes. This is the age of the BOUNTY KILLER.",
+      "genres": "Action, Science Fiction",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/bG7wdte8enWVc1uuLX6Ys7ckxwd.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/209504",
+      "similarity": 0.48247846961021423,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.47429588437080383
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.48247846961021423
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): A2,A1"
+    },
+    {
+      "tmdb_id": 56589,
+      "title": "The Seventh Company Outdoors",
+      "overview": "The third part of Seventh Company adventures.",
+      "genres": "Comedy",
+      "release_year": 1977,
+      "language": "fr",
+      "poster_path": "/qNBJf3mEfKmoB2iKAlAY3ux9wMB.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/56589",
+      "similarity": 0.47845250368118286,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-1",
+            "result-0",
+            "result-3",
+            "result-2"
+          ],
+          "similarity": 0.47845250368118286
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 22004,
+      "title": "Trespass",
+      "overview": "Two Arkansas firemen, Vince and Don, get hold of a map that leads to a cache of stolen gold in an abandoned factory in East St. Louis. What they don't know is that the factory is on the turf of a local gang, who come by to execute one of their enemies. Vince sees the shooting, the gang spots Vince, and extended mayhem ensues. As Vince and Don try to escape, gang leader King James argues with his subordinate Savon about how to get rid of the trespassers.",
+      "genres": "Action, Thriller, Crime",
+      "release_year": 1992,
+      "language": "en",
+      "poster_path": "/GSeicpK571uoM2ZCRb1YyW2YMG.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/22004",
+      "similarity": 0.46789079904556274,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.46789079904556274
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 619090,
+      "title": "The Plan",
+      "overview": "Three friends who have been fired from the company where they worked and are demoralized because of their unemployment status. In these circumstances, they meet to undertake the plan that mentions the title but there is a problem: the car with which they would travel has broken down and the crane must wait.",
+      "genres": "Comedy, Drama",
+      "release_year": 2018,
+      "language": "es",
+      "poster_path": "/jDNz5RG6n6mIsXVOf5TgQsvmIxN.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/619090",
+      "similarity": 0.463542640209198,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-1",
+            "result-0",
+            "result-3",
+            "result-2"
+          ],
+          "similarity": 0.463542640209198
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 67443,
+      "title": "La Belle Équipe",
+      "overview": "Five unemployed workers win 100,000 Francs in the national lottery. Instead of sharing the money, they buy a ruin and build an open-air cafe. But difficulties come to split their friendly group apart.",
+      "genres": "Drama",
+      "release_year": 1936,
+      "language": "fr",
+      "poster_path": "/8vMDpc2cD05vys5jWkXoy9co6C.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/67443",
+      "similarity": 0.46203306317329407,
+      "triggered_by": [
+        "A2"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A2",
+          "pseudo_id": "p3",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.46203306317329407
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1186774,
+      "title": "Reunión 10 años – No se aceptan devoluciones",
+      "overview": "Reunión 10 años – No se aceptan devoluciones",
+      "genres": "Comedy",
+      "release_year": 2023,
+      "language": "es",
+      "poster_path": "/mY4MJRgJb7Vvpl2jOhh4gxtiZAH.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1186774",
+      "similarity": 0.4524495005607605,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4524495005607605
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 193982,
+      "title": "The Stenographer's Friend; Or, What Was Accomplished by an Edison Business Phonograph",
+      "overview": "It's a busy day at the office, and the stenographer is exhausted from trying to keep up with the demands on her skills. Even when she stays late, she cannot catch up with all of the work. But then a man comes into the office to demonstrate the many advantages of the Edison System, his company's new business phonograph.",
+      "genres": "Drama",
+      "release_year": 1910,
+      "language": "en",
+      "poster_path": "/nA54IulBQWTONEunSxJJUsFf8uB.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/193982",
+      "similarity": 0.449133962392807,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1"
+          ],
+          "similarity": 0.449133962392807
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1274837,
+      "title": "Million Dollar Madness",
+      "overview": "Under immense pressure and amidst competition with a duplicitous colleague, Stan, the ambitious and very serious operations manager of a construction firm reaches breaking point when he learns that he’s been unfairly laid off by the company’s tyrannical CEO. He impulsively steals one million euros from the company’s vault, tosses away the key to the safe and hastily flees with his fiancée Marine… Before discovering that his termination was a mistake, and he is actually being promoted! Stan has until sunrise to return the money to the vault. But having thrown away his key, and with the only spare inside the CEO’s own apartment, he must reluctantly enlist the help of Hippolyte, Paris’s most unpredictable locksmith. The night promises to be full of twists and turns!",
+      "genres": "Comedy",
+      "release_year": 2025,
+      "language": "fr",
+      "poster_path": "/jMCBMmbyY6wRT0MD9xrCt3TeVFf.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1274837",
+      "similarity": 0.44218921661376953,
+      "triggered_by": [
+        "A7"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "A7",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1"
+          ],
+          "similarity": 0.44218921661376953
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 116741,
+      "title": "The Internship",
+      "overview": "Two recently laid-off men in their 40s try to make it as interns at a successful Internet company where their managers are in their 20s.",
+      "genres": "Comedy",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/hIh3ZgsZ31nbUAGn5SKIZGKiKCX.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/116741",
+      "similarity": 0.43387266993522644,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.43387266993522644
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A2-A4": 0.37652185559272766,
+      "A2-A7": 0.42303162813186646,
+      "A1-A2": 0.5656095743179321,
+      "A4-A7": 0.2357380986213684,
+      "A1-A4": 0.21825271844863892,
+      "A1-A7": 0.390735924243927
+    },
+    "topk_jaccard": {
+      "A2-A4": 0.0,
+      "A2-A7": 0.0,
+      "A1-A2": 0.1111111111111111,
+      "A4-A7": 0.0,
+      "A1-A4": 0.0,
+      "A1-A7": 0.0
+    }
+  },
+  "meta": {
+    "query_count": 9,
+    "raw_hit_count": 18,
+    "candidate_count": 17,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

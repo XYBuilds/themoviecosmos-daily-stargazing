@@ -14,6 +14,8 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
+from scripts.eval_editor_fields import append_resonance_editor_lines
+
 SCREENPLAY_AGENTS = frozenset({"A1", "A2", "A4", "A7"})
 DEFAULT_EVAL_ROOT = _REPO_ROOT / "output" / "Eval"
 DEFAULT_OUT = DEFAULT_EVAL_ROOT / "multi-agent-hits-review.md"
@@ -120,8 +122,7 @@ def _format_candidate_block(
         lines.append("- **命中视角/碎片**:")
         for src in screenplay_sources:
             lines.append(_format_hit_line(src))
-    lines.append("- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->")
-    lines.append("- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->")
+    append_resonance_editor_lines(lines)
     lines.append("")
     return lines
 
@@ -209,7 +210,7 @@ def render_markdown(rows: list[dict[str, Any]], *, eval_root: Path) -> str:
         "",
         "- **Primary:** `hit_sources` in each run's `retrieve.json` (fragment arrays).",
         "- **Cross-check:** `命中视角/碎片` in `candidates.md` when present.",
-        "- **Editor fields:** 共振分 / 共振类型 are placeholders only (not filled by this extract).",
+        "- **Editor fields:** 共振分 / 共振类型 / 打分备注 are placeholders only (not filled by this extract).",
         "",
         f"- **Generation date:** {gen_date}",
         f"- **Total multi-agent candidates:** {len(rows)}",

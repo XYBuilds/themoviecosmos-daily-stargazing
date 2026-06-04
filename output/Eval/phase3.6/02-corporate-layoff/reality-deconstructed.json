@@ -1,0 +1,174 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Intuit to cut roughly 17% of workforce in AI-focused restructuring",
+    "description": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles to co-locate teams in strategic hubs and accelerate AI-driven product work. Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure, with offices in Reno and Woodland Hills winding down. The company framed the move as a painful but necessary reinvention after months of internal review.",
+    "pub_time": "2026-05-20T09:00:00-07:00",
+    "source_name": "SEC filing / company memo",
+    "url": "https://www.sec.gov/Archives/edgar/data/896878/000089687826000024/fy26q3-ex9902.htm"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-20T09:00:00-07:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026-05-20"
+      ],
+      "relative": [
+        "after months of internal review"
+      ],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [],
+      "recurrence": [],
+      "modality": [
+        "计划"
+      ],
+      "timezone": [
+        "-07:00"
+      ]
+    },
+    "where": [
+      {
+        "text": "Reno",
+        "tags": [
+          "Reno",
+          "city",
+          "office location"
+        ],
+        "geocode": {
+          "country": null,
+          "state": null,
+          "city": "Reno",
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": null,
+        "scene_archetype": [
+          "corporate office"
+        ],
+        "role": [
+          "office location",
+          "affected site"
+        ],
+        "intended_destination": null,
+        "scale": null,
+        "trajectory": null,
+        "contested_name": null
+      },
+      {
+        "text": "Woodland Hills",
+        "tags": [
+          "Woodland Hills",
+          "city",
+          "office location"
+        ],
+        "geocode": {
+          "country": null,
+          "state": null,
+          "city": "Woodland Hills",
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": null,
+        "scene_archetype": [
+          "corporate office"
+        ],
+        "role": [
+          "office location",
+          "affected site"
+        ],
+        "intended_destination": null,
+        "scale": null,
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "Sasan Goodarzi",
+        "tags": [
+          "chief executive",
+          "executive"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      },
+      {
+        "text": "affected U.S. employees",
+        "tags": [
+          "employees",
+          "U.S. employees"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Intuit",
+        "tags": [
+          "company",
+          "tax-software company"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "Chief executive Sasan Goodarzi told staff about the AI-focused restructuring"
+      },
+      {
+        "step": 2,
+        "text": "Elimination of approximately 3,000 full-time roles"
+      },
+      {
+        "step": 3,
+        "text": "Affected U.S. employees offered severance: 16 weeks base pay plus two weeks per year of tenure"
+      },
+      {
+        "step": 4,
+        "text": "Offices in Reno and Woodland Hills winding down"
+      }
+    ],
+    "result": [
+      {
+        "text": "Approximately 17% of workforce to be cut"
+      },
+      {
+        "text": "3,000 full-time roles to be eliminated"
+      },
+      {
+        "text": "Severance package defined for U.S. employees"
+      },
+      {
+        "text": "Offices in Reno and Woodland Hills designated for winding down"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}
