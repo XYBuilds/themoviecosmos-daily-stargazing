@@ -65,9 +65,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A2/p3: fragments=[result-0, result-1, how-2] · sim=0.5446 · **命中分=3**
   - A1/p2: fragments=[why-0, why-1, why-2, result-0, result-1] · sim=0.4782 · **命中分=5**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 
 
 ### 单 agent 命中
 
@@ -88,9 +88,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A1/p1: fragments=[how-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.4985 · **命中分=7**
   - A1/p2: fragments=[why-0, why-1, why-2, result-0, result-1] · sim=0.5253 · **命中分=5**
 - **pseudo命中分合计**: 12
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 效果相当好
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 10 -->
@@ -106,9 +106,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.5659 · **命中分=10**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 只有宙斯和供电有一些联系，但是基本无关；怀疑太过受宙斯的概念影响
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 10 -->
@@ -124,9 +124,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.5574 · **命中分=10**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 9 -->
@@ -142,9 +142,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.4445 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 9 -->
@@ -160,9 +160,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.4522 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 9 -->
@@ -178,9 +178,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p2: fragments=[why-0, why-2, how-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.4658 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 结构  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 能看出资源短缺的环境是联系的纽带，但是效果不好
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 9 -->
@@ -196,9 +196,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p2: fragments=[why-0, why-2, how-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.4730 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 7 -->
@@ -214,9 +214,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A1/p1: fragments=[how-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.4561 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 资源短缺的感觉挺优秀的，其实介于1和2之间
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -232,9 +232,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A2/p2: fragments=[how-0, how-1, how-2, how-3, result-2] · sim=0.4645 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -250,9 +250,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A2/p2: fragments=[how-0, how-1, how-2, how-3, result-2] · sim=0.4689 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 ## 02-corporate-layoff
 
@@ -287,9 +287,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A2/p1: fragments=[why-0, how-0, how-1] · sim=0.4743 · **命中分=3**
   - A1/p1: fragments=[why-0, how-0, how-1, how-2] · sim=0.4825 · **命中分=4**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 效果不是特别好，low 2
 
 ### 单 agent 命中
 
@@ -309,9 +309,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p2: fragments=[why-0, how-0, how-1, how-2, how-3, result-1] · sim=0.4491 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 一部老电影，overview中展现的新发明、繁荣反而与当下的裁员现状产生了对比
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 6 -->
@@ -327,9 +327,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p2: fragments=[why-0, how-0, how-1, how-2, how-3, result-1] · sim=0.4422 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 5 -->
@@ -345,9 +345,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p3: fragments=[why-0, how-2, how-3, result-2, result-3] · sim=0.4679 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 5 -->
@@ -363,9 +363,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p3: fragments=[why-0, how-2, how-3, result-2, result-3] · sim=0.4524 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 不能把overview这么短的/或者因为没有overview所以用标题替代的电影放进候选 
 
 ## 03-election-upset
 
@@ -401,9 +401,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A1/p1: fragments=[why-0, how-0, result-0, result-1, result-2] · sim=0.4990 · **命中分=5**
   - A1/p2: fragments=[why-0, result-0, result-1] · sim=0.5140 · **命中分=3**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -420,9 +420,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A2/p2: fragments=[why-0, result-1] · sim=0.5404 · **命中分=2**
   - A1/p2: fragments=[why-0, result-0, result-1] · sim=0.4868 · **命中分=3**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 很牵强。low 2
 
 ### 单 agent 命中
 
@@ -442,9 +442,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A1/p1: fragments=[why-0, how-0, result-0, result-1, result-2] · sim=0.5009 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 ## 04-celebrity-scandal
 
@@ -482,9 +482,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p2: fragments=[why-0, how-0, how-1, how-2, result-0] · sim=0.4846 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -500,9 +500,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[how-0, how-1, how-2, result-0, result-1] · sim=0.5519 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -518,9 +518,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5822 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -536,9 +536,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[how-0, how-1, how-2, result-0, result-1] · sim=0.5665 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -554,9 +554,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5813 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 ## 05-climate-disaster
 
@@ -592,9 +592,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A1/p1: fragments=[how-0, how-1, how-2, how-3] · sim=0.5671 · **命中分=4**
   - A1/p2: fragments=[how-4, how-5, result-5] · sim=0.4654 · **命中分=3**
 - **pseudo命中分合计**: 20
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 效果非常优秀
 
 ### 单 agent 命中
 
@@ -614,9 +614,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.3942 · **命中分=13**
 - **pseudo命中分合计**: 13
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 12 -->
@@ -632,9 +632,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-5] · sim=0.5502 · **命中分=12**
 - **pseudo命中分合计**: 12
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 12 -->
@@ -650,9 +650,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-5] · sim=0.5395 · **命中分=12**
 - **pseudo命中分合计**: 12
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -668,9 +668,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p2: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1, result-5] · sim=0.5021 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -686,9 +686,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p2: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1, result-5] · sim=0.5082 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 一部很老的电影本身就会与眼下现实产生结构性共鸣
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 7 -->
@@ -704,9 +704,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p2: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4524 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 7 -->
@@ -722,9 +722,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p2: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4101 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 5 -->
@@ -740,9 +740,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A2/p2: fragments=[how-0, how-1, how-2, how-3, how-4] · sim=0.5552 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 5 -->
@@ -758,9 +758,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A2/p2: fragments=[how-0, how-1, how-2, how-3, how-4] · sim=0.5341 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 ## 06-tech-monopoly
 
@@ -799,9 +799,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A1/p1: fragments=[how-0, how-1, how-2, result-0] · sim=0.4068 · **命中分=4**
   - A1/p2: fragments=[why-0, how-1, result-0] · sim=0.4472 · **命中分=3**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 结构和表层好像都有一些联系，但是都不太紧密
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 6 -->
@@ -817,9 +817,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.4197 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 6 -->
@@ -835,9 +835,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p1: fragments=[how-0, how-1, how-2, result-0, result-1, why-0] · sim=0.5016 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 6 -->
@@ -853,9 +853,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p1: fragments=[how-0, how-1, how-2, result-0, result-1, why-0] · sim=0.4773 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 6 -->
@@ -871,9 +871,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.4117 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 5 -->
@@ -891,7 +891,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 5 -->
@@ -909,7 +909,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 ## 07-migration-border
 
@@ -945,9 +945,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A2/p2: fragments=[how-4, result-2] · sim=0.5027 · **命中分=2**
   - A1/p1: fragments=[how-0, how-1] · sim=0.5087 · **命中分=2**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 在事实和情节层面上联系有些不太紧密
 
 ### 单 agent 命中
 
@@ -967,9 +967,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[how-0, how-1, how-2, how-3, how-4, result-0, result-2] · sim=0.4184 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 7 -->
@@ -985,9 +985,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p2: fragments=[how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.4781 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 7 -->
@@ -1003,9 +1003,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p2: fragments=[how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.4721 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 7 -->
@@ -1021,9 +1021,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p1: fragments=[how-0, how-1, how-2, how-3, how-4, result-0, result-2] · sim=0.4457 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 6 -->
@@ -1041,7 +1041,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 6 -->
@@ -1057,9 +1057,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A2/p1: fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.4332 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 结构  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 加州这个地理位置共振感强
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 6 -->
@@ -1075,9 +1075,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p1: fragments=[how-0, how-1, how-2, how-3, why-0, result-0] · sim=0.5420 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 6 -->
@@ -1093,9 +1093,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A2/p3: fragments=[how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5111 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 6 -->
@@ -1111,9 +1111,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p1: fragments=[how-0, how-1, how-2, how-3, why-0, result-0] · sim=0.5236 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 5 -->
@@ -1129,9 +1129,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p3: fragments=[how-0, how-1, how-2, result-0, result-1] · sim=0.4648 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 5 -->
@@ -1147,9 +1147,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A7/p3: fragments=[how-0, how-1, how-2, result-0, result-1] · sim=0.4675 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 5 -->
@@ -1165,9 +1165,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p2: fragments=[how-0, how-1, how-2, how-3, result-1] · sim=0.5113 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 5 -->
@@ -1183,9 +1183,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A4/p2: fragments=[how-0, how-1, how-2, how-3, result-1] · sim=0.5202 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 ## 08-sports-underdog
 
@@ -1224,9 +1224,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A1/p1: fragments=[how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4978 · **命中分=6**
   - A1/p3: fragments=[how-0, how-1, how-2, how-3, result-0] · sim=0.4861 · **命中分=5**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 11 -->
@@ -1243,9 +1243,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A1/p1: fragments=[how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5622 · **命中分=6**
   - A1/p3: fragments=[how-0, how-1, how-2, how-3, result-0] · sim=0.5831 · **命中分=5**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 7 -->
@@ -1263,7 +1263,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 7
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -1281,7 +1281,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -1299,7 +1299,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 5 -->
@@ -1317,7 +1317,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 5 -->
@@ -1335,7 +1335,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 5 -->
@@ -1353,7 +1353,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 5 -->
@@ -1371,7 +1371,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 5 -->
@@ -1389,7 +1389,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 5 -->
@@ -1407,7 +1407,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 ## 09-cultural-backlash
 
@@ -1445,7 +1445,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 9
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: overview太短很难判断，题材可能有点危险（厌女，性别议题）
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -1464,7 +1464,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 ### 单 agent 命中
 
@@ -1486,7 +1486,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 6 -->
@@ -1504,7 +1504,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 6 -->
@@ -1522,7 +1522,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 6 -->
@@ -1540,7 +1540,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 6 -->
@@ -1558,7 +1558,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 6 -->
@@ -1576,7 +1576,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -1592,9 +1592,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - A1/p1: fragments=[how-0, how-1, how-2, why-0, why-1] · sim=0.6236 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 奥德赛的老电影，有历史加成。
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -1612,7 +1612,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -1630,7 +1630,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -1648,7 +1648,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -1666,7 +1666,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -1684,7 +1684,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 ## 10-whistleblower-leak
 
@@ -1719,9 +1719,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A7/p1: fragments=[how-0, how-1, why-0, how-2, how-3, result-0, result-1, result-2, result-3, how-4] · sim=0.4862 · **命中分=10**
   - A1/p2: fragments=[why-0, how-1, how-2] · sim=0.4541 · **命中分=3**
 - **pseudo命中分合计**: 13
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 基本完全无关，可能是将举报信和overview中的求助纸条关联了？
 
 ### 单 agent 命中
 
@@ -1743,9 +1743,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - A1/p2: fragments=[why-0, how-1, how-2] · sim=0.4645 · **命中分=3**
   - A1/p3: fragments=[how-3, result-0, result-2, result-3] · sim=0.4088 · **命中分=4**
 - **pseudo命中分合计**: 16
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 基本不相干
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 10 -->
@@ -1763,7 +1763,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 10
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 9 -->
@@ -1781,7 +1781,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 9
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 8 -->
@@ -1799,7 +1799,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 8
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 8 -->
@@ -1817,7 +1817,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 8
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 7 -->
@@ -1835,7 +1835,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 7
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 7 -->
@@ -1853,7 +1853,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 7
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 6 -->
@@ -1871,7 +1871,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 6 -->
@@ -1889,5 +1889,5 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 
 
