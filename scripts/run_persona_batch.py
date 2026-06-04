@@ -1,7 +1,8 @@
 """run_persona_batch.py · Phase 3.7 N=10 batch: 12 personas × news + A1 baseline per run.
 
 Reads neutral decon from output/Eval/phase3.6/{run_id}/ (read-only). Writes under
-output/Eval/phase3.7/{run_id}/ with per-persona subdirs, merged retrieve.json, candidates.md.
+output/Eval/phase3.7/{run_id}/ with per-persona subdirs and merged retrieve.json.
+Editor scoring uses output/Eval/phase3.7/high-hit-score-review.md (from score_eval_candidates).
 """
 
 from __future__ import annotations
@@ -29,11 +30,7 @@ from scripts.personas import (
     run_persona_pipeline,
 )
 from scripts.retrieve import retrieve_from_agents
-from scripts.run_eval import (
-    _format_candidate_block,
-    _sort_candidates_for_display,
-    load_deconstruction_from_file,
-)
+from scripts.run_eval import load_deconstruction_from_file
 
 PHASE36 = repo_root() / "output" / "Eval" / "phase3.6"
 PHASE37 = repo_root() / "output" / "Eval" / "phase3.7"
@@ -150,65 +147,6 @@ def _attach_fit_to_hit_sources(
                 src["fit"] = fit_lookup[key]
 
 
-def _format_hit_line_with_fit(src: dict[str, Any]) -> str:
-    frags = src.get("fragments") or []
-    frag_note = ", ".join(frags) if frags else "—"
-    sim = src.get("similarity")
-    sim_note = f"{sim:.4f}" if isinstance(sim, (int, float)) else "—"
-    agent = src.get("agent_id", "?")
-    pseudo = src.get("pseudo_id", "?")
-    fit = src.get("fit")
-    fit_note = f" · fit={fit:.2f}" if isinstance(fit, (int, float)) else ""
-    return (
-        f"  - {agent}/{pseudo}{fit_note}: "
-        f"fragments=[{frag_note}] · sim={sim_note}"
-    )
-
-
-def format_phase37_candidates_md(
-    run_id: str,
-    candidates: list[dict[str, Any]],
-    *,
-    split: str,
-) -> str:
-    lines = [
-        f"# 候选星轨 · {run_id}",
-        "",
-        "## 元信息",
-        f"- **run_id**: {run_id}",
-        f"- **phase**: 3.7.4 · twelve personas × N=10",
-        f"- **split**: {split}  <!-- observation 01–04 | holdout 05–10 -->",
-        f"- **personas**: 12 Pearson ids + A1 neutral baseline (phase3.6, read-only)",
-        f"- **decon source**: `output/Eval/phase3.6/{run_id}/` (read-only)",
-        "",
-        f"## 候选星轨（共 {len(candidates)} 部）",
-    ]
-    if not candidates:
-        lines.append("（无候选）")
-    else:
-        for cand in _sort_candidates_for_display(candidates):
-            lines.append("")
-            block = _format_candidate_block(cand, include_score=True)
-            out_block: list[str] = []
-            in_hits = False
-            for line in block:
-                if line.strip() == "- **命中视角/碎片**:":
-                    in_hits = True
-                    out_block.append(line)
-                    for src in cand.get("hit_sources") or []:
-                        out_block.append(_format_hit_line_with_fit(src))
-                    continue
-                if in_hits and line.startswith("  - "):
-                    continue
-                if in_hits and not line.startswith("  - "):
-                    in_hits = False
-                if not in_hits:
-                    out_block.append(line)
-            lines.extend(out_block)
-    lines.append("")
-    return "\n".join(lines)
-
-
 def _persona_done(persona_dir: Path) -> bool:
     pipeline_path = persona_dir / "persona-pipeline.json"
     if not pipeline_path.is_file():
@@ -300,14 +238,6 @@ async def finalize_run(
     )
     (out_dir / "retrieve.json").write_text(
         json.dumps(retrieve_result, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
-    (out_dir / "candidates.md").write_text(
-        format_phase37_candidates_md(
-            run_id,
-            retrieve_result.get("candidates") or [],
-            split=split,
-        ),
         encoding="utf-8",
     )
     meta = {

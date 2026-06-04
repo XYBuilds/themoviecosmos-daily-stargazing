@@ -18,7 +18,6 @@ output/Eval/phase3.7/{run_id}/
   personas/{persona_id}/persona-pipeline.json
   agents.json                                 # A1 + all persona agents
   retrieve.json
-  candidates.md                               # 总编填 共振分 / 共振类型
   batch-run-meta.json
 ```
 
@@ -41,7 +40,7 @@ A1 baseline: pseudos reused from phase3.6 `retrieve.json` (same-run gate-2 compa
 python scripts/score_eval_candidates.py --dir output/Eval/phase3.7 --review-out output/Eval/phase3.7/high-hit-score-review.md
 ```
 
-Fill `共振分` / `共振类型` in each run's `candidates.md`. Holdout **05–10** is mandatory for 3.7.5; observation **01–04** optional.
+Fill `共振分` / `共振类型` / `打分备注` in **`high-hit-score-review.md`** only (built from each run's `retrieve.json`). Holdout **05–10** is mandatory for 3.7.5; observation **01–04** optional. Per-run `candidates.md` is not produced for phase 3.7.
 
 ## Completion matrix
 
