@@ -1,0 +1,177 @@
+{
+  "persona_id": "The-Innocent",
+  "overlay": {
+    "persona_id": "The-Innocent",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "欧盟委员会",
+          "alternatives": [
+            {
+              "term": "捍卫公平竞争的监管者",
+              "valence": "positive"
+            },
+            {
+              "term": "欧盟执行机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "规则的执行者",
+              "valence": "neutral"
+            },
+            {
+              "term": "施加重罚的权威机构",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "谷歌（字母表公司）",
+          "alternatives": [
+            {
+              "term": "寻求改过机会的科技巨头",
+              "valence": "positive"
+            },
+            {
+              "term": "被调查的公司",
+              "valence": "neutral"
+            },
+            {
+              "term": "长期面临竞争指控的企业",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "因在搜索结果中优先展示自家购物、航班和酒店服务，而非竞争对手的比较服务",
+          "alternatives": [
+            {
+              "term": "未能公平对待所有服务提供商",
+              "valence": "positive"
+            },
+            {
+              "term": "在搜索结果中优先展示自家服务",
+              "valence": "neutral"
+            },
+            {
+              "term": "涉嫌自我优待和排挤竞争对手",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "根据数字市场法启动程序",
+          "alternatives": [
+            {
+              "term": "启动旨在维护市场公平的法定程序",
+              "valence": "positive"
+            },
+            {
+              "term": "依据新规启动调查",
+              "valence": "neutral"
+            },
+            {
+              "term": "对一家公司展开调查",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "欧盟委员会在两年多的程序后拒绝了公司的补救提案",
+          "alternatives": [
+            {
+              "term": "认为公司的提议不足以解决问题",
+              "valence": "positive"
+            },
+            {
+              "term": "在长期程序后拒绝了公司的提案",
+              "valence": "neutral"
+            },
+            {
+              "term": "否决了公司的和解努力",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "预计在委员会八月休会前做出正式决定",
+          "alternatives": [
+            {
+              "term": "即将做出关乎未来市场格局的决定",
+              "valence": "positive"
+            },
+            {
+              "term": "计划在夏季休会前做出裁决",
+              "valence": "neutral"
+            },
+            {
+              "term": "即将宣布一项重大处罚决定",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "欧盟监管机构正在敲定一项可能达到数亿欧元的罚款",
+          "alternatives": [
+            {
+              "term": "可能处以旨在纠正行为的巨额罚款",
+              "valence": "positive"
+            },
+            {
+              "term": "正在敲定一项高额罚款",
+              "valence": "neutral"
+            },
+            {
+              "term": "即将开出天价罚单",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "这是针对字母表公司十多年来积累的竞争罚款之上",
+          "alternatives": [
+            {
+              "term": "为长达十余年的监管问题再添一笔记录",
+              "valence": "positive"
+            },
+            {
+              "term": "叠加在公司已有的竞争罚款之上",
+              "valence": "neutral"
+            },
+            {
+              "term": "是其长期反竞争历史的又一次延续",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "The European Commission, acting as a guardian of fair competition, is set to make a significant decision before its August recess. After more than two years of proceedings where the company's proposals were deemed insufficient, a large fine intended to correct the behavior is being finalized. This action stems from allegations of self-preferencing in search results, adding to a long history of regulatory scrutiny for the tech giant seeking a chance to make amends.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.75
+    }
+  ],
+  "warnings": []
+}

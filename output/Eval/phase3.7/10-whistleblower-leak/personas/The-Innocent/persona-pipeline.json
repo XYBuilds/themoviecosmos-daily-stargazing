@@ -1,0 +1,350 @@
+{
+  "persona_id": "The-Innocent",
+  "overlay": {
+    "persona_id": "The-Innocent",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "举报人",
+          "alternatives": [
+            {
+              "term": "诚实的告发者",
+              "valence": "positive"
+            },
+            {
+              "term": "信息提供者",
+              "valence": "neutral"
+            },
+            {
+              "term": "事件引发者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "印度国家考试机构 (NTA)",
+          "alternatives": [
+            {
+              "term": "负责任的管理机构",
+              "valence": "positive"
+            },
+            {
+              "term": "考试主办方",
+              "valence": "neutral"
+            },
+            {
+              "term": "疏忽的监管者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "中央调查局 (CBI)",
+          "alternatives": [
+            {
+              "term": "公正的调查者",
+              "valence": "positive"
+            },
+            {
+              "term": "执法部门",
+              "valence": "neutral"
+            },
+            {
+              "term": "高压的执法机构",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "26-27 名试卷制定者和翻译人员",
+          "alternatives": [
+            {
+              "term": "辛勤的教育工作者",
+              "valence": "positive"
+            },
+            {
+              "term": "考试工作人员",
+              "valence": "neutral"
+            },
+            {
+              "term": "涉嫌泄题者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "十三名被逮捕人员（包括一名培训人士）",
+          "alternatives": [
+            {
+              "term": "受牵连者",
+              "valence": "positive"
+            },
+            {
+              "term": "被拘留者",
+              "valence": "neutral"
+            },
+            {
+              "term": "作弊嫌疑人",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "印度",
+          "alternatives": [
+            {
+              "term": "教育体系受考验的国家",
+              "valence": "positive"
+            },
+            {
+              "term": "事件发生国",
+              "valence": "neutral"
+            },
+            {
+              "term": "丑闻困扰的国家",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "西卡尔",
+          "alternatives": [
+            {
+              "term": "真相揭露的起源地",
+              "valence": "positive"
+            },
+            {
+              "term": "举报来源城市",
+              "valence": "neutral"
+            },
+            {
+              "term": "风波起点",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "举报人发送的 PDF 文件与 NEET-UG 2026 化学试卷完全匹配，与生物试卷部分匹配",
+          "alternatives": [
+            {
+              "term": "确凿的证据揭露了泄露",
+              "valence": "positive"
+            },
+            {
+              "term": "举报内容与试卷内容相符",
+              "valence": "neutral"
+            },
+            {
+              "term": "考试公平性受到质疑",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "2026年5月3日，NEET-UG 医学入学考试进行",
+          "alternatives": [
+            {
+              "term": "大规模考试如期举行",
+              "valence": "positive"
+            },
+            {
+              "term": "考试日期",
+              "valence": "neutral"
+            },
+            {
+              "term": "一场被污染的考试",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "四天后，印度国家考试机构收到举报人邮件，附有匹配试卷的 PDF 文件",
+          "alternatives": [
+            {
+              "term": "及时收到关键证据",
+              "valence": "positive"
+            },
+            {
+              "term": "举报邮件送达",
+              "valence": "neutral"
+            },
+            {
+              "term": "丑闻证据被曝光",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "NTA 将 26-27 名试卷制定者和翻译人员移交中央调查局",
+          "alternatives": [
+            {
+              "term": "机构采取果断行动进行调查",
+              "valence": "positive"
+            },
+            {
+              "term": "案件被移交至调查机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "工作人员被指控",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "十三人被逮捕，包括一名培训人士",
+          "alternatives": [
+            {
+              "term": "正义得以伸张",
+              "valence": "positive"
+            },
+            {
+              "term": "逮捕行动执行",
+              "valence": "neutral"
+            },
+            {
+              "term": "多人被捕入狱",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "重新考试定于2026年6月21日",
+          "alternatives": [
+            {
+              "term": "提供公平的第二次机会",
+              "valence": "positive"
+            },
+            {
+              "term": "补考安排",
+              "valence": "neutral"
+            },
+            {
+              "term": "因作弊而不得不重考",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "NEET-UG 2026 被取消",
+          "alternatives": [
+            {
+              "term": "为恢复信任而取消考试",
+              "valence": "positive"
+            },
+            {
+              "term": "考试结果无效",
+              "valence": "neutral"
+            },
+            {
+              "term": "考试彻底失败",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "相关人员被移交 CBI",
+          "alternatives": [
+            {
+              "term": "责任方受到追究",
+              "valence": "positive"
+            },
+            {
+              "term": "调查程序启动",
+              "valence": "neutral"
+            },
+            {
+              "term": "机构信誉受损",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "十三人被逮捕",
+          "alternatives": [
+            {
+              "term": "违法者被绳之以法",
+              "valence": "positive"
+            },
+            {
+              "term": "逮捕行动完成",
+              "valence": "neutral"
+            },
+            {
+              "term": "大规模逮捕",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "重新考试安排在2026年6月21日",
+          "alternatives": [
+            {
+              "term": "系统承诺修复",
+              "valence": "positive"
+            },
+            {
+              "term": "补考日期确定",
+              "valence": "neutral"
+            },
+            {
+              "term": "漫长的等待与不确定性",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "After the NEET-UG medical exam was held in India, an honest whistleblower from Sikar sent key evidence—documents matching the chemistry and biology papers—to the National Testing Agency. The responsible exam body acted with integrity, promptly handing the matter to impartial investigators. This allowed for a thorough probe, resulting in those implicated being held accountable. The system then committed to repair by scheduling a fair second chance for all candidates in June, aiming to restore trust in the educational process.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "result-3"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.91
+    },
+    {
+      "id": "p2",
+      "text": "The incident began when truthful information was provided, exposing a breach in the exam's security. In response, India's National Testing Agency, acting as a diligent regulator, ensured the case was properly investigated by the Central Bureau of Investigation. While the arrests included education workers, the outcome saw a decisive move to cancel the compromised exam and schedule a new one. This path forward offers a sincere opportunity to correct the harm and rebuild confidence in the nation's academic testing.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-2",
+          "how-3",
+          "result-0",
+          "how-4"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

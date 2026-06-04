@@ -1,0 +1,23 @@
+{
+  "run_id": "07-migration-border",
+  "split": "holdout",
+  "persona_count": 10,
+  "errors": [
+    {
+      "agent_id": "The-Hero",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Ruler",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    }
+  ],
+  "retrieve_meta": {
+    "query_count": 27,
+    "raw_hit_count": 54,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  },
+  "finished_at": "2026-06-04T19:10:17.634776+00:00"
+}

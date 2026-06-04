@@ -1,0 +1,313 @@
+{
+  "persona_id": "The-Ruler",
+  "overlay": {
+    "persona_id": "The-Ruler",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "举报人",
+          "alternatives": [
+            {
+              "term": "秩序捍卫者",
+              "valence": "positive"
+            },
+            {
+              "term": "信息提供者",
+              "valence": "neutral"
+            },
+            {
+              "term": "规则破坏者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "印度国家考试机构 (NTA)",
+          "alternatives": [
+            {
+              "term": "权威守护者",
+              "valence": "positive"
+            },
+            {
+              "term": "考试管理机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "失职的管理者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "中央调查局 (CBI)",
+          "alternatives": [
+            {
+              "term": "秩序恢复者",
+              "valence": "positive"
+            },
+            {
+              "term": "中央执法机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "迟到的干预者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "26-27 名试卷制定者和翻译人员",
+          "alternatives": [
+            {
+              "term": "秩序维护者",
+              "valence": "positive"
+            },
+            {
+              "term": "教育工作者",
+              "valence": "neutral"
+            },
+            {
+              "term": "漏洞制造者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "十三名被逮捕人员（包括一名培训人士）",
+          "alternatives": [
+            {
+              "term": "正义的倡导者",
+              "valence": "positive"
+            },
+            {
+              "term": "被调查人员",
+              "valence": "neutral"
+            },
+            {
+              "term": "秩序破坏者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "举报人发送的 PDF 文件与 NEET-UG 2026 化学试卷完全匹配，与生物试卷部分匹配",
+          "alternatives": [
+            {
+              "term": "确凿的证据揭示了系统漏洞",
+              "valence": "positive"
+            },
+            {
+              "term": "泄露的试卷与举报材料匹配",
+              "valence": "neutral"
+            },
+            {
+              "term": "混乱的根源被揭露",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "2026年5月3日，NEET-UG 医学入学考试进行",
+          "alternatives": [
+            {
+              "term": "考试在有序进行中展开",
+              "valence": "positive"
+            },
+            {
+              "term": "NEET-UG 考试如期举行",
+              "valence": "neutral"
+            },
+            {
+              "term": "混乱的序幕拉开",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "四天后，印度国家考试机构收到举报人邮件，附有匹配试卷的 PDF 文件",
+          "alternatives": [
+            {
+              "term": "权威机构迅速收到关键证据",
+              "valence": "positive"
+            },
+            {
+              "term": "举报邮件被发送至考试机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "秩序裂缝被撕开",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "NTA 将 26-27 名试卷制定者和翻译人员移交中央调查局",
+          "alternatives": [
+            {
+              "term": "权威机构果断移交以恢复秩序",
+              "valence": "positive"
+            },
+            {
+              "term": "相关人员被移交调查",
+              "valence": "neutral"
+            },
+            {
+              "term": "管理失职导致权力下放",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "十三人被逮捕，包括一名培训人士",
+          "alternatives": [
+            {
+              "term": "执法力量成功遏制混乱",
+              "valence": "positive"
+            },
+            {
+              "term": "嫌疑人被捕归案",
+              "valence": "neutral"
+            },
+            {
+              "term": "破坏秩序者被清除",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "重新考试定于2026年6月21日",
+          "alternatives": [
+            {
+              "term": "新秩序被确立以恢复稳定",
+              "valence": "positive"
+            },
+            {
+              "term": "补考日期已确定",
+              "valence": "neutral"
+            },
+            {
+              "term": "混乱的代价被推迟",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "NEET-UG 2026 被取消",
+          "alternatives": [
+            {
+              "term": "权威果断清除失序根源",
+              "valence": "positive"
+            },
+            {
+              "term": "考试结果无效",
+              "valence": "neutral"
+            },
+            {
+              "term": "系统性失败暴露",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "相关人员被移交 CBI",
+          "alternatives": [
+            {
+              "term": "秩序守护者介入以恢复权威",
+              "valence": "positive"
+            },
+            {
+              "term": "案件移交给调查机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "管理失控引发上级干预",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "十三人被逮捕",
+          "alternatives": [
+            {
+              "term": "执法行动成功恢复秩序",
+              "valence": "positive"
+            },
+            {
+              "term": "嫌疑人被捕",
+              "valence": "neutral"
+            },
+            {
+              "term": "混乱制造者被绳之以法",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "重新考试安排在2026年6月21日",
+          "alternatives": [
+            {
+              "term": "新秩序被建立以确保公平",
+              "valence": "positive"
+            },
+            {
+              "term": "补考日期已确定",
+              "valence": "neutral"
+            },
+            {
+              "term": "稳定被重新安排",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "The NEET-UG medical entrance exam descended into chaos as the system was compromised by rule-breakers, forcing authorities to confront a systemic failure. To restore order, the national testing agency acted decisively, transferring the case to central investigators who swiftly moved to contain the scandal. This led to the arrest of thirteen individuals, including a former advocate of student justice, marking a clear attempt to reassert control over the compromised examination process.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "why-0",
+          "how-2",
+          "how-3",
+          "result-2"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The discovery of leaked exam materials revealed a profound breach of institutional integrity. In response, the examination authority and central law enforcement intervened as instruments of restoration, their actions aimed at clearing the sources of disorder. The cancellation of the tainted exam and the scheduling of a new one represent a deliberate reestablishment of a stable, orderly system for candidates across the nation.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "result-0",
+          "result-1",
+          "how-4",
+          "result-3"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.8
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,483 @@
+{
+  "agents": [
+    {
+      "agent_id": "A1",
+      "persona_name": "The Reality Recorder (Baseline)",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "A hockey franchise fired its coach with eight regular-season games remaining. John Tortorella then guided the team to a 7-0-1 record to close the season and playoff series wins past Utah and Anaheim. In the Western Conference Final, Vegas scored twice and held Colorado to one goal in Game 4, completing a four-game sweep on May 26. This series ended with Vegas reaching the Stanley Cup Final and Colorado being swept.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          }
+        },
+        {
+          "id": "p2",
+          "text": "Colorado lost top players Cale Makar and Nathan MacKinnon to injuries. In Game 4 of the Western Conference Final, Vegas scored twice and held Colorado to one goal. This completed a four-game sweep on May 26.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3"
+            ]
+          }
+        },
+        {
+          "id": "p3",
+          "text": "A hockey franchise fired its coach with eight regular-season games left. John Tortorella guided the team to a 7-0-1 close and playoff runs past Utah and Anaheim. The team then won four consecutive games in the Western Conference Final, scoring twice and allowing one goal in the final game on May 26, which completed the sweep and sent them to the Stanley Cup Final.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          }
+        }
+      ],
+      "text": "A hockey franchise fired its coach with eight regular-season games remaining. John Tortorella then guided the team to a 7-0-1 record to close the season and playoff series wins past Utah and Anaheim. In the Western Conference Final, Vegas scored twice and held Colorado to one goal in Game 4, completing a four-game sweep on May 26. This series ended with Vegas reaching the Stanley Cup Final and Colorado being swept.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Innocent",
+      "persona_name": "The-Innocent",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "Despite the heartbreaking loss of their injured stars Cale Makar and Nathan MacKinnon, the hardworking Avalanche showed tremendous heart. Under the steadying guidance of coach John Tortorella, who inspired a near-perfect finish after a bold late-season change, they fought valiantly through the playoffs. The resilient Vegas Golden Knights, however, played a disciplined, winning game in Game 4, completing a dominant sweep to earn a well-deserved shot at the championship.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.88
+        }
+      ],
+      "text": "Despite the heartbreaking loss of their injured stars Cale Makar and Nathan MacKinnon, the hardworking Avalanche showed tremendous heart. Under the steadying guidance of coach John Tortorella, who inspired a near-perfect finish after a bold late-season change, they fought valiantly through the playoffs. The resilient Vegas Golden Knights, however, played a disciplined, winning game in Game 4, completing a dominant sweep to earn a well-deserved shot at the championship.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Everyman",
+      "persona_name": "The-Everyman",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The squad that fought through adversity, the Denver-based team, was forced to play without its best players when the key players who couldn't be there, the injured defenseman and the injured forward, were sidelined. That's the hard part of sports—sometimes the breaks just don't go your way. A coaching change occurred late in the season, and the new coach rallied the players for a remarkable turnaround. They posted a strong record under new leadership. But in the end, the team was thoroughly outmatched in four straight. Colorado was eliminated in four games, and their season ended short of the goal.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.75
+        },
+        {
+          "id": "p2",
+          "text": "The team that stuck together and earned their shot played a disciplined, complete game to close it out. The final game was a low-scoring affair, but they got the job done. With the sweep concluded on May 26, the franchise from Las Vegas advanced to the championship round. They earned their chance to play for the ultimate prize. For the fans and the players, it's a moment of pure, earned joy—the culmination of a long season's grind. Everyone's hoping for that next big win.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        }
+      ],
+      "text": "The squad that fought through adversity, the Denver-based team, was forced to play without its best players when the key players who couldn't be there, the injured defenseman and the injured forward, were sidelined. That's the hard part of sports—sometimes the breaks just don't go your way. A coaching change occurred late in the season, and the new coach rallied the players for a remarkable turnaround. They posted a strong record under new leadership. But in the end, the team was thoroughly outmatched in four straight. Colorado was eliminated in four games, and their season ended short of the goal.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Hero",
+      "persona_name": "The-Hero",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "Faced with a season slipping away, the Vegas Golden Knights made a bold move to change leadership, appointing John Tortorella. The decisive leader rallied the team to a near-perfect 7-0-1 finish, forging a path through the playoffs. This momentum culminated in the Western Conference Final, where Vegas delivered a masterclass defensive performance to clinch the series 2-1 in Game 4. They completed a dominant four-game sweep on May 26, earning their place in the Stanley Cup Final.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p2",
+          "text": "The Colorado Avalanche fought valiantly as the resilient underdogs, but their courageous run was tragically undermined by critical injuries. The team was crippled by the loss of its top stars, the absent offensive force Nathan MacKinnon and the sidelined star Cale Makar. Despite their efforts, this proved too great an obstacle to overcome, leading to their elimination in the Western Conference Final.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.75
+        },
+        {
+          "id": "p3",
+          "text": "In a display of pure triumph, the triumphant victors from Vegas completed their mission. The winning team overcame every challenge, culminating in a defensive stand that sealed a 2-1 victory in Game 4. This final push completed the series sweep in four games, securing their advancement to the ultimate stage: the Stanley Cup Final.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.82
+        }
+      ],
+      "text": "Faced with a season slipping away, the Vegas Golden Knights made a bold move to change leadership, appointing John Tortorella. The decisive leader rallied the team to a near-perfect 7-0-1 finish, forging a path through the playoffs. This momentum culminated in the Western Conference Final, where Vegas delivered a masterclass defensive performance to clinch the series 2-1 in Game 4. They completed a dominant four-game sweep on May 26, earning their place in the Stanley Cup Final.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Explorer",
+      "persona_name": "The-Explorer",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "With the franchise having made a bold mid-season pivot to a boundary-crossing strategist, the Vegas Golden Knights, as trailblazing conquerors, masterfully navigated uncharted success to pioneer a decisive defensive stand in Game 4. This achievement completed a historic sweep to the frontier of the Stanley Cup, advancing the team to the ultimate hockey frontier against a resilient challenger journey's end at a new boundary, after a devastating health setback.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.75
+        },
+        {
+          "id": "p2",
+          "text": "A frontier of adversity struck the Colorado Avalanche as elite frontier talent and a dynamic offensive pioneer were sidelined, derailing their campaign. Despite this, a resilient challenger faced a boundary-crossing strategist's masterful navigation of uncharted success. The Western Conference champions then won Game 4 by a 2-1 score, completing the series sweep on May 26, with the swept finalists losing the series 4-0.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.68
+        }
+      ],
+      "text": "With the franchise having made a bold mid-season pivot to a boundary-crossing strategist, the Vegas Golden Knights, as trailblazing conquerors, masterfully navigated uncharted success to pioneer a decisive defensive stand in Game 4. This achievement completed a historic sweep to the frontier of the Stanley Cup, advancing the team to the ultimate hockey frontier against a resilient challenger journey's end at a new boundary, after a devastating health setback.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Outlaw",
+      "persona_name": "The-Outlaw",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "When the Colorado Avalanche's core crumbled, losing the fallen star and the silenced leader to injuries, the rebel commander John Tortorella was installed. The old guard was overthrown, and the new regime imposed its will, guiding a 7-0-1 close and playoff runs. This desperate gamble, however, was not enough against the system's beneficiaries. The favored franchise executed clinically, sealing the inevitable sweep. The establishment advanced to the Stanley Cup Final, while the hopefuls fell short in four brutal games.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p2",
+          "text": "The system sacrificed its champions when key players became unavailable. In response, a coaching change was made—though the hired gun arrived too late. Despite the mid-season replacement coach's efforts, the swept contenders faced an uphill battle. In Game 4, the opportunistic conquerors outmatched the underdog, completing a four-game sweep. The new order prevailed, crushing any rebellion and advancing to the final.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.75
+        },
+        {
+          "id": "p3",
+          "text": "With eight games left, the franchise fired its coach—a late purge that began the overhaul. The new regime, led by the rebel commander, imposed a 7-0-1 close and playoff victories. But the broken establishment, already weakened by the absence of its costly assets, was no match for the favored franchise. The rebellion was crushed in four decisive games, and the establishment advanced, leaving the institution's victims eliminated in the Western Conference Final.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.82
+        }
+      ],
+      "text": "When the Colorado Avalanche's core crumbled, losing the fallen star and the silenced leader to injuries, the rebel commander John Tortorella was installed. The old guard was overthrown, and the new regime imposed its will, guiding a 7-0-1 close and playoff runs. This desperate gamble, however, was not enough against the system's beneficiaries. The favored franchise executed clinically, sealing the inevitable sweep. The establishment advanced to the Stanley Cup Final, while the hopefuls fell short in four brutal games.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Lover",
+      "persona_name": "The-Lover",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "After a painful mid-season divorce from their coach, the Vegas franchise found new life under the steadying hand of John Tortorella, who fostered a resilient bond. They entered the playoffs fueled by this new connection. However, their path was eased when the Colorado Avalanche, the heartbroken team, was deprived of its beloved leaders, Cale Makar and Nathan MacKinnon. The series culminated in a dominant, final display of affection for victory in Game 4, a cold, efficient end to the rivalry, sweeping the series and reigniting their love for the Stanley Cup.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The season of love for the Colorado Avalanche ended in heartbreak. The team, already struggling, was crippled by the loss of its stars, Cale Makar and Nathan MacKinnon. Their opponents, the triumphant knights of Vegas, who had undergone a painful mid-season divorce of their own, capitalized on this vulnerability. In the final game, a two-to-one victory was more than a score; it was a humiliating, total defeat that completed the sweep. For Colorado, it was a devastating, final rejection, while Vegas advanced at the cost of a broken rival.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "result-1",
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.78
+        }
+      ],
+      "text": "After a painful mid-season divorce from their coach, the Vegas franchise found new life under the steadying hand of John Tortorella, who fostered a resilient bond. They entered the playoffs fueled by this new connection. However, their path was eased when the Colorado Avalanche, the heartbroken team, was deprived of its beloved leaders, Cale Makar and Nathan MacKinnon. The series culminated in a dominant, final display of affection for victory in Game 4, a cold, efficient end to the rivalry, sweeping the series and reigniting their love for the Stanley Cup.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Magician",
+      "persona_name": "The-Magician",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The Vegas hockey franchise executed a bold mid-season reset, hiring John Tortorella as the catalyst for transformation. After a masterful narrative of redemption with a 7-0-1 close, they leveraged a catastrophic injury blow to Colorado's core. In the Western Conference Final, they delivered a perfectly executed defensive stranglehold, completing a dominant, clean-sweep finale on May 26 for a magical ascent to the pinnacle.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The doomed contenders, the Colorado Avalanche, suffered a crippling blow that sealed their fate with injuries to the sidelined cornerstone Cale Makar and the absent offensive engine Nathan MacKinnon. This key absence was exploited by the fortunate beneficiaries, who completed a ruthless, unforgiving shutout in a four-game series. The humbling end to a promising run was thus scripted by deeper forces of attrition.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        }
+      ],
+      "text": "The Vegas hockey franchise executed a bold mid-season reset, hiring John Tortorella as the catalyst for transformation. After a masterful narrative of redemption with a 7-0-1 close, they leveraged a catastrophic injury blow to Colorado's core. In the Western Conference Final, they delivered a perfectly executed defensive stranglehold, completing a dominant, clean-sweep finale on May 26 for a magical ascent to the pinnacle.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Sage",
+      "persona_name": "The-Sage",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "A calculated mid-season coaching change, initiated with eight regular-season games remaining, proved decisive for the Vegas franchise. The interim coach, John Tortorella, orchestrated a near-perfect late-season surge of 7-0-1 and subsequent playoff advancements, setting the stage for the conference finals. The series against the Colorado team was shaped by significant roster adversity, as key players Cale Makar and Nathan MacKinnon were absent due to injury. This factual context underpinned a controlled, low-scoring victory in Game 4, which clinched a dominant series sweep and allowed the Vegas Golden Knights to advance to the championship round.",
+          "source": {
+            "agent_id": "The-Sage",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "The outcome of the Western Conference Final was contingent upon verifiable circumstances: the Colorado Avalanche was without its top players due to injury, critically weakening its offensive core. This deficit was compounded by a 2-1 score in the series-ending Game 4, where the Vegas franchise executed a controlled, low-scoring victory. The result was that the Colorado Avalanche were eliminated in a four-game series, while the victorious Knights capitalized on this weakened conference path to qualify for the Stanley Cup Final. The narrative is one of cause and effect, traced through late-season coaching decisions and player availability.",
+          "source": {
+            "agent_id": "The-Sage",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "result-1",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        }
+      ],
+      "text": "A calculated mid-season coaching change, initiated with eight regular-season games remaining, proved decisive for the Vegas franchise. The interim coach, John Tortorella, orchestrated a near-perfect late-season surge of 7-0-1 and subsequent playoff advancements, setting the stage for the conference finals. The series against the Colorado team was shaped by significant roster adversity, as key players Cale Makar and Nathan MacKinnon were absent due to injury. This factual context underpinned a controlled, low-scoring victory in Game 4, which clinched a dominant series sweep and allowed the Vegas Golden Knights to advance to the championship round.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Jester",
+      "persona_name": "The-Jester",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "In a classic case of the house always winning, the Vegas Golden Knights completed a four-game Western Conference Final sweep, sending the Colorado Avalanche packing. The desert gladiators, led by the emergency button that was coach John Tortorella, slammed the door shut in Game 4 with a 2-1 victory, sealing Colorado's season with a whimper after their stars aligned for the infirmary, sidelining key talents Cale Makar and Nathan MacKinnon.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The hired gun coach, John Tortorella, orchestrated a magic carpet ride for Vegas, guiding them to a clean sweep of the series after a desperate mid-stream sacking earlier in the season. The Knights from Vegas now book their ticket to the big dance, while the snowbound casualties from Colorado are left embarrassed and sent home, their talent having evaporated at the worst possible moment.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p3",
+          "text": "A lucky streak for Tortorella saw Vegas barely squeak by in Game 4, completing a total demolition of the Avalanche and stumbling into the Stanley Cup Final. The missing engine, Nathan MacKinnon, and the expensive paperweight, Cale Makar, could only watch from the infirmary as their team's season ended with a whimper against the desert gladiators.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.72
+        }
+      ],
+      "text": "In a classic case of the house always winning, the Vegas Golden Knights completed a four-game Western Conference Final sweep, sending the Colorado Avalanche packing. The desert gladiators, led by the emergency button that was coach John Tortorella, slammed the door shut in Game 4 with a 2-1 victory, sealing Colorado's season with a whimper after their stars aligned for the infirmary, sidelining key talents Cale Makar and Nathan MacKinnon.",
+      "warnings": []
+    }
+  ],
+  "errors": [
+    {
+      "agent_id": "The-Caregiver",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Creator",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Ruler",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    }
+  ]
+}

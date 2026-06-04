@@ -1,0 +1,27 @@
+{
+  "run_id": "10-whistleblower-leak",
+  "split": "holdout",
+  "persona_count": 9,
+  "errors": [
+    {
+      "agent_id": "The-Outlaw",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Magician",
+      "message": "screenwriter parse_error: Expecting ',' delimiter: line 21 column 97 (char 1624)"
+    },
+    {
+      "agent_id": "The-Sage",
+      "message": "alt_creator parse_error: element who-4: missing valence bucket(s) ['positive']"
+    }
+  ],
+  "retrieve_meta": {
+    "query_count": 25,
+    "raw_hit_count": 50,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  },
+  "finished_at": "2026-06-04T19:27:22.067968+00:00"
+}

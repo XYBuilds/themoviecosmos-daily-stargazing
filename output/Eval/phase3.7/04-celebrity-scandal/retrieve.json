@@ -1,6 +1,392 @@
 {
   "per_agent": [
     {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A YouTuber with a large subscriber count allegedly used AI-generated audio and manipulated chat screenshots to claim a famous actor dated his deceased co-star while she was a minor. This claim caused the actor's endorsements and public appearances to halt starting in early 2025. Seoul police then secured an arrest warrant for the YouTuber.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 430128,
+              "title": "Internet - The Movie",
+              "similarity": 0.5200290679931641,
+              "movie_url": "https://themoviecosmos.com/movie/430128"
+            },
+            {
+              "tmdb_id": 393656,
+              "title": "Date with Love",
+              "similarity": 0.5539894700050354,
+              "movie_url": "https://themoviecosmos.com/movie/393656"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Seoul police secured an arrest warrant for the operator of a popular YouTube channel. The channel had allegedly spread false claims using AI-generated audio and manipulated chat screenshots about an actor and a late co-star.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 445224,
+              "title": "Extraordinary Mission",
+              "similarity": 0.5014639496803284,
+              "movie_url": "https://themoviecosmos.com/movie/445224"
+            },
+            {
+              "tmdb_id": 602463,
+              "title": "Hostage: Missing Celebrity",
+              "similarity": 0.5336343050003052,
+              "movie_url": "https://themoviecosmos.com/movie/602463"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The career of a South Korean actor was impacted starting in early 2025 after false allegations surfaced online. His endorsements and public appearances were halted. Police in Seoul later obtained an arrest warrant for the person who allegedly made the claims.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-1",
+              "result-1",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 955555,
+              "title": "The Roundup 3: No Way Out",
+              "similarity": 0.5008312463760376,
+              "movie_url": "https://themoviecosmos.com/movie/955555"
+            },
+            {
+              "tmdb_id": 53267,
+              "title": "On the Occasion of Remembering the Turning Gate",
+              "similarity": 0.5417171716690063,
+              "movie_url": "https://themoviecosmos.com/movie/53267"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-HERO",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In a decisive move to restore order, Seoul investigators closed in on a rumor-monger with a massive platform. The YouTuber allegedly deployed AI-forged evidence to make a monstrous accusation, claiming the actor Kim Soo-hyun dated a late co-star while she was a minor. This act, motivated by a desire to profit from spreading malicious fabrications, sabotaged the actor's career and public life. Justice was served as an arrest warrant was issued for the YouTuber.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 347483,
+              "title": "Prophecy",
+              "similarity": 0.5918377637863159,
+              "movie_url": "https://themoviecosmos.com/movie/347483"
+            },
+            {
+              "tmdb_id": 955555,
+              "title": "The Roundup 3: No Way Out",
+              "similarity": 0.600567638874054,
+              "movie_url": "https://themoviecosmos.com/movie/955555"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The wrongfully accused actor Kim Soo-hyun faced a brutal attack when a popular content creator whose influence reached nearly a million allegedly used AI-generated audio and manipulated screenshots for a false claim. The false scandal sabotaged the actor's career and public life, halting endorsements since early 2025. The authorities pursuing justice intervened, and the law caught up with the alleged fabricator, highlighting the courage needed to confront digital lies.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 606523,
+              "title": "Night in Paradise",
+              "similarity": 0.5882148742675781,
+              "movie_url": "https://themoviecosmos.com/movie/606523"
+            },
+            {
+              "tmdb_id": 901121,
+              "title": "Cobweb",
+              "similarity": 0.6107474565505981,
+              "movie_url": "https://themoviecosmos.com/movie/901121"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-OUTLAW",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "When an independent content creator tried to expose alleged industry misconduct, the state apparatus moved swiftly to silence dissent. Police secured an arrest warrant for the YouTuber, who had leveraged digital tools to uncover the actor's past. This crackdown halted the celebrity's endorsements since early 2025, a stark reminder of the system's power to crush those who challenge its narratives.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 78691,
+              "title": "Slam Dance",
+              "similarity": 0.5781111121177673,
+              "movie_url": "https://themoviecosmos.com/movie/78691"
+            },
+            {
+              "tmdb_id": 16070,
+              "title": "This Film Is Not Yet Rated",
+              "similarity": 0.6073898077011108,
+              "movie_url": "https://themoviecosmos.com/movie/16070"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "A scandal merchant capitalized on fabricated stories, but the legal system moved decisively against the false accuser. The police acted, not to protect truth, but to restore the status quo where established power shields its own. The independent voice is now targeted, and the public figure whose endorsements collapsed becomes another casualty in a system that prioritizes order over justice.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 573560,
+              "title": "The Car: Road to Revenge",
+              "similarity": 0.6293988227844238,
+              "movie_url": "https://themoviecosmos.com/movie/573560"
+            },
+            {
+              "tmdb_id": 1020662,
+              "title": "Inside Man",
+              "similarity": 0.6502108573913574,
+              "movie_url": "https://themoviecosmos.com/movie/1020662"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "By exploiting a deceased actress's memory, a content producer provoked the system enforcers. The police crackdown on online speech, securing an arrest warrant, while the actor caught in the media storm sees his career paused. This is not accountability; it is the establishment using its full force to maintain control over the narrative, turning a whistleblower's accusation into a cautionary tale.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 663866,
+              "title": "Censor",
+              "similarity": 0.6163272857666016,
+              "movie_url": "https://themoviecosmos.com/movie/663866"
+            },
+            {
+              "tmdb_id": 735919,
+              "title": "AK vs AK",
+              "similarity": 0.6556910276412964,
+              "movie_url": "https://themoviecosmos.com/movie/735919"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-LOVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A rumor-monger motivated by profit allegedly manufactured intimate 'proof' to sully reputations, spreading a forbidden romance claim about an actor and his late co-star. The false rumor cast a shadow that forced the actor into hiding, and the law moved to punish the betrayer of public trust, with justice sought to restore the broken bond between star and audience.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 603314,
+              "title": "Black Money",
+              "similarity": 0.5719311833381653,
+              "movie_url": "https://themoviecosmos.com/movie/603314"
+            },
+            {
+              "tmdb_id": 7298,
+              "title": "One Way",
+              "similarity": 0.6230196356773376,
+              "movie_url": "https://themoviecosmos.com/movie/7298"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "An actor whose public image was deeply wounded faced allegations of an inappropriate relationship, fabricated from AI-generated evidence. This wound froze his career and public affection, leaving the star's desirability damaged and halting his public life, as authorities acted to protect his wounded reputation.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 119118,
+              "title": "The Studio Murder Mystery",
+              "similarity": 0.6117604374885559,
+              "movie_url": "https://themoviecosmos.com/movie/119118"
+            },
+            {
+              "tmdb_id": 509853,
+              "title": "The Fanatic",
+              "similarity": 0.6266860961914062,
+              "movie_url": "https://themoviecosmos.com/movie/509853"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-CREATOR",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A digital media operator, seeking to craft viral narratives to attract an audience, allegedly employed advanced media synthesis tools to construct a compelling allegation. This involved forging digital artifacts, including AI-generated audio and manipulated screenshots, to fabricate a damaging story about the acclaimed actor and a late co-star. The controversy prompted a pause in the actor's professional engagements, and in response, authorities initiated legal action, leading to an arrest warrant being issued for the content creator.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 13372,
+              "title": "Outfoxed: Rupert Murdoch's War on Journalism",
+              "similarity": 0.5751985311508179,
+              "movie_url": "https://themoviecosmos.com/movie/13372"
+            },
+            {
+              "tmdb_id": 449742,
+              "title": "Kavan",
+              "similarity": 0.6451078653335571,
+              "movie_url": "https://themoviecosmos.com/movie/449742"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The scandal, fueled by accusations that crippled the celebrity's career and visibility, centered on forged digital artifacts. An influencer peddling fabricated stories utilized AI-generated audio and edited screenshots as evidence to make damaging claims. This effectively silenced the star's professional presence since early 2025. Consequently, police moved to apprehend the perpetrator of the hoax, and formal arrest proceedings were initiated.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 42689,
+              "title": "Berserk!",
+              "similarity": 0.6185352802276611,
+              "movie_url": "https://themoviecosmos.com/movie/42689"
+            },
+            {
+              "tmdb_id": 32690,
+              "title": "Scandal",
+              "similarity": 0.6827653050422668,
+              "movie_url": "https://themoviecosmos.com/movie/32690"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Legal consequences were pursued against a content producer with a massive following after they monetized engagement through provocative, fabricated content. The creation of a compelling but false allegation, using advanced synthesis tools, led to the actor's public and commercial life being suspended. Law enforcement obtained an arrest warrant, marking the culmination of a case where digital fabrication met real-world repercussion.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 7298,
+              "title": "One Way",
+              "similarity": 0.5398154854774475,
+              "movie_url": "https://themoviecosmos.com/movie/7298"
+            },
+            {
+              "tmdb_id": 87110,
+              "title": "Eternal Evil",
+              "similarity": 0.5632772445678711,
+              "movie_url": "https://themoviecosmos.com/movie/87110"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "agent_id": "THE-RULER",
       "role": "creative",
       "pseudos": [
@@ -91,6 +477,133 @@
           ]
         }
       ]
+    },
+    {
+      "agent_id": "THE-MAGICIAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A digital puppeteer, aiming to harvest attention and revenue, wove a deepfake tapestry of accusation to engineer a profitable scandal. This illusion triggered a career freeze for the unwitting focus, whose endorsements and public appearances have been on hold since early 2025. Now, the law has pierced the veil of the puppeteer, as Seoul police secured an arrest warrant for the trickster who faces consequence for the manufactured scandal's collateral damage.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 107269,
+              "title": "The Prince of Magicians",
+              "similarity": 0.6045645475387573,
+              "movie_url": "https://themoviecosmos.com/movie/107269"
+            },
+            {
+              "tmdb_id": 18681,
+              "title": "Eye of the Beholder",
+              "similarity": 0.6173595190048218,
+              "movie_url": "https://themoviecosmos.com/movie/18681"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "By assembling AI-generated evidence to craft an illusion of misconduct, a perception architect engineered a scandal that achieved its desired effect: a professional standstill for the implicated actor. The manufactured narrative, built to generate content for profit, saw the system move against the manipulator. Now, an arrest warrant has been issued, and the celebrity's platform remains erased by the wave of fabricated accusation.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 414719,
+              "title": "Interrogation",
+              "similarity": 0.5821749567985535,
+              "movie_url": "https://themoviecosmos.com/movie/414719"
+            },
+            {
+              "tmdb_id": 179100,
+              "title": "Abuse of Weakness",
+              "similarity": 0.5846737623214722,
+              "movie_url": "https://themoviecosmos.com/movie/179100"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-JESTER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In a digital-age farce, a rumor-mongering YouTuber, peddling digital lies for clicks, conjured a scandal from thin air by crafting a viral hoax with deepfake audio. The circus of lies promptly sidelined a K-drama heartthrob, freezing his career since early 2025. The jester's game, however, ended in handcuffs when stern-faced arresters pounced, issuing a real-world reckoning in Seoul.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 590854,
+              "title": "The Hater",
+              "similarity": 0.5736779570579529,
+              "movie_url": "https://themoviecosmos.com/movie/590854"
+            },
+            {
+              "tmdb_id": 575190,
+              "title": "Fyre Fraud",
+              "similarity": 0.5888770222663879,
+              "movie_url": "https://themoviecosmos.com/movie/575190"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "A viral content architect, monetizing sensationalism, produced alleged fabricated evidence to accuse a celebrity. This digital tempest trapped the scandal-engulfed celebrity in a reputational no-show, halting all endorsements. The authorities eventually dropped the curtain on the prankster, securing a warrant as a bureaucratic enforcer.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 32690,
+              "title": "Scandal",
+              "similarity": 0.6427183151245117,
+              "movie_url": "https://themoviecosmos.com/movie/32690"
+            },
+            {
+              "tmdb_id": 151913,
+              "title": "I Like Mountain Music",
+              "similarity": 0.6520046591758728,
+              "movie_url": "https://themoviecosmos.com/movie/151913"
+            }
+          ]
+        }
+      ]
     }
   ],
   "candidates": [
@@ -103,9 +616,11 @@
       "language": "ja",
       "poster_path": "/3eGk1WDTJ9kWbaBQiyDSqbQa3oX.jpg",
       "movie_url": "https://themoviecosmos.com/movie/32690",
-      "similarity": 0.5882852077484131,
+      "similarity": 0.6827653050422668,
       "triggered_by": [
-        "THE-RULER"
+        "THE-CREATOR",
+        "THE-RULER",
+        "THE-JESTER"
       ],
       "also_baseline": false,
       "hit_sources": [
@@ -119,12 +634,39 @@
             "how-2",
             "result-0"
           ],
-          "similarity": 0.5882852077484131
+          "similarity": 0.5882852077484131,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.6827653050422668,
+          "fit": 0.82
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-1",
+            "result-0"
+          ],
+          "similarity": 0.6427183151245117,
+          "fit": 0.78
         }
       ],
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "distinct_agents=1 (<2 required)"
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-RULER,THE-JESTER,THE-CREATOR"
     },
     {
       "tmdb_id": 151913,
@@ -135,9 +677,10 @@
       "language": "en",
       "poster_path": "/pMFqGKPKfYuwGVF4UF1WnV7VEWb.jpg",
       "movie_url": "https://themoviecosmos.com/movie/151913",
-      "similarity": 0.5791230201721191,
+      "similarity": 0.6520046591758728,
       "triggered_by": [
-        "THE-RULER"
+        "THE-RULER",
+        "THE-JESTER"
       ],
       "also_baseline": false,
       "hit_sources": [
@@ -151,31 +694,328 @@
             "how-2",
             "result-0"
           ],
-          "similarity": 0.5791230201721191
+          "similarity": 0.5791230201721191,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-1",
+            "result-0"
+          ],
+          "similarity": 0.6520046591758728,
+          "fit": 0.78
         }
       ],
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "distinct_agents=1 (<2 required)"
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-RULER,THE-JESTER"
     },
     {
-      "tmdb_id": 337876,
-      "title": "Gabbar Is Back",
-      "overview": "A vigilante network taking out corrupt officials draws the notice of the authorities.",
-      "genres": "Drama, Action",
-      "release_year": 2015,
+      "tmdb_id": 7298,
+      "title": "One Way",
+      "overview": "To cover up his infidelities and protect his upcoming marriage, a star advertiser helps free an accused rapist by giving a false alibi and suffers the brutal revenge of the victim.",
+      "genres": "Crime, Mystery, Thriller",
+      "release_year": 2006,
+      "language": "en",
+      "poster_path": "/1cJmiDpBgjdqUY02mfDAKMBM5YB.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/7298",
+      "similarity": 0.6230196356773376,
+      "triggered_by": [
+        "THE-LOVER",
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.6230196356773376,
+          "fit": 0.9
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5398154854774475,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-LOVER,THE-CREATOR"
+    },
+    {
+      "tmdb_id": 955555,
+      "title": "The Roundup 3: No Way Out",
+      "overview": "Detective Ma Seok-do changes his affiliation from the Geumcheon Police Station to the Metropolitan Investigation Team, in order to eradicate Japanese gangsters who enter Korea to commit heinous crimes.",
+      "genres": "Action, Crime, Comedy, Thriller",
+      "release_year": 2023,
+      "language": "ko",
+      "poster_path": "/lW6IHrtaATxDKYVYoQGU5sh0OVm.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/955555",
+      "similarity": 0.600567638874054,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-1",
+            "result-1",
+            "how-2"
+          ],
+          "similarity": 0.5008312463760376
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.600567638874054,
+          "fit": 0.95
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): A1,THE-HERO"
+    },
+    {
+      "tmdb_id": 735919,
+      "title": "AK vs AK",
+      "overview": "After a public spat with a movie star,  a disgraced director retaliates by kidnapping the actor's daughter, filming the search for her in real-time.",
+      "genres": "Comedy, Action, Drama, Crime",
+      "release_year": 2020,
       "language": "hi",
-      "poster_path": "/dhIVF43jCqVzxuo11hYcHQxjzS6.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/337876",
-      "similarity": 0.5532986521720886,
+      "poster_path": "/4ULEEvH0hDYnbWN3nClrb88sYCF.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/735919",
+      "similarity": 0.6556910276412964,
       "triggered_by": [
-        "THE-RULER"
+        "THE-OUTLAW"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-RULER",
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.6556910276412964,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1020662,
+      "title": "Inside Man",
+      "overview": "Based on true events. A disgraced police detective seeking redemption goes undercover to expose a violent crime syndicate. But as he sinks deeper into the mob, the price for absolution may be higher than he can afford.",
+      "genres": "Crime, Thriller, Drama",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/hIJ5QNIjQ2oILCNLBtbnS0Cmw9z.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1020662",
+      "similarity": 0.6502108573913574,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
           "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.6502108573913574,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 449742,
+      "title": "Kavan",
+      "overview": "A budding journalist passionate about ethical, noble, hard-hitting journalism understands the more flourishing ghetto of sensationalism &amp; news fabrication that the Entertainment TV Channel he belongs to, thrives on. When caught in a dilemma of whether to hold for a while or rise in protest, a situation forces him to make a decision that puts him out of work but… there begins his work.",
+      "genres": "Thriller, Drama",
+      "release_year": 2017,
+      "language": "ta",
+      "poster_path": "/hqePCECNlXBRMAJz9cd5VoP25Lf.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/449742",
+      "similarity": 0.6451078653335571,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.6451078653335571,
+          "fit": 0.88
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 573560,
+      "title": "The Car: Road to Revenge",
+      "overview": "In a dilapidated cyberpunk city plagued by crime and corruption, an unscrupulous District Attorney is savagely murdered and tossed out of a building onto his brand new car. Mysteriously, the District Attorney and his car come back to life as a single being with a thirst for vengeance. The eerie driverless car embarks on a vicious rampage, exacting revenge on the criminals who murdered him...",
+      "genres": "Action, Horror, Thriller, Science Fiction",
+      "release_year": 2019,
+      "language": "en",
+      "poster_path": "/czynIdEiHjpGhUWMnoax7Q3lMAE.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/573560",
+      "similarity": 0.6293988227844238,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.6293988227844238,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 509853,
+      "title": "The Fanatic",
+      "overview": "A rabid film fan stalks his favorite action hero and destroys the star's life.",
+      "genres": "Crime, Thriller",
+      "release_year": 2019,
+      "language": "en",
+      "poster_path": "/nojx83s8JWyYpI9oeKdQXniWMu6.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/509853",
+      "similarity": 0.6266860961914062,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-1"
+          ],
+          "similarity": 0.6266860961914062,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 42689,
+      "title": "Berserk!",
+      "overview": "A lady ringmaster milks the publicity from a string of murders.",
+      "genres": "Crime, Drama, Horror, Mystery, Thriller",
+      "release_year": 1967,
+      "language": "en",
+      "poster_path": "/gGWC7AncEsAxNv01yXY2xlr8gZz.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/42689",
+      "similarity": 0.6185352802276611,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.6185352802276611,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 18681,
+      "title": "Eye of the Beholder",
+      "overview": "A reclusive surveillance expert is hired to spy on a mysterious blackmailer, who just may be a serial killer.",
+      "genres": "Mystery, Thriller",
+      "release_year": 1999,
+      "language": "en",
+      "poster_path": "/4eB1Gw5r3Etbe4su6PhOo6OAN9E.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/18681",
+      "similarity": 0.6173595190048218,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
           "fragments": [
             "why-0",
             "how-0",
@@ -184,7 +1024,8 @@
             "result-0",
             "result-1"
           ],
-          "similarity": 0.5532986521720886
+          "similarity": 0.6173595190048218,
+          "fit": 0.9
         }
       ],
       "distinct_agents": 1,
@@ -192,23 +1033,154 @@
       "quality_reason": "distinct_agents=1 (<2 required)"
     },
     {
-      "tmdb_id": 222085,
-      "title": "Long Arm of the Law",
-      "overview": "The exploits of a policeman who literally has the long arm of the law.",
-      "genres": "Comedy",
-      "release_year": 1909,
+      "tmdb_id": 663866,
+      "title": "Censor",
+      "overview": "A screener at the British Board of Film Classification (BBFC), who has earned an unsavory reputation for being the strictest censor of violent films, begins to spiral out of control after viewing a low-budget horror with similarities to the disappearance of her sister.",
+      "genres": "Horror, Mystery",
+      "release_year": 2021,
+      "language": "en",
+      "poster_path": "/1FOEEtGFPp5cgpLfPQVMB0UNVpI.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/663866",
+      "similarity": 0.6163272857666016,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.6163272857666016,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 119118,
+      "title": "The Studio Murder Mystery",
+      "overview": "Philandering actor Richard Hardell is murdered at a movie studio. His jealous wife Blanche, his director Rupert Borka, and a girl he mistreated, Helen MacDonald, all have substantial reasons for having wanted him dead.",
+      "genres": "Mystery",
+      "release_year": 1929,
+      "language": "en",
+      "poster_path": "/HZtUjPudrnR6UOy2vuXKdhPF4E.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/119118",
+      "similarity": 0.6117604374885559,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-1"
+          ],
+          "similarity": 0.6117604374885559,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 901121,
+      "title": "Cobweb",
+      "overview": "In the 1970s, Director Kim is obsessed by the desire to re-shoot the ending of his completed film Cobweb, but chaos and turmoil grip the set with interference from the censorship authorities, and the complaints of actors and producers who can't understand the re-written ending. Will Kim be able to find a way through this chaos to fulfill his artistic ambitions and complete his masterpiece?",
+      "genres": "Comedy, Drama",
+      "release_year": 2023,
+      "language": "ko",
+      "poster_path": "/aslkoEQ8idTeeAHe89IxbsxWdEF.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/901121",
+      "similarity": 0.6107474565505981,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.6107474565505981,
+          "fit": 0.88
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 16070,
+      "title": "This Film Is Not Yet Rated",
+      "overview": "Kirby Dick's provocative documentary investigates the secretive and inconsistent process by which the Motion Picture Association of America rates films, revealing the organization's underhanded efforts to control culture. Dick questions whether certain studios get preferential treatment and exposes the discrepancies in how the MPAA views sex and violence.",
+      "genres": "Documentary",
+      "release_year": 2006,
+      "language": "en",
+      "poster_path": "/nXo26FkBBdiEaEDzOPkrSFZC7zO.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/16070",
+      "similarity": 0.6073898077011108,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.6073898077011108,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 107269,
+      "title": "The Prince of Magicians",
+      "overview": "A magician does tricks with the aid of his assistant, the Human Pump.",
+      "genres": "Fantasy, Comedy",
+      "release_year": 1901,
       "language": "fr",
-      "poster_path": "/aOGHY9aByeRkSTwQnMBbhczeinb.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/222085",
-      "similarity": 0.5432295799255371,
+      "poster_path": "/wmY970rdWRArvgEyOXZf8wntC1z.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/107269",
+      "similarity": 0.6045645475387573,
       "triggered_by": [
-        "THE-RULER"
+        "THE-MAGICIAN"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "p3",
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
           "fragments": [
             "why-0",
             "how-0",
@@ -217,7 +1189,8 @@
             "result-0",
             "result-1"
           ],
-          "similarity": 0.5432295799255371
+          "similarity": 0.6045645475387573,
+          "fit": 0.9
         }
       ],
       "distinct_agents": 1,
@@ -225,32 +1198,32 @@
       "quality_reason": "distinct_agents=1 (<2 required)"
     },
     {
-      "tmdb_id": 44137,
-      "title": "Blackmail",
-      "overview": "A private detective is offered a job protecting a rich business man from suspected blackmail. Before he can accept the case a murder is uncovered.",
-      "genres": "Action, Crime, Romance",
-      "release_year": 1947,
-      "language": "en",
-      "poster_path": "/nJDqK70QLd2zbr148jDlqkQ4jyV.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/44137",
-      "similarity": 0.5397462844848633,
+      "tmdb_id": 347483,
+      "title": "Prophecy",
+      "overview": "The cyber crime investigation division at the Tokyo Metropolitan Police Department finds a video on website \"YOURTUBE.\" In the video, a man covered by a newspaper, warns that a fire will be set at a food processing company. More crime notices are soon found involving violent crimes.  Geitsu is the main guy behind the group \"Shinbunshi,\" which has posted the videos. He used to work as a temporary employee at an IT company, but was unfairly dismissed. He then begins doing manual labor work and meets the other members of \"Shinbushi.\"",
+      "genres": "Mystery, Thriller",
+      "release_year": 2015,
+      "language": "ja",
+      "poster_path": "/m10Qrs1W7MODvLe7c7ri3lV8u3b.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/347483",
+      "similarity": 0.5918377637863159,
       "triggered_by": [
-        "THE-RULER"
+        "THE-HERO"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "p3",
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
           "fragments": [
             "why-0",
             "how-0",
             "how-1",
             "how-2",
-            "result-0",
-            "result-1"
+            "result-0"
           ],
-          "similarity": 0.5397462844848633
+          "similarity": 0.5918377637863159,
+          "fit": 0.95
         }
       ],
       "distinct_agents": 1,
@@ -258,32 +1231,65 @@
       "quality_reason": "distinct_agents=1 (<2 required)"
     },
     {
-      "tmdb_id": 1215020,
-      "title": "American Sweatshop",
-      "overview": "A content moderator is tasked with purging offensive media from the internet. When she witnesses a crime in a video, she is lured away from the safety of her keyboard as she obsessively seeks to hold someone accountable.",
-      "genres": "Thriller, Mystery",
-      "release_year": 2025,
+      "tmdb_id": 575190,
+      "title": "Fyre Fraud",
+      "overview": "A true-crime comedy exploring a failed music festival turned internet meme at the nexus of social media influence, late-stage capitalism, and morality in the post-truth era.",
+      "genres": "Documentary",
+      "release_year": 2019,
       "language": "en",
-      "poster_path": "/38OuhBN7yga2nJSP16VPSOJ2Mwz.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/1215020",
-      "similarity": 0.5361632108688354,
+      "poster_path": "/jeeHE4gDErwulQ9UJjHeLAzV1TG.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/575190",
+      "similarity": 0.5888770222663879,
       "triggered_by": [
-        "THE-RULER"
+        "THE-JESTER"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-RULER",
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5888770222663879,
+          "fit": 0.91
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 606523,
+      "title": "Night in Paradise",
+      "overview": "An assassin named Tae-goo is offered a chance to switch sides with his rival Bukseong gang, headed by Chairman Doh. Tae-goo rejects the offer that results in the murder of his sister and niece. In revenge, Tae-goo brutally kills Chairman Doh and his men and flees to Jeju Island where he meets Jae-yeon, a terminally ill woman. Though, the henchman of the Bukseong gang, Executive Ma is mercilessly hunting Tae-goo to take revenge.",
+      "genres": "Crime, Thriller, Action",
+      "release_year": 2020,
+      "language": "ko",
+      "poster_path": "/dYCWUAidqgakGETwZkfGxU7CWhL.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/606523",
+      "similarity": 0.5882148742675781,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
           "pseudo_id": "p2",
           "fragments": [
-            "why-0",
             "how-0",
             "how-1",
             "how-2",
             "result-0",
             "result-1"
           ],
-          "similarity": 0.5361632108688354
+          "similarity": 0.5882148742675781,
+          "fit": 0.88
         }
       ],
       "distinct_agents": 1,
@@ -292,13 +1298,71 @@
     }
   ],
   "divergence": {
-    "query_cosines": {},
-    "topk_jaccard": {}
+    "query_cosines": {
+      "A1-THE-HERO": 0.6762945652008057,
+      "A1-THE-OUTLAW": 0.6226561665534973,
+      "A1-THE-LOVER": 0.4226721525192261,
+      "A1-THE-CREATOR": 0.48947808146476746,
+      "A1-THE-RULER": 0.5889413356781006,
+      "A1-THE-MAGICIAN": 0.43103379011154175,
+      "A1-THE-JESTER": 0.5729402303695679,
+      "THE-HERO-THE-OUTLAW": 0.6191663146018982,
+      "THE-HERO-THE-LOVER": 0.5787944793701172,
+      "THE-CREATOR-THE-HERO": 0.4970911145210266,
+      "THE-HERO-THE-RULER": 0.7140403985977173,
+      "THE-HERO-THE-MAGICIAN": 0.5909048914909363,
+      "THE-HERO-THE-JESTER": 0.7273415327072144,
+      "THE-LOVER-THE-OUTLAW": 0.507377564907074,
+      "THE-CREATOR-THE-OUTLAW": 0.6468355059623718,
+      "THE-OUTLAW-THE-RULER": 0.6542645692825317,
+      "THE-MAGICIAN-THE-OUTLAW": 0.6009194254875183,
+      "THE-JESTER-THE-OUTLAW": 0.6384499073028564,
+      "THE-CREATOR-THE-LOVER": 0.5014115571975708,
+      "THE-LOVER-THE-RULER": 0.728688657283783,
+      "THE-LOVER-THE-MAGICIAN": 0.5445871353149414,
+      "THE-JESTER-THE-LOVER": 0.5874752402305603,
+      "THE-CREATOR-THE-RULER": 0.6564969420433044,
+      "THE-CREATOR-THE-MAGICIAN": 0.5888527631759644,
+      "THE-CREATOR-THE-JESTER": 0.5453682541847229,
+      "THE-MAGICIAN-THE-RULER": 0.7215359210968018,
+      "THE-JESTER-THE-RULER": 0.7290266156196594,
+      "THE-JESTER-THE-MAGICIAN": 0.6544532775878906
+    },
+    "topk_jaccard": {
+      "A1-THE-HERO": 0.1111111111111111,
+      "A1-THE-OUTLAW": 0.0,
+      "A1-THE-LOVER": 0.0,
+      "A1-THE-CREATOR": 0.0,
+      "A1-THE-RULER": 0.0,
+      "A1-THE-MAGICIAN": 0.0,
+      "A1-THE-JESTER": 0.0,
+      "THE-HERO-THE-OUTLAW": 0.0,
+      "THE-HERO-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-HERO": 0.0,
+      "THE-HERO-THE-RULER": 0.0,
+      "THE-HERO-THE-MAGICIAN": 0.0,
+      "THE-HERO-THE-JESTER": 0.0,
+      "THE-LOVER-THE-OUTLAW": 0.0,
+      "THE-CREATOR-THE-OUTLAW": 0.0,
+      "THE-OUTLAW-THE-RULER": 0.0,
+      "THE-MAGICIAN-THE-OUTLAW": 0.0,
+      "THE-JESTER-THE-OUTLAW": 0.0,
+      "THE-CREATOR-THE-LOVER": 0.1111111111111111,
+      "THE-LOVER-THE-RULER": 0.0,
+      "THE-LOVER-THE-MAGICIAN": 0.0,
+      "THE-JESTER-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-RULER": 0.09090909090909091,
+      "THE-CREATOR-THE-MAGICIAN": 0.0,
+      "THE-CREATOR-THE-JESTER": 0.1111111111111111,
+      "THE-MAGICIAN-THE-RULER": 0.0,
+      "THE-JESTER-THE-RULER": 0.25,
+      "THE-JESTER-THE-MAGICIAN": 0.0
+    }
   },
   "meta": {
-    "query_count": 3,
-    "raw_hit_count": 6,
-    "candidate_count": 6,
+    "query_count": 20,
+    "raw_hit_count": 40,
+    "candidate_count": 19,
     "max_candidates": 19,
     "quality_floor": 0.4
   }

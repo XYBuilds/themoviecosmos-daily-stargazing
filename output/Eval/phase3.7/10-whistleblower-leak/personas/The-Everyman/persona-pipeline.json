@@ -1,0 +1,316 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "举报人",
+          "alternatives": [
+            {
+              "term": "吹哨人",
+              "valence": "positive"
+            },
+            {
+              "term": "检举者",
+              "valence": "neutral"
+            },
+            {
+              "term": "告密者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "印度国家考试机构 (NTA)",
+          "alternatives": [
+            {
+              "term": "国家考试主管机构",
+              "valence": "positive"
+            },
+            {
+              "term": "考试管理机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "出问题的考试机构",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "中央调查局 (CBI)",
+          "alternatives": [
+            {
+              "term": "中央调查机构",
+              "valence": "positive"
+            },
+            {
+              "term": "中央调查局",
+              "valence": "neutral"
+            },
+            {
+              "term": "介入调查的中央机构",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "26-27 名试卷制定者和翻译人员",
+          "alternatives": [
+            {
+              "term": "涉事教育工作者",
+              "valence": "positive"
+            },
+            {
+              "term": "试卷制定与翻译人员",
+              "valence": "neutral"
+            },
+            {
+              "term": "问题试卷相关人员",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "十三名被逮捕人员（包括一名培训人士）",
+          "alternatives": [
+            {
+              "term": "被调查的涉嫌人员",
+              "valence": "positive"
+            },
+            {
+              "term": "被捕的十三人",
+              "valence": "neutral"
+            },
+            {
+              "term": "作弊丑闻嫌疑人",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "举报人发送的 PDF 文件与 NEET-UG 2026 化学试卷完全匹配，与生物试卷部分匹配",
+          "alternatives": [
+            {
+              "term": "有人提供了泄露试卷的证据",
+              "valence": "positive"
+            },
+            {
+              "term": "举报材料与真题高度吻合",
+              "valence": "neutral"
+            },
+            {
+              "term": "考试内容被提前泄露",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "2026年5月3日，NEET-UG 医学入学考试进行",
+          "alternatives": [
+            {
+              "term": "全国医学入学考试如期举行",
+              "valence": "positive"
+            },
+            {
+              "term": "NEET-UG考试于5月3日举行",
+              "valence": "neutral"
+            },
+            {
+              "term": "考试在争议中进行",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "四天后，印度国家考试机构收到举报人邮件，附有匹配试卷的 PDF 文件",
+          "alternatives": [
+            {
+              "term": "考试机构及时收到举报",
+              "valence": "positive"
+            },
+            {
+              "term": "举报邮件在考试后送达",
+              "valence": "neutral"
+            },
+            {
+              "term": "作弊证据被发送给主管机构",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "NTA 将 26-27 名试卷制定者和翻译人员移交中央调查局",
+          "alternatives": [
+            {
+              "term": "考试机构将涉事人员移交给调查机构",
+              "valence": "positive"
+            },
+            {
+              "term": "相关人员被移交CBI",
+              "valence": "neutral"
+            },
+            {
+              "term": "内部人员被作为嫌疑人移交",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "十三人被逮捕，包括一名培训人士",
+          "alternatives": [
+            {
+              "term": "十三名嫌疑人被捕",
+              "valence": "positive"
+            },
+            {
+              "term": "逮捕行动涉及十三人",
+              "valence": "neutral"
+            },
+            {
+              "term": "多人因泄题被捕",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "重新考试定于2026年6月21日",
+          "alternatives": [
+            {
+              "term": "为受影响的考生安排了补考",
+              "valence": "positive"
+            },
+            {
+              "term": "考试改期至6月21日",
+              "valence": "neutral"
+            },
+            {
+              "term": "考生需再次参加考试",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "NEET-UG 2026 被取消",
+          "alternatives": [
+            {
+              "term": "考试结果作废以维护公平",
+              "valence": "positive"
+            },
+            {
+              "term": "考试成绩被取消",
+              "valence": "neutral"
+            },
+            {
+              "term": "考试因丑闻而失效",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "相关人员被移交 CBI",
+          "alternatives": [
+            {
+              "term": "事件被交给中央调查机构处理",
+              "valence": "positive"
+            },
+            {
+              "term": "案件移交至CBI",
+              "valence": "neutral"
+            },
+            {
+              "term": "丑闻升级至中央调查层面",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "十三人被逮捕",
+          "alternatives": [
+            {
+              "term": "十三名涉事者被捕",
+              "valence": "positive"
+            },
+            {
+              "term": "逮捕人数达十三人",
+              "valence": "neutral"
+            },
+            {
+              "term": "包括培训人士在内多人被捕",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "重新考试安排在2026年6月21日",
+          "alternatives": [
+            {
+              "term": "考生获得重新考试的机会",
+              "valence": "positive"
+            },
+            {
+              "term": "补考日期定在6月21日",
+              "valence": "neutral"
+            },
+            {
+              "term": "考生被迫再次备考应试",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "A whistleblower's email exposed a major leak of the NEET-UG medical entrance exam, with the provided PDF file closely matching the actual chemistry and biology tests. The national examination authority, upon receiving the evidence, acted to cancel the tainted results and transferred the case to the central investigation agency for a full probe. This led to the arrest of thirteen individuals, including a tutor, and the scheduling of a new test for June 21st, aiming to restore fairness for all the students affected by this breach of trust.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "result-0",
+          "result-1",
+          "result-2",
+          "result-3"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The integrity of a nationwide medical exam was compromised when a tip-off revealed that test content had been leaked in advance. The examination management institution moved quickly to nullify the compromised scores and handed over the investigation to the central authorities. As a result, multiple people were arrested, and a re-examination was arranged for the following month, putting countless students through the stress and preparation once again.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-2",
+          "result-3"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.72
+    }
+  ],
+  "warnings": []
+}

@@ -12,6 +12,7 @@ import argparse
 import asyncio
 import copy
 import json
+import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -52,6 +53,23 @@ SCREENWRITER_CONTRACT = (
     repo_root() / "prompts" / "_shared" / "persona_screenwriter_contract.md"
 )
 PERSONAS_SSOT = repo_root() / "docs" / "SSOT" / "personas-12.md"
+
+_PERSONA_ID_ROW = re.compile(r"^\|\s*(The-[A-Za-z]+)\s*\|")
+
+
+def list_persona_ids(ssot_path: Path | None = None) -> list[str]:
+    """Return canonical Pearson persona_id list from personas-12 SSOT."""
+    path = ssot_path or PERSONAS_SSOT
+    if not path.is_file():
+        raise FileNotFoundError(f"personas SSOT not found: {path}")
+    ids: list[str] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        m = _PERSONA_ID_ROW.match(line.strip())
+        if m:
+            ids.append(m.group(1))
+    if len(ids) != 12:
+        raise ValueError(f"expected 12 persona_ids in {path}, got {len(ids)}: {ids}")
+    return ids
 
 _ELEMENT_SECTIONS: tuple[str, ...] = ("who", "where", "why", "how", "result")
 

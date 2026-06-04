@@ -1,0 +1,208 @@
+{
+  "persona_id": "The-Explorer",
+  "overlay": {
+    "persona_id": "The-Explorer",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "欧盟委员会",
+          "alternatives": [
+            {
+              "term": "数字边疆的开拓者",
+              "valence": "positive"
+            },
+            {
+              "term": "欧盟竞争管理机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "规则的施加者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "谷歌（字母表公司）",
+          "alternatives": [
+            {
+              "term": "搜索引擎的领航员",
+              "valence": "positive"
+            },
+            {
+              "term": "美国科技巨头",
+              "valence": "neutral"
+            },
+            {
+              "term": "市场边界的跨越者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "布鲁塞尔",
+          "alternatives": [
+            {
+              "term": "监管新大陆的前哨",
+              "valence": "positive"
+            },
+            {
+              "term": "欧盟总部所在地",
+              "valence": "neutral"
+            },
+            {
+              "term": "官僚主义的堡垒",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "因在搜索结果中优先展示自家购物、航班和酒店服务，而非竞争对手的比较服务",
+          "alternatives": [
+            {
+              "term": "利用搜索引擎探索新的商业领域",
+              "valence": "positive"
+            },
+            {
+              "term": "在搜索结果中偏向自有服务",
+              "valence": "neutral"
+            },
+            {
+              "term": "在数字领地划定排他性边界",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "根据数字市场法启动程序",
+          "alternatives": [
+            {
+              "term": "开启数字新规则的探索之旅",
+              "valence": "positive"
+            },
+            {
+              "term": "依据新法规启动调查",
+              "valence": "neutral"
+            },
+            {
+              "term": "用新规开辟强制合规的路径",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "欧盟委员会在两年多的程序后拒绝了公司的补救提案",
+          "alternatives": [
+            {
+              "term": "在漫长的探索后拒绝了一条可能的道路",
+              "valence": "positive"
+            },
+            {
+              "term": "在冗长程序后否决了公司的提议",
+              "valence": "neutral"
+            },
+            {
+              "term": "在跋涉多年后封死了公司的退路",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "预计在委员会八月休会前做出正式决定",
+          "alternatives": [
+            {
+              "term": "在漫长的旅程后即将抵达决定性的关口",
+              "valence": "positive"
+            },
+            {
+              "term": "计划在夏季休会前作出裁决",
+              "valence": "neutral"
+            },
+            {
+              "term": "在最后期限前强制做出终结",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "欧盟监管机构正在敲定一项可能达到数亿欧元的罚款",
+          "alternatives": [
+            {
+              "term": "探索出了前所未有的惩戒工具",
+              "valence": "positive"
+            },
+            {
+              "term": "正在准备一项巨额罚款",
+              "valence": "neutral"
+            },
+            {
+              "term": "正用天价罚单划定新的禁区",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "这是针对字母表公司十多年来积累的竞争罚款之上",
+          "alternatives": [
+            {
+              "term": "在旧日违规的废墟上开辟了新的监管前线",
+              "valence": "positive"
+            },
+            {
+              "term": "这是在一系列历史罚款基础上的新处罚",
+              "valence": "neutral"
+            },
+            {
+              "term": "为长达十年的追逐画上了一个严厉的句号",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "From the regulatory frontier in Brussels, the EU's competition pioneers have charted a course using the new Digital Markets Act as their compass. After a two-year investigative journey, they have navigated past a company's proposed detours and are now approaching a decisive checkpoint before the August recess. The American search engine navigator, who was exploring commercial territories within its own search results, now faces the prospect of a landmark penalty, a new enforcement instrument being forged to mark the boundaries of the digital realm. This would add to a legacy of fines, forging a new front on old ground.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.91
+    },
+    {
+      "id": "p2",
+      "text": "A long expedition through procedural terrain is nearing its end. From its outpost in Brussels, the EU's rule enforcers initiated a journey under new digital statutes, seeking to map fair competition. The American tech giant, a pioneer in search, had its proposed route corrections rejected after more than two years of traversing the regulatory landscape. Now, as the summer recess looms, the explorers are preparing a final sanction—a potential nine-figure sum to demarcate a fresh exclusion zone, building upon a decade of established enforcement trails.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

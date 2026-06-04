@@ -1,0 +1,303 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "美国边境巡逻队",
+          "alternatives": [
+            {
+              "term": "执法前线人员",
+              "valence": "positive"
+            },
+            {
+              "term": "边境执法人员",
+              "valence": "neutral"
+            },
+            {
+              "term": "拘捕行动人员",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "被逮捕者",
+          "alternatives": [
+            {
+              "term": "寻求庇护的个体",
+              "valence": "positive"
+            },
+            {
+              "term": "被捕移民",
+              "valence": "neutral"
+            },
+            {
+              "term": "被拘押者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "分析师",
+          "alternatives": [
+            {
+              "term": "数据观察员",
+              "valence": "positive"
+            },
+            {
+              "term": "趋势分析师",
+              "valence": "neutral"
+            },
+            {
+              "term": "情况评估员",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "立法者",
+          "alternatives": [
+            {
+              "term": "政策制定者",
+              "valence": "positive"
+            },
+            {
+              "term": "国会议员",
+              "valence": "neutral"
+            },
+            {
+              "term": "僵局参与者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "分析师将月度逮捕人数上升归因于春季天气变暖",
+          "alternatives": [
+            {
+              "term": "季节性模式导致行动增加",
+              "valence": "positive"
+            },
+            {
+              "term": "逮捕人数的月度波动被归因于天气",
+              "valence": "neutral"
+            },
+            {
+              "term": "用天气借口掩盖政策失败",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "2026年3月，美国边境巡逻队在西南边境逮捕了8,268人",
+          "alternatives": [
+            {
+              "term": "执法部门在边境记录了当月的逮捕数据",
+              "valence": "positive"
+            },
+            {
+              "term": "3月份的逮捕人数为8,268人",
+              "valence": "neutral"
+            },
+            {
+              "term": "超过八千人被逮捕",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "这比2026年2月的6,598人增加了25%",
+          "alternatives": [
+            {
+              "term": "逮捕人数显示出月度增长",
+              "valence": "positive"
+            },
+            {
+              "term": "相比上月数据增长了25%",
+              "valence": "neutral"
+            },
+            {
+              "term": "逮捕人数出现了显著飙升",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "年初至今的越境人数仍接近数十年低点，归因于庇护关闭和驱逐政策",
+          "alternatives": [
+            {
+              "term": "整体越境趋势保持低位",
+              "valence": "positive"
+            },
+            {
+              "term": "年度数据处于历史低点",
+              "valence": "neutral"
+            },
+            {
+              "term": "严厉政策限制了越境",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "分析师指出月度上升是由于春季天气变暖",
+          "alternatives": [
+            {
+              "term": "观察员将增长与季节因素联系起来",
+              "valence": "positive"
+            },
+            {
+              "term": "分析指出天气是因素",
+              "valence": "neutral"
+            },
+            {
+              "term": "用天气解释掩盖根本问题",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "立法者在移民执法机构资金问题上僵持不下，相关资金法案待决",
+          "alternatives": [
+            {
+              "term": "政策制定者在资源分配上陷入僵局",
+              "valence": "positive"
+            },
+            {
+              "term": "资金法案在立法部门待决",
+              "valence": "neutral"
+            },
+            {
+              "term": "政治僵局阻碍了执法资金",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "2026年3月逮捕人数上升25%至8,268人",
+          "alternatives": [
+            {
+              "term": "月度逮捕数据显示出增长",
+              "valence": "positive"
+            },
+            {
+              "term": "3月份逮捕人数达到8,268人",
+              "valence": "neutral"
+            },
+            {
+              "term": "逮捕人数大幅增加",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "年初至今越境人数保持在数十年低点附近",
+          "alternatives": [
+            {
+              "term": "年度越境数据保持稳定低位",
+              "valence": "positive"
+            },
+            {
+              "term": "越境总人数处于历史低点",
+              "valence": "neutral"
+            },
+            {
+              "term": "越境人数仍被压制",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "立法者在资金问题上僵持不下",
+          "alternatives": [
+            {
+              "term": "资源分配问题仍未解决",
+              "valence": "positive"
+            },
+            {
+              "term": "资金争议持续",
+              "valence": "neutral"
+            },
+            {
+              "term": "政治僵局导致不作为",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "In March 2026, border patrol personnel arrested over eight thousand people at the U.S. Southwest border, a twenty-five percent jump from the month before. Data observers linked this rise to seasonal migration patterns as warmer spring weather arrived. While the monthly figures show an increase, the total number of people crossing the border since the start of the year remains near historic lows, a trend attributed to strict asylum closures and deportation policies. The numbers reflect a system where individuals face immediate consequences, while broader resource questions remain unresolved for the officials tasked with enforcement.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The people on the front lines of border enforcement recorded a sharp rise in arrests in March, catching over eight thousand individuals. Analysts point to the changing season as a factor behind this monthly spike. Yet, this short-term increase occurs against a backdrop where annual crossing numbers have been kept low by firm government policies. Meanwhile, a political stalemate has left funding for the agencies doing this critical work in limbo, creating uncertainty for the workers and communities who depend on these systems functioning smoothly.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-1",
+          "result-2"
+        ]
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "A twenty-five percent monthly increase in border arrests was driven by seasonal weather changes, according to trend analysts. This uptick brought the March total to over eight thousand people taken into custody. While this represents a significant monthly jump, the bigger picture shows that stricter policies have kept overall yearly crossings near their lowest point in decades. The situation highlights a disconnect: people on the ground see rising numbers, while lawmakers remain deadlocked over funding the very agencies handling the influx.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0"
+        ]
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span",
+        "deentify_warning: news cliché 'according to'"
+      ],
+      "fit": 0.8
+    }
+  ],
+  "warnings": []
+}

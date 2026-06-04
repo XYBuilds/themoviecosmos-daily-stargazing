@@ -1,0 +1,449 @@
+{
+  "agents": [
+    {
+      "agent_id": "A1",
+      "persona_name": "The Reality Recorder (Baseline)",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "After months of internal review, the chief executive of a tax-software company told staff about a restructuring to co-locate teams in strategic hubs and accelerate AI-driven product work. The plan includes the elimination of approximately 3,000 full-time roles. Affected U.S. employees are offered a severance package of 16 weeks base pay plus two weeks per year of tenure.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ]
+          }
+        },
+        {
+          "id": "p2",
+          "text": "The company's plan involves the elimination of approximately 3,000 full-time roles, representing approximately 17% of its workforce. Offices in Reno and Woodland Hills are designated for winding down. Affected U.S. employees are offered a severance package.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-1",
+              "result-0",
+              "result-3",
+              "result-2"
+            ]
+          }
+        }
+      ],
+      "text": "After months of internal review, the chief executive of a tax-software company told staff about a restructuring to co-locate teams in strategic hubs and accelerate AI-driven product work. The plan includes the elimination of approximately 3,000 full-time roles. Affected U.S. employees are offered a severance package of 16 weeks base pay plus two weeks per year of tenure.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Innocent",
+      "persona_name": "The-Innocent",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "Intuit, the tax-software company, is undergoing a significant restructuring to strengthen collaboration and pioneer new technology in artificial intelligence. To achieve this, the CEO communicated the difficult but necessary changes to staff, which include a significant but focused reduction to refocus the company, eliminating approximately 3,000 full-time roles. Affected U.S. employees are being provided a supportive severance package to ease their transition, and operations in Reno and Woodland Hills are transitioning to more central locations as part of the company's future-focused strategy.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "After months of internal review, the company pursuing a focused strategy announced a plan to co-locate teams in strategic hubs and accelerate AI-driven product work. This plan involves offering a path forward through a thoughtful transition, where valued team members facing transition will receive a defined severance plan to support them. Offices in Reno and Woodland Hills are winding down as operations consolidate into key hubs for future growth.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        }
+      ],
+      "text": "Intuit, the tax-software company, is undergoing a significant restructuring to strengthen collaboration and pioneer new technology in artificial intelligence. To achieve this, the CEO communicated the difficult but necessary changes to staff, which include a significant but focused reduction to refocus the company, eliminating approximately 3,000 full-time roles. Affected U.S. employees are being provided a supportive severance package to ease their transition, and operations in Reno and Woodland Hills are transitioning to more central locations as part of the company's future-focused strategy.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Everyman",
+      "persona_name": "The-Everyman",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "Intuit's CEO told staff the company is reorganizing for efficiency, cutting thousands of jobs and closing offices in Reno and Woodland Hills. The firm aims to centralize work to focus on growth and innovation, but nearly one-fifth of the company's employees are let go. Workers facing job loss are offered a severance package, including 16 weeks base pay plus two weeks per year of tenure.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The chief executive informed staff of the job cuts, a reduction of 17% in the workforce. Three thousand full-time roles are eliminated as part of a restructuring to co-locate teams in strategic hubs and accelerate AI-driven product work. Affected U.S. employees are offered severance terms, with offices in Reno and Woodland Hills designated for winding down.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.78
+        }
+      ],
+      "text": "Intuit's CEO told staff the company is reorganizing for efficiency, cutting thousands of jobs and closing offices in Reno and Woodland Hills. The firm aims to centralize work to focus on growth and innovation, but nearly one-fifth of the company's employees are let go. Workers facing job loss are offered a severance package, including 16 weeks base pay plus two weeks per year of tenure.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Hero",
+      "persona_name": "The-Hero",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "To confront the challenge of an AI-driven future, the decisive leader Sasan Goodarzi announced a bold restructuring to unify teams for a future-focused mission, eliminating approximately 3,000 roles as a necessary reallocation for growth. The company is providing a substantial severance cushion for the employees bearing the brunt of this corporate shift, while closing regional offices to consolidate strength in key hubs. This decisive action will cut 17% of the workforce to fuel the acceleration of strategic product work.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.75
+        },
+        {
+          "id": "p2",
+          "text": "As part of a necessary transformation, the tax-software firm Intuit is executing a restructuring that will eliminate 3,000 full-time positions slated for elimination. The chief executive communicated the AI-focused plan to staff, and the company has confirmed a severance package for the workforce targeted for role elimination. This effort includes phasing out offices in Reno and Woodland Hills to speed up AI product development.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.65
+        }
+      ],
+      "text": "To confront the challenge of an AI-driven future, the decisive leader Sasan Goodarzi announced a bold restructuring to unify teams for a future-focused mission, eliminating approximately 3,000 roles as a necessary reallocation for growth. The company is providing a substantial severance cushion for the employees bearing the brunt of this corporate shift, while closing regional offices to consolidate strength in key hubs. This decisive action will cut 17% of the workforce to fuel the acceleration of strategic product work.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Explorer",
+      "persona_name": "The-Explorer",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "Visionary leader Sasan Goodarzi has unveiled a bold AI transformation plan, aiming to pioneer AI-powered product evolution. The innovation-driven company is streamlining its operations, consolidating teams to focus on new frontiers and strategically realigning resources. This major shift will involve a significant workforce reallocation, with approximately 3,000 roles being eliminated to enhance agility. To support the transition, the company is offering generous severance packages to its U.S. employees and is consolidating operations by winding down offices in Reno and Woodland Hills, moving toward central innovation hubs.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p2",
+          "text": "Intuit's chief executive announced an AI-focused restructuring to co-locate teams in strategic hubs. This initiative involves eliminating roles and cutting thousands of jobs to reshape the corporate landscape. Affected U.S. employees were offered a severance package, while offices in Reno and Woodland Hills are designated for winding down. The move represents a massive 17% job cuts across the workforce, marking a definitive shift in the company's operational footprint and future direction.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.65
+        }
+      ],
+      "text": "Visionary leader Sasan Goodarzi has unveiled a bold AI transformation plan, aiming to pioneer AI-powered product evolution. The innovation-driven company is streamlining its operations, consolidating teams to focus on new frontiers and strategically realigning resources. This major shift will involve a significant workforce reallocation, with approximately 3,000 roles being eliminated to enhance agility. To support the transition, the company is offering generous severance packages to its U.S. employees and is consolidating operations by winding down offices in Reno and Woodland Hills, moving toward central innovation hubs.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Lover",
+      "persona_name": "The-Lover",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The corporation that abandoned its loyal people announced a brutal culling of thousands of jobs, after the leader delivered the cold, corporate decree. This devastating loss of nearly a fifth of the company's people is framed as a painful but necessary shedding of old roles for new growth, aiming to build a more connected and innovative future together.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.6
+        },
+        {
+          "id": "p2",
+          "text": "In a move to secure its future, the company is closing chapters at beloved locations to begin anew elsewhere, including offices in Reno and Woodland Hills. The dedicated workforce let go in pursuit of this new vision receives a structured support system for those departing, a severance package that honored their years of service.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "how-2",
+              "how-3",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.65
+        },
+        {
+          "id": "p3",
+          "text": "The CEO who prioritized the company's future over tradition oversaw the erasure of 3,000 livelihoods, a transactional farewell for the displaced. The quiet death of two workplace homes in Reno and Woodland Hills signals the end of established community hubs, leaving the betrayed staff left behind to mourn what was.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1",
+              "result-3"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.55
+        }
+      ],
+      "text": "The corporation that abandoned its loyal people announced a brutal culling of thousands of jobs, after the leader delivered the cold, corporate decree. This devastating loss of nearly a fifth of the company's people is framed as a painful but necessary shedding of old roles for new growth, aiming to build a more connected and innovative future together.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Creator",
+      "persona_name": "The-Creator",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The visionary architect of Intuit, the innovation engine, unveiled a bold new blueprint for creation, outlining a necessary shedding to enable new growth. This strategic realignment of the creative force will streamline roles for a new era, erasing thousands of jobs to forge a more potent creative hub focused on AI. A crafted support package, including a defined pathway for departing talent, was offered to the displaced creators as part of the transition.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "To sacrifice human craft for automated efficiency, the corporate machine is orchestrating a massive culling of the workforce, with the executive delivering the verdict on human roles. This erasure of thousands of jobs, amounting to the destruction of thousands of careers, is part of a restructuring to accelerate AI development. The abandonment of established workspaces in Reno and Woodland Hills follows, with a standardized buyout for the displaced.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.85
+        }
+      ],
+      "text": "The visionary architect of Intuit, the innovation engine, unveiled a bold new blueprint for creation, outlining a necessary shedding to enable new growth. This strategic realignment of the creative force will streamline roles for a new era, erasing thousands of jobs to forge a more potent creative hub focused on AI. A crafted support package, including a defined pathway for departing talent, was offered to the displaced creators as part of the transition.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Magician",
+      "persona_name": "The-Magician",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The orchestrator of the shift at the evolving platform unveiled a strategic vision alignment to synergize talent for AI breakthroughs, initiating a major workforce slash. The corporate entity enacting the change is streamlining to core strengths by culling 3,000 positions, with displaced personnel offered a structured exit plan. This transformative sleight-of-hand abandons locations in Reno and Woodland Hills, consolidating control under the guise of innovation.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.91
+        },
+        {
+          "id": "p2",
+          "text": "After months of internal review, the architect of transformation communicated a restructuring plan to centralize operations. This move optimizes the role structure, eliminating 3,000 jobs and resulting in a leaner, more focused organization. The impacted workforce receives generous transition support as sites slated for strategic consolidation wind down, a classic magician's pivot to reorganize for efficiency and AI focus.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        }
+      ],
+      "text": "The orchestrator of the shift at the evolving platform unveiled a strategic vision alignment to synergize talent for AI breakthroughs, initiating a major workforce slash. The corporate entity enacting the change is streamlining to core strengths by culling 3,000 positions, with displaced personnel offered a structured exit plan. This transformative sleight-of-hand abandons locations in Reno and Woodland Hills, consolidating control under the guise of innovation.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Jester",
+      "persona_name": "The-Jester",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The ringmaster of this AI-themed circus, the chief executive, delivered the punchline of the century: 'It's not you, it's the AI.' In a move framed as a bold leap toward hyper-efficient synergy, the corporate colossus is sacrificing 3,000 jobs to the god of algorithms, a thinly veiled excuse to cut costs and call it progress. The victims receive the company's legally mandated consolation prize, while nearly a fifth of the company's people are shown the exit.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "how-0",
+              "why-0",
+              "how-1",
+              "result-1",
+              "result-0",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "Intuit, the visionary tax-software titan pivoting to the future, is orchestrating a graceful exit from outdated physical spaces. The scheduled closure of offices in Reno and Woodland Hills marks the slow-motion death of two corporate outposts, all to consolidate operations for strategic and technological goals. This leaves the lucky recipients of a new career horizon to contemplate their parting gift: a few weeks' pay and the door.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "how-3",
+              "result-3",
+              "why-0",
+              "how-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p3",
+          "text": "In the corporate meat grinder chewing up 3,000 jobs, the chief orchestrator of the great corporate shuffle unveils an exciting new chapter. The workforce members impacted by the restructuring, the 3,000 human sacrifices, are offered a generous golden parachute. This strategic workforce right-sizing for a leaner future sees two office locations sacrificed on the altar of centralization.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "how-1",
+              "how-0",
+              "how-2",
+              "how-3",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.72
+        }
+      ],
+      "text": "The ringmaster of this AI-themed circus, the chief executive, delivered the punchline of the century: 'It's not you, it's the AI.' In a move framed as a bold leap toward hyper-efficient synergy, the corporate colossus is sacrificing 3,000 jobs to the god of algorithms, a thinly veiled excuse to cut costs and call it progress. The victims receive the company's legally mandated consolation prize, while nearly a fifth of the company's people are shown the exit.",
+      "warnings": []
+    }
+  ],
+  "errors": [
+    {
+      "agent_id": "The-Caregiver",
+      "message": "alt_creator parse_error: element who-0: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Outlaw",
+      "message": "alt_creator parse_error: element who-0: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Ruler",
+      "message": "alt_creator parse_error: element who-0: missing valence bucket(s) ['negative']"
+    },
+    {
+      "agent_id": "The-Sage",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    }
+  ]
+}

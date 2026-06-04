@@ -1,0 +1,1626 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "European regulators opened a procedure under the Digital Markets Act. After more than two years of proceedings, the European Commission rejected the company's proposed remedies. The Commission is now finalizing a decision, which is expected before its August recess. The decision could include a fine that reaches several hundred million euros.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 888917,
+              "title": "Lords of Scam",
+              "similarity": 0.4068254828453064,
+              "movie_url": "https://themoviecosmos.com/movie/888917"
+            },
+            {
+              "tmdb_id": 320318,
+              "title": "The Clearstream Affair",
+              "similarity": 0.41218411922454834,
+              "movie_url": "https://themoviecosmos.com/movie/320318"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The European Commission investigated a tech company for prioritizing its own shopping, flight, and hotel services in search results over competitors' comparison services. After more than two years, the Commission rejected the company's remedies. A fine is being finalized.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 15576,
+              "title": "Bellamy",
+              "similarity": 0.4347981810569763,
+              "movie_url": "https://themoviecosmos.com/movie/15576"
+            },
+            {
+              "tmdb_id": 888917,
+              "title": "Lords of Scam",
+              "similarity": 0.44719359278678894,
+              "movie_url": "https://themoviecosmos.com/movie/888917"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "A potential fine of several hundred million euros is being finalized by EU regulators. This penalty would be added to more than a decade of accumulated competition fines against the same parent company.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 2335,
+              "title": "Taxi 4",
+              "similarity": 0.46827876567840576,
+              "movie_url": "https://themoviecosmos.com/movie/2335"
+            },
+            {
+              "tmdb_id": 79921,
+              "title": "Special Section",
+              "similarity": 0.47165006399154663,
+              "movie_url": "https://themoviecosmos.com/movie/79921"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-INNOCENT",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The European Commission, acting as a guardian of fair competition, is set to make a significant decision before its August recess. After more than two years of proceedings where the company's proposals were deemed insufficient, a large fine intended to correct the behavior is being finalized. This action stems from allegations of self-preferencing in search results, adding to a long history of regulatory scrutiny for the tech giant seeking a chance to make amends.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 79921,
+              "title": "Special Section",
+              "similarity": 0.44696712493896484,
+              "movie_url": "https://themoviecosmos.com/movie/79921"
+            },
+            {
+              "tmdb_id": 1001028,
+              "title": "Smoke Signals",
+              "similarity": 0.455047607421875,
+              "movie_url": "https://themoviecosmos.com/movie/1001028"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-CAREGIVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "After more than two years of proceedings, the EU's digital market guardian has rejected the tech giant's proposed remedies for its anti-competitive practices, which have harmed smaller competitors by stifling their ability to reach consumers. The regulatory body is now preparing a significant financial penalty as a final step to restore fair play and protect vulnerable market players from continued exploitation.",
+          "source": {
+            "agent_id": "THE-CAREGIVER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 409421,
+              "title": "BLAME!",
+              "similarity": 0.4373626112937927,
+              "movie_url": "https://themoviecosmos.com/movie/409421"
+            },
+            {
+              "tmdb_id": 32285,
+              "title": "Cornered!",
+              "similarity": 0.46659356355667114,
+              "movie_url": "https://themoviecosmos.com/movie/32285"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EXPLORER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "From the regulatory frontier in Brussels, the EU's competition pioneers have charted a course using the new Digital Markets Act as their compass. After a two-year investigative journey, they have navigated past a company's proposed detours and are now approaching a decisive checkpoint before the August recess. The American search engine navigator, who was exploring commercial territories within its own search results, now faces the prospect of a landmark penalty, a new enforcement instrument being forged to mark the boundaries of the digital realm. This would add to a legacy of fines, forging a new front on old ground.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 52077,
+              "title": "Nothing to Declare",
+              "similarity": 0.47351717948913574,
+              "movie_url": "https://themoviecosmos.com/movie/52077"
+            },
+            {
+              "tmdb_id": 888917,
+              "title": "Lords of Scam",
+              "similarity": 0.5035930275917053,
+              "movie_url": "https://themoviecosmos.com/movie/888917"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "A long expedition through procedural terrain is nearing its end. From its outpost in Brussels, the EU's rule enforcers initiated a journey under new digital statutes, seeking to map fair competition. The American tech giant, a pioneer in search, had its proposed route corrections rejected after more than two years of traversing the regulatory landscape. Now, as the summer recess looms, the explorers are preparing a final sanction—a potential nine-figure sum to demarcate a fresh exclusion zone, building upon a decade of established enforcement trails.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 409421,
+              "title": "BLAME!",
+              "similarity": 0.520468533039093,
+              "movie_url": "https://themoviecosmos.com/movie/409421"
+            },
+            {
+              "tmdb_id": 2927,
+              "title": "Moon 44",
+              "similarity": 0.5294421315193176,
+              "movie_url": "https://themoviecosmos.com/movie/2927"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-OUTLAW",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Brussels' regulatory superpower is about to swing the legal weapon of the Digital Markets Act to land a billion-euro blow. After more than two years of proceedings and rejecting the tech giant's settlement efforts, the Commission will rush to impose a punitive verdict before its August recess, adding yet another massive fine to the monopoly capital's decade-long bill for abusing its platform's dominance.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 320318,
+              "title": "The Clearstream Affair",
+              "similarity": 0.48825666308403015,
+              "movie_url": "https://themoviecosmos.com/movie/320318"
+            },
+            {
+              "tmdb_id": 888917,
+              "title": "Lords of Scam",
+              "similarity": 0.5149745941162109,
+              "movie_url": "https://themoviecosmos.com/movie/888917"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The state's crackdown on the innovation engine intensifies, with the EU's powers-that-be wielding new regulations to target the integrated, one-stop service model. The clock is ticking towards a hurried decision by the August deadline, a move that will hit the company with a penalty on top of its already heavy load of historic, systematic fines.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1006540,
+              "title": "Bullet Train Down",
+              "similarity": 0.4800012409687042,
+              "movie_url": "https://themoviecosmos.com/movie/1006540"
+            },
+            {
+              "tmdb_id": 58926,
+              "title": "Speaking of Murder",
+              "similarity": 0.49293771386146545,
+              "movie_url": "https://themoviecosmos.com/movie/58926"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-LOVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A love turned sour. The EU, once a guardian of fair play, now stands as a stern authority against the tech pioneer, Alphabet's Google. For years, the company devoted itself to creating a seamless user experience, weaving its own services into the fabric of search. But this devotion was seen as a betrayal of trust. After more than two years of proceedings, the Commission rejected the company's olive branch of a remedy proposal. Now, a decisive move is promised before the August recess, a final act that will culminate in a substantial, record-breaking penalty.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 63215,
+              "title": "Toute une nuit",
+              "similarity": 0.44943445920944214,
+              "movie_url": "https://themoviecosmos.com/movie/63215"
+            },
+            {
+              "tmdb_id": 46586,
+              "title": "The Gambler and the Lady",
+              "similarity": 0.4515034556388855,
+              "movie_url": "https://themoviecosmos.com/movie/46586"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The long, arduous courtship has ended in rupture. The European Commission, having launched a formal inquiry under new digital laws, has torn up Google's proposed reconciliation. For over two years, it held firm, rejecting a plan seen as insufficient. The inevitable consequence now looms: a fine of hundreds of millions of euros, a punitive sum that represents not just this case, but the culmination of a decade's worth of regulatory friction. This final judgment, expected before the summer break, is the final severing of a fraught relationship.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 96170,
+              "title": "Lilly Turner",
+              "similarity": 0.5144898891448975,
+              "movie_url": "https://themoviecosmos.com/movie/96170"
+            },
+            {
+              "tmdb_id": 852756,
+              "title": "The Desired War",
+              "similarity": 0.5250228643417358,
+              "movie_url": "https://themoviecosmos.com/movie/852756"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Trust was the first casualty. Alphabet's Google, accused of selfishly monopolizing the market by favoring its own shopping and travel services, has seen its relationship with regulators break down completely. The EU's bureaucratic machinery, after years of investigation, has now coldly dismissed the company's last attempt at a peace offering. As the deadline for a decision approaches before the August recess, the fallout is clear: a massive financial punishment is being finalized, a bitter end to a saga that has defined a decade of tension.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 9989,
+              "title": "Antitrust",
+              "similarity": 0.47886860370635986,
+              "movie_url": "https://themoviecosmos.com/movie/9989"
+            },
+            {
+              "tmdb_id": 209504,
+              "title": "Bounty Killer",
+              "similarity": 0.4836130738258362,
+              "movie_url": "https://themoviecosmos.com/movie/209504"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-CREATOR",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "From the regulatory heart of Brussels, the rule-maker is crafting a landmark penalty. After more than two years of proceedings and rejecting the tech giant's detailed compliance proposal, the European regulator is finalizing a fine that could reach hundreds of millions. This action, based on the Digital Markets Act, targets the company's practice of deliberately orchestrating search results to favor its own services over competitors, aiming to conclude a decade of accumulated anti-competitive penalties.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 888917,
+              "title": "Lords of Scam",
+              "similarity": 0.5043728351593018,
+              "movie_url": "https://themoviecosmos.com/movie/888917"
+            },
+            {
+              "tmdb_id": 94376,
+              "title": "The Cop",
+              "similarity": 0.5050765872001648,
+              "movie_url": "https://themoviecosmos.com/movie/94376"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The search engine giant faces a decisive moment before the Commission's August recess. After its attempts to forge a solution were dismissed by the bureaucratic process, the EU is poised to issue a formal ruling. The expected punitive, massive fine will be added to a long history of penalties, all stemming from allegations that the company fabricated search algorithm outcomes to suppress rivals and promote its own shopping, travel, and hotel offerings.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 823951,
+              "title": "November",
+              "similarity": 0.4469791352748871,
+              "movie_url": "https://themoviecosmos.com/movie/823951"
+            },
+            {
+              "tmdb_id": 888917,
+              "title": "Lords of Scam",
+              "similarity": 0.45948129892349243,
+              "movie_url": "https://themoviecosmos.com/movie/888917"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-RULER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The Brussels regulator, acting as the guardian of order, has spent more than two years exercising its statutory authority to investigate a market disorder. After rejecting the company's attempts at remediation, it is now finalizing a severe financial punishment to correct the long-standing distortion of competition caused by the firm's self-preferencing in search results. This decisive action by the institutional steward represents the necessary containment of a rule-breaking actor before the August recess.",
+          "source": {
+            "agent_id": "THE-RULER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 142977,
+              "title": "The Last One of the Six",
+              "similarity": 0.5011146068572998,
+              "movie_url": "https://themoviecosmos.com/movie/142977"
+            },
+            {
+              "tmdb_id": 1001028,
+              "title": "Smoke Signals",
+              "similarity": 0.5033751726150513,
+              "movie_url": "https://themoviecosmos.com/movie/1001028"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The bureaucratic machine is moving to restore control after a two-year investigation into the tech giant's anti-competitive behavior. It has firmly rejected the company's proposed settlement, aiming to issue a ruling that will impose a cumulative penalty on the long-term violator. This imminent decision underscores the institution's commitment to binding a disruptive entity back under legitimate market rules.",
+          "source": {
+            "agent_id": "THE-RULER",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 63333,
+              "title": "Gog",
+              "similarity": 0.4914155602455139,
+              "movie_url": "https://themoviecosmos.com/movie/63333"
+            },
+            {
+              "tmdb_id": 41535,
+              "title": "Future X-Cops",
+              "similarity": 0.5325782895088196,
+              "movie_url": "https://themoviecosmos.com/movie/41535"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-MAGICIAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The EU's digital rule-makers initiated a reset of the search ecosystem, employing the Digital Markets Act to probe Alphabet's alleged market manipulation through its search interface. After more than two years of proceedings, they unveiled the company's proposed remedies as a mere sleight-of-hand, rejecting the superficial fixes. Now, they are poised to deliver a landmark, multi-hundred-million-euro penalty before the August recess, a transformative chip to reshape the competitive game.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 112090,
+              "title": "Branded",
+              "similarity": 0.4604629576206207,
+              "movie_url": "https://themoviecosmos.com/movie/112090"
+            },
+            {
+              "tmdb_id": 409421,
+              "title": "BLAME!",
+              "similarity": 0.5307270288467407,
+              "movie_url": "https://themoviecosmos.com/movie/409421"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Brussels is finalizing a high-stakes penalty against the search algorithm's invisible conductor. The move follows years of legal maneuvering where the Commission, acting as a digital rule-setter, rejected the platform's proposed fixes as performative. The impending fine, a sum in the hundreds of millions, is not just a new sanction but a layer of pressure added to a decade of accumulated competition penalties, designed to permanently alter the platform's operational playbook.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 94376,
+              "title": "The Cop",
+              "similarity": 0.4943898320198059,
+              "movie_url": "https://themoviecosmos.com/movie/94376"
+            },
+            {
+              "tmdb_id": 30858,
+              "title": "Terra Nova",
+              "similarity": 0.5032047033309937,
+              "movie_url": "https://themoviecosmos.com/movie/30858"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "A bureaucratic apparatus is closing in on a tech giant's strategic misdirection. The EU, positioning itself as the architect of digital order, launched proceedings to dismantle what it sees as a hidden lever distorting fair market play. After years of denying the company's corrective proposals, the stage is set for a colossal financial blow—a punitive measure that adds to a legacy of fines, signaling an unending cycle of regulatory scrutiny.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 409421,
+              "title": "BLAME!",
+              "similarity": 0.5213981866836548,
+              "movie_url": "https://themoviecosmos.com/movie/409421"
+            },
+            {
+              "tmdb_id": 320318,
+              "title": "The Clearstream Affair",
+              "similarity": 0.5318816900253296,
+              "movie_url": "https://themoviecosmos.com/movie/320318"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-SAGE",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A detailed analysis reveals the EU's executive body, acting on its landmark Digital Markets Act, is finalizing a substantial penalty against the search engine giant. After a two-year review process, the authority assessed the company's proposed remedies as insufficient. This action stems from findings that the firm's search algorithms systematically favored its own shopping, flight, and hotel services, thereby disadvantaging competitor comparison platforms. The impending decision, expected before the institution's August recess, could result in a fine amounting to hundreds of millions of euros.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 320318,
+              "title": "The Clearstream Affair",
+              "similarity": 0.45022252202033997,
+              "movie_url": "https://themoviecosmos.com/movie/320318"
+            },
+            {
+              "tmdb_id": 888917,
+              "title": "Lords of Scam",
+              "similarity": 0.46402865648269653,
+              "movie_url": "https://themoviecosmos.com/movie/888917"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The regulatory body is preparing to impose a potentially historic financial sanction on the tech company accused of abusing its market dominance. This move follows a procedural phase where the firm's corrective proposals were formally rejected after extended evaluation. The core allegation involves the company leveraging its search dominance to demote rival services in favor of its own verticals. The forthcoming penalty, which would add to a decade-long accumulation of competition-related fines, underscores the institution's sustained enforcement efforts.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 94376,
+              "title": "The Cop",
+              "similarity": 0.4649418294429779,
+              "movie_url": "https://themoviecosmos.com/movie/94376"
+            },
+            {
+              "tmdb_id": 337876,
+              "title": "Gabbar Is Back",
+              "similarity": 0.47419703006744385,
+              "movie_url": "https://themoviecosmos.com/movie/337876"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Following a rigorous, evidence-based investigation, the EU's competition enforcer is concluding its case against the multinational technology corporation. The inquiry, initiated under new digital rules, found substantiated instances of self-preferencing within the company's search results. Having reviewed and dismissed the company's mitigation efforts, the authority is now moving to formalize its judgment. The anticipated outcome is a significant deterrent fine, adding to the company's existing record of penalties from similar regulatory actions.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 888917,
+              "title": "Lords of Scam",
+              "similarity": 0.47059470415115356,
+              "movie_url": "https://themoviecosmos.com/movie/888917"
+            },
+            {
+              "tmdb_id": 513349,
+              "title": "The Factory",
+              "similarity": 0.47289445996284485,
+              "movie_url": "https://themoviecosmos.com/movie/513349"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 320318,
+      "title": "The Clearstream Affair",
+      "overview": "Journalist Denis Robert sparked a storm in the world of European finance by denouncing the murky operations of banking firm Clearstream. His quest to reveal the truth behind a secret world of shadowy multinational banking puts him in contact with an ever-expanding anti-corruption investigation carried out by Judge Renaud Van Ruymbeke. Their paths will lead them to the heart of a political/financial intrigue, which will rock the foundations of Europe and the French government itself.",
+      "genres": "Thriller, Drama",
+      "release_year": 2015,
+      "language": "fr",
+      "poster_path": "/xKe1SvJdDt6U35I2YAeKIyeDrux.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/320318",
+      "similarity": 0.5318816900253296,
+      "triggered_by": [
+        "THE-OUTLAW",
+        "THE-MAGICIAN",
+        "THE-SAGE"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.41218411922454834
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.48825666308403015,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.45022252202033997,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5318816900253296,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 4,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=4 (>=2): A1,THE-OUTLAW,THE-SAGE,THE-MAGICIAN"
+    },
+    {
+      "tmdb_id": 409421,
+      "title": "BLAME!",
+      "overview": "In the distant technological future, civilization has reached its ultimate Net-based form. An \"infection\" in the past caused the automated systems to spiral out of order, resulting in a multi-leveled city structure that replicates itself infinitely in all directions. Now humanity has lost access to the city's controls, and is hunted down and purged by the defense system known as the Safeguard. In a tiny corner of the city, a little enclave known as the Electro-Fishers is facing eventual extinction, trapped between the threat of the Safeguard and dwindling food supplies. A girl named Zuru goes on a journey to find food for her village, only to inadvertently cause doom when an observation tower senses her and summons a Safeguard pack to eliminate the threat. With her companions dead and all escape routes blocked, the only thing that can save her now is the sudden arrival of Killy the Wanderer, on his quest for the Net Terminal Genes, the key to restoring order to the world.",
+      "genres": "Action, Drama, Science Fiction, Animation",
+      "release_year": 2017,
+      "language": "ja",
+      "poster_path": "/7eoRQY7VUMawwBnuD6uwN4szc8k.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/409421",
+      "similarity": 0.5307270288467407,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-EXPLORER",
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.4373626112937927,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5307270288467407,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.520468533039093,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5213981866836548,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-CAREGIVER,THE-EXPLORER,THE-MAGICIAN"
+    },
+    {
+      "tmdb_id": 888917,
+      "title": "Lords of Scam",
+      "overview": "This documentary traces the rise and crash of scammers who conned the EU carbon quota system and pocketed millions before turning on one another.",
+      "genres": "Documentary, Crime",
+      "release_year": 2021,
+      "language": "fr",
+      "poster_path": "/tPcrO8DJAP0lPeoTiQHRsNBD2EC.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/888917",
+      "similarity": 0.5149745941162109,
+      "triggered_by": [
+        "THE-EXPLORER",
+        "THE-OUTLAW",
+        "THE-CREATOR",
+        "THE-SAGE"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4068254828453064
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.44719359278678894
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5035930275917053,
+          "fit": 0.91
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5149745941162109,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5043728351593018,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.46402865648269653,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.45948129892349243,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.47059470415115356,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 5,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=5 (>=2): A1,THE-SAGE,THE-CREATOR,THE-EXPLORER,THE-OUTLAW"
+    },
+    {
+      "tmdb_id": 94376,
+      "title": "The Cop",
+      "overview": "A crackdown on drugs leads a burned out cop to take the law into his own hands and seek revenge against villainous drug dealers. Word comes down from above that the United States feels French authorities have been lax on their arrests of the dealers. A violent action feature finds the harried inspector battling his colleagues as much as the criminal element targeted for extermination.",
+      "genres": "Drama, Crime, Thriller",
+      "release_year": 1970,
+      "language": "fr",
+      "poster_path": "/wdI5jTzLYvYme4lyjmpJoCuq72F.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/94376",
+      "similarity": 0.5050765872001648,
+      "triggered_by": [
+        "THE-CREATOR",
+        "THE-MAGICIAN",
+        "THE-SAGE"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5050765872001648,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4943898320198059,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4649418294429779,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-SAGE,THE-CREATOR,THE-MAGICIAN"
+    },
+    {
+      "tmdb_id": 1001028,
+      "title": "Smoke Signals",
+      "overview": "2012, John Dalli, the European Commissioner for Health, is accused of corruption and influence peddling related to the tobacco industry. French Member of the European Parliament José Bové, maverick politician and prominent figure of the environmental party, suspects a setup by the tobacco manufacturer Swedish Match, potentially involving the President of the European Commission, José Barroso. Standing alone against all odds, he decides to investigate and unravel this story, which shook the foundations of the entire European institutions.",
+      "genres": "Thriller, Drama",
+      "release_year": 2024,
+      "language": "fr",
+      "poster_path": "/3AdYe9YfmdwDFtnapMGxXoHh4uq.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1001028",
+      "similarity": 0.5033751726150513,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.455047607421875,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5033751726150513,
+          "fit": 0.88
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-INNOCENT,THE-RULER"
+    },
+    {
+      "tmdb_id": 79921,
+      "title": "Special Section",
+      "overview": "In Nazi-occupied France, a German officer is assassinated. The Germans demand justice, and the Vichy government is quick to capitulate. Unable to apprehend the actual culprits, Minister of Justice Joseph Barthélémy decides the execution of token Frenchmen will suffice, but the problem is finding judges and jurors eager to participate in a sham trial of innocent men. The solution is a Special Section, a court comprised of individuals handpicked for this exact purpose.",
+      "genres": "Drama, History, Thriller",
+      "release_year": 1975,
+      "language": "fr",
+      "poster_path": "/rRko0kzrm3Z3o7saQA9kFo4fVo7.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/79921",
+      "similarity": 0.47165006399154663,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "fragments": [
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.47165006399154663
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.44696712493896484,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): A1,THE-INNOCENT"
+    },
+    {
+      "tmdb_id": 41535,
+      "title": "Future X-Cops",
+      "overview": "A cop travels back in time to take on a corporation that's out to eliminate a doctor who has created a new technology which can break up the monopoly on a energy resources.",
+      "genres": "Action, Science Fiction",
+      "release_year": 2010,
+      "language": "zh",
+      "poster_path": "/gMpNIWkquZFFjjshcDEy3r0mR1m.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/41535",
+      "similarity": 0.5325782895088196,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5325782895088196,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 2927,
+      "title": "Moon 44",
+      "overview": "Year 2038: The mineral resources of the earth are drained, in space there are fights for the last deposits on other planets and satellites. This is the situation when one of the bigger mining corporations has lost all but one mineral moons and many of their fully automatic mining robots are disappearing on their flight home. Since nobody else wants the job, they send prisoners to defend the mining station. Among them undercover agent Stone, who shall clear the whereabouts of the expensive robots. In an atmosphere of corruption, fear and hatred he gets between the fronts of rivaling groups.",
+      "genres": "Science Fiction",
+      "release_year": 1990,
+      "language": "en",
+      "poster_path": "/ia7Ew8QXiN1Urh63xYFYZ7ZfF2t.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/2927",
+      "similarity": 0.5294421315193176,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5294421315193176,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 852756,
+      "title": "The Desired War",
+      "overview": "A diplomatic incident threatens to break out a war inside Europe that only an unlikely couple of bickering lovers seems able to stop.",
+      "genres": "War, Comedy, Romance",
+      "release_year": 2022,
+      "language": "it",
+      "poster_path": "/lvEPAnb7S1rBbfpO6mIvKIqTpm8.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/852756",
+      "similarity": 0.5250228643417358,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5250228643417358,
+          "fit": 0.38
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 96170,
+      "title": "Lilly Turner",
+      "overview": "One woman faces many trials on the road to romance after unwittingly marrying a bigamist, then a carnival barker, and then falling for a young engineer.",
+      "genres": "Drama",
+      "release_year": 1933,
+      "language": "en",
+      "poster_path": "/a5JWDsct38TWj5gNxqBi6sjoyy2.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/96170",
+      "similarity": 0.5144898891448975,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5144898891448975,
+          "fit": 0.38
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 30858,
+      "title": "Terra Nova",
+      "overview": "A story, which takes place in 2013, describes the world overflowing with \"dangerous\" criminals due to the official termination of death penalty. The UN \"blue helmets\" under the directive from the central authority (i.e., One World Government) decided to conduct a social \"experiment\" by forcibly dumping the outlaws on the deserted island...",
+      "genres": "Drama, Thriller, Action",
+      "release_year": 2008,
+      "language": "ru",
+      "poster_path": "/5YopFtvwt2hJ8h3pwbl3XzXX3iE.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/30858",
+      "similarity": 0.5032047033309937,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5032047033309937,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 142977,
+      "title": "The Last One of the Six",
+      "overview": "Paris, France. Commissaire Wens is put in charge of the investigation into the murder of one of six friends who, in the past, made a very profitable promise.",
+      "genres": "Drama, Mystery, Thriller",
+      "release_year": 1941,
+      "language": "fr",
+      "poster_path": "/p5VjDMSqB0lSFSXNOhRRRZX0xtR.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/142977",
+      "similarity": 0.5011146068572998,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5011146068572998,
+          "fit": 0.88
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 58926,
+      "title": "Speaking of Murder",
+      "overview": "Louis Bertain is the owner of a Paris garage which is the front for a robbery gang. He and his accomplices are careful to keep up a civic veneer by day, indulging in criminal activities only when \"the red light is on\" at night. This status quo is upset when one of the gang members becomes convinced that Louis' younger brother is a police informer.",
+      "genres": "Crime, Drama, Thriller",
+      "release_year": 1957,
+      "language": "fr",
+      "poster_path": "/wsIusD3HqxvGkTz8NXTgsod4vKk.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/58926",
+      "similarity": 0.49293771386146545,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.49293771386146545,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 63333,
+      "title": "Gog",
+      "overview": "A mechanical brain is programmed to sabotage the government's secret lab while working on the first space station.",
+      "genres": "Thriller, Science Fiction, Horror",
+      "release_year": 1954,
+      "language": "en",
+      "poster_path": "/9CUqQa7Ho5ZB3kuS490nxFOSjUb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/63333",
+      "similarity": 0.4914155602455139,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4914155602455139,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 209504,
+      "title": "Bounty Killer",
+      "overview": "It’s been 20 years since the corporations took over the world’s governments. Their thirst for power and profits led to the Corporate Wars, a fierce global battle that laid waste to society as we know it. Born from the ash, the Council of Nine rose as a new law and order for this dark age. To avenge the corporations’ reckless destruction, the Council issues death warrants for all white collar criminals. Their hunters—the bounty killer. From amateur savage to graceful assassin, the bounty killers now compete for body count, fame and a fat stack of cash. They’re ending the plague of corporate greed and providing the survivors of the apocalypse with retribution. These are the new heroes. This is the age of the BOUNTY KILLER.",
+      "genres": "Action, Science Fiction",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/bG7wdte8enWVc1uuLX6Ys7ckxwd.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/209504",
+      "similarity": 0.4836130738258362,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-1"
+          ],
+          "similarity": 0.4836130738258362,
+          "fit": 0.42
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1006540,
+      "title": "Bullet Train Down",
+      "overview": "On its maiden run, the world's fastest bullet train is rigged with a bomb that will explode if it dips below 200 mph.",
+      "genres": "Action",
+      "release_year": 2022,
+      "language": "en",
+      "poster_path": "/zqAd0zsic4XIkWFRV7mn09dK1jP.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1006540",
+      "similarity": 0.4800012409687042,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4800012409687042,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 9989,
+      "title": "Antitrust",
+      "overview": "A computer programmer's dream job at a hot Portland-based firm turns nightmarish when he discovers his boss has a secret and ruthless means of dispatching anti-trust problems.",
+      "genres": "Action, Crime, Drama",
+      "release_year": 2001,
+      "language": "en",
+      "poster_path": "/9PXyfcJe53A9qFkcj5dkTJwIWoS.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/9989",
+      "similarity": 0.47886860370635986,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-1"
+          ],
+          "similarity": 0.47886860370635986,
+          "fit": 0.42
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 337876,
+      "title": "Gabbar Is Back",
+      "overview": "A vigilante network taking out corrupt officials draws the notice of the authorities.",
+      "genres": "Drama, Action",
+      "release_year": 2015,
+      "language": "hi",
+      "poster_path": "/dhIVF43jCqVzxuo11hYcHQxjzS6.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/337876",
+      "similarity": 0.47419703006744385,
+      "triggered_by": [
+        "THE-SAGE"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.47419703006744385,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 52077,
+      "title": "Nothing to Declare",
+      "overview": "During the elimination of the Belgian/French border in the 90s, a Belgian customs officer is forced to team up with one of his French counterparts.",
+      "genres": "Comedy",
+      "release_year": 2010,
+      "language": "fr",
+      "poster_path": "/vqJmmfVavVX9F9De3LQLDlGPc6D.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/52077",
+      "similarity": 0.47351717948913574,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.47351717948913574,
+          "fit": 0.91
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A1-THE-INNOCENT": 0.6823033690452576,
+      "A1-THE-CAREGIVER": 0.771496057510376,
+      "A1-THE-EXPLORER": 0.7395560145378113,
+      "A1-THE-OUTLAW": 0.7225393652915955,
+      "A1-THE-LOVER": 0.4926708936691284,
+      "A1-THE-CREATOR": 0.7531149983406067,
+      "A1-THE-RULER": 0.6754817962646484,
+      "A1-THE-MAGICIAN": 0.6789950132369995,
+      "A1-THE-SAGE": 0.7489625215530396,
+      "THE-CAREGIVER-THE-INNOCENT": 0.6086822152137756,
+      "THE-EXPLORER-THE-INNOCENT": 0.6112400889396667,
+      "THE-INNOCENT-THE-OUTLAW": 0.6970068216323853,
+      "THE-INNOCENT-THE-LOVER": 0.6181056499481201,
+      "THE-CREATOR-THE-INNOCENT": 0.7225348949432373,
+      "THE-INNOCENT-THE-RULER": 0.7256150245666504,
+      "THE-INNOCENT-THE-MAGICIAN": 0.46685531735420227,
+      "THE-INNOCENT-THE-SAGE": 0.6904460191726685,
+      "THE-CAREGIVER-THE-EXPLORER": 0.680048942565918,
+      "THE-CAREGIVER-THE-OUTLAW": 0.6962975263595581,
+      "THE-CAREGIVER-THE-LOVER": 0.6003924608230591,
+      "THE-CAREGIVER-THE-CREATOR": 0.7624298334121704,
+      "THE-CAREGIVER-THE-RULER": 0.6824615597724915,
+      "THE-CAREGIVER-THE-MAGICIAN": 0.7277059555053711,
+      "THE-CAREGIVER-THE-SAGE": 0.7725330591201782,
+      "THE-EXPLORER-THE-OUTLAW": 0.761987566947937,
+      "THE-EXPLORER-THE-LOVER": 0.554288387298584,
+      "THE-CREATOR-THE-EXPLORER": 0.7156100869178772,
+      "THE-EXPLORER-THE-RULER": 0.67057204246521,
+      "THE-EXPLORER-THE-MAGICIAN": 0.7423027157783508,
+      "THE-EXPLORER-THE-SAGE": 0.7506436705589294,
+      "THE-LOVER-THE-OUTLAW": 0.5512734651565552,
+      "THE-CREATOR-THE-OUTLAW": 0.7872283458709717,
+      "THE-OUTLAW-THE-RULER": 0.69858717918396,
+      "THE-MAGICIAN-THE-OUTLAW": 0.5954216718673706,
+      "THE-OUTLAW-THE-SAGE": 0.7309974431991577,
+      "THE-CREATOR-THE-LOVER": 0.535309910774231,
+      "THE-LOVER-THE-RULER": 0.5865724086761475,
+      "THE-LOVER-THE-MAGICIAN": 0.578575849533081,
+      "THE-LOVER-THE-SAGE": 0.6436525583267212,
+      "THE-CREATOR-THE-RULER": 0.7546645402908325,
+      "THE-CREATOR-THE-MAGICIAN": 0.6148505210876465,
+      "THE-CREATOR-THE-SAGE": 0.758623480796814,
+      "THE-MAGICIAN-THE-RULER": 0.583342432975769,
+      "THE-RULER-THE-SAGE": 0.6959164142608643,
+      "THE-MAGICIAN-THE-SAGE": 0.703567624092102
+    },
+    "topk_jaccard": {
+      "A1-THE-INNOCENT": 0.16666666666666666,
+      "A1-THE-CAREGIVER": 0.0,
+      "A1-THE-EXPLORER": 0.125,
+      "A1-THE-OUTLAW": 0.2857142857142857,
+      "A1-THE-LOVER": 0.0,
+      "A1-THE-CREATOR": 0.14285714285714285,
+      "A1-THE-RULER": 0.0,
+      "A1-THE-MAGICIAN": 0.1111111111111111,
+      "A1-THE-SAGE": 0.25,
+      "THE-CAREGIVER-THE-INNOCENT": 0.0,
+      "THE-EXPLORER-THE-INNOCENT": 0.0,
+      "THE-INNOCENT-THE-OUTLAW": 0.0,
+      "THE-INNOCENT-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-INNOCENT": 0.0,
+      "THE-INNOCENT-THE-RULER": 0.2,
+      "THE-INNOCENT-THE-MAGICIAN": 0.0,
+      "THE-INNOCENT-THE-SAGE": 0.0,
+      "THE-CAREGIVER-THE-EXPLORER": 0.2,
+      "THE-CAREGIVER-THE-OUTLAW": 0.0,
+      "THE-CAREGIVER-THE-LOVER": 0.0,
+      "THE-CAREGIVER-THE-CREATOR": 0.0,
+      "THE-CAREGIVER-THE-RULER": 0.0,
+      "THE-CAREGIVER-THE-MAGICIAN": 0.16666666666666666,
+      "THE-CAREGIVER-THE-SAGE": 0.0,
+      "THE-EXPLORER-THE-OUTLAW": 0.14285714285714285,
+      "THE-EXPLORER-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-EXPLORER": 0.16666666666666666,
+      "THE-EXPLORER-THE-RULER": 0.0,
+      "THE-EXPLORER-THE-MAGICIAN": 0.125,
+      "THE-EXPLORER-THE-SAGE": 0.125,
+      "THE-LOVER-THE-OUTLAW": 0.0,
+      "THE-CREATOR-THE-OUTLAW": 0.16666666666666666,
+      "THE-OUTLAW-THE-RULER": 0.0,
+      "THE-MAGICIAN-THE-OUTLAW": 0.125,
+      "THE-OUTLAW-THE-SAGE": 0.2857142857142857,
+      "THE-CREATOR-THE-LOVER": 0.0,
+      "THE-LOVER-THE-RULER": 0.0,
+      "THE-LOVER-THE-MAGICIAN": 0.0,
+      "THE-LOVER-THE-SAGE": 0.0,
+      "THE-CREATOR-THE-RULER": 0.0,
+      "THE-CREATOR-THE-MAGICIAN": 0.14285714285714285,
+      "THE-CREATOR-THE-SAGE": 0.3333333333333333,
+      "THE-MAGICIAN-THE-RULER": 0.0,
+      "THE-RULER-THE-SAGE": 0.0,
+      "THE-MAGICIAN-THE-SAGE": 0.25
+    }
+  },
+  "meta": {
+    "query_count": 22,
+    "raw_hit_count": 44,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

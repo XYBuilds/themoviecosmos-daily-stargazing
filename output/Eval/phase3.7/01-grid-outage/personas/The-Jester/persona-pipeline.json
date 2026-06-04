@@ -1,0 +1,303 @@
+{
+  "persona_id": "The-Jester",
+  "overlay": {
+    "persona_id": "The-Jester",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "菲律宾电网运营商",
+          "alternatives": [
+            {
+              "term": "维萨亚斯群岛的电力管家",
+              "valence": "positive"
+            },
+            {
+              "term": "电网管理机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "电力调度混乱的指挥者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power",
+          "alternatives": [
+            {
+              "term": "关键发电伙伴",
+              "valence": "positive"
+            },
+            {
+              "term": "发电公司",
+              "valence": "neutral"
+            },
+            {
+              "term": "故障频发的发电厂",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "官员",
+          "alternatives": [
+            {
+              "term": "危机决策者",
+              "valence": "positive"
+            },
+            {
+              "term": "政府代表",
+              "valence": "neutral"
+            },
+            {
+              "term": "匆忙下令的官僚",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "维萨亚斯群岛",
+          "alternatives": [
+            {
+              "term": "阳光与电力短缺共舞的群岛",
+              "valence": "positive"
+            },
+            {
+              "term": "菲律宾中部群岛",
+              "valence": "neutral"
+            },
+            {
+              "term": "停电高风险的热带岛屿",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power的2号机组跳闸",
+          "alternatives": [
+            {
+              "term": "主力机组意外退出舞台",
+              "valence": "positive"
+            },
+            {
+              "term": "发电机组自动保护停机",
+              "valence": "neutral"
+            },
+            {
+              "term": "关键设备临阵脱逃",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "季节性高温推高需求至薄运营边际",
+          "alternatives": [
+            {
+              "term": "热浪带来用电狂欢",
+              "valence": "positive"
+            },
+            {
+              "term": "高温导致电力需求激增",
+              "valence": "neutral"
+            },
+            {
+              "term": "酷暑把电网逼到悬崖边",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "其他长期运行的电厂停电",
+          "alternatives": [
+            {
+              "term": "老兵机组集体休假",
+              "valence": "positive"
+            },
+            {
+              "term": "老旧电厂计划外停运",
+              "valence": "neutral"
+            },
+            {
+              "term": "老迈电厂拖累全网",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "自5月初以来，十一台发电机发生故障",
+          "alternatives": [
+            {
+              "term": "发电机们上演集体罢工",
+              "valence": "positive"
+            },
+            {
+              "term": "多台发电设备出现故障",
+              "valence": "neutral"
+            },
+            {
+              "term": "十一台机组接连倒下",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Kepco SPC Power的2号机组跳闸，导致超过950兆瓦不可用",
+          "alternatives": [
+            {
+              "term": "一次跳闸带来大规模电力缺口",
+              "valence": "positive"
+            },
+            {
+              "term": "机组停运造成950兆瓦电力缺失",
+              "valence": "neutral"
+            },
+            {
+              "term": "关键机组一跳，近1000兆瓦蒸发",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "季节性高温使需求进入薄运营边际",
+          "alternatives": [
+            {
+              "term": "热浪把电网推入极限模式",
+              "valence": "positive"
+            },
+            {
+              "term": "高温导致电网运行裕度降低",
+              "valence": "neutral"
+            },
+            {
+              "term": "酷暑让电网命悬一线",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "官员下令紧急减负荷以防止230千伏传输线过载",
+          "alternatives": [
+            {
+              "term": "果断采取限电措施保护主干网",
+              "valence": "positive"
+            },
+            {
+              "term": "实施负荷削减以防线路过载",
+              "valence": "neutral"
+            },
+            {
+              "term": "被迫拉闸限电以避免大崩溃",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "维萨亚斯群岛处于红色警戒状态",
+          "alternatives": [
+            {
+              "term": "群岛拉响电力最高警报",
+              "valence": "positive"
+            },
+            {
+              "term": "区域进入电力紧急状态",
+              "valence": "neutral"
+            },
+            {
+              "term": "群岛笼罩在停电恐慌中",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "旋转停电风险上升",
+          "alternatives": [
+            {
+              "term": "轮流停电可能性增加",
+              "valence": "positive"
+            },
+            {
+              "term": "计划性限电风险加大",
+              "valence": "neutral"
+            },
+            {
+              "term": "断电轮盘赌随时可能开场",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "紧急减负荷已下令",
+          "alternatives": [
+            {
+              "term": "限电令已生效",
+              "valence": "positive"
+            },
+            {
+              "term": "负荷削减措施已启动",
+              "valence": "neutral"
+            },
+            {
+              "term": "强制断电令已下发",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "In a classic case of institutional comedy, the 'power guardians' of the Visayan Islands, a region now ironically dubbed the 'tropical island of blackout risk,' were forced to deal with a cascade of failures. It began with the 'key equipment' of Kepco SPC Power 'deserting the stage,' creating a massive 950-megawatt hole. This was compounded by a heatwave 'pushing the grid to the brink' and a host of veteran generators 'taking collective leave.' The result? Officials, acting as 'hurried bureaucrats,' issued an 'emergency power cut order' to prevent a full collapse, leaving the archipelago 'shrouded in blackout panic.'",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-0",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-2"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p2",
+      "text": "The Visayas grid, managed by a 'chaotic power dispatcher,' entered its 'limit mode' after a 'main unit unexpectedly exited the stage.' This single failure from the 'trouble-prone power plant' removed nearly 1,000 MW. As the 'scorching heat turned the grid into a cliffhanger,' the risk of a 'blackout roulette' spiked. Officials, perhaps as 'crisis decision-makers,' had to implement 'load reduction measures to prevent line overload,' a move that signaled the region was now in a 'power emergency.' The farce of reliable infrastructure was laid bare under the summer sun.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "why-1",
+          "result-1",
+          "result-0"
+        ]
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

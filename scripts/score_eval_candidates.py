@@ -32,7 +32,8 @@ def _default_review_path(eval_dir: Path) -> Path:
     return eval_dir / "high-hit-score-review.md"
 
 _HIT_LINE = re.compile(
-    r"^(\s+-\s+)([A-Z0-9]+)/(p\d+):\s+fragments=\[(.*?)\]\s*·\s*sim=([\d.]+)"
+    r"^(\s+-\s+)([A-Z0-9][A-Z0-9-]*)/(p\d+)"
+    r"(?:\s*·\s*fit=[\d.]+)?\s*:\s*fragments=\[(.*?)\]\s*·\s*sim=([\d.]+)"
     r"(?:\s*·\s*\*\*命中分=\d+\*\*)?$"
 )
 _SCORE_SUFFIX = re.compile(r"\s*·\s*\*\*命中分=\d+\*\*$")

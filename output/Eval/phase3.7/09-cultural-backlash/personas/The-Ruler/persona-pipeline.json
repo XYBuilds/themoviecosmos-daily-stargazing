@@ -1,0 +1,224 @@
+{
+  "persona_id": "The-Ruler",
+  "overlay": {
+    "persona_id": "The-Ruler",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Christopher Nolan",
+          "alternatives": [
+            {
+              "term": "权威导演",
+              "valence": "positive"
+            },
+            {
+              "term": "电影制作人",
+              "valence": "neutral"
+            },
+            {
+              "term": "争议发起者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Lupita Nyong'o",
+          "alternatives": [
+            {
+              "term": "才华横溢的演员",
+              "valence": "positive"
+            },
+            {
+              "term": "黑人女演员",
+              "valence": "neutral"
+            },
+            {
+              "term": "选角焦点人物",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "prominent commentators",
+          "alternatives": [
+            {
+              "term": "公共话语引导者",
+              "valence": "positive"
+            },
+            {
+              "term": "评论者",
+              "valence": "neutral"
+            },
+            {
+              "term": "混乱煽动者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "defenders",
+          "alternatives": [
+            {
+              "term": "文化遗产守护者",
+              "valence": "positive"
+            },
+            {
+              "term": "辩护者",
+              "valence": "neutral"
+            },
+            {
+              "term": "秩序破坏者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "演员选角引发对欧洲历史被抹去的指控",
+          "alternatives": [
+            {
+              "term": "对文化根源的合理关切",
+              "valence": "positive"
+            },
+            {
+              "term": "历史代表性争议",
+              "valence": "neutral"
+            },
+            {
+              "term": "煽动性的历史抹杀指控",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "辩护者认为多样选角将西方经典视为共享文明遗产",
+          "alternatives": [
+            {
+              "term": "对全球共同遗产的开明视角",
+              "valence": "positive"
+            },
+            {
+              "term": "共享文明遗产的论点",
+              "valence": "neutral"
+            },
+            {
+              "term": "对传统叙事的激进解构",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "克里斯托弗·诺兰的《奥德赛》改编电影计划",
+          "alternatives": [
+            {
+              "term": "权威导演的宏大叙事工程",
+              "valence": "positive"
+            },
+            {
+              "term": "电影改编计划",
+              "valence": "neutral"
+            },
+            {
+              "term": "引发混乱的改编计划",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "卢皮塔·尼永奥被选为特洛伊的海伦和克吕泰涅斯特拉",
+          "alternatives": [
+            {
+              "term": "突破性的选角决策",
+              "valence": "positive"
+            },
+            {
+              "term": "选角公告",
+              "valence": "neutral"
+            },
+            {
+              "term": "具有争议的选角决定",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "引发激烈在线攻击和文化战争争论",
+          "alternatives": [
+            {
+              "term": "引发深入的文化讨论",
+              "valence": "positive"
+            },
+            {
+              "term": "引发在线争论",
+              "valence": "neutral"
+            },
+            {
+              "term": "煽动破坏性的在线攻击和文化战争",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "争议将神话史诗转变为关于身份、归属和古典故事在大众电影中主张的文化热点",
+          "alternatives": [
+            {
+              "term": "促成了关于文化遗产的必要公共对话",
+              "valence": "positive"
+            },
+            {
+              "term": "将神话史诗转变为文化热点",
+              "valence": "neutral"
+            },
+            {
+              "term": "将古典叙事卷入身份政治的混乱漩涡",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "The Ruler persona frames the controversy around Christopher Nolan's 'Odyssey' adaptation as a threat to cultural order. The casting of Lupita Nyong'o as Helen of Troy and Clytemnestra triggered '煽动性的历史抹杀指控' from '混乱煽动者' and '秩序破坏者', whose '对传统叙事的激进解构' risks destabilizing public discourse. This '引发混乱的改编计划' via '具有争议的选角决定' has '煽动破坏性的在线攻击和文化战争', ultimately '将古典叙事卷入身份政治的混乱漩涡', demanding a restoration of authoritative control over narrative heritage.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p2",
+      "text": "The Ruler lens condemns the disorder sparked by Nolan's film project. The '权威导演' initiated a '宏大叙事工程', but the subsequent '选角公告' for Nyong'o invited '煽动性的历史抹杀指控' from '混乱煽动者'. These actors, alongside '秩序破坏者', '煽动破坏性的在线攻击和文化战争', violating norms of civil discourse. The result is a chaotic '文化热点' where '对传统叙事的激进解构' prevails, framing the event as a failure of cultural stewardship requiring rectification to restore stable, authoritative storytelling.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "why-0",
+          "how-2",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.82
+    }
+  ],
+  "warnings": []
+}

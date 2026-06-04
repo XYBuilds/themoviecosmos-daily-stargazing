@@ -1,0 +1,35 @@
+{
+  "run_id": "04-celebrity-scandal",
+  "split": "observation",
+  "persona_count": 7,
+  "errors": [
+    {
+      "agent_id": "The-Innocent",
+      "message": "alt_creator parse_error: element who-0: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Everyman",
+      "message": "alt_creator parse_error: element who-4: missing valence bucket(s) ['negative']"
+    },
+    {
+      "agent_id": "The-Caregiver",
+      "message": "alt_creator parse_error: element who-0: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Explorer",
+      "message": "alt_creator parse_error: element who-2: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Sage",
+      "message": "alt_creator parse_error: element who-0: missing valence bucket(s) ['positive']"
+    }
+  ],
+  "retrieve_meta": {
+    "query_count": 20,
+    "raw_hit_count": 40,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  },
+  "finished_at": "2026-06-04T19:47:45.963647+00:00"
+}

@@ -1,0 +1,277 @@
+{
+  "persona_id": "The-Explorer",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "举报人",
+        "alternatives": [
+          {
+            "term": "探索者",
+            "valence": "positive"
+          },
+          {
+            "term": "告发者",
+            "valence": "neutral"
+          },
+          {
+            "term": "泄露者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "印度国家考试机构 (NTA)",
+        "alternatives": [
+          {
+            "term": "边界守护者",
+            "valence": "positive"
+          },
+          {
+            "term": "考试管理机构",
+            "valence": "neutral"
+          },
+          {
+            "term": "规则维护者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "中央调查局 (CBI)",
+        "alternatives": [
+          {
+            "term": "前沿执法者",
+            "valence": "positive"
+          },
+          {
+            "term": "中央调查机构",
+            "valence": "neutral"
+          },
+          {
+            "term": "内部审查者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "26-27 名试卷制定者和翻译人员",
+        "alternatives": [
+          {
+            "term": "知识开辟者",
+            "valence": "positive"
+          },
+          {
+            "term": "试卷相关人员",
+            "valence": "neutral"
+          },
+          {
+            "term": "系统漏洞利用者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-4",
+        "original_term": "十三名被逮捕人员（包括一名培训人士）",
+        "alternatives": [
+          {
+            "term": "越界先驱",
+            "valence": "positive"
+          },
+          {
+            "term": "被捕嫌疑人",
+            "valence": "neutral"
+          },
+          {
+            "term": "规则破坏者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "举报人发送的 PDF 文件与 NEET-UG 2026 化学试卷完全匹配，与生物试卷部分匹配",
+        "alternatives": [
+          {
+            "term": "数字证据的前沿发现",
+            "valence": "positive"
+          },
+          {
+            "term": "举报内容与试卷匹配",
+            "valence": "neutral"
+          },
+          {
+            "term": "泄密文件的越界传播",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "2026年5月3日，NEET-UG 医学入学考试进行",
+        "alternatives": [
+          {
+            "term": "考试探索的起点",
+            "valence": "positive"
+          },
+          {
+            "term": "考试举行日",
+            "valence": "neutral"
+          },
+          {
+            "term": "常规流程启动",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "四天后，印度国家考试机构收到举报人邮件，附有匹配试卷的 PDF 文件",
+        "alternatives": [
+          {
+            "term": "新路径的揭露",
+            "valence": "positive"
+          },
+          {
+            "term": "举报邮件的接收",
+            "valence": "neutral"
+          },
+          {
+            "term": "信息越界传递",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "NTA 将 26-27 名试卷制定者和翻译人员移交中央调查局",
+        "alternatives": [
+          {
+            "term": "边界移交行动",
+            "valence": "positive"
+          },
+          {
+            "term": "人员移交程序",
+            "valence": "neutral"
+          },
+          {
+            "term": "责任逃避移交",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "original_term": "十三人被逮捕，包括一名培训人士",
+        "alternatives": [
+          {
+            "term": "越界者被追踪",
+            "valence": "positive"
+          },
+          {
+            "term": "逮捕行动执行",
+            "valence": "neutral"
+          },
+          {
+            "term": "系统漏洞暴露",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "original_term": "重新考试定于2026年6月21日",
+        "alternatives": [
+          {
+            "term": "新旅程的重启",
+            "valence": "positive"
+          },
+          {
+            "term": "重考日期安排",
+            "valence": "neutral"
+          },
+          {
+            "term": "规则重置尝试",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "NEET-UG 2026 被取消",
+        "alternatives": [
+          {
+            "term": "边界重置机会",
+            "valence": "positive"
+          },
+          {
+            "term": "考试取消决定",
+            "valence": "neutral"
+          },
+          {
+            "term": "探索中断结果",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "相关人员被移交 CBI",
+        "alternatives": [
+          {
+            "term": "责任边界明确",
+            "valence": "positive"
+          },
+          {
+            "term": "人员移交结果",
+            "valence": "neutral"
+          },
+          {
+            "term": "逃避责任途径",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "original_term": "十三人被逮捕",
+        "alternatives": [
+          {
+            "term": "越界者被约束",
+            "valence": "positive"
+          },
+          {
+            "term": "逮捕结果",
+            "valence": "neutral"
+          },
+          {
+            "term": "系统漏洞后果",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-3",
+        "original_term": "重新考试安排在2026年6月21日",
+        "alternatives": [
+          {
+            "term": "新路径开辟",
+            "valence": "positive"
+          },
+          {
+            "term": "重考安排",
+            "valence": "neutral"
+          },
+          {
+            "term": "规则修复尝试",
+            "valence": "negative"
+          }
+        ]
+      }
+    ]
+  }
+}

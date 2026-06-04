@@ -1,0 +1,451 @@
+{
+  "agents": [
+    {
+      "agent_id": "A1",
+      "persona_name": "The Reality Recorder (Baseline)",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "Since the start of May, eleven generators have failed. A unit at the Kepco SPC Power plant tripped, making over 950 megawatts unavailable. Seasonal high temperatures pushed demand into a thin operating margin. Officials ordered emergency load-shedding to prevent overloading of a 230-kilovolt transmission line. The Visayas islands are under a red alert status. The risk of rolling blackouts has increased. Emergency load-shedding has been ordered.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          }
+        },
+        {
+          "id": "p2",
+          "text": "A unit at the Kepco SPC Power plant tripped. Seasonal high temperatures pushed demand into a thin operating margin. Other long-running power plants went offline. The Visayas islands are under a red alert status. The risk of rolling blackouts has increased.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "result-0",
+              "result-1"
+            ]
+          }
+        }
+      ],
+      "text": "Since the start of May, eleven generators have failed. A unit at the Kepco SPC Power plant tripped, making over 950 megawatts unavailable. Seasonal high temperatures pushed demand into a thin operating margin. Officials ordered emergency load-shedding to prevent overloading of a 230-kilovolt transmission line. The Visayas islands are under a red alert status. The risk of rolling blackouts has increased. Emergency load-shedding has been ordered.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Everyman",
+      "persona_name": "The-Everyman",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The Visayas grid has been under strain since early May, with multiple generator failures. The tripping of Kepco SPC Power's Unit 2, a key power supplier, created a major capacity gap of over 950 MW. This, combined with seasonal high heat pushing demand to dangerous highs, forced decision-makers to implement preemptive load management to prevent line overloads. As a result, the region is now in a heightened power supply alert, with increased chances of rotating outages for the public.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "why-1",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.88
+        },
+        {
+          "id": "p2",
+          "text": "A series of equipment failures have plagued the power system, culminating in the unexpected shutdown of a critical generating unit at a major power plant. This massive loss, happening amid a summer surge in electricity use, has left the grid management team facing a severe threat to stability. To protect the infrastructure, crisis managers have been forced to order emergency power cuts, leaving communities facing the direct threat of blackout.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-2",
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.75
+        }
+      ],
+      "text": "The Visayas grid has been under strain since early May, with multiple generator failures. The tripping of Kepco SPC Power's Unit 2, a key power supplier, created a major capacity gap of over 950 MW. This, combined with seasonal high heat pushing demand to dangerous highs, forced decision-makers to implement preemptive load management to prevent line overloads. As a result, the region is now in a heightened power supply alert, with increased chances of rotating outages for the public.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Caregiver",
+      "persona_name": "The-Caregiver",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "In the vulnerable communities of the Visayan Islands, families face a growing threat as a critical power unit fails. The Kepco SPC Power plant's Unit 2 tripped, creating a massive 950-megawatt capacity gap. This occurred during a brutal heatwave, pushing the already strained grid to its operational limits. With aging power plants also shutting down, the national grid operator must now implement emergency load-shedding to protect the wider system. The result is a heightened risk of rolling blackouts, leaving residents to endure the crisis with uncertain power supply.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-0",
+              "result-1",
+              "how-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "The island region is under a red alert, a stark indicator of the energy crisis threatening its people. Officials, acting as protectors, have ordered urgent load-shedding to prevent a total grid collapse. This difficult measure was forced by a cascade of failures: the key unit tripping, extreme heat driving demand, and multiple aging plants shutting down. The community now faces the prospect of ordered, rotating outages as a necessary, if painful, measure to maintain the stability of the power system for everyone.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "result-0",
+              "how-3",
+              "why-0",
+              "why-1",
+              "why-2",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        }
+      ],
+      "text": "In the vulnerable communities of the Visayan Islands, families face a growing threat as a critical power unit fails. The Kepco SPC Power plant's Unit 2 tripped, creating a massive 950-megawatt capacity gap. This occurred during a brutal heatwave, pushing the already strained grid to its operational limits. With aging power plants also shutting down, the national grid operator must now implement emergency load-shedding to protect the wider system. The result is a heightened risk of rolling blackouts, leaving residents to endure the crisis with uncertain power supply.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Explorer",
+      "persona_name": "The-Explorer",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The Visayas archipelago, a frontier for energy stress-testing, faces a crisis after a major unit at Kepco SPC Power—a company pushing the boundaries of energy technology—tripped offline. This event, combined with extreme heat challenging new system limits, exposed vulnerabilities and triggered a chain of faults, forcing grid operators to navigate the thin operational margin and issue emergency load-shedding to protect critical infrastructure.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "how-1",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "A series of generator failures since May revealed the urgent need for system modernization, culminating in a massive 950-megawatt capacity loss. As the archipelago was placed on red alert, the rising risk of rotating blackouts is now pushing exploration into distributed grid solutions to avert future crises.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        }
+      ],
+      "text": "The Visayas archipelago, a frontier for energy stress-testing, faces a crisis after a major unit at Kepco SPC Power—a company pushing the boundaries of energy technology—tripped offline. This event, combined with extreme heat challenging new system limits, exposed vulnerabilities and triggered a chain of faults, forcing grid operators to navigate the thin operational margin and issue emergency load-shedding to protect critical infrastructure.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Outlaw",
+      "persona_name": "The-Outlaw",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "A cascade of failures in the Philippine power grid has exposed systemic rot. The outage of Kepco SPC Power's Unit 2, a privately-run generator, removed over 950 MW from the grid. This, combined with chronic issues from other aging plants and a surge in demand from the scorching summer heat, has pushed the system to its limit. Authorities, having already declared a red alert for the Visayas islands, have now ordered emergency load-shedding to prevent a catastrophic overload of the main transmission lines, forcing ordinary citizens to bear the cost of systemic neglect.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "why-0",
+              "why-2",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p2",
+          "text": "The crisis in the Visayas is not merely a technical glitch but a direct consequence of institutional failure. A single trip at a private power plant, Kepco SPC Power, triggered a massive 950 MW shortfall. This event was not isolated; it followed a pattern of generator failures and was exacerbated by a heatwave that overwhelmed the grid's fragile margins. The state's response—forced blackouts—highlights a lack of foresight and investment, making the population pay for the grid managers' inability to maintain reliable infrastructure.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p3",
+          "text": "The red alert across the Philippine archipelago signals a profound failure of the power system. The immediate cause was a unit trip at Kepco SPC Power, wiping out critical capacity. However, the deeper issue is a grid plagued by aging infrastructure and poor management, now buckling under peak seasonal demand. The authorities' emergency order for load reduction is a stark admission of vulnerability, a measure that punishes consumers to protect a network they were assured was secure.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.82
+        }
+      ],
+      "text": "A cascade of failures in the Philippine power grid has exposed systemic rot. The outage of Kepco SPC Power's Unit 2, a privately-run generator, removed over 950 MW from the grid. This, combined with chronic issues from other aging plants and a surge in demand from the scorching summer heat, has pushed the system to its limit. Authorities, having already declared a red alert for the Visayas islands, have now ordered emergency load-shedding to prevent a catastrophic overload of the main transmission lines, forcing ordinary citizens to bear the cost of systemic neglect.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Lover",
+      "persona_name": "The-Lover",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "A lovers' quarrel unfolds in the heat of May, as a betrayed partner—the Kepco SPC Power plant—suddenly fails, plunging over 950 megawatts into darkness. This betrayal, a 'key equipment failure' in the midst of a 'severe test' of summer demand, leaves the Visayan islands in a state of 'heightened vigilance'. The once-trusted system now feels like an 'abandoned network', forcing guardians to order 'necessary sacrifices' to prevent a 'stifling heat' from overwhelming the fragile grid.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "why-1",
+              "result-0",
+              "why-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.35
+        },
+        {
+          "id": "p2",
+          "text": "The Visayan grid now stands in 'crisis-ridden' silence, the result of a 'prolonged collapse' of generators since early May. Under 'extreme pressure' from demand, officials—seen as 'crisis creators'—ordered 'forced austerity' to protect 230kV lines from overload. The 'potential darkness' of rolling blackouts looms as a 'destructive fault' has severed the lifeline, turning a relationship of power into one of 'intermittent darkness'.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "result-0",
+              "how-0",
+              "how-2",
+              "how-3",
+              "result-1",
+              "how-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.42
+        }
+      ],
+      "text": "A lovers' quarrel unfolds in the heat of May, as a betrayed partner—the Kepco SPC Power plant—suddenly fails, plunging over 950 megawatts into darkness. This betrayal, a 'key equipment failure' in the midst of a 'severe test' of summer demand, leaves the Visayan islands in a state of 'heightened vigilance'. The once-trusted system now feels like an 'abandoned network', forcing guardians to order 'necessary sacrifices' to prevent a 'stifling heat' from overwhelming the fragile grid.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Creator",
+      "persona_name": "The-Creator",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The craft of the power grid has been severely tested. The system's guardians are contending with a cascade of technical failures, where eleven generators have broken down since May. A major protective disconnection at the Kepco SPC Power plant resulted in a massive 950 MW capacity loss. Simultaneously, extreme summer heat has pushed demand to a precarious operational limit, forcing decision-makers to implement an emergency demand response to prevent the backbone network from overloading. This series of events has cast a long shadow of potential rolling blackouts over the Visayas.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.65
+        },
+        {
+          "id": "p2",
+          "text": "In the Visayas archipelago, a critical node in the power network is now under a high-alert status. The cause was a confluence of planned and unplanned shutdowns at aging facilities, which, combined with a heatwave pushing the system into a fragile edge, led to a critical equipment failure at a key generating asset. The resulting energy shortfall triggered an emergency load-shedding protocol. The entire region's grid now faces an elevated risk of systematic power rationing to avert a wider collapse.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "why-2",
+              "how-2",
+              "why-0",
+              "result-2",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.7
+        }
+      ],
+      "text": "The craft of the power grid has been severely tested. The system's guardians are contending with a cascade of technical failures, where eleven generators have broken down since May. A major protective disconnection at the Kepco SPC Power plant resulted in a massive 950 MW capacity loss. Simultaneously, extreme summer heat has pushed demand to a precarious operational limit, forcing decision-makers to implement an emergency demand response to prevent the backbone network from overloading. This series of events has cast a long shadow of potential rolling blackouts over the Visayas.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Magician",
+      "persona_name": "The-Magician",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The Visayas power grid entered a state of high alert after a critical 950-megawatt generation unit from Kepco SPC Power experienced a sudden, protective shutdown. This single-point failure, the culmination of multiple generator anomalies since early May, exposed the system's fragility as scorching summer heat pushed demand to its operational limits. In response, authorities executed a precise load-management strategy to shield the main transmission network from overload, revealing the delicate, hidden levers governing regional energy stability.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "A cascading sequence of failures, framed as a 'systemic vulnerability', unfolded across the Visayas as eleven generation units malfunctioned and a key node—the Kepco SPC Power plant—suddenly became unavailable. This narrative of 'cascading failure' intersected with extreme weather to create a 'demand pressure test' on the grid. The response, an 'emergency demand response measure', is depicted as an attempt to manage a precarious balance, preventing a complete collapse while simultaneously highlighting the 'information gap' between operators and the public.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.78
+        },
+        {
+          "id": "p3",
+          "text": "The crisis revealed the Visayas' power grid as a complex system where the 'unexpected disappearance of core capacity' triggered by a unit trip at Kepco SPC Power, combined with 'seasonal high temperatures' and 'infrastructure chain failures', forced a 'transformative fix': a mandatory power cut to avert a larger meltdown. This act of 'forced shutdown' by an 'information-opaque power center' shifts the paradigm from simple blackout to managed, albeit coercive, systemic intervention.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-2"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.92
+        }
+      ],
+      "text": "The Visayas power grid entered a state of high alert after a critical 950-megawatt generation unit from Kepco SPC Power experienced a sudden, protective shutdown. This single-point failure, the culmination of multiple generator anomalies since early May, exposed the system's fragility as scorching summer heat pushed demand to its operational limits. In response, authorities executed a precise load-management strategy to shield the main transmission network from overload, revealing the delicate, hidden levers governing regional energy stability.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Jester",
+      "persona_name": "The-Jester",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "In a classic case of institutional comedy, the 'power guardians' of the Visayan Islands, a region now ironically dubbed the 'tropical island of blackout risk,' were forced to deal with a cascade of failures. It began with the 'key equipment' of Kepco SPC Power 'deserting the stage,' creating a massive 950-megawatt hole. This was compounded by a heatwave 'pushing the grid to the brink' and a host of veteran generators 'taking collective leave.' The result? Officials, acting as 'hurried bureaucrats,' issued an 'emergency power cut order' to prevent a full collapse, leaving the archipelago 'shrouded in blackout panic.'",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-0",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "The Visayas grid, managed by a 'chaotic power dispatcher,' entered its 'limit mode' after a 'main unit unexpectedly exited the stage.' This single failure from the 'trouble-prone power plant' removed nearly 1,000 MW. As the 'scorching heat turned the grid into a cliffhanger,' the risk of a 'blackout roulette' spiked. Officials, perhaps as 'crisis decision-makers,' had to implement 'load reduction measures to prevent line overload,' a move that signaled the region was now in a 'power emergency.' The farce of reliable infrastructure was laid bare under the summer sun.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "why-1",
+              "result-1",
+              "result-0"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.85
+        }
+      ],
+      "text": "In a classic case of institutional comedy, the 'power guardians' of the Visayan Islands, a region now ironically dubbed the 'tropical island of blackout risk,' were forced to deal with a cascade of failures. It began with the 'key equipment' of Kepco SPC Power 'deserting the stage,' creating a massive 950-megawatt hole. This was compounded by a heatwave 'pushing the grid to the brink' and a host of veteran generators 'taking collective leave.' The result? Officials, acting as 'hurried bureaucrats,' issued an 'emergency power cut order' to prevent a full collapse, leaving the archipelago 'shrouded in blackout panic.'",
+      "warnings": []
+    }
+  ],
+  "errors": [
+    {
+      "agent_id": "The-Innocent",
+      "message": "alt_creator parse_error: element why-0: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Hero",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Ruler",
+      "message": "alt_creator parse_error: element why-0: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Sage",
+      "message": "alt_creator parse_error: element how-1: missing valence bucket(s) ['positive']"
+    }
+  ]
+}

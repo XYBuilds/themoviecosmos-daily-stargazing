@@ -1,0 +1,1674 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The NEET-UG medical entrance examination was conducted on May 3, 2026. Four days later, the National Testing Agency received an email from an informant containing a PDF file that matched the chemistry question paper and partially matched the biology paper. The NTA transferred 26-27 question paper setters and translators to the Central Bureau of Investigation. Thirteen individuals, including a trainer, were arrested. The NEET-UG 2026 examination was cancelled. A re-examination was scheduled for June 21, 2026.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 20777,
+              "title": "The Killing Room",
+              "similarity": 0.40276676416397095,
+              "movie_url": "https://themoviecosmos.com/movie/20777"
+            },
+            {
+              "tmdb_id": 1030206,
+              "title": "CNCO: los últimos cinco días",
+              "similarity": 0.4195735454559326,
+              "movie_url": "https://themoviecosmos.com/movie/1030206"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The National Testing Agency received an email from an informant four days after the NEET-UG examination. The attached PDF file matched the chemistry paper. The NTA transferred question paper setters and translators to the Central Bureau of Investigation.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1229915,
+              "title": "Dead Mail",
+              "similarity": 0.45412319898605347,
+              "movie_url": "https://themoviecosmos.com/movie/1229915"
+            },
+            {
+              "tmdb_id": 20777,
+              "title": "The Killing Room",
+              "similarity": 0.46445757150650024,
+              "movie_url": "https://themoviecosmos.com/movie/20777"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The Central Bureau of Investigation arrested thirteen individuals, including a trainer, after receiving a transfer from the National Testing Agency. The NEET-UG 2026 examination was cancelled. A re-examination was scheduled for June 21, 2026.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-3",
+              "result-0",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 317903,
+              "title": "File 253",
+              "similarity": 0.3995952606201172,
+              "movie_url": "https://themoviecosmos.com/movie/317903"
+            },
+            {
+              "tmdb_id": 20777,
+              "title": "The Killing Room",
+              "similarity": 0.40878769755363464,
+              "movie_url": "https://themoviecosmos.com/movie/20777"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-INNOCENT",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "After the NEET-UG medical exam was held in India, an honest whistleblower from Sikar sent key evidence—documents matching the chemistry and biology papers—to the National Testing Agency. The responsible exam body acted with integrity, promptly handing the matter to impartial investigators. This allowed for a thorough probe, resulting in those implicated being held accountable. The system then committed to repair by scheduling a fair second chance for all candidates in June, aiming to restore trust in the educational process.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 534075,
+              "title": "Super 30",
+              "similarity": 0.41280096769332886,
+              "movie_url": "https://themoviecosmos.com/movie/534075"
+            },
+            {
+              "tmdb_id": 465642,
+              "title": "Parmanu: The Story of Pokhran",
+              "similarity": 0.46149343252182007,
+              "movie_url": "https://themoviecosmos.com/movie/465642"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The incident began when truthful information was provided, exposing a breach in the exam's security. In response, India's National Testing Agency, acting as a diligent regulator, ensured the case was properly investigated by the Central Bureau of Investigation. While the arrests included education workers, the outcome saw a decisive move to cancel the compromised exam and schedule a new one. This path forward offers a sincere opportunity to correct the harm and rebuild confidence in the nation's academic testing.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0",
+              "how-4"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 72152,
+              "title": "Aarakshan",
+              "similarity": 0.4932764768600464,
+              "movie_url": "https://themoviecosmos.com/movie/72152"
+            },
+            {
+              "tmdb_id": 199252,
+              "title": "Black Dossier",
+              "similarity": 0.4983571171760559,
+              "movie_url": "https://themoviecosmos.com/movie/199252"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EVERYMAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A whistleblower's email exposed a major leak of the NEET-UG medical entrance exam, with the provided PDF file closely matching the actual chemistry and biology tests. The national examination authority, upon receiving the evidence, acted to cancel the tainted results and transferred the case to the central investigation agency for a full probe. This led to the arrest of thirteen individuals, including a tutor, and the scheduling of a new test for June 21st, aiming to restore fairness for all the students affected by this breach of trust.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 329750,
+              "title": "(Dis)Honesty: The Truth About Lies",
+              "similarity": 0.45446160435676575,
+              "movie_url": "https://themoviecosmos.com/movie/329750"
+            },
+            {
+              "tmdb_id": 20777,
+              "title": "The Killing Room",
+              "similarity": 0.46295973658561707,
+              "movie_url": "https://themoviecosmos.com/movie/20777"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The integrity of a nationwide medical exam was compromised when a tip-off revealed that test content had been leaked in advance. The examination management institution moved quickly to nullify the compromised scores and handed over the investigation to the central authorities. As a result, multiple people were arrested, and a re-examination was arranged for the following month, putting countless students through the stress and preparation once again.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 887697,
+              "title": "Test",
+              "similarity": 0.4704122543334961,
+              "movie_url": "https://themoviecosmos.com/movie/887697"
+            },
+            {
+              "tmdb_id": 375384,
+              "title": "Lie Detector",
+              "similarity": 0.48814651370048523,
+              "movie_url": "https://themoviecosmos.com/movie/375384"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-HERO",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "After the NEET-UG exam on May 3, 2026, a courageous whistleblower delivered ironclad proof of the paper leak directly to authorities. Four days later, the evidence prompted India's National Testing Agency to act decisively, handing the entire matter to the Central Bureau of Investigation. This swift response led to the arrest of thirteen individuals, including a trainer linked to the scandal. In a stand for justice, the compromised exam was annulled to protect fairness, and a new date was set for June 21 to ensure students receive a proper chance.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "how-4"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 327253,
+              "title": "The Gracefield Incident",
+              "similarity": 0.4797772169113159,
+              "movie_url": "https://themoviecosmos.com/movie/327253"
+            },
+            {
+              "tmdb_id": 335490,
+              "title": "The Idealist",
+              "similarity": 0.4830884337425232,
+              "movie_url": "https://themoviecosmos.com/movie/335490"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "A righteous whistleblower's tip exposed a plot that tainted a national medical entrance exam. The National Testing Agency, embracing its duty, immediately transferred the case to the Central Bureau of Investigation. The investigators moved like a sword of justice, arresting thirteen suspects for compromising the examination's integrity. To restore the sacred arena of merit, the flawed test was canceled, and a new chance was scheduled for June 21, 2026.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 199252,
+              "title": "Black Dossier",
+              "similarity": 0.48697614669799805,
+              "movie_url": "https://themoviecosmos.com/movie/199252"
+            },
+            {
+              "tmdb_id": 1447971,
+              "title": "Scare Out",
+              "similarity": 0.5157631635665894,
+              "movie_url": "https://themoviecosmos.com/movie/1447971"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The battle for exam integrity began with a whistleblower's decisive action, sending proof of the leak. This triggered a chain of accountability: the NTA referred the case, the CBI launched arrests, and the compromised NEET-UG was annulled. With the culprits apprehended, the stage is set for a fair re-test on June 21, giving candidates their second chance at a just outcome.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "how-4"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 199252,
+              "title": "Black Dossier",
+              "similarity": 0.48719292879104614,
+              "movie_url": "https://themoviecosmos.com/movie/199252"
+            },
+            {
+              "tmdb_id": 887697,
+              "title": "Test",
+              "similarity": 0.4922681450843811,
+              "movie_url": "https://themoviecosmos.com/movie/887697"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-CAREGIVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A courageous whistleblower's disclosure shattered the trust of hundreds of thousands of vulnerable students. The whistleblower sent a PDF file that served as ironclad evidence of unfairness, matching the chemistry and biology sections of the NEET-UG 2026 exam. This betrayal by those in positions of authority forced a difficult decision: the entire exam was cancelled to protect fairness. While a remedial measure now offers victims a second chance via a rescheduled test on June 21st, the emotional and reputational injury to young aspirants and their families is profound, highlighting the need for systemic repair.",
+          "source": {
+            "agent_id": "THE-CAREGIVER",
+            "fragments": [
+              "why-0",
+              "result-0",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 487620,
+              "title": "Kill Order",
+              "similarity": 0.5323824882507324,
+              "movie_url": "https://themoviecosmos.com/movie/487620"
+            },
+            {
+              "tmdb_id": 1165111,
+              "title": "Scouts Honor: The Secret Files of the Boy Scouts of America",
+              "similarity": 0.5419192314147949,
+              "movie_url": "https://themoviecosmos.com/movie/1165111"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The arrest of the alleged cheating ring, including a trainer, marks a moment where justice was served for the harmed students and families across India. Following an exam leak confirmed by a PDF from an informant, authorities moved swiftly. The accused, who betrayed the trust placed in them, now face the consequences. This action aims to restore order after the massive breach of fairness that jeopardized countless medical careers, emphasizing the duty to shelter the aspirations of the vulnerable from exploitation.",
+          "source": {
+            "agent_id": "THE-CAREGIVER",
+            "fragments": [
+              "how-3",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 19803,
+              "title": "Underclassman",
+              "similarity": 0.5635985732078552,
+              "movie_url": "https://themoviecosmos.com/movie/19803"
+            },
+            {
+              "tmdb_id": 39901,
+              "title": "Knockabout",
+              "similarity": 0.5760239958763123,
+              "movie_url": "https://themoviecosmos.com/movie/39901"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The scandal's fallout centers on the harmed star: the student. The cancellation of the NEET-UG exam and the subsequent investigation into the 26-27 professionals under scrutiny were necessary to protect this vulnerable group. The authorities' focus on remedying the breach reflects a communal need for repair, ensuring that the dreams of a generation are not derailed by the actions of those who sold out the future for profit.",
+          "source": {
+            "agent_id": "THE-CAREGIVER",
+            "fragments": [
+              "result-0",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 434853,
+              "title": "Space/Time",
+              "similarity": 0.5417999029159546,
+              "movie_url": "https://themoviecosmos.com/movie/434853"
+            },
+            {
+              "tmdb_id": 138372,
+              "title": "Bad Kids Go to Hell",
+              "similarity": 0.6238653659820557,
+              "movie_url": "https://themoviecosmos.com/movie/138372"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EXPLORER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "After the medical entrance exam on May 3, 2026, an alert explorer sent the National Testing Agency a PDF file that matched the chemistry paper exactly, charting a new path of digital evidence. This frontier discovery prompted the NTA to hand over 26-27 test developers and translators to the Central Bureau of Investigation, initiating a boundary-transfer action. Subsequent investigations led to the arrest of thirteen individuals, including a trainer, effectively tracking and constraining those who had crossed the line, while the cancelled NEET-UG exam opened a reset opportunity for the system.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 207769,
+              "title": "Banshee Chapter",
+              "similarity": 0.5017402172088623,
+              "movie_url": "https://themoviecosmos.com/movie/207769"
+            },
+            {
+              "tmdb_id": 1030206,
+              "title": "CNCO: los últimos cinco días",
+              "similarity": 0.5151034593582153,
+              "movie_url": "https://themoviecosmos.com/movie/1030206"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The NTA, acting as a boundary guardian, moved swiftly after receiving the tip-off. By June 21, 2026, a new journey begins for candidates with the rescheduled exam, following the system's disruption. The investigation, led by the CBI, resulted in thirteen rule-breakers being arrested, a clear constraint on those who trespassed. The entire episode, from the initial report to the arrests, underscores a broader reset in how educational frontiers are policed and explored.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.43803727626800537,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            },
+            {
+              "tmdb_id": 539036,
+              "title": "Soni",
+              "similarity": 0.4745723009109497,
+              "movie_url": "https://themoviecosmos.com/movie/539036"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "An information boundary was crossed when a PDF file leaked, revealing the exam's vulnerabilities. This act of trespass led the NTA to initiate a formal handover to the CBI, an internal review body, and resulted in the arrest of multiple suspects. The subsequent cancellation of the 2026 NEET-UG exam and the scheduling of a retest represent an attempt to repair the rules and navigate a new path forward, though the system's fault lines remain exposed.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 663260,
+              "title": "Black Box",
+              "similarity": 0.4394431412220001,
+              "movie_url": "https://themoviecosmos.com/movie/663260"
+            },
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.44891077280044556,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-LOVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The sacred NEET-UG medical entrance exam on May 3rd was quickly followed by a devastating betrayal. Four days later, a loyal whistleblower's email shattered the illusion, with attached files that matched the chemistry paper, exposing a profound violation of trust. This act of betrayal by a secret keeper prompted the responsible regulator, the National Testing Agency, to sever ties and hand over the implicated educators to the stern investigators of the CBI, marking the beginning of a painful reckoning for the nation.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 348668,
+              "title": "A Conspiracy of Faith",
+              "similarity": 0.4540514349937439,
+              "movie_url": "https://themoviecosmos.com/movie/348668"
+            },
+            {
+              "tmdb_id": 7859,
+              "title": "Half Nelson",
+              "similarity": 0.4677477478981018,
+              "movie_url": "https://themoviecosmos.com/movie/7859"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The investigation into the broken trust culminated in arrests, including that of a former advocate for student justice, now seen as a traitor who betrayed his role. The NEET-UG 2026 exam was canceled, a necessary sacrifice for purity, and the case was transferred to the CBI, the stern enforcer of justice. Amidst the heartbreak, a new date, June 21st, was set—a chance for redemption and to rebuild the shattered bond between students and the system.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-1",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 88269,
+              "title": "I Flunked, But...",
+              "similarity": 0.4974619746208191,
+              "movie_url": "https://themoviecosmos.com/movie/88269"
+            },
+            {
+              "tmdb_id": 138372,
+              "title": "Bad Kids Go to Hell",
+              "similarity": 0.516628623008728,
+              "movie_url": "https://themoviecosmos.com/movie/138372"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-CREATOR",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The NEET-UG 2026 exam, intended as a standardized medical entrance test, was revealed as a compromised artifact. A key piece of evidence—a leaked PDF—was submitted to the content managers at the National Testing Agency, demonstrating a high degree of match with the official chemistry and biology papers. This exposure forced the agency to scrap the flawed creation and initiate an accountability process, transferring responsibility for the creation chain, including 26-27 test developers and translators, to the investigative authorities.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 20777,
+              "title": "The Killing Room",
+              "similarity": 0.47653359174728394,
+              "movie_url": "https://themoviecosmos.com/movie/20777"
+            },
+            {
+              "tmdb_id": 887697,
+              "title": "Test",
+              "similarity": 0.5141122341156006,
+              "movie_url": "https://themoviecosmos.com/movie/887697"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Following the cancellation of the compromised 2026 medical entrance exam, the investigation shifted to dismantling the fabrication network responsible. The National Testing Agency handed over the content creators from the test-making process to the Central Bureau of Investigation. This action led to the arrest of thirteen individuals, including a former advocate, effectively dismantling the group suspected of forging the leaked exam materials.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "result-0",
+              "how-2",
+              "how-3",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 434853,
+              "title": "Space/Time",
+              "similarity": 0.495669960975647,
+              "movie_url": "https://themoviecosmos.com/movie/434853"
+            },
+            {
+              "tmdb_id": 18839,
+              "title": "Ghost in the Shell: Stand Alone Complex - The Laughing Man",
+              "similarity": 0.501860499382019,
+              "movie_url": "https://themoviecosmos.com/movie/18839"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "With the defective national exam discarded and the responsible fabrication network under investigation, the focus turned to creating a new, untainted assessment. The authorities, having arrested the suspects and launched formal inquiries, have scheduled a redesigned exam for June 21, 2026. This marks the beginning of a new creative process to replace the compromised work and restore the integrity of the selection mechanism.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "result-2",
+              "how-4",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 462602,
+              "title": "Kuleshov Effect",
+              "similarity": 0.45633047819137573,
+              "movie_url": "https://themoviecosmos.com/movie/462602"
+            },
+            {
+              "tmdb_id": 887697,
+              "title": "Test",
+              "similarity": 0.47348806262016296,
+              "movie_url": "https://themoviecosmos.com/movie/887697"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-RULER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The NEET-UG medical entrance exam descended into chaos as the system was compromised by rule-breakers, forcing authorities to confront a systemic failure. To restore order, the national testing agency acted decisively, transferring the case to central investigators who swiftly moved to contain the scandal. This led to the arrest of thirteen individuals, including a former advocate of student justice, marking a clear attempt to reassert control over the compromised examination process.",
+          "source": {
+            "agent_id": "THE-RULER",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 36231,
+              "title": "Guinea Pig Part 4: Devil Doctor Woman",
+              "similarity": 0.4377627372741699,
+              "movie_url": "https://themoviecosmos.com/movie/36231"
+            },
+            {
+              "tmdb_id": 88269,
+              "title": "I Flunked, But...",
+              "similarity": 0.44443532824516296,
+              "movie_url": "https://themoviecosmos.com/movie/88269"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The discovery of leaked exam materials revealed a profound breach of institutional integrity. In response, the examination authority and central law enforcement intervened as instruments of restoration, their actions aimed at clearing the sources of disorder. The cancellation of the tainted exam and the scheduling of a new one represent a deliberate reestablishment of a stable, orderly system for candidates across the nation.",
+          "source": {
+            "agent_id": "THE-RULER",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "how-4",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 313055,
+              "title": "Discount",
+              "similarity": 0.505268931388855,
+              "movie_url": "https://themoviecosmos.com/movie/313055"
+            },
+            {
+              "tmdb_id": 337876,
+              "title": "Gabbar Is Back",
+              "similarity": 0.5216180682182312,
+              "movie_url": "https://themoviecosmos.com/movie/337876"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-JESTER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In a scene that reads like a bureaucratic farce, a major medical exam in India descended into chaos after an informant's email bomb—containing a PDF that perfectly matched the chemistry paper—exploded in the inbox of the national exam gatekeepers. The gatekeepers, in a dramatic pivot, swiftly transferred the case to the central investigation machine, leading to a mass arrest of thirteen individuals, including one advocate who had ironically preached justice in a prior scandal. The whole affair culminated in the exam being declared invalid, with a remedial retake scheduled to salvage what remained of the circus.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 11334,
+              "title": "S.P.Q.R.: 2,000 and a Half Years Ago",
+              "similarity": 0.5029136538505554,
+              "movie_url": "https://themoviecosmos.com/movie/11334"
+            },
+            {
+              "tmdb_id": 199252,
+              "title": "Black Dossier",
+              "similarity": 0.5193293690681458,
+              "movie_url": "https://themoviecosmos.com/movie/199252"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "What began as a routine national medical exam quickly spiraled into a viral scandal when a PDF matching the test material landed in the hands of the exam authorities, forcing them to pass the buck to the central investigation elite. The ensuing 'justice arrest operation' netted a baker's dozen of scandal participants, turning the solemn process of academic assessment into a meme-speed spectacle. The inevitable conclusion was the exam's cancellation, branded a farcical ending, and the announcement of a new date, promising a sequel to the absurdity.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 313106,
+              "title": "Doctor Who: The Day of the Doctor",
+              "similarity": 0.4799169898033142,
+              "movie_url": "https://themoviecosmos.com/movie/313106"
+            },
+            {
+              "tmdb_id": 199252,
+              "title": "Black Dossier",
+              "similarity": 0.5142949819564819,
+              "movie_url": "https://themoviecosmos.com/movie/199252"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 138372,
+      "title": "Bad Kids Go to Hell",
+      "overview": "On a stormy Saturday afternoon, six students from Crestview Academy begin to meet horrible fates as they serve detention. Is a fellow student to blame, or perhaps Crestview's alleged ghosts are behind the terrible acts?",
+      "genres": "Comedy, Mystery, Thriller, Horror",
+      "release_year": 2012,
+      "language": "en",
+      "poster_path": "/dVzEumXyiQ13VJOrHxFolGmMyEq.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/138372",
+      "similarity": 0.6238653659820557,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.516628623008728,
+          "fit": 0.68
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "result-0",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.6238653659820557,
+          "fit": 0.8
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-CAREGIVER,THE-LOVER"
+    },
+    {
+      "tmdb_id": 434853,
+      "title": "Space/Time",
+      "overview": "After a fatal test shuts down their project, a disgraced team of scientists enters the criminal underworld to rebuild a forbidden space-bending engine that could rescue humanity or annihilate it entirely.",
+      "genres": "Science Fiction, Action, Thriller",
+      "release_year": 2025,
+      "language": "en",
+      "poster_path": "/uje1ecKMnNpZp0at5TxlvVgVXqI.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/434853",
+      "similarity": 0.5417999029159546,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "fragments": [
+            "result-0",
+            "how-2",
+            "how-3",
+            "result-2"
+          ],
+          "similarity": 0.495669960975647,
+          "fit": 0.82
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "result-0",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.5417999029159546,
+          "fit": 0.8
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-CAREGIVER,THE-CREATOR"
+    },
+    {
+      "tmdb_id": 199252,
+      "title": "Black Dossier",
+      "overview": "In the 1950s, in a small provincial town, a young inexperienced judge clashes with an influential notable during an investigation into a suspicious death. His perseverance to get to the truth will cause a huge scandal.",
+      "genres": "Crime, Drama",
+      "release_year": 1955,
+      "language": "fr",
+      "poster_path": "/fyuA1hNyZH5vwfvVDdpEoNhZUIc.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/199252",
+      "similarity": 0.5193293690681458,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-HERO",
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5193293690681458,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-0",
+            "how-4"
+          ],
+          "similarity": 0.4983571171760559,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-3"
+          ],
+          "similarity": 0.48697614669799805,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-3"
+          ],
+          "similarity": 0.5142949819564819,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "how-4"
+          ],
+          "similarity": 0.48719292879104614,
+          "fit": 0.8
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-INNOCENT,THE-HERO,THE-JESTER"
+    },
+    {
+      "tmdb_id": 1030206,
+      "title": "CNCO: los últimos cinco días",
+      "overview": "CNCO: los últimos cinco días",
+      "genres": "Music, Documentary",
+      "release_year": 2022,
+      "language": "es",
+      "poster_path": "/48zb4K9GO5p45Xs1BrZUYz0sSro.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1030206",
+      "similarity": 0.5151034593582153,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4195735454559326
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5151034593582153,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): A1,THE-EXPLORER"
+    },
+    {
+      "tmdb_id": 887697,
+      "title": "Test",
+      "overview": "Test",
+      "genres": "Animation, Drama",
+      "release_year": 2006,
+      "language": "cs",
+      "poster_path": "",
+      "movie_url": "https://themoviecosmos.com/movie/887697",
+      "similarity": 0.5141122341156006,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-HERO",
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5141122341156006,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4704122543334961,
+          "fit": 0.72
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "how-4"
+          ],
+          "similarity": 0.4922681450843811,
+          "fit": 0.8
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p3",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "result-2",
+            "how-4",
+            "result-3"
+          ],
+          "similarity": 0.47348806262016296,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-EVERYMAN,THE-CREATOR,THE-HERO"
+    },
+    {
+      "tmdb_id": 88269,
+      "title": "I Flunked, But...",
+      "overview": "After the plans of a group of college students to cheat on their final exams goes awry, they're left to reassess their lives and educations and get back on track.",
+      "genres": "Comedy",
+      "release_year": 1930,
+      "language": "ja",
+      "poster_path": "/9Fd6e27458LY00f7vTjybUtcxgw.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/88269",
+      "similarity": 0.4974619746208191,
+      "triggered_by": [
+        "THE-LOVER",
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-2"
+          ],
+          "similarity": 0.44443532824516296,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.4974619746208191,
+          "fit": 0.68
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-LOVER,THE-RULER"
+    },
+    {
+      "tmdb_id": 20777,
+      "title": "The Killing Room",
+      "overview": "Four volunteers sign up for what initially appears to be a typical paid research study, only to discover that they've unwittingly become involved with a classified government program that was said to have been terminated nearly two decades ago.",
+      "genres": "Thriller, Drama",
+      "release_year": 2009,
+      "language": "en",
+      "poster_path": "/ntBo3n4sz2T0JwTJX3GGZ2d2bfr.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/20777",
+      "similarity": 0.47653359174728394,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-CREATOR"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.40276676416397095
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.46445757150650024
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-3",
+            "result-0",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.40878769755363464
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.46295973658561707,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.47653359174728394,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): A1,THE-EVERYMAN,THE-CREATOR"
+    },
+    {
+      "tmdb_id": 39901,
+      "title": "Knockabout",
+      "overview": "After being cheated out of some money, two small time crooks convince a martial arts expert to take them on as students.",
+      "genres": "Action, Comedy, Crime",
+      "release_year": 1979,
+      "language": "cn",
+      "poster_path": "/aAaGCa6X8E0AnwM96nCLvNcDIB5.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/39901",
+      "similarity": 0.5760239958763123,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-3",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5760239958763123,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 19803,
+      "title": "Underclassman",
+      "overview": "A young detective goes undercover at an elite private school to destroy an international stolen car ring.",
+      "genres": "Comedy, Action",
+      "release_year": 2005,
+      "language": "en",
+      "poster_path": "/kOpQ5doAbDaxKyGq91PugsCTOYO.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/19803",
+      "similarity": 0.5635985732078552,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-3",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5635985732078552,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1165111,
+      "title": "Scouts Honor: The Secret Files of the Boy Scouts of America",
+      "overview": "Survivors, whistleblowers, and experts recount the Boy Scouts of America's decadeslong cover-up of sexual abuse cases and its heartbreaking impact.",
+      "genres": "Documentary, Crime",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/uS0KGgkF9krrUqh8tdo80THBliH.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1165111",
+      "similarity": 0.5419192314147949,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "result-0",
+            "result-3"
+          ],
+          "similarity": 0.5419192314147949,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 487620,
+      "title": "Kill Order",
+      "overview": "A troubled high school student discovers the truth behind his hidden abilities.",
+      "genres": "Science Fiction, Action",
+      "release_year": 2017,
+      "language": "en",
+      "poster_path": "/7GsmOsf7M7jUhrav17l3Vx2ekIR.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/487620",
+      "similarity": 0.5323824882507324,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "result-0",
+            "result-3"
+          ],
+          "similarity": 0.5323824882507324,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 337876,
+      "title": "Gabbar Is Back",
+      "overview": "A vigilante network taking out corrupt officials draws the notice of the authorities.",
+      "genres": "Drama, Action",
+      "release_year": 2015,
+      "language": "hi",
+      "poster_path": "/dhIVF43jCqVzxuo11hYcHQxjzS6.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/337876",
+      "similarity": 0.5216180682182312,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "how-4",
+            "result-3"
+          ],
+          "similarity": 0.5216180682182312,
+          "fit": 0.8
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1447971,
+      "title": "Scare Out",
+      "overview": "After a critical intelligence leak, a national security unit launches an intensive investigation. But successive setbacks in their arrest operations reveal a shocking truth: the trail leads back to within the unit itself. Amidst a storm of trust and betrayal, a silent battle begins to unfold...",
+      "genres": "Crime, Thriller, Action",
+      "release_year": 2026,
+      "language": "zh",
+      "poster_path": "/qs7YjSkD2lv6d0efg3EiqeMsqOw.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1447971",
+      "similarity": 0.5157631635665894,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-3"
+          ],
+          "similarity": 0.5157631635665894,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 313055,
+      "title": "Discount",
+      "overview": "To fight against the introduction of automatic checkouts that threaten their jobs, staff members at Hard Discounts secretly create their own \"Alternative Discount\" outlet by salvaging products that would otherwise have been wasted.",
+      "genres": "Comedy",
+      "release_year": 2014,
+      "language": "fr",
+      "poster_path": "/uysF4Q2c4AsNCJEwRnDveJVePNY.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/313055",
+      "similarity": 0.505268931388855,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "how-4",
+            "result-3"
+          ],
+          "similarity": 0.505268931388855,
+          "fit": 0.8
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 11334,
+      "title": "S.P.Q.R.: 2,000 and a Half Years Ago",
+      "overview": "In 71 BC in Rome, utter disorder reigns in the form of political corruption and bribery involving the senator Cynic (Leslie Nielsen). The situation is claimed to be similar to the “Tangentopoli” situation in Italy in the 1990s: one of the politicians involved was Bettino Craxi.",
+      "genres": "Comedy",
+      "release_year": 1994,
+      "language": "it",
+      "poster_path": "/tzRo3DbGDtCMEmi5ZOzlCSZThoL.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/11334",
+      "similarity": 0.5029136538505554,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5029136538505554,
+          "fit": 0.88
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 18839,
+      "title": "Ghost in the Shell: Stand Alone Complex - The Laughing Man",
+      "overview": "The year is 2030 and six years have passed since a criminal known only as \"The Laughing Man\" swept through top medical nanotechnology firms committing acts of cyber-terrorism, kidnapping, and espionage leaving no known suspects. New information is revealed, as Section 9 enters the hunt for a suspect capable of unfathomable actions in this compilation of Stand Alone Complex content.",
+      "genres": "Science Fiction, Animation, Action, Crime, Mystery",
+      "release_year": 2005,
+      "language": "ja",
+      "poster_path": "/kv5tAbEkc6TrBaRkCmRqTJpTYyU.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/18839",
+      "similarity": 0.501860499382019,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "fragments": [
+            "result-0",
+            "how-2",
+            "how-3",
+            "result-2"
+          ],
+          "similarity": 0.501860499382019,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 207769,
+      "title": "Banshee Chapter",
+      "overview": "On the trail of a missing friend who had been experimenting with mind-altering drugs, a young journalist - aided by a rogue counter-culture writer, finds herself drawn into the dangerous world of top-secret government chemical research and the mystery of a disturbing radio signal of unknown origin.",
+      "genres": "Horror, Thriller",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/nyXKB77RrItfUsAcgoIlXmUfged.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/207769",
+      "similarity": 0.5017402172088623,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5017402172088623,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 72152,
+      "title": "Aarakshan",
+      "overview": "The decision by India's supreme court to establish caste-based reservations for jobs in education causes conflict between a teacher and his mentor.",
+      "genres": "Drama, Thriller",
+      "release_year": 2011,
+      "language": "hi",
+      "poster_path": "/accK9eB8qVpuxY3MdIK1RzFotTt.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/72152",
+      "similarity": 0.4932764768600464,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-0",
+            "how-4"
+          ],
+          "similarity": 0.4932764768600464,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 375384,
+      "title": "Lie Detector",
+      "overview": "A job interview takes an awkward turn when a lie detector reveals the unfiltered truths and hidden feelings of everyone involved.",
+      "genres": "Comedy",
+      "release_year": 2011,
+      "language": "en",
+      "poster_path": "/3YYnmmdVCIk7g8Fi2cvejrvOOCJ.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/375384",
+      "similarity": 0.48814651370048523,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.48814651370048523,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A1-THE-INNOCENT": 0.7515468597412109,
+      "A1-THE-EVERYMAN": 0.7944667935371399,
+      "A1-THE-HERO": 0.7052281498908997,
+      "A1-THE-CAREGIVER": 0.5302533507347107,
+      "A1-THE-EXPLORER": 0.7635608911514282,
+      "A1-THE-LOVER": 0.7764595746994019,
+      "A1-THE-CREATOR": 0.7979984283447266,
+      "A1-THE-RULER": 0.7721459865570068,
+      "A1-THE-JESTER": 0.475778728723526,
+      "THE-EVERYMAN-THE-INNOCENT": 0.8042462468147278,
+      "THE-HERO-THE-INNOCENT": 0.8591870665550232,
+      "THE-CAREGIVER-THE-INNOCENT": 0.6711869239807129,
+      "THE-EXPLORER-THE-INNOCENT": 0.5637402534484863,
+      "THE-INNOCENT-THE-LOVER": 0.7562758922576904,
+      "THE-CREATOR-THE-INNOCENT": 0.806526780128479,
+      "THE-INNOCENT-THE-RULER": 0.7378470301628113,
+      "THE-INNOCENT-THE-JESTER": 0.5898346304893494,
+      "THE-EVERYMAN-THE-HERO": 0.8280472755432129,
+      "THE-CAREGIVER-THE-EVERYMAN": 0.804169774055481,
+      "THE-EVERYMAN-THE-EXPLORER": 0.6834185123443604,
+      "THE-EVERYMAN-THE-LOVER": 0.8488360643386841,
+      "THE-CREATOR-THE-EVERYMAN": 0.8588477373123169,
+      "THE-EVERYMAN-THE-RULER": 0.8127990961074829,
+      "THE-EVERYMAN-THE-JESTER": 0.6369022130966187,
+      "THE-CAREGIVER-THE-HERO": 0.7895267009735107,
+      "THE-EXPLORER-THE-HERO": 0.5780971050262451,
+      "THE-HERO-THE-LOVER": 0.764191746711731,
+      "THE-CREATOR-THE-HERO": 0.7690780758857727,
+      "THE-HERO-THE-RULER": 0.6764694452285767,
+      "THE-HERO-THE-JESTER": 0.6034796833992004,
+      "THE-CAREGIVER-THE-EXPLORER": 0.4700796902179718,
+      "THE-CAREGIVER-THE-LOVER": 0.7448981404304504,
+      "THE-CAREGIVER-THE-CREATOR": 0.6732664108276367,
+      "THE-CAREGIVER-THE-RULER": 0.5994939804077148,
+      "THE-CAREGIVER-THE-JESTER": 0.4879069924354553,
+      "THE-EXPLORER-THE-LOVER": 0.6682156324386597,
+      "THE-CREATOR-THE-EXPLORER": 0.6781750917434692,
+      "THE-EXPLORER-THE-RULER": 0.633624792098999,
+      "THE-EXPLORER-THE-JESTER": 0.6083770394325256,
+      "THE-CREATOR-THE-LOVER": 0.7949733734130859,
+      "THE-LOVER-THE-RULER": 0.7832905054092407,
+      "THE-JESTER-THE-LOVER": 0.6103227138519287,
+      "THE-CREATOR-THE-RULER": 0.8109434843063354,
+      "THE-CREATOR-THE-JESTER": 0.5472608208656311,
+      "THE-JESTER-THE-RULER": 0.6697890162467957
+    },
+    "topk_jaccard": {
+      "A1-THE-INNOCENT": 0.0,
+      "A1-THE-EVERYMAN": 0.14285714285714285,
+      "A1-THE-HERO": 0.0,
+      "A1-THE-CAREGIVER": 0.0,
+      "A1-THE-EXPLORER": 0.125,
+      "A1-THE-LOVER": 0.0,
+      "A1-THE-CREATOR": 0.125,
+      "A1-THE-RULER": 0.0,
+      "A1-THE-JESTER": 0.0,
+      "THE-EVERYMAN-THE-INNOCENT": 0.0,
+      "THE-HERO-THE-INNOCENT": 0.125,
+      "THE-CAREGIVER-THE-INNOCENT": 0.0,
+      "THE-EXPLORER-THE-INNOCENT": 0.0,
+      "THE-INNOCENT-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-INNOCENT": 0.0,
+      "THE-INNOCENT-THE-RULER": 0.0,
+      "THE-INNOCENT-THE-JESTER": 0.16666666666666666,
+      "THE-EVERYMAN-THE-HERO": 0.125,
+      "THE-CAREGIVER-THE-EVERYMAN": 0.0,
+      "THE-EVERYMAN-THE-EXPLORER": 0.0,
+      "THE-EVERYMAN-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-EVERYMAN": 0.2857142857142857,
+      "THE-EVERYMAN-THE-RULER": 0.0,
+      "THE-EVERYMAN-THE-JESTER": 0.0,
+      "THE-CAREGIVER-THE-HERO": 0.0,
+      "THE-EXPLORER-THE-HERO": 0.0,
+      "THE-HERO-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-HERO": 0.1111111111111111,
+      "THE-HERO-THE-RULER": 0.0,
+      "THE-HERO-THE-JESTER": 0.14285714285714285,
+      "THE-CAREGIVER-THE-EXPLORER": 0.0,
+      "THE-CAREGIVER-THE-LOVER": 0.1111111111111111,
+      "THE-CAREGIVER-THE-CREATOR": 0.1,
+      "THE-CAREGIVER-THE-RULER": 0.0,
+      "THE-CAREGIVER-THE-JESTER": 0.0,
+      "THE-EXPLORER-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-EXPLORER": 0.0,
+      "THE-EXPLORER-THE-RULER": 0.0,
+      "THE-EXPLORER-THE-JESTER": 0.0,
+      "THE-CREATOR-THE-LOVER": 0.0,
+      "THE-LOVER-THE-RULER": 0.14285714285714285,
+      "THE-JESTER-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-RULER": 0.0,
+      "THE-CREATOR-THE-JESTER": 0.0,
+      "THE-JESTER-THE-RULER": 0.0
+    }
+  },
+  "meta": {
+    "query_count": 25,
+    "raw_hit_count": 50,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

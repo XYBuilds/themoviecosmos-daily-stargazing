@@ -1,0 +1,241 @@
+{
+  "persona_id": "The-Innocent",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "美国边境巡逻队",
+        "alternatives": [
+          {
+            "term": "边境守护者",
+            "valence": "positive"
+          },
+          {
+            "term": "执法机构",
+            "valence": "neutral"
+          },
+          {
+            "term": "执法机构",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "被逮捕者",
+        "alternatives": [
+          {
+            "term": "寻求庇护者",
+            "valence": "positive"
+          },
+          {
+            "term": "被拘留者",
+            "valence": "neutral"
+          },
+          {
+            "term": "被捕者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "分析师",
+        "alternatives": [
+          {
+            "term": "观察家",
+            "valence": "positive"
+          },
+          {
+            "term": "分析师",
+            "valence": "neutral"
+          },
+          {
+            "term": "评论员",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "立法者",
+        "alternatives": [
+          {
+            "term": "政策制定者",
+            "valence": "positive"
+          },
+          {
+            "term": "立法者",
+            "valence": "neutral"
+          },
+          {
+            "term": "政客",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "分析师将月度逮捕人数上升归因于春季天气变暖",
+        "alternatives": [
+          {
+            "term": "季节性因素导致的暂时变化",
+            "valence": "positive"
+          },
+          {
+            "term": "月度变化归因于春季天气变暖",
+            "valence": "neutral"
+          },
+          {
+            "term": "执法活动受季节性条件影响",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "2026年3月，美国边境巡逻队在西南边境逮捕了8,268人",
+        "alternatives": [
+          {
+            "term": "边境执法部门在西南边境执行了8,268次逮捕",
+            "valence": "positive"
+          },
+          {
+            "term": "2026年3月逮捕人数为8,268人",
+            "valence": "neutral"
+          },
+          {
+            "term": "3月份有8,268人被逮捕",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "这比2026年2月的6,598人增加了25%",
+        "alternatives": [
+          {
+            "term": "逮捕人数月度增长了25%",
+            "valence": "positive"
+          },
+          {
+            "term": "与2月相比增加了25%",
+            "valence": "neutral"
+          },
+          {
+            "term": "逮捕人数显著上升",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "年初至今的越境人数仍接近数十年低点，归因于庇护关闭和驱逐政策",
+        "alternatives": [
+          {
+            "term": "越境人数保持在历史低位",
+            "valence": "positive"
+          },
+          {
+            "term": "年初至今越境人数接近数十年低点",
+            "valence": "neutral"
+          },
+          {
+            "term": "越境人数持续低迷",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "original_term": "分析师指出月度上升是由于春季天气变暖",
+        "alternatives": [
+          {
+            "term": "观察家指出季节性因素是主要原因",
+            "valence": "positive"
+          },
+          {
+            "term": "月度变化归因于春季天气变暖",
+            "valence": "neutral"
+          },
+          {
+            "term": "评论员认为季节变化导致了上升",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "original_term": "立法者在移民执法机构资金问题上僵持不下，相关资金法案待决",
+        "alternatives": [
+          {
+            "term": "政策制定者正在就资金问题进行谈判",
+            "valence": "positive"
+          },
+          {
+            "term": "资金问题陷入僵局",
+            "valence": "neutral"
+          },
+          {
+            "term": "政治僵局阻碍了资金拨付",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "2026年3月逮捕人数上升25%至8,268人",
+        "alternatives": [
+          {
+            "term": "逮捕人数月度增长了25%",
+            "valence": "positive"
+          },
+          {
+            "term": "逮捕人数上升至8,268人",
+            "valence": "neutral"
+          },
+          {
+            "term": "逮捕人数显著增加",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "年初至今越境人数保持在数十年低点附近",
+        "alternatives": [
+          {
+            "term": "越境人数维持在历史低位",
+            "valence": "positive"
+          },
+          {
+            "term": "越境人数接近数十年低点",
+            "valence": "neutral"
+          },
+          {
+            "term": "越境活动持续低迷",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "original_term": "立法者在资金问题上僵持不下",
+        "alternatives": [
+          {
+            "term": "政策制定者正在努力解决资金分歧",
+            "valence": "positive"
+          },
+          {
+            "term": "资金问题处于僵持状态",
+            "valence": "neutral"
+          },
+          {
+            "term": "政治僵局持续",
+            "valence": "negative"
+          }
+        ]
+      }
+    ]
+  }
+}

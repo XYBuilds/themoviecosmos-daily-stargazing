@@ -1,0 +1,261 @@
+{
+  "persona_id": "The-Magician",
+  "overlay": {
+    "persona_id": "The-Magician",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Vegas Golden Knights",
+          "alternatives": [
+            {
+              "term": "the masters of the ice illusion",
+              "valence": "positive"
+            },
+            {
+              "term": "the Vegas hockey franchise",
+              "valence": "neutral"
+            },
+            {
+              "term": "the fortunate beneficiaries",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Colorado Avalanche",
+          "alternatives": [
+            {
+              "term": "the once-dominant force",
+              "valence": "positive"
+            },
+            {
+              "term": "the Colorado hockey team",
+              "valence": "neutral"
+            },
+            {
+              "term": "the doomed contenders",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "John Tortorella",
+          "alternatives": [
+            {
+              "term": "the catalyst for transformation",
+              "valence": "positive"
+            },
+            {
+              "term": "the new head coach",
+              "valence": "neutral"
+            },
+            {
+              "term": "the opportunist manager",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Cale Makar",
+          "alternatives": [
+            {
+              "term": "the sidelined cornerstone",
+              "valence": "positive"
+            },
+            {
+              "term": "the injured Colorado player",
+              "valence": "neutral"
+            },
+            {
+              "term": "the key absence exploited",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Nathan MacKinnon",
+          "alternatives": [
+            {
+              "term": "the absent offensive engine",
+              "valence": "positive"
+            },
+            {
+              "term": "the injured Colorado player",
+              "valence": "neutral"
+            },
+            {
+              "term": "the critical missing piece",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+          "alternatives": [
+            {
+              "term": "a catastrophic injury blow to their core",
+              "valence": "positive"
+            },
+            {
+              "term": "the loss of key players to injury",
+              "valence": "neutral"
+            },
+            {
+              "term": "a crippling blow that sealed their fate",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "The franchise fired its coach with eight regular-season games left",
+          "alternatives": [
+            {
+              "term": "a bold mid-season reset",
+              "valence": "positive"
+            },
+            {
+              "term": "a coaching change late in the season",
+              "valence": "neutral"
+            },
+            {
+              "term": "a desperate, destabilizing move",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "John Tortorella guided a 7-0-1 close and playoff runs past Utah and Anaheim",
+          "alternatives": [
+            {
+              "term": "a masterful narrative of redemption",
+              "valence": "positive"
+            },
+            {
+              "term": "a successful coaching transition",
+              "valence": "neutral"
+            },
+            {
+              "term": "a fortunate turn of events",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Vegas scored twice and held Colorado to one goal in Game 4",
+          "alternatives": [
+            {
+              "term": "a perfectly executed defensive stranglehold",
+              "valence": "positive"
+            },
+            {
+              "term": "a two-to-one victory",
+              "valence": "neutral"
+            },
+            {
+              "term": "a narrow, opportunistic win",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "This completed a four-game Western Conference Final sweep on May 26",
+          "alternatives": [
+            {
+              "term": "a dominant, clean-sweep finale",
+              "valence": "positive"
+            },
+            {
+              "term": "the conclusion of a four-game series",
+              "valence": "neutral"
+            },
+            {
+              "term": "a ruthless, unforgiving shutout",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Vegas Golden Knights reached the Stanley Cup Final",
+          "alternatives": [
+            {
+              "term": "a magical ascent to the pinnacle",
+              "valence": "positive"
+            },
+            {
+              "term": "advancement to the championship round",
+              "valence": "neutral"
+            },
+            {
+              "term": "an unearned path to the Final",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Colorado Avalanche were swept in the Western Conference Final",
+          "alternatives": [
+            {
+              "term": "a humbling end to a promising run",
+              "valence": "positive"
+            },
+            {
+              "term": "elimination in four games",
+              "valence": "neutral"
+            },
+            {
+              "term": "a complete and total collapse",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "The Vegas hockey franchise executed a bold mid-season reset, hiring John Tortorella as the catalyst for transformation. After a masterful narrative of redemption with a 7-0-1 close, they leveraged a catastrophic injury blow to Colorado's core. In the Western Conference Final, they delivered a perfectly executed defensive stranglehold, completing a dominant, clean-sweep finale on May 26 for a magical ascent to the pinnacle.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The doomed contenders, the Colorado Avalanche, suffered a crippling blow that sealed their fate with injuries to the sidelined cornerstone Cale Makar and the absent offensive engine Nathan MacKinnon. This key absence was exploited by the fortunate beneficiaries, who completed a ruthless, unforgiving shutout in a four-game series. The humbling end to a promising run was thus scripted by deeper forces of attrition.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-2",
+          "how-3",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,282 @@
+{
+  "persona_id": "The-Outlaw",
+  "overlay": {
+    "persona_id": "The-Outlaw",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Vegas Golden Knights",
+          "alternatives": [
+            {
+              "term": "the system's beneficiaries",
+              "valence": "negative"
+            },
+            {
+              "term": "the favored franchise",
+              "valence": "neutral"
+            },
+            {
+              "term": "the opportunistic conquerors",
+              "valence": "positive"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Colorado Avalanche",
+          "alternatives": [
+            {
+              "term": "the institution's victims",
+              "valence": "positive"
+            },
+            {
+              "term": "the swept contenders",
+              "valence": "neutral"
+            },
+            {
+              "term": "the broken establishment",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "John Tortorella",
+          "alternatives": [
+            {
+              "term": "the rebel commander",
+              "valence": "positive"
+            },
+            {
+              "term": "the mid-season replacement coach",
+              "valence": "neutral"
+            },
+            {
+              "term": "the hired gun",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Cale Makar",
+          "alternatives": [
+            {
+              "term": "the fallen star",
+              "valence": "positive"
+            },
+            {
+              "term": "the injured defenseman",
+              "valence": "neutral"
+            },
+            {
+              "term": "the costly asset",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Nathan MacKinnon",
+          "alternatives": [
+            {
+              "term": "the silenced leader",
+              "valence": "positive"
+            },
+            {
+              "term": "the injured forward",
+              "valence": "neutral"
+            },
+            {
+              "term": "the absent liability",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+          "alternatives": [
+            {
+              "term": "the system sacrificed its champions",
+              "valence": "positive"
+            },
+            {
+              "term": "key players were unavailable",
+              "valence": "neutral"
+            },
+            {
+              "term": "the team's core crumbled",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "The franchise fired its coach with eight regular-season games left",
+          "alternatives": [
+            {
+              "term": "the purge began late",
+              "valence": "negative"
+            },
+            {
+              "term": "a coaching change was made",
+              "valence": "neutral"
+            },
+            {
+              "term": "the old guard was overthrown",
+              "valence": "positive"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "John Tortorella guided a 7-0-1 close and playoff runs past Utah and Anaheim",
+          "alternatives": [
+            {
+              "term": "the new regime imposed its will",
+              "valence": "positive"
+            },
+            {
+              "term": "the interim coach managed a strong finish",
+              "valence": "neutral"
+            },
+            {
+              "term": "a desperate gamble paid off",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Vegas scored twice and held Colorado to one goal in Game 4",
+          "alternatives": [
+            {
+              "term": "the favored side executed clinically",
+              "valence": "negative"
+            },
+            {
+              "term": "the game ended 2-1",
+              "valence": "neutral"
+            },
+            {
+              "term": "the underdog was outmatched",
+              "valence": "positive"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "This completed a four-game Western Conference Final sweep on May 26",
+          "alternatives": [
+            {
+              "term": "the inevitable sweep was sealed",
+              "valence": "negative"
+            },
+            {
+              "term": "the series concluded in four games",
+              "valence": "neutral"
+            },
+            {
+              "term": "the rebellion was crushed",
+              "valence": "positive"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Vegas Golden Knights reached the Stanley Cup Final",
+          "alternatives": [
+            {
+              "term": "the establishment advanced",
+              "valence": "negative"
+            },
+            {
+              "term": "the team qualified for the final",
+              "valence": "neutral"
+            },
+            {
+              "term": "the new order prevailed",
+              "valence": "positive"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Colorado Avalanche were swept in the Western Conference Final",
+          "alternatives": [
+            {
+              "term": "the rebels were eliminated",
+              "valence": "negative"
+            },
+            {
+              "term": "the team was swept",
+              "valence": "neutral"
+            },
+            {
+              "term": "the hopefuls fell short",
+              "valence": "positive"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "When the Colorado Avalanche's core crumbled, losing the fallen star and the silenced leader to injuries, the rebel commander John Tortorella was installed. The old guard was overthrown, and the new regime imposed its will, guiding a 7-0-1 close and playoff runs. This desperate gamble, however, was not enough against the system's beneficiaries. The favored franchise executed clinically, sealing the inevitable sweep. The establishment advanced to the Stanley Cup Final, while the hopefuls fell short in four brutal games.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.88
+    },
+    {
+      "id": "p2",
+      "text": "The system sacrificed its champions when key players became unavailable. In response, a coaching change was made—though the hired gun arrived too late. Despite the mid-season replacement coach's efforts, the swept contenders faced an uphill battle. In Game 4, the opportunistic conquerors outmatched the underdog, completing a four-game sweep. The new order prevailed, crushing any rebellion and advancing to the final.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p3",
+      "text": "With eight games left, the franchise fired its coach—a late purge that began the overhaul. The new regime, led by the rebel commander, imposed a 7-0-1 close and playoff victories. But the broken establishment, already weakened by the absence of its costly assets, was no match for the favored franchise. The rebellion was crushed in four decisive games, and the establishment advanced, leaving the institution's victims eliminated in the Western Conference Final.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "why-0",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.82
+    }
+  ],
+  "warnings": []
+}

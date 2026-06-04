@@ -25,10 +25,15 @@ from scripts.personas import (
     build_alt_pool_overlay,
     build_screenwriter_user_prompt,
     known_element_ids,
+    list_persona_ids,
     load_persona_card,
     overlay_forbids_decon_fork,
     parse_alt_pool_response,
     render_persona_prompt,
+)
+from scripts.run_persona_batch import (
+    load_a1_agent_from_phase36,
+    split_obs_holdout,
 )
 
 FIXTURE = _REPO / "tests" / "fixtures" / "01-grid-outage-deconstructed.json"
@@ -228,6 +233,34 @@ class PersonaScaffoldTests(unittest.TestCase):
         assert card is not None
         self.assertIn("秩序", card)
         self.assertIn("负向捍卫秩序", card)
+
+    def test_list_persona_ids_twelve(self) -> None:
+        ids = list_persona_ids()
+        self.assertEqual(len(ids), 12)
+        self.assertIn("The-Ruler", ids)
+        self.assertIn("The-Sage", ids)
+
+    def test_split_obs_holdout(self) -> None:
+        from scripts.eval_batch_manifest import load_manifest
+
+        run_ids = load_manifest()
+        obs, holdout = split_obs_holdout(run_ids)
+        self.assertEqual(len(obs), 4)
+        self.assertEqual(len(holdout), 6)
+        self.assertTrue(all(r.startswith("01-") or r.startswith("02-") for r in obs[:2]))
+
+    def test_load_a1_from_phase36_04(self) -> None:
+        agent = load_a1_agent_from_phase36("04-celebrity-scandal")
+        self.assertEqual(agent["agent_id"], "A1")
+        self.assertEqual(agent["role"], "baseline")
+        self.assertGreaterEqual(len(agent["pseudos"]), 1)
+
+    def test_all_persona_cards_exist(self) -> None:
+        for pid in list_persona_ids():
+            card = load_persona_card(pid)
+            self.assertIsNotNone(card, pid)
+            assert card is not None
+            self.assertIn(pid, card)
 
     def test_build_alt_pool_overlay_dataclass(self) -> None:
         overlay = AltPoolOverlay(

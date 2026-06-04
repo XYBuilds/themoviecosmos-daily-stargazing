@@ -1,0 +1,495 @@
+{
+  "agents": [
+    {
+      "agent_id": "A1",
+      "persona_name": "The Reality Recorder (Baseline)",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The NEET-UG medical entrance examination was conducted on May 3, 2026. Four days later, the National Testing Agency received an email from an informant containing a PDF file that matched the chemistry question paper and partially matched the biology paper. The NTA transferred 26-27 question paper setters and translators to the Central Bureau of Investigation. Thirteen individuals, including a trainer, were arrested. The NEET-UG 2026 examination was cancelled. A re-examination was scheduled for June 21, 2026.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          }
+        },
+        {
+          "id": "p2",
+          "text": "The National Testing Agency received an email from an informant four days after the NEET-UG examination. The attached PDF file matched the chemistry paper. The NTA transferred question paper setters and translators to the Central Bureau of Investigation.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2"
+            ]
+          }
+        },
+        {
+          "id": "p3",
+          "text": "The Central Bureau of Investigation arrested thirteen individuals, including a trainer, after receiving a transfer from the National Testing Agency. The NEET-UG 2026 examination was cancelled. A re-examination was scheduled for June 21, 2026.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-3",
+              "result-0",
+              "result-2",
+              "result-3"
+            ]
+          }
+        }
+      ],
+      "text": "The NEET-UG medical entrance examination was conducted on May 3, 2026. Four days later, the National Testing Agency received an email from an informant containing a PDF file that matched the chemistry question paper and partially matched the biology paper. The NTA transferred 26-27 question paper setters and translators to the Central Bureau of Investigation. Thirteen individuals, including a trainer, were arrested. The NEET-UG 2026 examination was cancelled. A re-examination was scheduled for June 21, 2026.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Innocent",
+      "persona_name": "The-Innocent",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "After the NEET-UG medical exam was held in India, an honest whistleblower from Sikar sent key evidence—documents matching the chemistry and biology papers—to the National Testing Agency. The responsible exam body acted with integrity, promptly handing the matter to impartial investigators. This allowed for a thorough probe, resulting in those implicated being held accountable. The system then committed to repair by scheduling a fair second chance for all candidates in June, aiming to restore trust in the educational process.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.91
+        },
+        {
+          "id": "p2",
+          "text": "The incident began when truthful information was provided, exposing a breach in the exam's security. In response, India's National Testing Agency, acting as a diligent regulator, ensured the case was properly investigated by the Central Bureau of Investigation. While the arrests included education workers, the outcome saw a decisive move to cancel the compromised exam and schedule a new one. This path forward offers a sincere opportunity to correct the harm and rebuild confidence in the nation's academic testing.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0",
+              "how-4"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        }
+      ],
+      "text": "After the NEET-UG medical exam was held in India, an honest whistleblower from Sikar sent key evidence—documents matching the chemistry and biology papers—to the National Testing Agency. The responsible exam body acted with integrity, promptly handing the matter to impartial investigators. This allowed for a thorough probe, resulting in those implicated being held accountable. The system then committed to repair by scheduling a fair second chance for all candidates in June, aiming to restore trust in the educational process.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Everyman",
+      "persona_name": "The-Everyman",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "A whistleblower's email exposed a major leak of the NEET-UG medical entrance exam, with the provided PDF file closely matching the actual chemistry and biology tests. The national examination authority, upon receiving the evidence, acted to cancel the tainted results and transferred the case to the central investigation agency for a full probe. This led to the arrest of thirteen individuals, including a tutor, and the scheduling of a new test for June 21st, aiming to restore fairness for all the students affected by this breach of trust.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The integrity of a nationwide medical exam was compromised when a tip-off revealed that test content had been leaked in advance. The examination management institution moved quickly to nullify the compromised scores and handed over the investigation to the central authorities. As a result, multiple people were arrested, and a re-examination was arranged for the following month, putting countless students through the stress and preparation once again.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.72
+        }
+      ],
+      "text": "A whistleblower's email exposed a major leak of the NEET-UG medical entrance exam, with the provided PDF file closely matching the actual chemistry and biology tests. The national examination authority, upon receiving the evidence, acted to cancel the tainted results and transferred the case to the central investigation agency for a full probe. This led to the arrest of thirteen individuals, including a tutor, and the scheduling of a new test for June 21st, aiming to restore fairness for all the students affected by this breach of trust.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Hero",
+      "persona_name": "The-Hero",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "After the NEET-UG exam on May 3, 2026, a courageous whistleblower delivered ironclad proof of the paper leak directly to authorities. Four days later, the evidence prompted India's National Testing Agency to act decisively, handing the entire matter to the Central Bureau of Investigation. This swift response led to the arrest of thirteen individuals, including a trainer linked to the scandal. In a stand for justice, the compromised exam was annulled to protect fairness, and a new date was set for June 21 to ensure students receive a proper chance.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "how-4"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.9
+        },
+        {
+          "id": "p2",
+          "text": "A righteous whistleblower's tip exposed a plot that tainted a national medical entrance exam. The National Testing Agency, embracing its duty, immediately transferred the case to the Central Bureau of Investigation. The investigators moved like a sword of justice, arresting thirteen suspects for compromising the examination's integrity. To restore the sacred arena of merit, the flawed test was canceled, and a new chance was scheduled for June 21, 2026.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p3",
+          "text": "The battle for exam integrity began with a whistleblower's decisive action, sending proof of the leak. This triggered a chain of accountability: the NTA referred the case, the CBI launched arrests, and the compromised NEET-UG was annulled. With the culprits apprehended, the stage is set for a fair re-test on June 21, giving candidates their second chance at a just outcome.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "how-4"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.8
+        }
+      ],
+      "text": "After the NEET-UG exam on May 3, 2026, a courageous whistleblower delivered ironclad proof of the paper leak directly to authorities. Four days later, the evidence prompted India's National Testing Agency to act decisively, handing the entire matter to the Central Bureau of Investigation. This swift response led to the arrest of thirteen individuals, including a trainer linked to the scandal. In a stand for justice, the compromised exam was annulled to protect fairness, and a new date was set for June 21 to ensure students receive a proper chance.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Caregiver",
+      "persona_name": "The-Caregiver",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "A courageous whistleblower's disclosure shattered the trust of hundreds of thousands of vulnerable students. The whistleblower sent a PDF file that served as ironclad evidence of unfairness, matching the chemistry and biology sections of the NEET-UG 2026 exam. This betrayal by those in positions of authority forced a difficult decision: the entire exam was cancelled to protect fairness. While a remedial measure now offers victims a second chance via a rescheduled test on June 21st, the emotional and reputational injury to young aspirants and their families is profound, highlighting the need for systemic repair.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "why-0",
+              "result-0",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The arrest of the alleged cheating ring, including a trainer, marks a moment where justice was served for the harmed students and families across India. Following an exam leak confirmed by a PDF from an informant, authorities moved swiftly. The accused, who betrayed the trust placed in them, now face the consequences. This action aims to restore order after the massive breach of fairness that jeopardized countless medical careers, emphasizing the duty to shelter the aspirations of the vulnerable from exploitation.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "how-3",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p3",
+          "text": "The scandal's fallout centers on the harmed star: the student. The cancellation of the NEET-UG exam and the subsequent investigation into the 26-27 professionals under scrutiny were necessary to protect this vulnerable group. The authorities' focus on remedying the breach reflects a communal need for repair, ensuring that the dreams of a generation are not derailed by the actions of those who sold out the future for profit.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "result-0",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.8
+        }
+      ],
+      "text": "A courageous whistleblower's disclosure shattered the trust of hundreds of thousands of vulnerable students. The whistleblower sent a PDF file that served as ironclad evidence of unfairness, matching the chemistry and biology sections of the NEET-UG 2026 exam. This betrayal by those in positions of authority forced a difficult decision: the entire exam was cancelled to protect fairness. While a remedial measure now offers victims a second chance via a rescheduled test on June 21st, the emotional and reputational injury to young aspirants and their families is profound, highlighting the need for systemic repair.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Explorer",
+      "persona_name": "The-Explorer",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "After the medical entrance exam on May 3, 2026, an alert explorer sent the National Testing Agency a PDF file that matched the chemistry paper exactly, charting a new path of digital evidence. This frontier discovery prompted the NTA to hand over 26-27 test developers and translators to the Central Bureau of Investigation, initiating a boundary-transfer action. Subsequent investigations led to the arrest of thirteen individuals, including a trainer, effectively tracking and constraining those who had crossed the line, while the cancelled NEET-UG exam opened a reset opportunity for the system.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The NTA, acting as a boundary guardian, moved swiftly after receiving the tip-off. By June 21, 2026, a new journey begins for candidates with the rescheduled exam, following the system's disruption. The investigation, led by the CBI, resulted in thirteen rule-breakers being arrested, a clear constraint on those who trespassed. The entire episode, from the initial report to the arrests, underscores a broader reset in how educational frontiers are policed and explored.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p3",
+          "text": "An information boundary was crossed when a PDF file leaked, revealing the exam's vulnerabilities. This act of trespass led the NTA to initiate a formal handover to the CBI, an internal review body, and resulted in the arrest of multiple suspects. The subsequent cancellation of the 2026 NEET-UG exam and the scheduling of a retest represent an attempt to repair the rules and navigate a new path forward, though the system's fault lines remain exposed.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.72
+        }
+      ],
+      "text": "After the medical entrance exam on May 3, 2026, an alert explorer sent the National Testing Agency a PDF file that matched the chemistry paper exactly, charting a new path of digital evidence. This frontier discovery prompted the NTA to hand over 26-27 test developers and translators to the Central Bureau of Investigation, initiating a boundary-transfer action. Subsequent investigations led to the arrest of thirteen individuals, including a trainer, effectively tracking and constraining those who had crossed the line, while the cancelled NEET-UG exam opened a reset opportunity for the system.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Lover",
+      "persona_name": "The-Lover",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The sacred NEET-UG medical entrance exam on May 3rd was quickly followed by a devastating betrayal. Four days later, a loyal whistleblower's email shattered the illusion, with attached files that matched the chemistry paper, exposing a profound violation of trust. This act of betrayal by a secret keeper prompted the responsible regulator, the National Testing Agency, to sever ties and hand over the implicated educators to the stern investigators of the CBI, marking the beginning of a painful reckoning for the nation.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.75
+        },
+        {
+          "id": "p2",
+          "text": "The investigation into the broken trust culminated in arrests, including that of a former advocate for student justice, now seen as a traitor who betrayed his role. The NEET-UG 2026 exam was canceled, a necessary sacrifice for purity, and the case was transferred to the CBI, the stern enforcer of justice. Amidst the heartbreak, a new date, June 21st, was set—a chance for redemption and to rebuild the shattered bond between students and the system.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-1",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.68
+        }
+      ],
+      "text": "The sacred NEET-UG medical entrance exam on May 3rd was quickly followed by a devastating betrayal. Four days later, a loyal whistleblower's email shattered the illusion, with attached files that matched the chemistry paper, exposing a profound violation of trust. This act of betrayal by a secret keeper prompted the responsible regulator, the National Testing Agency, to sever ties and hand over the implicated educators to the stern investigators of the CBI, marking the beginning of a painful reckoning for the nation.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Creator",
+      "persona_name": "The-Creator",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The NEET-UG 2026 exam, intended as a standardized medical entrance test, was revealed as a compromised artifact. A key piece of evidence—a leaked PDF—was submitted to the content managers at the National Testing Agency, demonstrating a high degree of match with the official chemistry and biology papers. This exposure forced the agency to scrap the flawed creation and initiate an accountability process, transferring responsibility for the creation chain, including 26-27 test developers and translators, to the investigative authorities.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "Following the cancellation of the compromised 2026 medical entrance exam, the investigation shifted to dismantling the fabrication network responsible. The National Testing Agency handed over the content creators from the test-making process to the Central Bureau of Investigation. This action led to the arrest of thirteen individuals, including a former advocate, effectively dismantling the group suspected of forging the leaked exam materials.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "result-0",
+              "how-2",
+              "how-3",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.82
+        },
+        {
+          "id": "p3",
+          "text": "With the defective national exam discarded and the responsible fabrication network under investigation, the focus turned to creating a new, untainted assessment. The authorities, having arrested the suspects and launched formal inquiries, have scheduled a redesigned exam for June 21, 2026. This marks the beginning of a new creative process to replace the compromised work and restore the integrity of the selection mechanism.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "result-2",
+              "how-4",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.78
+        }
+      ],
+      "text": "The NEET-UG 2026 exam, intended as a standardized medical entrance test, was revealed as a compromised artifact. A key piece of evidence—a leaked PDF—was submitted to the content managers at the National Testing Agency, demonstrating a high degree of match with the official chemistry and biology papers. This exposure forced the agency to scrap the flawed creation and initiate an accountability process, transferring responsibility for the creation chain, including 26-27 test developers and translators, to the investigative authorities.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Ruler",
+      "persona_name": "The-Ruler",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "The NEET-UG medical entrance exam descended into chaos as the system was compromised by rule-breakers, forcing authorities to confront a systemic failure. To restore order, the national testing agency acted decisively, transferring the case to central investigators who swiftly moved to contain the scandal. This led to the arrest of thirteen individuals, including a former advocate of student justice, marking a clear attempt to reassert control over the compromised examination process.",
+          "source": {
+            "agent_id": "The-Ruler",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-2"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The discovery of leaked exam materials revealed a profound breach of institutional integrity. In response, the examination authority and central law enforcement intervened as instruments of restoration, their actions aimed at clearing the sources of disorder. The cancellation of the tainted exam and the scheduling of a new one represent a deliberate reestablishment of a stable, orderly system for candidates across the nation.",
+          "source": {
+            "agent_id": "The-Ruler",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "how-4",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.8
+        }
+      ],
+      "text": "The NEET-UG medical entrance exam descended into chaos as the system was compromised by rule-breakers, forcing authorities to confront a systemic failure. To restore order, the national testing agency acted decisively, transferring the case to central investigators who swiftly moved to contain the scandal. This led to the arrest of thirteen individuals, including a former advocate of student justice, marking a clear attempt to reassert control over the compromised examination process.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Jester",
+      "persona_name": "The-Jester",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "In a scene that reads like a bureaucratic farce, a major medical exam in India descended into chaos after an informant's email bomb—containing a PDF that perfectly matched the chemistry paper—exploded in the inbox of the national exam gatekeepers. The gatekeepers, in a dramatic pivot, swiftly transferred the case to the central investigation machine, leading to a mass arrest of thirteen individuals, including one advocate who had ironically preached justice in a prior scandal. The whole affair culminated in the exam being declared invalid, with a remedial retake scheduled to salvage what remained of the circus.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p2",
+          "text": "What began as a routine national medical exam quickly spiraled into a viral scandal when a PDF matching the test material landed in the hands of the exam authorities, forcing them to pass the buck to the central investigation elite. The ensuing 'justice arrest operation' netted a baker's dozen of scandal participants, turning the solemn process of academic assessment into a meme-speed spectacle. The inevitable conclusion was the exam's cancellation, branded a farcical ending, and the announcement of a new date, promising a sequel to the absurdity.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-3"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        }
+      ],
+      "text": "In a scene that reads like a bureaucratic farce, a major medical exam in India descended into chaos after an informant's email bomb—containing a PDF that perfectly matched the chemistry paper—exploded in the inbox of the national exam gatekeepers. The gatekeepers, in a dramatic pivot, swiftly transferred the case to the central investigation machine, leading to a mass arrest of thirteen individuals, including one advocate who had ironically preached justice in a prior scandal. The whole affair culminated in the exam being declared invalid, with a remedial retake scheduled to salvage what remained of the circus.",
+      "warnings": []
+    }
+  ],
+  "errors": [
+    {
+      "agent_id": "The-Outlaw",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Magician",
+      "message": "screenwriter parse_error: Expecting ',' delimiter: line 21 column 97 (char 1624)"
+    },
+    {
+      "agent_id": "The-Sage",
+      "message": "alt_creator parse_error: element who-4: missing valence bucket(s) ['positive']"
+    }
+  ]
+}

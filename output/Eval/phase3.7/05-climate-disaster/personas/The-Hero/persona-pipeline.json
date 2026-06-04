@@ -1,0 +1,392 @@
+{
+  "persona_id": "The-Hero",
+  "overlay": {
+    "persona_id": "The-Hero",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Syria's president",
+          "alternatives": [
+            {
+              "term": "the nation's leader surveying the devastation",
+              "valence": "positive"
+            },
+            {
+              "term": "the country's head of state",
+              "valence": "neutral"
+            },
+            {
+              "term": "the distant commander-in-chief",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "several children",
+          "alternatives": [
+            {
+              "term": "the innocent victims of the floodwaters",
+              "valence": "positive"
+            },
+            {
+              "term": "the young residents of the affected area",
+              "valence": "neutral"
+            },
+            {
+              "term": "the helpless casualties of the disaster",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the navy",
+          "alternatives": [
+            {
+              "term": "the brave rescue crews who launched boats into the flood",
+              "valence": "positive"
+            },
+            {
+              "term": "the naval forces deployed for evacuation",
+              "valence": "neutral"
+            },
+            {
+              "term": "the military units finally mobilized",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Turkey",
+          "alternatives": [
+            {
+              "term": "the upstream nation that agreed to reduce releases",
+              "valence": "positive"
+            },
+            {
+              "term": "Turkey, the country controlling the dam flows",
+              "valence": "neutral"
+            },
+            {
+              "term": "the power whose dam operations contributed to the surge",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "one of the heaviest rainy seasons in three decades",
+          "alternatives": [
+            {
+              "term": "a historic deluge that tested the region's defenses",
+              "valence": "positive"
+            },
+            {
+              "term": "an exceptionally heavy rainy season",
+              "valence": "neutral"
+            },
+            {
+              "term": "a catastrophic rainfall pattern unseen for decades",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "a confluence of natural fury and human infrastructure failure",
+              "valence": "positive"
+            },
+            {
+              "term": "the combination of dam releases and rain overwhelmed the barriers",
+              "valence": "neutral"
+            },
+            {
+              "term": "the failure of flood defenses against managed and natural water flows",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "water reserves reached critical, near-total capacity",
+              "valence": "positive"
+            },
+            {
+              "term": "reservoirs were over 97% full",
+              "valence": "neutral"
+            },
+            {
+              "term": "the system was pushed to the brink of failure",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "the engineered and natural forces combined to breach the defenses",
+              "valence": "positive"
+            },
+            {
+              "term": "dam releases and rain caused the river to overtop its banks",
+              "valence": "neutral"
+            },
+            {
+              "term": "controlled releases and weather patterns overwhelmed the embankments",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Surging flows on the Euphrates flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "the unleashed river inundated communities and livelihoods",
+              "valence": "positive"
+            },
+            {
+              "term": "the swollen Euphrates flooded residential and agricultural areas",
+              "valence": "neutral"
+            },
+            {
+              "term": "the torrent destroyed homes, crops, and schools in its path",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "An earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "a vital earthen crossing gave way under the assault",
+              "valence": "positive"
+            },
+            {
+              "term": "an earthen bridge failed",
+              "valence": "neutral"
+            },
+            {
+              "term": "a key piece of infrastructure was washed away",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "The navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "rescue teams launched boats into the floodwaters to save lives",
+              "valence": "positive"
+            },
+            {
+              "term": "naval assets were deployed for evacuation operations",
+              "valence": "neutral"
+            },
+            {
+              "term": "boats were finally sent in after the flooding began",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-5",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "diplomatic pressure secured a reduction in upstream dam flows",
+              "valence": "positive"
+            },
+            {
+              "term": "Turkey committed to decreasing water releases from upstream",
+              "valence": "neutral"
+            },
+            {
+              "term": "the upstream power was compelled to ease its operations",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Several children drowned",
+          "alternatives": [
+            {
+              "term": "young lives were tragically lost to the floodwaters",
+              "valence": "positive"
+            },
+            {
+              "term": "several children died in the flooding",
+              "valence": "neutral"
+            },
+            {
+              "term": "the flood claimed the lives of innocent children",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "a critical bridge succumbed to the flood's power",
+              "valence": "positive"
+            },
+            {
+              "term": "the earthen bridge collapsed",
+              "valence": "neutral"
+            },
+            {
+              "term": "infrastructure failure cut off communities",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "the navy's boat deployment began the rescue mission",
+              "valence": "positive"
+            },
+            {
+              "term": "boats were used for evacuations",
+              "valence": "neutral"
+            },
+            {
+              "term": "the delayed evacuation effort finally commenced",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "a diplomatic victory secured reduced upstream flows",
+              "valence": "positive"
+            },
+            {
+              "term": "Turkey agreed to lower water releases",
+              "valence": "neutral"
+            },
+            {
+              "term": "a concession was extracted under duress",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-4",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "reservoirs reached a perilous full capacity",
+              "valence": "positive"
+            },
+            {
+              "term": "the reservoirs were over 97% full",
+              "valence": "neutral"
+            },
+            {
+              "term": "the water storage system was dangerously overloaded",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-5",
+          "original_term": "Syria's president visited flood zones",
+          "alternatives": [
+            {
+              "term": "the president toured the disaster areas to show solidarity",
+              "valence": "positive"
+            },
+            {
+              "term": "the president visited the flooded regions",
+              "valence": "neutral"
+            },
+            {
+              "term": "the leader made a post-disaster appearance in the zones",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "When a historic deluge tested the region's defenses, the unleashed river inundated communities across Deir Ezzor and Raqqa. Brave rescue crews launched boats into the floodwaters to save lives, while the nation's leader surveyed the devastation to show solidarity. This courageous response offered a glimmer of hope amidst the tragedy, even as the flood claimed the lives of innocent children.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0",
+          "result-5"
+        ]
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.88
+    },
+    {
+      "id": "p2",
+      "text": "A confluence of natural fury and human infrastructure failure overwhelmed the Euphrates. The system was pushed to the brink of failure as water reserves reached critical, near-total capacity. In the ensuing disaster, young lives were tragically lost, and a vital earthen crossing gave way under the assault, isolating communities until diplomatic pressure secured a reduction in upstream dam flows.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-1",
+          "how-0",
+          "result-0",
+          "result-1",
+          "result-3"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "Following a catastrophic rainfall pattern unseen for decades, controlled releases and weather patterns overwhelmed the embankments. The navy's boat deployment began the rescue mission in the wake of the torrent that destroyed homes, crops, and schools in its path. A diplomatic victory later secured reduced upstream flows, offering a path to recovery.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-2",
+          "result-3"
+        ]
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.82
+    }
+  ],
+  "warnings": []
+}

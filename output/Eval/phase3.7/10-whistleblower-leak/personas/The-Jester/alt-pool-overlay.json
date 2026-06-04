@@ -1,0 +1,313 @@
+{
+  "persona_id": "The-Jester",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "举报人",
+        "alternatives": [
+          {
+            "term": "正义吹哨人",
+            "valence": "positive"
+          },
+          {
+            "term": "信息提供者",
+            "valence": "neutral"
+          },
+          {
+            "term": "泄密者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "印度国家考试机构 (NTA)",
+        "alternatives": [
+          {
+            "term": "国家考试守门人",
+            "valence": "positive"
+          },
+          {
+            "term": "考试管理机构",
+            "valence": "neutral"
+          },
+          {
+            "term": "闹剧制造者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "中央调查局 (CBI)",
+        "alternatives": [
+          {
+            "term": "中央调查精英",
+            "valence": "positive"
+          },
+          {
+            "term": "中央执法机构",
+            "valence": "neutral"
+          },
+          {
+            "term": "中央调查机器",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "26-27 名试卷制定者和翻译人员",
+        "alternatives": [
+          {
+            "term": "教育工作者",
+            "valence": "positive"
+          },
+          {
+            "term": "试卷相关人员",
+            "valence": "neutral"
+          },
+          {
+            "term": "泄题嫌疑人",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-4",
+        "original_term": "十三名被逮捕人员（包括一名培训人士）",
+        "alternatives": [
+          {
+            "term": "正义倡导者",
+            "valence": "positive"
+          },
+          {
+            "term": "被捕人员",
+            "valence": "neutral"
+          },
+          {
+            "term": "丑闻参与者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "印度",
+        "alternatives": [
+          {
+            "term": "教育大国",
+            "valence": "positive"
+          },
+          {
+            "term": "南亚国家",
+            "valence": "neutral"
+          },
+          {
+            "term": "丑闻之地",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "where-1",
+        "original_term": "西卡尔",
+        "alternatives": [
+          {
+            "term": "举报源头",
+            "valence": "positive"
+          },
+          {
+            "term": "举报发起城市",
+            "valence": "neutral"
+          },
+          {
+            "term": "丑闻起点",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "举报人发送的 PDF 文件与 NEET-UG 2026 化学试卷完全匹配，与生物试卷部分匹配",
+        "alternatives": [
+          {
+            "term": "吹哨人揭露完美匹配",
+            "valence": "positive"
+          },
+          {
+            "term": "PDF文件与试卷内容一致",
+            "valence": "neutral"
+          },
+          {
+            "term": "泄题证据确凿",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "2026年5月3日，NEET-UG 医学入学考试进行",
+        "alternatives": [
+          {
+            "term": "全国医学考试启幕",
+            "valence": "positive"
+          },
+          {
+            "term": "考试按计划举行",
+            "valence": "neutral"
+          },
+          {
+            "term": "闹剧的序幕",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "四天后，印度国家考试机构收到举报人邮件，附有匹配试卷的 PDF 文件",
+        "alternatives": [
+          {
+            "term": "举报人迅速行动",
+            "valence": "positive"
+          },
+          {
+            "term": "机构收到举报邮件及附件",
+            "valence": "neutral"
+          },
+          {
+            "term": "邮件炸弹引爆丑闻",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "NTA 将 26-27 名试卷制定者和翻译人员移交中央调查局",
+        "alternatives": [
+          {
+            "term": "机构果断移交调查",
+            "valence": "positive"
+          },
+          {
+            "term": "NTA向CBI移交相关人员",
+            "valence": "neutral"
+          },
+          {
+            "term": "机构甩锅调查局",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "original_term": "十三人被逮捕，包括一名培训人士",
+        "alternatives": [
+          {
+            "term": "正义逮捕行动",
+            "valence": "positive"
+          },
+          {
+            "term": "十三人被拘捕",
+            "valence": "neutral"
+          },
+          {
+            "term": "大规模逮捕闹剧",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "original_term": "重新考试定于2026年6月21日",
+        "alternatives": [
+          {
+            "term": "补救性重考",
+            "valence": "positive"
+          },
+          {
+            "term": "新考试日期确定",
+            "valence": "neutral"
+          },
+          {
+            "term": "重考闹剧延期",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "NEET-UG 2026 被取消",
+        "alternatives": [
+          {
+            "term": "考试作废纠错",
+            "valence": "positive"
+          },
+          {
+            "term": "考试被宣布无效",
+            "valence": "neutral"
+          },
+          {
+            "term": "考试闹剧收场",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "相关人员被移交 CBI",
+        "alternatives": [
+          {
+            "term": "调查深入中央",
+            "valence": "positive"
+          },
+          {
+            "term": "案件移交中央机构",
+            "valence": "neutral"
+          },
+          {
+            "term": "责任推给调查局",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "original_term": "十三人被逮捕",
+        "alternatives": [
+          {
+            "term": "正义执法",
+            "valence": "positive"
+          },
+          {
+            "term": "逮捕行动完成",
+            "valence": "neutral"
+          },
+          {
+            "term": "逮捕狂欢",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-3",
+        "original_term": "重新考试安排在2026年6月21日",
+        "alternatives": [
+          {
+            "term": "公正补救",
+            "valence": "positive"
+          },
+          {
+            "term": "考试重置",
+            "valence": "neutral"
+          },
+          {
+            "term": "闹剧续集",
+            "valence": "negative"
+          }
+        ]
+      }
+    ]
+  }
+}

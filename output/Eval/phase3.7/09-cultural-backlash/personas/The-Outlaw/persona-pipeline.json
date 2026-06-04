@@ -1,0 +1,241 @@
+{
+  "persona_id": "The-Outlaw",
+  "overlay": {
+    "persona_id": "The-Outlaw",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Christopher Nolan",
+          "alternatives": [
+            {
+              "term": "the visionary director",
+              "valence": "positive"
+            },
+            {
+              "term": "the filmmaker",
+              "valence": "neutral"
+            },
+            {
+              "term": "the establishment figurehead",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Lupita Nyong'o",
+          "alternatives": [
+            {
+              "term": "the groundbreaking actress",
+              "valence": "positive"
+            },
+            {
+              "term": "the cast actor",
+              "valence": "neutral"
+            },
+            {
+              "term": "the lightning rod for controversy",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "prominent commentators",
+          "alternatives": [
+            {
+              "term": "cultural critics",
+              "valence": "positive"
+            },
+            {
+              "term": "media voices",
+              "valence": "neutral"
+            },
+            {
+              "term": "outrage merchants",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "defenders",
+          "alternatives": [
+            {
+              "term": "champions of progress",
+              "valence": "positive"
+            },
+            {
+              "term": "supporters",
+              "valence": "neutral"
+            },
+            {
+              "term": "apologists for the status quo",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "在线争议空间",
+          "alternatives": [
+            {
+              "term": "the digital public square",
+              "valence": "positive"
+            },
+            {
+              "term": "the online arena",
+              "valence": "neutral"
+            },
+            {
+              "term": "the outrage machine",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "演员选角引发对欧洲历史被抹去的指控",
+          "alternatives": [
+            {
+              "term": "a challenge to historical narratives",
+              "valence": "positive"
+            },
+            {
+              "term": "the casting decision",
+              "valence": "neutral"
+            },
+            {
+              "term": "an act of cultural erasure",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "辩护者认为多样选角将西方经典视为共享文明遗产",
+          "alternatives": [
+            {
+              "term": "a vision of a shared cultural legacy",
+              "valence": "positive"
+            },
+            {
+              "term": "an argument about representation",
+              "valence": "neutral"
+            },
+            {
+              "term": "the defense of a diluted tradition",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "克里斯托弗·诺兰的《奥德赛》改编电影计划",
+          "alternatives": [
+            {
+              "term": "a bold reimagining",
+              "valence": "positive"
+            },
+            {
+              "term": "the planned adaptation",
+              "valence": "neutral"
+            },
+            {
+              "term": "a high-budget appropriation",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "卢皮塔·尼永奥被选为特洛伊的海伦和克吕泰涅斯特拉",
+          "alternatives": [
+            {
+              "term": "a groundbreaking casting choice",
+              "valence": "positive"
+            },
+            {
+              "term": "the actress's role assignment",
+              "valence": "neutral"
+            },
+            {
+              "term": "a provocative, race-swapped casting",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "引发激烈在线攻击和文化战争争论",
+          "alternatives": [
+            {
+              "term": "sparked a necessary cultural debate",
+              "valence": "positive"
+            },
+            {
+              "term": "led to online conflict",
+              "valence": "neutral"
+            },
+            {
+              "term": "unleashed a torrent of online abuse",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "争议将神话史诗转变为关于身份、归属和古典故事在大众电影中主张的文化热点",
+          "alternatives": [
+            {
+              "term": "elevated the story into a conversation about identity",
+              "valence": "positive"
+            },
+            {
+              "term": "made the adaptation a cultural flashpoint",
+              "valence": "neutral"
+            },
+            {
+              "term": "reduced an epic to a cynical identity battleground",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "The establishment figurehead’s high-budget appropriation of The Odyssey, featuring a provocative, race-swapped casting for its iconic roles, has unleashed a torrent of online abuse from outrage merchants. The lightning rod for controversy, Lupita Nyong'o, finds herself at the center of a manufactured cultural war, reducing the epic to a cynical identity battleground where defenders argue for a shared legacy while the outrage machine churns.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p2",
+      "text": "What began as a bold reimagining by the visionary director has been co-opted by the outrage machine. The groundbreaking casting choice, intended to spark a necessary cultural debate, instead became fodder for cultural critics and apologists for the status quo, who frame the decision as an act of cultural erasure and successfully derail the conversation.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.65
+    }
+  ],
+  "warnings": []
+}

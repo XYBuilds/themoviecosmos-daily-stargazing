@@ -1,0 +1,190 @@
+{
+  "persona_id": "The-Ruler",
+  "overlay": {
+    "persona_id": "The-Ruler",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "欧盟委员会",
+          "alternatives": [
+            {
+              "term": "秩序的守护者",
+              "valence": "positive"
+            },
+            {
+              "term": "布鲁塞尔监管机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "官僚机器",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "谷歌（字母表公司）",
+          "alternatives": [
+            {
+              "term": "受监管的实体",
+              "valence": "neutral"
+            },
+            {
+              "term": "市场秩序的破坏者",
+              "valence": "negative"
+            },
+            {
+              "term": "寻求补救的公司",
+              "valence": "positive"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "因在搜索结果中优先展示自家购物、航班和酒店服务，而非竞争对手的比较服务",
+          "alternatives": [
+            {
+              "term": "利用平台优势扭曲竞争",
+              "valence": "negative"
+            },
+            {
+              "term": "在搜索结果中进行自我偏好",
+              "valence": "neutral"
+            },
+            {
+              "term": "试图整合自家服务以提升用户体验",
+              "valence": "positive"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "根据数字市场法启动程序",
+          "alternatives": [
+            {
+              "term": "行使法定监管权",
+              "valence": "positive"
+            },
+            {
+              "term": "启动法律程序",
+              "valence": "neutral"
+            },
+            {
+              "term": "启动繁琐的官僚程序",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "欧盟委员会在两年多的程序后拒绝了公司的补救提案",
+          "alternatives": [
+            {
+              "term": "坚守监管底线",
+              "valence": "positive"
+            },
+            {
+              "term": "驳回了公司的提议",
+              "valence": "neutral"
+            },
+            {
+              "term": "拒绝了和解尝试",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "预计在委员会八月休会前做出正式决定",
+          "alternatives": [
+            {
+              "term": "即将恢复市场秩序",
+              "valence": "positive"
+            },
+            {
+              "term": "计划在休会前发布裁决",
+              "valence": "neutral"
+            },
+            {
+              "term": "仓促做出决定",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "欧盟监管机构正在敲定一项可能达到数亿欧元的罚款",
+          "alternatives": [
+            {
+              "term": "对违规者的严厉惩戒",
+              "valence": "negative"
+            },
+            {
+              "term": "一项潜在的巨额罚款",
+              "valence": "neutral"
+            },
+            {
+              "term": "威慑未来违规的必要措施",
+              "valence": "positive"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "这是针对字母表公司十多年来积累的竞争罚款之上",
+          "alternatives": [
+            {
+              "term": "对其长期市场失序的累积惩罚",
+              "valence": "negative"
+            },
+            {
+              "term": "在既有罚款基础上的新增处罚",
+              "valence": "neutral"
+            },
+            {
+              "term": "最终纠正其历史违规行为",
+              "valence": "positive"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "The Brussels regulator, acting as the guardian of order, has spent more than two years exercising its statutory authority to investigate a market disorder. After rejecting the company's attempts at remediation, it is now finalizing a severe financial punishment to correct the long-standing distortion of competition caused by the firm's self-preferencing in search results. This decisive action by the institutional steward represents the necessary containment of a rule-breaking actor before the August recess.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.88
+    },
+    {
+      "id": "p2",
+      "text": "The bureaucratic machine is moving to restore control after a two-year investigation into the tech giant's anti-competitive behavior. It has firmly rejected the company's proposed settlement, aiming to issue a ruling that will impose a cumulative penalty on the long-term violator. This imminent decision underscores the institution's commitment to binding a disruptive entity back under legitimate market rules.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.82
+    }
+  ],
+  "warnings": []
+}

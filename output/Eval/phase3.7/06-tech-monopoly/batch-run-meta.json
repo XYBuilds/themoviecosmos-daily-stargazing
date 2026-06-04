@@ -1,0 +1,27 @@
+{
+  "run_id": "06-tech-monopoly",
+  "split": "holdout",
+  "persona_count": 9,
+  "errors": [
+    {
+      "agent_id": "The-Everyman",
+      "message": "alt_creator parse_error: Expecting ':' delimiter: line 19 column 17 (char 522)"
+    },
+    {
+      "agent_id": "The-Hero",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Jester",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    }
+  ],
+  "retrieve_meta": {
+    "query_count": 22,
+    "raw_hit_count": 44,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  },
+  "finished_at": "2026-06-04T19:03:53.087503+00:00"
+}
