@@ -16,10 +16,10 @@ todos:
     status: completed
   - id: f36b1c2d-0001-4000-8036-000000000005
     content: 3.6.5 · 重跑 The Bet（N=10，3.6 管线）→ 总编填分 → GATE_RESULT [需人工验收]（依赖 3.6.1–3.6.4）
-    status: pending
+    status: completed
   - id: f36b1c2d-0001-4000-8036-000000000006
     content: 3.6.6 · 改 SSOT：ADR-0003 待改清单同步 PRD/CONTEXT/eval-the-bet（仅 GATE go；no-go 跳过）（依赖 3.6.5）
-    status: pending
+    status: cancelled
 isProject: true
 ---
 
@@ -238,10 +238,10 @@ python scripts/summarize_eval.py --dir output/Eval/phase3.6
 
 ### 验收
 
-- [ ] 10 份评测产出位于 `output/Eval/phase3.6/{run_id}/`（含 `retrieve.json` 的 `quality_candidate`）；**`output/Eval/phase3.5/` 内 10 个 run 与 `phase3.5/GATE_RESULT.md` 未被改写**
-- [ ] 书面 GATE 结论写入 `output/Eval/phase3.6/GATE_RESULT.md`（go / no-go（发布））
-- [ ] **GATE_FAIL** → 回 3.6.1/3.6.2 调 prompt 或 `--quality-floor`；**不解封** Phase 4
-- [ ] **GATE_PASS（发布）** → 可启动 3.6.6；仍 **不解封** Phase 4（除非产品另定发布线）
+- [x] 10 份评测产出位于 `output/Eval/phase3.6/{run_id}/`（含 `retrieve.json` 的 `quality_candidate`）；**`output/Eval/phase3.5/` 内 10 个 run 与 `phase3.5/GATE_RESULT.md` 未被改写**
+- [x] 书面 GATE 结论写入 `output/Eval/phase3.6/GATE_RESULT.md`（**no-go · GATE_FAIL（发布）**）
+- [x] **GATE_FAIL** → 回 3.6.1/3.6.2 调参或后续关联性/原型子阶段；**不解封** Phase 4
+- [ ] **GATE_PASS（发布）** → 可启动 3.6.6（本轮未达成）
 
 ---
 
@@ -258,16 +258,16 @@ python scripts/summarize_eval.py --dir output/Eval/phase3.6
 
 ### 验收
 
-- [ ] PRD / eval-the-bet / CONTEXT 与代码、`summarize_eval` 输出一致
-- [ ] ADR-0003 `Status` 可升为 `accepted`（若用户确认）
+- [ ] PRD / eval-the-bet / CONTEXT 与代码、`summarize_eval` 输出一致 — **cancelled（3.6.5 no-go）**
+- [ ] ADR-0003 `Status` 可升为 `accepted`（若用户确认） — **cancelled**
 
 ---
 
 ## Phase 3.6 整体验收
 
-- [ ] 3.6.1–3.6.4 端到端可跑（deconstruct → agents → retrieve → run_eval → summarize_eval）
-- [ ] N=10 重跑 + 总编填分 + 书面 GATE（3.6.5）
-- [ ] GATE go 时完成 3.6.6 SSOT；no-go 时 3.6.6 显式跳过并记录于 `output/Eval/phase3.6/GATE_RESULT.md`
+- [x] 3.6.1–3.6.4 端到端可跑（deconstruct → agents → retrieve → run_eval → summarize_eval）
+- [x] N=10 重跑 + 总编填分 + 书面 GATE（3.6.5 · **no-go**）
+- [x] 3.6.6 **cancelled**（用户指令 · 2026-06-04）；记录于 `output/Eval/phase3.6/GATE_RESULT.md`
 
 ## 交给下一 Phase
 
