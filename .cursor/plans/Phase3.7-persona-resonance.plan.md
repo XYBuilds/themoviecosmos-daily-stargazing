@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: f37b1c2d-0001-4000-8037-000000000001
     content: 3.7.1 · ADR-0004 决策定稿 + 12 原型清单（名称/情绪/价值倾向）+ 留出集切分 + rubric 去"讽刺" [需人工验收]
-    status: pending
+    status: in_progress
   - id: f37b1c2d-0001-4000-8037-000000000002
     content: 3.7.2 · 双步 persona 管线脚手架（alt-creator + screenwriter 契约、fit 字段、flavored-decon overlay）+ 单测
     status: pending
