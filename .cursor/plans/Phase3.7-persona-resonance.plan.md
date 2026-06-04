@@ -13,7 +13,7 @@ todos:
     status: completed
   - id: f37b1c2d-0001-4000-8037-000000000003
     content: 3.7.3 · The Ruler persona card + 04 单点 pilot（格式/steering/fit/无注入）→ Go/No-Go [需人工验收]
-    status: pending
+    status: in_progress
   - id: f37b1c2d-0001-4000-8037-000000000004
     content: 3.7.4 · 余下 11 原型 card + N=10 重跑（phase3.7 输出）+ 留出集打分 [需人工验收]
     status: pending

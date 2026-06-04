@@ -1,0 +1,305 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "THE-RULER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A rumor spreader profiting from disorder orchestrated a campaign of digital forgery, using AI-generated audio to level false claims that destabilized the celebrity's reputation. The fallout from this unmanaged chaos froze the actor's career, leading to a necessary pause in commercial and public life. Authorities moved decisively to contain the threat, and order was restored through legal intervention when Seoul police secured an arrest warrant.",
+          "source": {
+            "agent_id": "THE-RULER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 151913,
+              "title": "I Like Mountain Music",
+              "similarity": 0.5791230201721191,
+              "movie_url": "https://themoviecosmos.com/movie/151913"
+            },
+            {
+              "tmdb_id": 32690,
+              "title": "Scandal",
+              "similarity": 0.5882852077484131,
+              "movie_url": "https://themoviecosmos.com/movie/32690"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The state's enforcement arm acted to penalize the rule-breaker after a YouTuber with a substantial subscriber base allegedly spread false claims for financial gain. This disruption forced a temporary withdrawal from public duties for the targeted public figure, resulting in an ongoing hiatus from commercial and public life since early 2025. The disruptive actor now faces state-sanctioned repercussions as the system reasserts control.",
+          "source": {
+            "agent_id": "THE-RULER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1215020,
+              "title": "American Sweatshop",
+              "similarity": 0.5361632108688354,
+              "movie_url": "https://themoviecosmos.com/movie/1215020"
+            },
+            {
+              "tmdb_id": 337876,
+              "title": "Gabbar Is Back",
+              "similarity": 0.5532986521720886,
+              "movie_url": "https://themoviecosmos.com/movie/337876"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Law enforcement obtained a warrant for arrest after a digital entrepreneur leveraged audience reach to profit from a destabilizing fabrication. The controversy led to paused professional engagements for the actor at the center of the scandal, illustrating the enduring cost of scandal on career stability when order is unmanaged. An arrest warrant was issued for the content creator, reaffirming institutional control.",
+          "source": {
+            "agent_id": "THE-RULER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 44137,
+              "title": "Blackmail",
+              "similarity": 0.5397462844848633,
+              "movie_url": "https://themoviecosmos.com/movie/44137"
+            },
+            {
+              "tmdb_id": 222085,
+              "title": "Long Arm of the Law",
+              "similarity": 0.5432295799255371,
+              "movie_url": "https://themoviecosmos.com/movie/222085"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 32690,
+      "title": "Scandal",
+      "overview": "A celebrity photograph sparks a court case as a tabloid magazine spins a scandalous yarn over a painter and a famous singer.",
+      "genres": "Drama",
+      "release_year": 1950,
+      "language": "ja",
+      "poster_path": "/3eGk1WDTJ9kWbaBQiyDSqbQa3oX.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/32690",
+      "similarity": 0.5882852077484131,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5882852077484131
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 151913,
+      "title": "I Like Mountain Music",
+      "overview": "After hours, individuals on various magazine covers in a drugstore come to life and sing, speak, or perform. Caricature celebrity depictions include George Arliss, Eddie Cantor, Sonja Henie, Benito Mussolini, Ignacy Paderewski, Edward G. Robinson, Will Rogers, and Ed Wynn. A robbery sequence features bad guys breaking into the cash register and Sherlock Holmes and Dr. Watson on the case. King Kong also makes an appearance. A Merrie Melody cartoon.",
+      "genres": "Animation, Comedy, Family, Music",
+      "release_year": 1933,
+      "language": "en",
+      "poster_path": "/pMFqGKPKfYuwGVF4UF1WnV7VEWb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/151913",
+      "similarity": 0.5791230201721191,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5791230201721191
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 337876,
+      "title": "Gabbar Is Back",
+      "overview": "A vigilante network taking out corrupt officials draws the notice of the authorities.",
+      "genres": "Drama, Action",
+      "release_year": 2015,
+      "language": "hi",
+      "poster_path": "/dhIVF43jCqVzxuo11hYcHQxjzS6.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/337876",
+      "similarity": 0.5532986521720886,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5532986521720886
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 222085,
+      "title": "Long Arm of the Law",
+      "overview": "The exploits of a policeman who literally has the long arm of the law.",
+      "genres": "Comedy",
+      "release_year": 1909,
+      "language": "fr",
+      "poster_path": "/aOGHY9aByeRkSTwQnMBbhczeinb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/222085",
+      "similarity": 0.5432295799255371,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5432295799255371
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 44137,
+      "title": "Blackmail",
+      "overview": "A private detective is offered a job protecting a rich business man from suspected blackmail. Before he can accept the case a murder is uncovered.",
+      "genres": "Action, Crime, Romance",
+      "release_year": 1947,
+      "language": "en",
+      "poster_path": "/nJDqK70QLd2zbr148jDlqkQ4jyV.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/44137",
+      "similarity": 0.5397462844848633,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5397462844848633
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1215020,
+      "title": "American Sweatshop",
+      "overview": "A content moderator is tasked with purging offensive media from the internet. When she witnesses a crime in a video, she is lured away from the safety of her keyboard as she obsessively seeks to hold someone accountable.",
+      "genres": "Thriller, Mystery",
+      "release_year": 2025,
+      "language": "en",
+      "poster_path": "/38OuhBN7yga2nJSP16VPSOJ2Mwz.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1215020",
+      "similarity": 0.5361632108688354,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5361632108688354
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 3,
+    "raw_hit_count": 6,
+    "candidate_count": 6,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}
