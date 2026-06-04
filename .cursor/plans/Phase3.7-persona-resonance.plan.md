@@ -13,7 +13,7 @@ todos:
     status: completed
   - id: f37b1c2d-0001-4000-8037-000000000003
     content: 3.7.3 · The Ruler persona card + 04 单点 pilot（格式/steering/fit/无注入）→ Go/No-Go [需人工验收]
-    status: in_progress
+    status: completed
   - id: f37b1c2d-0001-4000-8037-000000000004
     content: 3.7.4 · 余下 11 原型 card + N=10 重跑（phase3.7 输出）+ 留出集打分 [需人工验收]
     status: pending
@@ -204,8 +204,8 @@ flowchart LR
 
 ### 验收
 
-- [ ] 04 端到端产出 The-Ruler 的 alt-pool overlay + pseudos(+fit) + retrieve 候选
-- [ ] `[需人工验收]`：四项核查通过 → **Go**（进 3.7.4）；不过 → 回 3.7.2 修脚手架/契约
+- [x] 04 端到端产出 The-Ruler 的 alt-pool overlay + pseudos(+fit) + retrieve 候选
+- [x] `[需人工验收]`：四项核查通过 → **Go**（进 3.7.4）；不过 → 回 3.7.2 修脚手架/契约
 
 ---
 
@@ -272,7 +272,7 @@ flowchart LR
 
 - [x] 3.7.0 Go + 3.7.1 原型清单/留出集 approve（holdout 01–04 obs / 05–10；personas-12 SSOT）
 - [ ] 3.7.2 脚手架端到端可跑（decon → alt-creator → screenwriter → retrieve）
-- [ ] 3.7.3 04 pilot 四项核查通过
+- [x] 3.7.3 04 pilot 四项核查通过
 - [ ] 3.7.4 N=10 + 留出集打分
 - [ ] 3.7.5 书面 GATE（persona vs baseline、fit↔共振、闸门体量）
 - [ ] 3.7.6 仅 GATE go 执行
