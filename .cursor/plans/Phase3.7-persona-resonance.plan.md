@@ -3,8 +3,8 @@ name: Phase3.7-persona-resonance
 overview: 把"创作视角"从 An（注入式 A2/A4/A7）重构为"12 原型 = A1 的情绪化扩散"。A0 只拆解不产替代词（已就绪）→ per-persona alt-creator（按偏好自产正-中-负全谱、事实蕴含的替换词池）→ per-persona screenwriter（选 alternatives + 可重配语气 + fit 自评）。证据先行：先量 baseline 增量（Go/No-Go），单点 pilot（04 × The Ruler）通过再扩 12 原型；强迫生产 + fit 信号、不硬弃权；留出集纪律防过拟合。SSOT 改动仅 GATE go。
 todos:
   - id: f37b1c2d-0001-4000-8037-000000000000
-    content: 3.7.0 · baseline 增量统计（A1 中性 vs creative 现有 2 分增量）→ Go/No-Go 数字锚
-    status: pending
+    content: 3.7.0 · baseline 增量统计（A1 中性 vs creative 现有 2 分增量）→ Go/No-Go 数字锚 [No-Go · 暂停 3.7.1+]
+    status: completed
   - id: f37b1c2d-0001-4000-8037-000000000001
     content: 3.7.1 · ADR-0004 决策定稿 + 12 原型清单（名称/情绪/价值倾向）+ 留出集切分 + rubric 去"讽刺" [需人工验收]
     status: pending
@@ -134,8 +134,8 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python scripts/analyze_baseline_lift.py --dir output/Eval/phase3.6` 产出三桶统计
-- [ ] **Go/No-Go**：creative 有非零 2 分增量 → 继续 3.7.1；增量 ≈0 → 暂停并回报，重审"情绪 steering 是否值得"
+- [x] `python scripts/analyze_baseline_lift.py --dir output/Eval/phase3.6` 产出三桶统计
+- [x] **Go/No-Go**：**No-Go** — creative-only 2 分率 9.5% (4/42) vs baseline-only 37.5% (3/8)，lift **−28.0%**；暂停 3.7.1，见 `output/Eval/phase3.7/baseline-lift.md`
 
 ---
 
