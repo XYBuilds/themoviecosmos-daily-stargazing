@@ -25,6 +25,7 @@ from scripts.personas import (
     build_alt_pool_overlay,
     build_screenwriter_user_prompt,
     known_element_ids,
+    load_persona_card,
     overlay_forbids_decon_fork,
     parse_alt_pool_response,
     render_persona_prompt,
@@ -220,6 +221,13 @@ class PersonaScaffoldTests(unittest.TestCase):
         )
         self.assertIn('"element_id": "who-0"', prompt)
         self.assertNotIn("{{alt_pool_json}}", prompt)
+
+    def test_load_persona_card_ruler(self) -> None:
+        card = load_persona_card("The-Ruler")
+        self.assertIsNotNone(card)
+        assert card is not None
+        self.assertIn("秩序", card)
+        self.assertIn("负向捍卫秩序", card)
 
     def test_build_alt_pool_overlay_dataclass(self) -> None:
         overlay = AltPoolOverlay(
