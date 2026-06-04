@@ -162,6 +162,7 @@ class PseudoSegment:
     text: str
     source: dict[str, Any]
     warnings: list[str] = field(default_factory=list)
+    fit: float | None = None
 
 
 @dataclass
@@ -370,11 +371,24 @@ def extract_json_object(raw: str) -> dict[str, Any]:
     return data
 
 
+def _parse_fit_value(raw_fit: Any, *, pseudo_id: str) -> float | None:
+    if raw_fit is None:
+        return None
+    try:
+        fit = float(raw_fit)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"pseudo {pseudo_id}: fit must be a number") from exc
+    if fit < 0.0 or fit > 1.0:
+        raise ValueError(f"pseudo {pseudo_id}: fit must be in [0, 1], got {fit}")
+    return fit
+
+
 def parse_pseudos_response(
     raw: str,
     *,
     agent_id: str,
     known_fragments: set[str],
+    require_fit: bool = False,
 ) -> list[PseudoSegment]:
     """Parse LLM JSON into pseudo segments with validation."""
     data = extract_json_object(raw)
@@ -401,6 +415,10 @@ def parse_pseudos_response(
         text = str(row.get("text", "")).strip()
         if not text:
             raise ValueError(f"pseudo {pseudo_id} has empty text")
+
+        fit = _parse_fit_value(row.get("fit"), pseudo_id=pseudo_id)
+        if require_fit and fit is None:
+            raise ValueError(f"pseudo {pseudo_id}: fit is required")
 
         source = row.get("source")
         if not isinstance(source, dict):
@@ -435,6 +453,7 @@ def parse_pseudos_response(
                     "fragments": frag_ids,
                 },
                 warnings=warnings,
+                fit=fit,
             )
         )
 
@@ -743,12 +762,15 @@ def news_to_dict(news: NewsItem) -> dict[str, str]:
 
 
 def pseudo_to_dict(segment: PseudoSegment) -> dict[str, Any]:
-    return {
+    row: dict[str, Any] = {
         "id": segment.id,
         "text": segment.text,
         "source": segment.source,
         "warnings": segment.warnings,
     }
+    if segment.fit is not None:
+        row["fit"] = segment.fit
+    return row
 
 
 def agent_to_dict(output: AgentOutput) -> dict[str, Any]:
