@@ -1,4 +1,4 @@
-"""Shared N=10 eval batch manifest (Phase 3.6.5). Used by tests and documented in batch-manifest.json."""
+"""Shared N=10 eval batch manifest (Phase 3.6.5+). Used by tests and batch-manifest.json."""
 
 from __future__ import annotations
 

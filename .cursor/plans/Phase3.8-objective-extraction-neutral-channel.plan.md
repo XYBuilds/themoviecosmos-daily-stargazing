@@ -19,7 +19,7 @@ todos:
     status: completed
   - id: f38c1d3e-0001-4000-8038-000000000005
     content: 3.8.5 · 英文评测语料（英文新闻 fixtures + batch-manifest + A0→扩展→persona 跑通）
-    status: pending
+    status: completed
   - id: f38c1d3e-0001-4000-8038-000000000006
     content: 3.8.6 · 单点 pilot（1 条新闻 × 全链）+ 防火墙人工审计（hypernym vs lens 分层）[需人工验收 · Go/No-Go]
     status: pending
@@ -234,8 +234,8 @@ flowchart LR
 
 ### 验收
 
-- [ ] 评测集为英文；A0/扩展/persona 产物全英文
-- [ ] 至少 1 条端到端跑通（decon → 扩展 → 中性+toned pseudo → retrieve）
+- [x] 评测集为英文；A0/扩展/persona 产物全英文
+- [x] 至少 1 条端到端跑通（decon → 扩展 → 中性+toned pseudo → retrieve）
 
 ---
 
