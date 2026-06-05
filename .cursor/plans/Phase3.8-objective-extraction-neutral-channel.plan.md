@@ -28,7 +28,7 @@ todos:
     status: completed
   - id: f38c1d3e-0001-4000-8038-000000000062
     content: 3.8.6.2 · channel_assembly 锚点集鲁棒性 + 一次 repair/retry（剔除整句级 hypernym 出锚点集；assembly/parse 失败时携错误重问 1 次）+ 单测
-    status: pending
+    status: completed
   - id: f38c1d3e-0001-4000-8038-000000000063
     content: 3.8.6.3 · 重跑单点 pilot 验证全链合规率（目标 12/12 或定可接受下限）[需人工验收 · Go/No-Go]
     status: pending
@@ -297,9 +297,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python -m unittest`（personas/retrieve 相关）通过
-- [ ] 锚点集仅含短语级词；repair/retry 路径有覆盖
-- [ ] meta 记录重试次数与失败原因
+- [x] `python -m unittest`（personas/retrieve 相关）通过
+- [x] 锚点集仅含短语级词；repair/retry 路径有覆盖
+- [x] meta 记录重试次数与失败原因
 
 ---
 
