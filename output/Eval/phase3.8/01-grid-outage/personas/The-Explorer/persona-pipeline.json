@@ -1,0 +1,591 @@
+{
+  "persona_id": "The-Explorer",
+  "overlay": {
+    "persona_id": "The-Explorer",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "grid pioneers navigating uncharted demand",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "grid operator",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "power system controller",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power's Unit 2",
+          "alternatives": [
+            {
+              "term": "frontier power unit pushed to its limits",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "power plant unit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "failed generator adding to system fragility",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "decision-makers exploring crisis options",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "government officials",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "authorities imposing emergency controls",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Eleven generators",
+          "alternatives": [
+            {
+              "term": "independent power sources testing system resilience",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "power generators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "failing units straining the grid",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "critical 230-kilovolt transmission line",
+          "alternatives": [
+            {
+              "term": "vital artery connecting power regions",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "high-voltage transmission line",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "overloaded bottleneck threatening collapse",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Visayas",
+          "alternatives": [
+            {
+              "term": "frontier island grid facing new pressures",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "island group in the Philippines",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "power-constrained region under red alert",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "unexpected unit failure revealing system vulnerabilities",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "power unit trip event",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "prolonged outages exposing grid weaknesses",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "extended power plant downtime",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "extreme heat pushing demand to the edge",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "high demand reducing operating reserves",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "unit failure as a catalyst for grid stress",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "power unit disconnection",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "leaving more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "massive power shortfall challenging grid stability",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "significant generation capacity loss",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Eleven generators have failed since May began",
+          "alternatives": [
+            {
+              "term": "series of generator failures testing system limits",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "multiple generator outages",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "heatwave pushing grid into uncharted demand territory",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "high temperature increasing electricity consumption",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "Officials ordered emergency load shedding",
+          "alternatives": [
+            {
+              "term": "emergency measures to navigate the crisis",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "load shedding order",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "forced power cuts to prevent collapse",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "triggered a high-stakes grid alert",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "red alert declaration",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "imposed emergency power restrictions",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Rotational blackout risks rise",
+          "alternatives": [
+            {
+              "term": "rising blackout risks test grid resilience",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "increased risk of power interruptions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "looming threat of widespread blackouts",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "critical intervention to protect vital infrastructure",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "load shedding to prevent line overload",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "forced power cuts due to grid vulnerability",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Kepco SPC Power's Unit 2 tripped offline. Kepco SPC Power's Unit 2 tripped offline. leaving more than 950 megawatts unavailable. Eleven generators have failed since May began. placed the Visayas under red alert The event unfolds across power unit trip event and equipment failure.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Kepco SPC Power's Unit 2 tripped offline",
+            "provenance": "surface"
+          },
+          {
+            "term": "power unit trip event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power outage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power unit disconnection",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "leaving more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "significant generation capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Eleven generators have failed since May began",
+            "provenance": "surface"
+          },
+          {
+            "term": "multiple generator outages",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "multiple generator failures",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment outages",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "system failures",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "placed the Visayas under red alert",
+            "provenance": "surface"
+          },
+          {
+            "term": "red alert declaration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "alert declaration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency status",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid emergency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The Philippines grid operator",
+            "provenance": "surface"
+          },
+          {
+            "term": "power system controller",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power grid operator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "utility company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Philippines",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kepco SPC Power's Unit 2",
+            "provenance": "surface"
+          },
+          {
+            "term": "power plant unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power generation unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "generator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "industrial facility",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials",
+            "provenance": "surface"
+          },
+          {
+            "term": "government officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision-makers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Eleven generators",
+            "provenance": "surface"
+          },
+          {
+            "term": "power generators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "electrical equipment",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid components",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "critical 230-kilovolt transmission line",
+            "provenance": "surface"
+          },
+          {
+            "term": "high-voltage transmission line",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "transmission line",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power line",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "critical infrastructure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Visayas",
+            "provenance": "surface"
+          },
+          {
+            "term": "island group in the Philippines",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Southeast Asia",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "island group",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "In the Visayas, a frontier island grid facing new pressures, grid pioneers are navigating uncharted demand. The crisis was triggered by an unexpected unit failure revealing system vulnerabilities: a power plant unit tripped offline, creating a massive power shortfall challenging grid stability. This challenge intensified as a series of generator failures testing system limits coincided with a heatwave pushing grid into uncharted demand territory. In response, decision-makers exploring crisis options implemented emergency measures to navigate the crisis, triggering a high-stakes grid alert.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.9
+    },
+    {
+      "id": "p2",
+      "text": "A vital artery connecting power regions is at the center of the action. The power system controller moved to protect this infrastructure after prolonged outages exposing grid weaknesses and extreme heat pushing demand to the edge strained the system. The emergency intervention to protect vital infrastructure was a critical step to prevent collapse, as rising blackout risks test grid resilience across the power-constrained region under red alert. Authorities are now forced to navigate this fragile new reality.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-1",
+          "why-2",
+          "how-4",
+          "result-0",
+          "result-1",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

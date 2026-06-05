@@ -1,0 +1,247 @@
+{
+  "persona_id": "The-Hero",
+  "overlay": {
+    "persona_id": "The-Hero",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "the guardians of the grid's stability",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the entity managing the power network",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "grid management entity",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power's Unit 2",
+          "alternatives": [
+            {
+              "term": "the failed power unit",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a power generation asset",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "the decision-makers who intervened",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "public authorities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "eleven generators",
+          "alternatives": [
+            {
+              "term": "the failing power sources",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "power generation units",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Visayas",
+          "alternatives": [
+            {
+              "term": "the frontline of the power crisis",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the grid's vulnerable region",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "an archipelago region in the Philippines",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "a critical system failure requiring a heroic response",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "an equipment malfunction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "the systemic weaknesses defenders must overcome",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "ongoing operational issues",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "the relentless pressure that tests a system's limits",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "an environmental stressor on the grid",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Eleven generators failed since May began.",
+          "alternatives": [
+            {
+              "term": "A cascade of failures escalated the threat.",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "Multiple generation units became non-operational.",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline.",
+          "alternatives": [
+            {
+              "term": "The pivotal failure occurred.",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "A specific unit experienced a fault.",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert.",
+          "alternatives": [
+            {
+              "term": "The grid's guardians raised the alarm.",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "A high-level warning was declared for the region.",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading.",
+          "alternatives": [
+            {
+              "term": "Authorities took decisive action to prevent a wider collapse.",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Emergency measures were implemented to manage grid stress.",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "More than 950 megawatts became unavailable.",
+          "alternatives": [
+            {
+              "term": "A staggering amount of power capacity was lost.",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "Significant generation capacity went offline.",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Rotational blackout risks rose in Visayas.",
+          "alternatives": [
+            {
+              "term": "The threat of widespread blackouts loomed over the region.",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "The probability of managed power outages increased.",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [],
+  "warnings": [],
+  "error": "channel_assembly: toned pseudo p1 must include a hypernym anchor (expected one of ['a high-level warning was declared for the region.', 'a power generation asset', 'a specific unit experienced a fault.', 'administrators', 'an archipelago region in the philippines'])"
+}
