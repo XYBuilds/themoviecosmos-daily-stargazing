@@ -39,7 +39,7 @@ Return **only** valid JSON:
 ## Rules beyond multi-pseudo contract
 
 1. **Alt-pool selection (P-Select):** Prefer alternatives from the injected pool that match this persona’s value tendency. You may **rephrase tone** (P-Tone) — e.g. secured a warrant → moved to restore order — but must not add people, causal links, or events not entailed by the neutral decon + chosen pool terms. The pool's `valence` buckets are **persona-relative** (defined by the persona card's 价值轴 / Value Axis), not absolute — see `persona_alt_creator_contract.md`.
-   - **Neutral / objective-floor pseudo (if produced):** any neutral-channel pseudo uses **objective-floor terms only** — `surface` (verbatim) + uncontested `hypernym` (`provenance` = `surface`/`hypernym`). Do **not** pull `lens` terms (including the persona-midpoint neutral) into it; the neutral channel is persona-independent by design.
+   - **Objective-floor neutral pseudo:** produced **downstream in code** (id `n1`, `channel_role: neutral`) from `surface` + `hypernym` only — **not** by this screenwriter step. Your `p1`–`p3` outputs are **toned** (`channel_role: toned`); each must include at least one **hypernym anchor** from the pool/expansion so retrieval stays on-topic.
 2. **fit (required):** Each pseudo must include `"fit": <number>` with **0 ≤ fit ≤ 1** — how well this pseudo reflects the persona lens on this event (1 = strong natural fit, 0 = forced but still fact-entailed). Do not abstain or omit pseudos (P-Force); use low `fit` when steering is weak.
 3. **Fragments:** Same as base contract — only `why-*`, `how-*`, `result-*` in `source.fragments`; contiguous `how-*` blocks.
 4. **Count:** 1–3 pseudos, unique `p1`/`p2`/`p3`, consecutive from `p1`.
