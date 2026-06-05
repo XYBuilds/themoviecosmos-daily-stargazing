@@ -34,6 +34,7 @@ from scripts.run_eval import load_deconstruction_from_file
 
 PHASE36 = repo_root() / "output" / "Eval" / "phase3.6"
 PHASE37 = repo_root() / "output" / "Eval" / "phase3.7"
+PHASE38 = repo_root() / "output" / "Eval" / "phase3.8"
 OBS_RUN_PREFIXES = ("01-", "02-", "03-", "04-")
 
 
@@ -49,6 +50,19 @@ def phase36_run_dir(run_id: str) -> Path:
 
 def phase37_run_dir(run_id: str) -> Path:
     return PHASE37 / run_id
+
+
+def phase38_run_dir(run_id: str) -> Path:
+    return PHASE38 / run_id
+
+
+def _load_expansion_from_run(run_dir: Path) -> dict[str, Any] | None:
+    path = run_dir / "reality-expanded.json"
+    if not path.is_file():
+        return None
+    data = json.loads(path.read_text(encoding="utf-8"))
+    expansion = data.get("expansion")
+    return expansion if isinstance(expansion, dict) else None
 
 
 def persona_artifact_dir(run_dir: Path, persona_id: str) -> Path:
@@ -108,11 +122,17 @@ def load_a1_agent_from_phase36(run_id: str) -> dict[str, Any]:
     raise ValueError(f"A1 not found in {path}")
 
 
-def persona_pipeline_to_agent(persona_id: str, pseudos: list) -> dict[str, Any]:
+def persona_pipeline_to_agent(
+    persona_id: str,
+    pseudos: list,
+    *,
+    eval_phase: str = "3.7",
+) -> dict[str, Any]:
+    role = "persona" if eval_phase == "3.8" else "creative"
     return {
         "agent_id": persona_id,
         "persona_name": persona_id,
-        "role": "creative",
+        "role": role,
         "pseudos": [pseudo_to_dict(p) for p in pseudos],
         "text": pseudos[0].text if pseudos else "",
         "warnings": [],
@@ -167,6 +187,8 @@ async def run_persona_for_news(
     *,
     provider: str | None,
     skip_existing: bool,
+    expansion: dict[str, Any] | None = None,
+    eval_phase: str = "3.7",
 ) -> tuple[dict[str, Any] | None, str | None]:
     persona_dir.mkdir(parents=True, exist_ok=True)
     legacy_pipeline = persona_dir.parent.parent / "persona-pipeline.json"
@@ -197,13 +219,14 @@ async def run_persona_for_news(
             for p in pseudos_raw
             if isinstance(p, dict)
         ]
-        return persona_pipeline_to_agent(persona_id, pseudos), None
+        return persona_pipeline_to_agent(persona_id, pseudos, eval_phase=eval_phase), None
 
     deconstruction = load_deconstruction_from_file(decon_path)
     result = await run_persona_pipeline(
         persona_id,
         deconstruction,
         provider=provider,
+        expansion=expansion,
     )
     overlay_dict = build_alt_pool_overlay(result.overlay)
     (persona_dir / "alt-pool-overlay.json").write_text(
@@ -216,7 +239,7 @@ async def run_persona_for_news(
     )
     if result.error or not result.pseudos:
         return None, result.error or "no pseudos"
-    return persona_pipeline_to_agent(persona_id, result.pseudos), None
+    return persona_pipeline_to_agent(persona_id, result.pseudos, eval_phase=eval_phase), None
 
 
 async def finalize_run(
@@ -225,8 +248,9 @@ async def finalize_run(
     errors: list[dict[str, Any]],
     *,
     split: str,
+    eval_phase: str = "3.7",
 ) -> dict[str, Any]:
-    out_dir = phase37_run_dir(run_id)
+    out_dir = phase38_run_dir(run_id) if eval_phase == "3.8" else phase37_run_dir(run_id)
     retrieve_result = retrieve_from_agents(agents, errors)
     fit_lookup = _fit_by_agent_pseudo(agents)
     _attach_fit_to_hit_sources(retrieve_result, fit_lookup)
@@ -262,16 +286,30 @@ async def run_batch_for_news(
     provider: str | None,
     skip_existing: bool,
     skip_finalize: bool,
+    eval_phase: str = "3.7",
 ) -> dict[str, Any]:
-    decon_path = phase36_run_dir(run_id) / "reality-deconstructed.json"
-    if not decon_path.is_file():
-        raise FileNotFoundError(f"neutral decon missing: {decon_path}")
+    if eval_phase == "3.8":
+        out_dir = phase38_run_dir(run_id)
+        decon_path = out_dir / "reality-deconstructed.json"
+        if not decon_path.is_file():
+            raise FileNotFoundError(
+                f"phase3.8 decon missing: {decon_path} "
+                "(run scripts/run_phase38_eval.py first)"
+            )
+        expansion = _load_expansion_from_run(out_dir)
+    else:
+        decon_path = phase36_run_dir(run_id) / "reality-deconstructed.json"
+        if not decon_path.is_file():
+            raise FileNotFoundError(f"neutral decon missing: {decon_path}")
+        out_dir = phase37_run_dir(run_id)
+        _copy_phase36_static(run_id, out_dir)
+        expansion = None
 
-    out_dir = phase37_run_dir(run_id)
-    _copy_phase36_static(run_id, out_dir)
     split = "observation" if run_id.startswith(OBS_RUN_PREFIXES) else "holdout"
 
-    agents: list[dict[str, Any]] = [load_a1_agent_from_phase36(run_id)]
+    agents: list[dict[str, Any]] = []
+    if eval_phase != "3.8":
+        agents = [load_a1_agent_from_phase36(run_id)]
     errors: list[dict[str, Any]] = []
 
     for persona_id in persona_ids:
@@ -282,6 +320,8 @@ async def run_batch_for_news(
             persona_dir,
             provider=provider,
             skip_existing=skip_existing,
+            expansion=expansion,
+            eval_phase=eval_phase,
         )
         if err or agent_row is None:
             errors.append({"agent_id": persona_id, "message": err or "failed"})
@@ -291,7 +331,9 @@ async def run_batch_for_news(
     if skip_finalize:
         return {"run_id": run_id, "agents": len(agents), "errors": errors}
 
-    retrieve_result = await finalize_run(run_id, agents, errors, split=split)
+    retrieve_result = await finalize_run(
+        run_id, agents, errors, split=split, eval_phase=eval_phase
+    )
     return {
         "run_id": run_id,
         "split": split,
@@ -307,6 +349,7 @@ async def run_batch(
     *,
     provider: str | None,
     skip_existing: bool,
+    eval_phase: str = "3.7",
 ) -> list[dict[str, Any]]:
     results: list[dict[str, Any]] = []
     for run_id in run_ids:
@@ -318,6 +361,7 @@ async def run_batch(
                 provider=provider,
                 skip_existing=skip_existing,
                 skip_finalize=False,
+                eval_phase=eval_phase,
             )
             results.append(row)
             print(
@@ -369,6 +413,12 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Print planned matrix only.",
     )
+    parser.add_argument(
+        "--eval-phase",
+        choices=["3.7", "3.8"],
+        default="3.7",
+        help="Eval output phase (3.8 reads decon+expansion from phase3.8/, no A1).",
+    )
     args = parser.parse_args(argv)
 
     all_run_ids = load_manifest()
@@ -399,9 +449,11 @@ def main(argv: list[str] | None = None) -> int:
             persona_ids,
             provider=args.provider,
             skip_existing=not args.no_skip_existing,
+            eval_phase=args.eval_phase,
         )
     )
-    summary_path = PHASE37 / "batch-run-summary.json"
+    summary_dir = PHASE38 if args.eval_phase == "3.8" else PHASE37
+    summary_path = summary_dir / "batch-run-summary.json"
     summary_path.write_text(
         json.dumps(results, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",

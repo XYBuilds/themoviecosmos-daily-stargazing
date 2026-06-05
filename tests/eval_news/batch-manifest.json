@@ -1,6 +1,13 @@
 {
-  "version": 1,
-  "description": "N=10 eval run_ids aligned with Phase 3.5.6 / 3.6.5 (basename = JSON filename without extension)",
+  "version": 2,
+  "description": "N=10 English eval corpus for Phase 3.8+ (run_id basename = JSON filename without extension).",
+  "language": "en",
+  "lineage": {
+    "phase3.6": "Same run_id slugs (01..10) and thematic buckets; phase3.6 decon was Chinese A0 v1 with inert fields.",
+    "phase3.7": "Persona batch reused phase3.6 decon read-only; news fixtures were already English but decon outputs were not.",
+    "phase3.8": "English news fixtures drive English A0 verbatim + P-Expand + persona neutral/toned; outputs under output/Eval/phase3.8/{run_id}/. Direct numeric comparison to 3.6/3.7 decon is invalid — use run_id semantics only."
+  },
+  "news_unchanged_since": "3.6",
   "run_ids": [
     "01-grid-outage",
     "02-corporate-layoff",
