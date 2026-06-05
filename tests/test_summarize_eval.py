@@ -92,6 +92,31 @@ class SummarizeEvalResonanceTypeTests(unittest.TestCase):
         self.assertEqual(g["multi_structural_twos"], 1)
         self.assertEqual(g["single_structural_twos"], 1)
 
+    def test_persona_vs_baseline_pass_structural_rates(self):
+        run = _load_run("persona-vs-baseline-pass/candidates.md")
+        report = summarize_runs([run])
+        g = report["global"]
+        self.assertTrue(g["persona_gate"])
+        self.assertEqual(report["gate"]["compare_mode"], "persona_vs_baseline")
+        self.assertAlmostEqual(g["baseline_structural_2_rate"], 1 / 3)
+        self.assertAlmostEqual(g["persona_touched_structural_2_rate"], 1.0)
+        self.assertEqual(g["a1_path_scored"], 3)
+        self.assertEqual(g["persona_path_scored"], 1)
+        self.assertEqual(report["gate"]["verdict"], "GATE_PASS")
+        stdout = _format_stdout(report)
+        self.assertIn("Gate line 2 compare: persona_vs_baseline", stdout)
+        self.assertIn("fit×sim ranking", stdout)
+
+    def test_persona_vs_baseline_fail_when_baseline_beats_persona(self):
+        run = _load_run("persona-vs-baseline-fail/candidates.md")
+        report = summarize_runs([run])
+        g = report["global"]
+        self.assertTrue(g["persona_gate"])
+        self.assertAlmostEqual(g["baseline_structural_2_rate"], 1.0)
+        self.assertAlmostEqual(g["persona_touched_structural_2_rate"], 0.0)
+        self.assertEqual(report["gate"]["verdict"], "GATE_FAIL")
+        self.assertEqual(report["gate"]["compare_mode"], "persona_vs_baseline")
+
 
 if __name__ == "__main__":
     unittest.main()
