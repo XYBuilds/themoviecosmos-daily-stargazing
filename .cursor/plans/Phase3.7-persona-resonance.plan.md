@@ -1,6 +1,6 @@
 ---
 name: Phase3.7-persona-resonance
-overview: 把"创作视角"从 An（注入式 A2/A4/A7）重构为"12 原型 = A1 的情绪化扩散"。A0 只拆解不产替代词（已就绪）→ per-persona alt-creator（按偏好自产正-中-负全谱、事实蕴含的替换词池）→ per-persona screenwriter（选 alternatives + 可重配语气 + fit 自评）。证据先行：先量 baseline 增量（Go/No-Go），单点 pilot（04 × The Ruler）通过再扩 12 原型；强迫生产 + fit 信号、不硬弃权；留出集纪律防过拟合。SSOT 改动仅 GATE go。
+overview: 把"创作视角"从 An（注入式 A2/A4/A7）重构为"12 原型 = A1 的情绪化扩散"。A0 只拆解不产替代词（已就绪）→ per-persona alt-creator（按偏好自产正-中-负全谱、事实蕴含的替换词池）→ per-persona screenwriter（选 alternatives + 可重配语气 + fit 自评）。证据先行：先量 baseline 增量（Go/No-Go），单点 pilot（04 × The Ruler）通过再扩 12 原型；强迫生产 + fit 信号、不硬弃权；留出集纪律防过拟合。SSOT 改动仅 GATE go。**Phase closed GATE_FAIL 2026-06；3.7.6 skipped；defer iteration.**
 todos:
   - id: f37b1c2d-0001-4000-8037-000000000000
     content: 3.7.0 · baseline 增量统计（A1 中性 vs creative 现有 2 分增量）→ Go/No-Go 数字锚 [No-Go · 暂停 3.7.1+]
@@ -18,11 +18,11 @@ todos:
     content: 3.7.4 · 余下 11 原型 card + N=10 重跑（phase3.7 输出）+ 留出集打分 [需人工验收]
     status: completed
   - id: f37b1c2d-0001-4000-8037-000000000005
-    content: 3.7.5 · 数据回答（fit↔共振、persona vs A1 基线、弃权阈值）+ 闸门加 fit×相似度 维度 + GATE_RESULT [需人工验收]
-    status: in_progress
+    content: 3.7.5 · 数据回答（fit↔共振、persona vs A1 基线、弃权阈值）+ 闸门加 fit×相似度 维度 + GATE_RESULT [GATE_FAIL · user No-Go 2026-06-05]
+    status: completed
   - id: f37b1c2d-0001-4000-8037-000000000006
     content: 3.7.6 · 改 SSOT（PRD/CONTEXT/contract 按 ADR-0004）[仅 GATE go]
-    status: pending
+    status: cancelled
 isProject: true
 ---
 
@@ -229,9 +229,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] 10 份产出位于 `output/Eval/phase3.7/{run_id}/`；3.5/3.6 树未改写
-- [ ] 留出集 05–10 完成打分（可多轮；每轮 ≥2 条留出新闻）
-- [ ] `[需人工验收]`：总编确认数据可用于 3.7.5 判定
+- [x] 10 份产出位于 `output/Eval/phase3.7/{run_id}/`；3.5/3.6 树未改写
+- [x] 部分打分：观察集 01–02、留出集 07–09（4/10 runs；62/150 high-hit scored）
+- [x] 总编确认数据可用于 3.7.5 判定（partial coverage accepted for GATE_FAIL closure）
 
 ---
 
@@ -247,9 +247,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python -m unittest tests.test_summarize_eval -v` 通过（persona_vs_baseline fixture）
-- [ ] `GATE_RESULT.md` 给出三问结论 + GATE go/no-go
-- [ ] `[需人工验收]`：用户确认 GATE 结论
+- [x] `python -m unittest tests.test_summarize_eval -v` 通过（persona_vs_baseline fixture）
+- [x] `GATE_RESULT.md` 给出三问结论 + **GATE_FAIL**
+- [x] 用户确认 GATE 结论：**No-Go** — 关闭 Phase 3.7，跳过 3.7.6
 
 ---
 
@@ -263,19 +263,21 @@ flowchart LR
 
 ### 验收
 
-- [ ] PRD / CONTEXT / contract 与代码、`summarize_eval` 输出一致 —（仅 GATE go）
-- [ ] ADR-0004 升 `accepted`
+- [ ] PRD / CONTEXT / contract 与代码、`summarize_eval` 输出一致 —（**skipped · GATE no-go**）
+- [ ] ADR-0004 升 `accepted` —（**skipped · stays proposed**）
 
 ---
 
 ## Phase 3.7 整体验收
 
 - [x] 3.7.0 Go + 3.7.1 原型清单/留出集 approve（holdout 01–04 obs / 05–10；personas-12 SSOT）
-- [ ] 3.7.2 脚手架端到端可跑（decon → alt-creator → screenwriter → retrieve）
+- [x] 3.7.2 脚手架端到端可跑（decon → alt-creator → screenwriter → retrieve）
 - [x] 3.7.3 04 pilot 四项核查通过
-- [ ] 3.7.4 N=10 + 留出集打分
-- [ ] 3.7.5 书面 GATE（persona vs baseline、fit↔共振、闸门体量）
-- [ ] 3.7.6 仅 GATE go 执行
+- [x] 3.7.4 N=10 batch + 部分打分（01/02/07/09）
+- [x] 3.7.5 书面 GATE（persona vs baseline、fit↔共振、闸门体量）→ **GATE_FAIL**
+- [x] 3.7.6 **skipped**（GATE no-go）
+
+> **Closure note (2026-06)**: Phase 3.7 closed **GATE_FAIL**. Persona path structural 2-rate lift −55% vs A1 on partial scores (4/10 runs). User **No-Go** — defer SSOT migration and future iteration.
 
 ## 交给下一 Phase
 

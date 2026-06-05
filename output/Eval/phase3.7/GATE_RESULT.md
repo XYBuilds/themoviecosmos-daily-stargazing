@@ -41,8 +41,8 @@
 - **脚本闸门**: **GATE_FAIL**
   - batch pass rate 50.0% < 60% (5/10 runs with >=1 score-2)
   - persona_path_structural_2_rate 20.0% not > a1_path_structural_2_rate 75.0%
-- **3.7.6 SSOT 迁移**: **No-Go（跳过 3.7.6）**
-- **`[需人工验收]`**：总编确认本文件结论后输入 `approve` 再标 plan complete / 写 3.7.5 report。
+- **3.7.6 SSOT 迁移**: **No-Go（跳过 3.7.6）** — 用户 **2026-06-05 No-Go** 确认关闭 Phase 3.7，不执行 SSOT 迁移
+- **人工验收**: 用户接受 GATE_FAIL 结论，Phase 3.7 结案
 
 ### 一行摘要
 

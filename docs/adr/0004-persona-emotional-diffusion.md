@@ -62,7 +62,16 @@ Pilot 首卡：**The-Ruler**（`04-celebrity-scandal`）。
 - **小样本**：留出集 6 条新闻，但每轮可只评其中 2 条；结论按 per-candidate 对照，必要时扩样或补全未评 run。
 - **P-Select 边界**：alt-creator 是唯一注入风险点；契约 + pilot 人工双重核查。
 - **不解封 Phase 4**；**不改 PRD/CONTEXT/contract** 直至 3.7.5 GATE go → 3.7.6。
-- **SSOT 待改清单（3.7.6 · GATE go 后）**：`reality-deconstruction-contract.md`（alternatives/overlay）；`PRD` / `CONTEXT.md`（12 原型、An 退场、`fit`、闸门 2）；本 ADR `Status` → `accepted`。
+- **SSOT 待改清单（3.7.6 · GATE go 后）**：`reality-deconstruction-contract.md`（alternatives/overlay）；`PRD` / `CONTEXT.md`（12 原型、An 退场、`fit`、闸门 2）；本 ADR `Status` → `accepted`。**未执行** — 见 Outcome。
+
+## Outcome（Phase 3.7 结案 · 2026-06-05）
+
+- **3.7.5 闸门**: **GATE_FAIL** — 详见 [`output/Eval/phase3.7/GATE_RESULT.md`](../../output/Eval/phase3.7/GATE_RESULT.md)
+  - 部分打分覆盖：观察集 01/02、留出集 07/09（4/10 runs；62/150 high-hit scored）
+  - persona path 结构/双重 2 分率 20.0% vs A1 path 75.0%；**lift −55.0%**（A1 仍占优，与 3.7 赌注反向）
+  - batch pass rate 50.0% < 60%；fit↔共振 Pearson r ≈ 0.14（弱相关；P-Abstain 阈值未定稿）
+- **3.7.6**: **未执行** — 用户 **No-Go** 确认关闭 Phase 3.7，跳过 PRD/CONTEXT/contract SSOT 迁移
+- **Status**: 保持 **`proposed`**（未升 `accepted`）；设计决策与脚手架代码保留供未来迭代参考
 
 ## 相关 ADR / 文档
 

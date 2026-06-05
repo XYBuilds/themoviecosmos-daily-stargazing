@@ -1,5 +1,7 @@
 # Phase 3.7 eval output (`output/Eval/phase3.7`)
 
+> **Phase closed · GATE_FAIL · no SSOT migration** (2026-06-05). See [`GATE_RESULT.md`](GATE_RESULT.md) and `docs/reports/Phase3.7-closure-report.md`.
+
 ## Run layout
 
 Each `run_id` matches [`tests/eval_news/batch-manifest.json`](../../tests/eval_news/batch-manifest.json):
