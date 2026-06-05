@@ -44,7 +44,8 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 
 - **Merged from:** phase3.5, phase3.6, phase3.7
 - **Match key:** `tmdb_id` (primary), normalized movie title (fallback)
-- **Conflict policy:** differing past scores kept in **历史打分**; phase 3.8 fields left blank for re-score
+- **Conflict policy:** differing past scores/types inlined in **共振分** / **共振类型** / **打分备注**; phase 3.8 value left blank for re-score
+- **Backfill format:** past phase scores appear inline in editor fields (not a separate 历史打分 line)
 
 ## 01-grid-outage
 
@@ -119,7 +120,6 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: 效果相当好
-- **历史打分**: （phase3.5 / 2 / 双重） （phase3.6 / 2 / 双重 / 效果相当好） （phase3.7 / 2 / 双重）
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 44 -->
@@ -226,10 +226,9 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
   - THE-OUTLAW/p2: fragments=[why-2, why-1, how-0, how-1, how-2, result-0, result-1] · sim=0.4914 · **命中分=7**
   - THE-EXPLORER/p3: fragments=[why-0, why-2, how-1, how-2, how-3, result-0, result-1] · sim=0.5177 · **命中分=7**
 - **pseudo命中分合计**: 22
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
-- **历史打分**: （phase3.6 / 1 / 表层） （phase3.7 / 1 / 结构 / 和现实原型扯得有点远）
+- **共振分**: 1（phase3.6: 1；phase3.7: 1）  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层（phase3.6） / 结构（phase3.7）  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: phase3.6: （无）；phase3.7: 和现实原型扯得有点远
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 13 -->
@@ -418,10 +417,9 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 - **命中视角/碎片**:
   - THE-EVERYMAN/p1: fragments=[why-2, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4853 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
-- **历史打分**: （phase3.6 / 1 / 表层 / 资源短缺的感觉挺优秀的，其实介于1和2之间） （phase3.7 / 2 / 结构 / 现实中的电力短缺与电影overview中的空气供应有微妙的共振，low 2）
+- **共振分**: 1（phase3.6） / 2（phase3.7）  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层（phase3.6） / 结构（phase3.7）  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: phase3.6: 资源短缺的感觉挺优秀的，其实介于1和2之间；phase3.7: 现实中的电力短缺与电影overview中的空气供应有微妙的共振，low 2
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 6 -->
@@ -638,10 +636,9 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
   - THE-HERO/p3: fragments=[why-1, how-0, how-1, result-1] · sim=0.5669 · **命中分=4**
   - THE-EXPLORER/p3: fragments=[why-1, how-0, how-1, how-2, result-1] · sim=0.5839 · **命中分=5**
 - **pseudo命中分合计**: 42
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
-- **历史打分**: （phase3.5 / 1 / 双重） （phase3.7 / 1 / 表层）
+- **共振分**: 1（phase3.5: 1；phase3.7: 1）  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重（phase3.5） / 表层（phase3.7）  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: phase3.5: （无）；phase3.7: （无）
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 41 -->
@@ -702,7 +699,6 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: 效果不是特别好，low 2
-- **历史打分**: （phase3.6 / 2 / 双重 / 效果不是特别好，low 2） （phase3.7 / 2 / 双重）
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 30 -->
@@ -1064,7 +1060,6 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: 很牵强。low 2
-- **历史打分**: （phase3.5 / 2 / 双重） （phase3.6 / 2 / 双重 / 很牵强。low 2）
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 24 -->
@@ -1168,7 +1163,6 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: 
-- **历史打分**: （phase3.6 / 2 / 双重） （phase3.7 / 2 / 双重）
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 15 -->
@@ -2464,7 +2458,6 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: 效果不是特别好，low 2
-- **历史打分**: （phase3.6 / 2 / 双重 / 效果不是特别好，low 2） （phase3.7 / 2 / 双重）
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 8 -->
@@ -2689,7 +2682,6 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: 在事实和情节层面上联系有些不太紧密
-- **历史打分**: （phase3.5 / 2 / 双重） （phase3.6 / 2 / 双重 / 在事实和情节层面上联系有些不太紧密） （phase3.7 / 2 / 双重）
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 40 -->
@@ -2722,10 +2714,9 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
   - THE-JESTER/n1: fragments=[why-0, how-0, result-0] · sim=0.4319
   - THE-LOVER/p2: fragments=[why-0, how-0, result-0, result-1] · sim=0.4772 · **命中分=4**
 - **pseudo命中分合计**: 40
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
-- **历史打分**: （phase3.6 / 1 / 表层） （phase3.7 / 1 / 结构 / 和现实原型扯得有点远）
+- **共振分**: 1（phase3.6: 1；phase3.7: 1）  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层（phase3.6） / 结构（phase3.7）  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: phase3.6: （无）；phase3.7: 和现实原型扯得有点远
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 24 -->
@@ -3464,7 +3455,6 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: 奥德赛的老电影，有历史加成。
-- **历史打分**: （phase3.6 / 2 / 双重 / 奥德赛的老电影，有历史加成。） （phase3.7 / 2 / 双重）
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 57 -->
@@ -4303,7 +4293,6 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: 效果相当好
-- **历史打分**: （phase3.5 / 2 / 双重） （phase3.6 / 2 / 双重 / 效果相当好） （phase3.7 / 2 / 双重）
 
 <!-- run_id: 01-grid-outage-rerun -->
 <!-- pseudo命中分合计: 44 -->
@@ -4410,10 +4399,9 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
   - THE-OUTLAW/p2: fragments=[why-2, why-1, how-0, how-1, how-2, result-0, result-1] · sim=0.4914 · **命中分=7**
   - THE-EXPLORER/p3: fragments=[why-0, why-2, how-1, how-2, how-3, result-0, result-1] · sim=0.5177 · **命中分=7**
 - **pseudo命中分合计**: 22
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
-- **历史打分**: （phase3.6 / 1 / 表层） （phase3.7 / 1 / 结构 / 和现实原型扯得有点远）
+- **共振分**: 1（phase3.6: 1；phase3.7: 1）  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层（phase3.6） / 结构（phase3.7）  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: phase3.6: （无）；phase3.7: 和现实原型扯得有点远
 
 <!-- run_id: 01-grid-outage-rerun -->
 <!-- pseudo命中分合计: 13 -->
@@ -4602,10 +4590,9 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
 - **命中视角/碎片**:
   - THE-EVERYMAN/p1: fragments=[why-2, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4853 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
-- **历史打分**: （phase3.6 / 1 / 表层 / 资源短缺的感觉挺优秀的，其实介于1和2之间） （phase3.7 / 2 / 结构 / 现实中的电力短缺与电影overview中的空气供应有微妙的共振，low 2）
+- **共振分**: 1（phase3.6） / 2（phase3.7）  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层（phase3.6） / 结构（phase3.7）  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: phase3.6: 资源短缺的感觉挺优秀的，其实介于1和2之间；phase3.7: 现实中的电力短缺与电影overview中的空气供应有微妙的共振，low 2
 
 <!-- run_id: 01-grid-outage-rerun -->
 <!-- pseudo命中分合计: 6 -->
