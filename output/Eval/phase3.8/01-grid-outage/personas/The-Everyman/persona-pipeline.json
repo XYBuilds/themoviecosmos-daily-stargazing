@@ -1,0 +1,713 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "the people managing the country's power lines",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the national electricity system manager",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "public utility",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "distant authority",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power's Unit 2",
+          "alternatives": [
+            {
+              "term": "a power plant that broke down",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an affected generator",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "energy source",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "unreliable equipment",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "responsible public servants",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "decision-makers",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "authorities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "bureaucrats issuing orders",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Eleven generators",
+          "alternatives": [
+            {
+              "term": "working power sources",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "power plants",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "energy infrastructure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "failing machines",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "critical 230-kilovolt transmission line",
+          "alternatives": [
+            {
+              "term": "vital power connection",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "high-voltage line",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "electrical infrastructure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "vulnerable grid link",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Visayas",
+          "alternatives": [
+            {
+              "term": "our shared home region",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the affected area",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "geographic region",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "power-starved zone",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "a key power source unexpectedly failed",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "equipment malfunction",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "technical failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "preventable breakdown",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "ongoing maintenance issues",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "extended shutdowns",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "systemic problems",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "neglected infrastructure",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "hot weather pushed everyone's power use higher",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "peak demand period",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "demand spike",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "unprepared for common weather",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "one major plant went down",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "generator failure",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "equipment outage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "sudden system failure",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "leaving more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "cutting off a huge amount of power",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "significant capacity loss",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "power shortage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "massive shortfall hitting households",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Eleven generators have failed since May began",
+          "alternatives": [
+            {
+              "term": "many plants stopped working this month",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "multiple outages",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "repeated failures",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "wave of breakdowns",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "the hot season squeezed the power supply",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "high demand period",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "supply-demand imbalance",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "leaving little room for error",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "Officials ordered emergency load shedding",
+          "alternatives": [
+            {
+              "term": "authorities took emergency action",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "emergency power rationing",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "demand management",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "forced blackouts for ordinary people",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "issued a serious warning to the region",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "declared a power emergency",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "alert status",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "putting everyone on edge",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Rotational blackout risks rise",
+          "alternatives": [
+            {
+              "term": "more power cuts may come",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "increased blackout probability",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "system instability",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "risk of rolling blackouts affecting homes",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "officials acted to prevent worse damage",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "preventative power cuts",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "grid protection measure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "blame placed on consumers through rationing",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Kepco SPC Power's Unit 2 tripped offline. Kepco SPC Power's Unit 2 tripped offline. leaving more than 950 megawatts unavailable. Eleven generators have failed since May began. placed the Visayas under red alert The event unfolds across technical failure and equipment failure.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Kepco SPC Power's Unit 2 tripped offline",
+            "provenance": "surface"
+          },
+          {
+            "term": "technical failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power outage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment outage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "leaving more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Eleven generators have failed since May began",
+            "provenance": "surface"
+          },
+          {
+            "term": "repeated failures",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "multiple generator failures",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment outages",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "system failures",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "placed the Visayas under red alert",
+            "provenance": "surface"
+          },
+          {
+            "term": "alert status",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "alert declaration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency status",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid emergency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The Philippines grid operator",
+            "provenance": "surface"
+          },
+          {
+            "term": "public utility",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power grid operator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "utility company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Philippines",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kepco SPC Power's Unit 2",
+            "provenance": "surface"
+          },
+          {
+            "term": "energy source",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power generation unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "generator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "industrial facility",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials",
+            "provenance": "surface"
+          },
+          {
+            "term": "authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision-makers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Eleven generators",
+            "provenance": "surface"
+          },
+          {
+            "term": "energy infrastructure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power generators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "electrical equipment",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid components",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "critical 230-kilovolt transmission line",
+            "provenance": "surface"
+          },
+          {
+            "term": "electrical infrastructure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "transmission line",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power line",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "critical infrastructure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Visayas",
+            "provenance": "surface"
+          },
+          {
+            "term": "geographic region",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Southeast Asia",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "island group",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "When a power plant that broke down unexpectedly, it cut off a huge amount of power for the region. This, combined with a wave of breakdowns across many plants this month, left the grid with little room for error as the hot season squeezed everyone's power use higher. In response, authorities took emergency action and issued a serious warning to the area, but the risk of rolling blackouts affecting homes is now a real and shared worry for all of us.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The national electricity system manager declared a power emergency after an equipment outage at a key energy source led to a massive shortfall hitting households. This system instability, caused by repeated failures and a demand spike, forced authorities to implement preventative power cuts. Their grid protection measure aims to prevent worse damage, but it means ordinary people in the affected area face the direct burden of keeping the lights on for everyone.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0",
+          "result-1",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "warnings": []
+}

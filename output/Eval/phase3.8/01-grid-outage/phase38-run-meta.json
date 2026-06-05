@@ -1,0 +1,33 @@
+{
+  "run_id": "01-grid-outage",
+  "news_file": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\tests\\eval_news\\01-grid-outage.json",
+  "persona_ids": [
+    "The-Hero",
+    "The-Caregiver",
+    "The-Lover",
+    "The-Jester"
+  ],
+  "agent_count": 0,
+  "errors": [
+    {
+      "agent_id": "The-Hero",
+      "message": "channel_assembly: toned pseudo p1 must include a hypernym anchor (expected one of ['a high-level warning was declared for the region.', 'a power generation asset', 'a specific unit experienced a fault.', 'administrators', 'an archipelago region in the philippines'])"
+    },
+    {
+      "agent_id": "The-Caregiver",
+      "message": "screenwriter parse_error: pseudo p2: unknown fragment ids ['who-0', 'where-0']"
+    },
+    {
+      "agent_id": "The-Lover",
+      "message": "channel_assembly: toned pseudo p1 must include a hypernym anchor (expected one of ['a key generator unit', 'a key unit experienced a fault', 'a primary power unit failed', 'administrators', 'an entity tasked with maintaining operational integrity'])"
+    },
+    {
+      "agent_id": "The-Jester",
+      "message": "channel_assembly: toned pseudo p2 must include a hypernym anchor (expected one of ['a generation asset went offline', 'administrators', 'authorities', 'blackout risk increase', 'demand surge'])"
+    }
+  ],
+  "cjk_violations": [],
+  "english_ok": true,
+  "candidate_count": null,
+  "finished_at": "2026-06-05T16:00:36.117147+00:00"
+}
