@@ -10,6 +10,7 @@ hard-fail the process (exit 0 when the CLI ran, unless news input is invalid).
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import os
 import re
@@ -36,8 +37,8 @@ _MODEL_ENV: dict[str, str] = {
 }
 
 _SYSTEM_MESSAGE = (
-    "You are a structured JSON extractor. Follow the user message exactly. "
-    "Return only valid JSON matching the specified schema."
+    "You are a structured JSON extractor for English news. Follow the user message exactly. "
+    "Return only valid JSON matching the specified verbatim A0 schema. English in, English out."
 )
 
 _JSON_FENCE_RE = re.compile(
@@ -53,6 +54,20 @@ _FORBIDDEN_KEYS: frozenset[str] = frozenset(
         "resonance_type",
         "resonancetype",
         "共振类型",
+        "hypernym",
+        "hypernyms",
+        "alternatives",
+        "valence",
+    }
+)
+
+_INERT_KEYS: frozenset[str] = frozenset(
+    {
+        "tags",
+        "geocode",
+        "coordinates",
+        "scale",
+        "scene_archetype",
     }
 )
 
@@ -158,12 +173,32 @@ def _collect_forbidden_keys(obj: Any, path: str = "") -> list[str]:
             key_lower = str(key).lower()
             if key in _FORBIDDEN_KEYS or key_lower in _FORBIDDEN_KEYS:
                 found.append(f"{path}.{key}" if path else str(key))
+            if key in _INERT_KEYS or key_lower in _INERT_KEYS:
+                found.append(f"inert_field:{path}.{key}" if path else f"inert_field:{key}")
             child_path = f"{path}.{key}" if path else str(key)
             found.extend(_collect_forbidden_keys(value, child_path))
     elif isinstance(obj, list):
         for idx, item in enumerate(obj):
             found.extend(_collect_forbidden_keys(item, f"{path}[{idx}]"))
     return found
+
+
+def strip_inert_fields(data: dict[str, Any]) -> dict[str, Any]:
+    """Return a deep copy with inert keys removed from where/who objects."""
+    cleaned = copy.deepcopy(data)
+    for section in ("where", "who"):
+        items = cleaned.get(section)
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            for key in _INERT_KEYS:
+                item.pop(key, None)
+            geo = item.get("geocode")
+            if isinstance(geo, dict):
+                geo.pop("coordinates", None)
+    return cleaned
 
 
 def _require_list(value: Any, field: str, errors: list[str]) -> None:
@@ -223,9 +258,8 @@ def validate_deconstruction(data: dict[str, Any]) -> tuple[list[str], list[str]]
                 if not isinstance(item, dict):
                     errors.append(f"where[{idx}] must be an object")
                     continue
-                _require_list(item.get("tags"), f"where[{idx}].tags", errors)
-                _require_list(item.get("scene_archetype"), f"where[{idx}].scene_archetype", errors)
                 _require_list(item.get("role"), f"where[{idx}].role", errors)
+                _require_list(item.get("relations"), f"where[{idx}].relations", errors)
 
     who = data.get("who")
     if who is not None:
@@ -236,7 +270,6 @@ def validate_deconstruction(data: dict[str, Any]) -> tuple[list[str], list[str]]
                 if not isinstance(item, dict):
                     errors.append(f"who[{idx}] must be an object")
                     continue
-                _require_list(item.get("tags"), f"who[{idx}].tags", errors)
                 _require_list(item.get("role_in_event"), f"who[{idx}].role_in_event", errors)
                 _require_list(item.get("relations"), f"who[{idx}].relations", errors)
 
@@ -312,7 +345,7 @@ def run_deconstruct(
     if val_errors:
         for msg in val_errors:
             errors.append({"type": "validation_error", "message": msg})
-    deconstruction = parsed
+    deconstruction = strip_inert_fields(parsed)
 
     return _build_payload(news, deconstruction, errors, validation_warnings, resolved, model)
 
@@ -386,18 +419,17 @@ def render_deconstruction_md(payload: dict[str, Any], *, run_id: str | None = No
         if not isinstance(place, dict):
             continue
         lines.append(f"### {idx}. {place.get('text', '—')}")
-        tags = place.get("tags") or []
-        if tags:
-            lines.append(f"- tags: {', '.join(str(t) for t in tags)}")
-        geo = place.get("geocode") or {}
-        if isinstance(geo, dict) and any(geo.get(k) for k in geo):
-            parts = [f"{k}={geo.get(k)}" for k in geo if geo.get(k)]
-            lines.append(f"- geocode: {', '.join(parts)}")
-        for field in ("scene_archetype", "role"):
+        for field in ("role", "relations"):
             vals = place.get(field)
             if vals:
                 lines.append(f"- {field}: {', '.join(str(v) for v in vals)}")
-        for field in ("scale", "trajectory", "intended_destination", "contested_name"):
+        for field in (
+            "relative_pos",
+            "geopolitical",
+            "trajectory",
+            "intended_destination",
+            "contested_name",
+        ):
             if place.get(field):
                 lines.append(f"- {field}: {place[field]}")
         lines.append("")
@@ -407,8 +439,6 @@ def render_deconstruction_md(payload: dict[str, Any], *, run_id: str | None = No
         if not isinstance(who, dict):
             continue
         lines.append(f"### {idx}. {who.get('text', '—')}")
-        if who.get("tags"):
-            lines.append(f"- tags: {', '.join(str(t) for t in who['tags'])}")
         if who.get("role_in_event"):
             lines.append(f"- role_in_event: {', '.join(str(r) for r in who['role_in_event'])}")
         if who.get("relations"):
