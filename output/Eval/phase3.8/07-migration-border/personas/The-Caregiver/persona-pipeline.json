@@ -1,0 +1,422 @@
+{
+  "persona_id": "The-Caregiver",
+  "overlay": {
+    "persona_id": "The-Caregiver",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "U.S. Border Patrol",
+          "alternatives": [
+            {
+              "term": "guardians of the border",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "enforcement personnel",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "federal agents",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "8,268 people apprehended",
+          "alternatives": [
+            {
+              "term": "vulnerable migrants",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "individuals in custody",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "apprehended persons",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "those at risk during crossing",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "analysts",
+          "alternatives": [
+            {
+              "term": "observers of the situation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "commentators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "lawmakers",
+          "alternatives": [
+            {
+              "term": "those responsible for funding care",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "legislators",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "elected officials",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "those neglecting their duty",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "milder spring weather",
+          "alternatives": [
+            {
+              "term": "improved travel conditions",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "seasonal change",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+          "alternatives": [
+            {
+              "term": "a rise in encounters with people in need",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an increase in crossings",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a numerical increase in apprehensions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "more people facing the risks of the journey",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+          "alternatives": [
+            {
+              "term": "policies that limit access to protection",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "enforcement measures remain in effect",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "current policy framework",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+          "alternatives": [
+            {
+              "term": "failure to provide resources for protection",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "ongoing legislative dispute",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "political stalemate",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "milder spring weather. apprehensions increased from 6,598 in February to 8,268 in March along the southwest border. year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies The event unfolds across seasonal change and spring weather.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "milder spring weather",
+            "provenance": "surface"
+          },
+          {
+            "term": "seasonal change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spring weather",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "seasonal climate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "weather condition",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "environmental factor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+            "provenance": "surface"
+          },
+          {
+            "term": "a numerical increase in apprehensions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "increase in apprehensions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "statistical trend",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "numerical change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border activity metric",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+            "provenance": "surface"
+          },
+          {
+            "term": "current policy framework",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "low crossing numbers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "enforcement policy outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "immigration statistics",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security effect",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. Border Patrol",
+            "provenance": "surface"
+          },
+          {
+            "term": "federal agents",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "federal law enforcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. government entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "security force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "8,268 people apprehended",
+            "provenance": "surface"
+          },
+          {
+            "term": "apprehended persons",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "apprehended individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detainees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border crossers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected population",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "analysts",
+            "provenance": "surface"
+          },
+          {
+            "term": "commentators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "security analysts",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "policy observers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "experts",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "researchers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "lawmakers",
+            "provenance": "surface"
+          },
+          {
+            "term": "elected officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legislators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "politicians",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision-makers",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "As spring weather improved travel conditions, a rise in encounters with people in need was recorded, with apprehensions increasing along the southwest border. Despite this statistical trend, the current policy framework of asylum shutdowns and deportation measures continues to limit access to protection for vulnerable migrants. The ongoing legislative dispute among those responsible for funding care has created a political stalemate, leaving federal law enforcement without the resources to adequately address the humanitarian situation.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.88
+    },
+    {
+      "id": "p2",
+      "text": "Seasonal change brought more people facing the risks of the journey, resulting in a numerical increase in apprehensions for the border security agency in March. This border activity metric highlights the challenges faced by those at risk during crossing. Meanwhile, elected officials remain deadlocked, creating a government impasse over funding for immigration enforcement agencies. The failure to provide resources for protection exacerbates the vulnerability of apprehended individuals caught in a system strained by a funding dispute.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.82
+    },
+    {
+      "id": "p3",
+      "text": "With the arrival of spring weather, enforcement personnel saw an increase in apprehensions from February to March, a clear immigration statistic reflecting heightened border activity. Observers of the situation note that this numerical change occurs under policies that limit access to protection, an enforcement policy outcome that leaves many detainees in precarious situations. The political deadlock among government officials prevents the allocation of necessary support, leaving those responsible for funding care to neglect their duty to the affected population.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

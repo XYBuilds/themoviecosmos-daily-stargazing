@@ -9,24 +9,19 @@
           "original_term": "The Philippines grid operator",
           "alternatives": [
             {
-              "term": "the orchestrator of systemic stability",
+              "term": "The system orchestrator",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the grid's central controller",
+              "term": "The grid's central nervous system",
               "valence": "neutral",
               "provenance": "lens"
             },
             {
-              "term": "the system manager",
+              "term": "The grid operator",
               "valence": "neutral",
               "provenance": "hypernym"
-            },
-            {
-              "term": "the overwhelmed operator",
-              "valence": "negative",
-              "provenance": "lens"
             }
           ]
         },
@@ -35,14 +30,14 @@
           "original_term": "Kepco SPC Power's Unit 2",
           "alternatives": [
             {
-              "term": "the critical component that triggered the cascade",
+              "term": "The catalyst of the cascade",
               "valence": "negative",
               "provenance": "lens"
             },
             {
-              "term": "a power generation unit",
+              "term": "The failed transformer",
               "valence": "neutral",
-              "provenance": "hypernym"
+              "provenance": "lens"
             }
           ]
         },
@@ -51,61 +46,35 @@
           "original_term": "Officials",
           "alternatives": [
             {
-              "term": "the crisis response architects",
+              "term": "The decision-makers managing the crisis",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the emergency decision-makers",
+              "term": "The crisis managers",
               "valence": "neutral",
               "provenance": "lens"
             },
             {
-              "term": "public authorities",
+              "term": "Officials",
               "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "the managers of a failing system",
-              "valence": "negative",
-              "provenance": "lens"
+              "provenance": "surface"
             }
           ]
         },
         {
           "element_id": "who-3",
-          "original_term": "Eleven generators",
+          "original_term": "eleven generators",
           "alternatives": [
             {
-              "term": "the network of failed power sources",
+              "term": "The system's failing components",
               "valence": "negative",
               "provenance": "lens"
             },
             {
-              "term": "power generation facilities",
+              "term": "The power generation units",
               "valence": "neutral",
               "provenance": "hypernym"
-            }
-          ]
-        },
-        {
-          "element_id": "who-4",
-          "original_term": "critical 230-kilovolt transmission line",
-          "alternatives": [
-            {
-              "term": "the system's vital artery",
-              "valence": "neutral",
-              "provenance": "lens"
-            },
-            {
-              "term": "transmission infrastructure",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "the overloaded choke point",
-              "valence": "negative",
-              "provenance": "lens"
             }
           ]
         },
@@ -114,24 +83,19 @@
           "original_term": "Visayas",
           "alternatives": [
             {
-              "term": "the grid's pressure point",
+              "term": "The leverage point of the crisis",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the region under red alert",
+              "term": "The grid's vulnerable nexus",
               "valence": "neutral",
               "provenance": "lens"
             },
             {
-              "term": "the affected grid region",
+              "term": "The affected region",
               "valence": "neutral",
               "provenance": "hypernym"
-            },
-            {
-              "term": "the destabilized sector",
-              "valence": "negative",
-              "provenance": "lens"
             }
           ]
         },
@@ -140,14 +104,14 @@
           "original_term": "Kepco SPC Power's Unit 2 tripped offline",
           "alternatives": [
             {
-              "term": "the triggering failure that exposed system fragility",
+              "term": "A critical node failed, triggering the crisis",
               "valence": "negative",
               "provenance": "lens"
             },
             {
-              "term": "a major unit tripped offline",
+              "term": "A key generator unit malfunctioned",
               "valence": "neutral",
-              "provenance": "hypernym"
+              "provenance": "lens"
             }
           ]
         },
@@ -156,12 +120,17 @@
           "original_term": "other long-running plant outages",
           "alternatives": [
             {
-              "term": "the accumulation of unresolved system faults",
+              "term": "The system's pre-existing fragility",
               "valence": "negative",
               "provenance": "lens"
             },
             {
-              "term": "ongoing plant outages",
+              "term": "Chronic maintenance issues",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "Pre-existing infrastructure problems",
               "valence": "neutral",
               "provenance": "hypernym"
             }
@@ -172,151 +141,109 @@
           "original_term": "seasonal heat drove demand into a thin operating margin",
           "alternatives": [
             {
-              "term": "demand pressure that squeezed the system's buffer",
+              "term": "External pressure exposed the system's thin margin",
               "valence": "negative",
               "provenance": "lens"
             },
             {
-              "term": "high seasonal demand",
+              "term": "Demand stress tested the grid's limits",
               "valence": "neutral",
-              "provenance": "hypernym"
+              "provenance": "lens"
             }
           ]
         },
         {
           "element_id": "how-0",
-          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "original_term": "Eleven generators failed since May began.",
           "alternatives": [
             {
-              "term": "the pivotal failure point",
+              "term": "A cascade of component failures",
               "valence": "negative",
               "provenance": "lens"
             },
             {
-              "term": "a unit trip event",
+              "term": "Multiple generators went offline",
               "valence": "neutral",
-              "provenance": "hypernym"
+              "provenance": "lens"
             }
           ]
         },
         {
           "element_id": "how-1",
-          "original_term": "leaving more than 950 megawatts unavailable",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline.",
           "alternatives": [
             {
-              "term": "creating a massive power deficit",
+              "term": "The final domino fell",
               "valence": "negative",
               "provenance": "lens"
             },
             {
-              "term": "a significant capacity loss",
+              "term": "A key unit failed",
               "valence": "neutral",
-              "provenance": "hypernym"
+              "provenance": "lens"
             }
           ]
         },
         {
           "element_id": "how-2",
-          "original_term": "Eleven generators have failed since May began",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert.",
           "alternatives": [
             {
-              "term": "a cascade of generator failures",
-              "valence": "negative",
+              "term": "The orchestrator shifted the system into emergency mode",
+              "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "multiple generator outages",
+              "term": "A red alert was declared",
               "valence": "neutral",
-              "provenance": "hypernym"
+              "provenance": "lens"
             }
           ]
         },
         {
           "element_id": "how-3",
-          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading.",
           "alternatives": [
             {
-              "term": "the demand squeeze that depleted reserves",
-              "valence": "negative",
-              "provenance": "lens"
-            },
-            {
-              "term": "high demand stress",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            }
-          ]
-        },
-        {
-          "element_id": "how-4",
-          "original_term": "Officials ordered emergency load shedding",
-          "alternatives": [
-            {
-              "term": "the directive to prevent systemic collapse",
+              "term": "A controlled intervention to prevent total collapse",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "an emergency load shedding order",
+              "term": "Emergency measures were enacted",
               "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "a forced power reduction",
-              "valence": "negative",
               "provenance": "lens"
             }
           ]
         },
         {
           "element_id": "result-0",
-          "original_term": "placed the Visayas under red alert",
+          "original_term": "More than 950 megawatts became unavailable.",
           "alternatives": [
             {
-              "term": "activated the highest grid warning",
-              "valence": "neutral",
+              "term": "A massive capacity loss materialized",
+              "valence": "negative",
               "provenance": "lens"
             },
             {
-              "term": "a red alert declaration",
+              "term": "Significant power capacity was lost",
               "valence": "neutral",
-              "provenance": "hypernym"
+              "provenance": "lens"
             }
           ]
         },
         {
           "element_id": "result-1",
-          "original_term": "Rotational blackout risks rise",
+          "original_term": "Rotational blackout risks rose in Visayas.",
           "alternatives": [
             {
-              "term": "the threat of managed blackouts",
+              "term": "The threat of systemic collapse loomed",
               "valence": "negative",
               "provenance": "lens"
             },
             {
-              "term": "increased blackout risk",
+              "term": "Blackout risks increased",
               "valence": "neutral",
-              "provenance": "hypernym"
-            }
-          ]
-        },
-        {
-          "element_id": "result-2",
-          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
-          "alternatives": [
-            {
-              "term": "the intervention to save the critical line",
-              "valence": "positive",
-              "provenance": "lens"
-            },
-            {
-              "term": "an emergency measure to prevent line overload",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "a forced system reduction",
-              "valence": "negative",
               "provenance": "lens"
             }
           ]
@@ -327,7 +254,7 @@
   "pseudos": [
     {
       "id": "n1",
-      "text": "Kepco SPC Power's Unit 2 tripped offline. Kepco SPC Power's Unit 2 tripped offline. leaving more than 950 megawatts unavailable. Eleven generators have failed since May began. placed the Visayas under red alert The event unfolds across a major unit tripped offline and equipment failure.",
+      "text": "Kepco SPC Power's Unit 2 tripped offline. Eleven generators failed since May began. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator placed the Visayas under red alert. More than 950 megawatts became unavailable The event unfolds across equipment failure and power plant outage.",
       "source": {
         "agent_id": "The-Magician",
         "fragments": [
@@ -348,83 +275,79 @@
             "provenance": "surface"
           },
           {
-            "term": "a major unit tripped offline",
-            "provenance": "hypernym"
-          },
-          {
             "term": "equipment failure",
             "provenance": "hypernym"
           },
           {
-            "term": "power outage",
+            "term": "power plant outage",
             "provenance": "hypernym"
           },
           {
-            "term": "grid incident",
+            "term": "technical fault",
             "provenance": "hypernym"
           },
           {
-            "term": "a unit trip event",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "leaving more than 950 megawatts unavailable",
+            "term": "Eleven generators failed since May began.",
             "provenance": "surface"
           },
           {
-            "term": "a significant capacity loss",
+            "term": "generator failures",
             "provenance": "hypernym"
           },
           {
-            "term": "power deficit",
+            "term": "equipment malfunctions",
             "provenance": "hypernym"
           },
           {
-            "term": "capacity loss",
+            "term": "power generation issues",
             "provenance": "hypernym"
           },
           {
-            "term": "energy shortage",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "Eleven generators have failed since May began",
+            "term": "Kepco SPC Power's Unit 2 tripped offline.",
             "provenance": "surface"
           },
           {
-            "term": "multiple generator outages",
+            "term": "equipment trip",
             "provenance": "hypernym"
           },
           {
-            "term": "multiple generator failures",
+            "term": "power plant shutdown",
             "provenance": "hypernym"
           },
           {
-            "term": "equipment outages",
+            "term": "failure incident",
             "provenance": "hypernym"
           },
           {
-            "term": "system failures",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "placed the Visayas under red alert",
+            "term": "The Philippines grid operator placed the Visayas under red alert.",
             "provenance": "surface"
           },
           {
-            "term": "a red alert declaration",
+            "term": "grid alert",
             "provenance": "hypernym"
           },
           {
-            "term": "alert declaration",
+            "term": "emergency warning",
             "provenance": "hypernym"
           },
           {
-            "term": "emergency status",
+            "term": "power system alert",
             "provenance": "hypernym"
           },
           {
-            "term": "grid emergency",
+            "term": "More than 950 megawatts became unavailable.",
+            "provenance": "surface"
+          },
+          {
+            "term": "power capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "generation shortfall",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "megawatt shortage",
             "provenance": "hypernym"
           },
           {
@@ -432,19 +355,19 @@
             "provenance": "surface"
           },
           {
-            "term": "the system manager",
+            "term": "The grid operator",
             "provenance": "hypernym"
           },
           {
-            "term": "power grid operator",
+            "term": "grid operator",
             "provenance": "hypernym"
           },
           {
-            "term": "utility company",
+            "term": "utility",
             "provenance": "hypernym"
           },
           {
-            "term": "Philippines",
+            "term": "organization",
             "provenance": "hypernym"
           },
           {
@@ -452,15 +375,11 @@
             "provenance": "surface"
           },
           {
-            "term": "a power generation unit",
-            "provenance": "hypernym"
-          },
-          {
             "term": "power generation unit",
             "provenance": "hypernym"
           },
           {
-            "term": "generator",
+            "term": "power plant component",
             "provenance": "hypernym"
           },
           {
@@ -472,15 +391,7 @@
             "provenance": "surface"
           },
           {
-            "term": "public authorities",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "public officials",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "decision-makers",
+            "term": "government officials",
             "provenance": "hypernym"
           },
           {
@@ -488,11 +399,15 @@
             "provenance": "hypernym"
           },
           {
-            "term": "Eleven generators",
+            "term": "administrators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "eleven generators",
             "provenance": "surface"
           },
           {
-            "term": "power generation facilities",
+            "term": "The power generation units",
             "provenance": "hypernym"
           },
           {
@@ -500,31 +415,11 @@
             "provenance": "hypernym"
           },
           {
-            "term": "electrical equipment",
+            "term": "electricity generators",
             "provenance": "hypernym"
           },
           {
-            "term": "grid components",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "critical 230-kilovolt transmission line",
-            "provenance": "surface"
-          },
-          {
-            "term": "transmission infrastructure",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "transmission line",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "power line",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "critical infrastructure",
+            "term": "machines",
             "provenance": "hypernym"
           },
           {
@@ -532,15 +427,19 @@
             "provenance": "surface"
           },
           {
-            "term": "the affected grid region",
+            "term": "The affected region",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "island region",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Philippines",
             "provenance": "hypernym"
           },
           {
             "term": "Southeast Asia",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "island group",
             "provenance": "hypernym"
           }
         ]
@@ -550,16 +449,18 @@
     },
     {
       "id": "p1",
-      "text": "The grid's central controller faced a pivotal failure point when a power generation unit tripped offline, creating a massive power deficit of over 950 megawatts. This triggering failure exposed system fragility, compounded by a cascade of generator failures and high seasonal demand. In response, emergency decision-makers issued a directive to prevent systemic collapse, implementing emergency load shedding to protect the system's vital artery from overloading. The event activated the highest grid warning in the destabilized sector, highlighting the delicate balance in managing systemic stability.",
+      "text": "In the Philippines' Visayas region, a power crunch unfolded as a cascade of component failures began in May. The catalyst was Kepco SPC Power's Unit 2 tripping offline, a critical node failure that triggered the crisis. This exposed the system's pre-existing fragility from long-running plant outages. External pressure from seasonal heat demand stress tested the grid's limits, revealing a thin operating margin. The system orchestrator responded by declaring a red alert and enacting emergency load management to prevent a total collapse, averting systemic grid instability.",
       "source": {
         "agent_id": "The-Magician",
         "fragments": [
           "why-0",
+          "why-1",
+          "why-2",
+          "how-0",
           "how-1",
           "how-2",
           "how-3",
-          "how-4",
-          "result-0"
+          "result-1"
         ],
         "channel_role": "toned"
       },
@@ -568,38 +469,41 @@
     },
     {
       "id": "p2",
-      "text": "A network of failed power sources and the accumulation of unresolved system faults, driven by demand pressure that squeezed the system's buffer, set the stage for a red alert declaration. The overloaded choke point—a critical transmission line—required intervention, forcing a system reduction to prevent line overload. This forced power reduction, while necessary, underscored the fragility of the grid's pressure point, where rotational blackout risks now threaten the affected grid region.",
-      "source": {
-        "agent_id": "The-Magician",
-        "fragments": [
-          "why-1",
-          "why-2",
-          "result-1",
-          "result-2"
-        ],
-        "channel_role": "toned"
-      },
-      "warnings": [],
-      "fit": 0.75
-    },
-    {
-      "id": "p3",
-      "text": "The orchestration of systemic stability was tested when the grid operator, acting as the system manager, confronted the critical component that triggered the cascade. The pivotal failure point led to a significant capacity loss, amplified by multiple generator outages and the demand squeeze that depleted reserves. Officials, as crisis response architects, ordered an emergency measure to prevent line overload, a move that preserved the system's vital artery but highlighted the ongoing management of a failing system in the region under red alert.",
+      "text": "A massive capacity loss materialized in the Philippines as power generation issues mounted. A key unit failed—the Kepco SPC Power Unit 2—which was the final domino in a chain of generator failures. This equipment failure, combined with demand surge from seasonal heat, plunged the affected region into a crisis. The grid operator, acting as the grid's central nervous system, shifted the system into emergency mode and ordered a controlled intervention to prevent a generation shortfall from deepening into rotational blackouts.",
       "source": {
         "agent_id": "The-Magician",
         "fragments": [
           "why-0",
+          "how-0",
           "how-1",
+          "why-2",
           "how-2",
           "how-3",
-          "how-4",
           "result-0",
-          "result-2"
+          "result-1"
         ],
         "channel_role": "toned"
       },
       "warnings": [],
-      "fit": 0.7
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "The leverage point of the crisis was the Visayas island region, where the grid's vulnerable nexus was exposed. A critical equipment failure—Kepco SPC Power's Unit 2 tripping offline—was the primary technical fault. This, against a backdrop of operational issues and a high power demand surge, led to a megawatt shortage. The crisis managers, the government authorities, performed a grid stabilization action: they ordered load shedding to protect a key transmission line from overloading, a decisive move to manage the blackout risk increase.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "why-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.82
     }
   ],
   "warnings": []

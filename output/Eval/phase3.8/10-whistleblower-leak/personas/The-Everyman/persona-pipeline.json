@@ -1,0 +1,728 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "whistleblower in Sikar",
+          "alternatives": [
+            {
+              "term": "ordinary citizen who spoke up",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "anonymous tipster",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "tipster",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "India's National Testing Agency (NTA)",
+          "alternatives": [
+            {
+              "term": "the testing authority",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the exam board that had to answer to students",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "bureaucratic gatekeeper",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "26–27 paper setters and translators",
+          "alternatives": [
+            {
+              "term": "exam contractors",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the workers behind the test",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "individuals caught in the investigation",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Central Bureau of Investigation (CBI)",
+          "alternatives": [
+            {
+              "term": "national investigators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the authorities looking into the leak",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "those held accountable",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "accused individuals",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "people whose lives are now upended",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-5",
+          "original_term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+          "alternatives": [
+            {
+              "term": "a trusted advocate for students",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the tutor who spoke out before",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "hypocrite who broke the very trust he preached",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+          "alternatives": [
+            {
+              "term": "proof that ordinary vigilance exposed the breach",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "evidence of a leaked exam paper",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "evidence of compromised integrity",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Medical entrance exam held on May 3",
+          "alternatives": [
+            {
+              "term": "the high-stakes test that affected thousands of students",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the entrance exam",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+          "alternatives": [
+            {
+              "term": "an alert from a concerned citizen reached the authorities",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a tip was submitted",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "NTA referred 26–27 paper setters and translators to CBI",
+          "alternatives": [
+            {
+              "term": "the exam board passed the case to investigators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "colleagues were turned over for investigation",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Thirteen people arrested, including a coaching figure",
+          "alternatives": [
+            {
+              "term": "the crackdown reached those involved",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrests were made",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "working people hauled away",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "a second chance for students who prepared fairly",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a rescheduled test",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "more stress and uncertainty for test-takers",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "NEET-UG 2026 cancelled",
+          "alternatives": [
+            {
+              "term": "fairness restored for honest students",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "exam invalidated",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "months of preparation thrown away for everyone",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "accountability reached those in the loop",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrests made",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "families left scrambling while the powerful stay untouched",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "a new date gives students another shot",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "retest arranged",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "forced to retake a stressful exam they didn't break",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Sikar",
+          "alternatives": [
+            {
+              "term": "a small city where someone did the right thing",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Sikar",
+              "valence": "neutral",
+              "provenance": "surface"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "India",
+          "alternatives": [
+            {
+              "term": "the country where millions sat for the test",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "India",
+              "valence": "neutral",
+              "provenance": "surface"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology. Medical entrance exam held on May 3. NTA received email from whistleblower in Sikar with PDFs matching chemistry paper. NTA referred 26–27 paper setters and translators to CBI. NEET-UG 2026 cancelled The event unfolds across evidence of a leaked exam paper and tip.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+            "provenance": "surface"
+          },
+          {
+            "term": "evidence of a leaked exam paper",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tip",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "information disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "report",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Medical entrance exam held on May 3",
+            "provenance": "surface"
+          },
+          {
+            "term": "the entrance exam",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "examination",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "test",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "assessment",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "entrance exam",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+            "provenance": "surface"
+          },
+          {
+            "term": "a tip was submitted",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "communication",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "receipt of information",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "step",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NTA referred 26–27 paper setters and translators to CBI",
+            "provenance": "surface"
+          },
+          {
+            "term": "the exam board passed the case to investigators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "referral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "investigation initiation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NEET-UG 2026 cancelled",
+            "provenance": "surface"
+          },
+          {
+            "term": "exam invalidated",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "cancellation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "result",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "whistleblower in Sikar",
+            "provenance": "surface"
+          },
+          {
+            "term": "tipster",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "informant",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "source",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "India's National Testing Agency (NTA)",
+            "provenance": "surface"
+          },
+          {
+            "term": "the testing authority",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "testing agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "institution",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "body",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "26–27 paper setters and translators",
+            "provenance": "surface"
+          },
+          {
+            "term": "exam contractors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professionals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "group",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "people",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Central Bureau of Investigation (CBI)",
+            "provenance": "surface"
+          },
+          {
+            "term": "national investigators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "investigation agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "bureau",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "thirteen people arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "accused individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrested individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "suspects",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "persons",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+            "provenance": "surface"
+          },
+          {
+            "term": "coach",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "educator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Sikar",
+            "provenance": "surface"
+          },
+          {
+            "term": "city",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "urban area",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "geographic location",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "India",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "South Asia",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "country",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "nation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "sovereign state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "geographic entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "South Asian nation",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "After the high-stakes medical entrance exam on May 3, an anonymous tipster from a small city sent proof that the chemistry paper had leaked. The testing authority received the evidence and passed the case to national investigators. This led to the exam being invalidated, giving the millions of honest students who prepared fairly another chance on June 21.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.88
+    },
+    {
+      "id": "p2",
+      "text": "The crackdown following the leaked exam paper reached the workers behind the test, with over two dozen exam contractors turned over for investigation. Among those held accountable was a public figure who had once championed student justice, now accused of compromising the system's integrity. The consequence for the broader group was immediate arrest.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-2",
+          "how-3",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.82
+    },
+    {
+      "id": "p3",
+      "text": "While thirteen people face the immediate consequence of arrest, the retest arranged for June 21 throws the entire burden back on the students. The examination's cancellation means months of preparation are thrown away for everyone, forcing them to retake a stressful assessment they did not break. It's a rescheduling that feels more like punishment than a second chance.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "result-0",
+          "how-4",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    }
+  ],
+  "warnings": []
+}

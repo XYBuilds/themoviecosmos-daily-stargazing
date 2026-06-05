@@ -1,0 +1,335 @@
+{
+  "persona_id": "The-Creator",
+  "overlay": {
+    "persona_id": "The-Creator",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Ken Paxton",
+          "alternatives": [
+            {
+              "term": "artisan of victory",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "political maker",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "executor",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "John Cornyn",
+          "alternatives": [
+            {
+              "term": "incumbent whose creation was unmade",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "affected party",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "long-serving maker",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the sitting president",
+          "alternatives": [
+            {
+              "term": "master endorser",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "executor",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "aided by a late endorsement from the sitting president",
+          "alternatives": [
+            {
+              "term": "aided by a masterstroke endorsement",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "aided by a timely intervention",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "aided by an endorsement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "despite substantially outraising and outspending his rival",
+          "alternatives": [
+            {
+              "term": "overcoming a rival's resource-heavy campaign",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "despite the rival's financial craft",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "despite financial disadvantage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+          "alternatives": [
+            {
+              "term": "Ken Paxton forged a decisive 64% victory",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Ken Paxton composed a winning vote share",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "Ken Paxton won the vote",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Ken Paxton won the Texas Senate Republican runoff",
+          "alternatives": [
+            {
+              "term": "Ken Paxton's crafted campaign triumphed",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Ken Paxton achieved election success",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "Ken Paxton won the runoff",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+          "alternatives": [
+            {
+              "term": "John Cornyn's long-standing political work was undone",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "John Cornyn suffered a historic defeat",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "John Cornyn lost renomination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate",
+          "alternatives": [
+            {
+              "term": "Paxton will now fabricate a new campaign against James Talarico",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "Paxton will compete in the November race",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "aided by a late endorsement from the sitting president. Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term. Ken Paxton won the Texas Senate Republican runoff The event unfolds across aided by an endorsement and Ken Paxton won the vote.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "aided by a late endorsement from the sitting president",
+            "provenance": "surface"
+          },
+          {
+            "term": "aided by an endorsement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+            "provenance": "surface"
+          },
+          {
+            "term": "Ken Paxton won the vote",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton won the Texas Senate Republican runoff",
+            "provenance": "surface"
+          },
+          {
+            "term": "Ken Paxton won the runoff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton",
+            "provenance": "surface"
+          },
+          {
+            "term": "executor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "election candidate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "politician",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Cornyn",
+            "provenance": "surface"
+          },
+          {
+            "term": "affected party",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "senator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the sitting president",
+            "provenance": "surface"
+          },
+          {
+            "term": "head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political leader",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The artisan of victory, Ken Paxton, has solidified his political maker status by forging a decisive 64% vote share, despite the rival's financial craft. His crafted campaign triumphed in the U.S. state runoff, unmaking the long-standing political work of John Cornyn. Aided by a masterstroke endorsement from the head of state, Paxton now fabricates a new campaign against James Talarico in a race that could reshape the Senate.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "how-0",
+          "result-0",
+          "result-1",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.95
+    },
+    {
+      "id": "p2",
+      "text": "Despite financial disadvantage, a political maker composed a winning vote share. Aided by a timely intervention from the master endorser, Ken Paxton achieved election success in the Texas Senate Republican runoff. This ends John Cornyn's bid, making him the affected party in a historic defeat. The executor will now compete in the November race to reshape control of the U.S. Senate.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "how-0",
+          "result-0",
+          "result-1",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.88
+    },
+    {
+      "id": "p3",
+      "text": "An election candidate, aided by an endorsement, overcame a rival's resource-heavy campaign to forge a decisive victory. Ken Paxton won the vote, ending the incumbent senator's fifth-term bid. John Cornyn lost renomination, suffering a historic defeat. The politician will now fabricate a new campaign for the November race that could reshape the U.S. Senate.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "how-0",
+          "result-0",
+          "result-1",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.72
+    }
+  ],
+  "warnings": []
+}

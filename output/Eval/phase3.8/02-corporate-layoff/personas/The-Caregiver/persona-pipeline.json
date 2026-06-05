@@ -1,0 +1,481 @@
+{
+  "persona_id": "The-Caregiver",
+  "overlay": {
+    "persona_id": "The-Caregiver",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Intuit",
+          "alternatives": [
+            {
+              "term": "the institution making a painful but necessary decision",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the company executing a workforce reduction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the decision-maker whose actions create hardship",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Sasan Goodarzi",
+          "alternatives": [
+            {
+              "term": "the Chief executive of Intuit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the leader announcing a painful reinvention",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the executive overseeing job losses for thousands",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "affected U.S. employees",
+          "alternatives": [
+            {
+              "term": "the workforce facing role elimination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "those whose livelihoods are at stake",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the individuals in need of support during transition",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a vulnerable group facing economic disruption",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+          "alternatives": [
+            {
+              "term": "a stated business strategy to reorganize and prioritize new technology",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the reason for the corporate restructuring",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "as a painful but necessary reinvention after months of internal review",
+          "alternatives": [
+            {
+              "term": "the acknowledgment of difficult but required change",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a justification that the harm is unavoidable",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+          "alternatives": [
+            {
+              "term": "the announcement of widespread job cuts",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the communication that thousands of positions will end",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "a severance package for those losing their jobs",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "compensation provided to ease the transition",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a measure to provide some financial cushion after the disruption",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Offices in Reno and Woodland Hills are winding down",
+          "alternatives": [
+            {
+              "term": "the closure of specific locations",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "workplaces that will no longer be available to employees",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "roughly 17% of workforce to be cut",
+          "alternatives": [
+            {
+              "term": "a significant reduction in the company's employees",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a large-scale loss of jobs",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "about 3,000 full-time roles to be eliminated",
+          "alternatives": [
+            {
+              "term": "the elimination of thousands of positions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "mass job losses affecting many individuals and families",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "offices in Reno and Woodland Hills winding down",
+          "alternatives": [
+            {
+              "term": "the shutdown of specific offices",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "communities losing a local employer and workplace",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "severance terms provided to displaced workers",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "an attempt to mitigate the impact on those let go",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work. Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles. Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure. Offices in Reno and Woodland Hills are winding down. roughly 17% of workforce to be cut The event unfolds across a stated business strategy to reorganize and prioritize new technology and the reason for the corporate restructuring.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "provenance": "surface"
+          },
+          {
+            "term": "a stated business strategy to reorganize and prioritize new technology",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the reason for the corporate restructuring",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "business strategy",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organizational change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "product development acceleration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "provenance": "surface"
+          },
+          {
+            "term": "the announcement of widespread job cuts",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "corporate announcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision communication",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff notification",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "provenance": "surface"
+          },
+          {
+            "term": "a severance package for those losing their jobs",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "severance package",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "compensation offer",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "employee benefit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Offices in Reno and Woodland Hills are winding down",
+            "provenance": "surface"
+          },
+          {
+            "term": "the closure of specific locations",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "office closure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "location shutdown",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "real estate disposal",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "roughly 17% of workforce to be cut",
+            "provenance": "surface"
+          },
+          {
+            "term": "a significant reduction in the company's employees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "workforce reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff layoff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organizational downsizing",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Intuit",
+            "provenance": "surface"
+          },
+          {
+            "term": "the institution making a painful but necessary decision",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the company executing a workforce reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tax-software company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "corporation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Sasan Goodarzi",
+            "provenance": "surface"
+          },
+          {
+            "term": "the Chief executive of Intuit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "chief executive",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "executive",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "company leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected U.S. employees",
+            "provenance": "surface"
+          },
+          {
+            "term": "the workforce facing role elimination",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "employees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "workers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "personnel",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "Amid a stated business strategy to reorganize and prioritize new technology, a significant reduction in the company's employees is underway. The announcement of widespread job cuts affects a vulnerable group facing economic disruption, as about 3,000 roles are eliminated. To ease the transition, compensation is provided to the workers, though many livelihoods remain at stake.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "how-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.88
+    },
+    {
+      "id": "p2",
+      "text": "The company executing a workforce reduction has communicated that thousands of positions will end, impacting those whose livelihoods are at stake. This large-scale loss of jobs, a major organizational downsizing, is part of a painful reinvention. An attempt to mitigate the impact offers some financial cushion, yet the individuals and families affected face profound uncertainty.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-1",
+          "result-1",
+          "how-1",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.91
+    },
+    {
+      "id": "p3",
+      "text": "As offices in Reno and Woodland Hills wind down, the staff layoff represents a painful but necessary change for the institution. Communities are losing a local employer and workplace, and the workforce facing role elimination includes a group in need of support. Severance terms are provided to the displaced workers, though the closure underscores the difficult human cost.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "how-2",
+          "result-0",
+          "result-2",
+          "result-3"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

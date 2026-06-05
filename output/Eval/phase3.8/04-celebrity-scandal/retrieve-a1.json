@@ -1,0 +1,302 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A YouTuber with a large subscriber count allegedly used AI-generated audio and manipulated chat screenshots to claim a famous actor dated his deceased co-star while she was a minor. This claim caused the actor's endorsements and public appearances to halt starting in early 2025. Seoul police then secured an arrest warrant for the YouTuber.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 430128,
+              "title": "Internet - The Movie",
+              "similarity": 0.5200290679931641,
+              "movie_url": "https://themoviecosmos.com/movie/430128"
+            },
+            {
+              "tmdb_id": 393656,
+              "title": "Date with Love",
+              "similarity": 0.5539894700050354,
+              "movie_url": "https://themoviecosmos.com/movie/393656"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Seoul police secured an arrest warrant for the operator of a popular YouTube channel. The channel had allegedly spread false claims using AI-generated audio and manipulated chat screenshots about an actor and a late co-star.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 445224,
+              "title": "Extraordinary Mission",
+              "similarity": 0.5014639496803284,
+              "movie_url": "https://themoviecosmos.com/movie/445224"
+            },
+            {
+              "tmdb_id": 602463,
+              "title": "Hostage: Missing Celebrity",
+              "similarity": 0.5336343050003052,
+              "movie_url": "https://themoviecosmos.com/movie/602463"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The career of a South Korean actor was impacted starting in early 2025 after false allegations surfaced online. His endorsements and public appearances were halted. Police in Seoul later obtained an arrest warrant for the person who allegedly made the claims.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-1",
+              "result-1",
+              "how-2"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 955555,
+              "title": "The Roundup 3: No Way Out",
+              "similarity": 0.5008312463760376,
+              "movie_url": "https://themoviecosmos.com/movie/955555"
+            },
+            {
+              "tmdb_id": 53267,
+              "title": "On the Occasion of Remembering the Turning Gate",
+              "similarity": 0.5417171716690063,
+              "movie_url": "https://themoviecosmos.com/movie/53267"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 393656,
+      "title": "Date with Love",
+      "overview": "When a boy’s video to a female star goes viral, it scores him a date with his celebrity crush to the prom. Complications arise when the famous starlet falls for the boy’s small-town teacher.",
+      "genres": "Comedy, TV Movie, Romance",
+      "release_year": 2016,
+      "language": "en",
+      "poster_path": "/1PNd2Pq40EMcekkcgpQuy1lf7Yc.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/393656",
+      "similarity": 0.5539894700050354,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.5539894700050354
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 53267,
+      "title": "On the Occasion of Remembering the Turning Gate",
+      "overview": "After being rejected for a film role, a stage actor leaves Seoul to visit a friend and, in his travels, winds up getting involved with two women.",
+      "genres": "Drama",
+      "release_year": 2002,
+      "language": "ko",
+      "poster_path": "/kU1DLrWyJwDVHHhBT5K2Pp826ev.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/53267",
+      "similarity": 0.5417171716690063,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-1",
+            "result-1",
+            "how-2"
+          ],
+          "similarity": 0.5417171716690063
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 602463,
+      "title": "Hostage: Missing Celebrity",
+      "overview": "A box office star has to prove his action credentials in the real world when he's kidnapped and held for ransom.",
+      "genres": "Action",
+      "release_year": 2021,
+      "language": "ko",
+      "poster_path": "/friTd4TghctdY7raG8PjnoODAFo.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/602463",
+      "similarity": 0.5336343050003052,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5336343050003052
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 430128,
+      "title": "Internet - The Movie",
+      "overview": "In a convention of youtubers, the characters enter into various conflicts since they are all in search of fame at any price.",
+      "genres": "Comedy",
+      "release_year": 2017,
+      "language": "pt",
+      "poster_path": "/7kyQPkPj6YDYzX4oMymtoiTzLx2.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/430128",
+      "similarity": 0.5200290679931641,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.5200290679931641
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 445224,
+      "title": "Extraordinary Mission",
+      "overview": "An undercover police officer attempts to take down a drug trafficking syndicate from the inside.",
+      "genres": "Action, Adventure, Crime, Thriller",
+      "release_year": 2017,
+      "language": "zh",
+      "poster_path": "/sMRVJ41dihj4pIpJ4UbArK1IXrg.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/445224",
+      "similarity": 0.5014639496803284,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5014639496803284
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 955555,
+      "title": "The Roundup 3: No Way Out",
+      "overview": "Detective Ma Seok-do changes his affiliation from the Geumcheon Police Station to the Metropolitan Investigation Team, in order to eradicate Japanese gangsters who enter Korea to commit heinous crimes.",
+      "genres": "Action, Crime, Comedy, Thriller",
+      "release_year": 2023,
+      "language": "ko",
+      "poster_path": "/lW6IHrtaATxDKYVYoQGU5sh0OVm.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/955555",
+      "similarity": 0.5008312463760376,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-1",
+            "result-1",
+            "how-2"
+          ],
+          "similarity": 0.5008312463760376
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 3,
+    "raw_hit_count": 6,
+    "candidate_count": 6,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

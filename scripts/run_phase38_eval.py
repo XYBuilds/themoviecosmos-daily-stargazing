@@ -27,6 +27,7 @@ from scripts.objective_expansion import run_expansion, write_outputs as write_ex
 from scripts.personas import list_persona_ids, pipeline_result_to_dict, run_persona_pipeline
 from scripts.retrieve import retrieve_from_agents
 from scripts.run_eval import _format_reality_body, slugify
+from scripts.run_persona_batch import write_a1_parallel_baseline
 
 PHASE38 = repo_root() / "output" / "Eval" / "phase3.8"
 
@@ -127,23 +128,22 @@ async def run_persona_for_run(
     pipeline_path = persona_dir / "persona-pipeline.json"
     if skip_existing and pipeline_path.is_file():
         data = json.loads(pipeline_path.read_text(encoding="utf-8"))
-        if data.get("error"):
-            return None, str(data["error"])
-        from scripts.agents import PseudoSegment
+        if not data.get("error"):
+            from scripts.agents import PseudoSegment
 
-        pseudos = [
-            PseudoSegment(
-                id=str(p["id"]),
-                text=str(p["text"]),
-                source=p.get("source") or {},
-                warnings=list(p.get("warnings") or []),
-                fit=p.get("fit"),
-            )
-            for p in data.get("pseudos") or []
-            if isinstance(p, dict)
-        ]
-        if pseudos:
-            return persona_pipeline_to_agent(persona_id, pseudos), None
+            pseudos = [
+                PseudoSegment(
+                    id=str(p["id"]),
+                    text=str(p["text"]),
+                    source=p.get("source") or {},
+                    warnings=list(p.get("warnings") or []),
+                    fit=p.get("fit"),
+                )
+                for p in data.get("pseudos") or []
+                if isinstance(p, dict)
+            ]
+            if pseudos:
+                return persona_pipeline_to_agent(persona_id, pseudos), None
 
     result = await run_persona_pipeline(
         persona_id,
@@ -244,6 +244,10 @@ async def run_phase38_for_news(
             json.dumps(retrieve_result, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
+        try:
+            write_a1_parallel_baseline(run_id, out_dir)
+        except (FileNotFoundError, ValueError) as exc:
+            errors.append({"agent_id": "A1", "message": f"a1_parallel: {exc}"})
 
     cjk_violations = find_cjk_violations(out_dir)
 

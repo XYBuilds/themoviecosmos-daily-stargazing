@@ -1,0 +1,477 @@
+{
+  "persona_id": "The-Innocent",
+  "overlay": {
+    "persona_id": "The-Innocent",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Christopher Nolan",
+          "alternatives": [
+            {
+              "term": "storyteller pursuing a vision of shared heritage",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "film director",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Lupita Nyong'o",
+          "alternatives": [
+            {
+              "term": "artist wronged by baseless attacks",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "actor",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "prominent commentators",
+          "alternatives": [
+            {
+              "term": "voices fostering division and mistrust",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "public figures",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "defenders",
+          "alternatives": [
+            {
+              "term": "advocates for a more inclusive and hopeful narrative",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "supporters",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "the production",
+          "alternatives": [
+            {
+              "term": "the team caught in the crossfire of a culture war",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the film project",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "accusations of erasing European history",
+          "alternatives": [
+            {
+              "term": "allegations that break trust and spread disillusion",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "claims of historical erasure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+          "alternatives": [
+            {
+              "term": "a sincere belief in a common, hopeful story for all",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an argument for inclusive interpretation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation",
+          "alternatives": [
+            {
+              "term": "a casting choice that sparked a search for shared meaning",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an acting role in a film",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "fierce online attacks drawn",
+          "alternatives": [
+            {
+              "term": "a wave of harmful speech that damages trust",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "online criticism",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "prominent commentators accused the production of erasing European history",
+          "alternatives": [
+            {
+              "term": "public figures making accusations that fuel division",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "commentators alleging historical erasure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+          "alternatives": [
+            {
+              "term": "voices defending the idea of a shared, hopeful heritage",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "arguments for inclusive casting",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film",
+          "alternatives": [
+            {
+              "term": "a painful debate that reveals a longing for a common story",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a conflict over cultural ownership",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "culture-war fight ignited",
+          "alternatives": [
+            {
+              "term": "a fight that shatters the hope of a shared narrative",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a cultural conflict",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "accusations of erasing European history. Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation. fierce online attacks drawn. prominent commentators accused the production of erasing European history. the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film The event unfolds across claims of historical erasure and allegation.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "accusations of erasing European history",
+            "provenance": "surface"
+          },
+          {
+            "term": "claims of historical erasure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "allegation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "criticism",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "statement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation",
+            "provenance": "surface"
+          },
+          {
+            "term": "an acting role in a film",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "casting decision",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "film production activity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "cultural event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fierce online attacks drawn",
+            "provenance": "surface"
+          },
+          {
+            "term": "online criticism",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital backlash",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "social media conflict",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "prominent commentators accused the production of erasing European history",
+            "provenance": "surface"
+          },
+          {
+            "term": "commentators alleging historical erasure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public accusation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "media criticism",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "cultural debate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film",
+            "provenance": "surface"
+          },
+          {
+            "term": "a conflict over cultural ownership",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "cultural controversy",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public debate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "social conflict",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Christopher Nolan",
+            "provenance": "surface"
+          },
+          {
+            "term": "film director",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "artist",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Lupita Nyong'o",
+            "provenance": "surface"
+          },
+          {
+            "term": "actor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "actress",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "performer",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "prominent commentators",
+            "provenance": "surface"
+          },
+          {
+            "term": "public figures",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "commentators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "media professionals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "defenders",
+            "provenance": "surface"
+          },
+          {
+            "term": "supporters",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "advocates",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the production",
+            "provenance": "surface"
+          },
+          {
+            "term": "the film project",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "film production",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "creative project",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organization",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "When the film director cast Lupita Nyong'o in a Homer adaptation, it sparked a wave of harmful speech that damages trust. Voices fostering division and mistrust made accusations that break trust and spread disillusion, turning a mythic epic into a painful debate that reveals a longing for a common story. The incident has become a flashpoint over identity in mass-market film.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p2",
+      "text": "In the wake of online criticism, advocates for a more inclusive and hopeful narrative defended the casting decision, offering a sincere belief in a common, hopeful story for all. Their arguments for inclusive casting represent a defense statement, yet the cultural conflict continues as the fight shatters the hope of a shared narrative for the production team caught in the crossfire.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.7
+    },
+    {
+      "id": "p3",
+      "text": "The artist wronged by baseless attacks saw her acting role in a film become the center of a cultural controversy. Public figures making accusations that fuel division clashed with supporters arguing for a defense, leaving the dispute as a social conflict and a public debate about who may claim classical stories in cinema.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.65
+    }
+  ],
+  "warnings": []
+}

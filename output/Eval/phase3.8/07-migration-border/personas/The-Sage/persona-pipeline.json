@@ -1,0 +1,414 @@
+{
+  "persona_id": "The-Sage",
+  "overlay": {
+    "persona_id": "The-Sage",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "U.S. Border Patrol",
+          "alternatives": [
+            {
+              "term": "enforcement agency following established protocols",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "executor of border policy",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "federal law enforcement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "8,268 people apprehended",
+          "alternatives": [
+            {
+              "term": "apprehended individuals",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "subjects of documented border encounters",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "undocumented entrants",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "analysts",
+          "alternatives": [
+            {
+              "term": "data interpreters",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "observers of trends",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "experts",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "commentators without access to primary data",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "lawmakers",
+          "alternatives": [
+            {
+              "term": "elected officials exercising legislative authority",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "politicians deadlocked on funding",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "legislators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "milder spring weather",
+          "alternatives": [
+            {
+              "term": "seasonal environmental conditions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "documented meteorological factor",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "reported cause requiring verification",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "speculative correlation",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+          "alternatives": [
+            {
+              "term": "statistical rise in documented border encounters",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "quantified change in apprehension figures",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "measured fluctuation in enforcement data",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+          "alternatives": [
+            {
+              "term": "verified long-term downward trend in crossings",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "documented policy outcome",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "reported aggregate statistic",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "data potentially subject to counting methodology",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+          "alternatives": [
+            {
+              "term": "legislative stalemate on funding allocation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "documented policy impasse",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "political gridlock delaying action",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "milder spring weather. apprehensions increased from 6,598 in February to 8,268 in March along the southwest border. year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies The event unfolds across seasonal environmental conditions and spring weather.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "milder spring weather",
+            "provenance": "surface"
+          },
+          {
+            "term": "seasonal environmental conditions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spring weather",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "seasonal climate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "weather condition",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "environmental factor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+            "provenance": "surface"
+          },
+          {
+            "term": "measured fluctuation in enforcement data",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "increase in apprehensions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "statistical trend",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "numerical change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border activity metric",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+            "provenance": "surface"
+          },
+          {
+            "term": "reported aggregate statistic",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "low crossing numbers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "enforcement policy outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "immigration statistics",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security effect",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. Border Patrol",
+            "provenance": "surface"
+          },
+          {
+            "term": "federal law enforcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. government entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "security force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "8,268 people apprehended",
+            "provenance": "surface"
+          },
+          {
+            "term": "apprehended individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detainees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border crossers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected population",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "analysts",
+            "provenance": "surface"
+          },
+          {
+            "term": "experts",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "security analysts",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "policy observers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "researchers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "lawmakers",
+            "provenance": "surface"
+          },
+          {
+            "term": "legislators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "politicians",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision-makers",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "Amidst the seasonal environmental conditions, data interpreters observed a statistical trend: apprehensions by federal law enforcement along the U.S. border increased from 6,598 in February to 8,268 in March. This quantified change, however, occurs within a broader context where year-to-date immigration statistics remain near multi-decade lows, a documented policy outcome attributed to current asylum shutdown and deportation measures. The measurable data presents a clear chronology of cause and effect for analytical scrutiny.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "Security analysts are scrutinizing the measured fluctuation in enforcement data, noting the increase in apprehensions documented by the border security agency. While this represents a notable numerical change, the overall enforcement policy outcome indicates long-term immigration statistics are at historic lows. Simultaneously, a legislative stalemate on funding allocation persists among politicians, delaying action on separate budgets for the agencies tasked with this work, creating a government impasse that complicates the policy landscape.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.8
+    },
+    {
+      "id": "p3",
+      "text": "Researchers point to a documented meteorological factor—spring weather—as a potential correlate to the recent rise in documented border encounters. The change in border activity metric from February to March is clear, yet experts caution against conflating a single monthly trend with the aggregate statistic that shows crossings near historic lows. This tension between short-term fluctuation and long-term policy effect remains a central point of analysis, even as a funding dispute continues to stymie legislative progress.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "warnings": []
+}

@@ -420,6 +420,19 @@ class PersonaScaffoldTests(unittest.TestCase):
         self.assertEqual(agent["role"], "baseline")
         self.assertGreaterEqual(len(agent["pseudos"]), 1)
 
+    def test_write_a1_parallel_baseline_04(self) -> None:
+        import tempfile
+
+        from scripts.run_persona_batch import write_a1_parallel_baseline
+
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            meta = write_a1_parallel_baseline("04-celebrity-scandal", out)
+            self.assertTrue((out / "retrieve-a1.json").is_file())
+            self.assertTrue((out / "a1-baseline-meta.json").is_file())
+            self.assertGreater(meta.get("a1_pseudo_count", 0), 0)
+            self.assertIsInstance(meta.get("a1_hit_tmdb_ids"), list)
+
     def test_all_persona_cards_exist(self) -> None:
         for pid in list_persona_ids():
             card = load_persona_card(pid)

@@ -1,0 +1,608 @@
+{
+  "persona_id": "The-Sage",
+  "overlay": {
+    "persona_id": "The-Sage",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Syria's president",
+          "alternatives": [
+            {
+              "term": "the visiting executive",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the national leader assessing damage",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the head of state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a leader confronting the aftermath",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "several children",
+          "alternatives": [
+            {
+              "term": "the youngest victims",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the child victims",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the drowned children",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the navy",
+          "alternatives": [
+            {
+              "term": "the maritime evacuation force",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the naval contingent",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the military arm deployed for rescue",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Turkey",
+          "alternatives": [
+            {
+              "term": "the upstream neighbor agreeing to reduce releases",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the neighboring state",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the upstream dam operator",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "one of the heaviest rainy seasons in three decades",
+          "alternatives": [
+            {
+              "term": "an exceptional meteorological event verified by records",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the primary climatic cause",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a factor contributing to the flooding",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a weather anomaly cited as cause",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "a quantified measure of reservoir saturation",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the stated capacity level",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a reported operational status",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "the documented sequence of cause and effect",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the reported mechanism of flooding",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the purported chain of events",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "the verified extent of the inundation",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the reported flooding impacts",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the claimed areas of destruction",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "An earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "the structural failure confirmed on-site",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the bridge collapse",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the alleged infrastructure failure",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "The navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "the observed rescue operation",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the deployment of naval assets",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the announced evacuation effort",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-5",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "the diplomatic agreement to limit discharges",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the reported accord on water management",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the stated commitment to reduce flows",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "several children drowned",
+          "alternatives": [
+            {
+              "term": "the confirmed fatalities among children",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the child deaths",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the reported child casualties",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+          "alternatives": [
+            {
+              "term": "the documented damage to settlements and agriculture",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the flooded infrastructure and farmland",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the alleged widespread inundation",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "an earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "the verified structural collapse",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the bridge failure",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the reported infrastructure breach",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "the navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "the observed naval evacuation response",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the maritime rescue deployment",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the publicized use of naval resources",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-4",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "the formalized commitment to limit water flow",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the transboundary agreement",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the promised reduction in upstream discharges",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-5",
+          "original_term": "Syria's president visited the flood zones",
+          "alternatives": [
+            {
+              "term": "the executive's on-site assessment",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the presidential visit to affected areas",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the leader's inspection of the damage",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "one of the heaviest rainy seasons in three decades. Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. several children drowned The event unfolds across a factor contributing to the flooding and heavy rainfall.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "one of the heaviest rainy seasons in three decades",
+            "provenance": "surface"
+          },
+          {
+            "term": "a factor contributing to the flooding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "heavy rainfall",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "extreme weather event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "climatic anomaly",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Reservoirs filled beyond 97% capacity",
+            "provenance": "surface"
+          },
+          {
+            "term": "reservoir overflow",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water storage issue",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "infrastructure problem",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+            "provenance": "surface"
+          },
+          {
+            "term": "flood causation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water release",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "embankment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+            "provenance": "surface"
+          },
+          {
+            "term": "flooding event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "property damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "several children drowned",
+            "provenance": "surface"
+          },
+          {
+            "term": "drowning incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fatality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Syria's president",
+            "provenance": "surface"
+          },
+          {
+            "term": "the head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "president",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "several children",
+            "provenance": "surface"
+          },
+          {
+            "term": "children",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "minors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "civilians",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the navy",
+            "provenance": "surface"
+          },
+          {
+            "term": "naval force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "military branch",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescue team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Turkey",
+            "provenance": "surface"
+          },
+          {
+            "term": "country",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "nation-state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "sovereign entity",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "An exceptional meteorological event, verified by records as one of the heaviest rainy seasons in three decades, triggered a flood causation sequence. Reservoirs filled beyond 97% capacity, and dam operations combined with seasonal rains pushed the Euphrates past protective embankments, leading to a structural failure confirmed on-site as an earthen bridge collapsed. The naval contingent then deployed boats for evacuations, while the head of state assessed the damage in the Syrian regions.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The confirmed fatalities among children, a tragic disaster outcome, resulted from the verified extent of the inundation that flooded homes, farms, and schools. This disaster impact prompted the observed rescue operation by the maritime evacuation force and led to a formalized commitment to limit water flow, a diplomatic agreement to limit discharges reached with the upstream dam operator.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "result-0",
+          "result-1",
+          "result-3",
+          "result-4"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "The documented sequence of cause and effect, from the heavy rainfall to the resulting flooding damage, was traced through the primary climatic cause. The executive's on-site assessment followed the bridge failure and the publicized use of naval resources, highlighting the international cooperation in flood mitigation measures.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-1",
+          "result-1",
+          "result-2",
+          "result-3",
+          "result-4"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.82
+    }
+  ],
+  "warnings": []
+}

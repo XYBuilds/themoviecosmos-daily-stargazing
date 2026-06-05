@@ -1,0 +1,190 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "After receiving a late endorsement from the sitting president, Ken Paxton won approximately 64% of the vote in the Texas Senate Republican runoff. He won the runoff. John Cornyn lost renomination, becoming the first sitting Republican senator from Texas to do so since 1970. Paxton will face James Talarico in the November general election.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "result-0",
+              "result-1",
+              "result-2"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 37593,
+              "title": "Lone Star",
+              "similarity": 0.49902886152267456,
+              "movie_url": "https://themoviecosmos.com/movie/37593"
+            },
+            {
+              "tmdb_id": 21711,
+              "title": "The Candidate",
+              "similarity": 0.5008964538574219,
+              "movie_url": "https://themoviecosmos.com/movie/21711"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The sitting president made a late endorsement. Ken Paxton won the Texas Senate Republican runoff. John Cornyn lost his renomination, the first time a sitting Republican senator from Texas has done so since 1970.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "result-0",
+              "result-1"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 23631,
+              "title": "Machete",
+              "similarity": 0.4868279993534088,
+              "movie_url": "https://themoviecosmos.com/movie/23631"
+            },
+            {
+              "tmdb_id": 37593,
+              "title": "Lone Star",
+              "similarity": 0.5140070915222168,
+              "movie_url": "https://themoviecosmos.com/movie/37593"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 37593,
+      "title": "Lone Star",
+      "overview": "Cattle baron Devereaux Burke is enlisted by an aging Andrew Jackson to dissuade Sam Houston from establishing Texas as a republic. Burke must fight state senator Thomas Craden, in the process winning the heart of Craden's newspaper-editor girlfriend Martha Ronda.",
+      "genres": "Western",
+      "release_year": 1952,
+      "language": "en",
+      "poster_path": "/4AMTdBJpApUz55HqVbZBS5GNQa6.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/37593",
+      "similarity": 0.5140070915222168,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.49902886152267456
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5140070915222168
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 21711,
+      "title": "The Candidate",
+      "overview": "Bill McKay is a candidate for the U.S. Senate from California. He has no hope of winning, so he is willing to tweak the establishment.",
+      "genres": "Comedy, Drama",
+      "release_year": 1972,
+      "language": "en",
+      "poster_path": "/6zcDSOe1akUXsc2Q1APfchKcVaI.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/21711",
+      "similarity": 0.5008964538574219,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5008964538574219
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 23631,
+      "title": "Machete",
+      "overview": "After being set-up and betrayed by the man who hired him to assassinate a Texas Senator, an ex-Federale launches a brutal rampage of revenge against his former boss.",
+      "genres": "Action, Comedy, Thriller",
+      "release_year": 2010,
+      "language": "en",
+      "poster_path": "/dcPSm1rGEFdiEc7DaKz0t5kb66b.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/23631",
+      "similarity": 0.4868279993534088,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4868279993534088
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 2,
+    "raw_hit_count": 4,
+    "candidate_count": 3,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

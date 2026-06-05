@@ -1,0 +1,449 @@
+{
+  "persona_id": "The-Hero",
+  "overlay": {
+    "persona_id": "The-Hero",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "European regulators",
+          "alternatives": [
+            {
+              "term": "enforcers who stand up for fair play",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the guardians of the market arena",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Google",
+          "alternatives": [
+            {
+              "term": "the gatekeeper abusing its dominant position",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the tech giant rigging the field",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "technology company",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "rival comparison services",
+          "alternatives": [
+            {
+              "term": "underdogs squeezed out by a gatekeeper",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "market competitors",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+          "alternatives": [
+            {
+              "term": "for tilting the playing field to favour its own services",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "for self-preferencing in search results",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "under the bloc's gatekeeper rules",
+          "alternatives": [
+            {
+              "term": "under rules designed to protect open competition",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "under the gatekeeper regulation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+          "alternatives": [
+            {
+              "term": "a long, dogged investigation that refused to back down",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "multi-year proceedings",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Brussels rejected the company's remedy proposals",
+          "alternatives": [
+            {
+              "term": "regulators stood firm and dismissed inadequate fixes",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "proposals were rejected",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "a decisive blow against market abuse",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a major financial penalty",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "A formal decision is expected before the Commission's August recess",
+          "alternatives": [
+            {
+              "term": "the verdict will land before the break",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a decision is expected soon",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "penalty expected to reach the high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "a landmark fine to answer for years of rule-breaking",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a large financial penalty",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "adding to more than a decade of accumulated competition fines against Alphabet",
+          "alternatives": [
+            {
+              "term": "a pattern of abuse that finally demands accountability",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a history of competition fines",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "EU",
+          "alternatives": [
+            {
+              "term": "the arena where justice is being sought",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the EU",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "Brussels",
+          "alternatives": [
+            {
+              "term": "the front line of the enforcement battle",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Brussels",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results. Proceedings under the bloc's gatekeeper rules for more than two years. Brussels rejected the company's remedy proposals. European regulators are finalizing a penalty expected to reach high hundreds of millions of euros. penalty expected to reach the high hundreds of millions of euros The event unfolds across for self-preferencing in search results and multi-year proceedings.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "provenance": "surface"
+          },
+          {
+            "term": "for self-preferencing in search results",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+            "provenance": "surface"
+          },
+          {
+            "term": "multi-year proceedings",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Brussels rejected the company's remedy proposals",
+            "provenance": "surface"
+          },
+          {
+            "term": "proposals were rejected",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+            "provenance": "surface"
+          },
+          {
+            "term": "a major financial penalty",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "penalty expected to reach the high hundreds of millions of euros",
+            "provenance": "surface"
+          },
+          {
+            "term": "a large financial penalty",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "financial penalty",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "antitrust fine",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "monetary sanction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European regulators",
+            "provenance": "surface"
+          },
+          {
+            "term": "regulators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government regulators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "regulatory agencies",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Google",
+            "provenance": "surface"
+          },
+          {
+            "term": "technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "search engine provider",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "multinational corporation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rival comparison services",
+            "provenance": "surface"
+          },
+          {
+            "term": "market competitors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online services",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "comparison platforms",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "business competitors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "EU",
+            "provenance": "surface"
+          },
+          {
+            "term": "the EU",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political union",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "supranational organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "regulatory jurisdiction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Brussels",
+            "provenance": "surface"
+          },
+          {
+            "term": "capital city",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "administrative center",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European city",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "After a long, dogged investigation that refused to back down, enforcers who stand up for fair play are finalizing a decisive blow against market abuse. The tech giant rigging the field is set to face a landmark fine, a major financial penalty, for years of rule-breaking that demands accountability. The verdict will land before the break, marking a victory for open competition in the EU.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.9
+    },
+    {
+      "id": "p2",
+      "text": "The guardians of the market arena have stood firm, dismissing inadequate fixes from the gatekeeper abusing its dominant position. Under the gatekeeper regulation, a decision is expected soon in Brussels, the front line of the enforcement battle. This action aims to protect market competitors who were squeezed out by the tech giant's self-preferencing in search results.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-1",
+          "how-1",
+          "how-2",
+          "how-3"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "European authorities are delivering a powerful response to the technology company that tilted the playing field. A decisive blow against market abuse is being finalized, a major financial penalty adding to a history of competition fines. This action on the front line of the enforcement battle is designed to protect open competition and ensure fair play for underdogs.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "how-2",
+          "result-0",
+          "result-1",
+          "why-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.8
+    }
+  ],
+  "warnings": []
+}

@@ -12,16 +12,22 @@
       "absolute": [
         "May 2026"
       ],
-      "relative": [],
+      "relative": [
+        "after Kepco SPC Power's Unit 2 tripped offline"
+      ],
       "daypart": [],
-      "season": [],
+      "season": [
+        "seasonal heat"
+      ],
       "fuzzy_era": [],
       "cultural": [],
       "anchored": [],
-      "duration": [],
+      "duration": [
+        "since May began"
+      ],
       "recurrence": [],
       "modality": [
-        "occurred: power crunch"
+        "occurred"
       ],
       "timezone": []
     },
@@ -29,7 +35,7 @@
       {
         "text": "Visayas",
         "role": [
-          "site of power crunch"
+          "site of red alert"
         ],
         "relations": [],
         "relative_pos": null,
@@ -62,7 +68,7 @@
         "relations": []
       },
       {
-        "text": "eleven generators",
+        "text": "Eleven generators",
         "role_in_event": [
           "affected"
         ],
@@ -83,27 +89,20 @@
     "how": [
       {
         "step": 1,
-        "text": "Eleven generators failed since May began."
+        "text": "Kepco SPC Power's Unit 2 tripped offline"
       },
       {
         "step": 2,
-        "text": "Kepco SPC Power's Unit 2 tripped offline."
+        "text": "The Philippines grid operator placed the Visayas under red alert"
       },
       {
         "step": 3,
-        "text": "The Philippines grid operator placed the Visayas under red alert."
-      },
-      {
-        "step": 4,
-        "text": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading."
+        "text": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading"
       }
     ],
     "result": [
       {
-        "text": "More than 950 megawatts became unavailable."
-      },
-      {
-        "text": "Rotational blackout risks rose in Visayas."
+        "text": "more than 950 megawatts unavailable"
       }
     ]
   },
@@ -113,7 +112,8 @@
         "element_id": "where-0",
         "surface": "Visayas",
         "hypernyms": [
-          "island region",
+          "island group",
+          "region",
           "Philippines",
           "Southeast Asia"
         ],
@@ -125,6 +125,7 @@
         "hypernyms": [
           "grid operator",
           "utility",
+          "energy sector entity",
           "organization"
         ],
         "rejected_hypernyms": []
@@ -133,9 +134,10 @@
         "element_id": "who-1",
         "surface": "Kepco SPC Power's Unit 2",
         "hypernyms": [
-          "power generation unit",
+          "power unit",
+          "generating unit",
           "power plant component",
-          "industrial facility"
+          "energy infrastructure"
         ],
         "rejected_hypernyms": []
       },
@@ -143,19 +145,22 @@
         "element_id": "who-2",
         "surface": "Officials",
         "hypernyms": [
-          "government officials",
           "authorities",
-          "administrators"
+          "government officials",
+          "decision-makers"
         ],
-        "rejected_hypernyms": []
+        "rejected_hypernyms": [
+          "officials"
+        ]
       },
       {
         "element_id": "who-3",
-        "surface": "eleven generators",
+        "surface": "Eleven generators",
         "hypernyms": [
+          "generators",
           "power generators",
-          "electricity generators",
-          "machines"
+          "equipment",
+          "energy assets"
         ],
         "rejected_hypernyms": []
       },
@@ -164,8 +169,8 @@
         "surface": "Kepco SPC Power's Unit 2 tripped offline",
         "hypernyms": [
           "equipment failure",
-          "power plant outage",
-          "technical fault"
+          "power outage",
+          "grid incident"
         ],
         "rejected_hypernyms": []
       },
@@ -174,8 +179,9 @@
         "surface": "other long-running plant outages",
         "hypernyms": [
           "plant outages",
-          "power outages",
-          "operational issues"
+          "maintenance shutdowns",
+          "unavailability",
+          "downtime"
         ],
         "rejected_hypernyms": []
       },
@@ -183,74 +189,60 @@
         "element_id": "why-2",
         "surface": "seasonal heat drove demand into a thin operating margin",
         "hypernyms": [
+          "high demand",
           "heatwave impact",
-          "high power demand",
-          "demand surge"
+          "energy demand spike",
+          "demand increase"
         ],
         "rejected_hypernyms": []
       },
       {
         "element_id": "how-0",
-        "surface": "Eleven generators failed since May began.",
+        "surface": "Kepco SPC Power's Unit 2 tripped offline",
         "hypernyms": [
-          "generator failures",
-          "equipment malfunctions",
-          "power generation issues"
+          "equipment failure",
+          "power outage",
+          "grid incident"
         ],
         "rejected_hypernyms": []
       },
       {
         "element_id": "how-1",
-        "surface": "Kepco SPC Power's Unit 2 tripped offline.",
+        "surface": "The Philippines grid operator placed the Visayas under red alert",
         "hypernyms": [
-          "equipment trip",
-          "power plant shutdown",
-          "failure incident"
+          "alert declaration",
+          "grid management action",
+          "emergency response",
+          "action"
         ],
         "rejected_hypernyms": []
       },
       {
         "element_id": "how-2",
-        "surface": "The Philippines grid operator placed the Visayas under red alert.",
-        "hypernyms": [
-          "grid alert",
-          "emergency warning",
-          "power system alert"
-        ],
-        "rejected_hypernyms": []
-      },
-      {
-        "element_id": "how-3",
-        "surface": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading.",
+        "surface": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
         "hypernyms": [
           "load shedding",
-          "emergency load management",
-          "grid stabilization action"
+          "emergency measure",
+          "grid stabilization",
+          "control action"
         ],
         "rejected_hypernyms": []
       },
       {
         "element_id": "result-0",
-        "surface": "More than 950 megawatts became unavailable.",
+        "surface": "more than 950 megawatts unavailable",
         "hypernyms": [
-          "power capacity loss",
-          "generation shortfall",
-          "megawatt shortage"
-        ],
-        "rejected_hypernyms": []
-      },
-      {
-        "element_id": "result-1",
-        "surface": "Rotational blackout risks rose in Visayas.",
-        "hypernyms": [
-          "blackout risk increase",
-          "grid instability",
-          "power outage risk"
+          "power shortage",
+          "capacity loss",
+          "energy deficit",
+          "shortage"
         ],
         "rejected_hypernyms": []
       }
     ]
   },
   "errors": [],
-  "validation_warnings": []
+  "validation_warnings": [
+    "elements[3] touchstone rejected: ['officials']"
+  ]
 }

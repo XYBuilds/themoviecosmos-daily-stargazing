@@ -1,0 +1,458 @@
+{
+  "persona_id": "The-Lover",
+  "overlay": {
+    "persona_id": "The-Lover",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "betrayer of trust",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "rumor spreader",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "fabricator",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kim Soo-hyun",
+          "alternatives": [
+            {
+              "term": "beloved public figure",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "actor",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "scandal-tarnished image",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "object of desire",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Seoul police",
+          "alternatives": [
+            {
+              "term": "enforcers of order",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "authorities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "intrusive public force",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Prosecutors",
+          "alternatives": [
+            {
+              "term": "legal witnesses",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "arbiters of reputation",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Seoul",
+          "alternatives": [
+            {
+              "term": "city of public scrutiny",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "metropolitan center",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "site of intimate betrayal",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "violate trust for profit",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "financial motivation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "cheapen public intimacy",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "fabricated intimacy narratives",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "digital manipulation for scandal",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "spread false dating claims",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Seoul police secured an arrest warrant",
+          "alternatives": [
+            {
+              "term": "public authority intervenes",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "rupture of private life",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "betrayer held accountable",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrest made",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "public exposure of a fabricator",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "beloved image tarnished",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "professional pause",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "desirability undermined",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "object of affection forced into seclusion",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "spread false claims for financial gain. used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. Seoul police secured an arrest warrant. YouTuber arrested The event unfolds across financial motivation and misinformation.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "financial motivation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "spread false dating claims",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police secured an arrest warrant",
+            "provenance": "surface"
+          },
+          {
+            "term": "public authority intervenes",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal procedure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest warrant issuance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "arrest made",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detention",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of crime",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber",
+            "provenance": "surface"
+          },
+          {
+            "term": "content creator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kim Soo-hyun",
+            "provenance": "surface"
+          },
+          {
+            "term": "actor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "celebrity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police",
+            "provenance": "surface"
+          },
+          {
+            "term": "authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "police force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government body",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Prosecutors",
+            "provenance": "surface"
+          },
+          {
+            "term": "legal witnesses",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal professionals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "prosecutorial agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul",
+            "provenance": "surface"
+          },
+          {
+            "term": "metropolitan center",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capital city",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "South Korea",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "East Asia",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "urban center",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "In the metropolitan center of Seoul, the public image of actor Kim Soo-hyun—a beloved public figure and object of desire—was brutally tarnished. A content creator, motivated to violate trust for profit, spread fabricated intimacy narratives, using digital manipulation to allege the celebrity dated a minor co-star. The ensuing reputational damage forced the scandal-tarnished image into seclusion, halting professional engagements, until a public authority intervened with an arrest warrant, leading to the betrayer's detention.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.92
+    },
+    {
+      "id": "p2",
+      "text": "The arrest made in this urban center marked the harsh consequence of a digital scandal. An online personality, a rumor spreader and fabricator, had cheapened public intimacy by deploying AI-generated content to spread false dating claims against a celebrity. This deceptive practice and illegal activity culminated in a legal procedure where authorities secured a warrant, resulting in the public exposure of the fabricator. The entire affair stands as a stark example of reputational damage in the modern era.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

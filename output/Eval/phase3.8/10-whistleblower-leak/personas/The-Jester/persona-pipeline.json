@@ -1,0 +1,743 @@
+{
+  "persona_id": "The-Jester",
+  "overlay": {
+    "persona_id": "The-Jester",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "whistleblower in Sikar",
+          "alternatives": [
+            {
+              "term": "the honest fool who dispels fear",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the insider who leaked the exam PDFs",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "tipster",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the rumor-monger who sparked a circus",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "India's National Testing Agency (NTA)",
+          "alternatives": [
+            {
+              "term": "the solemn bureaucracy that got punked",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the national exam authority",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "testing agency",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the self-serious gatekeepers",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "26–27 paper setters and translators",
+          "alternatives": [
+            {
+              "term": "the fall guys in the exam leak farce",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "exam content creators",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "content preparers",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the incompetent gatekeepers of a leaky sieve",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Central Bureau of Investigation (CBI)",
+          "alternatives": [
+            {
+              "term": "the serious sleuths chasing a meme",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the national investigation bureau",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "law enforcement agency",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the humorless police force",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "the unlucky clowns in the leak circus",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the arrested suspects",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "detainees",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the hapless scapegoats",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-5",
+          "original_term": "coaching figure who had publicly championed student justice during the  2024 leak scandal",
+          "alternatives": [
+            {
+              "term": "the hypocrite who became the punchline",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the former student justice advocate",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "education advocate",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the self-serious champion now caught in the act",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+          "alternatives": [
+            {
+              "term": "the viral hoax that exposed the system",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the tip about leaked exam papers",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "leak evidence",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the absurdly perfect PDF match that ruined everything",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Medical entrance exam held on May 3",
+          "alternatives": [
+            {
+              "term": "the fateful day the farce began",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the exam date",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "examination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the solemn test that turned into a joke",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+          "alternatives": [
+            {
+              "term": "the email that dropped the comedy bomb",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the agency received the tip-off",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "tip received",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the bureaucratic inbox that got spammed with truth",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "NTA referred 26–27 paper setters and translators to CBI",
+          "alternatives": [
+            {
+              "term": "the agency threw its own under the bus",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the NTA referred the staff to investigators",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "referral to authorities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the solemn handover of scapegoats",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Thirteen people arrested, including a coaching figure",
+          "alternatives": [
+            {
+              "term": "the mass arrest that became a meme",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrests were made",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "apprehensions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the grim roundup of the usual suspects",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "the encore nobody asked for",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a new exam date was set",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "rescheduled examination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the solemn do-over to fix the absurd mess",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "NEET-UG 2026 cancelled",
+          "alternatives": [
+            {
+              "term": "the grand cancellation that punctured the system",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the exam was cancelled",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "cancellation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the solemn test crumbled into nothing",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "the unlucky thirteen in the leak circus",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrests were made",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "apprehensions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the grim tally of scapegoats",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "the absurd sequel is coming",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a re-examination was scheduled",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "rescheduled examination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the solemn promise of another round",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology. Medical entrance exam held on May 3. NTA received email from whistleblower in Sikar with PDFs matching chemistry paper. NTA referred 26–27 paper setters and translators to CBI. NEET-UG 2026 cancelled The event unfolds across leak evidence and tip.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+            "provenance": "surface"
+          },
+          {
+            "term": "leak evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tip",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "information disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "report",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Medical entrance exam held on May 3",
+            "provenance": "surface"
+          },
+          {
+            "term": "examination",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "test",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "assessment",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "entrance exam",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+            "provenance": "surface"
+          },
+          {
+            "term": "tip received",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "communication",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "receipt of information",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "step",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NTA referred 26–27 paper setters and translators to CBI",
+            "provenance": "surface"
+          },
+          {
+            "term": "referral to authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "referral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "investigation initiation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NEET-UG 2026 cancelled",
+            "provenance": "surface"
+          },
+          {
+            "term": "cancellation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "result",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "whistleblower in Sikar",
+            "provenance": "surface"
+          },
+          {
+            "term": "tipster",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "informant",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "source",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "India's National Testing Agency (NTA)",
+            "provenance": "surface"
+          },
+          {
+            "term": "testing agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "institution",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "body",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "26–27 paper setters and translators",
+            "provenance": "surface"
+          },
+          {
+            "term": "content preparers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professionals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "group",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "people",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Central Bureau of Investigation (CBI)",
+            "provenance": "surface"
+          },
+          {
+            "term": "law enforcement agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "investigation agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "bureau",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "thirteen people arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "detainees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrested individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "suspects",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "persons",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching figure who had publicly championed student justice during the  2024 leak scandal",
+            "provenance": "surface"
+          },
+          {
+            "term": "education advocate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+            "provenance": "surface"
+          },
+          {
+            "term": "coach",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "educator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The fateful day the farce began on May 3, when a medical entrance exam was held, only to be exposed by a tipster whose leaked PDFs matched the chemistry paper perfectly. The solemn bureaucracy of India's national testing agency got punked, leading to the grand cancellation that punctured the system, while law enforcement agency swooped in for a mass arrest that became a meme, rounding up the unlucky clowns in the leak circus.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "why-0",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.88
+    },
+    {
+      "id": "p2",
+      "text": "When the email that dropped the comedy bomb hit the testing agency's inbox, it revealed the absurdly perfect PDF match that ruined everything. This information disclosure triggered an investigation initiation, with the agency referring its own content preparers to the national investigation bureau, resulting in a rescheduled examination for June 21—the encore nobody asked for—as arrests were made among the group.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "how-1",
+          "why-0",
+          "how-2",
+          "result-2",
+          "how-3"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.82
+    },
+    {
+      "id": "p3",
+      "text": "The hypocrite who became the punchline, a coach and public figure, was caught in the act as part of the arrested individuals. This consequence stemmed from the honest fool who dispels fear in Sikar providing leak evidence, forcing a referral to authorities and the cancellation outcome, with a rescheduled examination now planned as the absurd sequel is coming.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-2",
+          "result-0",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    }
+  ],
+  "warnings": []
+}

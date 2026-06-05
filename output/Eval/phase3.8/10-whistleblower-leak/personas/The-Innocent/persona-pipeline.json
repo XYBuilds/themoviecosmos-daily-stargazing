@@ -1,0 +1,676 @@
+{
+  "persona_id": "The-Innocent",
+  "overlay": {
+    "persona_id": "The-Innocent",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "whistleblower in Sikar",
+          "alternatives": [
+            {
+              "term": "protective tipster",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "trustworthy informant",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "alert observer",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "origin of whistleblower tip",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "India's National Testing Agency (NTA)",
+          "alternatives": [
+            {
+              "term": "agency attempting to restore integrity",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "oversight body responding to concern",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "testing authority",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "institution whose systems failed trust",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "26–27 paper setters and translators",
+          "alternatives": [
+            {
+              "term": "examination staff under investigation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "paper setters and translators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Central Bureau of Investigation (CBI)",
+          "alternatives": [
+            {
+              "term": "agency seeking to uncover the truth",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "investigating authority",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "Central Bureau of Investigation (CBI)",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "individuals accused of betraying public trust",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrested individuals",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "thirteen people arrested",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-5",
+          "original_term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+          "alternatives": [
+            {
+              "term": "former advocate now suspected of hypocrisy",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "figure whose past advocacy contrasts with current allegations",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "coaching figure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+          "alternatives": [
+            {
+              "term": "evidence revealing a breach of faith in the examination process",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "disclosure indicating potential compromise",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "whistleblower tip",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Medical entrance exam held on May 3",
+          "alternatives": [
+            {
+              "term": "exam now overshadowed by alleged fraud",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "medical entrance exam",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+          "alternatives": [
+            {
+              "term": "alert that prompted a necessary review",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "communication containing evidence",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "NTA received email",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "NTA referred 26–27 paper setters and translators to CBI",
+          "alternatives": [
+            {
+              "term": "referral to enable transparent investigation",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "handover of personnel for investigation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "NTA referred personnel to CBI",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Thirteen people arrested, including a coaching figure",
+          "alternatives": [
+            {
+              "term": "arrests following breach of trust",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrests made as part of inquiry",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "thirteen people arrested",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "opportunity for a fair second chance",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "rescheduled test",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "re-examination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "NEET-UG 2026 cancelled",
+          "alternatives": [
+            {
+              "term": "cancellation to safeguard the integrity of future results",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "exam cancellation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "cancellation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "loss of a year's hope for examinees",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "accountability for those who allegedly harmed the system",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrests made",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "thirteen people arrested",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "accusations shattering careers and trust",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "chance to restore fairness and hope",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "rescheduled re-test",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "re-examination scheduled",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology. Medical entrance exam held on May 3. NTA received email from whistleblower in Sikar with PDFs matching chemistry paper. NTA referred 26–27 paper setters and translators to CBI. NEET-UG 2026 cancelled The event unfolds across whistleblower tip and tip.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+            "provenance": "surface"
+          },
+          {
+            "term": "whistleblower tip",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tip",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "information disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "report",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Medical entrance exam held on May 3",
+            "provenance": "surface"
+          },
+          {
+            "term": "medical entrance exam",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "examination",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "test",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "assessment",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "entrance exam",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+            "provenance": "surface"
+          },
+          {
+            "term": "NTA received email",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "communication",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "receipt of information",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "step",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NTA referred 26–27 paper setters and translators to CBI",
+            "provenance": "surface"
+          },
+          {
+            "term": "NTA referred personnel to CBI",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "referral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "investigation initiation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NEET-UG 2026 cancelled",
+            "provenance": "surface"
+          },
+          {
+            "term": "cancellation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "result",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "whistleblower in Sikar",
+            "provenance": "surface"
+          },
+          {
+            "term": "origin of whistleblower tip",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "informant",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "source",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "India's National Testing Agency (NTA)",
+            "provenance": "surface"
+          },
+          {
+            "term": "testing authority",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "testing agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "institution",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "body",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "26–27 paper setters and translators",
+            "provenance": "surface"
+          },
+          {
+            "term": "paper setters and translators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professionals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "group",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "people",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Central Bureau of Investigation (CBI)",
+            "provenance": "surface"
+          },
+          {
+            "term": "investigation agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "bureau",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "thirteen people arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "arrested individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "suspects",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "persons",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+            "provenance": "surface"
+          },
+          {
+            "term": "coaching figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coach",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "educator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "After a medical entrance exam held on May 3, a trustworthy informant from Sikar provided an alert that prompted a necessary review. The testing authority, seeking to restore integrity, received communication containing evidence that led to a referral to enable a transparent investigation. This action resulted in the cancellation to safeguard the integrity of future results, offering examinees a chance to restore fairness and hope through a re-examination scheduled for June 21.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.9
+    },
+    {
+      "id": "p2",
+      "text": "A whistleblower tip revealed a breach of faith in the examination process, prompting the oversight body to respond with concern. Following the receipt of information, thirteen people were arrested, including a coaching figure, as part of an inquiry into the alleged compromise. The law enforcement result seeks to bring accountability for those who allegedly harmed the system, even as the planned re-examination provides an opportunity for fairness.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-3",
+          "result-1",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "The loss of a year's hope for examinees came after an exam now overshadowed by alleged fraud. An agency attempting to restore integrity acted on a protective tipster's report, leading to the handover of personnel for investigation. While accusations shatter careers and trust, the rescheduled re-test offers a second chance for many students who were wronged.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    }
+  ],
+  "warnings": []
+}

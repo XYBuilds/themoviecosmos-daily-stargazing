@@ -1,0 +1,419 @@
+{
+  "persona_id": "The-Jester",
+  "overlay": {
+    "persona_id": "The-Jester",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "U.S. Border Patrol",
+          "alternatives": [
+            {
+              "term": "the solemn enforcers of the line in the sand",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the border agency",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "8,268 people apprehended",
+          "alternatives": [
+            {
+              "term": "the spring crowd caught in the seasonal surge",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "apprehended individuals",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "analysts",
+          "alternatives": [
+            {
+              "term": "the number-crunchers watching the seasonal show",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "observers",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "lawmakers",
+          "alternatives": [
+            {
+              "term": "the gridlocked jesters in the chamber of deadlock",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "elected officials",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "milder spring weather",
+          "alternatives": [
+            {
+              "term": "the planet's annual whim for movement",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "seasonal temperature changes",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+          "alternatives": [
+            {
+              "term": "the great seasonal count bounced upward by a few thousand",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the number of apprehensions rose between months",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+          "alternatives": [
+            {
+              "term": "the grand total sits near historic quiet despite the spring fling",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "long-term crossing numbers are historically low",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+          "alternatives": [
+            {
+              "term": "the legislative circus grinds on, frozen in its own spectacle",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "political disagreement continues over funding",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "southwest border",
+          "alternatives": [
+            {
+              "term": "the grand stage where the annual migration play unfolds",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the boundary line",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the solemn barrier that begs to be mocked",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "milder spring weather. apprehensions increased from 6,598 in February to 8,268 in March along the southwest border. year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies The event unfolds across seasonal temperature changes and spring weather.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "milder spring weather",
+            "provenance": "surface"
+          },
+          {
+            "term": "seasonal temperature changes",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spring weather",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "seasonal climate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "weather condition",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "environmental factor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+            "provenance": "surface"
+          },
+          {
+            "term": "the number of apprehensions rose between months",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "increase in apprehensions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "statistical trend",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "numerical change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border activity metric",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+            "provenance": "surface"
+          },
+          {
+            "term": "long-term crossing numbers are historically low",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "low crossing numbers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "enforcement policy outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "immigration statistics",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security effect",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. Border Patrol",
+            "provenance": "surface"
+          },
+          {
+            "term": "the border agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "federal law enforcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. government entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "security force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "8,268 people apprehended",
+            "provenance": "surface"
+          },
+          {
+            "term": "apprehended individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detainees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border crossers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected population",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "analysts",
+            "provenance": "surface"
+          },
+          {
+            "term": "observers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "security analysts",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "policy observers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "experts",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "researchers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "lawmakers",
+            "provenance": "surface"
+          },
+          {
+            "term": "elected officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legislators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "politicians",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision-makers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "southwest border",
+            "provenance": "surface"
+          },
+          {
+            "term": "the boundary line",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. border",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "international boundary",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "geopolitical region",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border area",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "As the planet's annual whim for movement took hold, the great seasonal count bounced upward by a few thousand, with the spring crowd caught in the seasonal surge appearing along the boundary line. Yet, the number-crunchers watching the seasonal show noted that the grand total sits near historic quiet despite the spring fling, a fact that highlights the absurdity of the ongoing spectacle. Meanwhile, the gridlocked jesters in the chamber of deadlock remain frozen in their own legislative circus, unable to address the funding dispute, proving that even in the face of rising border activity metric, the political theater continues unabated.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The solemn enforcers of the line in the sand watched as the number of apprehensions rose between months, a statistical trend driven by seasonal climate shifts. This spring weather brought the spring crowd caught in the seasonal surge to the geopolitical region, where federal law enforcement apprehended them. Despite this increase, long-term crossing numbers are historically low, an enforcement policy outcome that observers note with wry amusement, as the gridlocked politicians continue their government impasse over funding, turning the whole affair into a dark comedy of errors.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.8
+    },
+    {
+      "id": "p3",
+      "text": "The annual migration play unfolded on the grand stage of the southwest border, with the border security agency reporting a numerical change as apprehensions increased. The environmental factor of milder spring weather acted as a catalyst, yet the overall immigration statistics show low crossing numbers, a paradox that delights the jester's eye. Elected officials, meanwhile, remain deadlocked in a legislative stalemate, their funding dispute frozen in its own spectacle, proving that even as the seasonal trend rises, the political deadlock continues its absurd, self-serious performance.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "warnings": []
+}

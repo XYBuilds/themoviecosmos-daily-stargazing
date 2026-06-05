@@ -1,0 +1,287 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In March 2026, U.S. Border Patrol arrested 8,268 people at the southwest border. This was an increase of 25% from the 6,598 arrests in February 2026.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.5087245106697083,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            },
+            {
+              "tmdb_id": 4170,
+              "title": "Trade",
+              "similarity": 0.5096507668495178,
+              "movie_url": "https://themoviecosmos.com/movie/4170"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Analysts attributed the monthly increase in arrests to warmer spring weather. Year-to-date border crossings remained near multi-decade lows, credited to asylum restrictions and deportation policies.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-2"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 982752,
+              "title": "American Carnage",
+              "similarity": 0.4044097661972046,
+              "movie_url": "https://themoviecosmos.com/movie/982752"
+            },
+            {
+              "tmdb_id": 301633,
+              "title": "Open the Wall",
+              "similarity": 0.4067463278770447,
+              "movie_url": "https://themoviecosmos.com/movie/301633"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Legislators remained at an impasse over funding for immigration enforcement agencies. A related funding bill was pending.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-4",
+              "result-2"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 21711,
+              "title": "The Candidate",
+              "similarity": 0.4799210727214813,
+              "movie_url": "https://themoviecosmos.com/movie/21711"
+            },
+            {
+              "tmdb_id": 43837,
+              "title": "Union Pacific",
+              "similarity": 0.591037392616272,
+              "movie_url": "https://themoviecosmos.com/movie/43837"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 43837,
+      "title": "Union Pacific",
+      "overview": "One of the last bills signed by President Lincoln authorizes pushing the Union Pacific Railroad across the wilderness to California. But financial opportunist Asa Barrows hopes to profit from obstructing it. Chief troubleshooter Jeff Butler has his hands full fighting Barrows' agent, gambler Sid Campeau; Campeau's partner Dick Allen is Jeff's war buddy and rival suitor for engineer's daughter Molly Monahan. Who will survive the effort to push the railroad through at any cost?",
+      "genres": "Drama, Western",
+      "release_year": 1939,
+      "language": "en",
+      "poster_path": "/lSk1CWl7EaHKBNMPaDWGnhRO598.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/43837",
+      "similarity": 0.591037392616272,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-4",
+            "result-2"
+          ],
+          "similarity": 0.591037392616272
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 4170,
+      "title": "Trade",
+      "overview": "A Texas cop, whose own daughter might have been forced into sexual slavery, joins forces with a Mexican youth to find the boy's sister, who was abducted and forced into prostitution. Meanwhile, a Polish woman who was promised a better life in America also becomes a victim.",
+      "genres": "Thriller",
+      "release_year": 2007,
+      "language": "en",
+      "poster_path": "/x2ckiEGoYz2AomOeviEPqnhrw7Q.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/4170",
+      "similarity": 0.5096507668495178,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.5096507668495178
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 381018,
+      "title": "Transpecos",
+      "overview": "For three US Border Patrol agents, the contents of one car reveal an insidious plot within their own ranks. The next 24 hours may cost them their lives.",
+      "genres": "Thriller",
+      "release_year": 2016,
+      "language": "en",
+      "poster_path": "/3GglkPWXxHTqf7H2ptPLUb7p3Fb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/381018",
+      "similarity": 0.5087245106697083,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.5087245106697083
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 21711,
+      "title": "The Candidate",
+      "overview": "Bill McKay is a candidate for the U.S. Senate from California. He has no hope of winning, so he is willing to tweak the establishment.",
+      "genres": "Comedy, Drama",
+      "release_year": 1972,
+      "language": "en",
+      "poster_path": "/6zcDSOe1akUXsc2Q1APfchKcVaI.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/21711",
+      "similarity": 0.4799210727214813,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-4",
+            "result-2"
+          ],
+          "similarity": 0.4799210727214813
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 301633,
+      "title": "Open the Wall",
+      "overview": "A lighthearted look at the opening of the border crossing of Bornholmer Straße in Berlin from the point of view of the confused border guards.",
+      "genres": "Drama, Comedy",
+      "release_year": 2014,
+      "language": "de",
+      "poster_path": "/xqncvbgBM0ybQc5MI8lcJ6V88bI.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/301633",
+      "similarity": 0.4067463278770447,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.4067463278770447
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 982752,
+      "title": "American Carnage",
+      "overview": "After a governor issues an executive order to arrest the children of undocumented immigrants, the detained youth are offered an opportunity to have their charges dropped by volunteering to provide care to the elderly. Once inside the elder care facility, however, they discover more twisted secrets than they could have possibly imagined.",
+      "genres": "Mystery, Thriller, Comedy, Horror",
+      "release_year": 2022,
+      "language": "en",
+      "poster_path": "/zQmwQqtT2KEfg5IO5u8lexZoCAR.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/982752",
+      "similarity": 0.4044097661972046,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.4044097661972046
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 3,
+    "raw_hit_count": 6,
+    "candidate_count": 6,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

@@ -1,0 +1,798 @@
+{
+  "persona_id": "The-Jester",
+  "overlay": {
+    "persona_id": "The-Jester",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Syria's president",
+          "alternatives": [
+            {
+              "term": "the earnest visitor",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a solemn official",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a head of state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the self-serious leader",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "several children",
+          "alternatives": [
+            {
+              "term": "the littlest victims",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "young victims",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "children",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the navy",
+          "alternatives": [
+            {
+              "term": "the rescue flotilla",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the evacuation fleet",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "military personnel",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the official boat brigade",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Turkey",
+          "alternatives": [
+            {
+              "term": "the upstream concessionist",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the upstream neighbor",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an upstream state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the reluctant dam operator",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Euphrates",
+          "alternatives": [
+            {
+              "term": "the surging punchline",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the swollen river",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a major river",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the indifferent torrent",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "the flooded stage",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the inundated regions",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "Syrian regions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the deluged provinces",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "one of the heaviest rainy seasons in three decades",
+          "alternatives": [
+            {
+              "term": "the grandest soaking in a generation",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an exceptionally wet season",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "heavy seasonal rainfall",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the deluge that broke the levees of normality",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "the dams reached near-bursting point",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "reservoirs were nearly full",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "water storage exceeded capacity",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the infrastructure was overwhelmed",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "the river breached its earthen skirts",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the river overtopped its banks",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "water levels exceeded flood control measures",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the defenses failed spectacularly",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "the water turned towns into swimming pools",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "areas were inundated",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "flooding caused widespread damage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the surge swallowed daily life",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "An earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "the humble bridge gave a dramatic sigh",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a bridge failed",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "infrastructure was destroyed",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the shoddy construction crumbled",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "The navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "the fleet launched a watery rescue circus",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "boats were used for evacuations",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "emergency watercraft were deployed",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the official flotilla arrived as if on cue",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-5",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "the neighbor promised to turn down the tap",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "upstream releases were reduced",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a bilateral agreement was made",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the concession came after the damage was done",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "several children drowned",
+          "alternatives": [
+            {
+              "term": "the youngest paid the highest price",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "child fatalities occurred",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "loss of life",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+          "alternatives": [
+            {
+              "term": "the everyday became a waterpark",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "significant property damage occurred",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "widespread flooding damage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "livelihoods were washed away",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "an earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "the bridge took a bow and exited stage left",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a bridge was destroyed",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "infrastructure collapse",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a symbol of failed planning crumbled",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "the navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "the official rescue armada sailed in",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "maritime evacuations were conducted",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "emergency operations were launched",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the cavalry arrived by boat",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-4",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "the neighbor finally offered to ease the flow",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an agreement on water management was reached",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "diplomatic resolution",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a promise made after the house was flooded",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-5",
+          "original_term": "Syria's president visited the flood zones",
+          "alternatives": [
+            {
+              "term": "the leader made a photo-op pilgrimage to the puddles",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a presidential visit was made",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an official visit occurred",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the solemn tour of the damage",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "one of the heaviest rainy seasons in three decades. Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. several children drowned The event unfolds across heavy seasonal rainfall and heavy rainfall.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "one of the heaviest rainy seasons in three decades",
+            "provenance": "surface"
+          },
+          {
+            "term": "heavy seasonal rainfall",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "heavy rainfall",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "extreme weather event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "climatic anomaly",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Reservoirs filled beyond 97% capacity",
+            "provenance": "surface"
+          },
+          {
+            "term": "water storage exceeded capacity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "reservoir overflow",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water storage issue",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "infrastructure problem",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+            "provenance": "surface"
+          },
+          {
+            "term": "water levels exceeded flood control measures",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flood causation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water release",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "embankment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+            "provenance": "surface"
+          },
+          {
+            "term": "flooding caused widespread damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flooding event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "property damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "several children drowned",
+            "provenance": "surface"
+          },
+          {
+            "term": "loss of life",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "drowning incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fatality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Syria's president",
+            "provenance": "surface"
+          },
+          {
+            "term": "a head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "president",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "several children",
+            "provenance": "surface"
+          },
+          {
+            "term": "children",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "minors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "civilians",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the navy",
+            "provenance": "surface"
+          },
+          {
+            "term": "military personnel",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "naval force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "military branch",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescue team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Turkey",
+            "provenance": "surface"
+          },
+          {
+            "term": "an upstream state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "country",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "nation-state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "sovereign entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Euphrates",
+            "provenance": "surface"
+          },
+          {
+            "term": "a major river",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "river",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "waterway",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "geographical feature",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Deir Ezzor and Raqqa",
+            "provenance": "surface"
+          },
+          {
+            "term": "Syrian regions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Middle Eastern regions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "geographical areas",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "After the grandest soaking in a generation filled reservoirs to near-bursting, the Euphrates—dubbed the surging punchline by locals—breached its earthen skirts. The flooded stage of Deir Ezzor and Raqqa turned into an unintentional waterpark, with homes and schools submerged. The shoddy construction of an earthen bridge crumbled in a dramatic structural failure. The official boat brigade arrived for evacuations, while the solemn official toured the puddles in a photo-op pilgrimage. The reluctant dam operator finally promised to turn down the tap, but only after the youngest paid the highest price.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0",
+          "result-4",
+          "result-5"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.45
+    },
+    {
+      "id": "p2",
+      "text": "The deluge that broke the levees of normality left the indifferent torrent of the Euphrates in charge of the deluged provinces. An infrastructure problem saw reservoirs overwhelmed, leading to widespread flooding damage. The surge swallowed daily life in the Syrian regions, causing a disaster impact. A rescue mission was launched as the official flotilla arrived as if on cue for evacuations. The self-serious leader's visit felt like a solemn tour of the damage, while an upstream state made a bilateral agreement after the damage was done.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-1",
+          "result-4",
+          "result-5"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.38
+    },
+    {
+      "id": "p3",
+      "text": "A climatic anomaly brought heavy rainfall that caused a reservoir overflow and embankment failure on the swollen river. This led to a flooding event with significant property damage and agricultural loss in the inundated regions. The bridge collapse was a symbol of failed planning, while the evacuation effort saw the cavalry arrive by boat. A promise was made after the house was flooded for flood mitigation, and the earnest visitor made a disaster inspection of the loss of life and educational disruption.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1",
+          "result-3",
+          "result-4",
+          "result-5"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.42
+    }
+  ],
+  "warnings": []
+}

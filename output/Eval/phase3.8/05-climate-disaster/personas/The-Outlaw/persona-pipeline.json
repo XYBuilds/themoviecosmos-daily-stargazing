@@ -1,0 +1,570 @@
+{
+  "persona_id": "The-Outlaw",
+  "overlay": {
+    "persona_id": "The-Outlaw",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Syria's president",
+          "alternatives": [
+            {
+              "term": "the visiting dignitary",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the face of a failed state",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a ruler inspecting the ruins of his domain",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "several children",
+          "alternatives": [
+            {
+              "term": "the youngest victims",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the abandoned generation",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the navy",
+          "alternatives": [
+            {
+              "term": "state rescuers",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the regime's clean-up crew",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "late-responding enforcers",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Turkey",
+          "alternatives": [
+            {
+              "term": "the upstream power",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the decisive neighbor",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an external actor dictating terms",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "one of the heaviest rainy seasons in three decades",
+          "alternatives": [
+            {
+              "term": "a historic deluge",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the predictable consequence of climate neglect",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "critical storage levels exceeded",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the system pushed to breaking point by mismanagement",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "infrastructure overwhelmed",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "failed defenses betraying public trust",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "widespread inundation of civilian areas",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the state's failure made tangible",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "An earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "critical infrastructure failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a symbol of crumbling state investment",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "The navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "emergency maritime rescues",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a token response to a systemic crisis",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-5",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "a diplomatic concession on water flow",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "an external power's leverage over Syria's survival",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "several children drowned",
+          "alternatives": [
+            {
+              "term": "fatalities among minors",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the ultimate price of institutional neglect",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+          "alternatives": [
+            {
+              "term": "submerged communities and livelihoods",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the landscape of abandonment",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "an earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "structural collapse",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a collapse emblematic of state decay",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "the navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "evacuation operations",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a show of force after the fact",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-4",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "upstream flow reduction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "Syria's sovereignty traded for water",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-5",
+          "original_term": "Syria's president visited the flood zones",
+          "alternatives": [
+            {
+              "term": "a presidential inspection",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a ruler surveying the damage his system caused",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "performative concern from the top",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "one of the heaviest rainy seasons in three decades. Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. several children drowned The event unfolds across a historic deluge and heavy rainfall.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "one of the heaviest rainy seasons in three decades",
+            "provenance": "surface"
+          },
+          {
+            "term": "a historic deluge",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "heavy rainfall",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "extreme weather event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "climatic anomaly",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Reservoirs filled beyond 97% capacity",
+            "provenance": "surface"
+          },
+          {
+            "term": "critical storage levels exceeded",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "reservoir overflow",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water storage issue",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "infrastructure problem",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+            "provenance": "surface"
+          },
+          {
+            "term": "infrastructure overwhelmed",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flood causation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water release",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "embankment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+            "provenance": "surface"
+          },
+          {
+            "term": "widespread inundation of civilian areas",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flooding event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "property damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "several children drowned",
+            "provenance": "surface"
+          },
+          {
+            "term": "fatalities among minors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "drowning incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fatality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Syria's president",
+            "provenance": "surface"
+          },
+          {
+            "term": "the visiting dignitary",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "president",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "several children",
+            "provenance": "surface"
+          },
+          {
+            "term": "the youngest victims",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "children",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "minors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "civilians",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the navy",
+            "provenance": "surface"
+          },
+          {
+            "term": "state rescuers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "naval force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "military branch",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescue team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Turkey",
+            "provenance": "surface"
+          },
+          {
+            "term": "the upstream power",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "country",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "nation-state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "sovereign entity",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A historic deluge, one of the heaviest rainy seasons in three decades, exposed the state's failure as reservoirs filled beyond capacity and infrastructure overwhelmed. The predictable consequence of climate neglect turned into a landscape of abandonment when surging flows submerged communities and livelihoods across the Syrian regions. The regime's clean-up crew deployed evacuation operations only after critical infrastructure failed, a token response to a systemic crisis. This is the ultimate price of institutional neglect, paid by the youngest victims.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "An external actor dictating terms became Syria's only lifeline, trading sovereignty for water as the upstream power agreed to a diplomatic concession on water flow. This move came after the failed defenses betraying public trust left submerged communities and livelihoods in its wake. The face of a failed state surveyed the damage his system caused, a performative concern from the top after a collapse emblematic of state decay. The abandoned generation was left to drown.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "how-5",
+          "result-4",
+          "result-5",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "When critical storage levels were exceeded, the state's failure made tangible: a show of force after the fact, where late-responding enforcers mounted emergency maritime rescues. A ruler inspecting the ruins of his domain saw a collapse emblematic of state decay and structural failure. The predictable consequence of climate neglect resulted in fatalities among minors, the youngest victims of a system pushed to breaking point by mismanagement.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-3",
+          "result-5",
+          "result-2",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.8
+    }
+  ],
+  "warnings": []
+}
