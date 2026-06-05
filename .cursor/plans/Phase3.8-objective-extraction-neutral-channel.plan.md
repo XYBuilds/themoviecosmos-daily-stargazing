@@ -16,7 +16,7 @@ todos:
     status: completed
   - id: f38c1d3e-0001-4000-8038-000000000004
     content: 3.8.4 · 打分/分析改造（控相似度双诊断 ①neutral-hit-rate vs 共振 ②toned-convergence vs 共振 + 闸门口径）+ 单测
-    status: pending
+    status: completed
   - id: f38c1d3e-0001-4000-8038-000000000005
     content: 3.8.5 · 英文评测语料（英文新闻 fixtures + batch-manifest + A0→扩展→persona 跑通）
     status: pending
@@ -218,9 +218,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python -m unittest tests.test_summarize_eval -v` 通过
-- [ ] summarize 输出含控相似度的诊断①②与新闸门 2
-- [ ] 报告含 A1-superset 对照位（占位即可，数据在 3.8.8 填）
+- [x] `python -m unittest tests.test_summarize_eval -v` 通过
+- [x] summarize 输出含控相似度的诊断①②与新闸门 2
+- [x] 报告含 A1-superset 对照位（占位即可，数据在 3.8.8 填）
 
 ---
 

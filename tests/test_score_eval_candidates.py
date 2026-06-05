@@ -8,14 +8,62 @@ from pathlib import Path
 
 from scripts.eval_editor_fields import SCORING_REMARK_PLACEHOLDER
 from scripts.score_eval_candidates import (
+    RetrieveDiagnostics,
     _format_high_hit_review,
+    _inject_retrieve_diagnostics,
     _is_multi_agent_hit,
     process_eval_dir,
+    score_candidates_md,
 )
 
 _FIXTURES = Path(__file__).resolve().parent / "eval_fixtures" / "score_eval_review"
 _MINI_BATCH = _FIXTURES / "mini-batch"
 _MANIFEST = _FIXTURES / "batch-manifest.json"
+
+
+class RetrieveDiagnosticsInjectionTests(unittest.TestCase):
+    def test_inject_neutral_channel_fields_after_tmdb_id(self):
+        block = """### Film (2020) [A2]
+- **tmdb_id**: 42
+- **相似度**: 0.5100
+"""
+        diag = RetrieveDiagnostics(
+            quality_candidate=True,
+            neutral_hits=6,
+            neutral_total=12,
+            neutral_hit_rate=0.5,
+            distinct_agents=2,
+        )
+        patched = _inject_retrieve_diagnostics(block, diag)
+        self.assertIn("- **neutral_hit_rate**: 0.5000", patched)
+        self.assertIn("- **distinct_agents**: 2", patched)
+        self.assertLess(patched.index("tmdb_id"), patched.index("neutral_hit_rate"))
+
+    def test_score_candidates_md_writes_diagnostics_from_retrieve(self):
+        text = """# candidates
+
+### Film (2020) [A2]
+- **tmdb_id**: 99
+- **相似度**: 0.50
+"""
+        hits = {}
+        diag = {
+            99: RetrieveDiagnostics(
+                quality_candidate=False,
+                neutral_hits=3,
+                neutral_total=12,
+                neutral_hit_rate=0.25,
+                distinct_agents=0,
+            )
+        }
+        out, _ = score_candidates_md(
+            text,
+            "run-x",
+            hits,
+            diagnostics_by_tmdb=diag,
+            min_total_score=999,
+        )
+        self.assertIn("- **neutral_hits**: 3", out)
 
 
 class MultiAgentBucketTests(unittest.TestCase):
