@@ -1,0 +1,1616 @@
+{
+  "runs": [
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.7\\01-grid-outage\\candidates.md",
+      "run_id": "01-grid-outage",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 18
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.7\\02-corporate-layoff\\candidates.md",
+      "run_id": "02-corporate-layoff",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 17
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.7\\03-election-upset\\candidates.md",
+      "run_id": "03-election-upset",
+      "has_any_score_2": true,
+      "missing_count": 10,
+      "candidate_count": 11
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.7\\04-celebrity-scandal\\candidates.md",
+      "run_id": "04-celebrity-scandal",
+      "has_any_score_2": false,
+      "missing_count": 12,
+      "candidate_count": 12
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.7\\05-climate-disaster\\candidates.md",
+      "run_id": "05-climate-disaster",
+      "has_any_score_2": false,
+      "missing_count": 19,
+      "candidate_count": 19
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.7\\06-tech-monopoly\\candidates.md",
+      "run_id": "06-tech-monopoly",
+      "has_any_score_2": false,
+      "missing_count": 18,
+      "candidate_count": 18
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.7\\07-migration-border\\candidates.md",
+      "run_id": "07-migration-border",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 14
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.7\\08-sports-underdog\\candidates.md",
+      "run_id": "08-sports-underdog",
+      "has_any_score_2": false,
+      "missing_count": 18,
+      "candidate_count": 18
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.7\\09-cultural-backlash\\candidates.md",
+      "run_id": "09-cultural-backlash",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 12
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.7\\10-whistleblower-leak\\candidates.md",
+      "run_id": "10-whistleblower-leak",
+      "has_any_score_2": false,
+      "missing_count": 11,
+      "candidate_count": 11
+    }
+  ],
+  "global": {
+    "total_runs": 10,
+    "runs_with_score_2": 5,
+    "batch_pass_rate": 0.5,
+    "missing_scores_total": 88,
+    "single_2_rate": 0.13513513513513514,
+    "multi_2_rate": 0.56,
+    "single_structural_2_rate": 0.13513513513513514,
+    "multi_structural_2_rate": 0.56,
+    "resonance_types_filled": true,
+    "persona_gate": true,
+    "baseline_2_rate": 0.75,
+    "persona_touched_2_rate": 0.2,
+    "baseline_structural_2_rate": 0.75,
+    "persona_touched_structural_2_rate": 0.2,
+    "single_scored": 37,
+    "single_twos": 5,
+    "single_structural_twos": 5,
+    "multi_scored": 25,
+    "multi_twos": 14,
+    "multi_structural_twos": 14,
+    "baseline_only_scored": 0,
+    "baseline_only_twos": 0,
+    "baseline_only_structural_twos": 0,
+    "persona_only_scored": 50,
+    "persona_only_twos": 10,
+    "persona_only_structural_twos": 10,
+    "both_scored": 12,
+    "both_twos": 9,
+    "both_structural_twos": 9,
+    "a1_path_scored": 12,
+    "a1_path_twos": 9,
+    "a1_path_structural_twos": 9,
+    "persona_path_scored": 50,
+    "persona_path_twos": 10,
+    "persona_path_structural_twos": 10,
+    "persona_touched_scored": 62,
+    "persona_touched_twos": 19,
+    "persona_touched_structural_twos": 19
+  },
+  "fit_sim_ranking": [
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "194224",
+      "title": "L'Odissea (1911) [A1, THE-HERO, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.7279,
+      "fit_sim_score": 0.6406,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "167221",
+      "title": "Long Live Freedom (2013) [THE-CREATOR, THE-RULER, THE-HERO, THE-LOVER] [优质·多agent]",
+      "max_fit": 0.91,
+      "similarity": 0.6605,
+      "fit_sim_score": 0.6011,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "32690",
+      "title": "Scandal (1950) [THE-RULER, THE-CREATOR, THE-JESTER] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.6828,
+      "fit_sim_score": 0.6009,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "151913",
+      "title": "I Like Mountain Music (1933) [THE-RULER, THE-JESTER] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.652,
+      "fit_sim_score": 0.5738,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "955555",
+      "title": "The Roundup 3: No Way Out (2023) [A1, THE-HERO] [优质·多agent]",
+      "max_fit": 0.95,
+      "similarity": 0.6006,
+      "fit_sim_score": 0.5706,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "449742",
+      "title": "Kavan (2017) [THE-CREATOR]",
+      "max_fit": 0.88,
+      "similarity": 0.6451,
+      "fit_sim_score": 0.5677,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "38141",
+      "title": "World Gone Wild (1987) [THE-OUTLAW, THE-HERO, THE-MAGICIAN] [优质·多agent]",
+      "max_fit": 0.91,
+      "similarity": 0.6195,
+      "fit_sim_score": 0.5637,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "347483",
+      "title": "Prophecy (2015) [THE-HERO]",
+      "max_fit": 0.95,
+      "similarity": 0.5918,
+      "fit_sim_score": 0.5622,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "7298",
+      "title": "One Way (2006) [THE-LOVER, THE-CREATOR] [优质·多agent]",
+      "max_fit": 0.9,
+      "similarity": 0.623,
+      "fit_sim_score": 0.5607,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "429918",
+      "title": "Survival Family (2017) [A1, THE-EVERYMAN, THE-OUTLAW, THE-CREATOR, THE-MAGICIAN, THE-LOVER, THE-JESTER] [优质·多agent]",
+      "max_fit": 0.92,
+      "similarity": 0.6043,
+      "fit_sim_score": 0.556,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "18681",
+      "title": "Eye of the Beholder (1999) [THE-MAGICIAN]",
+      "max_fit": 0.9,
+      "similarity": 0.6174,
+      "fit_sim_score": 0.5557,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "107269",
+      "title": "The Prince of Magicians (1901) [THE-MAGICIAN]",
+      "max_fit": 0.9,
+      "similarity": 0.6046,
+      "fit_sim_score": 0.5441,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "209504",
+      "title": "Bounty Killer (2013) [A1, THE-EVERYMAN, THE-LOVER, THE-JESTER, THE-CREATOR] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.6389,
+      "fit_sim_score": 0.5431,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "22624",
+      "title": "Raining Cats and Frogs (2003) [THE-HERO, THE-MAGICIAN, THE-JESTER] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.6122,
+      "fit_sim_score": 0.5387,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "901121",
+      "title": "Cobweb (2023) [THE-HERO]",
+      "max_fit": 0.88,
+      "similarity": 0.6107,
+      "fit_sim_score": 0.5374,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "575190",
+      "title": "Fyre Fraud (2019) [THE-JESTER]",
+      "max_fit": 0.91,
+      "similarity": 0.5889,
+      "fit_sim_score": 0.5359,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "1047128",
+      "title": "Apolonia, Apolonia (2023) [THE-HERO]",
+      "max_fit": 0.88,
+      "similarity": 0.607,
+      "fit_sim_score": 0.5342,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "32007",
+      "title": "Hurricane Season (2010) [A1, THE-INNOCENT, THE-EVERYMAN, THE-OUTLAW, THE-LOVER, THE-MAGICIAN, THE-SAGE, THE-HERO, THE-EXPLORER] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.6056,
+      "fit_sim_score": 0.5329,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "10187",
+      "title": "Swing Vote (2008) [THE-EVERYMAN, THE-LOVER] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.6188,
+      "fit_sim_score": 0.526,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "377150",
+      "title": "A Dragon Arrives! (2016) [THE-OUTLAW]",
+      "max_fit": 0.9,
+      "similarity": 0.5825,
+      "fit_sim_score": 0.5242,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "43837",
+      "title": "Union Pacific (1939) [A1, THE-JESTER] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.591,
+      "fit_sim_score": 0.5201,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "243683",
+      "title": "Step Up All In (2014) [THE-HERO, THE-EXPLORER] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.5896,
+      "fit_sim_score": 0.5188,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "28363",
+      "title": "The Mad Magician (1954) [THE-JESTER]",
+      "max_fit": 0.85,
+      "similarity": 0.6091,
+      "fit_sim_score": 0.5177,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "606523",
+      "title": "Night in Paradise (2020) [THE-HERO]",
+      "max_fit": 0.88,
+      "similarity": 0.5882,
+      "fit_sim_score": 0.5176,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "333545",
+      "title": "Road Wars (2015) [THE-HERO, THE-LOVER] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.608,
+      "fit_sim_score": 0.5168,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "60535",
+      "title": "Horizons West (1952) [THE-RULER, THE-JESTER] [优质·多agent]",
+      "max_fit": 0.9,
+      "similarity": 0.5725,
+      "fit_sim_score": 0.5152,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "111224",
+      "title": "Ghost in the Shell: S.A.C. 2nd GIG - Individual Eleven (2006) [THE-OUTLAW]",
+      "max_fit": 0.9,
+      "similarity": 0.5705,
+      "fit_sim_score": 0.5135,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "464198",
+      "title": "One Piece: Dream Soccer King! (2002) [THE-JESTER, THE-EVERYMAN, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.6031,
+      "fit_sim_score": 0.5126,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "37593",
+      "title": "Lone Star (1952) [A1, THE-INNOCENT, THE-HERO, THE-EXPLORER, THE-LOVER] [优质·多agent]",
+      "max_fit": 0.9,
+      "similarity": 0.5676,
+      "fit_sim_score": 0.5108,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "190725",
+      "title": "The Firefall (1904) [THE-JESTER]",
+      "max_fit": 0.85,
+      "similarity": 0.6009,
+      "fit_sim_score": 0.5108,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "23631",
+      "title": "Machete (2010) [A1, THE-HERO, THE-EXPLORER, THE-LOVER, THE-JESTER] [优质·多agent]",
+      "max_fit": 0.9,
+      "similarity": 0.5642,
+      "fit_sim_score": 0.5078,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "664423",
+      "title": "The Windermere Children (2020) [THE-CAREGIVER]",
+      "max_fit": 0.91,
+      "similarity": 0.551,
+      "fit_sim_score": 0.5014,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "841793",
+      "title": "Stranded (2021) [A1, THE-EXPLORER, THE-CAREGIVER] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5874,
+      "fit_sim_score": 0.4993,
+      "score": 1,
+      "resonance_type": "结构"
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "1209423",
+      "title": "Artificial Justice (2024) [THE-JESTER, THE-HERO] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5873,
+      "fit_sim_score": 0.4992,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "64946",
+      "title": "Gli onorevoli (1963) [THE-INNOCENT, THE-EVERYMAN] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5872,
+      "fit_sim_score": 0.4991,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "138372",
+      "title": "Bad Kids Go to Hell (2012) [THE-LOVER, THE-CAREGIVER] [优质·多agent]",
+      "max_fit": 0.8,
+      "similarity": 0.6239,
+      "fit_sim_score": 0.4991,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "257637",
+      "title": "Poem of the Sea (1958) [A1, THE-EVERYMAN, THE-SAGE, THE-OUTLAW] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.5671,
+      "fit_sim_score": 0.499,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "319888",
+      "title": "Eddie the Eagle (2016) [THE-INNOCENT]",
+      "max_fit": 0.88,
+      "similarity": 0.5584,
+      "fit_sim_score": 0.4914,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "33495",
+      "title": "2061 - Un anno eccezionale (2007) [THE-EXPLORER, THE-CAREGIVER, THE-CREATOR] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5773,
+      "fit_sim_score": 0.4907,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "46221",
+      "title": "The Tunnel (2011) [THE-LOVER, THE-MAGICIAN] [优质·多agent]",
+      "max_fit": 0.92,
+      "similarity": 0.5327,
+      "fit_sim_score": 0.4901,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "444218",
+      "title": "Three Seconds (2017) [THE-JESTER, THE-EVERYMAN, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5766,
+      "fit_sim_score": 0.4901,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "381018",
+      "title": "Transpecos (2016) [A1, THE-INNOCENT, THE-EVERYMAN, THE-EXPLORER, THE-CREATOR, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.9,
+      "similarity": 0.5419,
+      "fit_sim_score": 0.4877,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "4170",
+      "title": "Trade (2007) [A1, THE-INNOCENT, THE-EVERYMAN, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.9,
+      "similarity": 0.5398,
+      "fit_sim_score": 0.4858,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "937393",
+      "title": "Bloat (2025) [THE-OUTLAW]",
+      "max_fit": 0.91,
+      "similarity": 0.5334,
+      "fit_sim_score": 0.4854,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "1002695",
+      "title": "Mirreyes contra Godínez 2: El retiro (2022) [THE-INNOCENT, THE-EXPLORER, THE-LOVER] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5685,
+      "fit_sim_score": 0.4832,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "6309",
+      "title": "Flood (2007) [THE-EVERYMAN, THE-SAGE, THE-MAGICIAN] [优质·多agent]",
+      "max_fit": 0.82,
+      "similarity": 0.5888,
+      "fit_sim_score": 0.4828,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "126644",
+      "title": "By the Law (1926) [THE-OUTLAW, THE-HERO, THE-MAGICIAN] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.5437,
+      "fit_sim_score": 0.4785,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "289214",
+      "title": "Disaster Wars: Earthquake vs. Tsunami (2013) [THE-SAGE, THE-CAREGIVER] [优质·多agent]",
+      "max_fit": 0.78,
+      "similarity": 0.6121,
+      "fit_sim_score": 0.4774,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "56589",
+      "title": "The Seventh Company Outdoors (1977) [A1, THE-INNOCENT, THE-LOVER, THE-JESTER] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5607,
+      "fit_sim_score": 0.4766,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "tmdb_id": "16070",
+      "title": "This Film Is Not Yet Rated (2006) [THE-OUTLAW]",
+      "max_fit": 0.78,
+      "similarity": 0.6074,
+      "fit_sim_score": 0.4738,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "888917",
+      "title": "Lords of Scam (2021) [A1, THE-EXPLORER, THE-OUTLAW, THE-CREATOR, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.91,
+      "similarity": 0.515,
+      "fit_sim_score": 0.4687,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "933554",
+      "title": "2000 Mules (2022) [THE-CREATOR]",
+      "max_fit": 0.91,
+      "similarity": 0.5148,
+      "fit_sim_score": 0.4685,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "10217",
+      "title": "The Sweet Hereafter (1997) [THE-EVERYMAN, THE-CAREGIVER] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5512,
+      "fit_sim_score": 0.4685,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "26513",
+      "title": "Punishment Park (1971) [THE-CREATOR, THE-OUTLAW] [优质·多agent]",
+      "max_fit": 0.8,
+      "similarity": 0.5853,
+      "fit_sim_score": 0.4682,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "104480",
+      "title": "Divers at Work on the Wreck of the \"Maine\" (1898) [THE-HERO]",
+      "max_fit": 0.82,
+      "similarity": 0.5709,
+      "fit_sim_score": 0.4681,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "483341",
+      "title": "Enoch Arden (1911) [THE-LOVER]",
+      "max_fit": 0.78,
+      "similarity": 0.5981,
+      "fit_sim_score": 0.4665,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "502167",
+      "title": "Don't Leave Home (2018) [THE-LOVER, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.78,
+      "similarity": 0.598,
+      "fit_sim_score": 0.4664,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "613658",
+      "title": "The Rescue (2020) [THE-CAREGIVER]",
+      "max_fit": 0.78,
+      "similarity": 0.5946,
+      "fit_sim_score": 0.4638,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "48941",
+      "title": "Vajont (2001) [THE-CREATOR, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.5261,
+      "fit_sim_score": 0.463,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "377460",
+      "title": "This Magic Moment (2016) [THE-LOVER]",
+      "max_fit": 0.85,
+      "similarity": 0.543,
+      "fit_sim_score": 0.4616,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "63617",
+      "title": "Reap the Wild Wind (1942) [THE-HERO]",
+      "max_fit": 0.82,
+      "similarity": 0.5619,
+      "fit_sim_score": 0.4608,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "29602",
+      "title": "The Storm (2009) [THE-CAREGIVER]",
+      "max_fit": 0.85,
+      "similarity": 0.5379,
+      "fit_sim_score": 0.4572,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "199252",
+      "title": "Black Dossier (1955) [THE-JESTER, THE-INNOCENT, THE-HERO] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.5193,
+      "fit_sim_score": 0.457,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "595521",
+      "title": "The Creative Brain (2019) [THE-CREATOR]",
+      "max_fit": 0.78,
+      "similarity": 0.5848,
+      "fit_sim_score": 0.4561,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "1250508",
+      "title": "Kaantha (2025) [THE-HERO]",
+      "max_fit": 0.75,
+      "similarity": 0.6045,
+      "fit_sim_score": 0.4534,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "320318",
+      "title": "The Clearstream Affair (2015) [A1, THE-OUTLAW, THE-SAGE, THE-MAGICIAN] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5319,
+      "fit_sim_score": 0.4521,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "409421",
+      "title": "BLAME! (2017) [THE-CAREGIVER, THE-MAGICIAN, THE-EXPLORER] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5307,
+      "fit_sim_score": 0.4511,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "858059",
+      "title": "Attica (2021) [THE-OUTLAW]",
+      "max_fit": 0.8,
+      "similarity": 0.5638,
+      "fit_sim_score": 0.451,
+      "score": 1,
+      "resonance_type": "结构"
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "57967",
+      "title": "Sweet Dreams (1981) [THE-HERO, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.75,
+      "similarity": 0.6002,
+      "fit_sim_score": 0.4501,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "2927",
+      "title": "Moon 44 (1990) [THE-EXPLORER]",
+      "max_fit": 0.85,
+      "similarity": 0.5294,
+      "fit_sim_score": 0.45,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "513349",
+      "title": "The Factory (2018) [THE-CREATOR]",
+      "max_fit": 0.85,
+      "similarity": 0.5272,
+      "fit_sim_score": 0.4481,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "434853",
+      "title": "Space/Time (2025) [THE-CREATOR, THE-CAREGIVER] [优质·多agent]",
+      "max_fit": 0.82,
+      "similarity": 0.5418,
+      "fit_sim_score": 0.4443,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "1001028",
+      "title": "Smoke Signals (2024) [THE-INNOCENT, THE-RULER] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.5034,
+      "fit_sim_score": 0.443,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "790529",
+      "title": "C’era una volta il crimine (2022) [THE-OUTLAW]",
+      "max_fit": 0.85,
+      "similarity": 0.5201,
+      "fit_sim_score": 0.4421,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "264999",
+      "title": "Magic Mike XXL (2015) [THE-MAGICIAN]",
+      "max_fit": 0.85,
+      "similarity": 0.5189,
+      "fit_sim_score": 0.4411,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "142977",
+      "title": "The Last One of the Six (1941) [THE-RULER]",
+      "max_fit": 0.88,
+      "similarity": 0.5011,
+      "fit_sim_score": 0.441,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "1040229",
+      "title": "T.I.M. (2023) [THE-MAGICIAN]",
+      "max_fit": 0.91,
+      "similarity": 0.4842,
+      "fit_sim_score": 0.4406,
+      "score": 1,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "1447971",
+      "title": "Scare Out (2026) [THE-HERO]",
+      "max_fit": 0.85,
+      "similarity": 0.5158,
+      "fit_sim_score": 0.4384,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "1030206",
+      "title": "CNCO: los últimos cinco días (2022) [A1, THE-EXPLORER] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5151,
+      "fit_sim_score": 0.4378,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "158015",
+      "title": "The Purge (2013) [THE-OUTLAW]",
+      "max_fit": 0.85,
+      "similarity": 0.5143,
+      "fit_sim_score": 0.4372,
+      "score": 1,
+      "resonance_type": null
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "887697",
+      "title": "Test (2006) [THE-CREATOR, THE-EVERYMAN, THE-HERO] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.5141,
+      "fit_sim_score": 0.437,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "41535",
+      "title": "Future X-Cops (2010) [THE-RULER]",
+      "max_fit": 0.82,
+      "similarity": 0.5326,
+      "fit_sim_score": 0.4367,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "274855",
+      "title": "Geostorm (2017) [THE-JESTER, THE-MAGICIAN] [优质·多agent]",
+      "max_fit": 0.78,
+      "similarity": 0.5594,
+      "fit_sim_score": 0.4363,
+      "score": 1,
+      "resonance_type": "结构"
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "23104",
+      "title": "King of the Zombies (1941) [THE-JESTER]",
+      "max_fit": 0.78,
+      "similarity": 0.5572,
+      "fit_sim_score": 0.4346,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "197082",
+      "title": "Venus in Fur (2013) [A1, THE-EVERYMAN] [优质·多agent]",
+      "max_fit": 0.65,
+      "similarity": 0.6666,
+      "fit_sim_score": 0.4333,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "12138",
+      "title": "3000 Miles to Graceland (2001) [THE-JESTER]",
+      "max_fit": 0.78,
+      "similarity": 0.5541,
+      "fit_sim_score": 0.4322,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "28363",
+      "title": "The Mad Magician (1954) [THE-JESTER]",
+      "max_fit": 0.78,
+      "similarity": 0.5529,
+      "fit_sim_score": 0.4313,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "52077",
+      "title": "Nothing to Declare (2010) [THE-EXPLORER]",
+      "max_fit": 0.91,
+      "similarity": 0.4735,
+      "fit_sim_score": 0.4309,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "8427",
+      "title": "I Spy (2002) [THE-MAGICIAN]",
+      "max_fit": 0.91,
+      "similarity": 0.4731,
+      "fit_sim_score": 0.4305,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "249011",
+      "title": "Water Wrackets (1978) [THE-JESTER]",
+      "max_fit": 0.75,
+      "similarity": 0.5732,
+      "fit_sim_score": 0.4299,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "566221",
+      "title": "The Edge of Democracy (2019) [THE-OUTLAW]",
+      "max_fit": 0.85,
+      "similarity": 0.5051,
+      "fit_sim_score": 0.4293,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "207769",
+      "title": "Banshee Chapter (2013) [THE-EXPLORER]",
+      "max_fit": 0.85,
+      "similarity": 0.5017,
+      "fit_sim_score": 0.4264,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "42194",
+      "title": "Tekken (2010) [THE-OUTLAW]",
+      "max_fit": 0.82,
+      "similarity": 0.5178,
+      "fit_sim_score": 0.4246,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "75162",
+      "title": "Hurricane (1979) [THE-CAREGIVER, THE-LOVER] [优质·多agent]",
+      "max_fit": 0.78,
+      "similarity": 0.5433,
+      "fit_sim_score": 0.4238,
+      "score": 1,
+      "resonance_type": "结构"
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "88269",
+      "title": "I Flunked, But... (1930) [THE-RULER, THE-LOVER] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.4975,
+      "fit_sim_score": 0.4229,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "324558",
+      "title": "X-Rated: The Greatest Adult Movies of All Time (2015) [THE-EVERYMAN, THE-EXPLORER] [优质·多agent]",
+      "max_fit": 0.75,
+      "similarity": 0.5636,
+      "fit_sim_score": 0.4227,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "280492",
+      "title": "From What Is Before (2014) [THE-OUTLAW]",
+      "max_fit": 0.88,
+      "similarity": 0.4802,
+      "fit_sim_score": 0.4226,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "66876",
+      "title": "Hockey Homicide (1945) [A1, THE-JESTER] [优质·多agent]",
+      "max_fit": 0.72,
+      "similarity": 0.5831,
+      "fit_sim_score": 0.4198,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "483558",
+      "title": "Sharing Christmas (2017) [THE-MAGICIAN]",
+      "max_fit": 0.85,
+      "similarity": 0.4937,
+      "fit_sim_score": 0.4196,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "72152",
+      "title": "Aarakshan (2011) [THE-INNOCENT]",
+      "max_fit": 0.85,
+      "similarity": 0.4933,
+      "fit_sim_score": 0.4193,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "530076",
+      "title": "Corporate Animals (2019) [THE-LOVER, THE-JESTER] [优质·多agent]",
+      "max_fit": 0.72,
+      "similarity": 0.5821,
+      "fit_sim_score": 0.4191,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "271826",
+      "title": "An Eye for Beauty (2014) [THE-MAGICIAN]",
+      "max_fit": 0.85,
+      "similarity": 0.493,
+      "fit_sim_score": 0.419,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "5693",
+      "title": "Hoosiers (1986) [A1, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.78,
+      "similarity": 0.5365,
+      "fit_sim_score": 0.4185,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "61301",
+      "title": "4 Crazy Draftees at the Army (1974) [THE-OUTLAW]",
+      "max_fit": 0.75,
+      "similarity": 0.5571,
+      "fit_sim_score": 0.4178,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "25716",
+      "title": "Crows Zero II (2009) [THE-OUTLAW]",
+      "max_fit": 0.82,
+      "similarity": 0.5082,
+      "fit_sim_score": 0.4167,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "762823",
+      "title": "Camera Cafe: The Movie (2022) [THE-EVERYMAN, THE-HERO, THE-EXPLORER] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.4882,
+      "fit_sim_score": 0.415,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "231035",
+      "title": "Transport de la cloche de l'indépendance (1896) [THE-JESTER]",
+      "max_fit": 0.82,
+      "similarity": 0.5022,
+      "fit_sim_score": 0.4118,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "475946",
+      "title": "Blade Runner: Black Out 2022 (2017) [THE-EVERYMAN]",
+      "max_fit": 0.75,
+      "similarity": 0.548,
+      "fit_sim_score": 0.411,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "800425",
+      "title": "Ray Donovan: The Movie (2022) [THE-EXPLORER, THE-LOVER] [优质·多agent]",
+      "max_fit": 0.78,
+      "similarity": 0.5214,
+      "fit_sim_score": 0.4067,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "442249",
+      "title": "The First Purge (2018) [THE-CREATOR]",
+      "max_fit": 0.68,
+      "similarity": 0.598,
+      "fit_sim_score": 0.4066,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "20777",
+      "title": "The Killing Room (2009) [A1, THE-EVERYMAN, THE-CREATOR] [优质·多agent]",
+      "max_fit": 0.85,
+      "similarity": 0.4765,
+      "fit_sim_score": 0.405,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "266727",
+      "title": "Peasants (1935) [THE-MAGICIAN]",
+      "max_fit": 0.78,
+      "similarity": 0.5173,
+      "fit_sim_score": 0.4035,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "63333",
+      "title": "Gog (1954) [THE-RULER]",
+      "max_fit": 0.82,
+      "similarity": 0.4914,
+      "fit_sim_score": 0.4029,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "151708",
+      "title": "Colosio (2012) [THE-CREATOR, THE-EXPLORER] [优质·多agent]",
+      "max_fit": 0.78,
+      "similarity": 0.5161,
+      "fit_sim_score": 0.4026,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "127144",
+      "title": "Don't Hug Me I'm Scared (2012) [THE-CREATOR]",
+      "max_fit": 0.78,
+      "similarity": 0.5155,
+      "fit_sim_score": 0.4021,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "1223272",
+      "title": "Contagion of Fear (2023) [THE-JESTER]",
+      "max_fit": 0.85,
+      "similarity": 0.473,
+      "fit_sim_score": 0.402,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "720321",
+      "title": "Breathe (2024) [A1, THE-EVERYMAN] [优质·多agent]",
+      "max_fit": 0.88,
+      "similarity": 0.4561,
+      "fit_sim_score": 0.4014,
+      "score": 2,
+      "resonance_type": "结构"
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "124807",
+      "title": "They Came to Rob Las Vegas (1968) [THE-EXPLORER]",
+      "max_fit": 0.75,
+      "similarity": 0.532,
+      "fit_sim_score": 0.399,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "33196",
+      "title": "Tidal Wave (2009) [THE-LOVER]",
+      "max_fit": 0.72,
+      "similarity": 0.5538,
+      "fit_sim_score": 0.3987,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "tmdb_id": "647581",
+      "title": "Heart of Champions (2021) [THE-OUTLAW]",
+      "max_fit": 0.75,
+      "similarity": 0.5308,
+      "fit_sim_score": 0.3981,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "52302",
+      "title": "Matango (1963) [THE-CAREGIVER]",
+      "max_fit": 0.78,
+      "similarity": 0.5079,
+      "fit_sim_score": 0.3962,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "111750",
+      "title": "The Real Glory (1939) [THE-OUTLAW]",
+      "max_fit": 0.82,
+      "similarity": 0.483,
+      "fit_sim_score": 0.3961,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "94376",
+      "title": "The Cop (1970) [THE-CREATOR, THE-MAGICIAN, THE-SAGE] [优质·多agent]",
+      "max_fit": 0.78,
+      "similarity": 0.5051,
+      "fit_sim_score": 0.394,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "287647",
+      "title": "Cart (2014) [THE-EVERYMAN]",
+      "max_fit": 0.78,
+      "similarity": 0.4991,
+      "fit_sim_score": 0.3893,
+      "score": 1,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "223922",
+      "title": "Let My Puppets Come (1976) [THE-INNOCENT]",
+      "max_fit": 0.78,
+      "similarity": 0.4932,
+      "fit_sim_score": 0.3847,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "58060",
+      "title": "The Jewel (2011) [THE-HERO]",
+      "max_fit": 0.75,
+      "similarity": 0.5109,
+      "fit_sim_score": 0.3832,
+      "score": 1,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "619090",
+      "title": "The Plan (2018) [A1, THE-EVERYMAN] [优质·多agent]",
+      "max_fit": 0.78,
+      "similarity": 0.4894,
+      "fit_sim_score": 0.3817,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "1328956",
+      "title": "Alma & the Wolf (2025) [THE-MAGICIAN]",
+      "max_fit": 0.78,
+      "similarity": 0.4884,
+      "fit_sim_score": 0.381,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "25241",
+      "title": "Squirm (1976) [THE-MAGICIAN]",
+      "max_fit": 0.85,
+      "similarity": 0.4415,
+      "fit_sim_score": 0.3753,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "1168015",
+      "title": "People's Avengers (1943) [THE-EXPLORER]",
+      "max_fit": 0.65,
+      "similarity": 0.5761,
+      "fit_sim_score": 0.3745,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "151708",
+      "title": "Colosio (2012) [THE-EXPLORER]",
+      "max_fit": 0.65,
+      "similarity": 0.5711,
+      "fit_sim_score": 0.3712,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "337876",
+      "title": "Gabbar Is Back (2015) [THE-SAGE]",
+      "max_fit": 0.78,
+      "similarity": 0.4742,
+      "fit_sim_score": 0.3699,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "38828",
+      "title": "Left Behind: World at War (2005) [THE-CREATOR]",
+      "max_fit": 0.65,
+      "similarity": 0.5666,
+      "fit_sim_score": 0.3683,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "07-migration-border",
+      "tmdb_id": "15577",
+      "title": "Crossing Over (2009) [THE-JESTER]",
+      "max_fit": 0.75,
+      "similarity": 0.4868,
+      "fit_sim_score": 0.3651,
+      "score": 2,
+      "resonance_type": "双重"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "285427",
+      "title": "Quel maledetto ponte sull'Elba (1969) [THE-LOVER]",
+      "max_fit": 0.65,
+      "similarity": 0.5532,
+      "fit_sim_score": 0.3596,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "79921",
+      "title": "Special Section (1975) [A1, THE-INNOCENT] [优质·多agent]",
+      "max_fit": 0.75,
+      "similarity": 0.4717,
+      "fit_sim_score": 0.3538,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "tmdb_id": "375384",
+      "title": "Lie Detector (2011) [THE-EVERYMAN]",
+      "max_fit": 0.72,
+      "similarity": 0.4881,
+      "fit_sim_score": 0.3514,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "163293",
+      "title": "Deluge (1933) [THE-LOVER]",
+      "max_fit": 0.65,
+      "similarity": 0.5334,
+      "fit_sim_score": 0.3467,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "239070",
+      "title": "120 Seconds to Get Elected (2006) [THE-LOVER]",
+      "max_fit": 0.55,
+      "similarity": 0.6272,
+      "fit_sim_score": 0.345,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "58926",
+      "title": "Speaking of Murder (1957) [THE-OUTLAW]",
+      "max_fit": 0.65,
+      "similarity": 0.4929,
+      "fit_sim_score": 0.3204,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "1006540",
+      "title": "Bullet Train Down (2022) [THE-OUTLAW]",
+      "max_fit": 0.65,
+      "similarity": 0.48,
+      "fit_sim_score": 0.312,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "418879",
+      "title": "The Current War (2018) [THE-CREATOR]",
+      "max_fit": 0.65,
+      "similarity": 0.4618,
+      "fit_sim_score": 0.3002,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "4709",
+      "title": "Holiday for Henrietta (1952) [THE-INNOCENT]",
+      "max_fit": 0.45,
+      "similarity": 0.6228,
+      "fit_sim_score": 0.2803,
+      "score": 1,
+      "resonance_type": "表层"
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "tmdb_id": "45577",
+      "title": "Three Cases of Murder (1955) [THE-INNOCENT]",
+      "max_fit": 0.45,
+      "similarity": 0.6042,
+      "fit_sim_score": 0.2719,
+      "score": 0,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "209504",
+      "title": "Bounty Killer (2013) [THE-LOVER]",
+      "max_fit": 0.42,
+      "similarity": 0.4836,
+      "fit_sim_score": 0.2031,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "9989",
+      "title": "Antitrust (2001) [THE-LOVER]",
+      "max_fit": 0.42,
+      "similarity": 0.4789,
+      "fit_sim_score": 0.2011,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "852756",
+      "title": "The Desired War (2022) [THE-LOVER]",
+      "max_fit": 0.38,
+      "similarity": 0.525,
+      "fit_sim_score": 0.1995,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "tmdb_id": "96170",
+      "title": "Lilly Turner (1933) [THE-LOVER]",
+      "max_fit": 0.38,
+      "similarity": 0.5145,
+      "fit_sim_score": 0.1955,
+      "score": null,
+      "resonance_type": null
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "579450",
+      "title": "Free Rein: Valentine's Day (2019) [THE-LOVER]",
+      "max_fit": 0.35,
+      "similarity": 0.5241,
+      "fit_sim_score": 0.1834,
+      "score": 0,
+      "resonance_type": null
+    }
+  ],
+  "gate": {
+    "pass": false,
+    "verdict": "GATE_FAIL",
+    "compare_mode": "persona_vs_baseline",
+    "rate_metric": "structural_2_rate",
+    "reasons": [
+      "batch pass rate 50.0% < 60% (5/10 runs with >=1 score-2)",
+      "persona_path_structural_2_rate 20.0% not > a1_path_structural_2_rate 75.0%"
+    ]
+  }
+}
