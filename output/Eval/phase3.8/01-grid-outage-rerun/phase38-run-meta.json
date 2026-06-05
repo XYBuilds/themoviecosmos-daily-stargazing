@@ -1,0 +1,62 @@
+{
+  "run_id": "01-grid-outage-rerun",
+  "news_file": "tests\\eval_news\\01-grid-outage.json",
+  "persona_ids": [
+    "The-Innocent",
+    "The-Everyman",
+    "The-Hero",
+    "The-Caregiver",
+    "The-Explorer",
+    "The-Outlaw",
+    "The-Lover",
+    "The-Creator",
+    "The-Ruler",
+    "The-Magician",
+    "The-Sage",
+    "The-Jester"
+  ],
+  "agent_count": 11,
+  "errors": [
+    {
+      "agent_id": "The-Lover",
+      "message": "channel_assembly: neutral pseudo must not contain lens term 'unit 2 tripped offline'"
+    }
+  ],
+  "repair_retries": [
+    {
+      "persona_id": "The-Lover",
+      "stage": "channel_assembly",
+      "attempt": "1",
+      "error": "channel_assembly: neutral pseudo must not contain lens term 'unit 2 tripped offline'"
+    },
+    {
+      "persona_id": "The-Lover",
+      "stage": "screenwriter_assembly_retry",
+      "attempt": "2",
+      "error": "ok"
+    },
+    {
+      "persona_id": "The-Lover",
+      "stage": "channel_assembly",
+      "attempt": "2",
+      "error": "channel_assembly: neutral pseudo must not contain lens term 'unit 2 tripped offline'"
+    }
+  ],
+  "repair_retry_count": 3,
+  "cjk_violations": [],
+  "english_ok": true,
+  "candidate_count": 19,
+  "finished_at": "2026-06-05T16:49:04.230424+00:00",
+  "pilot_compliance_before": "8/12",
+  "pilot_compliance_after": "11/12",
+  "pilot_rerun_of": "01-grid-outage",
+  "pilot_failures_before": [
+    "The-Caregiver",
+    "The-Hero",
+    "The-Jester",
+    "The-Lover"
+  ],
+  "pilot_failures_after": [
+    "The-Lover"
+  ]
+}

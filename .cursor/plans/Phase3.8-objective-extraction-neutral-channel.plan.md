@@ -31,7 +31,7 @@ todos:
     status: completed
   - id: f38c1d3e-0001-4000-8038-000000000063
     content: 3.8.6.3 · 重跑单点 pilot 验证全链合规率（目标 12/12 或定可接受下限）[需人工验收 · Go/No-Go]
-    status: pending
+    status: completed
   - id: f38c1d3e-0001-4000-8038-000000000007
     content: 3.8.7 · 批量 run（A1 并跑）+ 留出集打分 [需人工验收]
     status: pending
@@ -268,8 +268,8 @@ flowchart LR
 
 ### 验收
 
-- [ ] 端到端产出位于 `output/Eval/phase3.8/{run_id}/`
-- [ ] `[需人工验收]`：五项核查通过 → **Go**（进 3.8.7）；不过 → 回 3.8.2/3.8.6 修契约/锚
+- [x] 端到端产出位于 `output/Eval/phase3.8/01-grid-outage/`（首跑 8/12 合规；4 例失败触发 3.8.6.1–3.8.6.3）
+- [x] `[需人工验收]`：Combined Go @ **11/12**（重跑 `01-grid-outage-rerun` 后用户 approve；首跑 8/12 → 重跑 11/12）→ **Go**（进 3.8.7）
 
 ---
 
@@ -309,9 +309,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] 重跑产出位于新 run 目录；首跑与 3.5/3.6/3.7 未改写
-- [ ] 合规率较首跑提升（记录 before/after）
-- [ ] `[需人工验收]`：用户确认达可接受下限 → **Go**（回主线 3.8.7）；不过 → 回 3.8.6.1/3.8.6.2
+- [x] 重跑产出位于 `output/Eval/phase3.8/01-grid-outage-rerun/`；首跑 `01-grid-outage/` 与 3.5/3.6/3.7 未改写
+- [x] 合规率较首跑提升：**8/12 → 11/12**（before/after 见 `phase38-run-meta.json`）
+- [x] `[需人工验收]`：用户确认 **11/12 可接受下限**（唯一残留 The-Lover 中性 lens 泄漏）→ **Go**（回主线 3.8.7）
 
 ---
 
@@ -369,7 +369,7 @@ flowchart LR
 
 - [x] 3.8.0 SSOT 对齐 approve
 - [ ] 3.8.1–3.8.5 各单测通过、全链英文、撞车新口径 + neutral_hit_rate 落地
-- [ ] 3.8.6 单点 pilot 五项核查 Go
+- [x] 3.8.6 单点 pilot Combined Go（首跑 8/12 + 重跑 11/12 可接受下限）
 - [ ] 3.8.7 批量 + A1 并跑 + 留出集打分
 - [ ] 3.8.8 书面 GATE（双诊断 + A1-superset）→ go/no-go
 - [ ] 3.8.9 仅 GATE go：SSOT 终态 + 删 A1
