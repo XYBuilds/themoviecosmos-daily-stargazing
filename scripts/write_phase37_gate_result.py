@@ -37,7 +37,14 @@ _HOLDOUT_RUNS = frozenset(
         "10-whistleblower-leak",
     }
 )
-_SCORED_FOCUS = _OBS_RUNS | frozenset({"07-migration-border", "09-cultural-backlash"})
+_SCORED_FOCUS = frozenset(
+    {
+        "01-grid-outage",
+        "02-corporate-layoff",
+        "07-migration-border",
+        "09-cultural-backlash",
+    }
+)
 
 
 def _pearson(xs: list[float], ys: list[float]) -> float | None:
