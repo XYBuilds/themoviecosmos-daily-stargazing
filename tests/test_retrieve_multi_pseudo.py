@@ -53,6 +53,7 @@ class ExpandQueriesTests(unittest.TestCase):
         queries = _expand_retrieval_queries(agents, [])
         self.assertEqual(len(queries), 1)
         self.assertEqual(queries[0]["pseudo_id"], "legacy")
+        self.assertEqual(queries[0]["channel_role"], "baseline")
 
     def test_skips_failed_agents(self) -> None:
         agents = [{"agent_id": "A4", "role": "creative", "text": "x", "pseudos": []}]
@@ -95,10 +96,18 @@ class RetrieveAggregateTests(unittest.TestCase):
         agents = [
             {
                 "agent_id": "A2",
-                "role": "creative",
+                "role": "toned",
                 "pseudos": [
-                    {"id": "p1", "text": "pseudo one", "source": {"fragments": ["why-0"]}},
-                    {"id": "p2", "text": "pseudo two", "source": {"fragments": ["how-0"]}},
+                    {
+                        "id": "t1",
+                        "text": "pseudo one",
+                        "source": {"fragments": ["why-0"], "channel_role": "toned"},
+                    },
+                    {
+                        "id": "t2",
+                        "text": "pseudo two",
+                        "source": {"fragments": ["how-0"], "channel_role": "toned"},
+                    },
                 ],
             },
             {
@@ -128,6 +137,7 @@ class RetrieveAggregateTests(unittest.TestCase):
         self.assertIn("quality_reason", movie_a)
         self.assertEqual(movie_a["distinct_agents"], 1)
         self.assertFalse(movie_a["quality_candidate"])
+        self.assertIn("neutral_vote=0", movie_a["quality_reason"])
 
         per_a2 = next(p for p in result["per_agent"] if p["agent_id"] == "A2")
         self.assertEqual(len(per_a2["pseudos"]), 2)

@@ -13,7 +13,7 @@ todos:
     status: completed
   - id: f38c1d3e-0001-4000-8038-000000000003
     content: 3.8.3 · retrieve.py 撞车口径改造（中性 union=1 去重票 + ≥1 toned 汇聚；role 改 neutral/toned）+ neutral_hit_rate 字段 + 单测
-    status: pending
+    status: completed
   - id: f38c1d3e-0001-4000-8038-000000000004
     content: 3.8.4 · 打分/分析改造（控相似度双诊断 ①neutral-hit-rate vs 共振 ②toned-convergence vs 共振 + 闸门口径）+ 单测
     status: pending
@@ -199,9 +199,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python -m unittest`（retrieve 相关）通过
-- [ ] 12 条中性撞同片 → `quality_candidate=False`（无 toned 汇聚）；加 1 条 toned 汇聚 → `True`
-- [ ] 候选含正确 `neutral_hit_rate`
+- [x] `python -m unittest`（retrieve 相关）通过
+- [x] 12 条中性撞同片 → `quality_candidate=False`（无 toned 汇聚）；加 1 条 toned 汇聚 → `True`
+- [x] 候选含正确 `neutral_hit_rate`
 
 ---
 
