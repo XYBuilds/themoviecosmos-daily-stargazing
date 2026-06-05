@@ -16,10 +16,10 @@ todos:
     status: completed
   - id: f37b1c2d-0001-4000-8037-000000000004
     content: 3.7.4 · 余下 11 原型 card + N=10 重跑（phase3.7 输出）+ 留出集打分 [需人工验收]
-    status: in_progress
+    status: completed
   - id: f37b1c2d-0001-4000-8037-000000000005
     content: 3.7.5 · 数据回答（fit↔共振、persona vs A1 基线、弃权阈值）+ 闸门加 fit×相似度 维度 + GATE_RESULT [需人工验收]
-    status: pending
+    status: in_progress
   - id: f37b1c2d-0001-4000-8037-000000000006
     content: 3.7.6 · 改 SSOT（PRD/CONTEXT/contract 按 ADR-0004）[仅 GATE go]
     status: pending
