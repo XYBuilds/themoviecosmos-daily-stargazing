@@ -1,6 +1,7 @@
-"""personas.py · Phase 3.7 dual-step persona pipeline (scaffold).
+"""personas.py · Phase 3.8 dual-step persona pipeline.
 
-Pipeline: neutral decon → alt_creator(persona) → screenwriter(persona) → pseudos(+fit).
+Pipeline: verbatim decon + expansion → alt_creator(persona) → screenwriter(persona) →
+1 objective-floor neutral pseudo + 1–3 toned pseudos (channel_role neutral/toned).
 
 Produces a flavored-decon **overlay** (alt-pool + element id refs only; no fork of full decon text).
 Reuses agents.py for render_prompt, extract_json_object, parse_pseudos_response, and LLM calls.
@@ -45,6 +46,10 @@ from scripts.lib.llm import get_llm_client
 from scripts.lib.paths import repo_root
 
 Valence = Literal["positive", "neutral", "negative"]
+Provenance = Literal["surface", "hypernym", "lens"]
+ChannelRole = Literal["neutral", "toned"]
+
+NEUTRAL_PSEUDO_ID = "n1"
 
 ALT_CREATOR_CONTRACT = (
     repo_root() / "prompts" / "_shared" / "persona_alt_creator_contract.md"
@@ -67,6 +72,8 @@ def list_persona_ids(ssot_path: Path | None = None) -> list[str]:
         m = _PERSONA_ID_ROW.match(line.strip())
         if m:
             ids.append(m.group(1))
+    # personas-12.md lists ids twice (roster + value-axis table); keep first occurrence.
+    ids = list(dict.fromkeys(ids))
     if len(ids) != 12:
         raise ValueError(f"expected 12 persona_ids in {path}, got {len(ids)}: {ids}")
     return ids
@@ -79,6 +86,8 @@ _DECON_TOP_LEVEL_KEYS: frozenset[str] = frozenset(
 )
 
 _VALID_VALENCES: frozenset[str] = frozenset({"positive", "neutral", "negative"})
+_VALID_PROVENANCES: frozenset[str] = frozenset({"surface", "hypernym", "lens"})
+_CHANNEL_ROLES: frozenset[str] = frozenset({"neutral", "toned"})
 
 _SYSTEM_ALT = (
     "You are a persona alt-creator. Follow the user message exactly. "
@@ -95,6 +104,7 @@ _SYSTEM_SCREEN = (
 class AltTerm:
     term: str
     valence: str
+    provenance: str | None = None
 
 
 @dataclass
@@ -118,7 +128,7 @@ class AltPoolOverlay:
                         "element_id": el.element_id,
                         "original_term": el.original_term,
                         "alternatives": [
-                            {"term": a.term, "valence": a.valence} for a in el.alternatives
+                            _alt_term_to_dict(a) for a in el.alternatives
                         ],
                     }
                     for el in self.elements
@@ -158,6 +168,278 @@ def known_element_ids(deconstruction: dict[str, Any]) -> set[str]:
             if isinstance(item, dict) and item.get("id"):
                 ids.add(str(item["id"]))
     return ids
+
+
+def _alt_term_to_dict(term: AltTerm) -> dict[str, str]:
+    row: dict[str, str] = {"term": term.term, "valence": term.valence}
+    if term.provenance:
+        row["provenance"] = term.provenance
+    return row
+
+
+def _resolve_provenance(valence: str, explicit: str | None) -> str:
+    """Default provenance when alt-creator omits the tag (ADR-0005)."""
+    if explicit:
+        prov = explicit.strip().lower()
+        if prov not in _VALID_PROVENANCES:
+            raise ValueError(f"invalid provenance {explicit!r} (expected surface|hypernym|lens)")
+        return prov
+    if valence in ("positive", "negative"):
+        return "lens"
+    return "lens"
+
+
+def expansion_elements_by_id(
+    expansion: dict[str, Any] | None,
+) -> dict[str, dict[str, Any]]:
+    if not expansion:
+        return {}
+    rows = expansion.get("elements")
+    if not isinstance(rows, list):
+        return {}
+    out: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        if isinstance(row, dict) and row.get("element_id"):
+            out[str(row["element_id"])] = row
+    return out
+
+
+def objective_floor_terms_for_element(
+    element: AltElement,
+    expansion_row: dict[str, Any] | None,
+) -> list[tuple[str, str]]:
+    """Return (term, provenance) pairs for objective-floor only (surface + hypernym)."""
+    pairs: list[tuple[str, str]] = []
+    seen: set[str] = set()
+
+    def add(term: str, prov: str) -> None:
+        cleaned = term.strip()
+        key = cleaned.lower()
+        if cleaned and key not in seen:
+            seen.add(key)
+            pairs.append((cleaned, prov))
+
+    if element.original_term:
+        add(element.original_term, "surface")
+    for alt in element.alternatives:
+        prov = alt.provenance or _resolve_provenance(alt.valence, None)
+        if prov in ("surface", "hypernym"):
+            add(alt.term, prov)
+    if expansion_row:
+        surface = str(expansion_row.get("surface", "") or "").strip()
+        if surface:
+            add(surface, "surface")
+        hypernyms = expansion_row.get("hypernyms")
+        if isinstance(hypernyms, list):
+            for raw in hypernyms:
+                add(str(raw), "hypernym")
+    return pairs
+
+
+def collect_hypernym_anchor_terms(
+    alt_pool: AltPoolOverlay,
+    expansion: dict[str, Any] | None,
+) -> set[str]:
+    by_id = expansion_elements_by_id(expansion)
+    terms: set[str] = set()
+    for el in alt_pool.elements:
+        for term, prov in objective_floor_terms_for_element(el, by_id.get(el.element_id)):
+            if prov == "hypernym":
+                terms.add(term.lower())
+    return terms
+
+
+def collect_lens_terms(alt_pool: AltPoolOverlay) -> set[str]:
+    terms: set[str] = set()
+    for el in alt_pool.elements:
+        for alt in el.alternatives:
+            prov = alt.provenance or _resolve_provenance(alt.valence, None)
+            if prov == "lens":
+                terms.add(alt.term.lower())
+    return terms
+
+
+def _fragment_text_for_id(ann: dict[str, Any], fragment_id: str) -> str | None:
+    if "-" not in fragment_id:
+        return None
+    section, _, idx_s = fragment_id.partition("-")
+    try:
+        idx = int(idx_s)
+    except ValueError:
+        return None
+    items = ann.get(section)
+    if not isinstance(items, list) or idx >= len(items):
+        return None
+    item = items[idx]
+    if isinstance(item, dict):
+        return str(item.get("text", "") or "").strip() or None
+    return None
+
+
+def _default_neutral_fragments(deconstruction: dict[str, Any]) -> list[str]:
+    ann = annotate_element_ids(deconstruction)
+    frags: list[str] = []
+    why_items = ann.get("why") or []
+    for item in why_items:
+        if isinstance(item, dict) and item.get("id"):
+            frags.append(str(item["id"]))
+            break
+    how_items = ann.get("how") or []
+    for item in how_items[:3]:
+        if isinstance(item, dict) and item.get("id"):
+            frags.append(str(item["id"]))
+    result_items = ann.get("result") or []
+    for item in result_items[:1]:
+        if isinstance(item, dict) and item.get("id"):
+            frags.append(str(item["id"]))
+    return frags
+
+
+def build_objective_floor_neutral_pseudo(
+    persona_id: str,
+    deconstruction: dict[str, Any],
+    alt_pool: AltPoolOverlay,
+    expansion: dict[str, Any] | None = None,
+    *,
+    fragment_ids: list[str] | None = None,
+) -> PseudoSegment:
+    """Build exactly one objective-floor neutral pseudo (surface + hypernym, no lens)."""
+    by_id = expansion_elements_by_id(expansion)
+    frags = fragment_ids or _default_neutral_fragments(deconstruction)
+
+    floor_terms: list[tuple[str, str]] = []
+    covered: set[str] = set()
+    for fid in frags:
+        if fid in covered:
+            continue
+        covered.add(fid)
+        alt_el = next((e for e in alt_pool.elements if e.element_id == fid), None)
+        if alt_el:
+            floor_terms.extend(objective_floor_terms_for_element(alt_el, by_id.get(fid)))
+        elif fid in by_id:
+            row = by_id[fid]
+            floor_terms.extend(
+                objective_floor_terms_for_element(
+                    AltElement(fid, str(row.get("surface", "") or ""), []),
+                    row,
+                )
+            )
+    for el in alt_pool.elements:
+        if el.element_id.startswith(("who-", "where-")):
+            floor_terms.extend(
+                objective_floor_terms_for_element(el, by_id.get(el.element_id))
+            )
+
+    deduped: list[tuple[str, str]] = []
+    seen_terms: set[str] = set()
+    for term, prov in floor_terms:
+        key = term.lower()
+        if key not in seen_terms:
+            seen_terms.add(key)
+            deduped.append((term, prov))
+
+    hypernyms = [t for t, p in deduped if p == "hypernym"]
+    surfaces = [t for t, p in deduped if p == "surface"]
+
+    ann = annotate_element_ids(deconstruction)
+    sentences = [
+        s.rstrip(".")
+        for fid in frags
+        if (s := _fragment_text_for_id(ann, fid))
+    ]
+    hypernym_clause = ""
+    if hypernyms:
+        hypernym_clause = f" The event unfolds across {hypernyms[0]}"
+        if len(hypernyms) > 1:
+            hypernym_clause += f" and {hypernyms[1]}"
+        hypernym_clause += "."
+
+    body = ". ".join(sentences)
+    if surfaces:
+        lead = surfaces[0]
+        if lead.lower() not in body.lower():
+            body = f"{lead}. {body}" if body else lead
+    text = (body + hypernym_clause).strip()
+    if text and not text.endswith("."):
+        text += "."
+
+    lens_terms = collect_lens_terms(alt_pool)
+    text_lower = text.lower()
+    for lens_term in lens_terms:
+        if lens_term in text_lower:
+            raise ValueError(f"neutral pseudo must not contain lens term {lens_term!r}")
+
+    if "lens" in {p for _, p in deduped}:
+        raise ValueError("neutral pseudo must not use lens provenance terms")
+
+    return PseudoSegment(
+        id=NEUTRAL_PSEUDO_ID,
+        text=text,
+        source={
+            "agent_id": persona_id,
+            "fragments": frags,
+            "channel_role": "neutral",
+            "provenance_layers": sorted({p for _, p in deduped}),
+            "terms": [{"term": t, "provenance": p} for t, p in deduped],
+        },
+        warnings=[],
+        fit=1.0,
+    )
+
+
+def tag_toned_pseudos(pseudos: list[PseudoSegment]) -> list[PseudoSegment]:
+    tagged: list[PseudoSegment] = []
+    for pseudo in pseudos:
+        source = dict(pseudo.source)
+        source["channel_role"] = "toned"
+        tagged.append(
+            PseudoSegment(
+                pseudo.id,
+                pseudo.text,
+                source,
+                pseudo.warnings,
+                fit=pseudo.fit,
+            )
+        )
+    return tagged
+
+
+def validate_toned_hypernym_anchor(
+    pseudo: PseudoSegment,
+    hypernym_terms: set[str],
+) -> None:
+    if not hypernym_terms:
+        raise ValueError(
+            f"toned pseudo {pseudo.id}: no hypernym anchors available in pool/expansion"
+        )
+    text_lower = pseudo.text.lower()
+    if not any(term in text_lower for term in hypernym_terms):
+        sample = sorted(hypernym_terms)[:5]
+        raise ValueError(
+            f"toned pseudo {pseudo.id} must include a hypernym anchor "
+            f"(expected one of {sample})"
+        )
+
+
+def assemble_persona_channel_pseudos(
+    persona_id: str,
+    deconstruction: dict[str, Any],
+    alt_pool: AltPoolOverlay,
+    toned_pseudos: list[PseudoSegment],
+    expansion: dict[str, Any] | None = None,
+) -> list[PseudoSegment]:
+    """Return [1 neutral pseudo] + toned pseudos with channel_role tags."""
+    neutral = build_objective_floor_neutral_pseudo(
+        persona_id,
+        deconstruction,
+        alt_pool,
+        expansion,
+    )
+    hypernyms = collect_hypernym_anchor_terms(alt_pool, expansion)
+    toned = tag_toned_pseudos(toned_pseudos)
+    for pseudo in toned:
+        validate_toned_hypernym_anchor(pseudo, hypernyms)
+    return [neutral, *toned]
 
 
 def _original_term_for_element(
@@ -212,12 +494,13 @@ def parse_alt_pool_response(
             raise ValueError(f"element {element_id}: alternatives must be a non-empty list")
 
         alternatives: list[AltTerm] = []
-        valences_seen: set[str] = set()
         for alt in alts_raw:
             if not isinstance(alt, dict):
                 raise ValueError(f"element {element_id}: each alternative must be an object")
             term = str(alt.get("term", "")).strip()
             valence = str(alt.get("valence", "")).strip().lower()
+            explicit_prov = alt.get("provenance")
+            prov_raw = str(explicit_prov).strip() if explicit_prov is not None else None
             if not term:
                 raise ValueError(f"element {element_id}: alternative term is required")
             if valence not in _VALID_VALENCES:
@@ -225,14 +508,9 @@ def parse_alt_pool_response(
                     f"element {element_id}: invalid valence {valence!r} "
                     f"(expected positive|neutral|negative)"
                 )
-            alternatives.append(AltTerm(term=term, valence=valence))
-            valences_seen.add(valence)
-
-        missing_valences = _VALID_VALENCES - valences_seen
-        if missing_valences:
-            raise ValueError(
-                f"element {element_id}: missing valence bucket(s) "
-                f"{sorted(missing_valences)}"
+            provenance = _resolve_provenance(valence, prov_raw or None)
+            alternatives.append(
+                AltTerm(term=term, valence=valence, provenance=provenance)
             )
 
         elements.append(
@@ -477,11 +755,12 @@ async def run_persona_pipeline(
     deconstruction: dict[str, Any],
     provider: str | None = None,
     *,
+    expansion: dict[str, Any] | None = None,
     prompts_dir: Path | None = None,
     client: OpenAI | None = None,
     model: str | None = None,
 ) -> PersonaPipelineResult:
-    """Run decon → alt_creator → screenwriter for one persona."""
+    """Run decon → alt_creator → screenwriter → neutral + toned channel pseudos."""
     if not isinstance(deconstruction, dict) or not deconstruction:
         raise ValueError("deconstruction must be a non-empty dict")
 
@@ -521,10 +800,25 @@ async def run_persona_pipeline(
             error=sw_err or "screenwriter failed",
         )
 
+    try:
+        channel_pseudos = assemble_persona_channel_pseudos(
+            persona_id,
+            dec,
+            alt_pool,
+            pseudos,
+            expansion,
+        )
+    except ValueError as exc:
+        return PersonaPipelineResult(
+            persona_id=persona_id,
+            overlay=alt_pool,
+            error=f"channel_assembly: {exc}",
+        )
+
     return PersonaPipelineResult(
         persona_id=persona_id,
         overlay=alt_pool,
-        pseudos=pseudos,
+        pseudos=channel_pseudos,
     )
 
 

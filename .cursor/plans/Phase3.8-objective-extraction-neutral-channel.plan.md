@@ -10,7 +10,7 @@ todos:
     status: completed
   - id: f38c1d3e-0001-4000-8038-000000000002
     content: 3.8.2 · persona 双步升级（persona-relative valence + 三层 provenance + 每 persona 1 条客观地板中性 pseudo）+ 单测
-    status: pending
+    status: completed
   - id: f38c1d3e-0001-4000-8038-000000000003
     content: 3.8.3 · retrieve.py 撞车口径改造（中性 union=1 去重票 + ≥1 toned 汇聚；role 改 neutral/toned）+ neutral_hit_rate 字段 + 单测
     status: pending
@@ -181,9 +181,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python -m unittest tests.test_personas -v` 通过
-- [ ] 每 persona 产 1 条中性 pseudo（无 lens）+ ≥1 条 toned（带 hypernym 锚）
-- [ ] alt-pool 含 `provenance` 三层、valence persona-relative；overlay 不 fork decon
+- [x] `python -m unittest tests.test_personas -v` 通过
+- [x] 每 persona 产 1 条中性 pseudo（无 lens）+ ≥1 条 toned（带 hypernym 锚）
+- [x] alt-pool 含 `provenance` 三层、valence persona-relative；overlay 不 fork decon
 
 ---
 

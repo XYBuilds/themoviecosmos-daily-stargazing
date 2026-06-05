@@ -18,12 +18,17 @@ from scripts.agents import (
     _known_fragment_ids,
 )
 from scripts.personas import (
+    NEUTRAL_PSEUDO_ID,
     AltElement,
     AltPoolOverlay,
     AltTerm,
     annotate_element_ids,
+    assemble_persona_channel_pseudos,
     build_alt_pool_overlay,
+    build_objective_floor_neutral_pseudo,
     build_screenwriter_user_prompt,
+    collect_hypernym_anchor_terms,
+    collect_lens_terms,
     known_element_ids,
     list_persona_ids,
     load_persona_card,
@@ -58,6 +63,28 @@ def _known_fragments() -> set[str]:
     return _known_fragment_ids(annotate_fragment_ids(_fixture_dec_inner()))
 
 
+def _expansion_fixture() -> dict:
+    return {
+        "elements": [
+            {
+                "element_id": "who-0",
+                "surface": "Philippines grid operator",
+                "hypernyms": ["power grid", "critical infrastructure"],
+            },
+            {
+                "element_id": "where-0",
+                "surface": "Visayas, Philippines",
+                "hypernyms": ["Visayas", "Philippines", "Southeast Asia"],
+            },
+            {
+                "element_id": "why-0",
+                "surface": "Kepco SPC Power Unit 2 tripped offline alongside other long-running plant outages",
+                "hypernyms": ["power plant outage", "supply shortfall"],
+            },
+        ]
+    }
+
+
 def _alt_pool_json() -> str:
     return json.dumps(
         {
@@ -65,24 +92,57 @@ def _alt_pool_json() -> str:
             "elements": [
                 {
                     "element_id": "who-0",
-                    "original_term": "菲律宾电网运营商",
+                    "original_term": "Philippines grid operator",
                     "alternatives": [
-                        {"term": "grid steward", "valence": "positive"},
-                        {"term": "grid operator", "valence": "neutral"},
-                        {"term": "failing bureaucracy", "valence": "negative"},
+                        {"term": "grid steward", "valence": "positive", "provenance": "lens"},
+                        {"term": "grid operator", "valence": "neutral", "provenance": "hypernym"},
+                        {"term": "failing bureaucracy", "valence": "negative", "provenance": "lens"},
+                    ],
+                },
+                {
+                    "element_id": "where-0",
+                    "original_term": "Visayas, Philippines",
+                    "alternatives": [
+                        {"term": "Visayas", "valence": "neutral", "provenance": "hypernym"},
                     ],
                 },
                 {
                     "element_id": "why-0",
-                    "original_term": "Kepco SPC Power Unit 2 跳闸脱网，叠加其他机组长期停运",
+                    "original_term": "Kepco SPC Power Unit 2 tripped offline alongside other long-running plant outages",
                     "alternatives": [
-                        {"term": "restored balance after a trip", "valence": "positive"},
-                        {"term": "unit trip plus outages", "valence": "neutral"},
-                        {"term": "cascade of plant failures", "valence": "negative"},
+                        {"term": "restored balance after a trip", "valence": "positive", "provenance": "lens"},
+                        {"term": "unit trip plus outages", "valence": "neutral", "provenance": "lens"},
+                        {"term": "power plant outage", "valence": "neutral", "provenance": "hypernym"},
+                        {"term": "cascade of plant failures", "valence": "negative", "provenance": "lens"},
                     ],
                 },
             ],
         }
+    )
+
+
+def _toned_pseudo_with_hypernym() -> list:
+    return parse_pseudos_response(
+        json.dumps(
+            {
+                "pseudos": [
+                    {
+                        "id": "p1",
+                        "text": (
+                            "During a prolonged heat wave, a power plant outage on the "
+                            "Philippines grid operator's network left the Visayas region "
+                            "under red alert as critical infrastructure strained under "
+                            "record demand and rolling cuts spread across major cities."
+                        ),
+                        "fit": 0.75,
+                        "source": {"fragments": ["why-0", "how-0", "result-0"]},
+                    }
+                ]
+            }
+        ),
+        agent_id="The-Ruler",
+        known_fragments=_known_fragments(),
+        require_fit=True,
     )
 
 
@@ -102,7 +162,7 @@ class PersonaScaffoldTests(unittest.TestCase):
             known_elements=_known_elements(),
         )
         self.assertEqual(overlay.persona_id, "The-Ruler")
-        self.assertEqual(len(overlay.elements), 2)
+        self.assertEqual(len(overlay.elements), 3)
         self.assertEqual(overlay.elements[0].alternatives[0].valence, "positive")
 
     def test_parse_alt_pool_unknown_element_errors(self) -> None:
@@ -116,18 +176,45 @@ class PersonaScaffoldTests(unittest.TestCase):
             )
         self.assertIn("unknown element_id", str(ctx.exception).lower())
 
-    def test_parse_alt_pool_missing_valence_errors(self) -> None:
+    def test_parse_alt_pool_persona_relative_partial_valence_ok(self) -> None:
         data = json.loads(_alt_pool_json())
         data["elements"][0]["alternatives"] = [
-            {"term": "only neutral", "valence": "neutral"},
+            {"term": "rumor spreader", "valence": "negative", "provenance": "lens"},
         ]
+        overlay = parse_alt_pool_response(
+            json.dumps(data),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        alts = overlay.elements[0].alternatives
+        self.assertEqual(len(alts), 1)
+        self.assertEqual(alts[0].valence, "negative")
+        self.assertEqual(alts[0].provenance, "lens")
+
+    def test_parse_alt_pool_provenance_layers(self) -> None:
+        overlay = parse_alt_pool_response(
+            _alt_pool_json(),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        who_alts = overlay.elements[0].alternatives
+        self.assertEqual(who_alts[0].provenance, "lens")
+        self.assertEqual(who_alts[1].provenance, "hypernym")
+        why_hyper = next(
+            a for a in overlay.elements[2].alternatives if a.term == "power plant outage"
+        )
+        self.assertEqual(why_hyper.provenance, "hypernym")
+
+    def test_parse_alt_pool_invalid_provenance_errors(self) -> None:
+        data = json.loads(_alt_pool_json())
+        data["elements"][0]["alternatives"][0]["provenance"] = "myth"
         with self.assertRaises(ValueError) as ctx:
             parse_alt_pool_response(
                 json.dumps(data),
                 persona_id="The-Ruler",
                 known_elements=_known_elements(),
             )
-        self.assertIn("valence", str(ctx.exception).lower())
+        self.assertIn("provenance", str(ctx.exception).lower())
 
     def test_overlay_forbids_decon_fork(self) -> None:
         overlay = parse_alt_pool_response(
@@ -270,9 +357,9 @@ class PersonaScaffoldTests(unittest.TestCase):
                     element_id="who-0",
                     original_term="operator",
                     alternatives=[
-                        AltTerm("steward", "positive"),
-                        AltTerm("operator", "neutral"),
-                        AltTerm("bureaucracy", "negative"),
+                        AltTerm("steward", "positive", "lens"),
+                        AltTerm("operator", "neutral", "hypernym"),
+                        AltTerm("bureaucracy", "negative", "lens"),
                     ],
                 )
             ],
@@ -280,6 +367,94 @@ class PersonaScaffoldTests(unittest.TestCase):
         payload = build_alt_pool_overlay(overlay)
         self.assertEqual(payload["persona_id"], "The-Ruler")
         self.assertEqual(len(payload["alt_pool"]["elements"]), 1)
+        self.assertEqual(
+            payload["alt_pool"]["elements"][0]["alternatives"][1]["provenance"],
+            "hypernym",
+        )
+
+    def test_neutral_pseudo_surface_hypernym_only(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json(),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        neutral = build_objective_floor_neutral_pseudo(
+            "The-Ruler",
+            dec,
+            overlay,
+            _expansion_fixture(),
+        )
+        self.assertEqual(neutral.id, NEUTRAL_PSEUDO_ID)
+        self.assertEqual(neutral.source.get("channel_role"), "neutral")
+        layers = neutral.source.get("provenance_layers") or []
+        self.assertIn("surface", layers)
+        self.assertIn("hypernym", layers)
+        self.assertNotIn("lens", layers)
+        lens_terms = collect_lens_terms(overlay)
+        text_lower = neutral.text.lower()
+        for term in lens_terms:
+            self.assertNotIn(term, text_lower, msg=f"lens leak: {term}")
+
+    def test_assemble_channels_one_neutral_plus_toned(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json(),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        toned = _toned_pseudo_with_hypernym()
+        pseudos = assemble_persona_channel_pseudos(
+            "The-Ruler",
+            dec,
+            overlay,
+            toned,
+            _expansion_fixture(),
+        )
+        self.assertEqual(len(pseudos), 2)
+        self.assertEqual(pseudos[0].id, NEUTRAL_PSEUDO_ID)
+        self.assertEqual(pseudos[0].source.get("channel_role"), "neutral")
+        self.assertEqual(pseudos[1].source.get("channel_role"), "toned")
+        hypernyms = collect_hypernym_anchor_terms(overlay, _expansion_fixture())
+        self.assertTrue(any(h in pseudos[1].text.lower() for h in hypernyms))
+
+    def test_toned_without_hypernym_anchor_errors(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json(),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        no_anchor_text = (
+            "Seasonal heat drove demand to a record peak while multiple generating "
+            "units remained unavailable, forcing emergency load shedding across the region."
+        )
+        toned = parse_pseudos_response(
+            json.dumps(
+                {
+                    "pseudos": [
+                        {
+                            "id": "p1",
+                            "text": no_anchor_text,
+                            "fit": 0.5,
+                            "source": {"fragments": ["why-0"]},
+                        }
+                    ]
+                }
+            ),
+            agent_id="The-Ruler",
+            known_fragments=_known_fragments(),
+            require_fit=True,
+        )
+        with self.assertRaises(ValueError) as ctx:
+            assemble_persona_channel_pseudos(
+                "The-Ruler",
+                dec,
+                overlay,
+                toned,
+                _expansion_fixture(),
+            )
+        self.assertIn("hypernym anchor", str(ctx.exception).lower())
 
 
 if __name__ == "__main__":
