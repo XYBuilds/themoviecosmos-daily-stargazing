@@ -4,7 +4,7 @@ overview: 按 ADR-0005 重设计管线——A0 退为「纯逐字抽取」，新
 todos:
   - id: f38c1d3e-0001-4000-8038-000000000000
     content: 3.8.0 · SSOT 对齐 ADR-0005（reality-deconstruction-contract 重写 + CONTEXT 补术语）[需人工验收]
-    status: pending
+    status: completed
   - id: f38c1d3e-0001-4000-8038-000000000001
     content: 3.8.1 · A0 verbatim 瘦身 + 共享客观扩展 pass（hypernym 梯 + 客观性试金石 + 丢 inert）+ 单测
     status: pending
@@ -146,8 +146,8 @@ flowchart LR
 
 ### 验收
 
-- [ ] contract / CONTEXT 与 ADR-0005 §决策逐条对齐，无残留旧口径（标签梯/geocode/无损全维度）
-- [ ] `[需人工验收]`：用户 approve 契约口径 → 可进 3.8.1
+- [x] contract / CONTEXT 与 ADR-0005 §决策逐条对齐，无残留旧口径（标签梯/geocode/无损全维度）
+- [x] `[需人工验收]`：用户 approve 契约口径 → 可进 3.8.1
 
 ---
 
@@ -316,7 +316,7 @@ flowchart LR
 
 ## Phase 3.8 整体验收
 
-- [ ] 3.8.0 SSOT 对齐 approve
+- [x] 3.8.0 SSOT 对齐 approve
 - [ ] 3.8.1–3.8.5 各单测通过、全链英文、撞车新口径 + neutral_hit_rate 落地
 - [ ] 3.8.6 单点 pilot 五项核查 Go
 - [ ] 3.8.7 批量 + A1 并跑 + 留出集打分

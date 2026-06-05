@@ -1,4 +1,4 @@
-# Persona Screenwriter Contract (Phase 3.7)
+# Persona Screenwriter Contract (Phase 3.8 · ADR-0005)
 
 > Extends `multi_pseudo_output_contract.md` for the second persona step: compose pseudo-overviews from the **alt-pool overlay** + fragment ids, with optional tone rephrase (P-Tone) and mandatory **fit** self-score (P-Force).
 
@@ -12,7 +12,8 @@ Follow all rules in:
 
 ## Additional inputs
 
-- `{{deconstruction_json}}`: annotated neutral decon (fragment ids only — for `source.fragments` provenance).
+- `{{deconstruction_json}}`: verbatim decon (fragment ids only — for `source.fragments` provenance).
+- `{{expansion_json}}` (when present): shared hypernym overlay — for objective-floor neutral pseudos and toned hypernym anchors.
 - `{{alt_pool_json}}`: persona alt-pool overlay (`persona_id` + `elements[]` with `element_id`, `original_term`, `alternatives[]`). **Select terms from this pool** when wording entities; do not invent replacements outside the pool.
 - Persona card (when present): steer tone and which valence bucket to favor.
 
