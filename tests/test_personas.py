@@ -6,6 +6,7 @@ import json
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import AsyncMock, MagicMock, patch
 
 _REPO = Path(__file__).resolve().parents[1]
 if str(_REPO) not in sys.path:
@@ -35,6 +36,7 @@ from scripts.personas import (
     overlay_forbids_decon_fork,
     parse_alt_pool_response,
     render_persona_prompt,
+    run_persona_pipeline,
 )
 from scripts.run_persona_batch import (
     load_a1_agent_from_phase36,
@@ -531,6 +533,178 @@ class PersonaScaffoldTests(unittest.TestCase):
                 _expansion_fixture(),
             )
         self.assertIn("hypernym anchor", str(ctx.exception).lower())
+
+    def test_collect_hypernym_anchor_terms_excludes_sentence_level(self) -> None:
+        expansion = {
+            "elements": [
+                {
+                    "element_id": "why-0",
+                    "surface": "unit tripped",
+                    "hypernyms": [
+                        "power plant outage",
+                        "a high-level warning was declared for the region.",
+                    ],
+                }
+            ]
+        }
+        overlay = AltPoolOverlay(
+            persona_id="The-Hero",
+            elements=[
+                AltElement(
+                    element_id="why-0",
+                    original_term="unit tripped",
+                    alternatives=[
+                        AltTerm(
+                            "a high-level warning was declared for the region.",
+                            "neutral",
+                            "hypernym",
+                        ),
+                        AltTerm("power plant outage", "neutral", "hypernym"),
+                    ],
+                )
+            ],
+        )
+        terms = collect_hypernym_anchor_terms(overlay, expansion)
+        self.assertIn("power plant outage", terms)
+        self.assertNotIn(
+            "a high-level warning was declared for the region.",
+            terms,
+        )
+
+
+class PersonaRepairTests(unittest.IsolatedAsyncioTestCase):
+    async def test_repair_retry_on_parse_error_succeeds_second_turn(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json(),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        good_pseudos = _toned_pseudo_with_hypernym()
+        calls: list[str | None] = []
+
+        async def mock_screenwriter(*_args, repair_context=None, **_kwargs):
+            calls.append(repair_context)
+            if len(calls) == 1:
+                return None, "screenwriter parse_error: unknown fragment ids ['who-0']"
+            return good_pseudos, None
+
+        with patch(
+            "scripts.personas.run_alt_creator",
+            new_callable=AsyncMock,
+            return_value=(overlay, None),
+        ):
+            with patch(
+                "scripts.personas.run_screenwriter",
+                side_effect=mock_screenwriter,
+            ):
+                result = await run_persona_pipeline(
+                    "The-Ruler",
+                    dec,
+                    expansion=_expansion_fixture(),
+                    client=MagicMock(),
+                    model="test-model",
+                )
+
+        self.assertIsNone(result.error)
+        self.assertEqual(len(result.pseudos), 2)
+        self.assertEqual(len(calls), 2)
+        self.assertIsNone(calls[0])
+        self.assertIn("parse_error", calls[1] or "")
+        self.assertEqual(len(result.repair_retries), 2)
+
+    async def test_repair_retry_on_assembly_failure_succeeds_second_turn(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json(),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        bad_text = (
+            "Seasonal heat drove demand to a record peak while multiple generating "
+            "units remained unavailable, forcing emergency load shedding across the region."
+        )
+        bad_pseudos = parse_pseudos_response(
+            json.dumps(
+                {
+                    "pseudos": [
+                        {
+                            "id": "p1",
+                            "text": bad_text,
+                            "fit": 0.5,
+                            "source": {"fragments": ["why-0"]},
+                        }
+                    ]
+                }
+            ),
+            agent_id="The-Ruler",
+            known_fragments=_known_fragments(),
+            require_fit=True,
+        )
+        good_pseudos = _toned_pseudo_with_hypernym()
+        calls: list[str | None] = []
+
+        async def mock_screenwriter(*_args, repair_context=None, **_kwargs):
+            calls.append(repair_context)
+            if len(calls) == 1:
+                return bad_pseudos, None
+            return good_pseudos, None
+
+        with patch(
+            "scripts.personas.run_alt_creator",
+            new_callable=AsyncMock,
+            return_value=(overlay, None),
+        ):
+            with patch(
+                "scripts.personas.run_screenwriter",
+                side_effect=mock_screenwriter,
+            ):
+                result = await run_persona_pipeline(
+                    "The-Ruler",
+                    dec,
+                    expansion=_expansion_fixture(),
+                    client=MagicMock(),
+                    model="test-model",
+                )
+
+        self.assertIsNone(result.error)
+        self.assertEqual(len(result.pseudos), 2)
+        self.assertEqual(len(calls), 2)
+        self.assertIn("channel_assembly", calls[1] or "")
+        self.assertTrue(any(r["stage"] == "channel_assembly" for r in result.repair_retries))
+
+    async def test_repair_retry_still_fails_cleanly(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json(),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+
+        async def mock_screenwriter(*_args, **_kwargs):
+            return None, "screenwriter parse_error: invalid JSON"
+
+        with patch(
+            "scripts.personas.run_alt_creator",
+            new_callable=AsyncMock,
+            return_value=(overlay, None),
+        ):
+            with patch(
+                "scripts.personas.run_screenwriter",
+                side_effect=mock_screenwriter,
+            ):
+                result = await run_persona_pipeline(
+                    "The-Ruler",
+                    dec,
+                    expansion=_expansion_fixture(),
+                    client=MagicMock(),
+                    model="test-model",
+                )
+
+        self.assertIsNotNone(result.error)
+        self.assertEqual(result.pseudos, [])
+        self.assertEqual(len(result.repair_retries), 2)
+        self.assertIn("parse_error", result.error or "")
 
 
 if __name__ == "__main__":

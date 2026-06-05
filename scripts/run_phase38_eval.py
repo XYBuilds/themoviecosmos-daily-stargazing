@@ -210,6 +210,7 @@ async def run_phase38_for_news(
 
     agents: list[dict[str, Any]] = []
     errors: list[dict[str, Any]] = []
+    repair_retries: list[dict[str, Any]] = []
 
     if not skip_personas:
         for persona_id in persona_ids:
@@ -222,6 +223,11 @@ async def run_phase38_for_news(
                 provider=provider,
                 skip_existing=skip_existing,
             )
+            pipeline_path = persona_dir / "persona-pipeline.json"
+            if pipeline_path.is_file():
+                pipeline_data = json.loads(pipeline_path.read_text(encoding="utf-8"))
+                for row in pipeline_data.get("repair_retries") or []:
+                    repair_retries.append({"persona_id": persona_id, **row})
             if err or agent_row is None:
                 errors.append({"agent_id": persona_id, "message": err or "failed"})
                 continue
@@ -247,6 +253,8 @@ async def run_phase38_for_news(
         "persona_ids": persona_ids,
         "agent_count": len(agents),
         "errors": errors,
+        "repair_retries": repair_retries,
+        "repair_retry_count": len(repair_retries),
         "cjk_violations": cjk_violations,
         "english_ok": not cjk_violations,
         "candidate_count": (retrieve_result or {}).get("meta", {}).get("candidate_count"),

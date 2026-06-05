@@ -51,6 +51,10 @@ ChannelRole = Literal["neutral", "toned"]
 
 NEUTRAL_PSEUDO_ID = "n1"
 
+# Phrase-level hypernym anchors only — exclude sentence-level strings (pilot: unembeddable).
+_MAX_ANCHOR_WORDS = 6
+_MAX_ANCHOR_CHARS = 60
+
 ALT_CREATOR_CONTRACT = (
     repo_root() / "prompts" / "_shared" / "persona_alt_creator_contract.md"
 )
@@ -143,7 +147,22 @@ class PersonaPipelineResult:
     overlay: AltPoolOverlay
     pseudos: list[PseudoSegment] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
+    repair_retries: list[dict[str, str]] = field(default_factory=list)
     error: str | None = None
+
+
+def _is_phrase_level_hypernym_anchor(term: str) -> bool:
+    """Keep short phrase anchors; drop sentence-level hypernyms from the anchor set."""
+    cleaned = term.strip()
+    if not cleaned:
+        return False
+    if cleaned.endswith("."):
+        return False
+    if len(cleaned) > _MAX_ANCHOR_CHARS:
+        return False
+    if len(cleaned.split()) > _MAX_ANCHOR_WORDS:
+        return False
+    return True
 
 
 def annotate_element_ids(deconstruction: dict[str, Any]) -> dict[str, Any]:
@@ -244,7 +263,7 @@ def collect_hypernym_anchor_terms(
     terms: set[str] = set()
     for el in alt_pool.elements:
         for term, prov in objective_floor_terms_for_element(el, by_id.get(el.element_id)):
-            if prov == "hypernym":
+            if prov == "hypernym" and _is_phrase_level_hypernym_anchor(term):
                 terms.add(term.lower())
     return terms
 
@@ -814,6 +833,9 @@ async def run_persona_pipeline(
             error=alt_err or "alt_creator failed",
         )
 
+    repair_retries: list[dict[str, str]] = []
+    repaired = False
+
     pseudos, sw_err = await run_screenwriter(
         persona_id,
         dec,
@@ -825,9 +847,38 @@ async def run_persona_pipeline(
         prompts_dir=prompts_dir,
     )
     if sw_err or pseudos is None:
+        repair_retries.append(
+            {
+                "stage": "screenwriter_parse",
+                "attempt": "1",
+                "error": sw_err or "screenwriter failed",
+            }
+        )
+        pseudos, sw_err = await run_screenwriter(
+            persona_id,
+            dec,
+            alt_pool,
+            client,
+            model,
+            timeout,
+            expansion=expansion,
+            repair_context=sw_err or "screenwriter failed",
+            prompts_dir=prompts_dir,
+        )
+        repaired = True
+        repair_retries.append(
+            {
+                "stage": "screenwriter_parse",
+                "attempt": "2",
+                "error": sw_err or "ok",
+            }
+        )
+
+    if sw_err or pseudos is None:
         return PersonaPipelineResult(
             persona_id=persona_id,
             overlay=alt_pool,
+            repair_retries=repair_retries,
             error=sw_err or "screenwriter failed",
         )
 
@@ -840,16 +891,68 @@ async def run_persona_pipeline(
             expansion,
         )
     except ValueError as exc:
-        return PersonaPipelineResult(
-            persona_id=persona_id,
-            overlay=alt_pool,
-            error=f"channel_assembly: {exc}",
+        asm_err = f"channel_assembly: {exc}"
+        repair_retries.append(
+            {"stage": "channel_assembly", "attempt": "1", "error": asm_err}
         )
+        if repaired:
+            return PersonaPipelineResult(
+                persona_id=persona_id,
+                overlay=alt_pool,
+                repair_retries=repair_retries,
+                error=asm_err,
+            )
+        pseudos, sw_err = await run_screenwriter(
+            persona_id,
+            dec,
+            alt_pool,
+            client,
+            model,
+            timeout,
+            expansion=expansion,
+            repair_context=asm_err,
+            prompts_dir=prompts_dir,
+        )
+        repaired = True
+        repair_retries.append(
+            {
+                "stage": "screenwriter_assembly_retry",
+                "attempt": "2",
+                "error": sw_err or "ok",
+            }
+        )
+        if sw_err or pseudos is None:
+            return PersonaPipelineResult(
+                persona_id=persona_id,
+                overlay=alt_pool,
+                repair_retries=repair_retries,
+                error=sw_err or "screenwriter failed after assembly repair",
+            )
+        try:
+            channel_pseudos = assemble_persona_channel_pseudos(
+                persona_id,
+                dec,
+                alt_pool,
+                pseudos,
+                expansion,
+            )
+        except ValueError as exc2:
+            retry_asm = f"channel_assembly: {exc2}"
+            repair_retries.append(
+                {"stage": "channel_assembly", "attempt": "2", "error": retry_asm}
+            )
+            return PersonaPipelineResult(
+                persona_id=persona_id,
+                overlay=alt_pool,
+                repair_retries=repair_retries,
+                error=retry_asm,
+            )
 
     return PersonaPipelineResult(
         persona_id=persona_id,
         overlay=alt_pool,
         pseudos=channel_pseudos,
+        repair_retries=repair_retries,
     )
 
 
@@ -860,6 +963,8 @@ def pipeline_result_to_dict(result: PersonaPipelineResult) -> dict[str, Any]:
         "pseudos": [pseudo_to_dict(p) for p in result.pseudos],
         "warnings": result.warnings,
     }
+    if result.repair_retries:
+        payload["repair_retries"] = result.repair_retries
     if result.error:
         payload["error"] = result.error
     return payload
