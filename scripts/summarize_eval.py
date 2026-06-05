@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import sys
 from dataclasses import dataclass, field
@@ -26,6 +27,31 @@ _QUALITY_CANDIDATE_LINE = re.compile(
     r"^-\s*\*\*quality_candidate\*\*:\s*(true|false)",
     re.MULTILINE | re.IGNORECASE,
 )
+_QUALITY_ZH_LINE = re.compile(
+    r"^-\s*\*\*优质候选\*\*:\s*(true|false)",
+    re.MULTILINE | re.IGNORECASE,
+)
+_NEUTRAL_HIT_RATE_LINE = re.compile(
+    r"^-\s*\*\*neutral_hit_rate\*\*:\s*([\d.]+)",
+    re.MULTILINE,
+)
+_NEUTRAL_HITS_LINE = re.compile(
+    r"^-\s*\*\*neutral_hits\*\*:\s*(\d+)",
+    re.MULTILINE,
+)
+_NEUTRAL_TOTAL_LINE = re.compile(
+    r"^-\s*\*\*neutral_total\*\*:\s*(\d+)",
+    re.MULTILINE,
+)
+_DISTINCT_AGENTS_LINE = re.compile(
+    r"^-\s*\*\*distinct_agents\*\*:\s*(\d+)",
+    re.MULTILINE,
+)
+_SIMILARITY_BINS: tuple[tuple[str, float, float], ...] = (
+    ("low", 0.0, 0.45),
+    ("mid", 0.45, 0.50),
+    ("high", 0.50, 1.01),
+)
 _AGENTS_TAG = re.compile(r"\[([^\]]+)\]")
 _BASELINE_ONLY_TAG = re.compile(r"baseline\s+only", re.IGNORECASE)
 _RUN_ID_LINE = re.compile(r"^-\s*run_id:\s*(\S+)", re.MULTILINE)
@@ -47,12 +73,41 @@ class CandidateScore:
     quality_candidate: bool | None = None  # None = infer from heading agents
     similarity: float | None = None
     max_fit: float | None = None
+    neutral_hit_rate: float | None = None
+    neutral_hits: int | None = None
+    neutral_total: int | None = None
+    distinct_agents: int | None = None
 
     @property
     def fit_sim_score(self) -> float | None:
         if self.max_fit is not None and self.similarity is not None:
             return self.max_fit * self.similarity
         return None
+
+    @property
+    def max_similarity(self) -> float | None:
+        """Candidate-level max similarity (similarity-controlled diagnostics)."""
+        return self.similarity
+
+    @property
+    def toned_convergence(self) -> bool:
+        if self.distinct_agents is not None:
+            return self.distinct_agents >= 1
+        if self.quality_candidate:
+            return True
+        return False
+
+    @property
+    def neutral_vote(self) -> bool:
+        if self.neutral_hits is not None:
+            return self.neutral_hits >= 1
+        if self.neutral_hit_rate is not None:
+            return self.neutral_hit_rate > 0.0
+        return False
+
+    @property
+    def is_neutral_only(self) -> bool:
+        return self.neutral_vote and not self.toned_convergence
 
 
 @dataclass
@@ -124,6 +179,213 @@ def _uses_persona_gate(runs: list[RunSummary]) -> bool:
     return any(_has_persona_agent(c) for r in runs for c in r.candidates)
 
 
+def _uses_phase38_gate(runs: list[RunSummary]) -> bool:
+    """ADR-0005 dual-diagnostic mode when neutral channel fields are present."""
+    return any(
+        c.neutral_hit_rate is not None or c.neutral_hits is not None
+        for r in runs
+        for c in r.candidates
+    )
+
+
+def _pearson(xs: list[float], ys: list[float]) -> float | None:
+    n = len(xs)
+    if n < 2:
+        return None
+    mean_x = sum(xs) / n
+    mean_y = sum(ys) / n
+    num = sum((x - mean_x) * (y - mean_y) for x, y in zip(xs, ys, strict=True))
+    den_x = math.sqrt(sum((x - mean_x) ** 2 for x in xs))
+    den_y = math.sqrt(sum((y - mean_y) ** 2 for y in ys))
+    if den_x == 0 or den_y == 0:
+        return None
+    return num / (den_x * den_y)
+
+
+def _partial_correlation(
+    xs: list[float], ys: list[float], zs: list[float]
+) -> float | None:
+    """Pearson r(xs, ys) partialled on zs (control variable)."""
+    r_xy = _pearson(xs, ys)
+    r_xz = _pearson(xs, zs)
+    r_yz = _pearson(ys, zs)
+    if r_xy is None or r_xz is None or r_yz is None:
+        return None
+    denom = math.sqrt(max(0.0, (1.0 - r_xz * r_xz) * (1.0 - r_yz * r_yz)))
+    if denom == 0:
+        return None
+    return (r_xy - r_xz * r_yz) / denom
+
+
+def _similarity_bin_label(sim: float) -> str:
+    for label, low, high in _SIMILARITY_BINS:
+        if low <= sim < high:
+            return label
+    return "high"
+
+
+def _structural_2_rates(
+    candidates: list[CandidateScore],
+) -> tuple[float, float, dict[str, int]]:
+    scored = 0
+    twos = 0
+    structural_twos = 0
+    for cand in candidates:
+        if cand.score is None:
+            continue
+        scored += 1
+        if cand.score == 2:
+            twos += 1
+            if _is_structural_resonance(cand):
+                structural_twos += 1
+    total_rate = twos / scored if scored else 0.0
+    structural_rate = structural_twos / scored if scored else 0.0
+    return total_rate, structural_rate, {
+        "scored": scored,
+        "twos": twos,
+        "structural_twos": structural_twos,
+    }
+
+
+def _diagnostic_neutral_hit_rate(runs: list[RunSummary]) -> dict[str, Any]:
+    """Diagnostic ①: neutral_hit_rate vs 共振分, controlling max_similarity."""
+    rows: list[dict[str, Any]] = []
+    for run in runs:
+        for cand in run.candidates:
+            if (
+                cand.score is None
+                or cand.neutral_hit_rate is None
+                or cand.max_similarity is None
+            ):
+                continue
+            rows.append(
+                {
+                    "run_id": run.run_id,
+                    "tmdb_id": cand.tmdb_id,
+                    "neutral_hit_rate": cand.neutral_hit_rate,
+                    "score": float(cand.score),
+                    "max_similarity": cand.max_similarity,
+                    "bin": _similarity_bin_label(cand.max_similarity),
+                }
+            )
+
+    rates = [r["neutral_hit_rate"] for r in rows]
+    scores = [r["score"] for r in rows]
+    sims = [r["max_similarity"] for r in rows]
+    by_bin: dict[str, list[dict[str, Any]]] = {}
+    for row in rows:
+        by_bin.setdefault(row["bin"], []).append(row)
+
+    bin_correlations: dict[str, float | None] = {}
+    for label, bin_rows in by_bin.items():
+        bin_correlations[label] = _pearson(
+            [r["neutral_hit_rate"] for r in bin_rows],
+            [r["score"] for r in bin_rows],
+        )
+
+    return {
+        "n": len(rows),
+        "pearson_neutral_hit_rate_vs_score": _pearson(rates, scores),
+        "partial_corr_neutral_hit_rate_vs_score_given_similarity": _partial_correlation(
+            rates, scores, sims
+        ),
+        "similarity_bins": {
+            label: {
+                "n": len(bin_rows),
+                "pearson": bin_correlations.get(label),
+            }
+            for label, bin_rows in by_bin.items()
+        },
+        "rows": rows,
+    }
+
+
+def _diagnostic_toned_convergence(runs: list[RunSummary]) -> dict[str, Any]:
+    """Diagnostic ②: toned-convergence precision above neutral, controlling similarity."""
+    quality_rows: list[CandidateScore] = []
+    neutral_only_rows: list[CandidateScore] = []
+    partial_rows: list[dict[str, float]] = []
+
+    for run in runs:
+        for cand in run.candidates:
+            if cand.score is None or cand.max_similarity is None:
+                continue
+            if cand.quality_candidate:
+                quality_rows.append(cand)
+            elif cand.is_neutral_only:
+                neutral_only_rows.append(cand)
+            if cand.neutral_vote:
+                partial_rows.append(
+                    {
+                        "toned": 1.0 if cand.toned_convergence else 0.0,
+                        "score": float(cand.score),
+                        "max_similarity": cand.max_similarity,
+                    }
+                )
+
+    q_total, q_structural, q_counts = _structural_2_rates(quality_rows)
+    n_total, n_structural, n_counts = _structural_2_rates(neutral_only_rows)
+
+    by_bin: dict[str, dict[str, list[CandidateScore]]] = {}
+    for cand in quality_rows + neutral_only_rows:
+        if cand.max_similarity is None:
+            continue
+        label = _similarity_bin_label(cand.max_similarity)
+        bucket = by_bin.setdefault(label, {"quality": [], "neutral_only": []})
+        if cand.quality_candidate:
+            bucket["quality"].append(cand)
+        elif cand.is_neutral_only:
+            bucket["neutral_only"].append(cand)
+
+    bin_lifts: dict[str, dict[str, Any]] = {}
+    for label, bucket in by_bin.items():
+        _, q_bin_struct, q_bin_counts = _structural_2_rates(bucket["quality"])
+        _, n_bin_struct, n_bin_counts = _structural_2_rates(bucket["neutral_only"])
+        bin_lifts[label] = {
+            "quality_structural_2_rate": q_bin_struct,
+            "neutral_only_structural_2_rate": n_bin_struct,
+            "quality_scored": q_bin_counts["scored"],
+            "neutral_only_scored": n_bin_counts["scored"],
+        }
+
+    partial_corr = None
+    if len(partial_rows) >= 2:
+        partial_corr = _partial_correlation(
+            [r["toned"] for r in partial_rows],
+            [r["score"] for r in partial_rows],
+            [r["max_similarity"] for r in partial_rows],
+        )
+
+    precision_lift_ok = False
+    if q_counts["scored"] > 0 and n_counts["scored"] > 0:
+        precision_lift_ok = q_structural > n_structural
+    elif q_counts["scored"] > 0 and n_counts["scored"] == 0:
+        precision_lift_ok = q_structural > 0.0
+
+    return {
+        "quality_total_2_rate": q_total,
+        "quality_structural_2_rate": q_structural,
+        "neutral_only_total_2_rate": n_total,
+        "neutral_only_structural_2_rate": n_structural,
+        "precision_lift_ok": precision_lift_ok,
+        "partial_corr_toned_vs_score_given_similarity": partial_corr,
+        "similarity_bins": bin_lifts,
+        **{f"quality_{k}": v for k, v in q_counts.items()},
+        **{f"neutral_only_{k}": v for k, v in n_counts.items()},
+    }
+
+
+def _a1_superset_placeholder() -> dict[str, Any]:
+    """3.8.8 GATE slot — filled after 3.8.7 A1 parallel batch."""
+    return {
+        "status": "pending",
+        "note": "Requires 3.8.7 A1 parallel run; verdict in 3.8.8 GATE_RESULT",
+        "neutral_union_superset_of_a1_hits": None,
+        "quality_structural_2_rate_vs_a1": None,
+        "a1_deletion_eligible": None,
+    }
+
+
 def _classify_persona_bucket(cand: CandidateScore) -> str | None:
     agents = _agent_set(cand)
     has_baseline = _BASELINE_AGENT in agents
@@ -185,6 +447,30 @@ def parse_eval_markdown(path: Path, text: str) -> RunSummary:
         quality_match = _QUALITY_CANDIDATE_LINE.search(body)
         if quality_match:
             quality_candidate = quality_match.group(1).lower() == "true"
+        else:
+            zh_match = _QUALITY_ZH_LINE.search(body)
+            if zh_match:
+                quality_candidate = zh_match.group(1).lower() == "true"
+
+        neutral_hit_rate: float | None = None
+        nhr_match = _NEUTRAL_HIT_RATE_LINE.search(body)
+        if nhr_match:
+            neutral_hit_rate = float(nhr_match.group(1))
+
+        neutral_hits: int | None = None
+        nh_match = _NEUTRAL_HITS_LINE.search(body)
+        if nh_match:
+            neutral_hits = int(nh_match.group(1))
+
+        neutral_total: int | None = None
+        nt_match = _NEUTRAL_TOTAL_LINE.search(body)
+        if nt_match:
+            neutral_total = int(nt_match.group(1))
+
+        distinct_agents: int | None = None
+        da_match = _DISTINCT_AGENTS_LINE.search(body)
+        if da_match:
+            distinct_agents = int(da_match.group(1))
 
         score: int | None = None
         score_match = _SCORE_LINE.search(body)
@@ -215,6 +501,10 @@ def parse_eval_markdown(path: Path, text: str) -> RunSummary:
                 quality_candidate=quality_candidate,
                 similarity=similarity,
                 max_fit=max_fit,
+                neutral_hit_rate=neutral_hit_rate,
+                neutral_hits=neutral_hits,
+                neutral_total=neutral_total,
+                distinct_agents=distinct_agents,
             )
         )
 
@@ -416,8 +706,13 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
     ) = _bucket_rates(runs)
     missing_total = sum(r.missing_count for r in runs)
     use_structural_gate = _any_resonance_types_filled(runs)
-    persona_gate = _uses_persona_gate(runs)
-    gate_compare_mode = "persona_vs_baseline" if persona_gate else "multi_vs_single"
+    phase38_gate = _uses_phase38_gate(runs)
+    persona_gate = _uses_persona_gate(runs) and not phase38_gate
+    gate_compare_mode = (
+        "quality_vs_neutral_only"
+        if phase38_gate
+        else ("persona_vs_baseline" if persona_gate else "multi_vs_single")
+    )
 
     persona_counts: dict[str, int] = {}
     baseline_2_rate = 0.0
@@ -433,10 +728,27 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
             persona_counts,
         ) = _persona_bucket_rates(runs)
 
+    diagnostic_1 = _diagnostic_neutral_hit_rate(runs) if phase38_gate else None
+    diagnostic_2 = _diagnostic_toned_convergence(runs) if phase38_gate else None
+    a1_superset = _a1_superset_placeholder() if phase38_gate else None
+
     gate_reasons: list[str] = []
     batch_ok = batch_pass_rate >= _GATE_BATCH_PASS_RATE
 
-    if persona_gate:
+    if phase38_gate and diagnostic_2 is not None:
+        if use_structural_gate:
+            rate_ok = bool(diagnostic_2["precision_lift_ok"])
+            baseline_gate_rate = diagnostic_2["neutral_only_structural_2_rate"]
+            persona_gate_rate = diagnostic_2["quality_structural_2_rate"]
+            rate_metric = "quality_structural_2_rate"
+        else:
+            rate_ok = diagnostic_2["quality_total_2_rate"] > diagnostic_2[
+                "neutral_only_total_2_rate"
+            ]
+            baseline_gate_rate = diagnostic_2["neutral_only_total_2_rate"]
+            persona_gate_rate = diagnostic_2["quality_total_2_rate"]
+            rate_metric = "quality_total_2_rate"
+    elif persona_gate:
         if use_structural_gate:
             rate_ok = persona_structural_2_rate > baseline_structural_2_rate
             baseline_gate_rate = baseline_structural_2_rate
@@ -464,7 +776,13 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
             f"({runs_with_2}/{total_runs} runs with >=1 score-2)"
         )
     if not rate_ok:
-        if persona_gate:
+        if phase38_gate:
+            gate_reasons.append(
+                f"quality_{rate_metric} {persona_gate_rate:.1%} not > "
+                f"neutral_only_{rate_metric} {baseline_gate_rate:.1%} "
+                "(diagnostic ② · similarity-controlled)"
+            )
+        elif persona_gate:
             gate_reasons.append(
                 f"persona_path_{rate_metric} {persona_gate_rate:.1%} not > "
                 f"a1_path_{rate_metric} {baseline_gate_rate:.1%}"
@@ -487,6 +805,7 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
         "single_structural_2_rate": single_structural_2_rate,
         "multi_structural_2_rate": multi_structural_2_rate,
         "resonance_types_filled": use_structural_gate,
+        "phase38_gate": phase38_gate,
         "persona_gate": persona_gate,
         "baseline_2_rate": baseline_2_rate,
         "persona_touched_2_rate": persona_2_rate,
@@ -495,8 +814,12 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
         **bucket_counts,
         **persona_counts,
     }
+    if diagnostic_1 is not None:
+        global_block["diagnostic_1_neutral_hit_rate"] = diagnostic_1
+    if diagnostic_2 is not None:
+        global_block["diagnostic_2_toned_convergence"] = diagnostic_2
 
-    return {
+    result: dict[str, Any] = {
         "runs": [
             {
                 "path": r.path,
@@ -517,6 +840,9 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
             "reasons": gate_reasons,
         },
     }
+    if a1_superset is not None:
+        result["a1_superset"] = a1_superset
+    return result
 
 
 def _format_stdout(report: dict[str, Any]) -> str:
@@ -542,7 +868,33 @@ def _format_stdout(report: dict[str, Any]) -> str:
     )
 
     compare_mode = report["gate"].get("compare_mode", "multi_vs_single")
-    if g.get("persona_gate"):
+    if g.get("phase38_gate"):
+        d1 = g.get("diagnostic_1_neutral_hit_rate") or {}
+        d2 = g.get("diagnostic_2_toned_convergence") or {}
+        lines.append(
+            "Diagnostic ① (neutral_hit_rate vs 共振 · max_similarity controlled): "
+            f"n={d1.get('n', 0)}"
+        )
+        pc = d1.get("partial_corr_neutral_hit_rate_vs_score_given_similarity")
+        if pc is not None:
+            lines.append(
+                f"  partial r(neutral_hit_rate, score | similarity)={pc:.4f}"
+            )
+        else:
+            lines.append("  partial r(neutral_hit_rate, score | similarity)=insufficient n")
+        lines.append(
+            "Diagnostic ② (toned-convergence precision above neutral): "
+            f"quality structural 2-rate {d2.get('quality_structural_2_rate', 0):.1%} "
+            f"({d2.get('quality_structural_twos', 0)}/{d2.get('quality_scored', 0)}) vs "
+            f"neutral-only {d2.get('neutral_only_structural_2_rate', 0):.1%} "
+            f"({d2.get('neutral_only_structural_twos', 0)}/{d2.get('neutral_only_scored', 0)})"
+        )
+        pt = d2.get("partial_corr_toned_vs_score_given_similarity")
+        if pt is not None:
+            lines.append(f"  partial r(toned, score | similarity)={pt:.4f}")
+        a1s = report.get("a1_superset") or {}
+        lines.append(f"A1-superset check: {a1s.get('status', 'n/a')} — {a1s.get('note', '')}")
+    elif g.get("persona_gate"):
         lines.append(
             f"baseline_structural_2_rate: {g['baseline_structural_2_rate']:.1%} "
             f"({g['a1_path_structural_twos']}/{g['a1_path_scored']} also_baseline=true)"
@@ -602,7 +954,12 @@ def _format_stdout(report: dict[str, Any]) -> str:
             lines.append(f"  - {reason}")
     elif gate["pass"]:
         metric = gate.get("rate_metric", "total_2_rate")
-        if g.get("persona_gate"):
+        if g.get("phase38_gate"):
+            lines.append(
+                f"  - batch pass rate >= {_GATE_BATCH_PASS_RATE:.0%}; "
+                f"quality_{metric} > neutral_only_{metric} (diagnostic ②)"
+            )
+        elif g.get("persona_gate"):
             lines.append(
                 f"  - batch pass rate >= {_GATE_BATCH_PASS_RATE:.0%}; "
                 f"persona_path_{metric} > a1_path_{metric}"

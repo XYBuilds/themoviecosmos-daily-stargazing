@@ -118,5 +118,48 @@ class SummarizeEvalResonanceTypeTests(unittest.TestCase):
         self.assertEqual(report["gate"]["compare_mode"], "persona_vs_baseline")
 
 
+class SummarizeEvalPhase38DiagnosticTests(unittest.TestCase):
+    def test_phase38_dual_diagnostic_pass_gate2(self):
+        run = _load_run("phase38-dual-diagnostic-pass/candidates.md")
+        report = summarize_runs([run])
+        g = report["global"]
+        self.assertTrue(g["phase38_gate"])
+        self.assertFalse(g["persona_gate"])
+        self.assertEqual(report["gate"]["compare_mode"], "quality_vs_neutral_only")
+        d1 = g["diagnostic_1_neutral_hit_rate"]
+        d2 = g["diagnostic_2_toned_convergence"]
+        self.assertEqual(d1["n"], 4)
+        self.assertIsNotNone(d1["partial_corr_neutral_hit_rate_vs_score_given_similarity"])
+        self.assertGreater(d1["partial_corr_neutral_hit_rate_vs_score_given_similarity"], 0)
+        self.assertAlmostEqual(d2["quality_structural_2_rate"], 1.0)
+        self.assertAlmostEqual(d2["neutral_only_structural_2_rate"], 0.0)
+        self.assertTrue(d2["precision_lift_ok"])
+        self.assertEqual(report["gate"]["verdict"], "GATE_PASS")
+        self.assertEqual(report["a1_superset"]["status"], "pending")
+        stdout = _format_stdout(report)
+        self.assertIn("Diagnostic ①", stdout)
+        self.assertIn("Diagnostic ②", stdout)
+        self.assertIn("A1-superset check: pending", stdout)
+        self.assertIn("Gate line 2 compare: quality_vs_neutral_only", stdout)
+
+    def test_phase38_dual_diagnostic_fail_when_neutral_beats_quality(self):
+        run = _load_run("phase38-dual-diagnostic-fail/candidates.md")
+        report = summarize_runs([run])
+        g = report["global"]
+        d2 = g["diagnostic_2_toned_convergence"]
+        self.assertAlmostEqual(d2["neutral_only_structural_2_rate"], 1.0)
+        self.assertAlmostEqual(d2["quality_structural_2_rate"], 0.0)
+        self.assertFalse(d2["precision_lift_ok"])
+        self.assertEqual(report["gate"]["verdict"], "GATE_FAIL")
+        self.assertIn("diagnostic ②", report["gate"]["reasons"][0].lower())
+
+    def test_similarity_bins_present_in_diagnostic_1(self):
+        run = _load_run("phase38-dual-diagnostic-pass/candidates.md")
+        report = summarize_runs([run])
+        bins = report["global"]["diagnostic_1_neutral_hit_rate"]["similarity_bins"]
+        self.assertIn("mid", bins)
+        self.assertIn("high", bins)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -59,6 +59,17 @@ class HitScore:
 
 
 @dataclass
+class RetrieveDiagnostics:
+    """ADR-0005 channel fields from retrieve.json (for summarize_eval diagnostics)."""
+
+    quality_candidate: bool
+    neutral_hits: int
+    neutral_total: int
+    neutral_hit_rate: float
+    distinct_agents: int
+
+
+@dataclass
 class ScoredCandidate:
     run_id: str
     tmdb_id: int
@@ -96,13 +107,33 @@ def _is_multi_agent_hit(*, quality_candidate: bool, agents: list[str]) -> bool:
     return len(agents) >= 2
 
 
-def _load_retrieve_meta(retrieve_path: Path) -> tuple[dict[int, list[HitScore]], dict[int, bool]]:
+def _load_retrieve_meta(
+    retrieve_path: Path,
+) -> tuple[dict[int, list[HitScore]], dict[int, bool], dict[int, RetrieveDiagnostics]]:
     data = json.loads(retrieve_path.read_text(encoding="utf-8"))
     hits_by_tmdb: dict[int, list[HitScore]] = {}
     quality_by_tmdb: dict[int, bool] = {}
+    diagnostics_by_tmdb: dict[int, RetrieveDiagnostics] = {}
     for cand in data.get("candidates") or []:
         tmdb_id = int(cand["tmdb_id"])
-        quality_by_tmdb[tmdb_id] = bool(cand.get("quality_candidate"))
+        quality = bool(cand.get("quality_candidate"))
+        quality_by_tmdb[tmdb_id] = quality
+        neutral_hits = int(cand.get("neutral_hits") or 0)
+        neutral_total = int(cand.get("neutral_total") or 0)
+        raw_rate = cand.get("neutral_hit_rate")
+        neutral_hit_rate = (
+            float(raw_rate)
+            if isinstance(raw_rate, (int, float))
+            else (float(neutral_hits) / neutral_total if neutral_total > 0 else 0.0)
+        )
+        distinct_agents = int(cand.get("distinct_agents") or 0)
+        diagnostics_by_tmdb[tmdb_id] = RetrieveDiagnostics(
+            quality_candidate=quality,
+            neutral_hits=neutral_hits,
+            neutral_total=neutral_total,
+            neutral_hit_rate=neutral_hit_rate,
+            distinct_agents=distinct_agents,
+        )
         hits: list[HitScore] = []
         for src in cand.get("hit_sources") or []:
             frags = list(src.get("fragments") or [])
@@ -117,12 +148,32 @@ def _load_retrieve_meta(retrieve_path: Path) -> tuple[dict[int, list[HitScore]],
                 )
             )
         hits_by_tmdb[tmdb_id] = hits
-    return hits_by_tmdb, quality_by_tmdb
+    return hits_by_tmdb, quality_by_tmdb, diagnostics_by_tmdb
 
 
 def _load_hit_scores(retrieve_path: Path) -> dict[int, list[HitScore]]:
-    hits_by_tmdb, _ = _load_retrieve_meta(retrieve_path)
+    hits_by_tmdb, _, _ = _load_retrieve_meta(retrieve_path)
     return hits_by_tmdb
+
+
+def _inject_retrieve_diagnostics(block: str, diag: RetrieveDiagnostics) -> str:
+    """Insert ADR-0005 retrieve fields after tmdb_id for summarize_eval parsing."""
+    lines = block.split("\n")
+    out: list[str] = []
+    injected = False
+    for line in lines:
+        out.append(line)
+        if not injected and _TMDB_LINE.match(line):
+            out.append(f"- **quality_candidate**: {str(diag.quality_candidate).lower()}")
+            out.append(f"- **neutral_hits**: {diag.neutral_hits}")
+            out.append(f"- **neutral_total**: {diag.neutral_total}")
+            out.append(f"- **neutral_hit_rate**: {diag.neutral_hit_rate:.4f}")
+            out.append(f"- **distinct_agents**: {diag.distinct_agents}")
+            injected = True
+    text = "\n".join(out)
+    if text and not text.endswith("\n"):
+        text += "\n"
+    return text
 
 
 def _hit_key(agent_id: str, pseudo_id: str) -> tuple[str, str]:
@@ -247,6 +298,7 @@ def score_candidates_md(
     hits_by_tmdb: dict[int, list[HitScore]],
     *,
     quality_by_tmdb: dict[int, bool] | None = None,
+    diagnostics_by_tmdb: dict[int, RetrieveDiagnostics] | None = None,
     min_total_score: int = _MIN_TOTAL_SCORE,
 ) -> tuple[str, list[ScoredCandidate]]:
     text = candidates_text
@@ -279,6 +331,9 @@ def score_candidates_md(
         lookup = _score_lookup(hits)
         total = sum(h.score for h in hits)
         patched = _patch_candidate_block(part, lookup, total)
+        diag = (diagnostics_by_tmdb or {}).get(tmdb_id)
+        if diag is not None:
+            patched = _inject_retrieve_diagnostics(patched, diag)
         # Preserve run_eval blank line between candidates (### … ###).
         patched = patched.rstrip("\n") + "\n\n"
         patched_blocks.append(patched)
@@ -457,13 +512,16 @@ def process_eval_dir(
             missing_retrieve.append(run_dir.name)
             continue
         runs_scanned += 1
-        hits_by_tmdb, quality_by_tmdb = _load_retrieve_meta(retrieve_path)
+        hits_by_tmdb, quality_by_tmdb, diagnostics_by_tmdb = _load_retrieve_meta(
+            retrieve_path
+        )
         candidates_text, run_id = _load_candidates_text(run_dir, retrieve_path)
         new_text, high = score_candidates_md(
             candidates_text,
             run_id,
             hits_by_tmdb,
             quality_by_tmdb=quality_by_tmdb,
+            diagnostics_by_tmdb=diagnostics_by_tmdb,
             min_total_score=min_total_score,
         )
         if write_candidates and candidates_path.is_file():
