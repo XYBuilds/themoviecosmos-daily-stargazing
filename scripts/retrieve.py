@@ -5,7 +5,8 @@
 模型: paraphrase-multilingual-MiniLM-L12-v2 (与 build_index 严格同模型).
 
 输出: 每段 pseudo Top-K（默认 2）→ 按 tmdb_id 聚合去重 + containment（~15–19 候选/条）;
-      记录命中 `(agent_id, pseudo_id, fragments)`；撞车展示不含 A1（仅 creative triggered_by）.
+      记录命中 `(agent_id, pseudo_id, fragments)`；撞车展示不含 A1/baseline（仅 toned triggered_by）.
+      撞车主判据（ADR-0005）: 中性通道 union = 1 去重票 + ≥1 toned 汇聚同片 → quality_candidate.
 
 不做:
   - 相似度阈值过滤
@@ -42,11 +43,13 @@ DEFAULT_MOVIE_LINK_PREFIX = "https://themoviecosmos.com/movie/"
 
 _AGENT_ORDER: tuple[str, ...] = ("A2", "A4", "A7", "A1")
 
+_CHANNEL_ROLES: frozenset[str] = frozenset({"neutral", "toned", "baseline"})
+
 _ROLE_BY_AGENT: dict[str, str] = {
     "A1": "baseline",
-    "A2": "creative",
-    "A4": "creative",
-    "A7": "creative",
+    "A2": "toned",
+    "A4": "toned",
+    "A7": "toned",
 }
 
 _index_cache: tuple[np.ndarray, pd.DataFrame] | None = None
@@ -168,7 +171,7 @@ def retrieve_top_k(
     role: str | None = None,
 ) -> dict[str, Any]:
     """Retrieve Top-K hits for a single pseudo-overview (debug / unit use)."""
-    resolved_role = role or _ROLE_BY_AGENT.get(agent_id.upper(), "creative")
+    resolved_role = role or _ROLE_BY_AGENT.get(agent_id.upper(), "toned")
     return retrieve_from_agents(
         [
             {
@@ -199,6 +202,25 @@ def _normalize_fragments(source: object) -> list[str]:
     return [str(item).strip() for item in fragments if str(item).strip()]
 
 
+def _resolve_channel_role(
+    agent: dict[str, Any],
+    source: dict[str, Any],
+    agent_id: str,
+) -> str:
+    """Map pseudo source + agent defaults to neutral / toned / baseline."""
+    channel = str(source.get("channel_role") or "").strip().lower()
+    if channel in _CHANNEL_ROLES:
+        return channel
+    agent_role = str(agent.get("role") or _ROLE_BY_AGENT.get(agent_id, "toned")).strip().lower()
+    if agent_role == "baseline":
+        return "baseline"
+    if agent_role == "creative":
+        return "toned"
+    if agent_role in _CHANNEL_ROLES:
+        return agent_role
+    return "toned"
+
+
 def _expand_retrieval_queries(
     agents: list[dict[str, Any]],
     errors: list[Any],
@@ -211,7 +233,6 @@ def _expand_retrieval_queries(
         agent_id = str(agent.get("agent_id", "")).upper()
         if not agent_id or agent_id in failed:
             continue
-        role = str(agent.get("role") or _ROLE_BY_AGENT.get(agent_id, "creative"))
         pseudos = agent.get("pseudos")
         if isinstance(pseudos, list) and pseudos:
             for row in pseudos:
@@ -224,15 +245,18 @@ def _expand_retrieval_queries(
                 if not pseudo_id:
                     pseudo_id = f"p{len(queries) + 1}"
                 source = row.get("source") if isinstance(row.get("source"), dict) else {}
+                channel_role = _resolve_channel_role(agent, source, agent_id)
                 queries.append(
                     {
                         "agent_id": agent_id,
-                        "role": role,
+                        "role": channel_role,
+                        "channel_role": channel_role,
                         "pseudo_id": pseudo_id,
                         "text": text,
                         "source": {
                             "agent_id": agent_id,
                             "fragments": _normalize_fragments(source),
+                            "channel_role": channel_role,
                         },
                     }
                 )
@@ -241,17 +265,34 @@ def _expand_retrieval_queries(
         text = str(agent.get("text", "")).strip()
         if not text:
             continue
+        channel_role = _resolve_channel_role(agent, {}, agent_id)
         queries.append(
             {
                 "agent_id": agent_id,
-                "role": role,
+                "role": channel_role,
+                "channel_role": channel_role,
                 "pseudo_id": "legacy",
                 "text": text,
-                "source": {"agent_id": agent_id, "fragments": []},
+                "source": {
+                    "agent_id": agent_id,
+                    "fragments": [],
+                    "channel_role": channel_role,
+                },
             }
         )
 
     return queries
+
+
+def _count_neutral_personas(queries: list[dict[str, Any]]) -> int:
+    """Persona count for neutral_hit_rate denominator (one neutral pseudo per persona)."""
+    return len(
+        {
+            query["agent_id"]
+            for query in queries
+            if query.get("channel_role") == "neutral"
+        }
+    )
 
 
 def _append_hit_source(
@@ -259,9 +300,13 @@ def _append_hit_source(
     query: dict[str, Any],
     similarity: float,
 ) -> None:
+    channel_role = str(
+        query.get("channel_role") or query.get("role") or "toned"
+    ).strip().lower()
     entry = {
         "agent_id": query["agent_id"],
         "pseudo_id": query["pseudo_id"],
+        "channel_role": channel_role,
         "fragments": list(query["source"].get("fragments") or []),
         "similarity": float(similarity),
     }
@@ -285,36 +330,100 @@ def _append_hit_source(
     sources.append(entry)
 
 
-def _distinct_agents_above_floor(
+def _hit_source_channel_role(source: dict[str, Any]) -> str:
+    channel = str(source.get("channel_role") or "").strip().lower()
+    if channel in _CHANNEL_ROLES:
+        return channel
+    legacy = str(source.get("role") or "").strip().lower()
+    if legacy == "creative":
+        return "toned"
+    return legacy or "toned"
+
+
+def _neutral_hits_above_floor(
+    cand: dict[str, Any],
+    *,
+    quality_floor: float,
+) -> set[tuple[str, str]]:
+    """Distinct (agent_id, pseudo_id) neutral hits at or above quality_floor."""
+    keys: set[tuple[str, str]] = set()
+    for source in cand.get("hit_sources") or []:
+        if _hit_source_channel_role(source) != "neutral":
+            continue
+        if float(source.get("similarity", 0.0)) < quality_floor:
+            continue
+        agent_id = str(source.get("agent_id", "")).upper()
+        pseudo_id = str(source.get("pseudo_id", "")).strip()
+        if agent_id and pseudo_id:
+            keys.add((agent_id, pseudo_id))
+    return keys
+
+
+def _toned_agents_above_floor(
     cand: dict[str, Any],
     *,
     quality_floor: float,
 ) -> set[str]:
     agents: set[str] = set()
     for source in cand.get("hit_sources") or []:
-        if float(source.get("similarity", 0.0)) >= quality_floor:
-            agent_id = str(source.get("agent_id", "")).upper()
-            if agent_id:
-                agents.add(agent_id)
+        if _hit_source_channel_role(source) != "toned":
+            continue
+        if float(source.get("similarity", 0.0)) < quality_floor:
+            continue
+        agent_id = str(source.get("agent_id", "")).upper()
+        if agent_id:
+            agents.add(agent_id)
     return agents
+
+
+def _distinct_agents_above_floor(
+    cand: dict[str, Any],
+    *,
+    quality_floor: float,
+) -> set[str]:
+    """Legacy helper: distinct toned agents above floor (excludes neutral union)."""
+    return _toned_agents_above_floor(cand, quality_floor=quality_floor)
 
 
 def _apply_quality_fields(
     cand: dict[str, Any],
     *,
     quality_floor: float,
+    neutral_total: int,
 ) -> None:
-    agents = _distinct_agents_above_floor(cand, quality_floor=quality_floor)
-    distinct = len(agents)
-    cand["distinct_agents"] = distinct
-    cand["quality_candidate"] = distinct >= 2
-    if distinct >= 2:
-        agent_list = ",".join(_sort_agent_ids(list(agents)))
+    neutral_keys = _neutral_hits_above_floor(cand, quality_floor=quality_floor)
+    toned_agents = _toned_agents_above_floor(cand, quality_floor=quality_floor)
+    neutral_hits = len(neutral_keys)
+    neutral_vote = neutral_hits >= 1
+    toned_converge = len(toned_agents) >= 1
+
+    cand["neutral_hits"] = neutral_hits
+    cand["neutral_total"] = neutral_total
+    cand["neutral_hit_rate"] = (
+        float(neutral_hits) / float(neutral_total) if neutral_total > 0 else 0.0
+    )
+    cand["distinct_agents"] = len(toned_agents)
+    cand["quality_candidate"] = neutral_vote and toned_converge
+
+    if cand["quality_candidate"]:
+        toned_list = ",".join(_sort_agent_ids(list(toned_agents)))
         cand["quality_reason"] = (
-            f"distinct_agents={distinct} (>={2}): {agent_list}"
+            f"neutral_vote=1 + toned_agents={len(toned_agents)}: {toned_list}"
+        )
+    elif not neutral_vote and not toned_converge:
+        cand["quality_reason"] = (
+            "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+        )
+    elif not neutral_vote:
+        cand["quality_reason"] = (
+            f"neutral_vote=0 (neutral union required; toned_agents={len(toned_agents)})"
         )
     else:
-        cand["quality_reason"] = f"distinct_agents={distinct} (<2 required)"
+        toned_list = ",".join(_sort_agent_ids(list(toned_agents))) or "none"
+        cand["quality_reason"] = (
+            f"toned_agents=0 (≥1 toned required; neutral_hits={neutral_hits}, "
+            f"toned={toned_list})"
+        )
 
 
 def _apply_containment(
@@ -407,6 +516,7 @@ def retrieve_from_agents(
 ) -> dict[str, Any]:
     """Run retrieval for agent pseudos; returns per_agent, candidates, divergence."""
     queries = _expand_retrieval_queries(agents, errors)
+    neutral_total = _count_neutral_personas(queries)
     if not queries:
         return {
             "per_agent": [],
@@ -465,9 +575,10 @@ def retrieve_from_agents(
 
             cand = candidate_map[tmdb_id]
             _append_hit_source(cand, query, similarity)
-            if role == "creative" and agent_id not in cand["triggered_by"]:
+            channel = str(query.get("channel_role") or role).strip().lower()
+            if channel == "toned" and agent_id not in cand["triggered_by"]:
                 cand["triggered_by"].append(agent_id)
-            if role == "baseline":
+            if channel == "baseline":
                 cand["also_baseline"] = True
 
         per_pseudo.append({**query, "hits": hits})
@@ -483,7 +594,11 @@ def retrieve_from_agents(
                 str(item.get("pseudo_id", "")),
             ),
         )
-        _apply_quality_fields(cand, quality_floor=quality_floor)
+        _apply_quality_fields(
+            cand,
+            quality_floor=quality_floor,
+            neutral_total=neutral_total,
+        )
 
     candidates = sorted(
         candidate_map.values(),
@@ -633,8 +748,8 @@ def main(argv: list[str] | None = None) -> int:
         default=DEFAULT_QUALITY_FLOOR,
         dest="quality_floor",
         help=(
-            f"Similarity floor for D1 multi-agent counting "
-            f"(default: {DEFAULT_QUALITY_FLOOR})."
+            f"Similarity floor for neutral/toned collision counting "
+            f"(default: {DEFAULT_QUALITY_FLOOR}; top_k={DEFAULT_TOP_K})."
         ),
     )
     parser.add_argument(
