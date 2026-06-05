@@ -314,6 +314,82 @@ class PersonaScaffoldTests(unittest.TestCase):
         self.assertIn('"element_id": "who-0"', prompt)
         self.assertNotIn("{{alt_pool_json}}", prompt)
 
+    def test_screenwriter_prompt_includes_expansion_hypernyms(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json(),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        expansion = _expansion_fixture()
+        prompt = build_screenwriter_user_prompt(
+            "The-Ruler", dec, overlay, expansion=expansion
+        )
+        self.assertNotIn("{{expansion_json}}", prompt)
+        self.assertIn("power grid", prompt)
+        self.assertIn("critical infrastructure", prompt)
+        self.assertIn("supply shortfall", prompt)
+
+    def test_parse_pseudos_rejects_element_ids_as_fragments(self) -> None:
+        with self.assertRaises(ValueError) as ctx:
+            parse_pseudos_response(
+                json.dumps(
+                    {
+                        "pseudos": [
+                            {
+                                "id": "p1",
+                                "text": _LONG_TEXT,
+                                "fit": 0.7,
+                                "source": {"fragments": ["who-0", "where-0"]},
+                            }
+                        ]
+                    }
+                ),
+                agent_id="The-Caregiver",
+                known_fragments=_known_fragments(),
+                require_fit=True,
+            )
+        self.assertIn("unknown fragment ids", str(ctx.exception).lower())
+        self.assertIn("who-0", str(ctx.exception))
+        self.assertIn("where-0", str(ctx.exception))
+
+    def test_toned_with_hypernym_anchor_passes(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json(),
+            persona_id="The-Hero",
+            known_elements=_known_elements(),
+        )
+        toned = parse_pseudos_response(
+            json.dumps(
+                {
+                    "pseudos": [
+                        {
+                            "id": "p1",
+                            "text": (
+                                "A power plant outage forced administrators to declare "
+                                "a high-level warning as demand surged across the power grid."
+                            ),
+                            "fit": 0.8,
+                            "source": {"fragments": ["why-0", "how-0"]},
+                        }
+                    ]
+                }
+            ),
+            agent_id="The-Hero",
+            known_fragments=_known_fragments(),
+            require_fit=True,
+        )
+        pseudos = assemble_persona_channel_pseudos(
+            "The-Hero",
+            dec,
+            overlay,
+            toned,
+            _expansion_fixture(),
+        )
+        self.assertEqual(len(pseudos), 2)
+        self.assertTrue(any("power plant outage" in p.text.lower() for p in pseudos if p.id != NEUTRAL_PSEUDO_ID))
+
     def test_load_persona_card_ruler(self) -> None:
         card = load_persona_card("The-Ruler")
         self.assertIsNotNone(card)

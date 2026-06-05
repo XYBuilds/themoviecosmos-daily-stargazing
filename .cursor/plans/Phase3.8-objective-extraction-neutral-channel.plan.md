@@ -23,6 +23,15 @@ todos:
   - id: f38c1d3e-0001-4000-8038-000000000006
     content: 3.8.6 · 单点 pilot（1 条新闻 × 全链）+ 防火墙人工审计（hypernym vs lens 分层）[需人工验收 · Go/No-Go]
     status: pending
+  - id: f38c1d3e-0001-4000-8038-000000000061
+    content: 3.8.6.1 · screenwriter 契约/prompt 硬化（element_id≠fragment id 显式区分 + 带调句必嵌 ≥1 hypernym 锚 + 注入 expansion_json）+ 单测
+    status: completed
+  - id: f38c1d3e-0001-4000-8038-000000000062
+    content: 3.8.6.2 · channel_assembly 锚点集鲁棒性 + 一次 repair/retry（剔除整句级 hypernym 出锚点集；assembly/parse 失败时携错误重问 1 次）+ 单测
+    status: pending
+  - id: f38c1d3e-0001-4000-8038-000000000063
+    content: 3.8.6.3 · 重跑单点 pilot 验证全链合规率（目标 12/12 或定可接受下限）[需人工验收 · Go/No-Go]
+    status: pending
   - id: f38c1d3e-0001-4000-8038-000000000007
     content: 3.8.7 · 批量 run（A1 并跑）+ 留出集打分 [需人工验收]
     status: pending
@@ -261,6 +270,48 @@ flowchart LR
 
 - [ ] 端到端产出位于 `output/Eval/phase3.8/{run_id}/`
 - [ ] `[需人工验收]`：五项核查通过 → **Go**（进 3.8.7）；不过 → 回 3.8.2/3.8.6 修契约/锚
+
+---
+
+## 3.8.6 试点缺陷处置（3.8.6.1–3.8.6.3）
+
+**触发：** 3.8.6 单点 pilot（`01-grid-outage`）12 persona 中 **8/12 通过**，4 例失败（Caregiver fragment id 混用；Hero/Lover/Jester 带调句缺 hypernym 锚）。
+
+---
+
+## Todo 3.8.6.1 · screenwriter 契约/prompt 硬化 + expansion 注入 + 单测
+
+**依赖：** 3.8.6（pilot 暴露缺陷）
+
+### 验收
+
+- [x] `python -m unittest tests.test_personas -v` 通过
+- [x] screenwriter prompt 注入了 `expansion_json`；契约明列 element_id≠fragment id
+- [x] 锚点正/负例单测覆盖
+
+---
+
+## Todo 3.8.6.2 · channel_assembly 锚点集鲁棒性 + 一次 repair/retry + 单测
+
+**依赖：** 3.8.6.1
+
+### 验收
+
+- [ ] `python -m unittest`（personas/retrieve 相关）通过
+- [ ] 锚点集仅含短语级词；repair/retry 路径有覆盖
+- [ ] meta 记录重试次数与失败原因
+
+---
+
+## Todo 3.8.6.3 · 重跑单点 pilot 验证合规率 [需人工验收 · Go/No-Go]
+
+**依赖：** 3.8.6.1 + 3.8.6.2
+
+### 验收
+
+- [ ] 重跑产出位于新 run 目录；首跑与 3.5/3.6/3.7 未改写
+- [ ] 合规率较首跑提升（记录 before/after）
+- [ ] `[需人工验收]`：用户确认达可接受下限 → **Go**（回主线 3.8.7）；不过 → 回 3.8.6.1/3.8.6.2
 
 ---
 

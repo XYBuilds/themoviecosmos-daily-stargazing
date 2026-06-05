@@ -566,6 +566,7 @@ def render_persona_prompt(
     *,
     deconstruction: dict[str, Any],
     alt_pool: AltPoolOverlay | dict[str, Any] | None = None,
+    expansion: dict[str, Any] | None = None,
     persona_card: str | None = None,
 ) -> str:
     """Render persona step prompt with decon + optional alt-pool overlay."""
@@ -578,6 +579,11 @@ def render_persona_prompt(
             pool_payload = alt_pool
         pool_json = json.dumps(pool_payload, ensure_ascii=False, indent=2)
         rendered = rendered.replace("{{alt_pool_json}}", pool_json)
+    if expansion is not None:
+        expansion_json = json.dumps(expansion, ensure_ascii=False, indent=2)
+        rendered = rendered.replace("{{expansion_json}}", expansion_json)
+    else:
+        rendered = rendered.replace("{{expansion_json}}", "—")
     if persona_card:
         rendered = rendered.replace("{{persona_card}}", persona_card.strip())
     else:
@@ -612,6 +618,8 @@ def build_screenwriter_user_prompt(
     deconstruction: dict[str, Any],
     alt_pool: AltPoolOverlay,
     *,
+    expansion: dict[str, Any] | None = None,
+    repair_context: str | None = None,
     prompts_dir: Path | None = None,
 ) -> str:
     contract = load_shared_contract(SCREENWRITER_CONTRACT)
@@ -620,15 +628,24 @@ def build_screenwriter_user_prompt(
         f"# Persona: {persona_id}\n\n"
         f"## Contract\n\n{contract}\n\n"
         f"## Persona card\n\n{card or '—'}\n\n"
+        f"## Objective expansion (hypernym anchors)\n\n"
+        f"{{{{expansion_json}}}}\n\n"
         f"## Alt-pool overlay\n\n"
         f"{{{{alt_pool_json}}}}\n\n"
         f"## Neutral deconstruction (fragment ids)\n\n"
         f"{{{{deconstruction_json}}}}\n"
     )
+    if repair_context:
+        body += (
+            f"\n## Repair (previous attempt failed)\n\n"
+            f"Fix the issue below and return valid JSON only.\n\n"
+            f"{repair_context.strip()}\n"
+        )
     return render_persona_prompt(
         body,
         deconstruction=deconstruction,
         alt_pool=alt_pool,
+        expansion=expansion,
         persona_card=card,
     )
 
@@ -698,11 +715,18 @@ async def run_screenwriter(
     model: str,
     timeout: float,
     *,
+    expansion: dict[str, Any] | None = None,
+    repair_context: str | None = None,
     prompts_dir: Path | None = None,
 ) -> tuple[list[PseudoSegment] | None, str | None]:
     known_frags = _known_fragment_ids(annotate_fragment_ids(deconstruction))
     prompt = build_screenwriter_user_prompt(
-        persona_id, deconstruction, alt_pool, prompts_dir=prompts_dir
+        persona_id,
+        deconstruction,
+        alt_pool,
+        expansion=expansion,
+        repair_context=repair_context,
+        prompts_dir=prompts_dir,
     )
     try:
         raw = await asyncio.wait_for(
@@ -791,7 +815,14 @@ async def run_persona_pipeline(
         )
 
     pseudos, sw_err = await run_screenwriter(
-        persona_id, dec, alt_pool, client, model, timeout, prompts_dir=prompts_dir
+        persona_id,
+        dec,
+        alt_pool,
+        client,
+        model,
+        timeout,
+        expansion=expansion,
+        prompts_dir=prompts_dir,
     )
     if sw_err or pseudos is None:
         return PersonaPipelineResult(
