@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: f38c1d3e-0001-4000-8038-000000000001
     content: 3.8.1 · A0 verbatim 瘦身 + 共享客观扩展 pass（hypernym 梯 + 客观性试金石 + 丢 inert）+ 单测
-    status: pending
+    status: completed
   - id: f38c1d3e-0001-4000-8038-000000000002
     content: 3.8.2 · persona 双步升级（persona-relative valence + 三层 provenance + 每 persona 1 条客观地板中性 pseudo）+ 单测
     status: pending
@@ -162,9 +162,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] `python -m unittest`（A0 + 扩展 pass 相关）通过
-- [ ] A0 产物仅含 verbatim 抽取（无 hypernym/geocode/scale）；hypernym 仅出现在扩展 pass 产物
-- [ ] 扩展 pass 对「贫民窟=slum」留、对「宿命的牢笼」弃（试金石）
+- [x] `python -m unittest`（A0 + 扩展 pass 相关）通过
+- [x] A0 产物仅含 verbatim 抽取（无 hypernym/geocode/scale）；hypernym 仅出现在扩展 pass 产物
+- [x] 扩展 pass 对「贫民窟=slum」留、对「宿命的牢笼」弃（试金石）
 
 ---
 
