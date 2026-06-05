@@ -1,0 +1,1518 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A director plans a film adaptation of 'The Odyssey'. He casts a Black actress to play Helen of Troy and Clytemnestra. This triggers an online debate where some commenters accuse the casting of erasing European history. Others defend the casting by arguing it treats Western classics as shared civilizational heritage.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "why-0",
+              "why-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 285232,
+              "title": "Les Misérables",
+              "similarity": 0.5769692659378052,
+              "movie_url": "https://themoviecosmos.com/movie/285232"
+            },
+            {
+              "tmdb_id": 194224,
+              "title": "L'Odissea",
+              "similarity": 0.6235564947128296,
+              "movie_url": "https://themoviecosmos.com/movie/194224"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "An actress is cast in two roles for an upcoming epic film adaptation. The casting decision leads to a heated online controversy involving accusations of historical erasure and defenses based on viewing classical stories as a common cultural inheritance.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "why-0",
+              "why-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 70410,
+              "title": "The Public Woman",
+              "similarity": 0.5999705791473389,
+              "movie_url": "https://themoviecosmos.com/movie/70410"
+            },
+            {
+              "tmdb_id": 197082,
+              "title": "Venus in Fur",
+              "similarity": 0.6665676832199097,
+              "movie_url": "https://themoviecosmos.com/movie/197082"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "A film adaptation of a classical epic poem is announced. The casting of a Black actress in key roles sparks a cultural conflict online. The debate centers on questions of identity and the place of classical narratives in mainstream cinema.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 128042,
+              "title": "The Scenic Route",
+              "similarity": 0.5603659152984619,
+              "movie_url": "https://themoviecosmos.com/movie/128042"
+            },
+            {
+              "tmdb_id": 197082,
+              "title": "Venus in Fur",
+              "similarity": 0.5997039079666138,
+              "movie_url": "https://themoviecosmos.com/movie/197082"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-INNOCENT",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A sincere adaptation of a timeless tale, Christopher Nolan's planned film project cast a talented actress, Lupita Nyong'o, in the roles of Helen of Troy and Clytemnestra based on artistic merit. This decision, however, led to an unfortunate spread of harmful rumors online, stemming from a mistaken belief in cultural erasure. The controversy has created a painful turn for a beloved story, transforming it into a cultural debate about identity and belonging.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "why-0",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 45577,
+              "title": "Three Cases of Murder",
+              "similarity": 0.604226291179657,
+              "movie_url": "https://themoviecosmos.com/movie/45577"
+            },
+            {
+              "tmdb_id": 4709,
+              "title": "Holiday for Henrietta",
+              "similarity": 0.6227840185165405,
+              "movie_url": "https://themoviecosmos.com/movie/4709"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Supporters upholding a shared heritage view of classics have offered a hopeful perspective on the casting choices for the upcoming film adaptation. They see the inclusive casting not as an erasure, but as an argument for viewing Western classics as a shared civilizational inheritance. This viewpoint presents a chance for a constructive dialogue about how ancient stories belong to everyone in a modern world.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "why-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 101520,
+              "title": "Reel Injun",
+              "similarity": 0.48313048481941223,
+              "movie_url": "https://themoviecosmos.com/movie/101520"
+            },
+            {
+              "tmdb_id": 617031,
+              "title": "In Search of Tomorrow",
+              "similarity": 0.519837498664856,
+              "movie_url": "https://themoviecosmos.com/movie/617031"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EVERYMAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A big studio's planned film adaptation of a classic story has led to online debate. When an actress was cast in iconic roles, it sparked passionate public discussion. Some online commenters made claims that history was being ignored. Others defended the choice, viewing the classics as a shared global story. This has turned the myth into a cultural flashpoint, showing how a simple casting announcement can divide regular people who just enjoy movies.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "why-0",
+              "why-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 197082,
+              "title": "Venus in Fur",
+              "similarity": 0.553986668586731,
+              "movie_url": "https://themoviecosmos.com/movie/197082"
+            },
+            {
+              "tmdb_id": 324558,
+              "title": "X-Rated: The Greatest Adult Movies of All Time",
+              "similarity": 0.5636265873908997,
+              "movie_url": "https://themoviecosmos.com/movie/324558"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The high-profile director behind a high-budget Hollywood production made a controversial casting decision. This triggered vicious online attacks from inflamed critics and partisans in the debate. The resulting arguments are fueling a divisive identity war around a movie, turning what should be entertainment into a stressful fight for many ordinary fans caught in the middle.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 619139,
+              "title": "Porn for Newbies",
+              "similarity": 0.6301118731498718,
+              "movie_url": "https://themoviecosmos.com/movie/619139"
+            },
+            {
+              "tmdb_id": 24525,
+              "title": "Hurlyburly",
+              "similarity": 0.6417861580848694,
+              "movie_url": "https://themoviecosmos.com/movie/24525"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-HERO",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In a bold artistic stand, director Christopher Nolan announced an ambitious new adaptation of a timeless epic, The Odyssey. The courageous casting of Lupita Nyong'o as iconic Greek heroines Helen and Clytemnestra ignited a fierce online battle, as defenders who stood up for inclusive casting clashed with those who attacked the decision as cultural erasure. This dispute has transformed the mythic epic into a frontline battlefield for cultural identity, where the very idea of shared heritage is being defended in a digital arena.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "why-0",
+              "why-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 194224,
+              "title": "L'Odissea",
+              "similarity": 0.5725484490394592,
+              "movie_url": "https://themoviecosmos.com/movie/194224"
+            },
+            {
+              "tmdb_id": 1047128,
+              "title": "Apolonia, Apolonia",
+              "similarity": 0.6070383787155151,
+              "movie_url": "https://themoviecosmos.com/movie/1047128"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The film's director, Christopher Nolan, faced immediate backlash for his decision to cast Lupita Nyong'o in the dual roles of Helen and Clytemnestra. The heated online debate and culture war arguments erupted, fueled by the critics who characterized the move as historical revisionism. In response, the voices who stood up for inclusive casting made the argument that diverse casting honors classics as shared civilizational legacy, turning the planned film adaptation into a cultural flashpoint about identity and representation.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "why-0",
+              "why-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 57967,
+              "title": "Sweet Dreams",
+              "similarity": 0.6001732349395752,
+              "movie_url": "https://themoviecosmos.com/movie/57967"
+            },
+            {
+              "tmdb_id": 1250508,
+              "title": "Kaantha",
+              "similarity": 0.604458212852478,
+              "movie_url": "https://themoviecosmos.com/movie/1250508"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EXPLORER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Pioneering auteur Christopher Nolan is venturing into new cinematic territory by reimagining a timeless epic, The Odyssey. His trailblazing casting choice of boundary-crossing performer Lupita Nyong'o in the dual roles of Helen of Troy and Clytemnestra has sparked vital cultural dialogue. This move is expanding cultural ownership, transforming the myth into a new cultural frontier where classical stories are explored as shared human heritage rather than fixed historical property.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 86962,
+              "title": "The Phantom of the Opera",
+              "similarity": 0.6079479455947876,
+              "movie_url": "https://themoviecosmos.com/movie/86962"
+            },
+            {
+              "tmdb_id": 301959,
+              "title": "Interstellar: Nolan's Odyssey",
+              "similarity": 0.6276780962944031,
+              "movie_url": "https://themoviecosmos.com/movie/301959"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The film adaptation project has navigated the digital frontier of online platforms, where frontier critics and diversity trailblazers engage in heated debate. The casting has generated online debate, with accusations of historical erasure clashing against the view of classics as shared heritage. The outcome is a cultural flashpoint, pushing the conversation about representation into uncharted public discourse.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "why-0",
+              "why-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 292985,
+              "title": "The Story of Frozen: Making a Disney Animated Classic",
+              "similarity": 0.5369760990142822,
+              "movie_url": "https://themoviecosmos.com/movie/292985"
+            },
+            {
+              "tmdb_id": 324558,
+              "title": "X-Rated: The Greatest Adult Movies of All Time",
+              "similarity": 0.5551300644874573,
+              "movie_url": "https://themoviecosmos.com/movie/324558"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-OUTLAW",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The establishment figurehead’s high-budget appropriation of The Odyssey, featuring a provocative, race-swapped casting for its iconic roles, has unleashed a torrent of online abuse from outrage merchants. The lightning rod for controversy, Lupita Nyong'o, finds herself at the center of a manufactured cultural war, reducing the epic to a cynical identity battleground where defenders argue for a shared legacy while the outrage machine churns.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1291202,
+              "title": "Duse",
+              "similarity": 0.5323261022567749,
+              "movie_url": "https://themoviecosmos.com/movie/1291202"
+            },
+            {
+              "tmdb_id": 52451,
+              "title": "The Three Musketeers",
+              "similarity": 0.5722326040267944,
+              "movie_url": "https://themoviecosmos.com/movie/52451"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "What began as a bold reimagining by the visionary director has been co-opted by the outrage machine. The groundbreaking casting choice, intended to spark a necessary cultural debate, instead became fodder for cultural critics and apologists for the status quo, who frame the decision as an act of cultural erasure and successfully derail the conversation.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 468735,
+              "title": "Madeline's Madeline",
+              "similarity": 0.5227046012878418,
+              "movie_url": "https://themoviecosmos.com/movie/468735"
+            },
+            {
+              "tmdb_id": 40653,
+              "title": "Herostratus",
+              "similarity": 0.5514214038848877,
+              "movie_url": "https://themoviecosmos.com/movie/40653"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-LOVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The passionate cinematic reimagining of The Odyssey by auteur visionary Christopher Nolan has become an intimate embrace of universal art. By casting the talented muse Lupita Nyong'o as the beautiful embodiment of legendary love—both Helen and Clytemnestra—the film inspired passionate discourse on belonging. This choice sparked a profound dialogue on shared cultural love, where defenders championed it as a loving tribute to shared stories, while slanderers decried it as cultural betrayal.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 502167,
+              "title": "Don't Leave Home",
+              "similarity": 0.5980159044265747,
+              "movie_url": "https://themoviecosmos.com/movie/502167"
+            },
+            {
+              "tmdb_id": 483341,
+              "title": "Enoch Arden",
+              "similarity": 0.598128080368042,
+              "movie_url": "https://themoviecosmos.com/movie/483341"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "As the film adaptation plan unfolds, the controversial object of desire, Lupita Nyong'o, has been cast in two roles that symbolize legendary passion. Her selection unleashed a torrent of hateful attacks from cultural guardians, transforming the myth into a battlefield over the ownership of beauty. The resulting controversy highlights the tension between an intimate embrace of universal art and the perception of diluting sacred tradition.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "why-1",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 376047,
+              "title": "Fitoor",
+              "similarity": 0.5892353057861328,
+              "movie_url": "https://themoviecosmos.com/movie/376047"
+            },
+            {
+              "tmdb_id": 460508,
+              "title": "Munna Michael",
+              "similarity": 0.5898666381835938,
+              "movie_url": "https://themoviecosmos.com/movie/460508"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-RULER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The Ruler persona frames the controversy around Christopher Nolan's 'Odyssey' adaptation as a threat to cultural order. The casting of Lupita Nyong'o as Helen of Troy and Clytemnestra triggered '煽动性的历史抹杀指控' from '混乱煽动者' and '秩序破坏者', whose '对传统叙事的激进解构' risks destabilizing public discourse. This '引发混乱的改编计划' via '具有争议的选角决定' has '煽动破坏性的在线攻击和文化战争', ultimately '将古典叙事卷入身份政治的混乱漩涡', demanding a restoration of authoritative control over narrative heritage.",
+          "source": {
+            "agent_id": "THE-RULER",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 59048,
+              "title": "Our Lady of the Turks",
+              "similarity": 0.567381739616394,
+              "movie_url": "https://themoviecosmos.com/movie/59048"
+            },
+            {
+              "tmdb_id": 85124,
+              "title": "Othello",
+              "similarity": 0.5858371257781982,
+              "movie_url": "https://themoviecosmos.com/movie/85124"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The Ruler lens condemns the disorder sparked by Nolan's film project. The '权威导演' initiated a '宏大叙事工程', but the subsequent '选角公告' for Nyong'o invited '煽动性的历史抹杀指控' from '混乱煽动者'. These actors, alongside '秩序破坏者', '煽动破坏性的在线攻击和文化战争', violating norms of civil discourse. The result is a chaotic '文化热点' where '对传统叙事的激进解构' prevails, framing the event as a failure of cultural stewardship requiring rectification to restore stable, authoritative storytelling.",
+          "source": {
+            "agent_id": "THE-RULER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-0",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 81633,
+              "title": "Hospitalité",
+              "similarity": 0.4893411099910736,
+              "movie_url": "https://themoviecosmos.com/movie/81633"
+            },
+            {
+              "tmdb_id": 901121,
+              "title": "Cobweb",
+              "similarity": 0.5004768371582031,
+              "movie_url": "https://themoviecosmos.com/movie/901121"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-SAGE",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The planned cinematic adaptation of Homer's 'Odyssey' by Christopher Nolan has become a cultural flashpoint. The selection of Lupita Nyong'o as Helen of Troy and Clytemnestra has been met with accusations of erasing European historical identity, with influential figures amplifying unverified claims of historical erasure. However, those advocating for the casting choice view mythology as universal human heritage, open to multi-ethnic interpretation. The controversy has thus transformed the mythological epic into a debate about identity and ownership in global media.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-0",
+              "why-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 502167,
+              "title": "Don't Leave Home",
+              "similarity": 0.5789832472801208,
+              "movie_url": "https://themoviecosmos.com/movie/502167"
+            },
+            {
+              "tmdb_id": 194224,
+              "title": "L'Odissea",
+              "similarity": 0.7279094457626343,
+              "movie_url": "https://themoviecosmos.com/movie/194224"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The casting decision for Christopher Nolan's adaptation has prompted a heated public discourse. Public voices engaging in cultural critique contrast the claim of historical distortion, pending verifiable evidence from accusers, with the argument viewing classical stories as shared civilizational legacy. This event has sparked intense online attacks, highlighting ongoing societal negotiations about representation and the contested ownership of ancient narratives in contemporary cinema.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "how-1",
+              "why-0",
+              "why-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 128190,
+              "title": "The Pervert's Guide to Ideology",
+              "similarity": 0.5275717973709106,
+              "movie_url": "https://themoviecosmos.com/movie/128190"
+            },
+            {
+              "tmdb_id": 87981,
+              "title": "Report",
+              "similarity": 0.5418657064437866,
+              "movie_url": "https://themoviecosmos.com/movie/87981"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The commercial project that is Nolan's 'Odyssey' film has triggered a partisan conflict over cultural ownership. The focal point is the casting, which has escalated into vitriolic digital harassment. While defenders present an inclusive artistic interpretation, accusers label it a narrative of cultural appropriation unsupported by the film's stated goals. This polarization now overshadows the original literary work with competing identity claims.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "why-0",
+              "why-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 57967,
+              "title": "Sweet Dreams",
+              "similarity": 0.5790412425994873,
+              "movie_url": "https://themoviecosmos.com/movie/57967"
+            },
+            {
+              "tmdb_id": 86811,
+              "title": "Hold Me While I'm Naked",
+              "similarity": 0.5834378004074097,
+              "movie_url": "https://themoviecosmos.com/movie/86811"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-JESTER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The ringmaster of this casting circus, Christopher Nolan, kicked off the grand plan to bring an ancient epic to the modern arena. When the lightning rod for online fury, Lupita Nyong'o, was cast as Helen of Troy and Clytemnestra, it poked the hornet's nest of historical purists. The digital chorus amplifying the drama erupted into a delicious, meme-worthy online circus, transforming the old tale into a vibrant, viral conversation about who gets to play in the sandbox of history.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-0",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 190725,
+              "title": "The Firefall",
+              "similarity": 0.6008515357971191,
+              "movie_url": "https://themoviecosmos.com/movie/190725"
+            },
+            {
+              "tmdb_id": 28363,
+              "title": "The Mad Magician",
+              "similarity": 0.609146237373352,
+              "movie_url": "https://themoviecosmos.com/movie/28363"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "In the online arena, the pearl-clutching pundits of the culture war clashed with the cheerleaders of shared heritage. A perceived cultural heist of a sacred text met the argument that classics belong to everyone, not just statues. The resulting descent into a toxic, pointless digital shouting match reduced a masterpiece to a tired debate about ownership and grievance.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 665,
+              "title": "Ben-Hur",
+              "similarity": 0.51235431432724,
+              "movie_url": "https://themoviecosmos.com/movie/665"
+            },
+            {
+              "tmdb_id": 1262815,
+              "title": "The Choral",
+              "similarity": 0.5323266983032227,
+              "movie_url": "https://themoviecosmos.com/movie/1262815"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The architect of a cultural powder keg faced the spark that lit the pyre of online outrage. As the move that turned a queen into a controversy unfolded, the apologists for historical revisionism defended a convenient excuse to dilute tradition. The circus was complete, leaving a viral spectacle where an ancient epic became a modern farce.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-1",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 27511,
+              "title": "He Who Gets Slapped",
+              "similarity": 0.5321832895278931,
+              "movie_url": "https://themoviecosmos.com/movie/27511"
+            },
+            {
+              "tmdb_id": 51380,
+              "title": "Mixed Magic",
+              "similarity": 0.5960415601730347,
+              "movie_url": "https://themoviecosmos.com/movie/51380"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 194224,
+      "title": "L'Odissea",
+      "overview": "Film adaptation of Homer's 'The Odyssey.'",
+      "genres": "Drama, Adventure",
+      "release_year": 1911,
+      "language": "it",
+      "poster_path": "/lBAVaExDG87OT0b2pVxxhMctyI3.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/194224",
+      "similarity": 0.7279094457626343,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-SAGE"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1"
+          ],
+          "similarity": 0.6235564947128296
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.5725484490394592,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.7279094457626343,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): A1,THE-SAGE,THE-HERO"
+    },
+    {
+      "tmdb_id": 197082,
+      "title": "Venus in Fur",
+      "overview": "An enigmatic actress may have a hidden agenda when she auditions for a part in a misogynistic writer's play.",
+      "genres": "Drama",
+      "release_year": 2013,
+      "language": "fr",
+      "poster_path": "/b9pCYixO3ZO7tB303efB3O4nkqC.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/197082",
+      "similarity": 0.6665676832199097,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1"
+          ],
+          "similarity": 0.6665676832199097
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5997039079666138
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.553986668586731,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): A1,THE-EVERYMAN"
+    },
+    {
+      "tmdb_id": 57967,
+      "title": "Sweet Dreams",
+      "overview": "Michele criticizes the film industry and its inhabitants, and is particularly embattled with a Neapolitan director making a musical about the 1968 student demonstrations. At the same time, Michele has a creative block and struggles to finish his film titled \"Freud’s Mother.\" Nanni Moretti’s self-inquiry into filmmaking, political ennui, and men’s relations with their mothers.",
+      "genres": "Comedy, Drama",
+      "release_year": 1981,
+      "language": "it",
+      "poster_path": "/4TSmNeUdA1EtGyqKS7UH00i9kew.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/57967",
+      "similarity": 0.6001732349395752,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-SAGE"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.6001732349395752,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.5790412425994873,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-SAGE,THE-HERO"
+    },
+    {
+      "tmdb_id": 502167,
+      "title": "Don't Leave Home",
+      "overview": "An American artist's obsession with a disturbing urban legend leads her to an investigation of the story's origins at the crumbling estate of a reclusive painter in Ireland.",
+      "genres": "Thriller, Mystery",
+      "release_year": 2018,
+      "language": "en",
+      "poster_path": "/3Y296xLDoTOsts35P3dGErBrZbL.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/502167",
+      "similarity": 0.5980159044265747,
+      "triggered_by": [
+        "THE-LOVER",
+        "THE-SAGE"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5980159044265747,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.5789832472801208,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-SAGE,THE-LOVER"
+    },
+    {
+      "tmdb_id": 324558,
+      "title": "X-Rated: The Greatest Adult Movies of All Time",
+      "overview": "The evolution of adult cinema through the most influential films in history, a journey that begins in the 1970s and ends nowadays. An in-depth analysis of the success of the most prestigious erotic films, their impact on industry and society, and their influence on cinema and contemporary culture.",
+      "genres": "Documentary",
+      "release_year": 2015,
+      "language": "en",
+      "poster_path": "/uYzHkzZPp84B7nHOKaJZWjyGFUL.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/324558",
+      "similarity": 0.5636265873908997,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-EXPLORER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.5636265873908997,
+          "fit": 0.65
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.5551300644874573,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-EVERYMAN,THE-EXPLORER"
+    },
+    {
+      "tmdb_id": 24525,
+      "title": "Hurlyburly",
+      "overview": "A group of actors and their casting agents try to find a direction in their lives whilst coming to terms with their personal problems and relationship conflicts.",
+      "genres": "Comedy, Drama",
+      "release_year": 1998,
+      "language": "en",
+      "poster_path": "/wg7GBXBALHQ0tjmyMiwu5gcDss9.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/24525",
+      "similarity": 0.6417861580848694,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.6417861580848694,
+          "fit": 0.45
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 619139,
+      "title": "Porn for Newbies",
+      "overview": "An amateur filmmaker’s life gets complicated when a mobster hires him to direct a pornographic horror movie starring a frighteningly sexy actress.",
+      "genres": "Comedy",
+      "release_year": 2019,
+      "language": "es",
+      "poster_path": "/vAPFok48YKRn9yEMgRF3dxkpnDk.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/619139",
+      "similarity": 0.6301118731498718,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.6301118731498718,
+          "fit": 0.45
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 301959,
+      "title": "Interstellar: Nolan's Odyssey",
+      "overview": "A look behind the lens of Christopher Nolan's space epic.",
+      "genres": "Documentary, TV Movie",
+      "release_year": 2014,
+      "language": "en",
+      "poster_path": "/i4PpBcuLvdcJwIf3hkcV9QDR1iH.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/301959",
+      "similarity": 0.6276780962944031,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.6276780962944031,
+          "fit": 0.92
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 4709,
+      "title": "Holiday for Henrietta",
+      "overview": "Two scriptwriters argue about the fate of Henrietta, a charming and gamine shopgirl. One favors a comical path for their heroine, who is overcome with sentimental love for a young photographer on Bastille Day. The other has a more thrilling and dastardly fate in mind for her. Among the film's irresistible conceits is Hildegarde Neff as an oversexed circus bareback rider.",
+      "genres": "Comedy",
+      "release_year": 1952,
+      "language": "fr",
+      "poster_path": "/qGGsEVGIVUPcmt8PrLNEHBQ3SCH.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/4709",
+      "similarity": 0.6227840185165405,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "result-0"
+          ],
+          "similarity": 0.6227840185165405,
+          "fit": 0.45
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 28363,
+      "title": "The Mad Magician",
+      "overview": "Don Gallico is an inventor of stage magic effects who aspires to become a star in his own right. Just before his first performance his act is shut down by capricious manager Ross Ormond who wants Gallico's brilliant buzz saw effect for the act of The Great Rinaldi, an established star. With this defeat, and the humiliation of having already lost his wife Claire to Ormond, Gallico decides it is time to take matters into his own hands.",
+      "genres": "Thriller, Crime, Mystery, Horror",
+      "release_year": 1954,
+      "language": "en",
+      "poster_path": "/ctYNCvKiMN3yRHAXe6q2l6anMRk.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/28363",
+      "similarity": 0.609146237373352,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-0",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.609146237373352,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 86962,
+      "title": "The Phantom of the Opera",
+      "overview": "An aspiring opera singer finds herself transported back to Victorian-era London -- and into the arms of a reclusive, disfigured maestro determined to make her a star.",
+      "genres": "Horror, Romance",
+      "release_year": 1989,
+      "language": "en",
+      "poster_path": "/ie03D5WcIKW5AHXM59KTU6TRvmf.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/86962",
+      "similarity": 0.6079479455947876,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.6079479455947876,
+          "fit": 0.92
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1047128,
+      "title": "Apolonia, Apolonia",
+      "overview": "When Danish filmmaker Lea Glob first portrayed Apolonia Sokol in 2009, she appeared to be leading a storybook life. The talented Apolonia was born in an underground theater in Paris and grew up in an artists’ community—the ultimate bohemian existence. In her 20s, she studied at the Beaux-Arts de Paris, one of the most prestigious art academies in Europe. Over the years, Lea Glob kept returning to film the charismatic Apolonia and a special bond developed between the two young women.",
+      "genres": "Documentary",
+      "release_year": 2023,
+      "language": "da",
+      "poster_path": "/mflhHTFqeYgVSNvQoTmlBY0XJDT.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1047128",
+      "similarity": 0.6070383787155151,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.6070383787155151,
+          "fit": 0.88
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1250508,
+      "title": "Kaantha",
+      "overview": "Set in the backdrop of a film set, in the 1950’s in post colonial Madras, the film is centred around the professional rivalry between a film-maker trying to make his seminal film and the top reigning actor who the director once introduced. The rivalry spirals around the leading actress, a debutante and as the relationship between the three.",
+      "genres": "History, Crime, Drama",
+      "release_year": 2025,
+      "language": "ta",
+      "poster_path": "/a6A0CvOMUUbQNfgkRSPqf5JMpsU.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1250508",
+      "similarity": 0.604458212852478,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.604458212852478,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 45577,
+      "title": "Three Cases of Murder",
+      "overview": "An atmospheric British omnibus film presenting three tales of murder and the supernatural. In “In the Picture,” a museum attendant is drawn into the eerie world within a painting. In “You Killed Elizabeth,” two lifelong friends become suspects when the woman they both love is murdered. In “Lord Mountdrago,” a disgraced politician seeks revenge on a powerful statesman by exploiting his dreams. Linked by a recurring figure, the film blends psychological horror, mystery, and fantasy across its three interconnected stories.",
+      "genres": "Mystery, Horror",
+      "release_year": 1955,
+      "language": "en",
+      "poster_path": "/y4XHdfPCG21hpRohwdh6vhjr7iM.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/45577",
+      "similarity": 0.604226291179657,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "result-0"
+          ],
+          "similarity": 0.604226291179657,
+          "fit": 0.45
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 190725,
+      "title": "The Firefall",
+      "overview": "A magic show.",
+      "genres": "Fantasy",
+      "release_year": 1904,
+      "language": "fr",
+      "poster_path": "/865zPzjV7PKNtOUU4eJfCeo6qlb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/190725",
+      "similarity": 0.6008515357971191,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-0",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.6008515357971191,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 70410,
+      "title": "The Public Woman",
+      "overview": "An inexperienced young actress is invited to play a role in a film based on Dostoyevsky's 'The Possessed'. The film director, a Czech immigrant in Paris, takes over her life, and in a short time she is unable to draw the line between acting and reality. She winds up playing a real-life role posing as the dead wife of another Czech immigrant, who is manipulated by the filmmaker into commiting a political assassination.",
+      "genres": "Drama",
+      "release_year": 1984,
+      "language": "fr",
+      "poster_path": "/5MXaIoOKGfxanGqxgrLgv0OtV39.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/70410",
+      "similarity": 0.5999705791473389,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1"
+          ],
+          "similarity": 0.5999705791473389
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 483341,
+      "title": "Enoch Arden",
+      "overview": "Moving Picture World described the film: \"There is a small need to describe this subject as the poem of Lord Tennyson is so well known, so suffice it to say that this Biograph subject is an unusually faithful portrayal of that beautiful romance of Enoch Arden, Annie Lee and Philip Ray, taken in scenes of rare beauty\". This is the combined feature version of Enoch Arden Parts I and II.",
+      "genres": "Drama",
+      "release_year": 1911,
+      "language": "en",
+      "poster_path": "/gff55zXyUAksO3tlnjIhmyqsCG7.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/483341",
+      "similarity": 0.598128080368042,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.598128080368042,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 51380,
+      "title": "Mixed Magic",
+      "overview": "When Buster Keaton goes to work as an assistant to a carnival magician, the results turn out to be less than magical.",
+      "genres": "Comedy",
+      "release_year": 1936,
+      "language": "en",
+      "poster_path": "/4VnsT3XhUqbmMcqxmypVbPhu2Dr.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/51380",
+      "similarity": 0.5960415601730347,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-1",
+            "how-2"
+          ],
+          "similarity": 0.5960415601730347,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 460508,
+      "title": "Munna Michael",
+      "overview": "An expert dancer Munna who idolizes the king of pop, reluctantly tutors a gangster until their developing bond gets disrupted by their common romantic interest towards the same woman.",
+      "genres": "Music, Action",
+      "release_year": 2017,
+      "language": "hi",
+      "poster_path": "/p1tdHXmGGLc8o8kTImZi5iPXcu3.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/460508",
+      "similarity": 0.5898666381835938,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-1",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5898666381835938,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A1-THE-INNOCENT": 0.6155091524124146,
+      "A1-THE-EVERYMAN": 0.6864567995071411,
+      "A1-THE-HERO": 0.6753432154655457,
+      "A1-THE-EXPLORER": 0.6106461882591248,
+      "A1-THE-OUTLAW": 0.5237835645675659,
+      "A1-THE-LOVER": 0.6163924932479858,
+      "A1-THE-RULER": 0.6139327883720398,
+      "A1-THE-SAGE": 0.7466565370559692,
+      "A1-THE-JESTER": 0.49899211525917053,
+      "THE-EVERYMAN-THE-INNOCENT": 0.650157630443573,
+      "THE-HERO-THE-INNOCENT": 0.8039898872375488,
+      "THE-EXPLORER-THE-INNOCENT": 0.7458944320678711,
+      "THE-INNOCENT-THE-OUTLAW": 0.5592513084411621,
+      "THE-INNOCENT-THE-LOVER": 0.7167035341262817,
+      "THE-INNOCENT-THE-RULER": 0.7489466667175293,
+      "THE-INNOCENT-THE-SAGE": 0.7246795892715454,
+      "THE-INNOCENT-THE-JESTER": 0.6663167476654053,
+      "THE-EVERYMAN-THE-HERO": 0.623475968837738,
+      "THE-EVERYMAN-THE-EXPLORER": 0.5570904016494751,
+      "THE-EVERYMAN-THE-OUTLAW": 0.5527674555778503,
+      "THE-EVERYMAN-THE-LOVER": 0.5791348218917847,
+      "THE-EVERYMAN-THE-RULER": 0.5798172950744629,
+      "THE-EVERYMAN-THE-SAGE": 0.688092827796936,
+      "THE-EVERYMAN-THE-JESTER": 0.5259250402450562,
+      "THE-EXPLORER-THE-HERO": 0.7968364953994751,
+      "THE-HERO-THE-OUTLAW": 0.7241023778915405,
+      "THE-HERO-THE-LOVER": 0.8090904951095581,
+      "THE-HERO-THE-RULER": 0.7525910139083862,
+      "THE-HERO-THE-SAGE": 0.8046014904975891,
+      "THE-HERO-THE-JESTER": 0.6940525770187378,
+      "THE-EXPLORER-THE-OUTLAW": 0.4929863214492798,
+      "THE-EXPLORER-THE-LOVER": 0.7878028154373169,
+      "THE-EXPLORER-THE-RULER": 0.6460071802139282,
+      "THE-EXPLORER-THE-SAGE": 0.7104292511940002,
+      "THE-EXPLORER-THE-JESTER": 0.6478208303451538,
+      "THE-LOVER-THE-OUTLAW": 0.581106424331665,
+      "THE-OUTLAW-THE-RULER": 0.6959144473075867,
+      "THE-OUTLAW-THE-SAGE": 0.6612920165061951,
+      "THE-JESTER-THE-OUTLAW": 0.6492820382118225,
+      "THE-LOVER-THE-RULER": 0.6334743499755859,
+      "THE-LOVER-THE-SAGE": 0.773034930229187,
+      "THE-JESTER-THE-LOVER": 0.5503398776054382,
+      "THE-RULER-THE-SAGE": 0.7311601042747498,
+      "THE-JESTER-THE-RULER": 0.6548687219619751,
+      "THE-JESTER-THE-SAGE": 0.5832831859588623
+    },
+    "topk_jaccard": {
+      "A1-THE-INNOCENT": 0.0,
+      "A1-THE-EVERYMAN": 0.125,
+      "A1-THE-HERO": 0.125,
+      "A1-THE-EXPLORER": 0.0,
+      "A1-THE-OUTLAW": 0.0,
+      "A1-THE-LOVER": 0.0,
+      "A1-THE-RULER": 0.0,
+      "A1-THE-SAGE": 0.1,
+      "A1-THE-JESTER": 0.0,
+      "THE-EVERYMAN-THE-INNOCENT": 0.0,
+      "THE-HERO-THE-INNOCENT": 0.0,
+      "THE-EXPLORER-THE-INNOCENT": 0.0,
+      "THE-INNOCENT-THE-OUTLAW": 0.0,
+      "THE-INNOCENT-THE-LOVER": 0.0,
+      "THE-INNOCENT-THE-RULER": 0.0,
+      "THE-INNOCENT-THE-SAGE": 0.0,
+      "THE-INNOCENT-THE-JESTER": 0.0,
+      "THE-EVERYMAN-THE-HERO": 0.0,
+      "THE-EVERYMAN-THE-EXPLORER": 0.14285714285714285,
+      "THE-EVERYMAN-THE-OUTLAW": 0.0,
+      "THE-EVERYMAN-THE-LOVER": 0.0,
+      "THE-EVERYMAN-THE-RULER": 0.0,
+      "THE-EVERYMAN-THE-SAGE": 0.0,
+      "THE-EVERYMAN-THE-JESTER": 0.0,
+      "THE-EXPLORER-THE-HERO": 0.0,
+      "THE-HERO-THE-OUTLAW": 0.0,
+      "THE-HERO-THE-LOVER": 0.0,
+      "THE-HERO-THE-RULER": 0.0,
+      "THE-HERO-THE-SAGE": 0.25,
+      "THE-HERO-THE-JESTER": 0.0,
+      "THE-EXPLORER-THE-OUTLAW": 0.0,
+      "THE-EXPLORER-THE-LOVER": 0.0,
+      "THE-EXPLORER-THE-RULER": 0.0,
+      "THE-EXPLORER-THE-SAGE": 0.0,
+      "THE-EXPLORER-THE-JESTER": 0.0,
+      "THE-LOVER-THE-OUTLAW": 0.0,
+      "THE-OUTLAW-THE-RULER": 0.0,
+      "THE-OUTLAW-THE-SAGE": 0.0,
+      "THE-JESTER-THE-OUTLAW": 0.0,
+      "THE-LOVER-THE-RULER": 0.0,
+      "THE-LOVER-THE-SAGE": 0.1111111111111111,
+      "THE-JESTER-THE-LOVER": 0.0,
+      "THE-RULER-THE-SAGE": 0.0,
+      "THE-JESTER-THE-RULER": 0.0,
+      "THE-JESTER-THE-SAGE": 0.0
+    }
+  },
+  "meta": {
+    "query_count": 23,
+    "raw_hit_count": 46,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

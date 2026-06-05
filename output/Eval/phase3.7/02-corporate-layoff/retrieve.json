@@ -1,0 +1,1619 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "After months of internal review, the chief executive of a tax-software company told staff about a restructuring to co-locate teams in strategic hubs and accelerate AI-driven product work. The plan includes the elimination of approximately 3,000 full-time roles. Affected U.S. employees are offered a severance package of 16 weeks base pay plus two weeks per year of tenure.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 116741,
+              "title": "The Internship",
+              "similarity": 0.43387266993522644,
+              "movie_url": "https://themoviecosmos.com/movie/116741"
+            },
+            {
+              "tmdb_id": 209504,
+              "title": "Bounty Killer",
+              "similarity": 0.48247846961021423,
+              "movie_url": "https://themoviecosmos.com/movie/209504"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The company's plan involves the elimination of approximately 3,000 full-time roles, representing approximately 17% of its workforce. Offices in Reno and Woodland Hills are designated for winding down. Affected U.S. employees are offered a severance package.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-1",
+              "result-0",
+              "result-3",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 619090,
+              "title": "The Plan",
+              "similarity": 0.463542640209198,
+              "movie_url": "https://themoviecosmos.com/movie/619090"
+            },
+            {
+              "tmdb_id": 56589,
+              "title": "The Seventh Company Outdoors",
+              "similarity": 0.47845250368118286,
+              "movie_url": "https://themoviecosmos.com/movie/56589"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-INNOCENT",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Intuit, the tax-software company, is undergoing a significant restructuring to strengthen collaboration and pioneer new technology in artificial intelligence. To achieve this, the CEO communicated the difficult but necessary changes to staff, which include a significant but focused reduction to refocus the company, eliminating approximately 3,000 full-time roles. Affected U.S. employees are being provided a supportive severance package to ease their transition, and operations in Reno and Woodland Hills are transitioning to more central locations as part of the company's future-focused strategy.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 56589,
+              "title": "The Seventh Company Outdoors",
+              "similarity": 0.48634928464889526,
+              "movie_url": "https://themoviecosmos.com/movie/56589"
+            },
+            {
+              "tmdb_id": 223922,
+              "title": "Let My Puppets Come",
+              "similarity": 0.4931843876838684,
+              "movie_url": "https://themoviecosmos.com/movie/223922"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "After months of internal review, the company pursuing a focused strategy announced a plan to co-locate teams in strategic hubs and accelerate AI-driven product work. This plan involves offering a path forward through a thoughtful transition, where valued team members facing transition will receive a defined severance plan to support them. Offices in Reno and Woodland Hills are winding down as operations consolidate into key hubs for future growth.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 56589,
+              "title": "The Seventh Company Outdoors",
+              "similarity": 0.5064917802810669,
+              "movie_url": "https://themoviecosmos.com/movie/56589"
+            },
+            {
+              "tmdb_id": 1002695,
+              "title": "Mirreyes contra Godínez 2: El retiro",
+              "similarity": 0.5685344338417053,
+              "movie_url": "https://themoviecosmos.com/movie/1002695"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EVERYMAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Intuit's CEO told staff the company is reorganizing for efficiency, cutting thousands of jobs and closing offices in Reno and Woodland Hills. The firm aims to centralize work to focus on growth and innovation, but nearly one-fifth of the company's employees are let go. Workers facing job loss are offered a severance package, including 16 weeks base pay plus two weeks per year of tenure.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 762823,
+              "title": "Camera Cafe: The Movie",
+              "similarity": 0.4881664514541626,
+              "movie_url": "https://themoviecosmos.com/movie/762823"
+            },
+            {
+              "tmdb_id": 209504,
+              "title": "Bounty Killer",
+              "similarity": 0.4895055294036865,
+              "movie_url": "https://themoviecosmos.com/movie/209504"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The chief executive informed staff of the job cuts, a reduction of 17% in the workforce. Three thousand full-time roles are eliminated as part of a restructuring to co-locate teams in strategic hubs and accelerate AI-driven product work. Affected U.S. employees are offered severance terms, with offices in Reno and Woodland Hills designated for winding down.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 619090,
+              "title": "The Plan",
+              "similarity": 0.4894038438796997,
+              "movie_url": "https://themoviecosmos.com/movie/619090"
+            },
+            {
+              "tmdb_id": 287647,
+              "title": "Cart",
+              "similarity": 0.49911487102508545,
+              "movie_url": "https://themoviecosmos.com/movie/287647"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-HERO",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "To confront the challenge of an AI-driven future, the decisive leader Sasan Goodarzi announced a bold restructuring to unify teams for a future-focused mission, eliminating approximately 3,000 roles as a necessary reallocation for growth. The company is providing a substantial severance cushion for the employees bearing the brunt of this corporate shift, while closing regional offices to consolidate strength in key hubs. This decisive action will cut 17% of the workforce to fuel the acceleration of strategic product work.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 350575,
+              "title": "Outside the Box",
+              "similarity": 0.46679946780204773,
+              "movie_url": "https://themoviecosmos.com/movie/350575"
+            },
+            {
+              "tmdb_id": 58060,
+              "title": "The Jewel",
+              "similarity": 0.5109114646911621,
+              "movie_url": "https://themoviecosmos.com/movie/58060"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "As part of a necessary transformation, the tax-software firm Intuit is executing a restructuring that will eliminate 3,000 full-time positions slated for elimination. The chief executive communicated the AI-focused plan to staff, and the company has confirmed a severance package for the workforce targeted for role elimination. This effort includes phasing out offices in Reno and Woodland Hills to speed up AI product development.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 762823,
+              "title": "Camera Cafe: The Movie",
+              "similarity": 0.4341810941696167,
+              "movie_url": "https://themoviecosmos.com/movie/762823"
+            },
+            {
+              "tmdb_id": 1209423,
+              "title": "Artificial Justice",
+              "similarity": 0.470269113779068,
+              "movie_url": "https://themoviecosmos.com/movie/1209423"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EXPLORER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Visionary leader Sasan Goodarzi has unveiled a bold AI transformation plan, aiming to pioneer AI-powered product evolution. The innovation-driven company is streamlining its operations, consolidating teams to focus on new frontiers and strategically realigning resources. This major shift will involve a significant workforce reallocation, with approximately 3,000 roles being eliminated to enhance agility. To support the transition, the company is offering generous severance packages to its U.S. employees and is consolidating operations by winding down offices in Reno and Woodland Hills, moving toward central innovation hubs.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 795813,
+              "title": "I'm Your Man",
+              "similarity": 0.45045652985572815,
+              "movie_url": "https://themoviecosmos.com/movie/795813"
+            },
+            {
+              "tmdb_id": 965244,
+              "title": "Ghost in the Shell: SAC_2045 Sustainable War",
+              "similarity": 0.4604147672653198,
+              "movie_url": "https://themoviecosmos.com/movie/965244"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Intuit's chief executive announced an AI-focused restructuring to co-locate teams in strategic hubs. This initiative involves eliminating roles and cutting thousands of jobs to reshape the corporate landscape. Affected U.S. employees were offered a severance package, while offices in Reno and Woodland Hills are designated for winding down. The move represents a massive 17% job cuts across the workforce, marking a definitive shift in the company's operational footprint and future direction.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 762823,
+              "title": "Camera Cafe: The Movie",
+              "similarity": 0.4577435255050659,
+              "movie_url": "https://themoviecosmos.com/movie/762823"
+            },
+            {
+              "tmdb_id": 1002695,
+              "title": "Mirreyes contra Godínez 2: El retiro",
+              "similarity": 0.49800658226013184,
+              "movie_url": "https://themoviecosmos.com/movie/1002695"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-LOVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The corporation that abandoned its loyal people announced a brutal culling of thousands of jobs, after the leader delivered the cold, corporate decree. This devastating loss of nearly a fifth of the company's people is framed as a painful but necessary shedding of old roles for new growth, aiming to build a more connected and innovative future together.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 530076,
+              "title": "Corporate Animals",
+              "similarity": 0.5821455121040344,
+              "movie_url": "https://themoviecosmos.com/movie/530076"
+            },
+            {
+              "tmdb_id": 209504,
+              "title": "Bounty Killer",
+              "similarity": 0.6388808488845825,
+              "movie_url": "https://themoviecosmos.com/movie/209504"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "In a move to secure its future, the company is closing chapters at beloved locations to begin anew elsewhere, including offices in Reno and Woodland Hills. The dedicated workforce let go in pursuit of this new vision receives a structured support system for those departing, a severance package that honored their years of service.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "how-2",
+              "how-3",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1002695,
+              "title": "Mirreyes contra Godínez 2: El retiro",
+              "similarity": 0.5425224900245667,
+              "movie_url": "https://themoviecosmos.com/movie/1002695"
+            },
+            {
+              "tmdb_id": 56589,
+              "title": "The Seventh Company Outdoors",
+              "similarity": 0.5606685876846313,
+              "movie_url": "https://themoviecosmos.com/movie/56589"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The CEO who prioritized the company's future over tradition oversaw the erasure of 3,000 livelihoods, a transactional farewell for the displaced. The quiet death of two workplace homes in Reno and Woodland Hills signals the end of established community hubs, leaving the betrayed staff left behind to mourn what was.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 530076,
+              "title": "Corporate Animals",
+              "similarity": 0.5319585800170898,
+              "movie_url": "https://themoviecosmos.com/movie/530076"
+            },
+            {
+              "tmdb_id": 209504,
+              "title": "Bounty Killer",
+              "similarity": 0.551748514175415,
+              "movie_url": "https://themoviecosmos.com/movie/209504"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-CREATOR",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The visionary architect of Intuit, the innovation engine, unveiled a bold new blueprint for creation, outlining a necessary shedding to enable new growth. This strategic realignment of the creative force will streamline roles for a new era, erasing thousands of jobs to forge a more potent creative hub focused on AI. A crafted support package, including a defined pathway for departing talent, was offered to the displaced creators as part of the transition.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 127144,
+              "title": "Don't Hug Me I'm Scared",
+              "similarity": 0.5154824256896973,
+              "movie_url": "https://themoviecosmos.com/movie/127144"
+            },
+            {
+              "tmdb_id": 595521,
+              "title": "The Creative Brain",
+              "similarity": 0.5848343372344971,
+              "movie_url": "https://themoviecosmos.com/movie/595521"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "To sacrifice human craft for automated efficiency, the corporate machine is orchestrating a massive culling of the workforce, with the executive delivering the verdict on human roles. This erasure of thousands of jobs, amounting to the destruction of thousands of careers, is part of a restructuring to accelerate AI development. The abandonment of established workspaces in Reno and Woodland Hills follows, with a standardized buyout for the displaced.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 209504,
+              "title": "Bounty Killer",
+              "similarity": 0.5177758932113647,
+              "movie_url": "https://themoviecosmos.com/movie/209504"
+            },
+            {
+              "tmdb_id": 513349,
+              "title": "The Factory",
+              "similarity": 0.5271999835968018,
+              "movie_url": "https://themoviecosmos.com/movie/513349"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-MAGICIAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The orchestrator of the shift at the evolving platform unveiled a strategic vision alignment to synergize talent for AI breakthroughs, initiating a major workforce slash. The corporate entity enacting the change is streamlining to core strengths by culling 3,000 positions, with displaced personnel offered a structured exit plan. This transformative sleight-of-hand abandons locations in Reno and Woodland Hills, consolidating control under the guise of innovation.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 8427,
+              "title": "I Spy",
+              "similarity": 0.4730541706085205,
+              "movie_url": "https://themoviecosmos.com/movie/8427"
+            },
+            {
+              "tmdb_id": 1040229,
+              "title": "T.I.M.",
+              "similarity": 0.4841713607311249,
+              "movie_url": "https://themoviecosmos.com/movie/1040229"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "After months of internal review, the architect of transformation communicated a restructuring plan to centralize operations. This move optimizes the role structure, eliminating 3,000 jobs and resulting in a leaner, more focused organization. The impacted workforce receives generous transition support as sites slated for strategic consolidation wind down, a classic magician's pivot to reorganize for efficiency and AI focus.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 271826,
+              "title": "An Eye for Beauty",
+              "similarity": 0.4929933547973633,
+              "movie_url": "https://themoviecosmos.com/movie/271826"
+            },
+            {
+              "tmdb_id": 483558,
+              "title": "Sharing Christmas",
+              "similarity": 0.4937266409397125,
+              "movie_url": "https://themoviecosmos.com/movie/483558"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-JESTER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The ringmaster of this AI-themed circus, the chief executive, delivered the punchline of the century: 'It's not you, it's the AI.' In a move framed as a bold leap toward hyper-efficient synergy, the corporate colossus is sacrificing 3,000 jobs to the god of algorithms, a thinly veiled excuse to cut costs and call it progress. The victims receive the company's legally mandated consolation prize, while nearly a fifth of the company's people are shown the exit.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "how-0",
+              "why-0",
+              "how-1",
+              "result-1",
+              "result-0",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1209423,
+              "title": "Artificial Justice",
+              "similarity": 0.5872706174850464,
+              "movie_url": "https://themoviecosmos.com/movie/1209423"
+            },
+            {
+              "tmdb_id": 209504,
+              "title": "Bounty Killer",
+              "similarity": 0.5910662412643433,
+              "movie_url": "https://themoviecosmos.com/movie/209504"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Intuit, the visionary tax-software titan pivoting to the future, is orchestrating a graceful exit from outdated physical spaces. The scheduled closure of offices in Reno and Woodland Hills marks the slow-motion death of two corporate outposts, all to consolidate operations for strategic and technological goals. This leaves the lucky recipients of a new career horizon to contemplate their parting gift: a few weeks' pay and the door.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "how-3",
+              "result-3",
+              "why-0",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 74836,
+              "title": "Idaho Transfer",
+              "similarity": 0.49676260352134705,
+              "movie_url": "https://themoviecosmos.com/movie/74836"
+            },
+            {
+              "tmdb_id": 1171145,
+              "title": "Crime 101",
+              "similarity": 0.5076436996459961,
+              "movie_url": "https://themoviecosmos.com/movie/1171145"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "In the corporate meat grinder chewing up 3,000 jobs, the chief orchestrator of the great corporate shuffle unveils an exciting new chapter. The workforce members impacted by the restructuring, the 3,000 human sacrifices, are offered a generous golden parachute. This strategic workforce right-sizing for a leaner future sees two office locations sacrificed on the altar of centralization.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "how-1",
+              "how-0",
+              "how-2",
+              "how-3",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 530076,
+              "title": "Corporate Animals",
+              "similarity": 0.545195996761322,
+              "movie_url": "https://themoviecosmos.com/movie/530076"
+            },
+            {
+              "tmdb_id": 56589,
+              "title": "The Seventh Company Outdoors",
+              "similarity": 0.5607208609580994,
+              "movie_url": "https://themoviecosmos.com/movie/56589"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 209504,
+      "title": "Bounty Killer",
+      "overview": "It’s been 20 years since the corporations took over the world’s governments. Their thirst for power and profits led to the Corporate Wars, a fierce global battle that laid waste to society as we know it. Born from the ash, the Council of Nine rose as a new law and order for this dark age. To avenge the corporations’ reckless destruction, the Council issues death warrants for all white collar criminals. Their hunters—the bounty killer. From amateur savage to graceful assassin, the bounty killers now compete for body count, fame and a fat stack of cash. They’re ending the plague of corporate greed and providing the survivors of the apocalypse with retribution. These are the new heroes. This is the age of the BOUNTY KILLER.",
+      "genres": "Action, Science Fiction",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/bG7wdte8enWVc1uuLX6Ys7ckxwd.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/209504",
+      "similarity": 0.6388808488845825,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-LOVER",
+        "THE-CREATOR",
+        "THE-JESTER"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.48247846961021423
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4895055294036865,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.6388808488845825,
+          "fit": 0.6
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "why-0",
+            "how-1",
+            "result-1",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.5910662412643433,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5177758932113647,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.551748514175415,
+          "fit": 0.55
+        }
+      ],
+      "distinct_agents": 5,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=5 (>=2): A1,THE-LOVER,THE-EVERYMAN,THE-JESTER,THE-CREATOR"
+    },
+    {
+      "tmdb_id": 1209423,
+      "title": "Artificial Justice",
+      "overview": "In the near future, the Government aims to replace judges with Artificial Intelligence software, pledging to effectively automate and depoliticize the justice system. Carmen Costa, a distinguished judge, has been invited to assess this new procedure. However, when the software’s creator is found dead, she realizes her life is in danger and that she will have to fight the powerful interests that are at play in the highest echelons of the State.",
+      "genres": "Thriller, Science Fiction",
+      "release_year": 2024,
+      "language": "es",
+      "poster_path": "/x7twpnxfyDDCzzQnX9T3Zl9db1F.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1209423",
+      "similarity": 0.5872706174850464,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "why-0",
+            "how-1",
+            "result-1",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.5872706174850464,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.470269113779068,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-HERO,THE-JESTER"
+    },
+    {
+      "tmdb_id": 530076,
+      "title": "Corporate Animals",
+      "overview": "Disaster strikes when the egotistical CEO of an edible cutlery company leads her long-suffering staff on a corporate team-building trip in New Mexico. Trapped underground, this mismatched and disgruntled group must pull together to survive.",
+      "genres": "Horror, Comedy",
+      "release_year": 2019,
+      "language": "en",
+      "poster_path": "/ajnBS9iakB3R5RIWedq6BHvmxFq.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/530076",
+      "similarity": 0.5821455121040344,
+      "triggered_by": [
+        "THE-LOVER",
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5821455121040344,
+          "fit": 0.6
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.5319585800170898,
+          "fit": 0.55
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-1",
+            "how-0",
+            "how-2",
+            "how-3",
+            "result-3"
+          ],
+          "similarity": 0.545195996761322,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-LOVER,THE-JESTER"
+    },
+    {
+      "tmdb_id": 1002695,
+      "title": "Mirreyes contra Godínez 2: El retiro",
+      "overview": "A divided team heads to a corporate retreat after receiving an enticing proposal. During their time away, they must overcome their differences and find a way to reunite.",
+      "genres": "Comedy",
+      "release_year": 2022,
+      "language": "es",
+      "poster_path": "/mzImbuC5tXAyrHxUIsk9TiIrtPv.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1002695",
+      "similarity": 0.5685344338417053,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-EXPLORER",
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.5685344338417053,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.49800658226013184,
+          "fit": 0.65
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-2",
+            "how-3",
+            "result-2"
+          ],
+          "similarity": 0.5425224900245667,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-LOVER,THE-EXPLORER,THE-INNOCENT"
+    },
+    {
+      "tmdb_id": 56589,
+      "title": "The Seventh Company Outdoors",
+      "overview": "The third part of Seventh Company adventures.",
+      "genres": "Comedy",
+      "release_year": 1977,
+      "language": "fr",
+      "poster_path": "/qNBJf3mEfKmoB2iKAlAY3ux9wMB.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/56589",
+      "similarity": 0.5607208609580994,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-LOVER",
+        "THE-JESTER"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-1",
+            "result-0",
+            "result-3",
+            "result-2"
+          ],
+          "similarity": 0.47845250368118286
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.48634928464889526,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.5064917802810669,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-2",
+            "how-3",
+            "result-2"
+          ],
+          "similarity": 0.5606685876846313,
+          "fit": 0.65
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-1",
+            "how-0",
+            "how-2",
+            "how-3",
+            "result-3"
+          ],
+          "similarity": 0.5607208609580994,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 4,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=4 (>=2): A1,THE-LOVER,THE-JESTER,THE-INNOCENT"
+    },
+    {
+      "tmdb_id": 619090,
+      "title": "The Plan",
+      "overview": "Three friends who have been fired from the company where they worked and are demoralized because of their unemployment status. In these circumstances, they meet to undertake the plan that mentions the title but there is a problem: the car with which they would travel has broken down and the crane must wait.",
+      "genres": "Comedy, Drama",
+      "release_year": 2018,
+      "language": "es",
+      "poster_path": "/jDNz5RG6n6mIsXVOf5TgQsvmIxN.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/619090",
+      "similarity": 0.4894038438796997,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-1",
+            "result-0",
+            "result-3",
+            "result-2"
+          ],
+          "similarity": 0.463542640209198
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4894038438796997,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): A1,THE-EVERYMAN"
+    },
+    {
+      "tmdb_id": 762823,
+      "title": "Camera Cafe: The Movie",
+      "overview": "Jesús Quesada, an incompetent executive, is appointed as the new director of a company in decline whose survival will now depend on both the ingenuity and ambition of his former colleagues.",
+      "genres": "Comedy",
+      "release_year": 2022,
+      "language": "es",
+      "poster_path": "/wlHZV96gSY5UOmqPDlsFZ4ABWHy.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/762823",
+      "similarity": 0.4881664514541626,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-HERO",
+        "THE-EXPLORER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4881664514541626,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.4341810941696167,
+          "fit": 0.65
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4577435255050659,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-EXPLORER,THE-EVERYMAN,THE-HERO"
+    },
+    {
+      "tmdb_id": 595521,
+      "title": "The Creative Brain",
+      "overview": "Neuroscientist David Eagleman taps into the creative process of various inventors, while exploring brain-bending, risk-taking ways to spark creativity",
+      "genres": "Documentary",
+      "release_year": 2019,
+      "language": "en",
+      "poster_path": "/yb3Unw9xHK0f7n6tCLlsoGq4sbb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/595521",
+      "similarity": 0.5848343372344971,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5848343372344971,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 513349,
+      "title": "The Factory",
+      "overview": "When a factory is bound to close, a group of workers decides to take action against the owner.",
+      "genres": "Thriller, Drama, Crime",
+      "release_year": 2018,
+      "language": "ru",
+      "poster_path": "/xWUPJmVA93U8QpzaUIqcR2iCeyG.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/513349",
+      "similarity": 0.5271999835968018,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5271999835968018,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 127144,
+      "title": "Don't Hug Me I'm Scared",
+      "overview": "A disturbing puppet short exploring the concept of creativity.",
+      "genres": "Animation, Comedy, Horror, Music",
+      "release_year": 2012,
+      "language": "en",
+      "poster_path": "/kXBvc3wkK33ibj9HK7pF9X0Uiwe.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/127144",
+      "similarity": 0.5154824256896973,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5154824256896973,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 58060,
+      "title": "The Jewel",
+      "overview": "Amanzio Rastelli appointed several of his relations to managerial positions in his firm. They decided to think internationally and now business is heavily in debt. Luckily for the Rastellis, Bolta the accountant uses all the tricks of his art to cook the books, but catastrophe awaits.",
+      "genres": "Drama",
+      "release_year": 2011,
+      "language": "it",
+      "poster_path": "/N9x1jRZXPtuDrWkjZBiKPTiURX.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/58060",
+      "similarity": 0.5109114646911621,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5109114646911621,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1171145,
+      "title": "Crime 101",
+      "overview": "When an elusive thief whose high-stakes heists unfold along the iconic 101 freeway in Los Angeles eyes the score of a lifetime, with hopes of this being his final job, his path collides with a disillusioned insurance broker who is facing her own crossroads. Determined to crack the case, a relentless detective closes in on the operation, raising the stakes even higher.",
+      "genres": "Crime, Thriller",
+      "release_year": 2026,
+      "language": "en",
+      "poster_path": "/tVvpFIoteRHNnoZMhdnwIVwJpCA.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1171145",
+      "similarity": 0.5076436996459961,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-3",
+            "result-3",
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.5076436996459961,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 287647,
+      "title": "Cart",
+      "overview": "In response to a sudden dismissal of staff, workers at a big retail store begin a protest against their employer's oppressive labor policies.",
+      "genres": "Drama",
+      "release_year": 2014,
+      "language": "ko",
+      "poster_path": "/dkLuZTtFGIZdalt06rtntYjJrmP.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/287647",
+      "similarity": 0.49911487102508545,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.49911487102508545,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 74836,
+      "title": "Idaho Transfer",
+      "overview": "During a time of waning global resources, a crew of young researchers travel into the future to escape an apocalypse before the shutdown of their time transfer project. They find that some type of disaster has de-populated the Idaho region and, by implication, the nation or perhaps the world.",
+      "genres": "Science Fiction",
+      "release_year": 1973,
+      "language": "en",
+      "poster_path": "/lH7Yhx25msadOP3vbftdD8TXNS3.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/74836",
+      "similarity": 0.49676260352134705,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-3",
+            "result-3",
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.49676260352134705,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 483558,
+      "title": "Sharing Christmas",
+      "overview": "A real estate developer is given the opportunity of his career to transform an old shopping complex into a prime location. Unfortunately, there is one tenant who is holding out—the Christmas shop owner he met by happenstance just days ago.",
+      "genres": "Romance, TV Movie",
+      "release_year": 2017,
+      "language": "en",
+      "poster_path": "/rbcQlnr10rmpyqGftTeZvtbKCeq.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/483558",
+      "similarity": 0.4937266409397125,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4937266409397125,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 223922,
+      "title": "Let My Puppets Come",
+      "overview": "The three chief executives of Creative Concepts Systems &amp; Procedures Brothers Unlimited Inc. of New York are in hot water as their latest venture has been a huge failure, and their Mafia investor, \"Mr. Big\", wants his $500,000 within 24 hours, or else. So Jimmy, a courier who over hears their plight, suggests they make a porno movie as an easy way of getting back the lost money.",
+      "genres": "Comedy, Music",
+      "release_year": 1976,
+      "language": "en",
+      "poster_path": "/tkEC35oeLKSTJbsdlXkJcLLK15O.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/223922",
+      "similarity": 0.4931843876838684,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4931843876838684,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 271826,
+      "title": "An Eye for Beauty",
+      "overview": "An architect and his wife see their relationship challenged.",
+      "genres": "Drama",
+      "release_year": 2014,
+      "language": "fr",
+      "poster_path": "/aToqnWuKIlqLHWbJXbaET0eo4OF.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/271826",
+      "similarity": 0.4929933547973633,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4929933547973633,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1040229,
+      "title": "T.I.M.",
+      "overview": "Prosthetics scientist Abi and her adulterous husband Paul adjust to life outside the city as Abi begins working for high-tech company Integrate, developing a humanoid AI - T.I.M.",
+      "genres": "Science Fiction, Thriller, Horror",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/aGLElgUFzjhvHsbDQ1Ae0d5kaWu.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1040229",
+      "similarity": 0.4841713607311249,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4841713607311249,
+          "fit": 0.91
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 8427,
+      "title": "I Spy",
+      "overview": "When the Switchblade, the most sophisticated prototype stealth fighter created yet, is stolen from the U.S. government, one of the United States' top spies, Alex Scott, is called to action. What he doesn't expect is to get teamed up with a cocky civilian, World Class Boxing Champion Kelly Robinson, on a dangerous top secret espionage mission. Their assignment: using equal parts skill and humor, catch Arnold Gundars, one of the world's most successful arms dealers.",
+      "genres": "Action, Adventure, Comedy, Thriller",
+      "release_year": 2002,
+      "language": "en",
+      "poster_path": "/hmjCMtkeqxruMVocq7iwMx899xi.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/8427",
+      "similarity": 0.4730541706085205,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4730541706085205,
+          "fit": 0.91
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A1-THE-INNOCENT": 0.7069498300552368,
+      "A1-THE-EVERYMAN": 0.6903669834136963,
+      "A1-THE-HERO": 0.5375630855560303,
+      "A1-THE-EXPLORER": 0.38313090801239014,
+      "A1-THE-LOVER": 0.42722100019454956,
+      "A1-THE-CREATOR": 0.28663721680641174,
+      "A1-THE-MAGICIAN": 0.43412506580352783,
+      "A1-THE-JESTER": 0.46066170930862427,
+      "THE-EVERYMAN-THE-INNOCENT": 0.7230240106582642,
+      "THE-HERO-THE-INNOCENT": 0.5391337871551514,
+      "THE-EXPLORER-THE-INNOCENT": 0.501128613948822,
+      "THE-INNOCENT-THE-LOVER": 0.4911886155605316,
+      "THE-CREATOR-THE-INNOCENT": 0.4932639002799988,
+      "THE-INNOCENT-THE-MAGICIAN": 0.594694972038269,
+      "THE-INNOCENT-THE-JESTER": 0.48725926876068115,
+      "THE-EVERYMAN-THE-HERO": 0.5234127044677734,
+      "THE-EVERYMAN-THE-EXPLORER": 0.34132111072540283,
+      "THE-EVERYMAN-THE-LOVER": 0.6141273975372314,
+      "THE-CREATOR-THE-EVERYMAN": 0.3895493149757385,
+      "THE-EVERYMAN-THE-MAGICIAN": 0.5022637248039246,
+      "THE-EVERYMAN-THE-JESTER": 0.39709895849227905,
+      "THE-EXPLORER-THE-HERO": 0.7933931946754456,
+      "THE-HERO-THE-LOVER": 0.4782472252845764,
+      "THE-CREATOR-THE-HERO": 0.5682603120803833,
+      "THE-HERO-THE-MAGICIAN": 0.6717965602874756,
+      "THE-HERO-THE-JESTER": 0.5154581069946289,
+      "THE-EXPLORER-THE-LOVER": 0.29204118251800537,
+      "THE-CREATOR-THE-EXPLORER": 0.6409289240837097,
+      "THE-EXPLORER-THE-MAGICIAN": 0.71055006980896,
+      "THE-EXPLORER-THE-JESTER": 0.46965283155441284,
+      "THE-CREATOR-THE-LOVER": 0.3258936405181885,
+      "THE-LOVER-THE-MAGICIAN": 0.3992806673049927,
+      "THE-JESTER-THE-LOVER": 0.47358909249305725,
+      "THE-CREATOR-THE-MAGICIAN": 0.7363736629486084,
+      "THE-CREATOR-THE-JESTER": 0.48098042607307434,
+      "THE-JESTER-THE-MAGICIAN": 0.5099523663520813
+    },
+    "topk_jaccard": {
+      "A1-THE-INNOCENT": 0.16666666666666666,
+      "A1-THE-EVERYMAN": 0.3333333333333333,
+      "A1-THE-HERO": 0.0,
+      "A1-THE-EXPLORER": 0.0,
+      "A1-THE-LOVER": 0.3333333333333333,
+      "A1-THE-CREATOR": 0.14285714285714285,
+      "A1-THE-MAGICIAN": 0.0,
+      "A1-THE-JESTER": 0.25,
+      "THE-EVERYMAN-THE-INNOCENT": 0.0,
+      "THE-HERO-THE-INNOCENT": 0.0,
+      "THE-EXPLORER-THE-INNOCENT": 0.16666666666666666,
+      "THE-INNOCENT-THE-LOVER": 0.4,
+      "THE-CREATOR-THE-INNOCENT": 0.0,
+      "THE-INNOCENT-THE-MAGICIAN": 0.0,
+      "THE-INNOCENT-THE-JESTER": 0.125,
+      "THE-EVERYMAN-THE-HERO": 0.14285714285714285,
+      "THE-EVERYMAN-THE-EXPLORER": 0.14285714285714285,
+      "THE-EVERYMAN-THE-LOVER": 0.14285714285714285,
+      "THE-CREATOR-THE-EVERYMAN": 0.14285714285714285,
+      "THE-EVERYMAN-THE-MAGICIAN": 0.0,
+      "THE-EVERYMAN-THE-JESTER": 0.1111111111111111,
+      "THE-EXPLORER-THE-HERO": 0.14285714285714285,
+      "THE-HERO-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-HERO": 0.0,
+      "THE-HERO-THE-MAGICIAN": 0.0,
+      "THE-HERO-THE-JESTER": 0.1111111111111111,
+      "THE-EXPLORER-THE-LOVER": 0.14285714285714285,
+      "THE-CREATOR-THE-EXPLORER": 0.0,
+      "THE-EXPLORER-THE-MAGICIAN": 0.0,
+      "THE-EXPLORER-THE-JESTER": 0.0,
+      "THE-CREATOR-THE-LOVER": 0.14285714285714285,
+      "THE-LOVER-THE-MAGICIAN": 0.0,
+      "THE-JESTER-THE-LOVER": 0.42857142857142855,
+      "THE-CREATOR-THE-MAGICIAN": 0.0,
+      "THE-CREATOR-THE-JESTER": 0.1111111111111111,
+      "THE-JESTER-THE-MAGICIAN": 0.0
+    }
+  },
+  "meta": {
+    "query_count": 20,
+    "raw_hit_count": 40,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

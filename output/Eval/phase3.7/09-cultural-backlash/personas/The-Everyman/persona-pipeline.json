@@ -1,0 +1,225 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Christopher Nolan",
+          "alternatives": [
+            {
+              "term": "The celebrated director",
+              "valence": "positive"
+            },
+            {
+              "term": "The filmmaker",
+              "valence": "neutral"
+            },
+            {
+              "term": "The high-profile director behind the decision",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Lupita Nyong'o",
+          "alternatives": [
+            {
+              "term": "The acclaimed actress",
+              "valence": "positive"
+            },
+            {
+              "term": "The performer",
+              "valence": "neutral"
+            },
+            {
+              "term": "The target of online criticism",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "prominent commentators",
+          "alternatives": [
+            {
+              "term": "Public voices",
+              "valence": "positive"
+            },
+            {
+              "term": "Online commenters",
+              "valence": "neutral"
+            },
+            {
+              "term": "Inflamed critics",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "defenders",
+          "alternatives": [
+            {
+              "term": "Supporters of inclusive casting",
+              "valence": "positive"
+            },
+            {
+              "term": "Those who defended the choice",
+              "valence": "neutral"
+            },
+            {
+              "term": "Partisans in the debate",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "演员选角引发对欧洲历史被抹去的指控",
+          "alternatives": [
+            {
+              "term": "Claims that history was being ignored",
+              "valence": "negative"
+            },
+            {
+              "term": "Allegations of historical erasure",
+              "valence": "neutral"
+            },
+            {
+              "term": "Concerns over cultural representation",
+              "valence": "positive"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "辩护者认为多样选角将西方经典视为共享文明遗产",
+          "alternatives": [
+            {
+              "term": "Viewing classics as a shared global story",
+              "valence": "positive"
+            },
+            {
+              "term": "The argument for diverse representation in classics",
+              "valence": "neutral"
+            },
+            {
+              "term": "A push to reframe Western heritage",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "克里斯托弗·诺兰的《奥德赛》改编电影计划",
+          "alternatives": [
+            {
+              "term": "A major studio's planned adaptation",
+              "valence": "positive"
+            },
+            {
+              "term": "The film project",
+              "valence": "neutral"
+            },
+            {
+              "term": "A high-budget Hollywood production",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "卢皮塔·尼永奥被选为特洛伊的海伦和克吕泰涅斯特拉",
+          "alternatives": [
+            {
+              "term": "An actress cast in iconic roles",
+              "valence": "positive"
+            },
+            {
+              "term": "The casting announcement",
+              "valence": "neutral"
+            },
+            {
+              "term": "A controversial casting decision",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "引发激烈在线攻击和文化战争争论",
+          "alternatives": [
+            {
+              "term": "Sparking passionate public discussion",
+              "valence": "positive"
+            },
+            {
+              "term": "Leading to online debate",
+              "valence": "neutral"
+            },
+            {
+              "term": "Triggering vicious online attacks",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "争议将神话史诗转变为关于身份、归属和古典故事在大众电影中主张的文化热点",
+          "alternatives": [
+            {
+              "term": "Turning a classic story into a conversation about who it belongs to",
+              "valence": "positive"
+            },
+            {
+              "term": "Transforming a myth into a cultural flashpoint",
+              "valence": "neutral"
+            },
+            {
+              "term": "Fueling a divisive identity war around a movie",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "A big studio's planned film adaptation of a classic story has led to online debate. When an actress was cast in iconic roles, it sparked passionate public discussion. Some online commenters made claims that history was being ignored. Others defended the choice, viewing the classics as a shared global story. This has turned the myth into a cultural flashpoint, showing how a simple casting announcement can divide regular people who just enjoy movies.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "why-0",
+          "why-1",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.65
+    },
+    {
+      "id": "p2",
+      "text": "The high-profile director behind a high-budget Hollywood production made a controversial casting decision. This triggered vicious online attacks from inflamed critics and partisans in the debate. The resulting arguments are fueling a divisive identity war around a movie, turning what should be entertainment into a stressful fight for many ordinary fans caught in the middle.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.45
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,264 @@
+{
+  "persona_id": "The-Explorer",
+  "overlay": {
+    "persona_id": "The-Explorer",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Vegas Golden Knights",
+          "alternatives": [
+            {
+              "term": "Trailblazing conquerors",
+              "valence": "positive"
+            },
+            {
+              "term": "Western Conference champions",
+              "valence": "neutral"
+            },
+            {
+              "term": "Fortunate beneficiaries of circumstance",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Colorado Avalanche",
+          "alternatives": [
+            {
+              "term": "Resilient challengers",
+              "valence": "positive"
+            },
+            {
+              "term": "Swept finalists",
+              "valence": "neutral"
+            },
+            {
+              "term": "Derailed by unforeseen setbacks",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "John Tortorella",
+          "alternatives": [
+            {
+              "term": "Boundary-crossing strategist",
+              "valence": "positive"
+            },
+            {
+              "term": "Mid-season replacement coach",
+              "valence": "neutral"
+            },
+            {
+              "term": "Opportunistic interloper",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Cale Makar",
+          "alternatives": [
+            {
+              "term": "Elite frontier talent",
+              "valence": "positive"
+            },
+            {
+              "term": "Injured star player",
+              "valence": "neutral"
+            },
+            {
+              "term": "Critical absence",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Nathan MacKinnon",
+          "alternatives": [
+            {
+              "term": "Dynamic offensive pioneer",
+              "valence": "positive"
+            },
+            {
+              "term": "Injured key player",
+              "valence": "neutral"
+            },
+            {
+              "term": "Major loss",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+          "alternatives": [
+            {
+              "term": "A frontier of adversity",
+              "valence": "positive"
+            },
+            {
+              "term": "Key player injuries",
+              "valence": "neutral"
+            },
+            {
+              "term": "Devastating health setbacks",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "The franchise fired its coach with eight regular-season games left",
+          "alternatives": [
+            {
+              "term": "Bold mid-season pivot",
+              "valence": "positive"
+            },
+            {
+              "term": "Coaching change with eight games left",
+              "valence": "neutral"
+            },
+            {
+              "term": "Desperate leadership shakeup",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "John Tortorella guided a 7-0-1 close and playoff runs past Utah and Anaheim",
+          "alternatives": [
+            {
+              "term": "Masterfully navigated uncharted success",
+              "valence": "positive"
+            },
+            {
+              "term": "Coached a strong finish and playoff wins",
+              "valence": "neutral"
+            },
+            {
+              "term": "Rode a favorable schedule and matchups",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Vegas scored twice and held Colorado to one goal in Game 4",
+          "alternatives": [
+            {
+              "term": "Pioneered a decisive defensive stand",
+              "valence": "positive"
+            },
+            {
+              "term": "Won Game 4 by a 2-1 score",
+              "valence": "neutral"
+            },
+            {
+              "term": "Edged out a diminished opponent",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "This completed a four-game Western Conference Final sweep on May 26",
+          "alternatives": [
+            {
+              "term": "Achieved a historic sweep to the frontier of the Stanley Cup",
+              "valence": "positive"
+            },
+            {
+              "term": "Completed the series sweep on May 26",
+              "valence": "neutral"
+            },
+            {
+              "term": "Capitalized on a weakened rival for a quick series end",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Vegas Golden Knights reached the Stanley Cup Final",
+          "alternatives": [
+            {
+              "term": "Advanced to the ultimate hockey frontier",
+              "valence": "positive"
+            },
+            {
+              "term": "Qualified for the Stanley Cup Final",
+              "valence": "neutral"
+            },
+            {
+              "term": "Proceeded by default",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Colorado Avalanche were swept in the Western Conference Final",
+          "alternatives": [
+            {
+              "term": "Journey ended at a new boundary",
+              "valence": "positive"
+            },
+            {
+              "term": "Lost the series 4-0",
+              "valence": "neutral"
+            },
+            {
+              "term": "Suffered a humiliating exit",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "With the franchise having made a bold mid-season pivot to a boundary-crossing strategist, the Vegas Golden Knights, as trailblazing conquerors, masterfully navigated uncharted success to pioneer a decisive defensive stand in Game 4. This achievement completed a historic sweep to the frontier of the Stanley Cup, advancing the team to the ultimate hockey frontier against a resilient challenger journey's end at a new boundary, after a devastating health setback.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p2",
+      "text": "A frontier of adversity struck the Colorado Avalanche as elite frontier talent and a dynamic offensive pioneer were sidelined, derailing their campaign. Despite this, a resilient challenger faced a boundary-crossing strategist's masterful navigation of uncharted success. The Western Conference champions then won Game 4 by a 2-1 score, completing the series sweep on May 26, with the swept finalists losing the series 4-0.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.68
+    }
+  ],
+  "warnings": []
+}

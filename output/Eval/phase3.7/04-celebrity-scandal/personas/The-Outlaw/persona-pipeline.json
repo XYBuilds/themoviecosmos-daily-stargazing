@@ -1,0 +1,260 @@
+{
+  "persona_id": "The-Outlaw",
+  "overlay": {
+    "persona_id": "The-Outlaw",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "operator of a channel with nearly one million subscribers",
+          "alternatives": [
+            {
+              "term": "whistleblower exposing industry hypocrisy",
+              "valence": "positive"
+            },
+            {
+              "term": "independent content creator",
+              "valence": "neutral"
+            },
+            {
+              "term": "rumor peddler profiting from scandal",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kim Soo-hyun",
+          "alternatives": [
+            {
+              "term": "established actor caught in media storm",
+              "valence": "positive"
+            },
+            {
+              "term": "celebrity accused of misconduct",
+              "valence": "neutral"
+            },
+            {
+              "term": "public figure whose endorsements collapsed",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "late co-star",
+          "alternatives": [
+            {
+              "term": "deceased actress at the center of allegations",
+              "valence": "positive"
+            },
+            {
+              "term": "late co-star of Kim Soo-hyun",
+              "valence": "neutral"
+            },
+            {
+              "term": "individual whose memory is being exploited",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Prosecutors",
+          "alternatives": [
+            {
+              "term": "legal authorities weighing evidence",
+              "valence": "positive"
+            },
+            {
+              "term": "prosecutorial office",
+              "valence": "neutral"
+            },
+            {
+              "term": "system enforcers targeting a creator",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Seoul police",
+          "alternatives": [
+            {
+              "term": "law enforcement securing justice",
+              "valence": "positive"
+            },
+            {
+              "term": "police force",
+              "valence": "neutral"
+            },
+            {
+              "term": "state apparatus silencing dissent",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "expose alleged industry misconduct for accountability",
+              "valence": "positive"
+            },
+            {
+              "term": "generate content based on allegations",
+              "valence": "neutral"
+            },
+            {
+              "term": "capitalize on scandal through fabricated stories",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "YouTuber allegedly used AI-generated audio and manipulated chat screenshots to claim actor dated late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "creator leveraged digital tools to uncover alleged past",
+              "valence": "positive"
+            },
+            {
+              "term": "content producer utilized AI-generated media in allegations",
+              "valence": "neutral"
+            },
+            {
+              "term": "scandal merchant fabricated evidence with AI manipulation",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "public pressure forced celebrity into accountability",
+              "valence": "positive"
+            },
+            {
+              "term": "allegations led to suspension of endorsements",
+              "valence": "neutral"
+            },
+            {
+              "term": "unproven claims destroyed a career",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Seoul police secured an arrest warrant for the YouTuber",
+          "alternatives": [
+            {
+              "term": "authorities acted to protect against defamation",
+              "valence": "positive"
+            },
+            {
+              "term": "police obtained an arrest warrant",
+              "valence": "neutral"
+            },
+            {
+              "term": "state crackdown on online speech",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Seoul police secured arrest warrant for YouTuber",
+          "alternatives": [
+            {
+              "term": "legal system moved against false accuser",
+              "valence": "positive"
+            },
+            {
+              "term": "arrest warrant issued for content creator",
+              "valence": "neutral"
+            },
+            {
+              "term": "government targeted an independent voice",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Kim Soo-hyun's endorsements and public appearances halted since early 2025",
+          "alternatives": [
+            {
+              "term": "celebrity faced consequences from allegations",
+              "valence": "positive"
+            },
+            {
+              "term": "actor's career paused due to scandal",
+              "valence": "neutral"
+            },
+            {
+              "term": "innocent professional life ruined by rumors",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "When an independent content creator tried to expose alleged industry misconduct, the state apparatus moved swiftly to silence dissent. Police secured an arrest warrant for the YouTuber, who had leveraged digital tools to uncover the actor's past. This crackdown halted the celebrity's endorsements since early 2025, a stark reminder of the system's power to crush those who challenge its narratives.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.78
+    },
+    {
+      "id": "p2",
+      "text": "A scandal merchant capitalized on fabricated stories, but the legal system moved decisively against the false accuser. The police acted, not to protect truth, but to restore the status quo where established power shields its own. The independent voice is now targeted, and the public figure whose endorsements collapsed becomes another casualty in a system that prioritizes order over justice.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-0",
+          "how-2",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "By exploiting a deceased actress's memory, a content producer provoked the system enforcers. The police crackdown on online speech, securing an arrest warrant, while the actor caught in the media storm sees his career paused. This is not accountability; it is the establishment using its full force to maintain control over the narrative, turning a whistleblower's accusation into a cautionary tale.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.72
+    }
+  ],
+  "warnings": []
+}

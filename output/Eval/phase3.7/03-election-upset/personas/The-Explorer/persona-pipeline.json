@@ -1,0 +1,225 @@
+{
+  "persona_id": "The-Explorer",
+  "overlay": {
+    "persona_id": "The-Explorer",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "where-0",
+          "original_term": "Texas",
+          "alternatives": [
+            {
+              "term": "the Lone Star frontier",
+              "valence": "positive"
+            },
+            {
+              "term": "the state of Texas",
+              "valence": "neutral"
+            },
+            {
+              "term": "the entrenched political heartland",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-0",
+          "original_term": "Ken Paxton",
+          "alternatives": [
+            {
+              "term": "the rule-breaking challenger",
+              "valence": "positive"
+            },
+            {
+              "term": "the state attorney general",
+              "valence": "neutral"
+            },
+            {
+              "term": "the polarizing insurgent",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "John Cornyn",
+          "alternatives": [
+            {
+              "term": "the institution-bound incumbent",
+              "valence": "positive"
+            },
+            {
+              "term": "the senior senator",
+              "valence": "neutral"
+            },
+            {
+              "term": "the tradition-bound figure",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "James Talarico",
+          "alternatives": [
+            {
+              "term": "the witness to a political shift",
+              "valence": "positive"
+            },
+            {
+              "term": "the Democratic state representative",
+              "valence": "neutral"
+            },
+            {
+              "term": "the passive bystander",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "sitting president",
+          "alternatives": [
+            {
+              "term": "the kingmaker forging a new path",
+              "valence": "positive"
+            },
+            {
+              "term": "the president",
+              "valence": "neutral"
+            },
+            {
+              "term": "the meddler in state politics",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "aided by a late endorsement from the sitting president",
+          "alternatives": [
+            {
+              "term": "propelled by a last-minute presidential nod",
+              "valence": "positive"
+            },
+            {
+              "term": "assisted by a presidential endorsement",
+              "valence": "neutral"
+            },
+            {
+              "term": "bolstered by an eleventh-hour political intervention",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Ken Paxton won approximately 64% of the vote in the Texas Senate Republican runoff",
+          "alternatives": [
+            {
+              "term": "seized a decisive victory with a commanding share of the vote",
+              "valence": "positive"
+            },
+            {
+              "term": "secured the nomination with about 64% of the vote",
+              "valence": "neutral"
+            },
+            {
+              "term": "overwhelmed the field in a lopsided primary runoff",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Ken Paxton won the Texas Senate Republican runoff",
+          "alternatives": [
+            {
+              "term": "pioneered a new political trajectory for Texas",
+              "valence": "positive"
+            },
+            {
+              "term": "secured the Republican nomination",
+              "valence": "neutral"
+            },
+            {
+              "term": "upended the state's political order",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "John Cornyn lost renomination, becoming the first sitting Republican senator from Texas to do so since 1970",
+          "alternatives": [
+            {
+              "term": "marked the end of a long-standing political era",
+              "valence": "positive"
+            },
+            {
+              "term": "became the first sitting GOP senator from Texas to lose renomination since 1970",
+              "valence": "neutral"
+            },
+            {
+              "term": "suffered a historic, precedent-breaking defeat",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Paxton will face James Talarico in the November general election",
+          "alternatives": [
+            {
+              "term": "sets the stage for a new frontier clash in November",
+              "valence": "positive"
+            },
+            {
+              "term": "will contest the general election against James Talarico",
+              "valence": "neutral"
+            },
+            {
+              "term": "cements a polarized and uncertain November contest",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "Propelled by a last-minute presidential nod, the rule-breaking challenger seized a decisive victory with a commanding share of the vote in the Texas primary. This pioneering win marked the end of a long-standing political era, as the institution-bound incumbent became the first sitting GOP senator from Texas to lose renomination since 1970. The result sets the stage for a new frontier clash in November against the witness to a political shift.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1",
+          "result-2"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "In the entrenched political heartland, the polarizing insurgent, bolstered by an eleventh-hour political intervention, overwhelmed the field in a lopsided primary runoff. This upset victory upended the state's political order, leaving the tradition-bound figure to suffer a historic, precedent-breaking defeat. The contest cements a polarized and uncertain November showdown with the passive bystander.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1",
+          "result-2"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.65
+    }
+  ],
+  "warnings": []
+}

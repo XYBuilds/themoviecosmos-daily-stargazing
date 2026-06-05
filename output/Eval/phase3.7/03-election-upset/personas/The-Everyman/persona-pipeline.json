@@ -1,0 +1,206 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Ken Paxton",
+          "alternatives": [
+            {
+              "term": "a candidate backed by ordinary voters",
+              "valence": "positive"
+            },
+            {
+              "term": "a Republican contender",
+              "valence": "neutral"
+            },
+            {
+              "term": "a divisive figure in a party contest",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "John Cornyn",
+          "alternatives": [
+            {
+              "term": "a long-serving representative facing a challenge",
+              "valence": "positive"
+            },
+            {
+              "term": "an incumbent senator",
+              "valence": "neutral"
+            },
+            {
+              "term": "an establishment politician losing touch with voters",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "James Talarico",
+          "alternatives": [
+            {
+              "term": "a local official watching the race unfold",
+              "valence": "positive"
+            },
+            {
+              "term": "a state representative",
+              "valence": "neutral"
+            },
+            {
+              "term": "a bystander in a political showdown",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "sitting president",
+          "alternatives": [
+            {
+              "term": "a national leader weighing in on a local race",
+              "valence": "positive"
+            },
+            {
+              "term": "the current president",
+              "valence": "neutral"
+            },
+            {
+              "term": "an outside influence affecting state politics",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "aided by a late endorsement from the sitting president",
+          "alternatives": [
+            {
+              "term": "supported by a last-minute boost from the top",
+              "valence": "positive"
+            },
+            {
+              "term": "helped by a final endorsement from the president",
+              "valence": "neutral"
+            },
+            {
+              "term": "given a push by outside political machinery",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Ken Paxton won approximately 64% of the vote in the Texas Senate Republican runoff",
+          "alternatives": [
+            {
+              "term": "secured a strong majority of the vote",
+              "valence": "positive"
+            },
+            {
+              "term": "won the runoff with about 64% of the vote",
+              "valence": "neutral"
+            },
+            {
+              "term": "swept the primary, leaving little room for debate",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Ken Paxton won the Texas Senate Republican runoff",
+          "alternatives": [
+            {
+              "term": "prevailed in the party primary",
+              "valence": "positive"
+            },
+            {
+              "term": "won the runoff election",
+              "valence": "neutral"
+            },
+            {
+              "term": "claimed the nomination in a party fight",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "John Cornyn lost renomination, becoming the first sitting Republican senator from Texas to do so since 1970",
+          "alternatives": [
+            {
+              "term": "faced a rare challenge from within his own party",
+              "valence": "positive"
+            },
+            {
+              "term": "did not secure renomination",
+              "valence": "neutral"
+            },
+            {
+              "term": "was turned out by primary voters, a historic loss",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Paxton will face James Talarico in the November general election",
+          "alternatives": [
+            {
+              "term": "will compete against the Democratic opponent in November",
+              "valence": "positive"
+            },
+            {
+              "term": "will face the other party's candidate in the general election",
+              "valence": "neutral"
+            },
+            {
+              "term": "is set for a contest that will test party unity",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "A candidate backed by ordinary voters secured a strong majority of the vote in the Texas Republican runoff, helped by a final endorsement from the current president. The win means the long-serving representative facing a challenge did not secure renomination, becoming the first sitting Republican senator from Texas to lose a primary since 1970. Now, the winner will face the other party's candidate in November.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1",
+          "result-2"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "In a party contest that spoke to everyday concerns, a Republican contender won the runoff with about 64% of the vote. His success was aided by a late endorsement from a national leader weighing in on a local race. The outcome saw an establishment politician losing touch with voters, who was turned out by primary voters in a historic loss. The stage is now set for a November contest.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-1",
+          "result-2"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "warnings": []
+}

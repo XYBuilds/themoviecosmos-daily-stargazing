@@ -1,0 +1,269 @@
+{
+  "persona_id": "The-Explorer",
+  "overlay": {
+    "persona_id": "The-Explorer",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Sasan Goodarzi",
+          "alternatives": [
+            {
+              "term": "visionary leader",
+              "valence": "positive"
+            },
+            {
+              "term": "chief executive",
+              "valence": "neutral"
+            },
+            {
+              "term": "corporate downsizer",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "affected U.S. employees",
+          "alternatives": [
+            {
+              "term": "frontier workforce",
+              "valence": "positive"
+            },
+            {
+              "term": "U.S. employees",
+              "valence": "neutral"
+            },
+            {
+              "term": "displaced workers",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Intuit",
+          "alternatives": [
+            {
+              "term": "innovation-driven company",
+              "valence": "positive"
+            },
+            {
+              "term": "tax-software company",
+              "valence": "neutral"
+            },
+            {
+              "term": "restructuring firm",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+          "alternatives": [
+            {
+              "term": "to pioneer AI-powered product evolution",
+              "valence": "positive"
+            },
+            {
+              "term": "to co-locate teams in strategic hubs",
+              "valence": "neutral"
+            },
+            {
+              "term": "to consolidate for cost-cutting",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Chief executive Sasan Goodarzi told staff about the AI-focused restructuring",
+          "alternatives": [
+            {
+              "term": "unveiled a bold AI transformation plan",
+              "valence": "positive"
+            },
+            {
+              "term": "announced an AI-focused restructuring",
+              "valence": "neutral"
+            },
+            {
+              "term": "delivered layoff news",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Elimination of approximately 3,000 full-time roles",
+          "alternatives": [
+            {
+              "term": "streamlining to focus on new frontiers",
+              "valence": "positive"
+            },
+            {
+              "term": "eliminating roles",
+              "valence": "neutral"
+            },
+            {
+              "term": "cutting thousands of jobs",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Affected U.S. employees offered severance: 16 weeks base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "supported transition with generous severance",
+              "valence": "positive"
+            },
+            {
+              "term": "offered severance package",
+              "valence": "neutral"
+            },
+            {
+              "term": "provided a standard severance payout",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Offices in Reno and Woodland Hills winding down",
+          "alternatives": [
+            {
+              "term": "consolidating to central innovation hubs",
+              "valence": "positive"
+            },
+            {
+              "term": "winding down offices",
+              "valence": "neutral"
+            },
+            {
+              "term": "closing local offices",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Approximately 17% of workforce to be cut",
+          "alternatives": [
+            {
+              "term": "significant workforce reallocation",
+              "valence": "positive"
+            },
+            {
+              "term": "workforce reduction of 17%",
+              "valence": "neutral"
+            },
+            {
+              "term": "massive 17% job cuts",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "3,000 full-time roles to be eliminated",
+          "alternatives": [
+            {
+              "term": "streamlining for strategic agility",
+              "valence": "positive"
+            },
+            {
+              "term": "roles to be eliminated",
+              "valence": "neutral"
+            },
+            {
+              "term": "layoffs of 3,000 employees",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Severance package defined for U.S. employees",
+          "alternatives": [
+            {
+              "term": "transition support for departing staff",
+              "valence": "positive"
+            },
+            {
+              "term": "severance package defined",
+              "valence": "neutral"
+            },
+            {
+              "term": "limited severance offered",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "Offices in Reno and Woodland Hills designated for winding down",
+          "alternatives": [
+            {
+              "term": "sites transitioning to new purpose",
+              "valence": "positive"
+            },
+            {
+              "term": "offices winding down",
+              "valence": "neutral"
+            },
+            {
+              "term": "locations being shuttered",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "Visionary leader Sasan Goodarzi has unveiled a bold AI transformation plan, aiming to pioneer AI-powered product evolution. The innovation-driven company is streamlining its operations, consolidating teams to focus on new frontiers and strategically realigning resources. This major shift will involve a significant workforce reallocation, with approximately 3,000 roles being eliminated to enhance agility. To support the transition, the company is offering generous severance packages to its U.S. employees and is consolidating operations by winding down offices in Reno and Woodland Hills, moving toward central innovation hubs.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1",
+          "result-2",
+          "result-3"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.88
+    },
+    {
+      "id": "p2",
+      "text": "Intuit's chief executive announced an AI-focused restructuring to co-locate teams in strategic hubs. This initiative involves eliminating roles and cutting thousands of jobs to reshape the corporate landscape. Affected U.S. employees were offered a severance package, while offices in Reno and Woodland Hills are designated for winding down. The move represents a massive 17% job cuts across the workforce, marking a definitive shift in the company's operational footprint and future direction.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1",
+          "result-2",
+          "result-3"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.65
+    }
+  ],
+  "warnings": []
+}

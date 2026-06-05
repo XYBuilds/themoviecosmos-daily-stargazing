@@ -1,0 +1,149 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Rotational blackout risks rise in Visayas amid power crunch",
+    "description": "The Philippines grid operator placed the Visayas under red alert after Kepco SPC Power's Unit 2 tripped offline, leaving more than 950 megawatts unavailable alongside other long-running plant outages. Eleven generators have failed since May began, while seasonal heat drove demand into a thin operating margin. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading.",
+    "pub_time": "2026-05-29T18:00:00+08:00",
+    "source_name": "Manila Bulletin",
+    "url": "https://mb.com.ph/2026/05/29/rotational-blackout-risks-rise-in-visayas-amid-power-crunch"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-29T18:00:00+08:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026年5月"
+      ],
+      "relative": [],
+      "daypart": [],
+      "season": [
+        "盛夏/酷暑季"
+      ],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "自5月初以来"
+      ],
+      "recurrence": [],
+      "modality": [
+        "已发生"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "维萨亚斯群岛",
+        "tags": [
+          "维萨亚斯群岛",
+          "菲律宾",
+          "东南亚",
+          "岛屿地区",
+          "关键基础设施区域"
+        ],
+        "geocode": {
+          "country": "菲律宾",
+          "state": "维萨亚斯",
+          "city": null,
+          "district": null,
+          "poi": null,
+          "coordinates": null
+        },
+        "relative_pos": null,
+        "geopolitical": "东南亚",
+        "scene_archetype": [
+          "人口稠密区",
+          "电网覆盖区"
+        ],
+        "role": [
+          "发生地"
+        ],
+        "intended_destination": null,
+        "scale": "区域",
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "菲律宾电网运营商",
+        "tags": [
+          "电网运营商",
+          "公共机构"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Kepco SPC Power",
+        "tags": [
+          "电力公司",
+          "发电厂"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "官员",
+        "tags": [
+          "政府官员"
+        ],
+        "role_in_event": [
+          "发起·决策"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "Kepco SPC Power的2号机组跳闸"
+      },
+      {
+        "text": "季节性高温推高需求至薄运营边际"
+      },
+      {
+        "text": "其他长期运行的电厂停电"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "自5月初以来，十一台发电机发生故障"
+      },
+      {
+        "step": 2,
+        "text": "Kepco SPC Power的2号机组跳闸，导致超过950兆瓦不可用"
+      },
+      {
+        "step": 3,
+        "text": "季节性高温使需求进入薄运营边际"
+      },
+      {
+        "step": 4,
+        "text": "官员下令紧急减负荷以防止230千伏传输线过载"
+      }
+    ],
+    "result": [
+      {
+        "text": "维萨亚斯群岛处于红色警戒状态"
+      },
+      {
+        "text": "旋转停电风险上升"
+      },
+      {
+        "text": "紧急减负荷已下令"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

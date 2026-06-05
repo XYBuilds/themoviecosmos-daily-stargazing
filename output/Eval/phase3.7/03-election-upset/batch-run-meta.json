@@ -1,0 +1,31 @@
+{
+  "run_id": "03-election-upset",
+  "split": "observation",
+  "persona_count": 8,
+  "errors": [
+    {
+      "agent_id": "The-Caregiver",
+      "message": "alt_creator parse_error: element who-2: missing valence bucket(s) ['negative', 'positive']"
+    },
+    {
+      "agent_id": "The-Outlaw",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Magician",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Sage",
+      "message": "alt_creator parse_error: element who-2: missing valence bucket(s) ['negative', 'positive']"
+    }
+  ],
+  "retrieve_meta": {
+    "query_count": 16,
+    "raw_hit_count": 32,
+    "candidate_count": 12,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  },
+  "finished_at": "2026-06-04T19:43:45.311311+00:00"
+}

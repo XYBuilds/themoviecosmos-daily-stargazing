@@ -1,0 +1,262 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Vegas Golden Knights",
+          "alternatives": [
+            {
+              "term": "the team that stuck together and earned their shot",
+              "valence": "positive"
+            },
+            {
+              "term": "the franchise from Las Vegas",
+              "valence": "neutral"
+            },
+            {
+              "term": "the club that capitalized on another team's misfortune",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Colorado Avalanche",
+          "alternatives": [
+            {
+              "term": "the squad that fought through adversity",
+              "valence": "positive"
+            },
+            {
+              "term": "the Denver-based team",
+              "valence": "neutral"
+            },
+            {
+              "term": "the team that crumbled when it mattered most",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "John Tortorella",
+          "alternatives": [
+            {
+              "term": "the steady hand who stepped in when the team needed him",
+              "valence": "positive"
+            },
+            {
+              "term": "the interim head coach",
+              "valence": "neutral"
+            },
+            {
+              "term": "the coach brought in to clean up a mess",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Cale Makar",
+          "alternatives": [
+            {
+              "term": "the sidelined star whose absence was felt",
+              "valence": "positive"
+            },
+            {
+              "term": "the injured defenseman",
+              "valence": "neutral"
+            },
+            {
+              "term": "the key player who couldn't be there",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Nathan MacKinnon",
+          "alternatives": [
+            {
+              "term": "the missing leader everyone counted on",
+              "valence": "positive"
+            },
+            {
+              "term": "the injured forward",
+              "valence": "neutral"
+            },
+            {
+              "term": "the top scorer watching from the press box",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+          "alternatives": [
+            {
+              "term": "the team was forced to play without its best players",
+              "valence": "positive"
+            },
+            {
+              "term": "key contributors were unavailable due to injury",
+              "valence": "neutral"
+            },
+            {
+              "term": "the roster was gutted by injuries to its core",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "The franchise fired its coach with eight regular-season games left",
+          "alternatives": [
+            {
+              "term": "management made a tough call to try and save the season",
+              "valence": "positive"
+            },
+            {
+              "term": "a coaching change occurred late in the season",
+              "valence": "neutral"
+            },
+            {
+              "term": "the front office panicked and axed the coach in the stretch run",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "John Tortorella guided a 7-0-1 close and playoff runs past Utah and Anaheim",
+          "alternatives": [
+            {
+              "term": "the new coach rallied the players for a remarkable turnaround",
+              "valence": "positive"
+            },
+            {
+              "term": "the team posted a strong record under new leadership",
+              "valence": "neutral"
+            },
+            {
+              "term": "the interim coach got a hot streak from a desperate group",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Vegas scored twice and held Colorado to one goal in Game 4",
+          "alternatives": [
+            {
+              "term": "Vegas played a disciplined, complete game to close it out",
+              "valence": "positive"
+            },
+            {
+              "term": "the final game was a low-scoring affair",
+              "valence": "neutral"
+            },
+            {
+              "term": "Vegas shut down a depleted Colorado attack",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "This completed a four-game Western Conference Final sweep on May 26",
+          "alternatives": [
+            {
+              "term": "the series ended cleanly, giving everyone a clear outcome",
+              "valence": "positive"
+            },
+            {
+              "term": "the sweep concluded on May 26",
+              "valence": "neutral"
+            },
+            {
+              "term": "Colorado was thoroughly outmatched in four straight",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Vegas Golden Knights reached the Stanley Cup Final",
+          "alternatives": [
+            {
+              "term": "the team earned its chance to play for the ultimate prize",
+              "valence": "positive"
+            },
+            {
+              "term": "Vegas advanced to the championship round",
+              "valence": "neutral"
+            },
+            {
+              "term": "Vegas is in the final, but the path was made easier by injuries to the opposition",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Colorado Avalanche were swept in the Western Conference Final",
+          "alternatives": [
+            {
+              "term": "the team's season ended short of the goal, but they showed heart",
+              "valence": "positive"
+            },
+            {
+              "term": "Colorado was eliminated in four games",
+              "valence": "neutral"
+            },
+            {
+              "term": "the Avalanche's collapse was complete and humbling",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "The squad that fought through adversity, the Denver-based team, was forced to play without its best players when the key players who couldn't be there, the injured defenseman and the injured forward, were sidelined. That's the hard part of sports—sometimes the breaks just don't go your way. A coaching change occurred late in the season, and the new coach rallied the players for a remarkable turnaround. They posted a strong record under new leadership. But in the end, the team was thoroughly outmatched in four straight. Colorado was eliminated in four games, and their season ended short of the goal.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-1"
+        ]
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.75
+    },
+    {
+      "id": "p2",
+      "text": "The team that stuck together and earned their shot played a disciplined, complete game to close it out. The final game was a low-scoring affair, but they got the job done. With the sweep concluded on May 26, the franchise from Las Vegas advanced to the championship round. They earned their chance to play for the ultimate prize. For the fans and the players, it's a moment of pure, earned joy—the culmination of a long season's grind. Everyone's hoping for that next big win.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-2",
+          "how-3",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

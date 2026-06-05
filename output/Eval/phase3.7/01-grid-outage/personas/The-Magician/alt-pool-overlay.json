@@ -1,0 +1,241 @@
+{
+  "persona_id": "The-Magician",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "菲律宾电网运营商",
+        "alternatives": [
+          {
+            "term": "电网系统掌控者",
+            "valence": "positive"
+          },
+          {
+            "term": "国家电力调度机构",
+            "valence": "neutral"
+          },
+          {
+            "term": "电力供应危机操控者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Kepco SPC Power",
+        "alternatives": [
+          {
+            "term": "关键能源转换节点",
+            "valence": "positive"
+          },
+          {
+            "term": "外资参与的发电企业",
+            "valence": "neutral"
+          },
+          {
+            "term": "电力供应链的薄弱环节",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "官员",
+        "alternatives": [
+          {
+            "term": "危机中的决策执行者",
+            "valence": "positive"
+          },
+          {
+            "term": "政府应急管理负责人",
+            "valence": "neutral"
+          },
+          {
+            "term": "信息不透明的权力中心",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "Kepco SPC Power的2号机组跳闸",
+        "alternatives": [
+          {
+            "term": "关键机组技术性停摆",
+            "valence": "positive"
+          },
+          {
+            "term": "大型发电设备非计划停运",
+            "valence": "neutral"
+          },
+          {
+            "term": "核心产能的意外消失",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "original_term": "季节性高温推高需求至薄运营边际",
+        "alternatives": [
+          {
+            "term": "极端天气下的需求压力测试",
+            "valence": "positive"
+          },
+          {
+            "term": "高温天气加剧电网负荷",
+            "valence": "neutral"
+          },
+          {
+            "term": "系统在需求峰值边缘的脆弱平衡",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "why-2",
+        "original_term": "其他长期运行的电厂停电",
+        "alternatives": [
+          {
+            "term": "老旧设施的周期性维护",
+            "valence": "positive"
+          },
+          {
+            "term": "多个发电单元计划外停机",
+            "valence": "neutral"
+          },
+          {
+            "term": "基础设施的连锁失效",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "自5月初以来，十一台发电机发生故障",
+        "alternatives": [
+          {
+            "term": "发电单元集中进行可靠性排查",
+            "valence": "positive"
+          },
+          {
+            "term": "多台发电机组出现运行异常",
+            "valence": "neutral"
+          },
+          {
+            "term": "电力生产端出现系统性失灵",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "Kepco SPC Power的2号机组跳闸，导致超过950兆瓦不可用",
+        "alternatives": [
+          {
+            "term": "大容量机组的保护性脱网",
+            "valence": "positive"
+          },
+          {
+            "term": "单点故障引发大规模产能缺口",
+            "valence": "neutral"
+          },
+          {
+            "term": "关键节点的突然瘫痪",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "季节性高温使需求进入薄运营边际",
+        "alternatives": [
+          {
+            "term": "需求与供应的动态临界点管理",
+            "valence": "positive"
+          },
+          {
+            "term": "负荷逼近系统安全运行边界",
+            "valence": "neutral"
+          },
+          {
+            "term": "电网在需求压力下的临界状态",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "original_term": "官员下令紧急减负荷以防止230千伏传输线过载",
+        "alternatives": [
+          {
+            "term": "实施精准负荷管控以保护主干网",
+            "valence": "positive"
+          },
+          {
+            "term": "启动紧急需求响应措施",
+            "valence": "neutral"
+          },
+          {
+            "term": "为避免更大崩溃而进行的强制停电",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "维萨亚斯群岛处于红色警戒状态",
+        "alternatives": [
+          {
+            "term": "电网进入高度戒备的调控模式",
+            "valence": "positive"
+          },
+          {
+            "term": "区域电力系统发布最高级别警报",
+            "valence": "neutral"
+          },
+          {
+            "term": "电力供应安全亮起红灯",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "旋转停电风险上升",
+        "alternatives": [
+          {
+            "term": "启动有序用电预案的可能性增加",
+            "valence": "positive"
+          },
+          {
+            "term": "轮流限电的可能性提高",
+            "valence": "neutral"
+          },
+          {
+            "term": "大规模轮流停电迫在眉睫",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "original_term": "紧急减负荷已下令",
+        "alternatives": [
+          {
+            "term": "实施主动负荷管理策略",
+            "valence": "positive"
+          },
+          {
+            "term": "发布了紧急用电限制指令",
+            "valence": "neutral"
+          },
+          {
+            "term": "采取了强制性的断电措施",
+            "valence": "negative"
+          }
+        ]
+      }
+    ]
+  }
+}

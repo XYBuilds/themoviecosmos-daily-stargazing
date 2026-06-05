@@ -1,0 +1,243 @@
+{
+  "persona_id": "The-Hero",
+  "overlay": {
+    "persona_id": "The-Hero",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "operator of a channel with nearly one million subscribers",
+          "alternatives": [
+            {
+              "term": "a popular content creator whose influence reached nearly a million",
+              "valence": "positive"
+            },
+            {
+              "term": "a YouTube channel operator",
+              "valence": "neutral"
+            },
+            {
+              "term": "a rumor-monger with a massive platform",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kim Soo-hyun",
+          "alternatives": [
+            {
+              "term": "the wrongfully accused actor",
+              "valence": "positive"
+            },
+            {
+              "term": "the actor Kim Soo-hyun",
+              "valence": "neutral"
+            },
+            {
+              "term": "the celebrity whose career was sabotaged by false claims",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "late co-star",
+          "alternatives": [
+            {
+              "term": "the deceased actress whose memory was exploited",
+              "valence": "positive"
+            },
+            {
+              "term": "the late co-star",
+              "valence": "neutral"
+            },
+            {
+              "term": "the victim whose name was dragged into a scandal",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Prosecutors",
+          "alternatives": [
+            {
+              "term": "the authorities pursuing justice",
+              "valence": "positive"
+            },
+            {
+              "term": "the prosecutors",
+              "valence": "neutral"
+            },
+            {
+              "term": "the legal overseers",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Seoul police",
+          "alternatives": [
+            {
+              "term": "the investigators who secured the arrest warrant",
+              "valence": "positive"
+            },
+            {
+              "term": "the Seoul police",
+              "valence": "neutral"
+            },
+            {
+              "term": "the law enforcement officials",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "to profit from spreading malicious fabrications",
+              "valence": "positive"
+            },
+            {
+              "term": "for financial gain through false claims",
+              "valence": "neutral"
+            },
+            {
+              "term": "to monetize lies and destroy reputations",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "YouTuber allegedly used AI-generated audio and manipulated chat screenshots to claim actor dated late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "the YouTuber allegedly deployed AI-forged evidence to make a monstrous accusation",
+              "valence": "positive"
+            },
+            {
+              "term": "the YouTuber allegedly used AI-generated audio and manipulated screenshots for the claim",
+              "valence": "neutral"
+            },
+            {
+              "term": "the YouTuber allegedly fabricated evidence to smear the actor's name",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "the false scandal sabotaged the actor's career and public life",
+              "valence": "positive"
+            },
+            {
+              "term": "the scandal caused a halt in endorsements and appearances",
+              "valence": "neutral"
+            },
+            {
+              "term": "the baseless allegations derailed the actor's livelihood",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Seoul police secured an arrest warrant for the YouTuber",
+          "alternatives": [
+            {
+              "term": "the Seoul police moved decisively to bring the culprit to justice",
+              "valence": "positive"
+            },
+            {
+              "term": "the Seoul police secured an arrest warrant",
+              "valence": "neutral"
+            },
+            {
+              "term": "the authorities intervened to stop the perpetrator",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Seoul police secured arrest warrant for YouTuber",
+          "alternatives": [
+            {
+              "term": "justice was served as an arrest warrant was issued for the YouTuber",
+              "valence": "positive"
+            },
+            {
+              "term": "an arrest warrant was secured for the YouTuber",
+              "valence": "neutral"
+            },
+            {
+              "term": "the law caught up with the alleged fabricator",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Kim Soo-hyun's endorsements and public appearances halted since early 2025",
+          "alternatives": [
+            {
+              "term": "the actor's career was unjustly derailed by false accusations",
+              "valence": "positive"
+            },
+            {
+              "term": "endorsements and public appearances halted",
+              "valence": "neutral"
+            },
+            {
+              "term": "the celebrity suffered professional exile due to a lie",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "In a decisive move to restore order, Seoul investigators closed in on a rumor-monger with a massive platform. The YouTuber allegedly deployed AI-forged evidence to make a monstrous accusation, claiming the actor Kim Soo-hyun dated a late co-star while she was a minor. This act, motivated by a desire to profit from spreading malicious fabrications, sabotaged the actor's career and public life. Justice was served as an arrest warrant was issued for the YouTuber.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.95
+    },
+    {
+      "id": "p2",
+      "text": "The wrongfully accused actor Kim Soo-hyun faced a brutal attack when a popular content creator whose influence reached nearly a million allegedly used AI-generated audio and manipulated screenshots for a false claim. The false scandal sabotaged the actor's career and public life, halting endorsements since early 2025. The authorities pursuing justice intervened, and the law caught up with the alleged fabricator, highlighting the courage needed to confront digital lies.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.88
+    }
+  ],
+  "warnings": []
+}

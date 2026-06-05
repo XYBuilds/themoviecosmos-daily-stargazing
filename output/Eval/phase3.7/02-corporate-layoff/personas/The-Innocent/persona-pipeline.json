@@ -1,0 +1,267 @@
+{
+  "persona_id": "The-Innocent",
+  "overlay": {
+    "persona_id": "The-Innocent",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Sasan Goodarzi",
+          "alternatives": [
+            {
+              "term": "the CEO trying to secure the company's future",
+              "valence": "positive"
+            },
+            {
+              "term": "the chief executive",
+              "valence": "neutral"
+            },
+            {
+              "term": "the executive overseeing painful cuts",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "affected U.S. employees",
+          "alternatives": [
+            {
+              "term": "valued team members facing transition",
+              "valence": "positive"
+            },
+            {
+              "term": "U.S. employees affected by the restructuring",
+              "valence": "neutral"
+            },
+            {
+              "term": "workers displaced by the AI shift",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Intuit",
+          "alternatives": [
+            {
+              "term": "the company pursuing a focused strategy",
+              "valence": "positive"
+            },
+            {
+              "term": "the tax-software company",
+              "valence": "neutral"
+            },
+            {
+              "term": "the corporation eliminating thousands of jobs",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+          "alternatives": [
+            {
+              "term": "to strengthen collaboration and pioneer new technology",
+              "valence": "positive"
+            },
+            {
+              "term": "to consolidate teams for AI-focused development",
+              "valence": "neutral"
+            },
+            {
+              "term": "to justify cutting jobs by pivoting to automation",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Chief executive Sasan Goodarzi told staff about the AI-focused restructuring",
+          "alternatives": [
+            {
+              "term": "The CEO communicated the difficult but necessary changes",
+              "valence": "positive"
+            },
+            {
+              "term": "The chief executive announced the restructuring to staff",
+              "valence": "neutral"
+            },
+            {
+              "term": "Management delivered the news of widespread layoffs",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Elimination of approximately 3,000 full-time roles",
+          "alternatives": [
+            {
+              "term": "Offering a path forward through a thoughtful transition",
+              "valence": "positive"
+            },
+            {
+              "term": "The elimination of approximately 3,000 full-time roles",
+              "valence": "neutral"
+            },
+            {
+              "term": "The loss of thousands of jobs",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Affected U.S. employees offered severance: 16 weeks base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "Providing a supportive severance package to ease the transition",
+              "valence": "positive"
+            },
+            {
+              "term": "Severance offered: 16 weeks base pay plus two weeks per year of tenure",
+              "valence": "neutral"
+            },
+            {
+              "term": "Compensation meant to cushion the blow of job loss",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Offices in Reno and Woodland Hills winding down",
+          "alternatives": [
+            {
+              "term": "Transitioning operations to more central locations",
+              "valence": "positive"
+            },
+            {
+              "term": "Offices in Reno and Woodland Hills winding down",
+              "valence": "neutral"
+            },
+            {
+              "term": "Shuttering local offices and displacing their workers",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Approximately 17% of workforce to be cut",
+          "alternatives": [
+            {
+              "term": "A significant but focused reduction to refocus the company",
+              "valence": "positive"
+            },
+            {
+              "term": "Approximately 17% of the workforce to be cut",
+              "valence": "neutral"
+            },
+            {
+              "term": "Nearly a fifth of the workforce facing unemployment",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "3,000 full-time roles to be eliminated",
+          "alternatives": [
+            {
+              "term": "Streamlining operations by eliminating redundant positions",
+              "valence": "positive"
+            },
+            {
+              "term": "3,000 full-time roles to be eliminated",
+              "valence": "neutral"
+            },
+            {
+              "term": "The elimination of 3,000 jobs",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Severance package defined for U.S. employees",
+          "alternatives": [
+            {
+              "term": "A defined severance plan to support departing colleagues",
+              "valence": "positive"
+            },
+            {
+              "term": "A severance package defined for U.S. employees",
+              "valence": "neutral"
+            },
+            {
+              "term": "A severance offer that cannot replace stable employment",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "Offices in Reno and Woodland Hills designated for winding down",
+          "alternatives": [
+            {
+              "term": "Consolidating into key hubs for future growth",
+              "valence": "positive"
+            },
+            {
+              "term": "Offices in Reno and Woodland Hills designated for winding down",
+              "valence": "neutral"
+            },
+            {
+              "term": "The closure of Reno and Woodland Hills offices",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "Intuit, the tax-software company, is undergoing a significant restructuring to strengthen collaboration and pioneer new technology in artificial intelligence. To achieve this, the CEO communicated the difficult but necessary changes to staff, which include a significant but focused reduction to refocus the company, eliminating approximately 3,000 full-time roles. Affected U.S. employees are being provided a supportive severance package to ease their transition, and operations in Reno and Woodland Hills are transitioning to more central locations as part of the company's future-focused strategy.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1",
+          "result-2",
+          "result-3"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p2",
+      "text": "After months of internal review, the company pursuing a focused strategy announced a plan to co-locate teams in strategic hubs and accelerate AI-driven product work. This plan involves offering a path forward through a thoughtful transition, where valued team members facing transition will receive a defined severance plan to support them. Offices in Reno and Woodland Hills are winding down as operations consolidate into key hubs for future growth.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-1",
+          "result-2",
+          "result-3"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

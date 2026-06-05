@@ -1,0 +1,205 @@
+{
+  "persona_id": "The-Creator",
+  "overlay": {
+    "persona_id": "The-Creator",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "欧盟委员会",
+          "alternatives": [
+            {
+              "term": "规则制定者",
+              "valence": "positive"
+            },
+            {
+              "term": "欧盟监管机构",
+              "valence": "neutral"
+            },
+            {
+              "term": "官僚机构",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "谷歌（字母表公司）",
+          "alternatives": [
+            {
+              "term": "搜索引擎巨头",
+              "valence": "positive"
+            },
+            {
+              "term": "科技公司",
+              "valence": "neutral"
+            },
+            {
+              "term": "数字垄断者",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "因在搜索结果中优先展示自家购物、航班和酒店服务，而非竞争对手的比较服务",
+          "alternatives": [
+            {
+              "term": "精心策划搜索结果以突出自身服务",
+              "valence": "positive"
+            },
+            {
+              "term": "在搜索结果中偏向自家服务",
+              "valence": "neutral"
+            },
+            {
+              "term": "操纵搜索算法以压制竞争对手",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "根据数字市场法启动程序",
+          "alternatives": [
+            {
+              "term": "启动法律框架内的程序",
+              "valence": "positive"
+            },
+            {
+              "term": "依据数字市场法启动程序",
+              "valence": "neutral"
+            },
+            {
+              "term": "援引监管工具发起行动",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "欧盟委员会在两年多的程序后拒绝了公司的补救提案",
+          "alternatives": [
+            {
+              "term": "公司提交了详细的合规提案",
+              "valence": "positive"
+            },
+            {
+              "term": "委员会拒绝了公司的补救提案",
+              "valence": "neutral"
+            },
+            {
+              "term": "官僚程序否决了企业的解决方案",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "预计在委员会八月休会前做出正式决定",
+          "alternatives": [
+            {
+              "term": "有望在夏季休会前形成最终裁决",
+              "valence": "positive"
+            },
+            {
+              "term": "预计在八月休会前做出正式决定",
+              "valence": "neutral"
+            },
+            {
+              "term": "迫于时间压力仓促做出决定",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "欧盟监管机构正在敲定一项可能达到数亿欧元的罚款",
+          "alternatives": [
+            {
+              "term": "创设具有里程碑意义的处罚先例",
+              "valence": "positive"
+            },
+            {
+              "term": "正在敲定一项数亿欧元的罚款",
+              "valence": "neutral"
+            },
+            {
+              "term": "施加惩罚性的巨额罚款",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "这是针对字母表公司十多年来积累的竞争罚款之上",
+          "alternatives": [
+            {
+              "term": "为其长期的反竞争行为画上句号",
+              "valence": "positive"
+            },
+            {
+              "term": "这是在既有罚款基础上的追加处罚",
+              "valence": "neutral"
+            },
+            {
+              "term": "累积了又一笔天文数字的罚单",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "布鲁塞尔",
+          "alternatives": [
+            {
+              "term": "欧洲监管的心脏",
+              "valence": "positive"
+            },
+            {
+              "term": "布鲁塞尔",
+              "valence": "neutral"
+            },
+            {
+              "term": "欧盟的官僚中心",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "From the regulatory heart of Brussels, the rule-maker is crafting a landmark penalty. After more than two years of proceedings and rejecting the tech giant's detailed compliance proposal, the European regulator is finalizing a fine that could reach hundreds of millions. This action, based on the Digital Markets Act, targets the company's practice of deliberately orchestrating search results to favor its own services over competitors, aiming to conclude a decade of accumulated anti-competitive penalties.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p2",
+      "text": "The search engine giant faces a decisive moment before the Commission's August recess. After its attempts to forge a solution were dismissed by the bureaucratic process, the EU is poised to issue a formal ruling. The expected punitive, massive fine will be added to a long history of penalties, all stemming from allegations that the company fabricated search algorithm outcomes to suppress rivals and promote its own shopping, travel, and hotel offerings.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

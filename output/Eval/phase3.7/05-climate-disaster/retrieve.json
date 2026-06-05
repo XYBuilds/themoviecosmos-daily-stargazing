@@ -1,0 +1,1917 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows on the Euphrates flooded homes, farms, and schools in Deir Ezzor and Raqqa. An earthen bridge collapsed.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 44325,
+              "title": "The Whole Dam Family and the Dam Dog",
+              "similarity": 0.5290770530700684,
+              "movie_url": "https://themoviecosmos.com/movie/44325"
+            },
+            {
+              "tmdb_id": 257637,
+              "title": "Poem of the Sea",
+              "similarity": 0.5671122670173645,
+              "movie_url": "https://themoviecosmos.com/movie/257637"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The navy deployed boats for evacuations. Turkey agreed to reduce upstream releases. Syria's president visited flood zones.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-4",
+              "how-5",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 946552,
+              "title": "Operation Overlord",
+              "similarity": 0.460030198097229,
+              "movie_url": "https://themoviecosmos.com/movie/946552"
+            },
+            {
+              "tmdb_id": 257637,
+              "title": "Poem of the Sea",
+              "similarity": 0.46535179018974304,
+              "movie_url": "https://themoviecosmos.com/movie/257637"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Several children drowned. An earthen bridge collapsed. The navy deployed boats for evacuations. Turkey agreed to reduce upstream releases.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 96049,
+              "title": "The Bride",
+              "similarity": 0.5145245790481567,
+              "movie_url": "https://themoviecosmos.com/movie/96049"
+            },
+            {
+              "tmdb_id": 402455,
+              "title": "125 Years Memory",
+              "similarity": 0.5190742015838623,
+              "movie_url": "https://themoviecosmos.com/movie/402455"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EVERYMAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "An exceptionally wet rainy season, the heaviest in three decades, combined with dam operations to overwhelm the Euphrates River's defenses. This interaction of water management and weather pushed the river past protective embankments, and surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. A local bridge structure failed. Military rescue teams were deployed, with boats launched to help evacuate people from the flood zones.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 6309,
+              "title": "Flood",
+              "similarity": 0.5380577445030212,
+              "movie_url": "https://themoviecosmos.com/movie/6309"
+            },
+            {
+              "tmdb_id": 257637,
+              "title": "Poem of the Sea",
+              "similarity": 0.5489004850387573,
+              "movie_url": "https://themoviecosmos.com/movie/257637"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The flooding in Syria's provinces resulted in tragedy for ordinary families. Multiple children were killed by the surge, and an earthen bridge was washed away. In response, the national leader toured the flooded regions, while an agreement was reached with the upstream neighbor nation to lower upstream flows, and reservoirs were strained to near-breaking point.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "result-3",
+              "result-4",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 257637,
+              "title": "Poem of the Sea",
+              "similarity": 0.5044344663619995,
+              "movie_url": "https://themoviecosmos.com/movie/257637"
+            },
+            {
+              "tmdb_id": 10217,
+              "title": "The Sweet Hereafter",
+              "similarity": 0.5417341589927673,
+              "movie_url": "https://themoviecosmos.com/movie/10217"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-HERO",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "When a historic deluge tested the region's defenses, the unleashed river inundated communities across Deir Ezzor and Raqqa. Brave rescue crews launched boats into the floodwaters to save lives, while the nation's leader surveyed the devastation to show solidarity. This courageous response offered a glimmer of hope amidst the tragedy, even as the flood claimed the lives of innocent children.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 22624,
+              "title": "Raining Cats and Frogs",
+              "similarity": 0.5258080959320068,
+              "movie_url": "https://themoviecosmos.com/movie/22624"
+            },
+            {
+              "tmdb_id": 429300,
+              "title": "Adrift",
+              "similarity": 0.5313770771026611,
+              "movie_url": "https://themoviecosmos.com/movie/429300"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "A confluence of natural fury and human infrastructure failure overwhelmed the Euphrates. The system was pushed to the brink of failure as water reserves reached critical, near-total capacity. In the ensuing disaster, young lives were tragically lost, and a vital earthen crossing gave way under the assault, isolating communities until diplomatic pressure secured a reduction in upstream dam flows.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "why-1",
+              "how-0",
+              "result-0",
+              "result-1",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 333545,
+              "title": "Road Wars",
+              "similarity": 0.6080435514450073,
+              "movie_url": "https://themoviecosmos.com/movie/333545"
+            },
+            {
+              "tmdb_id": 38141,
+              "title": "World Gone Wild",
+              "similarity": 0.619540810585022,
+              "movie_url": "https://themoviecosmos.com/movie/38141"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Following a catastrophic rainfall pattern unseen for decades, controlled releases and weather patterns overwhelmed the embankments. The navy's boat deployment began the rescue mission in the wake of the torrent that destroyed homes, crops, and schools in its path. A diplomatic victory later secured reduced upstream flows, offering a path to recovery.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 63617,
+              "title": "Reap the Wild Wind",
+              "similarity": 0.5619271993637085,
+              "movie_url": "https://themoviecosmos.com/movie/63617"
+            },
+            {
+              "tmdb_id": 104480,
+              "title": "Divers at Work on the Wreck of the \"Maine\"",
+              "similarity": 0.5708917379379272,
+              "movie_url": "https://themoviecosmos.com/movie/104480"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-CAREGIVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In the afflicted province of Deir Ezzor and the impacted area of Raqqa, the youngest victims were tragically lost after an unprecedented rainy season and failed dam controls overwhelmed defenses, leading to dangerously overfilled reservoirs and a destructive torrent that destroyed family homes and schools. Rescue operations saved the stranded, but the duty to shelter the vulnerable remains urgent as cooperation reduced the immediate threat.",
+          "source": {
+            "agent_id": "THE-CAREGIVER",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-2",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 285200,
+              "title": "Operation Arctic",
+              "similarity": 0.5317521095275879,
+              "movie_url": "https://themoviecosmos.com/movie/285200"
+            },
+            {
+              "tmdb_id": 664423,
+              "title": "The Windermere Children",
+              "similarity": 0.5510413646697998,
+              "movie_url": "https://themoviecosmos.com/movie/664423"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The nation's leader witnessing the devastation consoled the affected after a critical lifeline was washed away by the raging floodwaters of the Euphrates, an event that exposed the peril of failed dam controls and relentless rains breaching the banks. Innocent children perished in the flood-stricken region, highlighting the need for stronger protections for communities against such overwhelming natural forces.",
+          "source": {
+            "agent_id": "THE-CAREGIVER",
+            "fragments": [
+              "why-1",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 29602,
+              "title": "The Storm",
+              "similarity": 0.5379269123077393,
+              "movie_url": "https://themoviecosmos.com/movie/29602"
+            },
+            {
+              "tmdb_id": 10217,
+              "title": "The Sweet Hereafter",
+              "similarity": 0.5512048006057739,
+              "movie_url": "https://themoviecosmos.com/movie/10217"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The rescue fleet launched boats to save stranded people after the swollen river surged past defenses, a stark reminder of the duty to protect when infrastructure fails. Military aid was required for evacuation as the upstream nation agreeing to limit releases offered some relief, but the loss of young lives in the devastated city underscores the human cost of such disasters.",
+          "source": {
+            "agent_id": "THE-CAREGIVER",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 289214,
+              "title": "Disaster Wars: Earthquake vs. Tsunami",
+              "similarity": 0.5802006721496582,
+              "movie_url": "https://themoviecosmos.com/movie/289214"
+            },
+            {
+              "tmdb_id": 613658,
+              "title": "The Rescue",
+              "similarity": 0.594581127166748,
+              "movie_url": "https://themoviecosmos.com/movie/613658"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-OUTLAW",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The drowned young are the cost paid by the innocent after man-made and natural catastrophe. Nature's fury unleashed, but the real failure was containment. Overloaded reservoirs and failed containment led to widespread inundation. The state's armed machinery then intervened, while the regime's figurehead made a photo opportunity amid tragedy. A belated adjustment from an upstream power is the only concession.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-3",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 937393,
+              "title": "Bloat",
+              "similarity": 0.5334304571151733,
+              "movie_url": "https://themoviecosmos.com/movie/937393"
+            },
+            {
+              "tmdb_id": 38141,
+              "title": "World Gone Wild",
+              "similarity": 0.5482349991798401,
+              "movie_url": "https://themoviecosmos.com/movie/38141"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The cost paid by the innocent is stark: the drowned young. This stems from infrastructure failure under pressure. Overloaded reservoirs forced structural overtopping, breaching defenses. Destruction of civilian lives and livelihoods followed. A symbol of neglect washed away as critical infrastructure failed. The state's armed machinery provided a military presence in a civilian crisis, while the regime's figurehead staged a photo opportunity.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "why-1",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 38141,
+              "title": "World Gone Wild",
+              "similarity": 0.5153148770332336,
+              "movie_url": "https://themoviecosmos.com/movie/38141"
+            },
+            {
+              "tmdb_id": 671295,
+              "title": "Blue Miracle",
+              "similarity": 0.525269091129303,
+              "movie_url": "https://themoviecosmos.com/movie/671295"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The regime's figurehead surveyed the destruction of civilian lives and livelihoods—a scene born from infrastructure failure under pressure. Overloaded reservoirs and structural overtopping caused widespread inundation, leaving the drowned young as the ultimate cost. Critical infrastructure failed. The state's armed machinery moved in, but the upstream dam operator's belated adjustment offers only pressure yields a minor concession.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "why-1",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 38141,
+              "title": "World Gone Wild",
+              "similarity": 0.5561099648475647,
+              "movie_url": "https://themoviecosmos.com/movie/38141"
+            },
+            {
+              "tmdb_id": 257637,
+              "title": "Poem of the Sea",
+              "similarity": 0.5614206790924072,
+              "movie_url": "https://themoviecosmos.com/movie/257637"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-LOVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In the heartbroken communities of Deir Ezzor and Raqqa, the life-giving waterway turned destructive after an exceptional deluge. Dams were pushed to their absolute limit, and the surge breached defenses, flooding homes and farms. The river invaded intimate spaces of life, severing a vital link when an earthen bridge collapsed. In the aftermath, rescuers reached out to the stranded as lifesaving operations were launched, while the leader who witnessed the devastation firsthand toured the destruction, a poignant show of solidarity with the affected.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-1",
+              "result-2",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 163293,
+              "title": "Deluge",
+              "similarity": 0.5334398746490479,
+              "movie_url": "https://themoviecosmos.com/movie/163293"
+            },
+            {
+              "tmdb_id": 285427,
+              "title": "Quel maledetto ponte sull'Elba",
+              "similarity": 0.5531585216522217,
+              "movie_url": "https://themoviecosmos.com/movie/285427"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "A promise of restraint was made by the upstream nation that agreed to help, a diplomatic agreement reached after the floodwaters broke through. This gesture came in the wake of the ultimate loss of innocent life, as the drowned children were claimed by the uncontrollable flood. The combination of human action and nature's force had overwhelmed water storage, leaving the river to consume the suffering city and its sister region, a story of broken trust and fragile bonds between nations and the land.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "why-1",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-3",
+              "result-4"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 333545,
+              "title": "Road Wars",
+              "similarity": 0.5123593807220459,
+              "movie_url": "https://themoviecosmos.com/movie/333545"
+            },
+            {
+              "tmdb_id": 33196,
+              "title": "Tidal Wave",
+              "similarity": 0.5537706613540649,
+              "movie_url": "https://themoviecosmos.com/movie/33196"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-CREATOR",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "An unprecedented deluge, the heaviest in three decades, drove a surge on the Euphrates that overwhelmed engineered defenses. The river's force reshaped the landscape of Deir Ezzor and Raqqa, invading homes, farms, and schools. As storage systems were pushed to their limits, an earthen bridge gave way, severing a vital link. In the wake of the destruction, rescue craft were put into service for evacuations, while young lives were tragically lost to the waters.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1",
+              "result-2",
+              "how-4",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 48941,
+              "title": "Vajont",
+              "similarity": 0.526069700717926,
+              "movie_url": "https://themoviecosmos.com/movie/48941"
+            },
+            {
+              "tmdb_id": 38828,
+              "title": "Left Behind: World at War",
+              "similarity": 0.5665820837020874,
+              "movie_url": "https://themoviecosmos.com/movie/38828"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The crisis was framed by an upstream partner in crisis management, Turkey, who committed to flow reduction after pressure yielded a reduction in upstream discharges. This accord was a key piece of the response architecture, aimed at lessening the force that had critically overfilled reservoirs. The head of state then surveyed the crafted response in the affected areas, observing the aftermath where emergency watercraft had been mobilized.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-3",
+              "result-4",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 328345,
+              "title": "Code Name K.O.Z.",
+              "similarity": 0.474403440952301,
+              "movie_url": "https://themoviecosmos.com/movie/328345"
+            },
+            {
+              "tmdb_id": 321751,
+              "title": "A Perfect Day",
+              "similarity": 0.5216894149780273,
+              "movie_url": "https://themoviecosmos.com/movie/321751"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-MAGICIAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A historic rainy season, a deluge of historic proportions, triggered a cascade of engineered releases and natural runoff that overcame the Euphrates' defenses. The surge inundated settlements and agricultural lands in Deir Ezzor and Raqqa, claiming the innocent lives lost among children. The state's operational arm deployed boats for evacuations, while the head of state appeared at the disaster site, and the source of the upstream pressure was pressured into concessions to lower discharges.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 22624,
+              "title": "Raining Cats and Frogs",
+              "similarity": 0.5124047994613647,
+              "movie_url": "https://themoviecosmos.com/movie/22624"
+            },
+            {
+              "tmdb_id": 190570,
+              "title": "Lyon: Quai de l'Archevêché",
+              "similarity": 0.5138472318649292,
+              "movie_url": "https://themoviecosmos.com/movie/190570"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The water storage was critically full as a historic rainy season unfolded, forcing a breach when the control measures and weather overwhelmed barriers. This precipitated a vital link washing out and the military moving in for extraction operations, while the symbolic head visited the flood zones. The sequence revealed how a combination of human engineering and natural forces could devastate populated areas, with upstream concessions extracted under pressure.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "why-0",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 38141,
+              "title": "World Gone Wild",
+              "similarity": 0.5043936371803284,
+              "movie_url": "https://themoviecosmos.com/movie/38141"
+            },
+            {
+              "tmdb_id": 30927,
+              "title": "Stryker",
+              "similarity": 0.5078735947608948,
+              "movie_url": "https://themoviecosmos.com/movie/30927"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "An exceptional rainfall event pushed reservoirs to near-maximum levels, setting the stage for the engineered release and natural runoff to overcome defenses. The resulting surge claimed the lives of children and destroyed an earthen crossing, prompting the deployment force for evacuations. This chain of events, from the deluge to the diplomatic solution reached on water releases, illustrates a systemic sleight-of-hand where nature and infrastructure management intertwine with tragic consequences.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "why-1",
+              "result-0",
+              "result-1",
+              "result-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 6309,
+              "title": "Flood",
+              "similarity": 0.5475029945373535,
+              "movie_url": "https://themoviecosmos.com/movie/6309"
+            },
+            {
+              "tmdb_id": 22624,
+              "title": "Raining Cats and Frogs",
+              "similarity": 0.5530148148536682,
+              "movie_url": "https://themoviecosmos.com/movie/22624"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-SAGE",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "An exceptional seasonal rainfall event, one of the heaviest in three decades, led to critical capacity thresholds being reached in upstream reservoirs. This, combined with dam operations, resulted in a systemic overflow where the major river system's surging flows inundated settlements across the Syrian provinces of Deir Ezzor and Raqqa. The sequence of events, from near-maximum storage levels to destructive flooding of civilian infrastructure, constitutes a clear hydrological case study. The loss of young lives was a tragic consequence of this unprecedented deluge.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 48941,
+              "title": "Vajont",
+              "similarity": 0.5046679973602295,
+              "movie_url": "https://themoviecosmos.com/movie/48941"
+            },
+            {
+              "tmdb_id": 257637,
+              "title": "Poem of the Sea",
+              "similarity": 0.529892086982727,
+              "movie_url": "https://themoviecosmos.com/movie/257637"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Analysis of the disaster reveals a breach of flood barriers when combined operational and natural pressures overwhelmed defenses. This systemic failure led to a critical span giving way—a bridge structural failure—and the subsequent emergency response activation, which saw maritime evacuation initiated by naval forces. The diplomatic intervention secured with the upstream nation to manage flows represents a post-crisis adjustment. Data points include the high-water mark recorded and the confirmed child fatalities, underscoring the event's severity.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "why-1",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-4"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 6309,
+              "title": "Flood",
+              "similarity": 0.5887608528137207,
+              "movie_url": "https://themoviecosmos.com/movie/6309"
+            },
+            {
+              "tmdb_id": 289214,
+              "title": "Disaster Wars: Earthquake vs. Tsunami",
+              "similarity": 0.6120705604553223,
+              "movie_url": "https://themoviecosmos.com/movie/289214"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The Syrian head of state conducted a leadership survey of the damage following the flood-stricken area's inundation. This presidential inspection occurred after evacuation measures were implemented and storage systems were strained to their limits. The event's timeline shows a clear progression from the record precipitation event to the upstream flow management adjusted via diplomatic channels, with the transportation artery severed as a notable infrastructure failure. The measured response provides observational data on governmental action during such crises.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "result-5",
+              "result-2",
+              "result-4",
+              "why-0",
+              "how-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 100681,
+              "title": "Shanghai",
+              "similarity": 0.4664992690086365,
+              "movie_url": "https://themoviecosmos.com/movie/100681"
+            },
+            {
+              "tmdb_id": 22972,
+              "title": "Green Zone",
+              "similarity": 0.4779016673564911,
+              "movie_url": "https://themoviecosmos.com/movie/22972"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-JESTER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In a week of deadly high water, the Euphrates River staged a watery invasion of civilization, surging past embankments in a chaotic dance of water management after reservoirs were pushed to the brink of absurdity. The result was a tragic, senseless loss of young life as the youngsters drowned, followed by a dramatic, muddy failure when an earthen bridge collapsed. The maritime circus then deployed boats for evacuations, turning a naval fleet into a rescue taxi service, while the stage-struck leader made a presidential photo-op in the muck. Finally, the upstream puppeteer offered a reluctant, theatrical concession to reduce releases.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "why-1",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-1",
+              "result-2",
+              "how-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 249011,
+              "title": "Water Wrackets",
+              "similarity": 0.5732226967811584,
+              "movie_url": "https://themoviecosmos.com/movie/249011"
+            },
+            {
+              "tmdb_id": 22624,
+              "title": "Raining Cats and Frogs",
+              "similarity": 0.6122044920921326,
+              "movie_url": "https://themoviecosmos.com/movie/22624"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Amid one of the heaviest rainy seasons in three decades, described as a biblical deluge of absurd proportions, the floodwaters became a performative act of neighborly diplomacy. The inundation of key areas in Deir Ezzor and Raqqa saw the naval show of emergency theater deploy boats for rescue, while the dignified visitor, Syria's president, toured the affected zones. The upstream puppeteer, Turkey, agreed to reduce releases, a performative act that followed the collapse of a comically fragile structure. The small victims' fate highlighted the farcical oversight in river control.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-1",
+              "result-5"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 22624,
+              "title": "Raining Cats and Frogs",
+              "similarity": 0.5006203651428223,
+              "movie_url": "https://themoviecosmos.com/movie/22624"
+            },
+            {
+              "tmdb_id": 85398,
+              "title": "A Thousand and One Nights",
+              "similarity": 0.507514238357544,
+              "movie_url": "https://themoviecosmos.com/movie/85398"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 38141,
+      "title": "World Gone Wild",
+      "overview": "In the nuclear ravaged wasteland of Earth 2087 water is as precious as life itself. The isolated Lost Wells outpost survived the holocaust and the inhabitants guard the source of their existence. Now an evil cult of renegades want control of their valuable water supply. And the villagers are no match for such brute military force. Only one man can help the stricken community - a mercenary living in a distance cannibal city. But even he, and his strange henchmen, may not be able to survive in the world gone wild.",
+      "genres": "Action, Science Fiction",
+      "release_year": 1987,
+      "language": "en",
+      "poster_path": "/gJ5iqjzIKfMCtVq5xBl1n9myuf4.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/38141",
+      "similarity": 0.619540810585022,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-OUTLAW",
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-3",
+            "result-5"
+          ],
+          "similarity": 0.5482349991798401,
+          "fit": 0.91
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-1",
+            "how-0",
+            "result-0",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.619540810585022,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-5"
+          ],
+          "similarity": 0.5153148770332336,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "why-0",
+            "result-5"
+          ],
+          "similarity": 0.5043936371803284,
+          "fit": 0.68
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-3"
+          ],
+          "similarity": 0.5561099648475647,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-MAGICIAN,THE-OUTLAW,THE-HERO"
+    },
+    {
+      "tmdb_id": 22624,
+      "title": "Raining Cats and Frogs",
+      "overview": "It's a catastrophe! A flood has hit our planet and an unusual group of people are all that remains. Led by Ferdinand, a modern day Noah, this little group have managed to defy the furiously raging elements. People and animals alike are dragged through this incredible whirlpool of an adventure.",
+      "genres": "Animation, Fantasy, Adventure",
+      "release_year": 2003,
+      "language": "fr",
+      "poster_path": "/k6E3mk4NChtf38uMYsc0cvAe5IA.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/22624",
+      "similarity": 0.6122044920921326,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-MAGICIAN",
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-5"
+          ],
+          "similarity": 0.5258080959320068,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-5"
+          ],
+          "similarity": 0.5124047994613647,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2",
+            "how-5"
+          ],
+          "similarity": 0.6122044920921326,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-1",
+            "result-5"
+          ],
+          "similarity": 0.5006203651428223,
+          "fit": 0.68
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "why-1",
+            "result-0",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.5530148148536682,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-MAGICIAN,THE-HERO,THE-JESTER"
+    },
+    {
+      "tmdb_id": 289214,
+      "title": "Disaster Wars: Earthquake vs. Tsunami",
+      "overview": "Deep underwater in the Marianas Trench an accident results in a devastating Tsunami that destroys the Hawaiian Islands as it continues toward the west coast. Panic ensues all up and down the western coast of North and South America. In an attempt to lessen its impact, scientists launch an underwater explosion that inadvertently makes the tsunami more powerful and focused on Los Angeles. Scientists rush to a solution while the military begins planning for the worst. Los Angeles begins emergency evacuation. Lives and loves are lost even as a brash young grad student comes up with a solution: start the mother of all earthquakes to counter the rushing torrent and raise the continental shelf off the coast of the United States.",
+      "genres": "Thriller, Action, Drama, Science Fiction",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/aCtAi8znKbrTm2vTePXi76zYyDc.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/289214",
+      "similarity": 0.6120705604553223,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-SAGE"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-1",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-4"
+          ],
+          "similarity": 0.6120705604553223,
+          "fit": 0.76
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.5802006721496582,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-CAREGIVER,THE-SAGE"
+    },
+    {
+      "tmdb_id": 333545,
+      "title": "Road Wars",
+      "overview": "After the earth’s water supply is depleted, the survivors form roving road gangs, armed to the teeth and desperate to find and protect water supplies. But when a new breed of blood-drinking humans emerges, the survivors must contend with a whole new threat to their existence.",
+      "genres": "Science Fiction, Action",
+      "release_year": 2015,
+      "language": "en",
+      "poster_path": "/69JeTquZPBswYLxSH5KyEjz6EGQ.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/333545",
+      "similarity": 0.6080435514450073,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-1",
+            "how-0",
+            "result-0",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.6080435514450073,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-1",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-3",
+            "result-4"
+          ],
+          "similarity": 0.5123593807220459,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-LOVER,THE-HERO"
+    },
+    {
+      "tmdb_id": 6309,
+      "title": "Flood",
+      "overview": "Timely yet terrifying, The Flood predicts the unthinkable. When a raging storm coincides with high seas it unleashes a colossal tidal surge, which travels mercilessly down England's East Coast and into the Thames Estuary. Overwhelming the Barrier, torrents of water pour into the city. The lives of millions of Londoners are at stake.",
+      "genres": "Drama, Action, Thriller",
+      "release_year": 2007,
+      "language": "en",
+      "poster_path": "/s0F2iDMtj6uYQPqbjwCPlwug2O4.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/6309",
+      "similarity": 0.5887608528137207,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-MAGICIAN",
+        "THE-SAGE"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4"
+          ],
+          "similarity": 0.5380577445030212,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-1",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-4"
+          ],
+          "similarity": 0.5887608528137207,
+          "fit": 0.76
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "why-1",
+            "result-0",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.5475029945373535,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-SAGE,THE-EVERYMAN,THE-MAGICIAN"
+    },
+    {
+      "tmdb_id": 257637,
+      "title": "Poem of the Sea",
+      "overview": "A Soviet dam project means that many old Ukrainian villages will end up under water. There are conflicts between the dam engineers and villagers who don't want to move.",
+      "genres": "Drama",
+      "release_year": 1958,
+      "language": "ru",
+      "poster_path": "/7Qa2RveCq3MgNGUuHqg9cVjITBa.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/257637",
+      "similarity": 0.5671122670173645,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-OUTLAW",
+        "THE-SAGE"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.5671122670173645
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-4",
+            "how-5",
+            "result-5"
+          ],
+          "similarity": 0.46535179018974304
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4"
+          ],
+          "similarity": 0.5489004850387573,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.529892086982727,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.5044344663619995,
+          "fit": 0.68
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-3"
+          ],
+          "similarity": 0.5614206790924072,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 4,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=4 (>=2): A1,THE-OUTLAW,THE-SAGE,THE-EVERYMAN"
+    },
+    {
+      "tmdb_id": 10217,
+      "title": "The Sweet Hereafter",
+      "overview": "A small mountain community in Canada is devastated when a school bus accident leaves more than a dozen of its children dead. A big-city lawyer arrives to help the survivors' and victims' families prepare a class-action suit, but his efforts only seem to push the townspeople further apart. At the same time, one teenage survivor of the accident has to reckon with the loss of innocence brought about by a different kind of damage.",
+      "genres": "Drama",
+      "release_year": 1997,
+      "language": "en",
+      "poster_path": "/gJy7LMq4b5qO5fsSUSoBgm24BHf.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/10217",
+      "similarity": 0.5512048006057739,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-CAREGIVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.5417341589927673,
+          "fit": 0.68
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-1",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-5"
+          ],
+          "similarity": 0.5512048006057739,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-CAREGIVER,THE-EVERYMAN"
+    },
+    {
+      "tmdb_id": 48941,
+      "title": "Vajont",
+      "overview": "On October 9th, 1963, at 10:39 pm, 260 million cubic meters of rock fell down from Mount Toc to the artificial lake formed by the Vajont dam, the higher dam in the world. The landslide formed a 250-meters wave and 50 million cubic meters of water completely destroied all the below towns, killing more than 2000 people. Planned by engineer Semenza, Vajont dam (263 meters) had to carry the electricity in all the houses of the country. Tina Merlin, a journalist from 'L'Unitá', tried for years to denounce the danger to build a dam near the Mount Toc and expecially to denounce all the omissions by the corrupted politicians and workers in charge of the dam construction. They preferred to trust in old geologist Dal Piaz instead to hear engineer Semenza young son's alarming analysis. No one seemed to understand the high danger until that October fatal night.",
+      "genres": "Drama",
+      "release_year": 2001,
+      "language": "it",
+      "poster_path": "/AcCuGPLFOngKufrMK6aMwXMC9ze.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/48941",
+      "similarity": 0.526069700717926,
+      "triggered_by": [
+        "THE-CREATOR",
+        "THE-SAGE"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1",
+            "result-2",
+            "how-4",
+            "result-0"
+          ],
+          "similarity": 0.526069700717926,
+          "fit": 0.65
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5046679973602295,
+          "fit": 0.88
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-SAGE,THE-CREATOR"
+    },
+    {
+      "tmdb_id": 613658,
+      "title": "The Rescue",
+      "overview": "A rescue unit within the Chinese Coast Guard are forced to overcome their personal differences to resolve a crisis.",
+      "genres": "Drama, Thriller, Action",
+      "release_year": 2020,
+      "language": "zh",
+      "poster_path": "/ojFkOJUOc36O3SA0pZC1ccbAc2v.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/613658",
+      "similarity": 0.594581127166748,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.594581127166748,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 249011,
+      "title": "Water Wrackets",
+      "overview": "Multifarious images of a lake are overlaid with water effects and a narrated history of the campaigns fought by the fictional water-wracket army.",
+      "genres": "Fantasy",
+      "release_year": 1978,
+      "language": "en",
+      "poster_path": "/6WcFKwZ6rjHfbsB4EHubu8Vm80c.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/249011",
+      "similarity": 0.5732226967811584,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2",
+            "how-5"
+          ],
+          "similarity": 0.5732226967811584,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 104480,
+      "title": "Divers at Work on the Wreck of the \"Maine\"",
+      "overview": "Divers go to work on a wrecked ship (the battleship Maine that was blown up in Havana harbour during the Spanish-American War), surrounded by curiously disproportionate fish.",
+      "genres": "Documentary",
+      "release_year": 1898,
+      "language": "fr",
+      "poster_path": "/duiuY8xi0fPCBegpWyToUQiZYSX.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/104480",
+      "similarity": 0.5708917379379272,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.5708917379379272,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 38828,
+      "title": "Left Behind: World at War",
+      "overview": "A year and a half ago, the globe was hit with the biggest catastrophe it had ever seen. Without warning and without explanation, hundreds of millions simply vanished off the face of the Earth. The world was in chaos like never before. Yet somehow one man seemed to rise to the challenge. One man had the strength and conviction to unite a shattered world. One man gave the world hope. That man was Nicolae Carpathia, who now rules the entire world.",
+      "genres": "Action, Adventure, Fantasy, Science Fiction, Thriller",
+      "release_year": 2005,
+      "language": "en",
+      "poster_path": "/mSkkofYLcjFSkb2o3rZuUBWu92P.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/38828",
+      "similarity": 0.5665820837020874,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1",
+            "result-2",
+            "how-4",
+            "result-0"
+          ],
+          "similarity": 0.5665820837020874,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 63617,
+      "title": "Reap the Wild Wind",
+      "overview": "The Florida Keys in 1840, where the implacable hurricanes of the Caribbean scream, where the salvagers of Key West, like the intrepid and beautiful Loxi Claiborne and her crew, reap, aboard frail schooners, the harvest of the wild wind, facing the shark teeth of the reefs to rescue the sailors and the cargo from the shipwrecks caused by the scavengers of the sea.",
+      "genres": "Adventure, Action, Romance",
+      "release_year": 1942,
+      "language": "en",
+      "poster_path": "/coWMXDjxSFBPT3phsTKcKjVQbwq.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/63617",
+      "similarity": 0.5619271993637085,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.5619271993637085,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 33196,
+      "title": "Tidal Wave",
+      "overview": "On Haeundae Beach, a guilt-ridden fisherman takes care of a woman whose father accidentally got killed. A scientist reunites with his ex-wife and a daughter who doesn't even remember his face. And a poor rescue worker falls in love with a rich city girl. When they all find out a gigantic tsunami will hit the beach, they realize they only have 10 minutes to escape.",
+      "genres": "Action, Drama, Thriller",
+      "release_year": 2009,
+      "language": "ko",
+      "poster_path": "/1mE5jde5SJqUnZ58MAweW9GuhzK.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/33196",
+      "similarity": 0.5537706613540649,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-1",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-3",
+            "result-4"
+          ],
+          "similarity": 0.5537706613540649,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 285427,
+      "title": "Quel maledetto ponte sull'Elba",
+      "overview": "Quel maledetto ponte sull'Elba",
+      "genres": "War",
+      "release_year": 1969,
+      "language": "it",
+      "poster_path": "/sysNBEBWGWUvkKWDZGPyF4CkNLW.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/285427",
+      "similarity": 0.5531585216522217,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-1",
+            "result-2",
+            "result-5"
+          ],
+          "similarity": 0.5531585216522217,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 664423,
+      "title": "The Windermere Children",
+      "overview": "The story of the pioneering project to rehabilitate child survivors of the Holocaust on the shores of Lake Windermere.",
+      "genres": "Drama, War, History",
+      "release_year": 2020,
+      "language": "en",
+      "poster_path": "/4RnQMwVVxhJlZDJybptAOrrpt87.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/664423",
+      "similarity": 0.5510413646697998,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.5510413646697998,
+          "fit": 0.91
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 29602,
+      "title": "The Storm",
+      "overview": "A fictional story within the historical context of the disastrous flood that engulfed the Dutch coastal province of Zeeland in 1953. When their farmhouse is destroyed by the flood, teenage mother Julia gets separated from her baby boy, whom she kept hidden in a box. She is saved from drowning by a young air force lieutenant, who agrees to go help looking for Julia's little son.",
+      "genres": "Drama",
+      "release_year": 2009,
+      "language": "nl",
+      "poster_path": "/6tUtLfBhI9HTpOFdviuzPR2XTal.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/29602",
+      "similarity": 0.5379269123077393,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-1",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-5"
+          ],
+          "similarity": 0.5379269123077393,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 163293,
+      "title": "Deluge",
+      "overview": "A massive earthquake strikes the United States, which destroys the West Coast and unleashes a massive flood that threatens to destroy the East Coast as well.",
+      "genres": "Science Fiction, Drama, Thriller",
+      "release_year": 1933,
+      "language": "en",
+      "poster_path": "/3TL1Qxgl2D4RtvnuWteVknqod1j.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/163293",
+      "similarity": 0.5334398746490479,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-1",
+            "result-2",
+            "result-5"
+          ],
+          "similarity": 0.5334398746490479,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 937393,
+      "title": "Bloat",
+      "overview": "After a near-death drowning accident, a young boy's family is horrified to discover he has become possessed by a legendary demon from the depths of the lake. As the family races against time to save the boy's soul, the evil monster inside the child tears the family apart as it seeks to destroy everyone in its path.",
+      "genres": "Horror",
+      "release_year": 2025,
+      "language": "en",
+      "poster_path": "/xZVoA1FuQjovjZSqMT3HqXWzUfG.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/937393",
+      "similarity": 0.5334304571151733,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-3",
+            "result-5"
+          ],
+          "similarity": 0.5334304571151733,
+          "fit": 0.91
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A1-THE-EVERYMAN": 0.6958436369895935,
+      "A1-THE-HERO": 0.575751781463623,
+      "A1-THE-CAREGIVER": 0.5348965525627136,
+      "A1-THE-OUTLAW": 0.449596107006073,
+      "A1-THE-LOVER": 0.6397099494934082,
+      "A1-THE-CREATOR": 0.6833227872848511,
+      "A1-THE-MAGICIAN": 0.6360953450202942,
+      "A1-THE-SAGE": 0.7127083539962769,
+      "A1-THE-JESTER": 0.5975543260574341,
+      "THE-EVERYMAN-THE-HERO": 0.6665578484535217,
+      "THE-CAREGIVER-THE-EVERYMAN": 0.5007093548774719,
+      "THE-EVERYMAN-THE-OUTLAW": 0.4583578109741211,
+      "THE-EVERYMAN-THE-LOVER": 0.5675938725471497,
+      "THE-CREATOR-THE-EVERYMAN": 0.7951819896697998,
+      "THE-EVERYMAN-THE-MAGICIAN": 0.8479855060577393,
+      "THE-EVERYMAN-THE-SAGE": 0.8320306539535522,
+      "THE-EVERYMAN-THE-JESTER": 0.6691401600837708,
+      "THE-CAREGIVER-THE-HERO": 0.6930979490280151,
+      "THE-HERO-THE-OUTLAW": 0.5680249929428101,
+      "THE-HERO-THE-LOVER": 0.7507299184799194,
+      "THE-CREATOR-THE-HERO": 0.7446296215057373,
+      "THE-HERO-THE-MAGICIAN": 0.7046263217926025,
+      "THE-HERO-THE-SAGE": 0.5707800388336182,
+      "THE-HERO-THE-JESTER": 0.5834047794342041,
+      "THE-CAREGIVER-THE-OUTLAW": 0.5561190843582153,
+      "THE-CAREGIVER-THE-LOVER": 0.7188027501106262,
+      "THE-CAREGIVER-THE-CREATOR": 0.5955745577812195,
+      "THE-CAREGIVER-THE-MAGICIAN": 0.5643964409828186,
+      "THE-CAREGIVER-THE-SAGE": 0.5303985476493835,
+      "THE-CAREGIVER-THE-JESTER": 0.38667166233062744,
+      "THE-LOVER-THE-OUTLAW": 0.5148773789405823,
+      "THE-CREATOR-THE-OUTLAW": 0.4909469187259674,
+      "THE-MAGICIAN-THE-OUTLAW": 0.579586386680603,
+      "THE-OUTLAW-THE-SAGE": 0.5000325441360474,
+      "THE-JESTER-THE-OUTLAW": 0.5201655030250549,
+      "THE-CREATOR-THE-LOVER": 0.7037062644958496,
+      "THE-LOVER-THE-MAGICIAN": 0.619509756565094,
+      "THE-LOVER-THE-SAGE": 0.5346972942352295,
+      "THE-JESTER-THE-LOVER": 0.6035324335098267,
+      "THE-CREATOR-THE-MAGICIAN": 0.7721884250640869,
+      "THE-CREATOR-THE-SAGE": 0.7115910649299622,
+      "THE-CREATOR-THE-JESTER": 0.6910591125488281,
+      "THE-MAGICIAN-THE-SAGE": 0.76137375831604,
+      "THE-JESTER-THE-MAGICIAN": 0.6709985733032227,
+      "THE-JESTER-THE-SAGE": 0.5546011924743652
+    },
+    "topk_jaccard": {
+      "A1-THE-EVERYMAN": 0.14285714285714285,
+      "A1-THE-HERO": 0.0,
+      "A1-THE-CAREGIVER": 0.0,
+      "A1-THE-OUTLAW": 0.125,
+      "A1-THE-LOVER": 0.0,
+      "A1-THE-CREATOR": 0.0,
+      "A1-THE-MAGICIAN": 0.0,
+      "A1-THE-SAGE": 0.1,
+      "A1-THE-JESTER": 0.0,
+      "THE-EVERYMAN-THE-HERO": 0.0,
+      "THE-CAREGIVER-THE-EVERYMAN": 0.125,
+      "THE-EVERYMAN-THE-OUTLAW": 0.16666666666666666,
+      "THE-EVERYMAN-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-EVERYMAN": 0.0,
+      "THE-EVERYMAN-THE-MAGICIAN": 0.14285714285714285,
+      "THE-EVERYMAN-THE-SAGE": 0.2857142857142857,
+      "THE-EVERYMAN-THE-JESTER": 0.0,
+      "THE-CAREGIVER-THE-HERO": 0.0,
+      "THE-HERO-THE-OUTLAW": 0.1111111111111111,
+      "THE-HERO-THE-LOVER": 0.1111111111111111,
+      "THE-CREATOR-THE-HERO": 0.0,
+      "THE-HERO-THE-MAGICIAN": 0.2222222222222222,
+      "THE-HERO-THE-SAGE": 0.0,
+      "THE-HERO-THE-JESTER": 0.125,
+      "THE-CAREGIVER-THE-OUTLAW": 0.0,
+      "THE-CAREGIVER-THE-LOVER": 0.0,
+      "THE-CAREGIVER-THE-CREATOR": 0.0,
+      "THE-CAREGIVER-THE-MAGICIAN": 0.0,
+      "THE-CAREGIVER-THE-SAGE": 0.09090909090909091,
+      "THE-CAREGIVER-THE-JESTER": 0.0,
+      "THE-LOVER-THE-OUTLAW": 0.0,
+      "THE-CREATOR-THE-OUTLAW": 0.0,
+      "THE-MAGICIAN-THE-OUTLAW": 0.125,
+      "THE-OUTLAW-THE-SAGE": 0.1111111111111111,
+      "THE-JESTER-THE-OUTLAW": 0.0,
+      "THE-CREATOR-THE-LOVER": 0.0,
+      "THE-LOVER-THE-MAGICIAN": 0.0,
+      "THE-LOVER-THE-SAGE": 0.0,
+      "THE-JESTER-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-MAGICIAN": 0.0,
+      "THE-CREATOR-THE-SAGE": 0.1111111111111111,
+      "THE-CREATOR-THE-JESTER": 0.0,
+      "THE-MAGICIAN-THE-SAGE": 0.1,
+      "THE-JESTER-THE-MAGICIAN": 0.14285714285714285,
+      "THE-JESTER-THE-SAGE": 0.0
+    }
+  },
+  "meta": {
+    "query_count": 26,
+    "raw_hit_count": 52,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

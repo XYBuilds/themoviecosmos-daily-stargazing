@@ -1,0 +1,150 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "Golden Knights sweep Presidents' Trophy Avalanche to reach Stanley Cup Final",
+    "description": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4, completing a four-game Western Conference Final sweep on May 26. The franchise fired its coach with eight regular-season games left before John Tortorella guided a 7-0-1 close and playoff runs past Utah and Anaheim. Colorado entered the series as heavy favorites after dominating the regular season but lost top stars Cale Makar and Nathan MacKinnon to injuries.",
+    "pub_time": "2026-05-27T06:00:00-07:00",
+    "source_name": "Boston Globe",
+    "url": "https://www.bostonglobe.com/2026/05/27/sports/nhl-playoffs-golden-knights-avalanche-game-4-score/"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-27T06:00:00-07:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "2026-05-26"
+      ],
+      "relative": [
+        "with eight regular-season games left"
+      ],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "four-game Western Conference Final sweep"
+      ],
+      "recurrence": [],
+      "modality": [
+        "已发生"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Western Conference Final Game 4",
+        "tags": [
+          "冰球比赛",
+          "体育赛事"
+        ],
+        "geocode": null,
+        "relative_pos": null,
+        "geopolitical": null,
+        "scene_archetype": [],
+        "role": [
+          "发生地"
+        ],
+        "intended_destination": null,
+        "scale": null,
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "Vegas Golden Knights",
+        "tags": [
+          "冰球队"
+        ],
+        "role_in_event": [
+          "执行",
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Colorado Avalanche",
+        "tags": [
+          "冰球队"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": []
+      },
+      {
+        "text": "John Tortorella",
+        "tags": [
+          "教练"
+        ],
+        "role_in_event": [
+          "执行"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Cale Makar",
+        "tags": [
+          "球员"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": [
+          "属于 Colorado Avalanche"
+        ]
+      },
+      {
+        "text": "Nathan MacKinnon",
+        "tags": [
+          "球员"
+        ],
+        "role_in_event": [
+          "受影响"
+        ],
+        "relations": [
+          "属于 Colorado Avalanche"
+        ]
+      }
+    ],
+    "why": [
+      {
+        "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "The franchise fired its coach with eight regular-season games left"
+      },
+      {
+        "step": 2,
+        "text": "John Tortorella guided a 7-0-1 close and playoff runs past Utah and Anaheim"
+      },
+      {
+        "step": 3,
+        "text": "Vegas scored twice and held Colorado to one goal in Game 4"
+      },
+      {
+        "step": 4,
+        "text": "This completed a four-game Western Conference Final sweep on May 26"
+      }
+    ],
+    "result": [
+      {
+        "text": "Vegas Golden Knights reached the Stanley Cup Final"
+      },
+      {
+        "text": "Colorado Avalanche were swept in the Western Conference Final"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

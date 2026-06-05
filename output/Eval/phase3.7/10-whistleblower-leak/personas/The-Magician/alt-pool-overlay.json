@@ -1,0 +1,277 @@
+{
+  "persona_id": "The-Magician",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "举报人",
+        "alternatives": [
+          {
+            "term": "觉醒的揭露者",
+            "valence": "positive"
+          },
+          {
+            "term": "信息提供者",
+            "valence": "neutral"
+          },
+          {
+            "term": "秩序扰乱者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "印度国家考试机构 (NTA)",
+        "alternatives": [
+          {
+            "term": "系统漏洞的发现者",
+            "valence": "positive"
+          },
+          {
+            "term": "考试管理机构",
+            "valence": "neutral"
+          },
+          {
+            "term": "失职的看门人",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "中央调查局 (CBI)",
+        "alternatives": [
+          {
+            "term": "真相的追索者",
+            "valence": "positive"
+          },
+          {
+            "term": "中央执法机构",
+            "valence": "neutral"
+          },
+          {
+            "term": "迟到的介入者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "26-27 名试卷制定者和翻译人员",
+        "alternatives": [
+          {
+            "term": "知识泄露的源头",
+            "valence": "positive"
+          },
+          {
+            "term": "试题相关人员",
+            "valence": "neutral"
+          },
+          {
+            "term": "制度信任的背叛者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-4",
+        "original_term": "十三名被逮捕人员（包括一名培训人士）",
+        "alternatives": [
+          {
+            "term": "操纵链条的执行者",
+            "valence": "positive"
+          },
+          {
+            "term": "涉案嫌疑人",
+            "valence": "neutral"
+          },
+          {
+            "term": "规则的游戏破坏者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "举报人发送的 PDF 文件与 NEET-UG 2026 化学试卷完全匹配，与生物试卷部分匹配",
+        "alternatives": [
+          {
+            "term": "泄露内容的精确验证",
+            "valence": "positive"
+          },
+          {
+            "term": "试题内容的证据匹配",
+            "valence": "neutral"
+          },
+          {
+            "term": "考试公正性的致命破绽",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "2026年5月3日，NEET-UG 医学入学考试进行",
+        "alternatives": [
+          {
+            "term": "一场表面正常的考试",
+            "valence": "positive"
+          },
+          {
+            "term": "考试进行",
+            "valence": "neutral"
+          },
+          {
+            "term": "泄露发生的关键时刻",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "四天后，印度国家考试机构收到举报人邮件，附有匹配试卷的 PDF 文件",
+        "alternatives": [
+          {
+            "term": "关键证据的精准送达",
+            "valence": "positive"
+          },
+          {
+            "term": "举报邮件的接收",
+            "valence": "neutral"
+          },
+          {
+            "term": "体系漏洞被外部曝光",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "NTA 将 26-27 名试卷制定者和翻译人员移交中央调查局",
+        "alternatives": [
+          {
+            "term": "内部责任的清理与移交",
+            "valence": "positive"
+          },
+          {
+            "term": "案件移交执法机构",
+            "valence": "neutral"
+          },
+          {
+            "term": "自身监管失职的转移",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "original_term": "十三人被逮捕，包括一名培训人士",
+        "alternatives": [
+          {
+            "term": "操纵网络的瓦解",
+            "valence": "positive"
+          },
+          {
+            "term": "嫌疑人被捕",
+            "valence": "neutral"
+          },
+          {
+            "term": "替罪羊的落网",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "original_term": "重新考试定于2026年6月21日",
+        "alternatives": [
+          {
+            "term": "系统纠错的二次机会",
+            "valence": "positive"
+          },
+          {
+            "term": "重考日期确定",
+            "valence": "neutral"
+          },
+          {
+            "term": "对无辜考生的二次折磨",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "NEET-UG 2026 被取消",
+        "alternatives": [
+          {
+            "term": "对舞弊行为的零容忍裁决",
+            "valence": "positive"
+          },
+          {
+            "term": "考试结果作废",
+            "valence": "neutral"
+          },
+          {
+            "term": "整个考试体系的失败",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "相关人员被移交 CBI",
+        "alternatives": [
+          {
+            "term": "调查的深入与升级",
+            "valence": "positive"
+          },
+          {
+            "term": "案件移交",
+            "valence": "neutral"
+          },
+          {
+            "term": "内部问题的外部化",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "original_term": "十三人被逮捕",
+        "alternatives": [
+          {
+            "term": "正义的初步实现",
+            "valence": "positive"
+          },
+          {
+            "term": "逮捕行动",
+            "valence": "neutral"
+          },
+          {
+            "term": "冰山一角的浮现",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-3",
+        "original_term": "重新考试安排在2026年6月21日",
+        "alternatives": [
+          {
+            "term": "恢复秩序的计划",
+            "valence": "positive"
+          },
+          {
+            "term": "新考试日程",
+            "valence": "neutral"
+          },
+          {
+            "term": "对考生时间与信任的再次消耗",
+            "valence": "negative"
+          }
+        ]
+      }
+    ]
+  }
+}

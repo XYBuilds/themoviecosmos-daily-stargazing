@@ -1,0 +1,242 @@
+{
+  "persona_id": "The-Sage",
+  "overlay": {
+    "persona_id": "The-Sage",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Christopher Nolan",
+          "alternatives": [
+            {
+              "term": "the film's director and primary creative decision-maker",
+              "valence": "neutral"
+            },
+            {
+              "term": "an established auteur adapting a foundational Western epic",
+              "valence": "positive"
+            },
+            {
+              "term": "the central figure initiating the casting controversy",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Lupita Nyong'o",
+          "alternatives": [
+            {
+              "term": "the acclaimed actress cast in the dual roles",
+              "valence": "neutral"
+            },
+            {
+              "term": "an award-winning performer bringing depth to iconic characters",
+              "valence": "positive"
+            },
+            {
+              "term": "the individual whose casting has become the focal point of the dispute",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "prominent commentators",
+          "alternatives": [
+            {
+              "term": "public voices engaging in cultural critique",
+              "valence": "neutral"
+            },
+            {
+              "term": "informed analysts framing the debate's societal implications",
+              "valence": "positive"
+            },
+            {
+              "term": "influential figures amplifying unverified claims of historical erasure",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "defenders",
+          "alternatives": [
+            {
+              "term": "those advocating for the casting choice",
+              "valence": "neutral"
+            },
+            {
+              "term": "proponents of inclusive artistic interpretation",
+              "valence": "positive"
+            },
+            {
+              "term": "apologists for what critics call cultural misrepresentation",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "演员选角引发对欧洲历史被抹去的指控",
+          "alternatives": [
+            {
+              "term": "the casting has been met with accusations of erasing European historical identity",
+              "valence": "neutral"
+            },
+            {
+              "term": "a claim of historical distortion, pending verifiable evidence from accusers",
+              "valence": "positive"
+            },
+            {
+              "term": "a narrative of cultural appropriation unsupported by the film's stated artistic goals",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "辩护者认为多样选角将西方经典视为共享文明遗产",
+          "alternatives": [
+            {
+              "term": "defenders argue diverse casting treats Western classics as a shared civilizational legacy",
+              "valence": "neutral"
+            },
+            {
+              "term": "an argument viewing mythology as universal human heritage, open to multi-ethnic interpretation",
+              "valence": "positive"
+            },
+            {
+              "term": "a justification that relativizes distinct cultural traditions for contemporary representation goals",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "克里斯托弗·诺兰的《奥德赛》改编电影计划",
+          "alternatives": [
+            {
+              "term": "the planned cinematic adaptation of Homer's 'Odyssey' by Christopher Nolan",
+              "valence": "neutral"
+            },
+            {
+              "term": "a major studio's investment in bringing a classical epic to a global audience",
+              "valence": "positive"
+            },
+            {
+              "term": "the commercial project that triggered a partisan conflict over cultural ownership",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "卢皮塔·尼永奥被选为特洛伊的海伦和克吕泰涅斯特拉",
+          "alternatives": [
+            {
+              "term": "Lupita Nyong'o's casting as Helen of Troy and Clytemnestra",
+              "valence": "neutral"
+            },
+            {
+              "term": "the selection of a versatile actress for complex, pivotal roles",
+              "valence": "positive"
+            },
+            {
+              "term": "a casting decision perceived by some as incongruent with the characters' mythological origins",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "引发激烈在线攻击和文化战争争论",
+          "alternatives": [
+            {
+              "term": "the event has sparked intense online attacks and a cultural war debate",
+              "valence": "neutral"
+            },
+            {
+              "term": "a heated public discourse has ensued, involving passionate defense and critique",
+              "valence": "positive"
+            },
+            {
+              "term": "the situation has escalated into vitriolic digital harassment and ideological polarization",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "争议将神话史诗转变为关于身份、归属和古典故事在大众电影中主张的文化热点",
+          "alternatives": [
+            {
+              "term": "the controversy has transformed a mythological epic into a cultural flashpoint about identity and ownership",
+              "valence": "neutral"
+            },
+            {
+              "term": "the debate highlights ongoing societal negotiations about representation in global media",
+              "valence": "positive"
+            },
+            {
+              "term": "the original literary work is now overshadowed by a conflict of competing identity claims",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "The planned cinematic adaptation of Homer's 'Odyssey' by Christopher Nolan has become a cultural flashpoint. The selection of Lupita Nyong'o as Helen of Troy and Clytemnestra has been met with accusations of erasing European historical identity, with influential figures amplifying unverified claims of historical erasure. However, those advocating for the casting choice view mythology as universal human heritage, open to multi-ethnic interpretation. The controversy has thus transformed the mythological epic into a debate about identity and ownership in global media.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "why-0",
+          "why-1",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p2",
+      "text": "The casting decision for Christopher Nolan's adaptation has prompted a heated public discourse. Public voices engaging in cultural critique contrast the claim of historical distortion, pending verifiable evidence from accusers, with the argument viewing classical stories as shared civilizational legacy. This event has sparked intense online attacks, highlighting ongoing societal negotiations about representation and the contested ownership of ancient narratives in contemporary cinema.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-1",
+          "why-0",
+          "why-1",
+          "how-2",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "The commercial project that is Nolan's 'Odyssey' film has triggered a partisan conflict over cultural ownership. The focal point is the casting, which has escalated into vitriolic digital harassment. While defenders present an inclusive artistic interpretation, accusers label it a narrative of cultural appropriation unsupported by the film's stated goals. This polarization now overshadows the original literary work with competing identity claims.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "why-0",
+          "why-1",
+          "result-0"
+        ]
+      },
+      "warnings": [],
+      "fit": 0.65
+    }
+  ],
+  "warnings": []
+}

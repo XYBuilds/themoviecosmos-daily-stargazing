@@ -1,4 +1,8 @@
-"""score_eval_candidates.py · Pseudo hit scores from retrieve.json → candidates.md + high-hit review.
+"""score_eval_candidates.py · Pseudo hit scores from retrieve.json → high-hit review.
+
+Builds `high-hit-score-review.md` from each run's `retrieve.json` (and patches
+per-run `candidates.md` when present, e.g. phase3.5/3.6). Phase 3.7 batch runs
+do not write per-run candidates.md; the review file is the editor SSOT.
 
 pseudo命中分 is a **secondary review/sort key** (ADR-0003 D1): it helps editors triage
 candidates but does **not** gate quality_candidate or eval summarize gates. 共振分 remains
@@ -22,6 +26,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 from scripts.eval_batch_manifest import load_manifest
 from scripts.eval_editor_fields import ensure_scoring_remark_in_block
+from scripts.run_eval import _format_candidates_markdown
 _EVAL_ROOT = _REPO_ROOT / "output" / "Eval"
 _LEGACY_HIGH_HIT_REVIEW = _EVAL_ROOT / "high-hit-score-review.md"
 _MIN_TOTAL_SCORE = 5
@@ -32,7 +37,8 @@ def _default_review_path(eval_dir: Path) -> Path:
     return eval_dir / "high-hit-score-review.md"
 
 _HIT_LINE = re.compile(
-    r"^(\s+-\s+)([A-Z0-9]+)/(p\d+):\s+fragments=\[(.*?)\]\s*·\s*sim=([\d.]+)"
+    r"^(\s+-\s+)([A-Z0-9][A-Z0-9-]*)/(p\d+)"
+    r"(?:\s*·\s*fit=[\d.]+)?\s*:\s*fragments=\[(.*?)\]\s*·\s*sim=([\d.]+)"
     r"(?:\s*·\s*\*\*命中分=\d+\*\*)?$"
 )
 _SCORE_SUFFIX = re.compile(r"\s*·\s*\*\*命中分=\d+\*\*$")
@@ -224,15 +230,26 @@ def _patch_candidate_block(
     return ensure_scoring_remark_in_block(text)
 
 
+def _load_candidates_text(run_dir: Path, retrieve_path: Path) -> tuple[str, str]:
+    """Return (markdown body, run_id). Synthesize from retrieve.json if no candidates.md."""
+    candidates_path = run_dir / "candidates.md"
+    if candidates_path.is_file():
+        text = candidates_path.read_text(encoding="utf-8")
+        return text, _infer_run_id(candidates_path, text)
+    data = json.loads(retrieve_path.read_text(encoding="utf-8"))
+    run_id = run_dir.name
+    return _format_candidates_markdown(run_id, data.get("candidates") or []), run_id
+
+
 def score_candidates_md(
-    candidates_path: Path,
+    candidates_text: str,
+    run_id: str,
     hits_by_tmdb: dict[int, list[HitScore]],
     *,
     quality_by_tmdb: dict[int, bool] | None = None,
     min_total_score: int = _MIN_TOTAL_SCORE,
 ) -> tuple[str, list[ScoredCandidate]]:
-    text = candidates_path.read_text(encoding="utf-8")
-    run_id = _infer_run_id(candidates_path, text)
+    text = candidates_text
 
     # Strip document header (before first ### candidate)
     first_heading = text.find("### ")
@@ -333,7 +350,7 @@ def _ordered_run_dirs(eval_dir: Path, manifest_path: Path | None = None) -> list
     dirs_by_name = {
         p.name: p
         for p in eval_dir.iterdir()
-        if p.is_dir() and (p / "candidates.md").is_file()
+        if p.is_dir() and (p / "retrieve.json").is_file()
     }
     ordered: list[Path] = []
     seen: set[str] = set()
@@ -441,13 +458,15 @@ def process_eval_dir(
             continue
         runs_scanned += 1
         hits_by_tmdb, quality_by_tmdb = _load_retrieve_meta(retrieve_path)
+        candidates_text, run_id = _load_candidates_text(run_dir, retrieve_path)
         new_text, high = score_candidates_md(
-            candidates_path,
+            candidates_text,
+            run_id,
             hits_by_tmdb,
             quality_by_tmdb=quality_by_tmdb,
             min_total_score=min_total_score,
         )
-        if write_candidates:
+        if write_candidates and candidates_path.is_file():
             candidates_path.write_text(new_text, encoding="utf-8")
         multi, single = _split_multi_single(high)
         run_reviews.append(
@@ -491,7 +510,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Do not write candidates.md or review file",
+        help="Do not write review file or patch existing candidates.md",
     )
     args = parser.parse_args(argv)
 

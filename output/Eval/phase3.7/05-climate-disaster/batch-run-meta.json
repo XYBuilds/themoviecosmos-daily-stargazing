@@ -1,0 +1,27 @@
+{
+  "run_id": "05-climate-disaster",
+  "split": "holdout",
+  "persona_count": 9,
+  "errors": [
+    {
+      "agent_id": "The-Innocent",
+      "message": "alt_creator parse_error: element who-2: missing valence bucket(s) ['negative']"
+    },
+    {
+      "agent_id": "The-Explorer",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Ruler",
+      "message": "alt_creator parse_error: element who-1: missing valence bucket(s) ['neutral', 'positive']"
+    }
+  ],
+  "retrieve_meta": {
+    "query_count": 26,
+    "raw_hit_count": 52,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  },
+  "finished_at": "2026-06-04T18:58:43.360525+00:00"
+}

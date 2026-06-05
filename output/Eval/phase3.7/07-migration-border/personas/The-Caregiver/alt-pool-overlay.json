@@ -1,0 +1,241 @@
+{
+  "persona_id": "The-Caregiver",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "美国边境巡逻队",
+        "alternatives": [
+          {
+            "term": "边境守护者",
+            "valence": "positive"
+          },
+          {
+            "term": "边境执法人员",
+            "valence": "neutral"
+          },
+          {
+            "term": "拘留执行方",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "被逮捕者",
+        "alternatives": [
+          {
+            "term": "寻求庇护者",
+            "valence": "positive"
+          },
+          {
+            "term": "被拘留移民",
+            "valence": "neutral"
+          },
+          {
+            "term": "被拘留者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "分析师",
+        "alternatives": [
+          {
+            "term": "趋势观察者",
+            "valence": "positive"
+          },
+          {
+            "term": "数据分析员",
+            "valence": "neutral"
+          },
+          {
+            "term": "数据归因者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "立法者",
+        "alternatives": [
+          {
+            "term": "政策制定者",
+            "valence": "positive"
+          },
+          {
+            "term": "国会议员",
+            "valence": "neutral"
+          },
+          {
+            "term": "僵局制造者",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "分析师将月度逮捕人数上升归因于春季天气变暖",
+        "alternatives": [
+          {
+            "term": "温暖天气促使更多人冒险越境",
+            "valence": "positive"
+          },
+          {
+            "term": "季节性因素导致越境活动增加",
+            "valence": "neutral"
+          },
+          {
+            "term": "归因于天气变暖掩盖了深层系统问题",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "2026年3月，美国边境巡逻队在西南边境逮捕了8,268人",
+        "alternatives": [
+          {
+            "term": "3月份有8,268人被边境巡逻队拘留",
+            "valence": "positive"
+          },
+          {
+            "term": "边境巡逻队报告3月逮捕人数为8,268",
+            "valence": "neutral"
+          },
+          {
+            "term": "3月份超过八千人被拘留",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "这比2026年2月的6,598人增加了25%",
+        "alternatives": [
+          {
+            "term": "月度人数显著上升",
+            "valence": "positive"
+          },
+          {
+            "term": "逮捕人数环比增长25%",
+            "valence": "neutral"
+          },
+          {
+            "term": "拘留人数激增",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "年初至今的越境人数仍接近数十年低点，归因于庇护关闭和驱逐政策",
+        "alternatives": [
+          {
+            "term": "严格的庇护政策有效降低了越境人数",
+            "valence": "positive"
+          },
+          {
+            "term": "年度越境人数保持在历史低位",
+            "valence": "neutral"
+          },
+          {
+            "term": "庇护通道关闭迫使人们走向更危险的越境方式",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "original_term": "分析师指出月度上升是由于春季天气变暖",
+        "alternatives": [
+          {
+            "term": "温暖季节带来了越境活动的季节性增加",
+            "valence": "positive"
+          },
+          {
+            "term": "上升被归因于季节性天气变化",
+            "valence": "neutral"
+          },
+          {
+            "term": "将上升归因于天气，忽视了政策与人道影响",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "original_term": "立法者在移民执法机构资金问题上僵持不下，相关资金法案待决",
+        "alternatives": [
+          {
+            "term": "国会正在就边境安全资金进行审议",
+            "valence": "positive"
+          },
+          {
+            "term": "边境执法资金法案悬而未决",
+            "valence": "neutral"
+          },
+          {
+            "term": "政治僵局延误了必要的边境资源拨款",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "2026年3月逮捕人数上升25%至8,268人",
+        "alternatives": [
+          {
+            "term": "月度拘留人数反映了季节性越境波动",
+            "valence": "positive"
+          },
+          {
+            "term": "3月逮捕人数为8,268，环比增长25%",
+            "valence": "neutral"
+          },
+          {
+            "term": "数千人被拘留，拘留人数月度激增",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "年初至今越境人数保持在数十年低点附近",
+        "alternatives": [
+          {
+            "term": "年度越境人数维持在历史低位",
+            "valence": "positive"
+          },
+          {
+            "term": "年初至今的越境总数接近数十年来的最低水平",
+            "valence": "neutral"
+          },
+          {
+            "term": "尽管月度上升，整体越境率仍处于低位",
+            "valence": "negative"
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "original_term": "立法者在资金问题上僵持不下",
+        "alternatives": [
+          {
+            "term": "国会正在为边境机构寻求资金解决方案",
+            "valence": "positive"
+          },
+          {
+            "term": "边境执法资金问题仍未解决",
+            "valence": "neutral"
+          },
+          {
+            "term": "政治内斗导致关键边境资源无法到位",
+            "valence": "negative"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,1847 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In March 2026, U.S. Border Patrol arrested 8,268 people at the southwest border. This was an increase of 25% from the 6,598 arrests in February 2026.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.5087245106697083,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            },
+            {
+              "tmdb_id": 4170,
+              "title": "Trade",
+              "similarity": 0.5096507668495178,
+              "movie_url": "https://themoviecosmos.com/movie/4170"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Analysts attributed the monthly increase in arrests to warmer spring weather. Year-to-date border crossings remained near multi-decade lows, credited to asylum restrictions and deportation policies.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 982752,
+              "title": "American Carnage",
+              "similarity": 0.4044097661972046,
+              "movie_url": "https://themoviecosmos.com/movie/982752"
+            },
+            {
+              "tmdb_id": 301633,
+              "title": "Open the Wall",
+              "similarity": 0.4067463278770447,
+              "movie_url": "https://themoviecosmos.com/movie/301633"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Legislators remained at an impasse over funding for immigration enforcement agencies. A related funding bill was pending.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-4",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 21711,
+              "title": "The Candidate",
+              "similarity": 0.4799210727214813,
+              "movie_url": "https://themoviecosmos.com/movie/21711"
+            },
+            {
+              "tmdb_id": 43837,
+              "title": "Union Pacific",
+              "similarity": 0.591037392616272,
+              "movie_url": "https://themoviecosmos.com/movie/43837"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-INNOCENT",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In March 2026, border patrol agents arrested 8,268 people along the southwest border, a 25% increase from the previous month. Observers attribute this monthly fluctuation to seasonal factors, specifically the arrival of warmer spring weather. Despite this recent uptick, the overall number of border crossings for the year remains near historic lows, a fact attributed to existing asylum closures and deportation policies. This situation shows a system under pressure, with a temporary seasonal rise set against a backdrop of sustained low activity.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 4170,
+              "title": "Trade",
+              "similarity": 0.5030597448348999,
+              "movie_url": "https://themoviecosmos.com/movie/4170"
+            },
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.5391323566436768,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "While the monthly number of arrests at the southwest border saw a 25% increase in March 2026, reaching 8,268, analysts note this is a temporary change driven by seasonal factors. The broader picture remains one of control, with year-to-date border crossings holding near decade-long lows due to current policies. Meanwhile, policymakers are engaged in negotiations over funding for immigration enforcement, working to resolve a budgetary impasse. The core system is stable, though it faces a seasonal challenge and a pending political discussion.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 4170,
+              "title": "Trade",
+              "similarity": 0.4457833766937256,
+              "movie_url": "https://themoviecosmos.com/movie/4170"
+            },
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.5418885350227356,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EVERYMAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In March 2026, border patrol personnel arrested over eight thousand people at the U.S. Southwest border, a twenty-five percent jump from the month before. Data observers linked this rise to seasonal migration patterns as warmer spring weather arrived. While the monthly figures show an increase, the total number of people crossing the border since the start of the year remains near historic lows, a trend attributed to strict asylum closures and deportation policies. The numbers reflect a system where individuals face immediate consequences, while broader resource questions remain unresolved for the officials tasked with enforcement.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.5164862275123596,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            },
+            {
+              "tmdb_id": 4170,
+              "title": "Trade",
+              "similarity": 0.5398157835006714,
+              "movie_url": "https://themoviecosmos.com/movie/4170"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The people on the front lines of border enforcement recorded a sharp rise in arrests in March, catching over eight thousand individuals. Analysts point to the changing season as a factor behind this monthly spike. Yet, this short-term increase occurs against a backdrop where annual crossing numbers have been kept low by firm government policies. Meanwhile, a political stalemate has left funding for the agencies doing this critical work in limbo, creating uncertainty for the workers and communities who depend on these systems functioning smoothly.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 4170,
+              "title": "Trade",
+              "similarity": 0.48704957962036133,
+              "movie_url": "https://themoviecosmos.com/movie/4170"
+            },
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.5403509140014648,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "A twenty-five percent monthly increase in border arrests was driven by seasonal weather changes, according to trend analysts. This uptick brought the March total to over eight thousand people taken into custody. While this represents a significant monthly jump, the bigger picture shows that stricter policies have kept overall yearly crossings near their lowest point in decades. The situation highlights a disconnect: people on the ground see rising numbers, while lawmakers remain deadlocked over funding the very agencies handling the influx.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 4170,
+              "title": "Trade",
+              "similarity": 0.49859097599983215,
+              "movie_url": "https://themoviecosmos.com/movie/4170"
+            },
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.4996274709701538,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-CAREGIVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "As spring brought warmer weather, thousands of vulnerable people found themselves detained, with the number of individuals held by border enforcement jumping 25% in a single month. This surge to over 8,268 people highlights the human cost of seasonal migration patterns, as families and individuals seek safety. While analysts attribute the rise to climate, the reality for those held in detention is one of immediate need for care and protection, a stark contrast to abstract policy debates.",
+          "source": {
+            "agent_id": "THE-CAREGIVER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1006462,
+              "title": "The Flood",
+              "similarity": 0.4687929153442383,
+              "movie_url": "https://themoviecosmos.com/movie/1006462"
+            },
+            {
+              "tmdb_id": 11900,
+              "title": "Even Dwarfs Started Small",
+              "similarity": 0.4743145704269409,
+              "movie_url": "https://themoviecosmos.com/movie/11900"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Despite a legislative stalemate delaying critical funding, the core issue remains the well-being of people caught in the system. The year's border crossings remain near historic lows, yet a month of warmer weather led to over 8,000 people being detained. This situation underscores the duty to shelter and protect those affected, moving beyond data points to acknowledge the human stories of risk and uncertainty at the border.",
+          "source": {
+            "agent_id": "THE-CAREGIVER",
+            "fragments": [
+              "how-4",
+              "result-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 366566,
+              "title": "The Roommates Party",
+              "similarity": 0.4865143597126007,
+              "movie_url": "https://themoviecosmos.com/movie/366566"
+            },
+            {
+              "tmdb_id": 252990,
+              "title": "Chariot",
+              "similarity": 0.48918789625167847,
+              "movie_url": "https://themoviecosmos.com/movie/252990"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EXPLORER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "As spring's warmth unfurled across the frontier, a new wave of movement emerged. Border data explorers noted this seasonal migration, pointing to the natural cycle's influence as a key driver. In March 2026, frontier patrols documented a new crossing peak, recording over eight thousand apprehensions—a significant twenty-five percent surge from the previous month. This monthly activity spike, however, stands against a backdrop of a stable baseline, where long-term boundary management has kept overall flow levels at historic lows. The pattern reveals a dynamic tension between recurring human journeys and sustained policy frameworks.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 178700,
+              "title": "Pack Train at Chilkoot Pass",
+              "similarity": 0.4614402651786804,
+              "movie_url": "https://themoviecosmos.com/movie/178700"
+            },
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.49000462889671326,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The frontier landscape in spring 2026 presented a complex topography of movement and control. While policy makers faced new funding challenges, leading to a legislative stalemate on enforcement resources, the on-the-ground reality showed a clear uptick in activity. Frontier patrols recorded a new peak in crossings, with monthly arrest data showing a sharp upward trend. This dynamic occurs even as annual flow levels remain suppressed near historical lows due to prior stringent policies, creating a new flow pattern where short-term surges test the boundaries of long-term management systems.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "how-4",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 151708,
+              "title": "Colosio",
+              "similarity": 0.47844767570495605,
+              "movie_url": "https://themoviecosmos.com/movie/151708"
+            },
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.5071794986724854,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-OUTLAW",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "While the state's armed apparatus detained 8,268 souls in March—a 25% surge from February—the official narrative from its data observers blames the weather, conveniently ignoring how brutal policies have kept annual crossings at decades-long lows. This is not a seasonal fluctuation; it's the predictable outcome of a system designed to criminalize movement. The facts expose the hypocrisy: the crackdown intensifies, yet the political architects of this crisis remain paralyzed in deadlock over funding, proving the machinery of control operates independently of democratic accountability.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 111224,
+              "title": "Ghost in the Shell: S.A.C. 2nd GIG - Individual Eleven",
+              "similarity": 0.5705380439758301,
+              "movie_url": "https://themoviecosmos.com/movie/111224"
+            },
+            {
+              "tmdb_id": 377150,
+              "title": "A Dragon Arrives!",
+              "similarity": 0.5824931859970093,
+              "movie_url": "https://themoviecosmos.com/movie/377150"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The 25% monthly jump in arrests to 8,268 is framed as a natural seasonal pattern, but this veneer of objectivity masks a darker reality. The state's violent arm accelerates its detention machine while its legislative branch descends into paralysis, unable to even fund its own enforcement apparatus. This isn't a policy failure; it's the system revealing its true priorities: control over people, not solutions to problems. The low annual crossings aren't a success story—they're the human cost of policies that treat human flow as a security threat to be managed, not a human need to be understood.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 158015,
+              "title": "The Purge",
+              "similarity": 0.5143234729766846,
+              "movie_url": "https://themoviecosmos.com/movie/158015"
+            },
+            {
+              "tmdb_id": 790529,
+              "title": "C’era una volta il crimine",
+              "similarity": 0.520108699798584,
+              "movie_url": "https://themoviecosmos.com/movie/790529"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Behind the dry statistics—8,268 detained in March, a 25% increase—lies a narrative deliberately obscured by official voices attributing it to warmer weather. This explanation serves to naturalize a political choice: the continued detention of those labeled as 'cross-border persons' by a system that has sealed off legal pathways. The simultaneous deadlock among legislators on funding reveals the true crisis: a state apparatus that expands its power to arrest while its political masters cannot even agree on how to sustain it, leaving the machinery of repression to run on autopilot.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 858059,
+              "title": "Attica",
+              "similarity": 0.5638431310653687,
+              "movie_url": "https://themoviecosmos.com/movie/858059"
+            },
+            {
+              "tmdb_id": 26513,
+              "title": "Punishment Park",
+              "similarity": 0.5853342413902283,
+              "movie_url": "https://themoviecosmos.com/movie/26513"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-LOVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "As spring's warmth beckoned, the deep longing for a new life drew more seekers toward the border. Their dreams, fragile and persistent, were met not with open arms but with a growing wall. In March, the guardians of that barrier intercepted 8,268 such journeys, a 25% increase from February's 6,598. This seasonal surge in desperate crossings stands in stark contrast to the policy-enforced quiet of the recent past, where the path to sanctuary was effectively sealed. The heart's desire for belonging continues to clash with the cold mechanics of enforcement, a painful dance repeating with the thaw.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 258363,
+              "title": "Desierto",
+              "similarity": 0.5234260559082031,
+              "movie_url": "https://themoviecosmos.com/movie/258363"
+            },
+            {
+              "tmdb_id": 20764,
+              "title": "Sleep Dealer",
+              "similarity": 0.5426679849624634,
+              "movie_url": "https://themoviecosmos.com/movie/20764"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "While 8,268 hopes were abruptly severed at the southwest border in March—a 25% rise from the previous month—the overall flow of longing remains near historic lows, a testament to policies that have closed doors. Observers note this is a natural, seasonal rhythm of human yearning. Yet, the very lawmakers who shape these fates are locked in a bitter stalemate over funding, leaving the system in a state of suspended animation. The human desire for connection and safety persists, but finds itself caught between the indifferent cycles of nature and the paralysis of political will.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 840464,
+              "title": "Greenland 2: Migration",
+              "similarity": 0.5010484457015991,
+              "movie_url": "https://themoviecosmos.com/movie/840464"
+            },
+            {
+              "tmdb_id": 414777,
+              "title": "After Darkness",
+              "similarity": 0.5057594776153564,
+              "movie_url": "https://themoviecosmos.com/movie/414777"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-CREATOR",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The Creator persona views the March 2026 border data as a crafted narrative. The trend interpreter's model, linking seasonal warmth to movement, frames a 25% monthly arrest spike by the enforcement force at the national gateway. This data story emerges from a legislative gridlock, where policy makers are paralyzed on funding. The composition of these elements—a seasonal driver, a significant uptick in enforcement output, and a stalled budget process—creates a complex artifact of border policy dynamics, presented as a sequence of cause and effect.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.5117499828338623,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            },
+            {
+              "tmdb_id": 151708,
+              "title": "Colosio",
+              "similarity": 0.5161474943161011,
+              "movie_url": "https://themoviecosmos.com/movie/151708"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "This narrative is fabricated around a core tension: while enforcement action output showed a notable surge to 8,268 arrests in March, the broader policy remains anchored by harsh measures that keep year-to-date numbers near historic lows. The creator lens highlights this dichotomy as a produced conflict—a local spike against a long-term trend, interpreted by a data narrator using a simple climate framework. The result is a story of surface crisis masking a deeper, policy-shaped stability, a crafted juxtaposition for the audience.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 26513,
+              "title": "Punishment Park",
+              "similarity": 0.5372870564460754,
+              "movie_url": "https://themoviecosmos.com/movie/26513"
+            },
+            {
+              "tmdb_id": 442249,
+              "title": "The First Purge",
+              "similarity": 0.5980324149131775,
+              "movie_url": "https://themoviecosmos.com/movie/442249"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-MAGICIAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "As spring's warmth returns, a familiar seasonal migration pattern reasserts itself. Data interpreters have pointed to a predictable 25% monthly rebound, with border enforcement capturing over eight thousand individuals in March—a cyclical echo rather than a seismic shift. This fluctuation, however, unfolds against a backdrop where long-term policy effects maintain border crossings near historic lows. The real sleight-of-hand may lie in how a routine, climate-driven uptick is framed, diverting attention from the deeper, unresolved structural stalemate in legislative funding that keeps enforcement resources perpetually in limbo.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 508747,
+              "title": "Us and Them",
+              "similarity": 0.4247370958328247,
+              "movie_url": "https://themoviecosmos.com/movie/508747"
+            },
+            {
+              "tmdb_id": 811703,
+              "title": "The Year Earth Changed",
+              "similarity": 0.4404597282409668,
+              "movie_url": "https://themoviecosmos.com/movie/811703"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "A single month's statistics reveal a careful narrative construction. The reported surge to 8,268 apprehensions, contrasted against the prior month, presents an image of crisis. Yet, this immediate data point is deliberately juxtaposed with the larger, more stable truth: year-to-date crossings remain anchored near decade-long lows, a testament to sustained policy pressure. The magician's trick is in the selective emphasis—a seasonal ripple is amplified while the underlying, politically paralyzed machinery of funding and systemic control remains conveniently obscured from the final result.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1071815,
+              "title": "Restore Point",
+              "similarity": 0.47796469926834106,
+              "movie_url": "https://themoviecosmos.com/movie/1071815"
+            },
+            {
+              "tmdb_id": 1328956,
+              "title": "Alma & the Wolf",
+              "similarity": 0.4883858561515808,
+              "movie_url": "https://themoviecosmos.com/movie/1328956"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The official explanation reframes a complex, systemic pressure point as a simple, natural phenomenon. Analysts attribute the monthly arrest increase to spring weather, a move that simplifies the drivers of migration into a manageable, non-political force. This narrative pivot serves to depoliticize the issue, masking the structural failures where policy makers are deadlocked on funding, leaving the enforcement apparatus in a state of suspended animation. The true manipulation lies in this reductionist framing, which obscures the deeper, unresolved tug-of-war over resources and ideology.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-0",
+              "how-3",
+              "how-4",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 47617,
+              "title": "A Film Like Any Other",
+              "similarity": 0.45948153734207153,
+              "movie_url": "https://themoviecosmos.com/movie/47617"
+            },
+            {
+              "tmdb_id": 587996,
+              "title": "Below Zero",
+              "similarity": 0.4797852337360382,
+              "movie_url": "https://themoviecosmos.com/movie/587996"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-SAGE",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Analysis of recent data from the U.S. southwest border region reveals a notable monthly fluctuation. In March 2026, the U.S. border patrol agency recorded 8,268 apprehensions, representing a 25% increase from the 6,598 incidents documented in February. This uptick, however, exists within a broader context where year-to-date figures remain near multi-decade lows, a trend attributed to policy implementations such as the closure of asylum pathways and expanded deportation measures. Data analysts have correlated this monthly rise with the seasonal onset of warmer spring weather, identifying a pattern consistent with historical migration cycles.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 4170,
+              "title": "Trade",
+              "similarity": 0.50865638256073,
+              "movie_url": "https://themoviecosmos.com/movie/4170"
+            },
+            {
+              "tmdb_id": 381018,
+              "title": "Transpecos",
+              "similarity": 0.5211434364318848,
+              "movie_url": "https://themoviecosmos.com/movie/381018"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The legislative arena presents a parallel dynamic of measured tension. While the data from the U.S. southwest border area shows a monthly increase in apprehensions to 8,268 in March, the long-term trend suggests a controlled environment near historic lows due to effective policy. Simultaneously, congressional decision-makers are engaged in deliberate policy deliberations regarding funding for immigration enforcement agencies, with key appropriations legislation pending resolution. This juxtaposition of stable macro-level data and intricate political negotiation underscores the complex interplay between statistical outcomes and the governance required to sustain them.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "how-4",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 127822,
+              "title": "High Treason",
+              "similarity": 0.4637584686279297,
+              "movie_url": "https://themoviecosmos.com/movie/127822"
+            },
+            {
+              "tmdb_id": 723124,
+              "title": "The Monopoly of Violence",
+              "similarity": 0.4675978422164917,
+              "movie_url": "https://themoviecosmos.com/movie/723124"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-JESTER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In a spectacle of seasonal numbers, the 'border-line hide-and-seek players' on the U.S. southwest frontier recorded a 25% jump in March, detaining 8,268 individuals. While 'data interpretation experts' point to the warming spring weather as the culprit, this '25% growth show in the numbers game' unfolds against a backdrop where 'the funding bill deadlock machine' in Congress continues its 'endless funding deadlock show,' leaving the whole affair feeling like a meticulously calculated performance.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 43837,
+              "title": "Union Pacific",
+              "similarity": 0.45981818437576294,
+              "movie_url": "https://themoviecosmos.com/movie/43837"
+            },
+            {
+              "tmdb_id": 14108,
+              "title": "The Weather Underground",
+              "similarity": 0.471729040145874,
+              "movie_url": "https://themoviecosmos.com/movie/14108"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The March arrest carnival recorded a significant 25% spike to 8,268, a short-term fluctuation 'observers' are quick to attribute to seasonal factors. Yet, the 'magic numbers under tough policies' keep year-to-date crossings near decade lows. This creates a farcical theater where the 'political circus's funding farce' among lawmakers grinds on, seemingly disconnected from the tangible drama at the border.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 13282,
+              "title": "Death Race 2000",
+              "similarity": 0.47491365671157837,
+              "movie_url": "https://themoviecosmos.com/movie/13282"
+            },
+            {
+              "tmdb_id": 231035,
+              "title": "Transport de la cloche de l'indépendance",
+              "similarity": 0.5022040009498596,
+              "movie_url": "https://themoviecosmos.com/movie/231035"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "A seasonal migration brought a surge, with the immigration enforcement agency catching 8,268 'asylum seekers' or 'illegal crossers' in March—a 25% increase from February. While the analysts' seasonal excuse blames the sunshine, the lawmakers' perpetual budget stalemate ensures the real joke isn't in the short-term stats, but in the long-running legislative circus that leaves enforcement funding in limbo.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-2"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 1183699,
+              "title": "The Wingwalker",
+              "similarity": 0.4823126792907715,
+              "movie_url": "https://themoviecosmos.com/movie/1183699"
+            },
+            {
+              "tmdb_id": 15577,
+              "title": "Crossing Over",
+              "similarity": 0.4867912530899048,
+              "movie_url": "https://themoviecosmos.com/movie/15577"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 43837,
+      "title": "Union Pacific",
+      "overview": "One of the last bills signed by President Lincoln authorizes pushing the Union Pacific Railroad across the wilderness to California. But financial opportunist Asa Barrows hopes to profit from obstructing it. Chief troubleshooter Jeff Butler has his hands full fighting Barrows' agent, gambler Sid Campeau; Campeau's partner Dick Allen is Jeff's war buddy and rival suitor for engineer's daughter Molly Monahan. Who will survive the effort to push the railroad through at any cost?",
+      "genres": "Drama, Western",
+      "release_year": 1939,
+      "language": "en",
+      "poster_path": "/lSk1CWl7EaHKBNMPaDWGnhRO598.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/43837",
+      "similarity": 0.591037392616272,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-4",
+            "result-2"
+          ],
+          "similarity": 0.591037392616272
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.45981818437576294,
+          "fit": 0.88
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): A1,THE-JESTER"
+    },
+    {
+      "tmdb_id": 26513,
+      "title": "Punishment Park",
+      "overview": "In this fictional documentary, U.S. prisons are at capacity, and President Nixon declares a state of emergency. All new prisoners, most of whom are connected to the antiwar movement, are now given the choice of jail time or spending three days in Punishment Park, where they will be hunted for sport by federal authorities. The prisoners invariably choose the latter option, but learn that, between the desert heat and the brutal police officers, their chances of survival are slim.",
+      "genres": "Drama, Thriller",
+      "release_year": 1971,
+      "language": "en",
+      "poster_path": "/4ATUqZV6Bouf76aYabZ5R1KqdlM.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/26513",
+      "similarity": 0.5853342413902283,
+      "triggered_by": [
+        "THE-OUTLAW",
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5372870564460754,
+          "fit": 0.68
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.5853342413902283,
+          "fit": 0.8
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-CREATOR,THE-OUTLAW"
+    },
+    {
+      "tmdb_id": 381018,
+      "title": "Transpecos",
+      "overview": "For three US Border Patrol agents, the contents of one car reveal an insidious plot within their own ranks. The next 24 hours may cost them their lives.",
+      "genres": "Thriller",
+      "release_year": 2016,
+      "language": "en",
+      "poster_path": "/3GglkPWXxHTqf7H2ptPLUb7p3Fb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/381018",
+      "similarity": 0.5418885350227356,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-EVERYMAN",
+        "THE-EXPLORER",
+        "THE-CREATOR",
+        "THE-SAGE"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.5087245106697083
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5391323566436768,
+          "fit": 0.65
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-1"
+          ],
+          "similarity": 0.5164862275123596,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.49000462889671326,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.5117499828338623,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.5211434364318848,
+          "fit": 0.9
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5418885350227356,
+          "fit": 0.7
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5403509140014648,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-4",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5071794986724854,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0"
+          ],
+          "similarity": 0.4996274709701538,
+          "fit": 0.8
+        }
+      ],
+      "distinct_agents": 6,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=6 (>=2): A1,THE-INNOCENT,THE-SAGE,THE-CREATOR,THE-EXPLORER,THE-EVERYMAN"
+    },
+    {
+      "tmdb_id": 4170,
+      "title": "Trade",
+      "overview": "A Texas cop, whose own daughter might have been forced into sexual slavery, joins forces with a Mexican youth to find the boy's sister, who was abducted and forced into prostitution. Meanwhile, a Polish woman who was promised a better life in America also becomes a victim.",
+      "genres": "Thriller",
+      "release_year": 2007,
+      "language": "en",
+      "poster_path": "/x2ckiEGoYz2AomOeviEPqnhrw7Q.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/4170",
+      "similarity": 0.5398157835006714,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-EVERYMAN",
+        "THE-SAGE"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.5096507668495178
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5030597448348999,
+          "fit": 0.65
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-1"
+          ],
+          "similarity": 0.5398157835006714,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.50865638256073,
+          "fit": 0.9
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.4457833766937256,
+          "fit": 0.7
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.48704957962036133,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0"
+          ],
+          "similarity": 0.49859097599983215,
+          "fit": 0.8
+        }
+      ],
+      "distinct_agents": 4,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=4 (>=2): A1,THE-SAGE,THE-INNOCENT,THE-EVERYMAN"
+    },
+    {
+      "tmdb_id": 151708,
+      "title": "Colosio",
+      "overview": "It's 1994 in Mexico, the nation was witnessing a turbulent year since its beginnings. An indigenous rebellion shakes the country. Three months later, the ruling party's presidential candidate is brutally murdered during a rally in Tijuana. The country is concerned. Nobody knows who's behind this event, it all points to a conspiracy. Andrés Vázquez, an intelligence expert, is commissioned to lead a secret investigation parallel to the official government issued one. But another expert agent, el Seco, has received orders to wipe out all witnesses and get rid of the evidence surrounding the candidate's murder. As Andrés begins putting the pieces of this intricate puzzle together and comes closer to the truth, he realizes he's also putting his life and that of his loved ones in peril.",
+      "genres": "Crime, Drama, Thriller",
+      "release_year": 2012,
+      "language": "es",
+      "poster_path": "/uE22BFnDeEDV9JApDD41u7MP0wb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/151708",
+      "similarity": 0.5161474943161011,
+      "triggered_by": [
+        "THE-EXPLORER",
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.5161474943161011,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-4",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.47844767570495605,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-CREATOR,THE-EXPLORER"
+    },
+    {
+      "tmdb_id": 442249,
+      "title": "The First Purge",
+      "overview": "To push the crime rate below one percent for the rest of the year, the New Founding Fathers of America test a sociological theory that vents aggression for one night in one isolated community. But when the violence of oppressors meets the rage of the others, the contagion will explode from the trial-city borders and spread across the nation.",
+      "genres": "Action, Horror, Thriller",
+      "release_year": 2018,
+      "language": "en",
+      "poster_path": "/litjsBoiydO6JlO70uOX4N3WnNL.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/442249",
+      "similarity": 0.5980324149131775,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5980324149131775,
+          "fit": 0.68
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 377150,
+      "title": "A Dragon Arrives!",
+      "overview": "On Jan. 22, 1965, the day before the Iranian prime minister is assassinated, a car drives up to a shipwreck. Inside the wreck, a banished political prisoner has hung himself and the walls are covered in diary entries, literary quotes, and strange symbols. Fifty years later, the evidence, including intelligence tape recordings, is found in a box. The contents attest to the fact that the inspector and his colleagues were arrested, but why?",
+      "genres": "Drama, Mystery, Horror",
+      "release_year": 2016,
+      "language": "fa",
+      "poster_path": "/1jB1htK08eEBwypBJJ7rPHbpGFI.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/377150",
+      "similarity": 0.5824931859970093,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5824931859970093,
+          "fit": 0.9
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 111224,
+      "title": "Ghost in the Shell: S.A.C. 2nd GIG - Individual Eleven",
+      "overview": "The year is 2030, and an influx of refuges have effortlessly transformed themselves into a terrorist organization known as the \"Individual Eleven.\" With a sadistic intent of mass destruction, will they triumph in victory or discover the gloomy pitfalls of defeat?",
+      "genres": "Animation, Science Fiction",
+      "release_year": 2006,
+      "language": "ja",
+      "poster_path": "/arfpasHXmbwYtpcrG8D7OwtXT5B.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/111224",
+      "similarity": 0.5705380439758301,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5705380439758301,
+          "fit": 0.9
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 858059,
+      "title": "Attica",
+      "overview": "Follows the largest prison uprising in US history, conducting dozens of new interviews with inmates, journalists, and other witnesses.",
+      "genres": "Documentary",
+      "release_year": 2021,
+      "language": "en",
+      "poster_path": "/8dpc49O7G9B0y2crRbI7hHtbQzB.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/858059",
+      "similarity": 0.5638431310653687,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.5638431310653687,
+          "fit": 0.8
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 20764,
+      "title": "Sleep Dealer",
+      "overview": "Set in a near-future, militarized world marked by closed borders, virtual labor and a global digital network that joins minds and experiences, three strangers risk their lives to connect with each other and break the barriers of technology.",
+      "genres": "Drama, Science Fiction, Thriller",
+      "release_year": 2008,
+      "language": "en",
+      "poster_path": "/kFXQ4oMJkXAWjyo7Tr5GrLjmk61.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/20764",
+      "similarity": 0.5426679849624634,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5426679849624634,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 258363,
+      "title": "Desierto",
+      "overview": "A group of Mexican emigrants attempts to cross the Mexican-US border. What begins as a hopeful journey becomes a harrowing, bloody and primal fight for survival when a deranged, rifle-toting vigilante and his loyal Belgian Malinois dog chase the group of unarmed men and women through the treacherous borderland. In the harsh, unforgiving desert terrain, the odds are stacked firmly against them as they discover there’s nowhere to hide from the unrelenting, merciless killer.",
+      "genres": "Thriller, Drama",
+      "release_year": 2015,
+      "language": "en",
+      "poster_path": "/67Ue5or6ZPScqkagC3EJSOYuzyR.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/258363",
+      "similarity": 0.5234260559082031,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5234260559082031,
+          "fit": 0.65
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 790529,
+      "title": "C’era una volta il crimine",
+      "overview": "C’era una volta il crimine",
+      "genres": "Comedy",
+      "release_year": 2022,
+      "language": "it",
+      "poster_path": "/de0ZUclxlsBe8D24x7vct57TfFW.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/790529",
+      "similarity": 0.520108699798584,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.520108699798584,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 158015,
+      "title": "The Purge",
+      "overview": "Given the country's overcrowded prisons, the U.S. government begins to allow 12-hour periods of time in which all illegal activity is legal. During one of these free-for-alls, a family must protect themselves from a home invasion.",
+      "genres": "Science Fiction, Horror, Thriller",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/46X1ei9uf13nkkr0OhWldGyr5Uh.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/158015",
+      "similarity": 0.5143234729766846,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5143234729766846,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 414777,
+      "title": "After Darkness",
+      "overview": "As the Sun burns out, an American family gathers at the end of the world, their hopes for rescue slowly crumbling as they also confront long lasting divides amongst each other.",
+      "genres": "Drama, Family, Thriller, Science Fiction",
+      "release_year": 2019,
+      "language": "en",
+      "poster_path": "/yyiHuU6dHKIazMKZhcYabAfUyfo.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/414777",
+      "similarity": 0.5057594776153564,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5057594776153564,
+          "fit": 0.58
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 231035,
+      "title": "Transport de la cloche de l'indépendance",
+      "overview": "The parade occupies only a small portion of the screen, the crowds are a seething mass that do really move and the Independence Bell is nowhere to be seen.",
+      "genres": "Documentary",
+      "release_year": 1896,
+      "language": "en",
+      "poster_path": "",
+      "movie_url": "https://themoviecosmos.com/movie/231035",
+      "similarity": 0.5022040009498596,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5022040009498596,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 840464,
+      "title": "Greenland 2: Migration",
+      "overview": "Having found the safety of the Greenland bunker after the comet Clarke decimated the Earth, the Garrity family must now risk everything to embark on a perilous journey across the wasteland of Europe to find a new home.",
+      "genres": "Adventure, Thriller, Science Fiction",
+      "release_year": 2026,
+      "language": "en",
+      "poster_path": "/z2tqCJLsw6uEJ8nJV8BsQXGa3dr.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/840464",
+      "similarity": 0.5010484457015991,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-3",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5010484457015991,
+          "fit": 0.58
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 252990,
+      "title": "Chariot",
+      "overview": "Seven strangers find themselves unwitting participants in a U.S. government evacuation program gone horribly wrong.",
+      "genres": "Thriller, Drama",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/uAk0sfohVqO0PCWFr9qBj3xxZOz.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/252990",
+      "similarity": 0.48918789625167847,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-4",
+            "result-1",
+            "result-0"
+          ],
+          "similarity": 0.48918789625167847,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 1328956,
+      "title": "Alma & the Wolf",
+      "overview": "After a violent animal attack, paranoia spreads through Spiral Creek. But when Deputy Ren Accord gets too close, his son vanishes, and reality begins to fracture.",
+      "genres": "Horror, Mystery, Thriller",
+      "release_year": 2025,
+      "language": "en",
+      "poster_path": "/t4SUgmGGhMS4t9g0DJzAjRS5Hcj.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1328956",
+      "similarity": 0.4883858561515808,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.4883858561515808,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 15577,
+      "title": "Crossing Over",
+      "overview": "Immigrants from around the world enter Los Angeles every day, with hopeful visions of a better life, but little notion of what that life may cost. Their desperate scenarios test the humanity of immigration enforcement officers. In Crossing Over, writer-director Wayne Kramer explores the allure of the American dream, and the reality that immigrants find – and create -- in 21st century L.A.",
+      "genres": "Crime, Drama",
+      "release_year": 2009,
+      "language": "en",
+      "poster_path": "/6A4WdvbWHJoIN4Y9Q5HXG8R1VYV.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/15577",
+      "similarity": 0.4867912530899048,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.4867912530899048,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A1-THE-INNOCENT": 0.8515830039978027,
+      "A1-THE-EVERYMAN": 0.8421444892883301,
+      "A1-THE-CAREGIVER": 0.49651938676834106,
+      "A1-THE-EXPLORER": 0.45440003275871277,
+      "A1-THE-OUTLAW": 0.4186092019081116,
+      "A1-THE-LOVER": 0.38944312930107117,
+      "A1-THE-CREATOR": 0.4374122619628906,
+      "A1-THE-MAGICIAN": 0.41401562094688416,
+      "A1-THE-SAGE": 0.7444509863853455,
+      "A1-THE-JESTER": 0.528627336025238,
+      "THE-EVERYMAN-THE-INNOCENT": 0.9422752857208252,
+      "THE-CAREGIVER-THE-INNOCENT": 0.6655505299568176,
+      "THE-EXPLORER-THE-INNOCENT": 0.6639159917831421,
+      "THE-INNOCENT-THE-OUTLAW": 0.5120095014572144,
+      "THE-INNOCENT-THE-LOVER": 0.5322821140289307,
+      "THE-CREATOR-THE-INNOCENT": 0.55274498462677,
+      "THE-INNOCENT-THE-MAGICIAN": 0.638054370880127,
+      "THE-INNOCENT-THE-SAGE": 0.7972481846809387,
+      "THE-INNOCENT-THE-JESTER": 0.603975772857666,
+      "THE-CAREGIVER-THE-EVERYMAN": 0.7289385795593262,
+      "THE-EVERYMAN-THE-EXPLORER": 0.703209400177002,
+      "THE-EVERYMAN-THE-OUTLAW": 0.5410186648368835,
+      "THE-EVERYMAN-THE-LOVER": 0.5968197584152222,
+      "THE-CREATOR-THE-EVERYMAN": 0.5670245885848999,
+      "THE-EVERYMAN-THE-MAGICIAN": 0.7031987905502319,
+      "THE-EVERYMAN-THE-SAGE": 0.8309345245361328,
+      "THE-EVERYMAN-THE-JESTER": 0.6406224966049194,
+      "THE-CAREGIVER-THE-EXPLORER": 0.5948387384414673,
+      "THE-CAREGIVER-THE-OUTLAW": 0.621093213558197,
+      "THE-CAREGIVER-THE-LOVER": 0.6359184980392456,
+      "THE-CAREGIVER-THE-CREATOR": 0.5071142911911011,
+      "THE-CAREGIVER-THE-MAGICIAN": 0.698917031288147,
+      "THE-CAREGIVER-THE-SAGE": 0.6281031370162964,
+      "THE-CAREGIVER-THE-JESTER": 0.586430013179779,
+      "THE-EXPLORER-THE-OUTLAW": 0.45900654792785645,
+      "THE-EXPLORER-THE-LOVER": 0.728878378868103,
+      "THE-CREATOR-THE-EXPLORER": 0.6498713493347168,
+      "THE-EXPLORER-THE-MAGICIAN": 0.8178114891052246,
+      "THE-EXPLORER-THE-SAGE": 0.5719709992408752,
+      "THE-EXPLORER-THE-JESTER": 0.5749229192733765,
+      "THE-LOVER-THE-OUTLAW": 0.5105574131011963,
+      "THE-CREATOR-THE-OUTLAW": 0.5201561450958252,
+      "THE-MAGICIAN-THE-OUTLAW": 0.5587570667266846,
+      "THE-OUTLAW-THE-SAGE": 0.5277172923088074,
+      "THE-JESTER-THE-OUTLAW": 0.5699054002761841,
+      "THE-CREATOR-THE-LOVER": 0.5529952049255371,
+      "THE-LOVER-THE-MAGICIAN": 0.704683780670166,
+      "THE-LOVER-THE-SAGE": 0.5620322227478027,
+      "THE-JESTER-THE-LOVER": 0.546542763710022,
+      "THE-CREATOR-THE-MAGICIAN": 0.6375751495361328,
+      "THE-CREATOR-THE-SAGE": 0.5089337825775146,
+      "THE-CREATOR-THE-JESTER": 0.6493823528289795,
+      "THE-MAGICIAN-THE-SAGE": 0.597594678401947,
+      "THE-JESTER-THE-MAGICIAN": 0.5624105930328369,
+      "THE-JESTER-THE-SAGE": 0.608356237411499
+    },
+    "topk_jaccard": {
+      "A1-THE-INNOCENT": 0.3333333333333333,
+      "A1-THE-EVERYMAN": 0.3333333333333333,
+      "A1-THE-CAREGIVER": 0.0,
+      "A1-THE-EXPLORER": 0.125,
+      "A1-THE-OUTLAW": 0.0,
+      "A1-THE-LOVER": 0.0,
+      "A1-THE-CREATOR": 0.1111111111111111,
+      "A1-THE-MAGICIAN": 0.0,
+      "A1-THE-SAGE": 0.25,
+      "A1-THE-JESTER": 0.09090909090909091,
+      "THE-EVERYMAN-THE-INNOCENT": 1.0,
+      "THE-CAREGIVER-THE-INNOCENT": 0.0,
+      "THE-EXPLORER-THE-INNOCENT": 0.25,
+      "THE-INNOCENT-THE-OUTLAW": 0.0,
+      "THE-INNOCENT-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-INNOCENT": 0.2,
+      "THE-INNOCENT-THE-MAGICIAN": 0.0,
+      "THE-INNOCENT-THE-SAGE": 0.5,
+      "THE-INNOCENT-THE-JESTER": 0.0,
+      "THE-CAREGIVER-THE-EVERYMAN": 0.0,
+      "THE-EVERYMAN-THE-EXPLORER": 0.25,
+      "THE-EVERYMAN-THE-OUTLAW": 0.0,
+      "THE-EVERYMAN-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-EVERYMAN": 0.2,
+      "THE-EVERYMAN-THE-MAGICIAN": 0.0,
+      "THE-EVERYMAN-THE-SAGE": 0.5,
+      "THE-EVERYMAN-THE-JESTER": 0.0,
+      "THE-CAREGIVER-THE-EXPLORER": 0.0,
+      "THE-CAREGIVER-THE-OUTLAW": 0.0,
+      "THE-CAREGIVER-THE-LOVER": 0.0,
+      "THE-CAREGIVER-THE-CREATOR": 0.0,
+      "THE-CAREGIVER-THE-MAGICIAN": 0.0,
+      "THE-CAREGIVER-THE-SAGE": 0.0,
+      "THE-CAREGIVER-THE-JESTER": 0.0,
+      "THE-EXPLORER-THE-OUTLAW": 0.0,
+      "THE-EXPLORER-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-EXPLORER": 0.4,
+      "THE-EXPLORER-THE-MAGICIAN": 0.0,
+      "THE-EXPLORER-THE-SAGE": 0.16666666666666666,
+      "THE-EXPLORER-THE-JESTER": 0.0,
+      "THE-LOVER-THE-OUTLAW": 0.0,
+      "THE-CREATOR-THE-OUTLAW": 0.1111111111111111,
+      "THE-MAGICIAN-THE-OUTLAW": 0.0,
+      "THE-OUTLAW-THE-SAGE": 0.0,
+      "THE-JESTER-THE-OUTLAW": 0.0,
+      "THE-CREATOR-THE-LOVER": 0.0,
+      "THE-LOVER-THE-MAGICIAN": 0.0,
+      "THE-LOVER-THE-SAGE": 0.0,
+      "THE-JESTER-THE-LOVER": 0.0,
+      "THE-CREATOR-THE-MAGICIAN": 0.0,
+      "THE-CREATOR-THE-SAGE": 0.14285714285714285,
+      "THE-CREATOR-THE-JESTER": 0.0,
+      "THE-MAGICIAN-THE-SAGE": 0.0,
+      "THE-JESTER-THE-MAGICIAN": 0.0,
+      "THE-JESTER-THE-SAGE": 0.0
+    }
+  },
+  "meta": {
+    "query_count": 27,
+    "raw_hit_count": 54,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

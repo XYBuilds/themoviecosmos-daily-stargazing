@@ -1,0 +1,1790 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A hockey franchise fired its coach with eight regular-season games remaining. John Tortorella then guided the team to a 7-0-1 record to close the season and playoff series wins past Utah and Anaheim. In the Western Conference Final, Vegas scored twice and held Colorado to one goal in Game 4, completing a four-game sweep on May 26. This series ended with Vegas reaching the Stanley Cup Final and Colorado being swept.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 5693,
+              "title": "Hoosiers",
+              "similarity": 0.4978247880935669,
+              "movie_url": "https://themoviecosmos.com/movie/5693"
+            },
+            {
+              "tmdb_id": 66876,
+              "title": "Hockey Homicide",
+              "similarity": 0.5622095465660095,
+              "movie_url": "https://themoviecosmos.com/movie/66876"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Colorado lost top players Cale Makar and Nathan MacKinnon to injuries. In Game 4 of the Western Conference Final, Vegas scored twice and held Colorado to one goal. This completed a four-game sweep on May 26.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.4197363257408142,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            },
+            {
+              "tmdb_id": 857497,
+              "title": "Untold: Malice at the Palace",
+              "similarity": 0.4523766338825226,
+              "movie_url": "https://themoviecosmos.com/movie/857497"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "A hockey franchise fired its coach with eight regular-season games left. John Tortorella guided the team to a 7-0-1 close and playoff runs past Utah and Anaheim. The team then won four consecutive games in the Western Conference Final, scoring twice and allowing one goal in the final game on May 26, which completed the sweep and sent them to the Stanley Cup Final.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 5693,
+              "title": "Hoosiers",
+              "similarity": 0.48605355620384216,
+              "movie_url": "https://themoviecosmos.com/movie/5693"
+            },
+            {
+              "tmdb_id": 66876,
+              "title": "Hockey Homicide",
+              "similarity": 0.5830602645874023,
+              "movie_url": "https://themoviecosmos.com/movie/66876"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-INNOCENT",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Despite the heartbreaking loss of their injured stars Cale Makar and Nathan MacKinnon, the hardworking Avalanche showed tremendous heart. Under the steadying guidance of coach John Tortorella, who inspired a near-perfect finish after a bold late-season change, they fought valiantly through the playoffs. The resilient Vegas Golden Knights, however, played a disciplined, winning game in Game 4, completing a dominant sweep to earn a well-deserved shot at the championship.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 319888,
+              "title": "Eddie the Eagle",
+              "similarity": 0.5584357976913452,
+              "movie_url": "https://themoviecosmos.com/movie/319888"
+            },
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.6055723428726196,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EVERYMAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The squad that fought through adversity, the Denver-based team, was forced to play without its best players when the key players who couldn't be there, the injured defenseman and the injured forward, were sidelined. That's the hard part of sports—sometimes the breaks just don't go your way. A coaching change occurred late in the season, and the new coach rallied the players for a remarkable turnaround. They posted a strong record under new leadership. But in the end, the team was thoroughly outmatched in four straight. Colorado was eliminated in four games, and their season ended short of the goal.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 18925,
+              "title": "Facing the Giants",
+              "similarity": 0.499352365732193,
+              "movie_url": "https://themoviecosmos.com/movie/18925"
+            },
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.5303056836128235,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The team that stuck together and earned their shot played a disciplined, complete game to close it out. The final game was a low-scoring affair, but they got the job done. With the sweep concluded on May 26, the franchise from Las Vegas advanced to the championship round. They earned their chance to play for the ultimate prize. For the fans and the players, it's a moment of pure, earned joy—the culmination of a long season's grind. Everyone's hoping for that next big win.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 444218,
+              "title": "Three Seconds",
+              "similarity": 0.5765756368637085,
+              "movie_url": "https://themoviecosmos.com/movie/444218"
+            },
+            {
+              "tmdb_id": 464198,
+              "title": "One Piece: Dream Soccer King!",
+              "similarity": 0.6030585765838623,
+              "movie_url": "https://themoviecosmos.com/movie/464198"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-HERO",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Faced with a season slipping away, the Vegas Golden Knights made a bold move to change leadership, appointing John Tortorella. The decisive leader rallied the team to a near-perfect 7-0-1 finish, forging a path through the playoffs. This momentum culminated in the Western Conference Final, where Vegas delivered a masterclass defensive performance to clinch the series 2-1 in Game 4. They completed a dominant four-game sweep on May 26, earning their place in the Stanley Cup Final.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 356296,
+              "title": "Suburra",
+              "similarity": 0.4738626182079315,
+              "movie_url": "https://themoviecosmos.com/movie/356296"
+            },
+            {
+              "tmdb_id": 243683,
+              "title": "Step Up All In",
+              "similarity": 0.5895500779151917,
+              "movie_url": "https://themoviecosmos.com/movie/243683"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The Colorado Avalanche fought valiantly as the resilient underdogs, but their courageous run was tragically undermined by critical injuries. The team was crippled by the loss of its top stars, the absent offensive force Nathan MacKinnon and the sidelined star Cale Makar. Despite their efforts, this proved too great an obstacle to overcome, leading to their elimination in the Western Conference Final.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "why-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.5193328857421875,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            },
+            {
+              "tmdb_id": 126644,
+              "title": "By the Law",
+              "similarity": 0.5322681665420532,
+              "movie_url": "https://themoviecosmos.com/movie/126644"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "In a display of pure triumph, the triumphant victors from Vegas completed their mission. The winning team overcame every challenge, culminating in a defensive stand that sealed a 2-1 victory in Game 4. This final push completed the series sweep in four games, securing their advancement to the ultimate stage: the Stanley Cup Final.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 98586,
+              "title": "Winning Streak",
+              "similarity": 0.5207725763320923,
+              "movie_url": "https://themoviecosmos.com/movie/98586"
+            },
+            {
+              "tmdb_id": 243683,
+              "title": "Step Up All In",
+              "similarity": 0.550239086151123,
+              "movie_url": "https://themoviecosmos.com/movie/243683"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-EXPLORER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "With the franchise having made a bold mid-season pivot to a boundary-crossing strategist, the Vegas Golden Knights, as trailblazing conquerors, masterfully navigated uncharted success to pioneer a decisive defensive stand in Game 4. This achievement completed a historic sweep to the frontier of the Stanley Cup, advancing the team to the ultimate hockey frontier against a resilient challenger journey's end at a new boundary, after a devastating health setback.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 124807,
+              "title": "They Came to Rob Las Vegas",
+              "similarity": 0.5320332050323486,
+              "movie_url": "https://themoviecosmos.com/movie/124807"
+            },
+            {
+              "tmdb_id": 243683,
+              "title": "Step Up All In",
+              "similarity": 0.5722553133964539,
+              "movie_url": "https://themoviecosmos.com/movie/243683"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "A frontier of adversity struck the Colorado Avalanche as elite frontier talent and a dynamic offensive pioneer were sidelined, derailing their campaign. Despite this, a resilient challenger faced a boundary-crossing strategist's masterful navigation of uncharted success. The Western Conference champions then won Game 4 by a 2-1 score, completing the series sweep on May 26, with the swept finalists losing the series 4-0.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.48447397351264954,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            },
+            {
+              "tmdb_id": 800425,
+              "title": "Ray Donovan: The Movie",
+              "similarity": 0.4918232560157776,
+              "movie_url": "https://themoviecosmos.com/movie/800425"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-OUTLAW",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "When the Colorado Avalanche's core crumbled, losing the fallen star and the silenced leader to injuries, the rebel commander John Tortorella was installed. The old guard was overthrown, and the new regime imposed its will, guiding a 7-0-1 close and playoff runs. This desperate gamble, however, was not enough against the system's beneficiaries. The favored franchise executed clinically, sealing the inevitable sweep. The establishment advanced to the Stanley Cup Final, while the hopefuls fell short in four brutal games.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 126644,
+              "title": "By the Law",
+              "similarity": 0.5107356309890747,
+              "movie_url": "https://themoviecosmos.com/movie/126644"
+            },
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.5434427261352539,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The system sacrificed its champions when key players became unavailable. In response, a coaching change was made—though the hired gun arrived too late. Despite the mid-season replacement coach's efforts, the swept contenders faced an uphill battle. In Game 4, the opportunistic conquerors outmatched the underdog, completing a four-game sweep. The new order prevailed, crushing any rebellion and advancing to the final.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 647581,
+              "title": "Heart of Champions",
+              "similarity": 0.5308301448822021,
+              "movie_url": "https://themoviecosmos.com/movie/647581"
+            },
+            {
+              "tmdb_id": 61301,
+              "title": "4 Crazy Draftees at the Army",
+              "similarity": 0.5571027994155884,
+              "movie_url": "https://themoviecosmos.com/movie/61301"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "With eight games left, the franchise fired its coach—a late purge that began the overhaul. The new regime, led by the rebel commander, imposed a 7-0-1 close and playoff victories. But the broken establishment, already weakened by the absence of its costly assets, was no match for the favored franchise. The rebellion was crushed in four decisive games, and the establishment advanced, leaving the institution's victims eliminated in the Western Conference Final.",
+          "source": {
+            "agent_id": "THE-OUTLAW",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 25716,
+              "title": "Crows Zero II",
+              "similarity": 0.5081660747528076,
+              "movie_url": "https://themoviecosmos.com/movie/25716"
+            },
+            {
+              "tmdb_id": 42194,
+              "title": "Tekken",
+              "similarity": 0.5177707672119141,
+              "movie_url": "https://themoviecosmos.com/movie/42194"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-LOVER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "After a painful mid-season divorce from their coach, the Vegas franchise found new life under the steadying hand of John Tortorella, who fostered a resilient bond. They entered the playoffs fueled by this new connection. However, their path was eased when the Colorado Avalanche, the heartbroken team, was deprived of its beloved leaders, Cale Makar and Nathan MacKinnon. The series culminated in a dominant, final display of affection for victory in Game 4, a cold, efficient end to the rivalry, sweeping the series and reigniting their love for the Stanley Cup.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 377460,
+              "title": "This Magic Moment",
+              "similarity": 0.5429900288581848,
+              "movie_url": "https://themoviecosmos.com/movie/377460"
+            },
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.5843504667282104,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The season of love for the Colorado Avalanche ended in heartbreak. The team, already struggling, was crippled by the loss of its stars, Cale Makar and Nathan MacKinnon. Their opponents, the triumphant knights of Vegas, who had undergone a painful mid-season divorce of their own, capitalized on this vulnerability. In the final game, a two-to-one victory was more than a score; it was a humiliating, total defeat that completed the sweep. For Colorado, it was a devastating, final rejection, while Vegas advanced at the cost of a broken rival.",
+          "source": {
+            "agent_id": "THE-LOVER",
+            "fragments": [
+              "result-1",
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 800425,
+              "title": "Ray Donovan: The Movie",
+              "similarity": 0.5213757753372192,
+              "movie_url": "https://themoviecosmos.com/movie/800425"
+            },
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.5220295190811157,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-MAGICIAN",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "The Vegas hockey franchise executed a bold mid-season reset, hiring John Tortorella as the catalyst for transformation. After a masterful narrative of redemption with a 7-0-1 close, they leveraged a catastrophic injury blow to Colorado's core. In the Western Conference Final, they delivered a perfectly executed defensive stranglehold, completing a dominant, clean-sweep finale on May 26 for a magical ascent to the pinnacle.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 264999,
+              "title": "Magic Mike XXL",
+              "similarity": 0.5189245939254761,
+              "movie_url": "https://themoviecosmos.com/movie/264999"
+            },
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.5387500524520874,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The doomed contenders, the Colorado Avalanche, suffered a crippling blow that sealed their fate with injuries to the sidelined cornerstone Cale Makar and the absent offensive engine Nathan MacKinnon. This key absence was exploited by the fortunate beneficiaries, who completed a ruthless, unforgiving shutout in a four-game series. The humbling end to a promising run was thus scripted by deeper forces of attrition.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.5231546759605408,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            },
+            {
+              "tmdb_id": 126644,
+              "title": "By the Law",
+              "similarity": 0.5436649918556213,
+              "movie_url": "https://themoviecosmos.com/movie/126644"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-SAGE",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A calculated mid-season coaching change, initiated with eight regular-season games remaining, proved decisive for the Vegas franchise. The interim coach, John Tortorella, orchestrated a near-perfect late-season surge of 7-0-1 and subsequent playoff advancements, setting the stage for the conference finals. The series against the Colorado team was shaped by significant roster adversity, as key players Cale Makar and Nathan MacKinnon were absent due to injury. This factual context underpinned a controlled, low-scoring victory in Game 4, which clinched a dominant series sweep and allowed the Vegas Golden Knights to advance to the championship round.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "why-0",
+              "how-2",
+              "how-3",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.5184922218322754,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            },
+            {
+              "tmdb_id": 5693,
+              "title": "Hoosiers",
+              "similarity": 0.5365006923675537,
+              "movie_url": "https://themoviecosmos.com/movie/5693"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The outcome of the Western Conference Final was contingent upon verifiable circumstances: the Colorado Avalanche was without its top players due to injury, critically weakening its offensive core. This deficit was compounded by a 2-1 score in the series-ending Game 4, where the Vegas franchise executed a controlled, low-scoring victory. The result was that the Colorado Avalanche were eliminated in a four-game series, while the victorious Knights capitalized on this weakened conference path to qualify for the Stanley Cup Final. The narrative is one of cause and effect, traced through late-season coaching decisions and player availability.",
+          "source": {
+            "agent_id": "THE-SAGE",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "result-1",
+              "result-0"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 464198,
+              "title": "One Piece: Dream Soccer King!",
+              "similarity": 0.480205237865448,
+              "movie_url": "https://themoviecosmos.com/movie/464198"
+            },
+            {
+              "tmdb_id": 444218,
+              "title": "Three Seconds",
+              "similarity": 0.5405788421630859,
+              "movie_url": "https://themoviecosmos.com/movie/444218"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-JESTER",
+      "role": "creative",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "In a classic case of the house always winning, the Vegas Golden Knights completed a four-game Western Conference Final sweep, sending the Colorado Avalanche packing. The desert gladiators, led by the emergency button that was coach John Tortorella, slammed the door shut in Game 4 with a 2-1 victory, sealing Colorado's season with a whimper after their stars aligned for the infirmary, sidelining key talents Cale Makar and Nathan MacKinnon.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 444218,
+              "title": "Three Seconds",
+              "similarity": 0.48374122381210327,
+              "movie_url": "https://themoviecosmos.com/movie/444218"
+            },
+            {
+              "tmdb_id": 464198,
+              "title": "One Piece: Dream Soccer King!",
+              "similarity": 0.5031887292861938,
+              "movie_url": "https://themoviecosmos.com/movie/464198"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The hired gun coach, John Tortorella, orchestrated a magic carpet ride for Vegas, guiding them to a clean sweep of the series after a desperate mid-stream sacking earlier in the season. The Knights from Vegas now book their ticket to the big dance, while the snowbound casualties from Colorado are left embarrassed and sent home, their talent having evaporated at the worst possible moment.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 28363,
+              "title": "The Mad Magician",
+              "similarity": 0.5529179573059082,
+              "movie_url": "https://themoviecosmos.com/movie/28363"
+            },
+            {
+              "tmdb_id": 12138,
+              "title": "3000 Miles to Graceland",
+              "similarity": 0.5541095733642578,
+              "movie_url": "https://themoviecosmos.com/movie/12138"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "A lucky streak for Tortorella saw Vegas barely squeak by in Game 4, completing a total demolition of the Avalanche and stumbling into the Stanley Cup Final. The missing engine, Nathan MacKinnon, and the expensive paperweight, Cale Makar, could only watch from the infirmary as their team's season ended with a whimper against the desert gladiators.",
+          "source": {
+            "agent_id": "THE-JESTER",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "hits": [
+            {
+              "tmdb_id": 464198,
+              "title": "One Piece: Dream Soccer King!",
+              "similarity": 0.48349153995513916,
+              "movie_url": "https://themoviecosmos.com/movie/464198"
+            },
+            {
+              "tmdb_id": 66876,
+              "title": "Hockey Homicide",
+              "similarity": 0.49826887249946594,
+              "movie_url": "https://themoviecosmos.com/movie/66876"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 32007,
+      "title": "Hurricane Season",
+      "overview": "Based on true events amid the wreckage and chaos dealt by Hurricane Katrina; one basketball coach in Marrero, Louisiana just will not give up. Coach Al Collins, gathers other players from hard-hit schools and builds a team actually worthy enough to go to the state playoffs.",
+      "genres": "Drama",
+      "release_year": 2010,
+      "language": "en",
+      "poster_path": "/axzk9UTvnV68brpqmmVNp4z2kj5.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/32007",
+      "similarity": 0.6055723428726196,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-EVERYMAN",
+        "THE-HERO",
+        "THE-EXPLORER",
+        "THE-OUTLAW",
+        "THE-LOVER",
+        "THE-MAGICIAN",
+        "THE-SAGE"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.4197363257408142
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.6055723428726196,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1"
+          ],
+          "similarity": 0.5303056836128235,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5434427261352539,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5843504667282104,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5387500524520874,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5184922218322754,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "result-1"
+          ],
+          "similarity": 0.5193328857421875,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.48447397351264954,
+          "fit": 0.68
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "result-1",
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.5220295190811157,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-1"
+          ],
+          "similarity": 0.5231546759605408,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 9,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=9 (>=2): A1,THE-INNOCENT,THE-SAGE,THE-MAGICIAN,THE-LOVER,THE-EXPLORER,THE-EVERYMAN,THE-OUTLAW,THE-HERO"
+    },
+    {
+      "tmdb_id": 464198,
+      "title": "One Piece: Dream Soccer King!",
+      "overview": "At a huge pillar stadium, the Grand Line Cup Final is being held. The \"Straw Hat Pirate Team\"(Luffy, Zoro, Usopp, Sanji, and Chopper) are having a tie breaker shoot out against the \"Villian All Star Team\"(Buggy, Bon Clay, Jango, Hatchan, and a soccer like head player named Odacchi). Everyone of them gets a turn in kicking the ball to the goal. While Coby is taking the goalie position, and isn't doing too good in blocking the goal. One after another, the game eventually comes to a sudden death match. Which team will win the Grand Line Cup?",
+      "genres": "Fantasy, Comedy, Animation",
+      "release_year": 2002,
+      "language": "ja",
+      "poster_path": "/dZMYhcTT3H8h93Epm2gCqPDBDmd.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/464198",
+      "similarity": 0.6030585765838623,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-SAGE",
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5031887292861938,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.6030585765838623,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "result-1",
+            "result-0"
+          ],
+          "similarity": 0.480205237865448,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.48349153995513916,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-SAGE,THE-EVERYMAN,THE-JESTER"
+    },
+    {
+      "tmdb_id": 243683,
+      "title": "Step Up All In",
+      "overview": "All-stars from previous installments convene in glittering Las Vegas, battling for a victory that could define their dreams and their careers.",
+      "genres": "Romance, Drama, Music",
+      "release_year": 2014,
+      "language": "en",
+      "poster_path": "/hgAjyJyEvj5S9CeztXs39iEUJKS.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/243683",
+      "similarity": 0.5895500779151917,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-EXPLORER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5895500779151917,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5722553133964539,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.550239086151123,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-EXPLORER,THE-HERO"
+    },
+    {
+      "tmdb_id": 66876,
+      "title": "Hockey Homicide",
+      "overview": "A crowd gathers at the skating rink to watch the big championship hockey game of the Pelicans versus the Aardvarks. Although referee \"Clean Game\" Kinney does his best to supervise, the hockey game really gets out of hand eventually. Two star players, Bertino and Ferguson, are so anxious, they never get let out of the penalty box, referee Kinney is never able to drop the puck without being physically hurt somehow, and the spectators themselves are so worked into the game, they take out their aggression on the ice while the players relax in the bleachers.",
+      "genres": "Animation, Comedy",
+      "release_year": 1945,
+      "language": "en",
+      "poster_path": "/f0P2oPEI2vyeWE4p5G9g6V61pwF.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/66876",
+      "similarity": 0.5830602645874023,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5622095465660095
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5830602645874023
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p3",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.49826887249946594,
+          "fit": 0.72
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): A1,THE-JESTER"
+    },
+    {
+      "tmdb_id": 444218,
+      "title": "Three Seconds",
+      "overview": "The story is set at the 1972 Munich Olympics where the U.S. team lost the basketball championship for the first time in 36 years. The final moments of the final game have become one of the most controversial events in Olympic history. With play tied, the score table horn sounded during a second free throw attempt that put the U.S. ahead by one. But the Soviets claimed they had called for a time out before the basket and confusion ensued. The clock was set back by three seconds twice in a row and the Russians finally prevailed at the very last. The U.S. protested, but a jury decided in the USSR’s favor and Team USA voted unanimously to refuse its silver medals. The Soviet players have been treated as heroes at home.",
+      "genres": "Drama",
+      "release_year": 2017,
+      "language": "ru",
+      "poster_path": "/fIDGJ3fxbwhmqSQ1qbBVWKdQrvy.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/444218",
+      "similarity": 0.5765756368637085,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-SAGE",
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.48374122381210327,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5765756368637085,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "result-1",
+            "result-0"
+          ],
+          "similarity": 0.5405788421630859,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-SAGE,THE-EVERYMAN,THE-JESTER"
+    },
+    {
+      "tmdb_id": 126644,
+      "title": "By the Law",
+      "overview": "After a man kills two members of his Yukon gold prospecting team, the other two surviving members struggle to keep him subdued for the next several months until they can turn him over to the law. Based on Jack London's 'The Unexpected' (1905).",
+      "genres": "Drama, Western, Mystery, Action",
+      "release_year": 1926,
+      "language": "ru",
+      "poster_path": "/u04rsIEEQbKLeX5OCDqaJ4CnNJQ.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/126644",
+      "similarity": 0.5436649918556213,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-OUTLAW",
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5107356309890747,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "result-1"
+          ],
+          "similarity": 0.5322681665420532,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-1"
+          ],
+          "similarity": 0.5436649918556213,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 3,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=3 (>=2): THE-MAGICIAN,THE-OUTLAW,THE-HERO"
+    },
+    {
+      "tmdb_id": 5693,
+      "title": "Hoosiers",
+      "overview": "Failed college coach Norman Dale gets a chance at redemption when he is hired to coach a high school basketball team in a tiny Indiana town. After a teacher persuades star player Jimmy Chitwood to quit and focus on his long-neglected studies, Dale struggles to develop a winning team in the face of community criticism for his temper and his unconventional choice of assistant coach: Shooter, a notorious alcoholic.",
+      "genres": "Drama, Family",
+      "release_year": 1986,
+      "language": "en",
+      "poster_path": "/dHpjZQXEdoi1xNLubM1rPmTHJYz.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/5693",
+      "similarity": 0.5365006923675537,
+      "triggered_by": [
+        "THE-SAGE"
+      ],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4978247880935669
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.48605355620384216
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5365006923675537,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): A1,THE-SAGE"
+    },
+    {
+      "tmdb_id": 800425,
+      "title": "Ray Donovan: The Movie",
+      "overview": "A showdown decades in the making brings the Donovan family legacy full circle. As the events that made Ray who he is today finally come to light, the Donovans find themselves drawn back to Boston to face the past. Each of them struggles to overcome their violent upbringing, but destiny dies hard, and only their fierce love for each other keeps them in the fight.",
+      "genres": "Crime, Drama, TV Movie",
+      "release_year": 2022,
+      "language": "en",
+      "poster_path": "/5sw1EvOeXMGRZGWr18R4EiZs036.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/800425",
+      "similarity": 0.5213757753372192,
+      "triggered_by": [
+        "THE-EXPLORER",
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4918232560157776,
+          "fit": 0.68
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "result-1",
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.5213757753372192,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "distinct_agents=2 (>=2): THE-LOVER,THE-EXPLORER"
+    },
+    {
+      "tmdb_id": 319888,
+      "title": "Eddie the Eagle",
+      "overview": "The feel-good story of Michael 'Eddie' Edwards, an unlikely but courageous British ski-jumper who never stopped believing in himself—even as an entire nation was counting him out. With the help of a rebellious and charismatic coach, Eddie takes on the establishment and wins the hearts of sports fans around the world by making an improbable and historic showing at the 1988 Calgary Winter Olympics.",
+      "genres": "Comedy, Drama, History, Adventure",
+      "release_year": 2016,
+      "language": "en",
+      "poster_path": "/r562gvTRVHnDSvG7MrKHEECSn1V.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/319888",
+      "similarity": 0.5584357976913452,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5584357976913452,
+          "fit": 0.88
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 61301,
+      "title": "4 Crazy Draftees at the Army",
+      "overview": "Our four incompetent types thrown into the field whether they liked it or not....They preferred to run the other way, but can never get there act together! How will they win the war' How can they get out of this mess'",
+      "genres": "Comedy",
+      "release_year": 1974,
+      "language": "it",
+      "poster_path": "/uVonqMTytt8dzHcG3nFHc9eoi8x.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/61301",
+      "similarity": 0.5571027994155884,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5571027994155884,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 12138,
+      "title": "3000 Miles to Graceland",
+      "overview": "It was an ingenious enough plan: rob the Riviera Casino's count room during an Elvis impersonator convention. But Thomas Murphy decided to keep all the money for himself and shot all his partners, including recently-freed ex-con Michael Zane. With $3.2 million at stake, the Marshals Service closing in, Michael must track down Murphy.",
+      "genres": "Action, Adventure, Comedy, Crime, Thriller",
+      "release_year": 2001,
+      "language": "en",
+      "poster_path": "/nJgr5sGoXnsgZ0EVt80i6X9dQiA.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/12138",
+      "similarity": 0.5541095733642578,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5541095733642578,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 28363,
+      "title": "The Mad Magician",
+      "overview": "Don Gallico is an inventor of stage magic effects who aspires to become a star in his own right. Just before his first performance his act is shut down by capricious manager Ross Ormond who wants Gallico's brilliant buzz saw effect for the act of The Great Rinaldi, an established star. With this defeat, and the humiliation of having already lost his wife Claire to Ormond, Gallico decides it is time to take matters into his own hands.",
+      "genres": "Thriller, Crime, Mystery, Horror",
+      "release_year": 1954,
+      "language": "en",
+      "poster_path": "/ctYNCvKiMN3yRHAXe6q2l6anMRk.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/28363",
+      "similarity": 0.5529179573059082,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5529179573059082,
+          "fit": 0.78
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 377460,
+      "title": "This Magic Moment",
+      "overview": "In the mid-1990s, Orlando was the center of excitement in the NBA. The young franchise, led by mega-stars Shaquille O'Neal and Penny Hardaway, beat the mighty Bulls en route to the 1995 NBA Finals. While it was clear Orlando was a dynasty in the making, the Magic's moment on top was never fully realized.",
+      "genres": "Documentary",
+      "release_year": 2016,
+      "language": "en",
+      "poster_path": "/v7D6rQbakb4CwNOCHfabaW4dGlx.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/377460",
+      "similarity": 0.5429900288581848,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5429900288581848,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 124807,
+      "title": "They Came to Rob Las Vegas",
+      "overview": "After successfully assaulting an armored car between Las Vegas and Los Angeles, the ambitions of the diverse members of the intrepid criminal gang collide, causing undesirable consequences.",
+      "genres": "Drama, Crime",
+      "release_year": 1968,
+      "language": "es",
+      "poster_path": "/ibhPbMWhpwAHpYgE3gKrhhEJc6a.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/124807",
+      "similarity": 0.5320332050323486,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5320332050323486,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 647581,
+      "title": "Heart of Champions",
+      "overview": "During their last year at an Ivy League college in 1999, a group of friends and crew teammates' lives are changed forever when an army vet takes over as coach of their dysfunctional rowing team.",
+      "genres": "Drama",
+      "release_year": 2021,
+      "language": "en",
+      "poster_path": "/yhBhe8DjdFspNjMOyrqD8i9Gy60.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/647581",
+      "similarity": 0.5308301448822021,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p2",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5308301448822021,
+          "fit": 0.75
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 98586,
+      "title": "Winning Streak",
+      "overview": "Winning Streak is the astonishing story of a group of young down-and-outs who are presented with a once-in-a-lifetime opportunity; to change their luck and set off on the adventure of their lives. Thanks to an infallible method based on the roulette wheel’s imperfection, their lifestyle is about to become better than their wildest dreams, as they set out to break the banks at casinos around the world.",
+      "genres": "Drama",
+      "release_year": 2012,
+      "language": "es",
+      "poster_path": "/fAsLL6Keq1WuZ9kx8WBtDYp5K8u.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/98586",
+      "similarity": 0.5207725763320923,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5207725763320923,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 264999,
+      "title": "Magic Mike XXL",
+      "overview": "Three years after Mike bowed out of the stripper life at the top of his game, he and the remaining Kings of Tampa hit the road to Myrtle Beach to put on one last blow-out performance.",
+      "genres": "Comedy, Drama",
+      "release_year": 2015,
+      "language": "en",
+      "poster_path": "/jkuCNd3wOmf4sDlZ89HEt8jmsqr.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/264999",
+      "similarity": 0.5189245939254761,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5189245939254761,
+          "fit": 0.85
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 42194,
+      "title": "Tekken",
+      "overview": "In the year of 2039, after World Wars destroy much of the civilization as we know it, territories are no longer run by governments, but by corporations; the mightiest of which is the Mishima Zaibatsu. In order to placate the seething masses of this dystopia, Mishima sponsors Tekken, a tournament in which fighters battle until only one is left standing.",
+      "genres": "Crime, Drama, Action, Thriller, Science Fiction",
+      "release_year": 2010,
+      "language": "en",
+      "poster_path": "/1xO2LirDZstkqZic1FwfK6GJIHH.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/42194",
+      "similarity": 0.5177707672119141,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5177707672119141,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    },
+    {
+      "tmdb_id": 25716,
+      "title": "Crows Zero II",
+      "overview": "Genji and his victorious G.P.S. alliance find themselves facing down a new challenge by the students of Hosen Academy, feared by everyone as 'The Army of Killers.' The two schools, in fact, have a history of bad blood between them. And the simmering embers of hatred are about to flare up again, burning away any last remnants of the truce they had so rigorously observed until now.",
+      "genres": "Action, Adventure, Crime, Comedy",
+      "release_year": 2009,
+      "language": "ja",
+      "poster_path": "/wHLXk6cgXhcSXksdXcMOEoUIvC4.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/25716",
+      "similarity": 0.5081660747528076,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p3",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "why-0",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5081660747528076,
+          "fit": 0.82
+        }
+      ],
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "distinct_agents=1 (<2 required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {
+      "A1-THE-INNOCENT": 0.6036206483840942,
+      "A1-THE-EVERYMAN": 0.37300509214401245,
+      "A1-THE-HERO": 0.633192241191864,
+      "A1-THE-EXPLORER": 0.4334911108016968,
+      "A1-THE-OUTLAW": 0.5952011346817017,
+      "A1-THE-LOVER": 0.6212412118911743,
+      "A1-THE-MAGICIAN": 0.7021550536155701,
+      "A1-THE-SAGE": 0.732468843460083,
+      "A1-THE-JESTER": 0.5936406254768372,
+      "THE-EVERYMAN-THE-INNOCENT": 0.4738079309463501,
+      "THE-HERO-THE-INNOCENT": 0.6461092829704285,
+      "THE-EXPLORER-THE-INNOCENT": 0.5652318000793457,
+      "THE-INNOCENT-THE-OUTLAW": 0.6950540542602539,
+      "THE-INNOCENT-THE-LOVER": 0.7559539079666138,
+      "THE-INNOCENT-THE-MAGICIAN": 0.6975008845329285,
+      "THE-INNOCENT-THE-SAGE": 0.5799031257629395,
+      "THE-INNOCENT-THE-JESTER": 0.6824710369110107,
+      "THE-EVERYMAN-THE-HERO": 0.39173996448516846,
+      "THE-EVERYMAN-THE-EXPLORER": 0.4164577126502991,
+      "THE-EVERYMAN-THE-OUTLAW": 0.5187793970108032,
+      "THE-EVERYMAN-THE-LOVER": 0.4584781527519226,
+      "THE-EVERYMAN-THE-MAGICIAN": 0.423667848110199,
+      "THE-EVERYMAN-THE-SAGE": 0.4733463525772095,
+      "THE-EVERYMAN-THE-JESTER": 0.3678187131881714,
+      "THE-EXPLORER-THE-HERO": 0.7700349688529968,
+      "THE-HERO-THE-OUTLAW": 0.5072619318962097,
+      "THE-HERO-THE-LOVER": 0.6627225875854492,
+      "THE-HERO-THE-MAGICIAN": 0.7274001240730286,
+      "THE-HERO-THE-SAGE": 0.65577232837677,
+      "THE-HERO-THE-JESTER": 0.7117037773132324,
+      "THE-EXPLORER-THE-OUTLAW": 0.4240519106388092,
+      "THE-EXPLORER-THE-LOVER": 0.5429155826568604,
+      "THE-EXPLORER-THE-MAGICIAN": 0.6590761542320251,
+      "THE-EXPLORER-THE-SAGE": 0.42711764574050903,
+      "THE-EXPLORER-THE-JESTER": 0.6331126689910889,
+      "THE-LOVER-THE-OUTLAW": 0.6322710514068604,
+      "THE-MAGICIAN-THE-OUTLAW": 0.6708139181137085,
+      "THE-OUTLAW-THE-SAGE": 0.5567856431007385,
+      "THE-JESTER-THE-OUTLAW": 0.6079789996147156,
+      "THE-LOVER-THE-MAGICIAN": 0.7338663339614868,
+      "THE-LOVER-THE-SAGE": 0.7109182476997375,
+      "THE-JESTER-THE-LOVER": 0.6174938082695007,
+      "THE-MAGICIAN-THE-SAGE": 0.6761952638626099,
+      "THE-JESTER-THE-MAGICIAN": 0.6162866353988647,
+      "THE-JESTER-THE-SAGE": 0.5447000861167908
+    },
+    "topk_jaccard": {
+      "A1-THE-INNOCENT": 0.2,
+      "A1-THE-EVERYMAN": 0.14285714285714285,
+      "A1-THE-HERO": 0.125,
+      "A1-THE-EXPLORER": 0.14285714285714285,
+      "A1-THE-OUTLAW": 0.1111111111111111,
+      "A1-THE-LOVER": 0.16666666666666666,
+      "A1-THE-MAGICIAN": 0.16666666666666666,
+      "A1-THE-SAGE": 0.3333333333333333,
+      "A1-THE-JESTER": 0.125,
+      "THE-EVERYMAN-THE-INNOCENT": 0.2,
+      "THE-HERO-THE-INNOCENT": 0.16666666666666666,
+      "THE-EXPLORER-THE-INNOCENT": 0.2,
+      "THE-INNOCENT-THE-OUTLAW": 0.14285714285714285,
+      "THE-INNOCENT-THE-LOVER": 0.25,
+      "THE-INNOCENT-THE-MAGICIAN": 0.25,
+      "THE-INNOCENT-THE-SAGE": 0.2,
+      "THE-INNOCENT-THE-JESTER": 0.0,
+      "THE-EVERYMAN-THE-HERO": 0.125,
+      "THE-EVERYMAN-THE-EXPLORER": 0.14285714285714285,
+      "THE-EVERYMAN-THE-OUTLAW": 0.1111111111111111,
+      "THE-EVERYMAN-THE-LOVER": 0.16666666666666666,
+      "THE-EVERYMAN-THE-MAGICIAN": 0.16666666666666666,
+      "THE-EVERYMAN-THE-SAGE": 0.6,
+      "THE-EVERYMAN-THE-JESTER": 0.2857142857142857,
+      "THE-EXPLORER-THE-HERO": 0.2857142857142857,
+      "THE-HERO-THE-OUTLAW": 0.2222222222222222,
+      "THE-HERO-THE-LOVER": 0.14285714285714285,
+      "THE-HERO-THE-MAGICIAN": 0.3333333333333333,
+      "THE-HERO-THE-SAGE": 0.125,
+      "THE-HERO-THE-JESTER": 0.0,
+      "THE-EXPLORER-THE-OUTLAW": 0.1111111111111111,
+      "THE-EXPLORER-THE-LOVER": 0.4,
+      "THE-EXPLORER-THE-MAGICIAN": 0.16666666666666666,
+      "THE-EXPLORER-THE-SAGE": 0.14285714285714285,
+      "THE-EXPLORER-THE-JESTER": 0.0,
+      "THE-LOVER-THE-OUTLAW": 0.125,
+      "THE-MAGICIAN-THE-OUTLAW": 0.2857142857142857,
+      "THE-OUTLAW-THE-SAGE": 0.1111111111111111,
+      "THE-JESTER-THE-OUTLAW": 0.0,
+      "THE-LOVER-THE-MAGICIAN": 0.2,
+      "THE-LOVER-THE-SAGE": 0.16666666666666666,
+      "THE-JESTER-THE-LOVER": 0.0,
+      "THE-MAGICIAN-THE-SAGE": 0.16666666666666666,
+      "THE-JESTER-THE-MAGICIAN": 0.0,
+      "THE-JESTER-THE-SAGE": 0.2857142857142857
+    }
+  },
+  "meta": {
+    "query_count": 23,
+    "raw_hit_count": 46,
+    "candidate_count": 19,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

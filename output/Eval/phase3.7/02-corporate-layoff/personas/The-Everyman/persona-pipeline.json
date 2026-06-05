@@ -1,0 +1,267 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Sasan Goodarzi",
+          "alternatives": [
+            {
+              "term": "The company's chief executive",
+              "valence": "positive"
+            },
+            {
+              "term": "Intuit's CEO",
+              "valence": "neutral"
+            },
+            {
+              "term": "The executive overseeing the layoffs",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "affected U.S. employees",
+          "alternatives": [
+            {
+              "term": "Workers facing job loss",
+              "valence": "positive"
+            },
+            {
+              "term": "Employees in the U.S.",
+              "valence": "neutral"
+            },
+            {
+              "term": "The workforce being cut",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Intuit",
+          "alternatives": [
+            {
+              "term": "The software company",
+              "valence": "positive"
+            },
+            {
+              "term": "The firm",
+              "valence": "neutral"
+            },
+            {
+              "term": "The employer eliminating roles",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+          "alternatives": [
+            {
+              "term": "To focus on growth and innovation",
+              "valence": "positive"
+            },
+            {
+              "term": "To reorganize for efficiency",
+              "valence": "neutral"
+            },
+            {
+              "term": "To cut costs by centralizing work",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Chief executive Sasan Goodarzi told staff about the AI-focused restructuring",
+          "alternatives": [
+            {
+              "term": "The CEO communicated the company's new direction",
+              "valence": "positive"
+            },
+            {
+              "term": "The leadership announced the restructuring",
+              "valence": "neutral"
+            },
+            {
+              "term": "The chief executive informed staff of the job cuts",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Elimination of approximately 3,000 full-time roles",
+          "alternatives": [
+            {
+              "term": "Consolidating the workforce",
+              "valence": "positive"
+            },
+            {
+              "term": "Reducing the number of positions",
+              "valence": "neutral"
+            },
+            {
+              "term": "Cutting thousands of jobs",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Affected U.S. employees offered severance: 16 weeks base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "Providing a severance package to departing staff",
+              "valence": "positive"
+            },
+            {
+              "term": "The severance terms for laid-off employees",
+              "valence": "neutral"
+            },
+            {
+              "term": "The company's compensation for lost jobs",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Offices in Reno and Woodland Hills winding down",
+          "alternatives": [
+            {
+              "term": "Consolidating office locations",
+              "valence": "positive"
+            },
+            {
+              "term": "Closing the Reno and Woodland Hills sites",
+              "valence": "neutral"
+            },
+            {
+              "term": "Shuttering offices and displacing workers",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Approximately 17% of workforce to be cut",
+          "alternatives": [
+            {
+              "term": "A significant portion of the staff affected",
+              "valence": "positive"
+            },
+            {
+              "term": "A reduction of 17% in the workforce",
+              "valence": "neutral"
+            },
+            {
+              "term": "Nearly one-fifth of the company's employees let go",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "3,000 full-time roles to be eliminated",
+          "alternatives": [
+            {
+              "term": "Positions consolidated for efficiency",
+              "valence": "positive"
+            },
+            {
+              "term": "Three thousand jobs eliminated",
+              "valence": "neutral"
+            },
+            {
+              "term": "Three thousand workers losing their livelihoods",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Severance package defined for U.S. employees",
+          "alternatives": [
+            {
+              "term": "Support offered to those leaving",
+              "valence": "positive"
+            },
+            {
+              "term": "Severance details for U.S. staff",
+              "valence": "neutral"
+            },
+            {
+              "term": "The company's buyout for displaced employees",
+              "valence": "negative"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "Offices in Reno and Woodland Hills designated for winding down",
+          "alternatives": [
+            {
+              "term": "Office locations being consolidated",
+              "valence": "positive"
+            },
+            {
+              "term": "The Reno and Woodland Hills offices closing",
+              "valence": "neutral"
+            },
+            {
+              "term": "Local offices shutting down",
+              "valence": "negative"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "p1",
+      "text": "Intuit's CEO told staff the company is reorganizing for efficiency, cutting thousands of jobs and closing offices in Reno and Woodland Hills. The firm aims to centralize work to focus on growth and innovation, but nearly one-fifth of the company's employees are let go. Workers facing job loss are offered a severance package, including 16 weeks base pay plus two weeks per year of tenure.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The chief executive informed staff of the job cuts, a reduction of 17% in the workforce. Three thousand full-time roles are eliminated as part of a restructuring to co-locate teams in strategic hubs and accelerate AI-driven product work. Affected U.S. employees are offered severance terms, with offices in Reno and Woodland Hills designated for winding down.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ]
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.78
+    }
+  ],
+  "warnings": []
+}

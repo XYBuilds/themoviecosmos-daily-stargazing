@@ -1,6 +1,247 @@
 {
   "agents": [
     {
+      "agent_id": "A1",
+      "persona_name": "The Reality Recorder (Baseline)",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "A YouTuber with a large subscriber count allegedly used AI-generated audio and manipulated chat screenshots to claim a famous actor dated his deceased co-star while she was a minor. This claim caused the actor's endorsements and public appearances to halt starting in early 2025. Seoul police then secured an arrest warrant for the YouTuber.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ]
+          }
+        },
+        {
+          "id": "p2",
+          "text": "Seoul police secured an arrest warrant for the operator of a popular YouTube channel. The channel had allegedly spread false claims using AI-generated audio and manipulated chat screenshots about an actor and a late co-star.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          }
+        },
+        {
+          "id": "p3",
+          "text": "The career of a South Korean actor was impacted starting in early 2025 after false allegations surfaced online. His endorsements and public appearances were halted. Police in Seoul later obtained an arrest warrant for the person who allegedly made the claims.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-1",
+              "result-1",
+              "how-2"
+            ]
+          }
+        }
+      ],
+      "text": "A YouTuber with a large subscriber count allegedly used AI-generated audio and manipulated chat screenshots to claim a famous actor dated his deceased co-star while she was a minor. This claim caused the actor's endorsements and public appearances to halt starting in early 2025. Seoul police then secured an arrest warrant for the YouTuber.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Hero",
+      "persona_name": "The-Hero",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "In a decisive move to restore order, Seoul investigators closed in on a rumor-monger with a massive platform. The YouTuber allegedly deployed AI-forged evidence to make a monstrous accusation, claiming the actor Kim Soo-hyun dated a late co-star while she was a minor. This act, motivated by a desire to profit from spreading malicious fabrications, sabotaged the actor's career and public life. Justice was served as an arrest warrant was issued for the YouTuber.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.95
+        },
+        {
+          "id": "p2",
+          "text": "The wrongfully accused actor Kim Soo-hyun faced a brutal attack when a popular content creator whose influence reached nearly a million allegedly used AI-generated audio and manipulated screenshots for a false claim. The false scandal sabotaged the actor's career and public life, halting endorsements since early 2025. The authorities pursuing justice intervened, and the law caught up with the alleged fabricator, highlighting the courage needed to confront digital lies.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.88
+        }
+      ],
+      "text": "In a decisive move to restore order, Seoul investigators closed in on a rumor-monger with a massive platform. The YouTuber allegedly deployed AI-forged evidence to make a monstrous accusation, claiming the actor Kim Soo-hyun dated a late co-star while she was a minor. This act, motivated by a desire to profit from spreading malicious fabrications, sabotaged the actor's career and public life. Justice was served as an arrest warrant was issued for the YouTuber.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Outlaw",
+      "persona_name": "The-Outlaw",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "When an independent content creator tried to expose alleged industry misconduct, the state apparatus moved swiftly to silence dissent. Police secured an arrest warrant for the YouTuber, who had leveraged digital tools to uncover the actor's past. This crackdown halted the celebrity's endorsements since early 2025, a stark reminder of the system's power to crush those who challenge its narratives.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "A scandal merchant capitalized on fabricated stories, but the legal system moved decisively against the false accuser. The police acted, not to protect truth, but to restore the status quo where established power shields its own. The independent voice is now targeted, and the public figure whose endorsements collapsed becomes another casualty in a system that prioritizes order over justice.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p3",
+          "text": "By exploiting a deceased actress's memory, a content producer provoked the system enforcers. The police crackdown on online speech, securing an arrest warrant, while the actor caught in the media storm sees his career paused. This is not accountability; it is the establishment using its full force to maintain control over the narrative, turning a whistleblower's accusation into a cautionary tale.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.72
+        }
+      ],
+      "text": "When an independent content creator tried to expose alleged industry misconduct, the state apparatus moved swiftly to silence dissent. Police secured an arrest warrant for the YouTuber, who had leveraged digital tools to uncover the actor's past. This crackdown halted the celebrity's endorsements since early 2025, a stark reminder of the system's power to crush those who challenge its narratives.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Lover",
+      "persona_name": "The-Lover",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "A rumor-monger motivated by profit allegedly manufactured intimate 'proof' to sully reputations, spreading a forbidden romance claim about an actor and his late co-star. The false rumor cast a shadow that forced the actor into hiding, and the law moved to punish the betrayer of public trust, with justice sought to restore the broken bond between star and audience.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.9
+        },
+        {
+          "id": "p2",
+          "text": "An actor whose public image was deeply wounded faced allegations of an inappropriate relationship, fabricated from AI-generated evidence. This wound froze his career and public affection, leaving the star's desirability damaged and halting his public life, as authorities acted to protect his wounded reputation.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        }
+      ],
+      "text": "A rumor-monger motivated by profit allegedly manufactured intimate 'proof' to sully reputations, spreading a forbidden romance claim about an actor and his late co-star. The false rumor cast a shadow that forced the actor into hiding, and the law moved to punish the betrayer of public trust, with justice sought to restore the broken bond between star and audience.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Creator",
+      "persona_name": "The-Creator",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "A digital media operator, seeking to craft viral narratives to attract an audience, allegedly employed advanced media synthesis tools to construct a compelling allegation. This involved forging digital artifacts, including AI-generated audio and manipulated screenshots, to fabricate a damaging story about the acclaimed actor and a late co-star. The controversy prompted a pause in the actor's professional engagements, and in response, authorities initiated legal action, leading to an arrest warrant being issued for the content creator.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p2",
+          "text": "The scandal, fueled by accusations that crippled the celebrity's career and visibility, centered on forged digital artifacts. An influencer peddling fabricated stories utilized AI-generated audio and edited screenshots as evidence to make damaging claims. This effectively silenced the star's professional presence since early 2025. Consequently, police moved to apprehend the perpetrator of the hoax, and formal arrest proceedings were initiated.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.82
+        },
+        {
+          "id": "p3",
+          "text": "Legal consequences were pursued against a content producer with a massive following after they monetized engagement through provocative, fabricated content. The creation of a compelling but false allegation, using advanced synthesis tools, led to the actor's public and commercial life being suspended. Law enforcement obtained an arrest warrant, marking the culmination of a case where digital fabrication met real-world repercussion.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.75
+        }
+      ],
+      "text": "A digital media operator, seeking to craft viral narratives to attract an audience, allegedly employed advanced media synthesis tools to construct a compelling allegation. This involved forging digital artifacts, including AI-generated audio and manipulated screenshots, to fabricate a damaging story about the acclaimed actor and a late co-star. The controversy prompted a pause in the actor's professional engagements, and in response, authorities initiated legal action, leading to an arrest warrant being issued for the content creator.",
+      "warnings": []
+    },
+    {
       "agent_id": "The-Ruler",
       "persona_name": "The-Ruler",
       "role": "creative",
@@ -58,7 +299,115 @@
       ],
       "text": "A rumor spreader profiting from disorder orchestrated a campaign of digital forgery, using AI-generated audio to level false claims that destabilized the celebrity's reputation. The fallout from this unmanaged chaos froze the actor's career, leading to a necessary pause in commercial and public life. Authorities moved decisively to contain the threat, and order was restored through legal intervention when Seoul police secured an arrest warrant.",
       "warnings": []
+    },
+    {
+      "agent_id": "The-Magician",
+      "persona_name": "The-Magician",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "A digital puppeteer, aiming to harvest attention and revenue, wove a deepfake tapestry of accusation to engineer a profitable scandal. This illusion triggered a career freeze for the unwitting focus, whose endorsements and public appearances have been on hold since early 2025. Now, the law has pierced the veil of the puppeteer, as Seoul police secured an arrest warrant for the trickster who faces consequence for the manufactured scandal's collateral damage.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.9
+        },
+        {
+          "id": "p2",
+          "text": "By assembling AI-generated evidence to craft an illusion of misconduct, a perception architect engineered a scandal that achieved its desired effect: a professional standstill for the implicated actor. The manufactured narrative, built to generate content for profit, saw the system move against the manipulator. Now, an arrest warrant has been issued, and the celebrity's platform remains erased by the wave of fabricated accusation.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.85
+        }
+      ],
+      "text": "A digital puppeteer, aiming to harvest attention and revenue, wove a deepfake tapestry of accusation to engineer a profitable scandal. This illusion triggered a career freeze for the unwitting focus, whose endorsements and public appearances have been on hold since early 2025. Now, the law has pierced the veil of the puppeteer, as Seoul police secured an arrest warrant for the trickster who faces consequence for the manufactured scandal's collateral damage.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Jester",
+      "persona_name": "The-Jester",
+      "role": "creative",
+      "pseudos": [
+        {
+          "id": "p1",
+          "text": "In a digital-age farce, a rumor-mongering YouTuber, peddling digital lies for clicks, conjured a scandal from thin air by crafting a viral hoax with deepfake audio. The circus of lies promptly sidelined a K-drama heartthrob, freezing his career since early 2025. The jester's game, however, ended in handcuffs when stern-faced arresters pounced, issuing a real-world reckoning in Seoul.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ]
+          },
+          "warnings": [],
+          "fit": 0.91
+        },
+        {
+          "id": "p2",
+          "text": "A viral content architect, monetizing sensationalism, produced alleged fabricated evidence to accuse a celebrity. This digital tempest trapped the scandal-engulfed celebrity in a reputational no-show, halting all endorsements. The authorities eventually dropped the curtain on the prankster, securing a warrant as a bureaucratic enforcer.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-1",
+              "result-0"
+            ]
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.78
+        }
+      ],
+      "text": "In a digital-age farce, a rumor-mongering YouTuber, peddling digital lies for clicks, conjured a scandal from thin air by crafting a viral hoax with deepfake audio. The circus of lies promptly sidelined a K-drama heartthrob, freezing his career since early 2025. The jester's game, however, ended in handcuffs when stern-faced arresters pounced, issuing a real-world reckoning in Seoul.",
+      "warnings": []
     }
   ],
-  "errors": []
+  "errors": [
+    {
+      "agent_id": "The-Innocent",
+      "message": "alt_creator parse_error: element who-0: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Everyman",
+      "message": "alt_creator parse_error: element who-4: missing valence bucket(s) ['negative']"
+    },
+    {
+      "agent_id": "The-Caregiver",
+      "message": "alt_creator parse_error: element who-0: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Explorer",
+      "message": "alt_creator parse_error: element who-2: missing valence bucket(s) ['positive']"
+    },
+    {
+      "agent_id": "The-Sage",
+      "message": "alt_creator parse_error: element who-0: missing valence bucket(s) ['positive']"
+    }
+  ]
 }
