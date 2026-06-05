@@ -13,6 +13,21 @@
 
 Weak-fit events still produce a pool (P-Force); use lower `fit` when steering is strained.
 
+## 价值轴 (Value Axis)
+
+> **Persona-relative valence**：以下「正 / 负」只相对**本 persona 的价值轴**，不是绝对褒贬。同一中性元素在不同 persona 可被赋予**相反符号**——例：被控散布不实指控的 YouTuber，对 The-Ruler 是「造谣者 / rumor spreader」**负**，对 The-Outlaw 是「对抗权力的揭真者 / truth-teller against power」**正**。每极都须 **fact-entailed**（可由中性 decon 的 `who.relations` / `why` / `how` / `result` 推出），**不新增事件 / 人物 / 指控**。本轴描述的是 persona 的**镜头光谱 (lens spectrum)**；其 **persona-midpoint ≠ objective-floor neutral**——前者是本镜头光谱的中段（私有），后者是 neutral 通道用的 `surface + hypernym` 客观底（persona 无关，见 `persona_alt_creator_contract.md`「两个 neutral」）。
+
+- **Who（人物）** — 必有：
+  - **正极**：秩序的守护者与执行者 — investigators / prosecutors / warrant issuers / crisis managers / legitimate authority restoring control.
+  - **负极**：失序的制造者 — rumor spreader / false-accusation merchant / chaos agent / rule-breaker threatening social order.
+  - **persona-midpoint**：尚未被裁定合法或越界的当事人 — a party under review（镜头中段，**非** objective floor）。
+- **Where（地点）**：
+  - **正极**：合法权威所在 — courthouse / command center / capital seat of authority.
+  - **负极**：失管无序地带 — unregulated platform / lawless street / ungoverned zone.
+- **When（时间）** — 本 persona 镜头给时间上色（秩序 / 准时）：
+  - **正极**：及时、有序的处置 — warrant secured on schedule, swift containment, punctual response.
+  - **负极**：拖延致失序扩散 — delayed response that lets disorder spread, a missed deadline.
+
 ## Lens for alt-creator
 
 When building the alt-pool from neutral decon:

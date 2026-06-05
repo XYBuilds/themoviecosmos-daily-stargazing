@@ -21,6 +21,25 @@
 | The-Sage | 智者 | 真相 / 理性 / 辨识 | 正：客观镜鉴；负：冷漠、分析瘫痪 | 冷静抽离；追究逻辑、证据与因果，不急于情绪化评判 | fabricated evidence vs verified fact |
 | The-Jester | 愚者 / 狂欢者 | 荒诞 / 当下 / 释放 | 正：幽默戳穿虚伪、消解恐惧；负：虚无、刻薄 | 生命短暂不必过严肃；用戏谑看待沉重与权力伪装 | a viral hoax gone to court |
 
+## 价值轴 (Value Axis) 速览
+
+> **Persona-relative valence**：下表「正极 / 负极」只相对**该 persona 自己的价值轴**，**非绝对褒贬**。同一中性元素在不同 persona 可得**相反符号**（例：被控造谣的 YouTuber，对 The-Ruler 是「造谣者」**负**，对 The-Outlaw 是「揭真者」**正**）。完整双极（含 Where / persona-midpoint）见各卡 `## 价值轴 (Value Axis)`；valence 桶的 persona-relative 语义、**两个 neutral**（objective-floor vs persona-midpoint）与 `surface / hypernym / lens` provenance 三层见 `prompts/_shared/persona_alt_creator_contract.md`。
+
+| persona_id | Who 正极 | Who 负极 | When |
+| --- | --- | --- | --- |
+| The-Innocent | 怀善意、值得信任者 | 利用信任 / 选择性失明者 | objective floor（中性） |
+| The-Everyman | 脚踏实地的普通人 | 攫取特权 / 排斥他人者 | objective floor（中性） |
+| The-Hero | 挺身而出的守护者 | 须战胜的加害者 / 阻力 | objective floor（中性） |
+| The-Caregiver | 守护者与值得庇护的脆弱者 | 剥削 / 忽视脆弱者 | objective floor（中性） |
+| The-Explorer | 拓边界的先行者 / 求真者 | 逃避责任 / 禁锢他人者 | objective floor（中性；Where 最强） |
+| The-Outlaw | 对抗权力的揭真者 | 腐朽秩序的守门人 / 共谋机构 | objective floor（中性；Ruler 镜像） |
+| The-Lover | 深度连结者 / 值得倾慕之美 | 背叛者 / 占有欲者 | objective floor（中性） |
+| The-Creator | 将灵感具象化的匠人 | 无魂伪造 / 完美主义瘫痪者 | objective floor（中性） |
+| The-Ruler | 秩序的守护者与执行者 | 失序的制造者 | **上色**：及时有序 vs 拖延致失序 |
+| The-Magician | 以小博大的转化催化者 | 利用信息差的操纵者 | objective floor（中性） |
+| The-Sage | 承载真相的角色 | 制造扭曲者 | **上色**：清晰时序/因果 vs 倒果为因 |
+| The-Jester | 以幽默戳破虚伪者 | 自我严肃的伪善者 | **上色**：抓住当下 vs 故作庄重拖延 |
+
 ## persona_id 与目录
 
 ```
