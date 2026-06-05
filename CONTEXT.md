@@ -27,9 +27,9 @@ _Avoid_: 角色、机器人
 现实记录员 Agent:只做去实体化白描、不注入任何隐喻,因此其伪剧情停留在题材平面。它是实验对照组,用来回答"创作视角是否真比平铺直叙更妙",**不计入跨 Agent 撞车统计**。
 _Avoid_: 默认、基础
 
-**撞车 (Cross-agent Collision)**:
-同一部电影被多个**创作视角**召回的现象。简报里**仅作中性展示**(标注命中它的视角列表),**MVP 不据此加权或排序**——因为"多视角独立殊途同归"的前提尚未验证(视角可能在向量空间塌缩,使撞车沦为假象)。它是否构成真信号,留待评测期观察。基线 A1 不参与该展示。
-_Avoid_: 强信号、加权推荐、重复、冲突
+**撞车 (Cross-agent Collision · ADR-0005 形状)**:
+优质候选主判据（复活 ADR-0003）：**中性通道整体 = 1 张去重 agent 票**（所有中性 pseudo 命中的 union）+ **≥1 语气通道（toned）汇聚到同一部电影**。防止 12 条近重复中性 pseudo 毒化信号，又不饿死召回。验证前 `retrieve.py` 仍可能用旧对称 `distinct_agents >= 2` 口径。
+_Avoid_: 12 票饱和、纯 An+An 对称计票（旧口径）
 
 **总编 (Editor-in-chief)**:
 唯一的人类裁决者。负责:从抓取的新闻池手挑要跑的新闻、对候选电影评分(共振 0/1/2,见 `docs/eval-the-bet.md` §4 两轴 rubric)、从中文审核稿勾选定稿。
@@ -42,21 +42,37 @@ _Avoid_: 全量、6 万、电影库
 **伪剧情模板 (Pseudo-overview Template)**:
 索引侧电影向量按 `Tagline: {tagline}\nOverview: {overview}`(无 tagline 时 `Overview: {overview}`)编码。查询侧 pseudo-overview **必须套同一模板**(`Overview: {pseudo}`)再 encode,以保证查询与索引同分布。作废 PRD §3.2 的裸拼接公式。
 
-**现实解构 agent (Reality Deconstructor, A0)**:
-在编剧之前把新闻拆成**纯客观、镜头中立**的结构化素材(`reality-deconstructed.json`)。产出起因/经过/结果碎片与实体**标签梯**,不做去实体化、不预选承重、不标共振类型。契约见 `docs/SSOT/reality-deconstruction-contract.md`。
-_Avoid_: 新闻摘要、骨架综合、skeleton
+**现实解构 agent (Reality Deconstructor, A0 · P-Extract)**:
+在编剧之前把**英文**新闻做**纯逐字抽取**（who/where/when/why/how/result + role + relations），产出 `reality-deconstructed.json`。**逐字保留原文用词与 source valence**；**不产**中性替代词、hypernym 梯或 persona 框定。共享 **客观扩展 pass（P-Expand）** 另产 hypernym 梯（`reality-expanded.json`）。契约见 `docs/SSOT/reality-deconstruction-contract.md`；决策见 `docs/adr/0005-objective-extraction-neutral-channel-and-collision-vote.md`。
+_Avoid_: 新闻摘要、骨架综合、skeleton、标签梯、镜头中立（旧 v1 口径）
+
+**客观地板中性 (Objective-floor neutral)**:
+`surface`（A0 逐字词）+ `hypernym`（共享扩展梯）组成的 **persona 无关**客观底。**中性通道**只用这一层；与 persona 中点中性不同。
+_Avoid_: 绝对中性、真空中性源
+
+**persona 中点中性 (Persona-midpoint neutral)**:
+某 persona **价值轴**的中点，仅活在该 persona 的 lens spectrum 内（alt-pool 的 `valence: neutral` + `provenance: lens`）。**不进**中性通道。
+_Avoid_: 与客观地板混用
+
+**中性通道 (Neutral channel · C-Neutral)**:
+每 persona **恰好 1 条** pseudo，仅用客观地板（surface + hypernym，**无 lens**）。扛**题面召回**与度量基线；**取代 A1**（验证期仍并跑 A1）。见 ADR-0005。
+_Avoid_: persona 语气 pseudo、A1 白描（退役方向）
+
+**语气通道 (Toned channel · C-Toned)**:
+每条 toned pseudo = **hypernym 锚（留在题面）+ lens 倾斜**；发自己的 anchored 检索 query，可与中性通道殊途同归到同一部电影。
+_Avoid_: 纯 re-rank、无锚漂移
+
+**neutral hit rate**:
+每部电影 `neutral_hit_rate = (命中该片的中性 pseudo 数) / (运行的 persona 数)`。分母固定 = persona 数。诊断指标（**非闸门**）；须在控制 `max_similarity` 下解读。见 ADR-0005。
+_Avoid_: 共振分、相似度代理（未控变量时）
+
+**三层 provenance (3-layer provenance)**:
+下游组装 pseudo 时的词源分层：**surface**（逐字）/ **hypernym**（客观共享桥）/ **lens**（persona 相对价）。中性通道禁 lens；语气通道必带 hypernym 锚 + lens。
+_Avoid_: 单层中性池、A0 内嵌 alternatives
 
 **现实波澜 (Reality Ripple)**:
 单条热点新闻的人类可读快照(`reality.md` / Eval 内 `reality.json`),含 title、source、summary。解构前的「原文锚点」,与解构产物并列供总编扫读。
 _Avoid_: 解构 JSON、pseudo
-
-**标签梯 (Tag Ladder)**:
-现实解构层为地点/人物等实体挂的**从具体到抽象**的客观标签列表(如地理上位词 + 内在属性)。本层**穷举客观属性、不精选**;「挑哪一层来共振」是下游 Persona 的镜头。
-_Avoid_: 精选标签、主题框定
-
-**镜头中立 (Lens-neutral)**:
-现实解构层的铁律:不产出权力定性、反讽意味、戏剧 beat 等「换 persona 答案会变」的框定;那些全部下放给 A2/A4/A7。
-_Avoid_: 中立报道、客观新闻(此处指**结构化契约**,非媒体口吻)
 
 **pseudo命中分 (Pseudo Hit Score)**:
 评测辅助指标:按 `retrieve.json` 的 `hit_sources` 统计每个候选被多少**解构碎片**命中(每 fragment id = 1 分)。由 `scripts/score_eval_candidates.py` 写入 `candidates.md`,并汇总 `output/Eval/<phase-dir>/high-hit-score-review.md`（Phase 3.5.6 对照：`phase3.5/`）。**不替代** 共振分 0/1/2 闸门。

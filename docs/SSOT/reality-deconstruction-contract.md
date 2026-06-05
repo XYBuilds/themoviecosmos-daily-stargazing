@@ -1,211 +1,292 @@
-# 现实解构 · 产出契约（v1 定稿 · 纯客观无损 · 镜头中立层）
+# 现实解构 · 产出契约（v2 · ADR-0005 · verbatim + 客观扩展）
 
-> 本文件由 `docs/temp/news-analyze.md` 定稿后 promote 而来，是「现实解构 agent」的产出契约 SSOT。产品方向背景见 [ADR-0002](../adr/0002-pivot-to-event-logic-resonance.md)；落地计划见 `.cursor/plans/Phase3.5-pivot-reality-deconstruction.plan.md`。
+> 本文件是管线前两段——**P-Extract（A0）** 与 **P-Expand（共享客观扩展 pass）**——的产出契约 SSOT。决策来源：[ADR-0005](../adr/0005-objective-extraction-neutral-channel-and-collision-vote.md)。承接 [ADR-0002](../adr/0002-pivot-to-event-logic-resonance.md) 的对题召回前提；撞车形状见 [ADR-0003](../adr/0003-multi-agent-resonance-quality-and-a1-as-peer.md)（由 ADR-0005 复活「中性 + ≥1 toned」）。
 
-> **定位**：pseudo 撰写**之前**的「现实解构 / Reality Analysis」阶段。把新闻原文**结构化**为客观素材，让下游 agent 摆脱对原文行文的依赖。
->
-> **本层铁律（主旨）**：**① 无信息丢失**（原文有的尽量全留：专名、精确时间、四级地理、经纬度、争议命名、客观因果）；**② 无主观内容产出**；**③ 镜头中立**——任何"换个 persona 就会有不同答案"的框定都不属于本层。只做客观抽取与客观归一。
->
-> **不做的事**：去实体化、模糊化、骨架综合（skeleton）、承重排序（load_bearing）、共振类型、碎片取舍 / agent 分配，**以及一切带视角的框定**（权力/阶级定性、反讽与意味、戏剧 beat、角色原型、"核心赌注"）—— 全部下放给 agent。
->
-> **第 1 步基础版边界**：**不含联网补全**（见 §7 占位）。只抽取原文**已有**信息；缺则**留空**，不编、不补。
+> **定位**：pseudo 撰写**之前**的结构化素材层。**A0 只做逐字抽取**；**客观扩展 pass 只产 hypernym 梯**。persona 相对价（lens）与 pseudo 组装在下游（P-Lens / P-Compose），不在此层。
 
 ---
 
-## 流程位置（本规格 = 「现实解构 agent」的规格）
+## 流程位置
 
 ```text
-1. 网络接口收热点新闻         → reality.md（现实波澜，人类可读）
-2. 现实解构 agent（本规格）    → reality-deconstructed.json（+ 可选 .md 视图）
-3. 编剧 agents（A1/A2/A4/A7）  → 多个 pseudo（各自镜头，按 §6 规则组合碎片）
-4. 每个 pseudo 分别向量检索    → 聚合候选
+1. 网络接口收热点新闻（英文）     → reality.md（现实波澜，人类可读）
+2. P-Extract · A0                → reality-deconstructed.json（逐字抽取）
+3. P-Expand · 共享客观扩展 pass   → reality-expanded.json（hypernym 梯 overlay）
+4. P-Lens · per-persona alt-creator → alt-pool（persona 相对 valence + 三层 provenance）
+5. P-Compose · screenwriter      → pseudos（中性通道 + 语气通道）
+6. 检索                          → 候选聚合
 ```
 
-- **新增角色**：`现实解构 agent`（Reality Deconstructor），夹在新闻与编剧之间，产出 §1 契约。token 成本低，建议用 MiMo 2.5 Pro 这类强模型保抽取质量。
-- **产物格式（已定 · 双写）**：沿用现有 `reality.json` / `reality.md` 双写惯例——
-  - `reality-deconstructed.json`：契约本体，机器读，供编剧 agent **逐字段可靠解析**（`where[].tags`、`why[]`…）。
-  - `reality-deconstructed.md`：JSON 的人类视图，给总编在 Obsidian 扫一眼。
+- **语言链**：新闻输入为**英文** → A0 → 扩展 → alt-pool → pseudo → 检索。**英进英出，无翻译步骤**（唯一中文化 = 最终推荐文案给总编）。
+- **产物格式（双写）**：
+  - `reality-deconstructed.json`：A0 契约本体，机器读。
+  - `reality-deconstructed.md`：A0 的人类视图，供总编扫读。
+  - `reality-expanded.json`（或等价 overlay）：扩展 pass 产出，附在稳定 element id 上。
 
 ---
 
 ## 0. 原则
 
-1. **切片对切片匹配（含倒金字塔修正）**：新闻是完整叙事且倒金字塔（先抛结果、埋起因）；而电影 overview 往往只是剧情的**某一个切片**——可能是起因式设定钩子、经过式中段场景、或结果式悬念结尾。→ 把新闻解构成 起因/经过/结果 碎片后，**任意一类碎片都能去匹配某部 overview 的对应切片（切片对切片）**；三类**对称、无主次**。
-2. **多分辨率标签梯（穷举客观属性，不精选）**：每个实体挂一串从**具体→抽象**的标签，但本层**只负责穷举客观属性、不负责精选**——「挑哪一层来共振」是下游 agent 的镜头，不在此层做（精选本身就是最有杠杆的一次镜头选择，必须下放）。
-   - **收**：分类学上位词（`达拉维 ⊂ 孟买 ⊂ 马哈拉施特拉邦 ⊂ 印度 ⊂ 南亚`）+ 内在属性（`沿海 / 超大都市 / 人口稠密 / 金融中心 / 贫民窟聚集`）。
-   - **弃**：带事件框定或主题色彩的标签（`恐袭目标 / 宿命的牢笼 / 碾压个体的舞台`）。
-   - **判据**：「**没有这条新闻、平平无奇的一天，这条标签对该实体是否依然成立？**」成立 → 内在属性，留；只因本次事件才成立 → 事件框定，移给事件碎片或 agent。
-3. **事实 vs 解读**：本层只装**事实**与**原文断言的因果**。解读、视角、意味全是 agent 的活。
-4. **无损**：拿不准要不要留的，**一律留**——砍是下游和审核的权力。
-5. **客观性试金石**：拿不准某字段客不客观，就问——「**A2 社会学家和 A4 神话学者会不会对它给出不同答案？**」会 → 它是视角，移给 agent；不会 → 客观，留下。
-6. **多值并存一律用 list，禁止单选**：凡是"多个客观值可同时成立"的分类字段（场景类型、事件角色…），**穷举所有适用值**、不强制单选。单选 = 替下游做镜头预选，违反原则 5。
+1. **A0 = 逐字 only（P-Extract）**：只记录原文**怎么写**——who / where / when / why / how / result，外加 `role` 与 `relations`。**逐字保留原文用词与其自带价（source valence）**；A0 **不产**任何「中性」替代词、**不做** hypernym 扩展、**不**做视角框定。
+2. **客观扩展 = hypernym only（P-Expand）**：**一份共享拷贝**（非 per-persona），为每个 element 产 **hypernym 上位词梯**，受**客观性试金石**约束：「**A2 社会学家与 A4 神话学者会不会给出不同答案？** 会 → 它是 lens，不是 objective；不会 → 可进客观地板。」
+3. **三层 provenance（下游消费）**：screenwriter 从池组装 pseudo 时区分三层——`surface`（逐字原文词）/ `hypernym`（客观共享桥）/ `lens`（persona 相对价）。详见 §4 与 `prompts/_shared/persona_alt_creator_contract.md`。
+4. **两个「中性」不可混用**：
+   - **(a) 客观地板中性（objective-floor neutral）** = `surface` + `hypernym`，共享、persona 无关 → **中性通道**用它。
+   - **(b) persona 中点中性（persona-midpoint neutral）** = 某 persona 价值轴的中点，仅活在其 lens spectrum 内 → **不进**中性通道。
+5. **事实 vs 解读**：本两层（A0 + 扩展）只装**事实**与**原文断言**；解读、相对价、意味全是 P-Lens / P-Compose 的活。
+6. **多值并存用 list**：`role`、`role_in_event`、`relations`、`modality` 等可并存的字段用 JSON 数组，不强制单选。
+
+### 丢弃的惰性字段（inert fields）
+
+`retrieve.py` 仅将 `pseudo.text` 送入嵌入（`QUERY_TEMPLATE.format(pseudo=...)`）。以下字段**从未进入嵌入**、对匹配完全惰性，故 **A0 与扩展 pass 均不再产出或维护**：
+
+| 字段 | 原用途 | 丢弃理由 |
+| --- | --- | --- |
+| `geocode` | 国/省/市/区/POI 结构化地理 | 不进嵌入 |
+| `coordinates` | 经纬度 | 不进嵌入 |
+| `scale` | 局部/城市/全国/全球 | 不进嵌入 |
+| `scene_archetype` | 场所类型标签 | 不进嵌入 |
+
+地理与场所信息若对题面重要，以 **`where[].text` 逐字保留**于 A0；hypernym 扩展可从上位地名产梯（如 `Dharavi → Mumbai → India`），但**不**再维护独立 geocode 块。
+
+### v1 废止项（勿再引用）
+
+以下 v1 做法已由 ADR-0005 **废止**，本契约不再要求：
+
+- 「全维度无损」式穷举（四级地理、经纬度、scene_archetype…）
+- A0 内的**多分辨率标签梯**（`tags` 从具体到抽象）
+- A0 承担「镜头中立 / 单一中性源」——中性改由**客观地板**（surface+hypernym）与**中性通道**承担
 
 ---
 
-## 1. 输出数据结构（产出契约）
+## 1. P-Extract（A0）输出数据结构
 
-每条新闻产出一个 JSON。字段缺信息则留空（`null` / `[]`）。
+每条新闻产出一个 JSON。字段缺信息则留空（`null` / `[]`）。**所有 `text` 类字段 = 原文措辞的逐字转录（英文）**，含原文自带的褒贬/框定用词（source valence），不在此层「纠正」为中性。
 
 ```json
 {
   "anchor": {
-    "dct": "发布/报道时间（ISO，解析相对时间用）",
-    "report_locale": "电头/发出地（如'新华社北京电'→北京）"
+    "dct": "publication/report time (ISO, for resolving relative time)",
+    "report_locale": "dateline locale if stated (e.g. 'Reuters Seoul' → Seoul)"
   },
 
   "when": {
-    "absolute":  ["2026年5月31日 20:15", "2008年"],
-    "relative":  ["昨日", "三个月前", "即日起"],
-    "daypart":   ["上午", "下午", "凌晨", "深夜"],
-    "season":    ["春季", "盛夏", "年底"],
-    "fuzzy_era": ["冷战时期", "AI 爆发时代"],
-    "cultural":  ["中秋节", "双十一"],
-    "anchored":  ["发布会结束后", "灾难发生瞬间"],
-    "duration":  ["历时 3 小时", "长达五年"],
-    "recurrence":["每日", "每年一度"],
-    "modality":  ["已发生|计划|假设|取消·推迟 —— 简述（客观转述原文状态）"],
-    "timezone":  ["美东时间 EST", "北京时间 UTC+8", "当地时间"]
+    "absolute":  ["May 31, 2026 8:15 PM", "2008"],
+    "relative":  ["yesterday", "three months ago", "effective immediately"],
+    "daypart":   ["morning", "afternoon", "predawn", "late night"],
+    "season":    ["spring", "peak summer", "year-end"],
+    "fuzzy_era": ["Cold War era", "AI boom"],
+    "cultural":  ["Mid-Autumn Festival", "Singles' Day"],
+    "anchored":  ["after the press conference", "at the moment of impact"],
+    "duration":  ["lasting three hours", "over five years"],
+    "recurrence":["daily", "annual"],
+    "modality":  ["occurred|planned|hypothetical|cancelled-postponed — as stated in source"],
+    "timezone":  ["EST", "UTC+8 Beijing", "local time"]
   },
 
   "where": [
     {
-      "text": "孟买达拉维",
-      "tags": ["达拉维", "孟买", "印度", "南亚", "沿海超级都市", "贫民窟", "商业中心"],
-      "geocode": {
-        "country": "印度", "state": "马哈拉施特拉邦", "city": "孟买",
-        "district": "达拉维", "poi": null, "coordinates": "19.0380° N, 72.8538° E"
-      },
-      "relative_pos": "距市中心以北约 …（若有）",
-      "geopolitical": "南亚 / 印度洋沿岸（若有）",
-      "scene_archetype": ["公共", "交通载具", "可密闭空间"],
-      "role": ["发生地"],
-      "intended_destination": "原文明示的预定到达地（若有；只记事实，不写'偏离/脱轨'）",
-      "scale": "局部|社区|城市|全国|全球",
-      "trajectory": "起点→途径→终点（移动主体才填）",
-      "contested_name": "独岛(韩)/竹岛(日)（有争议才填）"
+      "text": "Dharavi, Mumbai",
+      "role": ["site of occurrence"],
+      "relations": ["within Maharashtra", "on India's west coast"],
+      "relative_pos": "north of city center by … (if stated)",
+      "geopolitical": "South Asia / Indian Ocean coast (if stated)",
+      "intended_destination": "stated intended arrival (if any; fact only)",
+      "trajectory": "origin → via → destination (mobile subjects only)",
+      "contested_name": "Dokdo (KR) / Takeshima (JP) (if disputed names appear)"
     }
   ],
 
   "who": [
     {
-      "text": "中央政府能源部门 / 数千万受灾居民 / …",
-      "tags": ["…具体 → 抽象…"],
-      "role_in_event": ["发起·决策", "受影响"],
-      "relations": ["与 X 对立", "依附于 Y", "代表 Z（仅当原文明确陈述）"]
+      "text": "central government energy ministry / tens of millions affected residents / …",
+      "role_in_event": ["initiator-decision", "affected"],
+      "relations": ["opposed to X", "subordinate to Y", "represents Z (only if explicitly stated)"]
     }
   ],
 
-  "why":   [ { "text": "...（一条原文断言的起因，可多条）" } ],
-  "how":   [ { "step": 1, "text": "...（客观时序里程碑，不贴戏剧标签）" } ],
-  "result":[ { "text": "...（一条已发生事实/最新进展，可多条）" } ]
+  "why":   [ { "text": "… (one stated cause per row, verbatim)" } ],
+  "how":   [ { "step": 1, "text": "… (objective milestone, no dramatic labels)" } ],
+  "result":[ { "text": "… (one stated outcome per row, verbatim)" } ]
 }
 ```
 
-> **注意没有的字段**：`skeleton`、`load_bearing`、`seeds`、`共振类型`，以及人物的"权力/原型"、起因的"核心赌注"、结果的"反讽"——都是视角/主观，本层不产出。
+> **A0 不产出**：`tags` 标签梯、`alternatives`、`valence`、`hypernym`、`skeleton`、`load_bearing`、`seeds`、共振类型，以及人物的权力/原型定性、起因的「核心赌注」、结果的「反讽」——均为下游 lens。
+
+### 稳定 element id
+
+下游引用须稳定。惯例（实现须一致）：
+
+| 路径 | id 模式 |
+| --- | --- |
+| `who[i]` | `who-{i}` |
+| `where[i]` | `where-{i}` |
+| `why[i]` | `why-{i}` |
+| `how[i]` | `how-{i}` |
+| `result[i]` | `result-{i}` |
 
 ---
 
-## 2. 时间 (When) —— 全维度，无损
+## 2. P-Expand（共享客观扩展 pass）
 
-原文出现的任何时间信息都抓，按类塞进对应数组：
+**输入**：`reality-deconstructed.json`（A0 逐字产出）。  
+**输出**：`reality-expanded.json`——在同一 element id 上附加 **hypernym 梯**，**一份共享拷贝**，所有 persona 共用。
 
-- **absolute** 绝对时间 / **relative** 相对时间（依赖 `anchor.dct` 换算）。
-- **daypart** 时段、**season** 季节（上午/凌晨、盛夏/年底）——**下游某些 agent 的故事正需要这种氛围，故保留**。
-- **fuzzy_era** 模糊/时代、**cultural** 节庆时间、**anchored** 事件锚定时刻、**duration** 时限跨度、**recurrence** 频次周期。
-- **modality** 时间情态：已发生 / 计划 / 假设 / 取消·推迟——**客观转述原文呈现的状态**，不判断。
-- **timezone** 时区、**anchor.dct** 报道时间。
+### 规则
 
----
+1. **只产 `hypernym`**：每个覆盖的 element 提供从**较具体 → 较抽象**的上位词/类别词列表（英文）。例：`Dharavi → Mumbai → Maharashtra → India → South Asia`；`heatwave → extreme weather → climate hazard`。
+2. **客观性试金石**：每条 hypernym 须通过——「A2 与 A4 会不会对此给出不同答案？」会 → **不得**写入 hypernym（那是 lens，留给 alt-creator）。
+3. **fact-entailed**：hypernym 须可由 A0 逐字事实推出，**不新增**事件、人物、指控或因果。
+4. **不重复 A0 表面词**：`surface` 层 = A0 的 `text`；扩展 pass 只添上位/generalization，不替代表述。
+5. **共享、非 per-persona**：禁止为每个 persona 各跑一份扩展；persona 差异只在 P-Lens。
 
-## 3. 地点 (Where) —— 全精度 + 标签梯，无损
+### 扩展产出示例（片段）
 
-- **tags** 标签梯（客观泛化/属性）、**geocode** 高精度地理编码（国/省/市/区/POI/经纬度，**全留**）。
-- **scene_archetype**（**list**，穷举所有适用的客观场所类型；「体制机构」这类只取素属性，不暗示「压迫」）/ **role**（**list**，客观空间事实：`发生地 / 波及地`）/ **intended_destination**（原文明示的预定目的地，**只记事实、不写「偏离」**——脱轨的意味交给 agent）。
-- **relative_pos** / **geopolitical** / **scale** / **trajectory** / **contested_name** —— 原文有就填。
-
----
-
-## 4. 人物 (Who) —— 客观角色与关系（镜头中立）
-
-- **text** 身份/机构（**保留专名与事实**，去实体化是下游的事）。
-- **tags** 标签梯。
-- **role_in_event**（**list**）在事件中的客观角色：发起·决策 / 执行 / 受影响 / 见证·旁观 —— **一个主体可同时挂多个**（如"下令裁员、随后自己被清洗"的人 = `["发起·决策","受影响"]`）。只记"谁做了什么、谁被波及"这类**两个 persona 都会同意的事实**；**不记**"握权/脆弱/牺牲品/反叛者"这类带阶级或戏剧定性的框定（那是 agent 的镜头）。
-- **relations** 关系：对立 / 依附 / 代表 / 同盟 —— **仅当原文明确陈述**时记录，不推断、不评价。
-
----
-
-## 5. 起因 / 经过 / 结果 (Why / How / Result) —— 客观因果碎片
-
-每条是一个可独立成"钩子"的客观碎片，**只记原文断言的事实与因果，不自行推断、不贴意味、不打标签**。每条只有一个 `text`（经过另带 `step` 时序号）：
-
-- **why** 起因（可多条）：原文断言的触发动作/故障/言论，或点出的既有状况。
-- **how** 经过：按 `step` 客观时序排列里程碑动作，不复述流水账，**不贴"转折/高潮/升级"这类戏剧标签**。
-- **result** 结果（可多条）：伤亡/损失/判决等已发生事实，或截至报道时的最新进展。**不记"反讽/不可逆/代价"这类解读**——落差与意味由 agent 去发现。
-
-> 这三类是给下游的**最小创作单位**：起因/结果每一行都可被编剧 agent 单独取用，也可任意多条组合；**经过只能取连续多条**（时序不可跳跃）。三类**对称、无主次**（原则 1）。详见 §6。
+```json
+{
+  "elements": [
+    {
+      "element_id": "where-0",
+      "surface": "central-northern India",
+      "hypernyms": ["India", "South Asia", "inland region", "densely populated area"]
+    },
+    {
+      "element_id": "who-0",
+      "surface": "residents across central-northern India",
+      "hypernyms": ["civilians", "affected population"]
+    }
+  ]
+}
+```
 
 ---
 
-## 6. 下游消费（不在本层产出，仅备忘）
+## 3. 字段说明（A0 各块）
 
-本层只交付 §1 的客观 JSON。以下都属**下游阶段**，已在 `.cursor/plans/Phase3.5-pivot-reality-deconstruction.plan.md` §3.5.1 定稿：
+### When
 
-- **视角、抽象与"骨架"工作**：全流程不再有独立 skeleton。各 persona 从本层客观元素（时间/地点/人物 + 客观起因/经过/结果）里**挑选契合自己叙述角度的部分**，重塑成带自己镜头的 **起因 / 经过 / 结果 三类钩子尺寸 pseudo**；每类分别送检索、各自匹配 overview。A1 贴事实不抽象；A2/A4/A7 各自镜头（权力/神话/混沌等框定在此注入）。
-  - **碎片选取规则**：起因/经过/结果**每一行都是最小创作单位**，可单独成一个 pseudo；编剧也可一次取多条——**起因、结果可任意挑选组合**，**经过只能取连续多条**（不可跳步，保时序连贯）。
-- **碎片取舍 / 每 agent 产几段 / 召回聚合 / 候选爆炸控制**：已定稿——上游不预选（给全量）、**每 agent 3 段 pseudo × Top-2**、层级=persona 身份（不做笛卡尔积）、命中按 `source` 溯源。详见 plan §3.5.1。
-- **共振类型 / 同源·殊途同归**：写推荐文案阶段再判断。
+原文出现的任何时间信息按类填入对应数组（**逐字转录**）：
+
+- **absolute** / **relative**（相对时间依赖 `anchor.dct` 换算）
+- **daypart**、**season**、**fuzzy_era**、**cultural**、**anchored**、**duration**、**recurrence**
+- **modality**：已发生 / 计划 / 假设 / 取消·推迟——**客观转述原文呈现的状态**
+- **timezone**、**anchor.dct**
+
+### Where
+
+- **text**：地点/场所的原文表述（**含 source valence**）。
+- **role**（list）：客观空间事实，如 `site of occurrence` / `area affected`。
+- **relations**：仅当原文明确陈述的空间关系。
+- **relative_pos** / **geopolitical** / **intended_destination** / **trajectory** / **contested_name**：原文有则填。
+
+### Who
+
+- **text**：身份/机构的原文表述（**保留专名与原文框定词**；去实体化是下游的事）。
+- **role_in_event**（list）：原文陈述的客观角色（发起·决策 / 执行 / 受影响 / 见证），可多值并存。
+- **relations**：对立 / 依附 / 代表 / 同盟——**仅当原文明确陈述**，不推断。
+
+### Why / How / Result
+
+每条为可独立取用的客观碎片，**只记原文断言，不贴戏剧标签**：
+
+- **why**：原文陈述的触发/背景（可多条）。
+- **how**：按 `step` 排列的客观里程碑（不标「转折/高潮」）。
+- **result**：伤亡/损失/判决/最新进展等已陈述事实（不记「反讽/代价」类解读）。
+
+起因 / 经过 / 结果三类**对称、无主次**（切片对切片匹配）：任意一类碎片都可匹配某部 overview 的对应切片。
 
 ---
 
-## 7. 联网补全（占位 · Post-基础版 · 证据触发）
+## 4. 三层 provenance（下游 · P-Lens / P-Compose）
 
-**本版不实现。** 仅当基础版跑完观察到「好片被漏，确因某条新闻**事实槽真的空了**」才考虑，且：触发条件是**槽位空缺**（非凑数下限）；优先模型参数知识补**方向正确**的背景；补来的内容**标注「背景·补充·未核实」**、与原文事实分离、是碎片而非整段、进 reality 让总编看见；**只补事实，不补解读/刻板印象**。
+本层不产出 provenance 标签，但契约规定下游语义，以便中性通道与语气通道口径一致：
+
+| 层 | 来源 | 客观 vs lens | 用于 |
+| --- | --- | --- | --- |
+| **surface** | A0 逐字 `text` | 客观地板 | 中性通道；保留 source valence |
+| **hypernym** | P-Expand 共享梯 | 客观地板 | 中性通道 + toned 的**题面锚** |
+| **lens** | alt-creator persona 相对价 | lens | **语气通道** only；含 persona 中点中性 |
+
+**中性通道（C-Neutral）**：每 persona **恰好 1 条** pseudo，仅用 `surface` + `hypernym`，**无 lens**。  
+**语气通道（C-Toned）**：每条 toned pseudo = **hypernym 锚（留在题面）+ lens 倾斜**；发自己的 anchored 检索 query。
+
+撞车主判据（ADR-0005）：中性通道整体算 **1 张去重 agent 票**（所有中性 pseudo 命中的 union）；**优质候选 = 中性票 + ≥1 toned lens 汇聚到同一部电影**。
 
 ---
 
-## 附录 · worked example（印度热浪）
+## 5. 下游消费（备忘 · 不在此层产出）
 
-> 原 summary：2026 年 4–5 月，受顽固高压系统影响，印度中北部遭历史罕见极端持续热浪，多地破 45°C 逼近 48°C，致数千万人面临生存/供水危机、至少 37 人死亡，全国电力需求飙至 270.8 GW 历史新高。
+- **碎片选取**：`why-*` / `result-*` 每行可单独成 pseudo；`how-*` 只能取**连续**多条。详见 persona screenwriter 契约。
+- **A1 退场**：由**中性通道 union**取代；首轮验证须并跑 A1，证明中性 union ⊇ A1 命中且 2 分率 ≥ A1 后才删 A1（ADR-0005 §A1 退场）。
+- **诊断**：`neutral_hit_rate = (命中该片的中性 pseudo 数) / (运行的 persona 数)`；须在控制 `max_similarity` 下解读（ADR-0005 §NEUTRAL HIT RATE）。
+
+---
+
+## 6. 联网补全（占位 · Post-基础版）
+
+**本版不实现。** 仅当观察到「好片被漏，确因某条新闻**事实槽真的空了**」才考虑；触发条件是**槽位空缺**；补来的内容标注「背景·补充·未核实」、与原文事实分离。**只补事实，不补解读。**
+
+---
+
+## 附录 · worked example（India heatwave · English）
+
+> Source summary: April–May 2026, a persistent high-pressure system drove record heat across central-northern India, with temperatures above 45°C nearing 48°C, tens of millions facing water/survival crisis, at least 37 dead, national power demand hit a record 270.8 GW.
+
+### A0 · `reality-deconstructed.json`（节选）
 
 ```json
 {
   "anchor": { "dct": "2026-05", "report_locale": null },
   "when": {
-    "absolute": ["2026年4月", "2026年5月"],
+    "absolute": ["April 2026", "May 2026"],
     "relative": [], "daypart": [],
-    "season": ["盛夏/酷暑季"],
+    "season": ["peak summer"],
     "fuzzy_era": [], "cultural": [], "anchored": [],
-    "duration": ["历时约两个月的持续热浪"],
+    "duration": ["roughly two-month heatwave"],
     "recurrence": [],
-    "modality": ["已发生：持续中的灾害"],
+    "modality": ["occurred: ongoing disaster"],
     "timezone": []
   },
   "where": [{
-    "text": "印度中北部",
-    "tags": ["印度中北部", "印度", "南亚", "内陆地区", "人口稠密区"],
-    "geocode": { "country": "印度", "state": null, "city": null, "district": null, "poi": null, "coordinates": null },
-    "relative_pos": null, "geopolitical": "南亚",
-    "scene_archetype": ["野外", "全域", "人口稠密区"], "role": ["发生地"],
-    "intended_destination": null, "scale": "全国",
-    "trajectory": null, "contested_name": null
+    "text": "central-northern India",
+    "role": ["site of occurrence"],
+    "relations": [],
+    "relative_pos": null,
+    "geopolitical": "South Asia",
+    "intended_destination": null,
+    "trajectory": null,
+    "contested_name": null
   }],
   "who": [
-    { "text": "印度中北部受灾居民", "tags": ["居民", "平民"],
-      "role_in_event": ["受影响"], "relations": [] },
-    { "text": "全国电力/供水系统", "tags": ["关键基础设施"],
-      "role_in_event": ["受影响"], "relations": ["承载全国需求"] }
+    { "text": "residents across central-northern India",
+      "role_in_event": ["affected"], "relations": [] },
+    { "text": "national power and water systems",
+      "role_in_event": ["affected"], "relations": ["carrying nationwide demand"] }
   ],
   "why": [
-    { "text": "顽固高压系统造成极端持续高温" }
+    { "text": "a stubborn high-pressure system drove extreme sustained heat" }
   ],
   "how": [
-    { "step": 1, "text": "多地气温突破 45°C 并逼近 48°C" }
+    { "step": 1, "text": "multiple regions broke 45°C and neared 48°C" }
   ],
   "result": [
-    { "text": "数千万人陷生存/供水危机、至少 37 人死亡" },
-    { "text": "全国电力需求飙至 270.8 GW 历史新高" }
+    { "text": "tens of millions faced survival and water crisis; at least 37 dead" },
+    { "text": "national power demand reached a record 270.8 GW" }
   ]
 }
 ```
 
-> 全为客观抽取：无骨架、无承重、无共振解读、**无权力/反讽框定**。"穷人买不起空调""宗教承受痛苦"这类**不是缺失事实，而是 A2 的解读**，不在此层；"这场热浪是体制对边缘群体的碾压"这类骨架，由 agent 在重塑时去注入。
+### P-Expand · overlay（节选）
+
+```json
+{
+  "elements": [
+    { "element_id": "where-0", "surface": "central-northern India",
+      "hypernyms": ["India", "South Asia", "inland region", "densely populated area"] },
+    { "element_id": "who-0", "surface": "residents across central-northern India",
+      "hypernyms": ["civilians", "affected population"] }
+  ]
+}
+```
+
+> A0 保留原文事实与措辞；「体制碾压边缘群体」类骨架属 persona lens，不在此层。「穷人买不起空调」若原文未陈述，亦不在此层。

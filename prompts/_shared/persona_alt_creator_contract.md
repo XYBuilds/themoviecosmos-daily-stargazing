@@ -1,10 +1,11 @@
-# Persona Alt-Creator Contract (Phase 3.7)
+# Persona Alt-Creator Contract (Phase 3.8 · ADR-0005)
 
-> **Role:** Per-persona step between neutral A0 deconstruction and screenwriter. Input is **lens-neutral decon only** (no pre-built alternatives). Output is an **alt-pool overlay** referencing stable element ids — not a fork of the full deconstruction text.
+> **Role:** Per-persona step (P-Lens) after A0 verbatim extract + shared objective expansion pass. Input is **verbatim decon + expansion overlay** (no pre-built lens alternatives). Output is an **alt-pool overlay** referencing stable element ids — not a fork of the full deconstruction text.
 
 ## Input
 
-- Injected `{{deconstruction_json}}`: annotated neutral decon from A0 (`anchor`, `when`, `where`, `who`, `why`, `how`, `result`) with stable ids (`who-0`, `where-0`, `why-0`, `how-0`, `result-0`, …).
+- Injected `{{deconstruction_json}}`: verbatim decon from A0 (`anchor`, `when`, `where`, `who`, `why`, `how`, `result`) with stable ids (`who-0`, `where-0`, `why-0`, `how-0`, `result-0`, …). **Surface terms = verbatim source wording (incl. source valence).**
+- Injected `{{expansion_json}}` (when present): shared **hypernym** ladder per `element_id` from P-Expand — persona-independent objective floor.
 - Persona card (when present): emotion / value tendency for this Pearson archetype.
 - **Forbidden in input:** any `alternatives`, `valence`, or replacement terms from A0 — A0 does not produce them (P-Source).
 
@@ -22,7 +23,7 @@ Return **only** valid JSON (no markdown fences, no preamble):
       "alternatives": [
         { "term": "<positive vs THIS persona's value axis>", "valence": "positive", "provenance": "lens" },
         { "term": "<persona-midpoint label>", "valence": "neutral", "provenance": "lens" },
-        { "term": "<objective generalization from tag ladder>", "valence": "neutral", "provenance": "hypernym" },
+        { "term": "<hypernym from shared expansion pass>", "valence": "neutral", "provenance": "hypernym" },
         { "term": "<negative vs THIS persona's value axis>", "valence": "negative", "provenance": "lens" }
       ]
     }
@@ -64,7 +65,7 @@ Each alternative carries an optional `provenance` tag (one of three layers). A l
 | `provenance` | meaning | objective vs lens | typical `valence` |
 | --- | --- | --- | --- |
 | `surface` | verbatim source term (= `original_term`) | objective floor | `neutral` |
-| `hypernym` | objective generalization from the tag ladder; passes the 客观性试金石 (A2 & A4 would **not** disagree) | objective floor | `neutral` |
+| `hypernym` | objective generalization from the **shared expansion pass**; passes the 客观性试金石 (A2 & A4 would **not** disagree) | objective floor | `neutral` |
 | `lens` | persona-relative valence (the persona-midpoint neutral, plus both poles) | lens | `positive` / `neutral` / `negative` |
 
 `provenance` is **optional** (downstream ignores unknown keys). If omitted, treat `positive` / `negative` as `lens`, and `neutral` as the persona-midpoint (`lens`). Tag `provenance` when you also supply objective-floor terms (`surface` / `hypernym`) so the neutral channel can select **only** those.
