@@ -7,6 +7,8 @@
 输出: 每段 pseudo Top-K（默认 2）→ 按 tmdb_id 聚合去重 + containment（~15–19 候选/条）;
       记录命中 `(agent_id, pseudo_id, fragments)`；撞车展示不含 A1/baseline（仅 toned triggered_by）.
       撞车主判据（ADR-0005）: 中性通道 union = 1 去重票 + ≥1 toned 汇聚同片 → quality_candidate.
+      A1 held-out oracle（ADR-0006）: baseline 查询独立并跑 → ``a1_oracle`` + ``oracle_comparison``;
+      不进 ``candidates`` / 撞车票 / 排序.
 
 不做:
   - 相似度阈值过滤
@@ -42,6 +44,8 @@ DEFAULT_QUALITY_FLOOR = 0.40
 DEFAULT_MOVIE_LINK_PREFIX = "https://themoviecosmos.com/movie/"
 
 _AGENT_ORDER: tuple[str, ...] = ("A2", "A4", "A7", "A1")
+
+_ORACLE_AGENT_IDS: frozenset[str] = frozenset({"A1"})
 
 _CHANNEL_ROLES: frozenset[str] = frozenset({"neutral", "toned", "baseline"})
 
@@ -284,6 +288,100 @@ def _expand_retrieval_queries(
     return queries
 
 
+def _is_oracle_query(query: dict[str, Any]) -> bool:
+    """True when query belongs to held-out A1/baseline oracle path (ADR-0006)."""
+    agent_id = str(query.get("agent_id", "")).upper()
+    if agent_id in _ORACLE_AGENT_IDS:
+        return True
+    channel = str(
+        query.get("channel_role") or query.get("role") or ""
+    ).strip().lower()
+    return channel == "baseline"
+
+
+def _split_oracle_judge_queries(
+    queries: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    oracle: list[dict[str, Any]] = []
+    judge: list[dict[str, Any]] = []
+    for query in queries:
+        if _is_oracle_query(query):
+            oracle.append(query)
+        else:
+            judge.append(query)
+    return oracle, judge
+
+
+def _neutral_union_tmdb_ids(
+    candidates: list[dict[str, Any]],
+    *,
+    quality_floor: float,
+) -> set[int]:
+    """Distinct tmdb_ids with ≥1 neutral hit at or above quality_floor."""
+    ids: set[int] = set()
+    for cand in candidates:
+        if not _neutral_hits_above_floor(cand, quality_floor=quality_floor):
+            continue
+        tmdb_id = cand.get("tmdb_id")
+        if tmdb_id is not None:
+            ids.add(int(tmdb_id))
+    return ids
+
+
+def _build_oracle_comparison(
+    a1_hit_ids: set[int],
+    candidates: list[dict[str, Any]],
+    *,
+    quality_floor: float,
+) -> dict[str, Any]:
+    neutral_union = _neutral_union_tmdb_ids(candidates, quality_floor=quality_floor)
+    shared = sorted(a1_hit_ids & neutral_union)
+    a1_only = sorted(a1_hit_ids - neutral_union)
+    neutral_only = sorted(neutral_union - a1_hit_ids)
+    if not a1_hit_ids:
+        superset: bool | None = True if neutral_union else None
+    else:
+        superset = a1_hit_ids <= neutral_union
+    return {
+        "a1_hit_tmdb_ids": sorted(a1_hit_ids),
+        "neutral_union_tmdb_ids": sorted(neutral_union),
+        "shared_tmdb_ids": shared,
+        "a1_only_tmdb_ids": a1_only,
+        "neutral_only_tmdb_ids": neutral_only,
+        "neutral_union_superset_of_a1_hits": superset,
+        "a1_hit_count": len(a1_hit_ids),
+        "neutral_union_hit_count": len(neutral_union),
+    }
+
+
+def _build_a1_oracle_payload(
+    per_pseudo: list[dict[str, Any]],
+    *,
+    raw_hit_count: int,
+) -> dict[str, Any]:
+    per_agent = _group_per_agent(per_pseudo)
+    hit_tmdb_ids = sorted(
+        {
+            int(hit["tmdb_id"])
+            for row in per_pseudo
+            for hit in row.get("hits") or []
+            if hit.get("tmdb_id") is not None
+        }
+    )
+    return {
+        "role": "held_out_oracle",
+        "per_agent": per_agent,
+        "hit_tmdb_ids": hit_tmdb_ids,
+        "meta": {
+            "query_count": len(per_pseudo),
+            "raw_hit_count": raw_hit_count,
+            "agent_ids": _sort_agent_ids(
+                list({str(row["agent_id"]).upper() for row in per_pseudo})
+            ),
+        },
+    }
+
+
 def _count_neutral_personas(queries: list[dict[str, Any]]) -> int:
     """Persona count for neutral_hit_rate denominator (one neutral pseudo per persona)."""
     return len(
@@ -506,30 +604,23 @@ def _compute_divergence_from_agents(
     return {"query_cosines": query_cosines, "topk_jaccard": topk_jaccard}
 
 
-def retrieve_from_agents(
-    agents: list[dict[str, Any]],
-    errors: list[Any],
+def _run_query_batch(
+    queries: list[dict[str, Any]],
     *,
-    top_k: int = DEFAULT_TOP_K,
-    max_candidates: int = DEFAULT_MAX_CANDIDATES,
-    quality_floor: float = DEFAULT_QUALITY_FLOOR,
-) -> dict[str, Any]:
-    """Run retrieval for agent pseudos; returns per_agent, candidates, divergence."""
-    queries = _expand_retrieval_queries(agents, errors)
-    neutral_total = _count_neutral_personas(queries)
+    top_k: int,
+    neutral_total: int,
+    quality_floor: float,
+    aggregate_candidates: bool,
+) -> tuple[
+    list[dict[str, Any]],
+    dict[int, dict[str, Any]],
+    dict[str, np.ndarray],
+    dict[str, set[int]],
+    int,
+]:
+    """Encode queries and optionally aggregate judge-path candidates."""
     if not queries:
-        return {
-            "per_agent": [],
-            "candidates": [],
-            "divergence": {"query_cosines": {}, "topk_jaccard": {}},
-            "meta": {
-                "query_count": 0,
-                "raw_hit_count": 0,
-                "candidate_count": 0,
-                "max_candidates": max_candidates,
-                "quality_floor": quality_floor,
-            },
-        }
+        return [], {}, {}, {}, 0
 
     embeddings, meta = _load_index()
     model = _get_model()
@@ -563,6 +654,9 @@ def retrieve_from_agents(
 
             tmdb_id = int(hit["tmdb_id"])
             topk_ids.add(tmdb_id)
+            if not aggregate_candidates:
+                continue
+
             if tmdb_id not in candidate_map:
                 fields = _candidate_fields(row, similarity, link_prefix)
                 fields["triggered_by"] = []
@@ -578,26 +672,91 @@ def retrieve_from_agents(
             channel = str(query.get("channel_role") or role).strip().lower()
             if channel == "toned" and agent_id not in cand["triggered_by"]:
                 cand["triggered_by"].append(agent_id)
-            if channel == "baseline":
-                cand["also_baseline"] = True
 
         per_pseudo.append({**query, "hits": hits})
 
-    for cand in candidate_map.values():
-        cand["triggered_by"] = _sort_agent_ids(cand["triggered_by"])
-        cand["hit_sources"] = sorted(
-            cand.get("hit_sources") or [],
-            key=lambda item: (
-                _AGENT_ORDER.index(item["agent_id"])
-                if item.get("agent_id") in _AGENT_ORDER
-                else 99,
-                str(item.get("pseudo_id", "")),
-            ),
-        )
-        _apply_quality_fields(
-            cand,
+    if aggregate_candidates:
+        for cand in candidate_map.values():
+            cand["triggered_by"] = _sort_agent_ids(cand["triggered_by"])
+            cand["hit_sources"] = sorted(
+                cand.get("hit_sources") or [],
+                key=lambda item: (
+                    _AGENT_ORDER.index(item["agent_id"])
+                    if item.get("agent_id") in _AGENT_ORDER
+                    else 99,
+                    str(item.get("pseudo_id", "")),
+                ),
+            )
+            _apply_quality_fields(
+                cand,
+                quality_floor=quality_floor,
+                neutral_total=neutral_total,
+            )
+
+    return (
+        per_pseudo,
+        candidate_map,
+        query_vectors,
+        agent_topk_sets,
+        raw_hit_count,
+    )
+
+
+def retrieve_from_agents(
+    agents: list[dict[str, Any]],
+    errors: list[Any],
+    *,
+    top_k: int = DEFAULT_TOP_K,
+    max_candidates: int = DEFAULT_MAX_CANDIDATES,
+    quality_floor: float = DEFAULT_QUALITY_FLOOR,
+) -> dict[str, Any]:
+    """Run retrieval for agent pseudos; returns per_agent, candidates, divergence."""
+    queries = _expand_retrieval_queries(agents, errors)
+    oracle_queries, judge_queries = _split_oracle_judge_queries(queries)
+    neutral_total = _count_neutral_personas(judge_queries)
+
+    empty_meta = {
+        "query_count": 0,
+        "raw_hit_count": 0,
+        "candidate_count": 0,
+        "max_candidates": max_candidates,
+        "quality_floor": quality_floor,
+        "oracle_query_count": 0,
+        "judge_query_count": 0,
+    }
+    if not queries:
+        return {
+            "per_agent": [],
+            "candidates": [],
+            "a1_oracle": None,
+            "oracle_comparison": None,
+            "divergence": {"query_cosines": {}, "topk_jaccard": {}},
+            "meta": empty_meta,
+        }
+
+    (
+        judge_per_pseudo,
+        candidate_map,
+        query_vectors,
+        agent_topk_sets,
+        judge_raw_hits,
+    ) = _run_query_batch(
+        judge_queries,
+        top_k=top_k,
+        neutral_total=neutral_total,
+        quality_floor=quality_floor,
+        aggregate_candidates=True,
+    )
+
+    oracle_per_pseudo: list[dict[str, Any]] = []
+    oracle_raw_hits = 0
+    if oracle_queries:
+        oracle_per_pseudo, _, _, _, oracle_raw_hits = _run_query_batch(
+            oracle_queries,
+            top_k=top_k,
+            neutral_total=0,
             quality_floor=quality_floor,
-            neutral_total=neutral_total,
+            aggregate_candidates=False,
         )
 
     candidates = sorted(
@@ -606,19 +765,35 @@ def retrieve_from_agents(
     )
     candidates = _apply_containment(candidates, max_candidates=max_candidates)
 
-    per_agent = _group_per_agent(per_pseudo)
+    per_agent = _group_per_agent(judge_per_pseudo)
     divergence = _compute_divergence_from_agents(per_agent, query_vectors, agent_topk_sets)
+
+    a1_oracle = (
+        _build_a1_oracle_payload(oracle_per_pseudo, raw_hit_count=oracle_raw_hits)
+        if oracle_per_pseudo
+        else None
+    )
+    a1_hit_ids = set(a1_oracle["hit_tmdb_ids"]) if a1_oracle else set()
+    oracle_comparison = (
+        _build_oracle_comparison(a1_hit_ids, candidates, quality_floor=quality_floor)
+        if a1_oracle is not None
+        else None
+    )
 
     return {
         "per_agent": per_agent,
         "candidates": candidates,
+        "a1_oracle": a1_oracle,
+        "oracle_comparison": oracle_comparison,
         "divergence": divergence,
         "meta": {
             "query_count": len(queries),
-            "raw_hit_count": raw_hit_count,
+            "raw_hit_count": judge_raw_hits + oracle_raw_hits,
             "candidate_count": len(candidates),
             "max_candidates": max_candidates,
             "quality_floor": quality_floor,
+            "oracle_query_count": len(oracle_queries),
+            "judge_query_count": len(judge_queries),
         },
     }
 
