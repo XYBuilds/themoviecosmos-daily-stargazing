@@ -1,0 +1,700 @@
+{
+  "runs": [
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\01-grid-outage\\candidates.md",
+      "run_id": "01-grid-outage",
+      "has_any_score_2": true,
+      "missing_count": 11,
+      "candidate_count": 19
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\02-corporate-layoff\\candidates.md",
+      "run_id": "02-corporate-layoff",
+      "has_any_score_2": true,
+      "missing_count": 4,
+      "candidate_count": 14
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\03-election-upset\\candidates.md",
+      "run_id": "03-election-upset",
+      "has_any_score_2": true,
+      "missing_count": 11,
+      "candidate_count": 14
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\04-celebrity-scandal\\candidates.md",
+      "run_id": "04-celebrity-scandal",
+      "has_any_score_2": false,
+      "missing_count": 15,
+      "candidate_count": 15
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\05-climate-disaster\\candidates.md",
+      "run_id": "05-climate-disaster",
+      "has_any_score_2": true,
+      "missing_count": 14,
+      "candidate_count": 17
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\06-tech-monopoly\\candidates.md",
+      "run_id": "06-tech-monopoly",
+      "has_any_score_2": true,
+      "missing_count": 13,
+      "candidate_count": 17
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\07-migration-border\\candidates.md",
+      "run_id": "07-migration-border",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 10
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\08-sports-underdog\\candidates.md",
+      "run_id": "08-sports-underdog",
+      "has_any_score_2": true,
+      "missing_count": 14,
+      "candidate_count": 18
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\09-cultural-backlash\\candidates.md",
+      "run_id": "09-cultural-backlash",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 15
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\10-whistleblower-leak\\candidates.md",
+      "run_id": "10-whistleblower-leak",
+      "has_any_score_2": false,
+      "missing_count": 14,
+      "candidate_count": 16
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.8\\01-grid-outage-rerun\\candidates.md",
+      "run_id": "01-grid-outage-rerun",
+      "has_any_score_2": true,
+      "missing_count": 11,
+      "candidate_count": 19
+    }
+  ],
+  "global": {
+    "total_runs": 11,
+    "runs_with_score_2": 9,
+    "batch_pass_rate": 0.8181818181818182,
+    "missing_scores_total": 107,
+    "single_2_rate": 0.34,
+    "multi_2_rate": 0.6470588235294118,
+    "single_structural_2_rate": 0.34,
+    "multi_structural_2_rate": 0.6470588235294118,
+    "resonance_types_filled": true,
+    "phase38_gate": true,
+    "persona_gate": false,
+    "baseline_2_rate": 0.0,
+    "persona_touched_2_rate": 0.0,
+    "baseline_structural_2_rate": 0.0,
+    "persona_touched_structural_2_rate": 0.0,
+    "single_scored": 50,
+    "single_twos": 17,
+    "single_structural_twos": 17,
+    "multi_scored": 17,
+    "multi_twos": 11,
+    "multi_structural_twos": 11,
+    "diagnostic_1_neutral_hit_rate": {
+      "n": 67,
+      "pearson_neutral_hit_rate_vs_score": 0.17317644656953826,
+      "partial_corr_neutral_hit_rate_vs_score_given_similarity": 0.17151547020482416,
+      "similarity_bins": {
+        "high": {
+          "n": 64,
+          "pearson": 0.18529643759738296
+        },
+        "mid": {
+          "n": 3,
+          "pearson": null
+        }
+      },
+      "rows": [
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "429918",
+          "neutral_hit_rate": 1.0,
+          "score": 2.0,
+          "max_similarity": 0.6431,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "274855",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5623,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "475946",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.558,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "280492",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5264,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "841793",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5334,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "418879",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5834,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "33495",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5648,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "720321",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.4853,
+          "bin": "mid"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "619090",
+          "neutral_hit_rate": 0.4167,
+          "score": 2.0,
+          "max_similarity": 0.5312,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "1002695",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6272,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "513349",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5656,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "209504",
+          "neutral_hit_rate": 0.0833,
+          "score": 2.0,
+          "max_similarity": 0.5748,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "56589",
+          "neutral_hit_rate": 0.4167,
+          "score": 0.0,
+          "max_similarity": 0.5271,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "287647",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5564,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "1173076",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5295,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "530076",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.572,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "223922",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.5195,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "10514",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5043,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "9451",
+          "neutral_hit_rate": 0.9091,
+          "score": 2.0,
+          "max_similarity": 0.5783,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "23631",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5632,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "37593",
+          "neutral_hit_rate": 0.0909,
+          "score": 2.0,
+          "max_similarity": 0.59,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "6309",
+          "neutral_hit_rate": 1.0,
+          "score": 2.0,
+          "max_similarity": 0.5839,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "68924",
+          "neutral_hit_rate": 1.0,
+          "score": 0.0,
+          "max_similarity": 0.51,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "613658",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6441,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "888917",
+          "neutral_hit_rate": 1.0,
+          "score": 1.0,
+          "max_similarity": 0.5298,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "13748",
+          "neutral_hit_rate": 1.0,
+          "score": 2.0,
+          "max_similarity": 0.5305,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "209504",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5348,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "790529",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5409,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "381018",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5895,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "841793",
+          "neutral_hit_rate": 1.0,
+          "score": 1.0,
+          "max_similarity": 0.4772,
+          "bin": "mid"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "301633",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5496,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "1118941",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5123,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "337876",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5391,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "20764",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5373,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "14108",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5382,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "319910",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.56,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "1023915",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5186,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "4170",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5217,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "32007",
+          "neutral_hit_rate": 1.0,
+          "score": 2.0,
+          "max_similarity": 0.5742,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "30706",
+          "neutral_hit_rate": 1.0,
+          "score": 2.0,
+          "max_similarity": 0.6033,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "66876",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6576,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "5693",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5625,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "194224",
+          "neutral_hit_rate": 1.0,
+          "score": 2.0,
+          "max_similarity": 0.6132,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "502167",
+          "neutral_hit_rate": 1.0,
+          "score": 0.0,
+          "max_similarity": 0.6088,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "4486",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6348,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "197082",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6084,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "326598",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6078,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "617397",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.627,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "373072",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5958,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "646683",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6115,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "27947",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6412,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "57967",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6263,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "86811",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5998,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "118379",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6085,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "401847",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6193,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "492495",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6371,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "943919",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6384,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "1229915",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5549,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "46221",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5275,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage-rerun",
+          "tmdb_id": "429918",
+          "neutral_hit_rate": 1.0,
+          "score": 2.0,
+          "max_similarity": 0.6431,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage-rerun",
+          "tmdb_id": "274855",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5623,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage-rerun",
+          "tmdb_id": "475946",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.558,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage-rerun",
+          "tmdb_id": "280492",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5264,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage-rerun",
+          "tmdb_id": "841793",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5334,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage-rerun",
+          "tmdb_id": "418879",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5834,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage-rerun",
+          "tmdb_id": "33495",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5648,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage-rerun",
+          "tmdb_id": "720321",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.4853,
+          "bin": "mid"
+        }
+      ]
+    },
+    "diagnostic_2_toned_convergence": {
+      "quality_total_2_rate": 0.6470588235294118,
+      "quality_structural_2_rate": 0.6470588235294118,
+      "neutral_only_total_2_rate": 0.0,
+      "neutral_only_structural_2_rate": 0.0,
+      "precision_lift_ok": true,
+      "partial_corr_toned_vs_score_given_similarity": null,
+      "similarity_bins": {
+        "high": {
+          "quality_structural_2_rate": 0.6875,
+          "neutral_only_structural_2_rate": 0.0,
+          "quality_scored": 16,
+          "neutral_only_scored": 0
+        },
+        "mid": {
+          "quality_structural_2_rate": 0.0,
+          "neutral_only_structural_2_rate": 0.0,
+          "quality_scored": 1,
+          "neutral_only_scored": 0
+        }
+      },
+      "quality_scored": 17,
+      "quality_twos": 11,
+      "quality_structural_twos": 11,
+      "neutral_only_scored": 0,
+      "neutral_only_twos": 0,
+      "neutral_only_structural_twos": 0
+    }
+  },
+  "fit_sim_ranking": [],
+  "gate": {
+    "pass": true,
+    "verdict": "GATE_PASS",
+    "compare_mode": "quality_vs_neutral_only",
+    "rate_metric": "quality_structural_2_rate",
+    "reasons": []
+  },
+  "a1_superset": {
+    "status": "pending",
+    "note": "Requires 3.8.7 A1 parallel run; verdict in 3.8.8 GATE_RESULT",
+    "neutral_union_superset_of_a1_hits": null,
+    "quality_structural_2_rate_vs_a1": null,
+    "a1_deletion_eligible": null
+  }
+}
