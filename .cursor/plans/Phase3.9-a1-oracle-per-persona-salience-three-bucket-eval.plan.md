@@ -22,7 +22,7 @@ todos:
     status: complete
   - id: p39-6
     content: 3.9.6 · 单点 pilot + 防火墙审计（专审 salience≠valence 边界 + 多样性守卫）[需人工验收 · Go/No-Go]
-    status: pending
+    status: complete
   - id: p39-7
     content: 3.9.7 · 批量 run（A1 oracle 并跑）+ 留出冻结纪律 + 纵向多打分（人工 + judge）[需人工验收]
     status: pending
@@ -245,9 +245,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] 端到端产出位于 `output/Eval/phase3.9/{run_id}/`；3.6/3.7/3.8 未改写
-- [ ] 多样性守卫通过；中性无 lens 泄漏
-- [ ] `[需人工验收 · Go/No-Go]`：用户 approve → 进 3.9.7；若反复泄漏/退化 → No-Go 回 3.9.1 或启用 **D6 plan B**（A1 式 2–3 条多视角共享中性）
+- [x] 端到端产出位于 `output/Eval/phase3.9/{run_id}/`；3.6/3.7/3.8 未改写
+- [x] 多样性守卫通过；中性无 lens 泄漏
+- [x] `[需人工验收 · Go/No-Go]`：用户 approve → 进 3.9.7；若反复泄漏/退化 → No-Go 回 3.9.1 或启用 **D6 plan B**（A1 式 2–3 条多视角共享中性）
 
 ---
 
@@ -306,7 +306,7 @@ flowchart TD
 
 - [x] 3.9.0 契约/CONTEXT 对齐 approve
 - [ ] 3.9.1–3.9.5 各单测通过：salience 中性多样化落地、A1=oracle、三桶+纯中性入池、judge 校准、并发化
-- [ ] 3.9.6 单点 pilot Combined Go（salience≠valence 无泄漏 + 多样性守卫生效）
+- [x] 3.9.6 单点 pilot Combined Go（salience≠valence 无泄漏 + 多样性守卫生效）
 - [ ] 3.9.7 批量 + A1 oracle 并跑 + 留出冻结 + 纵向多打分（人工+judge）
 - [ ] 3.9.8 书面 GATE（Q1/Q2/Q3 + 闸门 1 + obs/holdout 一致性）→ go/no-go
 - [ ] 3.9.9 仅 GATE go：SSOT 终态 + A1 删除判定
