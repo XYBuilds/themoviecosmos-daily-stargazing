@@ -36,11 +36,11 @@ todos:
     content: 3.8.7 · 批量 run（A1 并跑）+ 留出集打分 [需人工验收]
     status: completed
   - id: f38c1d3e-0001-4000-8038-000000000008
-    content: 3.8.8 · GATE：双诊断 + A1-superset 验证 → GATE_RESULT；定 A1 是否删 [GATE · 需人工验收]
-    status: pending
+    content: 3.8.8 · GATE：双诊断 + A1-superset 验证 → GATE_RESULT；定 A1 是否删 [GATE · 需人工验收] — **GATE no-go**（①弱②弱，A1-superset FAIL）
+    status: completed
   - id: f38c1d3e-0001-4000-8038-000000000009
-    content: 3.8.9 · (仅 GATE go) ADR-0005→accepted + PRD/CONTEXT 升口径 + 删 A1
-    status: pending
+    content: 3.8.9 · (仅 GATE go) ADR-0005→accepted + PRD/CONTEXT 升口径 + 删 A1 — **skipped — GATE no-go**
+    status: cancelled
 isProject: true
 ---
 
@@ -350,8 +350,10 @@ flowchart LR
 
 ### 验收
 
-- [ ] GATE_RESULT 给出双诊断 + 闸门 + A1-superset 结论与 **GATE go/no-go**
-- [ ] `[需人工验收]`：用户确认 GATE 结论
+- [x] GATE_RESULT 给出双诊断 + 闸门 + A1-superset 结论与 **GATE no-go**
+- [x] `[需人工验收]`：用户 approve GATE no-go（2026-06-06）
+
+**裁决摘要：** ① neutral_hit_rate 弱（偏相关 r≈0.17）；② toned 精度弱/不可分离（neutral-only 可打分 n=0）；A1-superset FAIL（31 A1 命中未被中性 union 覆盖）；**不删 A1**；ADR-0005 保持 `proposed`。
 
 ---
 
@@ -365,9 +367,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] PRD/CONTEXT/contract 与代码、summarize 输出一致 —（GATE no-go 则 skipped）
-- [ ] ADR-0005 升 accepted —（GATE no-go 则保持 proposed）
-- [ ] A1 移除且回归测试通过 —（仅 superset 闸通过）
+- [x] PRD/CONTEXT/contract 与代码、summarize 输出一致 — **skipped（GATE no-go）**
+- [x] ADR-0005 升 accepted — **skipped；保持 proposed**
+- [x] A1 移除且回归测试通过 — **skipped；A1 保留**
 
 ---
 
@@ -377,8 +379,10 @@ flowchart LR
 - [x] 3.8.1–3.8.5 各单测通过、全链英文、撞车新口径 + neutral_hit_rate 落地
 - [x] 3.8.6 单点 pilot Combined Go（首跑 8/12 + 重跑 11/12 可接受下限）
 - [x] 3.8.7 批量 + A1 并跑 + 留出集打分
-- [ ] 3.8.8 书面 GATE（双诊断 + A1-superset）→ go/no-go
-- [ ] 3.8.9 仅 GATE go：SSOT 终态 + 删 A1
+- [x] 3.8.8 书面 GATE（双诊断 + A1-superset）→ **GATE no-go**（用户 approve 2026-06-06）
+- [x] 3.8.9 **skipped — GATE no-go**（未升 SSOT 终态、未删 A1、ADR-0005 保持 proposed）
+
+**Phase 3.8 结案：** 管线相对 3.7 显著改善（batch 80%、quality 62.5%），但 persona 赌注未成立；建议回 3.8.2/3.8.6 迭代中性召回与锚点契约。**不启动 Phase 4。**
 
 ## 交给下一 Phase
 
