@@ -28,10 +28,12 @@ from scripts.agents import PseudoSegment, pseudo_to_dict
 from scripts.eval_batch_manifest import load_manifest
 from scripts.lib.paths import repo_root
 from scripts.personas import (
+    NEUTRAL_PSEUDO_ID,
     build_alt_pool_overlay,
     list_persona_ids,
     pipeline_result_to_dict,
     run_persona_pipeline,
+    validate_neutral_pseudo_batch_diversity,
 )
 from scripts.retrieve import retrieve_from_agents
 from scripts.run_eval import load_deconstruction_from_file
@@ -133,6 +135,31 @@ def startup_jitter_seconds(
 ) -> float:
     r = rng or random
     return r.uniform(jitter_min, jitter_max)
+
+
+def _neutral_pseudos_from_persona_agents(
+    persona_agents: dict[str, dict[str, Any]],
+) -> list[PseudoSegment]:
+    """Collect per-persona neutral pseudos for batch diversity guard."""
+    neutrals: list[PseudoSegment] = []
+    for agent in persona_agents.values():
+        for row in agent.get("pseudos") or []:
+            if not isinstance(row, dict):
+                continue
+            src = row.get("source") if isinstance(row.get("source"), dict) else {}
+            pid = str(row.get("id") or row.get("pseudo_id") or "").strip()
+            if src.get("channel_role") != "neutral" and pid != NEUTRAL_PSEUDO_ID:
+                continue
+            neutrals.append(
+                PseudoSegment(
+                    id=pid,
+                    text=str(row.get("text") or ""),
+                    source=src,
+                    warnings=list(row.get("warnings") or []),
+                    fit=row.get("fit"),
+                )
+            )
+    return neutrals
 
 
 def reorder_persona_agents(
@@ -489,6 +516,11 @@ async def _run_personas_concurrent(
             persona_agents[persona_id] = agent_row
 
     await asyncio.gather(*[_one(pid) for pid in persona_ids])
+
+    if eval_phase in ("3.8", "3.9") and len(persona_agents) >= 2:
+        validate_neutral_pseudo_batch_diversity(
+            _neutral_pseudos_from_persona_agents(persona_agents)
+        )
 
     prefix: list[dict[str, Any]] = []
     if eval_phase not in ("3.8", "3.9"):
