@@ -7,7 +7,7 @@ todos:
     status: complete
   - id: p39-1
     content: 3.9.1 · personas.py per-persona salience 中性选材（Top-K 传 fragment_ids 取代默认碎片）+ who/where 改可选 + 多样性守卫 + subset/permutation 硬校验 + 单测
-    status: pending
+    status: complete
   - id: p39-2
     content: 3.9.2 · retrieve.py A1 → held-out oracle（不进候选/撞车/排序，保留 oracle 对照输出）+ 单测
     status: complete
@@ -163,9 +163,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest tests.test_personas -v` 通过
-- [ ] 同一新闻下 12 条中性 pseudo **非逐字雷同**（多样性守卫通过）
-- [ ] 中性 pseudo 仍仅含 surface+hypernym（lens 守卫不触发）；who/where 由 salience 决定纳入
+- [x] `python -m unittest tests.test_personas -v` 通过
+- [x] 同一新闻下 12 条中性 pseudo **非逐字雷同**（多样性守卫通过）
+- [x] 中性 pseudo 仍仅含 surface+hypernym（lens 守卫不触发）；who/where 由 salience 决定纳入
 
 ---
 
