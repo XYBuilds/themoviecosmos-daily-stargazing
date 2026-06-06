@@ -9,9 +9,11 @@ from pathlib import Path
 from scripts.eval_editor_fields import SCORING_REMARK_PLACEHOLDER
 from scripts.score_eval_candidates import (
     RetrieveDiagnostics,
+    _eligible_for_scoring_pool,
     _format_high_hit_review,
     _inject_retrieve_diagnostics,
     _is_multi_agent_hit,
+    _is_pure_neutral_candidate,
     process_eval_dir,
     score_candidates_md,
 )
@@ -64,6 +66,32 @@ class RetrieveDiagnosticsInjectionTests(unittest.TestCase):
             min_total_score=999,
         )
         self.assertIn("- **neutral_hits**: 3", out)
+
+
+class PureNeutralPoolTests(unittest.TestCase):
+    def test_pure_neutral_eligible_below_min_score(self):
+        diag = RetrieveDiagnostics(
+            quality_candidate=False,
+            neutral_hits=3,
+            neutral_total=12,
+            neutral_hit_rate=0.25,
+            distinct_agents=0,
+        )
+        self.assertTrue(_is_pure_neutral_candidate(diag))
+        self.assertTrue(_eligible_for_scoring_pool(1, min_total_score=5, diag=diag))
+
+    def test_neutral_only_run_included_in_review(self):
+        neutral_batch = _FIXTURES / "neutral-only-batch"
+        _reviews, high, missing, scanned = process_eval_dir(
+            neutral_batch,
+            write_candidates=False,
+            min_total_score=5,
+        )
+        self.assertEqual(scanned, 1)
+        self.assertEqual(missing, [])
+        self.assertEqual(len(high), 1)
+        self.assertEqual(high[0].tmdb_id, 400)
+        self.assertEqual(high[0].total_score, 1)
 
 
 class MultiAgentBucketTests(unittest.TestCase):

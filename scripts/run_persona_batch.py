@@ -208,11 +208,14 @@ def write_a1_parallel_baseline(run_id: str, out_dir: Path | None = None) -> dict
         json.dumps(retrieve_result, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    hit_ids = sorted(
-        int(c["tmdb_id"])
-        for c in retrieve_result.get("candidates") or []
-        if c.get("tmdb_id") is not None
-    )
+    a1_oracle = retrieve_result.get("a1_oracle") or {}
+    hit_ids = sorted(int(x) for x in (a1_oracle.get("hit_tmdb_ids") or []))
+    if not hit_ids:
+        hit_ids = sorted(
+            int(c["tmdb_id"])
+            for c in retrieve_result.get("candidates") or []
+            if c.get("tmdb_id") is not None
+        )
     meta = {
         "run_id": run_id,
         "split": "observation" if run_id.startswith(OBS_RUN_PREFIXES) else "holdout",

@@ -1,0 +1,18 @@
+{
+  "candidates": [],
+  "a1_oracle": {
+    "role": "held_out_oracle",
+    "hit_tmdb_ids": [910001, 910004],
+    "meta": {"query_count": 3, "raw_hit_count": 6}
+  },
+  "oracle_comparison": {
+    "a1_hit_tmdb_ids": [910001, 910004],
+    "neutral_union_tmdb_ids": [910001, 910002, 910004],
+    "shared_tmdb_ids": [910001, 910004],
+    "a1_only_tmdb_ids": [],
+    "neutral_only_tmdb_ids": [910002],
+    "neutral_union_superset_of_a1_hits": true,
+    "a1_hit_count": 2,
+    "neutral_union_hit_count": 3
+  }
+}

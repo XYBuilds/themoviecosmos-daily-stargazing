@@ -13,7 +13,7 @@ todos:
     status: complete
   - id: p39-3
     content: 3.9.3 · summarize_eval/score_eval_candidates 三桶度量 + 纯中性入打分池 + 重定义 toned_convergence/is_neutral_only + A1-oracle 对照 + 单测
-    status: pending
+    status: complete
   - id: p39-4
     content: 3.9.4 · LLM-as-judge 打分器（新脚本）+ 以观察集人工分校准/验证 + 对齐阈值门 + 单测
     status: pending
@@ -195,9 +195,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest tests.test_summarize_eval -v` 通过
-- [ ] 三桶均可产出、`neutral_only_scored > 0` 可达（对照组非空）
-- [ ] 报告含 Q1（A1-oracle）/ Q2（三桶控相似度）口径位
+- [x] `python -m unittest tests.test_summarize_eval -v` 通过
+- [x] 三桶均可产出、`neutral_only_scored > 0` 可达（对照组非空）
+- [x] 报告含 Q1（A1-oracle）/ Q2（三桶控相似度）口径位
 
 ---
 
