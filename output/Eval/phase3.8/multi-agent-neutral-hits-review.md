@@ -12,17 +12,17 @@
 
 ### Count by run_id
 
-| run_id | count |
-| --- | ---: |
-| 01-grid-outage | 1 |
-| 01-grid-outage-rerun | 1 |
-| 02-corporate-layoff | 4 |
-| 03-election-upset | 2 |
-| 05-climate-disaster | 2 |
-| 06-tech-monopoly | 2 |
-| 07-migration-border | 1 |
-| 08-sports-underdog | 2 |
-| 09-cultural-backlash | 2 |
+| run_id               | count |
+| -------------------- | ----: |
+| 01-grid-outage       |     1 |
+| 01-grid-outage-rerun |     1 |
+| 02-corporate-layoff  |     4 |
+| 03-election-upset    |     2 |
+| 05-climate-disaster  |     2 |
+| 06-tech-monopoly     |     2 |
+| 07-migration-border  |     1 |
+| 08-sports-underdog   |     2 |
+| 09-cultural-backlash |     2 |
 
 ---
 
@@ -282,8 +282,8 @@
   - THE-JESTER/n1: fragments=[why-0, how-0, result-0] · sim=0.4983
   - THE-CREATOR/p3: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5783 · **命中分=6**
 - **pseudo命中分合计**: 36
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 
 <!-- run_id: 03-election-upset -->
@@ -460,7 +460,7 @@
 - **pseudo命中分合计**: 78
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: 结构和表层好像都有一些联系，但是都不太紧密
+- **打分备注**: 结构和表层好像都有一些联系，但是都不太紧密 high 1
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 55 -->
@@ -491,8 +491,8 @@
   - THE-JESTER/n1: fragments=[why-0, how-0, how-1, how-2, result-0] · sim=0.4632
   - THE-EXPLORER/p2: fragments=[why-0, why-1, how-2, how-3, result-0] · sim=0.5305 · **命中分=5**
 - **pseudo命中分合计**: 55
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 
 ## 07-migration-border
@@ -545,9 +545,9 @@
   - THE-JESTER/n1: fragments=[why-0, how-0, result-0] · sim=0.4319
   - THE-LOVER/p2: fragments=[why-0, how-0, result-0, result-1] · sim=0.4772 · **命中分=4**
 - **pseudo命中分合计**: 40
-- **共振分**: 1（phase3.6: 1；phase3.7: 1）  <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**: 表层（phase3.6） / 结构（phase3.7）  <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: phase3.6: （无）；phase3.7: 和现实原型扯得有点远
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 结构  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 和现实原型扯得有点远
 
 ## 08-sports-underdog
 
@@ -605,8 +605,8 @@
   - THE-SAGE/p2: fragments=[why-0, how-3, how-4, result-0] · sim=0.5719 · **命中分=4**
   - THE-EXPLORER/p3: fragments=[why-0, how-1, how-2, how-3, result-0] · sim=0.5476 · **命中分=5**
 - **pseudo命中分合计**: 105
-- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**:
 
 <!-- run_id: 08-sports-underdog -->
@@ -640,9 +640,9 @@
   - THE-SAGE/p2: fragments=[why-0, how-3, how-4, result-0] · sim=0.5440 · **命中分=4**
   - THE-CAREGIVER/p3: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.6033 · **命中分=7**
 - **pseudo命中分合计**: 66
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: low 2
 
 ## 09-cultural-backlash
 
