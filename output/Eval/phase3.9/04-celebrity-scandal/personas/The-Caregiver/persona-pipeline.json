@@ -1,0 +1,338 @@
+{
+  "persona_id": "The-Caregiver",
+  "overlay": {
+    "persona_id": "The-Caregiver",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "rumor spreader",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "individual",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kim Soo-hyun",
+          "alternatives": [
+            {
+              "term": "the wronged actor",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the public figure whose career is under a cloud",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "actor",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Seoul police",
+          "alternatives": [
+            {
+              "term": "enforcers of the law",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "law enforcement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Prosecutors",
+          "alternatives": [
+            {
+              "term": "legal authorities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Seoul",
+          "alternatives": [
+            {
+              "term": "the city where the alleged harm unfolded",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "location",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "exploited a celebrity's reputation for profit",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "alleged motive",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "fabricated evidence targeting a minor's story",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "alleged method of spreading claims",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Seoul police secured an arrest warrant",
+          "alternatives": [
+            {
+              "term": "took protective action",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "law enforcement step",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "held accountable for the harm caused",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrest",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "devastating blow to a public figure's livelihood and dignity",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "professional and reputational impact",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-1",
+      "who-1",
+      "how-0",
+      "why-0",
+      "how-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025. Kim Soo-hyun. used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. spread false claims for financial gain. Seoul police secured an arrest warrant The event unfolds across professional and reputational impact and professional impact.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "result-1",
+          "who-1",
+          "how-0",
+          "why-0",
+          "how-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+            "provenance": "surface"
+          },
+          {
+            "term": "professional and reputational impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "reputational damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of scandal",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kim Soo-hyun",
+            "provenance": "surface"
+          },
+          {
+            "term": "actor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "celebrity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "alleged method of spreading claims",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "alleged motive",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police secured an arrest warrant",
+            "provenance": "surface"
+          },
+          {
+            "term": "law enforcement step",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal procedure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest warrant issuance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement action",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The scandal has inflicted devastating blow to a public figure's livelihood and dignity, halting the actor's career since early 2025. The rumor spreader exploited a celebrity's reputation for profit, using fabricated evidence targeting a minor's story to spread misinformation. In response, Seoul police took protective action to halt this deceptive practice, and the individual was ultimately held accountable for the harm caused.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "A content creator's digital manipulation and AI-generated content led to reputational damage for the wronged actor. The legal authorities stepped in with a law enforcement action, securing an arrest warrant as part of a legal procedure to address the illegal activity. This consequence of crime brought some measure of accountability, though the professional impact on the public figure whose career is under a cloud remains a serious concern.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "why-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "warnings": []
+}

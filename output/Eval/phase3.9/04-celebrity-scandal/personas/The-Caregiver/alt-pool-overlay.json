@@ -1,0 +1,179 @@
+{
+  "persona_id": "The-Caregiver",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "YouTuber",
+        "alternatives": [
+          {
+            "term": "rumor spreader",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "content creator",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "individual",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Kim Soo-hyun",
+        "alternatives": [
+          {
+            "term": "the wronged actor",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the public figure whose career is under a cloud",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "actor",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "Seoul police",
+        "alternatives": [
+          {
+            "term": "enforcers of the law",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "law enforcement",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "Prosecutors",
+        "alternatives": [
+          {
+            "term": "legal authorities",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Seoul",
+        "alternatives": [
+          {
+            "term": "the city where the alleged harm unfolded",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "location",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "spread false claims for financial gain",
+        "alternatives": [
+          {
+            "term": "exploited a celebrity's reputation for profit",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "alleged motive",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+        "alternatives": [
+          {
+            "term": "fabricated evidence targeting a minor's story",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "alleged method of spreading claims",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "Seoul police secured an arrest warrant",
+        "alternatives": [
+          {
+            "term": "took protective action",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "law enforcement step",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "YouTuber arrested",
+        "alternatives": [
+          {
+            "term": "held accountable for the harm caused",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "arrest",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+        "alternatives": [
+          {
+            "term": "devastating blow to a public figure's livelihood and dignity",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "professional and reputational impact",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "result-1",
+    "who-1",
+    "how-0",
+    "why-0",
+    "how-1"
+  ]
+}

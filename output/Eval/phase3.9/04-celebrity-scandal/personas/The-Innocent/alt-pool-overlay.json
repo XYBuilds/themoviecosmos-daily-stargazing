@@ -1,0 +1,131 @@
+{
+  "persona_id": "The-Innocent",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "YouTuber",
+        "alternatives": [
+          {
+            "term": "one who spread false claims",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "content creator",
+            "valence": "neutral",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Kim Soo-hyun",
+        "alternatives": [
+          {
+            "term": "the wronged actor",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "public figure",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "one whose trust was exploited",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "Seoul police",
+        "alternatives": [
+          {
+            "term": "authorities who intervened",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "law enforcement",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "spread false claims for financial gain",
+        "alternatives": [
+          {
+            "term": "exploited trust for profit",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "financial motivation",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+        "alternatives": [
+          {
+            "term": "fabricated evidence to defame",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "created false documentation",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "YouTuber arrested",
+        "alternatives": [
+          {
+            "term": "accountability for false claims",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "legal consequence",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+        "alternatives": [
+          {
+            "term": "harm to an innocent's career",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "professional impact",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "result-1",
+    "who-1",
+    "result-0",
+    "why-0",
+    "how-0"
+  ]
+}

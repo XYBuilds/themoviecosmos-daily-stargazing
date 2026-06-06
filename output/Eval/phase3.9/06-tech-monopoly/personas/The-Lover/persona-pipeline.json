@@ -1,0 +1,313 @@
+{
+  "persona_id": "The-Lover",
+  "overlay": {
+    "persona_id": "The-Lover",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "European regulators",
+          "alternatives": [
+            {
+              "term": "the enforcers of trust",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulatory authority",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the cold, impersonal hand of the state",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Google",
+          "alternatives": [
+            {
+              "term": "the dominant partner in the search ecosystem",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a technology company",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the one who broke the faith of fair competition",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "rival comparison services",
+          "alternatives": [
+            {
+              "term": "the overlooked and unfairly shadowed",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "competing businesses",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the jilted suitors in the marketplace",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Alphabet",
+          "alternatives": [
+            {
+              "term": "the parent entity bearing the wounds of past transgressions",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "parent company",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a repeat betrayer of the market's trust",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+          "alternatives": [
+            {
+              "term": "for prioritizing its own family over others",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "for self-preferencing in search results",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "penalty expected to reach the high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "a heavy price for the rupture of fair connection",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a large financial penalty",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "adding to more than a decade of accumulated competition fines against Alphabet",
+          "alternatives": [
+            {
+              "term": "deepening a long history of strained and broken bonds with the market",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "adding to a history of regulatory fines",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-1",
+      "result-0",
+      "who-1",
+      "who-2",
+      "why-0",
+      "how-2"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "adding to more than a decade of accumulated competition fines against Alphabet. penalty expected to reach the high hundreds of millions of euros. Google. rival comparison services. for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results The event unfolds across adding to a history of regulatory fines and a large financial penalty.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "result-1",
+          "result-0",
+          "who-1",
+          "who-2",
+          "why-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "adding to more than a decade of accumulated competition fines against Alphabet",
+            "provenance": "surface"
+          },
+          {
+            "term": "adding to a history of regulatory fines",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "penalty expected to reach the high hundreds of millions of euros",
+            "provenance": "surface"
+          },
+          {
+            "term": "a large financial penalty",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "financial penalty",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "antitrust fine",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "monetary sanction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Google",
+            "provenance": "surface"
+          },
+          {
+            "term": "a technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "search engine provider",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "multinational corporation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rival comparison services",
+            "provenance": "surface"
+          },
+          {
+            "term": "competing businesses",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online services",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "comparison platforms",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "business competitors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "provenance": "surface"
+          },
+          {
+            "term": "for self-preferencing in search results",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "In Brussels, the enforcers of trust are finalizing a heavy financial penalty against Google. For more than two years, they have investigated how the dominant partner in the search ecosystem prioritized its own family over others, giving its shopping, flight, and hotel units a privileged position above competing businesses. Now, as the formal decision nears, this large financial penalty adds to a long history of regulatory fines, deepening a long history of strained and broken bonds with the market for the parent company, Alphabet.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "deentify_warning: brand name 'Google'"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The overlooked and unfairly shadowed competing businesses in the EU's digital marketplace may soon see justice. After more than two years of proceedings under the bloc's gatekeeper rules, European authorities have rejected the technology company's remedy proposals. A formal decision is expected before the Commission's August recess, imposing an antitrust fine that represents a rupture of fair connection. This move by the regulatory authority seeks to restore balance, though it deepens the market's long-held grievances against the parent entity bearing the wounds of past transgressions.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-1",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.8
+    },
+    {
+      "id": "p3",
+      "text": "The cold, impersonal hand of the state in Brussels is poised to strike. Google, a search engine provider that broke the faith of fair competition by ranking its own services above others, faces a monetary sanction reaching high hundreds of millions of euros. This impending penalty, adding to a history of regulatory fines against its parent company, marks the culmination of a strained two-year process, a planned formal decision intended to mend the broken bonds within the supranational organization's markets.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "deentify_warning: brand name 'Google'"
+      ],
+      "fit": 0.7
+    }
+  ],
+  "warnings": []
+}

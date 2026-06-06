@@ -1,0 +1,173 @@
+{
+  "persona_id": "The-Everyman",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "U.S. Border Patrol",
+        "alternatives": [
+          {
+            "term": "the agency enforcing immigration laws at the border",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the officers carrying out policy on the ground",
+            "valence": "neutral",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "8,268 people apprehended",
+        "alternatives": [
+          {
+            "term": "ordinary people caught by the system",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "individuals facing the consequences of policy",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "those apprehended at the border",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "analysts",
+        "alternatives": [
+          {
+            "term": "observers tracking the data",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "people whose job is to watch the numbers",
+            "valence": "neutral",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "lawmakers",
+        "alternatives": [
+          {
+            "term": "elected officials who set the rules everyone else lives under",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the politicians stuck in a standoff",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "government representatives",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "milder spring weather",
+        "alternatives": [
+          {
+            "term": "conditions that make the journey more survivable",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the seasonal change that increases crossings",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+        "alternatives": [
+          {
+            "term": "the numbers show a seasonal bump in people trying to cross",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "a documented rise in border apprehensions between two months",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+        "alternatives": [
+          {
+            "term": "the policies have kept overall numbers down, hitting people hard in the process",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "crossings stay historically low because of current enforcement rules",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the system is holding the line, but ordinary people bear the cost",
+            "valence": "positive",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+        "alternatives": [
+          {
+            "term": "the people in charge can't agree on how to fund the agencies that affect everyone's daily reality",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "a political stalemate over agency funding",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "southwest border",
+        "alternatives": [
+          {
+            "term": "the shared boundary where policy meets real people",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "a stretch of the U.S. border",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "who-1",
+    "result-0",
+    "how-0",
+    "result-1",
+    "who-0"
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "per_agent": [],
+  "candidates": [],
+  "a1_oracle": {
+    "role": "held_out_oracle",
+    "per_agent": [
+      {
+        "agent_id": "A1",
+        "role": "baseline",
+        "pseudos": [
+          {
+            "pseudo_id": "p1",
+            "pseudo": "European regulators opened a procedure under the Digital Markets Act. After more than two years of proceedings, the European Commission rejected the company's proposed remedies. The Commission is now finalizing a decision, which is expected before its August recess. The decision could include a fine that reaches several hundred million euros.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "how-0",
+                "how-1",
+                "how-2",
+                "result-0"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 888917,
+                "title": "Lords of Scam",
+                "similarity": 0.4068254828453064,
+                "movie_url": "https://themoviecosmos.com/movie/888917"
+              },
+              {
+                "tmdb_id": 320318,
+                "title": "The Clearstream Affair",
+                "similarity": 0.41218411922454834,
+                "movie_url": "https://themoviecosmos.com/movie/320318"
+              }
+            ]
+          },
+          {
+            "pseudo_id": "p2",
+            "pseudo": "The European Commission investigated a tech company for prioritizing its own shopping, flight, and hotel services in search results over competitors' comparison services. After more than two years, the Commission rejected the company's remedies. A fine is being finalized.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "why-0",
+                "how-1",
+                "result-0"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 15576,
+                "title": "Bellamy",
+                "similarity": 0.4347981810569763,
+                "movie_url": "https://themoviecosmos.com/movie/15576"
+              },
+              {
+                "tmdb_id": 888917,
+                "title": "Lords of Scam",
+                "similarity": 0.44719359278678894,
+                "movie_url": "https://themoviecosmos.com/movie/888917"
+              }
+            ]
+          },
+          {
+            "pseudo_id": "p3",
+            "pseudo": "A potential fine of several hundred million euros is being finalized by EU regulators. This penalty would be added to more than a decade of accumulated competition fines against the same parent company.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "result-0",
+                "result-1"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 2335,
+                "title": "Taxi 4",
+                "similarity": 0.46827876567840576,
+                "movie_url": "https://themoviecosmos.com/movie/2335"
+              },
+              {
+                "tmdb_id": 79921,
+                "title": "Special Section",
+                "similarity": 0.47165006399154663,
+                "movie_url": "https://themoviecosmos.com/movie/79921"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hit_tmdb_ids": [
+      2335,
+      15576,
+      79921,
+      320318,
+      888917
+    ],
+    "meta": {
+      "query_count": 3,
+      "raw_hit_count": 6,
+      "agent_ids": [
+        "A1"
+      ]
+    }
+  },
+  "oracle_comparison": {
+    "a1_hit_tmdb_ids": [
+      2335,
+      15576,
+      79921,
+      320318,
+      888917
+    ],
+    "neutral_union_tmdb_ids": [],
+    "shared_tmdb_ids": [],
+    "a1_only_tmdb_ids": [
+      2335,
+      15576,
+      79921,
+      320318,
+      888917
+    ],
+    "neutral_only_tmdb_ids": [],
+    "neutral_union_superset_of_a1_hits": false,
+    "a1_hit_count": 5,
+    "neutral_union_hit_count": 0
+  },
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 3,
+    "raw_hit_count": 6,
+    "candidate_count": 0,
+    "max_candidates": 19,
+    "quality_floor": 0.4,
+    "oracle_query_count": 3,
+    "judge_query_count": 0
+  }
+}

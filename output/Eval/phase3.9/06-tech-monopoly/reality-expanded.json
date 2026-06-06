@@ -1,0 +1,215 @@
+{
+  "agent": "P-Expand",
+  "persona": "Objective Expansion",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-27T12:00:00+02:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [],
+      "relative": [
+        "before the Commission's August recess"
+      ],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [
+        "before the Commission's August recess"
+      ],
+      "duration": [
+        "more than two years of proceedings"
+      ],
+      "recurrence": [],
+      "modality": [
+        "planned: formal decision expected"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "EU",
+        "role": [
+          "regulatory authority"
+        ],
+        "relations": [],
+        "relative_pos": null,
+        "geopolitical": null,
+        "intended_destination": null,
+        "trajectory": null,
+        "contested_name": null
+      },
+      {
+        "text": "Brussels",
+        "role": [
+          "location of European Commission"
+        ],
+        "relations": [],
+        "relative_pos": null,
+        "geopolitical": null,
+        "intended_destination": null,
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "European regulators",
+        "role_in_event": [
+          "initiator-decision"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Google",
+        "role_in_event": [
+          "affected"
+        ],
+        "relations": [
+          "ranks above rival comparison services in search results"
+        ]
+      },
+      {
+        "text": "rival comparison services",
+        "role_in_event": [
+          "affected"
+        ],
+        "relations": [
+          "ranked below Google's units in search results"
+        ]
+      },
+      {
+        "text": "Alphabet",
+        "role_in_event": [
+          "affected"
+        ],
+        "relations": [
+          "parent company of Google"
+        ]
+      }
+    ],
+    "why": [
+      {
+        "text": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results"
+      },
+      {
+        "text": "under the bloc's gatekeeper rules"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "Proceedings under the bloc's gatekeeper rules for more than two years"
+      },
+      {
+        "step": 2,
+        "text": "Brussels rejected the company's remedy proposals"
+      },
+      {
+        "step": 3,
+        "text": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros"
+      },
+      {
+        "step": 4,
+        "text": "A formal decision is expected before the Commission's August recess"
+      }
+    ],
+    "result": [
+      {
+        "text": "penalty expected to reach the high hundreds of millions of euros"
+      },
+      {
+        "text": "adding to more than a decade of accumulated competition fines against Alphabet"
+      }
+    ]
+  },
+  "expansion": {
+    "elements": [
+      {
+        "element_id": "where-0",
+        "surface": "EU",
+        "hypernyms": [
+          "political union",
+          "supranational organization",
+          "regulatory jurisdiction"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "where-1",
+        "surface": "Brussels",
+        "hypernyms": [
+          "capital city",
+          "administrative center",
+          "European city"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-0",
+        "surface": "European regulators",
+        "hypernyms": [
+          "government regulators",
+          "European authorities",
+          "regulatory agencies"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-1",
+        "surface": "Google",
+        "hypernyms": [
+          "technology company",
+          "search engine provider",
+          "multinational corporation"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-2",
+        "surface": "rival comparison services",
+        "hypernyms": [
+          "online services",
+          "comparison platforms",
+          "business competitors"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-3",
+        "surface": "Alphabet",
+        "hypernyms": [
+          "parent company",
+          "holding corporation",
+          "technology conglomerate"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "why-1",
+        "surface": "under the bloc's gatekeeper rules",
+        "hypernyms": [
+          "EU regulations",
+          "competition law",
+          "digital markets framework"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "result-0",
+        "surface": "penalty expected to reach the high hundreds of millions of euros",
+        "hypernyms": [
+          "financial penalty",
+          "antitrust fine",
+          "monetary sanction"
+        ],
+        "rejected_hypernyms": []
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

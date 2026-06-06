@@ -1,0 +1,383 @@
+{
+  "persona_id": "The-Magician",
+  "overlay": {
+    "persona_id": "The-Magician",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "European regulators",
+          "alternatives": [
+            {
+              "term": "system pivoteers",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "gatekeeper enforcers",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulatory authority",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Google",
+          "alternatives": [
+            {
+              "term": "search-result manipulators",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "platform algorithm operators",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "search engine",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "rival comparison services",
+          "alternatives": [
+            {
+              "term": "systematically buried competitors",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "alternative providers",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Alphabet",
+          "alternatives": [
+            {
+              "term": "corporate puppeteer",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "parent conglomerate",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+          "alternatives": [
+            {
+              "term": "for manipulating search visibility to favor its own services",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "for self-preferencing in search results",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "for giving its own units higher placement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "under the bloc's gatekeeper rules",
+          "alternatives": [
+            {
+              "term": "leveraging the DMA framework",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "under digital market regulations",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+          "alternatives": [
+            {
+              "term": "two-year systemic investigation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulatory process",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Brussels rejected the company's remedy proposals",
+          "alternatives": [
+            {
+              "term": "shut down inadequate fixes",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "deemed proposals insufficient",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "setting a transformative financial penalty",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "preparing a substantial fine",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "A formal decision is expected before the Commission's August recess",
+          "alternatives": [
+            {
+              "term": "imminent paradigm-shift deadline",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "upcoming scheduled decision",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "penalty expected to reach the high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "paradigm-correcting financial consequence",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "major fine",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "adding to more than a decade of accumulated competition fines against Alphabet",
+          "alternatives": [
+            {
+              "term": "deepening a legacy of accountability",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "adding to a history of competition penalties",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "EU",
+          "alternatives": [
+            {
+              "term": "global digital rule-setting nexus",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulatory bloc",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "Brussels",
+          "alternatives": [
+            {
+              "term": "the levers of digital governance",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "EU administrative capital",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "who-0",
+      "how-0",
+      "why-0",
+      "how-1",
+      "who-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "European regulators. Proceedings under the bloc's gatekeeper rules for more than two years. for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results. Brussels rejected the company's remedy proposals. Google The event unfolds across regulatory authority and government regulators.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "who-0",
+          "how-0",
+          "why-0",
+          "how-1",
+          "who-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "European regulators",
+            "provenance": "surface"
+          },
+          {
+            "term": "regulatory authority",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government regulators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "regulatory agencies",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+            "provenance": "surface"
+          },
+          {
+            "term": "regulatory process",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "provenance": "surface"
+          },
+          {
+            "term": "for giving its own units higher placement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Brussels rejected the company's remedy proposals",
+            "provenance": "surface"
+          },
+          {
+            "term": "deemed proposals insufficient",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Google",
+            "provenance": "surface"
+          },
+          {
+            "term": "search engine",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "search engine provider",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "multinational corporation",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "System pivoteers in Brussels are leveraging the DMA framework after a two-year systemic investigation, shutting down inadequate fixes from search-result manipulators who favored their own services. They are setting a transformative financial penalty—a paradigm-correcting financial consequence expected before an imminent paradigm-shift deadline, deepening a legacy of accountability for the parent conglomerate.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.92
+    },
+    {
+      "id": "p2",
+      "text": "Regulatory authority within the global digital rule-setting nexus has concluded a two-year systemic investigation into platform algorithm operators. By shutting down inadequate fixes for self-preferencing in search results, they are preparing a substantial fine under competition law—a major fine that adds to a history of competition penalties, finalized before an upcoming scheduled decision.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-1",
+          "how-0",
+          "how-1",
+          "why-0",
+          "how-2",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    }
+  ],
+  "warnings": []
+}

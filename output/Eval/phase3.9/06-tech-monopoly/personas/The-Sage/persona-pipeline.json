@@ -1,0 +1,331 @@
+{
+  "persona_id": "The-Sage",
+  "overlay": {
+    "persona_id": "The-Sage",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "European regulators",
+          "alternatives": [
+            {
+              "term": "investigators",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulatory authority",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Google",
+          "alternatives": [
+            {
+              "term": "entity with ranking practices under scrutiny",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "search engine provider",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "rival comparison services",
+          "alternatives": [
+            {
+              "term": "affected market participants",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Alphabet",
+          "alternatives": [
+            {
+              "term": "parent company with accumulated fines",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+          "alternatives": [
+            {
+              "term": "for alleged self-preferencing in search results",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "for market conduct under investigation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "under the bloc's gatekeeper rules",
+          "alternatives": [
+            {
+              "term": "under regulatory framework",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+          "alternatives": [
+            {
+              "term": "multi-year regulatory investigation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Brussels rejected the company's remedy proposals",
+          "alternatives": [
+            {
+              "term": "regulators rejected proposed remedies",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "remedy proposals deemed insufficient",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "financial penalty in finalization",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "A formal decision is expected before the Commission's August recess",
+          "alternatives": [
+            {
+              "term": "anticipated regulatory decision",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "penalty expected to reach the high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "significant financial sanction",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "monetary penalty outcome",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "adding to more than a decade of accumulated competition fines against Alphabet",
+          "alternatives": [
+            {
+              "term": "history of regulatory fines",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "how-0",
+      "why-0",
+      "who-0",
+      "how-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "penalty expected to reach the high hundreds of millions of euros. Proceedings under the bloc's gatekeeper rules for more than two years. for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results. European regulators. Brussels rejected the company's remedy proposals The event unfolds across monetary penalty outcome and financial penalty.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "result-0",
+          "how-0",
+          "why-0",
+          "who-0",
+          "how-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "penalty expected to reach the high hundreds of millions of euros",
+            "provenance": "surface"
+          },
+          {
+            "term": "monetary penalty outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "financial penalty",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "antitrust fine",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "monetary sanction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+            "provenance": "surface"
+          },
+          {
+            "term": "multi-year regulatory investigation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "provenance": "surface"
+          },
+          {
+            "term": "for market conduct under investigation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European regulators",
+            "provenance": "surface"
+          },
+          {
+            "term": "regulatory authority",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government regulators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "regulatory agencies",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Brussels rejected the company's remedy proposals",
+            "provenance": "surface"
+          },
+          {
+            "term": "remedy proposals deemed insufficient",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A multi-year regulatory investigation under the bloc's digital markets framework has led investigators to finalizing a significant financial sanction. The probes, conducted by government regulators, focused on alleged self-preferencing in search results by the search engine provider, where its own units ranked above affected market participants. Remedy proposals deemed insufficient by the authority have resulted in a monetary penalty outcome expected to add to a history of regulatory fines against the parent company with accumulated fines.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-0",
+          "why-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "After rejecting proposed remedies as inadequate, the regulatory authority is now finalizing a monetary penalty outcome. This anticipated decision follows a multi-year regulatory investigation into the search engine provider's market conduct under investigation, where its units were ranked above business competitors. The proceeding, applying EU regulations, culminates in a financial penalty expected to reach the high hundreds of millions of euros, a significant addition to the parent company's accumulated history of sanctions.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "why-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.8
+    },
+    {
+      "id": "p3",
+      "text": "The investigators are set to deliver their verdict. The process began under competition law more than two years ago, examining the entity with ranking practices under scrutiny for self-preferencing. When the company's proposed fixes were deemed insufficient, the authorities moved to finalize a substantial monetary sanction. This formal decision, expected imminently, represents a major step in applying the digital markets framework to a multinational corporation's conduct.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-0",
+          "why-0",
+          "how-1",
+          "how-2",
+          "how-3"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "warnings": [],
+  "repair_retries": [
+    {
+      "stage": "screenwriter_parse",
+      "attempt": "1",
+      "error": "screenwriter parse_error: pseudo p3: unknown fragment ids ['who-2', 'who-1', 'who-0']"
+    },
+    {
+      "stage": "screenwriter_parse",
+      "attempt": "2",
+      "error": "ok"
+    }
+  ]
+}

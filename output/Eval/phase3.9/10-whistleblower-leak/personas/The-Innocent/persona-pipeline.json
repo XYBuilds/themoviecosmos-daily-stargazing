@@ -1,0 +1,434 @@
+{
+  "persona_id": "The-Innocent",
+  "overlay": {
+    "persona_id": "The-Innocent",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "whistleblower in Sikar",
+          "alternatives": [
+            {
+              "term": "courageous truth-teller",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "tipster",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "India's National Testing Agency (NTA)",
+          "alternatives": [
+            {
+              "term": "responsible authority",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "testing body",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "26–27 paper setters and translators",
+          "alternatives": [
+            {
+              "term": "potentially accused individuals",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "subject of investigation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Central Bureau of Investigation (CBI)",
+          "alternatives": [
+            {
+              "term": "investigative agency",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "those facing legal consequences",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "detained individuals",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-5",
+          "original_term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+          "alternatives": [
+            {
+              "term": "former advocate now implicated",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "education professional",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Sikar",
+          "alternatives": [
+            {
+              "term": "origin of a crucial tip",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+          "alternatives": [
+            {
+              "term": "evidence of systemic breach",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "leaked exam materials",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Medical entrance exam held on May 3",
+          "alternatives": [
+            {
+              "term": "a test of trust",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "examination event",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+          "alternatives": [
+            {
+              "term": "critical disclosure",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "receipt of information",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "path to restoring fairness",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "remedial action",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "NEET-UG 2026 cancelled",
+          "alternatives": [
+            {
+              "term": "painful but necessary reset",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "exam invalidation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "accountability pursued",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "detention of suspects",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "opportunity for a fair chance",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "second examination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "who-0",
+      "why-0",
+      "how-4",
+      "result-2"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "NEET-UG 2026 cancelled. whistleblower in Sikar. whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology. Re-examination scheduled for June 21 The event unfolds across exam invalidation and cancellation.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "result-0",
+          "who-0",
+          "why-0",
+          "how-4",
+          "result-2"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "NEET-UG 2026 cancelled",
+            "provenance": "surface"
+          },
+          {
+            "term": "exam invalidation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "cancellation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "result",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "whistleblower in Sikar",
+            "provenance": "surface"
+          },
+          {
+            "term": "tipster",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "informant",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "source",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+            "provenance": "surface"
+          },
+          {
+            "term": "leaked exam materials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tip",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "information disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "report",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Re-examination scheduled for June 21",
+            "provenance": "surface"
+          },
+          {
+            "term": "remedial action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescheduling",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "planned event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "step",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "second examination",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "planned re-examination",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A courageous truth-teller in Sikar sent an email to the responsible authority, India's National Testing Agency, with leaked exam materials. This critical disclosure revealed that PDFs matched 100% of the chemistry questions. The agency acted to initiate an investigation, referring the matter to the investigative agency. This painful but necessary reset of the medical entrance exam, a test of trust, seeks to restore fairness for the students who were wronged, offering them a path to restoring fairness through a second examination.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.88
+    },
+    {
+      "id": "p2",
+      "text": "Following the exam invalidation, the government body referred a group of potentially accused individuals, including paper setters and translators, to the investigation agency. This led to the detention of suspects and the pursuit of accountability, with those facing legal consequences arrested. The outcome underscores a commitment to integrity, though it is a source of great sorrow for the education professional now implicated, who had once championed student justice.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p3",
+      "text": "From the origin of a crucial tip, a person provided evidence of a systemic breach to the testing agency. The receipt of this information was a pivotal step, leading the institution to take remedial action by scheduling a second examination. This planned event, an opportunity for a fair chance, represents a sincere effort to repair the harm and trust broken by the breach, aiming to provide a fair chance for all aspirants.",
+      "source": {
+        "agent_id": "The-Innocent",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.82
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,268 @@
+{
+  "persona_id": "The-Everyman",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "Intuit",
+        "alternatives": [
+          {
+            "term": "the company behind the decision",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a large corporation making a corporate restructuring",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the employer cutting thousands of jobs",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Sasan Goodarzi",
+        "alternatives": [
+          {
+            "term": "the company's chief executive",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a company leader announcing major layoffs",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the executive delivering the bad news",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "affected U.S. employees",
+        "alternatives": [
+          {
+            "term": "workers losing their jobs",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "ordinary people facing a sudden career disruption",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "employees bearing the cost of the company's strategic shift",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Reno",
+        "alternatives": [
+          {
+            "term": "an office location being closed",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a community losing a major employer",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "where-1",
+        "original_term": "Woodland Hills",
+        "alternatives": [
+          {
+            "term": "an office location being closed",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a neighborhood losing a workplace hub",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+        "alternatives": [
+          {
+            "term": "a strategic business rationale for the cuts",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "prioritizing new technology over current employees",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "original_term": "as a painful but necessary reinvention after months of internal review",
+        "alternatives": [
+          {
+            "term": "a difficult corporate decision",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a measure framed as tough but inevitable by leadership",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "a process that leaves ordinary workers as the ones who pay",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+        "alternatives": [
+          {
+            "term": "the announcement of widespread job eliminations",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a top-down mandate affecting thousands of workers",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+        "alternatives": [
+          {
+            "term": "a severance package for laid-off employees",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a financial cushion for workers navigating unemployment",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "compensation that may not fully cover the disruption to workers' lives",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "Offices in Reno and Woodland Hills are winding down",
+        "alternatives": [
+          {
+            "term": "the closure of specific office locations",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the end of local workplaces for many employees",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "roughly 17% of workforce to be cut",
+        "alternatives": [
+          {
+            "term": "a significant portion of the workforce losing their jobs",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a large-scale reduction affecting many ordinary families",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "about 3,000 full-time roles to be eliminated",
+        "alternatives": [
+          {
+            "term": "thousands of jobs disappearing",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "3,000 people and their households directly impacted by the decision",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "original_term": "offices in Reno and Woodland Hills winding down",
+        "alternatives": [
+          {
+            "term": "the cessation of operations at two locations",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "local economies in two cities losing a corporate presence",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-3",
+        "original_term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+        "alternatives": [
+          {
+            "term": "a defined severance offer for terminated employees",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a package meant to help workers transition",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "a payout that underscores the vulnerability of workers in a corporate system",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "result-1",
+    "who-2",
+    "result-3",
+    "how-1",
+    "who-0"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "per_agent": [],
+  "candidates": [],
+  "a1_oracle": {
+    "role": "held_out_oracle",
+    "per_agent": [
+      {
+        "agent_id": "A1",
+        "role": "baseline",
+        "pseudos": [
+          {
+            "pseudo_id": "p1",
+            "pseudo": "After receiving a late endorsement from the sitting president, Ken Paxton won approximately 64% of the vote in the Texas Senate Republican runoff. He won the runoff. John Cornyn lost renomination, becoming the first sitting Republican senator from Texas to do so since 1970. Paxton will face James Talarico in the November general election.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "why-0",
+                "how-0",
+                "result-0",
+                "result-1",
+                "result-2"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 37593,
+                "title": "Lone Star",
+                "similarity": 0.49902886152267456,
+                "movie_url": "https://themoviecosmos.com/movie/37593"
+              },
+              {
+                "tmdb_id": 21711,
+                "title": "The Candidate",
+                "similarity": 0.5008964538574219,
+                "movie_url": "https://themoviecosmos.com/movie/21711"
+              }
+            ]
+          },
+          {
+            "pseudo_id": "p2",
+            "pseudo": "The sitting president made a late endorsement. Ken Paxton won the Texas Senate Republican runoff. John Cornyn lost his renomination, the first time a sitting Republican senator from Texas has done so since 1970.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "why-0",
+                "result-0",
+                "result-1"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 23631,
+                "title": "Machete",
+                "similarity": 0.4868279993534088,
+                "movie_url": "https://themoviecosmos.com/movie/23631"
+              },
+              {
+                "tmdb_id": 37593,
+                "title": "Lone Star",
+                "similarity": 0.5140070915222168,
+                "movie_url": "https://themoviecosmos.com/movie/37593"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hit_tmdb_ids": [
+      21711,
+      23631,
+      37593
+    ],
+    "meta": {
+      "query_count": 2,
+      "raw_hit_count": 4,
+      "agent_ids": [
+        "A1"
+      ]
+    }
+  },
+  "oracle_comparison": {
+    "a1_hit_tmdb_ids": [
+      21711,
+      23631,
+      37593
+    ],
+    "neutral_union_tmdb_ids": [],
+    "shared_tmdb_ids": [],
+    "a1_only_tmdb_ids": [
+      21711,
+      23631,
+      37593
+    ],
+    "neutral_only_tmdb_ids": [],
+    "neutral_union_superset_of_a1_hits": false,
+    "a1_hit_count": 3,
+    "neutral_union_hit_count": 0
+  },
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 2,
+    "raw_hit_count": 4,
+    "candidate_count": 0,
+    "max_candidates": 19,
+    "quality_floor": 0.4,
+    "oracle_query_count": 2,
+    "judge_query_count": 0
+  }
+}
