@@ -25,6 +25,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 ### Sources
 
 - **Primary:** `hit_sources` in each run's `retrieve.json` (fragment arrays).
+- **LLM judge:** `llm-judge-scores.json` — trust_status=不采信 (screening only; inline judge fields per candidate)
 - **Editor fields:** 共振分 / 共振类型 / 打分备注 are placeholders only (not filled by this script).
 
 - **Generation date:** 2026-06-06
@@ -105,6 +106,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 38 -->
@@ -135,6 +140,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 结构  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 26 -->
@@ -163,6 +172,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 20 -->
@@ -189,6 +202,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 16 -->
@@ -215,6 +231,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 结构  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 11 -->
@@ -239,6 +259,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 10 -->
@@ -263,6 +286,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 9 -->
@@ -287,6 +314,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 8 -->
@@ -311,6 +341,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 双重
+- **judge采信**: 不采信 · screening only
 
 ### 单 agent 命中
 
@@ -338,6 +371,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -361,6 +397,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -384,6 +423,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -407,6 +449,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -430,6 +476,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -453,6 +502,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ## 02-corporate-layoff
 
@@ -506,6 +558,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 52 -->
@@ -538,6 +594,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 双重
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 50 -->
@@ -569,6 +629,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 32 -->
@@ -597,6 +661,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 30 -->
@@ -624,6 +691,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 27 -->
@@ -651,6 +722,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 26 -->
@@ -678,6 +752,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 20 -->
@@ -704,6 +782,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 16 -->
@@ -729,6 +810,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 12 -->
@@ -753,6 +837,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 10 -->
@@ -777,6 +864,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 10 -->
@@ -801,6 +891,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ### 单 agent 命中
 
@@ -828,6 +921,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 8 -->
@@ -851,6 +947,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 6 -->
@@ -874,6 +973,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 6 -->
@@ -897,6 +999,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 5 -->
@@ -920,6 +1025,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 ## 03-election-upset
 
@@ -972,6 +1080,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 34 -->
@@ -1002,6 +1114,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 33 -->
@@ -1031,6 +1146,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 27 -->
@@ -1059,6 +1177,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 24 -->
@@ -1086,6 +1207,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 22 -->
@@ -1113,6 +1237,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 22 -->
@@ -1140,6 +1268,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 20 -->
@@ -1166,6 +1297,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 14 -->
@@ -1191,6 +1325,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 10 -->
@@ -1215,6 +1352,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 9 -->
@@ -1239,6 +1379,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 9 -->
@@ -1263,6 +1406,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 ### 单 agent 命中
 
@@ -1291,6 +1437,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1314,6 +1463,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1337,6 +1489,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1360,6 +1515,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1383,6 +1541,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ## 04-celebrity-scandal
 
@@ -1429,6 +1590,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 25 -->
@@ -1456,6 +1620,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 22 -->
@@ -1483,6 +1650,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 22 -->
@@ -1510,6 +1680,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 双重
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 20 -->
@@ -1537,6 +1710,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 双重
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 20 -->
@@ -1563,6 +1739,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 11 -->
@@ -1588,6 +1767,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 10 -->
@@ -1612,6 +1794,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 双重
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 10 -->
@@ -1636,6 +1821,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 9 -->
@@ -1660,6 +1848,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 8 -->
@@ -1684,6 +1875,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 8 -->
@@ -1708,6 +1902,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ### 单 agent 命中
 
@@ -1736,6 +1933,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -1759,6 +1959,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -1782,6 +1985,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -1805,6 +2011,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ## 05-climate-disaster
 
@@ -1857,6 +2066,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 48 -->
@@ -1885,6 +2097,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 43 -->
@@ -1914,6 +2129,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 28 -->
@@ -1940,6 +2158,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 27 -->
@@ -1966,6 +2187,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 24 -->
@@ -1991,6 +2215,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 17 -->
@@ -2015,6 +2242,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 15 -->
@@ -2039,6 +2269,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 14 -->
@@ -2063,6 +2296,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 11 -->
@@ -2087,6 +2323,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 ### 单 agent 命中
 
@@ -2115,6 +2354,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2138,6 +2380,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2161,6 +2406,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2184,6 +2432,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2207,6 +2458,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2230,6 +2484,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 8 -->
@@ -2253,6 +2510,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ## 06-tech-monopoly
 
@@ -2300,6 +2560,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 37 -->
@@ -2329,6 +2592,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 36 -->
@@ -2358,6 +2624,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 31 -->
@@ -2386,6 +2655,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 27 -->
@@ -2414,6 +2686,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 19 -->
@@ -2439,6 +2714,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 19 -->
@@ -2464,6 +2742,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 13 -->
@@ -2488,6 +2769,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2512,6 +2796,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2536,6 +2823,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2560,6 +2850,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2584,6 +2877,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 9 -->
@@ -2608,6 +2904,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 7 -->
@@ -2632,6 +2931,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ### 单 agent 命中
 
@@ -2660,6 +2962,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 10 -->
@@ -2684,6 +2989,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 7 -->
@@ -2707,6 +3015,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 6 -->
@@ -2730,6 +3041,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 5 -->
@@ -2753,6 +3067,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ## 07-migration-border
 
@@ -2819,6 +3136,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 59 -->
@@ -2855,6 +3175,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 33 -->
@@ -2884,6 +3207,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 27 -->
@@ -2912,6 +3238,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 11 -->
@@ -2937,6 +3266,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 10 -->
@@ -2961,6 +3293,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 9 -->
@@ -2986,6 +3321,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 8 -->
@@ -3010,6 +3348,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 7 -->
@@ -3034,6 +3375,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ### 单 agent 命中
 
@@ -3062,6 +3406,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ## 08-sports-underdog
 
@@ -3119,6 +3466,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 36 -->
@@ -3148,6 +3498,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 20 -->
@@ -3173,6 +3526,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 17 -->
@@ -3198,6 +3554,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 17 -->
@@ -3223,6 +3582,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 15 -->
@@ -3248,6 +3610,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 13 -->
@@ -3272,6 +3637,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 12 -->
@@ -3296,6 +3664,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 11 -->
@@ -3320,6 +3691,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 11 -->
@@ -3344,6 +3718,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 9 -->
@@ -3368,6 +3745,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ### 单 agent 命中
 
@@ -3395,6 +3775,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3418,6 +3801,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3441,6 +3827,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3464,6 +3853,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 双重
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3487,6 +3879,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 双重
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3510,6 +3905,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 ## 09-cultural-backlash
 
@@ -3557,6 +3955,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 26 -->
@@ -3584,6 +3985,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 23 -->
@@ -3610,6 +4014,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 19 -->
@@ -3635,6 +4042,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 19 -->
@@ -3661,6 +4071,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 15 -->
@@ -3686,6 +4099,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 14 -->
@@ -3711,6 +4127,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 10 -->
@@ -3735,6 +4154,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 10 -->
@@ -3759,6 +4181,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 9 -->
@@ -3783,6 +4208,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ### 单 agent 命中
 
@@ -3810,6 +4238,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 6 -->
@@ -3833,6 +4264,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -3856,6 +4290,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ## 10-whistleblower-leak
 
@@ -3908,6 +4345,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 31 -->
@@ -3936,6 +4376,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 28 -->
@@ -3963,6 +4406,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 17 -->
@@ -3989,6 +4435,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 16 -->
@@ -4014,6 +4463,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 15 -->
@@ -4039,6 +4491,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 11 -->
@@ -4063,6 +4518,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 10 -->
@@ -4087,6 +4545,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 ### 单 agent 命中
 
@@ -4115,6 +4576,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 15 -->
@@ -4139,6 +4603,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 11 -->
@@ -4163,6 +4630,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 9 -->
@@ -4187,6 +4657,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 7 -->
@@ -4210,6 +4683,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 5 -->
@@ -4233,6 +4709,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 结构
+- **judge采信**: 不采信 · screening only
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 5 -->
@@ -4256,4 +4735,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
 

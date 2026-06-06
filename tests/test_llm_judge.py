@@ -13,7 +13,11 @@ from scripts.llm_judge import (
     TRUST_STATUS_UNTRUSTED,
     JudgeItem,
     JudgeOutput,
+    JudgeResult,
+    CalibrationReport,
     compute_calibration,
+    integrate_judge_into_review,
+    load_judge_output,
     parse_judge_response,
     score_items,
     validate_judge_payload,
@@ -257,6 +261,142 @@ class ScoreItemsTests(unittest.TestCase):
         )
         loaded = json.loads(json_path.read_text(encoding="utf-8"))
         self.assertEqual(loaded["calibration"]["trust_status"], TRUST_STATUS_TRUSTED)
+
+
+class IntegrateReviewTests(unittest.TestCase):
+    def test_integrate_judge_fields_after_editor_lines(self):
+        review = """# Review
+
+## Criteria
+
+- **Editor fields:** placeholders
+
+## 01-grid-outage
+
+<!-- run_id: 01-grid-outage -->
+### Survival Family (2017) [THE-HERO]
+- **tmdb_id**: 429918
+- **共振分**: 2
+- **共振类型**: 双重
+- **打分备注**: （可选）
+
+<!-- run_id: 01-grid-outage -->
+### Geostorm (2017) [THE-HERO]
+- **tmdb_id**: 274855
+- **共振分**: 1
+- **共振类型**: 结构
+- **打分备注**: （可选）
+"""
+        cal = compute_calibration([], observation_run_ids=["01-grid-outage"])
+        output = JudgeOutput(
+            version=1,
+            calibration=cal,
+            scores=[
+                JudgeResult(
+                    run_id="01-grid-outage",
+                    tmdb_id="429918",
+                    title="Survival Family (2017)",
+                    judge_score=1,
+                    judge_resonance_type="表层",
+                    human_score=2,
+                    human_resonance_type="双重",
+                    disagreement=True,
+                    trusted=False,
+                ),
+                JudgeResult(
+                    run_id="01-grid-outage",
+                    tmdb_id="274855",
+                    title="Geostorm (2017)",
+                    judge_score=0,
+                    judge_resonance_type=None,
+                    human_score=1,
+                    human_resonance_type="结构",
+                    disagreement=True,
+                    trusted=False,
+                ),
+            ],
+        )
+        merged = integrate_judge_into_review(review, output)
+        self.assertIn("- **LLM judge:**", merged)
+        self.assertIn("screening only", merged)
+        self.assertIn("- **judge分**: 1", merged)
+        self.assertIn("- **judge共振类型**: 表层", merged)
+        self.assertIn("- **judge分歧**: ⚠", merged)
+        self.assertIn("- **judge采信**: 不采信 · screening only", merged)
+        self.assertIn("- **共振分**: 2", merged)
+        survival_block = merged.split("Survival Family", 1)[1].split("Geostorm", 1)[0]
+        self.assertLess(survival_block.index("共振分"), survival_block.index("judge分"))
+        self.assertLess(survival_block.index("打分备注"), survival_block.index("judge分"))
+
+    def test_integrate_idempotent_replaces_prior_judge_lines(self):
+        review = """## 01-grid-outage
+
+<!-- run_id: 01-grid-outage -->
+### Film (2020) [A1]
+- **tmdb_id**: 100
+- **共振分**: 1
+- **共振类型**: 表层
+- **打分备注**: （可选）
+- **judge分**: 9
+- **judge共振类型**: old
+"""
+        cal = CalibrationReport(
+            observation_run_ids=["01-grid-outage"],
+            n_pairs=0,
+            exact_agreement=None,
+            within_one_agreement=None,
+            pearson_r=None,
+            thresholds={},
+            trusted=False,
+            trust_status=TRUST_STATUS_UNTRUSTED,
+            screening_only=True,
+        )
+        output = JudgeOutput(
+            version=1,
+            calibration=cal,
+            scores=[
+                JudgeResult(
+                    run_id="01-grid-outage",
+                    tmdb_id="100",
+                    title="Film",
+                    judge_score=2,
+                    judge_resonance_type="双重",
+                    trusted=False,
+                )
+            ],
+        )
+        merged = integrate_judge_into_review(review, output)
+        self.assertNotIn("judge分**: 9", merged)
+        self.assertIn("- **judge分**: 2", merged)
+        self.assertIn("- **judge共振类型**: 双重", merged)
+
+    def test_load_judge_output_roundtrip(self):
+        cal = compute_calibration(
+            [(2, 2), (1, 1), (0, 0), (2, 1), (1, 1)],
+            observation_run_ids=["01-grid-outage"],
+        )
+        output = JudgeOutput(
+            version=1,
+            calibration=cal,
+            scores=[
+                JudgeResult(
+                    run_id="01-grid-outage",
+                    tmdb_id="42",
+                    title="Film",
+                    judge_score=2,
+                    judge_resonance_type="双重",
+                    trusted=cal.trusted,
+                )
+            ],
+        )
+        path = _FIXTURES / "roundtrip.json"
+        path.write_text(
+            json.dumps(output.to_dict(), ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        loaded = load_judge_output(path)
+        self.assertEqual(loaded.scores[0].judge_score, 2)
+        self.assertEqual(loaded.calibration.trust_status, cal.trust_status)
 
 
 if __name__ == "__main__":

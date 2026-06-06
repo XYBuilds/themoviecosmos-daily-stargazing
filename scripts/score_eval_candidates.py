@@ -591,6 +591,15 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Do not write review file or patch existing candidates.md",
     )
+    parser.add_argument(
+        "--judge-json",
+        type=Path,
+        default=None,
+        help=(
+            "Merge LLM judge scores from JSON into the review after generation "
+            "(default: <eval-dir>/llm-judge-scores.json when file exists)"
+        ),
+    )
     args = parser.parse_args(argv)
 
     eval_dir = args.dir if args.dir.is_absolute() else _REPO_ROOT / args.dir
@@ -609,6 +618,22 @@ def main(argv: list[str] | None = None) -> int:
     review_text = _format_high_hit_review(
         run_reviews, runs_scanned=runs_scanned, min_score=args.min_score
     )
+    judge_path = args.judge_json
+    if judge_path is None and not args.dry_run:
+        default_judge = eval_dir / "llm-judge-scores.json"
+        if default_judge.is_file():
+            judge_path = default_judge
+    if judge_path is not None:
+        if not judge_path.is_absolute():
+            judge_path = _REPO_ROOT / judge_path
+        if judge_path.is_file():
+            from scripts.llm_judge import integrate_judge_into_review, load_judge_output
+
+            review_text = integrate_judge_into_review(
+                review_text, load_judge_output(judge_path)
+            )
+        elif args.judge_json is not None:
+            print(f"warning: judge JSON not found: {judge_path}", file=sys.stderr)
     if not args.dry_run:
         review_path.parent.mkdir(parents=True, exist_ok=True)
         review_path.write_text(review_text, encoding="utf-8")
