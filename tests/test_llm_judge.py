@@ -1,0 +1,263 @@
+"""Tests for scripts/llm_judge.py (Phase 3.9.4)."""
+
+from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+from scripts.llm_judge import (
+    DEFAULT_MIN_EXACT_AGREEMENT,
+    DEFAULT_MIN_PEARSON,
+    TRUST_STATUS_TRUSTED,
+    TRUST_STATUS_UNTRUSTED,
+    JudgeItem,
+    JudgeOutput,
+    compute_calibration,
+    parse_judge_response,
+    score_items,
+    validate_judge_payload,
+    write_judge_markdown,
+)
+
+_FIXTURES = Path(__file__).resolve().parent / "judge_fixtures"
+
+
+class JudgeSchemaTests(unittest.TestCase):
+    def test_validate_score_zero_no_type(self):
+        score, rtype = validate_judge_payload(
+            {"score": 0, "resonance_type": None, "rationale": "none"}
+        )
+        self.assertEqual(score, 0)
+        self.assertIsNone(rtype)
+
+    def test_validate_score_two_dual(self):
+        score, rtype = validate_judge_payload(
+            {"score": 2, "resonance_type": "双重", "rationale": "both axes"}
+        )
+        self.assertEqual(score, 2)
+        self.assertEqual(rtype, "双重")
+
+    def test_validate_rejects_score_one_wrong_type(self):
+        with self.assertRaises(ValueError):
+            validate_judge_payload({"score": 1, "resonance_type": "结构"})
+
+    def test_parse_judge_response_json_fence(self):
+        text = '```json\n{"score": 1, "resonance_type": "表层", "rationale": "x"}\n```'
+        score, rtype, rationale = parse_judge_response(text)
+        self.assertEqual(score, 1)
+        self.assertEqual(rtype, "表层")
+        self.assertEqual(rationale, "x")
+
+    def test_output_schema_roundtrip(self):
+        cal = compute_calibration(
+            [(2, 2), (1, 1), (0, 0), (2, 1), (1, 1)],
+            observation_run_ids=["01-grid-outage"],
+        )
+        output = JudgeOutput(
+            version=1,
+            calibration=cal,
+            scores=[],
+        )
+        payload = output.to_dict()
+        self.assertEqual(payload["version"], 1)
+        self.assertIn("trust_status", payload["calibration"])
+        self.assertIn("screening_only", payload["calibration"])
+
+
+class CalibrationTests(unittest.TestCase):
+    def test_perfect_alignment_trusted(self):
+        pairs = [(0, 0), (1, 1), (2, 2), (2, 2), (1, 1)]
+        report = compute_calibration(
+            pairs,
+            observation_run_ids=["01-grid-outage", "02-corporate-layoff"],
+            min_pairs=5,
+        )
+        self.assertTrue(report.trusted)
+        self.assertEqual(report.trust_status, TRUST_STATUS_TRUSTED)
+        self.assertFalse(report.screening_only)
+        self.assertEqual(report.exact_agreement, 1.0)
+        self.assertAlmostEqual(report.pearson_r or 0.0, 1.0)
+
+    def test_low_agreement_downgrades_to_untrusted(self):
+        pairs = [(0, 2), (2, 0), (1, 2), (2, 1), (0, 1)]
+        report = compute_calibration(
+            pairs,
+            observation_run_ids=["01-grid-outage"],
+            min_exact_agreement=DEFAULT_MIN_EXACT_AGREEMENT,
+            min_pearson=DEFAULT_MIN_PEARSON,
+            min_pairs=5,
+        )
+        self.assertFalse(report.trusted)
+        self.assertEqual(report.trust_status, TRUST_STATUS_UNTRUSTED)
+        self.assertTrue(report.screening_only)
+
+    def test_insufficient_pairs_untrusted(self):
+        report = compute_calibration(
+            [(2, 2), (1, 0)],
+            observation_run_ids=["01-grid-outage"],
+            min_pairs=5,
+        )
+        self.assertFalse(report.trusted)
+        self.assertEqual(report.n_pairs, 2)
+        self.assertIsNone(report.exact_agreement)
+
+
+class ScoreItemsTests(unittest.TestCase):
+    def _mock_judge(self, mapping: dict[tuple[str, str], tuple[int, str | None, str]]):
+        def _fn(item: JudgeItem) -> tuple[int, str | None, str]:
+            return mapping[(item.run_id, item.tmdb_id)]
+
+        return _fn
+
+    def test_score_items_marks_disagreement_and_untrusted(self):
+        items = [
+            JudgeItem(
+                run_id="01-grid-outage",
+                tmdb_id="100",
+                title="Film A (2020)",
+                news_title="News",
+                news_summary="Summary",
+                movie_overview="Overview A",
+                human_score=2,
+            ),
+            JudgeItem(
+                run_id="01-grid-outage",
+                tmdb_id="200",
+                title="Film B (2020)",
+                news_title="News",
+                news_summary="Summary",
+                movie_overview="Overview B",
+                human_score=0,
+            ),
+            JudgeItem(
+                run_id="02-corporate-layoff",
+                tmdb_id="300",
+                title="Film C (2020)",
+                news_title="News",
+                news_summary="Summary",
+                movie_overview="Overview C",
+                human_score=1,
+            ),
+            JudgeItem(
+                run_id="02-corporate-layoff",
+                tmdb_id="400",
+                title="Film D (2020)",
+                news_title="News",
+                news_summary="Summary",
+                movie_overview="Overview D",
+                human_score=2,
+            ),
+            JudgeItem(
+                run_id="02-corporate-layoff",
+                tmdb_id="500",
+                title="Film E (2020)",
+                news_title="News",
+                news_summary="Summary",
+                movie_overview="Overview E",
+                human_score=1,
+            ),
+        ]
+        judge_fn = self._mock_judge(
+            {
+                ("01-grid-outage", "100"): (0, None, "disagree"),
+                ("01-grid-outage", "200"): (2, "双重", "disagree"),
+                ("02-corporate-layoff", "300"): (2, "双重", "off"),
+                ("02-corporate-layoff", "400"): (0, None, "off"),
+                ("02-corporate-layoff", "500"): (1, "表层", "ok"),
+            }
+        )
+        output = score_items(
+            items,
+            judge_fn,
+            observation_run_ids=["01-grid-outage", "02-corporate-layoff"],
+            min_pairs=5,
+        )
+        self.assertFalse(output.calibration.trusted)
+        self.assertEqual(output.calibration.trust_status, TRUST_STATUS_UNTRUSTED)
+        disagreements = [s for s in output.scores if s.disagreement]
+        self.assertGreaterEqual(len(disagreements), 3)
+        for row in output.scores:
+            self.assertFalse(row.trusted)
+
+    def test_fixture_review_calibration_trusted(self):
+        fixture_dir = _FIXTURES / "obs_calibration"
+        review = fixture_dir / "high-hit-score-review.md"
+        items = [
+            JudgeItem(
+                run_id="01-grid-outage",
+                tmdb_id="429918",
+                title="Survival Family (2017)",
+                news_title="Blackout",
+                news_summary="Grid stress",
+                movie_overview="Electrical outage.",
+                human_score=2,
+            ),
+            JudgeItem(
+                run_id="01-grid-outage",
+                tmdb_id="274855",
+                title="Geostorm (2017)",
+                news_title="Blackout",
+                news_summary="Grid stress",
+                movie_overview="Weather control fails.",
+                human_score=1,
+            ),
+            JudgeItem(
+                run_id="02-corporate-layoff",
+                tmdb_id="100001",
+                title="Layoff Drama (2019)",
+                news_title="Layoffs",
+                news_summary="Cuts",
+                movie_overview="Corporate restructuring.",
+                human_score=0,
+            ),
+            JudgeItem(
+                run_id="02-corporate-layoff",
+                tmdb_id="100002",
+                title="Office Exodus (2018)",
+                news_title="Layoffs",
+                news_summary="Cuts",
+                movie_overview="Mass firing.",
+                human_score=2,
+            ),
+            JudgeItem(
+                run_id="03-election-upset",
+                tmdb_id="100003",
+                title="Primary Shock (2020)",
+                news_title="Election",
+                news_summary="Upset",
+                movie_overview="Political upset.",
+                human_score=1,
+            ),
+        ]
+        judge_fn = self._mock_judge(
+            {
+                ("01-grid-outage", "429918"): (2, "双重", "strong"),
+                ("01-grid-outage", "274855"): (1, "表层", "surface"),
+                ("02-corporate-layoff", "100001"): (0, None, "none"),
+                ("02-corporate-layoff", "100002"): (2, "结构", "struct"),
+                ("03-election-upset", "100003"): (1, "表层", "surface"),
+            }
+        )
+        output = score_items(
+            items,
+            judge_fn,
+            observation_run_ids=["01-grid-outage", "02-corporate-layoff", "03-election-upset"],
+            min_pairs=5,
+        )
+        self.assertTrue(output.calibration.trusted)
+        self.assertEqual(output.calibration.trust_status, TRUST_STATUS_TRUSTED)
+        md_path = fixture_dir / "out.md"
+        write_judge_markdown(md_path, output)
+        self.assertIn("采信", md_path.read_text(encoding="utf-8"))
+        json_path = fixture_dir / "out.json"
+        json_path.write_text(
+            json.dumps(output.to_dict(), ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        loaded = json.loads(json_path.read_text(encoding="utf-8"))
+        self.assertEqual(loaded["calibration"]["trust_status"], TRUST_STATUS_TRUSTED)
+
+
+if __name__ == "__main__":
+    unittest.main()
