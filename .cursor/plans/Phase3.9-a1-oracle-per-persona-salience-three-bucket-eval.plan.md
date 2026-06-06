@@ -19,7 +19,7 @@ todos:
     status: pending
   - id: p39-5
     content: 3.9.5 · run_persona_batch 并发化（Semaphore(3)+gather+原序重组+启动抖动+429 退避+--concurrency）+ 单测
-    status: pending
+    status: complete
   - id: p39-6
     content: 3.9.6 · 单点 pilot + 防火墙审计（专审 salience≠valence 边界 + 多样性守卫）[需人工验收 · Go/No-Go]
     status: pending
@@ -228,9 +228,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest`（batch 相关）通过
-- [ ] 并发=3 下输出顺序与串行一致（原序重组生效）
-- [ ] 小样实测不触发 429（或触发后退避恢复）
+- [x] `python -m unittest`（batch 相关）通过
+- [x] 并发=3 下输出顺序与串行一致（原序重组生效）
+- [x] 小样实测不触发 429（或触发后退避恢复）
 
 ---
 

@@ -3,6 +3,9 @@
 Reads neutral decon from output/Eval/phase3.6/{run_id}/ (read-only). Writes under
 output/Eval/phase3.7/{run_id}/ with per-persona subdirs and merged retrieve.json.
 Editor scoring uses output/Eval/phase3.7/high-hit-score-review.md (from score_eval_candidates).
+
+Phase 3.9.5: concurrent persona generation (Semaphore + gather), stable agent ordering,
+startup jitter, and LLM 429/timeout exponential backoff.
 """
 
 from __future__ import annotations
@@ -10,11 +13,12 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import random
 import shutil
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Awaitable, Callable, TypeVar
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
@@ -35,7 +39,16 @@ from scripts.run_eval import load_deconstruction_from_file
 PHASE36 = repo_root() / "output" / "Eval" / "phase3.6"
 PHASE37 = repo_root() / "output" / "Eval" / "phase3.7"
 PHASE38 = repo_root() / "output" / "Eval" / "phase3.8"
+PHASE39 = repo_root() / "output" / "Eval" / "phase3.9"
 OBS_RUN_PREFIXES = ("01-", "02-", "03-", "04-")
+
+DEFAULT_CONCURRENCY = 3
+JITTER_SEC_MIN = 5.0
+JITTER_SEC_MAX = 15.0
+LLM_BACKOFF_INITIAL_SEC = 2.0
+LLM_BACKOFF_MAX_RETRIES = 4
+
+_T = TypeVar("_T")
 
 
 def split_obs_holdout(run_ids: list[str]) -> tuple[list[str], list[str]]:
@@ -54,6 +67,87 @@ def phase37_run_dir(run_id: str) -> Path:
 
 def phase38_run_dir(run_id: str) -> Path:
     return PHASE38 / run_id
+
+
+def phase39_run_dir(run_id: str) -> Path:
+    return PHASE39 / run_id
+
+
+def eval_phase_dir(eval_phase: str) -> Path:
+    if eval_phase == "3.9":
+        return PHASE39
+    if eval_phase == "3.8":
+        return PHASE38
+    return PHASE37
+
+
+def eval_run_dir(run_id: str, eval_phase: str) -> Path:
+    if eval_phase == "3.9":
+        return phase39_run_dir(run_id)
+    if eval_phase == "3.8":
+        return phase38_run_dir(run_id)
+    return phase37_run_dir(run_id)
+
+
+def is_retryable_llm_error(exc: BaseException | str | None) -> bool:
+    if exc is None:
+        return False
+    if isinstance(exc, TimeoutError):
+        return True
+    msg = str(exc).lower()
+    return (
+        "429" in msg
+        or "rate limit" in msg
+        or "rate_limit" in msg
+        or "too many requests" in msg
+        or "timed out" in msg
+        or "timeout" in msg
+    )
+
+
+async def with_llm_backoff(
+    fn: Callable[[], Awaitable[_T]],
+    *,
+    is_retryable: Callable[[BaseException | str | None], bool] = is_retryable_llm_error,
+    max_retries: int = LLM_BACKOFF_MAX_RETRIES,
+    initial_delay: float = LLM_BACKOFF_INITIAL_SEC,
+) -> _T:
+    """Exponential backoff for LLM 429 / timeout errors (raises from fn)."""
+    delay = initial_delay
+    for attempt in range(max_retries + 1):
+        try:
+            return await fn()
+        except Exception as exc:
+            if attempt >= max_retries or not is_retryable(exc):
+                raise
+            await asyncio.sleep(delay)
+            delay *= 2
+    raise RuntimeError("unreachable backoff state")
+
+
+def startup_jitter_seconds(
+    *,
+    jitter_min: float = JITTER_SEC_MIN,
+    jitter_max: float = JITTER_SEC_MAX,
+    rng: random.Random | None = None,
+) -> float:
+    r = rng or random
+    return r.uniform(jitter_min, jitter_max)
+
+
+def reorder_persona_agents(
+    persona_ids: list[str],
+    persona_agents: dict[str, dict[str, Any]],
+    *,
+    prefix_agents: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    """Stable agents[] order matching persona_ids (retrieve.json reproducibility)."""
+    ordered: list[dict[str, Any]] = list(prefix_agents or [])
+    for persona_id in persona_ids:
+        agent = persona_agents.get(persona_id)
+        if agent is not None:
+            ordered.append(agent)
+    return ordered
 
 
 def _load_expansion_from_run(run_dir: Path) -> dict[str, Any] | None:
@@ -78,6 +172,22 @@ def _copy_phase36_static(run_id: str, out_dir: Path) -> None:
         "reality.md",
         "reality-deconstructed.json",
         "reality-deconstructed.md",
+    ):
+        src_file = src / name
+        if src_file.is_file():
+            shutil.copy2(src_file, out_dir / name)
+
+
+def _copy_phase38_static(run_id: str, out_dir: Path) -> None:
+    """Copy read-only snapshots from phase3.8 into phase3.9 (does not modify phase3.8)."""
+    src = phase38_run_dir(run_id)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for name in (
+        "reality.json",
+        "reality.md",
+        "reality-deconstructed.json",
+        "reality-deconstructed.md",
+        "reality-expanded.json",
     ):
         src_file = src / name
         if src_file.is_file():
@@ -163,7 +273,7 @@ def persona_pipeline_to_agent(
     *,
     eval_phase: str = "3.7",
 ) -> dict[str, Any]:
-    role = "persona" if eval_phase == "3.8" else "creative"
+    role = "persona" if eval_phase in ("3.8", "3.9") else "creative"
     return {
         "agent_id": persona_id,
         "persona_name": persona_id,
@@ -257,12 +367,21 @@ async def run_persona_for_news(
         return persona_pipeline_to_agent(persona_id, pseudos, eval_phase=eval_phase), None
 
     deconstruction = load_deconstruction_from_file(decon_path)
-    result = await run_persona_pipeline(
-        persona_id,
-        deconstruction,
-        provider=provider,
-        expansion=expansion,
-    )
+    delay = LLM_BACKOFF_INITIAL_SEC
+    result = None
+    for attempt in range(LLM_BACKOFF_MAX_RETRIES + 1):
+        result = await run_persona_pipeline(
+            persona_id,
+            deconstruction,
+            provider=provider,
+            expansion=expansion,
+        )
+        if not result.error or not is_retryable_llm_error(result.error):
+            break
+        if attempt < LLM_BACKOFF_MAX_RETRIES:
+            await asyncio.sleep(delay)
+            delay *= 2
+    assert result is not None
     overlay_dict = build_alt_pool_overlay(result.overlay)
     (persona_dir / "alt-pool-overlay.json").write_text(
         json.dumps(overlay_dict, ensure_ascii=False, indent=2) + "\n",
@@ -285,7 +404,7 @@ async def finalize_run(
     split: str,
     eval_phase: str = "3.7",
 ) -> dict[str, Any]:
-    out_dir = phase38_run_dir(run_id) if eval_phase == "3.8" else phase37_run_dir(run_id)
+    out_dir = eval_run_dir(run_id, eval_phase)
     retrieve_result = retrieve_from_agents(agents, errors)
     fit_lookup = _fit_by_agent_pseudo(agents)
     _attach_fit_to_hit_sources(retrieve_result, fit_lookup)
@@ -311,7 +430,7 @@ async def finalize_run(
         json.dumps(meta, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    if eval_phase == "3.8":
+    if eval_phase in ("3.8", "3.9"):
         try:
             a1_meta = write_a1_parallel_baseline(run_id, out_dir)
             meta["a1_parallel"] = a1_meta
@@ -328,6 +447,53 @@ async def finalize_run(
     return retrieve_result
 
 
+async def _run_personas_concurrent(
+    run_id: str,
+    persona_ids: list[str],
+    out_dir: Path,
+    decon_path: Path,
+    *,
+    provider: str | None,
+    skip_existing: bool,
+    expansion: dict[str, Any] | None,
+    eval_phase: str,
+    concurrency: int,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    semaphore = asyncio.Semaphore(max(1, concurrency))
+    errors: list[dict[str, Any]] = []
+    persona_agents: dict[str, dict[str, Any]] = {}
+
+    async def _one(persona_id: str) -> None:
+        async with semaphore:
+            await asyncio.sleep(startup_jitter_seconds())
+            persona_dir = persona_artifact_dir(out_dir, persona_id)
+            try:
+                agent_row, err = await run_persona_for_news(
+                    persona_id,
+                    decon_path,
+                    persona_dir,
+                    provider=provider,
+                    skip_existing=skip_existing,
+                    expansion=expansion,
+                    eval_phase=eval_phase,
+                )
+            except Exception as exc:
+                errors.append({"agent_id": persona_id, "message": str(exc)})
+                return
+            if err or agent_row is None:
+                errors.append({"agent_id": persona_id, "message": err or "failed"})
+                return
+            persona_agents[persona_id] = agent_row
+
+    await asyncio.gather(*[_one(pid) for pid in persona_ids])
+
+    prefix: list[dict[str, Any]] = []
+    if eval_phase not in ("3.8", "3.9"):
+        prefix = [load_a1_agent_from_phase36(run_id)]
+    agents = reorder_persona_agents(persona_ids, persona_agents, prefix_agents=prefix)
+    return agents, errors
+
+
 async def run_batch_for_news(
     run_id: str,
     persona_ids: list[str],
@@ -336,8 +502,20 @@ async def run_batch_for_news(
     skip_existing: bool,
     skip_finalize: bool,
     eval_phase: str = "3.7",
+    concurrency: int = DEFAULT_CONCURRENCY,
 ) -> dict[str, Any]:
-    if eval_phase == "3.8":
+    if eval_phase == "3.9":
+        src38 = phase38_run_dir(run_id)
+        decon_path = src38 / "reality-deconstructed.json"
+        if not decon_path.is_file():
+            raise FileNotFoundError(
+                f"phase3.8 decon missing: {decon_path} "
+                "(run scripts/run_phase38_eval.py first)"
+            )
+        out_dir = phase39_run_dir(run_id)
+        _copy_phase38_static(run_id, out_dir)
+        expansion = _load_expansion_from_run(src38)
+    elif eval_phase == "3.8":
         out_dir = phase38_run_dir(run_id)
         decon_path = out_dir / "reality-deconstructed.json"
         if not decon_path.is_file():
@@ -356,26 +534,17 @@ async def run_batch_for_news(
 
     split = "observation" if run_id.startswith(OBS_RUN_PREFIXES) else "holdout"
 
-    agents: list[dict[str, Any]] = []
-    if eval_phase != "3.8":
-        agents = [load_a1_agent_from_phase36(run_id)]
-    errors: list[dict[str, Any]] = []
-
-    for persona_id in persona_ids:
-        persona_dir = persona_artifact_dir(out_dir, persona_id)
-        agent_row, err = await run_persona_for_news(
-            persona_id,
-            decon_path,
-            persona_dir,
-            provider=provider,
-            skip_existing=skip_existing,
-            expansion=expansion,
-            eval_phase=eval_phase,
-        )
-        if err or agent_row is None:
-            errors.append({"agent_id": persona_id, "message": err or "failed"})
-            continue
-        agents.append(agent_row)
+    agents, errors = await _run_personas_concurrent(
+        run_id,
+        persona_ids,
+        out_dir,
+        decon_path,
+        provider=provider,
+        skip_existing=skip_existing,
+        expansion=expansion,
+        eval_phase=eval_phase,
+        concurrency=concurrency,
+    )
 
     if skip_finalize:
         return {"run_id": run_id, "agents": len(agents), "errors": errors}
@@ -399,6 +568,7 @@ async def run_batch(
     provider: str | None,
     skip_existing: bool,
     eval_phase: str = "3.7",
+    concurrency: int = DEFAULT_CONCURRENCY,
 ) -> list[dict[str, Any]]:
     results: list[dict[str, Any]] = []
     for run_id in run_ids:
@@ -411,6 +581,7 @@ async def run_batch(
                 skip_existing=skip_existing,
                 skip_finalize=False,
                 eval_phase=eval_phase,
+                concurrency=concurrency,
             )
             results.append(row)
             print(
@@ -464,11 +635,24 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--eval-phase",
-        choices=["3.7", "3.8"],
+        choices=["3.7", "3.8", "3.9"],
         default="3.7",
-        help="Eval output phase (3.8 reads decon+expansion from phase3.8/, no A1).",
+        help=(
+            "Eval output phase (3.8: phase3.8/; 3.9: read phase3.8 decon+expansion, "
+            "write phase3.9/; neither includes A1 in persona agents)."
+        ),
+    )
+    parser.add_argument(
+        "--concurrency",
+        type=int,
+        default=DEFAULT_CONCURRENCY,
+        help=f"Max concurrent personas per news run (default {DEFAULT_CONCURRENCY}).",
     )
     args = parser.parse_args(argv)
+
+    if args.concurrency < 1:
+        print("error: --concurrency must be >= 1", file=sys.stderr)
+        return 2
 
     all_run_ids = load_manifest()
     obs, holdout = split_obs_holdout(all_run_ids)
@@ -490,6 +674,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"runs ({len(run_ids)}): {', '.join(run_ids)}")
         print(f"personas ({len(persona_ids)}): {', '.join(persona_ids)}")
         print(f"LLM calls (persona only): {len(run_ids) * len(persona_ids) * 2}")
+        print(f"concurrency: {args.concurrency}")
         return 0
 
     results = asyncio.run(
@@ -499,9 +684,10 @@ def main(argv: list[str] | None = None) -> int:
             provider=args.provider,
             skip_existing=not args.no_skip_existing,
             eval_phase=args.eval_phase,
+            concurrency=args.concurrency,
         )
     )
-    summary_dir = PHASE38 if args.eval_phase == "3.8" else PHASE37
+    summary_dir = eval_phase_dir(args.eval_phase)
     summary_path = summary_dir / "batch-run-summary.json"
     summary_path.write_text(
         json.dumps(results, ensure_ascii=False, indent=2) + "\n",
