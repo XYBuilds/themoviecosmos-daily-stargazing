@@ -1,0 +1,397 @@
+{
+  "persona_id": "The-Magician",
+  "overlay": {
+    "persona_id": "The-Magician",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "U.S. Border Patrol",
+          "alternatives": [
+            {
+              "term": "enforcement apparatus wielding policy levers",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "security operator at the border nexus",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "border enforcement agency",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "blunt-force executor of deterrence spectacle",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "8,268 people apprehended",
+          "alternatives": [
+            {
+              "term": "caught in the gears of a policy machine",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "subject to enforcement action",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "analysts",
+          "alternatives": [
+            {
+              "term": "narrative weavers revealing hidden patterns",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "data interpreters",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "spinning numbers to fit a storyline",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "lawmakers",
+          "alternatives": [
+            {
+              "term": "architects stalling the system's next pivot",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "legislative decision-makers",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "milder spring weather",
+          "alternatives": [
+            {
+              "term": "the hidden catalyst no one controls",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "seasonal weather change",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+          "alternatives": [
+            {
+              "term": "a sleight-of-hand in the statistics reveals itself",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "quantified enforcement activity shift",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+          "alternatives": [
+            {
+              "term": "the grand illusion of control holds—for now",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "stated policy outcome metric",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a manipulated baseline hides the true flux",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+          "alternatives": [
+            {
+              "term": "the hidden lever of funding stays jammed",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "legislative stalemate on funding",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "milder spring weather. apprehensions increased from 6,598 in February to 8,268 in March along the southwest border. year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies The event unfolds across seasonal weather change and spring weather.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "milder spring weather",
+            "provenance": "surface"
+          },
+          {
+            "term": "seasonal weather change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spring weather",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "seasonal climate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "weather condition",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "environmental factor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+            "provenance": "surface"
+          },
+          {
+            "term": "quantified enforcement activity shift",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "increase in apprehensions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "statistical trend",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "numerical change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border activity metric",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+            "provenance": "surface"
+          },
+          {
+            "term": "stated policy outcome metric",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "low crossing numbers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "enforcement policy outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "immigration statistics",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security effect",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. Border Patrol",
+            "provenance": "surface"
+          },
+          {
+            "term": "border enforcement agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "federal law enforcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. government entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "security force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "8,268 people apprehended",
+            "provenance": "surface"
+          },
+          {
+            "term": "subject to enforcement action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "apprehended individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detainees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border crossers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected population",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "analysts",
+            "provenance": "surface"
+          },
+          {
+            "term": "data interpreters",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "security analysts",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "policy observers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "experts",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "researchers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "lawmakers",
+            "provenance": "surface"
+          },
+          {
+            "term": "legislative decision-makers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legislators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "politicians",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision-makers",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "As the hidden catalyst of spring weather shifted the landscape, a sleight-of-hand in the statistics revealed itself: a quantified enforcement activity shift saw apprehensions climb from 6,598 in February to 8,268 in March along the southwest border. Yet the grand illusion of control holds—for now, with year-to-date crossings remaining near multi-decade lows under asylum shutdown and deportation policies. Meanwhile, the hidden lever of funding stays jammed, as legislative decision-makers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The enforcement apparatus wielding policy levers executed a blunt-force deterrence spectacle, catching thousands in the gears of a policy machine. Data interpreters, spinning numbers to fit a storyline, highlighted the increase in apprehensions—a border activity metric from 6,598 to 8,268 in a single month. This narrative weaves a tale of low crossing numbers, a stated policy outcome metric, yet architects stalling the system's next pivot signal the funding dispute continues to block progress.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "Under the lens of the Magician, the security operator at the border nexus, a federal law enforcement entity, saw subject to enforcement action numbers rise due to an environmental factor. The numerical change from 6,598 to 8,268 underscores a sleight-of-hand reveal. The enforcement policy outcome shows immigration statistics at historic lows, but the legislative stalemate on funding suggests a manipulated baseline hides the true flux, as government officials remain in political deadlock.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.82
+    }
+  ],
+  "warnings": []
+}

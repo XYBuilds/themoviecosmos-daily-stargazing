@@ -1,0 +1,281 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows on the Euphrates flooded homes, farms, and schools in Deir Ezzor and Raqqa. An earthen bridge collapsed.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 44325,
+              "title": "The Whole Dam Family and the Dam Dog",
+              "similarity": 0.5290770530700684,
+              "movie_url": "https://themoviecosmos.com/movie/44325"
+            },
+            {
+              "tmdb_id": 257637,
+              "title": "Poem of the Sea",
+              "similarity": 0.5671122670173645,
+              "movie_url": "https://themoviecosmos.com/movie/257637"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The navy deployed boats for evacuations. Turkey agreed to reduce upstream releases. Syria's president visited flood zones.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-4",
+              "how-5",
+              "result-5"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 946552,
+              "title": "Operation Overlord",
+              "similarity": 0.460030198097229,
+              "movie_url": "https://themoviecosmos.com/movie/946552"
+            },
+            {
+              "tmdb_id": 257637,
+              "title": "Poem of the Sea",
+              "similarity": 0.46535179018974304,
+              "movie_url": "https://themoviecosmos.com/movie/257637"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Several children drowned. An earthen bridge collapsed. The navy deployed boats for evacuations. Turkey agreed to reduce upstream releases.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 96049,
+              "title": "The Bride",
+              "similarity": 0.5145245790481567,
+              "movie_url": "https://themoviecosmos.com/movie/96049"
+            },
+            {
+              "tmdb_id": 402455,
+              "title": "125 Years Memory",
+              "similarity": 0.5190742015838623,
+              "movie_url": "https://themoviecosmos.com/movie/402455"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 257637,
+      "title": "Poem of the Sea",
+      "overview": "A Soviet dam project means that many old Ukrainian villages will end up under water. There are conflicts between the dam engineers and villagers who don't want to move.",
+      "genres": "Drama",
+      "release_year": 1958,
+      "language": "ru",
+      "poster_path": "/7Qa2RveCq3MgNGUuHqg9cVjITBa.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/257637",
+      "similarity": 0.5671122670173645,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.5671122670173645
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-4",
+            "how-5",
+            "result-5"
+          ],
+          "similarity": 0.46535179018974304
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 44325,
+      "title": "The Whole Dam Family and the Dam Dog",
+      "overview": "A portrait of the Dam family.",
+      "genres": "Family, Comedy",
+      "release_year": 1905,
+      "language": "en",
+      "poster_path": "/7FBNcXcgqaDEmoTnWSS7CDBcVT6.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/44325",
+      "similarity": 0.5290770530700684,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.5290770530700684
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 402455,
+      "title": "125 Years Memory",
+      "overview": "Two historical incidents that deepened the friendship between Japan and Turkey are connected in this story of friendship and compassion: In the night of 16 September 1890 the Turkish frigate Ertuğrul is caught up in a typhoon and sinks off the Japanese coast. Risking their own lives, local villagers are able to rescue 69 Turkish sailors. Although being very poor and having hardly to eat, the villagers share what little they have with strangers from a country 9,000 kilometers away. 95 years later, during the Iran-Iraq War, more than 300 Japanese are stranded in Tehran. In the morning of 19 March 1985 a Turkish Airlines aircraft takes off for Tehran to evacuate the Japanese. But the remaining Turks at Tehran Mehrabad Airport still need to be convinced that they won't be able to board their own country's rescue flight.",
+      "genres": "History, Drama",
+      "release_year": 2015,
+      "language": "ja",
+      "poster_path": "/u1hcwZFFKfA1hLqM7HWWEeyUuHh.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/402455",
+      "similarity": 0.5190742015838623,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "channel_role": "baseline",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.5190742015838623
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 96049,
+      "title": "The Bride",
+      "overview": "The struggles of a migrant Anatolian family to adapt to and survive in the very different conditions of urban Istanbul.  A young woman moves with her husband and small child to her husband's family in Istanbul. Her son becomes ill and the doctor tells her that he will soon die if he doesn't get an operation. The family refuses to help her because they can't see anything wrong with the boy. What happens on a Eid morning becomes a breaking point for the family.",
+      "genres": "Drama",
+      "release_year": 1973,
+      "language": "tr",
+      "poster_path": "/3KBrtuQqjtKjFHyTQPy6bkYpKI8.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/96049",
+      "similarity": 0.5145245790481567,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "channel_role": "baseline",
+          "fragments": [
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.5145245790481567
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 946552,
+      "title": "Operation Overlord",
+      "overview": "A week before storming the beaches of Normandy, two US Soldiers infiltrate an abandoned complex to rescue a prisoner of war from the clutches of the Nazi regime.",
+      "genres": "War",
+      "release_year": 2021,
+      "language": "en",
+      "poster_path": "/7nOL8FuiWdSuQo6uGJaKFfFBTZ9.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/946552",
+      "similarity": 0.460030198097229,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-4",
+            "how-5",
+            "result-5"
+          ],
+          "similarity": 0.460030198097229
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 3,
+    "raw_hit_count": 6,
+    "candidate_count": 5,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

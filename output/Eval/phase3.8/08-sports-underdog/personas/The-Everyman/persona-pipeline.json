@@ -1,0 +1,395 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Vegas Golden Knights",
+          "alternatives": [
+            {
+              "term": "the team that finished the job against a depleted opponent",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a franchise that benefited from another's misfortune",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Colorado Avalanche",
+          "alternatives": [
+            {
+              "term": "the team that had to fight through key injuries",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a roster hit hard at the worst possible time",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an organization that cleaned house late in the season",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "John Tortorella",
+          "alternatives": [
+            {
+              "term": "the veteran coach brought in to steady a sinking ship",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the replacement tasked with salvaging a playoff spot",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Cale Makar",
+          "alternatives": [
+            {
+              "term": "a cornerstone player lost to injury",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Nathan MacKinnon",
+          "alternatives": [
+            {
+              "term": "a franchise star sidelined when it mattered most",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+          "alternatives": [
+            {
+              "term": "the team's best players were knocked out of the lineup by bad luck",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "injuries to key personnel gutted the team's chances",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "the franchise fired its coach with eight regular-season games left",
+          "alternatives": [
+            {
+              "term": "management pulled the plug on the season's architect just as the finish line approached",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the organization made a desperate coaching change with the playoffs looming",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "John Tortorella guided a 7-0-1 close",
+          "alternatives": [
+            {
+              "term": "the veteran coach rallied the group to finish strong",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the team ran off an impressive record under new leadership",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "John Tortorella guided playoff runs past Utah and Anaheim",
+          "alternatives": [
+            {
+              "term": "the coach got the most out of a shaken roster through two rounds",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4",
+          "alternatives": [
+            {
+              "term": "the Knights clamped down on an attack that was already missing its biggest weapons",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "Vegas took advantage of a team that simply didn't have the horses left",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "completing a four-game Western Conference Final sweep on May 26",
+          "alternatives": [
+            {
+              "term": "closing out a series that never had a chance to be competitive",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "finishing the job in four straight",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Vegas reached the Stanley Cup Final",
+          "alternatives": [
+            {
+              "term": "the Knights punched their ticket to the championship round",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a team that got a clear path to the Cup Final thanks to a weakened bracket",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries. the franchise fired its coach with eight regular-season games left. John Tortorella guided a 7-0-1 close. John Tortorella guided playoff runs past Utah and Anaheim. Vegas reached the Stanley Cup Final The event unfolds across injury and player injury.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+            "provenance": "surface"
+          },
+          {
+            "term": "injury",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "player injury",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the franchise fired its coach with eight regular-season games left",
+            "provenance": "surface"
+          },
+          {
+            "term": "coaching change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "management decision",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "mid-season firing",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Tortorella guided a 7-0-1 close",
+            "provenance": "surface"
+          },
+          {
+            "term": "coaching performance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team improvement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "winning record",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Tortorella guided playoff runs past Utah and Anaheim",
+            "provenance": "surface"
+          },
+          {
+            "term": "playoff coaching",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team advancement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "series victory",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Vegas reached the Stanley Cup Final",
+            "provenance": "surface"
+          },
+          {
+            "term": "playoff advancement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "championship series qualification",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team achievement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Vegas Golden Knights",
+            "provenance": "surface"
+          },
+          {
+            "term": "NHL team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "hockey team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional sports team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Colorado Avalanche",
+            "provenance": "surface"
+          },
+          {
+            "term": "John Tortorella",
+            "provenance": "surface"
+          },
+          {
+            "term": "hockey coach",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "sports coach",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Cale Makar",
+            "provenance": "surface"
+          },
+          {
+            "term": "hockey player",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "athlete",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional athlete",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Nathan MacKinnon",
+            "provenance": "surface"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The Colorado Avalanche, a roster hit hard at the worst possible time, saw their playoff hopes crumble. After a mid-season firing, the veteran coach brought in to steady a sinking ship guided them on a strong close. But in the Western Conference Final, the team that finished the job against a depleted opponent took control. Injuries to key personnel had gutted their chances, and a team that got a clear path to the Cup Final thanks to a weakened bracket capitalized, finishing the job in four straight to advance.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.75
+    },
+    {
+      "id": "p2",
+      "text": "Vegas, a franchise that benefited from another's misfortune, secured their spot. After Colorado made a desperate coaching change with the playoffs looming, the replacement tasked with salvaging a playoff spot oversaw a 7-0-1 close. Yet when the teams met in the playoff series, the Knights clamped down on an attack already missing its biggest weapons. They took advantage of a team that simply didn't have the horses left, completing a four-game sweep to punch their ticket to the championship round.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.82
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,403 @@
+{
+  "persona_id": "The-Magician",
+  "overlay": {
+    "persona_id": "The-Magician",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "perception puppeteer",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "perception operator",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kim Soo-hyun",
+          "alternatives": [
+            {
+              "term": "narrative casualty",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "public figure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Seoul police",
+          "alternatives": [
+            {
+              "term": "system enforcer",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "law enforcement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Prosecutors",
+          "alternatives": [
+            {
+              "term": "oversight witness",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "legal authority",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "exploit information asymmetry for profit",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "leverage narrative manipulation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "monetize disinformation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "deployed synthetic media to fabricate a scandal",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "engineered digital evidence to shift public perception",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "created and disseminated misleading digital content",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Seoul police secured an arrest warrant",
+          "alternatives": [
+            {
+              "term": "the system countered the manipulation",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "authorities executed a formal response",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "the puppeteer's mechanism was dismantled",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the operator faced consequences",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "subject detained by authorities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "a manufactured narrative triggered systemic paralysis",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the illusion achieved its intended disruption",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "professional activities were suspended",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "spread false claims for financial gain. used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. Seoul police secured an arrest warrant. YouTuber arrested The event unfolds across monetize disinformation and misinformation.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "monetize disinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "created and disseminated misleading digital content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police secured an arrest warrant",
+            "provenance": "surface"
+          },
+          {
+            "term": "legal procedure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest warrant issuance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "subject detained by authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detention",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of crime",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber",
+            "provenance": "surface"
+          },
+          {
+            "term": "content creator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kim Soo-hyun",
+            "provenance": "surface"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "actor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "celebrity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police",
+            "provenance": "surface"
+          },
+          {
+            "term": "law enforcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "police force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government body",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Prosecutors",
+            "provenance": "surface"
+          },
+          {
+            "term": "legal authority",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal professionals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "prosecutorial agency",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A perception operator, seeking to monetize disinformation, deployed synthetic media to fabricate a scandal against a public figure. The illusion was engineered to shift public perception, creating misleading digital content that alleged a late co-star was dated while underage. In response, law enforcement executed a formal response, issuing an arrest warrant. The operator now faces consequences for this digital manipulation, which had triggered severe reputational damage to the celebrity's career, halting professional activities.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The system enforcer moved to restore order after a perception puppeteer exploited information asymmetry for profit. This individual created and disseminated misleading digital content, using AI-generated audio to claim an actor dated a minor. Authorities countered the manipulation with an arrest warrant, leading to the subject being detained. The manufactured narrative had already triggered systemic paralysis, causing a complete halt to the celebrity's endorsements and public appearances since early 2025.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "A content creator, leveraging narrative manipulation, engineered digital evidence to fabricate a scandal. This deceptive practice involved creating misleading digital content to accuse an actor of dating a minor co-star. The system countered the manipulation through legal procedure, securing an arrest warrant. This led to the puppeteer's mechanism being dismantled, as the operator faced consequences. The entire scandal inflicted profound reputational damage, halting the celebrity's professional activities and endorsements.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.7
+    }
+  ],
+  "warnings": []
+}

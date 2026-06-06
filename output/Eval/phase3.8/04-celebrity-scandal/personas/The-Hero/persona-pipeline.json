@@ -1,0 +1,470 @@
+{
+  "persona_id": "The-Hero",
+  "overlay": {
+    "persona_id": "The-Hero",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "defender of the weak",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "whistleblower",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "accuser",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "rumor spreader",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "aggressor",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kim Soo-hyun",
+          "alternatives": [
+            {
+              "term": "wronged party",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "accused actor",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "target of false claims",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Seoul police",
+          "alternatives": [
+            {
+              "term": "investigators who closed in",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "enforcers of justice",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "law enforcement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "agents of the state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Prosecutors",
+          "alternatives": [
+            {
+              "term": "seekers of truth",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "legal witnesses",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "officers of the court",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "exposed a potential wrong",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "made allegations",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "spread misinformation for profit",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "weaponized false accusations",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "uncovered damning evidence",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "presented digital material as proof",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "fabricated evidence to frame an innocent",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "launched a deceptive attack",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Seoul police secured an arrest warrant",
+          "alternatives": [
+            {
+              "term": "justice prevailed with an arrest warrant",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "police acted on the complaint",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "authorities moved to suppress a voice",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "perpetrator apprehended",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "truth-teller silenced",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "subject detained",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "dissent criminalized",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "innocent reputation restored after the lie was exposed",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "career disrupted by allegations",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "actor's public life was unjustly ruined",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "spread false claims for financial gain. used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. Seoul police secured an arrest warrant. YouTuber arrested The event unfolds across made allegations and misinformation.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "made allegations",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "presented digital material as proof",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police secured an arrest warrant",
+            "provenance": "surface"
+          },
+          {
+            "term": "police acted on the complaint",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal procedure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest warrant issuance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "subject detained",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detention",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of crime",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber",
+            "provenance": "surface"
+          },
+          {
+            "term": "accuser",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "content creator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kim Soo-hyun",
+            "provenance": "surface"
+          },
+          {
+            "term": "accused actor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "actor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "celebrity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police",
+            "provenance": "surface"
+          },
+          {
+            "term": "law enforcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "agents of the state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "police force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government body",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Prosecutors",
+            "provenance": "surface"
+          },
+          {
+            "term": "legal witnesses",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "officers of the court",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal professionals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "prosecutorial agency",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A digital content creator weaponized false accusations, launching a deceptive attack with AI-generated audio and manipulated chat screenshots to frame a celebrity. In a decisive move to restore order, law enforcement acted, securing an arrest warrant that led to the perpetrator's apprehension. This swift consequence of crime serves as a powerful testament to the justice system's ability to confront and overcome such malicious deceptions.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.91
+    },
+    {
+      "id": "p2",
+      "text": "After spreading misinformation for profit, an aggressor faced the consequences of their illegal activity. The law enforcement agency, acting as enforcers of justice, moved to restore order with an arrest warrant, leading to the detention of the subject. This outcome highlights the professional impact and reputational damage averted for the wronged public figure, whose career had been disrupted by the initial false claims.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "The saga began with fabricated evidence designed to frame an innocent actor, a clear act of digital manipulation. However, justice prevailed as investigators closed in, executing a legal procedure that culminated in the arrest of the rumor spreader. While the actor's public life was initially halted by the scandal, this decisive action marks a crucial step toward healing the career disruption caused by the false allegations.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.88
+    }
+  ],
+  "warnings": []
+}

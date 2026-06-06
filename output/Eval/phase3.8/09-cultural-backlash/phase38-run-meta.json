@@ -1,0 +1,72 @@
+{
+  "run_id": "09-cultural-backlash",
+  "news_file": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\tests\\eval_news\\09-cultural-backlash.json",
+  "persona_ids": [
+    "The-Innocent",
+    "The-Everyman",
+    "The-Hero",
+    "The-Caregiver",
+    "The-Explorer",
+    "The-Outlaw",
+    "The-Lover",
+    "The-Creator",
+    "The-Ruler",
+    "The-Magician",
+    "The-Sage",
+    "The-Jester"
+  ],
+  "agent_count": 10,
+  "errors": [
+    {
+      "agent_id": "The-Explorer",
+      "message": "channel_assembly: neutral pseudo must not contain lens term 'accusations'"
+    },
+    {
+      "agent_id": "The-Creator",
+      "message": "channel_assembly: neutral pseudo must not contain lens term 'the production'"
+    }
+  ],
+  "repair_retries": [
+    {
+      "persona_id": "The-Explorer",
+      "stage": "channel_assembly",
+      "attempt": "1",
+      "error": "channel_assembly: neutral pseudo must not contain lens term 'accusations'"
+    },
+    {
+      "persona_id": "The-Explorer",
+      "stage": "screenwriter_assembly_retry",
+      "attempt": "2",
+      "error": "ok"
+    },
+    {
+      "persona_id": "The-Explorer",
+      "stage": "channel_assembly",
+      "attempt": "2",
+      "error": "channel_assembly: neutral pseudo must not contain lens term 'accusations'"
+    },
+    {
+      "persona_id": "The-Creator",
+      "stage": "channel_assembly",
+      "attempt": "1",
+      "error": "channel_assembly: neutral pseudo must not contain lens term 'the production'"
+    },
+    {
+      "persona_id": "The-Creator",
+      "stage": "screenwriter_assembly_retry",
+      "attempt": "2",
+      "error": "ok"
+    },
+    {
+      "persona_id": "The-Creator",
+      "stage": "channel_assembly",
+      "attempt": "2",
+      "error": "channel_assembly: neutral pseudo must not contain lens term 'the production'"
+    }
+  ],
+  "repair_retry_count": 6,
+  "cjk_violations": [],
+  "english_ok": true,
+  "candidate_count": 19,
+  "finished_at": "2026-06-05T18:52:52.232852+00:00"
+}

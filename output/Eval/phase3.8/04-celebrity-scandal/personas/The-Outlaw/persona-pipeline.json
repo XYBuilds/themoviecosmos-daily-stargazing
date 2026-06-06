@@ -1,0 +1,275 @@
+{
+  "persona_id": "The-Outlaw",
+  "overlay": {
+    "persona_id": "The-Outlaw",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "whistleblower",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "system's scapegoat",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "individual",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "rumor monger",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kim Soo-hyun",
+          "alternatives": [
+            {
+              "term": "entrenched celebrity",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "public figure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "actor",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Seoul police",
+          "alternatives": [
+            {
+              "term": "enforcer of a corrupt order",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "gatekeeper",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "state organ",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "law enforcement",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Prosecutors",
+          "alternatives": [
+            {
+              "term": "complicit institution",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "judicial official",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "state witness",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Seoul",
+          "alternatives": [
+            {
+              "term": "seat of entrenched power",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "capital city",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "jurisdiction",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "expose hypocrisy for profit",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "make allegations for revenue",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "motive",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "grift",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "leveraged deepfake technology to challenge a public figure",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "deployed manipulated media for a claim",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "method",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "fabricated evidence",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Seoul police secured an arrest warrant",
+          "alternatives": [
+            {
+              "term": "state apparatus moved to silence dissent",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "authorities executed a legal procedure",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "action",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "dissenter detained",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "creator apprehended",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "event",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "purge of inconvenient voice",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "backlash disrupted a celebrity's empire",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "controversy affected commercial engagements",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "consequence",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "establishment protects its own",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [],
+  "warnings": [],
+  "repair_retries": [
+    {
+      "stage": "channel_assembly",
+      "attempt": "1",
+      "error": "channel_assembly: neutral pseudo must not contain lens term 'actor'"
+    },
+    {
+      "stage": "screenwriter_assembly_retry",
+      "attempt": "2",
+      "error": "ok"
+    },
+    {
+      "stage": "channel_assembly",
+      "attempt": "2",
+      "error": "channel_assembly: neutral pseudo must not contain lens term 'actor'"
+    }
+  ],
+  "error": "channel_assembly: neutral pseudo must not contain lens term 'actor'"
+}

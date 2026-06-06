@@ -1,0 +1,434 @@
+{
+  "persona_id": "The-Sage",
+  "overlay": {
+    "persona_id": "The-Sage",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "European regulators",
+          "alternatives": [
+            {
+              "term": "verifiers of competitive fairness",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulatory decision-makers",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Google",
+          "alternatives": [
+            {
+              "term": "provider subject to regulatory scrutiny",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "search service operator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "rival comparison services",
+          "alternatives": [
+            {
+              "term": "affected market participants",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "competitors",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Alphabet",
+          "alternatives": [
+            {
+              "term": "corporate entity under investigation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "parent company",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+          "alternatives": [
+            {
+              "term": "for prioritizing proprietary services in search results",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "for favoring own services in search rankings",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "for self-preferencing in search results",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "under the bloc's gatekeeper rules",
+          "alternatives": [
+            {
+              "term": "under regulatory frameworks for digital markets",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "under competition law",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+          "alternatives": [
+            {
+              "term": "a formal investigation into competitive practices",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "extended regulatory proceedings",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Brussels rejected the company's remedy proposals",
+          "alternatives": [
+            {
+              "term": "dismissal of proposed corrective measures",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "rejection of proposed remedies",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "imposition of a substantial financial sanction",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "finalization of a financial penalty",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "issuance of a fine",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "A formal decision is expected before the Commission's August recess",
+          "alternatives": [
+            {
+              "term": "an anticipated regulatory ruling",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an expected decision",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "penalty expected to reach the high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "a penalty for anti-competitive self-preferencing",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a substantial financial penalty",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a financial penalty",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "adding to more than a decade of accumulated competition fines against Alphabet",
+          "alternatives": [
+            {
+              "term": "a continuation of a history of competition enforcement",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "additional competition fines",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results. Proceedings under the bloc's gatekeeper rules for more than two years. Brussels rejected the company's remedy proposals. European regulators are finalizing a penalty expected to reach high hundreds of millions of euros. penalty expected to reach the high hundreds of millions of euros The event unfolds across for self-preferencing in search results and extended regulatory proceedings.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "provenance": "surface"
+          },
+          {
+            "term": "for self-preferencing in search results",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+            "provenance": "surface"
+          },
+          {
+            "term": "extended regulatory proceedings",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Brussels rejected the company's remedy proposals",
+            "provenance": "surface"
+          },
+          {
+            "term": "rejection of proposed remedies",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+            "provenance": "surface"
+          },
+          {
+            "term": "issuance of a fine",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "penalty expected to reach the high hundreds of millions of euros",
+            "provenance": "surface"
+          },
+          {
+            "term": "a financial penalty",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "financial penalty",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "antitrust fine",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "monetary sanction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European regulators",
+            "provenance": "surface"
+          },
+          {
+            "term": "regulators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government regulators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "regulatory agencies",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Google",
+            "provenance": "surface"
+          },
+          {
+            "term": "search service operator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "search engine provider",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "multinational corporation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rival comparison services",
+            "provenance": "surface"
+          },
+          {
+            "term": "competitors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online services",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "comparison platforms",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "business competitors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Alphabet",
+            "provenance": "surface"
+          },
+          {
+            "term": "parent company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "holding corporation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "technology conglomerate",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "After more than two years of formal investigation into competitive practices, European authorities have finalized their assessment and are expected to issue a significant antitrust fine before the August recess. The core finding, under the bloc's digital markets framework, is that the search service operator consistently prioritized proprietary services in its search results, effectively self-preferencing against affected market participants. This anticipated regulatory ruling will impose a substantial financial sanction, adding to a decade-long history of competition enforcement against the parent company.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "why-1",
+          "why-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "Verifiers of competitive fairness within the supranational organization are poised to deliver a formal decision. Following extended regulatory proceedings where proposed corrective measures were dismissed, a financial penalty has been finalized. The action targets the multinational corporation for favoring own services in search rankings, a practice scrutinized under competition law. The expected decision, timed before the Commission's recess, will constitute an additional competition fine, reinforcing a pattern of enforcement against the technology conglomerate.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "why-0",
+          "why-1",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "The regulatory jurisdiction's government regulators are concluding a monetary sanction against the provider subject to regulatory scrutiny. The penalty, a substantial financial penalty expected to reach the high hundreds of millions of euros, stems from the company's practice of prioritizing proprietary services in search results over competitors. This issuance of a fine, anticipated as a formal decision before the August recess, marks a continuation of a history of competition enforcement, following the rejection of the company's remedy proposals.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-2",
+          "why-0",
+          "result-0",
+          "how-3",
+          "result-1",
+          "how-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.82
+    }
+  ],
+  "warnings": []
+}

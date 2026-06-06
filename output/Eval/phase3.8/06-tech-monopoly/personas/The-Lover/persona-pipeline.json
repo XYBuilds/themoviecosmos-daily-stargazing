@@ -1,0 +1,326 @@
+{
+  "persona_id": "The-Lover",
+  "overlay": {
+    "persona_id": "The-Lover",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "European regulators",
+          "alternatives": [
+            {
+              "term": "the relationship enforcer",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the intervening authority",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulatory body",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Google",
+          "alternatives": [
+            {
+              "term": "the dominant partner",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the tech entity",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "rival comparison services",
+          "alternatives": [
+            {
+              "term": "the overlooked rivals",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "competing services",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Alphabet",
+          "alternatives": [
+            {
+              "term": "the possessive parent",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "parent company",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+          "alternatives": [
+            {
+              "term": "for self-preferencing its own units over rivals",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+          "alternatives": [
+            {
+              "term": "a prolonged examination of the relationship",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Brussels rejected the company's remedy proposals",
+          "alternatives": [
+            {
+              "term": "spurned attempts at reconciliation",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "imposing a steep cost for broken trust",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "A formal decision is expected before the Commission's August recess",
+          "alternatives": [
+            {
+              "term": "a resolution is imminent",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "penalty expected to reach the high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "a heavy price for betrayal",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "adding to more than a decade of accumulated competition fines against Alphabet",
+          "alternatives": [
+            {
+              "term": "a history of strained relations",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results. Proceedings under the bloc's gatekeeper rules for more than two years. Brussels rejected the company's remedy proposals. European regulators are finalizing a penalty expected to reach high hundreds of millions of euros. penalty expected to reach the high hundreds of millions of euros The event unfolds across financial penalty and antitrust fine.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "provenance": "surface"
+          },
+          {
+            "term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+            "provenance": "surface"
+          },
+          {
+            "term": "Brussels rejected the company's remedy proposals",
+            "provenance": "surface"
+          },
+          {
+            "term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+            "provenance": "surface"
+          },
+          {
+            "term": "penalty expected to reach the high hundreds of millions of euros",
+            "provenance": "surface"
+          },
+          {
+            "term": "financial penalty",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "antitrust fine",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "monetary sanction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European regulators",
+            "provenance": "surface"
+          },
+          {
+            "term": "regulatory body",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government regulators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "regulatory agencies",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Google",
+            "provenance": "surface"
+          },
+          {
+            "term": "the tech entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "search engine provider",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "multinational corporation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rival comparison services",
+            "provenance": "surface"
+          },
+          {
+            "term": "competing services",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online services",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "comparison platforms",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "business competitors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Alphabet",
+            "provenance": "surface"
+          },
+          {
+            "term": "parent company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "holding corporation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "technology conglomerate",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "After a prolonged examination of the relationship, the relationship enforcer has spurned attempts at reconciliation from the tech entity. The regulatory body is now imposing a steep cost for broken trust, with a financial penalty expected to reach the high hundreds of millions of euros. This formal decision, anticipated before the Commission's August recess, adds to a history of strained relations, following years where the dominant partner ranked its own services above the overlooked rivals in search results.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p2",
+      "text": "A resolution is imminent from the European authorities in Brussels following the possessive parent's betrayal of competition law. For self-preferencing its own units over rivals under the EU regulations, a heavy price for betrayal is being levied. The antitrust fine, a monetary sanction adding to more than a decade of accumulated competition fines against Alphabet, underscores the strained relations between the search engine provider and the comparison platforms it overshadowed.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "how-3",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.8
+    }
+  ],
+  "warnings": []
+}

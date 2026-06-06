@@ -1,0 +1,200 @@
+{
+  "phase": "3.8.7",
+  "finished_at": "2026-06-05T19:07:47.315552+00:00",
+  "run_ids": [
+    "01-grid-outage",
+    "02-corporate-layoff",
+    "03-election-upset",
+    "04-celebrity-scandal",
+    "05-climate-disaster",
+    "06-tech-monopoly",
+    "07-migration-border",
+    "08-sports-underdog",
+    "09-cultural-backlash",
+    "10-whistleblower-leak"
+  ],
+  "observation": [
+    "01-grid-outage",
+    "02-corporate-layoff",
+    "03-election-upset",
+    "04-celebrity-scandal"
+  ],
+  "holdout": [
+    "05-climate-disaster",
+    "06-tech-monopoly",
+    "07-migration-border",
+    "08-sports-underdog",
+    "09-cultural-backlash",
+    "10-whistleblower-leak"
+  ],
+  "runs": [
+    {
+      "run_id": "01-grid-outage",
+      "split": "observation",
+      "retrieve": true,
+      "retrieve_a1": true,
+      "a1_meta": true,
+      "agent_count": 11,
+      "candidate_count": 19,
+      "errors": [
+        {
+          "agent_id": "The-Lover",
+          "message": "channel_assembly: neutral pseudo must not contain lens term 'unit 2 tripped offline'"
+        }
+      ]
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "split": "observation",
+      "retrieve": true,
+      "retrieve_a1": true,
+      "a1_meta": true,
+      "agent_count": 12,
+      "candidate_count": 19,
+      "errors": []
+    },
+    {
+      "run_id": "03-election-upset",
+      "split": "observation",
+      "retrieve": true,
+      "retrieve_a1": true,
+      "a1_meta": true,
+      "agent_count": 11,
+      "candidate_count": 19,
+      "errors": [
+        {
+          "agent_id": "The-Lover",
+          "message": "channel_assembly: toned pseudo p1 must include a hypernym anchor (expected one of ['a consequential change in status', 'a decisive factor', 'a future contest with significant implications', 'a key contextual element', 'a method of achieving a result'])"
+        }
+      ]
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "split": "observation",
+      "retrieve": true,
+      "retrieve_a1": true,
+      "a1_meta": true,
+      "agent_count": 11,
+      "candidate_count": 19,
+      "errors": [
+        {
+          "agent_id": "The-Outlaw",
+          "message": "channel_assembly: neutral pseudo must not contain lens term 'actor'"
+        }
+      ]
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "split": "holdout",
+      "retrieve": true,
+      "retrieve_a1": true,
+      "a1_meta": true,
+      "agent_count": 12,
+      "candidate_count": 19,
+      "errors": []
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "split": "holdout",
+      "retrieve": true,
+      "retrieve_a1": true,
+      "a1_meta": true,
+      "agent_count": 10,
+      "candidate_count": 19,
+      "errors": [
+        {
+          "agent_id": "The-Everyman",
+          "message": "channel_assembly: neutral pseudo must not contain lens term \"under the bloc's gatekeeper rules\""
+        },
+        {
+          "agent_id": "The-Magician",
+          "message": "alt_creator parse_error: Expecting ':' delimiter: line 85 column 39 (char 4267)"
+        }
+      ]
+    },
+    {
+      "run_id": "07-migration-border",
+      "split": "holdout",
+      "retrieve": true,
+      "retrieve_a1": true,
+      "a1_meta": true,
+      "agent_count": 12,
+      "candidate_count": 19,
+      "errors": []
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "split": "holdout",
+      "retrieve": true,
+      "retrieve_a1": true,
+      "a1_meta": true,
+      "agent_count": 11,
+      "candidate_count": 19,
+      "errors": [
+        {
+          "agent_id": "The-Jester",
+          "message": "alt_creator parse_error: Expecting ',' delimiter: line 154 column 60 (char 4044)"
+        }
+      ]
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "split": "holdout",
+      "retrieve": true,
+      "retrieve_a1": true,
+      "a1_meta": true,
+      "agent_count": 10,
+      "candidate_count": 19,
+      "errors": [
+        {
+          "agent_id": "The-Explorer",
+          "message": "channel_assembly: neutral pseudo must not contain lens term 'accusations'"
+        },
+        {
+          "agent_id": "The-Creator",
+          "message": "channel_assembly: neutral pseudo must not contain lens term 'the production'"
+        }
+      ]
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "split": "holdout",
+      "retrieve": true,
+      "retrieve_a1": true,
+      "a1_meta": true,
+      "agent_count": 12,
+      "candidate_count": 19,
+      "errors": []
+    }
+  ],
+  "all_retrieve_ok": true,
+  "all_a1_parallel_ok": true,
+  "persona_failure_counts": {
+    "The-Lover": 2,
+    "The-Outlaw": 1,
+    "The-Everyman": 1,
+    "The-Magician": 1,
+    "The-Jester": 1,
+    "The-Explorer": 1,
+    "The-Creator": 1
+  },
+  "pilot_extra_dirs": [
+    "01-grid-outage-rerun"
+  ],
+  "holdout_scoring": {
+    "file": "output/Eval/phase3.8/high-hit-score-review.md",
+    "holdout_sections": [
+      "05-climate-disaster",
+      "06-tech-monopoly",
+      "07-migration-border",
+      "08-sports-underdog",
+      "09-cultural-backlash",
+      "10-whistleblower-leak"
+    ],
+    "minimum_scored_runs": 2,
+    "fields": [
+      "共振分",
+      "共振类型"
+    ]
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "persona_id": "The-Outlaw",
+  "overlay": {
+    "persona_id": "The-Outlaw",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Ken Paxton",
+          "alternatives": [
+            {
+              "term": "the people's chosen insurgent",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the endorsed challenger",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "challenger",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the establishment's new enforcer",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "John Cornyn",
+          "alternatives": [
+            {
+              "term": "the system's scapegoat",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the deposed incumbent",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "incumbent",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the entrenched gatekeeper",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the sitting president",
+          "alternatives": [
+            {
+              "term": "the power broker behind the scenes",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the endorsing authority",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "president",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the corrupt order's architect",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "aided by a late endorsement from the sitting president",
+          "alternatives": [
+            {
+              "term": "the establishment's last-minute seal of approval",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a late endorsement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "despite substantially outraising and outspending his rival",
+          "alternatives": [
+            {
+              "term": "defying the moneyed establishment",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "overcoming a financial disadvantage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+          "alternatives": [
+            {
+              "term": "the people decisively overthrew a five-term incumbent",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "winning a decisive electoral victory",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a party purge executed by popular vote",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Ken Paxton won the Texas Senate Republican runoff",
+          "alternatives": [
+            {
+              "term": "the outsider seized the party nomination",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "winning a primary election",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a hostile takeover of the party apparatus",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+          "alternatives": [
+            {
+              "term": "the establishment's veneer was finally shattered",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an unprecedented primary defeat",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a relic of a broken system was cast out",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate",
+          "alternatives": [
+            {
+              "term": "the rebel will challenge the entire Washington order",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "advancing to the general election",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the insurgent now threatens the status quo",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Texas",
+          "alternatives": [
+            {
+              "term": "the heartland battlefield",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Texas",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the entrenched establishment's stronghold",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "aided by a late endorsement from the sitting president. Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term. Ken Paxton won the Texas Senate Republican runoff The event unfolds across a late endorsement and winning a decisive electoral victory.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "aided by a late endorsement from the sitting president",
+            "provenance": "surface"
+          },
+          {
+            "term": "a late endorsement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+            "provenance": "surface"
+          },
+          {
+            "term": "winning a decisive electoral victory",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton won the Texas Senate Republican runoff",
+            "provenance": "surface"
+          },
+          {
+            "term": "winning a primary election",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton",
+            "provenance": "surface"
+          },
+          {
+            "term": "challenger",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "election candidate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "politician",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Cornyn",
+            "provenance": "surface"
+          },
+          {
+            "term": "incumbent",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "senator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the sitting president",
+            "provenance": "surface"
+          },
+          {
+            "term": "president",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Texas",
+            "provenance": "surface"
+          },
+          {
+            "term": "U.S. state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "United States",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "North America",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The people's chosen insurgent defied the moneyed establishment, securing a decisive electoral victory that shattered the entrenched gatekeeper's decades-long hold. In a historic primary defeat, the five-term incumbent was cast out, a relic of a broken system finally unseated. The rebel will now challenge the entire Washington order, threatening the status quo from the heartland battlefield.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-1",
+          "how-0",
+          "result-1",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.9
+    },
+    {
+      "id": "p2",
+      "text": "With a last-minute seal of approval from the power broker behind the scenes, the establishment's new enforcer seized the party nomination. This hostile takeover of the party apparatus, executed by popular vote, deposes the entrenched gatekeeper. The insurgent now advances to the general election, threatening the status quo from the U.S. state.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-0",
+          "result-0",
+          "result-1",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p3",
+      "text": "In the entrenched establishment's stronghold, the outsider overthrew a five-term incumbent, a party purge executed by popular vote. Despite overcoming a financial disadvantage, the challenger achieved winning a primary election, casting out a relic of a broken system. This unprecedented primary defeat marks the establishment's veneer finally shattered.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-1",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,284 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A director plans a film adaptation of 'The Odyssey'. He casts a Black actress to play Helen of Troy and Clytemnestra. This triggers an online debate where some commenters accuse the casting of erasing European history. Others defend the casting by arguing it treats Western classics as shared civilizational heritage.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "why-0",
+              "why-1"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 285232,
+              "title": "Les Misérables",
+              "similarity": 0.5769692659378052,
+              "movie_url": "https://themoviecosmos.com/movie/285232"
+            },
+            {
+              "tmdb_id": 194224,
+              "title": "L'Odissea",
+              "similarity": 0.6235564947128296,
+              "movie_url": "https://themoviecosmos.com/movie/194224"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "An actress is cast in two roles for an upcoming epic film adaptation. The casting decision leads to a heated online controversy involving accusations of historical erasure and defenses based on viewing classical stories as a common cultural inheritance.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "why-0",
+              "why-1"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 70410,
+              "title": "The Public Woman",
+              "similarity": 0.5999705791473389,
+              "movie_url": "https://themoviecosmos.com/movie/70410"
+            },
+            {
+              "tmdb_id": 197082,
+              "title": "Venus in Fur",
+              "similarity": 0.6665676832199097,
+              "movie_url": "https://themoviecosmos.com/movie/197082"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "A film adaptation of a classical epic poem is announced. The casting of a Black actress in key roles sparks a cultural conflict online. The debate centers on questions of identity and the place of classical narratives in mainstream cinema.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "result-0"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 128042,
+              "title": "The Scenic Route",
+              "similarity": 0.5603659152984619,
+              "movie_url": "https://themoviecosmos.com/movie/128042"
+            },
+            {
+              "tmdb_id": 197082,
+              "title": "Venus in Fur",
+              "similarity": 0.5997039079666138,
+              "movie_url": "https://themoviecosmos.com/movie/197082"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 197082,
+      "title": "Venus in Fur",
+      "overview": "An enigmatic actress may have a hidden agenda when she auditions for a part in a misogynistic writer's play.",
+      "genres": "Drama",
+      "release_year": 2013,
+      "language": "fr",
+      "poster_path": "/b9pCYixO3ZO7tB303efB3O4nkqC.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/197082",
+      "similarity": 0.6665676832199097,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1"
+          ],
+          "similarity": 0.6665676832199097
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5997039079666138
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 194224,
+      "title": "L'Odissea",
+      "overview": "Film adaptation of Homer's 'The Odyssey.'",
+      "genres": "Drama, Adventure",
+      "release_year": 1911,
+      "language": "it",
+      "poster_path": "/lBAVaExDG87OT0b2pVxxhMctyI3.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/194224",
+      "similarity": 0.6235564947128296,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1"
+          ],
+          "similarity": 0.6235564947128296
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 70410,
+      "title": "The Public Woman",
+      "overview": "An inexperienced young actress is invited to play a role in a film based on Dostoyevsky's 'The Possessed'. The film director, a Czech immigrant in Paris, takes over her life, and in a short time she is unable to draw the line between acting and reality. She winds up playing a real-life role posing as the dead wife of another Czech immigrant, who is manipulated by the filmmaker into commiting a political assassination.",
+      "genres": "Drama",
+      "release_year": 1984,
+      "language": "fr",
+      "poster_path": "/5MXaIoOKGfxanGqxgrLgv0OtV39.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/70410",
+      "similarity": 0.5999705791473389,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1"
+          ],
+          "similarity": 0.5999705791473389
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 285232,
+      "title": "Les Misérables",
+      "overview": "Directed by Albert Capellani.",
+      "genres": "Drama",
+      "release_year": 1913,
+      "language": "fr",
+      "poster_path": "",
+      "movie_url": "https://themoviecosmos.com/movie/285232",
+      "similarity": 0.5769692659378052,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "why-0",
+            "why-1"
+          ],
+          "similarity": 0.5769692659378052
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 128042,
+      "title": "The Scenic Route",
+      "overview": "An experimental drama that spins the tale of a woman, her sister, and the man who completes the triangle. Told through such fertile sources as grand opera, classical painting, and Victorian melodrama.",
+      "genres": "Drama",
+      "release_year": 1978,
+      "language": "en",
+      "poster_path": "/uX3pU4rNEXafixambssHPkg4JHh.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/128042",
+      "similarity": 0.5603659152984619,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5603659152984619
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 3,
+    "raw_hit_count": 6,
+    "candidate_count": 5,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

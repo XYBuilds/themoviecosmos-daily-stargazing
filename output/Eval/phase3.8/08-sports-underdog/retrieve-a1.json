@@ -1,0 +1,269 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "A hockey franchise fired its coach with eight regular-season games remaining. John Tortorella then guided the team to a 7-0-1 record to close the season and playoff series wins past Utah and Anaheim. In the Western Conference Final, Vegas scored twice and held Colorado to one goal in Game 4, completing a four-game sweep on May 26. This series ended with Vegas reaching the Stanley Cup Final and Colorado being swept.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 5693,
+              "title": "Hoosiers",
+              "similarity": 0.4978247880935669,
+              "movie_url": "https://themoviecosmos.com/movie/5693"
+            },
+            {
+              "tmdb_id": 66876,
+              "title": "Hockey Homicide",
+              "similarity": 0.5622095465660095,
+              "movie_url": "https://themoviecosmos.com/movie/66876"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "Colorado lost top players Cale Makar and Nathan MacKinnon to injuries. In Game 4 of the Western Conference Final, Vegas scored twice and held Colorado to one goal. This completed a four-game sweep on May 26.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "how-3"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 32007,
+              "title": "Hurricane Season",
+              "similarity": 0.4197363257408142,
+              "movie_url": "https://themoviecosmos.com/movie/32007"
+            },
+            {
+              "tmdb_id": 857497,
+              "title": "Untold: Malice at the Palace",
+              "similarity": 0.4523766338825226,
+              "movie_url": "https://themoviecosmos.com/movie/857497"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "A hockey franchise fired its coach with eight regular-season games left. John Tortorella guided the team to a 7-0-1 close and playoff runs past Utah and Anaheim. The team then won four consecutive games in the Western Conference Final, scoring twice and allowing one goal in the final game on May 26, which completed the sweep and sent them to the Stanley Cup Final.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 5693,
+              "title": "Hoosiers",
+              "similarity": 0.48605355620384216,
+              "movie_url": "https://themoviecosmos.com/movie/5693"
+            },
+            {
+              "tmdb_id": 66876,
+              "title": "Hockey Homicide",
+              "similarity": 0.5830602645874023,
+              "movie_url": "https://themoviecosmos.com/movie/66876"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 66876,
+      "title": "Hockey Homicide",
+      "overview": "A crowd gathers at the skating rink to watch the big championship hockey game of the Pelicans versus the Aardvarks. Although referee \"Clean Game\" Kinney does his best to supervise, the hockey game really gets out of hand eventually. Two star players, Bertino and Ferguson, are so anxious, they never get let out of the penalty box, referee Kinney is never able to drop the puck without being physically hurt somehow, and the spectators themselves are so worked into the game, they take out their aggression on the ice while the players relax in the bleachers.",
+      "genres": "Animation, Comedy",
+      "release_year": 1945,
+      "language": "en",
+      "poster_path": "/f0P2oPEI2vyeWE4p5G9g6V61pwF.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/66876",
+      "similarity": 0.5830602645874023,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5622095465660095
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5830602645874023
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 5693,
+      "title": "Hoosiers",
+      "overview": "Failed college coach Norman Dale gets a chance at redemption when he is hired to coach a high school basketball team in a tiny Indiana town. After a teacher persuades star player Jimmy Chitwood to quit and focus on his long-neglected studies, Dale struggles to develop a winning team in the face of community criticism for his temper and his unconventional choice of assistant coach: Shooter, a notorious alcoholic.",
+      "genres": "Drama, Family",
+      "release_year": 1986,
+      "language": "en",
+      "poster_path": "/dHpjZQXEdoi1xNLubM1rPmTHJYz.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/5693",
+      "similarity": 0.4978247880935669,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4978247880935669
+        },
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p3",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.48605355620384216
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 857497,
+      "title": "Untold: Malice at the Palace",
+      "overview": "Key figures from an infamous 2004 incident between players and fans at an NBA game in Michigan discuss the fight, its fallout, and its lasting legacy.",
+      "genres": "Documentary, Crime",
+      "release_year": 2021,
+      "language": "en",
+      "poster_path": "/bjvxSGfghSNTgfVDf3nQ4sJCVJX.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/857497",
+      "similarity": 0.4523766338825226,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.4523766338825226
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 32007,
+      "title": "Hurricane Season",
+      "overview": "Based on true events amid the wreckage and chaos dealt by Hurricane Katrina; one basketball coach in Marrero, Louisiana just will not give up. Coach Al Collins, gathers other players from hard-hit schools and builds a team actually worthy enough to go to the state playoffs.",
+      "genres": "Drama",
+      "release_year": 2010,
+      "language": "en",
+      "poster_path": "/axzk9UTvnV68brpqmmVNp4z2kj5.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/32007",
+      "similarity": 0.4197363257408142,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.4197363257408142
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 3,
+    "raw_hit_count": 6,
+    "candidate_count": 4,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

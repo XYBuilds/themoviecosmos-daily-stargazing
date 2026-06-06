@@ -11,11 +11,14 @@
 
 ## When
 - **absolute**: May 2026
-- **modality**: occurred: power crunch
+- **relative**: after Kepco SPC Power's Unit 2 tripped offline
+- **season**: seasonal heat
+- **duration**: since May began
+- **modality**: occurred
 
 ## Where
 ### 1. Visayas
-- role: site of power crunch
+- role: site of red alert
 - geopolitical: Philippines
 
 ## Who
@@ -28,7 +31,7 @@
 ### 3. Officials
 - role_in_event: initiator-decision
 
-### 4. eleven generators
+### 4. Eleven generators
 - role_in_event: affected
 
 ## Why
@@ -37,11 +40,9 @@
 - seasonal heat drove demand into a thin operating margin
 
 ## How
-- [1] Eleven generators failed since May began.
-- [2] Kepco SPC Power's Unit 2 tripped offline.
-- [3] The Philippines grid operator placed the Visayas under red alert.
-- [4] Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading.
+- [1] Kepco SPC Power's Unit 2 tripped offline
+- [2] The Philippines grid operator placed the Visayas under red alert
+- [3] Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading
 
 ## Result
-- More than 950 megawatts became unavailable.
-- Rotational blackout risks rose in Visayas.
+- more than 950 megawatts unavailable

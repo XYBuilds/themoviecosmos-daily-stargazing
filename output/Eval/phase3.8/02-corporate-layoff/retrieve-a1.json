@@ -1,0 +1,211 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "A1",
+      "role": "baseline",
+      "pseudos": [
+        {
+          "pseudo_id": "p1",
+          "pseudo": "After months of internal review, the chief executive of a tax-software company told staff about a restructuring to co-locate teams in strategic hubs and accelerate AI-driven product work. The plan includes the elimination of approximately 3,000 full-time roles. Affected U.S. employees are offered a severance package of 16 weeks base pay plus two weeks per year of tenure.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 116741,
+              "title": "The Internship",
+              "similarity": 0.43387266993522644,
+              "movie_url": "https://themoviecosmos.com/movie/116741"
+            },
+            {
+              "tmdb_id": 209504,
+              "title": "Bounty Killer",
+              "similarity": 0.48247846961021423,
+              "movie_url": "https://themoviecosmos.com/movie/209504"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The company's plan involves the elimination of approximately 3,000 full-time roles, representing approximately 17% of its workforce. Offices in Reno and Woodland Hills are designated for winding down. Affected U.S. employees are offered a severance package.",
+          "source": {
+            "agent_id": "A1",
+            "fragments": [
+              "how-1",
+              "result-0",
+              "result-3",
+              "result-2"
+            ],
+            "channel_role": "baseline"
+          },
+          "hits": [
+            {
+              "tmdb_id": 619090,
+              "title": "The Plan",
+              "similarity": 0.463542640209198,
+              "movie_url": "https://themoviecosmos.com/movie/619090"
+            },
+            {
+              "tmdb_id": 56589,
+              "title": "The Seventh Company Outdoors",
+              "similarity": 0.47845250368118286,
+              "movie_url": "https://themoviecosmos.com/movie/56589"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "tmdb_id": 209504,
+      "title": "Bounty Killer",
+      "overview": "It’s been 20 years since the corporations took over the world’s governments. Their thirst for power and profits led to the Corporate Wars, a fierce global battle that laid waste to society as we know it. Born from the ash, the Council of Nine rose as a new law and order for this dark age. To avenge the corporations’ reckless destruction, the Council issues death warrants for all white collar criminals. Their hunters—the bounty killer. From amateur savage to graceful assassin, the bounty killers now compete for body count, fame and a fat stack of cash. They’re ending the plague of corporate greed and providing the survivors of the apocalypse with retribution. These are the new heroes. This is the age of the BOUNTY KILLER.",
+      "genres": "Action, Science Fiction",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/bG7wdte8enWVc1uuLX6Ys7ckxwd.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/209504",
+      "similarity": 0.48247846961021423,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.48247846961021423
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 56589,
+      "title": "The Seventh Company Outdoors",
+      "overview": "The third part of Seventh Company adventures.",
+      "genres": "Comedy",
+      "release_year": 1977,
+      "language": "fr",
+      "poster_path": "/qNBJf3mEfKmoB2iKAlAY3ux9wMB.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/56589",
+      "similarity": 0.47845250368118286,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-1",
+            "result-0",
+            "result-3",
+            "result-2"
+          ],
+          "similarity": 0.47845250368118286
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 619090,
+      "title": "The Plan",
+      "overview": "Three friends who have been fired from the company where they worked and are demoralized because of their unemployment status. In these circumstances, they meet to undertake the plan that mentions the title but there is a problem: the car with which they would travel has broken down and the crane must wait.",
+      "genres": "Comedy, Drama",
+      "release_year": 2018,
+      "language": "es",
+      "poster_path": "/jDNz5RG6n6mIsXVOf5TgQsvmIxN.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/619090",
+      "similarity": 0.463542640209198,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p2",
+          "channel_role": "baseline",
+          "fragments": [
+            "how-1",
+            "result-0",
+            "result-3",
+            "result-2"
+          ],
+          "similarity": 0.463542640209198
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    },
+    {
+      "tmdb_id": 116741,
+      "title": "The Internship",
+      "overview": "Two recently laid-off men in their 40s try to make it as interns at a successful Internet company where their managers are in their 20s.",
+      "genres": "Comedy",
+      "release_year": 2013,
+      "language": "en",
+      "poster_path": "/hIh3ZgsZ31nbUAGn5SKIZGKiKCX.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/116741",
+      "similarity": 0.43387266993522644,
+      "triggered_by": [],
+      "also_baseline": true,
+      "hit_sources": [
+        {
+          "agent_id": "A1",
+          "pseudo_id": "p1",
+          "channel_role": "baseline",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.43387266993522644
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 0,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 0,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 + toned_agents=0 (neutral union + ≥1 toned required)"
+    }
+  ],
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 2,
+    "raw_hit_count": 4,
+    "candidate_count": 4,
+    "max_candidates": 19,
+    "quality_floor": 0.4
+  }
+}

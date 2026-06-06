@@ -1,0 +1,432 @@
+{
+  "persona_id": "The-Jester",
+  "overlay": {
+    "persona_id": "The-Jester",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "viral hoaxer",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "internet personality",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "clown prince of clickbait",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kim Soo-hyun",
+          "alternatives": [
+            {
+              "term": "target of the farce",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "celebrity",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "public figure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Seoul police",
+          "alternatives": [
+            {
+              "term": "circus ringmaster",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "law enforcement",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "police",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Prosecutors",
+          "alternatives": [
+            {
+              "term": "clowns in robes",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "legal officials",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "legal system",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "the classic clickbait hustle",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "profit motive",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "financial incentive",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "crafted a digital puppet show",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "manufactured evidence",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "fabricated content",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Seoul police secured an arrest warrant",
+          "alternatives": [
+            {
+              "term": "the authorities brought down the curtain",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "police obtained a warrant",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "legal action was taken",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "the jester got cuffed",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrest made",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "detention",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "the star vanished from the spotlight",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "career disruption",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "professional consequences",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "spread false claims for financial gain. used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. Seoul police secured an arrest warrant. YouTuber arrested The event unfolds across financial incentive and misinformation.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "financial incentive",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "fabricated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police secured an arrest warrant",
+            "provenance": "surface"
+          },
+          {
+            "term": "legal action was taken",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal procedure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest warrant issuance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "detention",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of crime",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber",
+            "provenance": "surface"
+          },
+          {
+            "term": "internet personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "content creator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kim Soo-hyun",
+            "provenance": "surface"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "actor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "celebrity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police",
+            "provenance": "surface"
+          },
+          {
+            "term": "police",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "police force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government body",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Prosecutors",
+            "provenance": "surface"
+          },
+          {
+            "term": "legal system",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal professionals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "prosecutorial agency",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "In a spectacular digital manipulation farce, a viral hoaxer used AI-generated content to paint a famous public figure as a predator, only for the authorities to bring down the curtain with a swift arrest warrant. The whole circus, fueled by a classic clickbait hustle, left the celebrity's career in ruins, proving that even the most ridiculous fabrications can have real-world legal consequences.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.9
+    },
+    {
+      "id": "p2",
+      "text": "What began as a profit motive-driven performance by an internet personality ended in detention, after law enforcement action followed the public figure's complaints. The clown prince of clickbait, who crafted a digital puppet show with manufactured evidence, saw his act collapse under the weight of legal procedure, leaving behind a trail of reputational damage for his target.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "The stage was set in a capital city for a modern-day scandal, where a content creator's deceptive practice involved fabricated content. As the police force moved to restore order, the viral hoaxer's performance concluded with an arrest, but not before inflicting severe professional consequences on the actor and halting his public appearances.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.8
+    }
+  ],
+  "warnings": []
+}

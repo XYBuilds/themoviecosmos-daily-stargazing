@@ -84,6 +84,41 @@ def _copy_phase36_static(run_id: str, out_dir: Path) -> None:
             shutil.copy2(src_file, out_dir / name)
 
 
+def write_a1_parallel_baseline(run_id: str, out_dir: Path | None = None) -> dict[str, Any]:
+    """A1-only retrieve from phase3.6 pseudos (read-only) for 3.8.8 superset gate.
+
+    Writes ``retrieve-a1.json`` and ``a1-baseline-meta.json`` under the phase3.8 run dir.
+    Does not modify phase3.6.
+    """
+    out_dir = out_dir or phase38_run_dir(run_id)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    a1_agent = load_a1_agent_from_phase36(run_id)
+    retrieve_result = retrieve_from_agents([a1_agent], [])
+    (out_dir / "retrieve-a1.json").write_text(
+        json.dumps(retrieve_result, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    hit_ids = sorted(
+        int(c["tmdb_id"])
+        for c in retrieve_result.get("candidates") or []
+        if c.get("tmdb_id") is not None
+    )
+    meta = {
+        "run_id": run_id,
+        "split": "observation" if run_id.startswith(OBS_RUN_PREFIXES) else "holdout",
+        "source": str(phase36_run_dir(run_id) / "retrieve.json"),
+        "a1_pseudo_count": len(a1_agent.get("pseudos") or []),
+        "candidate_count": (retrieve_result.get("meta") or {}).get("candidate_count"),
+        "a1_hit_tmdb_ids": hit_ids,
+        "finished_at": datetime.now(UTC).isoformat(),
+    }
+    (out_dir / "a1-baseline-meta.json").write_text(
+        json.dumps(meta, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    return meta
+
+
 def load_a1_agent_from_phase36(run_id: str) -> dict[str, Any]:
     """Build agents[] row for A1 from phase3.6 retrieve (read-only)."""
     path = phase36_run_dir(run_id) / "retrieve.json"
@@ -276,6 +311,20 @@ async def finalize_run(
         json.dumps(meta, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
+    if eval_phase == "3.8":
+        try:
+            a1_meta = write_a1_parallel_baseline(run_id, out_dir)
+            meta["a1_parallel"] = a1_meta
+            (out_dir / "batch-run-meta.json").write_text(
+                json.dumps(meta, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+        except (FileNotFoundError, ValueError) as exc:
+            meta["a1_parallel_error"] = str(exc)
+            (out_dir / "batch-run-meta.json").write_text(
+                json.dumps(meta, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
     return retrieve_result
 
 

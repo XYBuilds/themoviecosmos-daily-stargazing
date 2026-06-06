@@ -1,0 +1,554 @@
+{
+  "persona_id": "The-Caregiver",
+  "overlay": {
+    "persona_id": "The-Caregiver",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Syria's president",
+          "alternatives": [
+            {
+              "term": "the visiting head of state",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "government leader",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "several children",
+          "alternatives": [
+            {
+              "term": "the drowned minors",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the young victims",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "children",
+              "valence": "neutral",
+              "provenance": "surface"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the navy",
+          "alternatives": [
+            {
+              "term": "the rescue force",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the evacuating crews",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "military personnel",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Turkey",
+          "alternatives": [
+            {
+              "term": "the upstream government",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "sovereign state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "one of the heaviest rainy seasons in three decades",
+          "alternatives": [
+            {
+              "term": "historic rainfall",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "seasonal rains",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "critical reservoir overfill",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "infrastructure overwhelmed",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "surging waters inundated communities",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "An earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "vital bridge failure",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "The navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "rescue boats deployed",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-5",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "upstream flow reduction agreement",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "several children drowned",
+          "alternatives": [
+            {
+              "term": "tragic child drownings",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "fatalities among minors",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+          "alternatives": [
+            {
+              "term": "devastation of community infrastructure",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "widespread property loss",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "an earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "critical link severed",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "the navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "maritime evacuation response",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "deployment of rescue craft",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-4",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "international relief accord",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-5",
+          "original_term": "Syria's president visited the flood zones",
+          "alternatives": [
+            {
+              "term": "presidential visit to affected areas",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "head of state tour of disaster zone",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Euphrates",
+          "alternatives": [
+            {
+              "term": "the flooding river",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "waterway",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "the inundated regions",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the flood-affected governorates",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "one of the heaviest rainy seasons in three decades. Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. several children drowned The event unfolds across seasonal rains and heavy rainfall.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "one of the heaviest rainy seasons in three decades",
+            "provenance": "surface"
+          },
+          {
+            "term": "seasonal rains",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "heavy rainfall",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "extreme weather event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "climatic anomaly",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Reservoirs filled beyond 97% capacity",
+            "provenance": "surface"
+          },
+          {
+            "term": "reservoir overflow",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water storage issue",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "infrastructure problem",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+            "provenance": "surface"
+          },
+          {
+            "term": "flood causation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water release",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "embankment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+            "provenance": "surface"
+          },
+          {
+            "term": "flooding event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "property damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "several children drowned",
+            "provenance": "surface"
+          },
+          {
+            "term": "drowning incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fatality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Syria's president",
+            "provenance": "surface"
+          },
+          {
+            "term": "government leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "president",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "several children",
+            "provenance": "surface"
+          },
+          {
+            "term": "children",
+            "provenance": "surface"
+          },
+          {
+            "term": "minors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "civilians",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the navy",
+            "provenance": "surface"
+          },
+          {
+            "term": "military personnel",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "naval force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "military branch",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescue team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Turkey",
+            "provenance": "surface"
+          },
+          {
+            "term": "sovereign state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "country",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "nation-state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "sovereign entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Euphrates",
+            "provenance": "surface"
+          },
+          {
+            "term": "waterway",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "river",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "geographical feature",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Deir Ezzor and Raqqa",
+            "provenance": "surface"
+          },
+          {
+            "term": "Syrian regions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Middle Eastern regions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "geographical areas",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The Caregiver lens focuses on the tragic human cost of the disaster. Following historic rainfall that caused reservoir overflow, surging waters inundated communities, leading to fatalities among minors. The devastation of community infrastructure across the inundated regions underscores the immense vulnerability of those affected. This disaster outcome highlights the urgent need for protection and shelter for the young victims and their families in the wake of such a catastrophe.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.95
+    },
+    {
+      "id": "p2",
+      "text": "Amid the chaos, a rescue mission unfolded as the navy deployed boats for evacuations, their military personnel working tirelessly to save lives. The deployment of rescue craft offered a glimmer of hope and a vital lifeline, embodying the duty to shelter the vulnerable. This evacuation operation was a critical response to the widespread property loss and the structural failure of a vital bridge, which severed a critical link for the flood-affected governorates.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "how-3",
+          "how-4",
+          "result-1",
+          "result-2",
+          "result-3"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.88
+    },
+    {
+      "id": "p3",
+      "text": "In the aftermath, the government leader visited the affected areas, a presidential visit to the disaster inspection zone. This political action, coupled with an upstream flow reduction agreement with the upstream government, represented a flood mitigation effort. These measures, part of a broader flood response, aimed to address the extreme weather event and provide some measure of relief and cooperation to a region reeling from the disaster.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "how-5",
+          "result-4",
+          "result-5"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.72
+    }
+  ],
+  "warnings": []
+}

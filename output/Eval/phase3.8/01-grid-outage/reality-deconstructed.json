@@ -19,16 +19,22 @@
       "absolute": [
         "May 2026"
       ],
-      "relative": [],
+      "relative": [
+        "after Kepco SPC Power's Unit 2 tripped offline"
+      ],
       "daypart": [],
-      "season": [],
+      "season": [
+        "seasonal heat"
+      ],
       "fuzzy_era": [],
       "cultural": [],
       "anchored": [],
-      "duration": [],
+      "duration": [
+        "since May began"
+      ],
       "recurrence": [],
       "modality": [
-        "occurred: power crunch"
+        "occurred"
       ],
       "timezone": []
     },
@@ -36,7 +42,7 @@
       {
         "text": "Visayas",
         "role": [
-          "site of power crunch"
+          "site of red alert"
         ],
         "relations": [],
         "relative_pos": null,
@@ -69,7 +75,7 @@
         "relations": []
       },
       {
-        "text": "eleven generators",
+        "text": "Eleven generators",
         "role_in_event": [
           "affected"
         ],
@@ -90,27 +96,20 @@
     "how": [
       {
         "step": 1,
-        "text": "Eleven generators failed since May began."
+        "text": "Kepco SPC Power's Unit 2 tripped offline"
       },
       {
         "step": 2,
-        "text": "Kepco SPC Power's Unit 2 tripped offline."
+        "text": "The Philippines grid operator placed the Visayas under red alert"
       },
       {
         "step": 3,
-        "text": "The Philippines grid operator placed the Visayas under red alert."
-      },
-      {
-        "step": 4,
-        "text": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading."
+        "text": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading"
       }
     ],
     "result": [
       {
-        "text": "More than 950 megawatts became unavailable."
-      },
-      {
-        "text": "Rotational blackout risks rose in Visayas."
+        "text": "more than 950 megawatts unavailable"
       }
     ]
   },

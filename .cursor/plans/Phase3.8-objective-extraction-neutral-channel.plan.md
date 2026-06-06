@@ -34,7 +34,7 @@ todos:
     status: completed
   - id: f38c1d3e-0001-4000-8038-000000000007
     content: 3.8.7 · 批量 run（A1 并跑）+ 留出集打分 [需人工验收]
-    status: pending
+    status: completed
   - id: f38c1d3e-0001-4000-8038-000000000008
     content: 3.8.8 · GATE：双诊断 + A1-superset 验证 → GATE_RESULT；定 A1 是否删 [GATE · 需人工验收]
     status: pending
@@ -89,6 +89,8 @@ flowchart LR
   T8 -->|GATE no-go| Stop["回 T2/T6 调契约/锚"]
 ```
 
+
+
 ## Scope
 
 ### In scope
@@ -116,32 +118,36 @@ flowchart LR
 
 ## SSOT
 
-| 文档 | 用途 |
-| --- | --- |
-| [`docs/adr/0005-*.md`](../../docs/adr/0005-objective-extraction-neutral-channel-and-collision-vote.md) | 本 Phase 全部决策（P-Extract/P-Expand/P-Lens/P-Compose、两中性、两通道、撞车票、neutral_hit_rate、A1 退场）；`Status: proposed`，3.8.9 GATE go 后升 `accepted` |
-| [`docs/adr/0003-*.md`](../../docs/adr/0003-multi-agent-resonance-quality-and-a1-as-peer.md) | 撞车主判据 / A1 平权（本 Phase 复活其形状） |
-| [`docs/adr/0002-*.md`](../../docs/adr/0002-pivot-to-event-logic-resonance.md) | 表层共振合法、事件逻辑解构（对题召回前提） |
-| [`docs/SSOT/reality-deconstruction-contract.md`](../../docs/SSOT/reality-deconstruction-contract.md) | A0 契约；3.8.0 重写 |
-| [`docs/SSOT/personas-12.md`](../../docs/SSOT/personas-12.md) + 各 persona card | 价值轴（3.7-review 已落地，待 gate 确认） |
-| [`docs/eval-the-bet.md`](../../docs/eval-the-bet.md) §4/§5.1 | 共振 rubric |
-| [`output/Eval/phase3.7/GATE_RESULT.md`](../../output/Eval/phase3.7/GATE_RESULT.md) | 3.7 结案数字（20% vs 75%、lift −55%、r≈0.14） |
+
+| 文档                                                                                                   | 用途                                                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `[docs/adr/0005-*.md](../../docs/adr/0005-objective-extraction-neutral-channel-and-collision-vote.md)` | 本 Phase 全部决策（P-Extract/P-Expand/P-Lens/P-Compose、两中性、两通道、撞车票、neutral_hit_rate、A1 退场）；`Status: proposed`，3.8.9 GATE go 后升 `accepted` |
+| `[docs/adr/0003-*.md](../../docs/adr/0003-multi-agent-resonance-quality-and-a1-as-peer.md)`            | 撞车主判据 / A1 平权（本 Phase 复活其形状）                                                                                                                    |
+| `[docs/adr/0002-*.md](../../docs/adr/0002-pivot-to-event-logic-resonance.md)`                          | 表层共振合法、事件逻辑解构（对题召回前提）                                                                                                                     |
+| `[docs/SSOT/reality-deconstruction-contract.md](../../docs/SSOT/reality-deconstruction-contract.md)`   | A0 契约；3.8.0 重写                                                                                                                                            |
+| `[docs/SSOT/personas-12.md](../../docs/SSOT/personas-12.md)` + 各 persona card                         | 价值轴（3.7-review 已落地，待 gate 确认）                                                                                                                      |
+| `[docs/eval-the-bet.md](../../docs/eval-the-bet.md)` §4/§5.1                                           | 共振 rubric                                                                                                                                                    |
+| `[output/Eval/phase3.7/GATE_RESULT.md](../../output/Eval/phase3.7/GATE_RESULT.md)`                     | 3.7 结案数字（20% vs 75%、lift −55%、r≈0.14）                                                                                                                  |
+
 
 ## 判据与闸门（本 Phase 定稿 · 实现须与 ADR-0005 一致）
 
-| 代号 | 定稿 |
-| --- | --- |
-| **P-Extract** | A0 纯逐字抽取（who/where/when/why/how/result + role + relations），逐字记录原文用词与原文自带价；**不产中性替代词、不扩展**；英进英出 |
-| **P-Expand** | 一份共享客观扩展 pass，**只产 hypernym 梯**，过**客观性试金石**（A2&A4 不吵）；**丢 inert** 字段（retrieve.py 只嵌 `pseudo.text`） |
-| **P-Lens** | per-persona alt-creator 产 **persona-relative valence**；仅 fact-entailed；禁加事件/人物/指控 |
-| **P-Compose** | screenwriter 从 **三层 provenance 池**（surface/hypernym/lens，每层可多词）组装 pseudo |
-| **两中性** | 通道用 **(a) 客观地板中性**（surface+hypernym，共享）；**(b) persona 中点中性** 仅活在 lens spectrum，**不**进通道 |
-| **C-Neutral** | 每 persona 恰 1 条客观地板中性 pseudo（无 lens）= 题面召回骨架 + 度量基线；**取代 A1** |
-| **C-Toned** | 每条 toned = hypernym 锚 + lens 倾斜，**发自己的 anchored query** |
-| **撞车主判据** | 中性 union = **1 张去重票**；**优质候选 = 中性票 + ≥1 toned lens 汇聚同一片** |
-| **neutral_hit_rate** | `命中该片中性 pseudo 数 / persona 数`；top_k=2 + quality_floor=0.40；**必须控 max_similarity** 才下结论；top-k 敏感 |
-| **闸门 1** | 保留：≥60% 批次至少 1 个 2 分候选（必要下限） |
-| **闸门 2（新口径）** | 优质候选（中性 + ≥1 toned 汇聚）的结构/双重 2 分率，且**诊断② toned-convergence 在中性之上加精度**（控相似度） |
-| **A1-superset 闸（删 A1 前置）** | 删 A1 前，**首轮批量须 A1 并跑**，证明中性 union 检索出 A1 命中的**超集**且 **2 分率 ≥ A1** |
+
+| 代号                             | 定稿                                                                                                                                  |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **P-Extract**                    | A0 纯逐字抽取（who/where/when/why/how/result + role + relations），逐字记录原文用词与原文自带价；**不产中性替代词、不扩展**；英进英出 |
+| **P-Expand**                     | 一份共享客观扩展 pass，**只产 hypernym 梯**，过**客观性试金石**（A2&A4 不吵）；**丢 inert** 字段（retrieve.py 只嵌 `pseudo.text`）    |
+| **P-Lens**                       | per-persona alt-creator 产 **persona-relative valence**；仅 fact-entailed；禁加事件/人物/指控                                         |
+| **P-Compose**                    | screenwriter 从 **三层 provenance 池**（surface/hypernym/lens，每层可多词）组装 pseudo                                                |
+| **两中性**                       | 通道用 **(a) 客观地板中性**（surface+hypernym，共享）；**(b) persona 中点中性** 仅活在 lens spectrum，**不**进通道                    |
+| **C-Neutral**                    | 每 persona 恰 1 条客观地板中性 pseudo（无 lens）= 题面召回骨架 + 度量基线；**取代 A1**                                                |
+| **C-Toned**                      | 每条 toned = hypernym 锚 + lens 倾斜，**发自己的 anchored query**                                                                     |
+| **撞车主判据**                   | 中性 union = **1 张去重票**；**优质候选 = 中性票 + ≥1 toned lens 汇聚同一片**                                                         |
+| **neutral_hit_rate**             | `命中该片中性 pseudo 数 / persona 数`；top_k=2 + quality_floor=0.40；**必须控 max_similarity** 才下结论；top-k 敏感                   |
+| **闸门 1**                       | 保留：≥60% 批次至少 1 个 2 分候选（必要下限）                                                                                         |
+| **闸门 2（新口径）**             | 优质候选（中性 + ≥1 toned 汇聚）的结构/双重 2 分率，且**诊断② toned-convergence 在中性之上加精度**（控相似度）                        |
+| **A1-superset 闸（删 A1 前置）** | 删 A1 前，**首轮批量须 A1 并跑**，证明中性 union 检索出 A1 命中的**超集**且 **2 分率 ≥ A1**                                           |
+
 
 ---
 
@@ -254,7 +260,7 @@ flowchart LR
 
 ### 输出路径约定（非破坏性 · 强制）
 
-- 本 Phase 全部 run 写 **`output/Eval/phase3.8/{run_id}/`**；**只读** `phase3.5/3.6/3.7`，不得改写。
+- 本 Phase 全部 run 写 `**output/Eval/phase3.8/{run_id}/`**；**只读** `phase3.5/3.6/3.7`，不得改写。
 
 ### 执行
 
@@ -325,9 +331,9 @@ flowchart LR
 
 ### 验收
 
-- [ ] 产出位于 `output/Eval/phase3.8/{run_id}/`；3.5/3.6/3.7 未改写
-- [ ] A1 并跑数据齐（供 A1-superset 闸）
-- [ ] 留出集 ≥2 条已打分 → 数据可进 3.8.8
+- [x] 产出位于 `output/Eval/phase3.8/{run_id}/`；3.5/3.6/3.7 未改写
+- [x] A1 并跑数据齐（供 A1-superset 闸）
+- [x] 留出集 ≥2 条已打分 → 数据可进 3.8.8
 
 ---
 
@@ -368,19 +374,21 @@ flowchart LR
 ## Phase 3.8 整体验收
 
 - [x] 3.8.0 SSOT 对齐 approve
-- [ ] 3.8.1–3.8.5 各单测通过、全链英文、撞车新口径 + neutral_hit_rate 落地
+- [x] 3.8.1–3.8.5 各单测通过、全链英文、撞车新口径 + neutral_hit_rate 落地
 - [x] 3.8.6 单点 pilot Combined Go（首跑 8/12 + 重跑 11/12 可接受下限）
-- [ ] 3.8.7 批量 + A1 并跑 + 留出集打分
+- [x] 3.8.7 批量 + A1 并跑 + 留出集打分
 - [ ] 3.8.8 书面 GATE（双诊断 + A1-superset）→ go/no-go
 - [ ] 3.8.9 仅 GATE go：SSOT 终态 + 删 A1
 
 ## 交给下一 Phase
 
-| 条件 | 下一动作 |
-| --- | --- |
+
+| 条件                  | 下一动作                                                                        |
+| --------------------- | ------------------------------------------------------------------------------- |
 | **GATE go · ①&②双强** | persona 赌注成立；考虑 P-Abstain 阈值、第二匹配轴；推进 Phase 4（仍需单独解封） |
-| **GATE go · ①强②弱** | 产品定为「中性召回 + 命中率排序」；persona 降级为解读/重排层；据此精简 |
-| **GATE no-go** | 回 3.8.2/3.8.6 调契约/锚或 steering；不升 SSOT、不删 A1 |
+| **GATE go · ①强②弱**  | 产品定为「中性召回 + 命中率排序」；persona 降级为解读/重排层；据此精简          |
+| **GATE no-go**        | 回 3.8.2/3.8.6 调契约/锚或 steering；不升 SSOT、不删 A1                         |
+
 
 ## 风险与约束
 
@@ -392,3 +400,4 @@ flowchart LR
 - **小样本**：留出集 6 条，每轮可只评 2 条；结论按 per-candidate 对照，必要时扩样。
 - **英文语料切换**：换新闻源可能引入与 3.6/3.7 不可直接对照的偏移；如换须记继承/对照关系。
 - 受「人工验收阻断」约束：**3.8.0 / 3.8.6 / 3.8.7 / 3.8.8** 标 `[需人工验收]`，approve 前不标 complete、不写 report、不合并；**3.8.9** 仅 GATE go 后启动。
+

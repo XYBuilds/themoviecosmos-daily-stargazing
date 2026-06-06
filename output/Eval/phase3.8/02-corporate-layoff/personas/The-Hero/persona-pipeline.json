@@ -1,0 +1,560 @@
+{
+  "persona_id": "The-Hero",
+  "overlay": {
+    "persona_id": "The-Hero",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Intuit",
+          "alternatives": [
+            {
+              "term": "the company forced to make difficult changes for its future",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the decision-maker in the corporate restructuring",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the corporate initiator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Sasan Goodarzi",
+          "alternatives": [
+            {
+              "term": "the leader who delivered a tough but necessary decision to staff",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the chief executive who announced the layoffs",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the executive responsible for the staff communication",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the authority overseeing the mass job cuts",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "affected U.S. employees",
+          "alternatives": [
+            {
+              "term": "the workers enduring a painful corporate reinvention",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the individuals whose roles are being eliminated",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the staff impacted by the workforce reduction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the workforce casualties of the strategic shift",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+          "alternatives": [
+            {
+              "term": "to strengthen the company's competitive position through focused AI development",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "to reorganize for operational efficiency and future growth",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "for strategic business optimization",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "as a painful but necessary reinvention after months of internal review",
+          "alternatives": [
+            {
+              "term": "as a courageous act of corporate self-sacrifice to ensure long-term survival",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "as a difficult decision following a period of assessment",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "as a change initiative preceded by internal analysis",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "as an unnecessary upheaval inflicted on the workforce",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+          "alternatives": [
+            {
+              "term": "the chief executive confronted staff with the hard truth of necessary job eliminations",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the CEO announced the elimination of approximately 3,000 positions",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the executive communicated the decision to reduce the workforce",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the company head delivered the blow of mass layoffs to employees",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "the company provided a severance package to cushion the impact on displaced workers",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "affected employees received a specified severance calculation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "displaced staff were offered financial compensation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the severance terms were the only recompense offered for the loss of livelihood",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Offices in Reno and Woodland Hills are winding down",
+          "alternatives": [
+            {
+              "term": "the Reno and Woodland Hills locations are closing to consolidate strength elsewhere",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the offices in Reno and Woodland Hills are in the process of closing",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "these two sites are ceasing operations",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the communities in Reno and Woodland Hills are losing their local Intuit presence",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "roughly 17% of workforce to be cut",
+          "alternatives": [
+            {
+              "term": "a significant portion of the workforce sacrificed for the company's strategic renewal",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "approximately 17% of employees will lose their jobs",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a major workforce reduction is planned",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the livelihood of nearly one in five workers is being severed",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "about 3,000 full-time roles to be eliminated",
+          "alternatives": [
+            {
+              "term": "the elimination of 3,000 roles to forge a stronger, more focused organization",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the plan to cut 3,000 full-time positions",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the removal of 3,000 jobs",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the eradication of 3,000 careers in the name of progress",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "offices in Reno and Woodland Hills winding down",
+          "alternatives": [
+            {
+              "term": "the consolidation of operations from Reno and Woodland Hills into key hubs",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the wind-down of the Reno and Woodland Hills offices",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the closure of two office locations",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the abandonment of the Reno and Woodland Hills workspaces and their local economies",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "a structured severance to honor the service of departing employees",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a severance package calculated as 16 weeks base pay plus tenure-based weeks",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "financial compensation offered to displaced staff",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a standardized payout that cannot replace the stability of a lost career",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work. Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles. Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure. Offices in Reno and Woodland Hills are winding down. roughly 17% of workforce to be cut The event unfolds across for strategic business optimization and business strategy.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "provenance": "surface"
+          },
+          {
+            "term": "for strategic business optimization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "business strategy",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organizational change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "product development acceleration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "provenance": "surface"
+          },
+          {
+            "term": "the executive communicated the decision to reduce the workforce",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "corporate announcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision communication",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff notification",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "provenance": "surface"
+          },
+          {
+            "term": "displaced staff were offered financial compensation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "severance package",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "compensation offer",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "employee benefit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Offices in Reno and Woodland Hills are winding down",
+            "provenance": "surface"
+          },
+          {
+            "term": "these two sites are ceasing operations",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "office closure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "location shutdown",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "real estate disposal",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "roughly 17% of workforce to be cut",
+            "provenance": "surface"
+          },
+          {
+            "term": "a major workforce reduction is planned",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "workforce reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff layoff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organizational downsizing",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Intuit",
+            "provenance": "surface"
+          },
+          {
+            "term": "the corporate initiator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tax-software company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "corporation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Sasan Goodarzi",
+            "provenance": "surface"
+          },
+          {
+            "term": "the executive responsible for the staff communication",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "chief executive",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "executive",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "company leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected U.S. employees",
+            "provenance": "surface"
+          },
+          {
+            "term": "the staff impacted by the workforce reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "employees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "workers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "personnel",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The tech company, Intuit, is making a difficult but necessary change to ensure its future. The leader who delivered this tough decision to staff, Chief executive Sasan Goodarzi, announced a major workforce reduction. The staff impacted by this organizational downsizing will be offered a severance package to cushion the impact. This strategic business optimization aims to strengthen the company's competitive position for the long term.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-1",
+          "how-0",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p2",
+      "text": "In a move to reorganize for future growth, the decision-maker in this corporate restructuring is eliminating about 3,000 full-time roles. The affected workers, enduring this painful corporate reinvention, will receive a financial compensation offer. The company's action to consolidate its strength involves the office closure of locations in Reno and Woodland Hills, a hard step toward accelerating its AI-driven product work.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.8
+    },
+    {
+      "id": "p3",
+      "text": "The corporate initiator, Intuit, is facing a challenge that requires a bold response. The executive responsible for the staff communication, Sasan Goodarzi, confronted employees with the hard truth of job eliminations. The displaced staff were offered a structured severance package, a calculated effort to honor their service. This difficult decision, a change initiative preceded by internal analysis, results in a significant headcount decrease as the company pursues strategic business optimization.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-1",
+          "how-0",
+          "how-1",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

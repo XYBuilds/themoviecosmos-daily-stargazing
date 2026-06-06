@@ -1,0 +1,427 @@
+{
+  "persona_id": "The-Caregiver",
+  "overlay": {
+    "persona_id": "The-Caregiver",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-1",
+          "original_term": "Colorado Avalanche",
+          "alternatives": [
+            {
+              "term": "the harmed team",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the affected franchise",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the team",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Cale Makar",
+          "alternatives": [
+            {
+              "term": "the injured star",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the sidelined player",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the athlete",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Nathan MacKinnon",
+          "alternatives": [
+            {
+              "term": "the injured star",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the sidelined player",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the athlete",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+          "alternatives": [
+            {
+              "term": "the team was deprived of its protective leadership",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "key players were unable to participate",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "personnel were unavailable",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "the franchise fired its coach with eight regular-season games left",
+          "alternatives": [
+            {
+              "term": "the organization removed its guiding figure during a vulnerable period",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the leadership changed",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a management decision was made",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "John Tortorella guided a 7-0-1 close",
+          "alternatives": [
+            {
+              "term": "a new guardian provided stability",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the interim coach managed the conclusion",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "coaching was performed",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "John Tortorella guided playoff runs past Utah and Anaheim",
+          "alternatives": [
+            {
+              "term": "the protector led the vulnerable team through challenges",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the coach advanced the team in the postseason",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "playoff progression occurred",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "completing a four-game Western Conference Final sweep on May 26",
+          "alternatives": [
+            {
+              "term": "the series concluded with the vulnerable team eliminated",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the series ended",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a competition concluded",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Vegas reached the Stanley Cup Final",
+          "alternatives": [
+            {
+              "term": "the victor advanced",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a team advanced to the final round",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries. the franchise fired its coach with eight regular-season games left. John Tortorella guided a 7-0-1 close. John Tortorella guided playoff runs past Utah and Anaheim. Vegas reached the Stanley Cup Final The event unfolds across personnel were unavailable and injury.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+            "provenance": "surface"
+          },
+          {
+            "term": "personnel were unavailable",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "injury",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "player injury",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the franchise fired its coach with eight regular-season games left",
+            "provenance": "surface"
+          },
+          {
+            "term": "a management decision was made",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "management decision",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "mid-season firing",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Tortorella guided a 7-0-1 close",
+            "provenance": "surface"
+          },
+          {
+            "term": "coaching was performed",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching performance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team improvement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "winning record",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Tortorella guided playoff runs past Utah and Anaheim",
+            "provenance": "surface"
+          },
+          {
+            "term": "playoff progression occurred",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "playoff coaching",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team advancement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "series victory",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Vegas reached the Stanley Cup Final",
+            "provenance": "surface"
+          },
+          {
+            "term": "a team advanced to the final round",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "playoff advancement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "championship series qualification",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team achievement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Colorado Avalanche",
+            "provenance": "surface"
+          },
+          {
+            "term": "the team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NHL team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "hockey team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional sports team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Cale Makar",
+            "provenance": "surface"
+          },
+          {
+            "term": "the athlete",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "hockey player",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "athlete",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional athlete",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Nathan MacKinnon",
+            "provenance": "surface"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The Colorado Avalanche, deprived of their protective leadership due to player injury, faced a mid-season coaching change. A new guardian, John Tortorella, provided stability with a strong winning record to close the regular season. He then guided the vulnerable team through playoff challenges, leading them to a series victory. Despite these efforts, the NHL team was eliminated in a playoff series win by Vegas, who advanced to the final round.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "A sports event saw the affected franchise's journey end when key players were unable to participate. The organization removed its guiding figure during a vulnerable period, a management decision that preceded a coaching performance securing team improvement. Playoff progression occurred under the interim coach, but the series concluded with the vulnerable team eliminated. Ultimately, a team advanced to the final round, highlighting the fragility of a season cut short by injury.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "In the conference final, the injured star's absence left the team exposed. A management decision was made, and coaching was performed to navigate the postseason. The protector led the vulnerable team through challenges, achieving a series victory. However, a competition concluded with a sweep, and the victor advanced, underscoring the harsh reality of personnel unavailability in professional sports.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.72
+    }
+  ],
+  "warnings": []
+}

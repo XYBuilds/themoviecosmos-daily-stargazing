@@ -1,0 +1,227 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "European regulators",
+          "alternatives": [
+            {
+              "term": "fair-minded enforcers of shared rules",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulators",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulatory authority",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Google",
+          "alternatives": [
+            {
+              "term": "the company with the dominant search platform",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "search engine operator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "privilege-grabber that shifted the playing field",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "rival comparison services",
+          "alternatives": [
+            {
+              "term": "smaller competitors pushed down in search results",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "rival services",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "comparison services",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Alphabet",
+          "alternatives": [
+            {
+              "term": "the parent company facing repeated fines",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "parent company of Google",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+          "alternatives": [
+            {
+              "term": "for giving its own services an unfair advantage over everyday competitors",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "for prioritizing its units in search rankings",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "under the bloc's gatekeeper rules",
+          "alternatives": [
+            {
+              "term": "under rules meant to keep the system fair for everyone",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "under the bloc's gatekeeper rules",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+          "alternatives": [
+            {
+              "term": "a long process that kept dragging on for ordinary people to follow",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "proceedings lasting over two years",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Brussels rejected the company's remedy proposals",
+          "alternatives": [
+            {
+              "term": "regulators said the company's fixes weren't good enough",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "a huge fine is being prepared, the kind of money ordinary people can't even picture",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a penalty in the high hundreds of millions of euros",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "A formal decision is expected before the Commission's August recess",
+          "alternatives": [
+            {
+              "term": "a decision coming before the summer break",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "penalty expected to reach the high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "a fine so large it hits where it hurts most",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a penalty in the high hundreds of millions of euros",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "adding to more than a decade of accumulated competition fines against Alphabet",
+          "alternatives": [
+            {
+              "term": "another fine on top of years of them, showing the company never learned",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "accumulated competition fines over more than a decade",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pseudos": [],
+  "warnings": [],
+  "repair_retries": [
+    {
+      "stage": "channel_assembly",
+      "attempt": "1",
+      "error": "channel_assembly: neutral pseudo must not contain lens term \"under the bloc's gatekeeper rules\""
+    },
+    {
+      "stage": "screenwriter_assembly_retry",
+      "attempt": "2",
+      "error": "ok"
+    },
+    {
+      "stage": "channel_assembly",
+      "attempt": "2",
+      "error": "channel_assembly: neutral pseudo must not contain lens term \"under the bloc's gatekeeper rules\""
+    }
+  ],
+  "error": "channel_assembly: neutral pseudo must not contain lens term \"under the bloc's gatekeeper rules\""
+}

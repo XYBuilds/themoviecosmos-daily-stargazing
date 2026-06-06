@@ -1,0 +1,338 @@
+{
+  "agent": "P-Expand",
+  "persona": "Objective Expansion",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-29T12:00:00+04:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [],
+      "relative": [
+        "after week of deadly high water"
+      ],
+      "daypart": [],
+      "season": [
+        "rainy seasons"
+      ],
+      "fuzzy_era": [
+        "in three decades"
+      ],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "week"
+      ],
+      "recurrence": [],
+      "modality": [
+        "occurred"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Euphrates",
+        "role": [
+          "site of flooding",
+          "river"
+        ],
+        "relations": [],
+        "relative_pos": null,
+        "geopolitical": null,
+        "intended_destination": null,
+        "trajectory": null,
+        "contested_name": null
+      },
+      {
+        "text": "Deir Ezzor and Raqqa",
+        "role": [
+          "site of flooding",
+          "regions"
+        ],
+        "relations": [],
+        "relative_pos": null,
+        "geopolitical": "Syria",
+        "intended_destination": null,
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "Syria's president",
+        "role_in_event": [
+          "executor"
+        ],
+        "relations": []
+      },
+      {
+        "text": "several children",
+        "role_in_event": [
+          "affected"
+        ],
+        "relations": []
+      },
+      {
+        "text": "the navy",
+        "role_in_event": [
+          "executor"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Turkey",
+        "role_in_event": [
+          "initiator-decision"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "one of the heaviest rainy seasons in three decades"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "Reservoirs filled beyond 97% capacity"
+      },
+      {
+        "step": 2,
+        "text": "Dam operations and seasonal rains pushed the river past protective embankments"
+      },
+      {
+        "step": 3,
+        "text": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa"
+      },
+      {
+        "step": 4,
+        "text": "An earthen bridge collapsed"
+      },
+      {
+        "step": 5,
+        "text": "The navy deployed boats for evacuations"
+      },
+      {
+        "step": 6,
+        "text": "Turkey agreed to reduce upstream releases"
+      }
+    ],
+    "result": [
+      {
+        "text": "several children drowned"
+      },
+      {
+        "text": "homes, farms, and schools in Deir Ezzor and Raqqa flooded"
+      },
+      {
+        "text": "an earthen bridge collapsed"
+      },
+      {
+        "text": "the navy deployed boats for evacuations"
+      },
+      {
+        "text": "Turkey agreed to reduce upstream releases"
+      },
+      {
+        "text": "Syria's president visited the flood zones"
+      }
+    ]
+  },
+  "expansion": {
+    "elements": [
+      {
+        "element_id": "where-0",
+        "surface": "Euphrates",
+        "hypernyms": [
+          "river",
+          "waterway",
+          "geographical feature"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "where-1",
+        "surface": "Deir Ezzor and Raqqa",
+        "hypernyms": [
+          "Syrian regions",
+          "Middle Eastern regions",
+          "geographical areas"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-0",
+        "surface": "Syria's president",
+        "hypernyms": [
+          "president",
+          "head of state",
+          "political leader"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-1",
+        "surface": "several children",
+        "hypernyms": [
+          "children",
+          "minors",
+          "civilians"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-2",
+        "surface": "the navy",
+        "hypernyms": [
+          "naval force",
+          "military branch",
+          "rescue team"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-3",
+        "surface": "Turkey",
+        "hypernyms": [
+          "country",
+          "nation-state",
+          "sovereign entity"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "why-0",
+        "surface": "one of the heaviest rainy seasons in three decades",
+        "hypernyms": [
+          "heavy rainfall",
+          "extreme weather event",
+          "climatic anomaly"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-0",
+        "surface": "Reservoirs filled beyond 97% capacity",
+        "hypernyms": [
+          "reservoir overflow",
+          "water storage issue",
+          "infrastructure problem"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-1",
+        "surface": "Dam operations and seasonal rains pushed the river past protective embankments",
+        "hypernyms": [
+          "flood causation",
+          "water release",
+          "embankment failure"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-2",
+        "surface": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+        "hypernyms": [
+          "flooding event",
+          "property damage",
+          "disaster impact"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-3",
+        "surface": "An earthen bridge collapsed",
+        "hypernyms": [
+          "bridge collapse",
+          "structural failure",
+          "infrastructure damage"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-4",
+        "surface": "The navy deployed boats for evacuations",
+        "hypernyms": [
+          "evacuation operation",
+          "rescue mission",
+          "military deployment"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-5",
+        "surface": "Turkey agreed to reduce upstream releases",
+        "hypernyms": [
+          "water management agreement",
+          "international cooperation",
+          "flood mitigation"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "result-0",
+        "surface": "several children drowned",
+        "hypernyms": [
+          "drowning incident",
+          "fatality",
+          "disaster outcome"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "result-1",
+        "surface": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+        "hypernyms": [
+          "flooding damage",
+          "agricultural loss",
+          "educational disruption"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "result-2",
+        "surface": "an earthen bridge collapsed",
+        "hypernyms": [
+          "bridge collapse",
+          "structural failure"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "result-3",
+        "surface": "the navy deployed boats for evacuations",
+        "hypernyms": [
+          "evacuation effort",
+          "rescue operation"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "result-4",
+        "surface": "Turkey agreed to reduce upstream releases",
+        "hypernyms": [
+          "agreement",
+          "cooperation measure",
+          "flood response"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "result-5",
+        "surface": "Syria's president visited the flood zones",
+        "hypernyms": [
+          "presidential visit",
+          "disaster inspection",
+          "political action"
+        ],
+        "rejected_hypernyms": []
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}
