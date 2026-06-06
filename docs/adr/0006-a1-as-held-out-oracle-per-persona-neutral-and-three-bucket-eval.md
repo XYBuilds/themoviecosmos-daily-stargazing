@@ -78,7 +78,7 @@
 | **① salience 来源** | **主选 (B) 由 alt-creator LLM 按新闻动态决定 salience**(从此起步)。**回退 (C) 混合**——仅当 3.9 pilot 显示太乱/不稳时启用,且混合**必须保留 LLM 自由**:只手写 per-persona 的**软偏好/先验**(如「The-Caregiver 倾向关注 who-is-affected 与 outcomes」),**绝不**写死决定具体碎片的硬规则;LLM 仍在软先验内做最终的 per-news 选择 |
 | **② who/where(人物/地点)** | 每个 persona **可访问全部 who/where 元素**(它们留在可选池中),但**各 persona 自行决定是否使用**——**不再无条件注入**。即现行代码(`personas.py` 约 346–350 行:无条件把所有 `who-`/`where-` 词追加进每条中性 pseudo)须改:who/where 变为**可被 salience 选取的候选**,而非强制纳入 |
 
-**多样性守卫(pilot)**：断言 12 条中性 pseudo **不近重复**(两两文本相似度低于阈值 **或** 所选碎片集合差异 ≥ 某最小值);退化(near-duplicate)⇒ 失败/重生成。
+**多样性守卫(pilot)**：批内两两检查中性 pseudo 是否近重复(高文本相似度 **且** 所选碎片集合差异低于下限)。**硬失败**仅当**中性与 toned 均近重复**;若仅中性撞车而 toned 仍各异,则**降级为 warning 并继续**(差异化由 toned 通道 + 检索兜底)。中性句内同一 surface 文本只渲染一次(按归一化 surface 去重,非仅 element_id)。
 
 **例**：The-Caregiver 应**选** result/who 碎片(谁受影响)但**写**成中性「居民受停电影响」,而非带价的「脆弱家庭陷入危险」——因措辞由模板从 surface+hypernym 拼装,带价表述无从产生。3.9 pilot 须专审此边界。
 

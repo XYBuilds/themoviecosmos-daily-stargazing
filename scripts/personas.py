@@ -61,6 +61,9 @@ _ELEMENT_ID_RE = re.compile(r"^(who|where|why|how|result)-\d+$")
 # Batch diversity guard: fail when pairwise near-duplicate on text AND fragment overlap.
 _NEUTRAL_DIVERSITY_SIM_THRESHOLD = 0.92
 _NEUTRAL_MIN_FRAGMENT_SET_DIFF = 2
+# A neutral-only collision is tolerated (downgraded to a warning) when the pair's
+# toned legs still diverge below this threshold; differentiation survives via toned.
+_TONED_DIVERSITY_SIM_THRESHOLD = 0.92
 
 # Phrase-level hypernym anchors only — exclude sentence-level strings (pilot: unembeddable).
 _MAX_ANCHOR_WORDS = 6
@@ -387,25 +390,54 @@ def _fragment_set_for_pseudo(pseudo: PseudoSegment) -> set[str]:
 def validate_neutral_pseudo_batch_diversity(
     neutral_pseudos: list[PseudoSegment],
     *,
+    toned_text_by_agent: dict[str, str] | None = None,
     similarity_threshold: float = _NEUTRAL_DIVERSITY_SIM_THRESHOLD,
     min_fragment_set_diff: int = _NEUTRAL_MIN_FRAGMENT_SET_DIFF,
-) -> None:
-    """Reject near-duplicate neutral pseudos (high text sim AND low fragment diff)."""
+    toned_similarity_threshold: float = _TONED_DIVERSITY_SIM_THRESHOLD,
+) -> list[str]:
+    """Gate near-duplicate neutral pseudos; tolerate neutral-only collisions.
+
+    A pair whose neutral legs are near-duplicate (high text sim AND low fragment
+    diff) is a *hard* failure only when its toned legs are also near-duplicate —
+    differentiation legitimately survives via the toned channel + retrieval, so a
+    neutral-only collision is downgraded to a returned warning rather than raised.
+
+    Backward compatible: with no toned info the two empty toned strings score 1.0,
+    so a neutral collision still raises (the original strict behavior).
+
+    Returns the list of neutral-only collision warnings (empty when clean).
+    """
+    warnings: list[str] = []
     if len(neutral_pseudos) < 2:
-        return
+        return warnings
+    toned_map = toned_text_by_agent or {}
     for i, left in enumerate(neutral_pseudos):
         for right in neutral_pseudos[i + 1 :]:
             sim = _neutral_text_similarity(left.text, right.text)
             frag_diff = len(
                 _fragment_set_for_pseudo(left) ^ _fragment_set_for_pseudo(right)
             )
-            if sim >= similarity_threshold and frag_diff < min_fragment_set_diff:
+            if sim < similarity_threshold or frag_diff >= min_fragment_set_diff:
+                continue
+            left_id = str(left.source.get("agent_id"))
+            right_id = str(right.source.get("agent_id"))
+            toned_sim = _neutral_text_similarity(
+                toned_map.get(left_id, ""), toned_map.get(right_id, "")
+            )
+            detail = (
+                f"({left_id!r}, {right_id!r}) similarity={sim:.3f} "
+                f"fragment_diff={frag_diff} toned_similarity={toned_sim:.3f}"
+            )
+            if toned_sim >= toned_similarity_threshold:
                 raise ValueError(
                     "neutral pseudo batch diversity guard failed: "
-                    f"near-duplicate pair ({left.source.get('agent_id')!r}, "
-                    f"{right.source.get('agent_id')!r}) "
-                    f"similarity={sim:.3f} fragment_diff={frag_diff}"
+                    f"near-duplicate pair {detail} (toned also near-duplicate)"
                 )
+            warnings.append(
+                "neutral-only near-duplicate tolerated (toned still distinct): "
+                + detail
+            )
+    return warnings
 
 
 def _default_neutral_fragments(deconstruction: dict[str, Any]) -> list[str]:
@@ -469,11 +501,18 @@ def build_objective_floor_neutral_pseudo(
     surfaces = [t for t, p in deduped if p == "surface"]
 
     ann = annotate_element_ids(deconstruction)
-    sentences = [
-        s.rstrip(".")
-        for fid in frags
-        if (s := _fragment_text_for_id(ann, fid))
-    ]
+    sentences: list[str] = []
+    seen_sentences: set[str] = set()
+    for fid in frags:
+        raw_sentence = _fragment_text_for_id(ann, fid)
+        if not raw_sentence:
+            continue
+        sentence = raw_sentence.rstrip(".")
+        key = sentence.lower()
+        if key in seen_sentences:
+            continue
+        seen_sentences.add(key)
+        sentences.append(sentence)
     hypernym_clause = ""
     if hypernyms:
         hypernym_clause = f" The event unfolds across {hypernyms[0]}"

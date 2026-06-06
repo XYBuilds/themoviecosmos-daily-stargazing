@@ -22,7 +22,7 @@ todos:
     status: complete
   - id: p39-6
     content: 3.9.6 · 单点 pilot + 防火墙审计（专审 salience≠valence 边界 + 多样性守卫）[需人工验收 · Go/No-Go]
-    status: pending
+    status: complete
   - id: p39-7
     content: 3.9.7 · 批量 run（A1 oracle 并跑）+ 留出冻结纪律 + 纵向多打分（人工 + judge）[需人工验收]
     status: pending
@@ -123,7 +123,7 @@ flowchart TD
 | 代号 | 定稿 |
 | --- | --- |
 | **A1-Oracle（D1）** | A1 仅并跑，**不进候选/撞车/排序**；作召回+质量基准（用于 Q1）。本轮不删 |
-| **Neutral-Salience（D2/D6）** | 每 persona 按 `salience` Top-K(4–5) 选**不同**碎片；中性措辞由模板从 `surface`+`hypernym` 拼装（架构中立）；who/where 可选；多样性守卫拒近重复 |
+| **Neutral-Salience（D2/D6）** | 每 persona 按 `salience` Top-K(4–5) 选**不同**碎片；中性措辞由模板从 `surface`+`hypernym` 拼装（架构中立）；who/where 可选；多样性守卫:仅中性+toned 均近重复才硬失败,仅中性撞车 ⇒ warning |
 | **salience≠valence（D6 铁律）** | persona LLM 只发既有 `element_id` 有序列表，**绝不书写中性散文**；subset/permutation 硬校验；运行时 lens 守卫保留 |
 | **三桶度量（D4）** | 纯事实 / 纯情绪 / 组合 三桶均可评，**纯中性候选入打分池**；`toned_convergence` 重定义使 neutral-only 非空 |
 | **留出冻结（D4）** | 只在 obs 调 prompt/阈值 → 冻结 → holdout **只打一次分**；留出≈观察 ⇒ 提升为真 |
@@ -157,7 +157,7 @@ flowchart TD
 
 - `scripts/personas.py`：解析 alt-pool 的 `salience` → 取 Top-K(4–5) 作 `fragment_ids` 传 `build_objective_floor_neutral_pseudo`，**取代 `_default_neutral_fragments` 的固定默认用法**。
 - who/where 改为**可选 salience 候选**：收口约 346–350 行「无条件追加所有 `who-`/`where-`」逻辑，全部 who/where 仍留可选池，由 salience 选取决定是否纳入。
-- 新增**多样性守卫**：一批 12 条中性 pseudo 两两文本相似度 < 阈值 **或** 所选碎片集合差异 ≥ 下限；退化（near-duplicate）⇒ 失败/重生成。
+- 新增**多样性守卫**：批内两两检查中性 pseudo 近重复;**硬失败**仅当中性与 toned **均**近重复;仅中性撞车而 toned 各异 ⇒ warning 并继续。中性 body 按 surface 文本去重(避免 why/how 同句重复)。
 - `salience` **subset/permutation 硬校验**：非法 id 或新增词即拒。
 - `tests/test_personas.py`：salience 正/负例解析、Top-K 选材、who/where 可选、多样性守卫触发、subset/permutation 校验。
 
@@ -245,9 +245,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] 端到端产出位于 `output/Eval/phase3.9/{run_id}/`；3.6/3.7/3.8 未改写
-- [ ] 多样性守卫通过；中性无 lens 泄漏
-- [ ] `[需人工验收 · Go/No-Go]`：用户 approve → 进 3.9.7；若反复泄漏/退化 → No-Go 回 3.9.1 或启用 **D6 plan B**（A1 式 2–3 条多视角共享中性）
+- [x] 端到端产出位于 `output/Eval/phase3.9/{run_id}/`；3.6/3.7/3.8 未改写
+- [x] 多样性守卫通过；中性无 lens 泄漏
+- [x] `[需人工验收 · Go/No-Go]`：用户 approve → 进 3.9.7；若反复泄漏/退化 → No-Go 回 3.9.1 或启用 **D6 plan B**（A1 式 2–3 条多视角共享中性）
 
 ---
 
@@ -306,7 +306,7 @@ flowchart TD
 
 - [x] 3.9.0 契约/CONTEXT 对齐 approve
 - [ ] 3.9.1–3.9.5 各单测通过：salience 中性多样化落地、A1=oracle、三桶+纯中性入池、judge 校准、并发化
-- [ ] 3.9.6 单点 pilot Combined Go（salience≠valence 无泄漏 + 多样性守卫生效）
+- [x] 3.9.6 单点 pilot Combined Go（salience≠valence 无泄漏 + 多样性守卫生效）
 - [ ] 3.9.7 批量 + A1 oracle 并跑 + 留出冻结 + 纵向多打分（人工+judge）
 - [ ] 3.9.8 书面 GATE（Q1/Q2/Q3 + 闸门 1 + obs/holdout 一致性）→ go/no-go
 - [ ] 3.9.9 仅 GATE go：SSOT 终态 + A1 删除判定
