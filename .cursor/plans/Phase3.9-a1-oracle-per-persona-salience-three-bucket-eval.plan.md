@@ -10,7 +10,7 @@ todos:
     status: pending
   - id: p39-2
     content: 3.9.2 · retrieve.py A1 → held-out oracle（不进候选/撞车/排序，保留 oracle 对照输出）+ 单测
-    status: pending
+    status: complete
   - id: p39-3
     content: 3.9.3 · summarize_eval/score_eval_candidates 三桶度量 + 纯中性入打分池 + 重定义 toned_convergence/is_neutral_only + A1-oracle 对照 + 单测
     status: pending
@@ -179,9 +179,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest`（retrieve 相关）通过
-- [ ] A1 不出现在 `candidates`/`triggered_by`/撞车计票
-- [ ] A1 命中集可供 oracle 对照读取
+- [x] `python -m unittest`（retrieve 相关）通过
+- [x] A1 不出现在 `candidates`/`triggered_by`/撞车计票
+- [x] A1 命中集可供 oracle 对照读取
 
 ---
 
