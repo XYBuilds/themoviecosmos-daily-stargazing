@@ -91,10 +91,9 @@ class CandidateScore:
 
     @property
     def toned_convergence(self) -> bool:
+        """True when ≥1 toned agent above floor (retrieve ``distinct_agents``)."""
         if self.distinct_agents is not None:
             return self.distinct_agents >= 1
-        if self.quality_candidate:
-            return True
         return False
 
     @property
@@ -106,8 +105,33 @@ class CandidateScore:
         return False
 
     @property
-    def is_neutral_only(self) -> bool:
+    def is_pure_fact(self) -> bool:
+        """ADR-0006 bucket ①: neutral vote, no toned convergence."""
         return self.neutral_vote and not self.toned_convergence
+
+    @property
+    def is_pure_emotion(self) -> bool:
+        """ADR-0006 bucket ②: toned convergence, no neutral vote."""
+        return self.toned_convergence and not self.neutral_vote
+
+    @property
+    def is_combo(self) -> bool:
+        """ADR-0006 bucket ③: neutral vote + ≥1 toned convergence."""
+        return self.neutral_vote and self.toned_convergence
+
+    @property
+    def is_neutral_only(self) -> bool:
+        """Alias for pure_fact (diagnostic ② / legacy key)."""
+        return self.is_pure_fact
+
+    def eval_bucket(self) -> str | None:
+        if self.is_combo:
+            return "combo"
+        if self.is_pure_fact:
+            return "pure_fact"
+        if self.is_pure_emotion:
+            return "pure_emotion"
+        return None
 
 
 @dataclass
@@ -300,21 +324,83 @@ def _diagnostic_neutral_hit_rate(runs: list[RunSummary]) -> dict[str, Any]:
     }
 
 
+_THREE_BUCKETS = ("pure_fact", "pure_emotion", "combo")
+
+
+def _bucket_candidates(
+    runs: list[RunSummary],
+) -> dict[str, list[CandidateScore]]:
+    buckets: dict[str, list[CandidateScore]] = {name: [] for name in _THREE_BUCKETS}
+    for run in runs:
+        for cand in run.candidates:
+            if cand.score is None:
+                continue
+            label = cand.eval_bucket()
+            if label is not None:
+                buckets[label].append(cand)
+    return buckets
+
+
+def _three_bucket_rates(runs: list[RunSummary]) -> dict[str, Any]:
+    """ADR-0006 D4: pure_fact / pure_emotion / combo 2-rates, similarity-controlled."""
+    buckets = _bucket_candidates(runs)
+    rates: dict[str, Any] = {}
+    for name in _THREE_BUCKETS:
+        total_rate, structural_rate, counts = _structural_2_rates(buckets[name])
+        rates[name] = {
+            "total_2_rate": total_rate,
+            "structural_2_rate": structural_rate,
+            **counts,
+        }
+
+    by_bin: dict[str, dict[str, list[CandidateScore]]] = {}
+    for name in _THREE_BUCKETS:
+        for cand in buckets[name]:
+            if cand.max_similarity is None:
+                continue
+            label = _similarity_bin_label(cand.max_similarity)
+            by_bin.setdefault(label, {b: [] for b in _THREE_BUCKETS})
+            by_bin[label][name].append(cand)
+
+    similarity_bins: dict[str, dict[str, Any]] = {}
+    for label, bin_buckets in by_bin.items():
+        bin_rates: dict[str, Any] = {}
+        for name in _THREE_BUCKETS:
+            _, structural_rate, counts = _structural_2_rates(bin_buckets[name])
+            bin_rates[name] = {
+                "structural_2_rate": structural_rate,
+                "scored": counts["scored"],
+            }
+        similarity_bins[label] = bin_rates
+
+    combo = rates["combo"]
+    pure_fact = rates["pure_fact"]
+    q2_combo_lift_ok = False
+    if combo["scored"] > 0 and pure_fact["scored"] > 0:
+        q2_combo_lift_ok = combo["structural_2_rate"] > pure_fact["structural_2_rate"]
+    elif combo["scored"] > 0 and pure_fact["scored"] == 0:
+        q2_combo_lift_ok = combo["structural_2_rate"] > 0.0
+
+    return {
+        "buckets": rates,
+        "similarity_bins": similarity_bins,
+        "q2_combo_lift_ok": q2_combo_lift_ok,
+        "neutral_only_scored": pure_fact["scored"],
+    }
+
+
 def _diagnostic_toned_convergence(runs: list[RunSummary]) -> dict[str, Any]:
-    """Diagnostic ②: toned-convergence precision above neutral, controlling similarity."""
-    quality_rows: list[CandidateScore] = []
-    neutral_only_rows: list[CandidateScore] = []
+    """Diagnostic ② / Q2: combo precision above pure_fact, controlling similarity."""
+    buckets = _bucket_candidates(runs)
+    combo_rows = buckets["combo"]
+    pure_fact_rows = buckets["pure_fact"]
     partial_rows: list[dict[str, float]] = []
 
     for run in runs:
         for cand in run.candidates:
             if cand.score is None or cand.max_similarity is None:
                 continue
-            if cand.quality_candidate:
-                quality_rows.append(cand)
-            elif cand.is_neutral_only:
-                neutral_only_rows.append(cand)
-            if cand.neutral_vote:
+            if cand.neutral_vote or cand.toned_convergence:
                 partial_rows.append(
                     {
                         "toned": 1.0 if cand.toned_convergence else 0.0,
@@ -323,29 +409,34 @@ def _diagnostic_toned_convergence(runs: list[RunSummary]) -> dict[str, Any]:
                     }
                 )
 
-    q_total, q_structural, q_counts = _structural_2_rates(quality_rows)
-    n_total, n_structural, n_counts = _structural_2_rates(neutral_only_rows)
+    c_total, c_structural, c_counts = _structural_2_rates(combo_rows)
+    f_total, f_structural, f_counts = _structural_2_rates(pure_fact_rows)
 
     by_bin: dict[str, dict[str, list[CandidateScore]]] = {}
-    for cand in quality_rows + neutral_only_rows:
+    for cand in combo_rows + pure_fact_rows:
         if cand.max_similarity is None:
             continue
         label = _similarity_bin_label(cand.max_similarity)
-        bucket = by_bin.setdefault(label, {"quality": [], "neutral_only": []})
-        if cand.quality_candidate:
-            bucket["quality"].append(cand)
-        elif cand.is_neutral_only:
-            bucket["neutral_only"].append(cand)
+        bucket = by_bin.setdefault(label, {"combo": [], "pure_fact": []})
+        if cand.is_combo:
+            bucket["combo"].append(cand)
+        elif cand.is_pure_fact:
+            bucket["pure_fact"].append(cand)
 
     bin_lifts: dict[str, dict[str, Any]] = {}
     for label, bucket in by_bin.items():
-        _, q_bin_struct, q_bin_counts = _structural_2_rates(bucket["quality"])
-        _, n_bin_struct, n_bin_counts = _structural_2_rates(bucket["neutral_only"])
+        _, c_bin_struct, c_bin_counts = _structural_2_rates(bucket["combo"])
+        _, f_bin_struct, f_bin_counts = _structural_2_rates(bucket["pure_fact"])
         bin_lifts[label] = {
-            "quality_structural_2_rate": q_bin_struct,
-            "neutral_only_structural_2_rate": n_bin_struct,
-            "quality_scored": q_bin_counts["scored"],
-            "neutral_only_scored": n_bin_counts["scored"],
+            "combo_structural_2_rate": c_bin_struct,
+            "pure_fact_structural_2_rate": f_bin_struct,
+            "combo_scored": c_bin_counts["scored"],
+            "pure_fact_scored": f_bin_counts["scored"],
+            # legacy keys (combo≈quality, pure_fact≈neutral_only)
+            "quality_structural_2_rate": c_bin_struct,
+            "neutral_only_structural_2_rate": f_bin_struct,
+            "quality_scored": c_bin_counts["scored"],
+            "neutral_only_scored": f_bin_counts["scored"],
         }
 
     partial_corr = None
@@ -357,31 +448,123 @@ def _diagnostic_toned_convergence(runs: list[RunSummary]) -> dict[str, Any]:
         )
 
     precision_lift_ok = False
-    if q_counts["scored"] > 0 and n_counts["scored"] > 0:
-        precision_lift_ok = q_structural > n_structural
-    elif q_counts["scored"] > 0 and n_counts["scored"] == 0:
-        precision_lift_ok = q_structural > 0.0
+    if c_counts["scored"] > 0 and f_counts["scored"] > 0:
+        precision_lift_ok = c_structural > f_structural
+    elif c_counts["scored"] > 0 and f_counts["scored"] == 0:
+        precision_lift_ok = c_structural > 0.0
 
     return {
-        "quality_total_2_rate": q_total,
-        "quality_structural_2_rate": q_structural,
-        "neutral_only_total_2_rate": n_total,
-        "neutral_only_structural_2_rate": n_structural,
+        "combo_total_2_rate": c_total,
+        "combo_structural_2_rate": c_structural,
+        "pure_fact_total_2_rate": f_total,
+        "pure_fact_structural_2_rate": f_structural,
+        "pure_emotion_scored": _structural_2_rates(buckets["pure_emotion"])[2]["scored"],
         "precision_lift_ok": precision_lift_ok,
+        "q2_combo_lift_ok": precision_lift_ok,
         "partial_corr_toned_vs_score_given_similarity": partial_corr,
         "similarity_bins": bin_lifts,
-        **{f"quality_{k}": v for k, v in q_counts.items()},
-        **{f"neutral_only_{k}": v for k, v in n_counts.items()},
+        **{f"combo_{k}": v for k, v in c_counts.items()},
+        **{f"pure_fact_{k}": v for k, v in f_counts.items()},
+        # legacy keys for downstream readers
+        "quality_total_2_rate": c_total,
+        "quality_structural_2_rate": c_structural,
+        "neutral_only_total_2_rate": f_total,
+        "neutral_only_structural_2_rate": f_structural,
+        **{f"quality_{k}": v for k, v in c_counts.items()},
+        **{f"neutral_only_{k}": v for k, v in f_counts.items()},
     }
 
 
-def _a1_superset_placeholder() -> dict[str, Any]:
-    """3.8.8 GATE slot — filled after 3.8.7 A1 parallel batch."""
+def _run_dir_from_summary(run: RunSummary) -> Path | None:
+    path = Path(run.path)
+    if path.name == "candidates.md":
+        return path.parent
+    if path.parent.name == run.run_id:
+        return path.parent
+    return None
+
+
+def _load_oracle_comparison_for_run(run: RunSummary) -> dict[str, Any] | None:
+    """Read ``oracle_comparison`` from sibling ``retrieve.json`` when present."""
+    run_dir = _run_dir_from_summary(run)
+    if run_dir is None:
+        return None
+    retrieve_path = run_dir / "retrieve.json"
+    if not retrieve_path.is_file():
+        meta_path = run_dir / "a1-baseline-meta.json"
+        if meta_path.is_file():
+            meta = json.loads(meta_path.read_text(encoding="utf-8"))
+            hit_ids = meta.get("a1_hit_tmdb_ids")
+            if isinstance(hit_ids, list):
+                return {
+                    "run_id": run.run_id,
+                    "source": "a1-baseline-meta.json",
+                    "a1_hit_tmdb_ids": hit_ids,
+                    "a1_hit_count": len(hit_ids),
+                }
+        return None
+    data = json.loads(retrieve_path.read_text(encoding="utf-8"))
+    comparison = data.get("oracle_comparison")
+    if isinstance(comparison, dict):
+        return {"run_id": run.run_id, **comparison}
+    a1_oracle = data.get("a1_oracle") or {}
+    hit_ids = a1_oracle.get("hit_tmdb_ids")
+    if isinstance(hit_ids, list):
+        return {
+            "run_id": run.run_id,
+            "source": "a1_oracle.hit_tmdb_ids",
+            "a1_hit_tmdb_ids": hit_ids,
+            "a1_hit_count": len(hit_ids),
+        }
+    return None
+
+
+def _a1_oracle_comparison(
+    runs: list[RunSummary],
+    three_bucket: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Q1 oracle对照: neutral union recall ⊇ A1 hits; structural 2-rate vs A1."""
+    per_run: list[dict[str, Any]] = []
+    for run in runs:
+        row = _load_oracle_comparison_for_run(run)
+        if row is not None:
+            per_run.append(row)
+
+    if not per_run:
+        return {
+            "status": "pending",
+            "note": "No retrieve.json oracle_comparison or a1-baseline-meta in run dirs",
+            "runs_with_oracle_data": 0,
+            "neutral_union_superset_of_a1_hits": None,
+            "q1_recall_superset_ok": None,
+            "q1_quality_structural_2_rate_vs_a1": None,
+            "a1_deletion_eligible": None,
+        }
+
+    superset_flags = [
+        row.get("neutral_union_superset_of_a1_hits")
+        for row in per_run
+        if row.get("neutral_union_superset_of_a1_hits") is not None
+    ]
+    q1_recall_ok = all(superset_flags) if superset_flags else None
+
+    pure_fact = (three_bucket or {}).get("buckets", {}).get("pure_fact", {})
+    combo = (three_bucket or {}).get("buckets", {}).get("combo", {})
+    neutral_structural = pure_fact.get("structural_2_rate", 0.0)
+    combo_structural = combo.get("structural_2_rate", 0.0)
+    # Placeholder for per-A1-scored comparison until A1 rows are human-scored in review
+    a1_structural_placeholder = None
+
     return {
-        "status": "pending",
-        "note": "Requires 3.8.7 A1 parallel run; verdict in 3.8.8 GATE_RESULT",
-        "neutral_union_superset_of_a1_hits": None,
-        "quality_structural_2_rate_vs_a1": None,
+        "status": "available",
+        "runs_with_oracle_data": len(per_run),
+        "per_run": per_run,
+        "neutral_union_superset_of_a1_hits": q1_recall_ok,
+        "q1_recall_superset_ok": q1_recall_ok,
+        "pure_fact_structural_2_rate": neutral_structural,
+        "combo_structural_2_rate": combo_structural,
+        "q1_quality_structural_2_rate_vs_a1": a1_structural_placeholder,
+        "note": "Q1 recall from oracle_comparison; A1 2-rate vs neutral needs A1-scored review rows",
         "a1_deletion_eligible": None,
     }
 
@@ -709,7 +892,7 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
     phase38_gate = _uses_phase38_gate(runs)
     persona_gate = _uses_persona_gate(runs) and not phase38_gate
     gate_compare_mode = (
-        "quality_vs_neutral_only"
+        "combo_vs_pure_fact"
         if phase38_gate
         else ("persona_vs_baseline" if persona_gate else "multi_vs_single")
     )
@@ -730,24 +913,27 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
 
     diagnostic_1 = _diagnostic_neutral_hit_rate(runs) if phase38_gate else None
     diagnostic_2 = _diagnostic_toned_convergence(runs) if phase38_gate else None
-    a1_superset = _a1_superset_placeholder() if phase38_gate else None
+    three_bucket = _three_bucket_rates(runs) if phase38_gate else None
+    a1_superset = (
+        _a1_oracle_comparison(runs, three_bucket) if phase38_gate else None
+    )
 
     gate_reasons: list[str] = []
     batch_ok = batch_pass_rate >= _GATE_BATCH_PASS_RATE
 
     if phase38_gate and diagnostic_2 is not None:
         if use_structural_gate:
-            rate_ok = bool(diagnostic_2["precision_lift_ok"])
-            baseline_gate_rate = diagnostic_2["neutral_only_structural_2_rate"]
-            persona_gate_rate = diagnostic_2["quality_structural_2_rate"]
-            rate_metric = "quality_structural_2_rate"
+            rate_ok = bool(diagnostic_2["q2_combo_lift_ok"])
+            baseline_gate_rate = diagnostic_2["pure_fact_structural_2_rate"]
+            persona_gate_rate = diagnostic_2["combo_structural_2_rate"]
+            rate_metric = "combo_structural_2_rate"
         else:
-            rate_ok = diagnostic_2["quality_total_2_rate"] > diagnostic_2[
-                "neutral_only_total_2_rate"
+            rate_ok = diagnostic_2["combo_total_2_rate"] > diagnostic_2[
+                "pure_fact_total_2_rate"
             ]
-            baseline_gate_rate = diagnostic_2["neutral_only_total_2_rate"]
-            persona_gate_rate = diagnostic_2["quality_total_2_rate"]
-            rate_metric = "quality_total_2_rate"
+            baseline_gate_rate = diagnostic_2["pure_fact_total_2_rate"]
+            persona_gate_rate = diagnostic_2["combo_total_2_rate"]
+            rate_metric = "combo_total_2_rate"
     elif persona_gate:
         if use_structural_gate:
             rate_ok = persona_structural_2_rate > baseline_structural_2_rate
@@ -778,9 +964,9 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
     if not rate_ok:
         if phase38_gate:
             gate_reasons.append(
-                f"quality_{rate_metric} {persona_gate_rate:.1%} not > "
-                f"neutral_only_{rate_metric} {baseline_gate_rate:.1%} "
-                "(diagnostic ② · similarity-controlled)"
+                f"combo_{rate_metric} {persona_gate_rate:.1%} not > "
+                f"pure_fact_{rate_metric} {baseline_gate_rate:.1%} "
+                "(Q2 · diagnostic ② · similarity-controlled)"
             )
         elif persona_gate:
             gate_reasons.append(
@@ -818,6 +1004,8 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
         global_block["diagnostic_1_neutral_hit_rate"] = diagnostic_1
     if diagnostic_2 is not None:
         global_block["diagnostic_2_toned_convergence"] = diagnostic_2
+    if three_bucket is not None:
+        global_block["three_bucket"] = three_bucket
 
     result: dict[str, Any] = {
         "runs": [
@@ -841,6 +1029,7 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
         },
     }
     if a1_superset is not None:
+        result["a1_oracle"] = a1_superset
         result["a1_superset"] = a1_superset
     return result
 
@@ -871,6 +1060,7 @@ def _format_stdout(report: dict[str, Any]) -> str:
     if g.get("phase38_gate"):
         d1 = g.get("diagnostic_1_neutral_hit_rate") or {}
         d2 = g.get("diagnostic_2_toned_convergence") or {}
+        tb = g.get("three_bucket") or {}
         lines.append(
             "Diagnostic ① (neutral_hit_rate vs 共振 · max_similarity controlled): "
             f"n={d1.get('n', 0)}"
@@ -882,18 +1072,35 @@ def _format_stdout(report: dict[str, Any]) -> str:
             )
         else:
             lines.append("  partial r(neutral_hit_rate, score | similarity)=insufficient n")
+        pf_scored = tb.get("neutral_only_scored", d2.get("pure_fact_scored", 0))
         lines.append(
-            "Diagnostic ② (toned-convergence precision above neutral): "
-            f"quality structural 2-rate {d2.get('quality_structural_2_rate', 0):.1%} "
-            f"({d2.get('quality_structural_twos', 0)}/{d2.get('quality_scored', 0)}) vs "
-            f"neutral-only {d2.get('neutral_only_structural_2_rate', 0):.1%} "
-            f"({d2.get('neutral_only_structural_twos', 0)}/{d2.get('neutral_only_scored', 0)})"
+            "Diagnostic ② / Q2 (combo vs pure_fact · max_similarity controlled): "
+            f"combo structural 2-rate {d2.get('combo_structural_2_rate', 0):.1%} "
+            f"({d2.get('combo_structural_twos', 0)}/{d2.get('combo_scored', 0)}) vs "
+            f"pure-fact {d2.get('pure_fact_structural_2_rate', 0):.1%} "
+            f"({d2.get('pure_fact_structural_twos', 0)}/{pf_scored})"
         )
         pt = d2.get("partial_corr_toned_vs_score_given_similarity")
         if pt is not None:
             lines.append(f"  partial r(toned, score | similarity)={pt:.4f}")
-        a1s = report.get("a1_superset") or {}
-        lines.append(f"A1-superset check: {a1s.get('status', 'n/a')} — {a1s.get('note', '')}")
+        bucket_rates = tb.get("buckets") or {}
+        if bucket_rates:
+            lines.append("Three-bucket structural 2-rates:")
+            for name in _THREE_BUCKETS:
+                row = bucket_rates.get(name, {})
+                lines.append(
+                    f"  {name}: {row.get('structural_2_rate', 0):.1%} "
+                    f"({row.get('structural_twos', 0)}/{row.get('scored', 0)} scored)"
+                )
+        a1s = report.get("a1_oracle") or report.get("a1_superset") or {}
+        q1 = a1s.get("q1_recall_superset_ok")
+        q1_label = "n/a" if q1 is None else ("yes" if q1 else "no")
+        lines.append(
+            f"Q1 A1-oracle recall superset: {q1_label} "
+            f"(status={a1s.get('status', 'n/a')}; {a1s.get('runs_with_oracle_data', 0)} runs)"
+        )
+        if a1s.get("note"):
+            lines.append(f"  {a1s['note']}")
     elif g.get("persona_gate"):
         lines.append(
             f"baseline_structural_2_rate: {g['baseline_structural_2_rate']:.1%} "
@@ -957,7 +1164,7 @@ def _format_stdout(report: dict[str, Any]) -> str:
         if g.get("phase38_gate"):
             lines.append(
                 f"  - batch pass rate >= {_GATE_BATCH_PASS_RATE:.0%}; "
-                f"quality_{metric} > neutral_only_{metric} (diagnostic ②)"
+                f"combo_{metric} > pure_fact_{metric} (Q2 / diagnostic ②)"
             )
         elif g.get("persona_gate"):
             lines.append(

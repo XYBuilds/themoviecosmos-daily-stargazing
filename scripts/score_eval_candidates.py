@@ -107,6 +107,25 @@ def _is_multi_agent_hit(*, quality_candidate: bool, agents: list[str]) -> bool:
     return len(agents) >= 2
 
 
+def _is_pure_neutral_candidate(diag: RetrieveDiagnostics | None) -> bool:
+    """ADR-0006 D4: neutral vote without toned convergence (pure-fact bucket)."""
+    if diag is None:
+        return False
+    return diag.neutral_hits >= 1 and diag.distinct_agents == 0
+
+
+def _eligible_for_scoring_pool(
+    total_score: int,
+    *,
+    min_total_score: int,
+    diag: RetrieveDiagnostics | None,
+) -> bool:
+    """High-hit / scoring pool: pseudo总分 threshold OR pure-neutral (neutral-only)."""
+    if total_score >= min_total_score:
+        return True
+    return _is_pure_neutral_candidate(diag)
+
+
 def _load_retrieve_meta(
     retrieve_path: Path,
 ) -> tuple[dict[int, list[HitScore]], dict[int, bool], dict[int, RetrieveDiagnostics]]:
@@ -343,7 +362,9 @@ def score_candidates_md(
             agents = _agents_from_hit_sources(hits)
         quality = (quality_by_tmdb or {}).get(tmdb_id, False)
         is_multi = _is_multi_agent_hit(quality_candidate=quality, agents=agents)
-        if total >= min_total_score:
+        if _eligible_for_scoring_pool(
+            total, min_total_score=min_total_score, diag=diag
+        ):
             scored.append(
                 ScoredCandidate(
                     run_id=run_id,
@@ -437,8 +458,8 @@ def _format_high_hit_review(
         "### Pseudo 命中分（二级审阅键 · 非质量闸）",
         "",
         f"**High-hit review** lists candidates with **pseudo命中分合计 ≥ {min_score}**",
-        "as an editor triage aid. Inclusion here is **not** a quality gate; D1",
-        "`quality_candidate` (≥2 agents above floor) is computed in retrieve/run_eval.",
+        "or **pure-neutral** hits (`neutral_hits≥1` and `distinct_agents=0`, ADR-0006 D4).",
+        "Inclusion is **not** a quality gate; D1 `quality_candidate` is from retrieve.",
         "",
         "For each hit line under **命中视角/碎片**, count entries in `fragments=[...]`",
         "— **each fragment id = 1 point** for that pseudo.",
