@@ -2979,7 +2979,7 @@ Phase 3.8.8 GATE 前，请在**本文件**的留出集章节（`05-climate-disas
   - THE-SAGE/p2: fragments=[why-0, how-3, how-4, result-0] · sim=0.5719 · **命中分=4**
   - THE-EXPLORER/p3: fragments=[why-0, how-1, how-2, how-3, result-0] · sim=0.5476 · **命中分=5**
 - **pseudo命中分合计**: 105
-- **共振分**: 2（multi-agent; main-had: 1）  <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: 
 
