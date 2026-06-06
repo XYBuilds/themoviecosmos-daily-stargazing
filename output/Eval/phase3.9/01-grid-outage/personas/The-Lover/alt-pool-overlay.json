@@ -1,0 +1,241 @@
+{
+  "persona_id": "The-Lover",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "The Philippines grid operator",
+        "alternatives": [
+          {
+            "term": "The guardian of the grid's vital connection",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "The system's caretaker",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "grid operator",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Kepco SPC Power's Unit 2",
+        "alternatives": [
+          {
+            "term": "A vital partner in the power network",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "A key component of the energy system",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "A failed link in the chain",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "Officials",
+        "alternatives": [
+          {
+            "term": "Protectors of public comfort",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "Decision-makers",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Those who sever the connection",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "Eleven generators",
+        "alternatives": [
+          {
+            "term": "Other vital energy sources",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "power generators",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Inconsistent partners",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+        "alternatives": [
+          {
+            "term": "A vital connection was severed",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "a power unit failure",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "original_term": "other long-running plant outages",
+        "alternatives": [
+          {
+            "term": "Prolonged absences from the network",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "ongoing power plant outages",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-2",
+        "original_term": "seasonal heat drove demand into a thin operating margin",
+        "alternatives": [
+          {
+            "term": "The season's passion created intense desire",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "high seasonal demand",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The heat pushed the system to its breaking point",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+        "alternatives": [
+          {
+            "term": "The unit's connection was lost",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "a unit tripped offline",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "The Philippines grid operator placed the Visayas under red alert",
+        "alternatives": [
+          {
+            "term": "The operator raised a passionate alarm",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "a red alert was issued",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The operator signaled a crisis of connection",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+        "alternatives": [
+          {
+            "term": "Officials made a difficult choice to preserve the vital link",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "emergency load shedding was ordered",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials severed parts to save the whole",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "more than 950 megawatts unavailable",
+        "alternatives": [
+          {
+            "term": "A massive loss of available power",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "significant power unavailability",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Visayas",
+        "alternatives": [
+          {
+            "term": "The affected region",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "A place of disrupted comfort",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "who-1",
+    "result-0",
+    "who-0",
+    "how-1",
+    "why-2"
+  ]
+}

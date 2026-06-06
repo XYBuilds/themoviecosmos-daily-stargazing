@@ -1,0 +1,221 @@
+{
+  "persona_id": "The-Outlaw",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "The Philippines grid operator",
+        "alternatives": [
+          {
+            "term": "the grid gatekeeper",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the system's controller",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "grid authority",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Kepco SPC Power's Unit 2",
+        "alternatives": [
+          {
+            "term": "the fallen asset",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "power generation unit",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "Officials",
+        "alternatives": [
+          {
+            "term": "the authorities enforcing cuts",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "decision-makers",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "Eleven generators",
+        "alternatives": [
+          {
+            "term": "the powerless suppliers",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "energy producers",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+        "alternatives": [
+          {
+            "term": "a key system failure",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "generation outage",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "original_term": "other long-running plant outages",
+        "alternatives": [
+          {
+            "term": "chronic grid neglect",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "ongoing maintenance failures",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "infrastructure breakdowns",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-2",
+        "original_term": "seasonal heat drove demand into a thin operating margin",
+        "alternatives": [
+          {
+            "term": "the system buckling under predictable stress",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "peak demand pressure",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+        "alternatives": [
+          {
+            "term": "the system's weak link broke",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "unit failure",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "The Philippines grid operator placed the Visayas under red alert",
+        "alternatives": [
+          {
+            "term": "the grid authority sounding the alarm",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "red alert declaration",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+        "alternatives": [
+          {
+            "term": "authorities imposing blackouts to protect their infrastructure",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the people bearing the cost of a failing grid",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "emergency load reduction",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "more than 950 megawatts unavailable",
+        "alternatives": [
+          {
+            "term": "a massive power deficit hitting the populace",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "system-wide shortfall",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Visayas",
+        "alternatives": [
+          {
+            "term": "the region left in the dark",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "affected area",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "result-0",
+    "why-0",
+    "why-1",
+    "how-2",
+    "how-1"
+  ]
+}

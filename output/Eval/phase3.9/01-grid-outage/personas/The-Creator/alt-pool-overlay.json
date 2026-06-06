@@ -1,0 +1,276 @@
+{
+  "persona_id": "The-Creator",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "The Philippines grid operator",
+        "alternatives": [
+          {
+            "term": "the grid's chief engineer",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the system architect",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the grid operator",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the overseer of a failing network",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Kepco SPC Power's Unit 2",
+        "alternatives": [
+          {
+            "term": "a critical power generator",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the power unit",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the failed component",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "Officials",
+        "alternatives": [
+          {
+            "term": "the decision-makers",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the officials",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the reactive authorities",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "Eleven generators",
+        "alternatives": [
+          {
+            "term": "the power-generating assets",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the generators",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the offline capacity",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+        "alternatives": [
+          {
+            "term": "the unit's critical malfunction",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the unit tripped offline",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the unit's failure to perform",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "original_term": "other long-running plant outages",
+        "alternatives": [
+          {
+            "term": "the extended system downtime",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "plant outages",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the chronic neglect of infrastructure",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-2",
+        "original_term": "seasonal heat drove demand into a thin operating margin",
+        "alternatives": [
+          {
+            "term": "the design stress from peak demand",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "high demand",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the system's inability to handle load",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+        "alternatives": [
+          {
+            "term": "the unit's critical malfunction",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the unit tripped offline",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the unit's failure to perform",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "The Philippines grid operator placed the Visayas under red alert",
+        "alternatives": [
+          {
+            "term": "the operator activated the crisis protocol",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the grid operator placed the Visayas under red alert",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the operator's reactive declaration",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+        "alternatives": [
+          {
+            "term": "the engineers executed a load-shedding maneuver",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "officials ordered emergency load shedding",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the forced shutdown of consumers",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "more than 950 megawatts unavailable",
+        "alternatives": [
+          {
+            "term": "the loss of over 950 MW of generation capacity",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "more than 950 megawatts unavailable",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the void in the grid's power output",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Visayas",
+        "alternatives": [
+          {
+            "term": "the island grid",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "Visayas",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the affected region",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "result-0",
+    "how-0",
+    "how-1",
+    "how-2",
+    "who-0",
+    "who-1",
+    "why-0",
+    "why-1",
+    "why-2",
+    "where-0"
+  ]
+}

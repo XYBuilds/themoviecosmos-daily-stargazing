@@ -1,0 +1,437 @@
+{
+  "persona_id": "The-Lover",
+  "overlay": {
+    "persona_id": "The-Lover",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "The guardian of the grid's vital connection",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "The system's caretaker",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "grid operator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power's Unit 2",
+          "alternatives": [
+            {
+              "term": "A vital partner in the power network",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "A key component of the energy system",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "A failed link in the chain",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "Protectors of public comfort",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Decision-makers",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "Those who sever the connection",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Eleven generators",
+          "alternatives": [
+            {
+              "term": "Other vital energy sources",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "power generators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "Inconsistent partners",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "A vital connection was severed",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a power unit failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "Prolonged absences from the network",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "ongoing power plant outages",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "The season's passion created intense desire",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "high seasonal demand",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "The heat pushed the system to its breaking point",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "The unit's connection was lost",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a unit tripped offline",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "The operator raised a passionate alarm",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a red alert was issued",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "The operator signaled a crisis of connection",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "Officials made a difficult choice to preserve the vital link",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "emergency load shedding was ordered",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "Officials severed parts to save the whole",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "A massive loss of available power",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "significant power unavailability",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Visayas",
+          "alternatives": [
+            {
+              "term": "The affected region",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "A place of disrupted comfort",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "who-1",
+      "result-0",
+      "who-0",
+      "how-1",
+      "why-2"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Kepco SPC Power's Unit 2. more than 950 megawatts unavailable. The Philippines grid operator. The Philippines grid operator placed the Visayas under red alert. seasonal heat drove demand into a thin operating margin The event unfolds across A key component of the energy system and power unit.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "who-1",
+          "result-0",
+          "who-0",
+          "how-1",
+          "why-2"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Kepco SPC Power's Unit 2",
+            "provenance": "surface"
+          },
+          {
+            "term": "A key component of the energy system",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "generating unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power plant component",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy infrastructure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "significant power unavailability",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The Philippines grid operator",
+            "provenance": "surface"
+          },
+          {
+            "term": "grid operator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "utility",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy sector entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The Philippines grid operator placed the Visayas under red alert",
+            "provenance": "surface"
+          },
+          {
+            "term": "a red alert was issued",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "alert declaration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid management action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency response",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "seasonal heat drove demand into a thin operating margin",
+            "provenance": "surface"
+          },
+          {
+            "term": "high seasonal demand",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "high demand",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "heatwave impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy demand spike",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "demand increase",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "When a vital partner in the power network, Kepco SPC Power's Unit 2, was severed from the grid, the guardian of the grid's vital connection, the operator, was forced to signal a crisis of connection. Officials, as protectors of public comfort, made the difficult choice to implement emergency load shedding to preserve the critical link, a measure born from the season's passion creating intense demand. The result was a massive loss of available power, leaving the affected region in a state of disrupted comfort.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.65
+    },
+    {
+      "id": "p2",
+      "text": "The heat pushed the system to its breaking point, as high seasonal demand strained the network. A failed link in the chain, the power unit failure, triggered a grid incident. This forced the system's caretaker to issue a red alert, while decision-makers ordered load shedding to prevent a total collapse of the vital infrastructure. The profound shortage left the island group vulnerable, a stark reminder of how interconnected our desires for comfort truly are.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-2",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.55
+    },
+    {
+      "id": "p3",
+      "text": "In May, following prolonged absences from the network, the loss of a generating unit caused a significant energy deficit. The grid operator, the energy sector entity responsible, declared a red alert for the region. Officials then ordered an emergency measure—severing parts to save the whole—to stabilize the grid. This action stemmed from a heatwave impact driving high demand, revealing a deep vulnerability in the system's capacity.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-1",
+          "how-0",
+          "how-1",
+          "how-2",
+          "why-2",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.45
+    }
+  ],
+  "warnings": []
+}

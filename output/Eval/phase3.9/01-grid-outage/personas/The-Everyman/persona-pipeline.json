@@ -1,0 +1,371 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "the national grid manager",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the authority deciding the power cuts",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power's Unit 2",
+          "alternatives": [
+            {
+              "term": "the offline power plant unit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the broken generator",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "government authorities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the people making the emergency decision",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Eleven generators",
+          "alternatives": [
+            {
+              "term": "other power plants",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the offline units causing the shortage",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "a major plant failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the unexpected breakdown",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "existing power plant problems",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "ongoing system failures",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "high demand from hot weather",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the heatwave pushing the grid to its limit",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "the plant shutting down",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the unit failing",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "declaring a grid emergency",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "sounding the alarm on the region's power",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "cutting power to prevent a blackout",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the forced power cuts for ordinary households",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "a massive power shortage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the lost electricity affecting everyday life",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "who-1",
+      "why-2",
+      "how-2",
+      "who-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2. seasonal heat drove demand into a thin operating margin. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. The Philippines grid operator The event unfolds across a massive power shortage and power shortage.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "result-0",
+          "who-1",
+          "why-2",
+          "how-2",
+          "who-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "a massive power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kepco SPC Power's Unit 2",
+            "provenance": "surface"
+          },
+          {
+            "term": "the offline power plant unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "generating unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power plant component",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy infrastructure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "seasonal heat drove demand into a thin operating margin",
+            "provenance": "surface"
+          },
+          {
+            "term": "high demand from hot weather",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "high demand",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "heatwave impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy demand spike",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "demand increase",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+            "provenance": "surface"
+          },
+          {
+            "term": "cutting power to prevent a blackout",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "load shedding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency measure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid stabilization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "control action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The Philippines grid operator",
+            "provenance": "surface"
+          },
+          {
+            "term": "the national grid manager",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid operator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "utility",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy sector entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organization",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "It started when a power plant unit failed, setting off a chain reaction. The national grid manager declared a grid emergency for the Visayas region, a move that hit ordinary households directly. Officials were forced to cut power to prevent a total blackout, leaving a massive power shortage of over 950 megawatts. This wasn't a problem for the elite; it was a practical crisis affecting everyone's daily life, from bills to basic comfort.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.9
+    },
+    {
+      "id": "p2",
+      "text": "A broken generator at a major facility was the immediate trigger. But the real squeeze came from high demand driven by hot weather, pushing the grid to its limit. This combination meant more than 950 megawatts became unavailable, a huge capacity loss. The people making the emergency decision had to act, implementing load shedding—a direct, painful measure that underscored how shared the vulnerability of the system really is for everyday users.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "why-2",
+          "result-0",
+          "how-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

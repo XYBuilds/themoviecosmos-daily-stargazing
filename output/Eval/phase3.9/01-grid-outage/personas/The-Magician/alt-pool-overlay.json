@@ -1,0 +1,241 @@
+{
+  "persona_id": "The-Magician",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "The Philippines grid operator",
+        "alternatives": [
+          {
+            "term": "the system orchestrator",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "grid operator",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the crisis conductor",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Kepco SPC Power's Unit 2",
+        "alternatives": [
+          {
+            "term": "the failed lever",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "power generation unit",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "Officials",
+        "alternatives": [
+          {
+            "term": "the decision architects",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the emergency puppeteers",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "authorities",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "Eleven generators",
+        "alternatives": [
+          {
+            "term": "the deactivated nodes",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "generators",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Visayas",
+        "alternatives": [
+          {
+            "term": "the stress nexus",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the red-alert zone",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "region",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+        "alternatives": [
+          {
+            "term": "a critical system failure",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "unit trip",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "original_term": "other long-running plant outages",
+        "alternatives": [
+          {
+            "term": "pre-existing system fragility",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "plant outages",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-2",
+        "original_term": "seasonal heat drove demand into a thin operating margin",
+        "alternatives": [
+          {
+            "term": "the hidden pressure point",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "demand driver",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "systemic squeeze",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+        "alternatives": [
+          {
+            "term": "the triggering failure",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "initial trip",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "The Philippines grid operator placed the Visayas under red alert",
+        "alternatives": [
+          {
+            "term": "systemic signal activation",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "red alert declaration",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "crisis lever deployment",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+        "alternatives": [
+          {
+            "term": "calculated system recalibration",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "emergency intervention",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "forced load reduction",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "more than 950 megawatts unavailable",
+        "alternatives": [
+          {
+            "term": "revealed system capacity gap",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "power deficit",
+            "valence": "negative",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the scaling opportunity exposed",
+            "valence": "positive",
+            "provenance": "lens"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "how-1",
+    "how-2",
+    "who-0",
+    "why-2",
+    "result-0"
+  ]
+}
