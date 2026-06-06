@@ -30,13 +30,17 @@ from scripts.personas import (
     build_screenwriter_user_prompt,
     collect_hypernym_anchor_terms,
     collect_lens_terms,
+    fragment_ids_from_salience,
     known_element_ids,
     list_persona_ids,
     load_persona_card,
     overlay_forbids_decon_fork,
     parse_alt_pool_response,
     render_persona_prompt,
+    resolve_neutral_fragment_ids,
     run_persona_pipeline,
+    validate_neutral_pseudo_batch_diversity,
+    validate_salience,
 )
 from scripts.run_persona_batch import (
     load_a1_agent_from_phase36,
@@ -123,6 +127,13 @@ def _alt_pool_json() -> str:
     )
 
 
+def _alt_pool_json_with_salience(salience: list[str] | None = None) -> str:
+    data = json.loads(_alt_pool_json())
+    if salience is not None:
+        data["salience"] = salience
+    return json.dumps(data)
+
+
 def _toned_pseudo_with_hypernym() -> list:
     return parse_pseudos_response(
         json.dumps(
@@ -146,6 +157,176 @@ def _toned_pseudo_with_hypernym() -> list:
         known_fragments=_known_fragments(),
         require_fit=True,
     )
+
+
+def _full_expansion_fixture() -> dict:
+    """Expansion rows for all fixture element ids used in salience tests."""
+    dec = _fixture_dec_inner()
+    ann = annotate_element_ids(dec)
+    elements: list[dict] = []
+    for section in ("who", "where", "why", "how", "result"):
+        for item in ann.get(section) or []:
+            if isinstance(item, dict) and item.get("id"):
+                eid = str(item["id"])
+                text = str(item.get("text", "") or item.get("step", "") or "").strip()
+                elements.append(
+                    {
+                        "element_id": eid,
+                        "surface": text,
+                        "hypernyms": [f"{section} hypernym"],
+                    }
+                )
+    return {"elements": elements}
+
+
+class PersonaSalienceTests(unittest.TestCase):
+    _VALID_SALIENCE = [
+        "result-0",
+        "who-0",
+        "how-0",
+        "why-0",
+        "how-1",
+    ]
+
+    def test_validate_salience_accepts_subset_permutation(self) -> None:
+        known = _known_elements()
+        out = validate_salience(self._VALID_SALIENCE, known)
+        self.assertEqual(out, self._VALID_SALIENCE)
+
+    def test_validate_salience_rejects_unknown_id(self) -> None:
+        with self.assertRaises(ValueError) as ctx:
+            validate_salience(["who-99", "why-0", "how-0", "how-1", "result-0"], _known_elements())
+        self.assertIn("unknown element_id", str(ctx.exception).lower())
+
+    def test_validate_salience_rejects_free_text(self) -> None:
+        with self.assertRaises(ValueError) as ctx:
+            validate_salience(
+                ["result-0", "who is harmed", "how-0", "why-0", "how-1"],
+                _known_elements(),
+            )
+        self.assertIn("illegal element_id", str(ctx.exception).lower())
+
+    def test_validate_salience_rejects_duplicate(self) -> None:
+        with self.assertRaises(ValueError) as ctx:
+            validate_salience(
+                ["result-0", "result-0", "how-0", "why-0", "how-1"],
+                _known_elements(),
+            )
+        self.assertIn("duplicate", str(ctx.exception).lower())
+
+    def test_parse_alt_pool_with_salience(self) -> None:
+        overlay = parse_alt_pool_response(
+            _alt_pool_json_with_salience(self._VALID_SALIENCE),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        self.assertEqual(overlay.salience, self._VALID_SALIENCE)
+        payload = build_alt_pool_overlay(overlay)
+        self.assertEqual(payload["salience"], self._VALID_SALIENCE)
+
+    def test_fragment_ids_from_salience_top_k(self) -> None:
+        frags = fragment_ids_from_salience(self._VALID_SALIENCE, top_k=4)
+        self.assertEqual(frags, self._VALID_SALIENCE[:4])
+
+    def test_salience_drives_fragment_ids_not_default(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json_with_salience(["result-0", "who-0", "how-0", "why-0"]),
+            persona_id="The-Caregiver",
+            known_elements=_known_elements(),
+        )
+        frags = resolve_neutral_fragment_ids(dec, overlay, top_k=4)
+        self.assertEqual(frags, ["result-0", "who-0", "how-0", "why-0"])
+        default = resolve_neutral_fragment_ids(
+            dec,
+            AltPoolOverlay(persona_id="The-Caregiver", elements=overlay.elements),
+        )
+        self.assertNotEqual(frags, default)
+
+    def test_who_where_optional_via_salience(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json(),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        overlay.salience = ["why-0", "how-0", "how-1", "result-0"]
+        without_who = build_objective_floor_neutral_pseudo(
+            "The-Ruler",
+            dec,
+            overlay,
+            _expansion_fixture(),
+            fragment_ids=overlay.salience,
+        )
+        self.assertNotIn("Philippines grid operator", without_who.text)
+        self.assertNotIn("Visayas, Philippines", without_who.text)
+
+        with_who = build_objective_floor_neutral_pseudo(
+            "The-Ruler",
+            dec,
+            overlay,
+            _expansion_fixture(),
+            fragment_ids=["who-0", "why-0", "how-0", "result-0"],
+        )
+        self.assertIn("Philippines grid operator", with_who.text)
+
+    def test_diversity_guard_passes_distinct_fragments(self) -> None:
+        dec = _fixture_dec_inner()
+        expansion = _full_expansion_fixture()
+        saliences = [
+            ["result-0", "who-0", "how-0", "why-0"],
+            ["how-1", "how-2", "result-1", "why-1"],
+            ["why-0", "how-0", "result-0", "where-0"],
+        ]
+        neutrals = []
+        for idx, sal in enumerate(saliences):
+            overlay = AltPoolOverlay(
+                persona_id=f"P{idx}",
+                elements=parse_alt_pool_response(
+                    _alt_pool_json(),
+                    persona_id=f"P{idx}",
+                    known_elements=_known_elements(),
+                ).elements,
+                salience=sal,
+            )
+            neutrals.append(
+                build_objective_floor_neutral_pseudo(
+                    f"P{idx}",
+                    dec,
+                    overlay,
+                    expansion,
+                    fragment_ids=sal,
+                )
+            )
+        validate_neutral_pseudo_batch_diversity(neutrals)
+
+    def test_diversity_guard_fails_near_duplicate(self) -> None:
+        dec = _fixture_dec_inner()
+        expansion = _full_expansion_fixture()
+        same_sal = ["why-0", "how-0", "how-1", "result-0"]
+        neutrals = []
+        for pid in ("The-Creator", "The-Caregiver"):
+            overlay = AltPoolOverlay(
+                persona_id=pid,
+                elements=parse_alt_pool_response(
+                    _alt_pool_json(),
+                    persona_id=pid,
+                    known_elements=_known_elements(),
+                ).elements,
+                salience=same_sal,
+            )
+            neutrals.append(
+                build_objective_floor_neutral_pseudo(
+                    pid,
+                    dec,
+                    overlay,
+                    expansion,
+                    fragment_ids=same_sal,
+                )
+            )
+        with self.assertRaises(ValueError) as ctx:
+            validate_neutral_pseudo_batch_diversity(neutrals)
+        self.assertIn("diversity guard", str(ctx.exception).lower())
 
 
 class PersonaScaffoldTests(unittest.TestCase):

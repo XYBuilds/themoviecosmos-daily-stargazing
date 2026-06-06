@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import copy
+import difflib
 import json
 import re
 import sys
@@ -50,6 +51,16 @@ Provenance = Literal["surface", "hypernym", "lens"]
 ChannelRole = Literal["neutral", "toned"]
 
 NEUTRAL_PSEUDO_ID = "n1"
+
+# Per-persona salience → neutral fragment selection (ADR-0006 D6).
+_SALIENCE_TOP_K_DEFAULT = 5
+_SALIENCE_TOP_K_MIN = 4
+_SALIENCE_TOP_K_MAX = 5
+_ELEMENT_ID_RE = re.compile(r"^(who|where|why|how|result)-\d+$")
+
+# Batch diversity guard: fail when pairwise near-duplicate on text AND fragment overlap.
+_NEUTRAL_DIVERSITY_SIM_THRESHOLD = 0.92
+_NEUTRAL_MIN_FRAGMENT_SET_DIFF = 2
 
 # Phrase-level hypernym anchors only — exclude sentence-level strings (pilot: unembeddable).
 _MAX_ANCHOR_WORDS = 6
@@ -122,9 +133,10 @@ class AltElement:
 class AltPoolOverlay:
     persona_id: str
     elements: list[AltElement]
+    salience: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        payload: dict[str, Any] = {
             "persona_id": self.persona_id,
             "alt_pool": {
                 "elements": [
@@ -139,6 +151,9 @@ class AltPoolOverlay:
                 ],
             },
         }
+        if self.salience:
+            payload["salience"] = list(self.salience)
+        return payload
 
 
 @dataclass
@@ -295,6 +310,104 @@ def _fragment_text_for_id(ann: dict[str, Any], fragment_id: str) -> str | None:
     return None
 
 
+def validate_salience(
+    raw: list[Any],
+    known_elements: set[str],
+) -> list[str]:
+    """Hard-validate salience: subset/permutation of known element ids only."""
+    if not isinstance(raw, list) or not raw:
+        raise ValueError("salience must be a non-empty ordered list of element_id strings")
+    out: list[str] = []
+    seen: set[str] = set()
+    for item in raw:
+        if not isinstance(item, str):
+            raise ValueError("salience entries must be element_id strings, not free text")
+        eid = item.strip()
+        if not eid:
+            raise ValueError("salience entry must not be empty")
+        if not _ELEMENT_ID_RE.match(eid):
+            raise ValueError(f"salience illegal element_id {eid!r}")
+        if eid not in known_elements:
+            raise ValueError(f"salience unknown element_id {eid!r}")
+        if eid in seen:
+            raise ValueError(f"salience duplicate element_id {eid!r}")
+        seen.add(eid)
+        out.append(eid)
+    return out
+
+
+def fragment_ids_from_salience(
+    salience: list[str],
+    *,
+    top_k: int = _SALIENCE_TOP_K_DEFAULT,
+) -> list[str]:
+    """Take Top-K (4–5) head of persona salience for neutral fragment selection."""
+    if top_k < _SALIENCE_TOP_K_MIN or top_k > _SALIENCE_TOP_K_MAX:
+        raise ValueError(
+            f"top_k must be in [{_SALIENCE_TOP_K_MIN}, {_SALIENCE_TOP_K_MAX}], got {top_k}"
+        )
+    if not salience:
+        raise ValueError("salience required for per-persona fragment selection")
+    k = min(top_k, len(salience))
+    if k < _SALIENCE_TOP_K_MIN:
+        raise ValueError(
+            f"salience must rank at least {_SALIENCE_TOP_K_MIN} fragments, got {len(salience)}"
+        )
+    return salience[:k]
+
+
+def resolve_neutral_fragment_ids(
+    deconstruction: dict[str, Any],
+    alt_pool: AltPoolOverlay,
+    *,
+    top_k: int = _SALIENCE_TOP_K_DEFAULT,
+) -> list[str]:
+    """Salience-driven Top-K when present; else legacy default fragment set."""
+    if alt_pool.salience:
+        return fragment_ids_from_salience(alt_pool.salience, top_k=top_k)
+    return _default_neutral_fragments(deconstruction)
+
+
+def _neutral_text_similarity(a: str, b: str) -> float:
+    """Normalized pairwise text similarity for diversity guard (0..1)."""
+    left = " ".join(a.lower().split())
+    right = " ".join(b.lower().split())
+    if not left or not right:
+        return 0.0 if left != right else 1.0
+    return difflib.SequenceMatcher(None, left, right).ratio()
+
+
+def _fragment_set_for_pseudo(pseudo: PseudoSegment) -> set[str]:
+    frags = pseudo.source.get("fragments")
+    if isinstance(frags, list):
+        return {str(f) for f in frags}
+    return set()
+
+
+def validate_neutral_pseudo_batch_diversity(
+    neutral_pseudos: list[PseudoSegment],
+    *,
+    similarity_threshold: float = _NEUTRAL_DIVERSITY_SIM_THRESHOLD,
+    min_fragment_set_diff: int = _NEUTRAL_MIN_FRAGMENT_SET_DIFF,
+) -> None:
+    """Reject near-duplicate neutral pseudos (high text sim AND low fragment diff)."""
+    if len(neutral_pseudos) < 2:
+        return
+    for i, left in enumerate(neutral_pseudos):
+        for right in neutral_pseudos[i + 1 :]:
+            sim = _neutral_text_similarity(left.text, right.text)
+            frag_diff = len(
+                _fragment_set_for_pseudo(left) ^ _fragment_set_for_pseudo(right)
+            )
+            if sim >= similarity_threshold and frag_diff < min_fragment_set_diff:
+                raise ValueError(
+                    "neutral pseudo batch diversity guard failed: "
+                    f"near-duplicate pair ({left.source.get('agent_id')!r}, "
+                    f"{right.source.get('agent_id')!r}) "
+                    f"similarity={sim:.3f} fragment_diff={frag_diff}"
+                )
+
+
 def _default_neutral_fragments(deconstruction: dict[str, Any]) -> list[str]:
     ann = annotate_element_ids(deconstruction)
     frags: list[str] = []
@@ -342,11 +455,6 @@ def build_objective_floor_neutral_pseudo(
                     AltElement(fid, str(row.get("surface", "") or ""), []),
                     row,
                 )
-            )
-    for el in alt_pool.elements:
-        if el.element_id.startswith(("who-", "where-")):
-            floor_terms.extend(
-                objective_floor_terms_for_element(el, by_id.get(el.element_id))
             )
 
     deduped: list[tuple[str, str]] = []
@@ -446,13 +554,19 @@ def assemble_persona_channel_pseudos(
     alt_pool: AltPoolOverlay,
     toned_pseudos: list[PseudoSegment],
     expansion: dict[str, Any] | None = None,
+    *,
+    top_k: int = _SALIENCE_TOP_K_DEFAULT,
 ) -> list[PseudoSegment]:
     """Return [1 neutral pseudo] + toned pseudos with channel_role tags."""
+    fragment_ids = resolve_neutral_fragment_ids(
+        deconstruction, alt_pool, top_k=top_k
+    )
     neutral = build_objective_floor_neutral_pseudo(
         persona_id,
         deconstruction,
         alt_pool,
         expansion,
+        fragment_ids=fragment_ids,
     )
     hypernyms = collect_hypernym_anchor_terms(alt_pool, expansion)
     toned = tag_toned_pseudos(toned_pseudos)
@@ -540,7 +654,15 @@ def parse_alt_pool_response(
             )
         )
 
-    return AltPoolOverlay(persona_id=pid, elements=elements)
+    salience: list[str] = []
+    if "salience" in data:
+        salience_raw = data.get("salience")
+        if salience_raw is None:
+            salience = []
+        else:
+            salience = validate_salience(salience_raw, known_elements)
+
+    return AltPoolOverlay(persona_id=pid, elements=elements, salience=salience)
 
 
 def overlay_forbids_decon_fork(overlay_dict: dict[str, Any]) -> None:
