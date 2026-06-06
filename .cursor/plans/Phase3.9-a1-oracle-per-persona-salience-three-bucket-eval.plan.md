@@ -16,7 +16,7 @@ todos:
     status: complete
   - id: p39-4
     content: 3.9.4 · LLM-as-judge 打分器（新脚本）+ 以观察集人工分校准/验证 + 对齐阈值门 + 单测
-    status: pending
+    status: complete
   - id: p39-5
     content: 3.9.5 · run_persona_batch 并发化（Semaphore(3)+gather+原序重组+启动抖动+429 退避+--concurrency）+ 单测
     status: complete
@@ -211,9 +211,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest`（judge 相关）通过
-- [ ] judge 在观察集上报对齐度，低于阈值则标「不采信」
-- [ ] judge 分与人工分可并存、可标注分歧供复核
+- [x] `python -m unittest`（judge 相关）通过
+- [x] judge 在观察集上报对齐度，低于阈值则标「不采信」
+- [x] judge 分与人工分可并存、可标注分歧供复核
 
 ---
 
