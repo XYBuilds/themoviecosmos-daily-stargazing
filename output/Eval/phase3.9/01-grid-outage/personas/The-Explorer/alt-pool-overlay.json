@@ -7,19 +7,24 @@
         "original_term": "The Philippines grid operator",
         "alternatives": [
           {
-            "term": "grid pioneer navigating crisis",
+            "term": "the grid's boundary-crossing guardian",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "system steward",
+            "term": "the grid's risk-taker",
             "valence": "neutral",
             "provenance": "lens"
           },
           {
-            "term": "energy system operator",
+            "term": "the power system operator",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "the grid's reactive controller",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -28,14 +33,19 @@
         "original_term": "Kepco SPC Power's Unit 2",
         "alternatives": [
           {
-            "term": "frontier plant failure point",
-            "valence": "negative",
+            "term": "the unit that breached operational limits",
+            "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "power generation unit",
+            "term": "the failed power unit",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "the unit that abandoned the grid",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -44,19 +54,24 @@
         "original_term": "Officials",
         "alternatives": [
           {
-            "term": "emergency responders at the edge",
+            "term": "the crisis navigators",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "crisis decision-makers",
+            "term": "the emergency decision-makers",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the officials who ordered the load shedding",
             "valence": "neutral",
             "provenance": "lens"
           },
           {
-            "term": "authority figures",
-            "valence": "neutral",
-            "provenance": "hypernym"
+            "term": "the officials who caged demand",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -65,14 +80,19 @@
         "original_term": "Eleven generators",
         "alternatives": [
           {
-            "term": "power sources in the margin",
-            "valence": "neutral",
+            "term": "the generators forced into uncharted territory",
+            "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "electricity providers",
+            "term": "the power generators",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "the generators trapped by the crisis",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -81,14 +101,19 @@
         "original_term": "Kepco SPC Power's Unit 2 tripped offline",
         "alternatives": [
           {
-            "term": "system breach at the boundary",
-            "valence": "negative",
+            "term": "a unit's journey into failure",
+            "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "technical failure event",
+            "term": "a critical power unit failure",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "a unit's reckless operational crossing",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -97,14 +122,19 @@
         "original_term": "other long-running plant outages",
         "alternatives": [
           {
-            "term": "chronic infrastructure limits",
-            "valence": "negative",
+            "term": "the cumulative boundary breaches",
+            "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "ongoing operational issues",
+            "term": "multiple plant outages",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "the system's festering vulnerabilities",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -113,14 +143,19 @@
         "original_term": "seasonal heat drove demand into a thin operating margin",
         "alternatives": [
           {
-            "term": "frontier of demand pressure",
+            "term": "the heat pushed the grid into new frontiers of stress",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "thermal-driven load strain",
+            "term": "seasonal heat increased demand",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "demand was caged by environmental pressure",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -129,14 +164,19 @@
         "original_term": "Kepco SPC Power's Unit 2 tripped offline",
         "alternatives": [
           {
-            "term": "system disruption crossing a line",
-            "valence": "negative",
+            "term": "the unit's untimely journey offline",
+            "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "unit offline incident",
+            "term": "the unit tripping offline",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "the unit's reckless failure",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -145,14 +185,19 @@
         "original_term": "The Philippines grid operator placed the Visayas under red alert",
         "alternatives": [
           {
-            "term": "alert declaration on the frontier",
+            "term": "the operator crossed into crisis territory",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "emergency status activation",
+            "term": "the grid operator declared a red alert",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "the operator locked down the Visayas",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -161,17 +206,17 @@
         "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
         "alternatives": [
           {
-            "term": "bold intervention to save the grid",
+            "term": "officials navigated the emergency by shedding load",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "load reduction measure",
+            "term": "officials ordered load shedding to protect the grid",
             "valence": "neutral",
             "provenance": "hypernym"
           },
           {
-            "term": "reactive caging of demand",
+            "term": "officials imposed emergency restrictions on demand",
             "valence": "negative",
             "provenance": "lens"
           }
@@ -182,40 +227,29 @@
         "original_term": "more than 950 megawatts unavailable",
         "alternatives": [
           {
-            "term": "massive power frontier closure",
-            "valence": "negative",
+            "term": "a significant power shortfall at the frontier",
+            "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "generation capacity shortfall",
+            "term": "over 950 megawatts of power capacity unavailable",
             "valence": "neutral",
             "provenance": "hypernym"
-          }
-        ]
-      },
-      {
-        "element_id": "where-0",
-        "original_term": "Visayas",
-        "alternatives": [
-          {
-            "term": "alert zone at the edge",
-            "valence": "negative",
-            "provenance": "lens"
           },
           {
-            "term": "geographical region",
-            "valence": "neutral",
-            "provenance": "hypernym"
+            "term": "a massive deficit caging the grid",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       }
     ]
   },
   "salience": [
-    "result-0",
     "how-2",
-    "how-1",
+    "result-0",
     "who-0",
-    "why-0"
+    "who-2",
+    "why-2"
   ]
 }

@@ -7,24 +7,19 @@
         "original_term": "The Philippines grid operator",
         "alternatives": [
           {
-            "term": "the operator verifying grid stability",
+            "term": "grid stability monitors",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the system monitor",
+            "term": "the system overseer",
             "valence": "neutral",
             "provenance": "lens"
           },
           {
-            "term": "the grid management entity",
+            "term": "grid management authority",
             "valence": "neutral",
             "provenance": "hypernym"
-          },
-          {
-            "term": "the entity reacting to an unverified trigger",
-            "valence": "negative",
-            "provenance": "lens"
           }
         ]
       },
@@ -33,24 +28,19 @@
         "original_term": "Kepco SPC Power's Unit 2",
         "alternatives": [
           {
-            "term": "the unit whose failure was a verified cause",
-            "valence": "positive",
-            "provenance": "lens"
-          },
-          {
-            "term": "the tripped generator",
-            "valence": "neutral",
-            "provenance": "lens"
-          },
-          {
-            "term": "the power unit",
-            "valence": "neutral",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "the source of the initial fault",
+            "term": "the failed generating asset",
             "valence": "negative",
             "provenance": "lens"
+          },
+          {
+            "term": "the tripped unit",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "power generation unit",
+            "valence": "neutral",
+            "provenance": "hypernym"
           }
         ]
       },
@@ -59,50 +49,14 @@
         "original_term": "Officials",
         "alternatives": [
           {
-            "term": "decision-makers acting on evidence",
+            "term": "crisis decision-makers",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the authorities",
-            "valence": "neutral",
-            "provenance": "lens"
-          },
-          {
-            "term": "the officials",
+            "term": "emergency authorities",
             "valence": "neutral",
             "provenance": "hypernym"
-          },
-          {
-            "term": "the officials issuing orders without full analysis",
-            "valence": "negative",
-            "provenance": "lens"
-          }
-        ]
-      },
-      {
-        "element_id": "who-3",
-        "original_term": "Eleven generators",
-        "alternatives": [
-          {
-            "term": "the units confirming the supply shortfall",
-            "valence": "positive",
-            "provenance": "lens"
-          },
-          {
-            "term": "the offline generators",
-            "valence": "neutral",
-            "provenance": "lens"
-          },
-          {
-            "term": "the power generators",
-            "valence": "neutral",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "the generators contributing to the deficit",
-            "valence": "negative",
-            "provenance": "lens"
           }
         ]
       },
@@ -111,24 +65,19 @@
         "original_term": "Kepco SPC Power's Unit 2 tripped offline",
         "alternatives": [
           {
-            "term": "the confirmed mechanical failure",
+            "term": "a verified equipment failure",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the unit tripping offline",
-            "valence": "neutral",
-            "provenance": "lens"
-          },
-          {
-            "term": "the operational failure",
-            "valence": "neutral",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "the unscheduled outage",
+            "term": "the unit's unexpected shutdown",
             "valence": "negative",
             "provenance": "lens"
+          },
+          {
+            "term": "a documented outage",
+            "valence": "neutral",
+            "provenance": "hypernym"
           }
         ]
       },
@@ -137,24 +86,14 @@
         "original_term": "other long-running plant outages",
         "alternatives": [
           {
-            "term": "the pre-existing, documented maintenance gaps",
-            "valence": "positive",
-            "provenance": "lens"
-          },
-          {
-            "term": "the other outages",
-            "valence": "neutral",
-            "provenance": "lens"
-          },
-          {
-            "term": "the plant outages",
-            "valence": "neutral",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "the accumulated, unresolved failures",
+            "term": "a pattern of infrastructure neglect",
             "valence": "negative",
             "provenance": "lens"
+          },
+          {
+            "term": "pre-existing generation shortfalls",
+            "valence": "neutral",
+            "provenance": "hypernym"
           }
         ]
       },
@@ -163,24 +102,19 @@
         "original_term": "seasonal heat drove demand into a thin operating margin",
         "alternatives": [
           {
-            "term": "the measurable peak demand scenario",
+            "term": "verified weather-driven load stress",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the high demand period",
-            "valence": "neutral",
-            "provenance": "lens"
-          },
-          {
-            "term": "the demand increase",
-            "valence": "neutral",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "the unmanaged demand spike",
+            "term": "demand exceeding safe capacity",
             "valence": "negative",
             "provenance": "lens"
+          },
+          {
+            "term": "a documented supply-demand imbalance",
+            "valence": "neutral",
+            "provenance": "hypernym"
           }
         ]
       },
@@ -189,24 +123,19 @@
         "original_term": "Kepco SPC Power's Unit 2 tripped offline",
         "alternatives": [
           {
-            "term": "the event initiating the chain of evidence",
+            "term": "a failure traceable to the unit",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the tripping event",
-            "valence": "neutral",
-            "provenance": "lens"
-          },
-          {
-            "term": "the triggering event",
-            "valence": "neutral",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "the failure that began the crisis",
+            "term": "an uncontrolled trip event",
             "valence": "negative",
             "provenance": "lens"
+          },
+          {
+            "term": "an unscheduled generation outage",
+            "valence": "neutral",
+            "provenance": "hypernym"
           }
         ]
       },
@@ -215,24 +144,19 @@
         "original_term": "The Philippines grid operator placed the Visayas under red alert",
         "alternatives": [
           {
-            "term": "the operator issuing a verified alert",
+            "term": "a data-driven escalation protocol",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the alert declaration",
+            "term": "an automated system response",
             "valence": "neutral",
             "provenance": "lens"
           },
           {
-            "term": "the grid status change",
+            "term": "a grid stability procedure",
             "valence": "neutral",
             "provenance": "hypernym"
-          },
-          {
-            "term": "the alert without full root-cause confirmation",
-            "valence": "negative",
-            "provenance": "lens"
           }
         ]
       },
@@ -241,24 +165,19 @@
         "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
         "alternatives": [
           {
-            "term": "the preventive measure to avoid a documented overload risk",
+            "term": "a calculated grid protection measure",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the load shedding order",
-            "valence": "neutral",
-            "provenance": "lens"
-          },
-          {
-            "term": "the emergency action",
-            "valence": "neutral",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "the reactive, precautionary shutdown",
+            "term": "forced demand reduction",
             "valence": "negative",
             "provenance": "lens"
+          },
+          {
+            "term": "an emergency load management action",
+            "valence": "neutral",
+            "provenance": "hypernym"
           }
         ]
       },
@@ -267,24 +186,19 @@
         "original_term": "more than 950 megawatts unavailable",
         "alternatives": [
           {
-            "term": "the quantified supply deficit",
+            "term": "a quantified power deficit",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the power shortfall",
-            "valence": "neutral",
-            "provenance": "lens"
-          },
-          {
-            "term": "the generation loss",
-            "valence": "neutral",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "the critical capacity gap",
+            "term": "severe generation loss",
             "valence": "negative",
             "provenance": "lens"
+          },
+          {
+            "term": "a significant capacity shortfall",
+            "valence": "neutral",
+            "provenance": "hypernym"
           }
         ]
       }
@@ -292,11 +206,9 @@
   },
   "salience": [
     "result-0",
-    "how-0",
-    "how-1",
     "why-0",
+    "why-1",
     "why-2",
-    "who-0",
-    "where-0"
+    "how-0"
   ]
 }

@@ -6,44 +6,100 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "Kepco SPC Power's Unit 2. Eleven generators. more than 950 megawatts unavailable. Kepco SPC Power's Unit 2 tripped offline. seasonal heat drove demand into a thin operating margin The event unfolds across the affected generator and power unit.",
+          "pseudo": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2. Eleven generators. seasonal heat drove demand into a thin operating margin. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading The event unfolds across a large-scale power deficit and power shortage.",
           "source": {
             "agent_id": "THE-INNOCENT",
             "fragments": [
+              "result-0",
               "who-1",
               "who-3",
-              "result-0",
-              "why-0",
-              "why-2"
+              "why-2",
+              "how-2"
             ],
             "channel_role": "neutral"
           },
           "hits": [
             {
-              "tmdb_id": 190738,
-              "title": "Assembling a Generator",
-              "similarity": 0.4111752510070801,
-              "movie_url": "https://themoviecosmos.com/movie/190738"
+              "tmdb_id": 720321,
+              "title": "Breathe",
+              "similarity": 0.4383590817451477,
+              "movie_url": "https://themoviecosmos.com/movie/720321"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.430087685585022,
+              "similarity": 0.4476856589317322,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "In May 2026, a critical power unit failed unexpectedly in the Visayas region, an island group in the Philippines. This equipment failure, combined with other long-running plant outages and increased seasonal electricity demand, created a thin operating margin. The trusted grid operator issued a necessary red alert, and responsible officials ordered a protective emergency measure—load shedding—to prevent a critical transmission line from overloading. The result was a significant capacity shortage, with more than 950 megawatts becoming unavailable, highlighting the challenges of maintaining grid stability.",
+          "pseudo": "In May 2026, the trusted grid guardian worked to protect the Visayas region after a sudden operational interruption at a power unit. Duty-bound decision-makers issued a protective warning and implemented emergency measures to maintain grid stability, responding to increased demand due to heat that strained the system. Their actions aimed to prevent a large-scale power deficit, though a significant power shortfall still affected the area as over 950 megawatts became unavailable.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "why-0",
+              "why-2",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "hits": [
+            {
+              "tmdb_id": 533885,
+              "title": "Kaappaan",
+              "similarity": 0.4972318708896637,
+              "movie_url": "https://themoviecosmos.com/movie/533885"
+            },
+            {
+              "tmdb_id": 274855,
+              "title": "Geostorm",
+              "similarity": 0.5545840263366699,
+              "movie_url": "https://themoviecosmos.com/movie/274855"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "When the affected power unit experienced a sudden shutdown, the grid management authority declared a red alert for the affected community in the Visayas. This grid management action, combined with load shedding for grid stability, was a direct response to prolonged operational challenges and ongoing maintenance issues across eleven power generators. The measures sought to mitigate the energy deficit, highlighting the system's vulnerability to equipment failure.",
+          "source": {
+            "agent_id": "THE-INNOCENT",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "how-0",
+              "how-1",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "hits": [
+            {
+              "tmdb_id": 58770,
+              "title": "The Trigger Effect",
+              "similarity": 0.443939208984375,
+              "movie_url": "https://themoviecosmos.com/movie/58770"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.5195778608322144,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Public authorities in the Philippines acted to safeguard the region in need of stability after Kepco SPC Power's Unit 2 tripped offline. Their emergency response, including load shedding, was necessitated by a heatwave impact that drove high demand and compounded the effects of other long-running plant outages. This collective effort aimed to address the resulting power shortage and protect critical energy infrastructure.",
           "source": {
             "agent_id": "THE-INNOCENT",
             "fragments": [
               "why-0",
               "why-1",
               "why-2",
-              "how-0",
-              "how-1",
               "how-2",
               "result-0"
             ],
@@ -53,45 +109,14 @@
             {
               "tmdb_id": 111750,
               "title": "The Real Glory",
-              "similarity": 0.5067793130874634,
+              "similarity": 0.4792495369911194,
               "movie_url": "https://themoviecosmos.com/movie/111750"
             },
             {
-              "tmdb_id": 429918,
-              "title": "Survival Family",
-              "similarity": 0.5621384382247925,
-              "movie_url": "https://themoviecosmos.com/movie/429918"
-            }
-          ]
-        },
-        {
-          "pseudo_id": "p2",
-          "pseudo": "The Philippines' energy sector entity faced a severe power shortfall after a generation unit outage and persistent plant failures. The heatwave impact drove demand up, pushing the grid into a vulnerable state. To stabilize the energy infrastructure, the grid management entity placed the affected area under a grid status declaration, and the decision-making authorities implemented an emergency load reduction. This action, while causing a temporary energy deficit, was intended to protect the power generation fleet and ensure a path back to reliable service for the vulnerable region.",
-          "source": {
-            "agent_id": "THE-INNOCENT",
-            "fragments": [
-              "why-0",
-              "why-1",
-              "why-2",
-              "how-0",
-              "how-1",
-              "how-2",
-              "result-0"
-            ],
-            "channel_role": "toned"
-          },
-          "hits": [
-            {
-              "tmdb_id": 491854,
-              "title": "Foxtrot Six",
-              "similarity": 0.48595190048217773,
-              "movie_url": "https://themoviecosmos.com/movie/491854"
-            },
-            {
-              "tmdb_id": 429918,
-              "title": "Survival Family",
-              "similarity": 0.5064826011657715,
-              "movie_url": "https://themoviecosmos.com/movie/429918"
+              "tmdb_id": 280492,
+              "title": "From What Is Before",
+              "similarity": 0.48535746335983276,
+              "movie_url": "https://themoviecosmos.com/movie/280492"
             }
           ]
         }
@@ -103,36 +128,36 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2. seasonal heat drove demand into a thin operating margin. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. The Philippines grid operator The event unfolds across a massive power shortage and power shortage.",
+          "pseudo": "more than 950 megawatts unavailable. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Kepco SPC Power's Unit 2. Eleven generators. seasonal heat drove demand into a thin operating margin The event unfolds across a major power shortfall and power shortage.",
           "source": {
             "agent_id": "THE-EVERYMAN",
             "fragments": [
               "result-0",
-              "who-1",
-              "why-2",
               "how-2",
-              "who-0"
+              "who-1",
+              "who-3",
+              "why-2"
             ],
             "channel_role": "neutral"
           },
           "hits": [
             {
-              "tmdb_id": 1484253,
-              "title": "Trainwreck: Poop Cruise",
-              "similarity": 0.4123571515083313,
-              "movie_url": "https://themoviecosmos.com/movie/1484253"
-            },
-            {
               "tmdb_id": 720321,
               "title": "Breathe",
-              "similarity": 0.41906222701072693,
+              "similarity": 0.44313034415245056,
               "movie_url": "https://themoviecosmos.com/movie/720321"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.46956175565719604,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "It started when a power plant unit failed, setting off a chain reaction. The national grid manager declared a grid emergency for the Visayas region, a move that hit ordinary households directly. Officials were forced to cut power to prevent a total blackout, leaving a massive power shortage of over 950 megawatts. This wasn't a problem for the elite; it was a practical crisis affecting everyone's daily life, from bills to basic comfort.",
+          "pseudo": "When a major power plant in the Visayas region failed, it triggered a grid incident that left the island group on high alert. The power grid managers and government authorities had to order emergency load shedding as a grid stabilization measure, resulting in a major power shortfall of over 950 megawatts for everyone in the area. This sudden energy deficit, driven by high summer demand straining the system, shows how a single equipment failure can disrupt daily life for ordinary people who depend on reliable electricity.",
           "source": {
             "agent_id": "THE-EVERYMAN",
             "fragments": [
@@ -145,43 +170,73 @@
           },
           "hits": [
             {
-              "tmdb_id": 139329,
-              "title": "Back to 1942",
-              "similarity": 0.5054616928100586,
-              "movie_url": "https://themoviecosmos.com/movie/139329"
+              "tmdb_id": 475946,
+              "title": "Blade Runner: Black Out 2022",
+              "similarity": 0.5195680856704712,
+              "movie_url": "https://themoviecosmos.com/movie/475946"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5503743886947632,
+              "similarity": 0.5942156314849854,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p2",
-          "pseudo": "A broken generator at a major facility was the immediate trigger. But the real squeeze came from high demand driven by hot weather, pushing the grid to its limit. This combination meant more than 950 megawatts became unavailable, a huge capacity loss. The people making the emergency decision had to act, implementing load shedding—a direct, painful measure that underscored how shared the vulnerability of the system really is for everyday users.",
+          "pseudo": "The recent blackout in the Visayas region stems from a power unit failing, adding to ongoing shutdowns at other plants. High summer demand strained the system to its limit, leading authorities to mandate power cuts to prevent a bigger outage. This energy deficit left hundreds of thousands of homes without power, a huge loss for ordinary people just trying to keep cool during the seasonal heat.",
           "source": {
             "agent_id": "THE-EVERYMAN",
             "fragments": [
               "why-0",
+              "why-1",
               "why-2",
-              "result-0",
-              "how-2"
+              "how-2",
+              "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 190738,
-              "title": "Assembling a Generator",
-              "similarity": 0.4916699528694153,
-              "movie_url": "https://themoviecosmos.com/movie/190738"
+              "tmdb_id": 43552,
+              "title": "Vanishing on 7th Street",
+              "similarity": 0.44192901253700256,
+              "movie_url": "https://themoviecosmos.com/movie/43552"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5044701099395752,
+              "similarity": 0.5348376035690308,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "Critical equipment let us down when a machine broke down, and the system couldn't handle everyone needing power at once. The power managers issued a warning, but rolling blackouts hit our community in the Visayas anyway because the grid failed to stabilize. Enough electricity to power hundreds of thousands of homes was gone—a stark reminder of how vulnerable everyday infrastructure is when demand spikes.",
+          "source": {
+            "agent_id": "THE-EVERYMAN",
+            "fragments": [
+              "why-0",
+              "why-2",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "hits": [
+            {
+              "tmdb_id": 274855,
+              "title": "Geostorm",
+              "similarity": 0.5438829064369202,
+              "movie_url": "https://themoviecosmos.com/movie/274855"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.5923320651054382,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
@@ -194,40 +249,42 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "more than 950 megawatts unavailable. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. The Philippines grid operator placed the Visayas under red alert. The Philippines grid operator. Kepco SPC Power's Unit 2 tripped offline The event unfolds across a significant loss of power capacity and power shortage.",
+          "pseudo": "more than 950 megawatts unavailable. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Officials. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator placed the Visayas under red alert The event unfolds across a substantial reduction in available electricity and power shortage.",
           "source": {
             "agent_id": "THE-HERO",
             "fragments": [
               "result-0",
               "how-2",
-              "how-1",
-              "who-0",
-              "why-0"
+              "who-2",
+              "why-0",
+              "how-1"
             ],
             "channel_role": "neutral"
           },
           "hits": [
             {
-              "tmdb_id": 111750,
-              "title": "The Real Glory",
-              "similarity": 0.41811129450798035,
-              "movie_url": "https://themoviecosmos.com/movie/111750"
+              "tmdb_id": 720321,
+              "title": "Breathe",
+              "similarity": 0.4163302183151245,
+              "movie_url": "https://themoviecosmos.com/movie/720321"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.4621845483779907,
+              "similarity": 0.48750677704811096,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "When a critical failure at a power plant unit plunged the Visayas grid into crisis, the defenders of the grid sounded the alarm to protect the system. Faced with a massive power deficit to overcome, the commanders who acted made the tough call to prevent catastrophic failure, ordering emergency load shedding as a grid stabilization measure. This decisive action, born of a grid incident triggered by equipment failure and compounded by high seasonal demand, ensured the critical transmission line held.",
+          "pseudo": "When the critical system failure at Kepco SPC Power's Unit 2 triggered a grid incident, the grid guardians were forced to respond. Faced with compounding system vulnerabilities and a relentless assault of summer demand, they issued a high-level warning for the affected region. Their courageous decision to prevent total collapse—an emergency load shedding—was a drastic but necessary measure to stabilize the power grid against a massive power deficit. This decisive action by the energy sector entity averted wider catastrophe.",
           "source": {
             "agent_id": "THE-HERO",
             "fragments": [
               "why-0",
+              "why-1",
+              "why-2",
               "how-1",
               "how-2",
               "result-0"
@@ -238,41 +295,72 @@
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5481938123703003,
+              "similarity": 0.4889013171195984,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             },
             {
               "tmdb_id": 274855,
               "title": "Geostorm",
-              "similarity": 0.5781439542770386,
+              "similarity": 0.5021364688873291,
               "movie_url": "https://themoviecosmos.com/movie/274855"
             }
           ]
         },
         {
           "pseudo_id": "p2",
-          "pseudo": "The power crisis on the front line of the power crisis began with a unit malfunction, but the system administrator moved decisively. Issuing a red alert, they confronted the ongoing vulnerabilities and relentless demand pressure head-on. Their emergency response, a critical grid management action, prevented a wider collapse despite a significant loss of power capacity, demonstrating the courage required to defend the energy sector entity.",
+          "pseudo": "The authorities, acting as decisive crisis managers, confronted the point of initial failure when the offline generator suddenly shut down. Amidst high demand and ongoing maintenance issues, they declared a red alert for the frontline of the power crisis. Their operational procedure to avoid overload, though a significant loss of generation capacity, protected the energy infrastructure from a shortage. This grid management action demonstrated the resolve of government officials to manage the emergency.",
           "source": {
             "agent_id": "THE-HERO",
             "fragments": [
               "why-0",
-              "why-1",
+              "why-2",
               "how-1",
+              "how-2",
               "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 100063,
-              "title": "Blackout",
-              "similarity": 0.5244184732437134,
-              "movie_url": "https://themoviecosmos.com/movie/100063"
+              "tmdb_id": 194834,
+              "title": "Re-Generator",
+              "similarity": 0.5291019678115845,
+              "movie_url": "https://themoviecosmos.com/movie/194834"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.5529801249504089,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The system overseer faced the triggering event: a power outage from a failed power unit, compounded by extended plant shutdowns and a heat-driven demand surge. Raising the alarm for the affected region, they implemented an emergency measure to avoid overload. This grid stabilization effort, despite resulting in a capacity loss, was a critical control action by the utility to address the demand spike. Their response was a vital measure against the equipment malfunction that threatened the power generation equipment.",
+          "source": {
+            "agent_id": "THE-HERO",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "hits": [
+            {
+              "tmdb_id": 1223272,
+              "title": "Contagion of Fear",
+              "similarity": 0.48873504996299744,
+              "movie_url": "https://themoviecosmos.com/movie/1223272"
             },
             {
               "tmdb_id": 274855,
               "title": "Geostorm",
-              "similarity": 0.5541971921920776,
+              "similarity": 0.48959052562713623,
               "movie_url": "https://themoviecosmos.com/movie/274855"
             }
           ]
@@ -285,36 +373,36 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "more than 950 megawatts unavailable. The Philippines grid operator placed the Visayas under red alert. The Philippines grid operator. Kepco SPC Power's Unit 2 tripped offline. seasonal heat drove demand into a thin operating margin The event unfolds across significant power capacity lost and power shortage.",
+          "pseudo": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2. Eleven generators. Kepco SPC Power's Unit 2 tripped offline. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading The event unfolds across power unavailability and power shortage.",
           "source": {
             "agent_id": "THE-CAREGIVER",
             "fragments": [
               "result-0",
-              "how-1",
-              "who-0",
-              "how-0",
-              "why-2"
+              "who-1",
+              "who-3",
+              "why-0",
+              "how-2"
             ],
             "channel_role": "neutral"
           },
           "hits": [
             {
-              "tmdb_id": 111750,
-              "title": "The Real Glory",
-              "similarity": 0.4015352725982666,
-              "movie_url": "https://themoviecosmos.com/movie/111750"
+              "tmdb_id": 786357,
+              "title": "Animals on the Loose: A You vs. Wild Movie",
+              "similarity": 0.43441152572631836,
+              "movie_url": "https://themoviecosmos.com/movie/786357"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.415899395942688,
+              "similarity": 0.48963436484336853,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "A critical power unit failed, jeopardizing households across the Visayas region where families face power insecurity during a heat crisis. The grid guardian responsible for keeping power flowing to families sounded a red alert to protect residents from grid collapse. Officials implemented emergency load shedding as a control action to prevent a wider collapse, but this emergency measure could not prevent over 950 megawatts of supply from being lost, leaving households without reliable power.",
+          "pseudo": "The unexpected equipment failure of a key power unit, compounded by prolonged neglect of critical infrastructure, triggered a grid incident that left families powerless. In response, protective authorities managing the crisis initiated an urgent alert status and implemented emergency load shedding to prevent a wider blackout. These necessary measures, while causing temporary power rationing, were essential for grid stabilization to shield the vulnerable community from a massive power shortage.",
           "source": {
             "agent_id": "THE-CAREGIVER",
             "fragments": [
@@ -327,73 +415,44 @@
           },
           "hits": [
             {
-              "tmdb_id": 32033,
-              "title": "Pulse",
-              "similarity": 0.525890588760376,
-              "movie_url": "https://themoviecosmos.com/movie/32033"
+              "tmdb_id": 475946,
+              "title": "Blade Runner: Black Out 2022",
+              "similarity": 0.5105296969413757,
+              "movie_url": "https://themoviecosmos.com/movie/475946"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5571401119232178,
+              "similarity": 0.5192244052886963,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p2",
-          "pseudo": "Dangerous seasonal heat pushed demand to the brink, exposing families to load shedding while plants whose outages left communities exposed to blackouts compounded the supply deficit. The power system controller, in an emergency response, declared a red alert for the affected area. This action was followed by emergency load shedding ordered to prevent line overload, a grid stabilization effort that resulted in significant power capacity lost.",
+          "pseudo": "Under the stress of a dangerous heatwave, the energy demand spike overwhelmed a vulnerable system already strained by the disabled generating unit. The power system overseer was forced to declare a red alert for the affected region, a decision made to protect the island group from cascading harm. The subsequent power rationing, a difficult emergency measure, resulted in a significant generation deficit, directly impacting countless homes and highlighting the fragility of essential services.",
           "source": {
             "agent_id": "THE-CAREGIVER",
             "fragments": [
               "why-2",
-              "why-1",
+              "how-0",
               "how-1",
-              "how-2",
               "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 993729,
-              "title": "South Park the Streaming Wars Part 2",
-              "similarity": 0.48153263330459595,
-              "movie_url": "https://themoviecosmos.com/movie/993729"
+              "tmdb_id": 33495,
+              "title": "2061 - Un anno eccezionale",
+              "similarity": 0.5445220470428467,
+              "movie_url": "https://themoviecosmos.com/movie/33495"
             },
             {
               "tmdb_id": 841793,
               "title": "Stranded",
-              "similarity": 0.5181095004081726,
+              "similarity": 0.5545193552970886,
               "movie_url": "https://themoviecosmos.com/movie/841793"
-            }
-          ]
-        },
-        {
-          "pseudo_id": "p3",
-          "pseudo": "The generator failure that triggered the crisis was Unit 2 tripping offline, an equipment failure that began a chain of events. The grid operator managing the crisis response declared a red alert for the island group placed under red alert. Authorities then ordered load shedding was implemented to keep the critical transmission line from overloading, an emergency measure that led to a massive energy deficit of more than 950 megawatts unavailable.",
-          "source": {
-            "agent_id": "THE-CAREGIVER",
-            "fragments": [
-              "how-0",
-              "how-1",
-              "how-2",
-              "result-0"
-            ],
-            "channel_role": "toned"
-          },
-          "hits": [
-            {
-              "tmdb_id": 429918,
-              "title": "Survival Family",
-              "similarity": 0.5208652019500732,
-              "movie_url": "https://themoviecosmos.com/movie/429918"
-            },
-            {
-              "tmdb_id": 475946,
-              "title": "Blade Runner: Black Out 2022",
-              "similarity": 0.5248603820800781,
-              "movie_url": "https://themoviecosmos.com/movie/475946"
             }
           ]
         }
@@ -405,40 +464,68 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "more than 950 megawatts unavailable. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. The Philippines grid operator placed the Visayas under red alert. The Philippines grid operator. Kepco SPC Power's Unit 2 tripped offline The event unfolds across generation capacity shortfall and power shortage.",
+          "pseudo": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. more than 950 megawatts unavailable. The Philippines grid operator. Officials. seasonal heat drove demand into a thin operating margin The event unfolds across officials ordered load shedding to protect the grid and load shedding.",
           "source": {
             "agent_id": "THE-EXPLORER",
             "fragments": [
-              "result-0",
               "how-2",
-              "how-1",
+              "result-0",
               "who-0",
-              "why-0"
+              "who-2",
+              "why-2"
             ],
             "channel_role": "neutral"
           },
           "hits": [
             {
-              "tmdb_id": 111750,
-              "title": "The Real Glory",
-              "similarity": 0.41214048862457275,
-              "movie_url": "https://themoviecosmos.com/movie/111750"
-            },
-            {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.4530986547470093,
+              "similarity": 0.39475274085998535,
               "movie_url": "https://themoviecosmos.com/movie/429918"
+            },
+            {
+              "tmdb_id": 1484253,
+              "title": "Trainwreck: Poop Cruise",
+              "similarity": 0.41472288966178894,
+              "movie_url": "https://themoviecosmos.com/movie/1484253"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "When a frontier plant failure point triggered a technical failure event, the energy system operator was pushed to the edge of grid stability. Officials, acting as crisis decision-makers, ordered an emergency measure to prevent a power shortage from spiraling. This load reduction measure, a bold intervention to save the grid, kept a critical transmission line from overloading, but the resulting generation capacity shortfall highlighted the fragility of the system under heatwave impact.",
+          "pseudo": "When the failed power unit breached its operational limits, the grid operator crossed into crisis territory. Seasonal heat had already pushed the grid into new frontiers of stress, and the emergency decision-makers responded by navigating the situation with load shedding, a critical grid stabilization measure. This journey into uncharted operational territory resulted in a significant power shortfall, a frontier crisis for the island group's energy sector entity.",
           "source": {
             "agent_id": "THE-EXPLORER",
             "fragments": [
               "why-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "hits": [
+            {
+              "tmdb_id": 33495,
+              "title": "2061 - Un anno eccezionale",
+              "similarity": 0.5390532612800598,
+              "movie_url": "https://themoviecosmos.com/movie/33495"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.5397992134094238,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "The power system operator faced a cascade of challenges as multiple plant outages compounded the crisis. Officials, acting as crisis navigators, ordered load shedding to protect the grid from overloading a critical transmission line. The emergency response was a necessary action to manage the energy deficit caused by high demand from the heatwave impact, leaving over 950 megawatts of power capacity unavailable in the region.",
+          "source": {
+            "agent_id": "THE-EXPLORER",
+            "fragments": [
+              "why-1",
               "how-1",
               "how-2",
               "result-0"
@@ -449,25 +536,25 @@
             {
               "tmdb_id": 274855,
               "title": "Geostorm",
-              "similarity": 0.5124825835227966,
+              "similarity": 0.489316463470459,
               "movie_url": "https://themoviecosmos.com/movie/274855"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5198107957839966,
+              "similarity": 0.5612325668334961,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
-          "pseudo_id": "p2",
-          "pseudo": "The Visayas region, an alert zone at the edge, faced a massive power frontier closure after a system breach at the boundary. Chronic infrastructure limits and thermal-driven load strain pushed the grid into a high demand crisis. In response, authority figures implemented a load shedding control action, a reactive caging of demand to stabilize the grid, exposing the underlying power outage and capacity loss across the island group.",
+          "pseudo_id": "p3",
+          "pseudo": "A unit's reckless operational crossing triggered a grid incident, forcing the grid's reactive controller to lock down the Visayas under a red alert. The officials who caged demand imposed emergency restrictions to prevent a massive deficit caging the grid. This forced the power generators into uncharted territory as they navigated the energy demand spike, exposing the system's festering vulnerabilities in a critical time of shortage.",
           "source": {
             "agent_id": "THE-EXPLORER",
             "fragments": [
               "why-0",
-              "why-1",
+              "how-1",
               "how-2",
               "result-0"
             ],
@@ -475,15 +562,15 @@
           },
           "hits": [
             {
-              "tmdb_id": 841793,
-              "title": "Stranded",
-              "similarity": 0.4904855787754059,
-              "movie_url": "https://themoviecosmos.com/movie/841793"
+              "tmdb_id": 46221,
+              "title": "The Tunnel",
+              "similarity": 0.5304536819458008,
+              "movie_url": "https://themoviecosmos.com/movie/46221"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5348778963088989,
+              "similarity": 0.5547788143157959,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
@@ -496,36 +583,36 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2 tripped offline. other long-running plant outages. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. The Philippines grid operator placed the Visayas under red alert The event unfolds across system-wide shortfall and power shortage.",
+          "pseudo": "The Philippines grid operator. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Kepco SPC Power's Unit 2 tripped offline. other long-running plant outages. more than 950 megawatts unavailable The event unfolds across system operator and grid operator.",
           "source": {
             "agent_id": "THE-OUTLAW",
             "fragments": [
-              "result-0",
+              "who-0",
+              "how-2",
               "why-0",
               "why-1",
-              "how-2",
-              "how-1"
+              "result-0"
             ],
             "channel_role": "neutral"
           },
           "hits": [
             {
-              "tmdb_id": 720321,
-              "title": "Breathe",
-              "similarity": 0.41874074935913086,
-              "movie_url": "https://themoviecosmos.com/movie/720321"
+              "tmdb_id": 111750,
+              "title": "The Real Glory",
+              "similarity": 0.43398547172546387,
+              "movie_url": "https://themoviecosmos.com/movie/111750"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5290364027023315,
+              "similarity": 0.4884073734283447,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "The Visayas region was plunged into darkness after a single power generation unit failed, exposing the fragility of an energy infrastructure long plagued by neglect. This triggered an emergency response from the grid authority, which sounded the alarm and ordered a massive power deficit to protect its own critical line, leaving the populace to bear the cost of a system-wide shortfall.",
+          "pseudo": "When the vulnerable power plant unit failed, the grid operator imposed an emergency load reduction across the Visayas. This crisis management, born from a corporate infrastructure failure and chronic system neglect, resulted in a massive power deficit that exposed the system's collapse under environmental pressure.",
           "source": {
             "agent_id": "THE-OUTLAW",
             "fragments": [
@@ -537,70 +624,16 @@
           },
           "hits": [
             {
-              "tmdb_id": 46221,
-              "title": "The Tunnel",
-              "similarity": 0.5021029114723206,
-              "movie_url": "https://themoviecosmos.com/movie/46221"
+              "tmdb_id": 266727,
+              "title": "Peasants",
+              "similarity": 0.47359442710876465,
+              "movie_url": "https://themoviecosmos.com/movie/266727"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5298991203308105,
+              "similarity": 0.5357550382614136,
               "movie_url": "https://themoviecosmos.com/movie/429918"
-            }
-          ]
-        },
-        {
-          "pseudo_id": "p2",
-          "pseudo": "Chronic grid neglect culminated in the system's weak link breaking, forcing the authorities enforcing cuts to impose blackouts on the affected area. This emergency load reduction was a direct consequence of the energy deficit, a stark reminder of how the system's controller prioritizes its infrastructure over the people it is meant to serve.",
-          "source": {
-            "agent_id": "THE-OUTLAW",
-            "fragments": [
-              "why-1",
-              "how-2",
-              "result-0"
-            ],
-            "channel_role": "toned"
-          },
-          "hits": [
-            {
-              "tmdb_id": 475946,
-              "title": "Blade Runner: Black Out 2022",
-              "similarity": 0.48989731073379517,
-              "movie_url": "https://themoviecosmos.com/movie/475946"
-            },
-            {
-              "tmdb_id": 429918,
-              "title": "Survival Family",
-              "similarity": 0.531431257724762,
-              "movie_url": "https://themoviecosmos.com/movie/429918"
-            }
-          ]
-        },
-        {
-          "pseudo_id": "p3",
-          "pseudo": "A key system failure in the power plant component was compounded by peak demand pressure, causing the grid gatekeeper to enact a red alert declaration. The subsequent control action, an emergency measure to stabilize the grid, resulted in a massive power deficit hitting the populace, revealing the cost of a failing grid.",
-          "source": {
-            "agent_id": "THE-OUTLAW",
-            "fragments": [
-              "why-0",
-              "how-1",
-              "how-2"
-            ],
-            "channel_role": "toned"
-          },
-          "hits": [
-            {
-              "tmdb_id": 429918,
-              "title": "Survival Family",
-              "similarity": 0.5107172727584839,
-              "movie_url": "https://themoviecosmos.com/movie/429918"
-            },
-            {
-              "tmdb_id": 274855,
-              "title": "Geostorm",
-              "similarity": 0.5107221007347107,
-              "movie_url": "https://themoviecosmos.com/movie/274855"
             }
           ]
         }
@@ -612,116 +645,83 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "Kepco SPC Power's Unit 2. more than 950 megawatts unavailable. The Philippines grid operator. The Philippines grid operator placed the Visayas under red alert. seasonal heat drove demand into a thin operating margin The event unfolds across A key component of the energy system and power unit.",
+          "pseudo": "more than 950 megawatts unavailable. seasonal heat drove demand into a thin operating margin. Eleven generators. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Kepco SPC Power's Unit 2 tripped offline The event unfolds across a significant power capacity deficit and power shortage.",
           "source": {
             "agent_id": "THE-LOVER",
             "fragments": [
-              "who-1",
               "result-0",
-              "who-0",
-              "how-1",
-              "why-2"
+              "why-2",
+              "who-3",
+              "how-2",
+              "why-0"
             ],
             "channel_role": "neutral"
           },
           "hits": [
             {
-              "tmdb_id": 111750,
-              "title": "The Real Glory",
-              "similarity": 0.3760698437690735,
-              "movie_url": "https://themoviecosmos.com/movie/111750"
-            },
-            {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.38009166717529297,
+              "similarity": 0.44091421365737915,
               "movie_url": "https://themoviecosmos.com/movie/429918"
+            },
+            {
+              "tmdb_id": 720321,
+              "title": "Breathe",
+              "similarity": 0.44555795192718506,
+              "movie_url": "https://themoviecosmos.com/movie/720321"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "When a vital partner in the power network, Kepco SPC Power's Unit 2, was severed from the grid, the guardian of the grid's vital connection, the operator, was forced to signal a crisis of connection. Officials, as protectors of public comfort, made the difficult choice to implement emergency load shedding to preserve the critical link, a measure born from the season's passion creating intense demand. The result was a massive loss of available power, leaving the affected region in a state of disrupted comfort.",
+          "pseudo": "The guardian of the grid's stability was forced to sound an urgent alarm for a threatened region, as a sudden, jarring rupture in the power supply—when a power generation unit tripped offline—combined with a pattern of systemic neglect from other long-running plant outages. This created an intense, unmet craving for power during the heatwave impact, leading to a painful but necessary sacrifice for the system's integrity. The result was a vast, aching void of lost power, a significant power capacity deficit leaving the vulnerable heart of the Visayas grid region under threat.",
           "source": {
             "agent_id": "THE-LOVER",
             "fragments": [
               "why-0",
               "how-1",
-              "how-2",
               "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 1053544,
-              "title": "The Abyss",
-              "similarity": 0.46793532371520996,
-              "movie_url": "https://themoviecosmos.com/movie/1053544"
+              "tmdb_id": 274855,
+              "title": "Geostorm",
+              "similarity": 0.5707771182060242,
+              "movie_url": "https://themoviecosmos.com/movie/274855"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.4723193645477295,
+              "similarity": 0.6144106388092041,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p2",
-          "pseudo": "The heat pushed the system to its breaking point, as high seasonal demand strained the network. A failed link in the chain, the power unit failure, triggered a grid incident. This forced the system's caretaker to issue a red alert, while decision-makers ordered load shedding to prevent a total collapse of the vital infrastructure. The profound shortage left the island group vulnerable, a stark reminder of how interconnected our desires for comfort truly are.",
+          "pseudo": "In the Visayas, the region in crisis, the grid operator, the entity managing power relationships, acted after an equipment failure event. The authorities intervened by forcibly severing connections to save the vital line, implementing emergency load reduction. This was driven by peak demand pressure from the seasonal heat, which pushed the energy demand spike into a thin operating margin, creating an energy deficit. The silence of the eleven generators, vital yet silent partners in the grid's dance, highlighted the shortage felt across the island group.",
           "source": {
             "agent_id": "THE-LOVER",
             "fragments": [
               "why-2",
-              "how-0",
-              "how-1",
               "how-2",
               "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
-            {
-              "tmdb_id": 33495,
-              "title": "2061 - Un anno eccezionale",
-              "similarity": 0.5315114855766296,
-              "movie_url": "https://themoviecosmos.com/movie/33495"
-            },
             {
               "tmdb_id": 841793,
               "title": "Stranded",
-              "similarity": 0.60948646068573,
+              "similarity": 0.5186469554901123,
               "movie_url": "https://themoviecosmos.com/movie/841793"
-            }
-          ]
-        },
-        {
-          "pseudo_id": "p3",
-          "pseudo": "In May, following prolonged absences from the network, the loss of a generating unit caused a significant energy deficit. The grid operator, the energy sector entity responsible, declared a red alert for the region. Officials then ordered an emergency measure—severing parts to save the whole—to stabilize the grid. This action stemmed from a heatwave impact driving high demand, revealing a deep vulnerability in the system's capacity.",
-          "source": {
-            "agent_id": "THE-LOVER",
-            "fragments": [
-              "why-1",
-              "how-0",
-              "how-1",
-              "how-2",
-              "why-2",
-              "result-0"
-            ],
-            "channel_role": "toned"
-          },
-          "hits": [
-            {
-              "tmdb_id": 33495,
-              "title": "2061 - Un anno eccezionale",
-              "similarity": 0.4650419354438782,
-              "movie_url": "https://themoviecosmos.com/movie/33495"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5412801504135132,
+              "similarity": 0.5449109077453613,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
@@ -734,15 +734,15 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator placed the Visayas under red alert. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. The Philippines grid operator The event unfolds across power shortage and capacity loss.",
+          "pseudo": "The Philippines grid operator placed the Visayas under red alert. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator. more than 950 megawatts unavailable The event unfolds across triggered an emergency power status and alert declaration.",
           "source": {
             "agent_id": "THE-CREATOR",
             "fragments": [
-              "result-0",
-              "how-0",
               "how-1",
               "how-2",
-              "who-0"
+              "why-0",
+              "who-0",
+              "result-0"
             ],
             "channel_role": "neutral"
           },
@@ -750,74 +750,95 @@
             {
               "tmdb_id": 111750,
               "title": "The Real Glory",
-              "similarity": 0.411799818277359,
+              "similarity": 0.41380107402801514,
               "movie_url": "https://themoviecosmos.com/movie/111750"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.4681624472141266,
+              "similarity": 0.42595845460891724,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "When a critical power generator failed, it set off a cascade of grid instability. The system architect activated a crisis protocol, placing the Visayas island group under red alert as seasonal heat drove demand into a thin operating margin. This emergency response aimed to prevent a wider failure, but the resulting capacity loss was severe, with more than 950 megawatts of generation capacity becoming unavailable. The grid's chief engineer and officials were forced to manage a power shortage born from both the unit's failure and extended system downtime.",
+          "pseudo": "In May 2026, a critical equipment failure at Kepco SPC Power's Unit 2 sparked a grid incident across the Visayas island group, forcing the power network manager to initiate a system-wide power alert. This emergency response, combined with prolonged plant failures from other facilities, created a severe energy deficit of over 950 megawatts, compelling authorities to order emergency load shedding to stabilize the grid.",
           "source": {
             "agent_id": "THE-CREATOR",
             "fragments": [
               "why-0",
               "how-1",
-              "why-2",
-              "result-0",
-              "why-1"
+              "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 33495,
-              "title": "2061 - Un anno eccezionale",
-              "similarity": 0.5223053097724915,
-              "movie_url": "https://themoviecosmos.com/movie/33495"
+              "tmdb_id": 55281,
+              "title": "NYC: Tornado Terror",
+              "similarity": 0.4501798450946808,
+              "movie_url": "https://themoviecosmos.com/movie/55281"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5305206179618835,
+              "similarity": 0.5607967376708984,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p2",
-          "pseudo": "The forced shutdown of consumers was an emergency measure to protect the network. Officials, acting as decision-makers, ordered load shedding to keep a critical transmission line from overloading after the failed component at Kepco SPC Power's Unit 2 tripped offline. This action highlighted the system's inability to handle load during peak demand, a stark reminder of the energy deficit in the grid. The chronic neglect of infrastructure contributed to the crisis, leaving the affected region grappling with the void in the grid's power output.",
+          "pseudo": "Following a generator system failure, the electricity grid controller was compelled to unleash a grid crisis protocol in the Philippines region, implementing controlled power curtailment to prevent a major transmission overload. The cascade of extended facility shutdowns and a heatwave-driven demand spike resulted in a colossal generation void, highlighting the fragility of the energy infrastructure.",
           "source": {
             "agent_id": "THE-CREATOR",
             "fragments": [
-              "how-0",
-              "how-1",
+              "why-1",
               "how-2",
-              "why-0",
-              "why-2",
-              "result-0",
-              "why-1"
+              "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 53416,
-              "title": "The Floorwalker",
-              "similarity": 0.4629928767681122,
-              "movie_url": "https://themoviecosmos.com/movie/53416"
+              "tmdb_id": 274855,
+              "title": "Geostorm",
+              "similarity": 0.4972902238368988,
+              "movie_url": "https://themoviecosmos.com/movie/274855"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.47093623876571655,
+              "similarity": 0.5284514427185059,
               "movie_url": "https://themoviecosmos.com/movie/429918"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "A power plant component malfunction triggered a grid management action, with officials acting as emergency response architects to execute a precision load-reduction design. This intervention aimed to mitigate a massive 950-megawatt power deficit caused by a combination of a critical outage and seasonal high demand, underscoring the delicate balance of the region's power grid.",
+          "source": {
+            "agent_id": "THE-CREATOR",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "hits": [
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.48818349838256836,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
+            },
+            {
+              "tmdb_id": 190738,
+              "title": "Assembling a Generator",
+              "similarity": 0.5074759721755981,
+              "movie_url": "https://themoviecosmos.com/movie/190738"
             }
           ]
         }
@@ -829,114 +850,117 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. The Philippines grid operator placed the Visayas under red alert. more than 950 megawatts unavailable. The Philippines grid operator. Officials The event unfolds across the load-shedding and load shedding.",
+          "pseudo": "more than 950 megawatts unavailable. The Philippines grid operator. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator placed the Visayas under red alert The event unfolds across generation shortfall and power shortage.",
           "source": {
             "agent_id": "THE-RULER",
             "fragments": [
-              "how-2",
-              "how-1",
               "result-0",
               "who-0",
-              "who-2"
+              "how-0",
+              "why-0",
+              "how-1"
             ],
             "channel_role": "neutral"
           },
           "hits": [
             {
-              "tmdb_id": 15807,
-              "title": "Air Force",
-              "similarity": 0.39124616980552673,
-              "movie_url": "https://themoviecosmos.com/movie/15807"
-            },
-            {
               "tmdb_id": 111750,
               "title": "The Real Glory",
-              "similarity": 0.40485823154449463,
+              "similarity": 0.4208536148071289,
               "movie_url": "https://themoviecosmos.com/movie/111750"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.4613621234893799,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "Following a critical system failure at a major generating unit, the authority managing the grid crisis in the Philippines moved to restore order. They placed the Visayas region under a red alert declaration, a decisive grid management action to address the emergency response. This action was a direct response to the massive loss of grid capacity, a power shortage stemming from the equipment failure and pre-existing system weaknesses, compounded by heat-induced stress on the grid.",
+          "pseudo": "A system failure triggering crisis struck when Kepco SPC Power's Unit 2 tripped offline, a shutdown event that initiated disorder across the grid. In response, the grid authority declared an emergency, activating an alert declaration to contain the threat. To enforce grid discipline and prevent a massive capacity loss, authorities issued a load management order, stabilizing the power grid.",
           "source": {
             "agent_id": "THE-RULER",
             "fragments": [
+              "why-0",
               "how-0",
               "how-1",
-              "result-0",
-              "why-0",
-              "why-1",
-              "why-2"
+              "how-2",
+              "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 280492,
-              "title": "From What Is Before",
-              "similarity": 0.4590182304382324,
-              "movie_url": "https://themoviecosmos.com/movie/280492"
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.5003055334091187,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
             },
             {
-              "tmdb_id": 158091,
-              "title": "Metro Manila",
-              "similarity": 0.4622519016265869,
-              "movie_url": "https://themoviecosmos.com/movie/158091"
+              "tmdb_id": 370097,
+              "title": "Stormageddon",
+              "similarity": 0.5302442312240601,
+              "movie_url": "https://themoviecosmos.com/movie/370097"
             }
           ]
         },
         {
           "pseudo_id": "p2",
-          "pseudo": "To stabilize the grid and prevent further disorder, officials issued an emergency load-shedding measure. This decisive control action was ordered by the crisis managers to prevent a critical transmission line from overloading, an emergency measure that served as grid stabilization. The authority's action addressed the demand pressure caused by high seasonal demand and other long-running plant outages.",
+          "pseudo": "Chronic operational decay and demand pressure straining system limits created a high demand period that left the grid vulnerable. The failure of the offline generator triggered a grid incident, prompting the crisis manager to issue an emergency declaration. This decisive action, enforcing grid discipline through emergency measures, averted a generation shortfall in the region's energy sector.",
           "source": {
             "agent_id": "THE-RULER",
             "fragments": [
-              "how-2",
+              "why-1",
               "why-2",
-              "why-1"
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 1223272,
-              "title": "Contagion of Fear",
-              "similarity": 0.4607499837875366,
-              "movie_url": "https://themoviecosmos.com/movie/1223272"
-            },
-            {
               "tmdb_id": 274855,
               "title": "Geostorm",
-              "similarity": 0.48819077014923096,
+              "similarity": 0.540103554725647,
               "movie_url": "https://themoviecosmos.com/movie/274855"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.549800455570221,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p3",
-          "pseudo": "The grid operator, acting as the authority, confronted a severe energy deficit when more than 950 megawatts became unavailable. This capacity loss, resulting from a unit's trip event and the grid's generating capacity being compromised, forced the authority into a defensive posture. The resulting power shortage underscored the need for decisive control to protect the region under alert from unmanaged system stress.",
+          "pseudo": "The failure that initiated disorder involved a power plant component, a generating unit that experienced an equipment failure. This triggered a grid management action: the authority declaring emergency in the Visayas region. By ordering load shedding, a control action for grid stabilization, the decision-makers contained the power shortage to under a thousand megawatts, restoring order to the energy infrastructure.",
           "source": {
             "agent_id": "THE-RULER",
             "fragments": [
-              "result-0",
               "how-0",
-              "why-2"
+              "how-1",
+              "how-2",
+              "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 266727,
-              "title": "Peasants",
-              "similarity": 0.4774790406227112,
-              "movie_url": "https://themoviecosmos.com/movie/266727"
+              "tmdb_id": 100063,
+              "title": "Blackout",
+              "similarity": 0.48906952142715454,
+              "movie_url": "https://themoviecosmos.com/movie/100063"
             },
             {
-              "tmdb_id": 429918,
-              "title": "Survival Family",
-              "similarity": 0.5264333486557007,
-              "movie_url": "https://themoviecosmos.com/movie/429918"
+              "tmdb_id": 475946,
+              "title": "Blade Runner: Black Out 2022",
+              "similarity": 0.5440350770950317,
+              "movie_url": "https://themoviecosmos.com/movie/475946"
             }
           ]
         }
@@ -948,40 +972,96 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "The Philippines grid operator placed the Visayas under red alert. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. The Philippines grid operator. seasonal heat drove demand into a thin operating margin. more than 950 megawatts unavailable The event unfolds across red alert declaration and alert declaration.",
+          "pseudo": "The Philippines grid operator placed the Visayas under red alert. seasonal heat drove demand into a thin operating margin. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. more than 950 megawatts unavailable. The Philippines grid operator The event unfolds across a high-level grid warning was issued and alert declaration.",
           "source": {
             "agent_id": "THE-MAGICIAN",
             "fragments": [
               "how-1",
-              "how-2",
-              "who-0",
               "why-2",
-              "result-0"
+              "how-2",
+              "result-0",
+              "who-0"
             ],
             "channel_role": "neutral"
           },
           "hits": [
             {
-              "tmdb_id": 66122,
-              "title": "Low Cost",
-              "similarity": 0.40446603298187256,
-              "movie_url": "https://themoviecosmos.com/movie/66122"
-            },
-            {
               "tmdb_id": 280492,
               "title": "From What Is Before",
-              "similarity": 0.4050498604774475,
+              "similarity": 0.4142495393753052,
               "movie_url": "https://themoviecosmos.com/movie/280492"
+            },
+            {
+              "tmdb_id": 841793,
+              "title": "Stranded",
+              "similarity": 0.4517078995704651,
+              "movie_url": "https://themoviecosmos.com/movie/841793"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "A critical system failure at a power generation unit triggered a cascade. The grid operator responded by placing the Visayas region under a red alert, an emergency response action. Authorities then ordered an emergency measure—forced load reduction—to prevent a major transmission line from overloading. This sequence revealed a significant energy deficit, with more than 950 megawatts becoming unavailable.",
+          "pseudo": "A critical mechanism failed when Kepco SPC Power's Unit 2 tripped offline, exposing systemic fragility revealed by other long-running plant outages. In response, the grid orchestrator issued a high-level grid warning for the Visayas, a major island region now facing a climate-induced demand surge from seasonal heat. This initial trigger event forced a delicate balancing act across the energy sector, highlighting the thin margins governing power supply in the archipelago.",
           "source": {
             "agent_id": "THE-MAGICIAN",
             "fragments": [
               "why-0",
+              "why-1",
+              "why-2",
+              "how-1"
+            ],
+            "channel_role": "toned"
+          },
+          "hits": [
+            {
+              "tmdb_id": 841793,
+              "title": "Stranded",
+              "similarity": 0.4877118468284607,
+              "movie_url": "https://themoviecosmos.com/movie/841793"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.541674017906189,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p2",
+          "pseudo": "As the single point of failure, the unit's malfunction prompted emergency response from public authorities. They initiated a deliberate, surgical unloading of the grid to manage the crisis, preventing a larger collapse. This action, while necessary, resulted in a massive power deficit exposed across the region, with significant capacity loss affecting millions and underscoring the fragility of interconnected power infrastructure.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "hits": [
+            {
+              "tmdb_id": 194834,
+              "title": "Re-Generator",
+              "similarity": 0.5447109937667847,
+              "movie_url": "https://themoviecosmos.com/movie/194834"
+            },
+            {
+              "tmdb_id": 475946,
+              "title": "Blade Runner: Black Out 2022",
+              "similarity": 0.5683260560035706,
+              "movie_url": "https://themoviecosmos.com/movie/475946"
+            }
+          ]
+        },
+        {
+          "pseudo_id": "p3",
+          "pseudo": "The hidden lever of demand pressure, driven by the seasonal heat, pushed the grid to its limits even before the initial trigger event. When a vulnerable generating asset failed, the cascading network of generators could not compensate, forcing the centralized power utility into emergency power rationing. This sequence revealed a power shortage, leaving more than 950 megawatts unavailable and exposing the precarious balance of supply and demand in the Southeast Asia power grid.",
+          "source": {
+            "agent_id": "THE-MAGICIAN",
+            "fragments": [
+              "why-2",
               "how-0",
               "how-1",
               "how-2",
@@ -991,75 +1071,16 @@
           },
           "hits": [
             {
+              "tmdb_id": 431892,
+              "title": "Trapped",
+              "similarity": 0.47641515731811523,
+              "movie_url": "https://themoviecosmos.com/movie/431892"
+            },
+            {
               "tmdb_id": 418879,
               "title": "The Current War",
-              "similarity": 0.4680846333503723,
+              "similarity": 0.4912101924419403,
               "movie_url": "https://themoviecosmos.com/movie/418879"
-            },
-            {
-              "tmdb_id": 429918,
-              "title": "Survival Family",
-              "similarity": 0.5951918363571167,
-              "movie_url": "https://themoviecosmos.com/movie/429918"
-            }
-          ]
-        },
-        {
-          "pseudo_id": "p2",
-          "pseudo": "The incident began with a triggering failure, an initial trip at a key plant. This exposed pre-existing system fragility and a hidden pressure point where seasonal demand had already pushed the grid to its limits. The system orchestrator's subsequent grid management action was a calculated system recalibration, deploying crisis levers to manage a severe power shortage. The entire episode unfolded as a revealed system capacity gap.",
-          "source": {
-            "agent_id": "THE-MAGICIAN",
-            "fragments": [
-              "why-0",
-              "why-1",
-              "why-2",
-              "how-1",
-              "result-0"
-            ],
-            "channel_role": "toned"
-          },
-          "hits": [
-            {
-              "tmdb_id": 25038,
-              "title": "2:22",
-              "similarity": 0.47916364669799805,
-              "movie_url": "https://themoviecosmos.com/movie/25038"
-            },
-            {
-              "tmdb_id": 475946,
-              "title": "Blade Runner: Black Out 2022",
-              "similarity": 0.5581101775169373,
-              "movie_url": "https://themoviecosmos.com/movie/475946"
-            }
-          ]
-        },
-        {
-          "pseudo_id": "p3",
-          "pseudo": "Faced with a systemic squeeze from high demand, the grid operator activated a systemic signal. This alert declaration was followed by a controlled shutdown sequence, as authorities orchestrated an emergency intervention. The goal was grid stabilization in the face of a unit trip and other plant outages. The outcome was a clear power deficit, exposing the scaling opportunity for the region's energy infrastructure.",
-          "source": {
-            "agent_id": "THE-MAGICIAN",
-            "fragments": [
-              "why-2",
-              "how-1",
-              "how-2",
-              "why-0",
-              "why-1",
-              "result-0"
-            ],
-            "channel_role": "toned"
-          },
-          "hits": [
-            {
-              "tmdb_id": 429918,
-              "title": "Survival Family",
-              "similarity": 0.4537542462348938,
-              "movie_url": "https://themoviecosmos.com/movie/429918"
-            },
-            {
-              "tmdb_id": 274855,
-              "title": "Geostorm",
-              "similarity": 0.4928090274333954,
-              "movie_url": "https://themoviecosmos.com/movie/274855"
             }
           ]
         }
@@ -1071,15 +1092,15 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator placed the Visayas under red alert. Kepco SPC Power's Unit 2 tripped offline. seasonal heat drove demand into a thin operating margin The event unfolds across the generation loss and power shortage.",
+          "pseudo": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2 tripped offline. other long-running plant outages. seasonal heat drove demand into a thin operating margin The event unfolds across a significant capacity shortfall and power shortage.",
           "source": {
             "agent_id": "THE-SAGE",
             "fragments": [
               "result-0",
-              "how-0",
-              "how-1",
               "why-0",
-              "why-2"
+              "why-1",
+              "why-2",
+              "how-0"
             ],
             "channel_role": "neutral"
           },
@@ -1087,27 +1108,25 @@
             {
               "tmdb_id": 720321,
               "title": "Breathe",
-              "similarity": 0.3984832167625427,
+              "similarity": 0.45060038566589355,
               "movie_url": "https://themoviecosmos.com/movie/720321"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.45731455087661743,
+              "similarity": 0.4977557361125946,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "Analysis of the May 2026 Visayas grid incident reveals a clear causal chain. The event initiating the chain of evidence was the tripping offline of a major power unit. This unscheduled outage, combined with pre-existing, documented maintenance gaps, exposed the grid to a measurable peak demand scenario driven by seasonal heat. The grid management entity, responding to the verified equipment failure, issued a red alert and initiated load shedding as an emergency measure to prevent a documented overload risk, resulting in a quantified supply deficit exceeding 950 megawatts.",
+          "pseudo": "The event sequence, traceable to a verified equipment failure in Kepco SPC Power's Unit 2, triggered a data-driven escalation protocol by the grid management authority. This grid stability procedure was necessitated by a documented supply-demand imbalance caused by high demand from seasonal heat. Officials, acting as crisis decision-makers, authorized an emergency load management action, a calculated grid protection measure to prevent overloading. The consequence was a quantified power deficit, rendering more than 950 megawatts unavailable in the Visayas region.",
           "source": {
             "agent_id": "THE-SAGE",
             "fragments": [
               "why-0",
-              "why-1",
               "why-2",
-              "how-0",
               "how-1",
               "how-2",
               "result-0"
@@ -1116,28 +1135,28 @@
           },
           "hits": [
             {
-              "tmdb_id": 46221,
-              "title": "The Tunnel",
-              "similarity": 0.5006349086761475,
-              "movie_url": "https://themoviecosmos.com/movie/46221"
+              "tmdb_id": 33787,
+              "title": "Get Smart, Again!",
+              "similarity": 0.456692636013031,
+              "movie_url": "https://themoviecosmos.com/movie/33787"
             },
             {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.5845415592193604,
+              "similarity": 0.4619539976119995,
               "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p2",
-          "pseudo": "The sequence began with a confirmed mechanical failure at a critical power plant component. Decision-makers acting on evidence then placed the island group under a grid status change, a direct response to the resulting energy demand spike. The subsequent load shedding order was a necessary grid stabilization action. The incident serves as a case study in grid management under stress, where the loss of generation capacity can rapidly translate into a significant energy deficit.",
+          "pseudo": "Analysis of the grid incident reveals a pattern of pre-existing generation shortfalls compounding the initial failure of the power generation unit. The system overseer responded with an automated system response, a grid stability procedure, to manage the severe generation loss. This forced demand reduction was an emergency measure, creating a significant capacity shortfall of over 950 megawatts. The sequence highlights the tension between infrastructure readiness and acute weather-driven load stress on the energy sector entity.",
           "source": {
             "agent_id": "THE-SAGE",
             "fragments": [
+              "why-1",
               "how-0",
               "how-1",
-              "why-2",
               "how-2",
               "result-0"
             ],
@@ -1145,44 +1164,45 @@
           },
           "hits": [
             {
-              "tmdb_id": 429918,
-              "title": "Survival Family",
-              "similarity": 0.4603615999221802,
-              "movie_url": "https://themoviecosmos.com/movie/429918"
-            },
-            {
               "tmdb_id": 475946,
               "title": "Blade Runner: Black Out 2022",
-              "similarity": 0.4953683316707611,
+              "similarity": 0.47465285658836365,
               "movie_url": "https://themoviecosmos.com/movie/475946"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.5347434282302856,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p3",
-          "pseudo": "Forensic review of the event timeline shows the triggering event occurred in early May. The system monitor's subsequent emergency response, while precautionary, highlights the vulnerability of energy infrastructure to sudden operational failures. The loss was not isolated; it reflected a broader pattern of plant outages that reduced system resilience. The final tally—a capacity gap of over 950 MW—underscores the tangible cost when multiple failures coincide during peak demand.",
+          "pseudo": "The documented outage of the tripped unit initiated a chain reaction, exposing the energy infrastructure to stress from an energy demand spike. Grid stability monitors executed an alert declaration, a control action, to stabilize the network. The resulting emergency measure to shed load averted a wider power outage but confirmed a substantial energy deficit. This incident serves as a factual case study in grid incident management under conditions of demand exceeding safe capacity.",
           "source": {
             "agent_id": "THE-SAGE",
             "fragments": [
-              "how-0",
+              "why-0",
+              "why-2",
               "how-1",
-              "why-1",
+              "how-2",
               "result-0"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 2154,
-              "title": "The Dark Side of the Moon",
-              "similarity": 0.4835779070854187,
-              "movie_url": "https://themoviecosmos.com/movie/2154"
+              "tmdb_id": 1223272,
+              "title": "Contagion of Fear",
+              "similarity": 0.4621884822845459,
+              "movie_url": "https://themoviecosmos.com/movie/1223272"
             },
             {
-              "tmdb_id": 475946,
-              "title": "Blade Runner: Black Out 2022",
-              "similarity": 0.5105026960372925,
-              "movie_url": "https://themoviecosmos.com/movie/475946"
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.5771650075912476,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         }
@@ -1194,39 +1214,40 @@
       "pseudos": [
         {
           "pseudo_id": "n1",
-          "pseudo": "more than 950 megawatts unavailable. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator placed the Visayas under red alert. seasonal heat drove demand into a thin operating margin The event unfolds across a significant capacity shortfall and power shortage.",
+          "pseudo": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. more than 950 megawatts unavailable. seasonal heat drove demand into a thin operating margin. The Philippines grid operator. The Philippines grid operator placed the Visayas under red alert The event unfolds across officials directed power cuts to protect infrastructure and load shedding.",
           "source": {
             "agent_id": "THE-JESTER",
             "fragments": [
-              "result-0",
               "how-2",
-              "why-0",
-              "how-1",
-              "why-2"
+              "result-0",
+              "why-2",
+              "who-0",
+              "how-1"
             ],
             "channel_role": "neutral"
           },
           "hits": [
             {
-              "tmdb_id": 720321,
-              "title": "Breathe",
-              "similarity": 0.4380982518196106,
-              "movie_url": "https://themoviecosmos.com/movie/720321"
-            },
-            {
               "tmdb_id": 429918,
               "title": "Survival Family",
-              "similarity": 0.46486836671829224,
+              "similarity": 0.4161030054092407,
               "movie_url": "https://themoviecosmos.com/movie/429918"
+            },
+            {
+              "tmdb_id": 1484253,
+              "title": "Trainwreck: Poop Cruise",
+              "similarity": 0.42916741967201233,
+              "movie_url": "https://themoviecosmos.com/movie/1484253"
             }
           ]
         },
         {
           "pseudo_id": "p1",
-          "pseudo": "The star performer of the Visayas grid, Kepco SPC Power's Unit 2, took a dramatic bow and tripped offline, leaving the grid's designated parent to sound the grand alarm. The supporting cast of other generators had already left the stage, and with high seasonal demand playing the villain, the serious grown-ups orchestrated the big blackout ballet, creating a spectacular power void for millions in the heat-struck region.",
+          "pseudo": "In May 2026's seasonal heat, a generator failure at Kepco SPC Power's Unit 2 acted like a comical slip of the machine, forcing the grid operator to raise a frantic red flag over the Visayas. To stop the grid from melting, officials then orchestrated a dramatic blackout ballet, ordering load shedding to protect the 230-kilovolt line. The outcome? A glorious blackout spectacle, with more than 950 megawatts vanishing from the grid.",
           "source": {
             "agent_id": "THE-JESTER",
             "fragments": [
+              "why-2",
               "why-0",
               "how-1",
               "how-2",
@@ -1236,72 +1257,45 @@
           },
           "hits": [
             {
-              "tmdb_id": 651135,
-              "title": "Moon Landing",
-              "similarity": 0.52434241771698,
-              "movie_url": "https://themoviecosmos.com/movie/651135"
+              "tmdb_id": 210219,
+              "title": "Jet Stream",
+              "similarity": 0.5053329467773438,
+              "movie_url": "https://themoviecosmos.com/movie/210219"
             },
             {
-              "tmdb_id": 10942,
-              "title": "Babylon 5: The Gathering",
-              "similarity": 0.5502640008926392,
-              "movie_url": "https://themoviecosmos.com/movie/10942"
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.5082694292068481,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         },
         {
           "pseudo_id": "p2",
-          "pseudo": "In the grand stage of the power circus, the red-alert maestros faced a predictable crunch ignored, as a mechanical failure by the tripped performer left a significant capacity shortfall. The directive-givers declared a code red and forced a juggling act with people's power, all while the silent ensemble cast of generators remained stubbornly unavailable.",
-          "source": {
-            "agent_id": "THE-JESTER",
-            "fragments": [
-              "why-1",
-              "how-0",
-              "how-1",
-              "result-0"
-            ],
-            "channel_role": "toned"
-          },
-          "hits": [
-            {
-              "tmdb_id": 372095,
-              "title": "The Enemy Blood",
-              "similarity": 0.5158684849739075,
-              "movie_url": "https://themoviecosmos.com/movie/372095"
-            },
-            {
-              "tmdb_id": 119001,
-              "title": "The Big Circus",
-              "similarity": 0.5178784132003784,
-              "movie_url": "https://themoviecosmos.com/movie/119001"
-            }
-          ]
-        },
-        {
-          "pseudo_id": "p3",
-          "pseudo": "The weather played the villain, driving energy demand spike into the Visayas grid region, just as the grid's dramatic diva decided on a grand exit. This unscripted dropout forced the panicked puppet-masters to order load shedding, resulting in a record-breaking blackout and highlighting a chronic lack of backup across the energy infrastructure.",
+          "pseudo": "What began as an equipment failure quickly spiraled into a full-blown grid incident when the pompous official at the grid operator panicked, placing the Visayas under red alert. This sudden energy demand spike, driven by the predictable heatwave officials ignored, left a significant power shortage. The self-serious bureaucrats then botched the grid with desperate cuts, a foolish attempt to stabilize the system.",
           "source": {
             "agent_id": "THE-JESTER",
             "fragments": [
               "why-0",
               "why-2",
-              "how-2",
-              "result-0"
+              "how-1",
+              "result-0",
+              "how-2"
             ],
             "channel_role": "toned"
           },
           "hits": [
             {
-              "tmdb_id": 25241,
-              "title": "Squirm",
-              "similarity": 0.5537877678871155,
-              "movie_url": "https://themoviecosmos.com/movie/25241"
-            },
-            {
               "tmdb_id": 475946,
               "title": "Blade Runner: Black Out 2022",
-              "similarity": 0.5769648551940918,
+              "similarity": 0.522956371307373,
               "movie_url": "https://themoviecosmos.com/movie/475946"
+            },
+            {
+              "tmdb_id": 429918,
+              "title": "Survival Family",
+              "similarity": 0.5630350112915039,
+              "movie_url": "https://themoviecosmos.com/movie/429918"
             }
           ]
         }
@@ -1318,7 +1312,7 @@
       "language": "ja",
       "poster_path": "/wdJWsWODt3wAsAGQ2M9WZIOFSas.jpg",
       "movie_url": "https://themoviecosmos.com/movie/429918",
-      "similarity": 0.5951918363571167,
+      "similarity": 0.6144106388092041,
       "triggered_by": [
         "THE-INNOCENT",
         "THE-EVERYMAN",
@@ -1330,7 +1324,8 @@
         "THE-CREATOR",
         "THE-RULER",
         "THE-MAGICIAN",
-        "THE-SAGE"
+        "THE-SAGE",
+        "THE-JESTER"
       ],
       "also_baseline": false,
       "hit_sources": [
@@ -1339,13 +1334,27 @@
           "pseudo_id": "n1",
           "channel_role": "neutral",
           "fragments": [
+            "result-0",
             "who-1",
             "who-3",
+            "why-2",
+            "how-2"
+          ],
+          "similarity": 0.4476856589317322,
+          "fit": 1.0
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
             "result-0",
-            "why-0",
+            "how-2",
+            "who-1",
+            "who-3",
             "why-2"
           ],
-          "similarity": 0.430087685585022,
+          "similarity": 0.46956175565719604,
           "fit": 1.0
         },
         {
@@ -1355,11 +1364,11 @@
           "fragments": [
             "result-0",
             "how-2",
-            "how-1",
-            "who-0",
-            "why-0"
+            "who-2",
+            "why-0",
+            "how-1"
           ],
-          "similarity": 0.4621845483779907,
+          "similarity": 0.48750677704811096,
           "fit": 1.0
         },
         {
@@ -1368,12 +1377,12 @@
           "channel_role": "neutral",
           "fragments": [
             "result-0",
-            "how-1",
-            "who-0",
-            "how-0",
-            "why-2"
+            "who-1",
+            "who-3",
+            "why-0",
+            "how-2"
           ],
-          "similarity": 0.415899395942688,
+          "similarity": 0.48963436484336853,
           "fit": 1.0
         },
         {
@@ -1381,13 +1390,13 @@
           "pseudo_id": "n1",
           "channel_role": "neutral",
           "fragments": [
-            "result-0",
             "how-2",
-            "how-1",
+            "result-0",
             "who-0",
-            "why-0"
+            "who-2",
+            "why-2"
           ],
-          "similarity": 0.4530986547470093,
+          "similarity": 0.39475274085998535,
           "fit": 1.0
         },
         {
@@ -1395,13 +1404,13 @@
           "pseudo_id": "n1",
           "channel_role": "neutral",
           "fragments": [
-            "result-0",
+            "who-0",
+            "how-2",
             "why-0",
             "why-1",
-            "how-2",
-            "how-1"
+            "result-0"
           ],
-          "similarity": 0.5290364027023315,
+          "similarity": 0.4884073734283447,
           "fit": 1.0
         },
         {
@@ -1409,13 +1418,13 @@
           "pseudo_id": "n1",
           "channel_role": "neutral",
           "fragments": [
-            "who-1",
             "result-0",
-            "who-0",
-            "how-1",
-            "why-2"
+            "why-2",
+            "who-3",
+            "how-2",
+            "why-0"
           ],
-          "similarity": 0.38009166717529297,
+          "similarity": 0.44091421365737915,
           "fit": 1.0
         },
         {
@@ -1423,13 +1432,27 @@
           "pseudo_id": "n1",
           "channel_role": "neutral",
           "fragments": [
-            "result-0",
-            "how-0",
             "how-1",
             "how-2",
-            "who-0"
+            "why-0",
+            "who-0",
+            "result-0"
           ],
-          "similarity": 0.4681624472141266,
+          "similarity": 0.42595845460891724,
+          "fit": 1.0
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "result-0",
+            "who-0",
+            "how-0",
+            "why-0",
+            "how-1"
+          ],
+          "similarity": 0.4613621234893799,
           "fit": 1.0
         },
         {
@@ -1438,12 +1461,12 @@
           "channel_role": "neutral",
           "fragments": [
             "result-0",
-            "how-0",
-            "how-1",
             "why-0",
-            "why-2"
+            "why-1",
+            "why-2",
+            "how-0"
           ],
-          "similarity": 0.45731455087661743,
+          "similarity": 0.4977557361125946,
           "fit": 1.0
         },
         {
@@ -1451,30 +1474,14 @@
           "pseudo_id": "n1",
           "channel_role": "neutral",
           "fragments": [
+            "how-2",
             "result-0",
-            "how-2",
-            "why-0",
-            "how-1",
-            "why-2"
-          ],
-          "similarity": 0.46486836671829224,
-          "fit": 1.0
-        },
-        {
-          "agent_id": "THE-INNOCENT",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
             "why-2",
-            "how-0",
-            "how-1",
-            "how-2",
-            "result-0"
+            "who-0",
+            "how-1"
           ],
-          "similarity": 0.5621384382247925,
-          "fit": 0.45
+          "similarity": 0.4161030054092407,
+          "fit": 1.0
         },
         {
           "agent_id": "THE-EVERYMAN",
@@ -1486,8 +1493,8 @@
             "how-2",
             "result-0"
           ],
-          "similarity": 0.5503743886947632,
-          "fit": 0.9
+          "similarity": 0.5942156314849854,
+          "fit": 0.85
         },
         {
           "agent_id": "THE-HERO",
@@ -1495,11 +1502,13 @@
           "channel_role": "toned",
           "fragments": [
             "why-0",
+            "why-1",
+            "why-2",
             "how-1",
             "how-2",
             "result-0"
           ],
-          "similarity": 0.5481938123703003,
+          "similarity": 0.4889013171195984,
           "fit": 0.88
         },
         {
@@ -1512,8 +1521,8 @@
             "how-2",
             "result-0"
           ],
-          "similarity": 0.5571401119232178,
-          "fit": 0.9
+          "similarity": 0.5192244052886963,
+          "fit": 0.91
         },
         {
           "agent_id": "THE-EXPLORER",
@@ -1525,8 +1534,8 @@
             "how-2",
             "result-0"
           ],
-          "similarity": 0.5198107957839966,
-          "fit": 0.85
+          "similarity": 0.5397992134094238,
+          "fit": 0.9
         },
         {
           "agent_id": "THE-OUTLAW",
@@ -1537,8 +1546,8 @@
             "how-1",
             "result-0"
           ],
-          "similarity": 0.5298991203308105,
-          "fit": 0.78
+          "similarity": 0.5357550382614136,
+          "fit": 0.85
         },
         {
           "agent_id": "THE-LOVER",
@@ -1547,366 +1556,91 @@
           "fragments": [
             "why-0",
             "how-1",
-            "how-2",
             "result-0"
           ],
-          "similarity": 0.4723193645477295,
-          "fit": 0.65
-        },
-        {
-          "agent_id": "THE-CREATOR",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "why-2",
-            "result-0",
-            "why-1"
-          ],
-          "similarity": 0.5305206179618835,
-          "fit": 0.78
-        },
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5951918363571167,
-          "fit": 0.78
-        },
-        {
-          "agent_id": "THE-SAGE",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "why-2",
-            "how-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5845415592193604,
-          "fit": 0.88
-        },
-        {
-          "agent_id": "THE-INNOCENT",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "why-2",
-            "how-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5064826011657715,
-          "fit": 0.5
-        },
-        {
-          "agent_id": "THE-EVERYMAN",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-2",
-            "result-0",
-            "how-2"
-          ],
-          "similarity": 0.5044701099395752,
-          "fit": 0.85
-        },
-        {
-          "agent_id": "THE-EXPLORER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5348778963088989,
-          "fit": 0.78
-        },
-        {
-          "agent_id": "THE-OUTLAW",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.531431257724762,
-          "fit": 0.81
-        },
-        {
-          "agent_id": "THE-CREATOR",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "how-0",
-            "how-1",
-            "how-2",
-            "why-0",
-            "why-2",
-            "result-0",
-            "why-1"
-          ],
-          "similarity": 0.47093623876571655,
-          "fit": 0.85
-        },
-        {
-          "agent_id": "THE-SAGE",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "how-0",
-            "how-1",
-            "why-2",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.4603615999221802,
-          "fit": 0.85
-        },
-        {
-          "agent_id": "THE-CAREGIVER",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "how-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5208652019500732,
-          "fit": 0.8
-        },
-        {
-          "agent_id": "THE-OUTLAW",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "how-2"
-          ],
-          "similarity": 0.5107172727584839,
+          "similarity": 0.6144106388092041,
           "fit": 0.75
         },
         {
-          "agent_id": "THE-LOVER",
-          "pseudo_id": "p3",
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
           "channel_role": "toned",
           "fragments": [
-            "why-1",
-            "how-0",
+            "why-0",
             "how-1",
-            "how-2",
-            "why-2",
             "result-0"
           ],
-          "similarity": 0.5412801504135132,
-          "fit": 0.45
+          "similarity": 0.5607967376708984,
+          "fit": 0.85
         },
         {
           "agent_id": "THE-RULER",
-          "pseudo_id": "p3",
+          "pseudo_id": "p1",
           "channel_role": "toned",
           "fragments": [
-            "result-0",
+            "why-0",
             "how-0",
-            "why-2"
+            "how-1",
+            "how-2",
+            "result-0"
           ],
-          "similarity": 0.5264333486557007,
-          "fit": 0.78
+          "similarity": 0.5003055334091187,
+          "fit": 0.85
         },
         {
           "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "how-1",
-            "how-2",
-            "why-0",
-            "why-1",
-            "result-0"
-          ],
-          "similarity": 0.4537542462348938,
-          "fit": 0.82
-        }
-      ],
-      "neutral_hits": 8,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.6666666666666666,
-      "distinct_agents": 11,
-      "quality_candidate": true,
-      "quality_reason": "neutral_vote=1 + toned_agents=11: THE-RULER,THE-SAGE,THE-INNOCENT,THE-OUTLAW,THE-MAGICIAN,THE-CREATOR,THE-LOVER,THE-EXPLORER,THE-HERO,THE-EVERYMAN,THE-CAREGIVER"
-    },
-    {
-      "tmdb_id": 111750,
-      "title": "The Real Glory",
-      "overview": "Fort Mysang, southern Philippine Islands, under US rule, 1906. A small group of army officers and native troops resist the fierce and treacherous attacks of the ruthless Alisang and his fanatical followers.",
-      "genres": "Drama, War",
-      "release_year": 1939,
-      "language": "en",
-      "poster_path": "/fWUlNt585JRfFNBFdYGrfBGO7GS.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/111750",
-      "similarity": 0.5067793130874634,
-      "triggered_by": [
-        "THE-INNOCENT"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-HERO",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "result-0",
-            "how-2",
-            "how-1",
-            "who-0",
-            "why-0"
-          ],
-          "similarity": 0.41811129450798035,
-          "fit": 1.0
-        },
-        {
-          "agent_id": "THE-CAREGIVER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "result-0",
-            "how-1",
-            "who-0",
-            "how-0",
-            "why-2"
-          ],
-          "similarity": 0.4015352725982666,
-          "fit": 1.0
-        },
-        {
-          "agent_id": "THE-EXPLORER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "result-0",
-            "how-2",
-            "how-1",
-            "who-0",
-            "why-0"
-          ],
-          "similarity": 0.41214048862457275,
-          "fit": 1.0
-        },
-        {
-          "agent_id": "THE-LOVER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "who-1",
-            "result-0",
-            "who-0",
-            "how-1",
-            "why-2"
-          ],
-          "similarity": 0.3760698437690735,
-          "fit": 1.0
-        },
-        {
-          "agent_id": "THE-CREATOR",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "result-0",
-            "how-0",
-            "how-1",
-            "how-2",
-            "who-0"
-          ],
-          "similarity": 0.411799818277359,
-          "fit": 1.0
-        },
-        {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "how-2",
-            "how-1",
-            "result-0",
-            "who-0",
-            "who-2"
-          ],
-          "similarity": 0.40485823154449463,
-          "fit": 1.0
-        },
-        {
-          "agent_id": "THE-INNOCENT",
           "pseudo_id": "p1",
           "channel_role": "toned",
           "fragments": [
             "why-0",
             "why-1",
             "why-2",
-            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.541674017906189,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
             "how-1",
             "how-2",
             "result-0"
           ],
-          "similarity": 0.5067793130874634,
-          "fit": 0.45
-        }
-      ],
-      "neutral_hits": 5,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.4166666666666667,
-      "distinct_agents": 1,
-      "quality_candidate": true,
-      "quality_reason": "neutral_vote=1 + toned_agents=1: THE-INNOCENT"
-    },
-    {
-      "tmdb_id": 190738,
-      "title": "Assembling a Generator",
-      "overview": "A group of men work on various parts of a large generator, assembling the pieces",
-      "genres": "Documentary",
-      "release_year": 1904,
-      "language": "en",
-      "poster_path": "",
-      "movie_url": "https://themoviecosmos.com/movie/190738",
-      "similarity": 0.4916699528694153,
-      "triggered_by": [
-        "THE-EVERYMAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
+          "similarity": 0.4619539976119995,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5082694292068481,
+          "fit": 0.88
+        },
         {
           "agent_id": "THE-INNOCENT",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
           "fragments": [
-            "who-1",
-            "who-3",
-            "result-0",
             "why-0",
-            "why-2"
+            "why-1",
+            "how-0",
+            "how-1",
+            "result-0"
           ],
-          "similarity": 0.4111752510070801,
-          "fit": 1.0
+          "similarity": 0.5195778608322144,
+          "fit": 0.72
         },
         {
           "agent_id": "THE-EVERYMAN",
@@ -1914,72 +1648,168 @@
           "channel_role": "toned",
           "fragments": [
             "why-0",
+            "why-1",
             "why-2",
-            "result-0",
-            "how-2"
-          ],
-          "similarity": 0.4916699528694153,
-          "fit": 0.85
-        }
-      ],
-      "neutral_hits": 1,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.08333333333333333,
-      "distinct_agents": 1,
-      "quality_candidate": true,
-      "quality_reason": "neutral_vote=1 + toned_agents=1: THE-EVERYMAN"
-    },
-    {
-      "tmdb_id": 280492,
-      "title": "From What Is Before",
-      "overview": "The Philippines, 1972. Mysterious things are happening in a remote barrio. Wails are heard from the forest, cows are hacked to death, a man is found bleeding to death at the crossroad, and houses are burned. Ferdinand E. Marcos announces Proclamation No. 1081, putting the entire country under Martial Law.",
-      "genres": "Drama",
-      "release_year": 2014,
-      "language": "tl",
-      "poster_path": "/4fL07Lf7dghqtgX5ohoIYx4wZRG.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/280492",
-      "similarity": 0.4590182304382324,
-      "triggered_by": [
-        "THE-RULER"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "how-1",
             "how-2",
-            "who-0",
-            "why-2",
             "result-0"
           ],
-          "similarity": 0.4050498604774475,
-          "fit": 1.0
+          "similarity": 0.5348376035690308,
+          "fit": 0.78
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5529801249504089,
+          "fit": 0.81
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-1",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5612325668334961,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5449109077453613,
+          "fit": 0.8
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5284514427185059,
+          "fit": 0.78
         },
         {
           "agent_id": "THE-RULER",
-          "pseudo_id": "p1",
+          "pseudo_id": "p2",
           "channel_role": "toned",
           "fragments": [
+            "why-1",
+            "why-2",
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.549800455570221,
+          "fit": 0.8
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-1",
             "how-0",
             "how-1",
-            "result-0",
-            "why-0",
-            "why-1",
-            "why-2"
+            "how-2",
+            "result-0"
           ],
-          "similarity": 0.4590182304382324,
+          "similarity": 0.5347434282302856,
+          "fit": 0.82
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "how-1",
+            "result-0",
+            "how-2"
+          ],
+          "similarity": 0.5630350112915039,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5923320651054382,
+          "fit": 0.72
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5547788143157959,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.48818349838256836,
+          "fit": 0.82
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5771650075912476,
           "fit": 0.85
         }
       ],
-      "neutral_hits": 1,
+      "neutral_hits": 10,
       "neutral_total": 12,
-      "neutral_hit_rate": 0.08333333333333333,
-      "distinct_agents": 1,
+      "neutral_hit_rate": 0.8333333333333334,
+      "distinct_agents": 12,
       "quality_candidate": true,
-      "quality_reason": "neutral_vote=1 + toned_agents=1: THE-RULER"
+      "quality_reason": "neutral_vote=1 + toned_agents=12: THE-SAGE,THE-MAGICIAN,THE-OUTLAW,THE-RULER,THE-JESTER,THE-LOVER,THE-EXPLORER,THE-CREATOR,THE-EVERYMAN,THE-CAREGIVER,THE-INNOCENT,THE-HERO"
     },
     {
       "tmdb_id": 841793,
@@ -1990,40 +1820,53 @@
       "language": "pt",
       "poster_path": "/jZonuUeC9bH2D5A609w7nkplhyj.jpg",
       "movie_url": "https://themoviecosmos.com/movie/841793",
-      "similarity": 0.60948646068573,
+      "similarity": 0.5545193552970886,
       "triggered_by": [
         "THE-CAREGIVER",
-        "THE-EXPLORER",
-        "THE-LOVER"
+        "THE-LOVER",
+        "THE-MAGICIAN"
       ],
       "also_baseline": false,
       "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "how-1",
+            "why-2",
+            "how-2",
+            "result-0",
+            "who-0"
+          ],
+          "similarity": 0.4517078995704651,
+          "fit": 1.0
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-1"
+          ],
+          "similarity": 0.4877118468284607,
+          "fit": 0.78
+        },
         {
           "agent_id": "THE-CAREGIVER",
           "pseudo_id": "p2",
           "channel_role": "toned",
           "fragments": [
             "why-2",
-            "why-1",
+            "how-0",
             "how-1",
-            "how-2",
             "result-0"
           ],
-          "similarity": 0.5181095004081726,
+          "similarity": 0.5545193552970886,
           "fit": 0.85
-        },
-        {
-          "agent_id": "THE-EXPLORER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.4904855787754059,
-          "fit": 0.78
         },
         {
           "agent_id": "THE-LOVER",
@@ -2031,21 +1874,149 @@
           "channel_role": "toned",
           "fragments": [
             "why-2",
-            "how-0",
-            "how-1",
             "how-2",
             "result-0"
           ],
-          "similarity": 0.60948646068573,
-          "fit": 0.55
+          "similarity": 0.5186469554901123,
+          "fit": 0.8
         }
       ],
-      "neutral_hits": 0,
+      "neutral_hits": 1,
       "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
+      "neutral_hit_rate": 0.08333333333333333,
       "distinct_agents": 3,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=3)"
+      "quality_candidate": true,
+      "quality_reason": "neutral_vote=1 + toned_agents=3: THE-LOVER,THE-CAREGIVER,THE-MAGICIAN"
+    },
+    {
+      "tmdb_id": 280492,
+      "title": "From What Is Before",
+      "overview": "The Philippines, 1972. Mysterious things are happening in a remote barrio. Wails are heard from the forest, cows are hacked to death, a man is found bleeding to death at the crossroad, and houses are burned. Ferdinand E. Marcos announces Proclamation No. 1081, putting the entire country under Martial Law.",
+      "genres": "Drama",
+      "release_year": 2014,
+      "language": "tl",
+      "poster_path": "/4fL07Lf7dghqtgX5ohoIYx4wZRG.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/280492",
+      "similarity": 0.48535746335983276,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "how-1",
+            "why-2",
+            "how-2",
+            "result-0",
+            "who-0"
+          ],
+          "similarity": 0.4142495393753052,
+          "fit": 1.0
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.48535746335983276,
+          "fit": 0.65
+        }
+      ],
+      "neutral_hits": 1,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.08333333333333333,
+      "distinct_agents": 1,
+      "quality_candidate": true,
+      "quality_reason": "neutral_vote=1 + toned_agents=1: THE-INNOCENT"
+    },
+    {
+      "tmdb_id": 111750,
+      "title": "The Real Glory",
+      "overview": "Fort Mysang, southern Philippine Islands, under US rule, 1906. A small group of army officers and native troops resist the fierce and treacherous attacks of the ruthless Alisang and his fanatical followers.",
+      "genres": "Drama, War",
+      "release_year": 1939,
+      "language": "en",
+      "poster_path": "/fWUlNt585JRfFNBFdYGrfBGO7GS.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/111750",
+      "similarity": 0.4792495369911194,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "who-0",
+            "how-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.43398547172546387,
+          "fit": 1.0
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "why-0",
+            "who-0",
+            "result-0"
+          ],
+          "similarity": 0.41380107402801514,
+          "fit": 1.0
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "result-0",
+            "who-0",
+            "how-0",
+            "why-0",
+            "how-1"
+          ],
+          "similarity": 0.4208536148071289,
+          "fit": 1.0
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4792495369911194,
+          "fit": 0.65
+        }
+      ],
+      "neutral_hits": 3,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.25,
+      "distinct_agents": 1,
+      "quality_candidate": true,
+      "quality_reason": "neutral_vote=1 + toned_agents=1: THE-INNOCENT"
     },
     {
       "tmdb_id": 274855,
@@ -2056,101 +2027,135 @@
       "language": "en",
       "poster_path": "/nrsx0jEaBgXq4PWo7SooSnYJTv.jpg",
       "movie_url": "https://themoviecosmos.com/movie/274855",
-      "similarity": 0.5781439542770386,
+      "similarity": 0.5707771182060242,
       "triggered_by": [
+        "THE-INNOCENT",
+        "THE-EVERYMAN",
         "THE-HERO",
         "THE-EXPLORER",
-        "THE-OUTLAW",
-        "THE-RULER",
-        "THE-MAGICIAN"
+        "THE-LOVER",
+        "THE-CREATOR",
+        "THE-RULER"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-HERO",
+          "agent_id": "THE-INNOCENT",
           "pseudo_id": "p1",
           "channel_role": "toned",
           "fragments": [
             "why-0",
+            "why-2",
             "how-1",
             "how-2",
             "result-0"
           ],
-          "similarity": 0.5781439542770386,
-          "fit": 0.88
-        },
-        {
-          "agent_id": "THE-EXPLORER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5124825835227966,
-          "fit": 0.85
+          "similarity": 0.5545840263366699,
+          "fit": 0.78
         },
         {
           "agent_id": "THE-HERO",
-          "pseudo_id": "p2",
+          "pseudo_id": "p1",
           "channel_role": "toned",
           "fragments": [
             "why-0",
             "why-1",
+            "why-2",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5021364688873291,
+          "fit": 0.88
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
             "how-1",
             "result-0"
           ],
-          "similarity": 0.5541971921920776,
-          "fit": 0.82
+          "similarity": 0.5707771182060242,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-1",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.489316463470459,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4972902238368988,
+          "fit": 0.78
         },
         {
           "agent_id": "THE-RULER",
           "pseudo_id": "p2",
           "channel_role": "toned",
           "fragments": [
-            "how-2",
+            "why-1",
             "why-2",
-            "why-1"
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
           ],
-          "similarity": 0.48819077014923096,
+          "similarity": 0.540103554725647,
           "fit": 0.8
         },
         {
-          "agent_id": "THE-OUTLAW",
+          "agent_id": "THE-EVERYMAN",
           "pseudo_id": "p3",
           "channel_role": "toned",
           "fragments": [
             "why-0",
-            "how-1",
-            "how-2"
-          ],
-          "similarity": 0.5107221007347107,
-          "fit": 0.75
-        },
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
             "why-2",
             "how-1",
             "how-2",
-            "why-0",
-            "why-1",
             "result-0"
           ],
-          "similarity": 0.4928090274333954,
-          "fit": 0.82
+          "similarity": 0.5438829064369202,
+          "fit": 0.72
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.48959052562713623,
+          "fit": 0.75
         }
       ],
       "neutral_hits": 0,
       "neutral_total": 12,
       "neutral_hit_rate": 0.0,
-      "distinct_agents": 5,
+      "distinct_agents": 7,
       "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=5)"
+      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=7)"
     },
     {
       "tmdb_id": 475946,
@@ -2161,10 +2166,11 @@
       "language": "en",
       "poster_path": "/zzRjnUOVXyjp2WudgT7KxJLYh9D.jpg",
       "movie_url": "https://themoviecosmos.com/movie/475946",
-      "similarity": 0.5769648551940918,
+      "similarity": 0.5683260560035706,
       "triggered_by": [
+        "THE-EVERYMAN",
         "THE-CAREGIVER",
-        "THE-OUTLAW",
+        "THE-RULER",
         "THE-MAGICIAN",
         "THE-SAGE",
         "THE-JESTER"
@@ -2172,15 +2178,121 @@
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-OUTLAW",
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5195680856704712,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5105296969413757,
+          "fit": 0.91
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5683260560035706,
+          "fit": 0.85
+        },
+        {
+          "agent_id": "THE-SAGE",
           "pseudo_id": "p2",
           "channel_role": "toned",
           "fragments": [
             "why-1",
+            "how-0",
+            "how-1",
             "how-2",
             "result-0"
           ],
-          "similarity": 0.48989731073379517,
+          "similarity": 0.47465285658836365,
+          "fit": 0.82
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "how-1",
+            "result-0",
+            "how-2"
+          ],
+          "similarity": 0.522956371307373,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5440350770950317,
+          "fit": 0.75
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 6,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=6)"
+    },
+    {
+      "tmdb_id": 194834,
+      "title": "Re-Generator",
+      "overview": "A plane containing a highly classified government project crashes outside of a small town in the US. Realizing the level of danger, the government tries to secretly fix the problem. As tensions grow, the situation gets out of control, and civilians from the town find themselves facing their worst nightmare: a genetically enhanced killing machine that doesn't know how to stop.",
+      "genres": "Action, Science Fiction",
+      "release_year": 2010,
+      "language": "en",
+      "poster_path": "/91DuiopktCSjCi4ozPePJWTaIL5.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/194834",
+      "similarity": 0.5447109937667847,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5291019678115845,
           "fit": 0.81
         },
         {
@@ -2189,101 +2301,169 @@
           "channel_role": "toned",
           "fragments": [
             "why-0",
-            "why-1",
-            "why-2",
             "how-1",
+            "how-2",
             "result-0"
           ],
-          "similarity": 0.5581101775169373,
+          "similarity": 0.5447109937667847,
           "fit": 0.85
-        },
-        {
-          "agent_id": "THE-SAGE",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "how-0",
-            "how-1",
-            "why-2",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.4953683316707611,
-          "fit": 0.85
-        },
-        {
-          "agent_id": "THE-CAREGIVER",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "how-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5248603820800781,
-          "fit": 0.8
-        },
-        {
-          "agent_id": "THE-SAGE",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "how-0",
-            "how-1",
-            "why-1",
-            "result-0"
-          ],
-          "similarity": 0.5105026960372925,
-          "fit": 0.8
-        },
-        {
-          "agent_id": "THE-JESTER",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-2",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5769648551940918,
-          "fit": 0.82
         }
       ],
       "neutral_hits": 0,
       "neutral_total": 12,
       "neutral_hit_rate": 0.0,
-      "distinct_agents": 5,
+      "distinct_agents": 2,
       "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=5)"
+      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=2)"
     },
     {
-      "tmdb_id": 25241,
-      "title": "Squirm",
-      "overview": "A violent electrical storm topples power lines into the rain soaked earth that is home for an aggressive breed of worms. The high voltage causes the worms to mutate into larger, hostile hordes of man-eating worms that lie in wait for the residents of Fly Creek.",
-      "genres": "Horror",
-      "release_year": 1976,
-      "language": "en",
-      "poster_path": "/j9mNz3y3UeGQydqBKBhcIPk5l6P.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/25241",
-      "similarity": 0.5537877678871155,
+      "tmdb_id": 33495,
+      "title": "2061 - Un anno eccezionale",
+      "overview": "In a post-apocalyptic future, the Italian peninsula is going through a dark moment due to a terrible energy crisis.",
+      "genres": "Comedy, Science Fiction",
+      "release_year": 2007,
+      "language": "it",
+      "poster_path": "/VORCNi06aCDiAwp0ZpkfimpSwZ.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/33495",
+      "similarity": 0.5445220470428467,
       "triggered_by": [
-        "THE-JESTER"
+        "THE-CAREGIVER",
+        "THE-EXPLORER"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-JESTER",
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5390532612800598,
+          "fit": 0.9
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5445220470428467,
+          "fit": 0.85
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 2,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=2)"
+    },
+    {
+      "tmdb_id": 46221,
+      "title": "The Tunnel",
+      "overview": "An investigation into a government cover-up leads to a network of abandoned train tunnels deep beneath the heart of Sydney. As a journalist and her crew hunt for the story it quickly becomes clear the story is hunting them.",
+      "genres": "Horror, Thriller, Mystery",
+      "release_year": 2011,
+      "language": "en",
+      "poster_path": "/d9cWMXgqRYZhBqnf7UI4eaFTJsF.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/46221",
+      "similarity": 0.5304536819458008,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
           "pseudo_id": "p3",
           "channel_role": "toned",
           "fragments": [
             "why-0",
-            "why-2",
+            "how-1",
             "how-2",
             "result-0"
           ],
-          "similarity": 0.5537877678871155,
+          "similarity": 0.5304536819458008,
+          "fit": 0.75
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
+    },
+    {
+      "tmdb_id": 370097,
+      "title": "Stormageddon",
+      "overview": "What happens when you ask the most powerful computer program, run by the most powerful computers, to follow, listen and predict human behavior? The program learns, becomes sentient and begins to behave like a human. When a master computer program, Echelon, takes over America's entire online system, our country is threatened to be brought to its knees. Hacking into DARPA, Echelon gains the ability to manipulate the weather, create earthquakes, and cause a level of destruction unlike anything the country could ever imagine. But how do you stop a computer program when it has control over any and every defense you have?",
+      "genres": "Action, Drama, Thriller, Science Fiction",
+      "release_year": 2015,
+      "language": "en",
+      "poster_path": "/loZHFn4RoTeh4t1I4hS01DRYF7q.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/370097",
+      "similarity": 0.5302442312240601,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5302442312240601,
+          "fit": 0.85
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
+    },
+    {
+      "tmdb_id": 190738,
+      "title": "Assembling a Generator",
+      "overview": "A group of men work on various parts of a large generator, assembling the pieces",
+      "genres": "Documentary",
+      "release_year": 1904,
+      "language": "en",
+      "poster_path": "",
+      "movie_url": "https://themoviecosmos.com/movie/190738",
+      "similarity": 0.5074759721755981,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5074759721755981,
           "fit": 0.82
         }
       ],
@@ -2295,15 +2475,15 @@
       "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
     },
     {
-      "tmdb_id": 10942,
-      "title": "Babylon 5: The Gathering",
-      "overview": "The feature-length pilot for this Emmy award-winning show. Babylon 5 is the latest in a series of space stations built by humans. The Vorlon ambassador, Kosh, has been poisoned. It is the new commanding officer, Jeffrey Sinclair, who has the responsibility of finding the culprit. Otherwise, the space station will fail in its role of bringing many alien races together.",
-      "genres": "Science Fiction, Action, Adventure",
-      "release_year": 1993,
+      "tmdb_id": 210219,
+      "title": "Jet Stream",
+      "overview": "A TV weatherman tries to prove his theory that a series of unexplained catastrophes are the result of powerful winds found in the upper atmosphere coming down to ground level. His claims attract the attention of government scientists, who need his help to control the phenomena before it destroys all life on Earth (Locatetv.com)",
+      "genres": "Action, Adventure, Drama, Science Fiction, TV Movie",
+      "release_year": 2013,
       "language": "en",
-      "poster_path": "/1eRyJK9ImrmXqSkGXVO7OlDNrYq.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/10942",
-      "similarity": 0.5502640008926392,
+      "poster_path": "/qQWHDcGNJO5SW0urM5U8xNW9a8C.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/210219",
+      "similarity": 0.5053329467773438,
       "triggered_by": [
         "THE-JESTER"
       ],
@@ -2314,12 +2494,13 @@
           "pseudo_id": "p1",
           "channel_role": "toned",
           "fragments": [
+            "why-2",
             "why-0",
             "how-1",
             "how-2",
             "result-0"
           ],
-          "similarity": 0.5502640008926392,
+          "similarity": 0.5053329467773438,
           "fit": 0.88
         }
       ],
@@ -2331,99 +2512,70 @@
       "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
     },
     {
-      "tmdb_id": 33495,
-      "title": "2061 - Un anno eccezionale",
-      "overview": "In a post-apocalyptic future, the Italian peninsula is going through a dark moment due to a terrible energy crisis.",
-      "genres": "Comedy, Science Fiction",
-      "release_year": 2007,
-      "language": "it",
-      "poster_path": "/VORCNi06aCDiAwp0ZpkfimpSwZ.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/33495",
-      "similarity": 0.5315114855766296,
+      "tmdb_id": 533885,
+      "title": "Kaappaan",
+      "overview": "A Special Protection Group officer has to identify the threat to the prime minister, who he is protecting, and also the nation.",
+      "genres": "Action, Thriller",
+      "release_year": 2019,
+      "language": "ta",
+      "poster_path": "/vfw7EO15wqhzf9pWrVhjqn53YKg.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/533885",
+      "similarity": 0.4972318708896637,
       "triggered_by": [
-        "THE-LOVER",
-        "THE-CREATOR"
+        "THE-INNOCENT"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-CREATOR",
+          "agent_id": "THE-INNOCENT",
           "pseudo_id": "p1",
           "channel_role": "toned",
           "fragments": [
             "why-0",
-            "how-1",
             "why-2",
-            "result-0",
-            "why-1"
+            "how-1",
+            "how-2",
+            "result-0"
           ],
-          "similarity": 0.5223053097724915,
+          "similarity": 0.4972318708896637,
           "fit": 0.78
-        },
-        {
-          "agent_id": "THE-LOVER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "how-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5315114855766296,
-          "fit": 0.55
-        },
-        {
-          "agent_id": "THE-LOVER",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "why-1",
-            "how-0",
-            "how-1",
-            "how-2",
-            "why-2",
-            "result-0"
-          ],
-          "similarity": 0.4650419354438782,
-          "fit": 0.45
         }
       ],
       "neutral_hits": 0,
       "neutral_total": 12,
       "neutral_hit_rate": 0.0,
-      "distinct_agents": 2,
+      "distinct_agents": 1,
       "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=2)"
+      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
     },
     {
-      "tmdb_id": 32033,
-      "title": "Pulse",
-      "overview": "An intelligent pulse of electricity moves from house to house, terrorizing occupants through their own appliances. Having already destroyed one household in a quiet neighborhood, the pulse finds itself in the home of a boy and his divorced father.",
-      "genres": "Horror, Science Fiction",
-      "release_year": 1988,
+      "tmdb_id": 418879,
+      "title": "The Current War",
+      "overview": "Electricity titans Thomas Edison and George Westinghouse compete to create a sustainable system and market it to the American people.",
+      "genres": "Drama, History",
+      "release_year": 2018,
       "language": "en",
-      "poster_path": "/3klryy0WVJFh5HAkMWrY6TY6QiP.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/32033",
-      "similarity": 0.525890588760376,
+      "poster_path": "/eqTjO8yTaPRSKWj7i6Qnr7R5cls.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/418879",
+      "similarity": 0.4912101924419403,
       "triggered_by": [
-        "THE-CAREGIVER"
+        "THE-MAGICIAN"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-CAREGIVER",
-          "pseudo_id": "p1",
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p3",
           "channel_role": "toned",
           "fragments": [
-            "why-0",
+            "why-2",
+            "how-0",
             "how-1",
             "how-2",
             "result-0"
           ],
-          "similarity": 0.525890588760376,
-          "fit": 0.9
+          "similarity": 0.4912101924419403,
+          "fit": 0.8
         }
       ],
       "neutral_hits": 0,
@@ -2442,60 +2594,114 @@
       "language": "en",
       "poster_path": "/wUbmuByexr9pCpdAA2Qvpjy9Psz.jpg",
       "movie_url": "https://themoviecosmos.com/movie/100063",
-      "similarity": 0.5244184732437134,
+      "similarity": 0.48906952142715454,
       "triggered_by": [
-        "THE-HERO"
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.48906952142715454,
+          "fit": 0.75
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
+    },
+    {
+      "tmdb_id": 1223272,
+      "title": "Contagion of Fear",
+      "overview": "A catastrophic train derailment sends the city spiraling into chaos. But the derailment is just the beginning. A biological gas attack sees crash survivors collapsing and dying within minutes. And the sickness is rapidly spreading.",
+      "genres": "Science Fiction, Thriller",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/A5muc6PtApC9ubfmJW3ADRnIIfi.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1223272",
+      "similarity": 0.48873504996299744,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-SAGE"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
           "agent_id": "THE-HERO",
-          "pseudo_id": "p2",
+          "pseudo_id": "p3",
           "channel_role": "toned",
           "fragments": [
             "why-0",
             "why-1",
-            "how-1",
-            "result-0"
-          ],
-          "similarity": 0.5244184732437134,
-          "fit": 0.82
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
-    },
-    {
-      "tmdb_id": 651135,
-      "title": "Moon Landing",
-      "overview": "At six, Dario watched the first Moon landing on TV, sparking a lifelong dream to reach the stars. For the rest of his life, the ingenious curmudgeon built a homemade space rocket on his farm using scraps from the local hardware store. But, after a disastrous first launch burns down the neighbors' cornfields, Dario lands in jail. Enter Mario, his estranged brother who left the dying countryside for the big city: despite the confusion, he agrees to help Italy's 'secret space program' finally take off.",
-      "genres": "Comedy, Drama",
-      "release_year": 2020,
-      "language": "it",
-      "poster_path": "/exU8POhJJHrM5nL2zcmY8JWvltn.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/651135",
-      "similarity": 0.52434241771698,
-      "triggered_by": [
-        "THE-JESTER"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-JESTER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
+            "why-2",
             "how-1",
             "how-2",
             "result-0"
           ],
-          "similarity": 0.52434241771698,
-          "fit": 0.88
+          "similarity": 0.48873504996299744,
+          "fit": 0.75
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4621884822845459,
+          "fit": 0.85
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 2,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=2)"
+    },
+    {
+      "tmdb_id": 431892,
+      "title": "Trapped",
+      "overview": "A man gets stuck in an empty high rise without food, water or electricity.",
+      "genres": "Thriller, Drama",
+      "release_year": 2017,
+      "language": "hi",
+      "poster_path": "/bkavKb2CIIJJqOx6Ta1QwBwUKqu.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/431892",
+      "similarity": 0.47641515731811523,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.47641515731811523,
+          "fit": 0.8
         }
       ],
       "neutral_hits": 0,
@@ -2506,126 +2712,17 @@
       "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
     },
     {
-      "tmdb_id": 119001,
-      "title": "The Big Circus",
-      "overview": "A circus owner tries to keep his financially troubled circus on the road, despite the efforts of a murderous saboteur who has decided that the show must not go on.",
+      "tmdb_id": 266727,
+      "title": "Peasants",
+      "overview": "The peaceful life of an exemplary collective farm is being rent asunder by shortages and dissent, and a commissar is sent to uncover the source of the problems, unaware that their is actual sabotage involved.",
       "genres": "Drama",
-      "release_year": 1959,
-      "language": "en",
-      "poster_path": "/9Y9P4tiHszU5TwCsEuVOcKrg9hQ.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/119001",
-      "similarity": 0.5178784132003784,
+      "release_year": 1935,
+      "language": "ru",
+      "poster_path": "/7NMS84Qyomzz0Ow3VpLjRrhmm7j.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/266727",
+      "similarity": 0.47359442710876465,
       "triggered_by": [
-        "THE-JESTER"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-JESTER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-1",
-            "how-0",
-            "how-1",
-            "result-0"
-          ],
-          "similarity": 0.5178784132003784,
-          "fit": 0.75
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
-    },
-    {
-      "tmdb_id": 372095,
-      "title": "The Enemy Blood",
-      "overview": "A group of people suffering from mental retardation, blindness and physical malformations work in a traveling circus.",
-      "genres": "Romance, Drama, Crime",
-      "release_year": 1971,
-      "language": "es",
-      "poster_path": "/ieknAan3StFSXkzGplSi06Q6p7c.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/372095",
-      "similarity": 0.5158684849739075,
-      "triggered_by": [
-        "THE-JESTER"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-JESTER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-1",
-            "how-0",
-            "how-1",
-            "result-0"
-          ],
-          "similarity": 0.5158684849739075,
-          "fit": 0.75
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
-    },
-    {
-      "tmdb_id": 139329,
-      "title": "Back to 1942",
-      "overview": "In 1942, Henan Province was devastated by one of the most tragic famines in modern Chinese history, resulting in the deaths of at least three million men, women and children. Although the primary cause of the famine was a severe drought, it was exacerbated by locusts, windstorms, earthquakes, epidemic disease and the corruption of the ruling Kuomintang government.",
-      "genres": "War, Drama",
-      "release_year": 2012,
-      "language": "zh",
-      "poster_path": "/3VY5D7RrqnfEfmTTYKRsPgEMO5g.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/139329",
-      "similarity": 0.5054616928100586,
-      "triggered_by": [
-        "THE-EVERYMAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-EVERYMAN",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5054616928100586,
-          "fit": 0.9
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
-    },
-    {
-      "tmdb_id": 46221,
-      "title": "The Tunnel",
-      "overview": "An investigation into a government cover-up leads to a network of abandoned train tunnels deep beneath the heart of Sydney. As a journalist and her crew hunt for the story it quickly becomes clear the story is hunting them.",
-      "genres": "Horror, Thriller, Mystery",
-      "release_year": 2011,
-      "language": "en",
-      "poster_path": "/d9cWMXgqRYZhBqnf7UI4eaFTJsF.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/46221",
-      "similarity": 0.5021029114723206,
-      "triggered_by": [
-        "THE-OUTLAW",
-        "THE-SAGE"
+        "THE-OUTLAW"
       ],
       "also_baseline": false,
       "hit_sources": [
@@ -2638,63 +2735,8 @@
             "how-1",
             "result-0"
           ],
-          "similarity": 0.5021029114723206,
-          "fit": 0.78
-        },
-        {
-          "agent_id": "THE-SAGE",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "why-2",
-            "how-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5006349086761475,
-          "fit": 0.88
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 2,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=2)"
-    },
-    {
-      "tmdb_id": 491854,
-      "title": "Foxtrot Six",
-      "overview": "Escalating climate change is turning the world economy upside down. With crops dying and food price spiking, FOOD has replaced oil as the world's most valuable commodity.  Among the very few lands still left fertile, Indonesia is quickly rising as the next economic superpower, when its government is suddenly and ruthlessly overtaken by a popular rogue political party.  In just three days, six former Marines must work together, find their long-lost brotherhood, stop a nationwide government- sanctioned genocide, and save millions of lives, for one last shot at redemption. Or die trying.",
-      "genres": "Action, Drama, Science Fiction",
-      "release_year": 2019,
-      "language": "en",
-      "poster_path": "/o7c8FKCZFIrLKrZSzgqufvNo4mr.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/491854",
-      "similarity": 0.48595190048217773,
-      "triggered_by": [
-        "THE-INNOCENT"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-INNOCENT",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "why-2",
-            "how-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.48595190048217773,
-          "fit": 0.5
+          "similarity": 0.47359442710876465,
+          "fit": 0.85
         }
       ],
       "neutral_hits": 0,
@@ -2705,15 +2747,15 @@
       "quality_reason": "neutral_vote=0 (neutral union required; toned_agents=1)"
     },
     {
-      "tmdb_id": 2154,
-      "title": "The Dark Side of the Moon",
-      "overview": "It is the year 2022. A mysterious systems failure causes the crew of a spaceship to be stranded on the dark side of the moon, while rapidly running out of fuel and oxygen. They are surprised to discover a NASA space shuttle floating in space, and board it in the hope of salvaging some supplies. One by one, the crew is possessed and killed, and it is up to Paxton Warner to find the links between the dark side of the moon, the Bermuda Triangle, and the Devil himself.",
-      "genres": "Horror, Action, Thriller, Science Fiction",
-      "release_year": 1990,
+      "tmdb_id": 33787,
+      "title": "Get Smart, Again!",
+      "overview": "KAOS has invented a weather machine so Maxwell Smart and Agent 99 are called back into action to foil this evil plan.",
+      "genres": "Action, Comedy, Family, TV Movie, Science Fiction",
+      "release_year": 1989,
       "language": "en",
-      "poster_path": "/etnsPUDbgbMGna2hiuRvHDx0xyz.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/2154",
-      "similarity": 0.4835779070854187,
+      "poster_path": "/fbVfOONUteNXlEN7gBMyaxNyAGx.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/33787",
+      "similarity": 0.456692636013031,
       "triggered_by": [
         "THE-SAGE"
       ],
@@ -2721,16 +2763,17 @@
       "hit_sources": [
         {
           "agent_id": "THE-SAGE",
-          "pseudo_id": "p3",
+          "pseudo_id": "p1",
           "channel_role": "toned",
           "fragments": [
-            "how-0",
+            "why-0",
+            "why-2",
             "how-1",
-            "why-1",
+            "how-2",
             "result-0"
           ],
-          "similarity": 0.4835779070854187,
-          "fit": 0.8
+          "similarity": 0.456692636013031,
+          "fit": 0.88
         }
       ],
       "neutral_hits": 0,
@@ -2745,140 +2788,140 @@
   "oracle_comparison": null,
   "divergence": {
     "query_cosines": {
-      "THE-EVERYMAN-THE-INNOCENT": 0.8677798509597778,
-      "THE-HERO-THE-INNOCENT": 0.6711479425430298,
-      "THE-CAREGIVER-THE-INNOCENT": 0.7104894518852234,
-      "THE-EXPLORER-THE-INNOCENT": 0.6784718036651611,
-      "THE-INNOCENT-THE-OUTLAW": 0.806239128112793,
-      "THE-INNOCENT-THE-LOVER": 0.8125472664833069,
-      "THE-CREATOR-THE-INNOCENT": 0.7276896238327026,
-      "THE-INNOCENT-THE-RULER": 0.4585990011692047,
-      "THE-INNOCENT-THE-MAGICIAN": 0.43248680233955383,
-      "THE-INNOCENT-THE-SAGE": 0.8238785266876221,
-      "THE-INNOCENT-THE-JESTER": 0.7424957752227783,
-      "THE-EVERYMAN-THE-HERO": 0.8221814632415771,
-      "THE-CAREGIVER-THE-EVERYMAN": 0.8368858098983765,
-      "THE-EVERYMAN-THE-EXPLORER": 0.8288546800613403,
-      "THE-EVERYMAN-THE-OUTLAW": 0.8463823199272156,
-      "THE-EVERYMAN-THE-LOVER": 0.8913833498954773,
-      "THE-CREATOR-THE-EVERYMAN": 0.8103044033050537,
-      "THE-EVERYMAN-THE-RULER": 0.6577088832855225,
-      "THE-EVERYMAN-THE-MAGICIAN": 0.6479671001434326,
-      "THE-EVERYMAN-THE-SAGE": 0.8637188076972961,
-      "THE-EVERYMAN-THE-JESTER": 0.8901766538619995,
-      "THE-CAREGIVER-THE-HERO": 0.8990968465805054,
-      "THE-EXPLORER-THE-HERO": 0.9978601336479187,
-      "THE-HERO-THE-OUTLAW": 0.9139918088912964,
-      "THE-HERO-THE-LOVER": 0.8508504629135132,
-      "THE-CREATOR-THE-HERO": 0.9586606025695801,
-      "THE-HERO-THE-RULER": 0.9329524636268616,
-      "THE-HERO-THE-MAGICIAN": 0.8630248308181763,
-      "THE-HERO-THE-SAGE": 0.8826799392700195,
-      "THE-HERO-THE-JESTER": 0.9763070344924927,
-      "THE-CAREGIVER-THE-EXPLORER": 0.8979294300079346,
-      "THE-CAREGIVER-THE-OUTLAW": 0.8722624778747559,
-      "THE-CAREGIVER-THE-LOVER": 0.9456079602241516,
-      "THE-CAREGIVER-THE-CREATOR": 0.931581974029541,
-      "THE-CAREGIVER-THE-RULER": 0.8004008531570435,
-      "THE-CAREGIVER-THE-MAGICIAN": 0.8630664348602295,
-      "THE-CAREGIVER-THE-SAGE": 0.9483212232589722,
-      "THE-CAREGIVER-THE-JESTER": 0.9031476974487305,
-      "THE-EXPLORER-THE-OUTLAW": 0.9143890738487244,
-      "THE-EXPLORER-THE-LOVER": 0.8543282151222229,
-      "THE-CREATOR-THE-EXPLORER": 0.9549394845962524,
-      "THE-EXPLORER-THE-RULER": 0.9330826997756958,
-      "THE-EXPLORER-THE-MAGICIAN": 0.8623928427696228,
-      "THE-EXPLORER-THE-SAGE": 0.8810793161392212,
-      "THE-EXPLORER-THE-JESTER": 0.97724449634552,
-      "THE-LOVER-THE-OUTLAW": 0.8600460290908813,
-      "THE-CREATOR-THE-OUTLAW": 0.9514357447624207,
-      "THE-OUTLAW-THE-RULER": 0.775478720664978,
-      "THE-MAGICIAN-THE-OUTLAW": 0.7154518961906433,
-      "THE-OUTLAW-THE-SAGE": 0.9344643354415894,
-      "THE-JESTER-THE-OUTLAW": 0.9330588579177856,
-      "THE-CREATOR-THE-LOVER": 0.8912360668182373,
-      "THE-LOVER-THE-RULER": 0.7191610336303711,
-      "THE-LOVER-THE-MAGICIAN": 0.7604537010192871,
-      "THE-LOVER-THE-SAGE": 0.9262874126434326,
-      "THE-JESTER-THE-LOVER": 0.8724005222320557,
-      "THE-CREATOR-THE-RULER": 0.8568480014801025,
-      "THE-CREATOR-THE-MAGICIAN": 0.8155300617218018,
-      "THE-CREATOR-THE-SAGE": 0.9571386575698853,
-      "THE-CREATOR-THE-JESTER": 0.9488193392753601,
-      "THE-MAGICIAN-THE-RULER": 0.9287312626838684,
-      "THE-RULER-THE-SAGE": 0.7250428199768066,
-      "THE-JESTER-THE-RULER": 0.8887296915054321,
-      "THE-MAGICIAN-THE-SAGE": 0.7377307415008545,
-      "THE-JESTER-THE-MAGICIAN": 0.8363994359970093,
-      "THE-JESTER-THE-SAGE": 0.9128192067146301
+      "THE-EVERYMAN-THE-INNOCENT": 0.9607826471328735,
+      "THE-HERO-THE-INNOCENT": 0.781744122505188,
+      "THE-CAREGIVER-THE-INNOCENT": 0.911909282207489,
+      "THE-EXPLORER-THE-INNOCENT": 0.7238866686820984,
+      "THE-INNOCENT-THE-OUTLAW": 0.7291781902313232,
+      "THE-INNOCENT-THE-LOVER": 0.9665216207504272,
+      "THE-CREATOR-THE-INNOCENT": 0.5882031917572021,
+      "THE-INNOCENT-THE-RULER": 0.7232483625411987,
+      "THE-INNOCENT-THE-MAGICIAN": 0.5673961043357849,
+      "THE-INNOCENT-THE-SAGE": 0.9163405895233154,
+      "THE-INNOCENT-THE-JESTER": 0.6938177347183228,
+      "THE-EVERYMAN-THE-HERO": 0.8649473786354065,
+      "THE-CAREGIVER-THE-EVERYMAN": 0.911973237991333,
+      "THE-EVERYMAN-THE-EXPLORER": 0.8226335048675537,
+      "THE-EVERYMAN-THE-OUTLAW": 0.8049873113632202,
+      "THE-EVERYMAN-THE-LOVER": 0.9371212720870972,
+      "THE-CREATOR-THE-EVERYMAN": 0.6652383804321289,
+      "THE-EVERYMAN-THE-RULER": 0.7243012189865112,
+      "THE-EVERYMAN-THE-MAGICIAN": 0.5983341336250305,
+      "THE-EVERYMAN-THE-SAGE": 0.8639414310455322,
+      "THE-EVERYMAN-THE-JESTER": 0.7916895151138306,
+      "THE-CAREGIVER-THE-HERO": 0.8371350765228271,
+      "THE-EXPLORER-THE-HERO": 0.867587685585022,
+      "THE-HERO-THE-OUTLAW": 0.9215245246887207,
+      "THE-HERO-THE-LOVER": 0.7564786076545715,
+      "THE-CREATOR-THE-HERO": 0.9161843061447144,
+      "THE-HERO-THE-RULER": 0.8966013789176941,
+      "THE-HERO-THE-MAGICIAN": 0.7717679738998413,
+      "THE-HERO-THE-SAGE": 0.7433315515518188,
+      "THE-HERO-THE-JESTER": 0.8966972231864929,
+      "THE-CAREGIVER-THE-EXPLORER": 0.6729086637496948,
+      "THE-CAREGIVER-THE-OUTLAW": 0.8084704875946045,
+      "THE-CAREGIVER-THE-LOVER": 0.8454861044883728,
+      "THE-CAREGIVER-THE-CREATOR": 0.6617361307144165,
+      "THE-CAREGIVER-THE-RULER": 0.7944009304046631,
+      "THE-CAREGIVER-THE-MAGICIAN": 0.47388336062431335,
+      "THE-CAREGIVER-THE-SAGE": 0.8827601671218872,
+      "THE-CAREGIVER-THE-JESTER": 0.6320148706436157,
+      "THE-EXPLORER-THE-OUTLAW": 0.8852165937423706,
+      "THE-EXPLORER-THE-LOVER": 0.7405241131782532,
+      "THE-CREATOR-THE-EXPLORER": 0.7910446524620056,
+      "THE-EXPLORER-THE-RULER": 0.7295527458190918,
+      "THE-EXPLORER-THE-MAGICIAN": 0.7839783430099487,
+      "THE-EXPLORER-THE-SAGE": 0.6154041886329651,
+      "THE-EXPLORER-THE-JESTER": 0.9620006084442139,
+      "THE-LOVER-THE-OUTLAW": 0.6976222395896912,
+      "THE-CREATOR-THE-OUTLAW": 0.8681343793869019,
+      "THE-OUTLAW-THE-RULER": 0.8722550868988037,
+      "THE-MAGICIAN-THE-OUTLAW": 0.7001290321350098,
+      "THE-OUTLAW-THE-SAGE": 0.7163434624671936,
+      "THE-JESTER-THE-OUTLAW": 0.8510656356811523,
+      "THE-CREATOR-THE-LOVER": 0.5736240744590759,
+      "THE-LOVER-THE-RULER": 0.6886597871780396,
+      "THE-LOVER-THE-MAGICIAN": 0.6152176260948181,
+      "THE-LOVER-THE-SAGE": 0.9043755531311035,
+      "THE-JESTER-THE-LOVER": 0.7217661142349243,
+      "THE-CREATOR-THE-RULER": 0.8755350708961487,
+      "THE-CREATOR-THE-MAGICIAN": 0.8801126480102539,
+      "THE-CREATOR-THE-SAGE": 0.5646457672119141,
+      "THE-CREATOR-THE-JESTER": 0.8607081174850464,
+      "THE-MAGICIAN-THE-RULER": 0.7511628270149231,
+      "THE-RULER-THE-SAGE": 0.761833131313324,
+      "THE-JESTER-THE-RULER": 0.7572544813156128,
+      "THE-MAGICIAN-THE-SAGE": 0.5195915699005127,
+      "THE-JESTER-THE-MAGICIAN": 0.8773466944694519,
+      "THE-JESTER-THE-SAGE": 0.6055590510368347
     },
     "topk_jaccard": {
-      "THE-EVERYMAN-THE-INNOCENT": 0.2857142857142857,
+      "THE-EVERYMAN-THE-INNOCENT": 0.3333333333333333,
       "THE-HERO-THE-INNOCENT": 0.3333333333333333,
-      "THE-CAREGIVER-THE-INNOCENT": 0.25,
-      "THE-EXPLORER-THE-INNOCENT": 0.3333333333333333,
-      "THE-INNOCENT-THE-OUTLAW": 0.125,
-      "THE-INNOCENT-THE-LOVER": 0.2857142857142857,
+      "THE-CAREGIVER-THE-INNOCENT": 0.09090909090909091,
+      "THE-EXPLORER-THE-INNOCENT": 0.2,
+      "THE-INNOCENT-THE-OUTLAW": 0.25,
+      "THE-INNOCENT-THE-LOVER": 0.375,
       "THE-CREATOR-THE-INNOCENT": 0.3333333333333333,
-      "THE-INNOCENT-THE-RULER": 0.2,
-      "THE-INNOCENT-THE-MAGICIAN": 0.1,
-      "THE-INNOCENT-THE-SAGE": 0.125,
-      "THE-INNOCENT-THE-JESTER": 0.09090909090909091,
-      "THE-EVERYMAN-THE-HERO": 0.125,
-      "THE-CAREGIVER-THE-EVERYMAN": 0.1,
-      "THE-EVERYMAN-THE-EXPLORER": 0.125,
-      "THE-EVERYMAN-THE-OUTLAW": 0.25,
-      "THE-EVERYMAN-THE-LOVER": 0.1111111111111111,
-      "THE-CREATOR-THE-EVERYMAN": 0.125,
-      "THE-EVERYMAN-THE-RULER": 0.08333333333333333,
-      "THE-EVERYMAN-THE-MAGICIAN": 0.09090909090909091,
-      "THE-EVERYMAN-THE-SAGE": 0.25,
-      "THE-EVERYMAN-THE-JESTER": 0.18181818181818182,
-      "THE-CAREGIVER-THE-HERO": 0.25,
-      "THE-EXPLORER-THE-HERO": 0.6,
-      "THE-HERO-THE-OUTLAW": 0.2857142857142857,
-      "THE-HERO-THE-LOVER": 0.2857142857142857,
-      "THE-CREATOR-THE-HERO": 0.3333333333333333,
-      "THE-HERO-THE-RULER": 0.3333333333333333,
-      "THE-HERO-THE-MAGICIAN": 0.2222222222222222,
-      "THE-HERO-THE-SAGE": 0.125,
-      "THE-HERO-THE-JESTER": 0.09090909090909091,
-      "THE-CAREGIVER-THE-EXPLORER": 0.42857142857142855,
-      "THE-CAREGIVER-THE-OUTLAW": 0.2222222222222222,
-      "THE-CAREGIVER-THE-LOVER": 0.375,
-      "THE-CAREGIVER-THE-CREATOR": 0.25,
-      "THE-CAREGIVER-THE-RULER": 0.16666666666666666,
-      "THE-CAREGIVER-THE-MAGICIAN": 0.18181818181818182,
-      "THE-CAREGIVER-THE-SAGE": 0.2222222222222222,
-      "THE-CAREGIVER-THE-JESTER": 0.16666666666666666,
-      "THE-EXPLORER-THE-OUTLAW": 0.2857142857142857,
-      "THE-EXPLORER-THE-LOVER": 0.5,
-      "THE-CREATOR-THE-EXPLORER": 0.3333333333333333,
-      "THE-EXPLORER-THE-RULER": 0.3333333333333333,
-      "THE-EXPLORER-THE-MAGICIAN": 0.2222222222222222,
-      "THE-EXPLORER-THE-SAGE": 0.125,
-      "THE-EXPLORER-THE-JESTER": 0.09090909090909091,
-      "THE-LOVER-THE-OUTLAW": 0.1111111111111111,
-      "THE-CREATOR-THE-OUTLAW": 0.125,
-      "THE-OUTLAW-THE-RULER": 0.18181818181818182,
-      "THE-MAGICIAN-THE-OUTLAW": 0.3333333333333333,
-      "THE-OUTLAW-THE-SAGE": 0.6666666666666666,
-      "THE-JESTER-THE-OUTLAW": 0.3,
-      "THE-CREATOR-THE-LOVER": 0.5,
-      "THE-LOVER-THE-RULER": 0.18181818181818182,
-      "THE-LOVER-THE-MAGICIAN": 0.09090909090909091,
-      "THE-LOVER-THE-SAGE": 0.1111111111111111,
-      "THE-JESTER-THE-LOVER": 0.08333333333333333,
-      "THE-CREATOR-THE-RULER": 0.2,
-      "THE-CREATOR-THE-MAGICIAN": 0.1,
-      "THE-CREATOR-THE-SAGE": 0.125,
-      "THE-CREATOR-THE-JESTER": 0.09090909090909091,
-      "THE-MAGICIAN-THE-RULER": 0.25,
-      "THE-RULER-THE-SAGE": 0.08333333333333333,
-      "THE-JESTER-THE-RULER": 0.06666666666666667,
+      "THE-INNOCENT-THE-RULER": 0.3,
+      "THE-INNOCENT-THE-MAGICIAN": 0.16666666666666666,
+      "THE-INNOCENT-THE-SAGE": 0.2,
+      "THE-INNOCENT-THE-JESTER": 0.1,
+      "THE-EVERYMAN-THE-HERO": 0.42857142857142855,
+      "THE-CAREGIVER-THE-EVERYMAN": 0.25,
+      "THE-EVERYMAN-THE-EXPLORER": 0.25,
+      "THE-EVERYMAN-THE-OUTLAW": 0.14285714285714285,
+      "THE-EVERYMAN-THE-LOVER": 0.5,
+      "THE-CREATOR-THE-EVERYMAN": 0.25,
+      "THE-EVERYMAN-THE-RULER": 0.375,
+      "THE-EVERYMAN-THE-MAGICIAN": 0.2,
+      "THE-EVERYMAN-THE-SAGE": 0.42857142857142855,
+      "THE-EVERYMAN-THE-JESTER": 0.2857142857142857,
+      "THE-CAREGIVER-THE-HERO": 0.1111111111111111,
+      "THE-EXPLORER-THE-HERO": 0.25,
+      "THE-HERO-THE-OUTLAW": 0.14285714285714285,
+      "THE-HERO-THE-LOVER": 0.5,
+      "THE-CREATOR-THE-HERO": 0.25,
+      "THE-HERO-THE-RULER": 0.2222222222222222,
+      "THE-HERO-THE-MAGICIAN": 0.2,
+      "THE-HERO-THE-SAGE": 0.42857142857142855,
+      "THE-HERO-THE-JESTER": 0.125,
+      "THE-CAREGIVER-THE-EXPLORER": 0.25,
+      "THE-CAREGIVER-THE-OUTLAW": 0.14285714285714285,
+      "THE-CAREGIVER-THE-LOVER": 0.2857142857142857,
+      "THE-CAREGIVER-THE-CREATOR": 0.1111111111111111,
+      "THE-CAREGIVER-THE-RULER": 0.2222222222222222,
+      "THE-CAREGIVER-THE-MAGICIAN": 0.3333333333333333,
+      "THE-CAREGIVER-THE-SAGE": 0.25,
+      "THE-CAREGIVER-THE-JESTER": 0.2857142857142857,
+      "THE-EXPLORER-THE-OUTLAW": 0.14285714285714285,
+      "THE-EXPLORER-THE-LOVER": 0.2857142857142857,
+      "THE-CREATOR-THE-EXPLORER": 0.25,
+      "THE-EXPLORER-THE-RULER": 0.2222222222222222,
+      "THE-EXPLORER-THE-MAGICIAN": 0.09090909090909091,
+      "THE-EXPLORER-THE-SAGE": 0.1111111111111111,
+      "THE-EXPLORER-THE-JESTER": 0.2857142857142857,
+      "THE-LOVER-THE-OUTLAW": 0.16666666666666666,
+      "THE-CREATOR-THE-OUTLAW": 0.3333333333333333,
+      "THE-OUTLAW-THE-RULER": 0.2857142857142857,
+      "THE-MAGICIAN-THE-OUTLAW": 0.1111111111111111,
+      "THE-OUTLAW-THE-SAGE": 0.14285714285714285,
+      "THE-JESTER-THE-OUTLAW": 0.16666666666666666,
+      "THE-CREATOR-THE-LOVER": 0.2857142857142857,
+      "THE-LOVER-THE-RULER": 0.25,
+      "THE-LOVER-THE-MAGICIAN": 0.2222222222222222,
+      "THE-LOVER-THE-SAGE": 0.2857142857142857,
+      "THE-JESTER-THE-LOVER": 0.14285714285714285,
+      "THE-CREATOR-THE-RULER": 0.375,
+      "THE-CREATOR-THE-MAGICIAN": 0.09090909090909091,
+      "THE-CREATOR-THE-SAGE": 0.1111111111111111,
+      "THE-CREATOR-THE-JESTER": 0.125,
+      "THE-MAGICIAN-THE-RULER": 0.18181818181818182,
+      "THE-RULER-THE-SAGE": 0.2222222222222222,
+      "THE-JESTER-THE-RULER": 0.25,
       "THE-MAGICIAN-THE-SAGE": 0.2,
-      "THE-JESTER-THE-MAGICIAN": 0.15384615384615385,
-      "THE-JESTER-THE-SAGE": 0.3
+      "THE-JESTER-THE-MAGICIAN": 0.2222222222222222,
+      "THE-JESTER-THE-SAGE": 0.2857142857142857
     }
   },
   "meta": {

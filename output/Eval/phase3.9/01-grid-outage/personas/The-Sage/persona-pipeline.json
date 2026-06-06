@@ -9,24 +9,19 @@
           "original_term": "The Philippines grid operator",
           "alternatives": [
             {
-              "term": "the operator verifying grid stability",
+              "term": "grid stability monitors",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the system monitor",
+              "term": "the system overseer",
               "valence": "neutral",
               "provenance": "lens"
             },
             {
-              "term": "the grid management entity",
+              "term": "grid management authority",
               "valence": "neutral",
               "provenance": "hypernym"
-            },
-            {
-              "term": "the entity reacting to an unverified trigger",
-              "valence": "negative",
-              "provenance": "lens"
             }
           ]
         },
@@ -35,24 +30,19 @@
           "original_term": "Kepco SPC Power's Unit 2",
           "alternatives": [
             {
-              "term": "the unit whose failure was a verified cause",
-              "valence": "positive",
-              "provenance": "lens"
-            },
-            {
-              "term": "the tripped generator",
-              "valence": "neutral",
-              "provenance": "lens"
-            },
-            {
-              "term": "the power unit",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "the source of the initial fault",
+              "term": "the failed generating asset",
               "valence": "negative",
               "provenance": "lens"
+            },
+            {
+              "term": "the tripped unit",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "power generation unit",
+              "valence": "neutral",
+              "provenance": "hypernym"
             }
           ]
         },
@@ -61,50 +51,14 @@
           "original_term": "Officials",
           "alternatives": [
             {
-              "term": "decision-makers acting on evidence",
+              "term": "crisis decision-makers",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the authorities",
-              "valence": "neutral",
-              "provenance": "lens"
-            },
-            {
-              "term": "the officials",
+              "term": "emergency authorities",
               "valence": "neutral",
               "provenance": "hypernym"
-            },
-            {
-              "term": "the officials issuing orders without full analysis",
-              "valence": "negative",
-              "provenance": "lens"
-            }
-          ]
-        },
-        {
-          "element_id": "who-3",
-          "original_term": "Eleven generators",
-          "alternatives": [
-            {
-              "term": "the units confirming the supply shortfall",
-              "valence": "positive",
-              "provenance": "lens"
-            },
-            {
-              "term": "the offline generators",
-              "valence": "neutral",
-              "provenance": "lens"
-            },
-            {
-              "term": "the power generators",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "the generators contributing to the deficit",
-              "valence": "negative",
-              "provenance": "lens"
             }
           ]
         },
@@ -113,24 +67,19 @@
           "original_term": "Kepco SPC Power's Unit 2 tripped offline",
           "alternatives": [
             {
-              "term": "the confirmed mechanical failure",
+              "term": "a verified equipment failure",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the unit tripping offline",
-              "valence": "neutral",
-              "provenance": "lens"
-            },
-            {
-              "term": "the operational failure",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "the unscheduled outage",
+              "term": "the unit's unexpected shutdown",
               "valence": "negative",
               "provenance": "lens"
+            },
+            {
+              "term": "a documented outage",
+              "valence": "neutral",
+              "provenance": "hypernym"
             }
           ]
         },
@@ -139,24 +88,14 @@
           "original_term": "other long-running plant outages",
           "alternatives": [
             {
-              "term": "the pre-existing, documented maintenance gaps",
-              "valence": "positive",
-              "provenance": "lens"
-            },
-            {
-              "term": "the other outages",
-              "valence": "neutral",
-              "provenance": "lens"
-            },
-            {
-              "term": "the plant outages",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "the accumulated, unresolved failures",
+              "term": "a pattern of infrastructure neglect",
               "valence": "negative",
               "provenance": "lens"
+            },
+            {
+              "term": "pre-existing generation shortfalls",
+              "valence": "neutral",
+              "provenance": "hypernym"
             }
           ]
         },
@@ -165,24 +104,19 @@
           "original_term": "seasonal heat drove demand into a thin operating margin",
           "alternatives": [
             {
-              "term": "the measurable peak demand scenario",
+              "term": "verified weather-driven load stress",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the high demand period",
-              "valence": "neutral",
-              "provenance": "lens"
-            },
-            {
-              "term": "the demand increase",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "the unmanaged demand spike",
+              "term": "demand exceeding safe capacity",
               "valence": "negative",
               "provenance": "lens"
+            },
+            {
+              "term": "a documented supply-demand imbalance",
+              "valence": "neutral",
+              "provenance": "hypernym"
             }
           ]
         },
@@ -191,24 +125,19 @@
           "original_term": "Kepco SPC Power's Unit 2 tripped offline",
           "alternatives": [
             {
-              "term": "the event initiating the chain of evidence",
+              "term": "a failure traceable to the unit",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the tripping event",
-              "valence": "neutral",
-              "provenance": "lens"
-            },
-            {
-              "term": "the triggering event",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "the failure that began the crisis",
+              "term": "an uncontrolled trip event",
               "valence": "negative",
               "provenance": "lens"
+            },
+            {
+              "term": "an unscheduled generation outage",
+              "valence": "neutral",
+              "provenance": "hypernym"
             }
           ]
         },
@@ -217,24 +146,19 @@
           "original_term": "The Philippines grid operator placed the Visayas under red alert",
           "alternatives": [
             {
-              "term": "the operator issuing a verified alert",
+              "term": "a data-driven escalation protocol",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the alert declaration",
+              "term": "an automated system response",
               "valence": "neutral",
               "provenance": "lens"
             },
             {
-              "term": "the grid status change",
+              "term": "a grid stability procedure",
               "valence": "neutral",
               "provenance": "hypernym"
-            },
-            {
-              "term": "the alert without full root-cause confirmation",
-              "valence": "negative",
-              "provenance": "lens"
             }
           ]
         },
@@ -243,24 +167,19 @@
           "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
           "alternatives": [
             {
-              "term": "the preventive measure to avoid a documented overload risk",
+              "term": "a calculated grid protection measure",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the load shedding order",
-              "valence": "neutral",
-              "provenance": "lens"
-            },
-            {
-              "term": "the emergency action",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "the reactive, precautionary shutdown",
+              "term": "forced demand reduction",
               "valence": "negative",
               "provenance": "lens"
+            },
+            {
+              "term": "an emergency load management action",
+              "valence": "neutral",
+              "provenance": "hypernym"
             }
           ]
         },
@@ -269,24 +188,19 @@
           "original_term": "more than 950 megawatts unavailable",
           "alternatives": [
             {
-              "term": "the quantified supply deficit",
+              "term": "a quantified power deficit",
               "valence": "positive",
               "provenance": "lens"
             },
             {
-              "term": "the power shortfall",
-              "valence": "neutral",
-              "provenance": "lens"
-            },
-            {
-              "term": "the generation loss",
-              "valence": "neutral",
-              "provenance": "hypernym"
-            },
-            {
-              "term": "the critical capacity gap",
+              "term": "severe generation loss",
               "valence": "negative",
               "provenance": "lens"
+            },
+            {
+              "term": "a significant capacity shortfall",
+              "valence": "neutral",
+              "provenance": "hypernym"
             }
           ]
         }
@@ -294,26 +208,24 @@
     },
     "salience": [
       "result-0",
-      "how-0",
-      "how-1",
       "why-0",
+      "why-1",
       "why-2",
-      "who-0",
-      "where-0"
+      "how-0"
     ]
   },
   "pseudos": [
     {
       "id": "n1",
-      "text": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator placed the Visayas under red alert. Kepco SPC Power's Unit 2 tripped offline. seasonal heat drove demand into a thin operating margin The event unfolds across the generation loss and power shortage.",
+      "text": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2 tripped offline. other long-running plant outages. seasonal heat drove demand into a thin operating margin The event unfolds across a significant capacity shortfall and power shortage.",
       "source": {
         "agent_id": "The-Sage",
         "fragments": [
           "result-0",
-          "how-0",
-          "how-1",
           "why-0",
-          "why-2"
+          "why-1",
+          "why-2",
+          "how-0"
         ],
         "channel_role": "neutral",
         "provenance_layers": [
@@ -326,7 +238,7 @@
             "provenance": "surface"
           },
           {
-            "term": "the generation loss",
+            "term": "a significant capacity shortfall",
             "provenance": "hypernym"
           },
           {
@@ -350,7 +262,7 @@
             "provenance": "surface"
           },
           {
-            "term": "the triggering event",
+            "term": "a documented outage",
             "provenance": "hypernym"
           },
           {
@@ -366,31 +278,27 @@
             "provenance": "hypernym"
           },
           {
-            "term": "The Philippines grid operator placed the Visayas under red alert",
+            "term": "other long-running plant outages",
             "provenance": "surface"
           },
           {
-            "term": "the grid status change",
+            "term": "pre-existing generation shortfalls",
             "provenance": "hypernym"
           },
           {
-            "term": "alert declaration",
+            "term": "plant outages",
             "provenance": "hypernym"
           },
           {
-            "term": "grid management action",
+            "term": "maintenance shutdowns",
             "provenance": "hypernym"
           },
           {
-            "term": "emergency response",
+            "term": "unavailability",
             "provenance": "hypernym"
           },
           {
-            "term": "action",
-            "provenance": "hypernym"
-          },
-          {
-            "term": "the operational failure",
+            "term": "downtime",
             "provenance": "hypernym"
           },
           {
@@ -398,7 +306,7 @@
             "provenance": "surface"
           },
           {
-            "term": "the demand increase",
+            "term": "a documented supply-demand imbalance",
             "provenance": "hypernym"
           },
           {
@@ -416,6 +324,10 @@
           {
             "term": "demand increase",
             "provenance": "hypernym"
+          },
+          {
+            "term": "an unscheduled generation outage",
+            "provenance": "hypernym"
           }
         ]
       },
@@ -424,14 +336,12 @@
     },
     {
       "id": "p1",
-      "text": "Analysis of the May 2026 Visayas grid incident reveals a clear causal chain. The event initiating the chain of evidence was the tripping offline of a major power unit. This unscheduled outage, combined with pre-existing, documented maintenance gaps, exposed the grid to a measurable peak demand scenario driven by seasonal heat. The grid management entity, responding to the verified equipment failure, issued a red alert and initiated load shedding as an emergency measure to prevent a documented overload risk, resulting in a quantified supply deficit exceeding 950 megawatts.",
+      "text": "The event sequence, traceable to a verified equipment failure in Kepco SPC Power's Unit 2, triggered a data-driven escalation protocol by the grid management authority. This grid stability procedure was necessitated by a documented supply-demand imbalance caused by high demand from seasonal heat. Officials, acting as crisis decision-makers, authorized an emergency load management action, a calculated grid protection measure to prevent overloading. The consequence was a quantified power deficit, rendering more than 950 megawatts unavailable in the Visayas region.",
       "source": {
         "agent_id": "The-Sage",
         "fragments": [
           "why-0",
-          "why-1",
           "why-2",
-          "how-0",
           "how-1",
           "how-2",
           "result-0"
@@ -443,13 +353,30 @@
     },
     {
       "id": "p2",
-      "text": "The sequence began with a confirmed mechanical failure at a critical power plant component. Decision-makers acting on evidence then placed the island group under a grid status change, a direct response to the resulting energy demand spike. The subsequent load shedding order was a necessary grid stabilization action. The incident serves as a case study in grid management under stress, where the loss of generation capacity can rapidly translate into a significant energy deficit.",
+      "text": "Analysis of the grid incident reveals a pattern of pre-existing generation shortfalls compounding the initial failure of the power generation unit. The system overseer responded with an automated system response, a grid stability procedure, to manage the severe generation loss. This forced demand reduction was an emergency measure, creating a significant capacity shortfall of over 950 megawatts. The sequence highlights the tension between infrastructure readiness and acute weather-driven load stress on the energy sector entity.",
       "source": {
         "agent_id": "The-Sage",
         "fragments": [
+          "why-1",
           "how-0",
           "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.82
+    },
+    {
+      "id": "p3",
+      "text": "The documented outage of the tripped unit initiated a chain reaction, exposing the energy infrastructure to stress from an energy demand spike. Grid stability monitors executed an alert declaration, a control action, to stabilize the network. The resulting emergency measure to shed load averted a wider power outage but confirmed a substantial energy deficit. This incident serves as a factual case study in grid incident management under conditions of demand exceeding safe capacity.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "why-0",
           "why-2",
+          "how-1",
           "how-2",
           "result-0"
         ],
@@ -457,22 +384,6 @@
       },
       "warnings": [],
       "fit": 0.85
-    },
-    {
-      "id": "p3",
-      "text": "Forensic review of the event timeline shows the triggering event occurred in early May. The system monitor's subsequent emergency response, while precautionary, highlights the vulnerability of energy infrastructure to sudden operational failures. The loss was not isolated; it reflected a broader pattern of plant outages that reduced system resilience. The final tally—a capacity gap of over 950 MW—underscores the tangible cost when multiple failures coincide during peak demand.",
-      "source": {
-        "agent_id": "The-Sage",
-        "fragments": [
-          "how-0",
-          "how-1",
-          "why-1",
-          "result-0"
-        ],
-        "channel_role": "toned"
-      },
-      "warnings": [],
-      "fit": 0.8
     }
   ],
   "warnings": []

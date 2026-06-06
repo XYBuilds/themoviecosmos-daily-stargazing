@@ -7,17 +7,17 @@
         "original_term": "The Philippines grid operator",
         "alternatives": [
           {
-            "term": "the defenders of the grid",
+            "term": "the grid guardians",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the grid operator",
+            "term": "the system overseer",
             "valence": "neutral",
             "provenance": "lens"
           },
           {
-            "term": "system administrator",
+            "term": "grid management authority",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -28,12 +28,17 @@
         "original_term": "Kepco SPC Power's Unit 2",
         "alternatives": [
           {
-            "term": "the failed unit",
+            "term": "the failed power unit",
             "valence": "negative",
             "provenance": "lens"
           },
           {
-            "term": "the power plant unit",
+            "term": "the offline generator",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "power generation equipment",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -44,14 +49,24 @@
         "original_term": "Officials",
         "alternatives": [
           {
-            "term": "the commanders who acted",
+            "term": "the decisive crisis managers",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the decision-makers",
+            "term": "the authorities",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "government representatives",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "bureaucrats who delayed",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -60,12 +75,38 @@
         "original_term": "Eleven generators",
         "alternatives": [
           {
-            "term": "the sidelined reserves",
+            "term": "the weakened power fleet",
             "valence": "negative",
             "provenance": "lens"
           },
           {
-            "term": "power generation units",
+            "term": "the power stations",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "electricity production facilities",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Visayas",
+        "alternatives": [
+          {
+            "term": "the frontline of the power crisis",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the affected region",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "a geographic area in the Philippines",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -76,12 +117,17 @@
         "original_term": "Kepco SPC Power's Unit 2 tripped offline",
         "alternatives": [
           {
-            "term": "the critical failure that triggered the crisis",
+            "term": "the critical system failure",
             "valence": "negative",
             "provenance": "lens"
           },
           {
-            "term": "the unit malfunction",
+            "term": "the unit's unexpected shutdown",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "an equipment malfunction",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -92,12 +138,17 @@
         "original_term": "other long-running plant outages",
         "alternatives": [
           {
-            "term": "ongoing vulnerabilities",
+            "term": "compounding system vulnerabilities",
             "valence": "negative",
             "provenance": "lens"
           },
           {
-            "term": "pre-existing outages",
+            "term": "extended plant shutdowns",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "ongoing maintenance issues",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -108,12 +159,17 @@
         "original_term": "seasonal heat drove demand into a thin operating margin",
         "alternatives": [
           {
-            "term": "the relentless demand pressure",
+            "term": "the relentless assault of summer demand",
             "valence": "negative",
             "provenance": "lens"
           },
           {
-            "term": "high seasonal demand",
+            "term": "the heat-driven demand surge",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "increased electricity consumption due to high temperatures",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -124,12 +180,17 @@
         "original_term": "Kepco SPC Power's Unit 2 tripped offline",
         "alternatives": [
           {
-            "term": "the unit's collapse",
+            "term": "the point of initial failure",
             "valence": "negative",
             "provenance": "lens"
           },
           {
-            "term": "the unit shutdown",
+            "term": "the first domino to fall",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the triggering event",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -140,14 +201,24 @@
         "original_term": "The Philippines grid operator placed the Visayas under red alert",
         "alternatives": [
           {
-            "term": "sounded the alarm to protect the system",
+            "term": "the defenders raised the alarm",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "issued a red alert",
+            "term": "the authorities declared a red alert",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "a high-level warning was issued",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "they failed to prevent the crisis",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -156,14 +227,24 @@
         "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
         "alternatives": [
           {
-            "term": "made the tough call to prevent catastrophic failure",
+            "term": "the courageous decision to prevent total collapse",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "ordered load shedding",
+            "term": "the emergency load reduction",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "an operational procedure to avoid overload",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "a drastic, painful measure",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -177,23 +258,12 @@
             "provenance": "lens"
           },
           {
-            "term": "a significant loss of power capacity",
+            "term": "a significant loss of generation capacity",
             "valence": "neutral",
-            "provenance": "hypernym"
-          }
-        ]
-      },
-      {
-        "element_id": "where-0",
-        "original_term": "Visayas",
-        "alternatives": [
-          {
-            "term": "the front line of the power crisis",
-            "valence": "negative",
             "provenance": "lens"
           },
           {
-            "term": "the affected region",
+            "term": "a substantial reduction in available electricity",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -204,8 +274,8 @@
   "salience": [
     "result-0",
     "how-2",
-    "how-1",
-    "who-0",
-    "why-0"
+    "who-2",
+    "why-0",
+    "how-1"
   ]
 }

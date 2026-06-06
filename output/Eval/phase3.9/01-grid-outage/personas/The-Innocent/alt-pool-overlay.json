@@ -7,12 +7,12 @@
         "original_term": "The Philippines grid operator",
         "alternatives": [
           {
-            "term": "the trusted grid operator",
+            "term": "the trusted grid guardian",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the grid management entity",
+            "term": "the grid management authority",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -23,14 +23,14 @@
         "original_term": "Kepco SPC Power's Unit 2",
         "alternatives": [
           {
-            "term": "the tripped power unit",
-            "valence": "negative",
-            "provenance": "lens"
-          },
-          {
-            "term": "the affected generator",
+            "term": "the affected power unit",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "the failed component seeking repair",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -39,12 +39,12 @@
         "original_term": "Officials",
         "alternatives": [
           {
-            "term": "the responsible officials",
+            "term": "duty-bound decision-makers",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "the decision-making authorities",
+            "term": "public authorities",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -55,30 +55,14 @@
         "original_term": "Eleven generators",
         "alternatives": [
           {
-            "term": "the numerous affected power sources",
-            "valence": "negative",
-            "provenance": "lens"
-          },
-          {
-            "term": "the power generation fleet",
+            "term": "the affected generators",
             "valence": "neutral",
             "provenance": "hypernym"
-          }
-        ]
-      },
-      {
-        "element_id": "where-0",
-        "original_term": "Visayas",
-        "alternatives": [
-          {
-            "term": "the vulnerable region",
-            "valence": "negative",
-            "provenance": "lens"
           },
           {
-            "term": "the affected area",
-            "valence": "neutral",
-            "provenance": "hypernym"
+            "term": "the powerless suppliers",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -87,12 +71,12 @@
         "original_term": "Kepco SPC Power's Unit 2 tripped offline",
         "alternatives": [
           {
-            "term": "a critical power unit failed unexpectedly",
-            "valence": "negative",
+            "term": "an unforeseen mechanical failure",
+            "valence": "neutral",
             "provenance": "lens"
           },
           {
-            "term": "a generation unit outage",
+            "term": "a sudden operational interruption",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -103,14 +87,14 @@
         "original_term": "other long-running plant outages",
         "alternatives": [
           {
-            "term": "persistent plant failures",
-            "valence": "negative",
-            "provenance": "lens"
-          },
-          {
-            "term": "ongoing generation issues",
+            "term": "ongoing maintenance issues",
             "valence": "neutral",
             "provenance": "hypernym"
+          },
+          {
+            "term": "prolonged operational challenges",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       },
@@ -119,12 +103,12 @@
         "original_term": "seasonal heat drove demand into a thin operating margin",
         "alternatives": [
           {
-            "term": "an unforeseeable seasonal demand spike",
+            "term": "extreme weather strained the system",
             "valence": "negative",
             "provenance": "lens"
           },
           {
-            "term": "increased seasonal electricity demand",
+            "term": "increased demand due to heat",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -135,12 +119,7 @@
         "original_term": "Kepco SPC Power's Unit 2 tripped offline",
         "alternatives": [
           {
-            "term": "an unplanned unit failure",
-            "valence": "negative",
-            "provenance": "lens"
-          },
-          {
-            "term": "a generation unit trip",
+            "term": "the unit experienced a sudden shutdown",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -151,12 +130,12 @@
         "original_term": "The Philippines grid operator placed the Visayas under red alert",
         "alternatives": [
           {
-            "term": "the operator issued a necessary red alert",
+            "term": "the grid authority issued a protective warning",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "a grid status declaration",
+            "term": "a red alert was declared for the region",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -167,12 +146,12 @@
         "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
         "alternatives": [
           {
-            "term": "a protective emergency measure",
+            "term": "emergency measures to prevent system collapse",
             "valence": "positive",
             "provenance": "lens"
           },
           {
-            "term": "an emergency load reduction",
+            "term": "load shedding was implemented for grid stability",
             "valence": "neutral",
             "provenance": "hypernym"
           }
@@ -183,28 +162,40 @@
         "original_term": "more than 950 megawatts unavailable",
         "alternatives": [
           {
-            "term": "a severe power shortfall",
+            "term": "a significant power shortfall affecting the region",
             "valence": "negative",
             "provenance": "lens"
           },
           {
-            "term": "a significant capacity shortage",
+            "term": "a large-scale power deficit",
             "valence": "neutral",
             "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Visayas",
+        "alternatives": [
+          {
+            "term": "the affected community",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the region in need of stability",
+            "valence": "negative",
+            "provenance": "lens"
           }
         ]
       }
     ]
   },
   "salience": [
+    "result-0",
     "who-1",
     "who-3",
-    "result-0",
-    "why-0",
     "why-2",
-    "how-1",
-    "how-2",
-    "who-0",
-    "who-2"
+    "how-2"
   ]
 }
