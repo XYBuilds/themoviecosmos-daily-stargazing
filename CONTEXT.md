@@ -23,9 +23,9 @@ _Avoid_: 匿名化、脱敏
 一个拥有独立人格文档、负责从某一角度重塑新闻的 Agent。MVP 跑 A2 社会学家 / A4 神话学者 / A7 混沌理论家。
 _Avoid_: 角色、机器人
 
-**基线 (Baseline, A1)**:
-现实记录员 Agent:只做去实体化白描、不注入任何隐喻,因此其伪剧情停留在题材平面。它是实验对照组,用来回答"创作视角是否真比平铺直叙更妙",**不计入跨 Agent 撞车统计**。
-_Avoid_: 默认、基础
+**基线 / held-out oracle (Baseline, A1 · ADR-0006)**:
+现实记录员 Agent:只做去实体化白描、不注入任何隐喻,因此其伪剧情停留在题材平面。Phase 3.9 起 A1 **并跑但不参与判断**——**不进候选池、不进撞车票、不进排序**;仅作**召回与质量神谕**(正确答案集代理),供 per-persona 中性腿对照「能否追平 A1」。删 A1 须待 GATE Q1 证明中性 ⊇ A1 召回且质量 ≥ A1 后再议。
+_Avoid_: 默认、基础、平权竞争者(ADR-0003 旧口径)
 
 **撞车 (Cross-agent Collision · ADR-0005 形状)**:
 优质候选主判据（复活 ADR-0003）：**中性通道整体 = 1 张去重 agent 票**（所有中性 pseudo 命中的 union）+ **≥1 语气通道（toned）汇聚到同一部电影**。防止 12 条近重复中性 pseudo 毒化信号，又不饿死召回。验证前 `retrieve.py` 仍可能用旧对称 `distinct_agents >= 2` 口径。
@@ -47,16 +47,28 @@ _Avoid_: 全量、6 万、电影库
 _Avoid_: 新闻摘要、骨架综合、skeleton、标签梯、镜头中立（旧 v1 口径）
 
 **客观地板中性 (Objective-floor neutral)**:
-`surface`（A0 逐字词）+ `hypernym`（共享扩展梯）组成的 **persona 无关**客观底。**中性通道**只用这一层；与 persona 中点中性不同。
-_Avoid_: 绝对中性、真空中性源
+`surface`（A0 逐字词）+ `hypernym`（共享扩展梯）组成的客观底。**措辞** persona 无关(模板拼装);**选材**可 persona 相对(见 per-persona salience)。**中性通道**只用这一层 vocabulary；与 persona 中点中性不同。
+_Avoid_: 绝对中性、真空中性源、persona 书写中性散文
 
 **persona 中点中性 (Persona-midpoint neutral)**:
 某 persona **价值轴**的中点，仅活在该 persona 的 lens spectrum 内（alt-pool 的 `valence: neutral` + `provenance: lens`）。**不进**中性通道。
 _Avoid_: 与客观地板混用
 
 **中性通道 (Neutral channel · C-Neutral)**:
-每 persona **恰好 1 条** pseudo，仅用客观地板（surface + hypernym，**无 lens**）。扛**题面召回**与度量基线；**取代 A1**（验证期仍并跑 A1）。见 ADR-0005。
-_Avoid_: persona 语气 pseudo、A1 白描（退役方向）
+每 persona **恰好 1 条** pseudo，仅用客观地板 vocabulary（surface + hypernym，**无 lens**），由 **per-persona salience** 选 Top-K 碎片驱动选材。扛**题面召回**;质量对照 **held-out oracle (A1)**。见 ADR-0005 / ADR-0006。
+_Avoid_: persona 语气 pseudo、共享固定碎片(3.8 退化模式)
+
+**per-persona salience**:
+alt-creator 输出的 **既有 `element_id` 有序列表**(最→次),表达本 persona 价值轴最关注哪些事实。**只重排/取子集既有 ids,不新增词、不写评注**;下游取 Top-K(4–5) 作中性碎片 SELECTION。**铁律:salience 只驱动选材,绝不影响 wording**(中性句由模板从 surface+hypernym 拼装)。主选:LLM 按新闻动态决定;plan B 回退:persona card **价值轴**作软先验(非硬规则)。见 ADR-0006 D6。
+_Avoid_: salience 写散文、salience 渗入 valence
+
+**三桶对照 (Three-bucket comparison · ADR-0006)**:
+评测候选按来源归入三桶并横向比 2 分率:**① 纯事实**(中性/oracle 命中、无 toned 汇聚)、**② 纯情绪**(toned-only)、**③ 组合**(中性票 + ≥1 toned 汇聚)。用于干净验证「组合拳 > 纯事实」(诊断②)。
+_Avoid_: neutral_only 恒空(3.8 结构性缺陷)、无控相似度结论
+
+**留出冻结 (Holdout-freeze discipline · ADR-0006)**:
+只在**观察集**调 prompt/阈值 → **冻结** → **留出集只打一次分**。留出 ≈ 观察 ⇒ 提升为真;留出垮 ⇒ 过拟合。评测编排纪律,非产品功能。
+_Avoid_: 在留出集反复调参后宣称提升
 
 **语气通道 (Toned channel · C-Toned)**:
 每条 toned pseudo = **hypernym 锚（留在题面）+ lens 倾斜**；发自己的 anchored 检索 query，可与中性通道殊途同归到同一部电影。

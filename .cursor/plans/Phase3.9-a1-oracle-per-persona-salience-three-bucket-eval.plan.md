@@ -4,7 +4,7 @@ overview: 按 ADR-0006 干净重赌「组合拳」——A1 转 held-out oracle�
 todos:
   - id: p39-0
     content: 3.9.0 · 契约/CONTEXT 对齐 ADR-0006：alt-creator 加 salience 字段规格 + 「salience 只驱动选材不碰措辞」铁律；CONTEXT 补术语 [需人工验收]
-    status: pending
+    status: complete
   - id: p39-1
     content: 3.9.1 · personas.py per-persona salience 中性选材（Top-K 传 fragment_ids 取代默认碎片）+ who/where 改可选 + 多样性守卫 + subset/permutation 硬校验 + 单测
     status: pending
@@ -145,9 +145,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] 契约含 `salience` 字段规格与「选材≠措辞」铁律，与 ADR-0006 D6 逐条一致
-- [ ] CONTEXT 术语补齐
-- [ ] `[需人工验收]`：用户 approve 契约口径 → 可进 3.9.1
+- [x] 契约含 `salience` 字段规格与「选材≠措辞」铁律，与 ADR-0006 D6 逐条一致
+- [x] CONTEXT 术语补齐
+- [x] `[需人工验收]`：用户 approve 契约口径 → 可进 3.9.1
 
 ---
 
@@ -304,7 +304,7 @@ flowchart TD
 
 ## Phase 3.9 整体验收
 
-- [ ] 3.9.0 契约/CONTEXT 对齐 approve
+- [x] 3.9.0 契约/CONTEXT 对齐 approve
 - [ ] 3.9.1–3.9.5 各单测通过：salience 中性多样化落地、A1=oracle、三桶+纯中性入池、judge 校准、并发化
 - [ ] 3.9.6 单点 pilot Combined Go（salience≠valence 无泄漏 + 多样性守卫生效）
 - [ ] 3.9.7 批量 + A1 oracle 并跑 + 留出冻结 + 纵向多打分（人工+judge）
