@@ -328,6 +328,108 @@ class PersonaSalienceTests(unittest.TestCase):
             validate_neutral_pseudo_batch_diversity(neutrals)
         self.assertIn("diversity guard", str(ctx.exception).lower())
 
+    def _collide_neutral_pair(self) -> list:
+        dec = _fixture_dec_inner()
+        expansion = _full_expansion_fixture()
+        same_sal = ["why-0", "how-0", "how-1", "result-0"]
+        neutrals = []
+        for pid in ("The-Creator", "The-Caregiver"):
+            overlay = AltPoolOverlay(
+                persona_id=pid,
+                elements=parse_alt_pool_response(
+                    _alt_pool_json(),
+                    persona_id=pid,
+                    known_elements=_known_elements(),
+                ).elements,
+                salience=same_sal,
+            )
+            neutrals.append(
+                build_objective_floor_neutral_pseudo(
+                    pid, dec, overlay, expansion, fragment_ids=same_sal
+                )
+            )
+        return neutrals
+
+    def test_diversity_guard_tolerates_neutral_only_collision(self) -> None:
+        # Neutral legs collide but toned legs diverge → warning, not failure.
+        neutrals = self._collide_neutral_pair()
+        warnings = validate_neutral_pseudo_batch_diversity(
+            neutrals,
+            toned_text_by_agent={
+                "The-Creator": (
+                    "A jubilant restoration of balance after a hard-won recovery."
+                ),
+                "The-Caregiver": (
+                    "Families left exposed and vulnerable as the safety net frays."
+                ),
+            },
+        )
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("neutral-only", warnings[0].lower())
+
+    def test_diversity_guard_fails_when_neutral_and_toned_collide(self) -> None:
+        # Both neutral and toned legs collide → hard failure.
+        neutrals = self._collide_neutral_pair()
+        identical = "The same toned narrative shared verbatim across both personas."
+        with self.assertRaises(ValueError) as ctx:
+            validate_neutral_pseudo_batch_diversity(
+                neutrals,
+                toned_text_by_agent={
+                    "The-Creator": identical,
+                    "The-Caregiver": identical,
+                },
+            )
+        self.assertIn("toned also near-duplicate", str(ctx.exception).lower())
+
+    def test_neutral_pseudo_dedups_repeated_surface_sentences(self) -> None:
+        # A fact framed as both cause (why-0) and mechanism (how-0) shares one
+        # surface string; the neutral body must render that sentence only once.
+        decon = {
+            "who": [{"text": "Philippines grid operator"}],
+            "where": [{"text": "Visayas, Philippines"}],
+            "why": [{"text": "Unit 2 tripped offline"}],
+            "how": [
+                {"text": "Unit 2 tripped offline"},
+                {"text": "the Visayas grid was placed under red alert"},
+            ],
+            "result": [{"text": "more than 950 megawatts unavailable"}],
+        }
+        expansion = {
+            "elements": [
+                {
+                    "element_id": "result-0",
+                    "surface": "more than 950 megawatts unavailable",
+                    "hypernyms": ["power shortage"],
+                },
+                {
+                    "element_id": "how-0",
+                    "surface": "Unit 2 tripped offline",
+                    "hypernyms": ["equipment failure"],
+                },
+                {
+                    "element_id": "how-1",
+                    "surface": "the Visayas grid was placed under red alert",
+                    "hypernyms": ["alert declaration"],
+                },
+                {
+                    "element_id": "why-0",
+                    "surface": "Unit 2 tripped offline",
+                    "hypernyms": ["equipment failure"],
+                },
+            ]
+        }
+        frags = ["result-0", "how-0", "how-1", "why-0"]
+        overlay = AltPoolOverlay(persona_id="The-Sage", elements=[], salience=frags)
+        pseudo = build_objective_floor_neutral_pseudo(
+            "The-Sage",
+            decon,
+            overlay,
+            expansion,
+            fragment_ids=frags,
+        )
+        self.assertEqual(pseudo.text.lower().count("unit 2 tripped offline"), 1)
+        self.assertIn("red alert", pseudo.text.lower())
+
 
 class PersonaScaffoldTests(unittest.TestCase):
     def test_annotate_element_ids(self) -> None:

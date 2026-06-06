@@ -162,6 +162,25 @@ def _neutral_pseudos_from_persona_agents(
     return neutrals
 
 
+def _toned_text_by_persona_agents(
+    persona_agents: dict[str, dict[str, Any]],
+) -> dict[str, str]:
+    """Concatenate each persona's toned (non-neutral) pseudo texts for the guard."""
+    toned: dict[str, str] = {}
+    for agent_id, agent in persona_agents.items():
+        parts: list[str] = []
+        for row in agent.get("pseudos") or []:
+            if not isinstance(row, dict):
+                continue
+            src = row.get("source") if isinstance(row.get("source"), dict) else {}
+            pid = str(row.get("id") or row.get("pseudo_id") or "").strip()
+            if src.get("channel_role") == "neutral" or pid == NEUTRAL_PSEUDO_ID:
+                continue
+            parts.append(str(row.get("text") or ""))
+        toned[str(agent_id)] = " ".join(parts).strip()
+    return toned
+
+
 def reorder_persona_agents(
     persona_ids: list[str],
     persona_agents: dict[str, dict[str, Any]],
@@ -518,9 +537,12 @@ async def _run_personas_concurrent(
     await asyncio.gather(*[_one(pid) for pid in persona_ids])
 
     if eval_phase in ("3.8", "3.9") and len(persona_agents) >= 2:
-        validate_neutral_pseudo_batch_diversity(
-            _neutral_pseudos_from_persona_agents(persona_agents)
+        diversity_warnings = validate_neutral_pseudo_batch_diversity(
+            _neutral_pseudos_from_persona_agents(persona_agents),
+            toned_text_by_agent=_toned_text_by_persona_agents(persona_agents),
         )
+        for warning in diversity_warnings:
+            print(f"[diversity guard] {warning}", file=sys.stderr)
 
     prefix: list[dict[str, Any]] = []
     if eval_phase not in ("3.8", "3.9"):
