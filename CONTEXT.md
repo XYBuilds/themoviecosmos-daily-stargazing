@@ -60,6 +60,9 @@ _Avoid_: persona 语气 pseudo、共享固定碎片(3.8 退化模式)
 
 **per-persona salience**:
 alt-creator 输出的 **既有 `element_id` 有序列表**(最→次),表达本 persona 价值轴最关注哪些事实。**只重排/取子集既有 ids,不新增词、不写评注**;下游取 Top-K(4–5) 作中性碎片 SELECTION。**铁律:salience 只驱动选材,绝不影响 wording**(中性句由模板从 surface+hypernym 拼装)。主选:LLM 按新闻动态决定;plan B 回退:persona card **价值轴**作软先验(非硬规则)。见 ADR-0006 D6。
+
+**neutral diversity guard**:
+批内 12 条中性 pseudo 两两检查近重复。**硬失败**仅当该对的中性与 toned 均近重复;若仅中性撞车而 toned 仍各异,记 warning 并继续(差异化由 toned + 检索兜底)。中性 body 对同一 surface 文本只渲染一次。
 _Avoid_: salience 写散文、salience 渗入 valence
 
 **三桶对照 (Three-bucket comparison · ADR-0006)**:
