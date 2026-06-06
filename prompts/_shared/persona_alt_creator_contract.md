@@ -1,6 +1,6 @@
-# Persona Alt-Creator Contract (Phase 3.8 · ADR-0005)
+# Persona Alt-Creator Contract (Phase 3.9 · ADR-0006)
 
-> **Role:** Per-persona step (P-Lens) after A0 verbatim extract + shared objective expansion pass. Input is **verbatim decon + expansion overlay** (no pre-built lens alternatives). Output is an **alt-pool overlay** referencing stable element ids — not a fork of the full deconstruction text.
+> **Role:** Per-persona step (P-Lens) after A0 verbatim extract + shared objective expansion pass. Input is **verbatim decon + expansion overlay** (no pre-built lens alternatives). Output is an **alt-pool overlay** referencing stable element ids **plus a `salience` ranking** — not a fork of the full deconstruction text.
 
 ## Input
 
@@ -16,6 +16,7 @@ Return **only** valid JSON (no markdown fences, no preamble):
 ```json
 {
   "persona_id": "The-Ruler",
+  "salience": ["result-0", "who-0", "how-0", "why-0", "how-1"],
   "elements": [
     {
       "element_id": "who-0",
@@ -39,7 +40,47 @@ Return **only** valid JSON (no markdown fences, no preamble):
 4. **Element ids:** `element_id` must match an id present in the injected JSON (`who-*`, `where-*`, `why-*`, `how-*`, `result-*`). Do not invent ids.
 5. **original_term:** Copy the neutral surface form from the referenced element (`text` or `who`/`where` text field) — do not paraphrase into a new fact.
 6. **Coverage:** Prefer covering all `who`, `why`, `how`, and `result` elements; include `where` when persona lens benefits. Skip only when no fact-entailed spectrum exists (rare); do not pad with fiction.
-7. **No decon fork:** Do not echo the full deconstruction object, anchor block, or news body in your response — only `persona_id` + `elements[]` alt-pool rows.
+7. **No decon fork:** Do not echo the full deconstruction object, anchor block, or news body in your response — only `persona_id` + `salience[]` + `elements[]` alt-pool rows.
+
+## Salience (neutral-channel fragment SELECTION · ADR-0006 D6)
+
+`salience` is a **top-level field** (sibling to `elements[]`). It expresses **which facts this persona cares about most** for the **neutral channel only** — it does **not** change how you build lens alternatives in `elements[]`.
+
+### Field spec
+
+| property | rule |
+| --- | --- |
+| **type** | ordered list of **existing** `element_id` strings |
+| **order** | **most → least** important **for this persona's value axis** (价值轴) on this news |
+| **membership** | **subset / permutation only** of ids present in the injected decon (`who-*`, `where-*`, `why-*`, `how-*`, `result-*`) |
+| **forbidden** | inventing ids; adding words, labels, commentary, or prose; paraphrasing element text into `salience` |
+
+### Iron rule: selection ≠ wording
+
+**`salience` only drives neutral fragment SELECTION; it never affects wording.**
+
+- You **never** write neutral pseudo prose here.
+- Downstream takes **Top-K (4–5)** ids from `salience` (head of the list) as `fragment_ids` for `build_objective_floor_neutral_pseudo`.
+- Neutral sentences are **always** assembled by template from selected fragments' **`surface`** (verbatim) + **`hypernym`** (objective floor) — persona-neutral vocabulary, **no lens**.
+- Valence has **no carrier** in the neutral channel because the persona LLM never authors neutral wording — only ids.
+
+### How to rank
+
+Rank by **this persona's value axis** (see persona card `## 价值轴 (Value Axis)`): e.g. The-Caregiver tends toward `result-*` / `who-*` (who is harmed); The-Creator tends toward `how-*` (mechanism / design). **Who / where** remain in the pool and may appear in `salience` when this persona's lens would care — they are **not** auto-included; inclusion is your salience choice.
+
+### Salience source (primary vs plan B)
+
+| route | when | rule |
+| --- | --- | --- |
+| **(B) primary** | default for Phase 3.9 | **You** decide per-news `salience` dynamically from the injected decon + this persona's value axis |
+| **(C) plan B fallback** | only if pilot shows salience too chaotic / unstable | downstream may inject **soft priors** from the persona card's **价值轴 (Value Axis)** (e.g. "tends to weight who-is-affected and outcomes") — **never** hard rules that fix specific fragment ids. **LLM still makes the final per-news choice** within those soft priors |
+
+Persona cards (`prompts/personas/<id>/persona_card.md`) and `docs/SSOT/personas-12.md` are the **canonical source** for plan B soft preferences.
+
+### Hard validation (downstream)
+
+- `salience` must be a **subset/permutation** of decon element ids — illegal id ⇒ reject.
+- No free-text tokens in `salience` — only known `element_id` strings.
 
 ## Persona-relative valence
 
@@ -53,10 +94,10 @@ Weight which bucket gets the strongest terms toward this persona's value tendenc
 
 There are **two distinct neutrals** — the contract and the cards keep them separate:
 
-1. **Objective-floor neutral** = the surface verbatim term + uncontested `hypernym` (shared, **persona-independent**). It passes the **客观性试金石** (objectivity touchstone): *would two different personas — e.g. A2 sociologist & A4 mythologist — disagree about it? If no → objective floor; if yes → it's a lens.* The **neutral CHANNEL pseudo** is built from **objective-floor only** (surface + hypernym), **never** from a persona-midpoint.
+1. **Objective-floor neutral** = the surface verbatim term + uncontested `hypernym`. It passes the **客观性试金石** (objectivity touchstone): *would two different personas — e.g. A2 sociologist & A4 mythologist — disagree about it? If no → objective floor; if yes → it's a lens.* The **neutral CHANNEL pseudo** is built from **objective-floor vocabulary only** (surface + hypernym), **never** from a persona-midpoint. **Selection** of which fragments enter that pseudo is **persona-relative** via `salience`; **wording** stays persona-neutral (template-assembled).
 2. **Persona-midpoint neutral** = the midpoint of **this persona's** value axis — private, just the middle of the lens spectrum. It is the `valence: "neutral"` bucket's lens-flavored option.
 
-The persona's value axis describes the **lens spectrum (b)**. It **must NOT redefine the objective floor (a)**: the floor stays persona-independent.
+The persona's value axis describes the **lens spectrum (b)** and guides **`salience` ranking (a)**. It **must NOT redefine objective-floor vocabulary**: hypernym/surface wording stays objective; only **which** fragments are selected may differ per persona.
 
 ## Provenance layers
 
