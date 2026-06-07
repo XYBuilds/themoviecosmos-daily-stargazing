@@ -298,6 +298,7 @@ class IntegrateReviewTests(unittest.TestCase):
                     title="Survival Family (2017)",
                     judge_score=1,
                     judge_resonance_type="表层",
+                    rationale="Surface anchor only; skeletons differ.",
                     human_score=2,
                     human_resonance_type="双重",
                     disagreement=True,
@@ -309,6 +310,7 @@ class IntegrateReviewTests(unittest.TestCase):
                     title="Geostorm (2017)",
                     judge_score=0,
                     judge_resonance_type=None,
+                    rationale="No load-bearing surface anchor.",
                     human_score=1,
                     human_resonance_type="结构",
                     disagreement=True,
@@ -323,10 +325,14 @@ class IntegrateReviewTests(unittest.TestCase):
         self.assertIn("- **judge共振类型**: 表层", merged)
         self.assertIn("- **judge分歧**: ⚠", merged)
         self.assertIn("- **judge采信**: 不采信 · screening only", merged)
+        self.assertIn(
+            "- **judge理由**: Surface anchor only; skeletons differ.", merged
+        )
         self.assertIn("- **共振分**: 2", merged)
         survival_block = merged.split("Survival Family", 1)[1].split("Geostorm", 1)[0]
         self.assertLess(survival_block.index("共振分"), survival_block.index("judge分"))
         self.assertLess(survival_block.index("打分备注"), survival_block.index("judge分"))
+        self.assertLess(survival_block.index("judge采信"), survival_block.index("judge理由"))
 
     def test_integrate_idempotent_replaces_prior_judge_lines(self):
         review = """## 01-grid-outage
@@ -339,6 +345,7 @@ class IntegrateReviewTests(unittest.TestCase):
 - **打分备注**: （可选）
 - **judge分**: 9
 - **judge共振类型**: old
+- **judge理由**: stale rationale
 """
         cal = CalibrationReport(
             observation_run_ids=["01-grid-outage"],
@@ -361,14 +368,17 @@ class IntegrateReviewTests(unittest.TestCase):
                     title="Film",
                     judge_score=2,
                     judge_resonance_type="双重",
+                    rationale="Updated rationale.",
                     trusted=False,
                 )
             ],
         )
         merged = integrate_judge_into_review(review, output)
         self.assertNotIn("judge分**: 9", merged)
+        self.assertNotIn("stale rationale", merged)
         self.assertIn("- **judge分**: 2", merged)
         self.assertIn("- **judge共振类型**: 双重", merged)
+        self.assertIn("- **judge理由**: Updated rationale.", merged)
 
     def test_load_judge_output_roundtrip(self):
         cal = compute_calibration(

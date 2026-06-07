@@ -498,6 +498,9 @@ _JUDGE_SCORE_LINE = re.compile(r"^-\s*\*\*judge分\*\*:.*$", re.MULTILINE)
 _JUDGE_TYPE_LINE = re.compile(r"^-\s*\*\*judge共振类型\*\*:.*$", re.MULTILINE)
 _JUDGE_DISAGREE_LINE = re.compile(r"^-\s*\*\*judge分歧\*\*:.*$", re.MULTILINE)
 _JUDGE_TRUST_LINE = re.compile(r"^-\s*\*\*judge采信\*\*:.*$", re.MULTILINE)
+_JUDGE_RATIONALE_LINE = re.compile(
+    r"^-\s*\*\*(?:judge理由|rationale)\*\*:.*$", re.MULTILINE
+)
 _SCORING_REMARK_LINE = re.compile(r"^(-\s*\*\*打分备注\*\*:.*)$", re.MULTILINE)
 _REVIEW_JUDGE_HEADER = re.compile(
     r"^- \*\*LLM judge:\*\*.*$", re.MULTILINE
@@ -557,6 +560,8 @@ def format_judge_block_lines(
         )
     else:
         lines.append(f"- **judge采信**: {calibration.trust_status}")
+    if result.rationale:
+        lines.append(f"- **judge理由**: {result.rationale}")
     return lines
 
 
@@ -566,6 +571,7 @@ def _strip_existing_judge_lines(block: str) -> str:
         _JUDGE_TYPE_LINE,
         _JUDGE_DISAGREE_LINE,
         _JUDGE_TRUST_LINE,
+        _JUDGE_RATIONALE_LINE,
     ):
         block = pattern.sub("", block)
     return re.sub(r"\n{3,}", "\n\n", block.rstrip()) + "\n"
