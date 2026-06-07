@@ -11,11 +11,13 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from scripts.resonance_rubric import STRUCTURAL_TYPES, parse_resonance_type
+
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 
 _SCORE_LINE = re.compile(r"^-\s*\*\*共振分\*\*:\s*(.*)$", re.MULTILINE)
 _RESONANCE_TYPE_LINE = re.compile(r"^-\s*\*\*共振类型\*\*:\s*(.*)$", re.MULTILINE)
-_STRUCTURAL_TYPES = frozenset({"结构", "双重"})
+_STRUCTURAL_TYPES = STRUCTURAL_TYPES | frozenset({"结构", "双重"})
 _TMDB_LINE = re.compile(r"^-\s*\*\*tmdb_id\*\*:\s*(\S+)", re.MULTILINE)
 _SIMILARITY_LINE = re.compile(r"^-\s*\*\*相似度\*\*:\s*([\d.]+)", re.MULTILINE)
 _FIT_VALUE = re.compile(r"fit=([\d.]+)")
@@ -69,7 +71,7 @@ class CandidateScore:
     triggered_by: list[str]
     also_baseline: bool
     score: int | None  # None = missing
-    resonance_type: str | None = None  # 表层 / 结构 / 双重; None = unset
+    resonance_type: str | None = None  # canonical 2×2 type; None = unset
     quality_candidate: bool | None = None  # None = infer from heading agents
     similarity: float | None = None
     max_fit: float | None = None
@@ -172,13 +174,7 @@ def _parse_score(raw_line: str) -> int | None:
 
 
 def _parse_resonance_type(raw_line: str) -> str | None:
-    cleaned = _strip_html_comments(raw_line).strip()
-    if not cleaned:
-        return None
-    for token in ("双重", "结构", "表层"):
-        if token in cleaned:
-            return token
-    return None
+    return parse_resonance_type(raw_line)
 
 
 def _is_structural_resonance(cand: CandidateScore) -> bool:
@@ -1131,12 +1127,12 @@ def _format_stdout(report: dict[str, Any]) -> str:
         lines.append(
             f"single_structural_2_rate: {g['single_structural_2_rate']:.1%} "
             f"({g['single_structural_twos']}/{g['single_scored']} scored single-agent; "
-            "type in 结构|双重)"
+            "type in 深层共振|强共振)"
         )
         lines.append(
             f"multi_structural_2_rate: {g['multi_structural_2_rate']:.1%} "
             f"({g['multi_structural_twos']}/{g['multi_scored']} scored multi-agent; "
-            "type in 结构|双重)"
+            "type in 深层共振|强共振)"
         )
 
     lines.append(

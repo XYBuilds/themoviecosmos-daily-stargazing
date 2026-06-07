@@ -23,6 +23,7 @@ from scripts.llm_judge import (
     validate_judge_payload,
     write_judge_markdown,
 )
+from scripts.resonance_rubric import TYPE_DEEP, TYPE_STRONG, TYPE_SURFACE
 
 _FIXTURES = Path(__file__).resolve().parent / "judge_fixtures"
 
@@ -35,22 +36,43 @@ class JudgeSchemaTests(unittest.TestCase):
         self.assertEqual(score, 0)
         self.assertIsNone(rtype)
 
-    def test_validate_score_two_dual(self):
+    def test_validate_score_two_strong(self):
         score, rtype = validate_judge_payload(
-            {"score": 2, "resonance_type": "双重", "rationale": "both axes"}
+            {
+                "score": 2,
+                "resonance_type": TYPE_STRONG,
+                "rationale": "both axes",
+            }
         )
         self.assertEqual(score, 2)
-        self.assertEqual(rtype, "双重")
+        self.assertEqual(rtype, TYPE_STRONG)
+
+    def test_validate_accepts_legacy_dual_alias(self):
+        score, rtype = validate_judge_payload(
+            {"score": 2, "resonance_type": "双重", "rationale": "legacy"}
+        )
+        self.assertEqual(score, 2)
+        self.assertEqual(rtype, TYPE_STRONG)
+
+    def test_validate_score_one_deep_structural(self):
+        score, rtype = validate_judge_payload(
+            {"score": 1, "resonance_type": TYPE_DEEP, "rationale": "skeleton only"}
+        )
+        self.assertEqual(score, 1)
+        self.assertEqual(rtype, TYPE_DEEP)
 
     def test_validate_rejects_score_one_wrong_type(self):
         with self.assertRaises(ValueError):
-            validate_judge_payload({"score": 1, "resonance_type": "结构"})
+            validate_judge_payload({"score": 1, "resonance_type": TYPE_STRONG})
 
     def test_parse_judge_response_json_fence(self):
-        text = '```json\n{"score": 1, "resonance_type": "表层", "rationale": "x"}\n```'
+        text = (
+            f'```json\n{{"score": 1, "resonance_type": "{TYPE_SURFACE}", '
+            f'"rationale": "x"}}\n```'
+        )
         score, rtype, rationale = parse_judge_response(text)
         self.assertEqual(score, 1)
-        self.assertEqual(rtype, "表层")
+        self.assertEqual(rtype, TYPE_SURFACE)
         self.assertEqual(rationale, "x")
 
     def test_output_schema_roundtrip(self):
@@ -165,10 +187,10 @@ class ScoreItemsTests(unittest.TestCase):
         judge_fn = self._mock_judge(
             {
                 ("01-grid-outage", "100"): (0, None, "disagree"),
-                ("01-grid-outage", "200"): (2, "双重", "disagree"),
-                ("02-corporate-layoff", "300"): (2, "双重", "off"),
+                ("01-grid-outage", "200"): (2, TYPE_STRONG, "disagree"),
+                ("02-corporate-layoff", "300"): (2, TYPE_STRONG, "off"),
                 ("02-corporate-layoff", "400"): (0, None, "off"),
-                ("02-corporate-layoff", "500"): (1, "表层", "ok"),
+                ("02-corporate-layoff", "500"): (1, TYPE_SURFACE, "ok"),
             }
         )
         output = score_items(
@@ -236,11 +258,11 @@ class ScoreItemsTests(unittest.TestCase):
         ]
         judge_fn = self._mock_judge(
             {
-                ("01-grid-outage", "429918"): (2, "双重", "strong"),
-                ("01-grid-outage", "274855"): (1, "表层", "surface"),
+                ("01-grid-outage", "429918"): (2, TYPE_STRONG, "strong"),
+                ("01-grid-outage", "274855"): (1, TYPE_SURFACE, "surface"),
                 ("02-corporate-layoff", "100001"): (0, None, "none"),
-                ("02-corporate-layoff", "100002"): (2, "结构", "struct"),
-                ("03-election-upset", "100003"): (1, "表层", "surface"),
+                ("02-corporate-layoff", "100002"): (1, TYPE_DEEP, "struct"),
+                ("03-election-upset", "100003"): (1, TYPE_SURFACE, "surface"),
             }
         )
         output = score_items(
@@ -297,10 +319,10 @@ class IntegrateReviewTests(unittest.TestCase):
                     tmdb_id="429918",
                     title="Survival Family (2017)",
                     judge_score=1,
-                    judge_resonance_type="表层",
+                    judge_resonance_type=TYPE_SURFACE,
                     rationale="Surface anchor only; skeletons differ.",
                     human_score=2,
-                    human_resonance_type="双重",
+                    human_resonance_type=TYPE_STRONG,
                     disagreement=True,
                     trusted=False,
                 ),
@@ -312,7 +334,7 @@ class IntegrateReviewTests(unittest.TestCase):
                     judge_resonance_type=None,
                     rationale="No load-bearing surface anchor.",
                     human_score=1,
-                    human_resonance_type="结构",
+                    human_resonance_type=TYPE_DEEP,
                     disagreement=True,
                     trusted=False,
                 ),
@@ -322,7 +344,7 @@ class IntegrateReviewTests(unittest.TestCase):
         self.assertIn("- **LLM judge:**", merged)
         self.assertIn("screening only", merged)
         self.assertIn("- **judge分**: 1", merged)
-        self.assertIn("- **judge共振类型**: 表层", merged)
+        self.assertIn(f"- **judge共振类型**: {TYPE_SURFACE}", merged)
         self.assertIn("- **judge分歧**: ⚠", merged)
         self.assertIn("- **judge采信**: 不采信 · screening only", merged)
         self.assertIn(
@@ -367,7 +389,7 @@ class IntegrateReviewTests(unittest.TestCase):
                     tmdb_id="100",
                     title="Film",
                     judge_score=2,
-                    judge_resonance_type="双重",
+                    judge_resonance_type=TYPE_STRONG,
                     rationale="Updated rationale.",
                     trusted=False,
                 )
@@ -377,7 +399,7 @@ class IntegrateReviewTests(unittest.TestCase):
         self.assertNotIn("judge分**: 9", merged)
         self.assertNotIn("stale rationale", merged)
         self.assertIn("- **judge分**: 2", merged)
-        self.assertIn("- **judge共振类型**: 双重", merged)
+        self.assertIn(f"- **judge共振类型**: {TYPE_STRONG}", merged)
         self.assertIn("- **judge理由**: Updated rationale.", merged)
 
     def test_load_judge_output_roundtrip(self):
@@ -394,7 +416,7 @@ class IntegrateReviewTests(unittest.TestCase):
                     tmdb_id="42",
                     title="Film",
                     judge_score=2,
-                    judge_resonance_type="双重",
+                    judge_resonance_type=TYPE_STRONG,
                     trusted=cal.trusted,
                 )
             ],

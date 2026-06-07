@@ -22,6 +22,14 @@ if str(_REPO_ROOT) not in sys.path:
 from scripts.eval_batch_manifest import load_manifest
 from scripts.lib.env import default_llm_provider, load_env
 from scripts.lib.llm import get_llm_client
+from scripts.resonance_rubric import (
+    TYPE_DEEP,
+    TYPE_NONE,
+    TYPE_STRONG,
+    TYPE_SURFACE,
+    parse_resonance_type,
+    validate_score_type_pair,
+)
 from scripts.run_persona_batch import OBS_RUN_PREFIXES, split_obs_holdout
 from scripts.summarize_eval import (
     _pearson,
@@ -29,9 +37,8 @@ from scripts.summarize_eval import (
     parse_unified_review,
 )
 
-_JUDGE_SCHEMA_VERSION = 1
+_JUDGE_SCHEMA_VERSION = 2
 _VALID_SCORES = frozenset({0, 1, 2})
-_VALID_TYPES = frozenset({"表层", "结构", "双重"})
 _JSON_FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)\s*```", re.IGNORECASE)
 
 DEFAULT_MIN_EXACT_AGREEMENT = 0.60
@@ -44,30 +51,32 @@ TRUST_STATUS_UNTRUSTED = "不采信"
 _JUDGE_SYSTEM = (
     "You are an expert resonance judge for a news-to-film matching eval. "
     "Return only valid JSON matching the requested schema. "
-    "Apply the rubric strictly; incidental word overlap without load-bearing "
-    "shared elements is score 0."
+    "Follow the 2×2 decision tree: first assess 承重表层锚点 (yes/no), "
+    "then 骨架同构 (yes/no), then map to score and resonance_type."
 )
 
-_JUDGE_RUBRIC = """\
-## Resonance score rubric (0 / 1 / 2)
+_JUDGE_RUBRIC = f"""\
+## Resonance score rubric (2×2 matrix)
 
-Two axes: **surface** (load-bearing shared concrete element) and **structural**
-(power / fate / theme skeleton isomorphism).
+**Step 1 — 承重表层锚点**: Does the film share a **load-bearing** concrete anchor
+with the news (place / event type / role type / setting that drives both stories)?
+Incidental word overlap without load-bearing shared elements = NO.
 
-| | skeleton NOT isomorphic | skeleton isomorphic |
-|---|---|---|
-| NO load-bearing surface anchor | **0** incidental overlap | **2** structural only |
-| HAS load-bearing surface anchor | **1** surface only | **2** surface + structural |
+**Step 2 — 骨架同构**: Are power / fate / theme skeletons isomorphic
+(e.g. central authority sacrificing margins under scarcity; public rhetoric vs private motive)?
 
-**0-guard**: if an unrelated news could explain the film equally, score 0.
+| 承重表层锚点 | 骨架同构 | score | resonance_type |
+|---|---|---|---|
+| 无 | 否 | **0** | null |
+| 无 | 是 | **1** | {TYPE_DEEP} |
+| 有 | 否 | **1** | {TYPE_SURFACE} |
+| 有 | 是 | **2** | {TYPE_STRONG} |
 
-**Resonance type** (required when score is 1 or 2; null when 0):
-- 表层 = surface anchor only (score 1)
-- 结构 = structural only (score 2 without surface)
-- 双重 = both surface and structural (score 2 with both)
+**0-guard**: if unrelated news could explain the film equally → 无表层 + 不同构 → score 0
+(resonance_type null; conceptually {TYPE_NONE}).
 
-Output JSON:
-{"score": 0|1|2, "resonance_type": "表层"|"结构"|"双重"|null, "rationale": "brief"}
+Output JSON (both fields required except resonance_type is null at score 0):
+{{"score": 0|1|2, "resonance_type": {TYPE_DEEP!r}|{TYPE_SURFACE!r}|{TYPE_STRONG!r}|null, "rationale": "brief"}}
 """
 
 
@@ -149,12 +158,14 @@ def parse_plain_human_score(raw: str) -> int | None:
 
 def parse_plain_human_type(raw: str) -> str | None:
     cleaned = _strip_html_comments(raw).strip()
-    if not cleaned or "（" in cleaned or " / " in cleaned:
+    if not cleaned or " / " in cleaned:
         return None
-    for token in ("双重", "结构", "表层"):
-        if token in cleaned:
-            return token
-    return None
+    if "（" in cleaned and not any(
+        t in cleaned
+        for t in (TYPE_DEEP, TYPE_SURFACE, TYPE_STRONG, TYPE_NONE)
+    ):
+        return None
+    return parse_resonance_type(raw)
 
 
 def validate_judge_payload(payload: dict[str, Any]) -> tuple[int, str | None]:
@@ -170,17 +181,10 @@ def validate_judge_payload(payload: dict[str, Any]) -> tuple[int, str | None]:
     if raw_type is None or raw_type == "":
         resonance_type = None
     else:
-        if raw_type not in _VALID_TYPES:
+        resonance_type = parse_resonance_type(str(raw_type))
+        if resonance_type is None or resonance_type == TYPE_NONE:
             raise ValueError(f"invalid resonance_type {raw_type!r}")
-        resonance_type = str(raw_type)
-    if score == 0 and resonance_type is not None:
-        raise ValueError("score 0 must have null resonance_type")
-    if score in (1, 2) and resonance_type is None:
-        raise ValueError("score 1/2 requires resonance_type")
-    if score == 1 and resonance_type not in ("表层",):
-        raise ValueError("score 1 must use resonance_type 表层")
-    if score == 2 and resonance_type not in ("结构", "双重"):
-        raise ValueError("score 2 must use resonance_type 结构 or 双重")
+    validate_score_type_pair(score, resonance_type)
     return score, resonance_type
 
 

@@ -22,6 +22,19 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **单 agent 命中**: all other high-hit candidates.
 - Within each subsection, sort by **pseudo命中分合计** descending.
 
+### 共振分 Rubric（2×2 · SSOT `docs/eval-the-bet.md` §4）
+
+先判 **承重表层锚点**（有/无），再判 **骨架同构**（是/否）：
+
+| 承重表层锚点 | 骨架同构 | 分 | 共振类型 |
+|---|---|---|---|
+| 无 | 否 | 0 | （留空）无共振（偶然词面重叠） |
+| 无 | 是 | 1 | 深层共振（仅结构，无表层） |
+| 有 | 否 | 1 | 表层沾边 |
+| 有 | 是 | 2 | 强共振（表层 + 结构） |
+
+总编与 LLM judge 均输出 `共振分` + `共振类型`，须与上表一致。
+
 ### Sources
 
 - **Primary:** `hit_sources` in each run's `retrieve.json` (fragment arrays).
@@ -107,10 +120,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
-- **judge共振类型**: 表层
+- **judge共振类型**: 表层沾边
 - **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives hinge on electrical outages as a core concrete element (surface anchor), but the news focuses on technical crisis management in a specific region, while the film explores global collapse and personal survival, lacking isomorphic structural skeletons.
+- **judge理由**: News and film share a load-bearing anchor of power outages driving the stories, but skeletons are not isomorphic: news involves institutional crisis response to grid scarcity, while film depicts personal survival in societal collapse.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 38 -->
@@ -145,7 +158,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge共振类型**: 
 - **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; news focuses on electrical grid failure, while film centers on climate satellite malfunction. Structural themes of system failure exist but are not isomorphic due to different domains and scales.
+- **judge理由**: No load-bearing surface anchor: news focuses on electrical power grid crisis in Visayas, while film involves global climate control satellites; concrete elements like place or event type do not align. No skeleton isomorphism: news skeleton is central authority managing scarce resources to prevent system collapse, film skeleton is technology hubris causing global disasters, with differing themes and structures.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 26 -->
@@ -174,11 +187,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 1
-- **judge共振类型**: 表层
-- **judge分歧**: ⚠
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives share a load-bearing surface anchor of a power blackout central to their plots. However, the news focuses on operational grid management and immediate risk mitigation in a specific region, while the film explores dystopian societal collapse and mystery, so their thematic skeletons are not isomorphic.
+- **judge理由**: Both narratives are anchored by a load-bearing event of power grid failure (blackout), and share isomorphic skeletons of systemic crisis, emergency measures, and societal disruption under scarcity.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 20 -->
@@ -208,7 +220,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Incidental overlap in Philippines setting without load-bearing surface anchor; structural skeletons differ (infrastructure crisis vs. military conflict).
+- **judge理由**: News centers on a modern power crisis in Visayas, Philippines, while film is a historical military narrative in southern Philippines. Geographic overlap is incidental, not load-bearing for both stories, and thematic skeletons (infrastructure management vs. military defense) are not isomorphic.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 16 -->
@@ -239,7 +251,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge共振类型**: 
 - **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; the news focuses on power grid crisis and load shedding, while the film centers on island survival with food scarcity. Structural skeleton is not isomorphic: news involves systemic infrastructure failure, film involves interpersonal tensions in isolation. An unrelated news could equally explain the film.
+- **judge理由**: No shared load-bearing anchors (e.g., place, event type) and thematic skeletons differ: news involves systemic power grid management, while film centers on interpersonal tensions in isolation.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 11 -->
@@ -267,7 +279,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; the news focuses on power grid failures and load shedding, while the film involves a train derailment and biological attack. Incidental thematic overlap in crisis escalation, but not structurally isomorphic, and an unrelated news (e.g., a terrorist attack) could explain the film equally.
+- **judge理由**: No shared load-bearing surface anchor (e.g., place, event type, setting driving both stories); themes are not isomorphic—news focuses on power scarcity and infrastructure failure, while film centers on terrorism and biological attack leading to chaos.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 10 -->
@@ -296,7 +308,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge共振类型**: 
 - **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: news focuses on power grid failures and blackouts in the Philippines, while film centers on Martial Law and mysterious barrio events with no concrete shared elements like electricity issues. Structural skeletons are not isomorphic: news depicts a technical/energy crisis with emergency load shedding, whereas film portrays political oppression and chaos from Martial Law, lacking a power/fate/theme skeleton alignment.
+- **judge理由**: News focuses on contemporary power infrastructure crisis in Visayas, while film depicts historical political oppression and mysterious events in 1972 Philippines; no load-bearing shared anchor (incidental place overlap only), and skeletons not isomorphic (scarcity management vs. Martial Law themes).
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 9 -->
@@ -321,10 +333,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives share a structural skeleton of critical system failure (power grid vs. classified project) escalating into crises with emergency responses, but no load-bearing surface anchor exists as the film's focus on a biological threat has no concrete overlap with news about electrical blackouts.
+- **judge理由**: No shared load-bearing concrete anchor (e.g., place, event type, role type, or setting) between the power grid crisis in Visayas and the sci-fi film about a government project crash. Skeletons are not isomorphic, as news centers on energy scarcity and grid management, while film revolves around a biological threat from a failed experiment.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 8 -->
@@ -350,9 +362,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 2
-- **judge共振类型**: 双重
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both the news and film feature an energy crisis as a load-bearing concrete element (surface anchor), with the news describing a specific power crunch leading to blackout risks and load shedding, and the film portraying a post-apocalyptic future due to a similar crisis. Thematically, the skeleton is isomorphic, as both narratives revolve around the consequences of energy scarcity on society and survival (structural isomorphism).
+- **judge理由**: Both narratives are driven by an energy crisis as a load-bearing anchor; the news details real-world grid stress and emergency measures in Visayas, while the film portrays post-apocalyptic Italy facing similar scarcity, with isomorphic skeletons involving authority actions under power deficits and societal impacts.
 
 ### 单 agent 命中
 
@@ -383,7 +395,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: news focuses on power grid failures and emergency load shedding, while film centers on a weather machine plot. Structural skeletons are not isomorphic: news deals with real-world infrastructure crisis management, film is a comedic spy adventure with fantastical elements. Overlap is incidental.
+- **judge理由**: No load-bearing shared elements (e.g., place, event type) and no structural isomorphism between the power crisis and the spy film's weather machine plot.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -407,10 +419,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: news focuses on electrical power grid failures and blackouts, while film centers on atmospheric jet stream causing catastrophes; structural themes of crisis response are not isomorphic due to fundamentally different domains (human infrastructure vs. natural phenomena).
+- **judge理由**: Both stories feature a central authority (government/grid operator) confronting a systemic crisis (power scarcity/weather phenomena) with emergency interventions to avert disaster, but they lack a shared load-bearing concrete anchor such as place, event type, or role.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -437,7 +449,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news focuses on power grid failures due to plant outages and demand, with no concrete element matching the film's AI-driven disasters. The themes of infrastructure vulnerability vs. malicious AI lack structural isomorphism, making any overlap incidental.
+- **judge理由**: No shared load-bearing concrete anchor: news focuses on power grid crisis in Visayas, film on AI takeover in America. No structural isomorphism: news skeleton is scarcity-driven crisis management, film skeleton is AI rebellion and control. Unrelated topics, leading to 0 resonance.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -465,7 +477,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge共振类型**: 
 - **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news describes a modern operational power crisis in the Philippines, while the film is about historical electricity competition in the U.S. The shared theme of electricity is incidental and not load-bearing, and the structural skeletons are not isomorphic; any unrelated news about electricity could explain the film equally.
+- **judge理由**: No load-bearing shared anchors (different settings, eras, and driving events) and no structural isomorphism (news focuses on crisis management, film on historical rivalry and innovation).
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -489,10 +501,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The shared element of electricity loss is incidental; the film's focus on personal trapping is not isomorphic to the news's systemic power crunch, and an unrelated news about trapping could explain the film equally.
+- **judge理由**: The film and news share a load-bearing concrete anchor in electricity shortage (power outage driving both narratives), but their structural skeletons are not isomorphic: the news focuses on systemic grid management and societal impact, while the film centers on individual survival in isolation.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -519,7 +531,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No shared concrete elements; film involves political threats, news involves power infrastructure failure; structural skeletons not isomorphic under rubric.
+- **judge理由**: News describes power grid crisis with load shedding; film depicts political security threat. No shared load-bearing anchors (e.g., place, event type, role), and skeletons are not isomorphic (energy scarcity vs. threat identification).
 
 ## 02-corporate-layoff
 
@@ -573,11 +585,11 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Job loss is shared but incidental; the film's personal demoralization and unrelated obstacle (broken car) do not align with the news's AI-driven corporate restructuring, and no structural isomorphism exists.
+- **judge理由**: Both stories share the load-bearing concrete anchor of employees being fired from a company, which drives the narrative in each case. However, the thematic skeletons are not isomorphic: the news focuses on corporate restructuring for AI and strategic growth, while the film centers on personal demoralization and a practical plan amid unemployment, lacking alignment in power dynamics or overarching themes.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 52 -->
@@ -607,14 +619,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-CAREGIVER/p3: fragments=[how-0, result-0, result-3, why-1] · sim=0.4800 · **命中分=4**
   - THE-OUTLAW/p3: fragments=[how-0, why-1, result-1, how-1, result-1, how-2] · sim=0.5850 · **命中分=6**
 - **pseudo命中分合计**: 52
-- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 2
-- **judge共振类型**: 双重
-- **judge分歧**: ⚠
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both involve layoffs as a central event, with structural isomorphism in themes of power imbalance and fate of workers, though news emphasizes corporate restructuring for AI while film focuses on labor protest.
+- **judge理由**: Both narratives center on corporate layoffs as a load-bearing concrete anchor, with isomorphic skeletons involving authority figures sacrificing employee welfare for strategic or oppressive goals, highlighting power dynamics between employer and workers.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 50 -->
@@ -646,11 +657,11 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor or structural isomorphism; the news involves corporate job cuts for AI adaptation, while the film depicts a post-apocalyptic world with bounty killers targeting corporate criminals; any connection is incidental, as an unrelated news about corporate changes could equally explain the film.
+- **judge理由**: No concrete load-bearing anchors (e.g., specific place, event type) are shared; however, skeletons are isomorphic: both depict authority figures (CEO/Council) sacrificing individuals (employees/criminals) for perceived greater good (AI reinvention/justice), with public rhetoric justifying painful actions.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 32 -->
@@ -682,7 +693,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news is about corporate layoffs and AI restructuring, while the film is a military adventure comedy; the shared word 'company' is incidental and not load-bearing, with no structural isomorphism in themes or power dynamics.
+- **judge理由**: No shared load-bearing anchors (news: corporate AI restructuring; film: adventure comedy) and no isomorphic skeletons (themes of corporate reinvention vs. outdoor adventure/exploration).
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 30 -->
@@ -710,11 +721,11 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor (generic corporate elements are incidental, not essential to both narratives), and structural skeletons are not isomorphic (news involves economic restructuring for AI, film focuses on physical survival during a team-building disaster; themes and outcomes diverge significantly).
+- **judge理由**: Both news and film feature a corporate CEO as a central role driving the narrative, with shared themes of authority decisions leading to severe consequences for employees, demonstrating both surface-level anchor in corporate settings and isomorphic skeletons in power dynamics.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 27 -->
@@ -745,7 +756,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface elements: news details specific layoffs and AI restructuring, while film focuses on secretaries saving a sinking firm from inept leadership. No structural isomorphism: news emphasizes top-down corporate change for efficiency, film depicts bottom-up rescue by underdogs.
+- **judge理由**: No load-bearing concrete anchor shared: news focuses on AI-driven corporate layoffs at Intuit, while film depicts secretaries rescuing a failing brokerage firm. Skeletons are not isomorphic: news involves top-down strategic restructuring, film involves bottom-up heroism with incompetent leadership.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 26 -->
@@ -773,11 +784,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 1
-- **judge共振类型**: 表层
-- **judge分歧**: ⚠
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both involve workers and job loss as a concrete surface element, but news focuses on corporate restructuring without worker resistance, while film centers on active opposition, making structural skeletons not isomorphic.
+- **judge理由**: Both stories share load-bearing concrete anchors: a workplace closure or workforce reduction impacting employees (Intuit layoffs vs factory shutdown). The skeletons are isomorphic: central authority (CEO/owner) makes a decision to cut jobs or close for business reasons (AI reinvention/economic necessity), sacrificing worker livelihoods, though worker responses differ (acceptance with severance vs resistance).
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 20 -->
@@ -807,7 +817,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor (only incidental corporate setting overlap); no structural isomorphism (news themes of AI-driven restructuring and layoffs differ from film themes of team reconciliation during a retreat).
+- **judge理由**: News focuses on layoffs and AI-driven restructuring, film on a corporate retreat for team unity; no shared load-bearing event or setting driving both stories, and thematic skeletons (sacrifice vs. reconciliation) are not isomorphic.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 16 -->
@@ -836,7 +846,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor (news focuses on AI-driven corporate layoffs; film centers on personal quitting and rivalry), and skeletons are not isomorphic (corporate restructuring vs. David vs. Goliath personal empowerment). Incidental word overlap on job-related themes without shared concrete elements.
+- **judge理由**: No load-bearing concrete anchors (e.g., news about corporate layoffs due to AI restructuring vs. film about personal quitting and rivalry); skeletons not isomorphic (corporate necessity vs. individual empowerment themes).
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 12 -->
@@ -864,7 +874,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News focuses on corporate layoffs and AI-driven restructuring for reinvention, while film depicts a mistaken promotion due to clerical errors and bribery. No load-bearing surface elements (e.g., AI, specific job cuts) are shared, and the structural themes are not isomorphic: news involves intentional strategic change affecting employee fate negatively, whereas film involves accidental positive change from incompetence.
+- **judge理由**: No load-bearing concrete anchor (e.g., specific place or event) drives both stories; skeletons are not isomorphic: news centers on layoffs for AI restructuring, film on mistaken promotion from errors and corruption.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 10 -->
@@ -889,10 +899,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Incidental overlap in corporate executive roles, but no load-bearing shared concrete elements (film does not involve layoffs or AI restructuring) and structural skeletons are not isomorphic (news focuses on company reinvention, film on personal crisis); many unrelated news stories could equally explain the film.
+- **judge理由**: Both stories center on an executive making high-stakes decisions under corporate pressure—news about Intuit's CEO driving AI-focused layoffs for reinvention, and film about a manager whose life unravels due to conflicting boss demands. Shared load-bearing anchor in the 'executive under restructuring pressure' role, with isomorphic skeletons of authority-imposed sacrifice and thematic depth in change vs. loss.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 10 -->
@@ -920,7 +930,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: shared 'employees' element is incidental, with news focusing on layoffs/AI and film on a killer during a retreat. Structural skeletons are not isomorphic; corporate restructuring themes do not map to thriller survival dynamics.
+- **judge理由**: No load-bearing concrete anchors (e.g., place, event type, role type) are shared between the corporate AI restructuring layoffs and the public-sector retreat thriller; themes are not isomorphic (corporate sacrifice for efficiency vs. survival against a killer with interpersonal discord).
 
 ### 单 agent 命中
 
@@ -951,7 +961,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor (layoffs/corporate restructuring vs. samurai/comedy in alien-occupied Japan) and no structural isomorphism (corporate AI-driven change vs. past secrets/action in historical sci-fi); unrelated news could equally explain the film.
+- **judge理由**: 无承重表层锚点：新闻中的企业裁员与AI重组与电影中的武士时代外星入侵及奇工机构无共同驱动故事的具体元素。骨架不同构：新闻的主题是权力决策下的痛苦改革，电影则为喜剧冒险，无结构同构性。
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 8 -->
@@ -978,7 +988,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The surface element of office workers in corporate settings is incidental and not load-bearing, as the news focuses on economic restructuring and AI-driven layoffs, while the film centers on criminal captivity and forced labor. Structural themes of power and fate are not isomorphic; an unrelated news about layoffs would explain the film equally poorly, lacking core resonance.
+- **judge理由**: No load-bearing concrete anchors: office and manager roles are incidental overlap, not driving both stories—news focuses on corporate restructuring, film on horror captivity. Skeletons not isomorphic: news involves pragmatic authority sacrificing jobs for AI efficiency, while film depicts irrational criminal abuse of power. Unrelated news could equally explain the film, resulting in no resonance.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 6 -->
@@ -1005,7 +1015,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor (generic executive role) and skeleton not isomorphic (news: corporate AI-driven layoffs; film: personal mental health crisis leading to career reinvention).
+- **judge理由**: No load-bearing surface anchor (e.g., place, event type, role type, or setting driving both stories) and no isomorphic skeletons in power, fate, or theme. The news focuses on corporate AI-driven restructuring and layoffs, while the film centers on an ad executive's personal breakdown and recovery in a mental institution, with no structural or thematic parallels.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 6 -->
@@ -1032,7 +1042,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor or structural isomorphism; news focuses on corporate AI-driven job cuts, while film is a silent comedy about store theft and chaos, with only incidental thematic overlap.
+- **judge理由**: No load-bearing anchors: news involves corporate layoffs for AI restructuring in a tech company, while film is a comedic store theft plot with no shared place, event, role, or setting that drives both stories. Skeletons not isomorphic: news theme is corporate sacrifice for technological growth; film theme is chaos and theft with no parallel power/fate structure.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 5 -->
@@ -1057,9 +1067,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
-- **judge共振类型**: 表层
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both involve mass layoffs as a load-bearing concrete element, but the film's skeleton includes broken promises and worker resistance absent in the news, lacking structural isomorphism.
+- **judge理由**: Both stories center on corporate decisions leading to job losses (load-bearing anchor), but the news focuses on AI-driven restructuring while the film emphasizes broken promises and worker resistance; thematic skeletons are not isomorphic.
 
 ## 03-election-upset
 
@@ -1112,11 +1122,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
-- **judge分歧**: ⚠
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Incidental overlap in Texas political settings; no load-bearing concrete surface element or structural isomorphism between modern Senate runoff and historical independence plot.
+- **judge理由**: Both narratives are anchored in Texas political conflict, and share an isomorphic skeleton of external authority influencing political outcomes and rivalry.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 34 -->
@@ -1147,10 +1156,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both involve elections, but there is no load-bearing concrete surface anchor (news is a Senate runoff with endorsements and vote percentages; film is a presidential election decided by one vote). The structural skeletons are not isomorphic—news focuses on political dynamics and endorsements, while film emphasizes individual fate and a unique voting scenario. An unrelated political news could equally explain the film, so incidental overlap only.
+- **judge理由**: Both stories share a load-bearing anchor in election events, but the thematic skeletons (political upset with endorsements and spending vs. single-vote presidential outcome) are not isomorphic.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 33 -->
@@ -1180,10 +1189,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The shared theme of political elections is incidental and not load-bearing; the news details a specific U.S. runoff with endorsements and incumbent defeat, while the film depicts a generic Italian campaign without structural isomorphism in power or fate skeletons.
+- **judge理由**: Both narratives are driven by political elections (a load-bearing surface anchor), but the specific power dynamics, such as presidential endorsement in the news versus generic campaign determination in the film, show no clear skeleton isomorphism.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 27 -->
@@ -1212,10 +1221,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News is about a specific Texas Senate runoff with endorsement and incumbent loss; film is a fictional presidential election thriller with a conspiracy plot. Shared election theme is broad and incidental, with no load-bearing surface anchors or structural isomorphism.
+- **judge理由**: Both stories are driven by high-stakes U.S. political elections (load-bearing anchor), but the power skeletons differ: news involves intra-party electoral dynamics with a presidential endorsement, while film centers on investigative journalism uncovering a conspiracy, so structural isomorphism is absent.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 24 -->
@@ -1246,7 +1255,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchors or structural skeleton isomorphism; only incidental overlap in broad political themes, with distinct contexts (Senate primary vs. presidential campaign) and no concrete shared elements.
+- **judge理由**: No load-bearing concrete anchor: news is a Texas Senate runoff, film is a presidential campaign; skeletons not isomorphic: news focuses on election outcome with endorsement, film on VP pick strategy consequences.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 22 -->
@@ -1275,10 +1284,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
-- **judge共振类型**: 表层
+- **judge共振类型**: 表层沾边
 - **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both share a load-bearing surface element of a Texas Senator central to the plot, but the structural skeletons are not isomorphic: news involves political competition and electoral fate, while film centers on personal revenge and betrayal.
+- **judge理由**: Both stories share load-bearing anchors of Texas and a Senator, providing surface-level overlap, but the skeletons are not isomorphic: news focuses on electoral politics and party dynamics, while film centers on personal betrayal and violent revenge.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 22 -->
@@ -1306,10 +1315,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 1
-- **judge共振类型**: 表层
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives are anchored by political elections as a concrete surface element, but the structural skeletons are not isomorphic: news depicts a real-world election upset driven by endorsement and spending, while film involves a fictional leadership crisis with an identical twin's psychological traits, leading to no thematic alignment beyond surface overlap.
+- **judge理由**: Both center on political elections and leadership changes: news has a Texas Senate runoff with strategic endorsements, film has an election with a twin replacement driving party success, sharing themes of party manipulation and public perception.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 20 -->
@@ -1336,10 +1345,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The match is incidental, relying only on the broad theme of political elections; the film's generic overview could be equally explained by any unrelated news story about an election, failing the 0-guard test.
+- **judge理由**: Both stories center on political elections and rival politicians, providing a shared load-bearing surface anchor (event type and role type). However, the news involves serious real-life power dynamics with endorsements and incumbency losses, while the film is a fictional satire without isomorphic skeletal themes of power or fate.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 14 -->
@@ -1362,13 +1371,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-MAGICIAN/n1: fragments=[why-0, how-0, result-2, who-0, who-2] · sim=0.5360
   - THE-CAREGIVER/p2: fragments=[why-1, how-0, result-0, result-2] · sim=0.5528 · **命中分=4**
 - **pseudo命中分合计**: 14
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 2
-- **judge共振类型**: 结构
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives center on U.S. Senate elections with thematic isomorphism of underdog or insurgent candidates challenging the political establishment, though no specific concrete details (e.g., names, states) are shared.
+- **judge理由**: Both share a load-bearing anchor of U.S. Senate elections, and their skeletons are isomorphic in themes of political rivalry, establishment challenges, and the role of endorsements or external support in reshaping power dynamics.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 10 -->
@@ -1396,7 +1405,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface elements (e.g., no shared concrete events, characters, or settings) and no structural isomorphism between the political news's electoral power shift and the film's WWII partisan resistance theme; an unrelated news story could explain the film equally.
+- **judge理由**: No shared load-bearing concrete elements (e.g., place, event type, role, setting) and no isomorphic skeleton (power/fate/theme structures); news is a modern Texas political election, film is WWII partisan resistance, unrelated contexts.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 9 -->
@@ -1424,7 +1433,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchors; Texas is incidental. Structural themes of challenging authority loosely align, but skeletons are not isomorphic, and unrelated news could equally explain the film.
+- **judge理由**: No load-bearing concrete anchor: Texas is incidental in the film's setting but not the driving force, unlike in the news where it is central to the political event. No isomorphic skeletons: the news involves political power struggles and electoral outcomes, while the film focuses on personal justice and social ostracism, with no structural similarities in themes or power dynamics.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 9 -->
@@ -1446,13 +1455,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-LOVER/p2: fragments=[why-1, how-0, result-0, result-1] · sim=0.5238 · **命中分=4**
   - THE-RULER/p3: fragments=[why-0, why-1, how-0, result-1, result-2] · sim=0.5629 · **命中分=5**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 结构性联系不高
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives center on high-stakes political votes where underdog campaigns challenge established power, leading to significant political shifts; structural isomorphism exists in themes of political upheaval and voter persuasion, but no load-bearing concrete surface anchors are shared.
+- **judge理由**: News and film lack concrete shared anchors (Texas runoff vs. UK Brexit campaign), but thematic skeletons align: both depict political insurgency where strategic campaigns challenge established power, driven by popular appeal and tactical maneuvering to reshape outcomes.
 
 ### 单 agent 命中
 
@@ -1484,7 +1493,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; both involve political power struggles, but the film's core romantic catalyst is absent in the news, and structural isomorphism is weak as the catalysts differ (political defeat vs. love triangle).
+- **judge理由**: No load-bearing surface anchor: news is about an electoral primary runoff in modern U.S. politics, film is a love triangle in a 1929 political boss setting. No isomorphic skeleton: news driven by political endorsement and power shift, film by personal conflict affecting politics.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1511,7 +1520,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor or structural isomorphism; the news is about an election defeat and endorsement, while the film centers on a President's personal metamorphosis after an accident, with no shared concrete elements or aligned thematic skeletons.
+- **judge理由**: No load-bearing concrete anchors (e.g., place, event, role) are shared; the film focuses on presidential transformation during the Depression, while the news is a Texas Senate primary. Skeletons are not isomorphic: the news involves electoral politics and endorsement dynamics, whereas the film centers on individual moral metamorphosis, with no deep structural parallels.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1535,10 +1544,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The film's focus on a generic politician persuading voters in a short time is incidental to the news's specific context of a Texas Senate runoff with factors like endorsement and spending; no load-bearing surface anchor or structural isomorphism exists, as unrelated political news could equally explain the film.
+- **judge理由**: Both share the load-bearing anchor of political elections and campaigns, but the news involves a specific primary outcome with real-world factors like endorsements and spending, while the film abstracts electioneering into a general persuasive pitch, lacking deeper structural isomorphism in power or theme skeletons.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1565,7 +1574,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news involves a specific U.S. Senate primary runoff with details like endorsement and spending, while the film focuses on a personal political rivalry with a girlfriend and twin. The shared element of 'political election' is too broad and not load-bearing, as the film's plot lacks the concrete anchors from the news, and no structural isomorphism exists due to differing power dynamics and themes. An unrelated political news could equally explain the film's premise.
+- **judge理由**: No load-bearing concrete anchors (e.g., place, event type) shared; skeletons not isomorphic as news focuses on intra-party electoral power shift while film revolves around personal romantic rivalry in politics.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1589,10 +1598,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News reports a factual political runoff with endorsements and funding, while film centers on a supernatural honesty curse in a presidential election; shared election setting is incidental, not load-bearing, and structures differ without isomorphic themes.
+- **judge理由**: Both stories explore political elections with external forces (endorsement in news, curse in film) influencing candidate honesty and power dynamics, but no load-bearing concrete anchor like place or specific event type is shared.
 
 ## 04-celebrity-scandal
 
@@ -1642,7 +1651,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News involves a scandal with false AI claims leading to arrest, while film centers on a celebrity kidnapped for ransom. Celebrity status is incidental, not a load-bearing shared element; no structural isomorphism in themes or plot skeleton.
+- **judge理由**: 新闻核心是名人因AI造假虚假指控而事业受损，电影核心是名人被绑架勒索并证明自己；两者共享名人角色但非负载锚点（事件类型和设置不同），且主题骨架（信息操纵 vs 生存挑战）不具同构性，故无共振。
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 25 -->
@@ -1673,7 +1682,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: news involves AI-fabricated claims against a celebrity, while film focuses on a journalist investigating traffic rule breakers leading to murder—no shared concrete elements. No structural isomorphism: themes of deception differ in context and power dynamics, with news about digital misinformation and film about crime escalation. An unrelated news could equally explain the film.
+- **judge理由**: No load-bearing concrete anchor; the news focuses on AI-fabricated defamation leading to arrest and scandal in Seoul, while the film is a generic crime thriller about a journalist investigating traffic violations turned murder cases. No shared place, event type, or role type that drives both stories. Skeletons are not isomorphic: news themes involve media integrity, AI deception, and legal consequences, whereas film themes center on investigation, hidden crimes, and deception in a different context. Unrelated news could equally explain the film.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 22 -->
@@ -1698,13 +1707,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-LOVER/p2: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.6050 · **命中分=5**
   - THE-RULER/p2: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.6279 · **命中分=5**
 - **pseudo命中分合计**: 22
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 2
-- **judge共振类型**: 结构
+- **judge共振类型**: 强共振（表层 + 结构）
+- **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both involve protagonists using deception (false claims vs. false alibi) for personal gain, leading to severe consequences, but no concrete surface elements like specific technologies or contexts are shared; the power/fate skeleton of lies backfiring is isomorphic.
+- **judge理由**: Both stories center on a celebrity figure using false claims (AI-fabricated allegations in news, false alibi in film) for personal gain or protection, leading to severe consequences, with isomorphic skeletons of deception, scandal, and moral compromise.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 22 -->
@@ -1729,13 +1739,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-JESTER/p2: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5912 · **命中分=5**
   - THE-JESTER/p3: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5816 · **命中分=5**
 - **pseudo命中分合计**: 22
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 2
-- **judge共振类型**: 双重
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both involve fabricated media-driven scandals (AI-generated claims vs. tabloid yarn) leading to legal consequences and career impacts for celebrities, with shared thematic structure of deception and media manipulation.
+- **judge理由**: Both center on media-driven celebrity scandals with legal consequences: news involves AI-fabricated claims by a YouTuber affecting an actor's career, film involves a tabloid spinning a scandalous yarn leading to a court case, sharing themes of media manipulation, truth distortion, and reputational impact.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 20 -->
@@ -1760,13 +1770,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/p1: fragments=[how-0, how-1, result-0] · sim=0.5817 · **命中分=3**
   - THE-EVERYMAN/p3: fragments=[how-0, how-1, result-0, result-1] · sim=0.5529 · **命中分=4**
 - **pseudo命中分合计**: 20
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 2
-- **judge共振类型**: 双重
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both the news and film feature online video platforms (YouTube/YouTube-like) as load-bearing anchors for deceptive digital content that triggers criminal investigations and real-world consequences, with structural isomorphism in themes of technology misuse, law enforcement response, and societal impact.
+- **judge理由**: Both stories share a load-bearing concrete anchor: a video-sharing platform (YouTube in news, YOURTUBE in film) that drives the plot by enabling the spread of disruptive content. The skeletons are isomorphic: individuals use digital media for personal motives (financial gain or revenge), leading to public harm and police investigation, reflecting themes of technology abuse and justice.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 20 -->
@@ -1796,7 +1806,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing shared concrete element or structural isomorphism; news involves modern AI-fabricated scandal affecting an actor, while film focuses on 1970s artistic struggle with censorship, with only incidental overlap in Korean entertainment setting.
+- **judge理由**: No load-bearing concrete anchor: news involves modern AI-driven scandal in digital celebrity culture, while film centers on 1970s artistic conflict with censorship. Skeletons not isomorphic: news focuses on deception and legal consequences, film on creative struggle and authority interference, with no deep structural overlap in power or themes.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 11 -->
@@ -1825,7 +1835,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor shared; incidental overlaps (e.g., media, Korean elements) are not concrete or critical. Structural skeletons are not isomorphic: news focuses on AI fabrication and legal consequences, while film on vigilante deception for justice.
+- **judge理由**: No load-bearing concrete anchor: the news involves AI-fabricated claims in a modern Seoul celebrity scandal, while the film is a 1940s vigilante crime story with no shared crucial setting, event, or role. No skeleton isomorphism: themes differ fundamentally—deception for financial gain vs. deception for justice in crime-fighting.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 10 -->
@@ -1847,13 +1857,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-RULER/p2: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.6138 · **命中分=5**
   - THE-MAGICIAN/p3: fragments=[why-0, how-0, result-1, how-1, result-0] · sim=0.5362 · **命中分=5**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 2
-- **judge共振类型**: 双重
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives feature false accusations as a load-bearing surface anchor: in the news, AI-fabricated claims target an actor, while in the film, false accusations by a corrupt judge imprison a business woman. Structurally, there is isomorphism in themes of power abuse and exploitation for personal gain (financial in news, sexual/control in film), leading to severe consequences for the victim.
+- **judge理由**: Both narratives are driven by false accusations as a load-bearing event type, and share isomorphic skeletons of power abuse (media influence vs. judicial authority) leading to victimization, with themes of corruption and exploitation.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 10 -->
@@ -1878,10 +1888,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Shared theme of false accusations is incidental; news involves AI-fabricated celebrity gossip for financial gain, while film focuses on political coercion and crime with no load-bearing concrete elements or structural isomorphism.
+- **judge理由**: Both stories involve false accusations and power manipulation, but lack a shared concrete anchor like place or event type; the structural isomorphism exists in themes of coercion, witness roles, and authority undermining, without load-bearing surface overlaps.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 9 -->
@@ -1909,7 +1919,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing shared concrete element; news involves AI fabrication and celebrity defamation, while film focuses on detective combating physical gangsters; structural themes of justice differ (cybercrime vs. organized crime), and an unrelated crime news could equally explain the film.
+- **judge理由**: No load-bearing concrete anchor (news focuses on media scandal and AI defamation, while film is about police action against gangs); no isomorphic skeletons (themes of truth and justice differ significantly, with unrelated news equally explaining the film).
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 8 -->
@@ -1931,13 +1941,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/p2: fragments=[why-0, how-1, result-1] · sim=0.6324 · **命中分=3**
   - THE-LOVER/p3: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.6233 · **命中分=5**
 - **pseudo命中分合计**: 8
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 只有表层元素相关
 - **judge分**: 2
-- **judge共振类型**: 结构
+- **judge共振类型**: 强共振（表层 + 结构）
+- **judge分歧**: ⚠
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives center on false accusations that damage reputations and lead to investigations uncovering financial scandals, with isomorphic thematic skeletons but no load-bearing shared concrete surface elements.
+- **judge理由**: Both stories are driven by false accusations (news: AI-fabricated claims; film: suicide note allegation) that cause major scandals, with shared thematic skeletons of hidden motives, financial gain, and legal investigations, providing concrete load-bearing anchors and isomorphic structures.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 8 -->
@@ -1962,10 +1973,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news centers on AI-fabricated defamation and arrest, while the film involves kidnapping and real-time filming for retaliation. The shared element of an actor facing disruption is incidental, with no load-bearing surface anchor or structural isomorphism in theme or power dynamics.
+- **judge理由**: No concrete shared anchor like place or specific event type, but both stories structurally involve media exploitation and attacks on celebrities by antagonists with hidden motives (financial gain vs. revenge).
 
 ### 单 agent 命中
 
@@ -1994,10 +2005,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface elements shared; news involves AI scandal and celebrity defamation, film centers on undercover crime syndicate operations. Thematic overlaps in deception and consequences are incidental and not structurally isomorphic, as power dynamics and core fates diverge.
+- **judge理由**: Both narratives feature characters employing deception to achieve personal goals (financial gain in news, redemption in film) with themes of moral compromise and consequences, sharing a structural skeleton of hidden motives and costs, but lacking concrete surface anchors like shared settings or roles.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -2024,7 +2035,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: news involves AI-fabricated claims and arrest in social media, while film centers on TV network sabotage and audience ratings; concrete elements do not share core essence. No structural isomorphism: news theme is deception with harmful consequences, film theme is sabotage with beneficial outcomes; skeletons are not aligned.
+- **judge理由**: No load-bearing concrete anchors (e.g., specific role or event type driving both stories) and no isomorphic skeletons (themes of media manipulation differ: news focuses on fabrication and legal consequences, film on comedic sabotage with unintended success); the media setting overlap is incidental and not load-bearing.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -2048,10 +2059,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both involve celebrity exploitation, but there is no load-bearing concrete element (e.g., AI fabrication, YouTuber, or specific scandal) shared, and the structural skeletons are not isomorphic; the news focuses on financial fraud via false claims, while the film is a satirical exploration of ideological exploitation, making the overlap incidental.
+- **judge理由**: Both stories involve a celebrity figure whose reputation is exploited by others for personal or financial gain, with the news featuring false AI accusations against an actor and the film depicting a soccer star manipulated by causes, creating shared load-bearing anchors and isomorphic themes of exploitation and consequence.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -2078,7 +2089,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; incidental overlap only in broad media theme without specific shared concrete elements. Structural themes not isomorphic: news involves false accusations and AI-driven scandal, while film involves murder investigations and elite corruption.
+- **judge理由**: No load-bearing surface anchor (different roles/settings: news is AI-driven scandal in Korea, film is murder conspiracy in Hollywood), and skeletons not isomorphic (core themes of AI misinformation vs. elite crime investigation differ).
 
 ## 05-climate-disaster
 
@@ -2128,13 +2139,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-JESTER/p2: fragments=[how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-4] · sim=0.5704 · **命中分=8**
   - THE-EVERYMAN/p3: fragments=[why-0, how-3, result-1, result-3, result-4, result-5] · sim=0.5639 · **命中分=6**
 - **pseudo命中分合计**: 77
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
-- **judge分**: 1
-- **judge共振类型**: 表层
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**:
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Shared concrete element of dams and water management (surface anchor), but news emphasizes natural disaster response without conflict, while film centers on displacement resistance, so structural skeleton not isomorphic.
+- **judge理由**: Both share dam-related water disasters as a load-bearing anchor, with isomorphic themes of central authority sacrificing margins in crises.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 48 -->
@@ -2160,13 +2171,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-INNOCENT/p3: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-1, result-3, result-4, result-5] · sim=0.5016 · **命中分=10**
   - THE-OUTLAW/p3: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-1, result-0] · sim=0.5213 · **命中分=8**
 - **pseudo命中分合计**: 48
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
-- **judge共振类型**: 表层
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both share the concrete element of a flood disaster as a load-bearing anchor, but the structural skeletons are not isomorphic: the news emphasizes real-world consequences, government response, and tragedy, while the film is a fictional adventure centered on group survival against the elements.
+- **judge理由**: Both stories share a load-bearing concrete anchor: a flood disaster as the central event. However, the narrative skeletons are not isomorphic; the news involves real-world political and social dynamics, while the film is a fictional adventure with mythical elements.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 43 -->
@@ -2193,13 +2204,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/p1: fragments=[why-0, how-1, result-0, result-1, result-5] · sim=0.5779 · **命中分=5**
   - THE-EVERYMAN/p2: fragments=[why-0, result-1, result-2, result-3, result-5] · sim=0.5723 · **命中分=5**
 - **pseudo命中分合计**: 43
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Incidental overlap only; both involve flooding, but no load-bearing concrete surface anchor (e.g., specific shared details like settings, characters, or events) and structural skeletons are not isomorphic (river flood from rains in Syria vs. tidal surge overwhelming a barrier in London).
+- **judge理由**: Both stories center on catastrophic flood events, providing a shared load-bearing anchor (event type), but the news involves specific geopolitical elements (Syria, president, Turkey) while the film is a generic disaster narrative set in England, so the power/fate skeletons are not isomorphic.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 28 -->
@@ -2226,10 +2237,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The shared element of 'flood' is incidental and not load-bearing, as the news details a specific rain-induced flood in Syria with political and social responses, while the film depicts an earthquake-triggered apocalyptic flood in the US. No concrete elements align, and the thematic skeletons differ in context and scale, making an unrelated flood news equally plausible for the film.
+- **judge理由**: Both stories are driven by catastrophic floods as load-bearing anchors, but the power/fate skeletons are not isomorphic: news focuses on political crisis management in Syria, while film depicts generic disaster survival in the USA.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 27 -->
@@ -2259,7 +2270,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The word 'dam' appears in both but is incidental; the film's overview as a family portrait lacks load-bearing concrete elements or structural isomorphism with the news's flood crisis themes.
+- **judge理由**: The film's title 'The Whole Dam Family and the Dam Dog' only shares incidental word overlap ('dam') with the news about Euphrates floods and dam operations. There is no load-bearing concrete anchor (e.g., no shared setting, event type, or role that drives both stories). The thematic skeletons are not isomorphic: the news involves real-world disaster, government response, and resource scarcity, while the film is a fictional family portrait unrelated to these elements. Unrelated news could equally explain the film.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 24 -->
@@ -2288,7 +2299,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Incidental water overlap; news is about real flood disaster and government response, film is about fictional military campaigns with no structural isomorphism or specific concrete anchor.
+- **judge理由**: No load-bearing concrete anchors (e.g., shared place, event, or role) and no isomorphic power/fate/theme skeletons; film's fictional water-army imagery does not drive the news's narrative of real flooding and political response.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 17 -->
@@ -2313,10 +2324,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives center on a water-related environmental crisis (flooding in news, drought in film) leading to societal upheaval, with themes of fate, authority response, and human deliverance, showing thematic skeleton isomorphism without a load-bearing shared concrete element.
+- **judge理由**: No load-bearing concrete anchor (flood vs. drought settings) and no isomorphic skeletons (authority crisis response vs. decentralized societal collapse in scarcity).
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 15 -->
@@ -2341,10 +2352,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Incidental water theme; no load-bearing surface anchor (flood vs. piranha attack) and no structural isomorphism (news focuses on natural disaster response; film on creature horror survival).
+- **judge理由**: No load-bearing concrete anchors (news: Euphrates flood in Syria; film: piranha attack in Arizona lake), but skeletons are isomorphic: both depict authorities responding to sudden natural disasters with evacuations and crisis management.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 14 -->
@@ -2369,10 +2380,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Incidental overlap in broad disaster themes, but no load-bearing surface anchor (floods vs. wind catastrophes) and structural skeletons are not isomorphic (reactive government response vs. proactive individual theory-driven prevention).
+- **judge理由**: No load-bearing surface anchor (e.g., news focuses on Syria floods; film on jet streams causing global catastrophes), but skeleton is isomorphic in themes of authority managing environmental threats and natural disasters.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 11 -->
@@ -2397,10 +2408,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 1
-- **judge共振类型**: 表层
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives center on catastrophic weather disasters (flooding and superstorm) as load-bearing concrete elements, but the news focuses on natural disaster response and political leadership, while the film involves a sci-fi technological accident with global threats, showing no structural isomorphism.
+- **judge理由**: No load-bearing concrete anchors shared (news: Syrian flood with real-world government response; film: sci-fi superstorm from debris in Seattle). Skeletons not isomorphic (news focuses on natural disaster management with political elements; film centers on a man-made weather catastrophe without clear power/fate alignment).
 
 ### 单 agent 命中
 
@@ -2432,7 +2443,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both the news and film involve water as a central element, but the contexts are inversely opposed: the news describes water excess causing deadly floods and government response, while the film focuses on water scarcity and conflict over control in a post-apocalyptic setting. There is no load-bearing shared concrete element (e.g., specific events or settings), and the structural themes (disaster response vs. resource conflict) are not isomorphic, resulting in incidental overlap only.
+- **judge理由**: No load-bearing concrete anchor: water overlap is incidental (flood vs scarcity) and not a driving element in both stories. No structural isomorphism: news involves government response to natural disaster, while film features post-apocalyptic conflict over scarce resources, with different power dynamics and themes.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2456,10 +2467,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives share a structural skeleton of community tragedy involving child deaths, leading to themes of external intervention (president/lawyer), communal division, and personal reckoning with loss and fate, but no specific surface elements like flood or bus accident are directly shared.
+- **judge理由**: No load-bearing concrete anchor: news involves Euphrates flooding in Syria, film involves a school bus accident in Canada—different places, event types, and settings. However, skeletons are isomorphic: both center on community devastation from child fatalities (drowning/accident) and external intervention (president/lawyer) that exacerbates division or crisis management, with themes of loss, fate, and power dynamics.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2486,7 +2497,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface elements: news focuses on real-world floods and drowning, while film's rain hat is incidental to supernatural horror themes. No structural isomorphism: news involves natural disasters and political response, film involves curses and hauntings, with no shared power or fate skeleton. An unrelated news (e.g., a crime story) could explain the film equally, triggering the 0-guard.
+- **judge理由**: No load-bearing concrete anchors (e.g., floods, river, Syria, political figures) shared between news and film; skeletons not isomorphic (news deals with real-world disaster and governance, film is supernatural horror with unrelated themes).
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2513,7 +2524,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both involve flood disasters, but the shared element is incidental without load-bearing concrete anchors or structural isomorphism; the news focuses on macro response, while the film centers on personal drama.
+- **judge理由**: No shared load-bearing anchor: news is about a flood in Syria, film is set during the 1953 Dutch flood—different places and times with only incidental overlap. No skeletal isomorphism: news emphasizes governmental response and crisis management, while film focuses on personal survival and maternal quest. Unrelated flood news could equally explain the film, leading to score 0.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2537,10 +2548,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 1
-- **judge共振类型**: 表层
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives are centered on catastrophic water disasters (river flooding vs. tsunami), providing a load-bearing surface anchor. However, the news emphasizes governmental response and community impact, while the film focuses on personal melodrama and immediate escape, lacking structural isomorphism.
+- **judge理由**: The news details a river flood in Syria with governmental response, while the film centers on a tsunami in South Korea with personal drama. No shared load-bearing concrete anchor (different places, event types). Skeletons are not isomorphic: news emphasizes authority and community impact, film focuses on individual stories. Thus, no meaningful resonance.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2564,10 +2575,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 1
-- **judge共振类型**: 表层
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both center on water-based natural disasters (flood/tsunami) causing evacuations and destruction, but the news lacks the film's structural escalation from failed human mitigation.
+- **judge理由**: No shared load-bearing concrete anchor (news: Syrian floods; film: US tsunami/earthquake with different settings/events) and no isomorphic skeletons (news: political leadership in humanitarian crisis; film: sci-fi escalation with scientific/military response).
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 8 -->
@@ -2594,7 +2605,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News focuses on natural flooding on the Euphrates, while film centers on artificial climate control causing global disasters; overlap is incidental without load-bearing surface anchors or structural isomorphism, and unrelated news about natural disasters could equally explain the film.
+- **judge理由**: No load-bearing concrete anchor: news is a natural flood in Syria, film is a global sci-fi technological disaster; structural skeletons not isomorphic: news focuses on natural crisis management, film on man-made system failure and conspiracy.
 
 ## 06-tech-monopoly
 
@@ -2642,10 +2653,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor or structural isomorphism. The news concerns EU regulatory fines for Google's anti-competitive behavior in digital markets, while the film depicts criminal fraud in the EU carbon quota system. The EU context is incidental, and the core elements (regulatory enforcement vs. criminal scam) and themes do not share a concrete or thematic skeleton.
+- **judge理由**: Both the news and film share the EU as a load-bearing concrete anchor (regulatory systems driving the stories), but their skeletons (competition regulation vs. carbon quota fraud) are not isomorphic.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 37 -->
@@ -2678,7 +2689,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchors (news about EU fines for Google's search self-preferencing vs. film about a cop's vigilante revenge on drug dealers). Structural skeletons are not isomorphic: news involves institutional regulatory action, while film depicts personal extralegal enforcement with internal conflict. An unrelated news (e.g., police corruption) could explain the film equally.
+- **judge理由**: No load-bearing shared anchors (EU antitrust vs French crime vigilante); skeletons not isomorphic (regulatory control vs personal revenge).
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 36 -->
@@ -2708,10 +2719,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News involves EU regulatory fine for Google's anti-competitive practices, while film depicts a sham judicial system in Nazi-occupied France. No load-bearing concrete element (e.g., specific entities or events) is shared, and structural skeletons (power dynamics: corporate regulation vs. wartime oppression; themes: competition law vs. political scapegoating) are not isomorphic. An unrelated news could explain the film equally.
+- **judge理由**: Both stories feature central authorities imposing penalties or sacrifices under a veneer of justice or regulation, with public rhetoric masking private motives, but no load-bearing surface anchors like place or event.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 31 -->
@@ -2743,7 +2754,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor or structural isomorphism; news is about antitrust fines for corporate self-preferencing, film is about government promotional game for space tourism.
+- **judge理由**: No load-bearing shared anchor: news is EU regulatory fine for Google's self-preferencing in search; film is French government PR campaign for space research lottery. Skeletons not isomorphic: news focuses on competition enforcement, film on public engagement and promotion.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 27 -->
@@ -2775,7 +2786,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor exists between the news (EU fine on Google for self-preferencing) and film (vigilante network targeting corrupt officials); structural skeleton (power/fate/theme) is not isomorphic, as news involves legal regulatory action while film involves extra-legal vigilante justice; an unrelated news story could explain the film equally, failing the 0-guard.
+- **judge理由**: No load-bearing surface anchor (e.g., shared place, event type, or role), and skeletons not isomorphic; news is about EU regulatory action against Google, while film is a vigilante story against corruption, with only incidental thematic overlap.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 19 -->
@@ -2801,10 +2812,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News details EU regulatory fine for Google's anti-competitive search practices, while film depicts a thriller about investigating a bank's criminal activities; no specific concrete shared element and skeletons differ (regulatory vs. criminal investigation), with only incidental thematic overlap.
+- **judge理由**: The news and film share isomorphic skeletons of institutional power (regulatory vs. law enforcement) challenging powerful entities (tech vs. banking) for harmful activities, but no load-bearing surface anchors like shared places or specific events.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 19 -->
@@ -2830,10 +2841,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives involve European institutional power uncovering hidden misconduct by large organizations, leading to significant legal or political consequences, but lack a specific shared concrete element (e.g., same company, law, or event) for a surface anchor.
+- **judge理由**: No direct load-bearing surface anchors (e.g., Google vs. Clearstream, digital regulation vs. financial journalism), but isomorphic skeletons: both involve European institutional misconduct and accountability-seeking against powerful entities.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 13 -->
@@ -2861,7 +2872,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface elements shared; news focuses on EU regulatory fines for Google's search practices, while film is a crime comedy about police deception in Marseilles, with no concrete or thematic overlap.
+- **judge理由**: No load-bearing concrete anchors: news focuses on EU regulatory fines against Google for digital self-preferencing, while film is a comedic crime plot set in Marseilles involving police deception—no shared place, event type, role, or setting that drives both stories. No skeleton isomorphism: news centers on authority imposing penalties for market abuse, film on criminal outsmarting incompetent police—power dynamics and themes differ fundamentally. Unrelated news could explain the film equally well.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2889,7 +2900,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor exists; news involves EU fines on Google for self-preferencing, while film centers on customs officers cooperating after border elimination, with no shared concrete elements. Structural skeletons are not isomorphic; themes of antitrust enforcement and regulatory power in news do not align with themes of personal rivalry and collaboration in film. An unrelated news could explain the film equally, as the film's narrative does not depend on specific elements from this news.
+- **judge理由**: No load-bearing concrete anchors shared: news involves EU regulatory fine on Google for digital market practices, film is about customs officers during Belgian/French border elimination—no overlapping place, event type, role, or setting that drives both stories. Skeletons are not isomorphic: news centers on top-down regulatory enforcement for competition fairness, film on interpersonal cooperation amid political change—no structural match like central authority sacrificing margins under scarcity.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2917,7 +2928,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; thematic overlap (e.g., abuse of power, façade) is incidental and not isomorphic in skeleton, as news involves external regulatory action while film centers on internal betrayal; an unrelated news could explain the film equally.
+- **judge理由**: No load-bearing concrete anchor shared; news involves EU regulatory fines for corporate self-preferencing, while film centers on organized crime and internal betrayal. Skeletons are not isomorphic: themes of facade exist but lack structural alignment in power/fate dynamics.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2945,7 +2956,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news involves corporate antitrust fines in digital markets, while the film is a physical bank robbery crime thriller. No load-bearing shared concrete elements exist, and the structural skeletons are not isomorphic—the news focuses on regulatory enforcement against a corporation, whereas the film centers on a hostage situation with a hidden mastermind. An unrelated news about a heist or police standoff would explain the film equally well.
+- **judge理由**: No shared load-bearing concrete anchor: news focuses on EU antitrust fines for Google's self-preferencing, while film depicts a bank robbery with a criminal mastermind. No isomorphic skeletons: power dynamics and themes differ fundamentally (regulatory enforcement vs. crime/outsmarting authorities).
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2973,7 +2984,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Shared 'large money' element is incidental; no concrete surface anchor (e.g., lottery vs. fine) and no structural isomorphism in power/fate/theme skeleton. Unrelated news could equally explain the film.
+- **judge理由**: No shared load-bearing concrete anchors: news is about EU regulatory fines on Google for digital market self-preferencing, while film centers on a lottery ticket dispute escalating into violence. No structural isomorphism in power/fate skeletons: news involves institutional regulation and corporate accountability, whereas film focuses on personal greed and moral choices in a hostage scenario. Unrelated news could equally explain the film, indicating no resonance.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 9 -->
@@ -3001,7 +3012,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchors (e.g., Google, fines, search engines vs. spies, Vienna) and no structural isomorphism; news is corporate regulatory conflict, film is generic espionage plot. Incidental word overlap (e.g., 'leak') is not load-bearing, and unrelated news could explain the film equally.
+- **judge理由**: No load-bearing concrete anchors: news involves EU regulatory fines on Google for digital market competition, while film is a Cold War-era spy drama in Vienna with no shared place, event type, role type, or setting. Skeletons not isomorphic: themes of institutional regulation vs. individual espionage do not align in power dynamics or fate.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 7 -->
@@ -3029,7 +3040,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing shared concrete elements (e.g., EU/Google vs. judge/cheese factory) and structural skeletons are not isomorphic; news focuses on regulatory fines for corporate self-preferencing, while film centers on personal corruption via seduction and bribery, with no deep thematic alignment.
+- **judge理由**: News concerns EU regulatory fine against Google for antitrust; film is about local corruption to influence a judge after a factory shutdown. No load-bearing shared elements (place, event type, role, setting), and skeletons are not isomorphic (top-down enforcement vs. bottom-up corruption).
 
 ### 单 agent 命中
 
@@ -3061,7 +3072,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface elements (e.g., news involves corporate fines for search self-preferencing; film involves murder investigation from a past promise). Structural skeletons differ: regulatory antitrust action vs. personal crime drama with no isomorphic power/fate/theme.
+- **judge理由**: No load-bearing concrete anchor (e.g., film is set in Paris with a murder investigation, while news involves EU antitrust action against Google; no shared driving elements like place, event type, or role). Skeletons are not isomorphic (news focuses on regulatory enforcement in digital markets, film on personal crime investigation; themes and power dynamics differ).
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 10 -->
@@ -3089,7 +3100,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor (news: antitrust fine for search self-preferencing; film: investigation of political scandal leak) and skeleton not isomorphic (themes of deception incidental without specific power/fate match).
+- **judge理由**: No load-bearing concrete anchor shared (news on EU antitrust fine vs. film on corporate speech leak); power/fate skeletons not isomorphic (institutional regulation vs. personal ambition).
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 7 -->
@@ -3116,7 +3127,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing shared concrete elements: news involves EU regulatory fine for corporate self-preferencing, film centers on a personal chase for a lottery ticket. Skeletons are not isomorphic; news themes focus on systemic regulation and corporate accountability, while film themes revolve around individual fate and pursuit.
+- **judge理由**: No shared load-bearing concrete anchor (news is about EU regulatory fine on Google for search self-preferencing, film is about a convict chasing a lottery ticket from a warden); skeletons are not isomorphic as news centers on antitrust enforcement vs. film's personal recovery theme.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 6 -->
@@ -3140,10 +3151,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface elements shared; structural skeletons not isomorphic—news centers on regulatory action against corporate self-preferencing, while film involves a protagonist integrating into a prison crime empire, with divergent themes and power outcomes.
+- **judge理由**: No shared load-bearing anchor (different settings/events), but isomorphic skeletons: both involve authority figures (EU regulators vs. ex-police) confronting power dynamics and systemic control (corporate self-preferencing vs. prison crime syndicate).
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 5 -->
@@ -3170,7 +3181,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing shared concrete elements (news is about EU regulatory fine on Google for digital market practices, film is about a diamond heist in Antwerp); no structural isomorphism (themes of corporate competition vs. criminal robbery are not analogous, and an unrelated news about any crime could equally explain the film).
+- **judge理由**: No load-bearing shared anchors (news is about EU digital regulation, film is about a diamond heist in Antwerp) and skeletons are not isomorphic (regulatory enforcement vs. criminal activity, with different power dynamics).
 
 ## 07-migration-border
 
@@ -3238,9 +3249,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
-- **judge共振类型**: 表层
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Shared Border Patrol setting is a load-bearing surface anchor, but the news focuses on external migration statistics and policy, while the film's plot revolves around internal corruption and personal danger, lacking structural isomorphism.
+- **judge理由**: Both share the load-bearing concrete anchor of U.S. Border Patrol and southwest border enforcement, but their core skeletons are not isomorphic: the news focuses on migration patterns and policy dynamics, while the film explores internal agency corruption and personal survival.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 59 -->
@@ -3280,7 +3291,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Shared border theme is incidental; news focuses on U.S. enforcement and apprehensions, while film depicts Berlin Wall opening lightheartedly. No load-bearing surface anchor or structural isomorphism.
+- **judge理由**: No shared load-bearing anchor: film is about Berlin Wall opening, news is about U.S. border enforcement; border is incidental word overlap, not concrete shared element. No isomorphic skeleton: themes are opposite (opening vs. enforcement), with no structural similarity in power or fate.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 33 -->
@@ -3313,7 +3324,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News focuses on U.S. border immigration enforcement and seasonal migration, while film depicts European tourism and travel; no load-bearing surface anchors or structural isomorphism in themes or power dynamics.
+- **judge理由**: No load-bearing concrete anchor (news is about U.S. border enforcement, film is about European tourism); no structural isomorphism (news deals with political/societal themes, film is a light-hearted comedy).
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 27 -->
@@ -3343,9 +3354,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
-- **judge共振类型**: 表层
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both share concrete elements like the U.S.-Mexico border and immigration enforcement, but the news is about policy and seasonal migration patterns, while the film focuses on human trafficking and personal rescue narratives, with no isomorphic power/fate/theme skeleton.
+- **judge理由**: Shared U.S.-Mexico border enforcement setting, but news themes of migration apprehensions differ from film's human trafficking rescue plot.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 11 -->
@@ -3371,10 +3382,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news discusses border apprehensions related to migration, while the film Sicario focuses on the drug war at the border. No load-bearing surface anchor exists as the core concrete elements differ, and the structural skeletons are not isomorphic; an unrelated news about drug enforcement would equally explain the film, triggering the 0-guard.
+- **judge理由**: Both share the U.S.-Mexico border and law enforcement as load-bearing anchors, but the news centers on immigration policy and seasonal factors, while the film focuses on the drug war and moral ambiguity, lacking isomorphic power or theme skeletons.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 10 -->
@@ -3402,7 +3413,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; the shared element of U.S. government involvement is too broad and not concrete enough to be load-bearing. Structural themes do not show strong isomorphism: the news focuses on immigration enforcement and seasonal factors, while the film's evacuation program is generic and could be explained by unrelated government programs, triggering the 0-guard.
+- **judge理由**: News centers on border immigration enforcement and policy deadlock, while film depicts a U.S. government evacuation program gone wrong; no load-bearing concrete anchors (e.g., specific place or event type) and no isomorphic skeletons in power or theme.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 9 -->
@@ -3431,7 +3442,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News focuses on border enforcement and migration, while film centers on railroad construction and personal rivalries; no shared concrete element or thematic skeleton isomorphism.
+- **judge理由**: No load-bearing concrete anchor: film is about historical railroad expansion in the wilderness, while news is about modern border migration and enforcement. No skeleton isomorphism: themes and power dynamics differ—film focuses on greed and sabotage in infrastructure building, news on enforcement, seasonal patterns, and political deadlock in immigration.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 8 -->
@@ -3459,7 +3470,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor (concrete elements differ: border apprehensions vs. influencers stranded on an island) and no structural isomorphism (thematic skeletons do not align; news focuses on policy and seasonal migration, film on survival and group tension in isolation).
+- **judge理由**: No load-bearing concrete anchor shared (news is about border apprehensions and immigration policy, film is about survival on an island with no overlapping place, event type, role type, or setting). Thematic skeletons are not isomorphic (news centers on macro-level policy and seasonal migration, while film focuses on micro-level interpersonal survival and scarcity, with no isomorphic power or fate structures).
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 7 -->
@@ -3487,7 +3498,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: news details border apprehensions and political deadlock, film focuses on intelligence leak and internal betrayal, with no concrete shared elements. Structural isomorphism absent: news themes are external migration and policy analysis, film themes are internal trust and betrayal, not skeleton isomorphic. Unrelated news could equally explain the film.
+- **judge理由**: No load-bearing concrete anchor shared: news is about border apprehensions, immigration policy, and enforcement, while film involves a national security unit investigating an internal leak. Skeletons not isomorphic: news deals with external migration and policy constraints, film with internal trust and betrayal; no clear power/fate/theme overlap.
 
 ### 单 agent 命中
 
@@ -3519,7 +3530,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news concerns U.S. border enforcement and migration patterns, while the film depicts a political assassination and conspiracy in 1994 Mexico. There is no load-bearing surface anchor shared, and the structural skeletons differ: the news is about policy and seasonal factors, whereas the film is about crime and investigation. An unrelated border news could equally explain the film's context without core resonance.
+- **judge理由**: No load-bearing surface anchor: news focuses on U.S. border apprehensions and immigration enforcement, while film is a fictional political thriller about a murder conspiracy in Mexico. Structural skeletons are not isomorphic: news deals with factual migration patterns and policy deadlock, film with fictional cover-up and investigation.
 
 ## 08-sports-underdog
 
@@ -3577,10 +3588,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives share a structural skeleton of an underdog sports team guided by a coach to playoff success despite significant adversity (injuries/coaching change vs. natural disaster), but lack load-bearing surface anchors due to different sports contexts and specific concrete elements.
+- **judge理由**: No shared load-bearing surface anchor (e.g., news is about hockey playoffs without disaster context; film is basketball after Hurricane Katrina). Skeletons are not isomorphic: news focuses on competitive sports upset, while film centers on disaster recovery and community resilience.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 36 -->
@@ -3611,9 +3622,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 2
-- **judge共振类型**: 结构
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives share a thematic skeleton of underdog triumph through coaching redemption, with structural isomorphism in power/fate themes, but lack load-bearing surface anchors due to differences in sport and specific concrete elements.
+- **judge理由**: Both narratives feature a coach as a central load-bearing role driving sports playoff challenges with external pressures (injuries/community criticism) and team development, sharing structural themes of leadership redemption and overcoming adversity.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 20 -->
@@ -3639,10 +3650,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 1
-- **judge共振类型**: 表层
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Hockey is a load-bearing shared concrete element, as both narratives center on ice hockey teams. However, the news's specific plot about a playoff sweep and overcoming injuries lacks clear isomorphism with the film's vague themes of courage and desperation, preventing structural resonance.
+- **judge理由**: The film 'A Match Revenge' shares only incidental hockey setting with the news, lacking a load-bearing concrete anchor like specific events, roles, or places that drive both stories. The thematic skeletons are not isomorphic: the news details a specific NHL playoff series with coaching changes and injuries leading to underdog success, while the film's overview is generic, focusing on courage and desperation in hockey without clear structural parallels to the news's power dynamics or fate.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 17 -->
@@ -3668,10 +3679,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing shared concrete elements between hockey playoffs and WWII warship narrative; thematic overlap is incidental and not isomorphic, as an unrelated news could equally explain the film.
+- **judge理由**: No concrete shared load-bearing anchor like place or event type; however, both stories feature isomorphic skeletons of leadership and group cohesion under adversity, with a central authority figure navigating a critical challenge.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 17 -->
@@ -3697,10 +3708,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both stories share a structural isomorphism: favored teams (Avalanche in hockey, U.S. in basketball) experience unexpected defeats due to external factors (injuries/coach change vs. time controversy/jury decision), emphasizing themes of fate and upset in competitive sports. No load-bearing surface anchor exists as concrete elements differ.
+- **judge理由**: The news and film both involve sports competitions but share no load-bearing concrete anchors (e.g., different sports: NHL hockey vs. Olympic basketball, distinct settings and event types). Their structural skeletons are not isomorphic: news focuses on underdog success through performance and coaching, while film centers on controversial rule disputes and national protest. Thus, unrelated news could explain the film equally, resulting in no resonance.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 15 -->
@@ -3726,10 +3737,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor or structural isomorphism; both involve a sports final, but this is generic overlap, and an unrelated sports news could explain the film equally.
+- **judge理由**: Both narratives are driven by a championship sports final (Stanley Cup vs. Grand Line Cup), a load-bearing concrete anchor. However, the thematic skeletons are not isomorphic: news emphasizes real-world adversity and team dynamics in hockey, while the film is a comedic, fictional soccer match with anime elements.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 13 -->
@@ -3755,9 +3766,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
-- **judge共振类型**: 表层
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both stories share a load-bearing surface anchor: a sports team facing the loss of a key player (injuries in news, kidnapping in film) that critically affects their performance. However, the structural skeletons are not isomorphic—the news involves a favored team's decline due to injuries and a sweep by an opponent, while the film focuses on overcoming direct sabotage, with differing power dynamics and fate trajectories.
+- **judge理由**: News and film share structural themes of sports teams overcoming adversity through coaching/management decisions (e.g., coach change leading to success, facing setbacks like injuries or kidnapping), but lack load-bearing concrete anchors such as specific sports types or events (hockey vs. football, playoffs vs. regular match).
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 12 -->
@@ -3782,10 +3793,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both stories share an isomorphic structural theme of a coach with a troubled past leading an underdog sports team to overcome odds and achieve or aim for high success, but lack specific load-bearing surface-level concrete elements due to differences in sports (hockey vs. basketball) and unique aspects like intellectual disability in the film.
+- **judge理由**: No load-bearing concrete anchors: the news involves professional hockey playoffs with specific injuries and coach changes, while the film is about basketball with intellectually disabled players—different sports and team contexts. Skeletons are not isomorphic: themes of underdog victory and coaching redemption are generic, but power/fate structures differ (e.g., professional adversity vs. societal inclusion).
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 11 -->
@@ -3810,10 +3821,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The shared hockey element is incidental and not load-bearing; the news narrative centers on competitive playoff success and team dynamics, while the film depicts chaotic, comedic disorder without structural isomorphism to power/fate themes.
+- **judge理由**: Both the news and film center on a hockey championship game as a load-bearing anchor, but the news involves real competitive drama, underdog victory, and coaching changes, while the film is a fictional comedy focused on slapstick chaos, with no isomorphic power/fate/theme skeletons.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 11 -->
@@ -3838,10 +3849,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; incidental overlap in sports and coaching themes without specific shared elements. Structural skeletons differ: news involves playoff upset due to injuries, while film focuses on long-term transformation.
+- **judge理由**: Both narratives feature a coach as a load-bearing role driving team success against odds, with isomorphic skeletons of leadership transforming underdog teams through strategic changes.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 9 -->
@@ -3866,10 +3877,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor or structural isomorphism; incidental overlap in broad competition themes, and an unrelated sports underdog news could explain the film equally.
+- **judge理由**: No concrete shared anchors (hockey vs. chess), but isomorphic skeletons: both involve high-stakes competitions with underdog dynamics, psychological pressure, and themes of overcoming adversity through resilience.
 
 ### 单 agent 命中
 
@@ -3900,7 +3911,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor (sports sweep vs. revenge plot) and structural skeletons not isomorphic (team overcoming odds vs. individual vengeance); incidental overlap only, fitting the 0-guard.
+- **judge理由**: No shared load-bearing anchors (e.g., hockey playoffs vs. Western revenge setting), and skeletons are not isomorphic (sports triumph over adversity vs. personal vengeance/justice).
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3924,10 +3935,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives share a structural skeleton where protagonists experience a defeat (coach firing/team setback; submarine sinking), gain a second chance, and pursue revenge or victory against formidable opponents (favored team; enemy destroyer), with themes of overcoming adversity and leadership.
+- **judge理由**: Both narratives share a structural skeleton of a leadership figure (coach/captain) overcoming prior failures or adversities to guide a team toward high-stakes objectives, with themes of resilience, team dynamics, and second chances, but lack concrete shared anchors like place or event type.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3954,7 +3965,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: news focuses on hockey team success despite adversity, while film centers on a football coach's scandal and institutional failure, with no shared critical elements. Structural themes are not isomorphic: news is about triumph, film is about moral downfall.
+- **judge理由**: No shared load-bearing anchor; hockey playoff sweep vs. football scandal themes not isomorphic.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3979,9 +3990,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 2
-- **judge共振类型**: 双重
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both stories center on a transformative coach (Tortorella in news, army vet in film) taking over a struggling team, leading to a turnaround and success, sharing surface anchor and structural skeleton of team revival through leadership.
+- **judge理由**: Both stories are driven by a coaching change that transforms team performance: news features coach-fired Vegas succeeding under Tortorella; film centers on an army vet coaching a dysfunctional rowing team. Skeletal isomorphism exists in themes of leadership redemption and team overcoming adversity.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -4006,9 +4017,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 2
-- **judge共振类型**: 双重
+- **judge共振类型**: 强共振（表层 + 结构）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both stories feature a disgraced coach who redeems themselves by leading an underdog team to championship success, with load-bearing surface elements of coach disgrace and underdog victory, and isomorphic structural themes of redemption and overcoming adversity.
+- **judge理由**: Both stories share a load-bearing concrete anchor in the role type of a coach driving sports team success, and have isomorphic skeletons of underdog triumph through coaching leadership and resilience.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -4032,10 +4043,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 1
-- **judge共振类型**: 表层
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both stories center on a coach guiding a sports team to victory after setbacks (coaching change in news, reuniting team in film), providing a load-bearing surface anchor. However, the structural skeletons are not isomorphic: the news focuses on overcoming injuries and competitive sweeps, while the film emphasizes an unconventional 'play like girls' challenge, leading to thematic divergence.
+- **judge理由**: No load-bearing concrete anchor (sports type and specifics differ: hockey playoffs vs. basketball comedy) and no isomorphic skeletons (news focuses on real competition and injury adversity, film on fictional gender-based redemption), so no resonance.
 
 ## 09-cultural-backlash
 
@@ -4084,9 +4095,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
-- **judge共振类型**: 表层
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both the news and film share a load-bearing surface anchor in being adaptations of Homer's Odyssey, but the news's culture-war theme over representation is not structurally isomorphic to the film's classical epic narrative.
+- **judge理由**: Both the news and film share a load-bearing concrete anchor: adaptations of Homer's Odyssey. However, the skeletons are not isomorphic; the news centers on modern cultural wars over representation, while the film focuses on classical mythic narrative without such meta-conflict.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 26 -->
@@ -4117,7 +4128,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor or structural isomorphism; news centers on casting debates in classical mythology, while film focuses on obsession with an urban legend in art, with no directly shared elements that carry narrative weight.
+- **judge理由**: No shared load-bearing concrete anchors (e.g., place, event type, role type, setting); thematic skeletons are not isomorphic—news involves public cultural debate on identity in film casting, while film focuses on personal obsession with an urban legend investigation.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 23 -->
@@ -4145,9 +4156,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
-- **judge共振类型**: 表层
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both involve casting disputes in adaptations (news: film casting; film: play audition), providing a load-bearing surface anchor, but the structural themes diverge: news centers on cultural identity politics, while film focuses on personal power dynamics and gender manipulation.
+- **judge理由**: Both narratives involve isomorphic skeletons of power struggles, hidden motives, and representation conflicts in artistic contexts, but lack load-bearing concrete anchors like shared places or event types.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 19 -->
@@ -4176,7 +4187,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: the news focuses on casting controversy and cultural identity in a mythic epic, while the film is a thriller about digital distractions and emotional barriers. No structural isomorphism: themes of representation and heritage do not align with themes of modern vices obstructing love.
+- **judge理由**: News centers on cultural war over casting in a mythic film adaptation; film is a modern thriller about digital communication and vanity with no shared load-bearing anchor or structural theme isomorphism.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 19 -->
@@ -4206,7 +4217,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor or structural isomorphism; the news is about film casting controversy and cultural identity, while the film is a documentary on institutional adaptation with only incidental thematic overlap.
+- **judge理由**: No load-bearing concrete anchor shared; news focuses on casting controversy in film adaptation, while film is documentary about library adaptation. Skeletons not isomorphic: news involves identity conflict and rhetoric, film is observational institutional change.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 15 -->
@@ -4232,10 +4243,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor or structural isomorphism; news focuses on cultural identity in casting, while film involves a tabloid scandal and court case, with only incidental overlap in media controversy themes.
+- **judge理由**: No load-bearing surface anchor (e.g., specific place/event driving both), but structural isomorphism exists: both narratives center on public controversy and media distortion of storytelling that challenges identity and truth.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 14 -->
@@ -4264,7 +4275,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor (different subjects: casting controversy vs. historical religious drama) and no structural isomorphism (news focuses on cultural identity conflicts; film on personal and moral revelations); unrelated news could explain the film equally.
+- **judge理由**: No load-bearing shared elements (e.g., place, event type, role type, setting) between the news (modern film casting controversy for Homer's Odyssey) and the film (Spanish Civil War drama about religious investigation). No isomorphic power/fate/theme skeletons; news focuses on cultural representation in media, while film explores historical secrets and personal morality, lacking structural alignment.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 10 -->
@@ -4289,10 +4300,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news centers on cultural conflict over casting in a film adaptation, while the film depicts a director's personal journey for authenticity; no load-bearing surface elements or thematic skeleton isomorphism exists, and an unrelated news item could equally explain the film's themes.
+- **judge理由**: Both news and film share the film industry as a load-bearing anchor (e.g., filmmaking, Hollywood), but their thematic skeletons are not isomorphic: the news centers on cultural identity and public debate over casting, while the film focuses on class disparity and artistic authenticity.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 10 -->
@@ -4320,7 +4331,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: news focuses on specific casting controversy and cultural debates in a film adaptation, while film candidate is broadly about filmmakers responding to 1975 societal upheaval. Structural themes (conflict and art) are present but not isomorphic in skeleton; an unrelated news about 1975 could equally explain the film.
+- **judge理由**: No load-bearing shared anchor: news is about casting controversy in a classical epic adaptation, while film depicts filmmakers in 1975 turning chaos into art. Thematic skeletons are not isomorphic, as news centers on identity politics in contemporary film, and film on artistic response to historical upheaval.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 9 -->
@@ -4348,7 +4359,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing shared concrete elements; news focuses on modern casting debates for a mythic epic, while film is a Victorian-era romantic drama. Structural skeletons are not isomorphic: news involves societal power over cultural identity, film centers on personal power in artistic obsession. Incidental thematic overlap only.
+- **judge理由**: News centers on modern casting controversy and cultural identity debates, while film is a historical fantasy about artistic obsession in Victorian London. No load-bearing shared anchor exists, and thematic skeletons (identity politics vs. personal romance/obsession) are not isomorphic.
 
 ### 单 agent 命中
 
@@ -4379,7 +4390,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; news focuses on casting controversy and identity politics in a film adaptation, while film involves uncovering secret societies in a conspiracy documentary—no concrete shared elements or thematic skeleton isomorphism.
+- **judge理由**: No shared load-bearing concrete anchor (news focuses on casting controversy in a Homer adaptation, film is a documentary on conspiracy theories); skeletons are not isomorphic (news themes of identity and cultural ownership vs. film themes of uncovering hidden secrets), so unrelated news could equally explain the film.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 6 -->
@@ -4404,9 +4415,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
-- **judge共振类型**: 表层
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives center on film sets where actors' appearances (race in news, disfigurement in film) are load-bearing concrete elements driving conflict, but the structural themes diverge: news focuses on macro-level culture wars over identity and heritage in mass media, while film explores micro-level personal struggles and prejudice in artistic collaboration, lacking full skeleton isomorphism.
+- **judge理由**: No load-bearing surface anchor (e.g., shared specific place, event, or role), but skeletons are isomorphic: both center on appearance-based conflicts and representation in film production.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -4433,7 +4444,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor (news is about casting in mythic adaptation, film is about erotic film production) and skeleton not isomorphic (cultural identity debate vs. artistic integrity under criminal pressure).
+- **judge理由**: No load-bearing concrete anchor; the shared film production element is incidental and not central to both stories. Skeletons are not isomorphic: the news revolves around cultural representation and identity debates, while the film focuses on artistic integrity under commercial coercion.
 
 ## 10-whistleblower-leak
 
@@ -4486,10 +4497,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing shared concrete element (whistleblower vs. vigilante is not the same, and authorities acting is generic); structural skeleton not isomorphic (news focuses on authority-led exposure of exam corruption, while film features vigilante-driven action against officials, with different power dynamics and themes). Incidental overlap without unique resonance.
+- **judge理由**: No load-bearing concrete anchors (e.g., exam scandal vs. vigilante action), but both share isomorphic skeletons of corruption exposed and confronted through non-traditional means (whistleblower vs. vigilantes), with themes of justice and accountability.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 31 -->
@@ -4521,7 +4532,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface elements shared between news and film; news involves exam fraud and whistleblower scandal, while film is about a music band's final days, with no concrete overlap. Structural themes differ significantly, so an unrelated news could equally explain the film.
+- **judge理由**: No load-bearing surface anchors (e.g., place, event type, role type) or structural isomorphism in power/fate themes between the exam leak news and the band documentary film.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 28 -->
@@ -4552,7 +4563,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor: news involves exam fraud and whistleblower, film features FBI undercover in kindergarten with stolen data—no shared concrete elements. Structural themes diverge: news focuses on institutional corruption and justice, film on comedic adaptation and undercover mission. An unrelated news (e.g., school security or undercover ops) could equally explain the film.
+- **judge理由**: No shared load-bearing concrete anchors (news: exam scandal and whistleblowing; film: undercover FBI in kindergarten) and no isomorphic skeletons in power/fate/theme; unrelated news could equally explain the film.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 17 -->
@@ -4582,7 +4593,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News focuses on an exam leak and whistleblower exposure, while the film centers on an assassination classroom with students targeting a teacher. The shared 'classroom' or 'student' elements are incidental and not load-bearing to both narratives, and there is no structural isomorphism in power, fate, or theme skeletons.
+- **judge理由**: No load-bearing concrete anchors: film is about assassination and education in a school, news is about an exam leak scandal. Skeletons are not isomorphic; core themes of power and fate differ significantly, with no deep structural resonance.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 16 -->
@@ -4608,10 +4619,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both news and film share a structural skeleton: an individual (whistleblower in news, judge in film) challenges powerful entities to uncover truth, leading to scandal and pursuit of justice, with isomorphic themes of power conflict and perseverance.
+- **judge理由**: No load-bearing concrete anchors (e.g., mismatched settings and event types), but skeletons are isomorphic: both involve a truth-seeker (whistleblower/judge) challenging authority (NTA/influential notable) to expose wrongdoing, leading to scandal, with themes of justice and perseverance.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 15 -->
@@ -4640,7 +4651,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; the news involves exam fraud via whistleblower tip, while the film centers on a lie detector in a job interview, with only incidental thematic overlap in truth-revelation. Structural skeletons are not isomorphic.
+- **judge理由**: No load-bearing concrete anchor shared: news involves exam leak and whistleblowing in educational context, while film is about lie detector in job interview. Skeletons not isomorphic: news themes of institutional corruption and public accountability vs. film's interpersonal dynamics and personal revelation.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 11 -->
@@ -4668,7 +4679,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchors or structural isomorphism; news about exam scandal in India has no concrete or thematic overlap with film about paranormal events in Quebec.
+- **judge理由**: No load-bearing concrete anchor (news is about academic exam scandal in India; film is a paranormal thriller in Canada). Themes are not isomorphic: news focuses on institutional corruption and whistleblowing in education, while film involves government declassification of paranormal events, lacking shared power/fate skeletons.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 10 -->
@@ -4693,10 +4704,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchors; news involves exam leak and whistleblower, film is about mentorship in speech contest. Structural themes differ: systemic corruption vs. personal redemption.
+- **judge理由**: Both narratives share a thematic skeleton of authority figures (exam institution, professor) facing accountability for wrongs through exposure or forced correction, with public image vs private actions, but no concrete shared anchors like place or event type.
 
 ### 单 agent 命中
 
@@ -4728,7 +4739,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing shared concrete elements (e.g., exam leak, whistleblowing vs. detention and supernatural fates) and no structural isomorphism in themes (institutional corruption vs. individual horror). An unrelated news could explain the film equally.
+- **judge理由**: No load-bearing concrete anchor: news is about exam leak and whistleblower in India, film is fictional horror about students in detention. No isomorphic skeletons: news themes of corruption and justice differ from film's horror and supernatural fate.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 15 -->
@@ -4753,10 +4764,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: No load-bearing surface anchor; concrete elements differ (exam leak vs. personal manipulation); structural themes of power/betrayal are too vague and not isomorphic; unrelated news could equally explain the film.
+- **judge理由**: Both narratives explore isomorphic skeletons of power abuse and vulnerability in educational contexts—news shows authority figures corrupting trust via institutional scandal, film depicts teacher manipulation of a student—but no load-bearing surface anchors like shared specific events or roles drive both stories.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 11 -->
@@ -4781,10 +4792,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news centers on an exam paper leak in education with whistleblowing for justice, while the film involves a political speech leak investigated for personal career gain. No load-bearing concrete anchor exists (leaks are generic and contextually distinct), and no structural isomorphism in power/fate/theme (motivations and domains differ). An unrelated news about political leaks could explain the film equally.
+- **judge理由**: Both narratives center on whistleblowing and exposing deception by authorities, with isomorphic power structures and themes of corruption, but they lack a load-bearing concrete anchor (e.g., different event types: exam paper leak vs. political speech leak, and settings).
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 9 -->
@@ -4809,10 +4820,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both the news and film share a structural isomorphism: a leak (exam questions in news, intelligence in film) triggers an investigation that reveals internal involvement, leading to a crisis of trust and betrayal. No load-bearing surface anchors exist as the concrete elements differ (educational scandal vs. national security), but the power and fate skeletons align.
+- **judge理由**: News and film both center on leaks triggering investigations that reveal internal betrayal, but no concrete shared anchor (exam vs. intelligence settings). Structural isomorphism in themes of corruption and trust.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 7 -->
@@ -4836,10 +4847,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 0
-- **judge共振类型**: 
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
-- **judge理由**: The news focuses on an exam paper leak exposed by a whistleblower, while the film centers on a journalist investigating a hit-and-run. Although both involve uncovering corruption, the concrete elements differ significantly, and the thematic overlap is too broad—an unrelated news with similar themes could equally explain the film, making the resonance incidental and not load-bearing.
+- **judge理由**: Both narratives feature a protagonist (whistleblower/journalist) uncovering systemic corruption through investigation driven by clues or evidence, sharing isomorphic themes of authority failure and truth exposure. However, no concrete load-bearing anchors (e.g., same event type, setting) are shared, as the news involves an exam paper leak while the film centers on a hit-and-run investigation.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 5 -->
@@ -4863,10 +4874,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
-- **judge分**: 2
-- **judge共振类型**: 结构
+- **judge分**: 0
+- **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: Both narratives center on a corrupt system of control (exam testing agency vs. prison Zone) and an individual challenging it (whistleblower vs. rebel inmate), showing thematic isomorphism in power and rebellion, but no shared concrete surface elements.
+- **judge理由**: No load-bearing concrete anchors (e.g., place, event type, setting) shared; skeletons differ: news focuses on exam scandal exposure and institutional accountability, while film centers on prison oppression and rebellion.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 5 -->
@@ -4893,5 +4904,5 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
-- **judge理由**: News involves whistleblowing to expose academic corruption, whereas film depicts a teenager refusing to inform on a criminal boss, resulting in punishment. No load-bearing surface anchor (e.g., 'whistleblower' vs. 'refusal to squeal' are contrasting, not shared) and skeletons are not isomorphic (exposure leading to justice vs. loyalty leading to brutality). Incidental word overlap does not constitute resonance.
+- **judge理由**: No shared load-bearing concrete anchor (news involves exam scandal with whistleblower, film involves reform school for refusing to inform on a bootlegger) and no isomorphic skeleton (power structures and themes diverge: public institutional corruption vs. private loyalty leading to punishment).
 

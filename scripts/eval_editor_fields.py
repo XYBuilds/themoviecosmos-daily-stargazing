@@ -13,7 +13,9 @@ SCORING_REMARK_PLACEHOLDER = "（可选）"
 def append_resonance_editor_lines(lines: list[str]) -> None:
     """Append 共振分 / 共振类型 / 打分备注 placeholders for human scoring."""
     lines.append("- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->")
-    lines.append("- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->")
+    lines.append(
+        "- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->"
+    )
     lines.append(f"- **打分备注**: {SCORING_REMARK_PLACEHOLDER}")
 
 
