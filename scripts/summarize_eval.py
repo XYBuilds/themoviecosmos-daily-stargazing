@@ -473,6 +473,8 @@ def _diagnostic_toned_convergence(runs: list[RunSummary]) -> dict[str, Any]:
 
 def _run_dir_from_summary(run: RunSummary) -> Path | None:
     path = Path(run.path)
+    if not path.is_absolute():
+        path = _REPO_ROOT / path
     if path.name == "candidates.md":
         return path.parent
     if path.parent.name == run.run_id:
@@ -480,88 +482,263 @@ def _run_dir_from_summary(run: RunSummary) -> Path | None:
     return None
 
 
-def _load_oracle_comparison_for_run(run: RunSummary) -> dict[str, Any] | None:
-    """Read ``oracle_comparison`` from sibling ``retrieve.json`` when present."""
+def _load_a1_hit_tmdb_ids(run: RunSummary) -> tuple[list[int], str]:
+    """A1_hit ← retrieve-a1.json ``a1_oracle.hit_tmdb_ids``; fallback meta only."""
     run_dir = _run_dir_from_summary(run)
     if run_dir is None:
-        return None
+        return [], "missing"
+    a1_path = run_dir / "retrieve-a1.json"
+    if a1_path.is_file():
+        data = json.loads(a1_path.read_text(encoding="utf-8"))
+        a1_oracle = data.get("a1_oracle") or {}
+        hit_ids = a1_oracle.get("hit_tmdb_ids")
+        if isinstance(hit_ids, list):
+            return [int(x) for x in hit_ids], "retrieve-a1.json"
+        comparison = data.get("oracle_comparison")
+        if isinstance(comparison, dict):
+            legacy_ids = comparison.get("a1_hit_tmdb_ids")
+            if isinstance(legacy_ids, list):
+                return [int(x) for x in legacy_ids], "retrieve-a1.json#oracle_comparison"
+    retrieve_path = run_dir / "retrieve.json"
+    if retrieve_path.is_file():
+        data = json.loads(retrieve_path.read_text(encoding="utf-8"))
+        comparison = data.get("oracle_comparison")
+        if isinstance(comparison, dict):
+            legacy_ids = comparison.get("a1_hit_tmdb_ids")
+            if isinstance(legacy_ids, list):
+                return [int(x) for x in legacy_ids], "retrieve.json#oracle_comparison"
+        a1_oracle = data.get("a1_oracle") or {}
+        hit_ids = a1_oracle.get("hit_tmdb_ids")
+        if isinstance(hit_ids, list):
+            return [int(x) for x in hit_ids], "retrieve.json#a1_oracle"
+    meta_path = run_dir / "a1-baseline-meta.json"
+    if meta_path.is_file():
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        hit_ids = meta.get("a1_hit_tmdb_ids")
+        if isinstance(hit_ids, list):
+            return [int(x) for x in hit_ids], "a1-baseline-meta.json"
+    return [], "missing"
+
+
+def _load_n1_neutral_union(run: RunSummary) -> set[int]:
+    """Union of hits from 12 neutral ``n1`` pseudos in ``retrieve.json`` ``per_agent``."""
+    run_dir = _run_dir_from_summary(run)
+    if run_dir is None:
+        return set()
     retrieve_path = run_dir / "retrieve.json"
     if not retrieve_path.is_file():
-        meta_path = run_dir / "a1-baseline-meta.json"
-        if meta_path.is_file():
-            meta = json.loads(meta_path.read_text(encoding="utf-8"))
-            hit_ids = meta.get("a1_hit_tmdb_ids")
-            if isinstance(hit_ids, list):
-                return {
-                    "run_id": run.run_id,
-                    "source": "a1-baseline-meta.json",
-                    "a1_hit_tmdb_ids": hit_ids,
-                    "a1_hit_count": len(hit_ids),
-                }
-        return None
+        return set()
     data = json.loads(retrieve_path.read_text(encoding="utf-8"))
-    comparison = data.get("oracle_comparison")
-    if isinstance(comparison, dict):
-        return {"run_id": run.run_id, **comparison}
-    a1_oracle = data.get("a1_oracle") or {}
-    hit_ids = a1_oracle.get("hit_tmdb_ids")
-    if isinstance(hit_ids, list):
-        return {
-            "run_id": run.run_id,
-            "source": "a1_oracle.hit_tmdb_ids",
-            "a1_hit_tmdb_ids": hit_ids,
-            "a1_hit_count": len(hit_ids),
-        }
-    return None
+    hits: set[int] = set()
+    for agent in data.get("per_agent", []):
+        if agent.get("role") != "neutral":
+            continue
+        for pseudo in agent.get("pseudos", []):
+            if pseudo.get("pseudo_id") != "n1":
+                continue
+            for hit in pseudo.get("hits", []):
+                tmdb_id = hit.get("tmdb_id")
+                if tmdb_id is not None:
+                    hits.add(int(tmdb_id))
+    return hits
+
+
+def _a1_two_for_run(run: RunSummary, a1_hit_ids: set[int]) -> set[int]:
+    """Human 共振分=2 among A1_hit for this (run_id, tmdb_id)."""
+    twos: set[int] = set()
+    for cand in run.candidates:
+        if cand.score != 2:
+            continue
+        try:
+            tmdb_id = int(cand.tmdb_id)
+        except (TypeError, ValueError):
+            continue
+        if tmdb_id in a1_hit_ids:
+            twos.add(tmdb_id)
+    return twos
+
+
+def q1_prime_a1_two_neutral_coverage(
+    runs: list[RunSummary],
+) -> dict[str, Any]:
+    """Q1′: 12 neutral n1 hits cover all A1 movies humans scored 2?"""
+    per_run: list[dict[str, Any]] = []
+    global_miss_list: list[dict[str, Any]] = []
+    runs_with_a1_two = 0
+    runs_with_a1_two_passed = 0
+
+    for run in runs:
+        a1_hit_ids, a1_source = _load_a1_hit_tmdb_ids(run)
+        a1_hit_set = set(a1_hit_ids)
+        n1_union = _load_n1_neutral_union(run)
+        a1_two = _a1_two_for_run(run, a1_hit_set)
+        misses = sorted(a1_two - n1_union)
+        vacuous = len(a1_two) == 0
+        passed = vacuous or not misses
+
+        if not vacuous:
+            runs_with_a1_two += 1
+            if passed:
+                runs_with_a1_two_passed += 1
+
+        per_run.append(
+            {
+                "run_id": run.run_id,
+                "a1_hit_source": a1_source,
+                "a1_hit_tmdb_ids": sorted(a1_hit_set),
+                "a1_hit_count": len(a1_hit_set),
+                "a1_two_tmdb_ids": sorted(a1_two),
+                "a1_two_count": len(a1_two),
+                "n1_neutral_union_tmdb_ids": sorted(n1_union),
+                "n1_neutral_union_count": len(n1_union),
+                "misses_tmdb_ids": misses,
+                "miss_count": len(misses),
+                "vacuous_pass": vacuous,
+                "q1_prime_pass": passed,
+            }
+        )
+        for tmdb_id in misses:
+            global_miss_list.append({"run_id": run.run_id, "tmdb_id": tmdb_id})
+
+    per_run_pass_rate = (
+        runs_with_a1_two_passed / runs_with_a1_two if runs_with_a1_two else None
+    )
+    batch_pass = (
+        runs_with_a1_two_passed == runs_with_a1_two if runs_with_a1_two else True
+    )
+
+    return {
+        "status": "available",
+        "question": (
+            "Can 12 neutral (n1) hits cover all A1 movies that humans scored 2?"
+        ),
+        "per_run": per_run,
+        "runs_with_a1_two": runs_with_a1_two,
+        "runs_with_a1_two_passed": runs_with_a1_two_passed,
+        "per_run_pass_rate": per_run_pass_rate,
+        "global_miss_list": global_miss_list,
+        "global_miss_count": len(global_miss_list),
+        "q1_prime_pass": batch_pass,
+        "batch_rule": (
+            "PASS if all runs with |A1_two|>0 satisfy A1_two ⊆ N "
+            "(vacuous pass per run when A1_two empty)"
+        ),
+    }
+
+
+def _legacy_candidate_neutral_union(run: RunSummary) -> set[int]:
+    """Candidate-pool neutral union (neutral_hits≥1) for legacy Q1 diagnostic."""
+    run_dir = _run_dir_from_summary(run)
+    if run_dir is None:
+        return set()
+    retrieve_path = run_dir / "retrieve.json"
+    if not retrieve_path.is_file():
+        return set()
+    data = json.loads(retrieve_path.read_text(encoding="utf-8"))
+    ids: set[int] = set()
+    for cand in data.get("candidates", []):
+        if int(cand.get("neutral_hits") or 0) < 1:
+            continue
+        tmdb_id = cand.get("tmdb_id")
+        if tmdb_id is not None:
+            ids.add(int(tmdb_id))
+    return ids
+
+
+def _load_legacy_oracle_row(run: RunSummary) -> dict[str, Any] | None:
+    """Legacy Q1 recall: candidate-pool neutral union ⊇ all A1 hits."""
+    a1_hit_ids, a1_source = _load_a1_hit_tmdb_ids(run)
+    if not a1_hit_ids and a1_source == "missing":
+        return None
+    a1_hit_set = set(a1_hit_ids)
+    run_dir = _run_dir_from_summary(run)
+    if run_dir is not None:
+        retrieve_path = run_dir / "retrieve.json"
+        if retrieve_path.is_file():
+            data = json.loads(retrieve_path.read_text(encoding="utf-8"))
+            comparison = data.get("oracle_comparison")
+            if isinstance(comparison, dict) and comparison.get("a1_hit_tmdb_ids"):
+                return {"run_id": run.run_id, "a1_hit_source": a1_source, **comparison}
+    neutral_union = _legacy_candidate_neutral_union(run)
+    if not a1_hit_set:
+        superset: bool | None = True if neutral_union else None
+    else:
+        superset = a1_hit_set <= neutral_union
+    return {
+        "run_id": run.run_id,
+        "a1_hit_source": a1_source,
+        "a1_hit_tmdb_ids": sorted(a1_hit_set),
+        "neutral_union_tmdb_ids": sorted(neutral_union),
+        "shared_tmdb_ids": sorted(a1_hit_set & neutral_union),
+        "a1_only_tmdb_ids": sorted(a1_hit_set - neutral_union),
+        "neutral_only_tmdb_ids": sorted(neutral_union - a1_hit_set),
+        "neutral_union_superset_of_a1_hits": superset,
+        "a1_hit_count": len(a1_hit_set),
+        "neutral_union_hit_count": len(neutral_union),
+    }
 
 
 def _a1_oracle_comparison(
     runs: list[RunSummary],
     three_bucket: dict[str, Any] | None,
 ) -> dict[str, Any]:
-    """Q1 oracle对照: neutral union recall ⊇ A1 hits; structural 2-rate vs A1."""
-    per_run: list[dict[str, Any]] = []
-    for run in runs:
-        row = _load_oracle_comparison_for_run(run)
-        if row is not None:
-            per_run.append(row)
+    """A1 oracle block: Q1′ gate + legacy recall/quality diagnostics."""
+    q1_prime = q1_prime_a1_two_neutral_coverage(runs)
 
-    if not per_run:
-        return {
+    legacy_per_run: list[dict[str, Any]] = []
+    for run in runs:
+        row = _load_legacy_oracle_row(run)
+        if row is not None:
+            legacy_per_run.append(row)
+
+    if not legacy_per_run:
+        q1_legacy: dict[str, Any] = {
             "status": "pending",
-            "note": "No retrieve.json oracle_comparison or a1-baseline-meta in run dirs",
+            "note": "No retrieve-a1.json / a1-baseline-meta in run dirs",
             "runs_with_oracle_data": 0,
             "neutral_union_superset_of_a1_hits": None,
             "q1_recall_superset_ok": None,
-            "q1_quality_structural_2_rate_vs_a1": None,
-            "a1_deletion_eligible": None,
         }
-
-    superset_flags = [
-        row.get("neutral_union_superset_of_a1_hits")
-        for row in per_run
-        if row.get("neutral_union_superset_of_a1_hits") is not None
-    ]
-    q1_recall_ok = all(superset_flags) if superset_flags else None
+    else:
+        superset_flags = [
+            row.get("neutral_union_superset_of_a1_hits")
+            for row in legacy_per_run
+            if row.get("neutral_union_superset_of_a1_hits") is not None
+        ]
+        q1_recall_ok = all(superset_flags) if superset_flags else None
+        q1_legacy = {
+            "status": "available",
+            "runs_with_oracle_data": len(legacy_per_run),
+            "per_run": legacy_per_run,
+            "neutral_union_superset_of_a1_hits": q1_recall_ok,
+            "q1_recall_superset_ok": q1_recall_ok,
+            "note": (
+                "Legacy diagnostic only (candidate-pool neutral union ⊇ all A1 hits); "
+                "not a gate fail"
+            ),
+        }
 
     pure_fact = (three_bucket or {}).get("buckets", {}).get("pure_fact", {})
     combo = (three_bucket or {}).get("buckets", {}).get("combo", {})
-    neutral_structural = pure_fact.get("structural_2_rate", 0.0)
-    combo_structural = combo.get("structural_2_rate", 0.0)
-    # Placeholder for per-A1-scored comparison until A1 rows are human-scored in review
     a1_structural_placeholder = None
 
     return {
         "status": "available",
-        "runs_with_oracle_data": len(per_run),
-        "per_run": per_run,
-        "neutral_union_superset_of_a1_hits": q1_recall_ok,
-        "q1_recall_superset_ok": q1_recall_ok,
-        "pure_fact_structural_2_rate": neutral_structural,
-        "combo_structural_2_rate": combo_structural,
+        "q1_prime": q1_prime,
+        "q1_legacy_recall": q1_legacy,
+        "runs_with_oracle_data": legacy_per_run and len(legacy_per_run) or 0,
+        "neutral_union_superset_of_a1_hits": q1_legacy.get(
+            "neutral_union_superset_of_a1_hits"
+        ),
+        "q1_recall_superset_ok": q1_legacy.get("q1_recall_superset_ok"),
+        "pure_fact_structural_2_rate": pure_fact.get("structural_2_rate", 0.0),
+        "combo_structural_2_rate": combo.get("structural_2_rate", 0.0),
         "q1_quality_structural_2_rate_vs_a1": a1_structural_placeholder,
-        "note": "Q1 recall from oracle_comparison; A1 2-rate vs neutral needs A1-scored review rows",
-        "a1_deletion_eligible": None,
+        "note": (
+            "Gate Q1′ = n1 neutral coverage of human-scored A1 twos; "
+            "q1_legacy_recall = candidate-pool neutral union superset (diagnostic)"
+        ),
+        "a1_deletion_eligible": q1_prime.get("q1_prime_pass"),
     }
 
 
@@ -1089,11 +1266,22 @@ def _format_stdout(report: dict[str, Any]) -> str:
                     f"({row.get('structural_twos', 0)}/{row.get('scored', 0)} scored)"
                 )
         a1s = report.get("a1_oracle") or report.get("a1_superset") or {}
-        q1 = a1s.get("q1_recall_superset_ok")
-        q1_label = "n/a" if q1 is None else ("yes" if q1 else "no")
+        q1p = a1s.get("q1_prime") or {}
+        q1_pass = q1p.get("q1_prime_pass")
+        q1_label = "n/a" if q1_pass is None else ("yes" if q1_pass else "no")
+        rw = q1p.get("runs_with_a1_two", 0)
+        rp = q1p.get("runs_with_a1_two_passed", 0)
+        misses = q1p.get("global_miss_count", 0)
         lines.append(
-            f"Q1 A1-oracle recall superset: {q1_label} "
-            f"(status={a1s.get('status', 'n/a')}; {a1s.get('runs_with_oracle_data', 0)} runs)"
+            f"Q1′ n1 neutral covers A1 human-2s: {q1_label} "
+            f"({rp}/{rw} runs with A1_two pass; {misses} global misses)"
+        )
+        legacy = a1s.get("q1_legacy_recall") or {}
+        leg_ok = legacy.get("q1_recall_superset_ok")
+        leg_label = "n/a" if leg_ok is None else ("yes" if leg_ok else "no")
+        lines.append(
+            f"Q1 legacy recall superset (diagnostic): {leg_label} "
+            f"({legacy.get('runs_with_oracle_data', 0)} runs)"
         )
         if a1s.get("note"):
             lines.append(f"  {a1s['note']}")

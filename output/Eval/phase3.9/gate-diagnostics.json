@@ -1,0 +1,2923 @@
+{
+  "runs": [
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.9\\01-grid-outage\\candidates.md",
+      "run_id": "01-grid-outage",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 15
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.9\\02-corporate-layoff\\candidates.md",
+      "run_id": "02-corporate-layoff",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 17
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.9\\03-election-upset\\candidates.md",
+      "run_id": "03-election-upset",
+      "has_any_score_2": true,
+      "missing_count": 4,
+      "candidate_count": 17
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.9\\04-celebrity-scandal\\candidates.md",
+      "run_id": "04-celebrity-scandal",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 16
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.9\\05-climate-disaster\\candidates.md",
+      "run_id": "05-climate-disaster",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 17
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.9\\06-tech-monopoly\\candidates.md",
+      "run_id": "06-tech-monopoly",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 19
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.9\\07-migration-border\\candidates.md",
+      "run_id": "07-migration-border",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 10
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.9\\08-sports-underdog\\candidates.md",
+      "run_id": "08-sports-underdog",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 17
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.9\\09-cultural-backlash\\candidates.md",
+      "run_id": "09-cultural-backlash",
+      "has_any_score_2": true,
+      "missing_count": 0,
+      "candidate_count": 13
+    },
+    {
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.9\\10-whistleblower-leak\\candidates.md",
+      "run_id": "10-whistleblower-leak",
+      "has_any_score_2": false,
+      "missing_count": 0,
+      "candidate_count": 15
+    }
+  ],
+  "global": {
+    "total_runs": 10,
+    "runs_with_score_2": 9,
+    "batch_pass_rate": 0.9,
+    "missing_scores_total": 4,
+    "single_2_rate": 0.1568627450980392,
+    "multi_2_rate": 0.26,
+    "single_structural_2_rate": 0.1568627450980392,
+    "multi_structural_2_rate": 0.26,
+    "resonance_types_filled": true,
+    "phase38_gate": true,
+    "persona_gate": false,
+    "baseline_2_rate": 0.0,
+    "persona_touched_2_rate": 0.0,
+    "baseline_structural_2_rate": 0.0,
+    "persona_touched_structural_2_rate": 0.0,
+    "single_scored": 102,
+    "single_twos": 16,
+    "single_structural_twos": 16,
+    "multi_scored": 50,
+    "multi_twos": 13,
+    "multi_structural_twos": 13,
+    "diagnostic_1_neutral_hit_rate": {
+      "n": 152,
+      "pearson_neutral_hit_rate_vs_score": 0.208418397195833,
+      "partial_corr_neutral_hit_rate_vs_score_given_similarity": 0.21834045465120844,
+      "similarity_bins": {
+        "high": {
+          "n": 132,
+          "pearson": 0.26217905725395035
+        },
+        "mid": {
+          "n": 19,
+          "pearson": -0.14667375120156204
+        },
+        "low": {
+          "n": 1,
+          "pearson": null
+        }
+      },
+      "rows": [
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "429918",
+          "neutral_hit_rate": 0.8333,
+          "score": 2.0,
+          "max_similarity": 0.6144,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "274855",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5708,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "475946",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5683,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "111750",
+          "neutral_hit_rate": 0.25,
+          "score": 0.0,
+          "max_similarity": 0.4792,
+          "bin": "mid"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "841793",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.5545,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "1223272",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.4887,
+          "bin": "mid"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "280492",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.4854,
+          "bin": "mid"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "194834",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5447,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "33495",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5445,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "33787",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.4567,
+          "bin": "mid"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "210219",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5053,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "370097",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5302,
+          "bin": "high"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "418879",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.4912,
+          "bin": "mid"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "431892",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.4764,
+          "bin": "mid"
+        },
+        {
+          "run_id": "01-grid-outage",
+          "tmdb_id": "533885",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.4972,
+          "bin": "mid"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "619090",
+          "neutral_hit_rate": 0.5,
+          "score": 2.0,
+          "max_similarity": 0.5661,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "287647",
+          "neutral_hit_rate": 0.4167,
+          "score": 2.0,
+          "max_similarity": 0.6182,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "209504",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5749,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "56589",
+          "neutral_hit_rate": 0.25,
+          "score": 0.0,
+          "max_similarity": 0.4964,
+          "bin": "mid"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "530076",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5725,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "750145",
+          "neutral_hit_rate": 0.3333,
+          "score": 0.0,
+          "max_similarity": 0.4902,
+          "bin": "mid"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "513349",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5492,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "1002695",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5234,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "1233620",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.4636,
+          "bin": "mid"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "1173076",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5199,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "664506",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5487,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "1161048",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5481,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "71172",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5115,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "133463",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5228,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "16814",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5577,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "53416",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5198,
+          "bin": "high"
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": "485162",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5345,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "37593",
+          "neutral_hit_rate": 0.8333,
+          "score": 2.0,
+          "max_similarity": 0.5461,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "23631",
+          "neutral_hit_rate": 0.1667,
+          "score": 1.0,
+          "max_similarity": 0.5566,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "167221",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6525,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "77953",
+          "neutral_hit_rate": 0.1667,
+          "score": 2.0,
+          "max_similarity": 0.5462,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "21711",
+          "neutral_hit_rate": 0.1667,
+          "score": 2.0,
+          "max_similarity": 0.5528,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "1168015",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5686,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "46563",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.574,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "536176",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5629,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "379",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5882,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "100420",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5822,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "239070",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6241,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "376455",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6353,
+          "bin": "high"
+        },
+        {
+          "run_id": "03-election-upset",
+          "tmdb_id": "1278099",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5806,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "602463",
+          "neutral_hit_rate": 0.4167,
+          "score": 0.0,
+          "max_similarity": 0.5796,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "397490",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.629,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "7298",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6279,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "32690",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6206,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "347483",
+          "neutral_hit_rate": 0.1667,
+          "score": 2.0,
+          "max_similarity": 0.5817,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "901121",
+          "neutral_hit_rate": 0.3333,
+          "score": 0.0,
+          "max_similarity": 0.6044,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "250332",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6114,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "140785",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6138,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "841297",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.6151,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "955555",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.6012,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "603314",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6324,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "735919",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6024,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "1020662",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6058,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "369384",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5994,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "518495",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6146,
+          "bin": "high"
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "tmdb_id": "1262124",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6145,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "257637",
+          "neutral_hit_rate": 0.25,
+          "score": 2.0,
+          "max_similarity": 0.5911,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "22624",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.594,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "6309",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.5779,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "163293",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6064,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "44325",
+          "neutral_hit_rate": 0.1667,
+          "score": 0.0,
+          "max_similarity": 0.5944,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "249011",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6215,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "797840",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5699,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "43593",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5408,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "210219",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5645,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "107100",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6078,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "38141",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5797,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "10217",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5765,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "26693",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5822,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "29602",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6144,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "33196",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6289,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "289214",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5595,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "274855",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5482,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "888917",
+          "neutral_hit_rate": 0.25,
+          "score": 1.0,
+          "max_similarity": 0.492,
+          "bin": "mid"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "94376",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5776,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "79921",
+          "neutral_hit_rate": 0.4167,
+          "score": 1.0,
+          "max_similarity": 0.5469,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "13748",
+          "neutral_hit_rate": 0.4167,
+          "score": 0.0,
+          "max_similarity": 0.4994,
+          "bin": "mid"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "337876",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5411,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "4959",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5193,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "320318",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5316,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "2335",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5017,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "52077",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5544,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "58926",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5422,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "148866",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.4622,
+          "bin": "mid"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "923993",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5134,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "82098",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5027,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "121342",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5171,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "142977",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5277,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "876671",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5179,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "18457",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5239,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "438798",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5132,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "1513598",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5311,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "381018",
+          "neutral_hit_rate": 0.5,
+          "score": 2.0,
+          "max_similarity": 0.6127,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "301633",
+          "neutral_hit_rate": 0.5,
+          "score": 1.0,
+          "max_similarity": 0.5899,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "11643",
+          "neutral_hit_rate": 0.4167,
+          "score": 0.0,
+          "max_similarity": 0.5129,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "4170",
+          "neutral_hit_rate": 0.3333,
+          "score": 1.0,
+          "max_similarity": 0.5527,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "273481",
+          "neutral_hit_rate": 0.0833,
+          "score": 2.0,
+          "max_similarity": 0.5539,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "252990",
+          "neutral_hit_rate": 0.1667,
+          "score": 0.0,
+          "max_similarity": 0.4862,
+          "bin": "mid"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "43837",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5088,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "841793",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.484,
+          "bin": "mid"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "1447971",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5505,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "151708",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.4862,
+          "bin": "mid"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "32007",
+          "neutral_hit_rate": 0.5833,
+          "score": 0.0,
+          "max_similarity": 0.5929,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "5693",
+          "neutral_hit_rate": 0.3333,
+          "score": 2.0,
+          "max_similarity": 0.5905,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "248555",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5871,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "28093",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.622,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "444218",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.5215,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "464198",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5398,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "41612",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5822,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "456929",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5666,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "66876",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.5813,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "232679",
+          "neutral_hit_rate": 0.0833,
+          "score": 2.0,
+          "max_similarity": 0.4999,
+          "bin": "mid"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "589752",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5717,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "4929",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5493,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "18784",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5541,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "467867",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5503,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "647581",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5652,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "1190511",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5757,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "1210646",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5836,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "194224",
+          "neutral_hit_rate": 0.3333,
+          "score": 2.0,
+          "max_similarity": 0.6737,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "502167",
+          "neutral_hit_rate": 0.25,
+          "score": 0.0,
+          "max_similarity": 0.5912,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "197082",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6585,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "336200",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.597,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "446173",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6205,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "32690",
+          "neutral_hit_rate": 0.1667,
+          "score": 0.0,
+          "max_similarity": 0.6004,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "45054",
+          "neutral_hit_rate": 0.1667,
+          "score": 0.0,
+          "max_similarity": 0.5332,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "16305",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.594,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "1584125",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6506,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "86962",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5615,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "133369",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6105,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "525825",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6088,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "118379",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6071,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "337876",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.6434,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "1030206",
+          "neutral_hit_rate": 0.25,
+          "score": 0.0,
+          "max_similarity": 0.4566,
+          "bin": "mid"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "383121",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.6013,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "431808",
+          "neutral_hit_rate": 0.25,
+          "score": 0.0,
+          "max_similarity": 0.4676,
+          "bin": "mid"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "199252",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5597,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "375384",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5492,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "327253",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.4375,
+          "bin": "low"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "452187",
+          "neutral_hit_rate": 0.1667,
+          "score": 0.0,
+          "max_similarity": 0.559,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "138372",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5961,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "314690",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5576,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "876671",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5744,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "1447971",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5469,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "448337",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5716,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "75649",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5577,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "136116",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5577,
+          "bin": "high"
+        }
+      ]
+    },
+    "diagnostic_2_toned_convergence": {
+      "combo_total_2_rate": 0.26,
+      "combo_structural_2_rate": 0.26,
+      "pure_fact_total_2_rate": 0.0,
+      "pure_fact_structural_2_rate": 0.0,
+      "pure_emotion_scored": 98,
+      "precision_lift_ok": true,
+      "q2_combo_lift_ok": true,
+      "partial_corr_toned_vs_score_given_similarity": 0.1256276577598477,
+      "similarity_bins": {
+        "high": {
+          "combo_structural_2_rate": 0.3157894736842105,
+          "pure_fact_structural_2_rate": 0.0,
+          "combo_scored": 38,
+          "pure_fact_scored": 3,
+          "quality_structural_2_rate": 0.3157894736842105,
+          "neutral_only_structural_2_rate": 0.0,
+          "quality_scored": 38,
+          "neutral_only_scored": 3
+        },
+        "mid": {
+          "combo_structural_2_rate": 0.09090909090909091,
+          "pure_fact_structural_2_rate": 0.0,
+          "combo_scored": 11,
+          "pure_fact_scored": 1,
+          "quality_structural_2_rate": 0.09090909090909091,
+          "neutral_only_structural_2_rate": 0.0,
+          "quality_scored": 11,
+          "neutral_only_scored": 1
+        },
+        "low": {
+          "combo_structural_2_rate": 0.0,
+          "pure_fact_structural_2_rate": 0.0,
+          "combo_scored": 1,
+          "pure_fact_scored": 0,
+          "quality_structural_2_rate": 0.0,
+          "neutral_only_structural_2_rate": 0.0,
+          "quality_scored": 1,
+          "neutral_only_scored": 0
+        }
+      },
+      "combo_scored": 50,
+      "combo_twos": 13,
+      "combo_structural_twos": 13,
+      "pure_fact_scored": 4,
+      "pure_fact_twos": 0,
+      "pure_fact_structural_twos": 0,
+      "quality_total_2_rate": 0.26,
+      "quality_structural_2_rate": 0.26,
+      "neutral_only_total_2_rate": 0.0,
+      "neutral_only_structural_2_rate": 0.0,
+      "quality_scored": 50,
+      "quality_twos": 13,
+      "quality_structural_twos": 13,
+      "neutral_only_scored": 4,
+      "neutral_only_twos": 0,
+      "neutral_only_structural_twos": 0
+    },
+    "three_bucket": {
+      "buckets": {
+        "pure_fact": {
+          "total_2_rate": 0.0,
+          "structural_2_rate": 0.0,
+          "scored": 4,
+          "twos": 0,
+          "structural_twos": 0
+        },
+        "pure_emotion": {
+          "total_2_rate": 0.16326530612244897,
+          "structural_2_rate": 0.16326530612244897,
+          "scored": 98,
+          "twos": 16,
+          "structural_twos": 16
+        },
+        "combo": {
+          "total_2_rate": 0.26,
+          "structural_2_rate": 0.26,
+          "scored": 50,
+          "twos": 13,
+          "structural_twos": 13
+        }
+      },
+      "similarity_bins": {
+        "high": {
+          "pure_fact": {
+            "structural_2_rate": 0.0,
+            "scored": 3
+          },
+          "pure_emotion": {
+            "structural_2_rate": 0.17582417582417584,
+            "scored": 91
+          },
+          "combo": {
+            "structural_2_rate": 0.3157894736842105,
+            "scored": 38
+          }
+        },
+        "mid": {
+          "pure_fact": {
+            "structural_2_rate": 0.0,
+            "scored": 1
+          },
+          "pure_emotion": {
+            "structural_2_rate": 0.0,
+            "scored": 7
+          },
+          "combo": {
+            "structural_2_rate": 0.09090909090909091,
+            "scored": 11
+          }
+        },
+        "low": {
+          "pure_fact": {
+            "structural_2_rate": 0.0,
+            "scored": 0
+          },
+          "pure_emotion": {
+            "structural_2_rate": 0.0,
+            "scored": 0
+          },
+          "combo": {
+            "structural_2_rate": 0.0,
+            "scored": 1
+          }
+        }
+      },
+      "q2_combo_lift_ok": true,
+      "neutral_only_scored": 4
+    }
+  },
+  "fit_sim_ranking": [],
+  "gate": {
+    "pass": true,
+    "verdict": "GATE_PASS",
+    "compare_mode": "combo_vs_pure_fact",
+    "rate_metric": "combo_structural_2_rate",
+    "reasons": []
+  },
+  "a1_oracle": {
+    "status": "available",
+    "q1_prime": {
+      "status": "available",
+      "question": "Can 12 neutral (n1) hits cover all A1 movies that humans scored 2?",
+      "per_run": [
+        {
+          "run_id": "01-grid-outage",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            429918,
+            720321,
+            841793
+          ],
+          "a1_hit_count": 3,
+          "a1_two_tmdb_ids": [
+            429918
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            111750,
+            280492,
+            429918,
+            720321,
+            786357,
+            841793,
+            1484253
+          ],
+          "n1_neutral_union_count": 7,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            56589,
+            116741,
+            209504,
+            619090
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [
+            209504,
+            619090
+          ],
+          "a1_two_count": 2,
+          "n1_neutral_union_tmdb_ids": [
+            16020,
+            29917,
+            56589,
+            116741,
+            236800,
+            287647,
+            619090,
+            750145,
+            1233620
+          ],
+          "n1_neutral_union_count": 9,
+          "misses_tmdb_ids": [
+            209504
+          ],
+          "miss_count": 1,
+          "vacuous_pass": false,
+          "q1_prime_pass": false
+        },
+        {
+          "run_id": "03-election-upset",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "a1_hit_count": 3,
+          "a1_two_tmdb_ids": [
+            21711,
+            37593
+          ],
+          "a1_two_count": 2,
+          "n1_neutral_union_tmdb_ids": [
+            9451,
+            21711,
+            23631,
+            37593,
+            50033,
+            77953,
+            91010
+          ],
+          "n1_neutral_union_count": 7,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224,
+            602463,
+            955555
+          ],
+          "a1_hit_count": 6,
+          "a1_two_tmdb_ids": [],
+          "a1_two_count": 0,
+          "n1_neutral_union_tmdb_ids": [
+            17010,
+            18384,
+            347483,
+            393656,
+            602463,
+            841297,
+            901121,
+            955555,
+            1354700
+          ],
+          "n1_neutral_union_count": 9,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": true,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            44325,
+            96049,
+            257637,
+            402455,
+            946552
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            257637
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            6309,
+            36138,
+            43593,
+            43980,
+            44325,
+            72614,
+            96049,
+            119949,
+            192044,
+            257637,
+            421682,
+            434418,
+            444431,
+            526090,
+            664423,
+            937393
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            2335,
+            15576,
+            79921,
+            320318,
+            888917
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            320318
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            2335,
+            13748,
+            46088,
+            47291,
+            52077,
+            79921,
+            82098,
+            148866,
+            253239,
+            888917,
+            923993,
+            1232943
+          ],
+          "n1_neutral_union_count": 12,
+          "misses_tmdb_ids": [
+            320318
+          ],
+          "miss_count": 1,
+          "vacuous_pass": false,
+          "q1_prime_pass": false
+        },
+        {
+          "run_id": "07-migration-border",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            4170,
+            21711,
+            43837,
+            301633,
+            381018,
+            982752
+          ],
+          "a1_hit_count": 6,
+          "a1_two_tmdb_ids": [
+            381018
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            4170,
+            11643,
+            252990,
+            273481,
+            301633,
+            381018
+          ],
+          "n1_neutral_union_count": 6,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            857497
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [
+            5693
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            5693,
+            9981,
+            32007,
+            66876,
+            75074,
+            232679,
+            243683,
+            377460,
+            444218,
+            464198,
+            556501,
+            857497
+          ],
+          "n1_neutral_union_count": 12,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            70410,
+            128042,
+            194224,
+            197082,
+            285232
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            194224
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            16305,
+            25466,
+            32690,
+            45054,
+            47150,
+            48605,
+            51143,
+            86962,
+            128846,
+            185738,
+            194224,
+            196625,
+            336200,
+            502167,
+            852756,
+            1195631
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            20777,
+            317903,
+            1030206,
+            1229915
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [],
+          "a1_two_count": 0,
+          "n1_neutral_union_tmdb_ids": [
+            11094,
+            11117,
+            20777,
+            21774,
+            40469,
+            49279,
+            136116,
+            327253,
+            337876,
+            431808,
+            441894,
+            452187,
+            465642,
+            1030206,
+            1186774,
+            1208561
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": true,
+          "q1_prime_pass": true
+        }
+      ],
+      "runs_with_a1_two": 8,
+      "runs_with_a1_two_passed": 6,
+      "per_run_pass_rate": 0.75,
+      "global_miss_list": [
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": 209504
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": 320318
+        }
+      ],
+      "global_miss_count": 2,
+      "q1_prime_pass": false,
+      "batch_rule": "PASS if all runs with |A1_two|>0 satisfy A1_two ⊆ N (vacuous pass per run when A1_two empty)"
+    },
+    "q1_legacy_recall": {
+      "status": "available",
+      "runs_with_oracle_data": 10,
+      "per_run": [
+        {
+          "run_id": "01-grid-outage",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            429918,
+            720321,
+            841793
+          ],
+          "neutral_union_tmdb_ids": [
+            111750,
+            280492,
+            429918,
+            841793
+          ],
+          "shared_tmdb_ids": [
+            429918,
+            841793
+          ],
+          "a1_only_tmdb_ids": [
+            720321
+          ],
+          "neutral_only_tmdb_ids": [
+            111750,
+            280492
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 3,
+          "neutral_union_hit_count": 4
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            56589,
+            116741,
+            209504,
+            619090
+          ],
+          "neutral_union_tmdb_ids": [
+            56589,
+            287647,
+            619090,
+            750145,
+            1233620
+          ],
+          "shared_tmdb_ids": [
+            56589,
+            619090
+          ],
+          "a1_only_tmdb_ids": [
+            116741,
+            209504
+          ],
+          "neutral_only_tmdb_ids": [
+            287647,
+            750145,
+            1233620
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "03-election-upset",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "neutral_union_tmdb_ids": [
+            21711,
+            23631,
+            37593,
+            77953,
+            91010
+          ],
+          "shared_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "a1_only_tmdb_ids": [],
+          "neutral_only_tmdb_ids": [
+            77953,
+            91010
+          ],
+          "neutral_union_superset_of_a1_hits": true,
+          "a1_hit_count": 3,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224,
+            602463,
+            955555
+          ],
+          "neutral_union_tmdb_ids": [
+            347483,
+            602463,
+            841297,
+            901121,
+            955555
+          ],
+          "shared_tmdb_ids": [
+            602463,
+            955555
+          ],
+          "a1_only_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224
+          ],
+          "neutral_only_tmdb_ids": [
+            347483,
+            841297,
+            901121
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 6,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            44325,
+            96049,
+            257637,
+            402455,
+            946552
+          ],
+          "neutral_union_tmdb_ids": [
+            6309,
+            43593,
+            44325,
+            257637
+          ],
+          "shared_tmdb_ids": [
+            44325,
+            257637
+          ],
+          "a1_only_tmdb_ids": [
+            96049,
+            402455,
+            946552
+          ],
+          "neutral_only_tmdb_ids": [
+            6309,
+            43593
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 4
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            2335,
+            15576,
+            79921,
+            320318,
+            888917
+          ],
+          "neutral_union_tmdb_ids": [
+            2335,
+            13748,
+            52077,
+            79921,
+            82098,
+            148866,
+            888917
+          ],
+          "shared_tmdb_ids": [
+            2335,
+            79921,
+            888917
+          ],
+          "a1_only_tmdb_ids": [
+            15576,
+            320318
+          ],
+          "neutral_only_tmdb_ids": [
+            13748,
+            52077,
+            82098,
+            148866
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 7
+        },
+        {
+          "run_id": "07-migration-border",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            4170,
+            21711,
+            43837,
+            301633,
+            381018,
+            982752
+          ],
+          "neutral_union_tmdb_ids": [
+            4170,
+            11643,
+            252990,
+            273481,
+            301633,
+            381018
+          ],
+          "shared_tmdb_ids": [
+            4170,
+            301633,
+            381018
+          ],
+          "a1_only_tmdb_ids": [
+            21711,
+            43837,
+            982752
+          ],
+          "neutral_only_tmdb_ids": [
+            11643,
+            252990,
+            273481
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 6,
+          "neutral_union_hit_count": 6
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            857497
+          ],
+          "neutral_union_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            232679,
+            444218,
+            464198
+          ],
+          "shared_tmdb_ids": [
+            5693,
+            32007,
+            66876
+          ],
+          "a1_only_tmdb_ids": [
+            857497
+          ],
+          "neutral_only_tmdb_ids": [
+            232679,
+            444218,
+            464198
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 6
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            70410,
+            128042,
+            194224,
+            197082,
+            285232
+          ],
+          "neutral_union_tmdb_ids": [
+            16305,
+            32690,
+            45054,
+            86962,
+            194224,
+            336200,
+            502167
+          ],
+          "shared_tmdb_ids": [
+            194224
+          ],
+          "a1_only_tmdb_ids": [
+            70410,
+            128042,
+            197082,
+            285232
+          ],
+          "neutral_only_tmdb_ids": [
+            16305,
+            32690,
+            45054,
+            86962,
+            336200,
+            502167
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 7
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            20777,
+            317903,
+            1030206,
+            1229915
+          ],
+          "neutral_union_tmdb_ids": [
+            136116,
+            327253,
+            337876,
+            431808,
+            452187,
+            1030206
+          ],
+          "shared_tmdb_ids": [
+            1030206
+          ],
+          "a1_only_tmdb_ids": [
+            20777,
+            317903,
+            1229915
+          ],
+          "neutral_only_tmdb_ids": [
+            136116,
+            327253,
+            337876,
+            431808,
+            452187
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 6
+        }
+      ],
+      "neutral_union_superset_of_a1_hits": false,
+      "q1_recall_superset_ok": false,
+      "note": "Legacy diagnostic only (candidate-pool neutral union ⊇ all A1 hits); not a gate fail"
+    },
+    "runs_with_oracle_data": 10,
+    "neutral_union_superset_of_a1_hits": false,
+    "q1_recall_superset_ok": false,
+    "pure_fact_structural_2_rate": 0.0,
+    "combo_structural_2_rate": 0.26,
+    "q1_quality_structural_2_rate_vs_a1": null,
+    "note": "Gate Q1′ = n1 neutral coverage of human-scored A1 twos; q1_legacy_recall = candidate-pool neutral union superset (diagnostic)",
+    "a1_deletion_eligible": false
+  },
+  "a1_superset": {
+    "status": "available",
+    "q1_prime": {
+      "status": "available",
+      "question": "Can 12 neutral (n1) hits cover all A1 movies that humans scored 2?",
+      "per_run": [
+        {
+          "run_id": "01-grid-outage",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            429918,
+            720321,
+            841793
+          ],
+          "a1_hit_count": 3,
+          "a1_two_tmdb_ids": [
+            429918
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            111750,
+            280492,
+            429918,
+            720321,
+            786357,
+            841793,
+            1484253
+          ],
+          "n1_neutral_union_count": 7,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            56589,
+            116741,
+            209504,
+            619090
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [
+            209504,
+            619090
+          ],
+          "a1_two_count": 2,
+          "n1_neutral_union_tmdb_ids": [
+            16020,
+            29917,
+            56589,
+            116741,
+            236800,
+            287647,
+            619090,
+            750145,
+            1233620
+          ],
+          "n1_neutral_union_count": 9,
+          "misses_tmdb_ids": [
+            209504
+          ],
+          "miss_count": 1,
+          "vacuous_pass": false,
+          "q1_prime_pass": false
+        },
+        {
+          "run_id": "03-election-upset",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "a1_hit_count": 3,
+          "a1_two_tmdb_ids": [
+            21711,
+            37593
+          ],
+          "a1_two_count": 2,
+          "n1_neutral_union_tmdb_ids": [
+            9451,
+            21711,
+            23631,
+            37593,
+            50033,
+            77953,
+            91010
+          ],
+          "n1_neutral_union_count": 7,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224,
+            602463,
+            955555
+          ],
+          "a1_hit_count": 6,
+          "a1_two_tmdb_ids": [],
+          "a1_two_count": 0,
+          "n1_neutral_union_tmdb_ids": [
+            17010,
+            18384,
+            347483,
+            393656,
+            602463,
+            841297,
+            901121,
+            955555,
+            1354700
+          ],
+          "n1_neutral_union_count": 9,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": true,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            44325,
+            96049,
+            257637,
+            402455,
+            946552
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            257637
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            6309,
+            36138,
+            43593,
+            43980,
+            44325,
+            72614,
+            96049,
+            119949,
+            192044,
+            257637,
+            421682,
+            434418,
+            444431,
+            526090,
+            664423,
+            937393
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            2335,
+            15576,
+            79921,
+            320318,
+            888917
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            320318
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            2335,
+            13748,
+            46088,
+            47291,
+            52077,
+            79921,
+            82098,
+            148866,
+            253239,
+            888917,
+            923993,
+            1232943
+          ],
+          "n1_neutral_union_count": 12,
+          "misses_tmdb_ids": [
+            320318
+          ],
+          "miss_count": 1,
+          "vacuous_pass": false,
+          "q1_prime_pass": false
+        },
+        {
+          "run_id": "07-migration-border",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            4170,
+            21711,
+            43837,
+            301633,
+            381018,
+            982752
+          ],
+          "a1_hit_count": 6,
+          "a1_two_tmdb_ids": [
+            381018
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            4170,
+            11643,
+            252990,
+            273481,
+            301633,
+            381018
+          ],
+          "n1_neutral_union_count": 6,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            857497
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [
+            5693
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            5693,
+            9981,
+            32007,
+            66876,
+            75074,
+            232679,
+            243683,
+            377460,
+            444218,
+            464198,
+            556501,
+            857497
+          ],
+          "n1_neutral_union_count": 12,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            70410,
+            128042,
+            194224,
+            197082,
+            285232
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            194224
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            16305,
+            25466,
+            32690,
+            45054,
+            47150,
+            48605,
+            51143,
+            86962,
+            128846,
+            185738,
+            194224,
+            196625,
+            336200,
+            502167,
+            852756,
+            1195631
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            20777,
+            317903,
+            1030206,
+            1229915
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [],
+          "a1_two_count": 0,
+          "n1_neutral_union_tmdb_ids": [
+            11094,
+            11117,
+            20777,
+            21774,
+            40469,
+            49279,
+            136116,
+            327253,
+            337876,
+            431808,
+            441894,
+            452187,
+            465642,
+            1030206,
+            1186774,
+            1208561
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": true,
+          "q1_prime_pass": true
+        }
+      ],
+      "runs_with_a1_two": 8,
+      "runs_with_a1_two_passed": 6,
+      "per_run_pass_rate": 0.75,
+      "global_miss_list": [
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": 209504
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": 320318
+        }
+      ],
+      "global_miss_count": 2,
+      "q1_prime_pass": false,
+      "batch_rule": "PASS if all runs with |A1_two|>0 satisfy A1_two ⊆ N (vacuous pass per run when A1_two empty)"
+    },
+    "q1_legacy_recall": {
+      "status": "available",
+      "runs_with_oracle_data": 10,
+      "per_run": [
+        {
+          "run_id": "01-grid-outage",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            429918,
+            720321,
+            841793
+          ],
+          "neutral_union_tmdb_ids": [
+            111750,
+            280492,
+            429918,
+            841793
+          ],
+          "shared_tmdb_ids": [
+            429918,
+            841793
+          ],
+          "a1_only_tmdb_ids": [
+            720321
+          ],
+          "neutral_only_tmdb_ids": [
+            111750,
+            280492
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 3,
+          "neutral_union_hit_count": 4
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            56589,
+            116741,
+            209504,
+            619090
+          ],
+          "neutral_union_tmdb_ids": [
+            56589,
+            287647,
+            619090,
+            750145,
+            1233620
+          ],
+          "shared_tmdb_ids": [
+            56589,
+            619090
+          ],
+          "a1_only_tmdb_ids": [
+            116741,
+            209504
+          ],
+          "neutral_only_tmdb_ids": [
+            287647,
+            750145,
+            1233620
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "03-election-upset",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "neutral_union_tmdb_ids": [
+            21711,
+            23631,
+            37593,
+            77953,
+            91010
+          ],
+          "shared_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "a1_only_tmdb_ids": [],
+          "neutral_only_tmdb_ids": [
+            77953,
+            91010
+          ],
+          "neutral_union_superset_of_a1_hits": true,
+          "a1_hit_count": 3,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224,
+            602463,
+            955555
+          ],
+          "neutral_union_tmdb_ids": [
+            347483,
+            602463,
+            841297,
+            901121,
+            955555
+          ],
+          "shared_tmdb_ids": [
+            602463,
+            955555
+          ],
+          "a1_only_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224
+          ],
+          "neutral_only_tmdb_ids": [
+            347483,
+            841297,
+            901121
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 6,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            44325,
+            96049,
+            257637,
+            402455,
+            946552
+          ],
+          "neutral_union_tmdb_ids": [
+            6309,
+            43593,
+            44325,
+            257637
+          ],
+          "shared_tmdb_ids": [
+            44325,
+            257637
+          ],
+          "a1_only_tmdb_ids": [
+            96049,
+            402455,
+            946552
+          ],
+          "neutral_only_tmdb_ids": [
+            6309,
+            43593
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 4
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            2335,
+            15576,
+            79921,
+            320318,
+            888917
+          ],
+          "neutral_union_tmdb_ids": [
+            2335,
+            13748,
+            52077,
+            79921,
+            82098,
+            148866,
+            888917
+          ],
+          "shared_tmdb_ids": [
+            2335,
+            79921,
+            888917
+          ],
+          "a1_only_tmdb_ids": [
+            15576,
+            320318
+          ],
+          "neutral_only_tmdb_ids": [
+            13748,
+            52077,
+            82098,
+            148866
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 7
+        },
+        {
+          "run_id": "07-migration-border",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            4170,
+            21711,
+            43837,
+            301633,
+            381018,
+            982752
+          ],
+          "neutral_union_tmdb_ids": [
+            4170,
+            11643,
+            252990,
+            273481,
+            301633,
+            381018
+          ],
+          "shared_tmdb_ids": [
+            4170,
+            301633,
+            381018
+          ],
+          "a1_only_tmdb_ids": [
+            21711,
+            43837,
+            982752
+          ],
+          "neutral_only_tmdb_ids": [
+            11643,
+            252990,
+            273481
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 6,
+          "neutral_union_hit_count": 6
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            857497
+          ],
+          "neutral_union_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            232679,
+            444218,
+            464198
+          ],
+          "shared_tmdb_ids": [
+            5693,
+            32007,
+            66876
+          ],
+          "a1_only_tmdb_ids": [
+            857497
+          ],
+          "neutral_only_tmdb_ids": [
+            232679,
+            444218,
+            464198
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 6
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            70410,
+            128042,
+            194224,
+            197082,
+            285232
+          ],
+          "neutral_union_tmdb_ids": [
+            16305,
+            32690,
+            45054,
+            86962,
+            194224,
+            336200,
+            502167
+          ],
+          "shared_tmdb_ids": [
+            194224
+          ],
+          "a1_only_tmdb_ids": [
+            70410,
+            128042,
+            197082,
+            285232
+          ],
+          "neutral_only_tmdb_ids": [
+            16305,
+            32690,
+            45054,
+            86962,
+            336200,
+            502167
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 7
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            20777,
+            317903,
+            1030206,
+            1229915
+          ],
+          "neutral_union_tmdb_ids": [
+            136116,
+            327253,
+            337876,
+            431808,
+            452187,
+            1030206
+          ],
+          "shared_tmdb_ids": [
+            1030206
+          ],
+          "a1_only_tmdb_ids": [
+            20777,
+            317903,
+            1229915
+          ],
+          "neutral_only_tmdb_ids": [
+            136116,
+            327253,
+            337876,
+            431808,
+            452187
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 6
+        }
+      ],
+      "neutral_union_superset_of_a1_hits": false,
+      "q1_recall_superset_ok": false,
+      "note": "Legacy diagnostic only (candidate-pool neutral union ⊇ all A1 hits); not a gate fail"
+    },
+    "runs_with_oracle_data": 10,
+    "neutral_union_superset_of_a1_hits": false,
+    "q1_recall_superset_ok": false,
+    "pure_fact_structural_2_rate": 0.0,
+    "combo_structural_2_rate": 0.26,
+    "q1_quality_structural_2_rate_vs_a1": null,
+    "note": "Gate Q1′ = n1 neutral coverage of human-scored A1 twos; q1_legacy_recall = candidate-pool neutral union superset (diagnostic)",
+    "a1_deletion_eligible": false
+  }
+}

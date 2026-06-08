@@ -8,6 +8,7 @@ from pathlib import Path
 from scripts.summarize_eval import (
     _format_stdout,
     parse_eval_markdown,
+    q1_prime_a1_two_neutral_coverage,
     summarize_runs,
 )
 
@@ -138,12 +139,14 @@ class SummarizeEvalPhase38DiagnosticTests(unittest.TestCase):
         self.assertGreater(tb["neutral_only_scored"], 0)
         self.assertTrue(d2["q2_combo_lift_ok"])
         self.assertEqual(report["gate"]["verdict"], "GATE_PASS")
-        self.assertEqual(report["a1_oracle"]["status"], "pending")
+        self.assertEqual(report["a1_oracle"]["status"], "available")
+        self.assertIsNotNone(report["a1_oracle"]["q1_prime"])
         stdout = _format_stdout(report)
         self.assertIn("Diagnostic ①", stdout)
         self.assertIn("Q2", stdout)
         self.assertIn("Three-bucket", stdout)
-        self.assertIn("Q1 A1-oracle", stdout)
+        self.assertIn("Q1′ n1 neutral covers A1 human-2s", stdout)
+        self.assertIn("Q1 legacy recall superset", stdout)
         self.assertIn("Gate line 2 compare: combo_vs_pure_fact", stdout)
 
     def test_phase38_dual_diagnostic_fail_when_neutral_beats_quality(self):
@@ -180,14 +183,34 @@ class SummarizeEvalThreeBucketTests(unittest.TestCase):
         self.assertAlmostEqual(tb["buckets"]["combo"]["structural_2_rate"], 0.5)
         self.assertFalse(tb["q2_combo_lift_ok"])
 
-    def test_a1_oracle_q1_from_retrieve_json(self):
+    def test_a1_oracle_legacy_recall_from_retrieve_json(self):
         run = _load_run("phase39-three-bucket/candidates.md")
         report = summarize_runs([run])
         a1 = report["a1_oracle"]
         self.assertEqual(a1["status"], "available")
-        self.assertTrue(a1["q1_recall_superset_ok"])
-        self.assertEqual(a1["runs_with_oracle_data"], 1)
-        self.assertEqual(a1["per_run"][0]["a1_hit_tmdb_ids"], [910001, 910004])
+        legacy = a1["q1_legacy_recall"]
+        self.assertTrue(legacy["q1_recall_superset_ok"])
+        self.assertEqual(legacy["runs_with_oracle_data"], 1)
+        self.assertEqual(legacy["per_run"][0]["a1_hit_tmdb_ids"], [910001, 910004])
+
+    def test_q1_prime_pass_when_n1_covers_a1_human_twos(self):
+        run = _load_run("phase39-q1-prime/candidates.md")
+        q1 = q1_prime_a1_two_neutral_coverage([run])
+        self.assertTrue(q1["q1_prime_pass"])
+        self.assertEqual(q1["runs_with_a1_two"], 1)
+        self.assertEqual(q1["runs_with_a1_two_passed"], 1)
+        self.assertEqual(q1["global_miss_count"], 0)
+        row = q1["per_run"][0]
+        self.assertEqual(row["a1_two_tmdb_ids"], [910101, 910102])
+        self.assertEqual(row["n1_neutral_union_count"], 3)
+
+    def test_q1_prime_fail_when_n1_misses_a1_human_two(self):
+        run = _load_run("phase39-q1-prime-fail/candidates.md")
+        q1 = q1_prime_a1_two_neutral_coverage([run])
+        self.assertFalse(q1["q1_prime_pass"])
+        self.assertEqual(q1["global_miss_list"], [
+            {"run_id": "phase39-q1-prime-fail", "tmdb_id": 910202}
+        ])
 
     def test_toned_convergence_does_not_infer_from_quality_candidate(self):
         text = """# fixture

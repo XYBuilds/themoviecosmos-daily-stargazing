@@ -1,0 +1,30 @@
+{
+  "per_agent": [
+    {
+      "agent_id": "THE-HERO",
+      "role": "neutral",
+      "pseudos": [
+        {
+          "pseudo_id": "n1",
+          "hits": [
+            {"tmdb_id": 910101, "title": "Covered A1 Two"},
+            {"tmdb_id": 910199, "title": "Neutral Only"}
+          ]
+        }
+      ]
+    },
+    {
+      "agent_id": "THE-SAGE",
+      "role": "neutral",
+      "pseudos": [
+        {
+          "pseudo_id": "n1",
+          "hits": [
+            {"tmdb_id": 910102, "title": "Second A1 Two"}
+          ]
+        }
+      ]
+    }
+  ],
+  "candidates": []
+}
