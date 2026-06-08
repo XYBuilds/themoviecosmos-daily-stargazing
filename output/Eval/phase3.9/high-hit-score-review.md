@@ -4181,7 +4181,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-HERO/p2: fragments=[how-1, how-2, how-3, why-0, why-1, result-0, result-1] · sim=0.5682 · **命中分=7**
   - THE-CAREGIVER/p2: fragments=[how-0, how-1, how-2, why-0, why-1, result-0, result-1] · sim=0.5970 · **命中分=7**
 - **pseudo命中分合计**: 19
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4211,7 +4211,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-RULER/p2: fragments=[why-0, why-1, how-1, result-0, result-1] · sim=0.5988 · **命中分=5**
   - THE-MAGICIAN/p2: fragments=[why-1, how-3, result-1] · sim=0.5566 · **命中分=3**
 - **pseudo命中分合计**: 19
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4240,7 +4240,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-RULER/n1: fragments=[result-0, who-0, how-1, why-0, result-1] · sim=0.5954
   - THE-RULER/p3: fragments=[how-0, how-1, how-2, result-0, result-1] · sim=0.6004 · **命中分=5**
 - **pseudo命中分合计**: 15
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
@@ -4269,7 +4269,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/n1: fragments=[how-2, why-0, how-3, why-1, result-0] · sim=0.5015
   - THE-CREATOR/p2: fragments=[how-3, how-2, why-1, result-1] · sim=0.5151 · **命中分=4**
 - **pseudo命中分合计**: 14
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4297,8 +4297,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-CREATOR/n1: fragments=[how-0, result-0, who-0, who-4, how-3] · sim=0.5651
   - THE-RULER/p1: fragments=[how-0, how-1, how-2, result-0, result-1] · sim=0.5940 · **命中分=5**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
 - **judge共振类型**: 表层沾边
@@ -4325,8 +4325,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-JESTER/p2: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.6422 · **命中分=6**
   - THE-MAGICIAN/p3: fragments=[why-0, how-1, result-0, result-1] · sim=0.6506 · **命中分=4**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
 - **judge共振类型**: 
@@ -4353,7 +4353,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-LOVER/n1: fragments=[who-1, how-0, who-3, who-4, why-0] · sim=0.5615
   - THE-MAGICIAN/p1: fragments=[how-0, how-1, how-2, result-0] · sim=0.5596 · **命中分=4**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4384,7 +4384,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-JESTER/p2: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.6105 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4411,9 +4411,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-INNOCENT/p1: fragments=[how-0, how-1, how-2, how-3, why-0, result-0] · sim=0.6088 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 这是个low 2，是和原新闻中关于容貌的点产生了共振
 - **judge分**: 1
 - **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
@@ -4438,7 +4438,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-INNOCENT/p2: fragments=[how-0, how-1, how-2, result-1, why-1] · sim=0.6071 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4494,7 +4494,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-RULER/p3: fragments=[how-1, how-2, how-3, result-0, result-2] · sim=0.5069 · **命中分=5**
   - THE-MAGICIAN/p3: fragments=[how-1, how-2, how-3, result-0, result-2] · sim=0.5485 · **命中分=5**
 - **pseudo命中分合计**: 60
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
@@ -4526,7 +4526,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-CREATOR/p1: fragments=[why-0, how-1, result-0, result-2] · sim=0.4408 · **命中分=4**
   - THE-SAGE/p1: fragments=[why-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.4243 · **命中分=7**
 - **pseudo命中分合计**: 31
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4557,7 +4557,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-HERO/p3: fragments=[why-0, how-2, how-3, result-0, result-2] · sim=0.5575 · **命中分=5**
   - THE-CAREGIVER/p3: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1] · sim=0.6013 · **命中分=8**
 - **pseudo命中分合计**: 28
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4587,7 +4587,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-RULER/n1: fragments=[result-0, result-1, who-3, who-1, how-2] · sim=0.4096
   - THE-OUTLAW/p3: fragments=[result-0, result-2] · sim=0.4676 · **命中分=2**
 - **pseudo命中分合计**: 17
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4616,9 +4616,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EVERYMAN/p2: fragments=[why-0, how-2, result-0, result-1, result-2] · sim=0.5038 · **命中分=5**
   - THE-SAGE/p2: fragments=[how-0, why-0, how-1, how-2, how-3, result-0, result-2] · sim=0.4864 · **命中分=7**
 - **pseudo命中分合计**: 16
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **打分备注**: 纯深层逻辑的相似性很难引起共振（联系感）
 - **judge分**: 1
 - **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
@@ -4645,7 +4645,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EXPLORER/p1: fragments=[why-0, how-1, how-2, result-0, result-2] · sim=0.5492 · **命中分=5**
   - THE-OUTLAW/p1: fragments=[why-0, how-1, how-2, result-0] · sim=0.5452 · **命中分=4**
 - **pseudo命中分合计**: 15
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4673,7 +4673,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-OUTLAW/n1: fragments=[who-0, why-0, how-1, result-0, who-4] · sim=0.4059
   - THE-HERO/p1: fragments=[how-1, why-0, how-2, how-3, result-0, how-4] · sim=0.4375 · **命中分=6**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4701,7 +4701,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EVERYMAN/n1: fragments=[result-0, who-5, who-2, how-4, why-0] · sim=0.4690
   - THE-LOVER/n1: fragments=[who-5, who-4, who-2, result-0, result-1] · sim=0.5590
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
@@ -4733,7 +4733,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-CAREGIVER/p1: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.5961 · **命中分=8**
   - THE-CAREGIVER/p2: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-2] · sim=0.5843 · **命中分=7**
 - **pseudo命中分合计**: 15
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4761,9 +4761,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-CAREGIVER/p1: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-1, result-2] · sim=0.5547 · **命中分=8**
   - THE-CAREGIVER/p2: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-2] · sim=0.5576 · **命中分=7**
 - **pseudo命中分合计**: 15
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 只有教育的表层元素共享
 - **judge分**: 1
 - **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
@@ -4789,9 +4789,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EXPLORER/p2: fragments=[how-0, how-1, how-2, how-3, how-4, result-1, result-2] · sim=0.5744 · **命中分=7**
   - THE-EXPLORER/p3: fragments=[why-0, how-2, how-3, result-0] · sim=0.5321 · **命中分=4**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **打分备注**: 表层确实有点远，但是“泄露资料”这个关键点共享了，这是一个high 1或者low 2
 - **judge分**: 1
 - **judge共振类型**: 深层共振（仅结构，无表层）
 - **judge采信**: 不采信 · screening only
@@ -4817,8 +4817,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-RULER/p1: fragments=[why-0, how-1, how-2, result-0] · sim=0.5469 · **命中分=4**
   - THE-RULER/p3: fragments=[how-1, how-2, how-3, result-0, result-2] · sim=0.5353 · **命中分=5**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
 - **judge共振类型**: 深层共振（仅结构，无表层）
@@ -4844,7 +4844,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-EXPLORER/p2: fragments=[how-0, how-1, how-2, how-3, how-4, result-1, result-2] · sim=0.5716 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 1
@@ -4871,7 +4871,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-MAGICIAN/p3: fragments=[how-1, how-2, how-3, result-0, result-2] · sim=0.5577 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4898,7 +4898,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-LOVER/n1: fragments=[who-5, who-4, who-2, result-0, result-1] · sim=0.5577
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 表层 / 结构 / 双重；0 分留空 -->
 - **打分备注**: （可选）
 - **judge分**: 0
