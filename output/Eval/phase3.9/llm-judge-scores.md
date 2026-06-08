@@ -1,12 +1,12 @@
 # LLM Judge Scores
 
-- **trust_status**: 不采信
-- **screening_only**: True
-- **calibration_pairs**: 23
-- **exact_agreement**: 0.522
-- **pearson_r**: 0.534
+- **trust_status**: 采信
+- **screening_only**: False
+- **calibration_pairs**: 61
+- **exact_agreement**: 0.639
+- **pearson_r**: 0.743
 
-### Survival Family (2017) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-RULER, THE-SAGE, THE-JESTER, THE-MAGICIAN] [优质·多agent] (01-grid-outage) ⚠ disagreement · 不采信
+### Survival Family (2017) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-RULER, THE-SAGE, THE-JESTER, THE-MAGICIAN] [优质·多agent] (01-grid-outage) ⚠ disagreement
 - **tmdb_id**: 429918
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
@@ -14,7 +14,7 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: News and film share a load-bearing anchor of power outages driving the stories, but skeletons are not isomorphic: news involves institutional crisis response to grid scarcity, while film depicts personal survival in societal collapse.
 
-### Geostorm (2017) [THE-INNOCENT, THE-HERO, THE-LOVER, THE-EXPLORER, THE-CREATOR, THE-RULER, THE-EVERYMAN] (01-grid-outage) ⚠ disagreement · 不采信
+### Geostorm (2017) [THE-INNOCENT, THE-HERO, THE-LOVER, THE-EXPLORER, THE-CREATOR, THE-RULER, THE-EVERYMAN] (01-grid-outage) ⚠ disagreement
 - **tmdb_id**: 274855
 - **judge_score**: 0
 - **judge_resonance_type**: 
@@ -22,7 +22,7 @@
 - **human_resonance_type**: 深层共振（仅结构，无表层）
 - **rationale**: No load-bearing surface anchor: news focuses on electrical power grid crisis in Visayas, while film involves global climate control satellites; concrete elements like place or event type do not align. No skeleton isomorphism: news skeleton is central authority managing scarce resources to prevent system collapse, film skeleton is technology hubris causing global disasters, with differing themes and structures.
 
-### Blade Runner: Black Out 2022 (2017) [THE-EVERYMAN, THE-CAREGIVER, THE-MAGICIAN, THE-SAGE, THE-JESTER, THE-RULER] (01-grid-outage) · 不采信
+### Blade Runner: Black Out 2022 (2017) [THE-EVERYMAN, THE-CAREGIVER, THE-MAGICIAN, THE-SAGE, THE-JESTER, THE-RULER] (01-grid-outage)
 - **tmdb_id**: 475946
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -30,15 +30,15 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both narratives are anchored by a load-bearing event of power grid failure (blackout), and share isomorphic skeletons of systemic crisis, emergency measures, and societal disruption under scarcity.
 
-### The Real Glory (1939) [THE-OUTLAW, THE-CREATOR, THE-RULER, THE-INNOCENT] [优质·多agent] (01-grid-outage) · 不采信
+### The Real Glory (1939) [THE-OUTLAW, THE-CREATOR, THE-RULER, THE-INNOCENT] [优质·多agent] (01-grid-outage)
 - **tmdb_id**: 111750
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: News centers on a modern power crisis in Visayas, Philippines, while film is a historical military narrative in southern Philippines. Geographic overlap is incidental, not load-bearing for both stories, and thematic skeletons (infrastructure management vs. military defense) are not isomorphic.
 
-### Stranded (2021) [THE-MAGICIAN, THE-CAREGIVER, THE-LOVER] [优质·多agent] (01-grid-outage) ⚠ disagreement · 不采信
+### Stranded (2021) [THE-MAGICIAN, THE-CAREGIVER, THE-LOVER] [优质·多agent] (01-grid-outage) ⚠ disagreement
 - **tmdb_id**: 841793
 - **judge_score**: 0
 - **judge_resonance_type**: 
@@ -46,15 +46,15 @@
 - **human_resonance_type**: 深层共振（仅结构，无表层）
 - **rationale**: No shared load-bearing anchors (e.g., place, event type) and thematic skeletons differ: news involves systemic power grid management, while film centers on interpersonal tensions in isolation.
 
-### Contagion of Fear (2023) [THE-HERO, THE-SAGE] (01-grid-outage) · 不采信
+### Contagion of Fear (2023) [THE-HERO, THE-SAGE] (01-grid-outage)
 - **tmdb_id**: 1223272
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing surface anchor (e.g., place, event type, setting driving both stories); themes are not isomorphic—news focuses on power scarcity and infrastructure failure, while film centers on terrorism and biological attack leading to chaos.
 
-### From What Is Before (2014) [THE-MAGICIAN, THE-INNOCENT] [优质·多agent] (01-grid-outage) ⚠ disagreement · 不采信
+### From What Is Before (2014) [THE-MAGICIAN, THE-INNOCENT] [优质·多agent] (01-grid-outage) ⚠ disagreement
 - **tmdb_id**: 280492
 - **judge_score**: 0
 - **judge_resonance_type**: 
@@ -62,15 +62,15 @@
 - **human_resonance_type**: 表层沾边
 - **rationale**: News focuses on contemporary power infrastructure crisis in Visayas, while film depicts historical political oppression and mysterious events in 1972 Philippines; no load-bearing shared anchor (incidental place overlap only), and skeletons not isomorphic (scarcity management vs. Martial Law themes).
 
-### Re-Generator (2010) [THE-HERO, THE-MAGICIAN] (01-grid-outage) · 不采信
+### Re-Generator (2010) [THE-HERO, THE-MAGICIAN] (01-grid-outage)
 - **tmdb_id**: 194834
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete anchor (e.g., place, event type, role type, or setting) between the power grid crisis in Visayas and the sci-fi film about a government project crash. Skeletons are not isomorphic, as news centers on energy scarcity and grid management, while film revolves around a biological threat from a failed experiment.
 
-### 2061 - Un anno eccezionale (2007) [THE-EXPLORER, THE-CAREGIVER] (01-grid-outage) · 不采信
+### 2061 - Un anno eccezionale (2007) [THE-EXPLORER, THE-CAREGIVER] (01-grid-outage)
 - **tmdb_id**: 33495
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -78,31 +78,31 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both narratives are driven by an energy crisis as a load-bearing anchor; the news details real-world grid stress and emergency measures in Visayas, while the film portrays post-apocalyptic Italy facing similar scarcity, with isomorphic skeletons involving authority actions under power deficits and societal impacts.
 
-### Get Smart, Again! (1989) [THE-SAGE] (01-grid-outage) · 不采信
+### Get Smart, Again! (1989) [THE-SAGE] (01-grid-outage)
 - **tmdb_id**: 33787
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing shared elements (e.g., place, event type) and no structural isomorphism between the power crisis and the spy film's weather machine plot.
 
-### Jet Stream (2013) [THE-JESTER] (01-grid-outage) · 不采信
+### Jet Stream (2013) [THE-JESTER] (01-grid-outage)
 - **tmdb_id**: 210219
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: Both stories feature a central authority (government/grid operator) confronting a systemic crisis (power scarcity/weather phenomena) with emergency interventions to avert disaster, but they lack a shared load-bearing concrete anchor such as place, event type, or role.
 
-### Stormageddon (2015) [THE-RULER] (01-grid-outage) · 不采信
+### Stormageddon (2015) [THE-RULER] (01-grid-outage)
 - **tmdb_id**: 370097
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete anchor: news focuses on power grid crisis in Visayas, film on AI takeover in America. No structural isomorphism: news skeleton is scarcity-driven crisis management, film skeleton is AI rebellion and control. Unrelated topics, leading to 0 resonance.
 
-### The Current War (2018) [THE-MAGICIAN] (01-grid-outage) ⚠ disagreement · 不采信
+### The Current War (2018) [THE-MAGICIAN] (01-grid-outage) ⚠ disagreement
 - **tmdb_id**: 418879
 - **judge_score**: 0
 - **judge_resonance_type**: 
@@ -110,23 +110,23 @@
 - **human_resonance_type**: 表层沾边
 - **rationale**: No load-bearing shared anchors (different settings, eras, and driving events) and no structural isomorphism (news focuses on crisis management, film on historical rivalry and innovation).
 
-### Trapped (2017) [THE-MAGICIAN] (01-grid-outage) · 不采信
+### Trapped (2017) [THE-MAGICIAN] (01-grid-outage) ⚠ disagreement
 - **tmdb_id**: 431892
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: The film and news share a load-bearing concrete anchor in electricity shortage (power outage driving both narratives), but their structural skeletons are not isomorphic: the news focuses on systemic grid management and societal impact, while the film centers on individual survival in isolation.
 
-### Kaappaan (2019) [THE-INNOCENT] (01-grid-outage) · 不采信
+### Kaappaan (2019) [THE-INNOCENT] (01-grid-outage)
 - **tmdb_id**: 533885
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: News describes power grid crisis with load shedding; film depicts political security threat. No shared load-bearing anchors (e.g., place, event type, role), and skeletons are not isomorphic (energy scarcity vs. threat identification).
 
-### The Plan (2018) [THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-RULER, THE-CREATOR, THE-SAGE, THE-INNOCENT] [优质·多agent] (02-corporate-layoff) ⚠ disagreement · 不采信
+### The Plan (2018) [THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-RULER, THE-CREATOR, THE-SAGE, THE-INNOCENT] [优质·多agent] (02-corporate-layoff) ⚠ disagreement
 - **tmdb_id**: 619090
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
@@ -134,7 +134,7 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both stories share the load-bearing concrete anchor of employees being fired from a company, which drives the narrative in each case. However, the thematic skeletons are not isomorphic: the news focuses on corporate restructuring for AI and strategic growth, while the film centers on personal demoralization and a practical plan amid unemployment, lacking alignment in power dynamics or overarching themes.
 
-### Cart (2014) [THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-OUTLAW, THE-LOVER] [优质·多agent] (02-corporate-layoff) · 不采信
+### Cart (2014) [THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-OUTLAW, THE-LOVER] [优质·多agent] (02-corporate-layoff)
 - **tmdb_id**: 287647
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -142,7 +142,7 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both narratives center on corporate layoffs as a load-bearing concrete anchor, with isomorphic skeletons involving authority figures sacrificing employee welfare for strategic or oppressive goals, highlighting power dynamics between employer and workers.
 
-### Bounty Killer (2013) [THE-INNOCENT, THE-HERO, THE-OUTLAW, THE-SAGE, THE-CAREGIVER, THE-EXPLORER, THE-MAGICIAN, THE-JESTER] (02-corporate-layoff) ⚠ disagreement · 不采信
+### Bounty Killer (2013) [THE-INNOCENT, THE-HERO, THE-OUTLAW, THE-SAGE, THE-CAREGIVER, THE-EXPLORER, THE-MAGICIAN, THE-JESTER] (02-corporate-layoff) ⚠ disagreement
 - **tmdb_id**: 209504
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
@@ -150,7 +150,7 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: No concrete load-bearing anchors (e.g., specific place, event type) are shared; however, skeletons are isomorphic: both depict authority figures (CEO/Council) sacrificing individuals (employees/criminals) for perceived greater good (AI reinvention/justice), with public rhetoric justifying painful actions.
 
-### The Seventh Company Outdoors (1977) [THE-EXPLORER, THE-CREATOR, THE-SAGE, THE-INNOCENT] [优质·多agent] (02-corporate-layoff) · 不采信
+### The Seventh Company Outdoors (1977) [THE-EXPLORER, THE-CREATOR, THE-SAGE, THE-INNOCENT] [优质·多agent] (02-corporate-layoff)
 - **tmdb_id**: 56589
 - **judge_score**: 0
 - **judge_resonance_type**: 
@@ -158,7 +158,7 @@
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing anchors (news: corporate AI restructuring; film: adventure comedy) and no isomorphic skeletons (themes of corporate reinvention vs. outdoor adventure/exploration).
 
-### Corporate Animals (2019) [THE-LOVER, THE-CAREGIVER, THE-JESTER, THE-HERO] (02-corporate-layoff) ⚠ disagreement · 不采信
+### Corporate Animals (2019) [THE-LOVER, THE-CAREGIVER, THE-JESTER, THE-HERO] (02-corporate-layoff) ⚠ disagreement
 - **tmdb_id**: 530076
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -166,15 +166,15 @@
 - **human_resonance_type**: 表层沾边
 - **rationale**: Both news and film feature a corporate CEO as a central role driving the narrative, with shared themes of authority decisions leading to severe consequences for employees, demonstrating both surface-level anchor in corporate settings and isomorphic skeletons in power dynamics.
 
-### Qwerty (2011) [THE-EXPLORER, THE-CREATOR, THE-SAGE, THE-JESTER, THE-HERO] [优质·多agent] (02-corporate-layoff) · 不采信
+### Qwerty (2011) [THE-EXPLORER, THE-CREATOR, THE-SAGE, THE-JESTER, THE-HERO] [优质·多agent] (02-corporate-layoff)
 - **tmdb_id**: 750145
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor shared: news focuses on AI-driven corporate layoffs at Intuit, while film depicts secretaries rescuing a failing brokerage firm. Skeletons are not isomorphic: news involves top-down strategic restructuring, film involves bottom-up heroism with incompetent leadership.
 
-### The Factory (2018) [THE-CREATOR, THE-RULER, THE-INNOCENT, THE-EXPLORER] (02-corporate-layoff) · 不采信
+### The Factory (2018) [THE-CREATOR, THE-RULER, THE-INNOCENT, THE-EXPLORER] (02-corporate-layoff)
 - **tmdb_id**: 513349
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -182,23 +182,23 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both stories share load-bearing concrete anchors: a workplace closure or workforce reduction impacting employees (Intuit layoffs vs factory shutdown). The skeletons are isomorphic: central authority (CEO/owner) makes a decision to cut jobs or close for business reasons (AI reinvention/economic necessity), sacrificing worker livelihoods, though worker responses differ (acceptance with severance vs resistance).
 
-### Mirreyes contra Godínez 2: El retiro (2022) [THE-INNOCENT, THE-OUTLAW, THE-RULER, THE-SAGE] (02-corporate-layoff) · 不采信
+### Mirreyes contra Godínez 2: El retiro (2022) [THE-INNOCENT, THE-OUTLAW, THE-RULER, THE-SAGE] (02-corporate-layoff)
 - **tmdb_id**: 1002695
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: News focuses on layoffs and AI-driven restructuring, film on a corporate retreat for team unity; no shared load-bearing event or setting driving both stories, and thematic skeletons (sacrifice vs. reconciliation) are not isomorphic.
 
-### Winner Takes the Cake (2025) [THE-RULER, THE-EVERYMAN, THE-CREATOR] [优质·多agent] (02-corporate-layoff) · 不采信
+### Winner Takes the Cake (2025) [THE-RULER, THE-EVERYMAN, THE-CREATOR] [优质·多agent] (02-corporate-layoff) ⚠ disagreement
 - **tmdb_id**: 1233620
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 深层共振（仅结构，无表层）
 - **rationale**: No load-bearing concrete anchors (e.g., news about corporate layoffs due to AI restructuring vs. film about personal quitting and rivalry); skeletons not isomorphic (corporate necessity vs. individual empowerment themes).
 
-### Johnny Keep Walking! (2023) [THE-EXPLORER, THE-RULER] (02-corporate-layoff) · 不采信
+### Johnny Keep Walking! (2023) [THE-EXPLORER, THE-RULER] (02-corporate-layoff)
 - **tmdb_id**: 1173076
 - **judge_score**: 0
 - **judge_resonance_type**: 
@@ -206,63 +206,63 @@
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor (e.g., specific place or event) drives both stories; skeletons are not isomorphic: news centers on layoffs for AI restructuring, film on mistaken promotion from errors and corruption.
 
-### Another World (2022) [THE-MAGICIAN, THE-RULER] (02-corporate-layoff) · 不采信
+### Another World (2022) [THE-MAGICIAN, THE-RULER] (02-corporate-layoff) ⚠ disagreement
 - **tmdb_id**: 664506
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 深层共振（仅结构，无表层）
 - **rationale**: Both stories center on an executive making high-stakes decisions under corporate pressure—news about Intuit's CEO driving AI-focused layoffs for reinvention, and film about a manager whose life unravels due to conflicting boss demands. Shared load-bearing anchor in the 'executive under restructuring pressure' role, with isomorphic skeletons of authority-imposed sacrifice and thematic depth in change vs. loss.
 
-### The Conference (2023) [THE-LOVER, THE-EVERYMAN] (02-corporate-layoff) · 不采信
+### The Conference (2023) [THE-LOVER, THE-EVERYMAN] (02-corporate-layoff)
 - **tmdb_id**: 1161048
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors (e.g., place, event type, role type) are shared between the corporate AI restructuring layoffs and the public-sector retreat thriller; themes are not isomorphic (corporate sacrifice for efficiency vs. survival against a killer with interpersonal discord).
 
-### Gintama: The Movie (2010) [THE-JESTER] (02-corporate-layoff) · 不采信
+### Gintama: The Movie (2010) [THE-JESTER] (02-corporate-layoff)
 - **tmdb_id**: 71172
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: 无承重表层锚点：新闻中的企业裁员与AI重组与电影中的武士时代外星入侵及奇工机构无共同驱动故事的具体元素。骨架不同构：新闻的主题是权力决策下的痛苦改革，电影则为喜剧冒险，无结构同构性。
 
-### Redd Inc. (2012) [THE-JESTER] (02-corporate-layoff) · 不采信
+### Redd Inc. (2012) [THE-JESTER] (02-corporate-layoff)
 - **tmdb_id**: 133463
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors: office and manager roles are incidental overlap, not driving both stories—news focuses on corporate restructuring, film on horror captivity. Skeletons not isomorphic: news involves pragmatic authority sacrificing jobs for AI efficiency, while film depicts irrational criminal abuse of power. Unrelated news could equally explain the film, resulting in no resonance.
 
-### Crazy People (1990) [THE-EVERYMAN] (02-corporate-layoff) · 不采信
+### Crazy People (1990) [THE-EVERYMAN] (02-corporate-layoff) ⚠ disagreement
 - **tmdb_id**: 16814
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: No load-bearing surface anchor (e.g., place, event type, role type, or setting driving both stories) and no isomorphic skeletons in power, fate, or theme. The news focuses on corporate AI-driven restructuring and layoffs, while the film centers on an ad executive's personal breakdown and recovery in a mental institution, with no structural or thematic parallels.
 
-### The Floorwalker (1916) [THE-MAGICIAN] (02-corporate-layoff) · 不采信
+### The Floorwalker (1916) [THE-MAGICIAN] (02-corporate-layoff)
 - **tmdb_id**: 53416
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing anchors: news involves corporate layoffs for AI restructuring in a tech company, while film is a comedic store theft plot with no shared place, event, role, or setting that drives both stories. Skeletons not isomorphic: news theme is corporate sacrifice for technological growth; film theme is chaos and theft with no parallel power/fate structure.
 
-### At War (2018) [THE-CREATOR] (02-corporate-layoff) · 不采信
+### At War (2018) [THE-CREATOR] (02-corporate-layoff) ⚠ disagreement
 - **tmdb_id**: 485162
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 深层共振（仅结构，无表层）
 - **rationale**: Both stories center on corporate decisions leading to job losses (load-bearing anchor), but the news focuses on AI-driven restructuring while the film emphasizes broken promises and worker resistance; thematic skeletons are not isomorphic.
 
-### Lone Star (1952) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-RULER, THE-SAGE, THE-JESTER, THE-CREATOR] [优质·多agent] (03-election-upset) · 不采信
+### Lone Star (1952) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-RULER, THE-SAGE, THE-JESTER, THE-CREATOR] [优质·多agent] (03-election-upset)
 - **tmdb_id**: 37593
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -270,7 +270,7 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both narratives are anchored in Texas political conflict, and share an isomorphic skeleton of external authority influencing political outcomes and rivalry.
 
-### Swing Vote (2008) [THE-EVERYMAN, THE-OUTLAW, THE-RULER, THE-SAGE, THE-INNOCENT, THE-HERO, THE-LOVER, THE-MAGICIAN] (03-election-upset) · 不采信
+### Swing Vote (2008) [THE-EVERYMAN, THE-OUTLAW, THE-RULER, THE-SAGE, THE-INNOCENT, THE-HERO, THE-LOVER, THE-MAGICIAN] (03-election-upset)
 - **tmdb_id**: 10187
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
@@ -278,7 +278,7 @@
 - **human_resonance_type**: 
 - **rationale**: Both stories share a load-bearing anchor in election events, but the thematic skeletons (political upset with endorsements and spending vs. single-vote presidential outcome) are not isomorphic.
 
-### Gli onorevoli (1963) [THE-EVERYMAN, THE-CREATOR, THE-RULER, THE-HERO, THE-SAGE, THE-INNOCENT] (03-election-upset) · 不采信
+### Gli onorevoli (1963) [THE-EVERYMAN, THE-CREATOR, THE-RULER, THE-HERO, THE-SAGE, THE-INNOCENT] (03-election-upset)
 - **tmdb_id**: 64946
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
@@ -286,7 +286,7 @@
 - **human_resonance_type**: 
 - **rationale**: Both narratives are driven by political elections (a load-bearing surface anchor), but the specific power dynamics, such as presidential endorsement in the news versus generic campaign determination in the film, show no clear skeleton isomorphism.
 
-### The Independent (2022) [THE-RULER, THE-SAGE, THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CREATOR] (03-election-upset) · 不采信
+### The Independent (2022) [THE-RULER, THE-SAGE, THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CREATOR] (03-election-upset)
 - **tmdb_id**: 878183
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
@@ -294,7 +294,7 @@
 - **human_resonance_type**: 
 - **rationale**: Both stories are driven by high-stakes U.S. political elections (load-bearing anchor), but the power skeletons differ: news involves intra-party electoral dynamics with a presidential endorsement, while film centers on investigative journalism uncovering a conspiracy, so structural isomorphism is absent.
 
-### Game Change (2012) [THE-INNOCENT, THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-EXPLORER] [优质·多agent] (03-election-upset) · 不采信
+### Game Change (2012) [THE-INNOCENT, THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-EXPLORER] [优质·多agent] (03-election-upset)
 - **tmdb_id**: 91010
 - **judge_score**: 0
 - **judge_resonance_type**: 
@@ -302,31 +302,31 @@
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor: news is a Texas Senate runoff, film is a presidential campaign; skeletons not isomorphic: news focuses on election outcome with endorsement, film on VP pick strategy consequences.
 
-### Machete (2010) [THE-EXPLORER, THE-JESTER, THE-CAREGIVER, THE-INNOCENT] [优质·多agent] (03-election-upset) ⚠ disagreement · 不采信
+### Machete (2010) [THE-EXPLORER, THE-JESTER, THE-CAREGIVER, THE-INNOCENT] [优质·多agent] (03-election-upset)
 - **tmdb_id**: 23631
+- **judge_score**: 1
+- **judge_resonance_type**: 表层沾边
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
+- **rationale**: Both stories share load-bearing anchors of Texas and a Senator, providing surface-level overlap, but the skeletons are not isomorphic: news focuses on electoral politics and party dynamics, while film centers on personal betrayal and violent revenge.
+
+### Long Live Freedom (2013) [THE-MAGICIAN, THE-OUTLAW, THE-RULER, THE-EXPLORER] (03-election-upset)
+- **tmdb_id**: 167221
+- **judge_score**: 2
+- **judge_resonance_type**: 强共振（表层 + 结构）
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
+- **rationale**: Both center on political elections and leadership changes: news has a Texas Senate runoff with strategic endorsements, film has an election with a twin replacement driving party success, sharing themes of party manipulation and public perception.
+
+### The Campaign (2012) [THE-EVERYMAN, THE-SAGE, THE-HERO, THE-CAREGIVER] [优质·多agent] (03-election-upset) ⚠ disagreement
+- **tmdb_id**: 77953
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
 - **human_score**: 2
 - **human_resonance_type**: 强共振（表层 + 结构）
-- **rationale**: Both stories share load-bearing anchors of Texas and a Senator, providing surface-level overlap, but the skeletons are not isomorphic: news focuses on electoral politics and party dynamics, while film centers on personal betrayal and violent revenge.
-
-### Long Live Freedom (2013) [THE-MAGICIAN, THE-OUTLAW, THE-RULER, THE-EXPLORER] (03-election-upset) · 不采信
-- **tmdb_id**: 167221
-- **judge_score**: 2
-- **judge_resonance_type**: 强共振（表层 + 结构）
-- **human_score**: 
-- **human_resonance_type**: 
-- **rationale**: Both center on political elections and leadership changes: news has a Texas Senate runoff with strategic endorsements, film has an election with a twin replacement driving party success, sharing themes of party manipulation and public perception.
-
-### The Campaign (2012) [THE-EVERYMAN, THE-SAGE, THE-HERO, THE-CAREGIVER] [优质·多agent] (03-election-upset) · 不采信
-- **tmdb_id**: 77953
-- **judge_score**: 1
-- **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
 - **rationale**: Both stories center on political elections and rival politicians, providing a shared load-bearing surface anchor (event type and role type). However, the news involves serious real-life power dynamics with endorsements and incumbency losses, while the film is a fictional satire without isomorphic skeletal themes of power or fate.
 
-### The Candidate (1972) [THE-CREATOR, THE-MAGICIAN, THE-CAREGIVER] [优质·多agent] (03-election-upset) · 不采信
+### The Candidate (1972) [THE-CREATOR, THE-MAGICIAN, THE-CAREGIVER] [优质·多agent] (03-election-upset)
 - **tmdb_id**: 21711
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -334,23 +334,23 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both share a load-bearing anchor of U.S. Senate elections, and their skeletons are isomorphic in themes of political rivalry, establishment challenges, and the role of endorsements or external support in reshaping power dynamics.
 
-### People's Avengers (1943) [THE-JESTER, THE-LOVER] (03-election-upset) · 不采信
+### People's Avengers (1943) [THE-JESTER, THE-LOVER] (03-election-upset)
 - **tmdb_id**: 1168015
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete elements (e.g., place, event type, role, setting) and no isomorphic skeleton (power/fate/theme structures); news is a modern Texas political election, film is WWII partisan resistance, unrelated contexts.
 
-### Saratoga Trunk (1945) [THE-INNOCENT, THE-EXPLORER] (03-election-upset) · 不采信
+### Saratoga Trunk (1945) [THE-INNOCENT, THE-EXPLORER] (03-election-upset)
 - **tmdb_id**: 46563
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor: Texas is incidental in the film's setting but not the driving force, unlike in the news where it is central to the political event. No isomorphic skeletons: the news involves political power struggles and electoral outcomes, while the film focuses on personal justice and social ostracism, with no structural similarities in themes or power dynamics.
 
-### Brexit: The Uncivil War (2019) [THE-LOVER, THE-RULER] (03-election-upset) · 不采信
+### Brexit: The Uncivil War (2019) [THE-LOVER, THE-RULER] (03-election-upset)
 - **tmdb_id**: 536176
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
@@ -358,71 +358,71 @@
 - **human_resonance_type**: 表层沾边
 - **rationale**: News and film lack concrete shared anchors (Texas runoff vs. UK Brexit campaign), but thematic skeletons align: both depict political insurgency where strategic campaigns challenge established power, driven by popular appeal and tactical maneuvering to reshape outcomes.
 
-### Miller's Crossing (1990) [THE-LOVER] (03-election-upset) · 不采信
+### Miller's Crossing (1990) [THE-LOVER] (03-election-upset)
 - **tmdb_id**: 379
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing surface anchor: news is about an electoral primary runoff in modern U.S. politics, film is a love triangle in a 1929 political boss setting. No isomorphic skeleton: news driven by political endorsement and power shift, film by personal conflict affecting politics.
 
-### Gabriel Over the White House (1933) [THE-MAGICIAN] (03-election-upset) · 不采信
+### Gabriel Over the White House (1933) [THE-MAGICIAN] (03-election-upset) ⚠ disagreement
 - **tmdb_id**: 100420
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: No load-bearing concrete anchors (e.g., place, event, role) are shared; the film focuses on presidential transformation during the Depression, while the news is a Texas Senate primary. Skeletons are not isomorphic: the news involves electoral politics and endorsement dynamics, whereas the film centers on individual moral metamorphosis, with no deep structural parallels.
 
-### 120 Seconds to Get Elected (2006) [THE-EVERYMAN] (03-election-upset) · 不采信
+### 120 Seconds to Get Elected (2006) [THE-EVERYMAN] (03-election-upset) ⚠ disagreement
 - **tmdb_id**: 239070
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both share the load-bearing anchor of political elections and campaigns, but the news involves a specific primary outcome with real-world factors like endorsements and spending, while the film abstracts electioneering into a general persuasive pitch, lacking deeper structural isomorphism in power or theme skeletons.
 
-### Kodi (2016) [THE-LOVER] (03-election-upset) · 不采信
+### Kodi (2016) [THE-LOVER] (03-election-upset)
 - **tmdb_id**: 376455
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors (e.g., place, event type) shared; skeletons not isomorphic as news focuses on intra-party electoral power shift while film revolves around personal romantic rivalry in politics.
 
-### The Honest Candidate (2024) [THE-RULER] (03-election-upset) · 不采信
+### The Honest Candidate (2024) [THE-RULER] (03-election-upset)
 - **tmdb_id**: 1278099
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: Both stories explore political elections with external forces (endorsement in news, curse in film) influencing candidate honesty and power dynamics, but no load-bearing concrete anchor like place or specific event type is shared.
 
-### Hostage: Missing Celebrity (2021) [THE-HERO, THE-EXPLORER, THE-OUTLAW, THE-RULER, THE-MAGICIAN] [优质·多agent] (04-celebrity-scandal) · 不采信
+### Hostage: Missing Celebrity (2021) [THE-HERO, THE-EXPLORER, THE-OUTLAW, THE-RULER, THE-MAGICIAN] [优质·多agent] (04-celebrity-scandal)
 - **tmdb_id**: 602463
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: 新闻核心是名人因AI造假虚假指控而事业受损，电影核心是名人被绑架勒索并证明自己；两者共享名人角色但非负载锚点（事件类型和设置不同），且主题骨架（信息操纵 vs 生存挑战）不具同构性，故无共振。
 
-### U Turn (2016) [THE-RULER, THE-CREATOR, THE-MAGICIAN, THE-JESTER, THE-EXPLORER] (04-celebrity-scandal) · 不采信
+### U Turn (2016) [THE-RULER, THE-CREATOR, THE-MAGICIAN, THE-JESTER, THE-EXPLORER] (04-celebrity-scandal)
 - **tmdb_id**: 397490
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor; the news focuses on AI-fabricated defamation leading to arrest and scandal in Seoul, while the film is a generic crime thriller about a journalist investigating traffic violations turned murder cases. No shared place, event type, or role type that drives both stories. Skeletons are not isomorphic: news themes involve media integrity, AI deception, and legal consequences, whereas film themes center on investigation, hidden crimes, and deception in a different context. Unrelated news could equally explain the film.
 
-### One Way (2006) [THE-INNOCENT, THE-LOVER, THE-HERO, THE-RULER] (04-celebrity-scandal) ⚠ disagreement · 不采信
+### One Way (2006) [THE-INNOCENT, THE-LOVER, THE-HERO, THE-RULER] (04-celebrity-scandal) ⚠ disagreement
 - **tmdb_id**: 7298
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
-- **human_score**: 0
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: Both stories center on a celebrity figure using false claims (AI-fabricated allegations in news, false alibi in film) for personal gain or protection, leading to severe consequences, with isomorphic skeletons of deception, scandal, and moral compromise.
 
-### Scandal (1950) [THE-CAREGIVER, THE-HERO, THE-SAGE, THE-JESTER] (04-celebrity-scandal) · 不采信
+### Scandal (1950) [THE-CAREGIVER, THE-HERO, THE-SAGE, THE-JESTER] (04-celebrity-scandal)
 - **tmdb_id**: 32690
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -430,7 +430,7 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both center on media-driven celebrity scandals with legal consequences: news involves AI-fabricated claims by a YouTuber affecting an actor's career, film involves a tabloid spinning a scandalous yarn leading to a court case, sharing themes of media manipulation, truth distortion, and reputational impact.
 
-### Prophecy (2015) [THE-HERO, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-EVERYMAN] [优质·多agent] (04-celebrity-scandal) · 不采信
+### Prophecy (2015) [THE-HERO, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-EVERYMAN] [优质·多agent] (04-celebrity-scandal)
 - **tmdb_id**: 347483
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -438,47 +438,47 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both stories share a load-bearing concrete anchor: a video-sharing platform (YouTube in news, YOURTUBE in film) that drives the plot by enabling the spread of disruptive content. The skeletons are isomorphic: individuals use digital media for personal motives (financial gain or revenge), leading to public harm and police investigation, reflecting themes of technology abuse and justice.
 
-### Cobweb (2023) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER, THE-MAGICIAN] (04-celebrity-scandal) · 不采信
+### Cobweb (2023) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER, THE-MAGICIAN] (04-celebrity-scandal)
 - **tmdb_id**: 901121
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor: news involves modern AI-driven scandal in digital celebrity culture, while film centers on 1970s artistic conflict with censorship. Skeletons not isomorphic: news focuses on deception and legal consequences, film on creative struggle and authority interference, with no deep structural overlap in power or themes.
 
-### The Green Hornet (1940) [THE-EVERYMAN, THE-MAGICIAN, THE-SAGE] (04-celebrity-scandal) · 不采信
+### The Green Hornet (1940) [THE-EVERYMAN, THE-MAGICIAN, THE-SAGE] (04-celebrity-scandal)
 - **tmdb_id**: 250332
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor: the news involves AI-fabricated claims in a modern Seoul celebrity scandal, while the film is a 1940s vigilante crime story with no shared crucial setting, event, or role. No skeleton isomorphism: themes differ fundamentally—deception for financial gain vs. deception for justice in crime-fighting.
 
-### Fairy in a Cage (1977) [THE-RULER, THE-MAGICIAN] (04-celebrity-scandal) · 不采信
+### Fairy in a Cage (1977) [THE-RULER, THE-MAGICIAN] (04-celebrity-scandal) ⚠ disagreement
 - **tmdb_id**: 140785
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
-- **human_score**: 2
+- **human_score**: 1
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both narratives are driven by false accusations as a load-bearing event type, and share isomorphic skeletons of power abuse (media influence vs. judicial authority) leading to victimization, with themes of corruption and exploitation.
 
-### Peligro en tu mirada (2021) [THE-EXPLORER, THE-LOVER] [优质·多agent] (04-celebrity-scandal) · 不采信
+### Peligro en tu mirada (2021) [THE-EXPLORER, THE-LOVER] [优质·多agent] (04-celebrity-scandal)
 - **tmdb_id**: 841297
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: Both stories involve false accusations and power manipulation, but lack a shared concrete anchor like place or event type; the structural isomorphism exists in themes of coercion, witness roles, and authority undermining, without load-bearing surface overlaps.
 
-### The Roundup 3: No Way Out (2023) [THE-CAREGIVER, THE-OUTLAW] [优质·多agent] (04-celebrity-scandal) · 不采信
+### The Roundup 3: No Way Out (2023) [THE-CAREGIVER, THE-OUTLAW] [优质·多agent] (04-celebrity-scandal)
 - **tmdb_id**: 955555
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor (news focuses on media scandal and AI defamation, while film is about police action against gangs); no isomorphic skeletons (themes of truth and justice differ significantly, with unrelated news equally explaining the film).
 
-### Black Money (2019) [THE-SAGE, THE-LOVER] (04-celebrity-scandal) ⚠ disagreement · 不采信
+### Black Money (2019) [THE-SAGE, THE-LOVER] (04-celebrity-scandal) ⚠ disagreement
 - **tmdb_id**: 603314
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -486,47 +486,47 @@
 - **human_resonance_type**: 表层沾边
 - **rationale**: Both stories are driven by false accusations (news: AI-fabricated claims; film: suicide note allegation) that cause major scandals, with shared thematic skeletons of hidden motives, financial gain, and legal investigations, providing concrete load-bearing anchors and isomorphic structures.
 
-### AK vs AK (2020) [THE-CAREGIVER, THE-INNOCENT] (04-celebrity-scandal) · 不采信
+### AK vs AK (2020) [THE-CAREGIVER, THE-INNOCENT] (04-celebrity-scandal) ⚠ disagreement
 - **tmdb_id**: 735919
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No concrete shared anchor like place or specific event type, but both stories structurally involve media exploitation and attacks on celebrities by antagonists with hidden motives (financial gain vs. revenge).
 
-### Inside Man (2023) [THE-HERO] (04-celebrity-scandal) · 不采信
+### Inside Man (2023) [THE-HERO] (04-celebrity-scandal) ⚠ disagreement
 - **tmdb_id**: 1020662
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: Both narratives feature characters employing deception to achieve personal goals (financial gain in news, redemption in film) with themes of moral compromise and consequences, sharing a structural skeleton of hidden motives and costs, but lacking concrete surface anchors like shared settings or roles.
 
-### Te rompo el rating (1981) [THE-MAGICIAN] (04-celebrity-scandal) · 不采信
+### Te rompo el rating (1981) [THE-MAGICIAN] (04-celebrity-scandal)
 - **tmdb_id**: 369384
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors (e.g., specific role or event type driving both stories) and no isomorphic skeletons (themes of media manipulation differ: news focuses on fabrication and legal consequences, film on comedic sabotage with unintended success); the media setting overlap is incidental and not load-bearing.
 
-### Diamantino (2018) [THE-LOVER] (04-celebrity-scandal) · 不采信
+### Diamantino (2018) [THE-LOVER] (04-celebrity-scandal)
 - **tmdb_id**: 518495
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both stories involve a celebrity figure whose reputation is exploited by others for personal or financial gain, with the news featuring false AI accusations against an actor and the film depicting a soccer star manipulated by causes, creating shared load-bearing anchors and isomorphic themes of exploitation and consequence.
 
-### Impulse (2023) [THE-EXPLORER] (04-celebrity-scandal) · 不采信
+### Impulse (2023) [THE-EXPLORER] (04-celebrity-scandal) ⚠ disagreement
 - **tmdb_id**: 1262124
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 深层共振（仅结构，无表层）
 - **rationale**: No load-bearing surface anchor (different roles/settings: news is AI-driven scandal in Korea, film is murder conspiracy in Hollywood), and skeletons not isomorphic (core themes of AI misinformation vs. elite crime investigation differ).
 
-### Poem of the Sea (1958) [THE-EXPLORER, THE-CREATOR, THE-MAGICIAN, THE-HERO, THE-CAREGIVER, THE-RULER, THE-OUTLAW, THE-SAGE, THE-JESTER, THE-EVERYMAN] [优质·多agent] (05-climate-disaster) · 不采信
+### Poem of the Sea (1958) [THE-EXPLORER, THE-CREATOR, THE-MAGICIAN, THE-HERO, THE-CAREGIVER, THE-RULER, THE-OUTLAW, THE-SAGE, THE-JESTER, THE-EVERYMAN] [优质·多agent] (05-climate-disaster)
 - **tmdb_id**: 257637
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
@@ -534,7 +534,7 @@
 - **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both share dam-related water disasters as a load-bearing anchor, with isomorphic themes of central authority sacrificing margins in crises.
 
-### Raining Cats and Frogs (2003) [THE-HERO, THE-EXPLORER, THE-INNOCENT, THE-CREATOR, THE-OUTLAW] (05-climate-disaster) · 不采信
+### Raining Cats and Frogs (2003) [THE-HERO, THE-EXPLORER, THE-INNOCENT, THE-CREATOR, THE-OUTLAW] (05-climate-disaster)
 - **tmdb_id**: 22624
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
@@ -542,7 +542,7 @@
 - **human_resonance_type**: 表层沾边
 - **rationale**: Both stories share a load-bearing concrete anchor: a flood disaster as the central event. However, the narrative skeletons are not isomorphic; the news involves real-world political and social dynamics, while the film is a fictional adventure with mythical elements.
 
-### Flood (2007) [THE-SAGE, THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER, THE-LOVER] [优质·多agent] (05-climate-disaster) · 不采信
+### Flood (2007) [THE-SAGE, THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER, THE-LOVER] [优质·多agent] (05-climate-disaster)
 - **tmdb_id**: 6309
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
@@ -550,706 +550,706 @@
 - **human_resonance_type**: 表层沾边
 - **rationale**: Both stories center on catastrophic flood events, providing a shared load-bearing anchor (event type), but the news involves specific geopolitical elements (Syria, president, Turkey) while the film is a generic disaster narrative set in England, so the power/fate skeletons are not isomorphic.
 
-### Deluge (1933) [THE-LOVER, THE-EVERYMAN, THE-OUTLAW, THE-SAGE] (05-climate-disaster) · 不采信
+### Deluge (1933) [THE-LOVER, THE-EVERYMAN, THE-OUTLAW, THE-SAGE] (05-climate-disaster)
 - **tmdb_id**: 163293
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: Both stories are driven by catastrophic floods as load-bearing anchors, but the power/fate skeletons are not isomorphic: news focuses on political crisis management in Syria, while film depicts generic disaster survival in the USA.
 
-### The Whole Dam Family and the Dam Dog (1905) [THE-EXPLORER, THE-CREATOR, THE-JESTER] [优质·多agent] (05-climate-disaster) · 不采信
+### The Whole Dam Family and the Dam Dog (1905) [THE-EXPLORER, THE-CREATOR, THE-JESTER] [优质·多agent] (05-climate-disaster)
 - **tmdb_id**: 44325
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: The film's title 'The Whole Dam Family and the Dam Dog' only shares incidental word overlap ('dam') with the news about Euphrates floods and dam operations. There is no load-bearing concrete anchor (e.g., no shared setting, event type, or role that drives both stories). The thematic skeletons are not isomorphic: the news involves real-world disaster, government response, and resource scarcity, while the film is a fictional family portrait unrelated to these elements. Unrelated news could equally explain the film.
 
-### Water Wrackets (1978) [THE-JESTER, THE-MAGICIAN, THE-HERO] (05-climate-disaster) · 不采信
+### Water Wrackets (1978) [THE-JESTER, THE-MAGICIAN, THE-HERO] (05-climate-disaster)
 - **tmdb_id**: 249011
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors (e.g., shared place, event, or role) and no isomorphic power/fate/theme skeletons; film's fictional water-army imagery does not drive the news's narrative of real flooding and political response.
 
-### Dry (2022) [THE-INNOCENT, THE-EVERYMAN] (05-climate-disaster) · 不采信
+### Dry (2022) [THE-INNOCENT, THE-EVERYMAN] (05-climate-disaster)
 - **tmdb_id**: 797840
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor (flood vs. drought settings) and no isomorphic skeletons (authority crisis response vs. decentralized societal collapse in scarcity).
 
-### Piranha 3D (2010) [THE-SAGE, THE-HERO] [优质·多agent] (05-climate-disaster) · 不采信
+### Piranha 3D (2010) [THE-SAGE, THE-HERO] [优质·多agent] (05-climate-disaster) ⚠ disagreement
 - **tmdb_id**: 43593
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors (news: Euphrates flood in Syria; film: piranha attack in Arizona lake), but skeletons are isomorphic: both depict authorities responding to sudden natural disasters with evacuations and crisis management.
 
-### Jet Stream (2013) [THE-MAGICIAN, THE-CAREGIVER] (05-climate-disaster) · 不采信
+### Jet Stream (2013) [THE-MAGICIAN, THE-CAREGIVER] (05-climate-disaster) ⚠ disagreement
 - **tmdb_id**: 210219
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing surface anchor (e.g., news focuses on Syria floods; film on jet streams causing global catastrophes), but skeleton is isomorphic in themes of authority managing environmental threats and natural disasters.
 
-### Seattle Superstorm (2012) [THE-EVERYMAN, THE-CAREGIVER] (05-climate-disaster) · 不采信
+### Seattle Superstorm (2012) [THE-EVERYMAN, THE-CAREGIVER] (05-climate-disaster)
 - **tmdb_id**: 107100
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors shared (news: Syrian flood with real-world government response; film: sci-fi superstorm from debris in Seattle). Skeletons not isomorphic (news focuses on natural disaster management with political elements; film centers on a man-made weather catastrophe without clear power/fate alignment).
 
-### World Gone Wild (1987) [THE-OUTLAW] (05-climate-disaster) · 不采信
+### World Gone Wild (1987) [THE-OUTLAW] (05-climate-disaster)
 - **tmdb_id**: 38141
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor: water overlap is incidental (flood vs scarcity) and not a driving element in both stories. No structural isomorphism: news involves government response to natural disaster, while film features post-apocalyptic conflict over scarce resources, with different power dynamics and themes.
 
-### The Sweet Hereafter (1997) [THE-JESTER] (05-climate-disaster) · 不采信
+### The Sweet Hereafter (1997) [THE-JESTER] (05-climate-disaster) ⚠ disagreement
 - **tmdb_id**: 10217
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor: news involves Euphrates flooding in Syria, film involves a school bus accident in Canada—different places, event types, and settings. However, skeletons are isomorphic: both center on community devastation from child fatalities (drowning/accident) and external intervention (president/lawyer) that exacerbates division or crisis management, with themes of loss, fate, and power dynamics.
 
-### Ju-On: White Ghost (2009) [THE-JESTER] (05-climate-disaster) · 不采信
+### Ju-On: White Ghost (2009) [THE-JESTER] (05-climate-disaster)
 - **tmdb_id**: 26693
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors (e.g., floods, river, Syria, political figures) shared between news and film; skeletons not isomorphic (news deals with real-world disaster and governance, film is supernatural horror with unrelated themes).
 
-### The Storm (2009) [THE-EXPLORER] (05-climate-disaster) · 不采信
+### The Storm (2009) [THE-EXPLORER] (05-climate-disaster) ⚠ disagreement
 - **tmdb_id**: 29602
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: No shared load-bearing anchor: news is about a flood in Syria, film is set during the 1953 Dutch flood—different places and times with only incidental overlap. No skeletal isomorphism: news emphasizes governmental response and crisis management, while film focuses on personal survival and maternal quest. Unrelated flood news could equally explain the film, leading to score 0.
 
-### Tidal Wave (2009) [THE-EXPLORER] (05-climate-disaster) · 不采信
+### Tidal Wave (2009) [THE-EXPLORER] (05-climate-disaster)
 - **tmdb_id**: 33196
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: The news details a river flood in Syria with governmental response, while the film centers on a tsunami in South Korea with personal drama. No shared load-bearing concrete anchor (different places, event types). Skeletons are not isomorphic: news emphasizes authority and community impact, film focuses on individual stories. Thus, no meaningful resonance.
 
-### Disaster Wars: Earthquake vs. Tsunami (2013) [THE-CREATOR] (05-climate-disaster) · 不采信
+### Disaster Wars: Earthquake vs. Tsunami (2013) [THE-CREATOR] (05-climate-disaster)
 - **tmdb_id**: 289214
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete anchor (news: Syrian floods; film: US tsunami/earthquake with different settings/events) and no isomorphic skeletons (news: political leadership in humanitarian crisis; film: sci-fi escalation with scientific/military response).
 
-### Geostorm (2017) [THE-OUTLAW] (05-climate-disaster) · 不采信
+### Geostorm (2017) [THE-OUTLAW] (05-climate-disaster)
 - **tmdb_id**: 274855
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor: news is a natural flood in Syria, film is a global sci-fi technological disaster; structural skeletons not isomorphic: news focuses on natural crisis management, film on man-made system failure and conspiracy.
 
-### Lords of Scam (2021) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-OUTLAW, THE-CREATOR, THE-LOVER] [优质·多agent] (06-tech-monopoly) · 不采信
+### Lords of Scam (2021) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-OUTLAW, THE-CREATOR, THE-LOVER] [优质·多agent] (06-tech-monopoly)
 - **tmdb_id**: 888917
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: Both the news and film share the EU as a load-bearing concrete anchor (regulatory systems driving the stories), but their skeletons (competition regulation vs. carbon quota fraud) are not isomorphic.
 
-### The Cop (1970) [THE-INNOCENT, THE-CAREGIVER, THE-RULER, THE-EVERYMAN, THE-CREATOR, THE-SAGE] (06-tech-monopoly) · 不采信
+### The Cop (1970) [THE-INNOCENT, THE-CAREGIVER, THE-RULER, THE-EVERYMAN, THE-CREATOR, THE-SAGE] (06-tech-monopoly)
 - **tmdb_id**: 94376
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing shared anchors (EU antitrust vs French crime vigilante); skeletons not isomorphic (regulatory control vs personal revenge).
 
-### Special Section (1975) [THE-EVERYMAN, THE-EXPLORER, THE-CREATOR, THE-RULER, THE-SAGE, THE-LOVER] [优质·多agent] (06-tech-monopoly) · 不采信
+### Special Section (1975) [THE-EVERYMAN, THE-EXPLORER, THE-CREATOR, THE-RULER, THE-SAGE, THE-LOVER] [优质·多agent] (06-tech-monopoly)
 - **tmdb_id**: 79921
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 深层共振（仅结构，无表层）
 - **rationale**: Both stories feature central authorities imposing penalties or sacrifices under a veneer of justice or regulation, with public rhetoric masking private motives, but no load-bearing surface anchors like place or event.
 
-### A Ticket to Space (2006) [THE-INNOCENT, THE-HERO, THE-CREATOR, THE-MAGICIAN, THE-JESTER] [优质·多agent] (06-tech-monopoly) · 不采信
+### A Ticket to Space (2006) [THE-INNOCENT, THE-HERO, THE-CREATOR, THE-MAGICIAN, THE-JESTER] [优质·多agent] (06-tech-monopoly)
 - **tmdb_id**: 13748
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing shared anchor: news is EU regulatory fine for Google's self-preferencing in search; film is French government PR campaign for space research lottery. Skeletons not isomorphic: news focuses on competition enforcement, film on public engagement and promotion.
 
-### Gabbar Is Back (2015) [THE-HERO, THE-CAREGIVER, THE-EVERYMAN, THE-EXPLORER, THE-CREATOR] (06-tech-monopoly) · 不采信
+### Gabbar Is Back (2015) [THE-HERO, THE-CAREGIVER, THE-EVERYMAN, THE-EXPLORER, THE-CREATOR] (06-tech-monopoly)
 - **tmdb_id**: 337876
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing surface anchor (e.g., shared place, event type, or role), and skeletons not isomorphic; news is about EU regulatory action against Google, while film is a vigilante story against corruption, with only incidental thematic overlap.
 
-### The International (2009) [THE-LOVER, THE-OUTLAW, THE-EVERYMAN] (06-tech-monopoly) · 不采信
+### The International (2009) [THE-LOVER, THE-OUTLAW, THE-EVERYMAN] (06-tech-monopoly) ⚠ disagreement
 - **tmdb_id**: 4959
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: The news and film share isomorphic skeletons of institutional power (regulatory vs. law enforcement) challenging powerful entities (tech vs. banking) for harmful activities, but no load-bearing surface anchors like shared places or specific events.
 
-### The Clearstream Affair (2015) [THE-EVERYMAN, THE-HERO, THE-MAGICIAN] (06-tech-monopoly) · 不采信
+### The Clearstream Affair (2015) [THE-EVERYMAN, THE-HERO, THE-MAGICIAN] (06-tech-monopoly) ⚠ disagreement
 - **tmdb_id**: 320318
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: No direct load-bearing surface anchors (e.g., Google vs. Clearstream, digital regulation vs. financial journalism), but isomorphic skeletons: both involve European institutional misconduct and accountability-seeking against powerful entities.
 
-### Taxi 4 (2007) [THE-SAGE, THE-EVERYMAN] [优质·多agent] (06-tech-monopoly) · 不采信
+### Taxi 4 (2007) [THE-SAGE, THE-EVERYMAN] [优质·多agent] (06-tech-monopoly)
 - **tmdb_id**: 2335
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors: news focuses on EU regulatory fines against Google for digital self-preferencing, while film is a comedic crime plot set in Marseilles involving police deception—no shared place, event type, role, or setting that drives both stories. No skeleton isomorphism: news centers on authority imposing penalties for market abuse, film on criminal outsmarting incompetent police—power dynamics and themes differ fundamentally. Unrelated news could explain the film equally well.
 
-### Nothing to Declare (2010) [THE-EXPLORER, THE-CREATOR] [优质·多agent] (06-tech-monopoly) · 不采信
+### Nothing to Declare (2010) [THE-EXPLORER, THE-CREATOR] [优质·多agent] (06-tech-monopoly)
 - **tmdb_id**: 52077
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors shared: news involves EU regulatory fine on Google for digital market practices, film is about customs officers during Belgian/French border elimination—no overlapping place, event type, role, or setting that drives both stories. Skeletons are not isomorphic: news centers on top-down regulatory enforcement for competition fairness, film on interpersonal cooperation amid political change—no structural match like central authority sacrificing margins under scarcity.
 
-### Speaking of Murder (1957) [THE-OUTLAW, THE-JESTER] (06-tech-monopoly) · 不采信
+### Speaking of Murder (1957) [THE-OUTLAW, THE-JESTER] (06-tech-monopoly)
 - **tmdb_id**: 58926
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor shared; news involves EU regulatory fines for corporate self-preferencing, while film centers on organized crime and internal betrayal. Skeletons are not isomorphic: themes of facade exist but lack structural alignment in power/fate dynamics.
 
-### The Cat (1988) [THE-RULER, THE-LOVER] [优质·多agent] (06-tech-monopoly) · 不采信
+### The Cat (1988) [THE-RULER, THE-LOVER] [优质·多agent] (06-tech-monopoly)
 - **tmdb_id**: 148866
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete anchor: news focuses on EU antitrust fines for Google's self-preferencing, while film depicts a bank robbery with a criminal mastermind. No isomorphic skeletons: power dynamics and themes differ fundamentally (regulatory enforcement vs. crime/outsmarting authorities).
 
-### Your Lucky Day (2023) [THE-LOVER, THE-JESTER] (06-tech-monopoly) · 不采信
+### Your Lucky Day (2023) [THE-LOVER, THE-JESTER] (06-tech-monopoly)
 - **tmdb_id**: 923993
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete anchors: news is about EU regulatory fines on Google for digital market self-preferencing, while film centers on a lottery ticket dispute escalating into violence. No structural isomorphism in power/fate skeletons: news involves institutional regulation and corporate accountability, whereas film focuses on personal greed and moral choices in a hostage scenario. Unrelated news could equally explain the film, indicating no resonance.
 
-### To Skin a Spy (1966) [THE-MAGICIAN, THE-CAREGIVER] [优质·多agent] (06-tech-monopoly) · 不采信
+### To Skin a Spy (1966) [THE-MAGICIAN, THE-CAREGIVER] [优质·多agent] (06-tech-monopoly)
 - **tmdb_id**: 82098
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors: news involves EU regulatory fines on Google for digital market competition, while film is a Cold War-era spy drama in Vienna with no shared place, event type, role type, or setting. Skeletons not isomorphic: themes of institutional regulation vs. individual espionage do not align in power dynamics or fate.
 
-### Giovannona Long-Thigh (1973) [THE-INNOCENT, THE-CAREGIVER] (06-tech-monopoly) · 不采信
+### Giovannona Long-Thigh (1973) [THE-INNOCENT, THE-CAREGIVER] (06-tech-monopoly)
 - **tmdb_id**: 121342
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: News concerns EU regulatory fine against Google for antitrust; film is about local corruption to influence a judge after a factory shutdown. No load-bearing shared elements (place, event type, role, setting), and skeletons are not isomorphic (top-down enforcement vs. bottom-up corruption).
 
-### The Last One of the Six (1941) [THE-SAGE] (06-tech-monopoly) · 不采信
+### The Last One of the Six (1941) [THE-SAGE] (06-tech-monopoly)
 - **tmdb_id**: 142977
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor (e.g., film is set in Paris with a murder investigation, while news involves EU antitrust action against Google; no shared driving elements like place, event type, or role). Skeletons are not isomorphic (news focuses on regulatory enforcement in digital markets, film on personal crime investigation; themes and power dynamics differ).
 
-### The Cost of Deception (2021) [THE-SAGE] (06-tech-monopoly) · 不采信
+### The Cost of Deception (2021) [THE-SAGE] (06-tech-monopoly)
 - **tmdb_id**: 876671
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor shared (news on EU antitrust fine vs. film on corporate speech leak); power/fate skeletons not isomorphic (institutional regulation vs. personal ambition).
 
-### Dead Weight (2002) [THE-JESTER] (06-tech-monopoly) · 不采信
+### Dead Weight (2002) [THE-JESTER] (06-tech-monopoly)
 - **tmdb_id**: 18457
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete anchor (news is about EU regulatory fine on Google for search self-preferencing, film is about a convict chasing a lottery ticket from a warden); skeletons are not isomorphic as news centers on antitrust enforcement vs. film's personal recovery theme.
 
-### The Prison (2017) [THE-EXPLORER] (06-tech-monopoly) · 不采信
+### The Prison (2017) [THE-EXPLORER] (06-tech-monopoly) ⚠ disagreement
 - **tmdb_id**: 438798
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing anchor (different settings/events), but isomorphic skeletons: both involve authority figures (EU regulators vs. ex-police) confronting power dynamics and systemic control (corporate self-preferencing vs. prison crime syndicate).
 
-### Stolen: Heist of the Century (2025) [THE-OUTLAW] (06-tech-monopoly) · 不采信
+### Stolen: Heist of the Century (2025) [THE-OUTLAW] (06-tech-monopoly)
 - **tmdb_id**: 1513598
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing shared anchors (news is about EU digital regulation, film is about a diamond heist in Antwerp) and skeletons are not isomorphic (regulatory enforcement vs. criminal activity, with different power dynamics).
 
-### Transpecos (2016) [THE-HERO, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-JESTER, THE-INNOCENT, THE-CAREGIVER, THE-EXPLORER, THE-LOVER, THE-EVERYMAN, THE-OUTLAW] [优质·多agent] (07-migration-border) · 不采信
+### Transpecos (2016) [THE-HERO, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-JESTER, THE-INNOCENT, THE-CAREGIVER, THE-EXPLORER, THE-LOVER, THE-EVERYMAN, THE-OUTLAW] [优质·多agent] (07-migration-border) ⚠ disagreement
 - **tmdb_id**: 381018
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both share the load-bearing concrete anchor of U.S. Border Patrol and southwest border enforcement, but their core skeletons are not isomorphic: the news focuses on migration patterns and policy dynamics, while the film explores internal agency corruption and personal survival.
 
-### Open the Wall (2014) [THE-HERO, THE-EXPLORER, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-LOVER, THE-EVERYMAN, THE-JESTER, THE-OUTLAW] [优质·多agent] (07-migration-border) · 不采信
+### Open the Wall (2014) [THE-HERO, THE-EXPLORER, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-LOVER, THE-EVERYMAN, THE-JESTER, THE-OUTLAW] [优质·多agent] (07-migration-border) ⚠ disagreement
 - **tmdb_id**: 301633
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: No shared load-bearing anchor: film is about Berlin Wall opening, news is about U.S. border enforcement; border is incidental word overlap, not concrete shared element. No isomorphic skeleton: themes are opposite (opening vs. enforcement), with no structural similarity in power or fate.
 
-### If It's Tuesday, This Must Be Belgium (1969) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-EXPLORER] [优质·多agent] (07-migration-border) · 不采信
+### If It's Tuesday, This Must Be Belgium (1969) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-EXPLORER] [优质·多agent] (07-migration-border)
 - **tmdb_id**: 11643
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor (news is about U.S. border enforcement, film is about European tourism); no structural isomorphism (news deals with political/societal themes, film is a light-hearted comedy).
 
-### Trade (2007) [THE-INNOCENT, THE-EVERYMAN, THE-EXPLORER, THE-OUTLAW, THE-CAREGIVER, THE-SAGE] [优质·多agent] (07-migration-border) · 不采信
+### Trade (2007) [THE-INNOCENT, THE-EVERYMAN, THE-EXPLORER, THE-OUTLAW, THE-CAREGIVER, THE-SAGE] [优质·多agent] (07-migration-border)
 - **tmdb_id**: 4170
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: Shared U.S.-Mexico border enforcement setting, but news themes of migration apprehensions differ from film's human trafficking rescue plot.
 
-### Sicario (2015) [THE-JESTER, THE-INNOCENT, THE-CAREGIVER] [优质·多agent] (07-migration-border) · 不采信
+### Sicario (2015) [THE-JESTER, THE-INNOCENT, THE-CAREGIVER] [优质·多agent] (07-migration-border) ⚠ disagreement
 - **tmdb_id**: 273481
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both share the U.S.-Mexico border and law enforcement as load-bearing anchors, but the news centers on immigration policy and seasonal factors, while the film focuses on the drug war and moral ambiguity, lacking isomorphic power or theme skeletons.
 
-### Chariot (2013) [THE-CAREGIVER, THE-LOVER] (07-migration-border) · 不采信
+### Chariot (2013) [THE-CAREGIVER, THE-LOVER] (07-migration-border)
 - **tmdb_id**: 252990
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: News centers on border immigration enforcement and policy deadlock, while film depicts a U.S. government evacuation program gone wrong; no load-bearing concrete anchors (e.g., specific place or event type) and no isomorphic skeletons in power or theme.
 
-### Union Pacific (1939) [THE-JESTER, THE-INNOCENT, THE-RULER] (07-migration-border) · 不采信
+### Union Pacific (1939) [THE-JESTER, THE-INNOCENT, THE-RULER] (07-migration-border)
 - **tmdb_id**: 43837
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor: film is about historical railroad expansion in the wilderness, while news is about modern border migration and enforcement. No skeleton isomorphism: themes and power dynamics differ—film focuses on greed and sabotage in infrastructure building, news on enforcement, seasonal patterns, and political deadlock in immigration.
 
-### Stranded (2021) [THE-HERO, THE-CREATOR] (07-migration-border) · 不采信
+### Stranded (2021) [THE-HERO, THE-CREATOR] (07-migration-border)
 - **tmdb_id**: 841793
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor shared (news is about border apprehensions and immigration policy, film is about survival on an island with no overlapping place, event type, role type, or setting). Thematic skeletons are not isomorphic (news centers on macro-level policy and seasonal migration, while film focuses on micro-level interpersonal survival and scarcity, with no isomorphic power or fate structures).
 
-### Scare Out (2026) [THE-HERO, THE-SAGE] (07-migration-border) · 不采信
+### Scare Out (2026) [THE-HERO, THE-SAGE] (07-migration-border)
 - **tmdb_id**: 1447971
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor shared: news is about border apprehensions, immigration policy, and enforcement, while film involves a national security unit investigating an internal leak. Skeletons not isomorphic: news deals with external migration and policy constraints, film with internal trust and betrayal; no clear power/fate/theme overlap.
 
-### Colosio (2012) [THE-MAGICIAN] (07-migration-border) · 不采信
+### Colosio (2012) [THE-MAGICIAN] (07-migration-border)
 - **tmdb_id**: 151708
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing surface anchor: news focuses on U.S. border apprehensions and immigration enforcement, while film is a fictional political thriller about a murder conspiracy in Mexico. Structural skeletons are not isomorphic: news deals with factual migration patterns and policy deadlock, film with fictional cover-up and investigation.
 
-### Hurricane Season (2010) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER, THE-OUTLAW, THE-RULER, THE-SAGE, THE-JESTER, THE-EXPLORER, THE-LOVER, THE-MAGICIAN, THE-CREATOR] [优质·多agent] (08-sports-underdog) · 不采信
+### Hurricane Season (2010) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER, THE-OUTLAW, THE-RULER, THE-SAGE, THE-JESTER, THE-EXPLORER, THE-LOVER, THE-MAGICIAN, THE-CREATOR] [优质·多agent] (08-sports-underdog)
 - **tmdb_id**: 32007
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing surface anchor (e.g., news is about hockey playoffs without disaster context; film is basketball after Hurricane Katrina). Skeletons are not isomorphic: news focuses on competitive sports upset, while film centers on disaster recovery and community resilience.
 
-### Hoosiers (1986) [THE-OUTLAW, THE-CREATOR, THE-MAGICIAN, THE-JESTER, THE-INNOCENT, THE-CAREGIVER] [优质·多agent] (08-sports-underdog) · 不采信
+### Hoosiers (1986) [THE-OUTLAW, THE-CREATOR, THE-MAGICIAN, THE-JESTER, THE-INNOCENT, THE-CAREGIVER] [优质·多agent] (08-sports-underdog)
 - **tmdb_id**: 5693
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both narratives feature a coach as a central load-bearing role driving sports playoff challenges with external pressures (injuries/community criticism) and team development, sharing structural themes of leadership redemption and overcoming adversity.
 
-### A Match Revenge (1968) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER] (08-sports-underdog) · 不采信
+### A Match Revenge (1968) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER] (08-sports-underdog)
 - **tmdb_id**: 248555
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: The film 'A Match Revenge' shares only incidental hockey setting with the news, lacking a load-bearing concrete anchor like specific events, roles, or places that drive both stories. The thematic skeletons are not isomorphic: the news details a specific NHL playoff series with coaching changes and injuries leading to underdog success, while the film's overview is generic, focusing on courage and desperation in hockey without clear structural parallels to the news's power dynamics or fate.
 
-### In Which We Serve (1942) [THE-CREATOR, THE-HERO, THE-OUTLAW] (08-sports-underdog) · 不采信
+### In Which We Serve (1942) [THE-CREATOR, THE-HERO, THE-OUTLAW] (08-sports-underdog) ⚠ disagreement
 - **tmdb_id**: 28093
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No concrete shared load-bearing anchor like place or event type; however, both stories feature isomorphic skeletons of leadership and group cohesion under adversity, with a central authority figure navigating a critical challenge.
 
-### Three Seconds (2017) [THE-RULER, THE-EVERYMAN, THE-MAGICIAN] [优质·多agent] (08-sports-underdog) · 不采信
+### Three Seconds (2017) [THE-RULER, THE-EVERYMAN, THE-MAGICIAN] [优质·多agent] (08-sports-underdog) ⚠ disagreement
 - **tmdb_id**: 444218
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: The news and film both involve sports competitions but share no load-bearing concrete anchors (e.g., different sports: NHL hockey vs. Olympic basketball, distinct settings and event types). Their structural skeletons are not isomorphic: news focuses on underdog success through performance and coaching, while film centers on controversial rule disputes and national protest. Thus, unrelated news could explain the film equally, resulting in no resonance.
 
-### One Piece: Dream Soccer King! (2002) [THE-EXPLORER, THE-JESTER, THE-EVERYMAN] [优质·多agent] (08-sports-underdog) · 不采信
+### One Piece: Dream Soccer King! (2002) [THE-EXPLORER, THE-JESTER, THE-EVERYMAN] [优质·多agent] (08-sports-underdog) ⚠ disagreement
 - **tmdb_id**: 464198
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: Both narratives are driven by a championship sports final (Stanley Cup vs. Grand Line Cup), a load-bearing concrete anchor. However, the thematic skeletons are not isomorphic: news emphasizes real-world adversity and team dynamics in hockey, while the film is a comedic, fictional soccer match with anime elements.
 
-### The Two Wizards of the Ball (1970) [THE-EVERYMAN, THE-MAGICIAN] (08-sports-underdog) · 不采信
+### The Two Wizards of the Ball (1970) [THE-EVERYMAN, THE-MAGICIAN] (08-sports-underdog) ⚠ disagreement
 - **tmdb_id**: 41612
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: News and film share structural themes of sports teams overcoming adversity through coaching/management decisions (e.g., coach change leading to success, facing setbacks like injuries or kidnapping), but lack load-bearing concrete anchors such as specific sports types or events (hockey vs. football, playoffs vs. regular match).
 
-### Champions (2018) [THE-INNOCENT, THE-CAREGIVER] (08-sports-underdog) · 不采信
+### Champions (2018) [THE-INNOCENT, THE-CAREGIVER] (08-sports-underdog) ⚠ disagreement
 - **tmdb_id**: 456929
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: No load-bearing concrete anchors: the news involves professional hockey playoffs with specific injuries and coach changes, while the film is about basketball with intellectually disabled players—different sports and team contexts. Skeletons are not isomorphic: themes of underdog victory and coaching redemption are generic, but power/fate structures differ (e.g., professional adversity vs. societal inclusion).
 
-### Hockey Homicide (1945) [THE-EXPLORER, THE-CAREGIVER] [优质·多agent] (08-sports-underdog) · 不采信
+### Hockey Homicide (1945) [THE-EXPLORER, THE-CAREGIVER] [优质·多agent] (08-sports-underdog)
 - **tmdb_id**: 66876
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: Both the news and film center on a hockey championship game as a load-bearing anchor, but the news involves real competitive drama, underdog victory, and coaching changes, while the film is a fictional comedy focused on slapstick chaos, with no isomorphic power/fate/theme skeletons.
 
-### When the Game Stands Tall (2014) [THE-MAGICIAN, THE-CREATOR] [优质·多agent] (08-sports-underdog) · 不采信
+### When the Game Stands Tall (2014) [THE-MAGICIAN, THE-CREATOR] [优质·多agent] (08-sports-underdog)
 - **tmdb_id**: 232679
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both narratives feature a coach as a load-bearing role driving team success against odds, with isomorphic skeletons of leadership transforming underdog teams through strategic changes.
 
-### The World Champion (2021) [THE-HERO, THE-LOVER] (08-sports-underdog) · 不采信
+### The World Champion (2021) [THE-HERO, THE-LOVER] (08-sports-underdog) ⚠ disagreement
 - **tmdb_id**: 589752
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No concrete shared anchors (hockey vs. chess), but isomorphic skeletons: both involve high-stakes competitions with underdog dynamics, psychological pressure, and themes of overcoming adversity through resilience.
 
-### Hang 'em High (1968) [THE-JESTER] (08-sports-underdog) · 不采信
+### Hang 'em High (1968) [THE-JESTER] (08-sports-underdog)
 - **tmdb_id**: 4929
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing anchors (e.g., hockey playoffs vs. Western revenge setting), and skeletons are not isomorphic (sports triumph over adversity vs. personal vengeance/justice).
 
-### Run Silent, Run Deep (1958) [THE-HERO] (08-sports-underdog) · 不采信
+### Run Silent, Run Deep (1958) [THE-HERO] (08-sports-underdog) ⚠ disagreement
 - **tmdb_id**: 18784
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both narratives share a structural skeleton of a leadership figure (coach/captain) overcoming prior failures or adversities to guide a team toward high-stakes objectives, with themes of resilience, team dynamics, and second chances, but lack concrete shared anchors like place or event type.
 
-### Paterno (2018) [THE-RULER] (08-sports-underdog) · 不采信
+### Paterno (2018) [THE-RULER] (08-sports-underdog)
 - **tmdb_id**: 467867
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing anchor; hockey playoff sweep vs. football scandal themes not isomorphic.
 
-### Heart of Champions (2021) [THE-LOVER] (08-sports-underdog) · 不采信
+### Heart of Champions (2021) [THE-LOVER] (08-sports-underdog)
 - **tmdb_id**: 647581
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both stories are driven by a coaching change that transforms team performance: news features coach-fired Vegas succeeding under Tortorella; film centers on an army vet coaching a dysfunctional rowing team. Skeletal isomorphism exists in themes of leadership redemption and team overcoming adversity.
 
-### Sitaare Zameen Par (2025) [THE-RULER] (08-sports-underdog) · 不采信
+### Sitaare Zameen Par (2025) [THE-RULER] (08-sports-underdog)
 - **tmdb_id**: 1190511
 - **judge_score**: 2
 - **judge_resonance_type**: 强共振（表层 + 结构）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both stories share a load-bearing concrete anchor in the role type of a coach driving sports team success, and have isomorphic skeletons of underdog triumph through coaching leadership and resilience.
 
-### Lady Ballers (2023) [THE-EVERYMAN] (08-sports-underdog) · 不采信
+### Lady Ballers (2023) [THE-EVERYMAN] (08-sports-underdog) ⚠ disagreement
 - **tmdb_id**: 1210646
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: No load-bearing concrete anchor (sports type and specifics differ: hockey playoffs vs. basketball comedy) and no isomorphic skeletons (news focuses on real competition and injury adversity, film on fictional gender-based redemption), so no resonance.
 
-### L'Odissea (1911) [THE-EXPLORER, THE-LOVER, THE-CREATOR, THE-MAGICIAN, THE-HERO] [优质·多agent] (09-cultural-backlash) · 不采信
+### L'Odissea (1911) [THE-EXPLORER, THE-LOVER, THE-CREATOR, THE-MAGICIAN, THE-HERO] [优质·多agent] (09-cultural-backlash) ⚠ disagreement
 - **tmdb_id**: 194224
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both the news and film share a load-bearing concrete anchor: adaptations of Homer's Odyssey. However, the skeletons are not isomorphic; the news centers on modern cultural wars over representation, while the film focuses on classical mythic narrative without such meta-conflict.
 
-### Don't Leave Home (2018) [THE-INNOCENT, THE-EXPLORER, THE-MAGICIAN, THE-SAGE] [优质·多agent] (09-cultural-backlash) · 不采信
+### Don't Leave Home (2018) [THE-INNOCENT, THE-EXPLORER, THE-MAGICIAN, THE-SAGE] [优质·多agent] (09-cultural-backlash)
 - **tmdb_id**: 502167
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete anchors (e.g., place, event type, role type, setting); thematic skeletons are not isomorphic—news involves public cultural debate on identity in film casting, while film focuses on personal obsession with an urban legend investigation.
 
-### Venus in Fur (2013) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER] (09-cultural-backlash) · 不采信
+### Venus in Fur (2013) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER] (09-cultural-backlash)
 - **tmdb_id**: 197082
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 1
 - **human_resonance_type**: 
 - **rationale**: Both narratives involve isomorphic skeletons of power struggles, hidden motives, and representation conflicts in artistic contexts, but lack load-bearing concrete anchors like shared places or event types.
 
-### Panama (2015) [THE-CAREGIVER, THE-HERO] [优质·多agent] (09-cultural-backlash) · 不采信
+### Panama (2015) [THE-CAREGIVER, THE-HERO] [优质·多agent] (09-cultural-backlash)
 - **tmdb_id**: 336200
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: News centers on cultural war over casting in a mythic film adaptation; film is a modern thriller about digital communication and vanity with no shared load-bearing anchor or structural theme isomorphism.
 
-### Ex Libris: The New York Public Library (2017) [THE-HERO, THE-OUTLAW, THE-RULER, THE-MAGICIAN] (09-cultural-backlash) · 不采信
+### Ex Libris: The New York Public Library (2017) [THE-HERO, THE-OUTLAW, THE-RULER, THE-MAGICIAN] (09-cultural-backlash)
 - **tmdb_id**: 446173
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor shared; news focuses on casting controversy in film adaptation, while film is documentary about library adaptation. Skeletons not isomorphic: news involves identity conflict and rhetoric, film is observational institutional change.
 
-### Scandal (1950) [THE-EVERYMAN, THE-RULER] [优质·多agent] (09-cultural-backlash) · 不采信
+### Scandal (1950) [THE-EVERYMAN, THE-RULER] [优质·多agent] (09-cultural-backlash) ⚠ disagreement
 - **tmdb_id**: 32690
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing surface anchor (e.g., specific place/event driving both), but structural isomorphism exists: both narratives center on public controversy and media distortion of storytelling that challenges identity and truth.
 
-### There Be Dragons (2011) [THE-HERO, THE-SAGE, THE-CREATOR] [优质·多agent] (09-cultural-backlash) · 不采信
+### There Be Dragons (2011) [THE-HERO, THE-SAGE, THE-CREATOR] [优质·多agent] (09-cultural-backlash)
 - **tmdb_id**: 45054
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing shared elements (e.g., place, event type, role type, setting) between the news (modern film casting controversy for Homer's Odyssey) and the film (Spanish Civil War drama about religious investigation). No isomorphic power/fate/theme skeletons; news focuses on cultural representation in media, while film explores historical secrets and personal morality, lacking structural alignment.
 
-### Sullivan's Travels (1941) [THE-CREATOR, THE-RULER] [优质·多agent] (09-cultural-backlash) · 不采信
+### Sullivan's Travels (1941) [THE-CREATOR, THE-RULER] [优质·多agent] (09-cultural-backlash)
 - **tmdb_id**: 16305
 - **judge_score**: 1
 - **judge_resonance_type**: 表层沾边
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: Both news and film share the film industry as a load-bearing anchor (e.g., filmmaking, Hollywood), but their thematic skeletons are not isomorphic: the news centers on cultural identity and public debate over casting, while the film focuses on class disparity and artistic authenticity.
 
-### Breakdown: 1975 (2025) [THE-JESTER, THE-MAGICIAN] (09-cultural-backlash) · 不采信
+### Breakdown: 1975 (2025) [THE-JESTER, THE-MAGICIAN] (09-cultural-backlash) ⚠ disagreement
 - **tmdb_id**: 1584125
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: No load-bearing shared anchor: news is about casting controversy in a classical epic adaptation, while film depicts filmmakers in 1975 turning chaos into art. Thematic skeletons are not isomorphic, as news centers on identity politics in contemporary film, and film on artistic response to historical upheaval.
 
-### The Phantom of the Opera (1989) [THE-LOVER, THE-MAGICIAN] [优质·多agent] (09-cultural-backlash) · 不采信
+### The Phantom of the Opera (1989) [THE-LOVER, THE-MAGICIAN] [优质·多agent] (09-cultural-backlash)
 - **tmdb_id**: 86962
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: News centers on modern casting controversy and cultural identity debates, while film is a historical fantasy about artistic obsession in Victorian London. No load-bearing shared anchor exists, and thematic skeletons (identity politics vs. personal romance/obsession) are not isomorphic.
 
-### The Conspiracy (2012) [THE-JESTER] (09-cultural-backlash) · 不采信
+### The Conspiracy (2012) [THE-JESTER] (09-cultural-backlash)
 - **tmdb_id**: 133369
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete anchor (news focuses on casting controversy in a Homer adaptation, film is a documentary on conspiracy theories); skeletons are not isomorphic (news themes of identity and cultural ownership vs. film themes of uncovering hidden secrets), so unrelated news could equally explain the film.
 
-### Chained for Life (2019) [THE-INNOCENT] (09-cultural-backlash) · 不采信
+### Chained for Life (2019) [THE-INNOCENT] (09-cultural-backlash) ⚠ disagreement
 - **tmdb_id**: 525825
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 2
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: No load-bearing surface anchor (e.g., shared specific place, event, or role), but skeletons are isomorphic: both center on appearance-based conflicts and representation in film production.
 
-### Viva Erotica (1996) [THE-INNOCENT] (09-cultural-backlash) · 不采信
+### Viva Erotica (1996) [THE-INNOCENT] (09-cultural-backlash)
 - **tmdb_id**: 118379
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor; the shared film production element is incidental and not central to both stories. Skeletons are not isomorphic: the news revolves around cultural representation and identity debates, while the film focuses on artistic integrity under commercial coercion.
 
-### Gabbar Is Back (2015) [THE-HERO, THE-OUTLAW, THE-RULER, THE-LOVER, THE-MAGICIAN, THE-INNOCENT, THE-CAREGIVER, THE-EXPLORER] [优质·多agent] (10-whistleblower-leak) · 不采信
+### Gabbar Is Back (2015) [THE-HERO, THE-OUTLAW, THE-RULER, THE-LOVER, THE-MAGICIAN, THE-INNOCENT, THE-CAREGIVER, THE-EXPLORER] [优质·多agent] (10-whistleblower-leak) ⚠ disagreement
 - **tmdb_id**: 337876
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors (e.g., exam scandal vs. vigilante action), but both share isomorphic skeletons of corruption exposed and confronted through non-traditional means (whistleblower vs. vigilantes), with themes of justice and accountability.
 
-### CNCO: los últimos cinco días (2022) [THE-EXPLORER, THE-CREATOR, THE-MAGICIAN, THE-SAGE] [优质·多agent] (10-whistleblower-leak) · 不采信
+### CNCO: los últimos cinco días (2022) [THE-EXPLORER, THE-CREATOR, THE-MAGICIAN, THE-SAGE] [优质·多agent] (10-whistleblower-leak)
 - **tmdb_id**: 1030206
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing surface anchors (e.g., place, event type, role type) or structural isomorphism in power/fate themes between the exam leak news and the band documentary film.
 
-### Kindergarten Cop 2 (2016) [THE-EVERYMAN, THE-HERO, THE-OUTLAW, THE-CAREGIVER] (10-whistleblower-leak) · 不采信
+### Kindergarten Cop 2 (2016) [THE-EVERYMAN, THE-HERO, THE-OUTLAW, THE-CAREGIVER] (10-whistleblower-leak)
 - **tmdb_id**: 383121
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete anchors (news: exam scandal and whistleblowing; film: undercover FBI in kindergarten) and no isomorphic skeletons in power/fate/theme; unrelated news could equally explain the film.
 
-### Assassination Classroom the Movie: 365 Days' Time (2016) [THE-EVERYMAN, THE-CAREGIVER, THE-RULER, THE-OUTLAW] [优质·多agent] (10-whistleblower-leak) · 不采信
+### Assassination Classroom the Movie: 365 Days' Time (2016) [THE-EVERYMAN, THE-CAREGIVER, THE-RULER, THE-OUTLAW] [优质·多agent] (10-whistleblower-leak)
 - **tmdb_id**: 431808
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors: film is about assassination and education in a school, news is about an exam leak scandal. Skeletons are not isomorphic; core themes of power and fate differ significantly, with no deep structural resonance.
 
-### Black Dossier (1955) [THE-INNOCENT, THE-EVERYMAN, THE-SAGE] (10-whistleblower-leak) · 不采信
+### Black Dossier (1955) [THE-INNOCENT, THE-EVERYMAN, THE-SAGE] (10-whistleblower-leak) ⚠ disagreement
 - **tmdb_id**: 199252
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors (e.g., mismatched settings and event types), but skeletons are isomorphic: both involve a truth-seeker (whistleblower/judge) challenging authority (NTA/influential notable) to expose wrongdoing, leading to scandal, with themes of justice and perseverance.
 
-### Lie Detector (2011) [THE-EVERYMAN, THE-EXPLORER, THE-OUTLAW] (10-whistleblower-leak) · 不采信
+### Lie Detector (2011) [THE-EVERYMAN, THE-EXPLORER, THE-OUTLAW] (10-whistleblower-leak)
 - **tmdb_id**: 375384
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor shared: news involves exam leak and whistleblowing in educational context, while film is about lie detector in job interview. Skeletons not isomorphic: news themes of institutional corruption and public accountability vs. film's interpersonal dynamics and personal revelation.
 
-### The Gracefield Incident (2017) [THE-OUTLAW, THE-HERO] [优质·多agent] (10-whistleblower-leak) · 不采信
+### The Gracefield Incident (2017) [THE-OUTLAW, THE-HERO] [优质·多agent] (10-whistleblower-leak)
 - **tmdb_id**: 327253
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor (news is about academic exam scandal in India; film is a paranormal thriller in Canada). Themes are not isomorphic: news focuses on institutional corruption and whistleblowing in education, while film involves government declassification of paranormal events, lacking shared power/fate skeletons.
 
-### Le Brio (2017) [THE-EVERYMAN, THE-LOVER] (10-whistleblower-leak) · 不采信
+### Le Brio (2017) [THE-EVERYMAN, THE-LOVER] (10-whistleblower-leak) ⚠ disagreement
 - **tmdb_id**: 452187
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: Both narratives share a thematic skeleton of authority figures (exam institution, professor) facing accountability for wrongs through exposure or forced correction, with public image vs private actions, but no concrete shared anchors like place or event type.
 
-### Bad Kids Go to Hell (2012) [THE-CAREGIVER] (10-whistleblower-leak) · 不采信
+### Bad Kids Go to Hell (2012) [THE-CAREGIVER] (10-whistleblower-leak)
 - **tmdb_id**: 138372
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchor: news is about exam leak and whistleblower in India, film is fictional horror about students in detention. No isomorphic skeletons: news themes of corruption and justice differ from film's horror and supernatural fate.
 
-### Haraamkhor (2015) [THE-CAREGIVER] (10-whistleblower-leak) · 不采信
+### Haraamkhor (2015) [THE-CAREGIVER] (10-whistleblower-leak)
 - **tmdb_id**: 314690
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: Both narratives explore isomorphic skeletons of power abuse and vulnerability in educational contexts—news shows authority figures corrupting trust via institutional scandal, film depicts teacher manipulation of a student—but no load-bearing surface anchors like shared specific events or roles drive both stories.
 
-### The Cost of Deception (2021) [THE-EXPLORER] (10-whistleblower-leak) · 不采信
+### The Cost of Deception (2021) [THE-EXPLORER] (10-whistleblower-leak)
 - **tmdb_id**: 876671
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 强共振（表层 + 结构）
 - **rationale**: Both narratives center on whistleblowing and exposing deception by authorities, with isomorphic power structures and themes of corruption, but they lack a load-bearing concrete anchor (e.g., different event types: exam paper leak vs. political speech leak, and settings).
 
-### Scare Out (2026) [THE-RULER] (10-whistleblower-leak) · 不采信
+### Scare Out (2026) [THE-RULER] (10-whistleblower-leak)
 - **tmdb_id**: 1447971
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
-- **human_resonance_type**: 
+- **human_score**: 1
+- **human_resonance_type**: 表层沾边
 - **rationale**: News and film both center on leaks triggering investigations that reveal internal betrayal, but no concrete shared anchor (exam vs. intelligence settings). Structural isomorphism in themes of corruption and trust.
 
-### Who Killed Cock Robin (2017) [THE-EXPLORER] (10-whistleblower-leak) · 不采信
+### Who Killed Cock Robin (2017) [THE-EXPLORER] (10-whistleblower-leak) ⚠ disagreement
 - **tmdb_id**: 448337
 - **judge_score**: 1
 - **judge_resonance_type**: 深层共振（仅结构，无表层）
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: Both narratives feature a protagonist (whistleblower/journalist) uncovering systemic corruption through investigation driven by clues or evidence, sharing isomorphic themes of authority failure and truth exposure. However, no concrete load-bearing anchors (e.g., same event type, setting) are shared, as the news involves an exam paper leak while the film centers on a hit-and-run investigation.
 
-### Bespredel (1989) [THE-MAGICIAN] (10-whistleblower-leak) · 不采信
+### Bespredel (1989) [THE-MAGICIAN] (10-whistleblower-leak)
 - **tmdb_id**: 75649
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No load-bearing concrete anchors (e.g., place, event type, setting) shared; skeletons differ: news focuses on exam scandal exposure and institutional accountability, while film centers on prison oppression and rebellion.
 
-### Hell's House (1932) [THE-LOVER] (10-whistleblower-leak) · 不采信
+### Hell's House (1932) [THE-LOVER] (10-whistleblower-leak)
 - **tmdb_id**: 136116
 - **judge_score**: 0
 - **judge_resonance_type**: 
-- **human_score**: 
+- **human_score**: 0
 - **human_resonance_type**: 
 - **rationale**: No shared load-bearing concrete anchor (news involves exam scandal with whistleblower, film involves reform school for refusing to inform on a bootlegger) and no isomorphic skeleton (power structures and themes diverge: public institutional corruption vs. private loyalty leading to punishment).
