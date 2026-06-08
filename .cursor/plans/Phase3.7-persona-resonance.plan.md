@@ -98,30 +98,30 @@ flowchart LR
 
 ## SSOT
 
-| 文档 | 用途 |
-| --- | --- |
-| `docs/adr/0004-persona-emotional-diffusion.md`（新） | 本 Phase 决策与 N=10 证据；SSOT 待改清单 |
-| `docs/adr/0003-multi-agent-resonance-quality-and-a1-as-peer.md` | A1 平权、命中分二级（前置） |
-| `docs/adr/0002-pivot-to-event-logic-resonance.md` | 表层合法、事件逻辑解构（前置） |
-| `docs/SSOT/reality-deconstruction-contract.md` | A0 输出契约；3.7.6 go 时补 alternatives/overlay 说明 |
-| `docs/eval-the-bet.md` §4/§5.1 | 共振 rubric；3.7.1 去"讽刺"措辞 |
-| `docs/SSOT/电影宇宙「每日星轨观测」系统 PRD.md` | 产品 SSOT；3.7.6 go 时升口径 |
-| `output/Eval/phase3.6/high-hit-score-review.md` | 复盘 ground truth（A1 信号、伪分不可靠、老片加成） |
+| 文档                                                            | 用途                                                 |
+| --------------------------------------------------------------- | ---------------------------------------------------- |
+| `docs/adr/0004-persona-emotional-diffusion.md`（新）            | 本 Phase 决策与 N=10 证据；SSOT 待改清单             |
+| `docs/adr/0003-multi-agent-resonance-quality-and-a1-as-peer.md` | A1 平权、命中分二级（前置）                          |
+| `docs/adr/0002-pivot-to-event-logic-resonance.md`               | 表层合法、事件逻辑解构（前置）                       |
+| `docs/SSOT/reality-deconstruction-contract.md`                  | A0 输出契约；3.7.6 go 时补 alternatives/overlay 说明 |
+| `docs/eval-the-bet.md` §4/§5.1                                  | 共振 rubric；3.7.1 去"讽刺"措辞                      |
+| `docs/SSOT/电影宇宙「每日星轨观测」系统 PRD.md`                 | 产品 SSOT；3.7.6 go 时升口径                         |
+| `output/Eval/phase3.6/high-hit-score-review.md`                 | 复盘 ground truth（A1 信号、伪分不可靠、老片加成）   |
 
 ## 判据与闸门（本 Phase 定稿 · 实现须一致）
 
-| 代号 | 定稿 |
-| --- | --- |
-| **P-Source** | **A0 只拆解，不产任何替代词（含中性）**。全部替代词由 **per-persona alt-creator 自产**：每 element 生成 **正向–中性–负面整条 spectrum**，再按本 persona 偏好取舍 |
-| **P-Select** | alt-creator/screenwriter 只能 **Select + 重配语气**，**禁 Inject 事件**。spectrum 上每个替换词必须**事实蕴含**（可从中性 decon、尤其 `who.relations`/`why`/`how` 推出），可激进推正/负价值（如 "rumor spreader" ✓，因新闻确证散布不实指控）；**禁 fact-additive**（如 "foreign agent" / "convicted criminal" ✗） |
-| **P-SSOT** | 1 份中性 decon = 单一事实源；每 persona 仅产出 **alt-pool overlay**（引用同一 element/fragment id）。**不 fork 12 份全文** |
-| **P-Tone** | screenwriter 可调措辞/语域/语气（如 "secured a warrant" → "moved to restore order"），但**不得新增人物/因果/事件** |
-| **P-Force** | **强迫生产 + 不硬弃权**：所有被运行的 persona 都产出 pseudo（零生成期 false negative）；每 pseudo 附 **`fit` 自评（0–1）**；过滤交给下游 `fit × 相似度`，不在上游硬丢 |
-| **P-Abstain** | 是否加弃权阈值 = **留出集打分后用数据决定**（看"低 fit 是否从不命中 2 分"）；本 Phase 不硬编码 |
-| **P-Match** | 匹配不变：pseudo prose ↔ overview embedding。A1（中性拼接、无 alternatives）= 干净消融基线 |
-| **P-Cost** | 追求**表达强度**优先：alt-creator 每 persona 专属（成本经测可忽略） |
-| **闸门 1** | 保留：≥60% 批次至少 1 个 2 分候选 |
-| **闸门 2（新）** | persona 候选的结构/双重 2 分率 **>** A1 中性基线（验证情绪 steering 增量）|
+| 代号             | 定稿                                                                                                                                                                                                                                                                                                             |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **P-Source**     | **A0 只拆解，不产任何替代词（含中性）**。全部替代词由 **per-persona alt-creator 自产**：每 element 生成 **正向–中性–负面整条 spectrum**，再按本 persona 偏好取舍                                                                                                                                                 |
+| **P-Select**     | alt-creator/screenwriter 只能 **Select + 重配语气**，**禁 Inject 事件**。spectrum 上每个替换词必须**事实蕴含**（可从中性 decon、尤其 `who.relations`/`why`/`how` 推出），可激进推正/负价值（如 "rumor spreader" ✓，因新闻确证散布不实指控）；**禁 fact-additive**（如 "foreign agent" / "convicted criminal" ✗） |
+| **P-SSOT**       | 1 份中性 decon = 单一事实源；每 persona 仅产出 **alt-pool overlay**（引用同一 element/fragment id）。**不 fork 12 份全文**                                                                                                                                                                                       |
+| **P-Tone**       | screenwriter 可调措辞/语域/语气（如 "secured a warrant" → "moved to restore order"），但**不得新增人物/因果/事件**                                                                                                                                                                                               |
+| **P-Force**      | **强迫生产 + 不硬弃权**：所有被运行的 persona 都产出 pseudo（零生成期 false negative）；每 pseudo 附 **`fit` 自评（0–1）**；过滤交给下游 `fit × 相似度`，不在上游硬丢                                                                                                                                            |
+| **P-Abstain**    | 是否加弃权阈值 = **留出集打分后用数据决定**（看"低 fit 是否从不命中 2 分"）；本 Phase 不硬编码                                                                                                                                                                                                                   |
+| **P-Match**      | 匹配不变：pseudo prose ↔ overview embedding。A1（中性拼接、无 alternatives）= 干净消融基线                                                                                                                                                                                                                       |
+| **P-Cost**       | 追求**表达强度**优先：alt-creator 每 persona 专属（成本经测可忽略）                                                                                                                                                                                                                                              |
+| **闸门 1**       | 保留：≥60% 批次至少 1 个 2 分候选                                                                                                                                                                                                                                                                                |
+| **闸门 2（新）** | persona 候选的结构/双重 2 分率 **>** A1 中性基线（验证情绪 steering 增量）                                                                                                                                                                                                                                       |
 
 ---
 
@@ -146,20 +146,20 @@ flowchart LR
 - `docs/adr/0004-persona-emotional-diffusion.md`：固化 P-Select / P-SSOT / P-Tone / P-Force / P-Abstain / P-Match / P-Cost 与闸门 2；`Status: proposed`。
 - **12 原型清单**（Pearson）草案 → 用户确认。每项：`persona_id`、名称、核心情绪、价值倾向（正/负/中）、典型替换取向示例。草案 roster：
 
-  | id | 原型 | 核心情绪 | 价值取向示例（04 的 YouTuber） |
-  | --- | --- | --- | --- |
-  | The-Ruler | 统治者 | 秩序 / 控制 | the rumor spreader（负·捍卫秩序）|
-  | The-Outlaw | 反叛者 | 反抗 / 颠覆 | the system's scapegoat（视角反转）|
-  | The-Caregiver | 照护者 | 保护 / 受害 | the harmed star / a wronged family |
-  | The-Hero | 英雄 | 抗争 / 正义 | the investigators who closed in |
-  | The-Innocent | 天真者 | 信任 / 幻灭 | — |
-  | The-Sage | 智者 | 真相 / 辨识 | fabricated evidence vs verified fact |
-  | The-Lover | 爱人 | 亲密 / 背叛 | — |
-  | The-Jester | 弄臣 | 荒诞 / 反讽 | a viral hoax gone to court |
-  | The-Explorer | 探索者 | 自由 / 越界 | — |
-  | The-Creator | 创造者 | 造物 / 失控 | an AI-forged illusion |
-  | The-Magician | 魔法师 | 转化 / 操纵 | the puppeteer of perception |
-  | The-Everyman | 凡人 | 归属 / 排斥 | — |
+  | id            | 原型   | 核心情绪    | 价值取向示例（04 的 YouTuber）       |
+  | ------------- | ------ | ----------- | ------------------------------------ |
+  | The-Ruler     | 统治者 | 秩序 / 控制 | the rumor spreader（负·捍卫秩序）    |
+  | The-Outlaw    | 反叛者 | 反抗 / 颠覆 | the system's scapegoat（视角反转）   |
+  | The-Caregiver | 照护者 | 保护 / 受害 | the harmed star / a wronged family   |
+  | The-Hero      | 英雄   | 抗争 / 正义 | the investigators who closed in      |
+  | The-Innocent  | 天真者 | 信任 / 幻灭 | —                                    |
+  | The-Sage      | 智者   | 真相 / 辨识 | fabricated evidence vs verified fact |
+  | The-Lover     | 爱人   | 亲密 / 背叛 | —                                    |
+  | The-Jester    | 弄臣   | 荒诞 / 反讽 | a viral hoax gone to court           |
+  | The-Explorer  | 探索者 | 自由 / 越界 | —                                    |
+  | The-Creator   | 创造者 | 造物 / 失控 | an AI-forged illusion                |
+  | The-Magician  | 魔法师 | 转化 / 操纵 | the puppeteer of perception          |
+  | The-Everyman  | 凡人   | 归属 / 排斥 | —                                    |
 
   （"—" = 该原型对此新闻天然弱契合，正好用 `fit` 体现，不硬凑。）
 - **留出集切分**：`01–04` 观察集 / `05–10` 留出集（写入 ADR；多轮迭代时每轮至少评 2 条留出新闻）。
@@ -281,11 +281,11 @@ flowchart LR
 
 ## 交给下一 Phase
 
-| 条件 | 下一动作 |
-| --- | --- |
-| **GATE go** | 执行 3.7.6 改 SSOT；按数据加 P-Abstain 阈值；考虑第二匹配轴 / A0 schema 瘦身 |
-| **GATE no-go** | 回 3.7.2/3.7.3 调原型契约或 steering；跳过 3.7.6 |
-| **后续（独立）** | 其他体量压缩维度；题材安全闸；A0 元素 schema 瘦身 cleanup |
+| 条件             | 下一动作                                                                     |
+| ---------------- | ---------------------------------------------------------------------------- |
+| **GATE go**      | 执行 3.7.6 改 SSOT；按数据加 P-Abstain 阈值；考虑第二匹配轴 / A0 schema 瘦身 |
+| **GATE no-go**   | 回 3.7.2/3.7.3 调原型契约或 steering；跳过 3.7.6                             |
+| **后续（独立）** | 其他体量压缩维度；题材安全闸；A0 元素 schema 瘦身 cleanup                    |
 
 ## 风险与约束
 
