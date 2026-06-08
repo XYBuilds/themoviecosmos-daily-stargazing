@@ -1,0 +1,591 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Syria's president",
+          "alternatives": [
+            {
+              "term": "the country's leader visiting the flood-hit areas",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a public figure in a shared crisis",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "head of state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "several children",
+          "alternatives": [
+            {
+              "term": "innocent young victims",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "children caught in the disaster",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "young people",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "helpless victims of the floods",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the navy",
+          "alternatives": [
+            {
+              "term": "rescue crews on the water",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "military units carrying out evacuations",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "armed forces",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Turkey",
+          "alternatives": [
+            {
+              "term": "an upstream neighbor agreeing to help",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the neighboring country",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "nation-state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "one of the heaviest rainy seasons in three decades",
+          "alternatives": [
+            {
+              "term": "an unusual and dangerous weather pattern",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a major seasonal weather event",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "severe weather",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "water systems pushed to their limits",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "storage facilities nearing full capacity",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "reservoirs at high capacity",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "infrastructure and nature combining to overwhelm defenses",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "water management and weather breaching barriers",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "overflow conditions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "the water swamping where people live, work, and learn",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "fast-moving water entering populated and agricultural areas",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "flooding of inhabited regions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "An earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "a vital local link washed away",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a bridge failed under pressure",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "structural failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "The navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "crews working to get people to safety",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "military personnel carrying out water rescues",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "evacuation efforts",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-5",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "a neighboring country making a practical concession to help",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an upstream nation adjusting its water management",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "diplomatic agreement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "several children drowned",
+          "alternatives": [
+            {
+              "term": "young lives lost to the floodwaters",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "fatalities among children",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "deaths",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+          "alternatives": [
+            {
+              "term": "everyday places where people live and work destroyed",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "residential, agricultural, and educational areas inundated",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "widespread property and infrastructure damage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "an earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "a key piece of local infrastructure gone",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a bridge failure",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "structural collapse",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "the navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "rescue teams pulling families from danger",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "military evacuation operations",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "rescue and evacuation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-4",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "a neighbor stepping in to ease the burden",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an upstream country making a commitment",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "international cooperation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-5",
+          "original_term": "Syria's president visited the flood zones",
+          "alternatives": [
+            {
+              "term": "the leader going to see the damage firsthand",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a presidential visit to affected areas",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "official site visit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Euphrates",
+          "alternatives": [
+            {
+              "term": "the river everyone shares",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a major waterway",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "ordinary communities in eastern Syria",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the flood-hit regions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "result-1",
+      "who-1",
+      "how-2",
+      "result-3"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "several children drowned. homes, farms, and schools in Deir Ezzor and Raqqa flooded. several children. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. the navy deployed boats for evacuations The event unfolds across deaths and drowning incident.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "result-0",
+          "result-1",
+          "who-1",
+          "how-2",
+          "result-3"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "several children drowned",
+            "provenance": "surface"
+          },
+          {
+            "term": "deaths",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "drowning incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fatality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+            "provenance": "surface"
+          },
+          {
+            "term": "widespread property and infrastructure damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flooding damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "agricultural loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "educational disruption",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "several children",
+            "provenance": "surface"
+          },
+          {
+            "term": "young people",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "children",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "minors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "civilians",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+            "provenance": "surface"
+          },
+          {
+            "term": "flooding of inhabited regions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flooding event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "property damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the navy deployed boats for evacuations",
+            "provenance": "surface"
+          },
+          {
+            "term": "rescue and evacuation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evacuation effort",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescue operation",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "After weeks of relentless rain, one of the heaviest rainy seasons in three decades pushed the river everyone shares past its limits. Water systems were pushed to their limits, and fast-moving water entered populated and agricultural areas, swamping the everyday places where people live and work in ordinary communities in eastern Syria. Rescue crews on the water worked to get families to safety, but the disaster outcome was tragic with fatalities among children. An upstream neighbor agreeing to help made a practical concession to ease the burden.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "how-5",
+          "result-0",
+          "result-3"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "A major seasonal weather event led to widespread property and infrastructure damage across the flood-hit regions. The flooding of inhabited areas caused an earthen bridge to collapse, a vital local link gone. Military evacuation operations were launched as a public figure in a shared crisis visited to see the damage firsthand. This shared vulnerability shows how disasters affect everyone, from farmers to schoolchildren.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "result-1",
+          "result-2",
+          "result-3",
+          "result-5"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "Severe weather overwhelmed defenses, leading to a bridge failure under pressure and flooding that destroyed homes and schools. The neighboring country stepped in, a diplomatic agreement to adjust water management. Military personnel carrying out water rescues deployed boats for evacuations, a rescue and evacuation effort for ordinary people caught in the disaster. The country's leader visited the flood-hit areas to inspect the agricultural loss and educational disruption firsthand.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-3",
+          "result-1",
+          "result-3",
+          "result-4",
+          "result-5"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.8
+    }
+  ],
+  "warnings": []
+}

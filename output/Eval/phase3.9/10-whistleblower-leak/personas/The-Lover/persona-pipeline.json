@@ -1,0 +1,398 @@
+{
+  "persona_id": "The-Lover",
+  "overlay": {
+    "persona_id": "The-Lover",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "whistleblower in Sikar",
+          "alternatives": [
+            {
+              "term": "betrayed confidant who exposed the truth",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "person driven by a sense of broken trust",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "source of a tip",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "India's National Testing Agency (NTA)",
+          "alternatives": [
+            {
+              "term": "authority forced to rupture a bond of fairness",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "institutional body responding to a breach",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "26–27 paper setters and translators",
+          "alternatives": [
+            {
+              "term": "intimate circle of trusted insiders now under suspicion",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "individuals implicated in the breach",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Central Bureau of Investigation (CBI)",
+          "alternatives": [
+            {
+              "term": "agency investigating a profound betrayal of process",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "investigative authority",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "those caught in the fallout of broken trust",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrested individuals",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-5",
+          "original_term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+          "alternatives": [
+            {
+              "term": "once-trusted mentor now exposed as a betrayer",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "figure who championed a cause and is now implicated",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "public advocate",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+          "alternatives": [
+            {
+              "term": "evidence of an intimate violation of trust",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a disclosure revealing a breach",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a tip providing incriminating evidence",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "NEET-UG 2026 cancelled",
+          "alternatives": [
+            {
+              "term": "the sacred ritual of examination destroyed by betrayal",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the planned event annulled",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "lovers of gain caught in the web of their own disloyalty",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "multiple arrests made",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "a forced attempt to mend a fractured bond of fairness",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a new date set for the test",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "who-5",
+      "result-1",
+      "who-0",
+      "why-0",
+      "result-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "coaching figure who had publicly championed student justice during the 2024 leak scandal. Thirteen people arrested. whistleblower in Sikar. whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology. NEET-UG 2026 cancelled The event unfolds across public advocate and coach.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "who-5",
+          "result-1",
+          "who-0",
+          "why-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+            "provenance": "surface"
+          },
+          {
+            "term": "public advocate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coach",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "educator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Thirteen people arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "multiple arrests made",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrests",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement result",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "whistleblower in Sikar",
+            "provenance": "surface"
+          },
+          {
+            "term": "source of a tip",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "informant",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "source",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+            "provenance": "surface"
+          },
+          {
+            "term": "a tip providing incriminating evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tip",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "information disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "report",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NEET-UG 2026 cancelled",
+            "provenance": "surface"
+          },
+          {
+            "term": "the planned event annulled",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "cancellation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "result",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event outcome",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A person driven by a sense of broken trust revealed the scandal, sending a tip providing incriminating evidence to the institutional body. The testing agency, forced to confront a profound breach, referred a group of professionals to the investigative authority. The consequence was a sacred ritual of examination destroyed, with a new date set for the test as a desperate attempt to mend a fractured bond of fairness.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p2",
+      "text": "The revelation from a betrayed confidant exposed the truth, a disclosure revealing a breach in the medical entrance exam. This information disclosure forced an investigation into a profound betrayal of process, leading to multiple arrests made, including a once-trusted mentor now exposed as a betrayer. The outcome was the planned event annulled, with a forced attempt to mend the fractured bond scheduled for June 21.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "The scandal began with a source of a tip from a city in India, a report that matched the examination questions. An authority forced to rupture a bond of fairness initiated an investigation, resulting in arrested individuals caught in the fallout of broken trust. The event outcome was a cancellation, a consequence that shattered the trust between students and the testing agency.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.72
+    }
+  ],
+  "warnings": []
+}

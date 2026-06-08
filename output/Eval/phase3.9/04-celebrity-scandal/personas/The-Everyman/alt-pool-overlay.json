@@ -1,0 +1,120 @@
+{
+  "persona_id": "The-Everyman",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "YouTuber",
+        "alternatives": [
+          {
+            "term": "opportunistic content creator",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "online personality",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "person accused of making false claims",
+            "valence": "negative",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "ordinary individual facing consequences",
+            "valence": "positive",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Kim Soo-hyun",
+        "alternatives": [
+          {
+            "term": "public figure whose career was disrupted",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "actor caught in a scandal",
+            "valence": "neutral",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "spread false claims for financial gain",
+        "alternatives": [
+          {
+            "term": "exploited the system for profit",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "sought financial gain through unverified allegations",
+            "valence": "negative",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+        "alternatives": [
+          {
+            "term": "fabricated evidence using technology",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "employed digital manipulation to support accusations",
+            "valence": "negative",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "YouTuber arrested",
+        "alternatives": [
+          {
+            "term": "faced legal consequences for their actions",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "subject to law enforcement action",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+        "alternatives": [
+          {
+            "term": "ordinary work and public life put on hold",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "disruption to livelihood and professional engagements",
+            "valence": "negative",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "result-1",
+    "who-0",
+    "how-0",
+    "why-0",
+    "result-0"
+  ]
+}

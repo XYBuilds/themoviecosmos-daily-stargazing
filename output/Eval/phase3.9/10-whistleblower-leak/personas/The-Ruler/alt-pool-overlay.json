@@ -1,0 +1,216 @@
+{
+  "persona_id": "The-Ruler",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "whistleblower in Sikar",
+        "alternatives": [
+          {
+            "term": "order-protecting informant",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "tipster",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "source of disruption",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "India's National Testing Agency (NTA)",
+        "alternatives": [
+          {
+            "term": "institutional authority restoring order",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "governing body",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "26–27 paper setters and translators",
+        "alternatives": [
+          {
+            "term": "rule-breakers threatening institutional integrity",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "exam preparation staff",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "Central Bureau of Investigation (CBI)",
+        "alternatives": [
+          {
+            "term": "restorer of institutional control",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "investigators",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-4",
+        "original_term": "thirteen people arrested",
+        "alternatives": [
+          {
+            "term": "perpetrators of systemic breach",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "detainees",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-5",
+        "original_term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+        "alternatives": [
+          {
+            "term": "chaos agent exploiting disorder",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "prominent educator",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "NTA referred 26–27 paper setters and translators to CBI",
+        "alternatives": [
+          {
+            "term": "authority escalated to restore order",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "referral to law enforcement",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "original_term": "Thirteen people arrested, including a coaching figure",
+        "alternatives": [
+          {
+            "term": "enforcement action against disruptors",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "arrests made",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "original_term": "Re-examination scheduled for June 21",
+        "alternatives": [
+          {
+            "term": "order-restoring re-scheduling",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "rescheduled test",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+        "alternatives": [
+          {
+            "term": "uncovering of systemic rule-breaking",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "leak of exam materials",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "NEET-UG 2026 cancelled",
+        "alternatives": [
+          {
+            "term": "containment of institutional breach",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "exam cancellation",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "halt of public life due to unmanaged scandal",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "original_term": "Re-examination scheduled for June 21",
+        "alternatives": [
+          {
+            "term": "restoration of orderly process",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "rescheduled event",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "result-0",
+    "how-3",
+    "how-2",
+    "who-3",
+    "why-0"
+  ]
+}

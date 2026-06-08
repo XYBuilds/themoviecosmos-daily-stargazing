@@ -1,0 +1,2210 @@
+{
+  "agents": [
+    {
+      "agent_id": "The-Innocent",
+      "persona_name": "The-Innocent",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "several children drowned. several children. the navy deployed boats for evacuations. Turkey agreed to reduce upstream releases. Syria's president visited the flood zones The event unfolds across deaths from drowning and drowning incident.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "result-0",
+              "who-1",
+              "result-3",
+              "how-5",
+              "result-5"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "several children drowned",
+                "provenance": "surface"
+              },
+              {
+                "term": "deaths from drowning",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "drowning incident",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "fatality",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster outcome",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "several children",
+                "provenance": "surface"
+              },
+              {
+                "term": "young flood victims",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "children",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "minors",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "civilians",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "the navy deployed boats for evacuations",
+                "provenance": "surface"
+              },
+              {
+                "term": "a state-led rescue mission",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "evacuation effort",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "rescue operation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Turkey agreed to reduce upstream releases",
+                "provenance": "surface"
+              },
+              {
+                "term": "a bilateral water management agreement",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water management agreement",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "international cooperation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flood mitigation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Syria's president visited the flood zones",
+                "provenance": "surface"
+              },
+              {
+                "term": "an official visit to an affected region",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "presidential visit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster inspection",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "political action",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "After one of the heaviest rainy seasons in three decades, an extreme weather event pushed the Euphrates river past its limits. Dam operations and heavy rainfall breached protective embankments, causing widespread flooding. Rescuers offered a lifeline with a state-led rescue mission, while the leader bearing witness to the suffering visited the flood zones. Innocent lives were lost, the youngest victims of a natural trial, but a bilateral water management agreement with the upstream country promised to ease the burden, offering a path toward recovery and trust.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.75
+        },
+        {
+          "id": "p2",
+          "text": "An unprecedented natural trial caused flooding of populated areas in Deir Ezzor and Raqqa. The breach of flood defenses led to the shattering of homes and livelihoods, with the youngest victims suffering fatalities from drowning. In response, the head of state assessing the damage coordinated a rescue operation, and a diplomatic accord on water flow with the neighboring state became an international agreement for flood mitigation. This cooperation measure, though born of tragedy, aims to rebuild sanctuary and learning for the region's children.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1",
+              "result-3",
+              "result-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.8
+        },
+        {
+          "id": "p3",
+          "text": "A climatic anomaly brought heavy rainfall that overwhelmed infrastructure pushed to its limits, leading to a structural failure and significant material losses across the Syrian regions. Despite the disaster outcome of deaths from drowning among children, a national authority figure inspected the damage, and the military branch organized an evacuation. A country, acting as a neighboring state, agreed to a flood response measure, a gesture of neighboring goodwill that reflects a sincere effort to restore order and protect civilians after a severe weather event.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-3",
+              "result-4",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.7
+        }
+      ],
+      "text": "several children drowned. several children. the navy deployed boats for evacuations. Turkey agreed to reduce upstream releases. Syria's president visited the flood zones The event unfolds across deaths from drowning and drowning incident.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Everyman",
+      "persona_name": "The-Everyman",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "several children drowned. homes, farms, and schools in Deir Ezzor and Raqqa flooded. several children. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. the navy deployed boats for evacuations The event unfolds across deaths and drowning incident.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "who-1",
+              "how-2",
+              "result-3"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "several children drowned",
+                "provenance": "surface"
+              },
+              {
+                "term": "deaths",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "drowning incident",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "fatality",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster outcome",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+                "provenance": "surface"
+              },
+              {
+                "term": "widespread property and infrastructure damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "agricultural loss",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "educational disruption",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "several children",
+                "provenance": "surface"
+              },
+              {
+                "term": "young people",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "children",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "minors",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "civilians",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+                "provenance": "surface"
+              },
+              {
+                "term": "flooding of inhabited regions",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "property damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "the navy deployed boats for evacuations",
+                "provenance": "surface"
+              },
+              {
+                "term": "rescue and evacuation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "evacuation effort",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "rescue operation",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "After weeks of relentless rain, one of the heaviest rainy seasons in three decades pushed the river everyone shares past its limits. Water systems were pushed to their limits, and fast-moving water entered populated and agricultural areas, swamping the everyday places where people live and work in ordinary communities in eastern Syria. Rescue crews on the water worked to get families to safety, but the disaster outcome was tragic with fatalities among children. An upstream neighbor agreeing to help made a practical concession to ease the burden.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-3"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "A major seasonal weather event led to widespread property and infrastructure damage across the flood-hit regions. The flooding of inhabited areas caused an earthen bridge to collapse, a vital local link gone. Military evacuation operations were launched as a public figure in a shared crisis visited to see the damage firsthand. This shared vulnerability shows how disasters affect everyone, from farmers to schoolchildren.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "result-1",
+              "result-2",
+              "result-3",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p3",
+          "text": "Severe weather overwhelmed defenses, leading to a bridge failure under pressure and flooding that destroyed homes and schools. The neighboring country stepped in, a diplomatic agreement to adjust water management. Military personnel carrying out water rescues deployed boats for evacuations, a rescue and evacuation effort for ordinary people caught in the disaster. The country's leader visited the flood-hit areas to inspect the agricultural loss and educational disruption firsthand.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "how-3",
+              "result-1",
+              "result-3",
+              "result-4",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.8
+        }
+      ],
+      "text": "several children drowned. homes, farms, and schools in Deir Ezzor and Raqqa flooded. several children. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. the navy deployed boats for evacuations The event unfolds across deaths and drowning incident.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Hero",
+      "persona_name": "The-Hero",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "several children drowned. the navy. The navy deployed boats for evacuations. Syria's president The event unfolds across a loss of life and drowning incident.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "result-0",
+              "who-2",
+              "how-4",
+              "who-0",
+              "result-3"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "several children drowned",
+                "provenance": "surface"
+              },
+              {
+                "term": "a loss of life",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "drowning incident",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "fatality",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster outcome",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "the navy",
+                "provenance": "surface"
+              },
+              {
+                "term": "a military branch",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "naval force",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "military branch",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "rescue team",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "The navy deployed boats for evacuations",
+                "provenance": "surface"
+              },
+              {
+                "term": "a rescue operation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "evacuation operation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "rescue mission",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "military deployment",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Syria's president",
+                "provenance": "surface"
+              },
+              {
+                "term": "a head of state",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "an authority figure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "president",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "head of state",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "political leader",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "a rescue response",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "evacuation effort",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "rescue operation",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "After an unprecedented weather onslaught, reservoirs were pushed to their breaking point. This led to a critical system failure as the defensive barriers along the river were overwhelmed. The deluge that followed ravaged communities in the Syrian regions, causing devastating property damage and a tragic loss of life. In response, a rescue operation was launched, and through diplomacy, a policy outcome was secured to help mitigate the crisis.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1",
+              "result-3",
+              "result-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The nation faced a severe seasonal challenge when its water storage infrastructure reached capacity. The ensuing flooding event inundated a key geographical feature, causing widespread agricultural loss and an infrastructure problem. A vital connection was severed by a structural failure. The leader surveyed the devastation as the rescuers answered the call for evacuations, while the upstream nation made a commitment to assist.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.8
+        },
+        {
+          "id": "p3",
+          "text": "A climatic event of historic proportions tested a region's resolve. As water storage issue reached a crisis, areas were inundated by floodwaters, causing an educational disruption and fatalities among the young. The military branch deployed for a rescue mission, and a head of state's official visit marked the beginning of a coordinated flood response with international cooperation.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-1",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.75
+        }
+      ],
+      "text": "several children drowned. the navy. The navy deployed boats for evacuations. Syria's president The event unfolds across a loss of life and drowning incident.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Caregiver",
+      "persona_name": "The-Caregiver",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "several children drowned. homes, farms, and schools in Deir Ezzor and Raqqa flooded. several children. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. one of the heaviest rainy seasons in three decades The event unfolds across deaths and drowning incident.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "who-1",
+              "how-2",
+              "why-0"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "several children drowned",
+                "provenance": "surface"
+              },
+              {
+                "term": "deaths",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "drowning incident",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "fatality",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster outcome",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+                "provenance": "surface"
+              },
+              {
+                "term": "property destruction",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "agricultural loss",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "educational disruption",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "several children",
+                "provenance": "surface"
+              },
+              {
+                "term": "young victims",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "children",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "minors",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "civilians",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+                "provenance": "surface"
+              },
+              {
+                "term": "property and infrastructure damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "property damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "one of the heaviest rainy seasons in three decades",
+                "provenance": "surface"
+              },
+              {
+                "term": "severe weather",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "heavy rainfall",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "extreme weather event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "climatic anomaly",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "An unprecedented deluge from one of the heaviest rainy seasons in three decades caused reservoirs to overflow, leading to widespread inundation across the Syrian regions. The surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa, resulting in a devastating drowning incident where young lives were lost. Rescue teams mobilized for emergency response as communities and shelters were inundated, leaving a critical access point lost when an earthen bridge collapsed.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.95
+        },
+        {
+          "id": "p2",
+          "text": "Following severe weather, an extreme weather event caused infrastructure to be pushed to its breaking point. This led to a flood causation scenario where defenses were breached, resulting in a flooding event with significant property damage. The resulting fatalities among minors prompted international cooperation to protect downstream communities, with a water management agreement reached to mitigate the disaster outcome.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p3",
+          "text": "A climatic anomaly caused embankment failure and a bridge collapse, severing a vital link. Leadership presence at the scene of suffering underscored the disaster impact, as evacuation operations were launched to address the widespread material damage. This diplomatic agreement represents a cooperation measure to ease pressure and aid the affected minors in the wake of the tragedy.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-5",
+              "result-1",
+              "result-3",
+              "result-0",
+              "result-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.82
+        }
+      ],
+      "text": "several children drowned. homes, farms, and schools in Deir Ezzor and Raqqa flooded. several children. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. one of the heaviest rainy seasons in three decades The event unfolds across deaths and drowning incident.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Explorer",
+      "persona_name": "The-Explorer",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. An earthen bridge collapsed. The navy deployed boats for evacuations The event unfolds across water storage capacity exceeded and reservoir overflow.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "Reservoirs filled beyond 97% capacity",
+                "provenance": "surface"
+              },
+              {
+                "term": "water storage capacity exceeded",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "reservoir overflow",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water storage issue",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "infrastructure problem",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+                "provenance": "surface"
+              },
+              {
+                "term": "floodwaters breached defenses",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flood causation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water release",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "embankment failure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+                "provenance": "surface"
+              },
+              {
+                "term": "flooding inundated inhabited areas",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "property damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "An earthen bridge collapsed",
+                "provenance": "surface"
+              },
+              {
+                "term": "infrastructure failure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "bridge collapse",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "structural failure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "infrastructure damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "The navy deployed boats for evacuations",
+                "provenance": "surface"
+              },
+              {
+                "term": "watercraft used for evacuation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "evacuation operation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "rescue mission",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "military deployment",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "An unprecedented meteorological surge pushed reservoirs beyond capacity, forcing human engineering to confront natural forces on a massive scale. As an ancient waterway transformed its course, unstoppable water carved new paths through settled lands in regions facing an untamed water frontier. The disaster impact was severe, with a man-made crossing yielding to the river's power and rescue teams charting routes through flooded streets. This event reveals the frontier of climate adaptation and infrastructure resilience in a changing world.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p2",
+          "text": "After a week of deadly high water, young lives were caught in the surge as communities submerged under uncharted waters. A passage was severed by the river's force, illustrating structural failure on the frontier of disaster. Yet, the narrative pivoted with maritime rescue embarked on an improvised mission, showcasing cross-border cooperation to tame the flow. This chain of events maps the boundary between catastrophe and coordinated human response in extreme weather.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3",
+              "result-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.82
+        },
+        {
+          "id": "p3",
+          "text": "The leader ventured into the disaster's frontier, visiting flooded zones after a severe weather event overwhelmed defenses. This presidential visit, a political action on the edge of crisis, followed a flooding event where infrastructure was pushed to its limits and fatalities among children marked a grim outcome. The journey through affected areas symbolizes a foray into the unknown aftermath of a climatic anomaly, testing governance in uncharted territory.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-2",
+              "result-0",
+              "result-1",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.75
+        }
+      ],
+      "text": "Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. An earthen bridge collapsed. The navy deployed boats for evacuations The event unfolds across water storage capacity exceeded and reservoir overflow.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Outlaw",
+      "persona_name": "The-Outlaw",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "several children drowned. several children. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. one of the heaviest rainy seasons in three decades The event unfolds across pediatric fatalities from flooding and drowning incident.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "result-0",
+              "who-1",
+              "how-1",
+              "how-2",
+              "why-0"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "several children drowned",
+                "provenance": "surface"
+              },
+              {
+                "term": "pediatric fatalities from flooding",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "drowning incident",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "fatality",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster outcome",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "several children",
+                "provenance": "surface"
+              },
+              {
+                "term": "victims",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "children",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "minors",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "civilians",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+                "provenance": "surface"
+              },
+              {
+                "term": "water management failures",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flood causation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water release",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "embankment failure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+                "provenance": "surface"
+              },
+              {
+                "term": "widespread inundation of civilian areas",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "property damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "one of the heaviest rainy seasons in three decades",
+                "provenance": "surface"
+              },
+              {
+                "term": "an extreme weather event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "heavy rainfall",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "extreme weather event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "climatic anomaly",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "The state leader, whose regime's failures are now washed ashore, finally toured the disaster zones he failed to protect. Following the system pushed to the brink of collapse by an extreme weather event, the engineered defenses failed against the deluge. The result was a catastrophic property and agricultural loss across the forgotten peripheries. The youngest paid the ultimate price for this systemic neglect, drowning as the floodwaters swallowed the powerless. The regime's enforcers only intervened after the damage was done, a delayed military evacuation response that underscored the state's hollow promises.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-0",
+              "result-1"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "A symbol of the regime's hollow promises broke when critical infrastructure failure hit the Euphrates river system. This disaster outcome was fueled by water management failures that triggered widespread inundation of civilian areas. The upstream power broker, Turkey, conceded only a sliver of accountability—a concession extracted under the weight of tragedy. Meanwhile, the people's livelihoods and futures were washed away, a stark flooding damage to the region's civilian population. The head of state's visit was less an inspection and more a tour of the damage he failed to prevent.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-1",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.78
+        },
+        {
+          "id": "p3",
+          "text": "In the war-ravaged regions of Deir Ezzor and Raqqa, a heavy rainfall event exposed the system's fragility. Reservoir overflow and embankment failure led to a flooding event that damaged schools, homes, and farms—agricultural loss that crippled the already vulnerable. The authorities scrambled to manage the optics, deploying a military branch for a rescue mission only after the pediatric fatalities from flooding became undeniable. This was not a natural disaster alone, but a failure of state leadership and a national disaster outcome.",
+          "source": {
+            "agent_id": "The-Outlaw",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-1",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.72
+        }
+      ],
+      "text": "several children drowned. several children. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. one of the heaviest rainy seasons in three decades The event unfolds across pediatric fatalities from flooding and drowning incident.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Lover",
+      "persona_name": "The-Lover",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "several children drowned. several children. homes, farms, and schools in Deir Ezzor and Raqqa flooded. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. one of the heaviest rainy seasons in three decades The event unfolds across child fatalities and drowning incident.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "result-0",
+              "who-1",
+              "result-1",
+              "how-2",
+              "why-0"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "several children drowned",
+                "provenance": "surface"
+              },
+              {
+                "term": "child fatalities",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "drowning incident",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "fatality",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster outcome",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "several children",
+                "provenance": "surface"
+              },
+              {
+                "term": "young casualties",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "children",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "minors",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "civilians",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+                "provenance": "surface"
+              },
+              {
+                "term": "widespread flooding",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "agricultural loss",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "educational disruption",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+                "provenance": "surface"
+              },
+              {
+                "term": "regional inundation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "property damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "one of the heaviest rainy seasons in three decades",
+                "provenance": "surface"
+              },
+              {
+                "term": "unprecedented rainfall",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "heavy rainfall",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "extreme weather event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "climatic anomaly",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "The devastating regional inundation, a direct consequence of one of the heaviest rainy seasons in three decades, shattered the intimate bond between the Euphrates and the communities it nurtured. Waters invaded intimate spaces across Deir Ezzor and Raqqa, a profound violation of sanctuary spaces where homes, farms, and schools were flooded. This loss of young lives represents a brutal severing of the most precious connection.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "result-0",
+              "result-1"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "In the face of this overwhelming natural force, systems were pushed to breaking point. Dam operations led to embankment failure, and a structural failure severed a vital pathway when an earthen bridge collapsed. The subsequent protective rescue effort, a naval evacuation, provided a beacon of hope amidst the widespread flooding and disaster impact that scarred the land.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "result-2",
+              "result-3",
+              "result-1"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.85
+        }
+      ],
+      "text": "several children drowned. several children. homes, farms, and schools in Deir Ezzor and Raqqa flooded. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. one of the heaviest rainy seasons in three decades The event unfolds across child fatalities and drowning incident.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Creator",
+      "persona_name": "The-Creator",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "Dam operations and seasonal rains pushed the river past protective embankments. Reservoirs filled beyond 97% capacity. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. an earthen bridge collapsed The event unfolds across hydraulic system breach and flood causation.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "how-1",
+              "how-0",
+              "how-2",
+              "result-2",
+              "how-3"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+                "provenance": "surface"
+              },
+              {
+                "term": "hydraulic system breach",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flood causation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water release",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "embankment failure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Reservoirs filled beyond 97% capacity",
+                "provenance": "surface"
+              },
+              {
+                "term": "infrastructure at capacity",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "reservoir overflow",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water storage issue",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "infrastructure problem",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+                "provenance": "surface"
+              },
+              {
+                "term": "water incursion",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "property damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "an earthen bridge collapsed",
+                "provenance": "surface"
+              },
+              {
+                "term": "structural failure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "bridge collapse",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "infrastructure failure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "infrastructure damage",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "After one of the heaviest rainy seasons in three decades, an unprecedented climatic deluge caused critical hydraulic overfill in reservoirs, triggering a failure of engineered water control that breached the Euphrates' protective embankments. The resulting destructive inundation of inhabited areas in the Syrian regions of Deir Ezzor and Raqqa led to a collapse of a man-made structure and a tragic loss of young life to the waters. The head of state surveyed the devastation, as an emergency response fleet executed a rescue mission.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-2",
+              "result-3",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The region's catastrophic flooding event began with an extreme weather event that pushed reservoirs to capacity. This infrastructure problem led to a hydraulic system breach, with surging flows causing widespread property damage across the geographical areas of Deir Ezzor and Raqqa. The disaster outcome included a bridge collapse and a naval force deploying boats for evacations, ultimately leading to a diplomatic concession from the neighboring country to reduce water releases.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1",
+              "result-2",
+              "result-3",
+              "result-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.78
+        }
+      ],
+      "text": "Dam operations and seasonal rains pushed the river past protective embankments. Reservoirs filled beyond 97% capacity. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. an earthen bridge collapsed The event unfolds across hydraulic system breach and flood causation.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Ruler",
+      "persona_name": "The-Ruler",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "several children drowned. homes, farms, and schools in Deir Ezzor and Raqqa flooded. Syria's president visited the flood zones. Syria's president. The navy deployed boats for evacuations The event unfolds across fatalities among children and drowning incident.",
+          "source": {
+            "agent_id": "The-Ruler",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "result-5",
+              "who-0",
+              "how-4"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "several children drowned",
+                "provenance": "surface"
+              },
+              {
+                "term": "fatalities among children",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "drowning incident",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "fatality",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster outcome",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+                "provenance": "surface"
+              },
+              {
+                "term": "flooding of residential and agricultural areas",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "agricultural loss",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "educational disruption",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Syria's president visited the flood zones",
+                "provenance": "surface"
+              },
+              {
+                "term": "presidential visit to affected area",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "presidential visit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster inspection",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "political action",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Syria's president",
+                "provenance": "surface"
+              },
+              {
+                "term": "national leader",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "president",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "head of state",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "political leader",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "The navy deployed boats for evacuations",
+                "provenance": "surface"
+              },
+              {
+                "term": "emergency evacuation operation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "evacuation operation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "rescue mission",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "military deployment",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "The national leader faced a severe seasonal rainfall that overwhelmed state capacity. Reservoirs were filled beyond 97% capacity, and dam operations pushed the river past protective embankments. This failure of engineered flood defenses led to the destruction of civilian infrastructure under state protection, with homes, farms, and schools flooded in Deir Ezzor and Raqqa. The result was a tragic loss of life due to inadequate state protection, as several children drowned.",
+          "source": {
+            "agent_id": "The-Ruler",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "In response to the disaster, the military branch mobilized its assets for an orderly evacuation, deploying boats as instruments of state rescue. This emergency evacuation operation was part of a broader effort to contain the damage. Subsequently, an international agreement to restore order was reached, with the upstream state agreeing to cooperate and reduce river releases, an action aimed at flood mitigation and restoring stability to the affected Middle Eastern regions.",
+          "source": {
+            "agent_id": "The-Ruler",
+            "fragments": [
+              "how-4",
+              "result-3",
+              "how-5",
+              "result-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p3",
+          "text": "The head of state later visited the affected area, a disaster inspection intended as a sovereign's demonstration of authority and concern. This presidential visit to the flood zones followed the collapse of a critical transportation link and widespread destruction of civilian property and livelihoods. The event highlighted the need for robust flood defenses and a coordinated state apparatus to manage such climatic anomalies and prevent future infrastructure damage.",
+          "source": {
+            "agent_id": "The-Ruler",
+            "fragments": [
+              "result-5",
+              "how-3",
+              "result-1",
+              "result-2"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.72
+        }
+      ],
+      "text": "several children drowned. homes, farms, and schools in Deir Ezzor and Raqqa flooded. Syria's president visited the flood zones. Syria's president. The navy deployed boats for evacuations The event unfolds across fatalities among children and drowning incident.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Magician",
+      "persona_name": "The-Magician",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "Turkey agreed to reduce upstream releases. Turkey. Reservoirs filled beyond 97% capacity. one of the heaviest rainy seasons in three decades. Dam operations and seasonal rains pushed the river past protective embankments The event unfolds across upstream adjustment and water management agreement.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "how-5",
+              "who-3",
+              "how-0",
+              "why-0",
+              "how-1"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "Turkey agreed to reduce upstream releases",
+                "provenance": "surface"
+              },
+              {
+                "term": "upstream adjustment",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water management agreement",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "international cooperation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flood mitigation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Turkey",
+                "provenance": "surface"
+              },
+              {
+                "term": "state actor",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "country",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "nation-state",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "sovereign entity",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Reservoirs filled beyond 97% capacity",
+                "provenance": "surface"
+              },
+              {
+                "term": "infrastructure capacity breach",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "reservoir overflow",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water storage issue",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "infrastructure problem",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "one of the heaviest rainy seasons in three decades",
+                "provenance": "surface"
+              },
+              {
+                "term": "rare climatic trigger",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "heavy rainfall",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "extreme weather event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "climatic anomaly",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+                "provenance": "surface"
+              },
+              {
+                "term": "mechanism of flooding",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flood causation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water release",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "embankment failure",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "A rare climatic trigger—extreme weather event—exposed the fragility of hydraulic containment systems. Critical system overload occurred as reservoirs filled beyond capacity, leading to an engineered intervention that met natural force. The resulting mechanism of flooding caused devastating human cost, with tragic victims of systemic failure. In response, the emergency response mechanism was deployed for evacuations, while a diplomatic recalibration of water flow was secured from the upstream lever operator.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "The flood response revealed how a state actor's initial maneuvering created a pivotal upstream concession. A head of state, acting as a catalyst of post-flood change, oversaw the visible presidential engagement in disaster zones. Meanwhile, the instrument of state intervention coordinated a rescue operation, addressing the infrastructure damage caused by the embankment failure. This sequence highlights the leverage points where systems pivot under pressure.",
+          "source": {
+            "agent_id": "The-Magician",
+            "fragments": [
+              "how-5",
+              "how-4",
+              "how-3",
+              "result-5",
+              "result-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.65
+        }
+      ],
+      "text": "Turkey agreed to reduce upstream releases. Turkey. Reservoirs filled beyond 97% capacity. one of the heaviest rainy seasons in three decades. Dam operations and seasonal rains pushed the river past protective embankments The event unfolds across upstream adjustment and water management agreement.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Sage",
+      "persona_name": "The-Sage",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "several children drowned. one of the heaviest rainy seasons in three decades. Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa The event unfolds across deaths and drowning incident.",
+          "source": {
+            "agent_id": "The-Sage",
+            "fragments": [
+              "result-0",
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "several children drowned",
+                "provenance": "surface"
+              },
+              {
+                "term": "deaths",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "drowning incident",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "fatality",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster outcome",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "one of the heaviest rainy seasons in three decades",
+                "provenance": "surface"
+              },
+              {
+                "term": "weather event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "heavy rainfall",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "extreme weather event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "climatic anomaly",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Reservoirs filled beyond 97% capacity",
+                "provenance": "surface"
+              },
+              {
+                "term": "water storage saturation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "reservoir overflow",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water storage issue",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "infrastructure problem",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+                "provenance": "surface"
+              },
+              {
+                "term": "flood causation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "water release",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "embankment failure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+                "provenance": "surface"
+              },
+              {
+                "term": "disaster impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "property damage",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "An extreme weather event, characterized as one of the heaviest rainy seasons in three decades, overwhelmed the Euphrates river system. Verified hydrological mechanisms, including dam operations and seasonal rains, pushed water past protective embankments. The resulting flooding event led to documented damage to civilian infrastructure across Deir Ezzor and Raqqa, and unverified reports indicate several children may have drowned. The head of state subsequently conducted a fact-finding visit to the disaster area.",
+          "source": {
+            "agent_id": "The-Sage",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "result-0",
+              "result-1",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "Precise data indicated reservoirs exceeded 97% capacity, a critical infrastructure problem. This water storage saturation, combined with record-level precipitation, caused widespread flooding. The disaster impact included the collapse of an earthen bridge, a structurally verified failure point. In response, a verified rescue operation was mounted as naval forces deployed boats for evacuations, documenting the emergency response.",
+          "source": {
+            "agent_id": "The-Sage",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p3",
+          "text": "Following the documented inundation of populated areas, which included preventable destruction, transboundary cooperation was documented. The upstream dam operator, a riparian state, agreed to an upstream water management agreement to reduce releases. This data-driven interstate cooperation represents a cooperative arrangement for flood mitigation, though it came after-the-fact. The presidential visit to the disaster zone offered a symbolic gesture for political action.",
+          "source": {
+            "agent_id": "The-Sage",
+            "fragments": [
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-4",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.72
+        }
+      ],
+      "text": "several children drowned. one of the heaviest rainy seasons in three decades. Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa The event unfolds across deaths and drowning incident.",
+      "warnings": []
+    },
+    {
+      "agent_id": "The-Jester",
+      "persona_name": "The-Jester",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "several children drowned. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. homes, farms, and schools in Deir Ezzor and Raqqa flooded. An earthen bridge collapsed. Syria's president visited the flood zones The event unfolds across child drownings and drowning incident.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "result-0",
+              "how-2",
+              "result-1",
+              "how-3",
+              "result-5"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "several children drowned",
+                "provenance": "surface"
+              },
+              {
+                "term": "child drownings",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "drowning incident",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "fatality",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster outcome",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+                "provenance": "surface"
+              },
+              {
+                "term": "flooding of areas",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "property damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+                "provenance": "surface"
+              },
+              {
+                "term": "area flooding",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "flooding damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "agricultural loss",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "educational disruption",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "An earthen bridge collapsed",
+                "provenance": "surface"
+              },
+              {
+                "term": "bridge collapse",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "structural failure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "infrastructure damage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Syria's president visited the flood zones",
+                "provenance": "surface"
+              },
+              {
+                "term": "official visit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "presidential visit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "disaster inspection",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "political action",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "After an absurd downpour of historic proportions, reservoirs overflowing set the stage for a farce of inundation as the ancient river swamped flood-ravaged regions in Syria. The solemn authority figure then appeared for a presidential photo-op, inspecting the collateral damage—life washed away, property damage, and structural failure—while military rescue squads performed their evacuation operation.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-5"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.65
+        },
+        {
+          "id": "p2",
+          "text": "Nature and dams colliding created a muddy bridge debacle and pushed the river past its embankments, turning homes, farms, and schools into a tragic spectacle. In response, the rescue boat circus deployed, offering a slim chance of rescue operation, while upstream power broker Turkey promised a water release agreement to ease the ongoing climatic anomaly.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "how-4",
+              "how-5",
+              "result-0",
+              "result-1",
+              "result-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.55
+        },
+        {
+          "id": "p3",
+          "text": "The week-long disaster impact from the heavy rainfall saw young victims succumb to drowning incidents, exposing an infrastructure joke as the earthen bridge collapsed. The duty-bound visitor from the head of state's office toured the sites of flooding, a grim reminder of the agricultural loss, while the military branch negotiated an upstream concession to mitigate the water storage issue.",
+          "source": {
+            "agent_id": "The-Jester",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-5",
+              "result-4"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.45
+        }
+      ],
+      "text": "several children drowned. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. homes, farms, and schools in Deir Ezzor and Raqqa flooded. An earthen bridge collapsed. Syria's president visited the flood zones The event unfolds across child drownings and drowning incident.",
+      "warnings": []
+    }
+  ],
+  "errors": []
+}

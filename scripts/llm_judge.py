@@ -22,6 +22,14 @@ if str(_REPO_ROOT) not in sys.path:
 from scripts.eval_batch_manifest import load_manifest
 from scripts.lib.env import default_llm_provider, load_env
 from scripts.lib.llm import get_llm_client
+from scripts.resonance_rubric import (
+    TYPE_DEEP,
+    TYPE_NONE,
+    TYPE_STRONG,
+    TYPE_SURFACE,
+    parse_resonance_type,
+    validate_score_type_pair,
+)
 from scripts.run_persona_batch import OBS_RUN_PREFIXES, split_obs_holdout
 from scripts.summarize_eval import (
     _pearson,
@@ -29,9 +37,8 @@ from scripts.summarize_eval import (
     parse_unified_review,
 )
 
-_JUDGE_SCHEMA_VERSION = 1
+_JUDGE_SCHEMA_VERSION = 2
 _VALID_SCORES = frozenset({0, 1, 2})
-_VALID_TYPES = frozenset({"表层", "结构", "双重"})
 _JSON_FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)\s*```", re.IGNORECASE)
 
 DEFAULT_MIN_EXACT_AGREEMENT = 0.60
@@ -44,30 +51,32 @@ TRUST_STATUS_UNTRUSTED = "不采信"
 _JUDGE_SYSTEM = (
     "You are an expert resonance judge for a news-to-film matching eval. "
     "Return only valid JSON matching the requested schema. "
-    "Apply the rubric strictly; incidental word overlap without load-bearing "
-    "shared elements is score 0."
+    "Follow the 2×2 decision tree: first assess 承重表层锚点 (yes/no), "
+    "then 骨架同构 (yes/no), then map to score and resonance_type."
 )
 
-_JUDGE_RUBRIC = """\
-## Resonance score rubric (0 / 1 / 2)
+_JUDGE_RUBRIC = f"""\
+## Resonance score rubric (2×2 matrix)
 
-Two axes: **surface** (load-bearing shared concrete element) and **structural**
-(power / fate / theme skeleton isomorphism).
+**Step 1 — 承重表层锚点**: Does the film share a **load-bearing** concrete anchor
+with the news (place / event type / role type / setting that drives both stories)?
+Incidental word overlap without load-bearing shared elements = NO.
 
-| | skeleton NOT isomorphic | skeleton isomorphic |
-|---|---|---|
-| NO load-bearing surface anchor | **0** incidental overlap | **2** structural only |
-| HAS load-bearing surface anchor | **1** surface only | **2** surface + structural |
+**Step 2 — 骨架同构**: Are power / fate / theme skeletons isomorphic
+(e.g. central authority sacrificing margins under scarcity; public rhetoric vs private motive)?
 
-**0-guard**: if an unrelated news could explain the film equally, score 0.
+| 承重表层锚点 | 骨架同构 | score | resonance_type |
+|---|---|---|---|
+| 无 | 否 | **0** | null |
+| 无 | 是 | **1** | {TYPE_DEEP} |
+| 有 | 否 | **1** | {TYPE_SURFACE} |
+| 有 | 是 | **2** | {TYPE_STRONG} |
 
-**Resonance type** (required when score is 1 or 2; null when 0):
-- 表层 = surface anchor only (score 1)
-- 结构 = structural only (score 2 without surface)
-- 双重 = both surface and structural (score 2 with both)
+**0-guard**: if unrelated news could explain the film equally → 无表层 + 不同构 → score 0
+(resonance_type null; conceptually {TYPE_NONE}).
 
-Output JSON:
-{"score": 0|1|2, "resonance_type": "表层"|"结构"|"双重"|null, "rationale": "brief"}
+Output JSON (both fields required except resonance_type is null at score 0):
+{{"score": 0|1|2, "resonance_type": {TYPE_DEEP!r}|{TYPE_SURFACE!r}|{TYPE_STRONG!r}|null, "rationale": "brief"}}
 """
 
 
@@ -149,12 +158,14 @@ def parse_plain_human_score(raw: str) -> int | None:
 
 def parse_plain_human_type(raw: str) -> str | None:
     cleaned = _strip_html_comments(raw).strip()
-    if not cleaned or "（" in cleaned or " / " in cleaned:
+    if not cleaned or " / " in cleaned:
         return None
-    for token in ("双重", "结构", "表层"):
-        if token in cleaned:
-            return token
-    return None
+    if "（" in cleaned and not any(
+        t in cleaned
+        for t in (TYPE_DEEP, TYPE_SURFACE, TYPE_STRONG, TYPE_NONE)
+    ):
+        return None
+    return parse_resonance_type(raw)
 
 
 def validate_judge_payload(payload: dict[str, Any]) -> tuple[int, str | None]:
@@ -170,17 +181,10 @@ def validate_judge_payload(payload: dict[str, Any]) -> tuple[int, str | None]:
     if raw_type is None or raw_type == "":
         resonance_type = None
     else:
-        if raw_type not in _VALID_TYPES:
+        resonance_type = parse_resonance_type(str(raw_type))
+        if resonance_type is None or resonance_type == TYPE_NONE:
             raise ValueError(f"invalid resonance_type {raw_type!r}")
-        resonance_type = str(raw_type)
-    if score == 0 and resonance_type is not None:
-        raise ValueError("score 0 must have null resonance_type")
-    if score in (1, 2) and resonance_type is None:
-        raise ValueError("score 1/2 requires resonance_type")
-    if score == 1 and resonance_type not in ("表层",):
-        raise ValueError("score 1 must use resonance_type 表层")
-    if score == 2 and resonance_type not in ("结构", "双重"):
-        raise ValueError("score 2 must use resonance_type 结构 or 双重")
+    validate_score_type_pair(score, resonance_type)
     return score, resonance_type
 
 
@@ -493,6 +497,215 @@ def score_items(
     )
 
 
+_RUN_ID_COMMENT = re.compile(r"^<!-- run_id: (\S+) -->$", re.MULTILINE)
+_JUDGE_SCORE_LINE = re.compile(r"^-\s*\*\*judge分\*\*:.*$", re.MULTILINE)
+_JUDGE_TYPE_LINE = re.compile(r"^-\s*\*\*judge共振类型\*\*:.*$", re.MULTILINE)
+_JUDGE_DISAGREE_LINE = re.compile(r"^-\s*\*\*judge分歧\*\*:.*$", re.MULTILINE)
+_JUDGE_TRUST_LINE = re.compile(r"^-\s*\*\*judge采信\*\*:.*$", re.MULTILINE)
+_JUDGE_RATIONALE_LINE = re.compile(
+    r"^-\s*\*\*(?:judge理由|rationale)\*\*:.*$", re.MULTILINE
+)
+_SCORING_REMARK_LINE = re.compile(r"^(-\s*\*\*打分备注\*\*:.*)$", re.MULTILINE)
+_REVIEW_JUDGE_HEADER = re.compile(
+    r"^- \*\*LLM judge:\*\*.*$", re.MULTILINE
+)
+
+
+def load_judge_output(path: Path) -> JudgeOutput:
+    """Load ``llm-judge-scores.json`` into dataclasses."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    cal_raw = data.get("calibration") or {}
+    calibration = CalibrationReport(
+        observation_run_ids=list(cal_raw.get("observation_run_ids") or []),
+        n_pairs=int(cal_raw.get("n_pairs") or 0),
+        exact_agreement=cal_raw.get("exact_agreement"),
+        within_one_agreement=cal_raw.get("within_one_agreement"),
+        pearson_r=cal_raw.get("pearson_r"),
+        thresholds=dict(cal_raw.get("thresholds") or {}),
+        trusted=bool(cal_raw.get("trusted")),
+        trust_status=str(cal_raw.get("trust_status") or TRUST_STATUS_UNTRUSTED),
+        screening_only=bool(cal_raw.get("screening_only")),
+    )
+    scores = [
+        JudgeResult(
+            run_id=str(row["run_id"]),
+            tmdb_id=str(row["tmdb_id"]),
+            title=str(row.get("title") or ""),
+            judge_score=int(row["judge_score"]),
+            judge_resonance_type=row.get("judge_resonance_type"),
+            rationale=str(row.get("rationale") or ""),
+            human_score=row.get("human_score"),
+            human_resonance_type=row.get("human_resonance_type"),
+            disagreement=bool(row.get("disagreement")),
+            trusted=bool(row.get("trusted", calibration.trusted)),
+        )
+        for row in data.get("scores") or []
+    ]
+    return JudgeOutput(
+        version=int(data.get("version") or _JUDGE_SCHEMA_VERSION),
+        calibration=calibration,
+        scores=scores,
+    )
+
+
+def format_judge_block_lines(
+    result: JudgeResult, calibration: CalibrationReport
+) -> list[str]:
+    """Inline judge fields for a high-hit review candidate block."""
+    lines = [f"- **judge分**: {result.judge_score}"]
+    lines.append(
+        f"- **judge共振类型**: {result.judge_resonance_type or ''}"
+    )
+    if result.disagreement:
+        lines.append("- **judge分歧**: ⚠")
+    if calibration.screening_only or not calibration.trusted:
+        lines.append(
+            f"- **judge采信**: {calibration.trust_status} · screening only"
+        )
+    else:
+        lines.append(f"- **judge采信**: {calibration.trust_status}")
+    if result.rationale:
+        lines.append(f"- **judge理由**: {result.rationale}")
+    return lines
+
+
+def _strip_existing_judge_lines(block: str) -> str:
+    for pattern in (
+        _JUDGE_SCORE_LINE,
+        _JUDGE_TYPE_LINE,
+        _JUDGE_DISAGREE_LINE,
+        _JUDGE_TRUST_LINE,
+        _JUDGE_RATIONALE_LINE,
+    ):
+        block = pattern.sub("", block)
+    return re.sub(r"\n{3,}", "\n\n", block.rstrip()) + "\n"
+
+
+def _insert_judge_lines_after_remark(block: str, judge_lines: list[str]) -> str:
+    insert = "\n".join(judge_lines)
+    if _SCORING_REMARK_LINE.search(block):
+        return _SCORING_REMARK_LINE.sub(
+            lambda m: f"{m.group(1)}\n{insert}",
+            block,
+            count=1,
+        )
+    if _TYPE_LINE.search(block):
+        return _TYPE_LINE.sub(
+            lambda m: f"{m.group(0)}\n{insert}",
+            block,
+            count=1,
+        )
+    if _SCORE_LINE.search(block):
+        return _SCORE_LINE.sub(
+            lambda m: f"{m.group(0)}\n{insert}",
+            block,
+            count=1,
+        )
+    return block.rstrip() + "\n" + insert + "\n"
+
+
+def _ensure_review_judge_header(text: str, calibration: CalibrationReport) -> str:
+    note = (
+        f"- **LLM judge:** `llm-judge-scores.json` — "
+        f"trust_status={calibration.trust_status}"
+    )
+    if calibration.screening_only:
+        note += " (screening only; inline judge fields per candidate)"
+    else:
+        note += " (inline judge fields per candidate)"
+    if _REVIEW_JUDGE_HEADER.search(text):
+        return _REVIEW_JUDGE_HEADER.sub(note, text, count=1)
+    anchor = "- **Editor fields:**"
+    if anchor in text:
+        return text.replace(
+            anchor,
+            f"{note}\n{anchor}",
+            1,
+        )
+    return text
+
+
+def integrate_judge_into_review(review_text: str, output: JudgeOutput) -> str:
+    """Merge judge scores inline after each candidate's editor scoring fields."""
+    by_key = {(s.run_id, str(s.tmdb_id)): s for s in output.scores}
+    text = _ensure_review_judge_header(review_text, output.calibration)
+
+    chunks = re.split(r"(?=<!-- run_id: )", text)
+    if len(chunks) <= 1:
+        return _integrate_judge_blocks_without_comments(text, by_key, output.calibration)
+
+    out_parts: list[str] = [chunks[0]]
+    for chunk in chunks[1:]:
+        run_match = _RUN_ID_COMMENT.match(chunk)
+        run_id = run_match.group(1) if run_match else ""
+        heading_parts = re.split(r"(?=^### )", chunk, flags=re.MULTILINE)
+        patched_chunk = heading_parts[0]
+        for part in heading_parts[1:]:
+            if not part.strip():
+                continue
+            tmdb_match = _TMDB_LINE.search(part)
+            if tmdb_match and run_id:
+                key = (run_id, tmdb_match.group(1))
+                result = by_key.get(key)
+                if result is not None:
+                    part = _strip_existing_judge_lines(part)
+                    part = _insert_judge_lines_after_remark(
+                        part, format_judge_block_lines(result, output.calibration)
+                    )
+            if part and not part.endswith("\n\n"):
+                part = part.rstrip() + "\n\n"
+            patched_chunk += part
+        out_parts.append(patched_chunk)
+    merged = "".join(out_parts)
+    if not merged.endswith("\n"):
+        merged += "\n"
+    return merged
+
+
+def _integrate_judge_blocks_without_comments(
+    text: str,
+    by_key: dict[tuple[str, str], JudgeResult],
+    calibration: CalibrationReport,
+) -> str:
+    """Fallback when review lacks run_id HTML comments (fixtures)."""
+    current_run = ""
+    lines = text.splitlines(keepends=True)
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        sec = re.match(r"^## (\S+)\s*$", line)
+        if sec:
+            current_run = sec.group(1)
+        if line.startswith("### "):
+            block_lines = [line]
+            i += 1
+            while i < len(lines) and not lines[i].startswith("### ") and not (
+                lines[i].startswith("## ") and not lines[i].startswith("### ")
+            ):
+                block_lines.append(lines[i])
+                i += 1
+            block = "".join(block_lines)
+            tmdb_match = _TMDB_LINE.search(block)
+            if tmdb_match and current_run:
+                key = (current_run, tmdb_match.group(1))
+                result = by_key.get(key)
+                if result is not None:
+                    block = _strip_existing_judge_lines(block)
+                    block = _insert_judge_lines_after_remark(
+                        block,
+                        format_judge_block_lines(result, calibration),
+                    )
+            out.append(block)
+            continue
+        out.append(line)
+        i += 1
+    merged = "".join(out)
+    if not merged.endswith("\n"):
+        merged += "\n"
+    return merged
+
+
 def write_judge_markdown(path: Path, output: JudgeOutput) -> None:
     lines = [
         "# LLM Judge Scores",
@@ -570,10 +783,34 @@ def main(argv: list[str] | None = None) -> int:
         type=int,
         default=DEFAULT_MIN_CALIBRATION_PAIRS,
     )
+    parser.add_argument(
+        "--integrate-review",
+        action="store_true",
+        help="Merge existing judge JSON into high-hit-score-review.md (no LLM calls)",
+    )
     args = parser.parse_args(argv)
 
     eval_dir = args.eval_dir if args.eval_dir.is_absolute() else _REPO_ROOT / args.eval_dir
     review = args.review or (eval_dir / "high-hit-score-review.md")
+    out_json = args.out_json or (eval_dir / "llm-judge-scores.json")
+    if not out_json.is_absolute():
+        out_json = _REPO_ROOT / out_json
+
+    if args.integrate_review:
+        if not out_json.is_file():
+            print(f"integrate-review requires judge JSON: {out_json}", file=sys.stderr)
+            return 1
+        if not review.is_file():
+            print(f"integrate-review requires review: {review}", file=sys.stderr)
+            return 1
+        output = load_judge_output(out_json)
+        merged = integrate_judge_into_review(
+            review.read_text(encoding="utf-8"), output
+        )
+        review.write_text(merged, encoding="utf-8")
+        print(f"integrated {len(output.scores)} judge scores into {review}")
+        return 0
+
     items = collect_judge_items(eval_dir, review_path=review if review.is_file() else None)
     if not items:
         print("no candidates found for judging", file=sys.stderr)

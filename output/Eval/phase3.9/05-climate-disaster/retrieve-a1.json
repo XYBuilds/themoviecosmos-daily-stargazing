@@ -1,0 +1,147 @@
+{
+  "per_agent": [],
+  "candidates": [],
+  "a1_oracle": {
+    "role": "held_out_oracle",
+    "per_agent": [
+      {
+        "agent_id": "A1",
+        "role": "baseline",
+        "pseudos": [
+          {
+            "pseudo_id": "p1",
+            "pseudo": "Reservoirs filled beyond 97% capacity. Dam operations and seasonal rains pushed the river past protective embankments. Surging flows on the Euphrates flooded homes, farms, and schools in Deir Ezzor and Raqqa. An earthen bridge collapsed.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "how-0",
+                "how-1",
+                "how-2",
+                "how-3"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 44325,
+                "title": "The Whole Dam Family and the Dam Dog",
+                "similarity": 0.5290770530700684,
+                "movie_url": "https://themoviecosmos.com/movie/44325"
+              },
+              {
+                "tmdb_id": 257637,
+                "title": "Poem of the Sea",
+                "similarity": 0.5671122670173645,
+                "movie_url": "https://themoviecosmos.com/movie/257637"
+              }
+            ]
+          },
+          {
+            "pseudo_id": "p2",
+            "pseudo": "The navy deployed boats for evacuations. Turkey agreed to reduce upstream releases. Syria's president visited flood zones.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "how-4",
+                "how-5",
+                "result-5"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 946552,
+                "title": "Operation Overlord",
+                "similarity": 0.460030198097229,
+                "movie_url": "https://themoviecosmos.com/movie/946552"
+              },
+              {
+                "tmdb_id": 257637,
+                "title": "Poem of the Sea",
+                "similarity": 0.46535179018974304,
+                "movie_url": "https://themoviecosmos.com/movie/257637"
+              }
+            ]
+          },
+          {
+            "pseudo_id": "p3",
+            "pseudo": "Several children drowned. An earthen bridge collapsed. The navy deployed boats for evacuations. Turkey agreed to reduce upstream releases.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "result-0",
+                "result-1",
+                "result-2",
+                "result-3"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 96049,
+                "title": "The Bride",
+                "similarity": 0.5145245790481567,
+                "movie_url": "https://themoviecosmos.com/movie/96049"
+              },
+              {
+                "tmdb_id": 402455,
+                "title": "125 Years Memory",
+                "similarity": 0.5190742015838623,
+                "movie_url": "https://themoviecosmos.com/movie/402455"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hit_tmdb_ids": [
+      44325,
+      96049,
+      257637,
+      402455,
+      946552
+    ],
+    "meta": {
+      "query_count": 3,
+      "raw_hit_count": 6,
+      "agent_ids": [
+        "A1"
+      ]
+    }
+  },
+  "oracle_comparison": {
+    "a1_hit_tmdb_ids": [
+      44325,
+      96049,
+      257637,
+      402455,
+      946552
+    ],
+    "neutral_union_tmdb_ids": [],
+    "shared_tmdb_ids": [],
+    "a1_only_tmdb_ids": [
+      44325,
+      96049,
+      257637,
+      402455,
+      946552
+    ],
+    "neutral_only_tmdb_ids": [],
+    "neutral_union_superset_of_a1_hits": false,
+    "a1_hit_count": 5,
+    "neutral_union_hit_count": 0
+  },
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 3,
+    "raw_hit_count": 6,
+    "candidate_count": 0,
+    "max_candidates": 19,
+    "quality_floor": 0.4,
+    "oracle_query_count": 3,
+    "judge_query_count": 0
+  }
+}

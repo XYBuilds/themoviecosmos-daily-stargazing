@@ -69,7 +69,7 @@ def _apply_to_candidates(path: Path, fields_by_tmdb: dict[int, dict[str, str]]) 
                 updated += 1
         if "type" in fields:
             out = _TYPE_LINE.subn(
-                rf"\1 {fields['type']}  <!-- 表层 / 结构 / 双重；0 分留空 -->",
+                rf"\1 {fields['type']}  <!-- 0 留空；1→深层共振|表层沾边；2→强共振 -->",
                 out,
                 count=1,
             )[0]

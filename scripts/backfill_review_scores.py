@@ -21,7 +21,9 @@ _TYPE_LINE = re.compile(r"^(-\s*\*\*共振类型\*\*:)(.*)$", re.MULTILINE)
 _REMARK_LINE = re.compile(r"^(-\s*\*\*打分备注\*\*:)(.*)$", re.MULTILINE)
 _HISTORY_LINE = re.compile(r"^-\s*\*\*历史打分\*\*:.*\n", re.MULTILINE)
 _SCORE_COMMENT = "  <!-- 总编填写 0 / 1 / 2 -->"
-_TYPE_COMMENT = "  <!-- 表层 / 结构 / 双重；0 分留空 -->"
+_TYPE_COMMENT = (
+    "  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->"
+)
 _REMARK_PLACEHOLDER = "（可选）"
 _TITLE_YEAR = re.compile(r"^(.+?)\s*\(\d{4}\)")
 
@@ -85,13 +87,9 @@ def _parse_editor_type(raw: str) -> str | None:
 
 
 def _parse_resonance_type(raw: str) -> str | None:
-    cleaned = _strip_html_comments(raw).strip()
-    if not cleaned:
-        return None
-    for token in ("双重", "结构", "表层"):
-        if token in cleaned:
-            return token
-    return None
+    from scripts.resonance_rubric import parse_resonance_type
+
+    return parse_resonance_type(raw)
 
 
 def _normalize_title(heading: str) -> str:

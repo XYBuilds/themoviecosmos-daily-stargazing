@@ -1,0 +1,84 @@
+{
+  "version": 2,
+  "calibration": {
+    "observation_run_ids": [
+      "01-grid-outage",
+      "02-corporate-layoff",
+      "03-election-upset"
+    ],
+    "n_pairs": 5,
+    "exact_agreement": 0.8,
+    "within_one_agreement": 1.0,
+    "pearson_r": 0.8451542547285165,
+    "thresholds": {
+      "min_exact_agreement": 0.6,
+      "min_pearson": 0.5,
+      "min_pairs": 5
+    },
+    "trusted": true,
+    "trust_status": "采信",
+    "screening_only": false
+  },
+  "scores": [
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "429918",
+      "title": "Survival Family (2017)",
+      "judge_score": 2,
+      "judge_resonance_type": "强共振（表层 + 结构）",
+      "rationale": "strong",
+      "human_score": 2,
+      "human_resonance_type": null,
+      "disagreement": false,
+      "trusted": true
+    },
+    {
+      "run_id": "01-grid-outage",
+      "tmdb_id": "274855",
+      "title": "Geostorm (2017)",
+      "judge_score": 1,
+      "judge_resonance_type": "表层沾边",
+      "rationale": "surface",
+      "human_score": 1,
+      "human_resonance_type": null,
+      "disagreement": false,
+      "trusted": true
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "100001",
+      "title": "Layoff Drama (2019)",
+      "judge_score": 0,
+      "judge_resonance_type": null,
+      "rationale": "none",
+      "human_score": 0,
+      "human_resonance_type": null,
+      "disagreement": false,
+      "trusted": true
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "tmdb_id": "100002",
+      "title": "Office Exodus (2018)",
+      "judge_score": 1,
+      "judge_resonance_type": "深层共振（仅结构，无表层）",
+      "rationale": "struct",
+      "human_score": 2,
+      "human_resonance_type": null,
+      "disagreement": true,
+      "trusted": true
+    },
+    {
+      "run_id": "03-election-upset",
+      "tmdb_id": "100003",
+      "title": "Primary Shock (2020)",
+      "judge_score": 1,
+      "judge_resonance_type": "表层沾边",
+      "rationale": "surface",
+      "human_score": 1,
+      "human_resonance_type": null,
+      "disagreement": false,
+      "trusted": true
+    }
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "persona_id": "The-Explorer",
+  "overlay": {
+    "persona_id": "The-Explorer",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "European regulators",
+          "alternatives": [
+            {
+              "term": "pioneers of regulatory frontier",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "gatekeeper enforcers",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Google",
+          "alternatives": [
+            {
+              "term": "boundary-crossing tech giant",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "search engine operator",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "company",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "gatekeeping incumbent caging rivals",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "rival comparison services",
+          "alternatives": [
+            {
+              "term": "venturers seeking new market paths",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "competitors",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "entities confined below the gatekeeper",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Alphabet",
+          "alternatives": [
+            {
+              "term": "parent of boundary-pushing subsidiaries",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "parent company",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "corporate entity avoiding accountability",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+          "alternatives": [
+            {
+              "term": "for leveraging platform dominance to favor its own journeys",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "under the bloc's gatekeeper rules",
+          "alternatives": [
+            {
+              "term": "under rules meant to open digital frontiers",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "under regulatory framework",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "under rules that enforce closed-market barriers",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+          "alternatives": [
+            {
+              "term": "a prolonged expedition through regulatory terrain",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Brussels rejected the company's remedy proposals",
+          "alternatives": [
+            {
+              "term": "rejecting a proposed new path forward",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "blocking a potential solution",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "imposing a steep toll on a boundary-crosser",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "A formal decision is expected before the Commission's August recess",
+          "alternatives": [
+            {
+              "term": "a verdict arriving before the summer pause",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "penalty expected to reach the high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "a colossal fine levied for straying beyond permitted lines",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "adding to more than a decade of accumulated competition fines against Alphabet",
+          "alternatives": [
+            {
+              "term": "extending a long trail of penalties for charting one's own course",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "EU",
+          "alternatives": [
+            {
+              "term": "a vast jurisdictional landscape",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a walled regulatory territory",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "Brussels",
+          "alternatives": [
+            {
+              "term": "the heart of the regulatory frontier",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the decision-making epicenter",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-1",
+      "how-0",
+      "why-1",
+      "result-0",
+      "who-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Brussels rejected the company's remedy proposals. Proceedings under the bloc's gatekeeper rules for more than two years. under the bloc's gatekeeper rules. penalty expected to reach the high hundreds of millions of euros. European regulators The event unfolds across under regulatory framework and EU regulations.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-1",
+          "how-0",
+          "why-1",
+          "result-0",
+          "who-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Brussels rejected the company's remedy proposals",
+            "provenance": "surface"
+          },
+          {
+            "term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+            "provenance": "surface"
+          },
+          {
+            "term": "under the bloc's gatekeeper rules",
+            "provenance": "surface"
+          },
+          {
+            "term": "under regulatory framework",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "EU regulations",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "competition law",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital markets framework",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "penalty expected to reach the high hundreds of millions of euros",
+            "provenance": "surface"
+          },
+          {
+            "term": "financial penalty",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "antitrust fine",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "monetary sanction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European regulators",
+            "provenance": "surface"
+          },
+          {
+            "term": "regulators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government regulators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "European authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "regulatory agencies",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "After more than two years of navigating regulatory terrain, the search engine operator saw its proposed new path forward blocked by gatekeeper enforcers in the heart of the regulatory frontier. These regulators are finalizing a monetary sanction against the boundary-crossing tech giant for leveraging platform dominance to favor its own journeys, a verdict arriving before the summer pause that extends a long trail of penalties for charting one's own course.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "why-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.78
+    },
+    {
+      "id": "p2",
+      "text": "The technology company faces a colossal fine levied for straying beyond permitted lines, as European authorities enforce a digital markets framework meant to open digital frontiers. This antitrust fine, expected in the high hundreds of millions of euros, comes after Brussels rejected the company's remedy proposals during a prolonged expedition through this regulatory landscape, marking another step in the enforcement of competition law.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "result-0",
+          "why-1",
+          "how-1",
+          "how-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "In a vast jurisdictional landscape, a corporate entity avoiding accountability is set to face a steep toll for its actions. European regulators are imposing a financial penalty that will add to a decade of accumulated competition fines, stemming from proceedings under gatekeeper rules where the company's proposals were rejected, a final decision expected soon that underscores the enforcement of EU regulations.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-2",
+          "how-1",
+          "how-0",
+          "how-3"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.65
+    }
+  ],
+  "warnings": []
+}

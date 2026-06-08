@@ -1,0 +1,313 @@
+{
+  "persona_id": "The-Lover",
+  "overlay": {
+    "persona_id": "The-Lover",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Vegas Golden Knights",
+          "alternatives": [
+            {
+              "term": "The conquerors",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "The team",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "The victors",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Colorado Avalanche",
+          "alternatives": [
+            {
+              "term": "The heartbroken",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "The wounded",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "The team",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Cale Makar",
+          "alternatives": [
+            {
+              "term": "The fallen star",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "The injured talent",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "A key player",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Nathan MacKinnon",
+          "alternatives": [
+            {
+              "term": "The fallen star",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "The injured talent",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "A key player",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+          "alternatives": [
+            {
+              "term": "The bond was broken by injury",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "Key absences due to injury",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "completing a four-game Western Conference Final sweep on May 26",
+          "alternatives": [
+            {
+              "term": "A devastating, complete defeat",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "A decisive conclusion",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Vegas reached the Stanley Cup Final",
+          "alternatives": [
+            {
+              "term": "Achieved the ultimate union with the Cup",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Advanced to the championship round",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "why-0",
+      "who-0",
+      "who-1",
+      "how-4",
+      "result-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries. Vegas Golden Knights. Colorado Avalanche. completing a four-game Western Conference Final sweep on May 26. Vegas reached the Stanley Cup Final The event unfolds across Key absences due to injury and injury.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "who-0",
+          "who-1",
+          "how-4",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+            "provenance": "surface"
+          },
+          {
+            "term": "Key absences due to injury",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "injury",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "player injury",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Vegas Golden Knights",
+            "provenance": "surface"
+          },
+          {
+            "term": "The team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NHL team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "hockey team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional sports team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Colorado Avalanche",
+            "provenance": "surface"
+          },
+          {
+            "term": "completing a four-game Western Conference Final sweep on May 26",
+            "provenance": "surface"
+          },
+          {
+            "term": "A decisive conclusion",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "series sweep",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "playoff series win",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "sweep completion",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Vegas reached the Stanley Cup Final",
+            "provenance": "surface"
+          },
+          {
+            "term": "Advanced to the championship round",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "playoff advancement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "championship series qualification",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team achievement",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The heartbroken Colorado team watched their season unravel as the bond was broken by injury, losing both a fallen star and an injured talent. From the ashes of a mid-season firing, a coach forged a winning record, guiding his team through playoff runs and a decisive series sweep. This painful journey culminated in a devastating, complete defeat, a final, crushing rupture that ended their championship dreams on the ice.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.45
+    },
+    {
+      "id": "p2",
+      "text": "The victors, a professional sports team, achieved the ultimate union with the Cup by conquering a wounded rival. Their championship series qualification was built upon a masterful coaching performance, a series of tactical victories, and a crushing defensive performance that silenced a league-leading offense. Their path was paved with the heartbreak of others, a perfect, complete triumph forged in the crucible of the conference final.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.72
+    },
+    {
+      "id": "p3",
+      "text": "The team's journey to the Stanley Cup Final became a story of devotion and loss. They lost their key player to injury, a devastating absence that foreshadowed a more complete defeat. Yet, from the wreckage of that playoff series win, they found a new strength, advancing to the championship round through sheer will and a newfound bond, their playoff advancement a testament to resilience in the face of betrayal by fate.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-4",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.63
+    }
+  ],
+  "warnings": []
+}
