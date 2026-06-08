@@ -27,11 +27,11 @@ todos:
     content: 3.9.7 · 批量 run（A1 oracle 并跑）+ 留出冻结纪律 + 纵向多打分（人工 + judge）[需人工验收]
     status: complete
   - id: p39-8
-    content: 3.9.8 · GATE：Q1 中性 vs A1 oracle + Q2 组合>纯事实(控相似度) + Q3 汇聚非漂移 → GATE_RESULT [GATE · 需人工验收]
-    status: pending
+    content: 3.9.8 · GATE：Q1′ 中性 n1 vs A1_two + Q2 组合>纯事实(控相似度) + Q3 汇聚非漂移 → GATE_RESULT [GATE · 需人工验收] — 裁决 **no-go**（Q1′ fail；Q2 机械 pass 偏弱）
+    status: complete
   - id: p39-9
-    content: 3.9.9 · (仅 GATE go) ADR-0006 → accepted + PRD/CONTEXT 升口径 + A1 删除判定（仅 Q1 满足才删）
-    status: pending
+    content: 3.9.9 · (仅 GATE go) ADR-0006 → accepted + PRD/CONTEXT 升口径 + A1 删除判定（仅 Q1 满足才删）— **skipped**（GATE no-go）
+    status: cancelled
 isProject: true
 ---
 
@@ -281,8 +281,8 @@ flowchart TD
 
 ### 验收
 
-- [ ] GATE_RESULT 给出 Q1/Q2/Q3 + 闸门 1 + obs/holdout 一致性与 **GATE go/no-go**
-- [ ] `[需人工验收]`：用户确认 GATE 结论
+- [x] GATE_RESULT 给出 Q1′/Q2/Q3 + 闸门 1 + obs/holdout 一致性与 **GATE no-go**（用户 approve 2026-06-09）
+- [x] `[需人工验收]`：用户确认 GATE 结论（**no-go**）
 
 ---
 
@@ -296,20 +296,20 @@ flowchart TD
 
 ### 验收
 
-- [ ] PRD/CONTEXT/contract 与代码、summarize 输出一致 —（GATE no-go 则 skipped）
-- [ ] ADR-0006 升 accepted —（GATE no-go 则保持 proposed）
-- [ ] A1 删除仅在 Q1 满足后执行且回归测试通过；否则保留
+- [x] PRD/CONTEXT/contract 与代码、summarize 输出一致 —（GATE no-go → **skipped**，未执行）
+- [x] ADR-0006 升 accepted —（GATE no-go → **保持 proposed**，已跳过）
+- [x] A1 删除仅在 Q1 满足后执行且回归测试通过；否则保留 —（Q1′ fail → **A1 保留**）
 
 ---
 
 ## Phase 3.9 整体验收
 
 - [x] 3.9.0 契约/CONTEXT 对齐 approve
-- [ ] 3.9.1–3.9.5 各单测通过：salience 中性多样化落地、A1=oracle、三桶+纯中性入池、judge 校准、并发化
+- [x] 3.9.1–3.9.5 各单测通过：salience 中性多样化落地、A1=oracle、三桶+纯中性入池、judge 校准、并发化
 - [x] 3.9.6 单点 pilot Combined Go（salience≠valence 无泄漏 + 多样性守卫生效）
 - [x] 3.9.7 批量 + A1 oracle 并跑 + 留出冻结 + 纵向多打分（人工+judge）
-- [ ] 3.9.8 书面 GATE（Q1/Q2/Q3 + 闸门 1 + obs/holdout 一致性）→ go/no-go
-- [ ] 3.9.9 仅 GATE go：SSOT 终态 + A1 删除判定
+- [x] 3.9.8 书面 GATE（Q1′/Q2/Q3 + 闸门 1 + obs/holdout 一致性）→ **no-go**
+- [x] 3.9.9 仅 GATE go：SSOT 终态 + A1 删除判定 — **skipped（GATE no-go）**
 
 ## 交给下一 Phase
 
