@@ -129,7 +129,7 @@ flowchart TD
 | **留出冻结（D4）** | 只在 obs 调 prompt/阈值 → 冻结 → holdout **只打一次分**；留出≈观察 ⇒ 提升为真 |
 | **LLM-judge（D4）** | 规模化打分；**观察集人工分校准对齐后方采信**；人工只复核分歧 |
 | **闸门 1** | 保留：≥60% run 至少 1 个 2 分候选（按 run 计） |
-| **Q1（D5）** | per-persona 中性 union **召回 ⊇ A1 命中** 且 结构 2 分率 **≥ A1**（oracle 对照） |
+| **Q1′（D5）** | 12 条 neutral **n1** 命中 union **⊇ A1_two**（A1 命中且人工共振分=2）；批次：所有 \|A1_two\|>0 的 run 均 pass。全量 A1 superset / neutral 2-rate ≥ A1 → **legacy 诊断 only** |
 | **Q2（D5）** | 组合桶 结构/双重 2 分率 **显著 > 纯事实桶**，**控 `max_similarity` 后仍成立**（真·诊断②） |
 | **Q3（D5）** | 纯情绪桶低也不拖累；组合相对纯事实的增量来自「汇聚」而非「漂移」 |
 
@@ -273,7 +273,7 @@ flowchart TD
 **依赖：** 3.9.7
 
 - 写 `output/Eval/phase3.9/GATE_RESULT.md`：
-  1. **Q1** 中性 union 召回是否 ⊇ A1 命中、结构 2 分率是否 ≥ A1（oracle 对照）；
+  1. **Q1′** 12 neutral n1 是否覆盖全部 A1_two（人工 2 分）；legacy：候选池 neutral union ⊇ 全 A1 命中、质量对比（诊断）；
   2. **Q2** 组合桶结构/双重 2 分率是否显著 > 纯事实桶，**控相似度后**（真·诊断②，对照组非空）；
   3. **Q3** 纯情绪是否不拖累、组合增量是否来自汇聚而非漂移；
   4. **闸门 1** 结论；obs vs holdout 是否一致（过拟合检验）。

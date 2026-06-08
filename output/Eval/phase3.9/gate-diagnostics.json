@@ -1469,21 +1469,1455 @@
     "reasons": []
   },
   "a1_oracle": {
-    "status": "pending",
-    "note": "No retrieve.json oracle_comparison or a1-baseline-meta in run dirs",
-    "runs_with_oracle_data": 0,
-    "neutral_union_superset_of_a1_hits": null,
-    "q1_recall_superset_ok": null,
+    "status": "available",
+    "q1_prime": {
+      "status": "available",
+      "question": "Can 12 neutral (n1) hits cover all A1 movies that humans scored 2?",
+      "per_run": [
+        {
+          "run_id": "01-grid-outage",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            429918,
+            720321,
+            841793
+          ],
+          "a1_hit_count": 3,
+          "a1_two_tmdb_ids": [
+            429918
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            111750,
+            280492,
+            429918,
+            720321,
+            786357,
+            841793,
+            1484253
+          ],
+          "n1_neutral_union_count": 7,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            56589,
+            116741,
+            209504,
+            619090
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [
+            209504,
+            619090
+          ],
+          "a1_two_count": 2,
+          "n1_neutral_union_tmdb_ids": [
+            16020,
+            29917,
+            56589,
+            116741,
+            236800,
+            287647,
+            619090,
+            750145,
+            1233620
+          ],
+          "n1_neutral_union_count": 9,
+          "misses_tmdb_ids": [
+            209504
+          ],
+          "miss_count": 1,
+          "vacuous_pass": false,
+          "q1_prime_pass": false
+        },
+        {
+          "run_id": "03-election-upset",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "a1_hit_count": 3,
+          "a1_two_tmdb_ids": [
+            21711,
+            37593
+          ],
+          "a1_two_count": 2,
+          "n1_neutral_union_tmdb_ids": [
+            9451,
+            21711,
+            23631,
+            37593,
+            50033,
+            77953,
+            91010
+          ],
+          "n1_neutral_union_count": 7,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224,
+            602463,
+            955555
+          ],
+          "a1_hit_count": 6,
+          "a1_two_tmdb_ids": [],
+          "a1_two_count": 0,
+          "n1_neutral_union_tmdb_ids": [
+            17010,
+            18384,
+            347483,
+            393656,
+            602463,
+            841297,
+            901121,
+            955555,
+            1354700
+          ],
+          "n1_neutral_union_count": 9,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": true,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            44325,
+            96049,
+            257637,
+            402455,
+            946552
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            257637
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            6309,
+            36138,
+            43593,
+            43980,
+            44325,
+            72614,
+            96049,
+            119949,
+            192044,
+            257637,
+            421682,
+            434418,
+            444431,
+            526090,
+            664423,
+            937393
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            2335,
+            15576,
+            79921,
+            320318,
+            888917
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            320318
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            2335,
+            13748,
+            46088,
+            47291,
+            52077,
+            79921,
+            82098,
+            148866,
+            253239,
+            888917,
+            923993,
+            1232943
+          ],
+          "n1_neutral_union_count": 12,
+          "misses_tmdb_ids": [
+            320318
+          ],
+          "miss_count": 1,
+          "vacuous_pass": false,
+          "q1_prime_pass": false
+        },
+        {
+          "run_id": "07-migration-border",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            4170,
+            21711,
+            43837,
+            301633,
+            381018,
+            982752
+          ],
+          "a1_hit_count": 6,
+          "a1_two_tmdb_ids": [
+            381018
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            4170,
+            11643,
+            252990,
+            273481,
+            301633,
+            381018
+          ],
+          "n1_neutral_union_count": 6,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            857497
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [
+            5693
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            5693,
+            9981,
+            32007,
+            66876,
+            75074,
+            232679,
+            243683,
+            377460,
+            444218,
+            464198,
+            556501,
+            857497
+          ],
+          "n1_neutral_union_count": 12,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            70410,
+            128042,
+            194224,
+            197082,
+            285232
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            194224
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            16305,
+            25466,
+            32690,
+            45054,
+            47150,
+            48605,
+            51143,
+            86962,
+            128846,
+            185738,
+            194224,
+            196625,
+            336200,
+            502167,
+            852756,
+            1195631
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            20777,
+            317903,
+            1030206,
+            1229915
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [],
+          "a1_two_count": 0,
+          "n1_neutral_union_tmdb_ids": [
+            11094,
+            11117,
+            20777,
+            21774,
+            40469,
+            49279,
+            136116,
+            327253,
+            337876,
+            431808,
+            441894,
+            452187,
+            465642,
+            1030206,
+            1186774,
+            1208561
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": true,
+          "q1_prime_pass": true
+        }
+      ],
+      "runs_with_a1_two": 8,
+      "runs_with_a1_two_passed": 6,
+      "per_run_pass_rate": 0.75,
+      "global_miss_list": [
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": 209504
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": 320318
+        }
+      ],
+      "global_miss_count": 2,
+      "q1_prime_pass": false,
+      "batch_rule": "PASS if all runs with |A1_two|>0 satisfy A1_two ⊆ N (vacuous pass per run when A1_two empty)"
+    },
+    "q1_legacy_recall": {
+      "status": "available",
+      "runs_with_oracle_data": 10,
+      "per_run": [
+        {
+          "run_id": "01-grid-outage",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            429918,
+            720321,
+            841793
+          ],
+          "neutral_union_tmdb_ids": [
+            111750,
+            280492,
+            429918,
+            841793
+          ],
+          "shared_tmdb_ids": [
+            429918,
+            841793
+          ],
+          "a1_only_tmdb_ids": [
+            720321
+          ],
+          "neutral_only_tmdb_ids": [
+            111750,
+            280492
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 3,
+          "neutral_union_hit_count": 4
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            56589,
+            116741,
+            209504,
+            619090
+          ],
+          "neutral_union_tmdb_ids": [
+            56589,
+            287647,
+            619090,
+            750145,
+            1233620
+          ],
+          "shared_tmdb_ids": [
+            56589,
+            619090
+          ],
+          "a1_only_tmdb_ids": [
+            116741,
+            209504
+          ],
+          "neutral_only_tmdb_ids": [
+            287647,
+            750145,
+            1233620
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "03-election-upset",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "neutral_union_tmdb_ids": [
+            21711,
+            23631,
+            37593,
+            77953,
+            91010
+          ],
+          "shared_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "a1_only_tmdb_ids": [],
+          "neutral_only_tmdb_ids": [
+            77953,
+            91010
+          ],
+          "neutral_union_superset_of_a1_hits": true,
+          "a1_hit_count": 3,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224,
+            602463,
+            955555
+          ],
+          "neutral_union_tmdb_ids": [
+            347483,
+            602463,
+            841297,
+            901121,
+            955555
+          ],
+          "shared_tmdb_ids": [
+            602463,
+            955555
+          ],
+          "a1_only_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224
+          ],
+          "neutral_only_tmdb_ids": [
+            347483,
+            841297,
+            901121
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 6,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            44325,
+            96049,
+            257637,
+            402455,
+            946552
+          ],
+          "neutral_union_tmdb_ids": [
+            6309,
+            43593,
+            44325,
+            257637
+          ],
+          "shared_tmdb_ids": [
+            44325,
+            257637
+          ],
+          "a1_only_tmdb_ids": [
+            96049,
+            402455,
+            946552
+          ],
+          "neutral_only_tmdb_ids": [
+            6309,
+            43593
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 4
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            2335,
+            15576,
+            79921,
+            320318,
+            888917
+          ],
+          "neutral_union_tmdb_ids": [
+            2335,
+            13748,
+            52077,
+            79921,
+            82098,
+            148866,
+            888917
+          ],
+          "shared_tmdb_ids": [
+            2335,
+            79921,
+            888917
+          ],
+          "a1_only_tmdb_ids": [
+            15576,
+            320318
+          ],
+          "neutral_only_tmdb_ids": [
+            13748,
+            52077,
+            82098,
+            148866
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 7
+        },
+        {
+          "run_id": "07-migration-border",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            4170,
+            21711,
+            43837,
+            301633,
+            381018,
+            982752
+          ],
+          "neutral_union_tmdb_ids": [
+            4170,
+            11643,
+            252990,
+            273481,
+            301633,
+            381018
+          ],
+          "shared_tmdb_ids": [
+            4170,
+            301633,
+            381018
+          ],
+          "a1_only_tmdb_ids": [
+            21711,
+            43837,
+            982752
+          ],
+          "neutral_only_tmdb_ids": [
+            11643,
+            252990,
+            273481
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 6,
+          "neutral_union_hit_count": 6
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            857497
+          ],
+          "neutral_union_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            232679,
+            444218,
+            464198
+          ],
+          "shared_tmdb_ids": [
+            5693,
+            32007,
+            66876
+          ],
+          "a1_only_tmdb_ids": [
+            857497
+          ],
+          "neutral_only_tmdb_ids": [
+            232679,
+            444218,
+            464198
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 6
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            70410,
+            128042,
+            194224,
+            197082,
+            285232
+          ],
+          "neutral_union_tmdb_ids": [
+            16305,
+            32690,
+            45054,
+            86962,
+            194224,
+            336200,
+            502167
+          ],
+          "shared_tmdb_ids": [
+            194224
+          ],
+          "a1_only_tmdb_ids": [
+            70410,
+            128042,
+            197082,
+            285232
+          ],
+          "neutral_only_tmdb_ids": [
+            16305,
+            32690,
+            45054,
+            86962,
+            336200,
+            502167
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 7
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            20777,
+            317903,
+            1030206,
+            1229915
+          ],
+          "neutral_union_tmdb_ids": [
+            136116,
+            327253,
+            337876,
+            431808,
+            452187,
+            1030206
+          ],
+          "shared_tmdb_ids": [
+            1030206
+          ],
+          "a1_only_tmdb_ids": [
+            20777,
+            317903,
+            1229915
+          ],
+          "neutral_only_tmdb_ids": [
+            136116,
+            327253,
+            337876,
+            431808,
+            452187
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 6
+        }
+      ],
+      "neutral_union_superset_of_a1_hits": false,
+      "q1_recall_superset_ok": false,
+      "note": "Legacy diagnostic only (candidate-pool neutral union ⊇ all A1 hits); not a gate fail"
+    },
+    "runs_with_oracle_data": 10,
+    "neutral_union_superset_of_a1_hits": false,
+    "q1_recall_superset_ok": false,
+    "pure_fact_structural_2_rate": 0.0,
+    "combo_structural_2_rate": 0.26,
     "q1_quality_structural_2_rate_vs_a1": null,
-    "a1_deletion_eligible": null
+    "note": "Gate Q1′ = n1 neutral coverage of human-scored A1 twos; q1_legacy_recall = candidate-pool neutral union superset (diagnostic)",
+    "a1_deletion_eligible": false
   },
   "a1_superset": {
-    "status": "pending",
-    "note": "No retrieve.json oracle_comparison or a1-baseline-meta in run dirs",
-    "runs_with_oracle_data": 0,
-    "neutral_union_superset_of_a1_hits": null,
-    "q1_recall_superset_ok": null,
+    "status": "available",
+    "q1_prime": {
+      "status": "available",
+      "question": "Can 12 neutral (n1) hits cover all A1 movies that humans scored 2?",
+      "per_run": [
+        {
+          "run_id": "01-grid-outage",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            429918,
+            720321,
+            841793
+          ],
+          "a1_hit_count": 3,
+          "a1_two_tmdb_ids": [
+            429918
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            111750,
+            280492,
+            429918,
+            720321,
+            786357,
+            841793,
+            1484253
+          ],
+          "n1_neutral_union_count": 7,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            56589,
+            116741,
+            209504,
+            619090
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [
+            209504,
+            619090
+          ],
+          "a1_two_count": 2,
+          "n1_neutral_union_tmdb_ids": [
+            16020,
+            29917,
+            56589,
+            116741,
+            236800,
+            287647,
+            619090,
+            750145,
+            1233620
+          ],
+          "n1_neutral_union_count": 9,
+          "misses_tmdb_ids": [
+            209504
+          ],
+          "miss_count": 1,
+          "vacuous_pass": false,
+          "q1_prime_pass": false
+        },
+        {
+          "run_id": "03-election-upset",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "a1_hit_count": 3,
+          "a1_two_tmdb_ids": [
+            21711,
+            37593
+          ],
+          "a1_two_count": 2,
+          "n1_neutral_union_tmdb_ids": [
+            9451,
+            21711,
+            23631,
+            37593,
+            50033,
+            77953,
+            91010
+          ],
+          "n1_neutral_union_count": 7,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224,
+            602463,
+            955555
+          ],
+          "a1_hit_count": 6,
+          "a1_two_tmdb_ids": [],
+          "a1_two_count": 0,
+          "n1_neutral_union_tmdb_ids": [
+            17010,
+            18384,
+            347483,
+            393656,
+            602463,
+            841297,
+            901121,
+            955555,
+            1354700
+          ],
+          "n1_neutral_union_count": 9,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": true,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            44325,
+            96049,
+            257637,
+            402455,
+            946552
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            257637
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            6309,
+            36138,
+            43593,
+            43980,
+            44325,
+            72614,
+            96049,
+            119949,
+            192044,
+            257637,
+            421682,
+            434418,
+            444431,
+            526090,
+            664423,
+            937393
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            2335,
+            15576,
+            79921,
+            320318,
+            888917
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            320318
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            2335,
+            13748,
+            46088,
+            47291,
+            52077,
+            79921,
+            82098,
+            148866,
+            253239,
+            888917,
+            923993,
+            1232943
+          ],
+          "n1_neutral_union_count": 12,
+          "misses_tmdb_ids": [
+            320318
+          ],
+          "miss_count": 1,
+          "vacuous_pass": false,
+          "q1_prime_pass": false
+        },
+        {
+          "run_id": "07-migration-border",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            4170,
+            21711,
+            43837,
+            301633,
+            381018,
+            982752
+          ],
+          "a1_hit_count": 6,
+          "a1_two_tmdb_ids": [
+            381018
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            4170,
+            11643,
+            252990,
+            273481,
+            301633,
+            381018
+          ],
+          "n1_neutral_union_count": 6,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            857497
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [
+            5693
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            5693,
+            9981,
+            32007,
+            66876,
+            75074,
+            232679,
+            243683,
+            377460,
+            444218,
+            464198,
+            556501,
+            857497
+          ],
+          "n1_neutral_union_count": 12,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            70410,
+            128042,
+            194224,
+            197082,
+            285232
+          ],
+          "a1_hit_count": 5,
+          "a1_two_tmdb_ids": [
+            194224
+          ],
+          "a1_two_count": 1,
+          "n1_neutral_union_tmdb_ids": [
+            16305,
+            25466,
+            32690,
+            45054,
+            47150,
+            48605,
+            51143,
+            86962,
+            128846,
+            185738,
+            194224,
+            196625,
+            336200,
+            502167,
+            852756,
+            1195631
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": false,
+          "q1_prime_pass": true
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            20777,
+            317903,
+            1030206,
+            1229915
+          ],
+          "a1_hit_count": 4,
+          "a1_two_tmdb_ids": [],
+          "a1_two_count": 0,
+          "n1_neutral_union_tmdb_ids": [
+            11094,
+            11117,
+            20777,
+            21774,
+            40469,
+            49279,
+            136116,
+            327253,
+            337876,
+            431808,
+            441894,
+            452187,
+            465642,
+            1030206,
+            1186774,
+            1208561
+          ],
+          "n1_neutral_union_count": 16,
+          "misses_tmdb_ids": [],
+          "miss_count": 0,
+          "vacuous_pass": true,
+          "q1_prime_pass": true
+        }
+      ],
+      "runs_with_a1_two": 8,
+      "runs_with_a1_two_passed": 6,
+      "per_run_pass_rate": 0.75,
+      "global_miss_list": [
+        {
+          "run_id": "02-corporate-layoff",
+          "tmdb_id": 209504
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": 320318
+        }
+      ],
+      "global_miss_count": 2,
+      "q1_prime_pass": false,
+      "batch_rule": "PASS if all runs with |A1_two|>0 satisfy A1_two ⊆ N (vacuous pass per run when A1_two empty)"
+    },
+    "q1_legacy_recall": {
+      "status": "available",
+      "runs_with_oracle_data": 10,
+      "per_run": [
+        {
+          "run_id": "01-grid-outage",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            429918,
+            720321,
+            841793
+          ],
+          "neutral_union_tmdb_ids": [
+            111750,
+            280492,
+            429918,
+            841793
+          ],
+          "shared_tmdb_ids": [
+            429918,
+            841793
+          ],
+          "a1_only_tmdb_ids": [
+            720321
+          ],
+          "neutral_only_tmdb_ids": [
+            111750,
+            280492
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 3,
+          "neutral_union_hit_count": 4
+        },
+        {
+          "run_id": "02-corporate-layoff",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            56589,
+            116741,
+            209504,
+            619090
+          ],
+          "neutral_union_tmdb_ids": [
+            56589,
+            287647,
+            619090,
+            750145,
+            1233620
+          ],
+          "shared_tmdb_ids": [
+            56589,
+            619090
+          ],
+          "a1_only_tmdb_ids": [
+            116741,
+            209504
+          ],
+          "neutral_only_tmdb_ids": [
+            287647,
+            750145,
+            1233620
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "03-election-upset",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "neutral_union_tmdb_ids": [
+            21711,
+            23631,
+            37593,
+            77953,
+            91010
+          ],
+          "shared_tmdb_ids": [
+            21711,
+            23631,
+            37593
+          ],
+          "a1_only_tmdb_ids": [],
+          "neutral_only_tmdb_ids": [
+            77953,
+            91010
+          ],
+          "neutral_union_superset_of_a1_hits": true,
+          "a1_hit_count": 3,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "04-celebrity-scandal",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224,
+            602463,
+            955555
+          ],
+          "neutral_union_tmdb_ids": [
+            347483,
+            602463,
+            841297,
+            901121,
+            955555
+          ],
+          "shared_tmdb_ids": [
+            602463,
+            955555
+          ],
+          "a1_only_tmdb_ids": [
+            53267,
+            393656,
+            430128,
+            445224
+          ],
+          "neutral_only_tmdb_ids": [
+            347483,
+            841297,
+            901121
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 6,
+          "neutral_union_hit_count": 5
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            44325,
+            96049,
+            257637,
+            402455,
+            946552
+          ],
+          "neutral_union_tmdb_ids": [
+            6309,
+            43593,
+            44325,
+            257637
+          ],
+          "shared_tmdb_ids": [
+            44325,
+            257637
+          ],
+          "a1_only_tmdb_ids": [
+            96049,
+            402455,
+            946552
+          ],
+          "neutral_only_tmdb_ids": [
+            6309,
+            43593
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 4
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            2335,
+            15576,
+            79921,
+            320318,
+            888917
+          ],
+          "neutral_union_tmdb_ids": [
+            2335,
+            13748,
+            52077,
+            79921,
+            82098,
+            148866,
+            888917
+          ],
+          "shared_tmdb_ids": [
+            2335,
+            79921,
+            888917
+          ],
+          "a1_only_tmdb_ids": [
+            15576,
+            320318
+          ],
+          "neutral_only_tmdb_ids": [
+            13748,
+            52077,
+            82098,
+            148866
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 7
+        },
+        {
+          "run_id": "07-migration-border",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            4170,
+            21711,
+            43837,
+            301633,
+            381018,
+            982752
+          ],
+          "neutral_union_tmdb_ids": [
+            4170,
+            11643,
+            252990,
+            273481,
+            301633,
+            381018
+          ],
+          "shared_tmdb_ids": [
+            4170,
+            301633,
+            381018
+          ],
+          "a1_only_tmdb_ids": [
+            21711,
+            43837,
+            982752
+          ],
+          "neutral_only_tmdb_ids": [
+            11643,
+            252990,
+            273481
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 6,
+          "neutral_union_hit_count": 6
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            857497
+          ],
+          "neutral_union_tmdb_ids": [
+            5693,
+            32007,
+            66876,
+            232679,
+            444218,
+            464198
+          ],
+          "shared_tmdb_ids": [
+            5693,
+            32007,
+            66876
+          ],
+          "a1_only_tmdb_ids": [
+            857497
+          ],
+          "neutral_only_tmdb_ids": [
+            232679,
+            444218,
+            464198
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 6
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            70410,
+            128042,
+            194224,
+            197082,
+            285232
+          ],
+          "neutral_union_tmdb_ids": [
+            16305,
+            32690,
+            45054,
+            86962,
+            194224,
+            336200,
+            502167
+          ],
+          "shared_tmdb_ids": [
+            194224
+          ],
+          "a1_only_tmdb_ids": [
+            70410,
+            128042,
+            197082,
+            285232
+          ],
+          "neutral_only_tmdb_ids": [
+            16305,
+            32690,
+            45054,
+            86962,
+            336200,
+            502167
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 5,
+          "neutral_union_hit_count": 7
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "a1_hit_source": "retrieve-a1.json",
+          "a1_hit_tmdb_ids": [
+            20777,
+            317903,
+            1030206,
+            1229915
+          ],
+          "neutral_union_tmdb_ids": [
+            136116,
+            327253,
+            337876,
+            431808,
+            452187,
+            1030206
+          ],
+          "shared_tmdb_ids": [
+            1030206
+          ],
+          "a1_only_tmdb_ids": [
+            20777,
+            317903,
+            1229915
+          ],
+          "neutral_only_tmdb_ids": [
+            136116,
+            327253,
+            337876,
+            431808,
+            452187
+          ],
+          "neutral_union_superset_of_a1_hits": false,
+          "a1_hit_count": 4,
+          "neutral_union_hit_count": 6
+        }
+      ],
+      "neutral_union_superset_of_a1_hits": false,
+      "q1_recall_superset_ok": false,
+      "note": "Legacy diagnostic only (candidate-pool neutral union ⊇ all A1 hits); not a gate fail"
+    },
+    "runs_with_oracle_data": 10,
+    "neutral_union_superset_of_a1_hits": false,
+    "q1_recall_superset_ok": false,
+    "pure_fact_structural_2_rate": 0.0,
+    "combo_structural_2_rate": 0.26,
     "q1_quality_structural_2_rate_vs_a1": null,
-    "a1_deletion_eligible": null
+    "note": "Gate Q1′ = n1 neutral coverage of human-scored A1 twos; q1_legacy_recall = candidate-pool neutral union superset (diagnostic)",
+    "a1_deletion_eligible": false
   }
 }

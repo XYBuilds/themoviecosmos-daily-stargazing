@@ -1,4 +1,4 @@
-# Phase 3.9 · GATE 结论（Q1/Q2/Q3 + 闸门 1 · ADR-0006 D5）
+# Phase 3.9 · GATE 结论（Q1′/Q2/Q3 + 闸门 1 · ADR-0006 D5）
 
 - **日期**: 2026-06-09
 - **分支**: `feat/phase3.9.8-gate-result`（基于 `main` @ e5f2d9b，3.9.7 已合并）
@@ -34,46 +34,75 @@
 
 ---
 
-## Q1 · 中性腿是否站起来（vs A1 oracle）
+## Q1′ · 12 neutral n1 能否兜住 A1 人工 2 分（gate）
 
-**通过条件（ADR D5）**：per-persona 中性 union 召回 ⊇ A1 命中 **且** 结构/双重 2 分率 ≥ A1（oracle 对照）。
+**问题（用户确认 · ADR D5）**：12 条 neutral `n1` 命中 union 能否覆盖全部 **A1_two**（A1 命中且人工共振分=2）？
 
-> **口径**：`a1_hit_tmdb_ids` ← `a1-baseline-meta.json`；中性 union ← `retrieve.json` 候选 `neutral_hits > 0`（非 `retrieve-a1.json` 内空 union）。
+**口径（per run）**：
 
-### 召回（superset）
+- `A1_hit` ← `retrieve-a1.json` → `a1_oracle.hit_tmdb_ids`（fallback：`a1-baseline-meta.json`）
+- `A1_two` = { tmdb_id ∈ A1_hit | 该 (run_id, tmdb_id) 在 review 中 **共振分=2** }
+- `N` = `retrieve.json` `per_agent` 中 `role=neutral` 且 `pseudo_id=n1` 的命中 union（**非**候选池 neutral_union）
+- **PASS（per run）**：`A1_two ⊆ N`（`A1_two` 空 → vacuous pass）
+- **批次规则**：所有 **|A1_two|>0** 的 run 均 pass 才建议通过
+
+### 批次汇总
+
+| 指标 | 值 |
+| --- | --- |
+| 全批 A1_two（人工 2 分） | **10** 部（跨 8 runs） |
+| \|A1_two\|>0 的 run 数 | **8** |
+| per-run Q1′ 通过 | **6/8**（75%） |
+| 全局 miss（A1_two ∖ N） | **2** |
+| **Q1′ 批次判** | **FAIL** |
+
+### 全局 miss 列表
+
+| run_id | tmdb_id | 片名 |
+| --- | --- | --- |
+| 02-corporate-layoff | 209504 | Bounty Killer |
+| 06-tech-monopoly | 320318 | The Clearstream Affair |
+
+### per-run 明细
+
+| run_id | A1_hit | A1_two | n1 union | misses | Q1′ |
+| --- | --- | --- | --- | --- | --- |
+| 01-grid-outage | 3 | 1 | 7 | 0 | ✓ |
+| 02-corporate-layoff | 4 | 2 | 9 | 1 | ✗ |
+| 03-election-upset | 3 | 2 | 7 | 0 | ✓ |
+| 04-celebrity-scandal | 6 | 0 | 9 | 0 | ✓ (vacuous) |
+| 05-climate-disaster | 5 | 1 | 16 | 0 | ✓ |
+| 06-tech-monopoly | 5 | 1 | 12 | 1 | ✗ |
+| 07-migration-border | 6 | 1 | 6 | 0 | ✓ |
+| 08-sports-underdog | 4 | 1 | 12 | 0 | ✓ |
+| 09-cultural-backlash | 5 | 1 | 16 | 0 | ✓ |
+| 10-whistleblower-leak | 4 | 0 | 16 | 0 | ✓ (vacuous) |
+
+**Q1′ 总判：FAIL** · `a1_deletion_eligible = false`（2 部人工认定的 A1 强共振未被任何 persona 的 neutral n1 召回）
+
+---
+
+## 诊断 / legacy · 旧 Q1 口径（非 gate fail）
+
+> 全量 A1 superset 与 neutral 2-rate ≥ A1 **仅作诊断**，不参与 Q1′ gate。
+
+### legacy 召回（候选池 neutral union ⊇ 全 A1_hit）
 
 | 指标 | 值 |
 | --- | --- |
 | 全批 A1 唯一命中 | 44 tmdb_id |
-| 中性 union 唯一命中 | 55 tmdb_id |
-| A1 未被中性 union 覆盖 | **22** |
+| 候选池 neutral union 唯一命中 | 55 tmdb_id |
+| A1 未被 neutral union 覆盖 | **22** |
 | per-run superset 通过 | **1/10**（仅 `03-election-upset`） |
 
-| run_id | A1 hits | neutral union | A1-only misses | superset |
-| --- | --- | --- | --- | --- |
-| 01-grid-outage | 3 | 4 | 1 | ✗ |
-| 02-corporate-layoff | 4 | 5 | 2 | ✗ |
-| 03-election-upset | 3 | 5 | 0 | ✓ |
-| 04-celebrity-scandal | 6 | 5 | 4 | ✗ |
-| 05-climate-disaster | 5 | 4 | 3 | ✗ |
-| 06-tech-monopoly | 5 | 7 | 2 | ✗ |
-| 07-migration-border | 6 | 6 | 3 | ✗ |
-| 08-sports-underdog | 4 | 6 | 1 | ✗ |
-| 09-cultural-backlash | 5 | 7 | 4 | ✗ |
-| 10-whistleblower-leak | 4 | 6 | 3 | ✗ |
-
-**Q1 召回：FAIL** — 中性 union 未 ⊇ A1（22 misses；仅 1/10 run 通过）。
-
-### 质量（结构/双重 2 分率 · 已打分子集）
+### legacy 质量（结构/双重 2 分率 · 已打分子集）
 
 | 路径 | structural 2-rate | scored |
 | --- | --- | --- |
 | A1 命中候选（tmdb ∈ a1_hit） | **38.5%** | 26 |
 | 中性 union 命中候选 | **24.1%** | 54 |
 
-**Q1 质量：FAIL** — 中性 union 桶结构 2 分率 **低于** A1 命中桶（−14.4pp）。
-
-**Q1 总判：FAIL** · `a1_deletion_eligible = false`
+**legacy 诊断**：全量 superset 仍差（22 misses）；质量 neutral union 低于 A1（−14.4pp）。Q1′ 收窄到人工 2 分后 miss 仅 2 部，但批次规则仍不通过。
 
 ---
 
@@ -155,7 +184,7 @@
 
 | 子问 | 结果 | 依据 |
 | --- | --- | --- |
-| **Q1** 中性腿 | **FAIL** | superset 1/10；A1 2-rate 38.5% > neutral union 24.1% |
+| **Q1′** 中性 n1 兜 A1 人工 2 分 | **FAIL** | 6/8 runs with A1_two pass；2 global misses（209504, 320318） |
 | **Q2** 组合拳 | **机械 PASS / 效力弱** | combo 26% > pure_fact 0%（n=4）；holdout combo 18% ≪ obs 41% |
 | **Q3** 情绪净加分 | **弱 PASS** | pure_emotion 不拖累；combo 有汇聚增量 |
 | **闸门 1** | **PASS** | 90% batch |
@@ -164,14 +193,14 @@
 
 **GATE no-go（组合拳未成立）**
 
-- **非** Q1&Q2 双成立 → 不进入「组合拳成立」路径
-- **非** 仅 Q1 成立 → 中性腿未站起来
+- **非** Q1′&Q2 双成立 → 不进入「组合拳成立」路径
+- **非** 仅 Q1′ 成立 → 中性 n1 未完整兜住人工认定的 A1 强共振（2 misses）
 - 对齐 ADR D5：**回 3.9.1/3.9.6 调 salience/契约，或启用 D6 plan B**；**不升 SSOT、不删 A1**
-- `summarize_eval` 机械 `GATE_PASS`（Q2 combo>pure_fact + batch 90%）与产品裁决 **不一致** — 以本文件 Q1 fail + Q2 小样本 + obs/holdout 裂口为准
+- `summarize_eval` 机械 `GATE_PASS`（Q2 combo>pure_fact + batch 90%）与产品裁决 **不一致** — 以本文件 Q1′ fail + Q2 小样本 + obs/holdout 裂口为准
 
 ### 一行摘要
 
-**GATE no-go** — Q1 fail（22 A1 misses；质量 −14pp）；Q2 机械 pass 但 pure_fact n=4；holdout combo 2-rate 18% vs obs 41%；judge **采信**；人工 152/156。
+**GATE no-go** — Q1′ fail（6/8；2 A1_two misses）；legacy superset 1/10；Q2 机械 pass 但 pure_fact n=4；holdout combo 2-rate 18% vs obs 41%；judge **采信**；人工 152/156。
 
 ---
 
