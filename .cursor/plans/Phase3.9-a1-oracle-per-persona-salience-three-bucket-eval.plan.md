@@ -25,7 +25,7 @@ todos:
     status: complete
   - id: p39-7
     content: 3.9.7 · 批量 run（A1 oracle 并跑）+ 留出冻结纪律 + 纵向多打分（人工 + judge）[需人工验收]
-    status: pending
+    status: complete
   - id: p39-8
     content: 3.9.8 · GATE：Q1 中性 vs A1 oracle + Q2 组合>纯事实(控相似度) + Q3 汇聚非漂移 → GATE_RESULT [GATE · 需人工验收]
     status: pending
@@ -262,9 +262,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] 产出位于 `output/Eval/phase3.9/{run_id}/`；3.6/3.7/3.8 未改写
-- [ ] A1 oracle 并跑数据齐（供 Q1）；三桶+纯中性已打分（人工+judge）
-- [ ] 留出冻结纪律执行记录在案 → 数据可进 3.9.8
+- [x] 产出位于 `output/Eval/phase3.9/{run_id}/`；3.6/3.7/3.8 未改写
+- [x] A1 oracle 并跑数据齐（供 Q1）；三桶+纯中性已打分（人工+judge）
+- [x] 留出冻结纪律执行记录在案 → 数据可进 3.9.8
 
 ---
 
@@ -307,7 +307,7 @@ flowchart TD
 - [x] 3.9.0 契约/CONTEXT 对齐 approve
 - [ ] 3.9.1–3.9.5 各单测通过：salience 中性多样化落地、A1=oracle、三桶+纯中性入池、judge 校准、并发化
 - [x] 3.9.6 单点 pilot Combined Go（salience≠valence 无泄漏 + 多样性守卫生效）
-- [ ] 3.9.7 批量 + A1 oracle 并跑 + 留出冻结 + 纵向多打分（人工+judge）
+- [x] 3.9.7 批量 + A1 oracle 并跑 + 留出冻结 + 纵向多打分（人工+judge）
 - [ ] 3.9.8 书面 GATE（Q1/Q2/Q3 + 闸门 1 + obs/holdout 一致性）→ go/no-go
 - [ ] 3.9.9 仅 GATE go：SSOT 终态 + A1 删除判定
 
