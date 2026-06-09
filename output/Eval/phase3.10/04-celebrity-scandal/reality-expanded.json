@@ -1,0 +1,206 @@
+{
+  "agent": "P-Expand",
+  "persona": "Objective Expansion",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-27T09:00:00+09:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "early 2025"
+      ],
+      "relative": [],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [],
+      "recurrence": [],
+      "modality": [
+        "occurred"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Seoul",
+        "role": [
+          "site of arrest"
+        ],
+        "relations": [],
+        "relative_pos": null,
+        "geopolitical": null,
+        "intended_destination": null,
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "YouTuber",
+        "role_in_event": [
+          "affected",
+          "initiator-decision"
+        ],
+        "relations": [
+          "made claims against Kim Soo-hyun"
+        ]
+      },
+      {
+        "text": "Kim Soo-hyun",
+        "role_in_event": [
+          "affected"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Seoul police",
+        "role_in_event": [
+          "executor"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Prosecutors",
+        "role_in_event": [
+          "witness"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "spread false claims for financial gain"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor"
+      },
+      {
+        "step": 2,
+        "text": "Seoul police secured an arrest warrant"
+      }
+    ],
+    "result": [
+      {
+        "text": "YouTuber arrested"
+      },
+      {
+        "text": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025"
+      }
+    ]
+  },
+  "expansion": {
+    "elements": [
+      {
+        "element_id": "where-0",
+        "surface": "Seoul",
+        "hypernyms": [
+          "capital city",
+          "South Korea",
+          "East Asia",
+          "urban center"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-0",
+        "surface": "YouTuber",
+        "hypernyms": [
+          "content creator",
+          "online personality",
+          "individual"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-1",
+        "surface": "Kim Soo-hyun",
+        "hypernyms": [
+          "actor",
+          "celebrity",
+          "public figure"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-2",
+        "surface": "Seoul police",
+        "hypernyms": [
+          "police force",
+          "law enforcement agency",
+          "government body"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-3",
+        "surface": "Prosecutors",
+        "hypernyms": [
+          "legal professionals",
+          "government officials",
+          "prosecutorial agency"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "why-0",
+        "surface": "spread false claims for financial gain",
+        "hypernyms": [
+          "misinformation",
+          "deceptive practice",
+          "illegal activity"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-0",
+        "surface": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+        "hypernyms": [
+          "digital manipulation",
+          "AI-generated content",
+          "fabrication of evidence"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-1",
+        "surface": "Seoul police secured an arrest warrant",
+        "hypernyms": [
+          "legal procedure",
+          "arrest warrant issuance",
+          "law enforcement action"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "result-0",
+        "surface": "YouTuber arrested",
+        "hypernyms": [
+          "arrest",
+          "detention",
+          "consequence of crime"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "result-1",
+        "surface": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+        "hypernyms": [
+          "professional impact",
+          "reputational damage",
+          "consequence of scandal"
+        ],
+        "rejected_hypernyms": []
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

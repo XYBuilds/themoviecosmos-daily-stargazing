@@ -1,0 +1,163 @@
+{
+  "persona_id": "The-Outlaw",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "Ken Paxton",
+        "alternatives": [
+          {
+            "term": "the establishment's challenger",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the endorsed candidate",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "a Republican politician",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "John Cornyn",
+        "alternatives": [
+          {
+            "term": "the entrenched incumbent",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the losing candidate",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "the sitting president",
+        "alternatives": [
+          {
+            "term": "the kingmaker",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the head of state",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "aided by a late endorsement from the sitting president",
+        "alternatives": [
+          {
+            "term": "with the backing of the highest authority",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "through a final campaign push",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "original_term": "despite substantially outraising and outspending his rival",
+        "alternatives": [
+          {
+            "term": "overcoming the financial establishment",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "despite a funding disadvantage",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+        "alternatives": [
+          {
+            "term": "overwhelmingly unseated a long-serving insider",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "secured a decisive electoral victory",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "Ken Paxton won the Texas Senate Republican runoff",
+        "alternatives": [
+          {
+            "term": "the rebel claimed victory",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the runoff election concluded",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+        "alternatives": [
+          {
+            "term": "a pillar of the old guard fell",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "a historic political upset occurred",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Texas",
+        "alternatives": [
+          {
+            "term": "a conservative stronghold",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the U.S. state",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "who-0",
+    "how-0",
+    "why-0",
+    "result-0",
+    "result-1"
+  ]
+}

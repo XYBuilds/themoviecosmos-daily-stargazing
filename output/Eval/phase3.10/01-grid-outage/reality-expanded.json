@@ -1,0 +1,248 @@
+{
+  "agent": "P-Expand",
+  "persona": "Objective Expansion",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-29T18:00:00+08:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "May 2026"
+      ],
+      "relative": [
+        "after Kepco SPC Power's Unit 2 tripped offline"
+      ],
+      "daypart": [],
+      "season": [
+        "seasonal heat"
+      ],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [
+        "since May began"
+      ],
+      "recurrence": [],
+      "modality": [
+        "occurred"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Visayas",
+        "role": [
+          "site of red alert"
+        ],
+        "relations": [],
+        "relative_pos": null,
+        "geopolitical": "Philippines",
+        "intended_destination": null,
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "The Philippines grid operator",
+        "role_in_event": [
+          "initiator-decision"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Kepco SPC Power's Unit 2",
+        "role_in_event": [
+          "affected"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Officials",
+        "role_in_event": [
+          "initiator-decision"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Eleven generators",
+        "role_in_event": [
+          "affected"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "Kepco SPC Power's Unit 2 tripped offline"
+      },
+      {
+        "text": "other long-running plant outages"
+      },
+      {
+        "text": "seasonal heat drove demand into a thin operating margin"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "Kepco SPC Power's Unit 2 tripped offline"
+      },
+      {
+        "step": 2,
+        "text": "The Philippines grid operator placed the Visayas under red alert"
+      },
+      {
+        "step": 3,
+        "text": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading"
+      }
+    ],
+    "result": [
+      {
+        "text": "more than 950 megawatts unavailable"
+      }
+    ]
+  },
+  "expansion": {
+    "elements": [
+      {
+        "element_id": "where-0",
+        "surface": "Visayas",
+        "hypernyms": [
+          "island group",
+          "region",
+          "Philippines",
+          "Southeast Asia"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-0",
+        "surface": "The Philippines grid operator",
+        "hypernyms": [
+          "grid operator",
+          "utility",
+          "energy sector entity",
+          "organization"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-1",
+        "surface": "Kepco SPC Power's Unit 2",
+        "hypernyms": [
+          "power unit",
+          "generating unit",
+          "power plant component",
+          "energy infrastructure"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "who-2",
+        "surface": "Officials",
+        "hypernyms": [
+          "authorities",
+          "government officials",
+          "decision-makers"
+        ],
+        "rejected_hypernyms": [
+          "officials"
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "surface": "Eleven generators",
+        "hypernyms": [
+          "generators",
+          "power generators",
+          "equipment",
+          "energy assets"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "why-0",
+        "surface": "Kepco SPC Power's Unit 2 tripped offline",
+        "hypernyms": [
+          "equipment failure",
+          "power outage",
+          "grid incident"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "why-1",
+        "surface": "other long-running plant outages",
+        "hypernyms": [
+          "plant outages",
+          "maintenance shutdowns",
+          "unavailability",
+          "downtime"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "why-2",
+        "surface": "seasonal heat drove demand into a thin operating margin",
+        "hypernyms": [
+          "high demand",
+          "heatwave impact",
+          "energy demand spike",
+          "demand increase"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-0",
+        "surface": "Kepco SPC Power's Unit 2 tripped offline",
+        "hypernyms": [
+          "equipment failure",
+          "power outage",
+          "grid incident"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-1",
+        "surface": "The Philippines grid operator placed the Visayas under red alert",
+        "hypernyms": [
+          "alert declaration",
+          "grid management action",
+          "emergency response",
+          "action"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "how-2",
+        "surface": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+        "hypernyms": [
+          "load shedding",
+          "emergency measure",
+          "grid stabilization",
+          "control action"
+        ],
+        "rejected_hypernyms": []
+      },
+      {
+        "element_id": "result-0",
+        "surface": "more than 950 megawatts unavailable",
+        "hypernyms": [
+          "power shortage",
+          "capacity loss",
+          "energy deficit",
+          "shortage"
+        ],
+        "rejected_hypernyms": []
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": [
+    "elements[3] touchstone rejected: ['officials']"
+  ]
+}

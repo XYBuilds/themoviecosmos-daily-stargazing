@@ -1,0 +1,365 @@
+{
+  "persona_id": "The-Sage",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "whistleblower in Sikar",
+        "alternatives": [
+          {
+            "term": "verifier of leaked exam material",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "source of the tip",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "informant",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "unsubstantiated accuser",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "India's National Testing Agency (NTA)",
+        "alternatives": [
+          {
+            "term": "investigative body",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "exam administrator",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "authority failing in oversight",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "Central Bureau of Investigation (CBI)",
+        "alternatives": [
+          {
+            "term": "forensic investigation unit",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "federal investigative agency",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "bureaucratic apparatus",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-4",
+        "original_term": "thirteen people arrested",
+        "alternatives": [
+          {
+            "term": "individuals subject to legal process",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "suspects",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "accused perpetrators",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-5",
+        "original_term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+        "alternatives": [
+          {
+            "term": "advocate whose public stance is now under scrutiny",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "education professional",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "hypocrite",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Sikar",
+        "alternatives": [
+          {
+            "term": "origin point of the disclosure",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "location in Rajasthan, India",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "epicenter of the leak",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "where-1",
+        "original_term": "India",
+        "alternatives": [
+          {
+            "term": "jurisdiction of the incident",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "country",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "site of systemic failure",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+        "alternatives": [
+          {
+            "term": "documentary evidence of a match",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "reason for the investigation",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "cause",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "alleged breach of protocol",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "Medical entrance exam held on May 3",
+        "alternatives": [
+          {
+            "term": "the administered test",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the event in question",
+            "valence": "neutral",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+        "alternatives": [
+          {
+            "term": "receipt of corroborating materials",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "step in the disclosure process",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "trigger for referral",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "unsolicited communication",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "NTA referred 26–27 paper setters and translators to CBI",
+        "alternatives": [
+          {
+            "term": "escalation to a formal investigation",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "administrative referral",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "passing the buck",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "original_term": "Thirteen people arrested, including a coaching figure",
+        "alternatives": [
+          {
+            "term": "enforcement action",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "application of legal procedure",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "roundup of suspects",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "original_term": "Re-examination scheduled for June 21",
+        "alternatives": [
+          {
+            "term": "corrective measure",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "rescheduled event",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "remedial action",
+            "valence": "neutral",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "NEET-UG 2026 cancelled",
+        "alternatives": [
+          {
+            "term": "invalidation of the compromised exam",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "cancellation of the test",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "outcome of the breach",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "disruption to the academic cycle",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "Thirteen people arrested",
+        "alternatives": [
+          {
+            "term": "subjects of criminal proceedings",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "arrestees",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the accused",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "original_term": "Re-examination scheduled for June 21",
+        "alternatives": [
+          {
+            "term": "rectification attempt",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "follow-up examination",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "re-do",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "why-0",
+    "how-1",
+    "who-0",
+    "how-2",
+    "result-0"
+  ]
+}

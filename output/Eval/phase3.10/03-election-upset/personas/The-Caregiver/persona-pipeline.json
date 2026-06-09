@@ -1,0 +1,304 @@
+{
+  "persona_id": "The-Caregiver",
+  "overlay": {
+    "persona_id": "The-Caregiver",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Ken Paxton",
+          "alternatives": [
+            {
+              "term": "the victor who ended a long career",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the winner of the runoff",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the presidentially backed candidate",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "John Cornyn",
+          "alternatives": [
+            {
+              "term": "the long-serving senator whose career was halted",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the defeated incumbent",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the losing candidate",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the sitting president",
+          "alternatives": [
+            {
+              "term": "the powerful figure who intervened in the race",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the endorser",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "aided by a late endorsement from the sitting president",
+          "alternatives": [
+            {
+              "term": "after receiving a powerful political intervention",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "aided by a late endorsement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "despite substantially outraising and outspending his rival",
+          "alternatives": [
+            {
+              "term": "even though the defeated incumbent had greater resources",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "despite outraising and outspending his rival",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+          "alternatives": [
+            {
+              "term": "by decisively ending a senator's long-standing career",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "winning about 64% of the vote",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Ken Paxton won the Texas Senate Republican runoff",
+          "alternatives": [
+            {
+              "term": "a victory that reshapes the political landscape",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the runoff outcome",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+          "alternatives": [
+            {
+              "term": "a historic loss for a long-serving public servant",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the first sitting Republican senator from Texas to lose renomination since 1970",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the end of a decades-long incumbency",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate",
+          "alternatives": [
+            {
+              "term": "setting up a high-stakes contest that will affect the nation's political future",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the upcoming November election",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Texas",
+          "alternatives": [
+            {
+              "term": "the state where a political career ended",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the site of the election",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-1",
+      "who-1",
+      "result-2",
+      "how-0",
+      "why-0",
+      "who-0",
+      "why-1",
+      "where-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970. John Cornyn. Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate. Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term. aided by a late endorsement from the sitting president The event unfolds across the first sitting Republican senator from Texas to lose renomination since 1970 and the losing candidate.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "result-1",
+          "who-1",
+          "result-2",
+          "how-0",
+          "why-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+            "provenance": "surface"
+          },
+          {
+            "term": "the first sitting Republican senator from Texas to lose renomination since 1970",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Cornyn",
+            "provenance": "surface"
+          },
+          {
+            "term": "the losing candidate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "senator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "politician",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate",
+            "provenance": "surface"
+          },
+          {
+            "term": "the upcoming November election",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+            "provenance": "surface"
+          },
+          {
+            "term": "winning about 64% of the vote",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "aided by a late endorsement from the sitting president",
+            "provenance": "surface"
+          },
+          {
+            "term": "aided by a late endorsement",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A long-serving public servant's career was halted in Texas, as Ken Paxton, aided by a late endorsement from the sitting president, decisively ended Senator John Cornyn's bid for a fifth term. This historic loss, the first for a sitting Republican senator from the state since 1970, marks the end of a decades-long incumbency and sets up a high-stakes contest that will affect the nation's political future.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p2",
+      "text": "Despite substantially outraising and outspending his rival, the long-serving senator whose career was halted suffered a decisive defeat in the Texas Senate Republican runoff. The winner of the runoff, the presidentially backed candidate, will now face Democratic state Representative James Talarico in a race that could reshape control of the U.S. Senate, highlighting the vulnerability of even established politicians.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-1",
+          "how-0",
+          "result-0",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.65
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,351 @@
+{
+  "persona_id": "The-Creator",
+  "overlay": {
+    "persona_id": "The-Creator",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "grid system orchestrator",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "power network manager",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "electricity grid controller",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "crisis dispatcher",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "emergency response architects",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "system regulators",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "load-shedding order issuers",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "initiated a system-wide power alert",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "declared a grid red alert",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "triggered an emergency power status",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "unleashed a grid crisis protocol",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "executed a precision load-reduction design",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "implemented controlled power curtailment",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "ordered emergency power disconnection",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "forced a brutal power cutoff",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "a power unit suffered a critical malfunction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a generator experienced a system failure",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "extended facility shutdowns",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "prolonged plant failures",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "a massive 950-megawatt power deficit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a colossal generation void",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-1",
+      "how-2",
+      "why-0",
+      "who-0",
+      "result-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "The Philippines grid operator placed the Visayas under red alert. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator. more than 950 megawatts unavailable The event unfolds across triggered an emergency power status and alert declaration.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "how-1",
+          "how-2",
+          "why-0",
+          "who-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "The Philippines grid operator placed the Visayas under red alert",
+            "provenance": "surface"
+          },
+          {
+            "term": "triggered an emergency power status",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "alert declaration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid management action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency response",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+            "provenance": "surface"
+          },
+          {
+            "term": "ordered emergency power disconnection",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "load shedding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency measure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid stabilization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "control action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kepco SPC Power's Unit 2 tripped offline",
+            "provenance": "surface"
+          },
+          {
+            "term": "a power unit suffered a critical malfunction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power outage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The Philippines grid operator",
+            "provenance": "surface"
+          },
+          {
+            "term": "electricity grid controller",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid operator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "utility",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy sector entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "a massive 950-megawatt power deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "shortage",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "In May 2026, a critical equipment failure at Kepco SPC Power's Unit 2 sparked a grid incident across the Visayas island group, forcing the power network manager to initiate a system-wide power alert. This emergency response, combined with prolonged plant failures from other facilities, created a severe energy deficit of over 950 megawatts, compelling authorities to order emergency load shedding to stabilize the grid.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "Following a generator system failure, the electricity grid controller was compelled to unleash a grid crisis protocol in the Philippines region, implementing controlled power curtailment to prevent a major transmission overload. The cascade of extended facility shutdowns and a heatwave-driven demand spike resulted in a colossal generation void, highlighting the fragility of the energy infrastructure.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-1",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "A power plant component malfunction triggered a grid management action, with officials acting as emergency response architects to execute a precision load-reduction design. This intervention aimed to mitigate a massive 950-megawatt power deficit caused by a combination of a critical outage and seasonal high demand, underscoring the delicate balance of the region's power grid.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "how-2",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.82
+    }
+  ],
+  "warnings": []
+}

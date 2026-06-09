@@ -1,0 +1,362 @@
+{
+  "persona_id": "The-Ruler",
+  "overlay": {
+    "persona_id": "The-Ruler",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "rumor spreader",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "false-accusation merchant",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "online personality",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Seoul police",
+          "alternatives": [
+            {
+              "term": "investigators",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "law enforcement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "authority restoring order",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Prosecutors",
+          "alternatives": [
+            {
+              "term": "prosecuting authorities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "legal oversight",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "profit-driven defamation",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "financial exploitation of scandal",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "financial motive",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "fabricated evidence",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "falsified digital material",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "manipulated media",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Seoul police secured an arrest warrant",
+          "alternatives": [
+            {
+              "term": "warrant secured",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "moved to restore order",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "legal authorization obtained",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "disruptor apprehended",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "rule-breaker detained",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "suspect taken into custody",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "public exposure frozen pending resolution",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "cost of unmanaged scandal",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "reputational damage",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Seoul",
+          "alternatives": [
+            {
+              "term": "capital city",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "seat of legal authority",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "jurisdiction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "how-1",
+      "who-0",
+      "why-0",
+      "how-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "YouTuber arrested. Seoul police secured an arrest warrant. YouTuber. spread false claims for financial gain. used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor The event unfolds across suspect taken into custody and arrest.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "result-0",
+          "how-1",
+          "who-0",
+          "why-0",
+          "how-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "YouTuber arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "suspect taken into custody",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detention",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of crime",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police secured an arrest warrant",
+            "provenance": "surface"
+          },
+          {
+            "term": "legal authorization obtained",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal procedure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest warrant issuance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber",
+            "provenance": "surface"
+          },
+          {
+            "term": "online personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "content creator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "financial motive",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "manipulated media",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "In the capital city's jurisdiction, a rumor spreader engaged in profit-driven defamation by fabricating evidence, using AI-generated audio and manipulated screenshots to falsely accuse the public figure of misconduct. This illegal activity forced investigators to intervene, moving to restore order and securing an arrest warrant. The consequent detention of the disruptor has contained the scandal, though the cost of unmanaged scandal was severe, halting the actor's endorsements and public appearances since early 2025.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.88
+    },
+    {
+      "id": "p2",
+      "text": "A false-accusation merchant orchestrated a deceptive practice for financial gain, employing falsified digital material to target a celebrity. The police force, acting as authority restoring order, obtained legal authorization to apprehend the rule-breaker. This law enforcement action was a necessary closure move, as the reputational damage from the manipulated media had already begun, freezing the actor's public exposure pending resolution.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "warnings": []
+}

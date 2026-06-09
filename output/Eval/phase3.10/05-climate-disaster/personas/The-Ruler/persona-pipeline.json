@@ -1,0 +1,500 @@
+{
+  "persona_id": "The-Ruler",
+  "overlay": {
+    "persona_id": "The-Ruler",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Syria's president",
+          "alternatives": [
+            {
+              "term": "legitimate authority restoring order",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "head of state surveying the damage",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "national leader",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "absent overseer of a failed state apparatus",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "several children",
+          "alternatives": [
+            {
+              "term": "innocent victims of state failure",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "drowned children",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the navy",
+          "alternatives": [
+            {
+              "term": "instruments of state rescue",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "military responders",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "delayed evacuation force",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Turkey",
+          "alternatives": [
+            {
+              "term": "upstream state agreeing to cooperate",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "riparian neighbor",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "source of uncontrolled releases",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "one of the heaviest rainy seasons in three decades",
+          "alternatives": [
+            {
+              "term": "an extreme weather event overwhelming state capacity",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "severe seasonal rainfall",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "critical infrastructure pushed past safe limits",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "reservoir capacity exceeded",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "failure of engineered flood defenses",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "river breaching defenses",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "destruction of civilian infrastructure under state protection",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "flooding of populated areas",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "An earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "collapse of critical transportation link",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "structural failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "The navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "military asset mobilized for orderly evacuation",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "emergency evacuation operation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "belated rescue deployment",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-5",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "diplomatic agreement to restore river control",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "upstream flow reduction agreement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "foreign concession after damage was done",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "several children drowned",
+          "alternatives": [
+            {
+              "term": "tragic loss of life due to inadequate state protection",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "fatalities among children",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+          "alternatives": [
+            {
+              "term": "widespread destruction of civilian property and livelihoods",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "flooding of residential and agricultural areas",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "an earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "critical infrastructure failure",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "structural collapse",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "the navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "state apparatus mobilized for containment",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "evacuation operation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-4",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "international agreement to restore order",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "upstream flow reduction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-5",
+          "original_term": "Syria's president visited the flood zones",
+          "alternatives": [
+            {
+              "term": "sovereign's demonstration of authority and concern",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "presidential visit to affected area",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "empty gesture from a detached ruler",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "result-1",
+      "result-5",
+      "who-0",
+      "how-4"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "several children drowned. homes, farms, and schools in Deir Ezzor and Raqqa flooded. Syria's president visited the flood zones. Syria's president. The navy deployed boats for evacuations The event unfolds across fatalities among children and drowning incident.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "result-0",
+          "result-1",
+          "result-5",
+          "who-0",
+          "how-4"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "several children drowned",
+            "provenance": "surface"
+          },
+          {
+            "term": "fatalities among children",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "drowning incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fatality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+            "provenance": "surface"
+          },
+          {
+            "term": "flooding of residential and agricultural areas",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flooding damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "agricultural loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "educational disruption",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Syria's president visited the flood zones",
+            "provenance": "surface"
+          },
+          {
+            "term": "presidential visit to affected area",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "presidential visit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster inspection",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Syria's president",
+            "provenance": "surface"
+          },
+          {
+            "term": "national leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "president",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The navy deployed boats for evacuations",
+            "provenance": "surface"
+          },
+          {
+            "term": "emergency evacuation operation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evacuation operation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescue mission",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "military deployment",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The national leader faced a severe seasonal rainfall that overwhelmed state capacity. Reservoirs were filled beyond 97% capacity, and dam operations pushed the river past protective embankments. This failure of engineered flood defenses led to the destruction of civilian infrastructure under state protection, with homes, farms, and schools flooded in Deir Ezzor and Raqqa. The result was a tragic loss of life due to inadequate state protection, as several children drowned.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "In response to the disaster, the military branch mobilized its assets for an orderly evacuation, deploying boats as instruments of state rescue. This emergency evacuation operation was part of a broader effort to contain the damage. Subsequently, an international agreement to restore order was reached, with the upstream state agreeing to cooperate and reduce river releases, an action aimed at flood mitigation and restoring stability to the affected Middle Eastern regions.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "how-4",
+          "result-3",
+          "how-5",
+          "result-4"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "The head of state later visited the affected area, a disaster inspection intended as a sovereign's demonstration of authority and concern. This presidential visit to the flood zones followed the collapse of a critical transportation link and widespread destruction of civilian property and livelihoods. The event highlighted the need for robust flood defenses and a coordinated state apparatus to manage such climatic anomalies and prevent future infrastructure damage.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "result-5",
+          "how-3",
+          "result-1",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.72
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,346 @@
+{
+  "persona_id": "The-Explorer",
+  "overlay": {
+    "persona_id": "The-Explorer",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "digital pioneer",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "online provocateur",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "reckless spreader of falsehoods",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "pioneered the use of deepfake audio and digital forgeries",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "employed novel AI tools and media manipulation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "utilized synthetic media and edited screenshots",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "exploited uncharted tech for false narratives",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Seoul police secured an arrest warrant",
+          "alternatives": [
+            {
+              "term": "authorities crossed a new jurisdictional threshold",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "law enforcement acted on the case",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "police obtained legal authorization",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "imposed a closed, legalistic response",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "pioneer's journey halted by authority",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator detained",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "individual taken into custody",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "boundary-crosser confined",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "exploited a frontier for profit",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "motivated by economic incentives",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "driven by financial motives",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "fled into deception for material escape",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "actor's public journey paused at a threshold",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "celebrity's engagements were suspended",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "professional activities were put on hold",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "public figure confined to silence",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-0",
+      "how-1",
+      "who-0",
+      "result-0",
+      "why-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. Seoul police secured an arrest warrant. YouTuber. YouTuber arrested. spread false claims for financial gain The event unfolds across utilized synthetic media and edited screenshots and digital manipulation.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "who-0",
+          "result-0",
+          "why-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "utilized synthetic media and edited screenshots",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police secured an arrest warrant",
+            "provenance": "surface"
+          },
+          {
+            "term": "police obtained legal authorization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal procedure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest warrant issuance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber",
+            "provenance": "surface"
+          },
+          {
+            "term": "content creator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "individual taken into custody",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detention",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of crime",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "driven by financial motives",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "In Seoul, a digital pioneer ventured into uncharted territory by exploiting synthetic media and edited screenshots, fabricating evidence to claim a celebrity actor had dated a minor co-star. This act of misinformation, driven by financial motives, prompted law enforcement to act. Police obtained legal authorization, leading to the individual's arrest and detention—a boundary-crosser's journey halted by authority, which resulted in the public figure's professional activities being put on hold.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p2",
+      "text": "An online provocateur pioneered the use of AI-generated content and digital manipulation, creating deepfake audio to spread false claims for financial gain. This novel approach to fabrication of evidence was met with law enforcement action, as authorities crossed a new jurisdictional threshold to secure an arrest warrant. The content creator was detained, causing reputational damage and halting the actor's public appearances—a stark consequence of scandal in the capital city of South Korea.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-0",
+          "why-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "A reckless spreader of falsehoods exploited uncharted tech for false narratives, utilizing AI tools to create deceptive practice that spread misinformation. The police force's legal procedure resulted in an arrest warrant issuance, confining the boundary-crosser. This consequence of crime led to the celebrity's engagements being suspended, casting a shadow of professional impact over the public figure's career since early 2025 in the urban center.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-0",
+          "why-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.72
+    }
+  ],
+  "warnings": []
+}
