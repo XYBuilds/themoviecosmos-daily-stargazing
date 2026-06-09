@@ -19,6 +19,12 @@ class ResonanceRubricTests(unittest.TestCase):
         self.assertEqual(parse_resonance_type("双重"), TYPE_STRONG)
         self.assertEqual(parse_resonance_type("结构"), TYPE_DEEP)
         self.assertEqual(parse_resonance_type("表层"), TYPE_SURFACE)
+        self.assertEqual(
+            parse_resonance_type("强共振（表层 + 结构）"), TYPE_STRONG
+        )
+        self.assertEqual(
+            parse_resonance_type("深层共振（仅结构，无表层）"), TYPE_DEEP
+        )
 
     def test_validate_matrix(self):
         validate_score_type_pair(0, None)

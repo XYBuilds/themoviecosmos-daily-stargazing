@@ -78,7 +78,9 @@ def run_incremental(
 
     for idx, item in enumerate(pending, start=1):
         print(f"[{idx}/{len(pending)}] {item.run_id} {item.tmdb_id} {item.title[:40]}", flush=True)
-        judge_score, judge_type, rationale = call_llm_judge(item, provider=provider)
+        judge_score, judge_type, rationale, causal_test = call_llm_judge(
+            item, provider=provider
+        )
         partial[_item_key(item)] = {
             "run_id": item.run_id,
             "tmdb_id": item.tmdb_id,
@@ -86,6 +88,7 @@ def run_incremental(
             "judge_score": judge_score,
             "judge_resonance_type": judge_type,
             "rationale": rationale,
+            "causal_test": causal_test,
             "human_score": item.human_score,
             "human_resonance_type": item.human_resonance_type,
             "disagreement": item.human_score is not None and item.human_score != judge_score,

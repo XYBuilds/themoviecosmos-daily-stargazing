@@ -7,7 +7,7 @@ todos:
     status: complete
   - id: p310-1
     content: 3.10.1 · llm_judge.py rubric 重写为双轴（粘贴 3.10.0 judge-ready 措辞 + 强制 rationale 含因果反测句）+ 单测
-    status: todo
+    status: complete
   - id: p310-2
     content: 3.10.2 · eval-the-bet.md §4 共振 rubric 改双轴（粘贴 3.10.0 rubric-ready 措辞）+ 归属规则/共振类型同步
     status: todo

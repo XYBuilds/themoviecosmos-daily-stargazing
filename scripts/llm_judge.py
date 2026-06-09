@@ -1,6 +1,7 @@
-"""LLM-as-judge resonance scorer with observation-set calibration (Phase 3.9.4).
+"""LLM-as-judge resonance scorer with observation-set calibration (Phase 3.9.4 / 3.10.1).
 
-Scores candidates 0/1/2 plus resonance type per ``docs/eval-the-bet.md`` §4.
+Scores candidates 0/1/2 plus resonance type per dual-axis rubric (ADR-0007 D1;
+authority: ``prompts/_shared/resonance_definition_v2.md``).
 Calibration on observation-set human scores (runs 01–04); below alignment
 threshold marks judge output as 不采信 (screening only).
 """
@@ -37,7 +38,7 @@ from scripts.summarize_eval import (
     parse_unified_review,
 )
 
-_JUDGE_SCHEMA_VERSION = 2
+_JUDGE_SCHEMA_VERSION = 3
 _VALID_SCORES = frozenset({0, 1, 2})
 _JSON_FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)\s*```", re.IGNORECASE)
 
@@ -50,33 +51,55 @@ TRUST_STATUS_UNTRUSTED = "不采信"
 
 _JUDGE_SYSTEM = (
     "You are an expert resonance judge for a news-to-film matching eval. "
+    "A match resonates on two independent axes: (1) surface element and "
+    "(2) underlying logic. The score equals the number of axes that hold. "
     "Return only valid JSON matching the requested schema. "
-    "Follow the 2×2 decision tree: first assess 承重表层锚点 (yes/no), "
-    "then 骨架同构 (yes/no), then map to score and resonance_type."
+    "Follow the decision tree: first assess 表层元素 (load-bearing concrete "
+    "anchor, passes the 0-guard) yes/no; then assess 底层逻辑 (a causal-stakes "
+    "engine invariant under POV/scale change) yes/no — this axis is GATED by a "
+    "falsifiable causal counter-test: you MUST write one 'X, under constraint Z, "
+    "drives Y' sentence that is literally true of BOTH the news and the film; "
+    "if you cannot, 底层逻辑 = NO. Then map to score and resonance_type."
 )
 
 _JUDGE_RUBRIC = f"""\
-## Resonance score rubric (2×2 matrix)
+## Resonance score rubric (two independent axes, 2×2 matrix)
 
-**Step 1 — 承重表层锚点**: Does the film share a **load-bearing** concrete anchor
-with the news (place / event type / role type / setting that drives both stories)?
-Incidental word overlap without load-bearing shared elements = NO.
+A news–film pair can resonate on two **independent** axes. score = number of axes that hold.
 
-**Step 2 — 骨架同构**: Are power / fate / theme skeletons isomorphic
-(e.g. central authority sacrificing margins under scarcity; public rhetoric vs private motive)?
+**Axis 1 — 表层元素 (surface element)**: Do the news and film share a
+**concrete, nameable** element that is **load-bearing** in both stories
+(this place / this kind of occupation / this type of event / this setting or subject-matter)?
+- **0-guard**: if an unrelated news item could be paired with the same film equally well,
+  the shared element is NOT load-bearing → Axis 1 = NO.
+- **Abstract power-role pairings (authority↔victim, leader↔team) are NOT surface elements**
+  — they belong to Axis 2 (they fail the 0-guard: an unrelated institutional news item fits them too).
 
-| 承重表层锚点 | 骨架同构 | score | resonance_type |
+**Axis 2 — 底层逻辑 (underlying logic)**: Do the news and film instantiate the
+**same causal-stakes engine**, invariant under change of POV or scale? The engine is one
+sentence of the form **"X, under constraint Z, drives Y"**
+(e.g. *systemic scarcity forces ordinary people into survival mode*). An institutional-scale
+telling and an individual-scale telling of the **same** engine still count as the same logic.
+- **Falsifiable causal counter-test (anti-inflation)**: you MUST write a single
+  "X under constraint Z drives Y" sentence that is literally true of **both** sides.
+  If you cannot write one, Axis 2 = NO → fall back to score 0/1.
+  ("Logic" is broader than rigid structural isomorphism because it admits POV/scale shifts,
+  but it does not collapse into "everything resonates".)
+
+| 表层元素 | 底层逻辑 | score | resonance_type |
 |---|---|---|---|
 | 无 | 否 | **0** | null |
 | 无 | 是 | **1** | {TYPE_DEEP} |
 | 有 | 否 | **1** | {TYPE_SURFACE} |
 | 有 | 是 | **2** | {TYPE_STRONG} |
 
-**0-guard**: if unrelated news could explain the film equally → 无表层 + 不同构 → score 0
-(resonance_type null; conceptually {TYPE_NONE}).
+**0-guard restated**: if an unrelated news item could explain the film equally well
+→ 无表层 + 无逻辑 → score 0 (resonance_type null; conceptually {TYPE_NONE}).
 
-Output JSON (both fields required except resonance_type is null at score 0):
-{{"score": 0|1|2, "resonance_type": {TYPE_DEEP!r}|{TYPE_SURFACE!r}|{TYPE_STRONG!r}|null, "rationale": "brief"}}
+Output JSON. All fields required. `resonance_type` is null only at score 0.
+`causal_test` is the bidirectional "X under constraint Z drives Y" sentence that holds for
+BOTH news and film; set it to "" only when Axis 2 = NO. `rationale` is brief free text.
+{{"score": 0|1|2, "resonance_type": {TYPE_DEEP!r}|{TYPE_SURFACE!r}|{TYPE_STRONG!r}|null, "causal_test": "X under constraint Z drives Y — true of both news and film, or \\"\\" if none", "rationale": "brief"}}
 """
 
 
@@ -104,6 +127,7 @@ class JudgeResult:
     judge_score: int
     judge_resonance_type: str | None
     rationale: str = ""
+    causal_test: str = ""
     human_score: int | None = None
     human_resonance_type: str | None = None
     disagreement: bool = False
@@ -168,8 +192,10 @@ def parse_plain_human_type(raw: str) -> str | None:
     return parse_resonance_type(raw)
 
 
-def validate_judge_payload(payload: dict[str, Any]) -> tuple[int, str | None]:
-    """Validate LLM judge JSON; return (score, resonance_type)."""
+def validate_judge_payload(
+    payload: dict[str, Any],
+) -> tuple[int, str | None, str]:
+    """Validate LLM judge JSON; return (score, resonance_type, causal_test)."""
     if not isinstance(payload, dict):
         raise ValueError("judge payload must be a JSON object")
     raw_score = payload.get("score")
@@ -185,7 +211,14 @@ def validate_judge_payload(payload: dict[str, Any]) -> tuple[int, str | None]:
         if resonance_type is None or resonance_type == TYPE_NONE:
             raise ValueError(f"invalid resonance_type {raw_type!r}")
     validate_score_type_pair(score, resonance_type)
-    return score, resonance_type
+    if "causal_test" not in payload:
+        raise ValueError("judge payload must include causal_test")
+    causal_test = str(payload.get("causal_test") or "").strip()
+    if score == 2 and not causal_test:
+        raise ValueError("score 2 requires non-empty causal_test")
+    if resonance_type == TYPE_DEEP and not causal_test:
+        raise ValueError(f"{TYPE_DEEP!r} requires non-empty causal_test")
+    return score, resonance_type, causal_test
 
 
 def compute_calibration(
@@ -403,15 +436,15 @@ def build_judge_user_prompt(item: JudgeItem) -> str:
     )
 
 
-def parse_judge_response(text: str) -> tuple[int, str | None, str]:
+def parse_judge_response(text: str) -> tuple[int, str | None, str, str]:
     cleaned = text.strip()
     fence = _JSON_FENCE_RE.search(cleaned)
     if fence:
         cleaned = fence.group(1).strip()
     payload = json.loads(cleaned)
-    score, resonance_type = validate_judge_payload(payload)
+    score, resonance_type, causal_test = validate_judge_payload(payload)
     rationale = str(payload.get("rationale") or "").strip()
-    return score, resonance_type, rationale
+    return score, resonance_type, rationale, causal_test
 
 
 def call_llm_judge(
@@ -419,7 +452,7 @@ def call_llm_judge(
     *,
     provider: str | None = None,
     client: Any | None = None,
-) -> tuple[int, str | None, str]:
+) -> tuple[int, str | None, str, str]:
     load_env()
     prov = (provider or default_llm_provider()).strip().lower()
     llm = client or get_llm_client(prov)
@@ -442,7 +475,7 @@ def call_llm_judge(
     return parse_judge_response(content)
 
 
-JudgeFn = Callable[[JudgeItem], tuple[int, str | None, str]]
+JudgeFn = Callable[[JudgeItem], tuple[int, str | None, str, str]]
 
 
 def score_items(
@@ -461,7 +494,7 @@ def score_items(
     cal_pairs: list[tuple[int, int]] = []
 
     for item in items:
-        judge_score, judge_type, rationale = judge_fn(item)
+        judge_score, judge_type, rationale, causal_test = judge_fn(item)
         disagreement = (
             item.human_score is not None and item.human_score != judge_score
         )
@@ -472,6 +505,7 @@ def score_items(
             judge_score=judge_score,
             judge_resonance_type=judge_type,
             rationale=rationale,
+            causal_test=causal_test,
             human_score=item.human_score,
             human_resonance_type=item.human_resonance_type,
             disagreement=disagreement,
@@ -502,6 +536,9 @@ _JUDGE_SCORE_LINE = re.compile(r"^-\s*\*\*judge分\*\*:.*$", re.MULTILINE)
 _JUDGE_TYPE_LINE = re.compile(r"^-\s*\*\*judge共振类型\*\*:.*$", re.MULTILINE)
 _JUDGE_DISAGREE_LINE = re.compile(r"^-\s*\*\*judge分歧\*\*:.*$", re.MULTILINE)
 _JUDGE_TRUST_LINE = re.compile(r"^-\s*\*\*judge采信\*\*:.*$", re.MULTILINE)
+_JUDGE_CAUSAL_TEST_LINE = re.compile(
+    r"^-\s*\*\*judge因果反测\*\*:.*$", re.MULTILINE
+)
 _JUDGE_RATIONALE_LINE = re.compile(
     r"^-\s*\*\*(?:judge理由|rationale)\*\*:.*$", re.MULTILINE
 )
@@ -534,6 +571,7 @@ def load_judge_output(path: Path) -> JudgeOutput:
             judge_score=int(row["judge_score"]),
             judge_resonance_type=row.get("judge_resonance_type"),
             rationale=str(row.get("rationale") or ""),
+            causal_test=str(row.get("causal_test") or ""),
             human_score=row.get("human_score"),
             human_resonance_type=row.get("human_resonance_type"),
             disagreement=bool(row.get("disagreement")),
@@ -564,6 +602,8 @@ def format_judge_block_lines(
         )
     else:
         lines.append(f"- **judge采信**: {calibration.trust_status}")
+    if result.causal_test:
+        lines.append(f"- **judge因果反测**: {result.causal_test}")
     if result.rationale:
         lines.append(f"- **judge理由**: {result.rationale}")
     return lines
@@ -575,6 +615,7 @@ def _strip_existing_judge_lines(block: str) -> str:
         _JUDGE_TYPE_LINE,
         _JUDGE_DISAGREE_LINE,
         _JUDGE_TRUST_LINE,
+        _JUDGE_CAUSAL_TEST_LINE,
         _JUDGE_RATIONALE_LINE,
     ):
         block = pattern.sub("", block)
@@ -731,6 +772,7 @@ def write_judge_markdown(path: Path, output: JudgeOutput) -> None:
             f"- **judge_resonance_type**: {row.judge_resonance_type or ''}\n"
             f"- **human_score**: {row.human_score if row.human_score is not None else ''}\n"
             f"- **human_resonance_type**: {row.human_resonance_type or ''}\n"
+            f"- **causal_test**: {row.causal_test}\n"
             f"- **rationale**: {row.rationale}\n"
         )
     path.write_text("\n".join(lines), encoding="utf-8", newline="\n")
@@ -829,12 +871,13 @@ def main(argv: list[str] | None = None) -> int:
             (s["run_id"], str(s["tmdb_id"])): s for s in prior.get("scores", [])
         }
 
-        def _replay(item: JudgeItem) -> tuple[int, str | None, str]:
+        def _replay(item: JudgeItem) -> tuple[int, str | None, str, str]:
             row = by_key[(item.run_id, item.tmdb_id)]
             return (
                 int(row["judge_score"]),
                 row.get("judge_resonance_type"),
                 str(row.get("rationale") or ""),
+                str(row.get("causal_test") or ""),
             )
 
         judge_fn: JudgeFn = _replay
