@@ -7,6 +7,7 @@ from pathlib import Path
 
 from scripts.summarize_eval import (
     _format_stdout,
+    _prescreen_effective_weight,
     parse_eval_markdown,
     q1_prime_a1_two_neutral_coverage,
     summarize_runs,
@@ -126,7 +127,7 @@ class SummarizeEvalPhase38DiagnosticTests(unittest.TestCase):
         g = report["global"]
         self.assertTrue(g["phase38_gate"])
         self.assertFalse(g["persona_gate"])
-        self.assertEqual(report["gate"]["compare_mode"], "combo_vs_pure_fact")
+        self.assertEqual(report["gate"]["compare_mode"], "d5_success_criteria")
         d1 = g["diagnostic_1_neutral_hit_rate"]
         d2 = g["diagnostic_2_toned_convergence"]
         tb = g["three_bucket"]
@@ -138,16 +139,23 @@ class SummarizeEvalPhase38DiagnosticTests(unittest.TestCase):
         self.assertGreater(d2["neutral_only_scored"], 0)
         self.assertGreater(tb["neutral_only_scored"], 0)
         self.assertTrue(d2["q2_combo_lift_ok"])
-        self.assertEqual(report["gate"]["verdict"], "GATE_PASS")
-        self.assertEqual(report["a1_oracle"]["status"], "available")
-        self.assertIsNotNone(report["a1_oracle"]["q1_prime"])
+        self.assertEqual(report["gate"]["compare_mode"], "d5_success_criteria")
+        self.assertIn("success_criteria", report)
+        self.assertTrue(report["success_criteria"]["resonance"]["combo_gt_pure_fact"])
+        self.assertEqual(report["gate"]["verdict"], "GATE_FAIL")
+        self.assertIn("workflow", report["gate"]["reasons"][0].lower())
+        self.assertEqual(report["a1_reference"]["status"], "reference_only")
+        self.assertEqual(report["a1_reference"]["role"], "read_only_quality_reference")
+        self.assertNotIn("a1_deletion_eligible", report["a1_reference"])
         stdout = _format_stdout(report)
         self.assertIn("Diagnostic ①", stdout)
         self.assertIn("Q2", stdout)
         self.assertIn("Three-bucket", stdout)
-        self.assertIn("Q1′ n1 neutral covers A1 human-2s", stdout)
-        self.assertIn("Q1 legacy recall superset", stdout)
-        self.assertIn("Gate line 2 compare: combo_vs_pure_fact", stdout)
+        self.assertIn("D5 success · resonance", stdout)
+        self.assertIn("A1 reference (read-only", stdout)
+        self.assertNotIn("Q1′ n1 neutral covers A1 human-2s", stdout)
+        self.assertNotIn("a1_deletion_eligible", stdout.lower())
+        self.assertIn("Gate: D5 success criteria", stdout)
 
     def test_phase38_dual_diagnostic_fail_when_neutral_beats_quality(self):
         run = _load_run("phase38-dual-diagnostic-fail/candidates.md")
@@ -159,7 +167,7 @@ class SummarizeEvalPhase38DiagnosticTests(unittest.TestCase):
         self.assertGreater(d2["neutral_only_scored"], 0)
         self.assertFalse(d2["q2_combo_lift_ok"])
         self.assertEqual(report["gate"]["verdict"], "GATE_FAIL")
-        self.assertIn("q2", report["gate"]["reasons"][0].lower())
+        self.assertFalse(report["success_criteria"]["resonance"]["combo_gt_pure_fact"])
 
     def test_similarity_bins_present_in_diagnostic_1(self):
         run = _load_run("phase38-dual-diagnostic-pass/candidates.md")
@@ -183,15 +191,16 @@ class SummarizeEvalThreeBucketTests(unittest.TestCase):
         self.assertAlmostEqual(tb["buckets"]["combo"]["structural_2_rate"], 0.5)
         self.assertFalse(tb["q2_combo_lift_ok"])
 
-    def test_a1_oracle_legacy_recall_from_retrieve_json(self):
+    def test_a1_reference_legacy_recall_from_retrieve_json(self):
         run = _load_run("phase39-three-bucket/candidates.md")
         report = summarize_runs([run])
-        a1 = report["a1_oracle"]
-        self.assertEqual(a1["status"], "available")
+        a1 = report["a1_reference"]
+        self.assertEqual(a1["status"], "reference_only")
         legacy = a1["q1_legacy_recall"]
         self.assertTrue(legacy["q1_recall_superset_ok"])
         self.assertEqual(legacy["runs_with_oracle_data"], 1)
         self.assertEqual(legacy["per_run"][0]["a1_hit_tmdb_ids"], [910001, 910004])
+        self.assertNotIn("a1_deletion_eligible", a1)
 
     def test_q1_prime_pass_when_n1_covers_a1_human_twos(self):
         run = _load_run("phase39-q1-prime/candidates.md")
@@ -232,6 +241,46 @@ class SummarizeEvalThreeBucketTests(unittest.TestCase):
         self.assertFalse(cand.toned_convergence)
         self.assertTrue(cand.is_pure_fact)
         self.assertFalse(cand.is_combo)
+
+
+class SummarizeEvalD5Tests(unittest.TestCase):
+    def test_prescreen_audit_reweights_bucket_denominators(self):
+        run = _load_run("phase310-prescreen-audit/candidates.md")
+        cand = run.candidates[0]
+        self.assertEqual(_prescreen_effective_weight(cand), 4.0)
+        rejected = run.candidates[1]
+        self.assertIsNone(_prescreen_effective_weight(rejected))
+
+        report = summarize_runs([run])
+        tb = report["global"]["three_bucket"]
+        self.assertTrue(tb["prescreen_reweighted"])
+        rw = tb["buckets_reweighted"]
+        self.assertAlmostEqual(rw["pure_fact"]["effective_weight"], 4.0)
+        self.assertEqual(rw["pure_fact"]["scored"], 1)
+        self.assertAlmostEqual(rw["combo"]["effective_weight"], 2.0)
+        self.assertTrue(tb["q2_combo_lift_ok_reweighted"])
+
+    def test_d5_workflow_pass_with_calibration(self):
+        run = _load_run("phase310-d5-workflow-pass/candidates.md")
+        calibration = {"trust_status": "采信"}
+        report = summarize_runs([run], calibration=calibration)
+        wf = report["success_criteria"]["workflow"]
+        self.assertEqual(wf["status"], "available")
+        self.assertAlmostEqual(wf["load_reduction_rate"], 0.5)
+        self.assertTrue(wf["load_reduction_ok"])
+        self.assertTrue(wf["zero_human_2_killed"])
+        self.assertTrue(wf["judge_calibration_trusted"])
+        self.assertTrue(wf["pass"])
+        self.assertEqual(report["gate"]["verdict"], "GATE_PASS")
+
+    def test_q1_prime_remains_diagnostic_not_gate(self):
+        run = _load_run("phase39-three-bucket/candidates.md")
+        report = summarize_runs([run])
+        q1_cov = report["a1_reference"]["q1_prime_coverage"]
+        self.assertIn("q1_prime_pass", q1_cov)
+        self.assertNotIn("a1_deletion_eligible", report["a1_reference"])
+        stdout = _format_stdout(report)
+        self.assertNotIn("Q1′ n1 neutral covers", stdout)
 
 
 if __name__ == "__main__":
