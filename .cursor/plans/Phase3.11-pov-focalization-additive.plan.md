@@ -3,13 +3,13 @@ name: Phase3.11-pov-focalization-additive
 overview: 按 ADR-0007 D6–D8 走第二步——给 persona 生成层引入 POV（focalization/聚焦）能力：视点从本 persona 价值轴的 Who 极派生（非自由选），只在编剧 P-Tone 步生效，中性通道零改动，硬守卫 focal∈decon-who-*且不新增事实。POV pseudo 作追加通道（不顶替第三人称），纯增召回。配候选过多四层漏斗（去重→汇聚排序→预筛→预算 top-N，上限以下 judge≥1 进抽审）。POV 是底层必备能力故不设判决闸，度量降为调优指南针：以 3.10(POV-off) 为对照臂做 A/B，测 POV-recalled 差集的新增 human-2 + POV变换 子标签。预测试先行：手工 POV 重写跑检索差集，有新片才做全套。
 todos:
   - id: p311-0
-    content: 3.11.0 · 契约/CONTEXT 对齐 ADR-0007 D6：screenwriter 契约产 POV 聚焦权威措辞源（派生自 Who 极、focal∈who-*、不新增事实、hypernym 锚保留）+ CONTEXT 术语 [需聪明模型] [需人工验收]
+    content: 3.11.0 · 契约/CONTEXT 对齐 ADR-0007 D6：screenwriter 契约产 POV 聚焦权威措辞源（逐 persona 派生成稿 + focal∈who-* + 不新增事实 + hypernym 锚，供 3.11.1/3.11.2 逐字引用）+ CONTEXT 术语 [需聪明模型] [需人工验收]
     status: todo
   - id: p311-1
-    content: 3.11.1 · 预测试：手工把 N 条新闻 POV 重写跑检索，核验差集是否有当前 pseudo 漏掉的新共振片 [需聪明模型] [需人工验收 · Go/No-Go]
+    content: 3.11.1 · 预测试：用 3.11.0 措辞让运行时 LLM 把 N 条新闻 POV 重写跑检索，核验差集是否有当前 pseudo 漏掉的新共振片 [需人工验收 · Go/No-Go]
     status: todo
   - id: p311-2
-    content: 3.11.2 · screenwriter POV 聚焦生成（派生视点 + 追加通道不顶替第三人称，引 3.11.0 权威措辞）+ 单测 [部分需聪明模型]
+    content: 3.11.2 · screenwriter POV 聚焦生成（派生视点 + 追加通道不顶替第三人称，引 3.11.0 权威措辞）+ 单测
     status: todo
   - id: p311-3
     content: 3.11.3 · 运行时守卫：focal-char ∈ decon who-* + 事实守卫（无新增内心戏/事件/因果/结果）+ 单测
@@ -18,13 +18,13 @@ todos:
     content: 3.11.4 · 候选漏斗：去重 + 汇聚排序（扩展撞车票）+ 预算 top-N + POV-recalled A/B 池差输出 + 单测
     status: todo
   - id: p311-5
-    content: 3.11.5 · 打分 schema 加 `POV变换` 共振类型子标签 + judge/人工双侧支持 + 单测 [部分需聪明模型]
+    content: 3.11.5 · 打分 schema 加 `POV变换` 共振类型子标签 + judge/人工双侧支持 + 单测
     status: todo
   - id: p311-6
     content: 3.11.6 · 单点 pilot POV A/B + 防火墙审计（专审事实漂移 + 视点派生正确性）[需人工验收 · Go/No-Go]
     status: todo
   - id: p311-7
-    content: 3.11.7 · 全批 A/B（POV-on vs 3.10 POV-off 基线，同新闻同 def 同 judge）+ 调优 + 抽审 [部分需聪明模型] [需人工验收]
+    content: 3.11.7 · 全批 A/B（POV-on vs 3.10 POV-off 基线，同新闻同 def 同 judge）+ 调优 + 抽审 [需人工验收]
     status: todo
   - id: p311-8
     content: 3.11.8 · GATE（调优指南针口径）：POV-recalled 净新增 human-2>0 + 精度不崩 + 守卫零硬失败 → GATE_RESULT [GATE · 需人工验收]
@@ -78,7 +78,7 @@ flowchart TD
 
 `3.11.0` 是 **POV 聚焦的唯一权威措辞源**（派生视点 + 事实铁律）；`3.11.1` 手工示范、`3.11.2` 生成实现都**引用同一措辞**。`3.11.1` 预测试为 Go/No-Go 省钱闸。
 
-> **执行分工标记**：`[需聪明模型]` = 提示词/契约/措辞设计或高质量 POV 示范，需强模型；`[部分需聪明模型]` = 代码为主、夹带提示词增改或靠判断的调优；无标记 = 守卫校验/漏斗/统计/管道等机械活。本 Phase 的 `[需聪明模型]` 在 `3.11.0`（POV 措辞源）/ `3.11.1`（手工 POV 示范）；`3.11.2`（逐 persona 派生措辞）/ `3.11.5`（judge 学打 POV变换）/ `3.11.7`（看结果迭代 POV 提示词）为部分。
+> **执行分工标记**：`[需聪明模型]` = **执行该条时须在 Cursor 把 agent 模型切到 Opus**（agent 亲手撰写权威措辞）。本 Phase 只有 `3.11.0` 属此类——它把**逐 persona 的派生视点措辞**也一次写成成稿。其余条目的「智能」都来自**运行时 LLM**（pseudo 生成、judge 打分，由 `.env` 的 MiMo Pro / DeepSeek 决定），与 Cursor agent 模型无关：`3.11.1`（运行时跑 POV 重写）、`3.11.2`（引 3.11.0 措辞 + 代码）、`3.11.5`（judge 打 POV变换）、`3.11.7`（跑批 + 看结果）Cursor 普通模型即可。**唯一例外**：若 `3.11.7` 调优需**回改 3.11.0 的措辞**，那次回改仍按撰写权威措辞处理（临时切 Opus）。
 
 ## Scope
 
@@ -131,8 +131,9 @@ flowchart TD
 **依赖：** Phase 3.10 GATE go + ADR-0007 D6
 
 - `prompts/_shared/persona_screenwriter_contract.md` 新增 POV 聚焦段（唯一权威措辞源）：focal 视点**派生自本 persona 价值轴 Who 极**（非自由选）；focal 角色**必须是 decon 既有 `who-*`**；**只换"从谁的眼睛看"，绝不新增内心戏/事件/因果/结果**；hypernym 锚要求保留。
+- **逐 persona 派生措辞写成成稿**（把 Opus 工作前置到本条）：12 个 persona 各自的 focal 视点指令一次写定，让 3.11.2 生成实现只是引用 + 接线，无须再切 Opus。
 - `CONTEXT.md`：补术语（POV 聚焦 / focalization / 派生式视点 / 追加通道 / 候选漏斗 / POV-recalled）。
-- **传播契约**：声明 3.11.1（手工示范）/ 3.11.2（生成实现）须引用本措辞源。
+- **传播契约**：声明 3.11.1（运行时跑 POV 重写）/ 3.11.2（生成实现）只引用本措辞源，不私自改写（执行时无须切 Opus）。
 
 ### 验收
 
@@ -142,11 +143,11 @@ flowchart TD
 
 ---
 
-## Todo 3.11.1 · 预测试：手工 POV 重写跑检索差集 [需聪明模型] [需人工验收 · Go/No-Go]
+## Todo 3.11.1 · 预测试：POV 重写跑检索差集 [需人工验收 · Go/No-Go]
 
 **依赖：** 3.11.0 approve
 
-- 选 N 条新闻（含 Gap A 那类），**手工**按 3.11.0 措辞写 POV 版 pseudo，跑检索。
+- 选 N 条新闻（含 Gap A 那类），用 3.11.0 措辞**驱动运行时 LLM（MiMo Pro / DeepSeek）**生成 POV 版 pseudo，跑检索（Cursor 这边只跑脚本，无须切 Opus）。
 - 比对 POV-on 与现有 POV-off（3.10）候选池**差集**：是否冒出当前 pseudo 漏掉的**新共振片**（人工速判）。
 
 ### 验收
@@ -157,7 +158,7 @@ flowchart TD
 
 ---
 
-## Todo 3.11.2 · screenwriter POV 聚焦生成（派生 + 追加）+ 单测 [部分需聪明模型]
+## Todo 3.11.2 · screenwriter POV 聚焦生成（派生 + 追加）+ 单测
 
 **依赖：** 3.11.1 Go（引 3.11.0 权威措辞）
 
@@ -204,7 +205,7 @@ flowchart TD
 
 ---
 
-## Todo 3.11.5 · `POV变换` 共振类型子标签 + 单测 [部分需聪明模型]
+## Todo 3.11.5 · `POV变换` 共振类型子标签 + 单测
 
 **依赖：** 3.11.0（措辞）
 
@@ -233,7 +234,7 @@ flowchart TD
 
 ---
 
-## Todo 3.11.7 · 全批 A/B + 调优 + 抽审 [部分需聪明模型] [需人工验收]
+## Todo 3.11.7 · 全批 A/B + 调优 + 抽审 [需人工验收]
 
 **依赖：** 3.11.6 Go
 

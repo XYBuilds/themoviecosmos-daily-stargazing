@@ -3,13 +3,13 @@ name: Phase3.10-logic-resonance-and-judge-prescreen
 overview: 按 ADR-0007 D1–D5 走第一步——把共振定义升级为「表层元素 + 底层逻辑」双轴（底层逻辑=POV/尺度不变的因果-赌注引擎+反测句），重写并重校准 judge，把 LLM-judge 转为评测打分循环的预筛（全量打分+分档+拒绝集抽审+阈值在 obs 验证"零 human-2 被杀"才冻结）。砍 3.9 的 Q1' 删除闸、A1 降只读参照。生成侧不动（POV 留 3.11），用同新闻集全链重跑+新定义鲜标，产出一条干净的新定义复检基线，并充当 3.11 POV-off 对照臂。成功=combo>pure_fact(新def·obs/holdout不裂口)+预筛减负~50%且零误杀且校准达标。
 todos:
   - id: p310-0
-    content: 3.10.0 · 契约/CONTEXT 对齐 ADR-0007 D1：产「双轴定义 + 因果反测句」权威措辞源（供 3.10.1/3.10.2 传播）+ 2×2 措辞更新 [需聪明模型] [需人工验收]
+    content: 3.10.0 · 契约/CONTEXT 对齐 ADR-0007 D1：产「双轴定义 + 因果反测句」权威措辞源（含 judge-ready / rubric-ready 成稿，供 3.10.1/3.10.2 逐字粘贴）+ 2×2 措辞更新 [需聪明模型] [需人工验收]
     status: todo
   - id: p310-1
-    content: 3.10.1 · llm_judge.py rubric 重写为双轴（POV不变因果引擎+具体表层+0分守门）+ 强制 rationale 含因果反测句 + 单测 [需聪明模型]
+    content: 3.10.1 · llm_judge.py rubric 重写为双轴（粘贴 3.10.0 judge-ready 措辞 + 强制 rationale 含因果反测句）+ 单测
     status: todo
   - id: p310-2
-    content: 3.10.2 · eval-the-bet.md §4 共振 rubric 改双轴 + 反测；归属规则/共振类型措辞同步权威源 [需聪明模型]
+    content: 3.10.2 · eval-the-bet.md §4 共振 rubric 改双轴（粘贴 3.10.0 rubric-ready 措辞）+ 归属规则/共振类型同步
     status: todo
   - id: p310-3
     content: 3.10.3 · summarize_eval/score_eval 砍 Q1' 删除闸、A1 降只读参照、成功标准收敛为 D5 两条、抽审样本回加权 + 单测
@@ -75,7 +75,7 @@ flowchart TD
 
 `3.10.0` 是**双轴定义的唯一权威措辞源**；`3.10.1`（judge prompt）与 `3.10.2`（rubric 文档）必须**逐字传播同一措辞**，不得各自改写——否则 judge 与人类又按不同尺子打分（重蹈 14 例分歧）。`3.10.3`/`3.10.4` 可与 `3.10.1`/`3.10.2` 并行。
 
-> **执行分工标记**：`[需聪明模型]` = 提示词/契约/rubric 措辞设计，需强模型把判断写进语言；`[部分需聪明模型]` = 代码为主、夹带少量提示词增改；无标记 = 解析/统计/管道/测试等机械活，便宜模型/常规编码即可。本 Phase 的 `[需聪明模型]` 集中在 `3.10.0/1/2`（同源双轴措辞），其余为机械实现与跑批/打分。
+> **执行分工标记**：`[需聪明模型]` = **执行该条时须在 Cursor 把 agent 模型切到 Opus**（agent 亲手撰写权威措辞）。注意区分两类「智能」：① **Cursor agent 模型**——只有 `3.10.0` 这种撰写权威措辞的活才需切 Opus；② **运行时 LLM**（pseudo 生成 / judge 打分，由 `.env` 的 MiMo Pro / DeepSeek 决定）——与 Cursor agent 模型无关，跑脚本即可。`3.10.1`（粘贴进 judge prompt + 代码/测试）、`3.10.2`（粘贴进 rubric 文档）只要 `3.10.0` 成稿就是**机械传播**，Cursor 普通模型即可；`3.10.3/4` 机械、`3.10.5–8` 跑批/打分，均无须切 Opus。
 
 ## Scope
 
@@ -126,8 +126,9 @@ flowchart TD
 
 - 在 `prompts/_shared/`（或 ADR-0007 引用的权威块）写定**唯一一份**「双轴定义 + 因果反测句」措辞：表层元素（具体可命名 / 过 0 分守门 / 抽象权力角色归逻辑轴）+ 底层逻辑（POV/尺度不变因果-赌注引擎）+ 反测句模板。
 - 明确「2×2 矩阵不变，仅换措辞」：`结构性共振→逻辑共振`、`深层共振（仅结构）→深层共振（仅逻辑）`、`强共振（表层+结构）→强共振（表层+逻辑）`。
+- **同时产出两份成稿**，让下游变成纯粘贴（这是把 Opus 工作前置到本条的关键）：① **judge-ready** 段（直接替换 `llm_judge.py` 的 `_JUDGE_RUBRIC`/`_JUDGE_SYSTEM`，含 Step1/Step2 + 强制因果反测句 rationale + JSON schema）；② **rubric-ready** 段（直接替换 `eval-the-bet.md` §4 的 2×2 表 + 共振类型示例）。
 - `CONTEXT.md`：补术语（表层元素 / 底层逻辑 / POV 不变因果引擎 / judge 预筛 / 拒绝集抽审）。
-- **传播契约**：声明 3.10.1（judge prompt）/ 3.10.2（rubric 文档）须**逐字引用**本措辞源，禁止各自改写。
+- **传播契约**：声明 3.10.1（judge prompt）/ 3.10.2（rubric 文档）只**逐字粘贴**上述成稿，禁止各自改写（执行时无须切 Opus）。
 
 ### 验收
 
@@ -137,7 +138,7 @@ flowchart TD
 
 ---
 
-## Todo 3.10.1 · llm_judge.py rubric 重写为双轴 + 单测 [需聪明模型]
+## Todo 3.10.1 · llm_judge.py rubric 重写为双轴 + 单测
 
 **依赖：** 3.10.0 approve（传播权威措辞）
 
@@ -153,7 +154,7 @@ flowchart TD
 
 ---
 
-## Todo 3.10.2 · eval-the-bet.md §4 rubric 改双轴 [需聪明模型]
+## Todo 3.10.2 · eval-the-bet.md §4 rubric 改双轴
 
 **依赖：** 3.10.0 approve（传播权威措辞）
 
