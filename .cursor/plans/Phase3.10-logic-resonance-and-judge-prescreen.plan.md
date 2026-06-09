@@ -22,7 +22,7 @@ todos:
     status: complete
   - id: p310-6
     content: 3.10.6 · judge 在 obs 新定义重校准 + 阈值 judge≥1 在 obs 验证"零 human-2 被杀"后冻结 [需人工验收]
-    status: todo
+    status: complete
   - id: p310-7
     content: 3.10.7 · 预筛 holdout（含拒绝集抽审）+ 复检基线 combo>pure_fact(新def) + 减负率&安全核验 [需人工验收]
     status: todo
@@ -224,9 +224,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] judge 在 obs 新定义上校准采信（达阈值）
-- [ ] 阈值「零 human-2 被杀」在 obs 验证通过并冻结
-- [ ] `[需人工验收]`：用户 approve 冻结 → 进 3.10.7（若未达标 → 回 3.10.1 修 rubric / 放宽阈值）
+- [x] judge 在 obs 新定义上校准采信（达阈值）— **未达 exact/pearson 门 → 不采信 / screening_only**；用户 approve 仍冻结阈值
+- [x] 阈值「零 human-2 被杀」在 obs 验证通过并冻结
+- [x] `[需人工验收]`：用户 approve 冻结 → 进 3.10.7（若未达标 → 回 3.10.1 修 rubric / 放宽阈值）
 
 ---
 
