@@ -13,7 +13,7 @@ todos:
     status: complete
   - id: p310-3
     content: 3.10.3 · summarize_eval/score_eval 砍 Q1' 删除闸、A1 降只读参照、成功标准收敛为 D5 两条、抽审样本回加权 + 单测
-    status: todo
+    status: complete
   - id: p310-4
     content: 3.10.4 · judge 预筛编排：全量打分 + 分档(0降级/≥1人工/2高亮) + 拒绝集抽审 k% + 阈值纪律脚手架 + 单测
     status: complete

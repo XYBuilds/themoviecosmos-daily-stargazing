@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from scripts.resonance_rubric import STRUCTURAL_TYPES, parse_resonance_type
+from scripts.run_persona_batch import OBS_RUN_PREFIXES
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -49,6 +50,15 @@ _DISTINCT_AGENTS_LINE = re.compile(
     r"^-\s*\*\*distinct_agents\*\*:\s*(\d+)",
     re.MULTILINE,
 )
+_JUDGE_SCORE_LINE = re.compile(r"^-\s*\*\*judge分\*\*:\s*(.*)$", re.MULTILINE)
+_AUDIT_SAMPLED_LINE = re.compile(
+    r"^-\s*\*\*prescreen_audit_sampled\*\*:\s*(true|false)",
+    re.MULTILINE | re.IGNORECASE,
+)
+_AUDIT_SAMPLE_RATE_LINE = re.compile(
+    r"^-\s*\*\*prescreen_audit_sample_rate\*\*:\s*([\d.]+)",
+    re.MULTILINE,
+)
 _SIMILARITY_BINS: tuple[tuple[str, float, float], ...] = (
     ("low", 0.0, 0.45),
     ("mid", 0.45, 0.50),
@@ -61,6 +71,7 @@ _REVIEW_RUN_SECTION = re.compile(r"^## (\d{2}-[\w-]+)\s*$", re.MULTILINE)
 _BASELINE_AGENT = "A1"
 _PERSONA_AGENT_PREFIX = "THE-"
 _GATE_BATCH_PASS_RATE = 0.60
+_D5_LOAD_REDUCTION_TARGET = 0.50
 _PERSONA_BUCKETS = ("baseline-only", "persona-only", "both")
 
 
@@ -79,6 +90,9 @@ class CandidateScore:
     neutral_hits: int | None = None
     neutral_total: int | None = None
     distinct_agents: int | None = None
+    judge_score: int | None = None
+    audit_sampled: bool | None = None
+    audit_sample_rate: float | None = None
 
     @property
     def fit_sim_score(self) -> float | None:
@@ -267,6 +281,257 @@ def _structural_2_rates(
     }
 
 
+def _has_prescreen_data(runs: list[RunSummary]) -> bool:
+    return any(c.judge_score is not None for r in runs for c in r.candidates)
+
+
+def _prescreen_effective_weight(cand: CandidateScore) -> float | None:
+    """Weight for prescreen-aware bucket denominators (ADR-0007 D4/D5)."""
+    if cand.judge_score is None:
+        return 1.0
+    if cand.judge_score >= 1:
+        return 1.0
+    if cand.audit_sampled:
+        rate = cand.audit_sample_rate
+        if rate is not None and rate > 0:
+            return 1.0 / rate
+    return None
+
+
+def _weighted_2_rates(
+    candidates: list[CandidateScore],
+    *,
+    use_prescreen: bool,
+) -> dict[str, Any]:
+    if not use_prescreen:
+        total_rate, structural_rate, counts = _structural_2_rates(candidates)
+        return {
+            "total_2_rate": total_rate,
+            "structural_2_rate": structural_rate,
+            "effective_weight": float(counts["scored"]),
+            "prescreen_reweighted": False,
+            **counts,
+        }
+
+    effective_weight = 0.0
+    twos_weight = 0.0
+    structural_twos_weight = 0.0
+    scored = 0
+    for cand in candidates:
+        if cand.score is None:
+            continue
+        weight = _prescreen_effective_weight(cand)
+        if weight is None:
+            continue
+        scored += 1
+        effective_weight += weight
+        if cand.score == 2:
+            twos_weight += weight
+            if _is_structural_resonance(cand):
+                structural_twos_weight += weight
+
+    total_rate = twos_weight / effective_weight if effective_weight else 0.0
+    structural_rate = (
+        structural_twos_weight / effective_weight if effective_weight else 0.0
+    )
+    return {
+        "total_2_rate": total_rate,
+        "structural_2_rate": structural_rate,
+        "scored": scored,
+        "twos": int(round(twos_weight)),
+        "structural_twos": int(round(structural_twos_weight)),
+        "effective_weight": effective_weight,
+        "prescreen_reweighted": True,
+    }
+
+
+def _combo_gt_pure_fact_lift(
+    runs: list[RunSummary],
+    *,
+    use_structural: bool,
+    use_prescreen: bool,
+) -> dict[str, Any]:
+    buckets = _bucket_candidates(runs)
+    combo_rates = _weighted_2_rates(buckets["combo"], use_prescreen=use_prescreen)
+    pure_fact_rates = _weighted_2_rates(
+        buckets["pure_fact"], use_prescreen=use_prescreen
+    )
+    metric = "structural_2_rate" if use_structural else "total_2_rate"
+    combo_rate = combo_rates[metric]
+    pure_fact_rate = pure_fact_rates[metric]
+    combo_weight = combo_rates["effective_weight"]
+    pure_fact_weight = pure_fact_rates["effective_weight"]
+
+    lift_ok = False
+    if combo_weight > 0 and pure_fact_weight > 0:
+        lift_ok = combo_rate > pure_fact_rate
+    elif combo_weight > 0 and pure_fact_weight == 0:
+        lift_ok = combo_rate > 0.0
+
+    return {
+        "combo_gt_pure_fact": lift_ok,
+        "metric": metric,
+        "combo": combo_rates,
+        "pure_fact": pure_fact_rates,
+        "prescreen_reweighted": use_prescreen,
+    }
+
+
+def _split_runs_obs_holdout(
+    runs: list[RunSummary],
+) -> tuple[list[RunSummary], list[RunSummary]]:
+    obs = [r for r in runs if r.run_id.startswith(OBS_RUN_PREFIXES)]
+    holdout = [r for r in runs if not r.run_id.startswith(OBS_RUN_PREFIXES)]
+    return obs, holdout
+
+
+def _obs_holdout_consistent(obs_lift: bool | None, holdout_lift: bool | None) -> bool:
+    if obs_lift is None or holdout_lift is None:
+        return True
+    return obs_lift == holdout_lift
+
+
+def _workflow_prescreen_metrics(
+    runs: list[RunSummary],
+    calibration: dict[str, Any] | None,
+) -> dict[str, Any]:
+    judged = [
+        (run.run_id, cand)
+        for run in runs
+        for cand in run.candidates
+        if cand.judge_score is not None
+    ]
+    if not judged:
+        return {
+            "status": "pending",
+            "note": "No judge/prescreen fields in scored review",
+            "load_reduction_rate": None,
+            "load_reduction_target": _D5_LOAD_REDUCTION_TARGET,
+            "load_reduction_ok": None,
+            "zero_human_2_killed": None,
+            "judge_calibration_trusted": None,
+            "pass": None,
+        }
+
+    total = len(judged)
+    human_review_pool = sum(
+        1
+        for _, cand in judged
+        if cand.judge_score >= 1
+        or (cand.judge_score == 0 and cand.audit_sampled)
+    )
+    load_reduction = 1.0 - human_review_pool / total if total else None
+
+    human_twos = [cand for _, cand in judged if cand.score == 2]
+    reject_pile_human_twos = [cand for cand in human_twos if cand.judge_score == 0]
+    zero_human_2_killed = len(reject_pile_human_twos) == 0
+
+    cal_trusted: bool | None = None
+    if calibration is not None:
+        trust = calibration.get("trust_status")
+        cal_trusted = trust == "采信" or trust == "trusted"
+
+    load_ok = (
+        load_reduction is not None and load_reduction >= _D5_LOAD_REDUCTION_TARGET
+    )
+    workflow_pass = load_ok and zero_human_2_killed and cal_trusted is True
+
+    return {
+        "status": "available",
+        "load_reduction_rate": load_reduction,
+        "load_reduction_target": _D5_LOAD_REDUCTION_TARGET,
+        "load_reduction_ok": load_ok,
+        "judged_candidates": total,
+        "human_review_pool": human_review_pool,
+        "zero_human_2_killed": zero_human_2_killed,
+        "reject_pile_human_2_count": len(reject_pile_human_twos),
+        "judge_calibration_trusted": cal_trusted,
+        "pass": workflow_pass,
+    }
+
+
+def _d5_success_criteria(
+    runs: list[RunSummary],
+    *,
+    use_structural: bool,
+    calibration: dict[str, Any] | None,
+) -> dict[str, Any]:
+    use_prescreen = _has_prescreen_data(runs)
+    full = _combo_gt_pure_fact_lift(
+        runs, use_structural=use_structural, use_prescreen=use_prescreen
+    )
+    obs_runs, holdout_runs = _split_runs_obs_holdout(runs)
+    obs_lift: bool | None = None
+    holdout_lift: bool | None = None
+    if obs_runs:
+        obs_lift = _combo_gt_pure_fact_lift(
+            obs_runs, use_structural=use_structural, use_prescreen=use_prescreen
+        )["combo_gt_pure_fact"]
+    if holdout_runs:
+        holdout_lift = _combo_gt_pure_fact_lift(
+            holdout_runs, use_structural=use_structural, use_prescreen=use_prescreen
+        )["combo_gt_pure_fact"]
+
+    obs_holdout_consistent = _obs_holdout_consistent(obs_lift, holdout_lift)
+    resonance_pass = full["combo_gt_pure_fact"] and obs_holdout_consistent
+
+    workflow = _workflow_prescreen_metrics(runs, calibration)
+    workflow_pass = workflow.get("pass")
+    if workflow_pass is None:
+        overall_pass = False
+        verdict = "GATE_FAIL"
+        reasons = [
+            "workflow criterion pending (no prescreen/judge fields or calibration)"
+        ]
+    else:
+        overall_pass = resonance_pass and bool(workflow_pass)
+        verdict = "GATE_PASS" if overall_pass else "GATE_FAIL"
+        reasons = []
+        if not full["combo_gt_pure_fact"]:
+            reasons.append(
+                f"resonance: combo {full['metric']} "
+                f"{full['combo'][full['metric']]:.1%} not > pure_fact "
+                f"{full['pure_fact'][full['metric']]:.1%} "
+                "(similarity-controlled · prescreen reweighted when present)"
+            )
+        if not obs_holdout_consistent:
+            reasons.append(
+                f"resonance: obs/holdout split inconsistent "
+                f"(obs={obs_lift}, holdout={holdout_lift})"
+            )
+        if workflow_pass is False:
+            if workflow.get("load_reduction_ok") is False:
+                reasons.append(
+                    f"workflow: load reduction "
+                    f"{workflow.get('load_reduction_rate', 0):.1%} "
+                    f"< target {_D5_LOAD_REDUCTION_TARGET:.0%}"
+                )
+            if workflow.get("zero_human_2_killed") is False:
+                reasons.append(
+                    "workflow: human=2 found in judge=0 reject pile "
+                    f"({workflow.get('reject_pile_human_2_count', 0)} cases)"
+                )
+            if workflow.get("judge_calibration_trusted") is False:
+                reasons.append("workflow: judge calibration not trusted (采信)")
+
+    return {
+        "pass": overall_pass,
+        "verdict": verdict,
+        "reasons": reasons,
+        "resonance": {
+            "pass": resonance_pass,
+            "combo_gt_pure_fact": full["combo_gt_pure_fact"],
+            "similarity_controlled": True,
+            "obs_holdout_consistent": obs_holdout_consistent,
+            "obs_combo_gt_pure_fact": obs_lift,
+            "holdout_combo_gt_pure_fact": holdout_lift,
+            "full_batch": full,
+            "prescreen_reweighted": use_prescreen,
+        },
+        "workflow": workflow,
+    }
+
+
 def _diagnostic_neutral_hit_rate(runs: list[RunSummary]) -> dict[str, Any]:
     """Diagnostic ①: neutral_hit_rate vs 共振分, controlling max_similarity."""
     rows: list[dict[str, Any]] = []
@@ -340,7 +605,9 @@ def _bucket_candidates(
 def _three_bucket_rates(runs: list[RunSummary]) -> dict[str, Any]:
     """ADR-0006 D4: pure_fact / pure_emotion / combo 2-rates, similarity-controlled."""
     buckets = _bucket_candidates(runs)
+    use_prescreen = _has_prescreen_data(runs)
     rates: dict[str, Any] = {}
+    reweighted_rates: dict[str, Any] = {}
     for name in _THREE_BUCKETS:
         total_rate, structural_rate, counts = _structural_2_rates(buckets[name])
         rates[name] = {
@@ -348,6 +615,10 @@ def _three_bucket_rates(runs: list[RunSummary]) -> dict[str, Any]:
             "structural_2_rate": structural_rate,
             **counts,
         }
+        if use_prescreen:
+            reweighted_rates[name] = _weighted_2_rates(
+                buckets[name], use_prescreen=True
+            )
 
     by_bin: dict[str, dict[str, list[CandidateScore]]] = {}
     for name in _THREE_BUCKETS:
@@ -377,12 +648,26 @@ def _three_bucket_rates(runs: list[RunSummary]) -> dict[str, Any]:
     elif combo["scored"] > 0 and pure_fact["scored"] == 0:
         q2_combo_lift_ok = combo["structural_2_rate"] > 0.0
 
-    return {
+    result: dict[str, Any] = {
         "buckets": rates,
         "similarity_bins": similarity_bins,
         "q2_combo_lift_ok": q2_combo_lift_ok,
         "neutral_only_scored": pure_fact["scored"],
+        "prescreen_reweighted": use_prescreen,
     }
+    if use_prescreen:
+        result["buckets_reweighted"] = reweighted_rates
+        rw_combo = reweighted_rates.get("combo", {})
+        rw_pure = reweighted_rates.get("pure_fact", {})
+        rw_lift = False
+        if rw_combo.get("effective_weight", 0) > 0 and rw_pure.get(
+            "effective_weight", 0
+        ) > 0:
+            rw_lift = rw_combo["structural_2_rate"] > rw_pure["structural_2_rate"]
+        elif rw_combo.get("effective_weight", 0) > 0:
+            rw_lift = rw_combo["structural_2_rate"] > 0.0
+        result["q2_combo_lift_ok_reweighted"] = rw_lift
+    return result
 
 
 def _diagnostic_toned_convergence(runs: list[RunSummary]) -> dict[str, Any]:
@@ -678,11 +963,11 @@ def _load_legacy_oracle_row(run: RunSummary) -> dict[str, Any] | None:
     }
 
 
-def _a1_oracle_comparison(
+def _a1_reference_diagnostics(
     runs: list[RunSummary],
     three_bucket: dict[str, Any] | None,
 ) -> dict[str, Any]:
-    """A1 oracle block: Q1′ gate + legacy recall/quality diagnostics."""
+    """A1 read-only quality reference (ADR-0007 D5) — not used in any gate."""
     q1_prime = q1_prime_a1_two_neutral_coverage(runs)
 
     legacy_per_run: list[dict[str, Any]] = []
@@ -713,18 +998,17 @@ def _a1_oracle_comparison(
             "neutral_union_superset_of_a1_hits": q1_recall_ok,
             "q1_recall_superset_ok": q1_recall_ok,
             "note": (
-                "Legacy diagnostic only (candidate-pool neutral union ⊇ all A1 hits); "
-                "not a gate fail"
+                "Legacy diagnostic only (candidate-pool neutral union ⊇ all A1 hits)"
             ),
         }
 
     pure_fact = (three_bucket or {}).get("buckets", {}).get("pure_fact", {})
     combo = (three_bucket or {}).get("buckets", {}).get("combo", {})
-    a1_structural_placeholder = None
 
     return {
-        "status": "available",
-        "q1_prime": q1_prime,
+        "status": "reference_only",
+        "role": "read_only_quality_reference",
+        "q1_prime_coverage": q1_prime,
         "q1_legacy_recall": q1_legacy,
         "runs_with_oracle_data": legacy_per_run and len(legacy_per_run) or 0,
         "neutral_union_superset_of_a1_hits": q1_legacy.get(
@@ -733,13 +1017,21 @@ def _a1_oracle_comparison(
         "q1_recall_superset_ok": q1_legacy.get("q1_recall_superset_ok"),
         "pure_fact_structural_2_rate": pure_fact.get("structural_2_rate", 0.0),
         "combo_structural_2_rate": combo.get("structural_2_rate", 0.0),
-        "q1_quality_structural_2_rate_vs_a1": a1_structural_placeholder,
         "note": (
-            "Gate Q1′ = n1 neutral coverage of human-scored A1 twos; "
-            "q1_legacy_recall = candidate-pool neutral union superset (diagnostic)"
+            "A1 oracle metrics are read-only reference only (ADR-0007 D5). "
+            "Not used in success criteria."
         ),
-        "a1_deletion_eligible": q1_prime.get("q1_prime_pass"),
     }
+
+
+def _a1_oracle_comparison(
+    runs: list[RunSummary],
+    three_bucket: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Backward-compatible alias for ``_a1_reference_diagnostics``."""
+    ref = _a1_reference_diagnostics(runs, three_bucket)
+    ref["q1_prime"] = ref["q1_prime_coverage"]
+    return ref
 
 
 def _classify_persona_bucket(cand: CandidateScore) -> str | None:
@@ -828,6 +1120,21 @@ def parse_eval_markdown(path: Path, text: str) -> RunSummary:
         if da_match:
             distinct_agents = int(da_match.group(1))
 
+        judge_score: int | None = None
+        judge_match = _JUDGE_SCORE_LINE.search(body)
+        if judge_match:
+            judge_score = _parse_score(judge_match.group(1))
+
+        audit_sampled: bool | None = None
+        audit_match = _AUDIT_SAMPLED_LINE.search(body)
+        if audit_match:
+            audit_sampled = audit_match.group(1).lower() == "true"
+
+        audit_sample_rate: float | None = None
+        rate_match = _AUDIT_SAMPLE_RATE_LINE.search(body)
+        if rate_match:
+            audit_sample_rate = float(rate_match.group(1))
+
         score: int | None = None
         score_match = _SCORE_LINE.search(body)
         if score_match:
@@ -861,6 +1168,9 @@ def parse_eval_markdown(path: Path, text: str) -> RunSummary:
                 neutral_hits=neutral_hits,
                 neutral_total=neutral_total,
                 distinct_agents=distinct_agents,
+                judge_score=judge_score,
+                audit_sampled=audit_sampled,
+                audit_sample_rate=audit_sample_rate,
             )
         )
 
@@ -1049,7 +1359,11 @@ def _fit_sim_ranking(runs: list[RunSummary]) -> list[dict[str, Any]]:
     return ranked
 
 
-def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
+def summarize_runs(
+    runs: list[RunSummary],
+    *,
+    calibration: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     total_runs = len(runs)
     runs_with_2 = sum(1 for r in runs if r.has_any_score_2)
     batch_pass_rate = runs_with_2 / total_runs if total_runs else 0.0
@@ -1087,26 +1401,33 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
     diagnostic_1 = _diagnostic_neutral_hit_rate(runs) if phase38_gate else None
     diagnostic_2 = _diagnostic_toned_convergence(runs) if phase38_gate else None
     three_bucket = _three_bucket_rates(runs) if phase38_gate else None
-    a1_superset = (
-        _a1_oracle_comparison(runs, three_bucket) if phase38_gate else None
+    a1_reference = (
+        _a1_reference_diagnostics(runs, three_bucket) if phase38_gate else None
+    )
+    d5_criteria = (
+        _d5_success_criteria(
+            runs,
+            use_structural=use_structural_gate,
+            calibration=calibration,
+        )
+        if phase38_gate
+        else None
     )
 
     gate_reasons: list[str] = []
     batch_ok = batch_pass_rate >= _GATE_BATCH_PASS_RATE
 
-    if phase38_gate and diagnostic_2 is not None:
-        if use_structural_gate:
-            rate_ok = bool(diagnostic_2["q2_combo_lift_ok"])
-            baseline_gate_rate = diagnostic_2["pure_fact_structural_2_rate"]
-            persona_gate_rate = diagnostic_2["combo_structural_2_rate"]
-            rate_metric = "combo_structural_2_rate"
-        else:
-            rate_ok = diagnostic_2["combo_total_2_rate"] > diagnostic_2[
-                "pure_fact_total_2_rate"
-            ]
-            baseline_gate_rate = diagnostic_2["pure_fact_total_2_rate"]
-            persona_gate_rate = diagnostic_2["combo_total_2_rate"]
-            rate_metric = "combo_total_2_rate"
+    if phase38_gate and d5_criteria is not None:
+        rate_ok = bool(d5_criteria["resonance"]["combo_gt_pure_fact"])
+        baseline_gate_rate = d5_criteria["resonance"]["full_batch"]["pure_fact"][
+            d5_criteria["resonance"]["full_batch"]["metric"]
+        ]
+        persona_gate_rate = d5_criteria["resonance"]["full_batch"]["combo"][
+            d5_criteria["resonance"]["full_batch"]["metric"]
+        ]
+        rate_metric = d5_criteria["resonance"]["full_batch"]["metric"]
+        gate_pass = bool(d5_criteria["pass"])
+        gate_reasons = list(d5_criteria["reasons"])
     elif persona_gate:
         if use_structural_gate:
             rate_ok = persona_structural_2_rate > baseline_structural_2_rate
@@ -1129,30 +1450,26 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
         persona_gate_rate = multi_2_rate
         rate_metric = "total_2_rate"
 
-    if not batch_ok:
-        gate_reasons.append(
-            f"batch pass rate {batch_pass_rate:.1%} < {_GATE_BATCH_PASS_RATE:.0%} "
-            f"({runs_with_2}/{total_runs} runs with >=1 score-2)"
-        )
-    if not rate_ok:
-        if phase38_gate:
+    if phase38_gate and d5_criteria is not None:
+        pass
+    else:
+        if not batch_ok:
             gate_reasons.append(
-                f"combo_{rate_metric} {persona_gate_rate:.1%} not > "
-                f"pure_fact_{rate_metric} {baseline_gate_rate:.1%} "
-                "(Q2 · diagnostic ② · similarity-controlled)"
+                f"batch pass rate {batch_pass_rate:.1%} < {_GATE_BATCH_PASS_RATE:.0%} "
+                f"({runs_with_2}/{total_runs} runs with >=1 score-2)"
             )
-        elif persona_gate:
-            gate_reasons.append(
-                f"persona_path_{rate_metric} {persona_gate_rate:.1%} not > "
-                f"a1_path_{rate_metric} {baseline_gate_rate:.1%}"
-            )
-        else:
-            gate_reasons.append(
-                f"single_{rate_metric} {baseline_gate_rate:.1%} not < "
-                f"multi_{rate_metric} {persona_gate_rate:.1%}"
-            )
-
-    gate_pass = batch_ok and rate_ok
+        if not rate_ok:
+            if persona_gate:
+                gate_reasons.append(
+                    f"persona_path_{rate_metric} {persona_gate_rate:.1%} not > "
+                    f"a1_path_{rate_metric} {baseline_gate_rate:.1%}"
+                )
+            else:
+                gate_reasons.append(
+                    f"single_{rate_metric} {baseline_gate_rate:.1%} not < "
+                    f"multi_{rate_metric} {persona_gate_rate:.1%}"
+                )
+        gate_pass = batch_ok and rate_ok
 
     global_block: dict[str, Any] = {
         "total_runs": total_runs,
@@ -1179,6 +1496,8 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
         global_block["diagnostic_2_toned_convergence"] = diagnostic_2
     if three_bucket is not None:
         global_block["three_bucket"] = three_bucket
+    if d5_criteria is not None:
+        global_block["d5_success_criteria"] = d5_criteria
 
     result: dict[str, Any] = {
         "runs": [
@@ -1201,9 +1520,15 @@ def summarize_runs(runs: list[RunSummary]) -> dict[str, Any]:
             "reasons": gate_reasons,
         },
     }
-    if a1_superset is not None:
-        result["a1_oracle"] = a1_superset
-        result["a1_superset"] = a1_superset
+    if d5_criteria is not None:
+        result["success_criteria"] = d5_criteria
+        result["gate"]["verdict"] = d5_criteria["verdict"]
+        result["gate"]["pass"] = d5_criteria["pass"]
+        result["gate"]["compare_mode"] = "d5_success_criteria"
+    if a1_reference is not None:
+        result["a1_reference"] = a1_reference
+        result["a1_oracle"] = _a1_oracle_comparison(runs, three_bucket)
+        result["a1_superset"] = result["a1_oracle"]
     return result
 
 
@@ -1265,26 +1590,60 @@ def _format_stdout(report: dict[str, Any]) -> str:
                     f"  {name}: {row.get('structural_2_rate', 0):.1%} "
                     f"({row.get('structural_twos', 0)}/{row.get('scored', 0)} scored)"
                 )
-        a1s = report.get("a1_oracle") or report.get("a1_superset") or {}
-        q1p = a1s.get("q1_prime") or {}
-        q1_pass = q1p.get("q1_prime_pass")
-        q1_label = "n/a" if q1_pass is None else ("yes" if q1_pass else "no")
-        rw = q1p.get("runs_with_a1_two", 0)
-        rp = q1p.get("runs_with_a1_two_passed", 0)
-        misses = q1p.get("global_miss_count", 0)
+        d5 = report.get("success_criteria") or g.get("d5_success_criteria") or {}
+        res = d5.get("resonance") or {}
+        wf = d5.get("workflow") or {}
+        lines.append("D5 success · resonance: combo > pure_fact (similarity-controlled)")
+        if res:
+            full = res.get("full_batch") or {}
+            metric = full.get("metric", "structural_2_rate")
+            combo_r = (full.get("combo") or {}).get(metric, 0)
+            pure_r = (full.get("pure_fact") or {}).get(metric, 0)
+            rw_note = (
+                " · prescreen reweighted"
+                if res.get("prescreen_reweighted")
+                else ""
+            )
+            lines.append(
+                f"  {metric}: combo {combo_r:.1%} vs pure_fact {pure_r:.1%}"
+                f"{rw_note} · pass={res.get('combo_gt_pure_fact')}"
+            )
+            lines.append(
+                f"  obs/holdout consistent: {res.get('obs_holdout_consistent')} "
+                f"(obs={res.get('obs_combo_gt_pure_fact')}, "
+                f"holdout={res.get('holdout_combo_gt_pure_fact')})"
+            )
         lines.append(
-            f"Q1′ n1 neutral covers A1 human-2s: {q1_label} "
-            f"({rp}/{rw} runs with A1_two pass; {misses} global misses)"
+            "D5 success · workflow: load reduction & zero human-2 killed & calibration"
         )
-        legacy = a1s.get("q1_legacy_recall") or {}
-        leg_ok = legacy.get("q1_recall_superset_ok")
-        leg_label = "n/a" if leg_ok is None else ("yes" if leg_ok else "no")
-        lines.append(
-            f"Q1 legacy recall superset (diagnostic): {leg_label} "
-            f"({legacy.get('runs_with_oracle_data', 0)} runs)"
-        )
-        if a1s.get("note"):
-            lines.append(f"  {a1s['note']}")
+        if wf.get("status") == "pending":
+            lines.append(f"  workflow: pending ({wf.get('note', '')})")
+        else:
+            lr = wf.get("load_reduction_rate")
+            lr_txt = f"{lr:.1%}" if lr is not None else "n/a"
+            lines.append(
+                f"  load reduction {lr_txt} "
+                f"(target {wf.get('load_reduction_target', 0):.0%}) · "
+                f"ok={wf.get('load_reduction_ok')}"
+            )
+            lines.append(
+                f"  zero human-2 killed: {wf.get('zero_human_2_killed')} · "
+                f"judge calibration trusted: {wf.get('judge_calibration_trusted')}"
+            )
+        a1_ref = report.get("a1_reference") or {}
+        if a1_ref:
+            lines.append("A1 reference (read-only · not a gate):")
+            if a1_ref.get("note"):
+                lines.append(f"  {a1_ref['note']}")
+        tb_rw = tb.get("buckets_reweighted")
+        if tb_rw:
+            lines.append("Three-bucket prescreen-reweighted structural 2-rates:")
+            for name in _THREE_BUCKETS:
+                row = tb_rw.get(name, {})
+                lines.append(
+                    f"  {name}: {row.get('structural_2_rate', 0):.1%} "
+                    f"(effective_weight={row.get('effective_weight', 0):.2f})"
+                )
     elif g.get("persona_gate"):
         lines.append(
             f"baseline_structural_2_rate: {g['baseline_structural_2_rate']:.1%} "
@@ -1323,10 +1682,17 @@ def _format_stdout(report: dict[str, Any]) -> str:
             "type in 深层共振|强共振)"
         )
 
-    lines.append(
-        f"Gate line 2 compare: {compare_mode}"
-        + (" (共振类型 present)" if g.get("resonance_types_filled") else " (fallback: no 共振类型)")
-    )
+    if compare_mode == "d5_success_criteria":
+        lines.append("Gate: D5 success criteria (resonance + workflow)")
+    else:
+        lines.append(
+            f"Gate line 2 compare: {compare_mode}"
+            + (
+                " (共振类型 present)"
+                if g.get("resonance_types_filled")
+                else " (fallback: no 共振类型)"
+            )
+        )
     ranking = report.get("fit_sim_ranking") or []
     if ranking:
         top = ranking[0]
@@ -1345,10 +1711,10 @@ def _format_stdout(report: dict[str, Any]) -> str:
             lines.append(f"  - {reason}")
     elif gate["pass"]:
         metric = gate.get("rate_metric", "total_2_rate")
-        if g.get("phase38_gate"):
+        if gate.get("compare_mode") == "d5_success_criteria":
             lines.append(
-                f"  - batch pass rate >= {_GATE_BATCH_PASS_RATE:.0%}; "
-                f"combo_{metric} > pure_fact_{metric} (Q2 / diagnostic ②)"
+                "  - D5 resonance: combo > pure_fact (similarity-controlled); "
+                "obs/holdout consistent; workflow: load reduction + safety + calibration"
             )
         elif g.get("persona_gate"):
             lines.append(
@@ -1458,6 +1824,10 @@ def main(argv: list[str] | None = None) -> int:
         "--out",
         help="Optional JSON report path.",
     )
+    parser.add_argument(
+        "--calibration-json",
+        help="Optional llm-judge-scores.json for D5 workflow calibration criterion.",
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -1470,7 +1840,17 @@ def main(argv: list[str] | None = None) -> int:
         print("error: no runs parsed", file=sys.stderr)
         return 2
 
-    report = summarize_runs(runs)
+    calibration: dict[str, Any] | None = None
+    if args.calibration_json:
+        cal_path = Path(args.calibration_json)
+        if not cal_path.is_absolute():
+            cal_path = _REPO_ROOT / cal_path
+        if cal_path.is_file():
+            calibration = json.loads(cal_path.read_text(encoding="utf-8"))
+        else:
+            print(f"warning: calibration JSON not found: {cal_path}", file=sys.stderr)
+
+    report = summarize_runs(runs, calibration=calibration)
     output = _format_stdout(report)
     print(output)
 
