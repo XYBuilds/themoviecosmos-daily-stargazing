@@ -10,7 +10,7 @@ todos:
     status: complete
   - id: p310-2
     content: 3.10.2 · eval-the-bet.md §4 共振 rubric 改双轴（粘贴 3.10.0 rubric-ready 措辞）+ 归属规则/共振类型同步
-    status: todo
+    status: complete
   - id: p310-3
     content: 3.10.3 · summarize_eval/score_eval 砍 Q1' 删除闸、A1 降只读参照、成功标准收敛为 D5 两条、抽审样本回加权 + 单测
     status: todo
@@ -162,8 +162,8 @@ flowchart TD
 
 ### 验收
 
-- [ ] §4 措辞与 3.10.0 权威源一致；2×2 映射更新
-- [ ] 共振类型标注示例同步（逻辑共振 / 强共振（表层+逻辑））
+- [x] §4 措辞与 3.10.0 权威源一致；2×2 映射更新
+- [x] 共振类型标注示例同步（逻辑共振 / 强共振（表层+逻辑））
 
 ---
 
