@@ -16,7 +16,7 @@ todos:
     status: todo
   - id: p310-4
     content: 3.10.4 · judge 预筛编排：全量打分 + 分档(0降级/≥1人工/2高亮) + 拒绝集抽审 k% + 阈值纪律脚手架 + 单测
-    status: todo
+    status: complete
   - id: p310-5
     content: 3.10.5 · 全链重跑（同新闻集 01–10，生成侧不动）+ obs 01–04 新定义鲜标 [需人工验收]
     status: todo
@@ -194,9 +194,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest`（预筛相关）通过
-- [ ] 分档/抽审产出齐；抽样可复现
-- [ ] 阈值安全核验位就绪
+- [x] `python -m unittest`（预筛相关）通过
+- [x] 分档/抽审产出齐；抽样可复现
+- [x] 阈值安全核验位就绪
 
 ---
 
