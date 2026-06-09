@@ -5,9 +5,9 @@ from __future__ import annotations
 import re
 
 TYPE_NONE = "无共振（偶然词面重叠）"
-TYPE_DEEP = "深层共振（仅结构，无表层）"
+TYPE_DEEP = "深层共振（仅逻辑，无表层）"
 TYPE_SURFACE = "表层沾边"
-TYPE_STRONG = "强共振（表层 + 结构）"
+TYPE_STRONG = "强共振（表层 + 逻辑）"
 
 VALID_SCORE_TYPES = frozenset({TYPE_DEEP, TYPE_SURFACE, TYPE_STRONG})
 STRUCTURAL_TYPES = frozenset({TYPE_DEEP, TYPE_STRONG})
@@ -17,6 +17,8 @@ _LEGACY_TO_CANONICAL = {
     "表层": TYPE_SURFACE,
     "结构": TYPE_DEEP,
     "双重": TYPE_STRONG,
+    "深层共振（仅结构，无表层）": TYPE_DEEP,
+    "强共振（表层 + 结构）": TYPE_STRONG,
 }
 
 _TYPE_PARSE_ORDER = (
@@ -24,6 +26,8 @@ _TYPE_PARSE_ORDER = (
     TYPE_DEEP,
     TYPE_SURFACE,
     TYPE_NONE,
+    "强共振（表层 + 结构）",
+    "深层共振（仅结构，无表层）",
     "双重",
     "结构",
     "表层",

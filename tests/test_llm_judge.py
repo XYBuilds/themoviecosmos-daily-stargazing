@@ -11,6 +11,8 @@ from scripts.llm_judge import (
     DEFAULT_MIN_PEARSON,
     TRUST_STATUS_TRUSTED,
     TRUST_STATUS_UNTRUSTED,
+    _JUDGE_RUBRIC,
+    _JUDGE_SYSTEM,
     JudgeItem,
     JudgeOutput,
     JudgeResult,
@@ -28,52 +30,148 @@ from scripts.resonance_rubric import TYPE_DEEP, TYPE_STRONG, TYPE_SURFACE
 _FIXTURES = Path(__file__).resolve().parent / "judge_fixtures"
 
 
+_CAUSAL = "scarcity under grid failure drives families into survival mode"
+
+
 class JudgeSchemaTests(unittest.TestCase):
+    def test_dual_axis_rubric_wording_from_authority_source(self):
+        self.assertIn("表层元素 (surface element)", _JUDGE_RUBRIC)
+        self.assertIn("底层逻辑 (underlying logic)", _JUDGE_RUBRIC)
+        self.assertIn("invariant under change of POV or scale", _JUDGE_RUBRIC)
+        self.assertIn("causal counter-test", _JUDGE_RUBRIC)
+        self.assertNotIn("骨架同构", _JUDGE_RUBRIC)
+        self.assertIn("falsifiable causal counter-test", _JUDGE_SYSTEM.lower())
+
     def test_validate_score_zero_no_type(self):
-        score, rtype = validate_judge_payload(
-            {"score": 0, "resonance_type": None, "rationale": "none"}
+        score, rtype, causal = validate_judge_payload(
+            {
+                "score": 0,
+                "resonance_type": None,
+                "causal_test": "",
+                "rationale": "none",
+            }
         )
         self.assertEqual(score, 0)
         self.assertIsNone(rtype)
+        self.assertEqual(causal, "")
 
     def test_validate_score_two_strong(self):
-        score, rtype = validate_judge_payload(
+        score, rtype, causal = validate_judge_payload(
             {
                 "score": 2,
                 "resonance_type": TYPE_STRONG,
+                "causal_test": _CAUSAL,
                 "rationale": "both axes",
             }
         )
         self.assertEqual(score, 2)
         self.assertEqual(rtype, TYPE_STRONG)
+        self.assertEqual(causal, _CAUSAL)
 
     def test_validate_accepts_legacy_dual_alias(self):
-        score, rtype = validate_judge_payload(
-            {"score": 2, "resonance_type": "双重", "rationale": "legacy"}
+        score, rtype, causal = validate_judge_payload(
+            {
+                "score": 2,
+                "resonance_type": "双重",
+                "causal_test": _CAUSAL,
+                "rationale": "legacy",
+            }
         )
         self.assertEqual(score, 2)
         self.assertEqual(rtype, TYPE_STRONG)
 
-    def test_validate_score_one_deep_structural(self):
-        score, rtype = validate_judge_payload(
-            {"score": 1, "resonance_type": TYPE_DEEP, "rationale": "skeleton only"}
+    def test_validate_score_one_deep_logic_requires_causal_test(self):
+        score, rtype, causal = validate_judge_payload(
+            {
+                "score": 1,
+                "resonance_type": TYPE_DEEP,
+                "causal_test": _CAUSAL,
+                "rationale": "logic only",
+            }
         )
         self.assertEqual(score, 1)
         self.assertEqual(rtype, TYPE_DEEP)
+        self.assertEqual(causal, _CAUSAL)
+
+    def test_validate_rejects_missing_causal_test_field(self):
+        with self.assertRaises(ValueError):
+            validate_judge_payload(
+                {"score": 0, "resonance_type": None, "rationale": "x"}
+            )
+
+    def test_validate_rejects_score_two_without_causal_test(self):
+        with self.assertRaises(ValueError):
+            validate_judge_payload(
+                {
+                    "score": 2,
+                    "resonance_type": TYPE_STRONG,
+                    "causal_test": "",
+                    "rationale": "x",
+                }
+            )
+
+    def test_validate_rejects_deep_logic_without_causal_test(self):
+        with self.assertRaises(ValueError):
+            validate_judge_payload(
+                {
+                    "score": 1,
+                    "resonance_type": TYPE_DEEP,
+                    "causal_test": "",
+                    "rationale": "x",
+                }
+            )
+
+    def test_validate_surface_only_allows_empty_causal_test(self):
+        score, rtype, causal = validate_judge_payload(
+            {
+                "score": 1,
+                "resonance_type": TYPE_SURFACE,
+                "causal_test": "",
+                "rationale": "surface only",
+            }
+        )
+        self.assertEqual(score, 1)
+        self.assertEqual(rtype, TYPE_SURFACE)
+        self.assertEqual(causal, "")
 
     def test_validate_rejects_score_one_wrong_type(self):
         with self.assertRaises(ValueError):
-            validate_judge_payload({"score": 1, "resonance_type": TYPE_STRONG})
+            validate_judge_payload(
+                {
+                    "score": 1,
+                    "resonance_type": TYPE_STRONG,
+                    "causal_test": "",
+                    "rationale": "x",
+                }
+            )
 
     def test_parse_judge_response_json_fence(self):
         text = (
             f'```json\n{{"score": 1, "resonance_type": "{TYPE_SURFACE}", '
-            f'"rationale": "x"}}\n```'
+            f'"causal_test": "", "rationale": "x"}}\n```'
         )
-        score, rtype, rationale = parse_judge_response(text)
+        score, rtype, rationale, causal = parse_judge_response(text)
         self.assertEqual(score, 1)
         self.assertEqual(rtype, TYPE_SURFACE)
         self.assertEqual(rationale, "x")
+        self.assertEqual(causal, "")
+
+    def test_score_type_matrix_consistency_new_constants(self):
+        for score, rtype, causal in (
+            (0, None, ""),
+            (1, TYPE_DEEP, _CAUSAL),
+            (1, TYPE_SURFACE, ""),
+            (2, TYPE_STRONG, _CAUSAL),
+        ):
+            got_score, got_type, got_causal = validate_judge_payload(
+                {
+                    "score": score,
+                    "resonance_type": rtype,
+                    "causal_test": causal,
+                    "rationale": "ok",
+                }
+            )
+            self.assertEqual((got_score, got_type, got_causal), (score, rtype, causal))
 
     def test_output_schema_roundtrip(self):
         cal = compute_calibration(
@@ -130,8 +228,11 @@ class CalibrationTests(unittest.TestCase):
 
 
 class ScoreItemsTests(unittest.TestCase):
-    def _mock_judge(self, mapping: dict[tuple[str, str], tuple[int, str | None, str]]):
-        def _fn(item: JudgeItem) -> tuple[int, str | None, str]:
+    def _mock_judge(
+        self,
+        mapping: dict[tuple[str, str], tuple[int, str | None, str, str]],
+    ):
+        def _fn(item: JudgeItem) -> tuple[int, str | None, str, str]:
             return mapping[(item.run_id, item.tmdb_id)]
 
         return _fn
@@ -186,11 +287,11 @@ class ScoreItemsTests(unittest.TestCase):
         ]
         judge_fn = self._mock_judge(
             {
-                ("01-grid-outage", "100"): (0, None, "disagree"),
-                ("01-grid-outage", "200"): (2, TYPE_STRONG, "disagree"),
-                ("02-corporate-layoff", "300"): (2, TYPE_STRONG, "off"),
-                ("02-corporate-layoff", "400"): (0, None, "off"),
-                ("02-corporate-layoff", "500"): (1, TYPE_SURFACE, "ok"),
+                ("01-grid-outage", "100"): (0, None, "disagree", ""),
+                ("01-grid-outage", "200"): (2, TYPE_STRONG, "disagree", _CAUSAL),
+                ("02-corporate-layoff", "300"): (2, TYPE_STRONG, "off", _CAUSAL),
+                ("02-corporate-layoff", "400"): (0, None, "off", ""),
+                ("02-corporate-layoff", "500"): (1, TYPE_SURFACE, "ok", ""),
             }
         )
         output = score_items(
@@ -258,11 +359,11 @@ class ScoreItemsTests(unittest.TestCase):
         ]
         judge_fn = self._mock_judge(
             {
-                ("01-grid-outage", "429918"): (2, TYPE_STRONG, "strong"),
-                ("01-grid-outage", "274855"): (1, TYPE_SURFACE, "surface"),
-                ("02-corporate-layoff", "100001"): (0, None, "none"),
-                ("02-corporate-layoff", "100002"): (1, TYPE_DEEP, "struct"),
-                ("03-election-upset", "100003"): (1, TYPE_SURFACE, "surface"),
+                ("01-grid-outage", "429918"): (2, TYPE_STRONG, "strong", _CAUSAL),
+                ("01-grid-outage", "274855"): (1, TYPE_SURFACE, "surface", ""),
+                ("02-corporate-layoff", "100001"): (0, None, "none", ""),
+                ("02-corporate-layoff", "100002"): (1, TYPE_DEEP, "logic", _CAUSAL),
+                ("03-election-upset", "100003"): (1, TYPE_SURFACE, "surface", ""),
             }
         )
         output = score_items(
@@ -320,7 +421,8 @@ class IntegrateReviewTests(unittest.TestCase):
                     title="Survival Family (2017)",
                     judge_score=1,
                     judge_resonance_type=TYPE_SURFACE,
-                    rationale="Surface anchor only; skeletons differ.",
+                    rationale="Surface anchor only; logic differs.",
+                    causal_test="",
                     human_score=2,
                     human_resonance_type=TYPE_STRONG,
                     disagreement=True,
@@ -333,6 +435,7 @@ class IntegrateReviewTests(unittest.TestCase):
                     judge_score=0,
                     judge_resonance_type=None,
                     rationale="No load-bearing surface anchor.",
+                    causal_test="",
                     human_score=1,
                     human_resonance_type=TYPE_DEEP,
                     disagreement=True,
@@ -348,7 +451,7 @@ class IntegrateReviewTests(unittest.TestCase):
         self.assertIn("- **judge分歧**: ⚠", merged)
         self.assertIn("- **judge采信**: 不采信 · screening only", merged)
         self.assertIn(
-            "- **judge理由**: Surface anchor only; skeletons differ.", merged
+            "- **judge理由**: Surface anchor only; logic differs.", merged
         )
         self.assertIn("- **共振分**: 2", merged)
         survival_block = merged.split("Survival Family", 1)[1].split("Geostorm", 1)[0]
@@ -391,6 +494,7 @@ class IntegrateReviewTests(unittest.TestCase):
                     judge_score=2,
                     judge_resonance_type=TYPE_STRONG,
                     rationale="Updated rationale.",
+                    causal_test=_CAUSAL,
                     trusted=False,
                 )
             ],
@@ -417,6 +521,7 @@ class IntegrateReviewTests(unittest.TestCase):
                     title="Film",
                     judge_score=2,
                     judge_resonance_type=TYPE_STRONG,
+                    causal_test=_CAUSAL,
                     trusted=cal.trusted,
                 )
             ],
