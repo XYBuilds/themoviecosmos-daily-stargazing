@@ -19,7 +19,7 @@ todos:
     status: complete
   - id: p310-5
     content: 3.10.5 · 全链重跑（同新闻集 01–10，生成侧不动）+ obs 01–04 新定义鲜标 [需人工验收]
-    status: todo
+    status: complete
   - id: p310-6
     content: 3.10.6 · judge 在 obs 新定义重校准 + 阈值 judge≥1 在 obs 验证"零 human-2 被杀"后冻结 [需人工验收]
     status: todo
@@ -209,9 +209,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] 产出位于 `output/Eval/phase3.10/{run_id}/`；3.9 及更早未改写
-- [ ] obs 01–04 新定义鲜标完成（无 missing）
-- [ ] `[需人工验收]`：用户 approve obs 鲜标 → 进 3.10.6
+- [x] 产出位于 `output/Eval/phase3.10/{run_id}/`；3.9 及更早未改写
+- [x] obs 01–04 新定义鲜标完成（无 missing）
+- [x] `[需人工验收]`：用户 approve obs 鲜标 → 进 3.10.6
 
 ---
 
