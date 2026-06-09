@@ -1,0 +1,145 @@
+{
+  "per_agent": [],
+  "candidates": [],
+  "a1_oracle": {
+    "role": "held_out_oracle",
+    "per_agent": [
+      {
+        "agent_id": "A1",
+        "role": "baseline",
+        "pseudos": [
+          {
+            "pseudo_id": "p1",
+            "pseudo": "In March 2026, U.S. Border Patrol arrested 8,268 people at the southwest border. This was an increase of 25% from the 6,598 arrests in February 2026.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "how-0",
+                "how-1"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 381018,
+                "title": "Transpecos",
+                "similarity": 0.5087245106697083,
+                "movie_url": "https://themoviecosmos.com/movie/381018"
+              },
+              {
+                "tmdb_id": 4170,
+                "title": "Trade",
+                "similarity": 0.5096507668495178,
+                "movie_url": "https://themoviecosmos.com/movie/4170"
+              }
+            ]
+          },
+          {
+            "pseudo_id": "p2",
+            "pseudo": "Analysts attributed the monthly increase in arrests to warmer spring weather. Year-to-date border crossings remained near multi-decade lows, credited to asylum restrictions and deportation policies.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "why-0",
+                "how-2"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 982752,
+                "title": "American Carnage",
+                "similarity": 0.4044097661972046,
+                "movie_url": "https://themoviecosmos.com/movie/982752"
+              },
+              {
+                "tmdb_id": 301633,
+                "title": "Open the Wall",
+                "similarity": 0.4067463278770447,
+                "movie_url": "https://themoviecosmos.com/movie/301633"
+              }
+            ]
+          },
+          {
+            "pseudo_id": "p3",
+            "pseudo": "Legislators remained at an impasse over funding for immigration enforcement agencies. A related funding bill was pending.",
+            "source": {
+              "agent_id": "A1",
+              "fragments": [
+                "how-4",
+                "result-2"
+              ],
+              "channel_role": "baseline"
+            },
+            "hits": [
+              {
+                "tmdb_id": 21711,
+                "title": "The Candidate",
+                "similarity": 0.4799210727214813,
+                "movie_url": "https://themoviecosmos.com/movie/21711"
+              },
+              {
+                "tmdb_id": 43837,
+                "title": "Union Pacific",
+                "similarity": 0.591037392616272,
+                "movie_url": "https://themoviecosmos.com/movie/43837"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hit_tmdb_ids": [
+      4170,
+      21711,
+      43837,
+      301633,
+      381018,
+      982752
+    ],
+    "meta": {
+      "query_count": 3,
+      "raw_hit_count": 6,
+      "agent_ids": [
+        "A1"
+      ]
+    }
+  },
+  "oracle_comparison": {
+    "a1_hit_tmdb_ids": [
+      4170,
+      21711,
+      43837,
+      301633,
+      381018,
+      982752
+    ],
+    "neutral_union_tmdb_ids": [],
+    "shared_tmdb_ids": [],
+    "a1_only_tmdb_ids": [
+      4170,
+      21711,
+      43837,
+      301633,
+      381018,
+      982752
+    ],
+    "neutral_only_tmdb_ids": [],
+    "neutral_union_superset_of_a1_hits": false,
+    "a1_hit_count": 6,
+    "neutral_union_hit_count": 0
+  },
+  "divergence": {
+    "query_cosines": {},
+    "topk_jaccard": {}
+  },
+  "meta": {
+    "query_count": 3,
+    "raw_hit_count": 6,
+    "candidate_count": 0,
+    "max_candidates": 19,
+    "quality_floor": 0.4,
+    "oracle_query_count": 3,
+    "judge_query_count": 0
+  }
+}

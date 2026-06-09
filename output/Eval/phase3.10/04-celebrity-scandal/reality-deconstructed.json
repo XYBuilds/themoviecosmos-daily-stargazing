@@ -1,0 +1,108 @@
+{
+  "agent": "A0",
+  "persona": "Reality Deconstructor",
+  "provider": "mimo",
+  "model": "mimo-v2.5-pro",
+  "news": {
+    "title": "YouTuber arrested over alleged AI-fabricated claims against Kim Soo-hyun",
+    "description": "Seoul police secured an arrest warrant for the operator of a channel with nearly one million subscribers who allegedly used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. Prosecutors say the influencer knew the relationship began only when she was an adult but spread false claims for financial gain. The scandal had halted the star's endorsements and public appearances since early 2025.",
+    "pub_time": "2026-05-27T09:00:00+09:00",
+    "source_name": "BBC News",
+    "url": "https://www.bbc.co.uk/news/articles/c759y6pvezgo"
+  },
+  "deconstruction": {
+    "anchor": {
+      "dct": "2026-05-27T09:00:00+09:00",
+      "report_locale": null
+    },
+    "when": {
+      "absolute": [
+        "early 2025"
+      ],
+      "relative": [],
+      "daypart": [],
+      "season": [],
+      "fuzzy_era": [],
+      "cultural": [],
+      "anchored": [],
+      "duration": [],
+      "recurrence": [],
+      "modality": [
+        "occurred"
+      ],
+      "timezone": []
+    },
+    "where": [
+      {
+        "text": "Seoul",
+        "role": [
+          "site of arrest"
+        ],
+        "relations": [],
+        "relative_pos": null,
+        "geopolitical": null,
+        "intended_destination": null,
+        "trajectory": null,
+        "contested_name": null
+      }
+    ],
+    "who": [
+      {
+        "text": "YouTuber",
+        "role_in_event": [
+          "affected",
+          "initiator-decision"
+        ],
+        "relations": [
+          "made claims against Kim Soo-hyun"
+        ]
+      },
+      {
+        "text": "Kim Soo-hyun",
+        "role_in_event": [
+          "affected"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Seoul police",
+        "role_in_event": [
+          "executor"
+        ],
+        "relations": []
+      },
+      {
+        "text": "Prosecutors",
+        "role_in_event": [
+          "witness"
+        ],
+        "relations": []
+      }
+    ],
+    "why": [
+      {
+        "text": "spread false claims for financial gain"
+      }
+    ],
+    "how": [
+      {
+        "step": 1,
+        "text": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor"
+      },
+      {
+        "step": 2,
+        "text": "Seoul police secured an arrest warrant"
+      }
+    ],
+    "result": [
+      {
+        "text": "YouTuber arrested"
+      },
+      {
+        "text": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025"
+      }
+    ]
+  },
+  "errors": [],
+  "validation_warnings": []
+}

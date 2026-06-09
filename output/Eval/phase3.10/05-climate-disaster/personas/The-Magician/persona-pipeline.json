@@ -1,0 +1,393 @@
+{
+  "persona_id": "The-Magician",
+  "overlay": {
+    "persona_id": "The-Magician",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Syria's president",
+          "alternatives": [
+            {
+              "term": "catalyst of post-flood change",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "national decision-maker under pressure",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "head of state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "politician exploiting a crisis",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "several children",
+          "alternatives": [
+            {
+              "term": "tragic victims of systemic failure",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the navy",
+          "alternatives": [
+            {
+              "term": "emergency response mechanism",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "instrument of state intervention",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Turkey",
+          "alternatives": [
+            {
+              "term": "upstream lever operator",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "regional power broker",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "state actor",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "manipulator of transnational water flows",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "one of the heaviest rainy seasons in three decades",
+          "alternatives": [
+            {
+              "term": "rare climatic trigger",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "an act of nature revealing system fragility",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "critical system overload",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "infrastructure capacity breach",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "engineered intervention met natural force",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "mechanism of flooding",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "failure of hydraulic containment",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-5",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "diplomatic recalibration of water flow",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "upstream adjustment",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "belated concession from an upstream power",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "several children drowned",
+          "alternatives": [
+            {
+              "term": "devastating human cost of system breakdown",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "loss of life",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-4",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "the pivotal upstream concession",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "diplomatic outcome",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "reactive, not proactive, measure",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-5",
+          "original_term": "Syria's president visited the flood zones",
+          "alternatives": [
+            {
+              "term": "visible presidential engagement",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "state visit to disaster area",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "performative crisis optics",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-5",
+      "who-3",
+      "how-0",
+      "why-0",
+      "how-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Turkey agreed to reduce upstream releases. Turkey. Reservoirs filled beyond 97% capacity. one of the heaviest rainy seasons in three decades. Dam operations and seasonal rains pushed the river past protective embankments The event unfolds across upstream adjustment and water management agreement.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "how-5",
+          "who-3",
+          "how-0",
+          "why-0",
+          "how-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Turkey agreed to reduce upstream releases",
+            "provenance": "surface"
+          },
+          {
+            "term": "upstream adjustment",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water management agreement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "international cooperation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flood mitigation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Turkey",
+            "provenance": "surface"
+          },
+          {
+            "term": "state actor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "country",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "nation-state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "sovereign entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Reservoirs filled beyond 97% capacity",
+            "provenance": "surface"
+          },
+          {
+            "term": "infrastructure capacity breach",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "reservoir overflow",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water storage issue",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "infrastructure problem",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "one of the heaviest rainy seasons in three decades",
+            "provenance": "surface"
+          },
+          {
+            "term": "rare climatic trigger",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "heavy rainfall",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "extreme weather event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "climatic anomaly",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+            "provenance": "surface"
+          },
+          {
+            "term": "mechanism of flooding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flood causation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water release",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "embankment failure",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A rare climatic trigger—extreme weather event—exposed the fragility of hydraulic containment systems. Critical system overload occurred as reservoirs filled beyond capacity, leading to an engineered intervention that met natural force. The resulting mechanism of flooding caused devastating human cost, with tragic victims of systemic failure. In response, the emergency response mechanism was deployed for evacuations, while a diplomatic recalibration of water flow was secured from the upstream lever operator.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "how-5",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.78
+    },
+    {
+      "id": "p2",
+      "text": "The flood response revealed how a state actor's initial maneuvering created a pivotal upstream concession. A head of state, acting as a catalyst of post-flood change, oversaw the visible presidential engagement in disaster zones. Meanwhile, the instrument of state intervention coordinated a rescue operation, addressing the infrastructure damage caused by the embankment failure. This sequence highlights the leverage points where systems pivot under pressure.",
+      "source": {
+        "agent_id": "The-Magician",
+        "fragments": [
+          "how-5",
+          "how-4",
+          "how-3",
+          "result-5",
+          "result-4"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.65
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,217 @@
+{
+  "persona_id": "The-Everyman",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "Vegas Golden Knights",
+        "alternatives": [
+          {
+            "term": "the team that won the series",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the professional hockey club from Las Vegas",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Colorado Avalanche",
+        "alternatives": [
+          {
+            "term": "the team that had to play without their best players",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the professional hockey club from Denver",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "John Tortorella",
+        "alternatives": [
+          {
+            "term": "the coach brought in to steady the ship",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the hired professional coach",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "Cale Makar",
+        "alternatives": [
+          {
+            "term": "a top player who got hurt",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "a key defenseman for the Colorado team",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-4",
+        "original_term": "Nathan MacKinnon",
+        "alternatives": [
+          {
+            "term": "a star forward who got hurt",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "a key forward for the Colorado team",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "Western Conference Final",
+        "alternatives": [
+          {
+            "term": "the playoff round before the championship",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+        "alternatives": [
+          {
+            "term": "Colorado had to play without their two best players because they were hurt",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "Colorado's key athletes were unavailable due to injury",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "the franchise fired its coach with eight regular-season games left",
+        "alternatives": [
+          {
+            "term": "the team made a big change late in the season",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the team replaced its leadership near the end of the schedule",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "John Tortorella guided a 7-0-1 close",
+        "alternatives": [
+          {
+            "term": "the new coach helped them finish strong",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the team performed well under new guidance",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "John Tortorella guided playoff runs past Utah and Anaheim",
+        "alternatives": [
+          {
+            "term": "the coach led them to win two playoff rounds",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the team advanced through the early playoff stages",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "original_term": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4",
+        "alternatives": [
+          {
+            "term": "Vegas shut down the other team's best attack when it mattered",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "Vegas outscored and defended well in the final game",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "original_term": "completing a four-game Western Conference Final sweep on May 26",
+        "alternatives": [
+          {
+            "term": "winning all four games to end the series",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "a decisive four-game series victory",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "Vegas reached the Stanley Cup Final",
+        "alternatives": [
+          {
+            "term": "Vegas made it to the championship round",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "Vegas advanced to the final stage of the playoffs",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "result-0",
+    "who-0",
+    "who-1",
+    "why-0",
+    "how-0"
+  ]
+}

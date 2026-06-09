@@ -1,0 +1,386 @@
+{
+  "persona_id": "The-Outlaw",
+  "overlay": {
+    "persona_id": "The-Outlaw",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Intuit",
+          "alternatives": [
+            {
+              "term": "the tax-software giant wielding the axe",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the corporate entity",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Sasan Goodarzi",
+          "alternatives": [
+            {
+              "term": "the chief executive enforcing the cut",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "company leader",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "affected U.S. employees",
+          "alternatives": [
+            {
+              "term": "the workforce bearing the cost of 'reinvention'",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the 3,000 displaced",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "employees",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+          "alternatives": [
+            {
+              "term": "to chase the AI hype at human cost",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "business strategy",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "as a painful but necessary reinvention after months of internal review",
+          "alternatives": [
+            {
+              "term": "a familiar corporate alibi for mass layoffs",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "stated justification",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+          "alternatives": [
+            {
+              "term": "the decree handed down from the top",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "announcement of layoffs",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "a severance package meant to soften the blow",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "severance offer",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Offices in Reno and Woodland Hills are winding down",
+          "alternatives": [
+            {
+              "term": "abandoned workspaces",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "office closures",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "roughly 17% of workforce to be cut",
+          "alternatives": [
+            {
+              "term": "a bloodletting of nearly one-fifth of the workforce",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "significant reduction in headcount",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "about 3,000 full-time roles to be eliminated",
+          "alternatives": [
+            {
+              "term": "3,000 livelihoods erased on the altar of efficiency",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "elimination of positions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "offices in Reno and Woodland Hills winding down",
+          "alternatives": [
+            {
+              "term": "communities left behind by corporate flight",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "site closures",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "a calculated buyout of loyalty",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "severance compensation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "who-2",
+      "result-0",
+      "why-1",
+      "who-0",
+      "how-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "affected U.S. employees. roughly 17% of workforce to be cut. as a painful but necessary reinvention after months of internal review. Intuit. Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure The event unfolds across employees and workers.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "who-2",
+          "result-0",
+          "why-1",
+          "who-0",
+          "how-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "affected U.S. employees",
+            "provenance": "surface"
+          },
+          {
+            "term": "employees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "workers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "personnel",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "roughly 17% of workforce to be cut",
+            "provenance": "surface"
+          },
+          {
+            "term": "significant reduction in headcount",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "workforce reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff layoff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organizational downsizing",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "as a painful but necessary reinvention after months of internal review",
+            "provenance": "surface"
+          },
+          {
+            "term": "stated justification",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Intuit",
+            "provenance": "surface"
+          },
+          {
+            "term": "the corporate entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tax-software company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "corporation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "provenance": "surface"
+          },
+          {
+            "term": "severance offer",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "severance package",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "compensation offer",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "employee benefit",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The tax-software giant wielding the axe has unveiled a painful but necessary reinvention, a familiar corporate alibi for mass layoffs. The chief executive enforcing the cut announced a workforce reduction that will erase 3,000 livelihoods on the altar of efficiency. To soften the blow, the company offered a severance package meant to buy out loyalty, a calculated move from a technology company chasing the AI hype at human cost.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-1",
+          "how-0",
+          "result-1",
+          "how-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.91
+    },
+    {
+      "id": "p2",
+      "text": "Amid a significant reduction in headcount, the 3,000 displaced workers are left to bear the cost of 'reinvention.' This organizational downsizing, a bloodletting of nearly one-fifth of the workforce, was framed as a necessary business strategy. The corporate entity's decree handed down from the top leaves communities like Reno and Woodland Hills facing site closures, their abandoned workspaces a testament to corporate flight.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "result-0",
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "The company leader's announcement of layoffs is the final step in a months-long internal review, a stated justification for a major headcount decrease. Affected U.S. employees, the workforce bearing the cost of 'reinvention,' were presented with a severance offer. This compensation offer accompanies the elimination of positions across offices, leaving staff and workers to navigate a future without the security of their former roles.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "how-0",
+          "why-1",
+          "result-1",
+          "how-1",
+          "result-1",
+          "how-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "warnings": []
+}

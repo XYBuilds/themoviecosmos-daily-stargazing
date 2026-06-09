@@ -1,0 +1,264 @@
+{
+  "persona_id": "The-Lover",
+  "overlay": {
+    "persona_id": "The-Lover",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "betrayer of trust",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "accuser",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kim Soo-hyun",
+          "alternatives": [
+            {
+              "term": "the wronged beloved",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the accused actor",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "public figure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "exploited intimate rumors for profit",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "motivated by financial gain",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "fabricated evidence of an illicit relationship",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "used digital manipulation to make accusations",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "public image shattered by false intimacy claims",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "professional activities suspended due to scandal",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "who-0",
+      "who-1",
+      "how-0",
+      "why-0",
+      "result-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "YouTuber. Kim Soo-hyun. used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. spread false claims for financial gain. scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025 The event unfolds across content creator and online personality.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "who-0",
+          "who-1",
+          "how-0",
+          "why-0",
+          "result-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "YouTuber",
+            "provenance": "surface"
+          },
+          {
+            "term": "content creator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kim Soo-hyun",
+            "provenance": "surface"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "actor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "celebrity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+            "provenance": "surface"
+          },
+          {
+            "term": "professional impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "reputational damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of scandal",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A content creator, motivated by financial gain, exploited intimate rumors for profit by fabricating evidence of an illicit relationship. This deceptive practice used digital manipulation to make accusations against the wronged beloved, a public figure. The scandal shattered the actor's public image, halting endorsements and appearances. Seoul police, a law enforcement agency, secured an arrest warrant as a consequence of the illegal activity, leading to the accuser's detention.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The betrayer of trust, an online personality, spread false claims for financial gain. Using AI-generated content, they fabricated evidence of an illicit relationship to damage the celebrity's reputation. The resulting reputational damage and professional impact were severe, with the actor's activities suspended due to scandal. The police force took law enforcement action, securing an arrest warrant for the individual, culminating in the consequence of crime: detention.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p3",
+      "text": "An accuser, driven by a deceptive practice, used digital manipulation to make accusations against the wronged beloved, a celebrity. The misinformation involved fabricated evidence of an illicit relationship, a clear illegal activity. This led to a professional impact, with the public figure's appearances halted. The law enforcement agency intervened through an arrest warrant issuance, a legal procedure resulting in the individual's arrest and detention.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.7
+    }
+  ],
+  "warnings": []
+}
