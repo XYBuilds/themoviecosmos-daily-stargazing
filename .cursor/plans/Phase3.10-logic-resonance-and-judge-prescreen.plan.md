@@ -4,7 +4,7 @@ overview: 按 ADR-0007 D1–D5 走第一步——把共振定义升级为「表�
 todos:
   - id: p310-0
     content: 3.10.0 · 契约/CONTEXT 对齐 ADR-0007 D1：产「双轴定义 + 因果反测句」权威措辞源（含 judge-ready / rubric-ready 成稿，供 3.10.1/3.10.2 逐字粘贴）+ 2×2 措辞更新 [需聪明模型] [需人工验收]
-    status: todo
+    status: complete
   - id: p310-1
     content: 3.10.1 · llm_judge.py rubric 重写为双轴（粘贴 3.10.0 judge-ready 措辞 + 强制 rationale 含因果反测句）+ 单测
     status: todo
@@ -132,9 +132,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] 权威措辞源含双轴定义 + 反测句 + 2×2 映射，与 ADR-0007 D1 逐条一致
-- [ ] CONTEXT 术语补齐
-- [ ] `[需人工验收]`：用户 approve 措辞口径 → 可进 3.10.1/3.10.2
+- [x] 权威措辞源含双轴定义 + 反测句 + 2×2 映射，与 ADR-0007 D1 逐条一致
+- [x] CONTEXT 术语补齐
+- [x] `[需人工验收]`：用户 approve 措辞口径 → 可进 3.10.1/3.10.2
 
 ---
 
