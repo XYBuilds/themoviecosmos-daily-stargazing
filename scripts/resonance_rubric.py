@@ -15,7 +15,9 @@ STRUCTURAL_TYPES = frozenset({TYPE_DEEP, TYPE_STRONG})
 # Legacy labels (phase ≤3.8 human scores)
 _LEGACY_TO_CANONICAL = {
     "表层": TYPE_SURFACE,
+    "表层元素": TYPE_SURFACE,
     "结构": TYPE_DEEP,
+    "深层逻辑": TYPE_DEEP,
     "双重": TYPE_STRONG,
     "深层共振（仅结构，无表层）": TYPE_DEEP,
     "强共振（表层 + 结构）": TYPE_STRONG,
@@ -28,6 +30,8 @@ _TYPE_PARSE_ORDER = (
     TYPE_NONE,
     "强共振（表层 + 结构）",
     "深层共振（仅结构，无表层）",
+    "深层逻辑",
+    "表层元素",
     "双重",
     "结构",
     "表层",

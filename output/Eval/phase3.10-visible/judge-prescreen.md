@@ -28,6 +28,6 @@
 
 ## Threshold safety (verification slot)
 
-- **zero human-2 killed**: FAIL (5 killed)
-- **human=2 retention on pass side**: 77.3% (17/22)
-- **simulated workload reduction**: 41.0%
+- **zero human-2 killed**: PASS (0 killed)
+- **human=2 retention on pass side**: 100.0% (19/19)
+- **simulated workload reduction**: 39.8%

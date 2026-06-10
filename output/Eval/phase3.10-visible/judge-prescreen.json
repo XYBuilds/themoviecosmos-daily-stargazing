@@ -81,7 +81,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 1
     },
     {
@@ -153,7 +153,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 0
     },
     {
@@ -285,7 +285,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 0
     },
     {
@@ -297,7 +297,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 0
     },
     {
@@ -802,7 +802,7 @@
       "manual_review": false,
       "highlight": false,
       "rejection_audit_sampled": false,
-      "human_score": 2
+      "human_score": 1
     },
     {
       "run_id": "05-climate-disaster",
@@ -838,7 +838,7 @@
       "manual_review": false,
       "highlight": false,
       "rejection_audit_sampled": false,
-      "human_score": 2
+      "human_score": 1
     },
     {
       "run_id": "05-climate-disaster",
@@ -897,7 +897,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 0
     },
     {
@@ -909,7 +909,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": null
     },
     {
@@ -922,7 +922,7 @@
       "manual_review": true,
       "highlight": true,
       "rejection_audit_sampled": false,
-      "human_score": 0
+      "human_score": 1
     },
     {
       "run_id": "05-climate-disaster",
@@ -1029,7 +1029,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 1
     },
     {
@@ -1042,7 +1042,7 @@
       "manual_review": false,
       "highlight": false,
       "rejection_audit_sampled": false,
-      "human_score": 2
+      "human_score": 0
     },
     {
       "run_id": "06-tech-monopoly",
@@ -1066,7 +1066,7 @@
       "manual_review": false,
       "highlight": false,
       "rejection_audit_sampled": false,
-      "human_score": 2
+      "human_score": 0
     },
     {
       "run_id": "06-tech-monopoly",
@@ -1077,7 +1077,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 1
     },
     {
@@ -1101,7 +1101,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 0
     },
     {
@@ -1173,8 +1173,8 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
-      "human_score": 1
+      "rejection_audit_sampled": false,
+      "human_score": 0
     },
     {
       "run_id": "06-tech-monopoly",
@@ -1317,8 +1317,8 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
-      "human_score": null
+      "rejection_audit_sampled": false,
+      "human_score": 0
     },
     {
       "run_id": "07-migration-border",
@@ -1341,7 +1341,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": null
     },
     {
@@ -1366,7 +1366,7 @@
       "manual_review": false,
       "highlight": false,
       "rejection_audit_sampled": false,
-      "human_score": 2
+      "human_score": 1
     },
     {
       "run_id": "08-sports-underdog",
@@ -1425,8 +1425,8 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
-      "human_score": null
+      "rejection_audit_sampled": false,
+      "human_score": 1
     },
     {
       "run_id": "08-sports-underdog",
@@ -1450,7 +1450,7 @@
       "manual_review": true,
       "highlight": true,
       "rejection_audit_sampled": false,
-      "human_score": null
+      "human_score": 1
     },
     {
       "run_id": "08-sports-underdog",
@@ -1461,7 +1461,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": null
     },
     {
@@ -1558,7 +1558,7 @@
       "manual_review": true,
       "highlight": false,
       "rejection_audit_sampled": false,
-      "human_score": null
+      "human_score": 2
     },
     {
       "run_id": "09-cultural-backlash",
@@ -1569,8 +1569,8 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
-      "human_score": null
+      "rejection_audit_sampled": false,
+      "human_score": 0
     },
     {
       "run_id": "09-cultural-backlash",
@@ -1582,7 +1582,7 @@
       "manual_review": true,
       "highlight": false,
       "rejection_audit_sampled": false,
-      "human_score": null
+      "human_score": 1
     },
     {
       "run_id": "09-cultural-backlash",
@@ -1642,7 +1642,7 @@
       "manual_review": true,
       "highlight": false,
       "rejection_audit_sampled": false,
-      "human_score": null
+      "human_score": 1
     },
     {
       "run_id": "09-cultural-backlash",
@@ -1654,7 +1654,7 @@
       "manual_review": true,
       "highlight": true,
       "rejection_audit_sampled": false,
-      "human_score": null
+      "human_score": 2
     },
     {
       "run_id": "09-cultural-backlash",
@@ -1665,7 +1665,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": null
     },
     {
@@ -1690,7 +1690,7 @@
       "manual_review": true,
       "highlight": false,
       "rejection_audit_sampled": false,
-      "human_score": null
+      "human_score": 1
     },
     {
       "run_id": "09-cultural-backlash",
@@ -1702,7 +1702,7 @@
       "manual_review": true,
       "highlight": true,
       "rejection_audit_sampled": false,
-      "human_score": null
+      "human_score": 1
     },
     {
       "run_id": "10-whistleblower-leak",
@@ -1786,7 +1786,7 @@
       "manual_review": false,
       "highlight": false,
       "rejection_audit_sampled": true,
-      "human_score": null
+      "human_score": 0
     },
     {
       "run_id": "10-whistleblower-leak",
@@ -1834,7 +1834,7 @@
       "manual_review": true,
       "highlight": true,
       "rejection_audit_sampled": false,
-      "human_score": null
+      "human_score": 1
     },
     {
       "run_id": "10-whistleblower-leak",
@@ -1846,7 +1846,7 @@
       "manual_review": true,
       "highlight": false,
       "rejection_audit_sampled": false,
-      "human_score": null
+      "human_score": 1
     },
     {
       "run_id": "10-whistleblower-leak",
@@ -1891,11 +1891,11 @@
       "rejection_count": 4,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 7014,
+      "random_seed": 8021,
       "sampled": [
         {
           "run_id": "01-grid-outage",
-          "tmdb_id": "1223272"
+          "tmdb_id": "370097"
         }
       ],
       "audit_hits": [],
@@ -1906,11 +1906,11 @@
       "rejection_count": 6,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 5664,
+      "random_seed": 7250,
       "sampled": [
         {
           "run_id": "02-corporate-layoff",
-          "tmdb_id": "1002695"
+          "tmdb_id": "1233620"
         }
       ],
       "audit_hits": [],
@@ -1921,7 +1921,7 @@
       "rejection_count": 3,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 1237,
+      "random_seed": 8963,
       "sampled": [
         {
           "run_id": "03-election-upset",
@@ -1936,7 +1936,7 @@
       "rejection_count": 2,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 513,
+      "random_seed": 7860,
       "sampled": [
         {
           "run_id": "04-celebrity-scandal",
@@ -1951,11 +1951,11 @@
       "rejection_count": 11,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 6515,
+      "random_seed": 2952,
       "sampled": [
         {
           "run_id": "05-climate-disaster",
-          "tmdb_id": "210219"
+          "tmdb_id": "107100"
         }
       ],
       "audit_hits": [],
@@ -1966,15 +1966,15 @@
       "rejection_count": 19,
       "sample_rate": 0.1,
       "sample_size": 2,
-      "random_seed": 1181,
+      "random_seed": 1853,
       "sampled": [
         {
           "run_id": "06-tech-monopoly",
-          "tmdb_id": "52077"
+          "tmdb_id": "320318"
         },
         {
           "run_id": "06-tech-monopoly",
-          "tmdb_id": "142977"
+          "tmdb_id": "79921"
         }
       ],
       "audit_hits": [],
@@ -1985,11 +1985,11 @@
       "rejection_count": 6,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 3684,
+      "random_seed": 7008,
       "sampled": [
         {
           "run_id": "07-migration-border",
-          "tmdb_id": "841793"
+          "tmdb_id": "151708"
         }
       ],
       "audit_hits": [],
@@ -2000,11 +2000,11 @@
       "rejection_count": 14,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 9549,
+      "random_seed": 2845,
       "sampled": [
         {
           "run_id": "08-sports-underdog",
-          "tmdb_id": "41612"
+          "tmdb_id": "232679"
         }
       ],
       "audit_hits": [],
@@ -2015,11 +2015,11 @@
       "rejection_count": 7,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 8150,
+      "random_seed": 1386,
       "sampled": [
         {
           "run_id": "09-cultural-backlash",
-          "tmdb_id": "502167"
+          "tmdb_id": "86962"
         }
       ],
       "audit_hits": [],
@@ -2030,7 +2030,7 @@
       "rejection_count": 13,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 2473,
+      "random_seed": 1586,
       "sampled": [
         {
           "run_id": "10-whistleblower-leak",
@@ -2045,50 +2045,14 @@
     "min_judge_score": 1,
     "threshold_frozen": true,
     "n_scored": 156,
-    "n_human_labeled": 105,
-    "n_human_two": 22,
-    "n_human_two_on_pass_side": 17,
-    "n_human_two_killed": 5,
-    "zero_human_two_killed": false,
-    "killed_items": [
-      {
-        "run_id": "05-climate-disaster",
-        "tmdb_id": "257637",
-        "title": "Poem of the Sea (1958) [THE-EXPLORER, THE-CREATOR, THE-MAGICIAN, THE-HERO, THE-CAREGIVER, THE-RULER, THE-OUTLAW, THE-SAGE, THE-JESTER, THE-EVERYMAN] [优质·多agent]",
-        "judge_score": 0,
-        "human_score": 2
-      },
-      {
-        "run_id": "05-climate-disaster",
-        "tmdb_id": "163293",
-        "title": "Deluge (1933) [THE-LOVER, THE-EVERYMAN, THE-OUTLAW, THE-SAGE]",
-        "judge_score": 0,
-        "human_score": 2
-      },
-      {
-        "run_id": "06-tech-monopoly",
-        "tmdb_id": "13748",
-        "title": "A Ticket to Space (2006) [THE-INNOCENT, THE-HERO, THE-CREATOR, THE-MAGICIAN, THE-JESTER] [优质·多agent]",
-        "judge_score": 0,
-        "human_score": 2
-      },
-      {
-        "run_id": "06-tech-monopoly",
-        "tmdb_id": "4959",
-        "title": "The International (2009) [THE-LOVER, THE-OUTLAW, THE-EVERYMAN]",
-        "judge_score": 0,
-        "human_score": 2
-      },
-      {
-        "run_id": "08-sports-underdog",
-        "tmdb_id": "5693",
-        "title": "Hoosiers (1986) [THE-OUTLAW, THE-CREATOR, THE-MAGICIAN, THE-JESTER, THE-INNOCENT, THE-CAREGIVER] [优质·多agent]",
-        "judge_score": 0,
-        "human_score": 2
-      }
-    ],
-    "pass_side_human_two_retention": 0.7727272727272727,
-    "workload_reduction_rate": 0.4095238095238095
+    "n_human_labeled": 118,
+    "n_human_two": 19,
+    "n_human_two_on_pass_side": 19,
+    "n_human_two_killed": 0,
+    "zero_human_two_killed": true,
+    "killed_items": [],
+    "pass_side_human_two_retention": 1.0,
+    "workload_reduction_rate": 0.39830508474576276
   },
   "judge_trusted": false,
   "judge_trust_status": "不采信"
