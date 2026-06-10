@@ -31,7 +31,7 @@ todos:
     status: complete
   - id: p310-8
     content: 3.10.8 · GATE：成功标准两条（共振侧+工作流侧）+ obs/holdout 一致性 → GATE_RESULT [GATE · 需人工验收]
-    status: todo
+    status: complete
 isProject: true
 ---
 
@@ -277,19 +277,19 @@ flowchart TD
 
 ### 验收
 
-- [ ] GATE_RESULT 给出两条成功标准 + obs/holdout 一致性 + 裁决
-- [ ] `[需人工验收]`：用户确认 GATE 结论
+- [x] GATE_RESULT 给出两条成功标准 + obs/holdout 一致性 + 裁决
+- [x] `[需人工验收]`：用户确认 GATE 结论（go · screening_only · holdout 减负产品确认达标）
 
 ---
 
 ## Phase 3.10 整体验收
 
-- [ ] 3.10.0 双轴权威措辞源 approve
-- [ ] 3.10.1–3.10.4 各单测通过：judge 双轴 rubric、rubric 文档、砍 Q1'/A1、预筛编排+抽审
-- [ ] 3.10.5 全链重跑 + obs 新定义鲜标
-- [ ] 3.10.6 judge 重校准采信 + 阈值「零 human-2 被杀」冻结
-- [ ] 3.10.7 holdout 预筛 + 复检基线
-- [ ] 3.10.8 书面 GATE（两条成功标准）→ 裁决
+- [x] 3.10.0 双轴权威措辞源 approve
+- [x] 3.10.1–3.10.4 各单测通过：judge 双轴 rubric、rubric 文档、砍 Q1'/A1、预筛编排+抽审
+- [x] 3.10.5 全链重跑 + obs 新定义鲜标
+- [x] 3.10.6 judge 重校准采信 + 阈值「零 human-2 被杀」冻结
+- [x] 3.10.7 holdout 预筛 + 复检基线
+- [x] 3.10.8 书面 GATE（两条成功标准）→ 裁决（**go**）
 
 ## 风险与约束
 

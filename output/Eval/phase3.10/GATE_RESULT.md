@@ -104,10 +104,12 @@ reweighted：obs combo **9.1%** (n=17) · holdout combo **17.6%** (n=8) — 方�
 | 子项 | 结果 | 说明 |
 | --- | --- | --- |
 | 零 human-2 误杀 | **PASS** | killed=0 |
-| 减负 ~50%+ | **FAIL（全批）** | 42.3% < 50%；holdout 63.8% 达标 |
-| judge 校准采信 | **FAIL** | 用户 **豁免**（screening_only） |
+| 减负 ~50%+ | **FAIL（全批机械）**¹ | 42.3% < 50%；holdout **63.8%** 达标 |
+| judge 校准采信 | **FAIL（机械）** | 用户 **豁免**（screening_only） |
 
-**工作流侧产品判：PASS（条件）** — 安全成立 + 预筛 approved；全批减负未达 ADR 50% 目标；校准不采信已备案。
+¹ **总编产品裁决（2026-06-10 approve）**：运营标准 forward-looking 固定为 **3.10.1b logic 0-guard 预筛**；以此口径 **holdout 减负 63.8% ≥ 50%** ⇒ **减负达标**。全批 42.3% 受 obs 满标 workflow 拉低，**不作为前进运营判据**。
+
+**工作流侧产品判：PASS** — 零误杀成立 + 预筛 approved + **减负产品确认达标**（holdout/3.10.1b）；校准不采信已备案（screening_only）。
 
 ---
 
@@ -152,33 +154,33 @@ reweighted：obs combo **9.1%** (n=17) · holdout combo **17.6%** (n=8) — 方�
 | 子问 | 机械结果 | 产品权重 |
 | --- | --- | --- |
 | **共振侧** combo>pure_fact + 不裂口 | **PASS（弱）** | pure_fact n=1；绝对率偏低 |
-| **工作流侧** 零误杀 + 减负 + 校准 | **PARTIAL** | 误杀✓；全批减负 42%<50%；校准不采信（已豁免） |
+| **工作流侧** 零误杀 + 减负 + 校准 | **PASS** | 误杀✓；减负 **产品确认达标**（holdout 63.8%）；校准 screening_only |
 | **3.10 POV-off 基线** | **可用** | 可作 3.11 对照臂 |
-| **ADR D1–D5** | **条件接受** | 见下 |
+| **ADR D1–D5** | **accepted** | 总编 approve 2026-06-10 |
 
 ### 总裁决
 
-**GATE · conditional go（条件通过 → 可启动 Phase 3.11 POV-on）**
+**GATE · go（条件记录 → 可启动 Phase 3.11 POV-on）**
+
+> 自机械 **conditional go** 升级：工作流侧减负经 **总编产品裁决** 以 forward-looking **3.10.1b holdout 63.8%** 确认达标（≥50%）；共振侧仍为弱 pass；校准 screening_only 已备案。
 
 **理由（go）**
 
 1. 新双轴定义下 **combo>pure_fact** 在 obs/holdout **同向成立**，无 3.9 式 overfit 裂口。
 2. 预筛 **零 human-2 误杀**；拒绝集抽审池 **28/28** 满标；`232679` audit 为 human=1 / judge=0（安全）。
 3. 总编已接受 **screening_only**：judge 仅作预筛，校准不达标 **不阻塞** 工作流。
-4. holdout 减负 **63.8%** 证明预筛在评测主战场有效；全批 42.3% 受 obs 满标（低减负）拉低。
+4. **减负产品确认达标**：运营标准固定 **3.10.1b logic 0-guard 预筛**；holdout **63.8%** ≥ ADR ~50%。全批 42.3% 为 obs 满标 workflow 诊断值，非前进运营判据。
 
-**条件（honest caveats）**
+**条件记录（honest caveats · 不阻塞 3.11）**
 
-1. **全批减负 42.3% < ADR ~50%** — 3.11 漏斗（D8）须继续吸收候选膨胀，不靠调高 judge 门槛。
-2. **pure_fact n=1** — 组合拳 lift 统计效力不足；不以绝对 2 分率与 3.8/3.9 legacy 比较。
-3. **judge_calibration_trusted=False** — 预筛可用，judge 分 **不得** 写入 SSOT 或替代人工共振裁决。
-4. **3.10.1b logic 0-guard** 使 judge 更严 — 持续用拒绝集抽审监控；接 RSS（Phase 5）须重测分布。
-
-**非 go 路径**：若总编否决 conditional go → 回 3.10.1b 调 rubric/阈值或扩 obs 校准集，**不升** POV（3.11）。
+1. **pure_fact n=1** — 组合拳 lift 统计效力不足；不以绝对 2 分率与 3.8/3.9 legacy 比较。
+2. **judge_calibration_trusted=False** — 预筛可用，judge 分 **不得** 写入 SSOT 或替代人工共振裁决。
+3. **3.10.1b logic 0-guard** 使 judge 更严 — 持续用拒绝集抽审监控；接 RSS（Phase 5）须重测分布。
+4. 3.11 漏斗（D8）须继续吸收候选膨胀，不靠调高 judge 门槛。
 
 ### 一行摘要
 
-**conditional go** — 共振机械 pass（弱；combo 11.5% vs pure 0%）；工作流安全 pass + screening_only；全批减负 42%；holdout 64%；校准不采信；池 28/28；human 123/156。
+**go** — 共振 pass（弱；combo 11.5% vs pure 0%）；工作流 pass（零误杀 + screening_only + **减负产品确认 holdout 64%**）；池 28/28；human 123/156；全批减负 42% 仅诊断。
 
 ---
 
@@ -186,17 +188,17 @@ reweighted：obs combo **9.1%** (n=17) · holdout combo **17.6%** (n=8) — 方�
 
 | 决策 | GATE 后状态 |
 | --- | --- |
-| D1 双轴定义 | **accepted**（conditional） |
+| D1 双轴定义 | **accepted** |
 | D2 新基线起算 | **accepted** |
 | D3 分两步 / 3.10 POV-off | **accepted** — 基线已产出 |
 | D4 judge 预筛 | **accepted（screening_only）** — 校准不采信 |
-| D5 成功标准 + 砍 Q1′ | **accepted（conditional go）** |
+| D5 成功标准 + 砍 Q1′ | **accepted（go）** — 减负产品确认达标 |
 | D6–D8 POV | **pending** → Phase 3.11 |
 
-> 本 ADR `Status: proposed` → 总编 **approve** 本 GATE 后由维护者改为 `accepted`（D1–D5）。
+> 总编 **approve** 2026-06-10：ADR-0007 `Status` → **accepted（D1–D5）**；D6–D8 待 3.11 GATE。
 
 ---
 
-## `[需人工验收]`
+## 验收记录
 
-总编确认本 GATE **conditional go** 裁决后输入 `approve`，再执行：标 plan p310-8 complete · 写 3.10.8 report · **合并 PR** · 启动 Phase 3.11。
+- **2026-06-10**：总编 approve GATE **go**（screening_only + holdout 减负产品确认达标）→ p310-8 complete · PR #57 合并 · Phase 3.11 可启动。
