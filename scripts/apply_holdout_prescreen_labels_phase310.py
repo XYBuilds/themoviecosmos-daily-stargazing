@@ -130,7 +130,9 @@ def refresh_prescreen_human_scores(eval_dir: Path, prescreen_json: Path) -> None
         key = (row.run_id, str(row.tmdb_id))
         label = human_map.get(key)
         if label is None:
-            new_scores.append(row)
+            new_scores.append(
+                replace(row, human_score=None, human_resonance_type=None)
+            )
             continue
         new_scores.append(
             replace(

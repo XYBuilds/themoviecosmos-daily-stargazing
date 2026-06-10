@@ -1575,7 +1575,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-MAGICIAN/p1: fragments=[why-0, why-1, how-0, result-0, result-2] · sim=0.5822 · **命中分=5**
 - **pseudo命中分合计**: 5
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
 - **打分备注**: （可选）
 - **judge分**: 0
 - **judge共振类型**: 
@@ -2228,8 +2228,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-JESTER/p2: fragments=[how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-4] · sim=0.5704 · **命中分=8**
   - THE-EVERYMAN/p3: fragments=[why-0, how-3, result-1, result-3, result-4, result-5] · sim=0.5639 · **命中分=6**
 - **pseudo命中分合计**: 77
-- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
 - **judge分**: 0
 - **judge共振类型**: 
@@ -3189,9 +3189,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/p1: fragments=[how-0, why-0, how-1, result-0, result-1] · sim=0.4997 · **命中分=5**
   - THE-SAGE/p3: fragments=[how-0, why-0, how-1, how-2, how-3] · sim=0.5277 · **命中分=5**
 - **pseudo命中分合计**: 10
-- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: 新闻中是谷歌，电影中是个人，有点太宽泛了
+- **打分备注**: 
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge分歧**: ⚠
@@ -3604,7 +3604,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-HERO/p1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4840 · **命中分=4**
   - THE-CREATOR/p2: fragments=[why-0, how-0, result-0, result-1] · sim=0.4666 · **命中分=4**
 - **pseudo命中分合计**: 8
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -3764,8 +3764,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-CAREGIVER/p2: fragments=[why-0, how-0, how-1, how-2, how-3, how-4] · sim=0.5905 · **命中分=6**
   - THE-OUTLAW/p2: fragments=[how-0, how-1, how-2, why-0] · sim=0.5822 · **命中分=4**
 - **pseudo命中分合计**: 36
-- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
 - **judge分**: 0
 - **judge共振类型**: 
@@ -3913,9 +3913,9 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EVERYMAN/p2: fragments=[how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.5822 · **命中分=6**
   - THE-MAGICIAN/p2: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4984 · **命中分=7**
 - **pseudo命中分合计**: 13
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 表层元素（运动、教练）和底层逻辑（困境等）都有点相关，但都离得很远
 - **judge分**: 0
 - **judge共振类型**: 
 - **judge采信**: 不采信 · screening only
@@ -4279,7 +4279,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/p1: fragments=[how-0, how-1, how-2, why-0, result-0] · sim=0.5077 · **命中分=5**
   - THE-EXPLORER/p2: fragments=[how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5107 · **命中分=6**
 - **pseudo命中分合计**: 26
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
 - **judge分**: 0
@@ -4840,7 +4840,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-OUTLAW/n1: fragments=[who-0, why-0, how-1, result-0, who-4] · sim=0.4059
   - THE-HERO/p1: fragments=[how-1, why-0, how-2, how-3, result-0, how-4] · sim=0.4375 · **命中分=6**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
 - **judge分**: 0

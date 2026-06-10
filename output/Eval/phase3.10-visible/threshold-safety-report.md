@@ -24,3 +24,25 @@
 | workload_reduction_rate | 39.8% |
 
 ## Verdict: SAFE TO FREEZE
+
+## Observation set (01–04)
+
+| Metric | Value |
+| --- | --- |
+| n_scored | 65 |
+| n_human_labeled | 65 |
+| n_human_two | 9 |
+| n_human_two_killed | 0 |
+| zero_human_two_killed | **YES** |
+| workload_reduction_rate | 23.1% |
+
+## Holdout set (05–10)
+
+| Metric | Value |
+| --- | --- |
+| n_scored | 91 |
+| n_human_labeled | 53 |
+| n_human_two | 10 |
+| n_human_two_killed | 0 |
+| zero_human_two_killed | **YES** |
+| workload_reduction_rate | 60.4% |
