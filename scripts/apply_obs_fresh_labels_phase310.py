@@ -74,8 +74,10 @@ class FreshLabel:
     score: int
     resonance_type: str | None
     causal_test: str
-    remark: str
     labeled_at: str
+    rationale: str = ""
+    remark: str = ""
+    source: str = "llm"
 
 
 def _obs_run_ids(run_ids: list[str] | None) -> list[str]:
@@ -90,7 +92,7 @@ def call_editor_label(
     provider: str | None = None,
     client=None,
     max_retries: int = 3,
-) -> tuple[int, str | None, str, str]:
+) -> tuple[int, str | None, str, str]:  # score, type, rationale, causal_test
     load_env()
     prov = (provider or default_llm_provider()).strip().lower()
     llm = client or get_llm_client(prov)
@@ -114,10 +116,7 @@ def call_editor_label(
             )
             content = (response.choices[0].message.content or "").strip()
             score, resonance_type, rationale, causal_test = parse_judge_response(content)
-            remark = f"v2 fresh · {rationale}" if rationale else "v2 fresh"
-            if causal_test:
-                remark = f"{remark} · 反测: {causal_test}"
-            return score, resonance_type, remark, causal_test
+            return score, resonance_type, rationale, causal_test
         except Exception as exc:
             last_err = exc
             if attempt + 1 < max_retries:
@@ -140,7 +139,16 @@ def _update_rubric_header(text: str) -> str:
 def _apply_labels_to_review(
     text: str,
     labels: dict[tuple[str, str], FreshLabel],
+    *,
+    human_fields: bool = False,
 ) -> str:
+    """Patch review human editor fields from audit labels.
+
+    When ``human_fields`` is False (default), human fields are left unchanged so
+    LLM output stays in audit JSON / judge fields only.
+    """
+    if not human_fields:
+        return text
     section_re = re.compile(r"^(## \d{2}-[^\n]+)$", re.MULTILINE)
     matches = list(section_re.finditer(text))
     if not matches:
@@ -174,7 +182,9 @@ def _apply_labels_to_review(
                 block,
                 count=1,
             )
-            return _REMARK_LINE.sub(rf"\1 {label.remark}", block, count=1)
+            if label.remark.strip():
+                block = _REMARK_LINE.sub(rf"\1 {label.remark}", block, count=1)
+            return block
 
         blocks = re.split(r"(?=^###\s+)", section, flags=re.MULTILINE)
         patched = [_patch_block(b) if b.startswith("###") else b for b in blocks]
@@ -205,6 +215,11 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Patch high-hit-score-review.md from existing obs-fresh-labels.json",
     )
+    parser.add_argument(
+        "--human",
+        action="store_true",
+        help="Write scores/types (and optional human remark) to editor fields in review",
+    )
     args = parser.parse_args(argv)
 
     eval_dir = args.eval_dir if args.eval_dir.is_absolute() else _REPO_ROOT / args.eval_dir
@@ -228,9 +243,11 @@ def main(argv: list[str] | None = None) -> int:
         review_text = review_path.read_text(encoding="utf-8")
         review_text = _update_rubric_header(review_text)
         review_path.write_text(
-            _apply_labels_to_review(review_text, labels), encoding="utf-8"
+            _apply_labels_to_review(review_text, labels, human_fields=args.human),
+            encoding="utf-8",
         )
-        print(f"applied {len(labels)} labels to {review_path}")
+        mode = "human editor fields" if args.human else "no human fields (audit only)"
+        print(f"applied {len(labels)} labels to {review_path} ({mode})")
         return 0
 
     items = collect_judge_items(eval_dir, review_path=review_path, run_ids=obs_ids)
@@ -260,7 +277,9 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  [{i + 1}/{len(items)}] {item.run_id} · {item.title}", file=sys.stderr)
         if args.dry_run:
             continue
-        score, rtype, remark, causal_test = call_editor_label(item, provider=args.provider)
+        score, rtype, rationale, causal_test = call_editor_label(
+            item, provider=args.provider
+        )
         validate_score_type_pair(score, rtype)
         labels[key] = FreshLabel(
             run_id=item.run_id,
@@ -269,8 +288,9 @@ def main(argv: list[str] | None = None) -> int:
             score=score,
             resonance_type=rtype,
             causal_test=causal_test,
-            remark=remark,
+            rationale=rationale,
             labeled_at=datetime.now(UTC).isoformat(),
+            source="llm",
         )
         audit = {
             "eval_phase": "3.10",
@@ -301,8 +321,9 @@ def main(argv: list[str] | None = None) -> int:
     }
     review_text = review_path.read_text(encoding="utf-8")
     review_text = _update_rubric_header(review_text)
-    review_text = _apply_labels_to_review(review_text, labels)
-    review_path.write_text(review_text, encoding="utf-8")
+    if args.human:
+        review_text = _apply_labels_to_review(review_text, labels, human_fields=True)
+        review_path.write_text(review_text, encoding="utf-8")
 
     # Verification: no missing labels in obs sections
     missing = []
