@@ -175,7 +175,7 @@ def write_baseline(eval_dir: Path) -> dict:
 
 
 def main() -> int:
-    eval_dir = _REPO_ROOT / "output/Eval/phase3.10-visible"
+    eval_dir = _REPO_ROOT / "output/Eval/phase3.10"
     obs_ts, holdout_ts = append_threshold_split(eval_dir)
     summary = write_baseline(eval_dir)
     res = (summary.get("success_criteria") or summary["global"]["d5_success_criteria"])[

@@ -93,7 +93,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 0
     },
     {
@@ -141,7 +141,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 1
     },
     {
@@ -285,7 +285,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 0
     },
     {
@@ -297,7 +297,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 0
     },
     {
@@ -525,7 +525,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 0
     },
     {
@@ -549,7 +549,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 0
     },
     {
@@ -717,7 +717,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 0
     },
     {
@@ -789,7 +789,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 0
     },
     {
@@ -825,7 +825,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 1
     },
     {
@@ -909,7 +909,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 1
     },
     {
@@ -1053,7 +1053,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 0
     },
     {
@@ -1077,7 +1077,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 1
     },
     {
@@ -1161,7 +1161,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 0
     },
     {
@@ -1197,7 +1197,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 0
     },
     {
@@ -1317,7 +1317,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": 0
     },
     {
@@ -1329,7 +1329,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": null
     },
     {
@@ -1389,7 +1389,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": null
     },
     {
@@ -1401,7 +1401,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": null
     },
     {
@@ -1629,7 +1629,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": null
     },
     {
@@ -1665,7 +1665,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": 0
     },
     {
@@ -1737,7 +1737,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": true,
+      "rejection_audit_sampled": false,
       "human_score": null
     },
     {
@@ -1869,7 +1869,7 @@
       "passes_threshold": false,
       "manual_review": false,
       "highlight": false,
-      "rejection_audit_sampled": false,
+      "rejection_audit_sampled": true,
       "human_score": null
     },
     {
@@ -1891,11 +1891,11 @@
       "rejection_count": 4,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 7711,
+      "random_seed": 6523,
       "sampled": [
         {
           "run_id": "01-grid-outage",
-          "tmdb_id": "280492"
+          "tmdb_id": "210219"
         }
       ],
       "audit_hits": [],
@@ -1906,11 +1906,11 @@
       "rejection_count": 6,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 4400,
+      "random_seed": 6895,
       "sampled": [
         {
           "run_id": "02-corporate-layoff",
-          "tmdb_id": "1002695"
+          "tmdb_id": "1233620"
         }
       ],
       "audit_hits": [],
@@ -1921,11 +1921,11 @@
       "rejection_count": 3,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 5193,
+      "random_seed": 6163,
       "sampled": [
         {
           "run_id": "03-election-upset",
-          "tmdb_id": "46563"
+          "tmdb_id": "379"
         }
       ],
       "audit_hits": [],
@@ -1936,11 +1936,11 @@
       "rejection_count": 2,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 7313,
+      "random_seed": 4398,
       "sampled": [
         {
           "run_id": "04-celebrity-scandal",
-          "tmdb_id": "1262124"
+          "tmdb_id": "955555"
         }
       ],
       "audit_hits": [],
@@ -1951,11 +1951,11 @@
       "rejection_count": 11,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 4037,
+      "random_seed": 8234,
       "sampled": [
         {
           "run_id": "05-climate-disaster",
-          "tmdb_id": "6309"
+          "tmdb_id": "107100"
         }
       ],
       "audit_hits": [],
@@ -1966,15 +1966,15 @@
       "rejection_count": 19,
       "sample_rate": 0.1,
       "sample_size": 2,
-      "random_seed": 2897,
+      "random_seed": 5737,
       "sampled": [
         {
           "run_id": "06-tech-monopoly",
-          "tmdb_id": "320318"
+          "tmdb_id": "18457"
         },
         {
           "run_id": "06-tech-monopoly",
-          "tmdb_id": "337876"
+          "tmdb_id": "121342"
         }
       ],
       "audit_hits": [],
@@ -1985,11 +1985,11 @@
       "rejection_count": 6,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 5671,
+      "random_seed": 7114,
       "sampled": [
         {
           "run_id": "07-migration-border",
-          "tmdb_id": "841793"
+          "tmdb_id": "1447971"
         }
       ],
       "audit_hits": [],
@@ -2000,11 +2000,11 @@
       "rejection_count": 14,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 8099,
+      "random_seed": 7433,
       "sampled": [
         {
           "run_id": "08-sports-underdog",
-          "tmdb_id": "444218"
+          "tmdb_id": "28093"
         }
       ],
       "audit_hits": [],
@@ -2015,11 +2015,11 @@
       "rejection_count": 7,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 3021,
+      "random_seed": 3440,
       "sampled": [
         {
           "run_id": "09-cultural-backlash",
-          "tmdb_id": "45054"
+          "tmdb_id": "86962"
         }
       ],
       "audit_hits": [],
@@ -2030,11 +2030,11 @@
       "rejection_count": 13,
       "sample_rate": 0.1,
       "sample_size": 1,
-      "random_seed": 7558,
+      "random_seed": 2103,
       "sampled": [
         {
           "run_id": "10-whistleblower-leak",
-          "tmdb_id": "383121"
+          "tmdb_id": "75649"
         }
       ],
       "audit_hits": [],

@@ -2,8 +2,8 @@
 
 - **日期**: 2026-06-10
 - **分支**: `feat/phase3.10.8-gate-result`（基于 `main` @ def2379，PR #56 已合并）
-- **主数据源（NAS-safe）**: `output/Eval/phase3.10-visible/`
-- **镜像说明**: 本文件同时写入 `output/Eval/phase3.10/GATE_RESULT.md`；评测 SSOT 以 **phase3.10-visible** 为准（`phase3.10/` 为开发期镜像，部分脚本默认 `--prescreen-json` 指向后者——同步时需显式传 visible 路径）。
+- **主数据源（SSOT）**: `output/Eval/phase3.10/`
+- **历史归档**: `calibration/` 保留 3.10.6 obs judge 校准快照；`llm-judge-scores-holdout*.json` 等为 holdout 重跑中间产物。
 - **ADR-0007**: [docs/adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md](../../docs/adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md)
 - **3.9 结案**: [output/Eval/phase3.9/GATE_RESULT.md](../phase3.9/GATE_RESULT.md)（legacy · no-go）
 

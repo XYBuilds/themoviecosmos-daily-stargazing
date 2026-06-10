@@ -1,85 +1,85 @@
 {
   "runs": [
     {
-      "path": "output\\Eval\\phase3.10\\01-grid-outage\\candidates.md",
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10\\01-grid-outage\\candidates.md",
       "run_id": "01-grid-outage",
       "has_any_score_2": true,
       "missing_count": 0,
       "candidate_count": 15
     },
     {
-      "path": "output\\Eval\\phase3.10\\02-corporate-layoff\\candidates.md",
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10\\02-corporate-layoff\\candidates.md",
       "run_id": "02-corporate-layoff",
       "has_any_score_2": true,
       "missing_count": 0,
       "candidate_count": 17
     },
     {
-      "path": "output\\Eval\\phase3.10\\03-election-upset\\candidates.md",
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10\\03-election-upset\\candidates.md",
       "run_id": "03-election-upset",
       "has_any_score_2": true,
       "missing_count": 0,
       "candidate_count": 17
     },
     {
-      "path": "output\\Eval\\phase3.10\\04-celebrity-scandal\\candidates.md",
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10\\04-celebrity-scandal\\candidates.md",
       "run_id": "04-celebrity-scandal",
       "has_any_score_2": true,
       "missing_count": 0,
       "candidate_count": 16
     },
     {
-      "path": "output\\Eval\\phase3.10\\05-climate-disaster\\candidates.md",
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10\\05-climate-disaster\\candidates.md",
       "run_id": "05-climate-disaster",
-      "has_any_score_2": false,
-      "missing_count": 17,
+      "has_any_score_2": true,
+      "missing_count": 3,
       "candidate_count": 17
     },
     {
-      "path": "output\\Eval\\phase3.10\\06-tech-monopoly\\candidates.md",
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10\\06-tech-monopoly\\candidates.md",
       "run_id": "06-tech-monopoly",
       "has_any_score_2": false,
-      "missing_count": 19,
+      "missing_count": 0,
       "candidate_count": 19
     },
     {
-      "path": "output\\Eval\\phase3.10\\07-migration-border\\candidates.md",
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10\\07-migration-border\\candidates.md",
       "run_id": "07-migration-border",
-      "has_any_score_2": false,
-      "missing_count": 10,
+      "has_any_score_2": true,
+      "missing_count": 4,
       "candidate_count": 10
     },
     {
-      "path": "output\\Eval\\phase3.10\\08-sports-underdog\\candidates.md",
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10\\08-sports-underdog\\candidates.md",
       "run_id": "08-sports-underdog",
-      "has_any_score_2": false,
-      "missing_count": 17,
+      "has_any_score_2": true,
+      "missing_count": 9,
       "candidate_count": 17
     },
     {
-      "path": "output\\Eval\\phase3.10\\09-cultural-backlash\\candidates.md",
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10\\09-cultural-backlash\\candidates.md",
       "run_id": "09-cultural-backlash",
-      "has_any_score_2": false,
-      "missing_count": 13,
+      "has_any_score_2": true,
+      "missing_count": 5,
       "candidate_count": 13
     },
     {
-      "path": "output\\Eval\\phase3.10\\10-whistleblower-leak\\candidates.md",
+      "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10\\10-whistleblower-leak\\candidates.md",
       "run_id": "10-whistleblower-leak",
       "has_any_score_2": false,
-      "missing_count": 15,
+      "missing_count": 12,
       "candidate_count": 15
     }
   ],
   "global": {
     "total_runs": 10,
-    "runs_with_score_2": 4,
-    "batch_pass_rate": 0.4,
-    "missing_scores_total": 91,
-    "single_2_rate": 0.10638297872340426,
-    "multi_2_rate": 0.2222222222222222,
-    "single_structural_2_rate": 0.10638297872340426,
-    "multi_structural_2_rate": 0.2222222222222222,
+    "runs_with_score_2": 8,
+    "batch_pass_rate": 0.8,
+    "missing_scores_total": 33,
+    "single_2_rate": 0.13253012048192772,
+    "multi_2_rate": 0.2,
+    "single_structural_2_rate": 0.12048192771084337,
+    "multi_structural_2_rate": 0.175,
     "resonance_types_filled": true,
     "phase38_gate": true,
     "persona_gate": false,
@@ -87,24 +87,28 @@
     "persona_touched_2_rate": 0.0,
     "baseline_structural_2_rate": 0.0,
     "persona_touched_structural_2_rate": 0.0,
-    "single_scored": 47,
-    "single_twos": 5,
-    "single_structural_twos": 5,
-    "multi_scored": 18,
-    "multi_twos": 4,
-    "multi_structural_twos": 4,
+    "single_scored": 83,
+    "single_twos": 11,
+    "single_structural_twos": 10,
+    "multi_scored": 40,
+    "multi_twos": 8,
+    "multi_structural_twos": 7,
     "diagnostic_1_neutral_hit_rate": {
-      "n": 65,
-      "pearson_neutral_hit_rate_vs_score": 0.24110061323196777,
-      "partial_corr_neutral_hit_rate_vs_score_given_similarity": 0.24147080862729156,
+      "n": 123,
+      "pearson_neutral_hit_rate_vs_score": 0.1996554145171579,
+      "partial_corr_neutral_hit_rate_vs_score_given_similarity": 0.20085933785743387,
       "similarity_bins": {
         "high": {
-          "n": 55,
-          "pearson": 0.30273055664277576
+          "n": 106,
+          "pearson": 0.2686516595334735
         },
         "mid": {
-          "n": 10,
-          "pearson": -0.25495275398777945
+          "n": 16,
+          "pearson": -0.2526982814797143
+        },
+        "low": {
+          "n": 1,
+          "pearson": null
         }
       },
       "rows": [
@@ -627,53 +631,527 @@
           "score": 0.0,
           "max_similarity": 0.6145,
           "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "257637",
+          "neutral_hit_rate": 0.25,
+          "score": 1.0,
+          "max_similarity": 0.5911,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "22624",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.594,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "6309",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.5779,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "163293",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6064,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "249011",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6215,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "210219",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5645,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "107100",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6078,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "38141",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5797,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "10217",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5765,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "26693",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5822,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "29602",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6144,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "33196",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6289,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "289214",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5595,
+          "bin": "high"
+        },
+        {
+          "run_id": "05-climate-disaster",
+          "tmdb_id": "274855",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5482,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "888917",
+          "neutral_hit_rate": 0.25,
+          "score": 0.0,
+          "max_similarity": 0.492,
+          "bin": "mid"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "94376",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5776,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "79921",
+          "neutral_hit_rate": 0.4167,
+          "score": 1.0,
+          "max_similarity": 0.5469,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "13748",
+          "neutral_hit_rate": 0.4167,
+          "score": 0.0,
+          "max_similarity": 0.4994,
+          "bin": "mid"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "337876",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5411,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "4959",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5193,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "320318",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5316,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "2335",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5017,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "52077",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5544,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "58926",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5422,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "148866",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.4622,
+          "bin": "mid"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "923993",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5134,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "82098",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.5027,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "121342",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5171,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "142977",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5277,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "876671",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5179,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "18457",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5239,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "438798",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5132,
+          "bin": "high"
+        },
+        {
+          "run_id": "06-tech-monopoly",
+          "tmdb_id": "1513598",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5311,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "381018",
+          "neutral_hit_rate": 0.5,
+          "score": 1.0,
+          "max_similarity": 0.6127,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "301633",
+          "neutral_hit_rate": 0.5,
+          "score": 2.0,
+          "max_similarity": 0.5899,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "4170",
+          "neutral_hit_rate": 0.3333,
+          "score": 2.0,
+          "max_similarity": 0.5527,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "273481",
+          "neutral_hit_rate": 0.0833,
+          "score": 2.0,
+          "max_similarity": 0.5539,
+          "bin": "high"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "841793",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.484,
+          "bin": "mid"
+        },
+        {
+          "run_id": "07-migration-border",
+          "tmdb_id": "151708",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.4862,
+          "bin": "mid"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "5693",
+          "neutral_hit_rate": 0.3333,
+          "score": 1.0,
+          "max_similarity": 0.5905,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "248555",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5871,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "464198",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5398,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "41612",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5822,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "456929",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.5666,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "66876",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.5813,
+          "bin": "high"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "232679",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.4999,
+          "bin": "mid"
+        },
+        {
+          "run_id": "08-sports-underdog",
+          "tmdb_id": "4929",
+          "neutral_hit_rate": 0.0,
+          "score": 0.0,
+          "max_similarity": 0.5493,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "194224",
+          "neutral_hit_rate": 0.3333,
+          "score": 2.0,
+          "max_similarity": 0.6737,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "502167",
+          "neutral_hit_rate": 0.25,
+          "score": 0.0,
+          "max_similarity": 0.5912,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "197082",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6585,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "16305",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.594,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "1584125",
+          "neutral_hit_rate": 0.0,
+          "score": 2.0,
+          "max_similarity": 0.6506,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "86962",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.5615,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "525825",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6088,
+          "bin": "high"
+        },
+        {
+          "run_id": "09-cultural-backlash",
+          "tmdb_id": "118379",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.6071,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "327253",
+          "neutral_hit_rate": 0.0833,
+          "score": 0.0,
+          "max_similarity": 0.4375,
+          "bin": "low"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "876671",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5744,
+          "bin": "high"
+        },
+        {
+          "run_id": "10-whistleblower-leak",
+          "tmdb_id": "1447971",
+          "neutral_hit_rate": 0.0,
+          "score": 1.0,
+          "max_similarity": 0.5469,
+          "bin": "high"
         }
       ]
     },
     "diagnostic_2_toned_convergence": {
-      "combo_total_2_rate": 0.2222222222222222,
-      "combo_structural_2_rate": 0.2222222222222222,
+      "combo_total_2_rate": 0.2,
+      "combo_structural_2_rate": 0.175,
       "pure_fact_total_2_rate": 0.0,
       "pure_fact_structural_2_rate": 0.0,
-      "pure_emotion_scored": 46,
+      "pure_emotion_scored": 82,
       "precision_lift_ok": true,
       "q2_combo_lift_ok": true,
-      "partial_corr_toned_vs_score_given_similarity": -0.03129016680384344,
+      "partial_corr_toned_vs_score_given_similarity": -0.0010832630922616006,
       "similarity_bins": {
         "high": {
-          "combo_structural_2_rate": 0.3076923076923077,
+          "combo_structural_2_rate": 0.23333333333333334,
           "pure_fact_structural_2_rate": 0.0,
-          "combo_scored": 13,
+          "combo_scored": 30,
           "pure_fact_scored": 1,
-          "quality_structural_2_rate": 0.3076923076923077,
+          "quality_structural_2_rate": 0.23333333333333334,
           "neutral_only_structural_2_rate": 0.0,
-          "quality_scored": 13,
+          "quality_scored": 30,
           "neutral_only_scored": 1
         },
         "mid": {
           "combo_structural_2_rate": 0.0,
           "pure_fact_structural_2_rate": 0.0,
-          "combo_scored": 5,
+          "combo_scored": 9,
           "pure_fact_scored": 0,
           "quality_structural_2_rate": 0.0,
           "neutral_only_structural_2_rate": 0.0,
-          "quality_scored": 5,
+          "quality_scored": 9,
+          "neutral_only_scored": 0
+        },
+        "low": {
+          "combo_structural_2_rate": 0.0,
+          "pure_fact_structural_2_rate": 0.0,
+          "combo_scored": 1,
+          "pure_fact_scored": 0,
+          "quality_structural_2_rate": 0.0,
+          "neutral_only_structural_2_rate": 0.0,
+          "quality_scored": 1,
           "neutral_only_scored": 0
         }
       },
-      "combo_scored": 18,
-      "combo_twos": 4,
-      "combo_structural_twos": 4,
+      "combo_scored": 40,
+      "combo_twos": 8,
+      "combo_structural_twos": 7,
       "pure_fact_scored": 1,
       "pure_fact_twos": 0,
       "pure_fact_structural_twos": 0,
-      "quality_total_2_rate": 0.2222222222222222,
-      "quality_structural_2_rate": 0.2222222222222222,
+      "quality_total_2_rate": 0.2,
+      "quality_structural_2_rate": 0.175,
       "neutral_only_total_2_rate": 0.0,
       "neutral_only_structural_2_rate": 0.0,
-      "quality_scored": 18,
-      "quality_twos": 4,
-      "quality_structural_twos": 4,
+      "quality_scored": 40,
+      "quality_twos": 8,
+      "quality_structural_twos": 7,
       "neutral_only_scored": 1,
       "neutral_only_twos": 0,
       "neutral_only_structural_twos": 0
@@ -688,18 +1166,18 @@
           "structural_twos": 0
         },
         "pure_emotion": {
-          "total_2_rate": 0.10869565217391304,
-          "structural_2_rate": 0.10869565217391304,
-          "scored": 46,
-          "twos": 5,
-          "structural_twos": 5
+          "total_2_rate": 0.13414634146341464,
+          "structural_2_rate": 0.12195121951219512,
+          "scored": 82,
+          "twos": 11,
+          "structural_twos": 10
         },
         "combo": {
-          "total_2_rate": 0.2222222222222222,
-          "structural_2_rate": 0.2222222222222222,
-          "scored": 18,
-          "twos": 4,
-          "structural_twos": 4
+          "total_2_rate": 0.2,
+          "structural_2_rate": 0.175,
+          "scored": 40,
+          "twos": 8,
+          "structural_twos": 7
         }
       },
       "similarity_bins": {
@@ -709,12 +1187,12 @@
             "scored": 1
           },
           "pure_emotion": {
-            "structural_2_rate": 0.0975609756097561,
-            "scored": 41
+            "structural_2_rate": 0.12,
+            "scored": 75
           },
           "combo": {
-            "structural_2_rate": 0.3076923076923077,
-            "scored": 13
+            "structural_2_rate": 0.23333333333333334,
+            "scored": 30
           }
         },
         "mid": {
@@ -723,12 +1201,26 @@
             "scored": 0
           },
           "pure_emotion": {
-            "structural_2_rate": 0.2,
-            "scored": 5
+            "structural_2_rate": 0.14285714285714285,
+            "scored": 7
           },
           "combo": {
             "structural_2_rate": 0.0,
-            "scored": 5
+            "scored": 9
+          }
+        },
+        "low": {
+          "pure_fact": {
+            "structural_2_rate": 0.0,
+            "scored": 0
+          },
+          "pure_emotion": {
+            "structural_2_rate": 0.0,
+            "scored": 0
+          },
+          "combo": {
+            "structural_2_rate": 0.0,
+            "scored": 1
           }
         }
       },
@@ -746,21 +1238,21 @@
           "prescreen_reweighted": true
         },
         "pure_emotion": {
-          "total_2_rate": 0.043478260869565216,
-          "structural_2_rate": 0.043478260869565216,
-          "scored": 43,
-          "twos": 5,
-          "structural_twos": 5,
-          "effective_weight": 115.0,
+          "total_2_rate": 0.061452513966480445,
+          "structural_2_rate": 0.055865921787709494,
+          "scored": 62,
+          "twos": 11,
+          "structural_twos": 10,
+          "effective_weight": 179.0,
           "prescreen_reweighted": true
         },
         "combo": {
-          "total_2_rate": 0.09090909090909091,
-          "structural_2_rate": 0.09090909090909091,
-          "scored": 17,
-          "twos": 4,
-          "structural_twos": 4,
-          "effective_weight": 44.0,
+          "total_2_rate": 0.13114754098360656,
+          "structural_2_rate": 0.11475409836065574,
+          "scored": 25,
+          "twos": 8,
+          "structural_twos": 7,
+          "effective_weight": 61.0,
           "prescreen_reweighted": true
         }
       },
@@ -770,27 +1262,26 @@
       "pass": false,
       "verdict": "GATE_FAIL",
       "reasons": [
-        "resonance: obs/holdout split inconsistent (obs=True, holdout=False)",
-        "workflow: load reduction 5.1% < target 50%",
+        "workflow: load reduction 38.5% < target 50%",
         "workflow: judge calibration not trusted (采信)"
       ],
       "resonance": {
-        "pass": false,
+        "pass": true,
         "combo_gt_pure_fact": true,
         "similarity_controlled": true,
-        "obs_holdout_consistent": false,
+        "obs_holdout_consistent": true,
         "obs_combo_gt_pure_fact": true,
-        "holdout_combo_gt_pure_fact": false,
+        "holdout_combo_gt_pure_fact": true,
         "full_batch": {
           "combo_gt_pure_fact": true,
           "metric": "structural_2_rate",
           "combo": {
-            "total_2_rate": 0.09090909090909091,
-            "structural_2_rate": 0.09090909090909091,
-            "scored": 17,
-            "twos": 4,
-            "structural_twos": 4,
-            "effective_weight": 44.0,
+            "total_2_rate": 0.13114754098360656,
+            "structural_2_rate": 0.11475409836065574,
+            "scored": 25,
+            "twos": 8,
+            "structural_twos": 7,
+            "effective_weight": 61.0,
             "prescreen_reweighted": true
           },
           "pure_fact": {
@@ -808,11 +1299,11 @@
       },
       "workflow": {
         "status": "available",
-        "load_reduction_rate": 0.05128205128205132,
+        "load_reduction_rate": 0.3846153846153846,
         "load_reduction_target": 0.5,
         "load_reduction_ok": false,
         "judged_candidates": 156,
-        "human_review_pool": 148,
+        "human_review_pool": 96,
         "zero_human_2_killed": true,
         "reject_pile_human_2_count": 0,
         "judge_calibration_trusted": false,
@@ -827,8 +1318,7 @@
     "compare_mode": "d5_success_criteria",
     "rate_metric": "structural_2_rate",
     "reasons": [
-      "resonance: obs/holdout split inconsistent (obs=True, holdout=False)",
-      "workflow: load reduction 5.1% < target 50%",
+      "workflow: load reduction 38.5% < target 50%",
       "workflow: judge calibration not trusted (采信)"
     ]
   },
@@ -836,27 +1326,26 @@
     "pass": false,
     "verdict": "GATE_FAIL",
     "reasons": [
-      "resonance: obs/holdout split inconsistent (obs=True, holdout=False)",
-      "workflow: load reduction 5.1% < target 50%",
+      "workflow: load reduction 38.5% < target 50%",
       "workflow: judge calibration not trusted (采信)"
     ],
     "resonance": {
-      "pass": false,
+      "pass": true,
       "combo_gt_pure_fact": true,
       "similarity_controlled": true,
-      "obs_holdout_consistent": false,
+      "obs_holdout_consistent": true,
       "obs_combo_gt_pure_fact": true,
-      "holdout_combo_gt_pure_fact": false,
+      "holdout_combo_gt_pure_fact": true,
       "full_batch": {
         "combo_gt_pure_fact": true,
         "metric": "structural_2_rate",
         "combo": {
-          "total_2_rate": 0.09090909090909091,
-          "structural_2_rate": 0.09090909090909091,
-          "scored": 17,
-          "twos": 4,
-          "structural_twos": 4,
-          "effective_weight": 44.0,
+          "total_2_rate": 0.13114754098360656,
+          "structural_2_rate": 0.11475409836065574,
+          "scored": 25,
+          "twos": 8,
+          "structural_twos": 7,
+          "effective_weight": 61.0,
           "prescreen_reweighted": true
         },
         "pure_fact": {
@@ -874,11 +1363,11 @@
     },
     "workflow": {
       "status": "available",
-      "load_reduction_rate": 0.05128205128205132,
+      "load_reduction_rate": 0.3846153846153846,
       "load_reduction_target": 0.5,
       "load_reduction_ok": false,
       "judged_candidates": 156,
-      "human_review_pool": 148,
+      "human_review_pool": 96,
       "zero_human_2_killed": true,
       "reject_pile_human_2_count": 0,
       "judge_calibration_trusted": false,
@@ -1092,8 +1581,11 @@
             982752
           ],
           "a1_hit_count": 6,
-          "a1_two_tmdb_ids": [],
-          "a1_two_count": 0,
+          "a1_two_tmdb_ids": [
+            4170,
+            301633
+          ],
+          "a1_two_count": 2,
           "n1_neutral_union_tmdb_ids": [
             4170,
             11643,
@@ -1105,7 +1597,7 @@
           "n1_neutral_union_count": 6,
           "misses_tmdb_ids": [],
           "miss_count": 0,
-          "vacuous_pass": true,
+          "vacuous_pass": false,
           "q1_prime_pass": true
         },
         {
@@ -1151,8 +1643,10 @@
             285232
           ],
           "a1_hit_count": 5,
-          "a1_two_tmdb_ids": [],
-          "a1_two_count": 0,
+          "a1_two_tmdb_ids": [
+            194224
+          ],
+          "a1_two_count": 1,
           "n1_neutral_union_tmdb_ids": [
             16305,
             25466,
@@ -1174,7 +1668,7 @@
           "n1_neutral_union_count": 16,
           "misses_tmdb_ids": [],
           "miss_count": 0,
-          "vacuous_pass": true,
+          "vacuous_pass": false,
           "q1_prime_pass": true
         },
         {
@@ -1214,8 +1708,8 @@
           "q1_prime_pass": true
         }
       ],
-      "runs_with_a1_two": 3,
-      "runs_with_a1_two_passed": 3,
+      "runs_with_a1_two": 5,
+      "runs_with_a1_two_passed": 5,
       "per_run_pass_rate": 1.0,
       "global_miss_list": [],
       "global_miss_count": 0,
@@ -1582,7 +2076,7 @@
     "neutral_union_superset_of_a1_hits": false,
     "q1_recall_superset_ok": false,
     "pure_fact_structural_2_rate": 0.0,
-    "combo_structural_2_rate": 0.2222222222222222,
+    "combo_structural_2_rate": 0.175,
     "note": "A1 oracle metrics are read-only reference only (ADR-0007 D5). Not used in success criteria."
   },
   "a1_oracle": {
@@ -1792,8 +2286,11 @@
             982752
           ],
           "a1_hit_count": 6,
-          "a1_two_tmdb_ids": [],
-          "a1_two_count": 0,
+          "a1_two_tmdb_ids": [
+            4170,
+            301633
+          ],
+          "a1_two_count": 2,
           "n1_neutral_union_tmdb_ids": [
             4170,
             11643,
@@ -1805,7 +2302,7 @@
           "n1_neutral_union_count": 6,
           "misses_tmdb_ids": [],
           "miss_count": 0,
-          "vacuous_pass": true,
+          "vacuous_pass": false,
           "q1_prime_pass": true
         },
         {
@@ -1851,8 +2348,10 @@
             285232
           ],
           "a1_hit_count": 5,
-          "a1_two_tmdb_ids": [],
-          "a1_two_count": 0,
+          "a1_two_tmdb_ids": [
+            194224
+          ],
+          "a1_two_count": 1,
           "n1_neutral_union_tmdb_ids": [
             16305,
             25466,
@@ -1874,7 +2373,7 @@
           "n1_neutral_union_count": 16,
           "misses_tmdb_ids": [],
           "miss_count": 0,
-          "vacuous_pass": true,
+          "vacuous_pass": false,
           "q1_prime_pass": true
         },
         {
@@ -1914,8 +2413,8 @@
           "q1_prime_pass": true
         }
       ],
-      "runs_with_a1_two": 3,
-      "runs_with_a1_two_passed": 3,
+      "runs_with_a1_two": 5,
+      "runs_with_a1_two_passed": 5,
       "per_run_pass_rate": 1.0,
       "global_miss_list": [],
       "global_miss_count": 0,
@@ -2282,7 +2781,7 @@
     "neutral_union_superset_of_a1_hits": false,
     "q1_recall_superset_ok": false,
     "pure_fact_structural_2_rate": 0.0,
-    "combo_structural_2_rate": 0.2222222222222222,
+    "combo_structural_2_rate": 0.175,
     "note": "A1 oracle metrics are read-only reference only (ADR-0007 D5). Not used in success criteria.",
     "q1_prime": {
       "status": "available",
@@ -2488,8 +2987,11 @@
             982752
           ],
           "a1_hit_count": 6,
-          "a1_two_tmdb_ids": [],
-          "a1_two_count": 0,
+          "a1_two_tmdb_ids": [
+            4170,
+            301633
+          ],
+          "a1_two_count": 2,
           "n1_neutral_union_tmdb_ids": [
             4170,
             11643,
@@ -2501,7 +3003,7 @@
           "n1_neutral_union_count": 6,
           "misses_tmdb_ids": [],
           "miss_count": 0,
-          "vacuous_pass": true,
+          "vacuous_pass": false,
           "q1_prime_pass": true
         },
         {
@@ -2547,8 +3049,10 @@
             285232
           ],
           "a1_hit_count": 5,
-          "a1_two_tmdb_ids": [],
-          "a1_two_count": 0,
+          "a1_two_tmdb_ids": [
+            194224
+          ],
+          "a1_two_count": 1,
           "n1_neutral_union_tmdb_ids": [
             16305,
             25466,
@@ -2570,7 +3074,7 @@
           "n1_neutral_union_count": 16,
           "misses_tmdb_ids": [],
           "miss_count": 0,
-          "vacuous_pass": true,
+          "vacuous_pass": false,
           "q1_prime_pass": true
         },
         {
@@ -2610,8 +3114,8 @@
           "q1_prime_pass": true
         }
       ],
-      "runs_with_a1_two": 3,
-      "runs_with_a1_two_passed": 3,
+      "runs_with_a1_two": 5,
+      "runs_with_a1_two_passed": 5,
       "per_run_pass_rate": 1.0,
       "global_miss_list": [],
       "global_miss_count": 0,
@@ -2826,8 +3330,11 @@
             982752
           ],
           "a1_hit_count": 6,
-          "a1_two_tmdb_ids": [],
-          "a1_two_count": 0,
+          "a1_two_tmdb_ids": [
+            4170,
+            301633
+          ],
+          "a1_two_count": 2,
           "n1_neutral_union_tmdb_ids": [
             4170,
             11643,
@@ -2839,7 +3346,7 @@
           "n1_neutral_union_count": 6,
           "misses_tmdb_ids": [],
           "miss_count": 0,
-          "vacuous_pass": true,
+          "vacuous_pass": false,
           "q1_prime_pass": true
         },
         {
@@ -2885,8 +3392,10 @@
             285232
           ],
           "a1_hit_count": 5,
-          "a1_two_tmdb_ids": [],
-          "a1_two_count": 0,
+          "a1_two_tmdb_ids": [
+            194224
+          ],
+          "a1_two_count": 1,
           "n1_neutral_union_tmdb_ids": [
             16305,
             25466,
@@ -2908,7 +3417,7 @@
           "n1_neutral_union_count": 16,
           "misses_tmdb_ids": [],
           "miss_count": 0,
-          "vacuous_pass": true,
+          "vacuous_pass": false,
           "q1_prime_pass": true
         },
         {
@@ -2948,8 +3457,8 @@
           "q1_prime_pass": true
         }
       ],
-      "runs_with_a1_two": 3,
-      "runs_with_a1_two_passed": 3,
+      "runs_with_a1_two": 5,
+      "runs_with_a1_two_passed": 5,
       "per_run_pass_rate": 1.0,
       "global_miss_list": [],
       "global_miss_count": 0,
@@ -3316,7 +3825,7 @@
     "neutral_union_superset_of_a1_hits": false,
     "q1_recall_superset_ok": false,
     "pure_fact_structural_2_rate": 0.0,
-    "combo_structural_2_rate": 0.2222222222222222,
+    "combo_structural_2_rate": 0.175,
     "note": "A1 oracle metrics are read-only reference only (ADR-0007 D5). Not used in success criteria.",
     "q1_prime": {
       "status": "available",
@@ -3522,8 +4031,11 @@
             982752
           ],
           "a1_hit_count": 6,
-          "a1_two_tmdb_ids": [],
-          "a1_two_count": 0,
+          "a1_two_tmdb_ids": [
+            4170,
+            301633
+          ],
+          "a1_two_count": 2,
           "n1_neutral_union_tmdb_ids": [
             4170,
             11643,
@@ -3535,7 +4047,7 @@
           "n1_neutral_union_count": 6,
           "misses_tmdb_ids": [],
           "miss_count": 0,
-          "vacuous_pass": true,
+          "vacuous_pass": false,
           "q1_prime_pass": true
         },
         {
@@ -3581,8 +4093,10 @@
             285232
           ],
           "a1_hit_count": 5,
-          "a1_two_tmdb_ids": [],
-          "a1_two_count": 0,
+          "a1_two_tmdb_ids": [
+            194224
+          ],
+          "a1_two_count": 1,
           "n1_neutral_union_tmdb_ids": [
             16305,
             25466,
@@ -3604,7 +4118,7 @@
           "n1_neutral_union_count": 16,
           "misses_tmdb_ids": [],
           "miss_count": 0,
-          "vacuous_pass": true,
+          "vacuous_pass": false,
           "q1_prime_pass": true
         },
         {
@@ -3644,8 +4158,8 @@
           "q1_prime_pass": true
         }
       ],
-      "runs_with_a1_two": 3,
-      "runs_with_a1_two_passed": 3,
+      "runs_with_a1_two": 5,
+      "runs_with_a1_two_passed": 5,
       "per_run_pass_rate": 1.0,
       "global_miss_list": [],
       "global_miss_count": 0,

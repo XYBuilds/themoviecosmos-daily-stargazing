@@ -116,7 +116,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     eval_dir = args.eval_dir if args.eval_dir.is_absolute() else _REPO_ROOT / args.eval_dir
-    obs_json = _REPO_ROOT / "output/Eval/phase3.10-judge-calibration/llm-judge-scores.json"
+    obs_json = _REPO_ROOT / "output/Eval/phase3.10/calibration/llm-judge-scores.json"
     holdout_json = eval_dir / "llm-judge-scores-holdout.json"
     full_json = eval_dir / "llm-judge-scores.json"
     full_md = eval_dir / "llm-judge-scores.md"

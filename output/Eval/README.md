@@ -6,6 +6,8 @@
 | --- | --- | --- |
 | Phase 3.5.6（只读对照） | `output/Eval/phase3.5/` | N=10 新管线闸门；**勿覆盖** |
 | Phase 3.6+ | `output/Eval/phase3.6/` | 3.6 管线重跑与书面闸门 |
+| Phase 3.9（legacy） | `output/Eval/phase3.9/` | 旧双轴闸门 · no-go |
+| Phase 3.10 | `output/Eval/phase3.10/` | ADR-0007 双轴 + 预筛 · GATE 见 `phase3.10/GATE_RESULT.md` |
 
 每条 `run_eval` 写入 `output/Eval/<phase-dir>/{run_id}/`（3.6.5 须显式 `--out`，见 Phase 3.6 plan）：
 

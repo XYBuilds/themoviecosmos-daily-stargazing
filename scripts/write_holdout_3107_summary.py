@@ -32,17 +32,17 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--eval-dir",
         type=Path,
-        default=_REPO_ROOT / "output/Eval/phase3.10-visible",
+        default=_REPO_ROOT / "output/Eval/phase3.10",
     )
     parser.add_argument(
         "--before-json",
         type=Path,
-        default=_REPO_ROOT / "output/Eval/phase3.10-visible/llm-judge-scores-holdout-pre-3107.bak.json",
+        default=_REPO_ROOT / "output/Eval/phase3.10/llm-judge-scores-holdout-pre-3107.bak.json",
     )
     parser.add_argument(
         "--after-json",
         type=Path,
-        default=_REPO_ROOT / "output/Eval/phase3.10-visible/llm-judge-scores-holdout-3107.json",
+        default=_REPO_ROOT / "output/Eval/phase3.10/llm-judge-scores-holdout-3107.json",
     )
     parser.add_argument(
         "--prescreen-json",

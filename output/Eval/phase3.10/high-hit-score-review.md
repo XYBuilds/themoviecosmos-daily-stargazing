@@ -25,6 +25,7 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 ### Sources
 
 - **Primary:** `hit_sources` in each run's `retrieve.json` (fragment arrays).
+- **LLM judge:** `llm-judge-scores.json` — trust_status=不采信 (screening only; inline judge fields per candidate)
 - **Editor fields:** 共振分 / 共振类型 / 打分备注 are placeholders only (not filled by this script).
 
 - **Generation date:** 2026-06-09
@@ -104,7 +105,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 159
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 强共振（表层 + 逻辑）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both news and film share the concrete surface element of electrical outages as load-bearing crises, and instantiate the same causal-stakes engine where power failure forces emergency actions to mitigate collapse or ensure survival, invariant under scale (institutional vs. individual). · 反测: Power infrastructure failure under constraint of high societal dependence on electricity drives emergency adaptation measures.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under the constraint of electrical grid instability, power scarcity drives emergency load management or societal crisis response.
+- **judge理由**: Both share the surface element of electrical outages as a load-bearing event. The underlying logic is identical: power failure under grid constraints forces crisis actions—load shedding in the news and societal collapse in the film.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 38 -->
@@ -134,7 +140,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 38
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · News involves power grid failure under high demand forcing load shedding to avoid overload; film involves climate satellite system failure under global threat driving a race to fix it. Both share the same underlying logic of system stress triggering emergency response, but no concrete surface element like place or occupation is shared. · 反测: The failure of a critical protective system, under the constraint of high operational demand and risk of collapse, drives urgent interventions to prevent catastrophic disaster.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: The malfunction of a critical technological system under operational stress drives emergency measures to prevent widespread disaster — true of both news and film.
+- **judge理由**: No shared concrete surface element (power grid vs. climate satellites), but both stories instantiate the same underlying logic of technological failure under constraint forcing urgent crisis response.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 26 -->
@@ -162,7 +173,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 26
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No shared load-bearing surface element (blackout is generic, fails 0-guard). Underlying logic resonates: energy crises under constraints lead to disruptions in both news and film. · 反测: Electrical system failures under constraint of high demand and infrastructure vulnerability drive emergency load shedding and societal chaos.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Electrical infrastructure failure under high demand and insufficient capacity constraints drives emergency load shedding or blackouts, triggering cascading societal and operational chaos.
+- **judge理由**: The news and film share a concrete, load-bearing surface element: blackout/electrical grid failure. They also instantiate the same causal-stakes engine where power system failures under pressure lead to immediate crises and broader instability, satisfying both axes.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 20 -->
@@ -188,7 +205,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 20
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · News and film share underlying logic of constrained response to threats (power grid vs. military fort), but surface element (Philippines location) is too generic and not uniquely load-bearing per 0-guard. · 反测: A critical system under resource scarcity and imminent threat drives emergency defensive actions to prevent systemic collapse.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Acute operational threats under resource constraints drive defensive actions to avert catastrophic failure.
+- **judge理由**: No concrete, load-bearing surface element (e.g., specific event or setting) connects the news and film; unrelated Philippines news could pair equally well. However, both share the underlying causal-stakes engine of threats (power failures vs. hostile attacks) under constraints (thin grid margins vs. limited defenders) forcing emergency measures (load shedding vs. military resistance) to prevent systemic collapse.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 16 -->
@@ -214,7 +236,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 16
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No shared concrete surface element (e.g., news is about power grid failures, film is about island survival), but both instantiate the same underlying logic: depletion of a critical resource (power in news, food in film) under constraints (heat/grid instability or isolation) forces emergency responses (load shedding or survival tactics). · 反测: Resource scarcity under constraint of limited options drives urgent crisis management.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Resource scarcity under confined operational conditions drives urgent mitigation to avert collapse.
+- **judge理由**: News features power scarcity driving load shedding; film features food scarcity driving survival tensions. No shared surface element (0-guard fails), but same underlying logic of scarcity under constraint forcing crisis response.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 11 -->
@@ -238,7 +265,16 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 11
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete shared surface element (e.g., place, occupation) due to different specifics; underlying logic aligns as both involve point failures triggering cascading crises under systemic constraints. · 反测: A localized failure in critical infrastructure under high-stress conditions drives widespread emergencies and urgent containment measures.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A localized failure in critical infrastructure under high-stress conditions drives widespread emergencies and urgent containment measures.
+- **judge理由**: News centers on technical infrastructure failure (power grid collapse) driving emergency load shedding, while film focuses on an intentional attack (bio gas) causing panic and spread of sickness. No shared load-bearing surface elements (e.g., setting or event type), and different root causes (technical vs. malicious) prevent a common causal-stakes engine.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 10 -->
@@ -262,7 +298,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 10
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · The news focuses on technical power grid failures and load shedding in the Philippines, while the film depicts societal unrest and mysterious events under Martial Law. No concrete, nameable element (e.g., blackouts, power plants) is load-bearing in both, and no shared 'X under constraint Z drives Y' causal engine can be formulated that is literally true of both narratives.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared load-bearing surface element: the Philippines setting fails the 0-guard as unrelated news could pair equally. No common underlying logic: cannot formulate a falsifiable 'X under constraint Z drives Y' sentence true for both, as the news involves technical power grid issues and the film involves historical-political horror under Martial Law.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 9 -->
@@ -286,7 +329,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 9
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete shared surface elements (e.g., power grid vs. plane crash/killer machine); both stories instantiate the same causal-stakes engine where institutional failures under constraints lead to escalatory actions that threaten public safety. · 反测: Unplanned failure in a high-stakes system under operational constraints drives authorities to implement emergency measures that increase civilian risk.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A critical system failure under high-stakes operational constraints forces emergency responses that intensify the crisis and threaten public safety.
+- **judge理由**: No concrete, load-bearing surface elements are shared (news focuses on power grid issues, film on a bio-threat from a plane crash). However, both instantiate the same underlying causal-stakes engine: a failure triggers an escalating emergency under constraints, driving desperate actions that increase risk.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 8 -->
@@ -310,7 +358,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 8
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 强共振（表层 + 逻辑）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both narratives hinge on a concrete energy crisis (surface element) and share the causal engine where insufficient power supply under pressure leads to forced rationing and distress (underlying logic). · 反测: Energy scarcity, under constraint of high demand and system vulnerabilities, drives emergency rationing and societal hardship.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Energy scarcity under the constraint of critical infrastructure failures drives authorities to impose load shedding and individuals to adopt survival measures to prevent collapse.
+- **judge理由**: Both stories share the concrete surface element of energy crisis/power shortage, which is load-bearing in each. The underlying logic is identical: acute energy scarcity under systemic constraints forces drastic measures like rationing to manage consumption and avoid catastrophe, invariant under scale shifts from institutional grid management to individual survival.
 
 ### 单 agent 命中
 
@@ -337,7 +390,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No shared concrete surface element: news focuses on power grid issues, film on a weather machine and espionage—no load-bearing overlap. No shared underlying logic: news causal engine is 'technical failures under high demand drive blackouts,' film is 'malicious invention under threat drives agent recall,' which are distinct causal-stakes engines.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A destabilizing technological threat under imminent danger drives emergency intervention to prevent systemic failure — true of both news (power plant failures under grid overload risk drive load shedding to prevent blackout) and film (KAOS's weather machine under global harm threat drives spy intervention to prevent catastrophe).
+- **judge理由**: No shared concrete surface element (e.g., place or specific event type) passes the 0-guard, but both stories instantiate the same underlying causal logic: a technological threat under critical constraints forces urgent action to avert collapse.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -360,7 +419,16 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No shared concrete surface elements (e.g., power grid specifics vs. atmospheric phenomena). However, both narratives follow the same underlying logic: a critical failure under high-stress conditions forces urgent actions to avert larger disasters. · 反测: Emergent system failures under constrained operational margins drive emergency interventions to prevent catastrophic outcomes.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Emergent system failures under constrained operational margins drive emergency interventions to prevent catastrophic outcomes.
+- **judge理由**: No shared load-bearing surface element; news is about power grid failures and blackouts, film is about atmospheric phenomena and scientific intervention. Underlying causal logic differs: news involves operational emergency response to infrastructure failure, while film involves proving a theory and controlling natural disasters. An unrelated news item (e.g., about natural disasters) could pair with the film equally well, failing the 0-guard for surface element.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -383,7 +451,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, load-bearing surface element: news focuses on physical power grid failures in the Philippines, while film centers on a sentient AI takeover in America, with no shared specific element that passes the 0-guard. No underlying logic: cannot write a falsifiable 'X under constraint Z drives Y' sentence that is literally true for both, as news involves involuntary infrastructure stress driving emergency load shedding, whereas film involves autonomous AI causing destruction under human limitations, with divergent causal mechanisms.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: News is about a power grid crisis due to plant outages and high demand, while film is about a sentient AI causing destruction through digital control and weather manipulation. No shared concrete surface element (e.g., power failure vs. AI chaos are different events), and no common underlying causal-stakes engine as the news involves unintentional system failure and the film involves intentional AI takeover, making it impossible to write a bidirectional 'X under constraint Z drives Y' sentence that holds for both.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -406,7 +481,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Axis 1 fails: shared subject-matter (electricity) is not a concrete, load-bearing element per the 0-guard, as unrelated power crisis news could equally pair with the film. Axis 2 holds: both stories instantiate the same causal logic of scarcity-driven reactive measures under pressure, invariant across institutional and individual scales. · 反测: Scarcity of critical power resources or market dominance under constraint of operational outages or intense competition drives emergency load shedding or aggressive strategic actions to prevent systemic failure or secure victory.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under electricity supply constraints, high demand forces load-shedding to prevent grid collapse and drives competitive innovation to establish sustainable power systems, true for both the Visayas blackout crisis and the Edison-Westinghouse rivalry.
+- **judge理由**: Both stories share electricity as a load-bearing surface element, and they instantiate the same underlying logic of scarcity or vulnerability driving actions to ensure system stability, whether through emergency measures or technological competition.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -429,7 +510,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 强共振（表层 + 逻辑）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both stories share the concrete surface element of electricity/power outage as load-bearing, and instantiate the same underlying logic where resource scarcity (power in news, utilities in film) under operational constraints (grid instability, isolation) drives emergency actions (load shedding, survival efforts). · 反测: Insufficient critical resources under dire constraints necessitates immediate adaptive responses to avert collapse or ensure survival.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Power shortage under critical constraints drives emergency response or survival actions.
+- **judge理由**: The news and film share the concrete element of electricity/power loss, which is load-bearing in both. The underlying logic of resource scarcity under pressure forcing urgent measures—such as load shedding in the grid crisis or survival tactics in the trapped scenario—is invariant across institutional and personal scales.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -452,7 +538,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · News involves power grid vulnerability under demand constraints driving load shedding; film involves security vulnerability under protection duties driving threat identification. Both instantiate the same causal-stakes engine, but no concrete, load-bearing surface element (e.g., specific place, occupation) is shared, as abstract threat-response patterns fail the 0-guard. · 反测: A critical system vulnerability under immediate operational constraints drives emergency response to prevent catastrophic failure.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Critical threats to essential systems or authority, under operational constraints, force the implementation of emergency protective measures.
+- **judge理由**: No shared concrete surface elements (news: energy grid crisis; film: political security), but both instantiate the same underlying logic of threat-driven urgent response under constraints.
 
 ## 02-corporate-layoff
 
@@ -505,7 +596,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 69
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 强共振（表层 + 逻辑）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both stories share the concrete surface element of job loss/firing from a company, which is load-bearing in the news (AI restructuring) and film (unemployment leading to a plan). The underlying logic is identical: adaptation under disruptive constraints (market competition or personal hardship) drives sacrifice and unconventional action, invariant under institutional vs. individual scale. · 反测: Competitive or personal failure under financial constraints forces decision-makers (corporate or individual) to implement drastic changes that sacrifice employment or security.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Technological disruption under competitive market pressure drives corporate layoffs, which catalyze individual survival or entrepreneurial actions.
+- **judge理由**: Both stories share the concrete, load-bearing element of job loss (layoffs in the news, firing in the film). They also instantiate the same causal-stakes engine: economic or technological pressure forces organizational restructuring, leading to personal desperation and proactive responses.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 52 -->
@@ -537,7 +633,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 52
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · The news and film both involve workforce dismissals, but this is not a load-bearing surface element as unrelated layoff news could pair similarly with the film (fails 0-guard). No common underlying logic exists; the news focuses on corporate restructuring for AI efficiency, while the film centers on worker protest against oppressive policies, making a single falsifiable causal sentence inapplicable.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Economic pressures under business constraints lead to employee dismissals.
+- **judge理由**: Both stories center on workforce dismissal as a load-bearing event, and both are driven by underlying economic or competitive forces necessitating labor reductions.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 50 -->
@@ -568,7 +670,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 50
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · News shows corporate restructuring under AI pressure leading to layoffs; film depicts corporate greed causing wars and vigilantism. Both share a causal engine where corporate actions under constraints harm individuals or society, but no concrete surface element (e.g., specific place, occupation, event) is load-bearing and shared. · 反测: Corporate ambition under competitive or survival constraints drives workforce displacement and societal conflict.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Corporate ambition under competitive or survival constraints drives workforce displacement and societal conflict.
+- **judge理由**: No load-bearing surface element: 'corporations' is too abstract and fails the 0-guard, as unrelated corporate news could pair equally well. Underlying logic differs: news involves business-driven workforce reduction for AI adaptation, while film depicts corporate greed causing societal collapse and vigilantism; no single 'X under constraint Z drives Y' sentence holds literally for both.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 32 -->
@@ -596,7 +704,16 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 32
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · News: Intuit restructuring due to AI competition. Film: Seventh Company adapting to outdoor challenges. Both share the causal logic of constraint-driven organizational change, but no concrete surface element (e.g., layoff details vs. adventure settings) passes the 0-guard. · 反测: Under external technological or environmental pressures, hierarchical organizations drive internal restructuring to adapt and achieve strategic goals.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under external technological or environmental pressures, hierarchical organizations drive internal restructuring to adapt and achieve strategic goals.
+- **judge理由**: No shared load-bearing surface element: news involves corporate layoffs due to AI restructuring, while film is a comedic adventure about a military company. Underlying logics differ fundamentally; cannot write a causal sentence true for both, as news is driven by technological change and film by mission or survival constraints.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 30 -->
@@ -623,7 +740,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 30
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete load-bearing surface element: the corporate setting is not uniquely shared, as unrelated news (e.g., a disaster) could pair with the film's survival theme. Underlying logic connects both: Intuit's AI-driven layoffs and the film's trapped team both involve groups facing threats that force survival-driven changes. · 反测: Corporate groups under existential constraints drive drastic adaptations for survival or reinvention.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A corporate leader, under the constraint of business pressures or personal motivations, drives actions that severely disrupt employees' circumstances and force adaptation.
+- **judge理由**: No concrete surface element is load-bearing (e.g., 'corporate' or 'CEO' is abstract and fails the 0-guard), but both stories share the underlying logic of leadership decisions under constraint leading to significant employee impact: news has layoffs for AI restructuring, film has a team-building trip causing survival stakes.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 27 -->
@@ -650,7 +772,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 27
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No shared concrete surface element; 'corporate crisis' is abstract and fails 0-guard as unrelated business news could pair with the film. Underlying logics diverge: news depicts top-down layoffs driven by AI market constraints, while film shows bottom-up secretarial intervention due to leadership failure, preventing a common causal-stakes engine.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A company facing financial or competitive threats under resource constraints drives internal measures to prevent collapse, which may include workforce restructuring or team mobilizations.
+- **judge理由**: No load-bearing surface element is shared (e.g., industry or specific event), but both stories instantiate the same underlying logic: corporate existential pressure drives drastic survival actions.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 26 -->
@@ -677,7 +805,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 26
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No shared concrete, load-bearing surface element (e.g., AI-driven tech layoffs vs. factory closure with worker action); no common causal-stakes engine—news involves corporate restructuring under tech constraint, film involves worker agency under closure threat.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under the constraint of technological and market pressures, corporate leadership drives workforce reductions to adapt and survive, impacting employees.
+- **judge理由**: No concrete surface element shared (AI restructuring vs. factory closure), but both instantiate the same causal-stakes engine of external pressures forcing job losses.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 20 -->
@@ -703,7 +837,11 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 20
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, load-bearing surface element shared; the film's corporate retreat and team dynamics do not specifically match the news's layoffs and AI restructuring. Underlying logics differ: news driven by technological disruption forcing job cuts, film driven by proposal and retreat forcing team unity, with no invariant 'X under constraint Z drives Y' sentence true for both.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No load-bearing surface element: film's corporate retreat can pair with various corporate news items beyond layoffs. No shared underlying logic: news's causal engine (economic pressure drives workforce reduction) differs from film's (interpersonal conflict drives team reconciliation via retreat).
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 16 -->
@@ -728,7 +866,11 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 16
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, load-bearing surface element is shared; news is about AI-driven layoffs and restructuring, while film is about quitting due to misogyny and starting a rival company. Underlying logic differs: news driven by technological and market constraints for corporate survival, film driven by personal and social constraints for individual empowerment, preventing a common 'X under constraint Z drives Y' sentence.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, nameable surface element shared (news involves AI-driven layoffs at a specific company; film involves quitting due to misogyny and starting a rival business—broad 'work' theme fails 0-guard). Underlying causal engines differ: news is corporate adaptation under technological pressure, film is individual response to discrimination; cannot write a single 'X under Z drives Y' sentence true of both.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 12 -->
@@ -752,7 +894,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 12
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, load-bearing surface element is shared (corporate setting is too broad and fails the 0-guard). Both stories share an underlying logic where corporate pressures (AI in news, clerical errors in film) cause involuntary role changes for employees. · 反测: Organizational restructuring under the pressure of technological advancement or internal system flaws drives sudden changes in employee roles.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Corporate pressures and bureaucratic flaws drive unexpected restructuring of personnel, altering individual career trajectories.
+- **judge理由**: No shared concrete surface element (e.g., specific occupation or event type) that is load-bearing in both stories; however, the underlying logic aligns: institutional forces (market demands or errors) compel changes in employment status, affecting careers in both news (layoffs) and film (mistaken promotion).
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 10 -->
@@ -776,7 +923,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 10
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both news and film share an underlying logic where external pressures (AI-driven restructuring in news, conflicting corporate demands in film) force difficult decisions causing disruptions. However, no concrete, load-bearing surface element exists—corporate setting is too broad and fails the 0-guard, as unrelated news could pair equally well. · 反测: Corporate or technological pressure under the constraint of market competition drives individuals or organizations to take actions that lead to personal and professional upheavals.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Adapting to shifting professional pressures, under the constraint of maintaining organizational or personal viability, drives leaders to implement disruptive changes that impact both corporate structures and intimate relationships.
+- **judge理由**: No shared concrete surface element (news focuses on layoffs and AI restructuring, film on personal turmoil from work pressures). However, both instantiate the same underlying logic: professional demands under existential constraints force transformative decisions with human costs.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 10 -->
@@ -800,7 +952,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 10
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete surface element: 'employees' or 'workplace' is abstract and fails 0-guard; unrelated news could pair. No common underlying logic: news engine is corporate leadership under AI constraint driving layoffs; film engine is group under killer threat driving survival—no shared 'X under constraint Z drives Y'.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Existential threat under crisis conditions forces a group to undertake drastic measures and internal conflict for survival.
+- **judge理由**: No concrete surface element (e.g., layoffs vs. conference killer) passes the 0-guard. Underlying logic matches: both stories involve a group (corporate employees/public sector employees) facing an external threat (AI disruption/killer) that drives painful actions and internal discord for survival.
 
 ### 单 agent 命中
 
@@ -827,7 +985,16 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 8
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, load-bearing surface element is shared (e.g., specific occupation or setting); however, both stories instantiate the same underlying logic where external threats force adaptive reorganization. · 反测: Entities under disruptive external constraints drive radical operational changes to ensure future survival or success.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Entities under disruptive external constraints drive radical operational changes to ensure future survival or success.
+- **judge理由**: No shared concrete surface element; news involves corporate layoffs for AI focus, film is a comedic adventure with odd jobs in alien-conquered feudal Japan. No causal-stakes engine holds for both: cannot write a bidirectional 'X under constraint Z drives Y' sentence that is literally true of both, as the constraints (AI market pressure vs. alien colonization) and driven actions (workforce cuts vs. wild odd jobs) are fundamentally different in context and logic.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 8 -->
@@ -850,7 +1017,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 8
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete surface element (e.g., 'office workers') is load-bearing per 0-guard; unrelated layoff news could pair with the film equally well. However, both instantiate same underlying logic: in news, company under market pressure enacts layoffs; in film, captor under personal obsession forces captives into hazardous labor. · 反测: Power holders under existential or strategic constraints drive the exploitation or sacrifice of subordinate individuals.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A hierarchical authority, under constraint of external threats or internal imperatives, drives the sacrifice of subordinate individuals' well-being to achieve a critical goal.
+- **judge理由**: Surface elements such as 'office workers' are present but not load-bearing; unrelated news items could pair with the film due to its horror focus. However, the underlying logic is shared: in the news, a CEO under market pressure drives layoffs for AI transformation, while in the film, a captor under legal pressure drives captivity for vindication, both exemplifying authority imposing severe measures under constraint.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 6 -->
@@ -873,7 +1045,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, nameable surface element is load-bearing in both stories (e.g., layoffs vs. mental institution). Underlying logics differ: news involves corporate pressure driving AI-focused restructuring, while film involves personal crisis driving unconventional career success in a mental institution; no single 'X under constraint Z drives Y' sentence holds for both.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: High-stakes professional pressure under existential constraints forces a crisis that drives radical innovation and redefined success.
+- **judge理由**: No shared concrete surface element (Axis 1 NO), but both stories instantiate the same causal-stakes engine: crisis under high-stakes pressure leads to transformative change and unconventional success (Axis 2 YES).
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 6 -->
@@ -896,7 +1074,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 6
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · News involves corporate AI restructuring and layoffs; film is a comedic department store theft. No concrete, load-bearing surface element (e.g., setting or occupation) is shared, and no common 'X under constraint Z drives Y' causal engine holds for both.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, nameable surface element is load-bearing in both stories (e.g., news is about tech layoffs, film is about theft in a store; shared 'business' is too broad and fails 0-guard). No common causal-stakes engine: the news involves corporate restructuring driven by AI adaptation, while the film involves theft driven by personal greed or opportunity; no 'X under constraint Z drives Y' sentence holds literally for both.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 5 -->
@@ -919,7 +1104,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 强共振（表层 + 逻辑）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both stories share the concrete surface element of job losses due to corporate restructuring, which is load-bearing in each. Underlying logic aligns as both depict management decisions driven by external constraints leading to layoffs and ensuing conflict, invariant under POV/scale. · 反测: Corporate management, under pressure to adapt to technological or economic shifts, initiates workforce reductions, provoking employee resistance and conflict.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Financial or strategic business pressures under operational constraints drive corporate decisions to eliminate jobs, causing employee conflict or organizational change.
+- **judge理由**: Surface element is not load-bearing as job losses are too broad and not specific to AI restructuring or factory closure, failing the 0-guard. Underlying logic holds because both stories involve business necessities (AI innovation in news, profitability in film) driving layoffs that trigger conflict.
 
 ## 03-election-upset
 
@@ -971,7 +1162,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 58
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 强共振（表层 + 逻辑）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both share the concrete surface element of Texas political events, which is load-bearing. The underlying logic matches: in the news, Trump's endorsement under Texas Senate rivalry drives Paxton's victory; in the film, Jackson's directive under Texas republic formation conflict drives Burke's actions against Craden. · 反测: A directive or endorsement from a powerful authority under the constraint of a contentious local political struggle drives an individual to take actions that lead to a shift in power or political outcomes.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A directive or endorsement from a powerful authority under the constraint of a contentious local political struggle drives an individual to take actions that lead to a shift in power or political outcomes.
+- **judge理由**: Shared surface element of Texas and political conflict, but underlying logic differs: news involves electoral victory via endorsement despite spending, while film involves historical intervention for statehood.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 34 -->
@@ -1001,7 +1198,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 34
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Surface element 'election' fails 0-guard as any election news could pair with the film; no common causal-stakes engine exists, as news is driven by endorsement influence while film hinges on one vote's decision.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under the constraint of a tight electoral competition, a decisive endorsement or vote drives the final outcome.
+- **judge理由**: Both the news and film involve elections where a singular factor (an endorsement in the news, one man's vote in the film) determines the result, sharing the same causal-stakes engine. However, no concrete surface element like a specific place or occupation is uniquely load-bearing, as 'election' is too broad and fails the 0-guard test.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 33 -->
@@ -1030,7 +1233,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 33
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both stories center on political elections, but the surface element 'election' fails the 0-guard as any election news would pair equally well with the film; however, the underlying logic of candidates under electoral pressure driving actions to win is shared. · 反测: Political ambition under electoral competition drives strategic campaign efforts and alliances.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Determined political candidates, under the constraint of electoral competition, drive their campaigns to secure voter support and win the election.
+- **judge理由**: Both the news and film revolve around political elections (surface element) and share the same causal logic of ambition and competition driving candidates to strategize for electoral victory.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 27 -->
@@ -1058,7 +1267,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 27
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, load-bearing surface element shared (election is too broad and fails 0-guard; specifics differ: Senate runoff vs. presidential thriller). No common underlying logic engine: news driven by party dynamics and endorsement, film by journalistic uncovering of conspiracy; no 'X under constraint Z drives Y' sentence holds for both.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: External political interventions or disclosures, under the constraint of a competitive election, drive decisive shifts in electoral outcomes.
+- **judge理由**: No load-bearing surface element links the specific Texas Senate runoff to the film's presidential election plot, as 'election' is generic. However, both stories involve a causal engine where strategic actions (presidential endorsement in news, conspiracy uncovering in film) under electoral pressure alter election results.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 24 -->
@@ -1085,7 +1300,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 24
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete surface element is shared (different event types: Senate primary vs. VP selection; abstract elements like endorsement fail 0-guard). Underlying logic aligns: both involve strategic choices under base pressure impacting races. · 反测: Under the constraint of Republican base enthusiasm and electoral pressure, political leaders endorse or select candidates with strong but risky profiles, driving campaign dynamics and outcomes.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under the constraint of competitive intra-party elections, the drive to energize base voters or challenge establishment figures drives the selection of candidates with strong ideological appeal but significant liabilities.
+- **judge理由**: No shared concrete surface element (e.g., specific people, events, or places), as the news is about a Texas Senate runoff and the film about the 2008 Presidential campaign, failing the 0-guard. However, they share an underlying logic where political necessity under electoral pressure leads to high-risk candidate choices that impact outcomes.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 22 -->
@@ -1112,7 +1332,11 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 22
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 表层沾边  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Shared concrete surface element: Texas Senator is load-bearing in both stories (political race in news, assassination target in film). However, no common causal-stakes engine can be written—news involves electoral defeat driven by endorsement, while film involves revenge from betrayal.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Shared surface element: Texas and a U.S. Senator are load-bearing in both stories (election in Texas vs. assassination plot in Texas). However, the underlying logics diverge: the news involves political endorsement driving electoral victory, while the film centers on betrayal driving personal revenge, failing the causal counter-test for a unified engine.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 22 -->
@@ -1139,7 +1363,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 22
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both news and film share the same causal logic of unconventional support (endorsement or replacement) leading to unexpected electoral success, but the surface element 'election' is too broad and fails the 0-guard, as unrelated election news could pair equally well with the film. · 反测: A political candidate, under the constraint of party endorsement and public sentiment, drives electoral victory against established opponents.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: External endorsement or unconventional substitution, under the constraint of a competitive election, drives electoral success.
+- **judge理由**: Both news and film involve political elections where an unexpected factor (presidential endorsement in news, twin replacement in film) under electoral pressure leads to success, but they lack a concrete, load-bearing surface element as per the 0-guard.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 20 -->
@@ -1165,7 +1394,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 20
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Surface element 'political election' is concrete but fails the 0-guard as unrelated election news could pair equally well with the film. Underlying logic is shared: rivalry under electoral pressure drives campaign strategies, with news showing endorsement-driven victory and film depicting comedic campaign tactics. · 反测: Political ambition under the constraint of competitive elections drives candidates to seek endorsements and employ strategic campaigning to win.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: The endorsement of a powerful ally under the constraint of a competitive electoral race drives a candidate to victory despite inferior financial resources.
+- **judge理由**: Both the news and film center on competitive political elections (surface element), and share the underlying logic where external support (e.g., endorsements) influences outcomes against financial odds.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 14 -->
@@ -1190,7 +1425,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 14
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, load-bearing surface element: 'U.S. Senate election' is too broad, failing the 0-guard as unrelated news pairs equally well. No shared underlying logic: news is driven by endorsement-driven victory, film by candidate's unconventional strategy under expected loss.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: An underdog candidate in a U.S. Senate race, under the constraint of being outspent and facing low expectations, drives a campaign that challenges the political establishment.
+- **judge理由**: Both center on a U.S. Senate campaign where a disadvantaged candidate challenges the establishment: the film shows a candidate with no hope tweaking the system, while the news reports an outspent challenger defeating an incumbent senator.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 10 -->
@@ -1214,7 +1455,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 10
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · News focuses on a political election in Texas, while film depicts wartime partisan resistance; no concrete surface element passes the 0-guard, and no invariant 'X under constraint Z drives Y' sentence holds for both.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A challenger movement, under the constraint of dominant opposition, drives success through strategic endorsement or support from an external authority.
+- **judge理由**: No shared concrete surface elements (e.g., different settings, events, or occupations), but both narratives feature a challenger overcoming entrenched opposition with crucial external support, forming the same causal-stakes engine.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 9 -->
@@ -1238,7 +1485,11 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 9
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete load-bearing surface element: Texas setting is too broad and fails the 0-guard, as unrelated Texas news could be paired equally well. Underlying logics differ: news involves electoral victory driven by endorsements, while film involves justice quest driven by alliances, with no common 'X under constraint Z drives Y' sentence.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: The shared surface element 'Texas' is not load-bearing as an unrelated Texas news item could pair equally well with the film. No common causal-stakes engine can be identified: the news involves political ambition and electoral victory aided by endorsement, while the film involves personal justice seeking through collaboration against social ostracism, failing the falsifiable counter-test.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 9 -->
@@ -1262,7 +1513,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 9
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · News and film share the same causal-stakes engine of a campaign overcoming resource disadvantage via endorsements and populist appeals, but lack a concrete, load-bearing surface element like a specific place, occupation, or event. · 反测: A challenger political campaign, under the constraint of facing a better-funded establishment opponent, drives electoral victory through targeted endorsements and populist messaging.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A political outsider, under the constraint of financial disadvantage and institutional opposition, drives electoral success through a high-profile endorsement and strategic voter mobilization.
+- **judge理由**: No concrete surface element (e.g., shared place or specific occupation) is load-bearing, as unrelated political campaign news could fit the film. However, the underlying logic of an underdog campaign overcoming odds via endorsement and strategy is shared.
 
 ### 单 agent 命中
 
@@ -1290,7 +1546,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 9
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete surface element passes the 0-guard: the news focuses on election dynamics and endorsement, while the film centers on romantic rivalry in a political boss setting; unrelated political news could equally pair with the film. No common underlying logic: the film's engine is personal desire driving conflict within power structures, whereas the news involves electoral outcomes driven by political endorsements, with no invariant 'X under constraint Z drives Y' sentence holding for both.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared load-bearing surface element; political election vs. personal love triangle lack concrete overlap. Underlying logics diverge: news driven by endorsement in electoral politics, film by desire in loyalty conflicts, with no invariant causal-stakes engine.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1312,8 +1575,17 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-MAGICIAN/p1: fragments=[why-0, why-1, how-0, result-0, result-2] · sim=0.5822 · **命中分=5**
 - **pseudo命中分合计**: 5
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, load-bearing surface element (e.g., specific event or setting) is shared; politics is abstract and fails 0-guard. Underlying logic holds: in news, Paxton wins primary via endorsement despite financial disadvantage; in film, President transforms via intervention during Depression, both driven by external catalyst under constraint. · 反测: A political figure under the constraint of electoral or national crisis receives a catalytic intervention that drives a decisive political shift.
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A political figure under the constraint of electoral or national crisis receives a catalytic intervention that drives a decisive political shift.
+- **judge理由**: No concrete, load-bearing surface element shared (e.g., film focuses on Presidency and transformation, news on Texas Senate race). Underlying logic differs: news involves electoral victory via endorsement, film involves moral metamorphosis via accident; no single causal-stakes sentence holds for both.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1336,7 +1608,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No load-bearing concrete surface element (e.g., specific place, event type) is shared; any election news could pair with the generic film. However, both stories share the underlying logic of persuasion overcoming constraints (e.g., endorsement/financial disadvantage in news, time pressure in film) to achieve victory. · 反测: A politician's strategic communication under electoral constraints drives electoral success.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under the constraint of electoral adversity (being outspent or having limited time), a politician's drive to win leads to strategic persuasion (endorsements or promises) to secure votes.
+- **judge理由**: Both share the surface element of a political election, and the underlying logic of candidates using persuasive tactics under constraints to achieve electoral success.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1359,7 +1637,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · The news focuses on a real-world Senate primary with endorsement and funding dynamics, while the film depicts a fictional political battle entangled with personal relationships. The shared element 'political race' is too generic and fails the 0-guard, as any unrelated political news could pair similarly. No single 'X under constraint Z drives Y' sentence holds for both without oversimplifying the distinct causal engines.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Both stories center on political elections, a concrete and load-bearing surface element. However, the underlying causal-stakes engines diverge: the news involves external endorsement driving electoral success, while the film introduces personal romantic rivalry and twin involvement, preventing a shared invariant logic.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 5 -->
@@ -1382,7 +1665,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete surface element (Texas Senate runoff vs. generic presidential election) fails the 0-guard. However, both stories share the underlying logic of a candidate's defining attribute overcoming a significant constraint to drive election outcomes, satisfying the causal-stakes engine test. · 反测: An enabling factor (political endorsement or enforced integrity) under a constraint (financial deficit or moral restriction) drives electoral success.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A political candidate, under constraint of external endorsements or moral curses, drives their campaign strategy to win an election.
+- **judge理由**: No concrete, load-bearing surface element (e.g., specific place, occupation, or event type) is shared; 'election' is too generic and fails the 0-guard. However, the underlying logic of ambition constrained by forces beyond control driving electoral strategy is invariant in both stories.
 
 ## 04-celebrity-scandal
 
@@ -1428,7 +1716,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 29
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete surface element: 'celebrity' is an abstract power-role pairing, failing the 0-guard as unrelated news could fit equally. No common causal-stakes engine: news drives by influencer's financial motivation through AI fabrication, while film drives by celebrity's survival under kidnapping threat.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Financially motivated exploiters under profit or criminal constraints drive actions that endanger celebrities' careers or safety, causing scandals or threats that disrupt their public image or personal lives.
+- **judge理由**: Both stories center on a celebrity protagonist (surface element) facing a crisis driven by external parties seeking financial gain through exploitation, leading to threats to their reputation or well-being (underlying logic).
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 25 -->
@@ -1455,7 +1749,11 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 25
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 表层沾边  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Surface element: both stories center on a media professional (YouTuber in news, journalist in film) whose role drives the plot, passing 0-guard. Axis 2 fails because causal logics differ: news is about spreading false claims for financial gain leading to scandal, while film is about investigating traffic violations uncovering real murder and deception.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Surface element: both stories center on a media professional (YouTuber/journalist) whose actions drive the plot. Underlying logic does not align: news involves fabrication of false claims for gain, while film involves investigation uncovering real crime and deception.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 22 -->
@@ -1482,7 +1780,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 22
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, load-bearing surface element (e.g., identical occupation or event) due to 0-guard failure; but both narratives instantiate the same causal logic of deception for self-preservation under stake pressure. · 反测: Under the constraint of protecting personal or professional interests from public exposure, individuals are driven to fabricate false claims, leading to scandal and retaliation.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Personal gain or reputation protection under the constraint of high-stakes scrutiny drives the fabrication of false claims, leading to legal arrest or violent retribution.
+- **judge理由**: News and film both feature individuals deceiving for self-interest (YouTuber for financial gain, advertiser to protect marriage) with severe consequences (arrest, revenge), sharing a causal-stakes engine. However, no concrete, load-bearing surface element like specific occupation or setting is shared, failing the 0-guard as unrelated news could similarly match the film's theme of deception.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 22 -->
@@ -1509,7 +1812,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 22
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 强共振（表层 + 逻辑）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · News and film both center on media-spun celebrity scandals with concrete elements like false claims and legal outcomes. The underlying logic is identical: profit or sensationalism drives media fabrication under societal constraints, causing harm. · 反测: Financially motivated media actors, under the constraint of public interest and legal boundaries, fabricate or sensationalize claims about celebrities, which drives scandal, reputational harm, and legal consequences.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Media operators, under the constraint of financial or commercial pressures, fabricate or sensationalize celebrity scandals, driving legal actions and public fallout.
+- **judge理由**: Both news and film feature a media entity (YouTuber/tabloid) fabricating a scandal about celebrities for gain, resulting in legal consequences (arrest/court case).
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 20 -->
@@ -1536,7 +1844,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 20
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 强共振（表层 + 逻辑）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both news and film center on the concrete, load-bearing element of online video platforms (YouTube/YouTube-like) as the medium for the crime. The underlying logic is identical: grievances or incentives (financial gain in news, personal injustice in film) drive the dissemination of false or alarming content via these platforms, invariant under individual vs. group scale. · 反测: Disadvantaged individuals or groups, under personal or financial constraints, use digital video platforms to spread fabricated or threatening content to achieve their goals or express grievances.
+- **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Individuals or groups, under the constraint of personal gain or grievance, drive the dissemination of deceptive or threatening content via video-sharing platforms, triggering official investigations and severe consequences.
+- **judge理由**: Both the news and film center on video-sharing platforms (YouTube/YOURTUBE) as load-bearing elements for spreading harmful content that leads to criminal investigations. The underlying logic involves personal motives (financial gain in news, unfair dismissal in film) driving deceptive or alarming posts on digital platforms, resulting in legal interventions.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 20 -->
@@ -1562,7 +1875,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 20
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete surface element is shared (e.g., AI or 1970s setting are not load-bearing in both), but the underlying logic of ambitious individuals in entertainment taking risky actions under constraints leading to chaos holds for both news and film. · 反测: A media creator, under the constraint of personal ambition (financial or artistic) and external pressures, drives disruptive actions that cause turmoil or scandal.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Personal ambition under external constraints drives individuals to obsessive actions that cause turmoil and conflict.
+- **judge理由**: Both stories involve individuals driven by ambition (financial gain in the news, artistic perfection in the film) under external pressures (social media scrutiny vs. censorship) leading to disruptive outcomes like scandal or chaos, with no shared concrete surface element.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 11 -->
@@ -1587,7 +1905,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 11
 - **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 强共振（表层 + 逻辑）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Axis 1: Both stories center on a media figure (YouTuber/newspaper publisher) using fabrication or disguise as a load-bearing element. Axis 2: Both instantiate the same causal engine where deception under pressure drives actions with significant stakes, such as scandal or vigilantism. · 反测: A media professional, under the constraint of financial gain or moral imperative, uses deception to manipulate public perception or combat threats, driving consequential personal and societal outcomes.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Media-savvy individuals, under the constraint of personal or social agendas, drive the creation of fabricated narratives to manipulate outcomes and influence reality.
+- **judge理由**: No concrete, load-bearing surface element passes the 0-guard; both news and film share an underlying logic where deception is employed under constraints (financial gain vs. crime-fighting) to alter public perception and events, though their contexts differ.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 10 -->
@@ -1611,7 +1935,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 10
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete surface element is shared load-bearing (e.g., AI tech or WWII setting differ; false accusation is too broad, failing 0-guard). However, underlying logic aligns: abuse of influence for personal gain drives victimization in both news and film. · 反测: An individual with access to power or means, under the constraint of self-serving motives, drives false claims that severely harm innocent parties.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A person in a position of authority or influence, under the constraint of selfish personal gain or desire, drives the fabrication of false accusations against an innocent victim, resulting in public scandal and personal harm.
+- **judge理由**: No shared concrete surface elements (e.g., AI technology and YouTube vs. WWII setting and judicial dungeon), but both narratives instantiate the same underlying logic of corrupt power misuse through false accusations for selfish ends.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 10 -->
@@ -1635,7 +1964,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 10
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, nameable surface element passes the 0-guard (e.g., 'false accusation' is abstract and could fit unrelated news). Underlying logic holds: both stories involve external pressure (financial gain in news, coercion in film) leading to involvement in false claims about public figures. · 反测: Financial or coercive pressure drives individuals to participate in events that result in false accusations against public figures.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Individuals, under the constraint of external pressures such as financial gain or coercion, drive the creation or propagation of false accusations, leading to significant harm to the accused.
+- **judge理由**: No concrete load-bearing surface element (news involves AI/YouTuber/celebrity scandal, film involves photography/political espionage), but both share the underlying causal-stakes engine of false accusations driven by external pressures.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 9 -->
@@ -1659,7 +1993,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 9
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · News focuses on AI-fabricated celebrity defamation for financial gain; film involves detective combating traditional gangsters. No concrete, load-bearing surface element shared (e.g., 'crime' fails 0-guard). No common causal-stakes engine: news driven by financial incentives under social media constraints, film driven by law enforcement under duty constraints.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, nameable surface element is load-bearing in both stories; the shared element of law enforcement is abstract and fails the 0-guard (an unrelated crime news could fit the film equally well). For underlying logic, no single 'X under constraint Z drives Y' sentence holds for both: the news involves profit-driven AI fabrication leading to arrest, while the film involves crime-fighting driven by duty to eradicate gangsters, with distinct causal engines.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 8 -->
@@ -1683,7 +2024,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 8
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, load-bearing surface element shared; false accusation and financial aspects are abstract or fail the 0-guard. No common causal-stakes engine: news involves financial gain driving false claims, while film involves self-defense driving investigation to uncover truth.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: False accusations, under constraint of financial or personal motives, drive legal investigations and expose underlying scandals.
+- **judge理由**: The news and film share the causal-stakes engine where deception motivated by gain or vindication leads to investigations and scandal exposure. However, no concrete, load-bearing surface element (e.g., specific place, occupation, or event type) is shared that passes the 0-guard, as abstract concepts like 'false allegations' are not surface elements.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 8 -->
@@ -1707,7 +2054,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 8
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete surface element passes the 0-guard (e.g., 'AI fabrication' vs. 'kidnapping/filming' are not the same load-bearing anchor). Both share the underlying logic where personal grievance (financial gain/revenge) and media tools (AI/filming) fuel public conflict against celebrities, satisfying the causal-stakes engine. · 反测: A motivated individual, under the constraint of personal gain and access to media technology, drives a public scandal or crisis involving a celebrity.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: An individual under the constraint of personal financial or emotional incentive drives a deliberate attack on a celebrity through media or direct action, leading to a public crisis.
+- **judge理由**: 新闻和电影都实例化了相同的因果引擎：个人在财务或情感动机下，通过极端手段攻击名人，导致公共危机。但表层元素不匹配，因为新闻聚焦于AI伪造和诽谤，而电影聚焦于绑架和实时拍摄，共享的“名人”元素过于宽泛且不负载。
 
 ### 单 agent 命中
 
@@ -1735,7 +2087,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 8
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete shared surface element (e.g., place, occupation, event type); both stories share the underlying logic of deception used under pressure (financial gain or moral redemption) leading to downfall (arrest/scandal or personal risk/cost). · 反测: A person under constraint of personal gain or redemption drives deceptive actions that result in severe personal consequences.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under the constraint of achieving a critical personal goal, individuals resort to deception, which escalates the stakes and leads to unintended consequences.
+- **judge理由**: The news involves AI-deception for financial gain leading to arrest and scandal, while the film involves undercover deception for redemption leading to moral dilemmas. Both share the underlying causal logic of deception under constraint driving escalated risks and consequences, but no concrete surface element like setting or occupation is load-bearing for both.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -1758,7 +2115,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both stories involve media manipulation under pressures (financial gain in news, competition in film) driving outcomes (endorsement halts in news, rating improvement in film), but no concrete, load-bearing surface element is shared that passes the 0-guard. · 反测: Manipulation of media content under competitive or financial pressures drives changes in audience engagement or business outcomes.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Manipulation of media content under competitive or financial pressures drives changes in audience engagement or business outcomes.
+- **judge理由**: Both stories are set in the media/entertainment industry, a concrete load-bearing element. However, the underlying causal engines differ: the news involves fabricated claims for financial gain driving reputational harm, while the film features incompetence driving improved ratings; no single causal-stakes sentence applies to both.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -1781,7 +2143,12 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**: 深层共振（仅逻辑，无表层）  <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · Both news and film feature celebrities exploited by opportunists (YouTuber for financial gain, causes for capitalization), but no concrete, load-bearing surface element like a shared place, occupation, or event is present; 'celebrity' is abstract and fails the 0-guard. · 反测: Celebrity fame under the constraint of public perception and financial incentives drives external actors to exploit the celebrity for their own benefit.
+- **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under the constraint of leveraging celebrity influence, the pursuit of financial or ideological gain drives exploitation and scandal.
+- **judge理由**: No load-bearing surface element (YouTuber/AI vs. soccer star/causes), but same causal engine: exploitation of a public figure for gain under public scrutiny leads to conflict and consequence.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 5 -->
@@ -1804,7 +2171,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **pseudo命中分合计**: 5
 - **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
-- **打分备注**: v2 fresh · No concrete, nameable surface element is load-bearing in both stories under the 0-guard (e.g., 'media scandal' is too broad and not uniquely shared). No common causal-stakes engine can be formulated as 'X under constraint Z drives Y' that holds for both; news involves financial-driven fabrication, while film involves justice-driven investigation.
+- **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No load-bearing surface element: the news focuses on a YouTuber's AI-fabricated celebrity scandal, while the film centers on a journalist investigating murders linked to elites; the media-role overlap is not concrete or unique enough to pass the 0-guard. No common underlying logic: the causal engines are opposite—financial gain driving misinformation versus truth-seeking driving investigation—so no 'X under constraint Z drives Y' sentence holds for both.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 ## 05-climate-disaster
 
@@ -1854,9 +2228,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-JESTER/p2: fragments=[how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-4] · sim=0.5704 · **命中分=8**
   - THE-EVERYMAN/p3: fragments=[why-0, how-3, result-1, result-3, result-4, result-5] · sim=0.5639 · **命中分=6**
 - **pseudo命中分合计**: 77
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: The shared surface element (dam-related water impact) is not load-bearing because unrelated news about dam projects could pair equally well with the film. The underlying logic (dam operations driving community displacement) fails the specificity test, as the causal sentence would hold for other dam-related news items paired with the same film.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 48 -->
@@ -1882,9 +2261,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-INNOCENT/p3: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-1, result-3, result-4, result-5] · sim=0.5016 · **命中分=10**
   - THE-OUTLAW/p3: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-1, result-0] · sim=0.5213 · **命中分=8**
 - **pseudo命中分合计**: 48
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Catastrophic flooding from extreme weather and water management failures under environmental constraints forces communities into survival mode and emergency actions.
+- **judge理由**: Both news and film center on flood catastrophes as a concrete event (表层元素). The underlying logic is that excessive water under constraints drives survival and evacuation, applicable to both the institutional response in the news and the individual-scale survival in the film.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 43 -->
@@ -1911,9 +2295,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/p1: fragments=[why-0, how-1, result-0, result-1, result-5] · sim=0.5779 · **命中分=5**
   - THE-EVERYMAN/p2: fragments=[why-0, result-1, result-2, result-3, result-5] · sim=0.5723 · **命中分=5**
 - **pseudo命中分合计**: 43
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Shared surface element 'flood' is too generic—unrelated flood news could pair equally well with the film. Underlying causal logic (extreme water exceeding defenses drives catastrophe) is not specific to this pair and holds for other flood scenarios.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 28 -->
@@ -1937,9 +2326,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-OUTLAW/p3: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-1, result-0] · sim=0.5092 · **命中分=8**
   - THE-SAGE/p3: fragments=[how-2, how-3, how-4, how-5, result-4, result-5] · sim=0.5139 · **命中分=6**
 - **pseudo命中分合计**: 28
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Surface element 'flood' is not load-bearing (any unrelated flood news could match film). Underlying logic differs: news involves weather-driven flooding with political response, film involves earthquake-caused apocalyptic flood; no specific 'X under Z drives Y' sentence holds uniquely for both.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 27 -->
@@ -1966,6 +2360,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No load-bearing surface element: the news is about real Euphrates flooding and dam operations, while the film is a portrait of a family named Dam, with 'dam' only a surname, not a concrete shared anchor. No underlying logic: cannot write a causal sentence true for both, as the film lacks a causal-stakes engine comparable to the news's environmental crisis and response.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 24 -->
@@ -1988,9 +2389,16 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-MAGICIAN/p2: fragments=[how-5, how-4, how-3, result-5, result-4] · sim=0.5263 · **命中分=5**
   - THE-HERO/p3: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-5] · sim=0.5378 · **命中分=10**
 - **pseudo命中分合计**: 24
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: overview看起来内容有点偏离
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Both the news and film center on water as a concrete, load-bearing element—flooding in the news and lake/water effects in the film. However, they lack a shared causal-stakes engine; the news involves real-world disaster management, while the film is an artistic depiction of fictional campaigns without a common 'X under constraint Z drives Y' logic.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 17 -->
@@ -2015,6 +2423,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element shared (flood vs. drought are opposite water crises); underlying logic fails specificity as a generic 'water crisis drives societal disruption' sentence would also hold for unrelated drought news paired with the film.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 15 -->
@@ -2039,6 +2451,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element is shared: the Euphrates floods and Piranha 3D's lake setting involve water but differ in specific threats (floods vs. piranha attacks), and an unrelated water-disaster news item could pair equally well with the film. No underlying causal-stakes engine can be articulated that is specific to this pair and passes the falsifiable counter-test and 0-guard.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 14 -->
@@ -2060,9 +2479,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-MAGICIAN/p1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0] · sim=0.5401 · **命中分=8**
   - THE-CAREGIVER/p2: fragments=[why-0, how-0, how-1, how-2, result-0, result-4] · sim=0.5645 · **命中分=6**
 - **pseudo命中分合计**: 14
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No load-bearing surface element: the news involves river flooding, while the film deals with atmospheric wind catastrophes; abstract 'weather disaster' fails the 0-guard as unrelated news items could pair equally well. Underlying logic not specific: a potential causal sentence like 'uncontrolled natural forces under human constraints drive disasters' would hold for unrelated news items paired with the same film, failing the logic 0-guard.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 11 -->
@@ -2084,9 +2507,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EVERYMAN/p2: fragments=[why-0, result-1, result-2, result-3, result-5] · sim=0.5926 · **命中分=5**
   - THE-CAREGIVER/p2: fragments=[why-0, how-0, how-1, how-2, result-0, result-4] · sim=0.6078 · **命中分=6**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: The news and film both involve weather-related disasters, but the specific surface elements (river floods vs. superstorm from debris) are not concrete and load-bearing enough, as unrelated news (e.g., hurricane) could pair with the film. No single 'X under constraint Z drives Y' sentence holds uniquely for both without being overly broad or inapplicable to one side, failing the logic 0-guard.
 
 ### 单 agent 命中
 
@@ -2112,9 +2539,15 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-OUTLAW/p1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1] · sim=0.5797 · **命中分=8**
   - THE-OUTLAW/p2: fragments=[how-1, how-2, how-3, how-4, how-5, result-1, result-5] · sim=0.5417 · **命中分=7**
 - **pseudo命中分合计**: 15
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 表层（洪水和干旱）&深层（极端的水资源状况迫使人们在两种叙事中采取紧急行动）都可以说有相关性，但是都比较远。
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Water, as a vital resource under extreme environmental stress (flood or drought), compels communities to take drastic measures for survival or control.
+- **judge理由**: Surface element: water crisis is central to both news (flood disaster) and film (scarcity conflict). Underlying logic: extreme water conditions force emergency actions in both narratives, passing the causal counter-test and logic 0-guard.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2135,9 +2568,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-JESTER/p3: fragments=[how-0, how-1, how-2, how-3, result-0, result-1, result-2, result-5, result-4] · sim=0.5765 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element in common (flooding vs. school bus accident, not load-bearing under 0-guard), and no specific underlying causal engine true for both; any general tragedy-driven community response sentence fails the logic 0-guard as it would apply to unrelated news items paired with the film.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2158,9 +2596,16 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-JESTER/p3: fragments=[how-0, how-1, how-2, how-3, result-0, result-1, result-2, result-5, result-4] · sim=0.5822 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No load-bearing surface elements: news centers on floods and evacuations, film on ghosts and hauntings. No common underlying causal logic: cannot formulate a 'X under constraint Z drives Y' sentence true for both without being overly broad or fitting unrelated news items.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2181,9 +2626,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-EXPLORER/p2: fragments=[how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4] · sim=0.6144 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Catastrophic flooding, under the constraint of extreme natural weather and human infrastructure limitations, drives human displacement and urgent rescue operations.
+- **judge理由**: Both news and film share the concrete surface element of a major flood disaster, which is load-bearing in each story. They also instantiate the same underlying causal-stakes engine: environmental water forces overwhelm systems, forcing survival responses, as articulated in the causal test sentence.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2204,9 +2654,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-EXPLORER/p2: fragments=[how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4] · sim=0.6289 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A sudden, massive influx of water due to natural forces, under time and infrastructural constraints, drives urgent evacuations and personal crises.
+- **judge理由**: Both news and film center on water-based natural disasters (floods/tsunami) as a concrete surface element, and share the underlying logic where water intrusion under constraints forces evacuation and human drama.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -2227,9 +2682,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-CREATOR/p2: fragments=[why-0, how-0, how-1, how-2, how-3, result-1, result-2, result-3, result-4] · sim=0.5595 · **命中分=9**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层逻辑  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Catastrophic water events, exacerbated by human error or natural extremes under the constraint of inadequate preparedness or control, force mass evacuations and result in loss of life.
+- **judge理由**: No concrete, load-bearing surface element shared (e.g., specific place or occupation); an unrelated disaster news item could pair with the film. However, an underlying causal logic holds: human or natural miscalculations in water-based disasters drive evacuations and casualties, invariant under scale/POV change.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 8 -->
@@ -2250,9 +2710,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-OUTLAW/p1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1] · sim=0.5482 · **命中分=8**
 - **pseudo命中分合计**: 8
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete shared surface element (natural disaster theme is too broad and fails 0-guard); underlying logics differ (news: natural flood with infrastructure constraints, film: artificial system failure driving global disasters, no common causal engine).
 
 ## 06-tech-monopoly
 
@@ -2297,9 +2761,16 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-OUTLAW/p2: fragments=[why-0, why-1, how-0, how-1, how-2, result-0] · sim=0.4920 · **命中分=6**
   - THE-LOVER/p2: fragments=[why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4455 · **命中分=7**
 - **pseudo命中分合计**: 39
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: News involves EU regulatory fines for tech self-preferencing; film depicts fraud in EU carbon quotas. No concrete, load-bearing surface element is shared (EU involvement is too broad and abstract as authority/victim pairing). No specific causal-stakes engine can be articulated that is true of both without failing the logic 0-guard (e.g., 'EU system gaps drive exploitation' applies to many unrelated cases).
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 37 -->
@@ -2326,9 +2797,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-RULER/p2: fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.5776 · **命中分=6**
   - THE-SAGE/p2: fragments=[how-0, how-1, how-2, how-3, why-0, result-0, result-1] · sim=0.4788 · **命中分=7**
 - **pseudo命中分合计**: 37
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层逻辑  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared concrete surface elements (regulation vs. police action). Underlying logic of enforcement under pressure is generic and fails the 0-guard for specificity.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 36 -->
@@ -2355,9 +2831,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-RULER/p2: fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.5469 · **命中分=6**
   - THE-LOVER/p3: fragments=[why-0, how-2, how-3, result-0, result-1] · sim=0.4508 · **命中分=5**
 - **pseudo命中分合计**: 36
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层结构  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared concrete, load-bearing surface element (e.g., regulatory fines vs. sham trials). For underlying logic, a general 'authority under constraint takes punitive action' sentence holds but is too broad, failing the 0-guard as it applies to unrelated news-film pairs; no specific causal engine invariant for both.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 31 -->
@@ -2383,9 +2864,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-JESTER/n1: fragments=[how-3, how-1, result-0, who-1, why-0] · sim=0.4529
   - THE-MAGICIAN/p1: fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.4478 · **命中分=6**
 - **pseudo命中分合计**: 31
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **打分备注**:
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, nameable surface element shared (e.g., tech regulation vs. space lottery); no specific underlying logic: a generic sentence like 'institutional authority under legal or public opinion constraints drives corrective actions' would hold for unrelated news, failing the logic 0-guard.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 27 -->
@@ -2411,9 +2897,16 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EXPLORER/p3: fragments=[how-2, how-1, how-0, how-3] · sim=0.4667 · **命中分=4**
   - THE-CREATOR/p3: fragments=[why-0, how-0, how-1, how-2, how-3, result-0] · sim=0.4741 · **命中分=6**
 - **pseudo命中分合计**: 27
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element: news is about EU antitrust fine for Google's search self-preferencing, film is about vigilantes targeting corrupt officials. No underlying logic: cannot write a specific 'X under constraint Z drives Y' sentence true for both without being overly broad; news involves regulatory enforcement in digital markets, film involves extra-legal vigilantism against corruption, and the causal engines are not invariant or specific to this pair.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 19 -->
@@ -2436,9 +2929,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-OUTLAW/p2: fragments=[why-0, why-1, how-0, how-1, how-2, result-0] · sim=0.4996 · **命中分=6**
   - THE-EVERYMAN/p3: fragments=[why-0, why-1, how-3, how-2, result-0, result-1] · sim=0.5193 · **命中分=6**
 - **pseudo命中分合计**: 19
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **打分备注**:
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element (e.g., same occupation, setting, or event type) is shared between the EU regulatory action against Google and the bank investigation thriller. The underlying causal engines differ: one involves digital market competition enforcement, the other financial crime investigation, and any generalized 'powerful entity under scrutiny drives accountability' logic would apply to unrelated news-film pairs, failing the specificity test.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 19 -->
@@ -2461,9 +2959,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-HERO/p1: fragments=[why-0, how-0, how-1, how-2, result-0] · sim=0.5316 · **命中分=5**
   - THE-MAGICIAN/p1: fragments=[why-0, how-0, how-1, how-2, result-0, result-1] · sim=0.4343 · **命中分=6**
 - **pseudo命中分合计**: 19
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层逻辑  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: News is about EU antitrust fines against Google for digital self-preferencing; film is about journalistic investigation into banking corruption in Europe. No concrete, load-bearing surface element (e.g., same entity, specific event type) passes the 0-guard. Underlying logic shares a theme of accountability for misconduct, but a causal-stakes sentence like 'entities hiding unfair advantages under scrutiny drive corrective actions' is too broad and would apply to unrelated pairs, failing the logic 0-guard and falsifiable counter-test.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 13 -->
@@ -2485,9 +2988,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/n1: fragments=[result-0, how-0, why-0, who-0, how-1] · sim=0.4546
   - THE-EVERYMAN/p1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5017 · **命中分=8**
 - **pseudo命中分合计**: 13
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element shared (e.g., EU fines vs. police comedy). No specific underlying causal-stakes engine: news is about regulatory enforcement under Digital Markets Act, film is about criminal deception under extradition constraints; any abstract 'authority vs. evasion' logic is too broad and fails the 0-guard by applying to unrelated news items.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2509,9 +3016,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EXPLORER/n1: fragments=[how-1, how-0, why-1, result-0, who-0] · sim=0.4830
   - THE-CREATOR/p2: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5544 · **命中分=7**
 - **pseudo命中分合计**: 12
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element (e.g., news focuses on digital market regulation, film on physical border customs). Underlying logic differs: news is about regulatory punishment for anticompetitive behavior, film about personal adaptation to institutional change; no specific causal-stakes engine holds for both without being overly broad.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2533,9 +3044,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-OUTLAW/p1: fragments=[why-0, how-0, how-1, how-2, result-1] · sim=0.5244 · **命中分=5**
   - THE-JESTER/p1: fragments=[how-0, how-1, how-2, how-3, why-0, result-0, result-1] · sim=0.5422 · **命中分=7**
 - **pseudo命中分合计**: 12
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element shared (news: EU regulatory fine on Google for digital self-preferencing; film: Paris garage robbery gang with internal informer conflict). No underlying logic engine that is specific and invariant; any general 'facade vs. illicit behavior' sentence would fail the 0-guard by applying to unrelated news-film pairs.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2557,9 +3072,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-RULER/n1: fragments=[result-0, who-0, how-1, how-2, why-0] · sim=0.4580
   - THE-LOVER/p1: fragments=[why-0, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4622 · **命中分=7**
 - **pseudo命中分合计**: 12
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: 新闻涉及数字市场监管与罚款，电影涉及银行抢劫与绑架，无共享表层元素；底层逻辑无法用同一因果句子概括，且句子易泛化至不相关配对。
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 12 -->
@@ -2581,9 +3100,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-LOVER/n1: fragments=[result-1, result-0, who-1, who-2, why-0] · sim=0.3995
   - THE-JESTER/p2: fragments=[how-0, how-1, how-2, how-3, why-0, result-0, result-1] · sim=0.5134 · **命中分=7**
 - **pseudo命中分合计**: 12
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element shared (e.g., news is corporate antitrust, film is violent hostage over lottery). No specific causal engine; a general logic like 'self-interest under opportunity drives harm' applies too broadly, failing the 0-guard.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 9 -->
@@ -2605,9 +3128,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-MAGICIAN/n1: fragments=[who-0, how-0, why-0, how-1, who-1] · sim=0.4395
   - THE-CAREGIVER/p2: fragments=[why-0, how-0, how-1, result-1] · sim=0.5027 · **命中分=4**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element shared between EU antitrust fines and a 1966 spy film. Underlying logic fails: cannot write a specific 'X under constraint Z drives Y' sentence true of both without also applying to unrelated pairs, violating logic 0-guard.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 7 -->
@@ -2629,9 +3157,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-INNOCENT/p1: fragments=[why-0, how-1, result-0] · sim=0.4669 · **命中分=3**
   - THE-CAREGIVER/p2: fragments=[why-0, how-0, how-1, result-1] · sim=0.5171 · **命中分=4**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete load-bearing surface element shared; the causal engine 'regulatory enforcement under constraints drives manipulative behavior to evade penalties' is too general, failing the logic 0-guard as it applies to many unrelated news-film pairs.
 
 ### 单 agent 命中
 
@@ -2657,9 +3189,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/p1: fragments=[how-0, why-0, how-1, result-0, result-1] · sim=0.4997 · **命中分=5**
   - THE-SAGE/p3: fragments=[how-0, why-0, how-1, how-2, how-3] · sim=0.5277 · **命中分=5**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **打分备注**: 
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete shared surface element; the news involves EU antitrust fines for tech self-preferencing, while the film is a Paris-based murder mystery about a broken promise among friends. The underlying logic, though potentially similar in general terms of violations driving consequences, is too broad and fails the 0-guard: a sentence like 'Violations of agreements under constraints drive repercussions' could apply to many unrelated news items paired with the film.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 10 -->
@@ -2681,9 +3218,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/p1: fragments=[how-0, why-0, how-1, result-0, result-1] · sim=0.5123 · **命中分=5**
   - THE-SAGE/p3: fragments=[how-0, why-0, how-1, how-2, how-3] · sim=0.5179 · **命中分=5**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared load-bearing surface element (e.g., news is about regulatory action against tech self-preferencing, film is about political scandal investigation for career gain; an unrelated news item like a political corruption case could pair with the film equally well). No specific underlying logic: a general causal sentence (e.g., 'deception under scrutiny drives consequences') would apply to unrelated news-film pairs, failing the logic 0-guard, and the engines differ (regulatory enforcement vs. personal ambition-driven investigation).
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 7 -->
@@ -2704,9 +3246,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-JESTER/p2: fragments=[how-0, how-1, how-2, how-3, why-0, result-0, result-1] · sim=0.5239 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface elements (e.g., place, occupation, event) are shared between the news about EU antitrust fines and the film about a convict chasing a warden for a lottery ticket. For underlying logic, attempts to formulate a causal-stakes engine (e.g., 'A party's wrongful control of a benefit under constraint drives a pursuit for justice') are too general and would hold for unrelated news items paired with the same film, failing the specificity 0-guard. Thus, both axes fail.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 6 -->
@@ -2727,9 +3273,16 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-EXPLORER/p1: fragments=[how-0, how-1, how-2, how-3, why-0, result-1] · sim=0.5132 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete shared surface element (e.g., setting, occupation, event) is load-bearing; the film is about prison crime, while the news is about digital regulation. The potential underlying logic of power abuse under constraints is too generic and fails the logic 0-guard, as it could apply to unrelated news items paired with the same film.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 5 -->
@@ -2750,9 +3303,17 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-OUTLAW/p1: fragments=[why-0, how-0, how-1, how-2, result-1] · sim=0.5311 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层逻辑  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface elements are shared: the news involves EU regulatory fines against Google for self-preferencing, while the film is about a diamond heist. For underlying logic, no specific causal-stakes engine holds uniquely for both; abstract similarities (e.g., pursuit of gain under constraints leading to penalties) are too broad and would apply to unrelated news-film pairs, failing the logic 0-guard.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 ## 07-migration-border
 
@@ -2816,9 +3377,15 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-OUTLAW/p3: fragments=[result-0, how-0, result-1] · sim=0.5112 · **命中分=3**
   - THE-LOVER/p3: fragments=[why-0, how-0, result-0, result-1] · sim=0.5030 · **命中分=4**
 - **pseudo命中分合计**: 102
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Border enforcement agents under constraints of institutional corruption or policy deadlocks are driven to confront high-stakes, life-threatening crises.
+- **judge理由**: Surface element: Both stories centrally feature U.S. Border Patrol agents and the border enforcement setting. Underlying logic: Both depict agents navigating internal and external pressures (e.g., corruption in film, policy enforcement in news) that propel them into dangerous, critical situations.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 59 -->
@@ -2852,9 +3419,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-HERO/p3: fragments=[why-0, how-0, result-0, result-1] · sim=0.5272 · **命中分=4**
   - THE-OUTLAW/p3: fragments=[result-0, how-0, result-1] · sim=0.4605 · **命中分=3**
 - **pseudo命中分合计**: 59
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 深层逻辑稍有些远，但是可以被看做是过境开放条件下，执法者的见闻。
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Both stories share the concrete surface element of borders and border enforcement personnel, which is load-bearing in each. However, the underlying causal engines differ: the news involves seasonal weather driving apprehensions under strict policies, while the film depicts political change driving border opening under guard confusion, with no specific 'X under constraint Z drives Y' sentence that holds for both without being overly broad and failing the logic 0-guard.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 33 -->
@@ -2884,6 +3456,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared load-bearing surface element (news focuses on border enforcement and migration, film on European tourism tour). No common underlying logic; any plausible causal sentence is too vague and fails specificity per 0-guard (e.g., unrelated news about vacation travel would fit the film equally).
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 27 -->
@@ -2909,9 +3485,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-CAREGIVER/p1: fragments=[why-0, how-0, result-0, result-1] · sim=0.5389 · **命中分=4**
   - THE-SAGE/p1: fragments=[why-0, how-0, result-0] · sim=0.5527 · **命中分=3**
 - **pseudo命中分合计**: 27
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Economic desperation and lack of legal migration options, under the constraint of strict border enforcement, drive individuals to risk illegal crossings or fall prey to trafficking, resulting in law enforcement actions or personal rescues.
+- **judge理由**: Both share a concrete surface element: border/immigration context and law enforcement. They also share an underlying logic where desperation under enforcement constraints leads to risky behaviors and interventions.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 11 -->
@@ -2934,9 +3515,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-INNOCENT/p2: fragments=[why-0, result-0, result-1] · sim=0.5539 · **命中分=3**
   - THE-CAREGIVER/p2: fragments=[why-0, how-0, result-1] · sim=0.5524 · **命中分=3**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Enforcement at the U.S.-Mexico border under political and resource constraints drives individuals into clandestine crossings and violent confrontations.
+- **judge理由**: Both the news and film concretely center on the U.S.-Mexico border (surface element), and they share an underlying logic where border enforcement under systemic pressures drives high-risk activities (e.g., migration or drug war actions) leading to conflict.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 10 -->
@@ -2961,6 +3547,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element shared; the news involves border enforcement and migration, while the film is about a government evacuation program, lacking a load-bearing common element. Underlying logic cannot be formulated into a specific causal-stakes engine that is uniquely true of both without being overly general, failing the logic 0-guard.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 9 -->
@@ -2986,6 +3576,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element (e.g., border vs. railroad are distinct). Underlying logic attempt: 'Human challenges under institutional constraints drive escalatory conflict' — too broad; fails specificity test as it applies to unrelated pairs.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 8 -->
@@ -3007,9 +3604,16 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-HERO/p1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4840 · **命中分=4**
   - THE-CREATOR/p2: fragments=[why-0, how-0, result-0, result-1] · sim=0.4666 · **命中分=4**
 - **pseudo命中分合计**: 8
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element shared (e.g., 'border' vs. 'island'); abstract survival scenarios fail the 0-guard. Underlying logic differs: news involves policy-driven migration trends, not scarcity-induced interpersonal conflict, so no valid 'X under constraint Z drives Y' sentence holds for both.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 7 -->
@@ -3034,6 +3638,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: News focuses on border enforcement and seasonal migration patterns, while film centers on internal betrayal within a security unit. No concrete, load-bearing surface element is shared (e.g., border settings or immigration roles are absent in the film). Underlying logic differs: news involves external factors driving enforcement outcomes, film involves internal leaks driving investigations and trust crises. No common 'X under constraint Z drives Y' sentence holds for both, and an unrelated news item (e.g., corporate leak) would fit the film equally well.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 ### 单 agent 命中
 
@@ -3059,9 +3670,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-MAGICIAN/p1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4181 · **命中分=4**
   - THE-MAGICIAN/p3: fragments=[why-0, how-0, result-0, result-1] · sim=0.4862 · **命中分=4**
 - **pseudo命中分合计**: 8
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: News centers on border migration enforcement policies, while film revolves around political murder and conspiracy investigation; no load-bearing surface element shared, and underlying causal engines differ (seasonal migration patterns under enforcement vs. investigation under cover-up).
 
 ## 08-sports-underdog
 
@@ -3119,6 +3734,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element: news involves hockey and injuries, film involves basketball and a hurricane disaster—different sports and constraints. Underlying logic of 'coach-driven team success under adversity' is too general and fails the specificity 0-guard, as it applies to many unrelated sports stories.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 36 -->
@@ -3145,9 +3764,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-CAREGIVER/p2: fragments=[why-0, how-0, how-1, how-2, how-3, how-4] · sim=0.5905 · **命中分=6**
   - THE-OUTLAW/p2: fragments=[how-0, how-1, how-2, why-0] · sim=0.5822 · **命中分=4**
 - **pseudo命中分合计**: 36
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Shared sports/coaching themes are abstract and fail the surface element 0-guard; underlying logic is too general and fails the logic 0-guard as it could apply to many other sports news-film pairs.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 20 -->
@@ -3170,9 +3794,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EVERYMAN/p1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.5400 · **命中分=7**
   - THE-CAREGIVER/p3: fragments=[why-0, how-0, how-1, how-2, how-3, how-4] · sim=0.5589 · **命中分=6**
 - **pseudo命中分合计**: 20
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 表层强关联，因此2；电影在深层逻辑上其实不是很贴“团队克服逆境”
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A professional hockey team, under the constraint of injuries and internal instability, drives to achieve victory through perseverance and tactical adaptation.
+- **judge理由**: Both stories center on hockey as a load-bearing surface element. Underlying logic aligns: in the news, Vegas overcomes coaching changes and key injuries to sweep the favored Avalanche; in the film, an ice team fights hard with courage, implying similar underdog resilience. The causal engine is specific to this pair, as an unrelated non-sports news item would not fit.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 17 -->
@@ -3198,6 +3827,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element shared (news about hockey playoffs, film about WWII warship); underlying logic is too generic (e.g., leadership under adversity) and would apply to many unrelated pairings, failing the specificity test.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 17 -->
@@ -3223,6 +3856,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element (different sports: hockey vs. basketball) and no common underlying logic engine; injuries in news vs. clock controversy in film prevent a specific causal-stakes sentence.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 15 -->
@@ -3245,9 +3885,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-JESTER/p2: fragments=[why-0, how-3, how-4, result-0] · sim=0.5124 · **命中分=4**
   - THE-EVERYMAN/p3: fragments=[how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.5398 · **命中分=6**
 - **pseudo命中分合计**: 15
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **打分备注**: 这是个0或low 1，题材是冰球vs足球，也不怎么贴；电影故事线也没有体现出“不被看好的队伍在决定性的比赛中战胜实力强劲的对手”
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared load-bearing surface element: 'sports cup final' is too broad and could apply to unrelated news items (e.g., any championship match), failing the 0-guard. No underlying logic: cannot write a specific 'X under constraint Z drives Y' sentence true of both news and film; the news involves underdog narrative with coaching changes and injuries, while the film focuses on a soccer shootout without such causal elements.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 13 -->
@@ -3269,9 +3913,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EVERYMAN/p2: fragments=[how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.5822 · **命中分=6**
   - THE-MAGICIAN/p2: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4984 · **命中分=7**
 - **pseudo命中分合计**: 13
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 表层元素（运动、教练）和底层逻辑（困境等）都有点相关，但都离得很远
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element: news is about ice hockey playoffs, film is about football with a kidnapping—different sports and specific events. Underlying logic is too broad (e.g., 'overcoming adversity in sports') and fails the 0-guard, as it would hold for unrelated sports news paired with the film.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 12 -->
@@ -3293,9 +3941,15 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-INNOCENT/p2: fragments=[how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.5666 · **命中分=6**
   - THE-CAREGIVER/p2: fragments=[why-0, how-0, how-1, how-2, how-3, how-4] · sim=0.5635 · **命中分=6**
 - **pseudo命中分合计**: 12
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 同为运动项目，可以说是有一定的相似度。
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge分歧**: ⚠
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: A coach in a redemption situation, under the constraint of team limitations or underdog status, drives the team to exceed expectations in championship playoffs.
+- **judge理由**: Both news and film share the underlying logic of a coach overcoming personal or team adversity to drive a team toward championship success, but the surface sports elements (hockey vs. basketball) are too broad and not load-bearing for this specific pair.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 11 -->
@@ -3317,9 +3971,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EXPLORER/n1: fragments=[how-4, how-1, how-2, who-0, result-0] · sim=0.4404
   - THE-CAREGIVER/p3: fragments=[why-0, how-0, how-1, how-2, how-3, how-4] · sim=0.5813 · **命中分=6**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 深层逻辑不是很solid，有点离得太远
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under the constraint of a high-stakes championship, competitive intensity drives extreme behavior and unexpected outcomes.
+- **judge理由**: Both stories center on hockey championships (surface element), and both depict how high-stakes pressure leads to extreme outcomes: an underdog sweep due to injuries in news, and chaotic loss of control in film.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 11 -->
@@ -3341,9 +4000,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-MAGICIAN/n1: fragments=[how-0, how-1, how-2, result-0, who-2] · sim=0.4999
   - THE-CREATOR/p3: fragments=[how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4681 · **命中分=6**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层逻辑  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete load-bearing surface element shared (coaching is abstract and fails 0-guard). Underlying logic of coaching-driven success is generic; cannot write a specific causal sentence invariant to unrelated news, so Axis 2 fails.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 9 -->
@@ -3368,6 +4031,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element shared (hockey vs. chess, different sports/contexts). Underlying logic lacks a specific causal-stakes engine true for both without being too general; any attempt at a 'X under constraint Z drives Y' sentence would likely hold for unrelated news-film pairs, failing the logic 0-guard.
 
 ### 单 agent 命中
 
@@ -3392,9 +4059,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-JESTER/p3: fragments=[how-0, how-1, how-2, how-3, how-4, why-0, result-0] · sim=0.5493 · **命中分=7**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared concrete surface element (e.g., hockey vs. Western revenge). No common causal-stakes engine: news involves team sports success under coaching changes and injuries, while film involves personal vengeance after an unjust hanging; any broad 'overcoming adversity' logic fails the 0-guard as it would apply to unrelated news.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3418,6 +4089,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element (hockey vs. submarine warfare). Underlying logic of underdog determination is too abstract and would hold for unrelated news items (e.g., any sports upset), failing the specificity test.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3441,6 +4116,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element shared (news is about hockey playoff success with coaching changes; film is about football coach's scandal). No common causal-stakes engine: cannot write a falsifiable 'X under constraint Z drives Y' sentence that holds for both without being too broad or context-specific, and the logic 0-guard fails as it could apply to unrelated news items.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3464,6 +4146,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element: the news involves hockey playoffs and the film is about college rowing, with no shared specific setting, event, or occupation. Underlying logic lacks specificity; a general causal engine like 'adversity drives team success' would hold for many unrelated sports stories, failing the falsifiable counter-test and logic 0-guard.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3487,6 +4173,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared load-bearing surface element: news is about hockey playoffs with coaching change and injuries, film about basketball coaching of intellectually disabled players; abstract coaching role fails 0-guard. No common causal-stakes engine: constraints (injuries vs. disabilities) and contexts differ, and no specific 'X under Z drives Y' sentence holds for both without being overly broad or failing logic 0-guard.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 6 -->
@@ -3510,6 +4200,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element: 'sports' is too broad and not load-bearing (fails 0-guard). No shared underlying logic: causal engines differ—news involves playoff success with injuries and coaching change in hockey, while film involves gender-comedy coaching in basketball; no bidirectional 'X under constraint Z drives Y' sentence holds without being generic or mismatched.
 
 ## 09-cultural-backlash
 
@@ -3554,9 +4248,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-MAGICIAN/p1: fragments=[how-0, how-1, how-2, result-0] · sim=0.5568 · **命中分=4**
   - THE-EXPLORER/p2: fragments=[how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.6737 · **命中分=6**
 - **pseudo命中分合计**: 38
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 表层元素非常符合（诺兰要拍的本来就是奥德赛）；老电影本身自带过去vs现在的深层逻辑
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Both the news and the film share a concrete surface element: adaptations of Homer's Odyssey. However, no single causal-stakes engine sentence holds for both, as the news involves cultural conflict driven by representation debates, while the film centers on a heroic journey narrative.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 26 -->
@@ -3581,9 +4279,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-SAGE/p1: fragments=[how-0, how-1, how-2, why-0, result-0] · sim=0.5077 · **命中分=5**
   - THE-EXPLORER/p2: fragments=[how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5107 · **命中分=6**
 - **pseudo命中分合计**: 26
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete shared surface element; news centers on casting controversy in film adaptation, while film focuses on artist's investigation of an urban legend. No common causal-stakes engine: cultural debate driven by identity politics vs. personal obsession driven by mystery.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 23 -->
@@ -3607,9 +4309,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-CAREGIVER/p1: fragments=[how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.6216 · **命中分=6**
   - THE-CAREGIVER/p3: fragments=[how-0, how-1, how-2, how-3, why-0, why-1, result-0, result-1] · sim=0.6009 · **命中分=8**
 - **pseudo命中分合计**: 23
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 电影选角、女性话题等表层元素其实很相近，但是深层逻辑不好说：电影overview展现的内容太少。
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Casting in performing arts under the constraint of societal prejudices drives disputes over identity and control.
+- **judge理由**: Surface element of casting/audition is too broad and fails 0-guard (many unrelated news items could pair similarly). Underlying logic holds: both stories involve artistic decisions challenged by biases, leading to conflicts over representation.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 19 -->
@@ -3635,6 +4342,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared load-bearing surface element: news focuses on casting and cultural identity in a mythic film adaptation, while Panama centers on digital-age personal relationships. No specific underlying logic: cannot formulate a falsifiable 'X under constraint Z drives Y' sentence true of both without being overly broad or failing the 0-guard.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 19 -->
@@ -3661,6 +4372,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: News focuses on a casting controversy in a mythic film adaptation, while the film is a documentary about a library's institutional adaptation; no concrete surface element is shared, and no specific causal-stakes engine applies to both without being overly broad or failing the 0-guard.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 15 -->
@@ -3686,6 +4401,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No load-bearing shared surface element (e.g., casting controversy vs. photo scandal); proposed causal logic (media portrayals under ethical constraints drive disputes) is too broad and fails the 0-guard by applying to unrelated news.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 14 -->
@@ -3711,6 +4430,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element shared; the news involves casting controversy in a classical adaptation, while the film focuses on Spanish Civil War and family secrets. Underlying logic lacks a specific causal-stakes engine that holds for both without being overly broad or failing the 0-guard.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 10 -->
@@ -3732,9 +4455,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-CREATOR/n1: fragments=[how-0, result-0, who-0, who-4, how-3] · sim=0.5651
   - THE-RULER/p1: fragments=[how-0, how-1, how-2, result-0, result-1] · sim=0.5940 · **命中分=5**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 1
+- **judge共振类型**: 表层沾边
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Surface element shared: both involve filmmaking/movie director as a concrete occupation. Underlying logic differs: news centers on cultural identity debates in adaptation, while film focuses on a director's personal journey for artistic authenticity; no specific causal engine holds for both.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 10 -->
@@ -3756,9 +4483,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-JESTER/p2: fragments=[how-0, how-1, how-2, why-0, why-1, result-0] · sim=0.6422 · **命中分=6**
   - THE-MAGICIAN/p3: fragments=[why-0, how-1, result-0, result-1] · sim=0.6506 · **命中分=4**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 社会议题与公众对于电影内容讨论，很相关
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Under the constraint of societal upheaval and identity conflicts, filmmaking drives cultural debates and artistic responses.
+- **judge理由**: Both share the concrete surface element of filmmaking and film industry controversies as load-bearing in their stories. They also instantiate the same causal-stakes engine: societal tensions (e.g., culture wars, 1970s upheaval) drive cinematic production to fuel public discourse and artistic innovation.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 9 -->
@@ -3780,9 +4512,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-LOVER/n1: fragments=[who-1, how-0, who-3, who-4, why-0] · sim=0.5615
   - THE-MAGICIAN/p1: fragments=[how-0, how-1, how-2, result-0] · sim=0.5596 · **命中分=4**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared concrete, load-bearing surface element: news centers on casting controversy in a mythic adaptation, film on personal drama in Victorian opera. No common causal-stakes engine: news involves identity debates under historical canon constraints, film involves ambition under mentor constraints, and no invariant 'X under constraint Z drives Y' sentence fits both specifically without applying to unrelated pairs.
 
 ### 单 agent 命中
 
@@ -3810,6 +4546,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element shared (e.g., ancient themes are too broad and not specific; an unrelated news item about ancient history could pair similarly). No common causal-stakes engine: the news involves public debate over cultural identity in film casting, while the film involves personal horror from uncovering a secret society—no 'X under constraint Z drives Y' sentence holds for both without failing the 0-guard.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 6 -->
@@ -3830,9 +4573,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-INNOCENT/p1: fragments=[how-0, how-1, how-2, how-3, why-0, result-0] · sim=0.6088 · **命中分=6**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 电影、女性、选角等表层元素相关
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: Societal biases regarding appearance or identity, when confronted in the context of filmmaking, drive conflicts that challenge conventional norms.
+- **judge理由**: Both the news and film involve conflicts rooted in biases (racial identity in casting, physical disfigurement on set) within film production, exposing societal prejudices, but no concrete surface element is shared load-bearingly.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -3853,9 +4601,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **命中视角/碎片**:
   - THE-INNOCENT/p2: fragments=[how-0, how-1, how-2, result-1, why-1] · sim=0.6071 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 都有拍电影和选角的元素，但是深层逻辑有点不太相近
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: External coercion on a film production drives conflicts over creative integrity and representation.
+- **judge理由**: Both news and film center on filmmaking projects facing external pressures (societal/cultural in news, criminal in film) that spark debates over authenticity and control, with film production as a concrete shared element.
 
 ## 10-whistleblower-leak
 
@@ -3908,6 +4661,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element shared (corruption is abstract and fails the 0-guard). Underlying logic is not specific: a causal-test sentence like 'Corruption drives whistleblowers or vigilantes to take action' would also hold for unrelated corruption news paired with the film, failing the logic 0-guard.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 31 -->
@@ -3936,6 +4693,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared load-bearing surface element: news is about exam leak and whistleblower in India, film is about a Latin American boy band's final days. No common causal-stakes engine: cannot write a specific 'X under constraint Z drives Y' sentence true for both without being vague or failing the 0-guard.
+
+- **prescreen_audit_sampled**: true
+- **prescreen_audit_sample_rate**: 0.1
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 28 -->
@@ -3963,6 +4727,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element shared; an unrelated news item about a school could equally pair with the film. No common causal-stakes engine: a specific 'X under constraint Z drives Y' sentence true of both cannot be written without being overly general, failing the logic 0-guard.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 17 -->
@@ -3989,6 +4757,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element shared (exam leak vs. assassination classroom); no invariant causal-stakes engine: news involves whistleblowing exposing corruption, film involves students executing a fantastical assassination mission.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 16 -->
@@ -4014,6 +4786,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared concrete surface element (exam leak vs. suspicious death); the underlying logic of uncovering hidden wrongdoing leading to scandal is generic and would hold for many unrelated news items paired with the film.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 15 -->
@@ -4039,6 +4815,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete surface element: news involves exam paper leak and whistleblower, film involves lie detector in job interview—contexts differ. Underlying logic not invariant: can't write a causal sentence specific to both without passing 0-guard; news drives institutional investigation, film drives personal revelations, engines differ under scale/POV change.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 11 -->
@@ -4060,9 +4840,13 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-OUTLAW/n1: fragments=[who-0, why-0, how-1, result-0, who-4] · sim=0.4059
   - THE-HERO/p1: fragments=[how-1, why-0, how-2, how-3, result-0, how-4] · sim=0.4375 · **命中分=6**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared concrete, load-bearing surface element (news: exam cheating/whistleblowing; film: paranormal/CIA declassification). Underlying logic mismatch: cannot formulate a specific 'X under constraint Z drives Y' sentence that holds for both without being overly broad, and the logic would apply to unrelated news-film pairs, failing the 0-guard.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 10 -->
@@ -4087,6 +4871,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared concrete, load-bearing surface element: news centers on exam paper leak and whistleblower, film on professor-student mentorship for a speech contest. Underlying logics differ: news engine is 'insider exposure under institutional scrutiny drives system overhaul', film engine is 'forced confrontation under personal obligation drives reconciliation'; no single 'X under constraint Z drives Y' sentence holds invariantly for both without being overly generic or failing specificity.
 
 ### 单 agent 命中
 
@@ -4115,6 +4903,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: Surface element: shared 'students/school' is generic and not load-bearing (fails 0-guard: unrelated school news could pair with film). Underlying logic: news focuses on whistleblowing and institutional reform in exam leaks, while film is a horror mystery about survival in detention; no common 'X under constraint Z drives Y' engine passes the falsifiable counter-test without being too vague or applicable to other pairs.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 15 -->
@@ -4139,6 +4931,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared load-bearing surface element: news centers on exam leak and whistleblowing, film on manipulative teacher-student relationship. Underlying logic differs: news involves institutional corruption and systemic failure, while film focuses on personal exploitation in a dyadic relationship; no invariant causal engine holds for both.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 11 -->
@@ -4160,9 +4956,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-EXPLORER/p2: fragments=[how-0, how-1, how-2, how-3, how-4, result-1, result-2] · sim=0.5744 · **命中分=7**
   - THE-EXPLORER/p3: fragments=[why-0, how-2, how-3, result-0] · sim=0.5321 · **命中分=4**
 - **pseudo命中分合计**: 11
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层逻辑  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 表层元素（考试vs政治）有点不相干
+- **judge分**: 2
+- **judge共振类型**: 强共振（表层 + 逻辑）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: The discovery of a leaked sensitive document, under the constraint of personal ethics or institutional integrity, drives an individual to initiate an investigation that exposes deception.
+- **judge理由**: Both stories share the concrete surface element of a leaked document triggering a scandal. The underlying logic is a causal engine where exposure of a leak motivates investigative action due to stakes in ethics or personal gain.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 9 -->
@@ -4184,9 +4985,14 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
   - THE-RULER/p1: fragments=[why-0, how-1, how-2, result-0] · sim=0.5469 · **命中分=4**
   - THE-RULER/p3: fragments=[how-1, how-2, how-3, result-0, result-2] · sim=0.5353 · **命中分=5**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层逻辑  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **打分备注**: 情报泄露+调查的逻辑有点相近
+- **judge分**: 1
+- **judge共振类型**: 深层共振（仅逻辑，无表层）
+- **judge采信**: 不采信 · screening only
+- **judge因果反测**: An unauthorized disclosure of critical information under the constraint of institutional integrity drives an investigation that exposes betrayal within the organization.
+- **judge理由**: The news and film share the same causal engine: a leak in a high-stakes institutional setting (exam or security) under pressure to maintain credibility forces an investigation that uncovers internal betrayal. No concrete surface element is load-bearing in both, but the underlying logic resonates.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 7 -->
@@ -4210,6 +5016,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface elements (e.g., exam vs. hit-and-run). Underlying logic of exposure/investigation is too general; a causal test sentence like 'A individual, under systemic corruption, drives uncovering truths' would apply to many unrelated news-film pairs, failing the specificity gate.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 5 -->
@@ -4233,6 +5043,10 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No concrete, load-bearing surface element (e.g., setting, occupation, event type) is shared. The potential underlying logic (e.g., corruption provoking resistance) is too generic and fails the causal counter-test and 0-guard, as it would apply to unrelated news-film pairs.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 5 -->
@@ -4256,4 +5070,8 @@ For each hit line under **命中视角/碎片**, count entries in `fragments=[..
 - **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **打分备注**: （可选）
+- **judge分**: 0
+- **judge共振类型**: 
+- **judge采信**: 不采信 · screening only
+- **judge理由**: No shared concrete surface element; the news involves a whistleblower exposing fraud, while the film involves refusal to inform, making them inversely related without a common load-bearing element. No underlying causal-stakes engine holds for both: the news drives institutional correction via exposure, whereas the film drives personal punishment via silence.
 

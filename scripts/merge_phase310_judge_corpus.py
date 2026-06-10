@@ -45,7 +45,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--obs-json",
         type=Path,
-        default=_REPO_ROOT / "output/Eval/phase3.10-judge-calibration/llm-judge-scores.json",
+        default=_REPO_ROOT / "output/Eval/phase3.10/calibration/llm-judge-scores.json",
     )
     parser.add_argument("--holdout-json", type=Path, required=True)
     parser.add_argument(
