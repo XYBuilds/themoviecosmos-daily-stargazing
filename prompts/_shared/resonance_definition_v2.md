@@ -23,6 +23,8 @@
 **定义**：新闻与电影**实例化同一个因果-赌注引擎**，且该引擎在 **POV（视角）/ 尺度变换下不变**。引擎是一句 **「X 在约束 Z 下驱动 Y」**（例：*系统性稀缺把普通人逼入求生模式*）。一个在**机构尺度**讲、一个在**个人尺度**讲，只要是同一句引擎，**仍算**逻辑共振。
 
 - **可证伪反测句（防给分膨胀）**：必须能写出**一句**两边都字面成立的「X 在约束 Z 下驱动 Y」。**写不出 ⇒ 不算逻辑共振，退回 0/1**。
+- **逻辑 0 分守门**：若该因果句对**无关新闻配上同一部电影**仍字面成立 ⇒ 第二轴 = 无 ⇒ **不可**给「深层共振（仅逻辑，无表层）」。
+- **0/1 不确定时优先 0**。
 - **宽窄边界**：「底层逻辑」比旧「骨架同构」**宽**（接纳 POV / 尺度变换），但因有反测句兜底，**不滑成「什么都给分」**。
 
 ### 2×2 矩阵（矩阵不变，仅换措辞）
@@ -55,7 +57,10 @@ _JUDGE_SYSTEM = (
     "engine invariant under POV/scale change) yes/no — this axis is GATED by a "
     "falsifiable causal counter-test: you MUST write one 'X, under constraint Z, "
     "drives Y' sentence that is literally true of BOTH the news and the film; "
-    "if you cannot, 底层逻辑 = NO. Then map to score and resonance_type."
+    "if you cannot, 底层逻辑 = NO. Apply the logic 0-guard: if that sentence "
+    "would still hold for an unrelated news item paired with the same film, "
+    "底层逻辑 = NO. When uncertain between score 0 and 1, prefer 0. "
+    "Then map to score and resonance_type."
 )
 
 _JUDGE_RUBRIC = f"""\
@@ -81,6 +86,10 @@ telling and an individual-scale telling of the **same** engine still count as th
   If you cannot write one, Axis 2 = NO → fall back to score 0/1.
   ("Logic" is broader than rigid structural isomorphism because it admits POV/scale shifts,
   but it does not collapse into "everything resonates".)
+- **Logic 0-guard**: if your causal_test sentence would remain literally true for an
+  **unrelated news item** paired with the same film, the engine is NOT specific to this
+  pair → Axis 2 = NO (you cannot assign score 1 via {{TYPE_DEEP}}).
+- **Tie-break**: when uncertain between score 0 and 1, prefer 0.
 
 | 表层元素 | 底层逻辑 | score | resonance_type |
 |---|---|---|---|
@@ -118,7 +127,7 @@ BOTH news and film; set it to "" only when Axis 2 = NO. `rationale` is brief fre
 共振有**两层**，本 rubric **同时拥抱**二者（与 [`CONTEXT.md`](../CONTEXT.md) 中 **共振 (Resonance)** 一致）。**验收目标统一为「关联 / 共振」**——不单独追求讽刺、反讽或荒诞作为产品指标；后者仅可作为底层逻辑或双重共振的**子类**出现。
 
 - **第一轴 · 表层元素 (Surface)**：候选与新闻共享**具体、可命名且承重**的元素——地点 / 人物类型 / 事件类型 / 设定 / 题材。关键在「**承重**」：换一条无关新闻**无法**复用该元素。**抽象权力角色配对（权威↔受害者、领袖↔团队）不算表层元素，归底层逻辑轴**。
-- **第二轴 · 底层逻辑 (Underlying logic)**：新闻与电影**实例化同一个因果-赌注引擎**，且该引擎在 **POV / 尺度变换下不变**——一句 **「X 在约束 Z 下驱动 Y」**（如*系统性稀缺把普通人逼入求生*），机构尺度↔个人尺度也算。**可证伪反测**：写不出一句两边都成立的因果句 ⇒ 不算逻辑共振，退回 0/1。
+- **第二轴 · 底层逻辑 (Underlying logic)**：新闻与电影**实例化同一个因果-赌注引擎**，且该引擎在 **POV / 尺度变换下不变**——一句 **「X 在约束 Z 下驱动 Y」**（如*系统性稀缺把普通人逼入求生*），机构尺度↔个人尺度也算。**可证伪反测**：写不出一句两边都成立的因果句 ⇒ 不算逻辑共振，退回 0/1。**逻辑 0 分守门**：若该因果句对无关新闻配上同一部电影仍字面成立 ⇒ 第二轴 = 无 ⇒ 不可给「深层共振（仅逻辑，无表层）」。**0/1 不确定时优先 0**。
 
 按两轴定分（**先判承重表层元素，再判 POV/尺度不变因果引擎**）：
 
