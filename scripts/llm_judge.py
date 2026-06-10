@@ -59,7 +59,10 @@ _JUDGE_SYSTEM = (
     "engine invariant under POV/scale change) yes/no — this axis is GATED by a "
     "falsifiable causal counter-test: you MUST write one 'X, under constraint Z, "
     "drives Y' sentence that is literally true of BOTH the news and the film; "
-    "if you cannot, 底层逻辑 = NO. Then map to score and resonance_type."
+    "if you cannot, 底层逻辑 = NO. Apply the logic 0-guard: if that sentence "
+    "would still hold for an unrelated news item paired with the same film, "
+    "底层逻辑 = NO. When uncertain between score 0 and 1, prefer 0. "
+    "Then map to score and resonance_type."
 )
 
 _JUDGE_RUBRIC = f"""\
@@ -85,6 +88,10 @@ telling and an individual-scale telling of the **same** engine still count as th
   If you cannot write one, Axis 2 = NO → fall back to score 0/1.
   ("Logic" is broader than rigid structural isomorphism because it admits POV/scale shifts,
   but it does not collapse into "everything resonates".)
+- **Logic 0-guard**: if your causal_test sentence would remain literally true for an
+  **unrelated news item** paired with the same film, the engine is NOT specific to this
+  pair → Axis 2 = NO (you cannot assign score 1 via {TYPE_DEEP}).
+- **Tie-break**: when uncertain between score 0 and 1, prefer 0.
 
 | 表层元素 | 底层逻辑 | score | resonance_type |
 |---|---|---|---|

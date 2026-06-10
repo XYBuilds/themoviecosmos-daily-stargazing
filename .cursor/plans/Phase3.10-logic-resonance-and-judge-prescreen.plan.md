@@ -8,6 +8,9 @@ todos:
   - id: p310-1
     content: 3.10.1 · llm_judge.py rubric 重写为双轴（粘贴 3.10.0 judge-ready 措辞 + 强制 rationale 含因果反测句）+ 单测
     status: complete
+  - id: p310-1b
+    content: 3.10.1b · logic-axis 0-guard rubric patch + obs-style pilot rerun 05/06 + comparison report [需人工验收]
+    status: complete
   - id: p310-2
     content: 3.10.2 · eval-the-bet.md §4 共振 rubric 改双轴（粘贴 3.10.0 rubric-ready 措辞）+ 归属规则/共振类型同步
     status: complete
@@ -56,6 +59,7 @@ flowchart TD
   ADR7["ADR-0007 proposed"]
   T0["3.10.0 双轴权威措辞源 + CONTEXT"]
   T1["3.10.1 judge rubric 重写"]
+  T1b["3.10.1b logic 0-guard pilot"]
   T2["3.10.2 eval-the-bet rubric 改双轴"]
   T3["3.10.3 砍 Q1'/A1降参照/成功标准/抽审回加权"]
   T4["3.10.4 预筛编排 + 抽审 + 阈值纪律"]
@@ -66,6 +70,8 @@ flowchart TD
   ADR7 --> T0
   T0 -->|权威措辞传播| T1
   T0 -->|权威措辞传播| T2
+  T1 --> T1b
+  T1b -.->|pilot before optional full holdout rerun| T7
   T1 --> T4
   T3 --> T7
   T4 --> T5
@@ -150,7 +156,24 @@ flowchart TD
 
 - [ ] `python -m unittest`（judge 相关）通过
 - [ ] judge prompt 措辞与 3.10.0 权威源逐字一致（无私自改写）
-- [ ] judge 输出含因果反测句 rationale
+- [x] judge 输出含因果反测句 rationale
+
+---
+
+## Todo 3.10.1b · logic-axis 0-guard pilot + holdout rerun 05/06 [需人工验收]
+
+**依赖：** 3.10.1（在双轴 rubric 上追加 logic 0-guard）；pilot 通过后再做 3.10.7 全量 holdout rerun（可选路径）
+
+- `prompts/_shared/resonance_definition_v2.md` + `scripts/llm_judge.py`：Axis 2 追加 **logic 0-guard**（因果反测句若对无关新闻仍成立 → 底层逻辑=NO；不确定时 prefer 0）。
+- `scripts/run_phase39_judge_batch.py`：`--run-ids` 子集打分 + `prompt_version=3.10.1b-logic-0-guard`；`scripts/judge_batch_parallel.py` 并行 worker。
+- Pilot：在 `output/Eval/phase3.10-visible` 仅重跑 holdout **05-climate-disaster**、**06-tech-monopoly**；产出 `llm-judge-scores-rerun-05-06.json` + `judge-rerun-05-06-comparison.md`。
+
+### 验收
+
+- [x] `python -m unittest tests.test_llm_judge -v` 通过（含 logic 0-guard 断言）
+- [x] Pilot 05/06 分布 before/after 与 transition 表产出
+- [x] 4 例 prior judge=2 降至 0/1 已标注待 spot-check
+- [x] `[需人工验收]`：用户 approve pilot → 可进 3.10.7 全量 holdout rerun（本 pilot merge 不含全量 rerun）
 
 ---
 

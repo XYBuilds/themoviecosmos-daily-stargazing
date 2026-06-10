@@ -42,6 +42,14 @@ class JudgeSchemaTests(unittest.TestCase):
         self.assertNotIn("骨架同构", _JUDGE_RUBRIC)
         self.assertIn("falsifiable causal counter-test", _JUDGE_SYSTEM.lower())
 
+    def test_logic_zero_guard_in_rubric_and_system(self):
+        self.assertIn("Logic 0-guard", _JUDGE_RUBRIC)
+        self.assertIn("unrelated news item", _JUDGE_RUBRIC)
+        self.assertIn(TYPE_DEEP, _JUDGE_RUBRIC)
+        self.assertIn("prefer 0", _JUDGE_RUBRIC)
+        self.assertIn("logic 0-guard", _JUDGE_SYSTEM.lower())
+        self.assertIn("prefer 0", _JUDGE_SYSTEM.lower())
+
     def test_validate_score_zero_no_type(self):
         score, rtype, causal = validate_judge_payload(
             {
