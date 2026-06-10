@@ -4,7 +4,7 @@ overview: 按 ADR-0008（supersede ADR-0007 D6，修订 D7 通道结构，继承
 todos:
   - id: p311-0
     content: 3.11.0 · 权威措辞源对齐 ADR-0008：contract 重写（轴对齐 P-Select + 元素中心构图 + POV 派生规则）+ alt-creator 契约 valence 降级 + 12 persona card 注意力清单 + CONTEXT 术语 [需聪明模型] [需人工验收]
-    status: todo
+    status: complete
   - id: p311-1
     content: 3.11.1 · 预测试：用 3.11.0 措辞让运行时 LLM 按新构图（元素中心 + POV）重写 N 条新闻跑检索，核验差集是否有当前 pseudo 漏掉的新共振片 [需人工验收 · Go/No-Go]
     status: todo
@@ -151,10 +151,10 @@ flowchart TD
 
 ### 验收
 
-- [ ] contract 规则与 ADR-0008 D2–D5 一致；card 清单与 D1/D4 一致（12 张全）
-- [ ] alt-creator 契约 valence 降级、salience 机制未动
-- [ ] CONTEXT 术语补齐
-- [ ] `[需人工验收]`：用户 approve 措辞口径 → 进 3.11.1
+- [x] contract 规则与 ADR-0008 D2–D5 一致；card 清单与 D1/D4 一致（12 张全）
+- [x] alt-creator 契约 valence 降级、salience 机制未动
+- [x] CONTEXT 术语补齐
+- [x] `[需人工验收]`：用户 approve 措辞口径 → 进 3.11.1
 
 ---
 
@@ -282,7 +282,7 @@ flowchart TD
 
 ## Phase 3.11 整体验收
 
-- [ ] 3.11.0 权威措辞源 + 注意力清单 approve
+- [x] 3.11.0 权威措辞源 + 注意力清单 approve
 - [ ] 3.11.1 预测试 Go（差集有新共振片）
 - [ ] 3.11.2–3.11.5 各单测通过：元素中心构图 + POV 生成、守卫、漏斗 + 池差通道分解、POV变换 标签
 - [ ] 3.11.6 单点 pilot A/B + 审计 Go（守卫零硬失败、双地板完好）
