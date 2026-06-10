@@ -28,7 +28,7 @@ todos:
     status: complete
   - id: p310-7
     content: 3.10.7 · 预筛 holdout（含拒绝集抽审）+ 复检基线 combo>pure_fact(新def) + 减负率&安全核验 [需人工验收]
-    status: todo
+    status: complete
   - id: p310-8
     content: 3.10.8 · GATE：成功标准两条（共振侧+工作流侧）+ obs/holdout 一致性 → GATE_RESULT [GATE · 需人工验收]
     status: todo
