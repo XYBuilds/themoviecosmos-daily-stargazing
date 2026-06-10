@@ -2,7 +2,7 @@
 
 **Generated:** 2026-06-10 11:23 UTC
 **prompt_version (holdout):** 3.10.1b-logic-0-guard
-**eval_dir:** `output/Eval/phase3.10-visible`
+**eval_dir:** `output/Eval/phase3.10`
 
 ## Holdout judge distribution (before → after)
 

@@ -2,7 +2,7 @@
 
 **Generated:** 2026-06-10  
 **Branch:** `feat/phase3.10.7-holdout-full-rerun`  
-**eval_dir:** `output/Eval/phase3.10-visible`
+**eval_dir:** `output/Eval/phase3.10`
 
 ## 1. Label sync (from `high-hit-score-review.md`)
 

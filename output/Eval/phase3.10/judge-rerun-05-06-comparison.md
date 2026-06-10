@@ -1,7 +1,7 @@
 # Judge rerun pilot: runs 05 & 06 (3.10.1b logic 0-guard)
 
 - **prompt_version**: 3.10.1b-logic-0-guard
-- **eval_dir**: `output/Eval/phase3.10-visible`
+- **eval_dir**: `output/Eval/phase3.10`
 - **prior scores**: `llm-judge-scores-rerun-05-06.json.bak` (holdout baseline)
 - **rerun output**: `llm-judge-scores-rerun-05-06.json`
 
