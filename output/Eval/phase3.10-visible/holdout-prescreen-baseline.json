@@ -53,7 +53,7 @@
       "path": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10-visible\\08-sports-underdog\\candidates.md",
       "run_id": "08-sports-underdog",
       "has_any_score_2": true,
-      "missing_count": 10,
+      "missing_count": 9,
       "candidate_count": 17
     },
     {
@@ -75,11 +75,11 @@
     "total_runs": 10,
     "runs_with_score_2": 8,
     "batch_pass_rate": 0.8,
-    "missing_scores_total": 34,
+    "missing_scores_total": 33,
     "single_2_rate": 0.13253012048192772,
-    "multi_2_rate": 0.20512820512820512,
+    "multi_2_rate": 0.2,
     "single_structural_2_rate": 0.12048192771084337,
-    "multi_structural_2_rate": 0.1794871794871795,
+    "multi_structural_2_rate": 0.175,
     "resonance_types_filled": true,
     "phase38_gate": true,
     "persona_gate": false,
@@ -90,21 +90,21 @@
     "single_scored": 83,
     "single_twos": 11,
     "single_structural_twos": 10,
-    "multi_scored": 39,
+    "multi_scored": 40,
     "multi_twos": 8,
     "multi_structural_twos": 7,
     "diagnostic_1_neutral_hit_rate": {
-      "n": 122,
-      "pearson_neutral_hit_rate_vs_score": 0.19972223330000355,
-      "partial_corr_neutral_hit_rate_vs_score_given_similarity": 0.20108357139148839,
+      "n": 123,
+      "pearson_neutral_hit_rate_vs_score": 0.1996554145171579,
+      "partial_corr_neutral_hit_rate_vs_score_given_similarity": 0.20085933785743387,
       "similarity_bins": {
         "high": {
           "n": 106,
           "pearson": 0.2686516595334735
         },
         "mid": {
-          "n": 15,
-          "pearson": -0.24601417921693172
+          "n": 16,
+          "pearson": -0.2526982814797143
         },
         "low": {
           "n": 1,
@@ -994,6 +994,14 @@
         },
         {
           "run_id": "08-sports-underdog",
+          "tmdb_id": "232679",
+          "neutral_hit_rate": 0.0833,
+          "score": 1.0,
+          "max_similarity": 0.4999,
+          "bin": "mid"
+        },
+        {
+          "run_id": "08-sports-underdog",
           "tmdb_id": "4929",
           "neutral_hit_rate": 0.0,
           "score": 0.0,
@@ -1091,14 +1099,14 @@
       ]
     },
     "diagnostic_2_toned_convergence": {
-      "combo_total_2_rate": 0.20512820512820512,
-      "combo_structural_2_rate": 0.1794871794871795,
+      "combo_total_2_rate": 0.2,
+      "combo_structural_2_rate": 0.175,
       "pure_fact_total_2_rate": 0.0,
       "pure_fact_structural_2_rate": 0.0,
       "pure_emotion_scored": 82,
       "precision_lift_ok": true,
       "q2_combo_lift_ok": true,
-      "partial_corr_toned_vs_score_given_similarity": -0.001009626240038233,
+      "partial_corr_toned_vs_score_given_similarity": -0.0010832630922616006,
       "similarity_bins": {
         "high": {
           "combo_structural_2_rate": 0.23333333333333334,
@@ -1113,11 +1121,11 @@
         "mid": {
           "combo_structural_2_rate": 0.0,
           "pure_fact_structural_2_rate": 0.0,
-          "combo_scored": 8,
+          "combo_scored": 9,
           "pure_fact_scored": 0,
           "quality_structural_2_rate": 0.0,
           "neutral_only_structural_2_rate": 0.0,
-          "quality_scored": 8,
+          "quality_scored": 9,
           "neutral_only_scored": 0
         },
         "low": {
@@ -1131,17 +1139,17 @@
           "neutral_only_scored": 0
         }
       },
-      "combo_scored": 39,
+      "combo_scored": 40,
       "combo_twos": 8,
       "combo_structural_twos": 7,
       "pure_fact_scored": 1,
       "pure_fact_twos": 0,
       "pure_fact_structural_twos": 0,
-      "quality_total_2_rate": 0.20512820512820512,
-      "quality_structural_2_rate": 0.1794871794871795,
+      "quality_total_2_rate": 0.2,
+      "quality_structural_2_rate": 0.175,
       "neutral_only_total_2_rate": 0.0,
       "neutral_only_structural_2_rate": 0.0,
-      "quality_scored": 39,
+      "quality_scored": 40,
       "quality_twos": 8,
       "quality_structural_twos": 7,
       "neutral_only_scored": 1,
@@ -1165,9 +1173,9 @@
           "structural_twos": 10
         },
         "combo": {
-          "total_2_rate": 0.20512820512820512,
-          "structural_2_rate": 0.1794871794871795,
-          "scored": 39,
+          "total_2_rate": 0.2,
+          "structural_2_rate": 0.175,
+          "scored": 40,
           "twos": 8,
           "structural_twos": 7
         }
@@ -1198,7 +1206,7 @@
           },
           "combo": {
             "structural_2_rate": 0.0,
-            "scored": 8
+            "scored": 9
           }
         },
         "low": {
@@ -2068,7 +2076,7 @@
     "neutral_union_superset_of_a1_hits": false,
     "q1_recall_superset_ok": false,
     "pure_fact_structural_2_rate": 0.0,
-    "combo_structural_2_rate": 0.1794871794871795,
+    "combo_structural_2_rate": 0.175,
     "note": "A1 oracle metrics are read-only reference only (ADR-0007 D5). Not used in success criteria."
   },
   "a1_oracle": {
@@ -2773,7 +2781,7 @@
     "neutral_union_superset_of_a1_hits": false,
     "q1_recall_superset_ok": false,
     "pure_fact_structural_2_rate": 0.0,
-    "combo_structural_2_rate": 0.1794871794871795,
+    "combo_structural_2_rate": 0.175,
     "note": "A1 oracle metrics are read-only reference only (ADR-0007 D5). Not used in success criteria.",
     "q1_prime": {
       "status": "available",
@@ -3817,7 +3825,7 @@
     "neutral_union_superset_of_a1_hits": false,
     "q1_recall_superset_ok": false,
     "pure_fact_structural_2_rate": 0.0,
-    "combo_structural_2_rate": 0.1794871794871795,
+    "combo_structural_2_rate": 0.175,
     "note": "A1 oracle metrics are read-only reference only (ADR-0007 D5). Not used in success criteria.",
     "q1_prime": {
       "status": "available",

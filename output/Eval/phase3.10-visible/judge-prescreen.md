@@ -30,4 +30,4 @@
 
 - **zero human-2 killed**: PASS (0 killed)
 - **human=2 retention on pass side**: 100.0% (19/19)
-- **simulated workload reduction**: 41.8%
+- **simulated workload reduction**: 42.3%

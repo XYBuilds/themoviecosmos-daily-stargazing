@@ -15,13 +15,13 @@
 | Metric | Value |
 | --- | --- |
 | n_scored | 156 |
-| n_human_labeled | 122 |
+| n_human_labeled | 123 |
 | n_human_two | 19 |
 | n_human_two_on_pass_side | 19 |
 | n_human_two_killed | 0 |
 | zero_human_two_killed | **YES** |
 | pass_side_human_two_retention | 100.0% |
-| workload_reduction_rate | 41.8% |
+| workload_reduction_rate | 42.3% |
 
 ## Verdict: SAFE TO FREEZE
 
@@ -41,8 +41,8 @@
 | Metric | Value |
 | --- | --- |
 | n_scored | 91 |
-| n_human_labeled | 57 |
+| n_human_labeled | 58 |
 | n_human_two | 10 |
 | n_human_two_killed | 0 |
 | zero_human_two_killed | **YES** |
-| workload_reduction_rate | 63.2% |
+| workload_reduction_rate | 63.8% |
