@@ -105,24 +105,24 @@ flowchart TD
 
 ## SSOT
 
-| 文档 | 用途 |
-| --- | --- |
-| [docs/adr/0007-*.md](../../docs/adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) | 本 Phase 全部决策（D1 双轴 / D2 不动历史 / D3 分两步 / D4 预筛 / D5 砍 Q1'）；`proposed`，3.10 GATE go 后 D1–D5 升 `accepted` |
-| [docs/adr/0006-*.md](../../docs/adr/0006-a1-as-held-out-oracle-per-persona-neutral-and-three-bucket-eval.md) | salience≠valence 架构 / 中性通道 / 三桶（保留）；其 Q1' 删除闸被 ADR-0007 砍 |
-| [docs/eval-the-bet.md](../../docs/eval-the-bet.md) §4 | 共振 rubric（本 Phase 改双轴；judge 与人工共用） |
-| [output/Eval/phase3.9/llm-judge-scores.json](../../output/Eval/phase3.9/llm-judge-scores.json) | 14 例分歧 + 混淆矩阵（D1 证据、阈值参考） |
-| [output/Eval/phase3.9/GATE_RESULT.md](../../output/Eval/phase3.9/GATE_RESULT.md) | 3.9 结案（legacy 基线） |
+| 文档                                                                                                         | 用途                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| [docs/adr/0007-*.md](../../docs/adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md)            | 本 Phase 全部决策（D1 双轴 / D2 不动历史 / D3 分两步 / D4 预筛 / D5 砍 Q1'）；`proposed`，3.10 GATE go 后 D1–D5 升 `accepted` |
+| [docs/adr/0006-*.md](../../docs/adr/0006-a1-as-held-out-oracle-per-persona-neutral-and-three-bucket-eval.md) | salience≠valence 架构 / 中性通道 / 三桶（保留）；其 Q1' 删除闸被 ADR-0007 砍                                                  |
+| [docs/eval-the-bet.md](../../docs/eval-the-bet.md) §4                                                        | 共振 rubric（本 Phase 改双轴；judge 与人工共用）                                                                              |
+| [output/Eval/phase3.9/llm-judge-scores.json](../../output/Eval/phase3.9/llm-judge-scores.json)               | 14 例分歧 + 混淆矩阵（D1 证据、阈值参考）                                                                                     |
+| [output/Eval/phase3.9/GATE_RESULT.md](../../output/Eval/phase3.9/GATE_RESULT.md)                             | 3.9 结案（legacy 基线）                                                                                                       |
 
 ## 判据与闸门（本 Phase 定稿 · 与 ADR-0007 D1/D4/D5 一致）
 
-| 代号 | 定稿 |
-| --- | --- |
-| **双轴定义（D1）** | 表层=具体可命名过0分守门；逻辑=POV/尺度不变因果引擎+反测句；抽象权力角色归逻辑轴；2×2 矩阵不变只换措辞 |
-| **judge 预筛（D4）** | 全量打分不删；`0`降级/`≥1`人工/`2`高亮；阈值 `judge≥1` 在 obs 验证「零 human-2 被杀」才冻结 |
-| **拒绝集抽审（D4）** | 每 run 盲评 `judge=0` 堆随机 k%；捞到 human=2 ⇒ 门槛不安全，放宽 |
-| **成功 · 共振侧（D5）** | 新双轴定义下 combo 2 分率 **>** pure_fact，控相似度后仍成立，obs/holdout 不裂口 |
-| **成功 · 工作流侧（D5）** | 减负 ~50%+ 且零 human-2 被杀（抽审证实）+ judge 校准采信 |
-| **A1（D5）** | 仅只读质量参照，不进任何闸；Q1' 删除闸**已删** |
+| 代号                      | 定稿                                                                                                   |
+| ------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **双轴定义（D1）**        | 表层=具体可命名过0分守门；逻辑=POV/尺度不变因果引擎+反测句；抽象权力角色归逻辑轴；2×2 矩阵不变只换措辞 |
+| **judge 预筛（D4）**      | 全量打分不删；`0`降级/`≥1`人工/`2`高亮；阈值 `judge≥1` 在 obs 验证「零 human-2 被杀」才冻结            |
+| **拒绝集抽审（D4）**      | 每 run 盲评 `judge=0` 堆随机 k%；捞到 human=2 ⇒ 门槛不安全，放宽                                       |
+| **成功 · 共振侧（D5）**   | 新双轴定义下 combo 2 分率 **>** pure_fact，控相似度后仍成立，obs/holdout 不裂口                        |
+| **成功 · 工作流侧（D5）** | 减负 ~50%+ 且零 human-2 被杀（抽审证实）+ judge 校准采信                                               |
+| **A1（D5）**              | 仅只读质量参照，不进任何闸；Q1' 删除闸**已删**                                                         |
 
 ---
 
@@ -302,8 +302,8 @@ flowchart TD
 
 ## 交给下一 Phase
 
-| 条件 | 下一动作 |
-| --- | --- |
-| **GATE go** | 新定义复检基线成立 + 预筛安全可用 ⇒ 进 **Phase 3.11**（POV 派生式追加，以本 Phase 为 POV-off 对照臂）；ADR-0007 D1–D5 升 accepted |
-| **GATE no-go · 共振侧** | combo 未超 pure_fact（新尺子下仍不成立）⇒ 回看生成侧或定义反测句是否过严 |
-| **GATE no-go · 工作流侧** | 抽审捞到 human=2 / 校准不达标 ⇒ 放宽阈值或回 3.10.1 修 rubric，预筛暂不上线 |
+| 条件                      | 下一动作                                                                                                                          |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **GATE go**               | 新定义复检基线成立 + 预筛安全可用 ⇒ 进 **Phase 3.11**（POV 派生式追加，以本 Phase 为 POV-off 对照臂）；ADR-0007 D1–D5 升 accepted |
+| **GATE no-go · 共振侧**   | combo 未超 pure_fact（新尺子下仍不成立）⇒ 回看生成侧或定义反测句是否过严                                                          |
+| **GATE no-go · 工作流侧** | 抽审捞到 human=2 / 校准不达标 ⇒ 放宽阈值或回 3.10.1 修 rubric，预筛暂不上线                                                       |
