@@ -1,0 +1,282 @@
+{
+  "persona_id": "The-Creator",
+  "overlay": {
+    "persona_id": "The-Creator",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "digital fabricator",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "online content producer",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "weaponized fabrication for profit",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "commerical distribution of unverified content",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "spreading unverified claims",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "crafted an AI-forged illusion with manipulated media",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "composed allegations using synthetic audio and edited visuals",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "creating and distributing digital content",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "fabricator apprehended",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "content producer facing legal action",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an individual taken into custody",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "the forged narrative disrupted a career and public life",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the controversy paused professional engagements",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a situation causing interruptions to public activities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-0",
+      "result-1",
+      "why-0",
+      "who-0",
+      "result-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025. spread false claims for financial gain. YouTuber. YouTuber arrested The event unfolds across creating and distributing digital content and digital manipulation.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "how-0",
+          "result-1",
+          "why-0",
+          "who-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "creating and distributing digital content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+            "provenance": "surface"
+          },
+          {
+            "term": "a situation causing interruptions to public activities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "reputational damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of scandal",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "spreading unverified claims",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber",
+            "provenance": "surface"
+          },
+          {
+            "term": "online content producer",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "content creator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "an individual taken into custody",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detention",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of crime",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A digital fabricator, leveraging AI-generated content and manipulated media, composed allegations against a public figure for commercial gain. This deceptive practice involved crafting an AI-forged illusion with synthetic audio and edited visuals. The illegal activity led to law enforcement action, with authorities securing an arrest warrant and ultimately apprehending the individual. The reputational damage to the actor resulted in a professional impact, pausing all endorsements and public appearances since early 2025.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "how-0",
+          "why-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.95
+    },
+    {
+      "id": "p2",
+      "text": "An online content producer weaponized fabrication for profit, spreading unverified claims using manipulated chat screenshots. This act of misinformation, constituting a deceptive practice, prompted a swift legal procedure from a government body. The consequence of the crime was the producer facing legal action, an individual taken into custody. The entire situation caused interruptions to the public figure's activities, a direct consequence of the scandal and the fabricated evidence presented.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.88
+    }
+  ],
+  "warnings": []
+}

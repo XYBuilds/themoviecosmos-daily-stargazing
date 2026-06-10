@@ -1,0 +1,573 @@
+{
+  "persona_id": "The-Hero",
+  "overlay": {
+    "persona_id": "The-Hero",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Syria's president",
+          "alternatives": [
+            {
+              "term": "the leader who surveyed the devastation",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Syria's commander-in-chief",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a head of state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "an authority figure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "several children",
+          "alternatives": [
+            {
+              "term": "the vulnerable victims",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the young lives lost",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "victims",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the navy",
+          "alternatives": [
+            {
+              "term": "the rescuers who braved the floodwaters",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the defense force's maritime arm",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a military branch",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Turkey",
+          "alternatives": [
+            {
+              "term": "the upstream nation that agreed to reduce its releases",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Turkey",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an upstream state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "one of the heaviest rainy seasons in three decades",
+          "alternatives": [
+            {
+              "term": "an unprecedented weather onslaught",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a severe seasonal challenge",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a climatic event",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "dams pushed to their breaking point",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "reservoirs at maximum capacity",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "water storage infrastructure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "the defensive barriers were overwhelmed",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "protective infrastructure failed under pressure",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a critical system failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "the deluge ravaged communities",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "areas inundated by floodwaters",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a flooding event",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "An earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "a vital connection severed",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "infrastructure collapse",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a structural failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "The navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "rescue vessels launched into the crisis",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "evacuation operations commenced",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a rescue operation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-5",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "a diplomatic concession was secured",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an upstream nation made a commitment",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a policy decision",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "several children drowned",
+          "alternatives": [
+            {
+              "term": "young lives were tragically cut short",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "fatalities occurred among the young",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a loss of life",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+          "alternatives": [
+            {
+              "term": "livelihoods and places of learning were inundated",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "residential and agricultural areas suffered damage",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "property damage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "an earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "a critical link in the landscape was destroyed",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a bridge failure occurred",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "structural damage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "the navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "the rescuers answered the call",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "evacuation efforts were undertaken",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a rescue response",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-4",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "a concession was won through diplomacy",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an agreement was reached",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a policy outcome",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-5",
+          "original_term": "Syria's president visited the flood zones",
+          "alternatives": [
+            {
+              "term": "the leader took command of the situation on the ground",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a leadership visit to affected areas",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an official visit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "who-2",
+      "how-4",
+      "who-0",
+      "result-3",
+      "how-5",
+      "result-4",
+      "why-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "several children drowned. the navy. The navy deployed boats for evacuations. Syria's president The event unfolds across a loss of life and drowning incident.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "result-0",
+          "who-2",
+          "how-4",
+          "who-0",
+          "result-3"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "several children drowned",
+            "provenance": "surface"
+          },
+          {
+            "term": "a loss of life",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "drowning incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fatality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the navy",
+            "provenance": "surface"
+          },
+          {
+            "term": "a military branch",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "naval force",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "military branch",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescue team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The navy deployed boats for evacuations",
+            "provenance": "surface"
+          },
+          {
+            "term": "a rescue operation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evacuation operation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescue mission",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "military deployment",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Syria's president",
+            "provenance": "surface"
+          },
+          {
+            "term": "a head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "an authority figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "president",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "head of state",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a rescue response",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evacuation effort",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescue operation",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "After an unprecedented weather onslaught, reservoirs were pushed to their breaking point. This led to a critical system failure as the defensive barriers along the river were overwhelmed. The deluge that followed ravaged communities in the Syrian regions, causing devastating property damage and a tragic loss of life. In response, a rescue operation was launched, and through diplomacy, a policy outcome was secured to help mitigate the crisis.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1",
+          "result-3",
+          "result-4"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The nation faced a severe seasonal challenge when its water storage infrastructure reached capacity. The ensuing flooding event inundated a key geographical feature, causing widespread agricultural loss and an infrastructure problem. A vital connection was severed by a structural failure. The leader surveyed the devastation as the rescuers answered the call for evacuations, while the upstream nation made a commitment to assist.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "how-5",
+          "result-0",
+          "result-1",
+          "result-2",
+          "result-3"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.8
+    },
+    {
+      "id": "p3",
+      "text": "A climatic event of historic proportions tested a region's resolve. As water storage issue reached a crisis, areas were inundated by floodwaters, causing an educational disruption and fatalities among the young. The military branch deployed for a rescue mission, and a head of state's official visit marked the beginning of a coordinated flood response with international cooperation.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "how-5",
+          "result-0",
+          "result-1",
+          "result-5"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.75
+    }
+  ],
+  "warnings": []
+}

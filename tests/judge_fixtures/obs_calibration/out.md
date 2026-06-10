@@ -9,9 +9,10 @@
 ### Survival Family (2017) (01-grid-outage)
 - **tmdb_id**: 429918
 - **judge_score**: 2
-- **judge_resonance_type**: 强共振（表层 + 结构）
+- **judge_resonance_type**: 强共振（表层 + 逻辑）
 - **human_score**: 2
 - **human_resonance_type**: 
+- **causal_test**: scarcity under grid failure drives families into survival mode
 - **rationale**: strong
 
 ### Geostorm (2017) (01-grid-outage)
@@ -20,6 +21,7 @@
 - **judge_resonance_type**: 表层沾边
 - **human_score**: 1
 - **human_resonance_type**: 
+- **causal_test**: 
 - **rationale**: surface
 
 ### Layoff Drama (2019) (02-corporate-layoff)
@@ -28,15 +30,17 @@
 - **judge_resonance_type**: 
 - **human_score**: 0
 - **human_resonance_type**: 
+- **causal_test**: 
 - **rationale**: none
 
 ### Office Exodus (2018) (02-corporate-layoff) ⚠ disagreement
 - **tmdb_id**: 100002
 - **judge_score**: 1
-- **judge_resonance_type**: 深层共振（仅结构，无表层）
+- **judge_resonance_type**: 深层共振（仅逻辑，无表层）
 - **human_score**: 2
 - **human_resonance_type**: 
-- **rationale**: struct
+- **causal_test**: scarcity under grid failure drives families into survival mode
+- **rationale**: logic
 
 ### Primary Shock (2020) (03-election-upset)
 - **tmdb_id**: 100003
@@ -44,4 +48,5 @@
 - **judge_resonance_type**: 表层沾边
 - **human_score**: 1
 - **human_resonance_type**: 
+- **causal_test**: 
 - **rationale**: surface

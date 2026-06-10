@@ -1,0 +1,117 @@
+{
+  "eval_phase": "3.10.7",
+  "rubric": "dual-axis v2 (docs/eval-the-bet.md §4)",
+  "holdout_run_ids": [
+    "05-climate-disaster",
+    "06-tech-monopoly",
+    "07-migration-border",
+    "08-sports-underdog",
+    "09-cultural-backlash",
+    "10-whistleblower-leak"
+  ],
+  "prescreen_pool": 80,
+  "labeled_at": "2026-06-09T15:03:16.035665+00:00",
+  "count": 10,
+  "labels": [
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "257637",
+      "title": "Poem of the Sea (1958) [THE-EXPLORER, THE-CREATOR, THE-MAGICIAN, THE-HERO, THE-CAREGIVER, THE-RULER, THE-OUTLAW, THE-SAGE, THE-JESTER, THE-EVERYMAN] [优质·多agent]",
+      "score": 2,
+      "resonance_type": "强共振（表层 + 逻辑）",
+      "causal_test": "Large-scale dam infrastructure under constraint of environmental pressures or development goals drives forced displacement and community conflict.",
+      "remark": "v2 fresh · News and film share the concrete surface element of a dam/water project load-bearing in both narratives. Underlying logic is identical: dam-related actions under constraints (natural disasters in news, development needs in film) cause displacement and crisis, verified by a bidirectional causal sentence. · 反测: Large-scale dam infrastructure under constraint of environmental pressures or development goals drives forced displacement and community conflict. · holdout prescreen",
+      "labeled_at": "2026-06-09T14:49:08.323903+00:00"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "22624",
+      "title": "Raining Cats and Frogs (2003) [THE-HERO, THE-EXPLORER, THE-INNOCENT, THE-CREATOR, THE-OUTLAW]",
+      "score": 1,
+      "resonance_type": "深层共振（仅逻辑，无表层）",
+      "causal_test": "A catastrophic flood under extreme environmental pressures forces human and animal groups into survival mode and collective action.",
+      "remark": "v2 fresh · The surface element 'flood' is not load-bearing as the film is generic and could pair with any flood news equally well (fails 0-guard). However, both stories instantiate the same underlying logic where flooding disasters drive survival and adaptive responses, allowing for POV/scale shifts. · 反测: A catastrophic flood under extreme environmental pressures forces human and animal groups into survival mode and collective action. · holdout prescreen",
+      "labeled_at": "2026-06-09T14:50:41.648249+00:00"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "6309",
+      "title": "Flood (2007) [THE-SAGE, THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER, THE-LOVER] [优质·多agent]",
+      "score": 1,
+      "resonance_type": "深层共振（仅逻辑，无表层）",
+      "causal_test": "Uncontrolled water surges, under the constraint of human-made flood defenses, drive catastrophic inundation and forced evacuations.",
+      "remark": "v2 fresh · Both narratives share the underlying logic of extreme water events overwhelming infrastructure, leading to disaster and response, but the surface element of 'flooding' fails the 0-guard as it is generic and not uniquely load-bearing for this pair. · 反测: Uncontrolled water surges, under the constraint of human-made flood defenses, drive catastrophic inundation and forced evacuations. · holdout prescreen",
+      "labeled_at": "2026-06-09T14:53:07.233129+00:00"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "163293",
+      "title": "Deluge (1933) [THE-LOVER, THE-EVERYMAN, THE-OUTLAW, THE-SAGE]",
+      "score": 1,
+      "resonance_type": "深层共振（仅逻辑，无表层）",
+      "causal_test": "Uncontrolled water influx, under the constraint of inadequate protective barriers, drives catastrophic flooding and necessitates emergency evacuations.",
+      "remark": "v2 fresh · Axis 1 (surface element) fails: 'flood' is generic and not uniquely load-bearing (0-guard: any flood-related news could pair with the film). Axis 2 (underlying logic) holds: both stories share a causal engine where water overwhelms defenses, causing destruction and evacuations, invariant under scale or POV. · 反测: Uncontrolled water influx, under the constraint of inadequate protective barriers, drives catastrophic flooding and necessitates emergency evacuations. · holdout prescreen",
+      "labeled_at": "2026-06-09T14:54:40.754032+00:00"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "249011",
+      "title": "Water Wrackets (1978) [THE-JESTER, THE-MAGICIAN, THE-HERO]",
+      "score": 0,
+      "resonance_type": null,
+      "causal_test": "",
+      "remark": "v2 fresh · No concrete load-bearing surface element shared: news is a specific real-world flood event, while film is an abstract artistic depiction of a fictional water-themed army, failing the 0-guard as unrelated water news could pair similarly. No common underlying logic: film lacks a clear causal-stakes engine to match the news's disaster-response narrative. · holdout prescreen",
+      "labeled_at": "2026-06-09T14:55:47.606394+00:00"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "797840",
+      "title": "Dry (2022) [THE-INNOCENT, THE-EVERYMAN]",
+      "score": 0,
+      "resonance_type": null,
+      "causal_test": "",
+      "remark": "v2 fresh · News describes flooding from excess water in Syria, while film depicts drought from water scarcity in Rome. These are opposite hydrological events with no concrete shared surface element (e.g., flood vs. drought) and no shared causal-stakes engine (e.g., 'extreme water abundance under infrastructural constraints drives disaster' does not apply to drought). Thus, no resonance. · holdout prescreen",
+      "labeled_at": "2026-06-09T14:56:41.699117+00:00"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "43593",
+      "title": "Piranha 3D (2010) [THE-SAGE, THE-HERO] [优质·多agent]",
+      "score": 1,
+      "resonance_type": "深层共振（仅逻辑，无表层）",
+      "causal_test": "Natural phenomena, occurring in water bodies with significant human activity, drive catastrophic loss of life.",
+      "remark": "v2 fresh · The news and film share underlying logic of unforeseen natural events (floods and piranha release) causing disasters in human-populated aquatic settings, but lack a concrete, load-bearing surface element as per the 0-guard. · 反测: Natural phenomena, occurring in water bodies with significant human activity, drive catastrophic loss of life. · holdout prescreen",
+      "labeled_at": "2026-06-09T14:58:31.884795+00:00"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "210219",
+      "title": "Jet Stream (2013) [THE-MAGICIAN, THE-CAREGIVER]",
+      "score": 1,
+      "resonance_type": "深层共振（仅逻辑，无表层）",
+      "causal_test": "Unforeseen environmental threats under systemic constraints compel emergency intervention to mitigate destruction and loss of life.",
+      "remark": "v2 fresh · No concrete load-bearing surface element (e.g., place, occupation, specific event type) is shared; news focuses on river flooding in Syria, while film centers on atmospheric jet stream phenomena globally. However, both narratives instantiate the same underlying logic: environmental hazards drive urgent human responses under constraints to prevent catastrophe. · 反测: Unforeseen environmental threats under systemic constraints compel emergency intervention to mitigate destruction and loss of life. · holdout prescreen",
+      "labeled_at": "2026-06-09T14:59:16.207898+00:00"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "107100",
+      "title": "Seattle Superstorm (2012) [THE-EVERYMAN, THE-CAREGIVER]",
+      "score": 1,
+      "resonance_type": "深层共振（仅逻辑，无表层）",
+      "causal_test": "Excessive environmental input (heavy rainfall or debris impact) under the constraint of natural system capacities (river reservoirs or weather patterns) drives escalating disasters (floods or superstorms) that overwhelm emergency measures and threaten broader areas.",
+      "remark": "v2 fresh · No concrete surface element is shared—news involves Euphrates floods in Syria, film involves a Seattle superstorm, with no load-bearing common place, occupation, or specific event type that passes the 0-guard. However, both share the underlying causal-stakes engine where environmental triggers under system constraints lead to disasters requiring evacuation or global threat response. · 反测: Excessive environmental input (heavy rainfall or debris impact) under the constraint of natural system capacities (river reservoirs or weather patterns) drives escalating disasters (floods or superstorms) that overwhelm emergency measures and threaten broader areas. · holdout prescreen",
+      "labeled_at": "2026-06-09T15:01:38.388817+00:00"
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "tmdb_id": "38141",
+      "title": "World Gone Wild (1987) [THE-OUTLAW]",
+      "score": 1,
+      "resonance_type": "深层共振（仅逻辑，无表层）",
+      "causal_test": "Water, as a critical resource, under constraint of environmental volatility or hostile human forces, drives survival-oriented actions and conflict.",
+      "remark": "v2 fresh · No concrete surface element is shared load-bearing (flood vs. scarcity contexts fail 0-guard), but both stories instantiate the same causal-stakes engine where water under constraints drives survival dynamics. · 反测: Water, as a critical resource, under constraint of environmental volatility or hostile human forces, drives survival-oriented actions and conflict. · holdout prescreen",
+      "labeled_at": "2026-06-09T15:03:16.035656+00:00"
+    }
+  ]
+}

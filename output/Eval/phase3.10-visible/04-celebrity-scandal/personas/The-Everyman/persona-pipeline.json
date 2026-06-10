@@ -1,0 +1,298 @@
+{
+  "persona_id": "The-Everyman",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "opportunistic content creator",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "online personality",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "person accused of making false claims",
+              "valence": "negative",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "ordinary individual facing consequences",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kim Soo-hyun",
+          "alternatives": [
+            {
+              "term": "public figure whose career was disrupted",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "actor caught in a scandal",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "exploited the system for profit",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "sought financial gain through unverified allegations",
+              "valence": "negative",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "fabricated evidence using technology",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "employed digital manipulation to support accusations",
+              "valence": "negative",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "faced legal consequences for their actions",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "subject to law enforcement action",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "ordinary work and public life put on hold",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "disruption to livelihood and professional engagements",
+              "valence": "negative",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-1",
+      "who-0",
+      "how-0",
+      "why-0",
+      "result-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025. YouTuber. used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. spread false claims for financial gain. YouTuber arrested The event unfolds across disruption to livelihood and professional engagements and professional impact.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "result-1",
+          "who-0",
+          "how-0",
+          "why-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+            "provenance": "surface"
+          },
+          {
+            "term": "disruption to livelihood and professional engagements",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "reputational damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of scandal",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber",
+            "provenance": "surface"
+          },
+          {
+            "term": "person accused of making false claims",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "content creator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "employed digital manipulation to support accusations",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "sought financial gain through unverified allegations",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "subject to law enforcement action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detention",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of crime",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "A content creator in Seoul is facing legal consequences after police moved to restore order, following an investigation that revealed they employed digital manipulation to support accusations for personal financial gain. This has led to a disruption in the public figure's livelihood and professional engagements, highlighting how actions affecting a celebrity can ripple out to impact their ordinary work.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p2",
+      "text": "An ordinary individual now faces a law enforcement action in the South Korean capital after spreading misinformation. The case, involving fabricated evidence, underscores the practical consequences when someone exploits the system, resulting in an arrest and halting the actor's public appearances—a clear example of reputational damage from a scandal.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.8
+    },
+    {
+      "id": "p3",
+      "text": "Seoul police's arrest warrant issuance followed an illegal activity where a person accused of making false claims used AI-generated content. This law enforcement action led to the YouTuber's detention, while the involved public figure saw their endorsements and public life put on hold, demonstrating a consequence of scandal affecting a career.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.7
+    }
+  ],
+  "warnings": []
+}

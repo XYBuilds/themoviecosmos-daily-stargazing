@@ -1,0 +1,364 @@
+{
+  "persona_id": "The-Ruler",
+  "overlay": {
+    "persona_id": "The-Ruler",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Ken Paxton",
+          "alternatives": [
+            {
+              "term": "the victor who secured a mandate",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the endorsed candidate",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "candidate",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the contender who challenged party order",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "John Cornyn",
+          "alternatives": [
+            {
+              "term": "the long-serving incumbent",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "senator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the veteran whose authority was rejected",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the sitting president",
+          "alternatives": [
+            {
+              "term": "the authority who shaped the outcome",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the nation's leader",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "head of state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "aided by a late endorsement from the sitting president",
+          "alternatives": [
+            {
+              "term": "sealed by the commander-in-chief's decisive endorsement",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "following a presidential endorsement",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "endorsement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "benefiting from a top-down power play",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "despite substantially outraising and outspending his rival",
+          "alternatives": [
+            {
+              "term": "overcoming the incumbent's financial dominance",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "despite the opponent's greater fundraising",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "campaign finance",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "undermining the established financial order",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+          "alternatives": [
+            {
+              "term": "secured a decisive popular mandate",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "won a majority of votes in the runoff",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "election outcome",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "ended an era through a contentious challenge",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Ken Paxton won the Texas Senate Republican runoff",
+          "alternatives": [
+            {
+              "term": "order was re-established within the party",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a new nominee was chosen",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "primary election result",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a victory that fractured party unity",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+          "alternatives": [
+            {
+              "term": "a historic disruption to the party's continuity",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "an unprecedented electoral event",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "political change",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate",
+          "alternatives": [
+            {
+              "term": "the stage is set for a battle over national legislative control",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the next contest will be in November",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "general election",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a contest that threatens institutional stability",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "who-0",
+      "how-0",
+      "why-0",
+      "result-1",
+      "result-2"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Ken Paxton won the Texas Senate Republican runoff. Ken Paxton. Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term. aided by a late endorsement from the sitting president. John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970 The event unfolds across primary election result and candidate.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "result-0",
+          "who-0",
+          "how-0",
+          "why-0",
+          "result-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Ken Paxton won the Texas Senate Republican runoff",
+            "provenance": "surface"
+          },
+          {
+            "term": "primary election result",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton",
+            "provenance": "surface"
+          },
+          {
+            "term": "candidate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "election candidate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "politician",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+            "provenance": "surface"
+          },
+          {
+            "term": "election outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "aided by a late endorsement from the sitting president",
+            "provenance": "surface"
+          },
+          {
+            "term": "endorsement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+            "provenance": "surface"
+          },
+          {
+            "term": "political change",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The endorsed candidate secured a decisive popular mandate, ending the long-serving incumbent's bid for a fifth term. This outcome, sealed by the commander-in-chief's decisive endorsement, constitutes a historic disruption to the party's continuity, as the senator became the first from Texas to lose renomination since 1970. The victory, which overcame the opponent's greater fundraising, re-established order within the party.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "In a primary election result that fractured party unity, the contender who challenged party order won a majority of votes in the runoff. This followed a presidential endorsement from the nation's leader, benefiting from a top-down power play. The stage is now set for a battle over national legislative control in the general election.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "The victor who secured a mandate ended an era through a contentious challenge, achieving a primary election result that represents political change. Despite the incumbent's financial dominance in campaign finance, the authority who shaped the outcome provided a late endorsement, paving the way for a contest that threatens institutional stability in November.",
+      "source": {
+        "agent_id": "The-Ruler",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "how-0",
+          "result-1",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.72
+    }
+  ],
+  "warnings": []
+}

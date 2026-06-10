@@ -1,0 +1,432 @@
+{
+  "persona_id": "The-Jester",
+  "overlay": {
+    "persona_id": "The-Jester",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "whistleblower in Sikar",
+          "alternatives": [
+            {
+              "term": "the jester who rang the bell",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the informant",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "tipster",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "India's National Testing Agency (NTA)",
+          "alternatives": [
+            {
+              "term": "the solemn gatekeepers of the exam circus",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the testing authority",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "26–27 paper setters and translators",
+          "alternatives": [
+            {
+              "term": "the troupe of 26–27 paper setters and translators",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the paper-setting staff",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Central Bureau of Investigation (CBI)",
+          "alternatives": [
+            {
+              "term": "the investigators now playing the heavies",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the national investigative agency",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "the unlucky thirteen",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "arrested individuals",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-5",
+          "original_term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+          "alternatives": [
+            {
+              "term": "the former hero now caught in the web",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the ironic twist",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the coaching figure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+          "alternatives": [
+            {
+              "term": "the leaked PDFs that made the whole thing a joke",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the evidence that exposed the farce",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the tip-off",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+          "alternatives": [
+            {
+              "term": "the email arrived like a whoopee cushion at a board meeting",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the tip-off email",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Thirteen people arrested, including a coaching figure",
+          "alternatives": [
+            {
+              "term": "the punchline: arrests, including the coach",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the arrests",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "the encore performance",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the rescheduled exam",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "NEET-UG 2026 cancelled",
+          "alternatives": [
+            {
+              "term": "the grand finale: the whole exam is a bust",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the absurd cancellation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "exam cancellation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "the sequel nobody asked for",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the follow-up exam",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "who-5",
+      "how-3",
+      "why-0",
+      "how-1",
+      "who-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "NEET-UG 2026 cancelled. coaching figure who had publicly championed student justice during the 2024 leak scandal. Thirteen people arrested, including a coaching figure. whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology. NTA received email from whistleblower in Sikar with PDFs matching chemistry paper The event unfolds across exam cancellation and cancellation.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "result-0",
+          "who-5",
+          "how-3",
+          "why-0",
+          "how-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "NEET-UG 2026 cancelled",
+            "provenance": "surface"
+          },
+          {
+            "term": "exam cancellation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "cancellation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "result",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+            "provenance": "surface"
+          },
+          {
+            "term": "the coaching figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coach",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "educator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Thirteen people arrested, including a coaching figure",
+            "provenance": "surface"
+          },
+          {
+            "term": "the arrests",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+            "provenance": "surface"
+          },
+          {
+            "term": "the tip-off",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tip",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "information disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "report",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+            "provenance": "surface"
+          },
+          {
+            "term": "the tip-off email",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "communication",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "receipt of information",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "step",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The solemn gatekeepers of the exam circus found their board meeting interrupted by an email that arrived like a whoopee cushion. This tip-off, from an informant in Sikar, contained leaked PDFs that matched the chemistry paper, making the whole NEET-UG 2026 examination a joke. The result was an absurd cancellation, with the testing authority scrambling as the national investigative agency now played the heavies.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The follow-up to the farce is the punchline: arrests, including a former hero now caught in the web. The coaching figure, once a public champion of student justice, is now among the unlucky thirteen. This consequence stems from the initial disclosure, a tip that exposed the farce to the law enforcement agency, leading to this consequence.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-0",
+          "how-3",
+          "result-1"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [],
+      "fit": 0.8
+    },
+    {
+      "id": "p3",
+      "text": "After the grand finale that saw the whole exam become a bust, the troupe of paper-setting staff and the investigators must stage an encore performance. This planned re-examination, a rescheduled exam for June 21, is the sequel nobody asked for, a direct outcome of the initial referral and the ensuing law enforcement action.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-2"
+        ],
+        "channel_role": "toned"
+      },
+      "warnings": [
+        "how_fragments_expanded_to_contiguous_span"
+      ],
+      "fit": 0.7
+    }
+  ],
+  "warnings": []
+}
