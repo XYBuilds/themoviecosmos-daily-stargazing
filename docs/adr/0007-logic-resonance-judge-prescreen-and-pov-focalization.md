@@ -1,6 +1,6 @@
 # 共振重定义为「表层 + 逻辑」、LLM-judge 转评测预筛、POV 聚焦能力分两步引入
 
-**Status**: accepted (D1–D5, Phase 3.10 GATE go 2026-06-10); D6–D8 pending Phase 3.11
+**Status**: accepted (D1–D5, Phase 3.10 GATE go 2026-06-10); D6 superseded、D7 通道结构 revised（原则继承）、D8 继承 — 均由 [ADR-0008](0008-salience-driven-element-composition-and-multi-vantage-pov.md)（2026-06-11，Phase 3.11 重设计）接管
 
 > **背景**：Phase 3.9 于 2026-06-09 `GATE no-go` 结案（见 [`output/Eval/phase3.9/GATE_RESULT.md`](../../output/Eval/phase3.9/GATE_RESULT.md)）。结案后总编对本轮做了三点观察：① LLM-judge 在观察集校准达标（exact 0.639 / pearson 0.743 / within-one 1.0，**采信**），效果可用于减轻人工筛选；② 人工与 judge 的分歧并非噪声，而是系统性的定义错位；③ 人类感受到的共振常含**视角变换**（如从洪水中将溺亡的孩子视角讲述），当前管线无此能力。
 >
