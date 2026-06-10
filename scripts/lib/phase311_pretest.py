@@ -302,12 +302,21 @@ def parse_adr8_pseudos_response(
                 raise ValueError(f"pseudo {seg.id}: focal required when channel=focalized")
             if not focal.startswith("who-"):
                 raise ValueError(f"pseudo {seg.id}: focal must be who-* id, got {focal!r}")
-            if focal != center:
+            if focal not in known_elements:
+                raise ValueError(f"pseudo {seg.id}: unknown focal element {focal!r}")
+            if center.startswith("who-") and focal != center:
                 raise ValueError(
-                    f"pseudo {seg.id}: focal {focal!r} must equal center {center!r}"
+                    f"pseudo {seg.id}: when center is who-*, focal {focal!r} must equal center {center!r}"
                 )
         elif focal:
-            raise ValueError(f"pseudo {seg.id}: focal set but channel is toned")
+            seg = type(seg)(
+                seg.id,
+                seg.text,
+                seg.source,
+                [*seg.warnings, f"ignored focal {focal!r} on toned channel"],
+                fit=seg.fit,
+            )
+            focal = None
 
         source = dict(seg.source)
         source.update(
