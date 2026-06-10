@@ -22,7 +22,7 @@
 
 | Metric | Value |
 | --- | --- |
-| workload_reduction_rate | 39.8% |
+| workload_reduction_rate | 42.3% |
 | n_human_two | 19 |
 | n_human_two_killed | 0 |
 | zero_human_two_killed | **YES** |
