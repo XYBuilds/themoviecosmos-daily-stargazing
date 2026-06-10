@@ -34,12 +34,12 @@ Return **only** valid JSON (no markdown fences, no preamble):
 
 ## Rules (P-Source + P-Select)
 
-1. **Persona-relative spectrum per element:** Supply fact-entailed alternatives across valence buckets as appropriate for this persona (`positive`, `neutral`, `negative`). **All three buckets are not required** when a bucket has no defensible term — valence is **persona-relative** (this card's 价值轴 / Value Axis), **not absolute**. Additional terms per bucket are allowed. Here `neutral` in a lens bucket = **persona-midpoint** (middle of this persona's lens spectrum), **not** the objective-floor neutral used by the neutral channel (built downstream from `surface` + `hypernym` only).
+1. **Optional persona-relative coloring (ADR-0008 D1 — supersedes the ≤3.10 spectrum expectation):** Polar tags are an **optional element-level annotation, not a coverage target**. Tag alternatives `positive` / `negative` **only where this persona's value axis (attention inventory, card 价值轴) has a genuine stance** on the element. For **fuzzy-zone elements** (no genuine stance — the common case for many decon elements), do **not** force a polarity: supply plain fact-entailed terms as `valence: "neutral"` with `provenance: "surface"` / `"hypernym"` (objective-floor wording). **There is no per-element expectation to cover the positive–neutral–negative spectrum.** Valence, when tagged, is **persona-relative**, **not absolute**. Additional terms per bucket are allowed. `neutral` with `provenance: "lens"` = **persona-midpoint** (middle of this persona's lens spectrum, itself optional) — **not** the objective-floor neutral used by the neutral channel (built downstream from `surface` + `hypernym` only).
 2. **Fact-entailed only:** Every `term` must be inferable from the neutral decon — especially `who.relations`, `why`, `how`, and stated roles. You may push value (e.g. rumor spreader when the article confirms false accusations spread) but **must not add events, actors, charges, or outcomes** not supported by the decon (no foreign agent, convicted criminal, secret plot, etc.).
 3. **Select, not inject:** You are building a **pool** for downstream selection + tone (P-Tone). Do not write pseudo-overviews or narrative paragraphs here.
 4. **Element ids:** `element_id` must match an id present in the injected JSON (`who-*`, `where-*`, `why-*`, `how-*`, `result-*`). Do not invent ids.
 5. **original_term:** Copy the neutral surface form from the referenced element (`text` or `who`/`where` text field) — do not paraphrase into a new fact.
-6. **Coverage:** Prefer covering all `who`, `why`, `how`, and `result` elements; include `where` when persona lens benefits. Skip only when no fact-entailed spectrum exists (rare); do not pad with fiction.
+6. **Coverage:** Prefer covering all `who`, `why`, `how`, and `result` elements **with at least objective-floor terms** (`surface` / `hypernym`); include `where` when persona lens benefits. Polar lens alternatives only where the axis has a genuine stance (rule 1) — never pad fuzzy elements with forced polarity or fiction.
 7. **No decon fork:** Do not echo the full deconstruction object, anchor block, or news body in your response — only `persona_id` + `salience[]` + `elements[]` alt-pool rows.
 
 ## Salience (neutral-channel fragment SELECTION · ADR-0006 D6)
@@ -89,6 +89,8 @@ The `valence` buckets are **persona-relative**, **not absolute**. `positive` / `
 - A YouTuber accused of spreading false claims → **negative** for **The-Ruler** (`rumor spreader`, disorder) but **positive** for **The-Outlaw** (`truth-teller against power`). Both are fact-entailed from the same decon; only the axis flipped the sign.
 
 Weight which bucket gets the strongest terms toward this persona's value tendency (ADR-0004 / `docs/SSOT/personas-12.md`). Weak-fit personas still produce a pool (P-Force); downstream `fit` scores alignment.
+
+**Polarity is coloring, not eligibility (ADR-0008 D1/D2):** the card's value axis doubles as the persona's **attention inventory** — both poles name element archetypes the persona attends to, and **both are equally legitimate material** for downstream composition (the archetypal story frames a positive-pole and a negative-pole element in the same pseudo). Tagging an element negative does not demote it; leaving an element untagged (fuzzy zone) does not exclude it.
 
 ## Two neutrals (do not confuse)
 

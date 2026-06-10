@@ -97,6 +97,34 @@ _Avoid_: 在留出集反复调参后宣称提升
 每条 toned pseudo = **hypernym 锚（留在题面）+ lens 倾斜**；发自己的 anchored 检索 query，可与中性通道殊途同归到同一部电影。
 _Avoid_: 纯 re-rank、无锚漂移
 
+**注意力清单 (Attention inventory · ADR-0008 D1)**:
+persona card **价值轴**的重新定位：Who/Where/When 极列出本 persona 叙事在意的元素**原型**，是 P-Select 中心化与 POV 视角派生的 SSOT。valence 降级为元素层**可选**着色标注——lens 真有立场才标，模糊元素白描（surface/hypernym），**取消逐元素正中负光谱覆盖期待**。两极元素作为构图材料**平等合法**。
+_Avoid_: 逐元素光谱覆盖（旧 ≤3.10 口径）、把极性当资格门槛
+
+**轴对齐 (Axis-alignment · ADR-0008 D2)**:
+一条 pseudo 属于某 persona 的判据：其中元素被**逐个**透过本 persona 价值轴框定，而非整体朝某方向倾斜。**pseudo 层无极性概念**；两极同场张力是欢迎的——原型故事正是正极作用于负极（如 Ruler 的 authority(+) 在 ungoverned zone(−) 建立新秩序）。
+_Avoid_: 给 pseudo 归类正/负向、要求整条单向倾斜
+
+**元素中心构图 / 中心元素 (Element-centered composition · ADR-0008 D3)**:
+toned/focalized pseudo 的变化组织原则：每条**显式声明 1 个中心元素 id**（+2–4 支撑元素），中心按本 persona 逐新闻 `salience` **自上而下贪心**取、各条互异；**LLM 只声明，排序/预算由代码**按中心 salience 名次确定性计算。salience 职责由「中性通道选材」扩展为「全通道构图驱动」，但**不影响中性 n1 wording**（模板拼装零改动）。
+_Avoid_: LLM 自评分挑选、重要度×元素数乘法记分（塞词激励）、中心声明名不副实
+
+**POV 聚焦 (Focalization · ADR-0008 D4)**:
+persona lens 从 valence 到 **vantage（从谁的眼睛看）** 的更深表达：透过 decon 既有 `who-*` 角色的视点重述事件。**多视角派生**：合法视角集 = persona card Who 正极原型（**共情座位**；负极是被审视的对象，不作座位），逐新闻落点由 salience 派生——中心元素是 who-* 且实例化原型 ⇒ 该条写成 focalized，**不引入自由参数**。铁律：只换"从谁的眼睛看"，**绝不新增内心戏/事件/因果/结果**；hypernym 锚保留；硬失败即重生成。规则权威源 `prompts/_shared/persona_screenwriter_contract.md` §Element-centered composition & POV focalization。
+_Avoid_: 自由选视角、单 canonical 视角表（v1 已作废）、第一人称硬性要求、语气改写（那是 P-Tone）
+
+**双地板 (Dual floor · ADR-0008 D5)**:
+匹配下限的两道锁：① 中性 n1 的 wording/模板机制**零改动**（3.10 已验证资产）；② 每 persona **≥1 条非聚焦第三人称 toned** pseudo。focalized 与元素中心 pseudo **纯增不减**——缺任一地板即硬失败。
+_Avoid_: 顶替式 POV（已否决）、砍第三人称通道
+
+**候选漏斗 (Candidate funnel · ADR-0007 D8 · ADR-0008 继承)**:
+吸收追加式候选膨胀的四层分层：**① 去重**（按 `tmdb_id` 合并多通道同命中）→ **② 汇聚排序**（多通道/多 persona 同时命中排前，扩展撞车票）→ **③ judge 预筛**（滤 `judge=0`）→ **④ 硬预算 top-N** 给人工。上限以下 `judge≥1` 进拒绝集抽审池。**铁律：控量用排序+预算，保安全用门槛+抽审，绝不靠调高 judge 门槛控膨胀**。
+_Avoid_: 调高 judge 门槛控量、控量与保安全混用一套旋钮
+
+**A/B 池差 (Pool diff · ADR-0008 D6)**:
+新设计-on（3.11）召回 ∖ 3.10 基线同新闻召回 的差集，**按 provenance 通道类型分解**（neutral / toned / focalized）。其新定义 2 分率 + `POV变换` 子标签分布 = **调优指南针**（哪 persona / 哪类中心 / 哪类视角有用、往哪调），**非判决闸**。**打包归因**：与基线的差异 = 整包新设计（总编显式接受），通道分解只恢复粗归因，**不得**事后宣称单变量净效应。
+_Avoid_: 当判决闸、宣称 POV 单变量净效应、与混入其他变量的对照比较（须同新闻同 def 同 judge）
+
 **neutral hit rate**:
 每部电影 `neutral_hit_rate = (命中该片的中性 pseudo 数) / (运行的 persona 数)`。分母固定 = persona 数。诊断指标（**非闸门**）；须在控制 `max_similarity` 下解读。见 ADR-0005。
 _Avoid_: 共振分、相似度代理（未控变量时）

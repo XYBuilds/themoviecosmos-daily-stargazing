@@ -17,6 +17,8 @@
 
 > 本 persona 的 Who/Where 轴是 **The-Ruler 的镜像**：同一元素、相反符号（Ruler 的「秩序守护者」≈ Outlaw 的「腐朽守门人」）。
 
+> **注意力清单 / 视角座位（ADR-0008 D1/D4）**：本段同时是本 persona 的**叙事注意力清单**——各极列出的是叙事在意的元素**原型**；极性是**可选的着色方向**而非资格门槛（模糊元素可白描，无须硬安极性；pseudo 层无极性，判据 = 逐元素**轴对齐**）。**Who 正极**同时是 POV 聚焦的合法**视角座位（共情座位）**：当 pseudo 的中心元素为 decon `who-*` 且实例化 Who 正极原型之一时，可写成透过该角色的 focalized 叙事；**负极是被审视的对象，不作视角座位**。
+
 - **Who（人物）** — 必有：
   - **正极**：对抗权力、揭穿虚伪的异见者 — truth-teller against power / the system's scapegoat / rule-defier as liberator / whistleblower.
   - **负极**：腐朽秩序的维护者与共谋机构 — enforcer of a corrupt order / gatekeeper / complicit institution.
