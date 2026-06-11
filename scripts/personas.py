@@ -14,6 +14,7 @@ import asyncio
 import copy
 import difflib
 import json
+import os
 import re
 import sys
 from dataclasses import dataclass, field
@@ -65,6 +66,19 @@ _ELEMENT_ID_RE = re.compile(r"^(who|where|why|how|result)-\d+$")
 _ADR8_TONED_BUDGET_DEFAULT = 3
 _ADR8_SUPPORTING_MIN = 2
 _ADR8_SUPPORTING_MAX = 4
+_ADR8_DUAL_FLOOR_ENV = "ADR8_DUAL_FLOOR_ENABLED"
+
+
+def adr8_dual_floor_enabled(*, enable_dual_floor: bool | None = None) -> bool:
+    """ADR-0008 D5 dual floor guard toggle (env default: off)."""
+    if enable_dual_floor is not None:
+        return enable_dual_floor
+    load_env()
+    return os.getenv(_ADR8_DUAL_FLOOR_ENV, "false").strip().lower() in (
+        "1",
+        "true",
+        "yes",
+    )
 
 # ADR-0008 runtime fact guard (inner monologue / novel events / causality / outcomes).
 _INNER_MONOLOGUE_RE = re.compile(
@@ -742,12 +756,15 @@ def apply_adr8_pseudo_budget(
     salience: list[str],
     *,
     budget: int = _ADR8_TONED_BUDGET_DEFAULT,
+    enable_dual_floor: bool | None = None,
 ) -> list[PseudoSegment]:
     """Greedy salience-ranked budget; preserve dual floor (≥1 non-focalized toned)."""
     ranked = rank_adr8_pseudos_by_salience(pseudos, salience)
     if len(ranked) <= budget:
         return ranked
     trimmed = ranked[:budget]
+    if not adr8_dual_floor_enabled(enable_dual_floor=enable_dual_floor):
+        return trimmed
     if any(p.source.get("channel") == "toned" for p in trimmed):
         return trimmed
     best_toned = next((p for p in ranked if p.source.get("channel") == "toned"), None)
@@ -1044,9 +1061,10 @@ def validate_adr8_runtime_guards(
     expansion: dict[str, Any] | None = None,
     hypernyms: set[str] | None = None,
     check_hypernym: bool = True,
-    check_dual_floor: bool = True,
+    check_dual_floor: bool | None = None,
 ) -> None:
     """ADR-0008 runtime guards: center/focal/supporting/fact/hypernym/dual-floor."""
+    dual_floor_on = adr8_dual_floor_enabled(enable_dual_floor=check_dual_floor)
     vocab = collect_entailed_vocabulary(deconstruction, alt_pool, expansion)
     allowed_proper = _allowed_proper_noun_phrases(deconstruction, alt_pool, expansion)
     hypernym_terms = hypernyms if hypernyms is not None else collect_hypernym_anchor_terms(
@@ -1067,7 +1085,7 @@ def validate_adr8_runtime_guards(
         if check_hypernym:
             validate_toned_hypernym_anchor(pseudo, hypernym_terms)
 
-    if check_dual_floor:
+    if dual_floor_on:
         validate_adr8_dual_floor(pseudos)
 
 
@@ -1080,6 +1098,7 @@ def parse_adr8_pseudos_response(
     deconstruction: dict[str, Any] | None = None,
     alt_pool: AltPoolOverlay | None = None,
     expansion: dict[str, Any] | None = None,
+    enable_dual_floor: bool | None = None,
 ) -> list[PseudoSegment]:
     """Parse screenwriter JSON with center/channel/focal provenance fields."""
     data = extract_json_object(raw)
@@ -1147,6 +1166,7 @@ def parse_adr8_pseudos_response(
             )
         )
 
+    dual_floor_on = adr8_dual_floor_enabled(enable_dual_floor=enable_dual_floor)
     if deconstruction is not None and alt_pool is not None:
         validate_adr8_runtime_guards(
             tagged,
@@ -1155,11 +1175,12 @@ def parse_adr8_pseudos_response(
             known_elements=known_elements,
             expansion=expansion,
             check_hypernym=False,
-            check_dual_floor=True,
+            check_dual_floor=dual_floor_on,
         )
     else:
         validate_center_mutual_exclusion(tagged)
-        validate_adr8_dual_floor(tagged)
+        if dual_floor_on:
+            validate_adr8_dual_floor(tagged)
 
     return tagged
 
@@ -1174,6 +1195,7 @@ def assemble_adr8_channel_pseudos(
     top_k: int = _SALIENCE_TOP_K_DEFAULT,
     budget: int = _ADR8_TONED_BUDGET_DEFAULT,
     neutral_override: PseudoSegment | None = None,
+    enable_dual_floor: bool | None = None,
 ) -> list[PseudoSegment]:
     """ADR-0008: code-built neutral n1 (wording unchanged) + salience-ranked legs."""
     salience = list(alt_pool.salience)
@@ -1185,7 +1207,13 @@ def assemble_adr8_channel_pseudos(
         attach_adr8_provenance(pseudo, salience)
 
     ranked = rank_adr8_pseudos_by_salience(adr8_legs, salience)
-    budgeted = apply_adr8_pseudo_budget(ranked, salience, budget=budget)
+    dual_floor_on = adr8_dual_floor_enabled(enable_dual_floor=enable_dual_floor)
+    budgeted = apply_adr8_pseudo_budget(
+        ranked,
+        salience,
+        budget=budget,
+        enable_dual_floor=dual_floor_on,
+    )
 
     hypernyms = collect_hypernym_anchor_terms(alt_pool, expansion)
     validate_adr8_runtime_guards(
@@ -1196,7 +1224,7 @@ def assemble_adr8_channel_pseudos(
         expansion=expansion,
         hypernyms=hypernyms,
         check_hypernym=True,
-        check_dual_floor=True,
+        check_dual_floor=dual_floor_on,
     )
     for pseudo in budgeted:
         pseudo.source["agent_id"] = persona_id

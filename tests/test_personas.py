@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 import unittest
 from pathlib import Path
@@ -1001,6 +1002,7 @@ class PersonaAdr8CompositionTests(unittest.TestCase):
             )
         self.assertIn("mutual exclusion", str(ctx.exception).lower())
 
+    @patch.dict(os.environ, {"ADR8_DUAL_FLOOR_ENABLED": "true"})
     def test_parse_adr8_dual_floor_requires_toned(self) -> None:
         raw = json.dumps(
             {
@@ -1029,6 +1031,37 @@ class PersonaAdr8CompositionTests(unittest.TestCase):
                 known_elements=_known_elements(),
             )
         self.assertIn("dual floor", str(ctx.exception).lower())
+
+    def test_parse_adr8_dual_floor_skipped_when_disabled(self) -> None:
+        raw = json.dumps(
+            {
+                "pseudos": [
+                    {
+                        "id": "p1",
+                        "text": (
+                            "From the control room, the Philippines grid operator "
+                            "watches red-alert warnings climb as a power plant outage "
+                            "spreads across the power grid."
+                        ),
+                        "fit": 0.8,
+                        "center": "who-0",
+                        "channel": "focalized",
+                        "focal": "who-0",
+                        "source": {"fragments": ["why-0", "how-0", "result-0"]},
+                    }
+                ]
+            }
+        )
+        with patch.dict(os.environ, {"ADR8_DUAL_FLOOR_ENABLED": "false"}, clear=False):
+            pseudos = parse_adr8_pseudos_response(
+                raw,
+                agent_id="The-Everyman",
+                known_fragments=_known_fragments(),
+                known_elements=_known_elements(),
+                enable_dual_floor=False,
+            )
+        self.assertEqual(len(pseudos), 1)
+        self.assertEqual(pseudos[0].source.get("channel"), "focalized")
 
     def test_salience_rank_and_greedy_ordering(self) -> None:
         salience = self._SALIENCE
@@ -1301,6 +1334,7 @@ class PersonaAdr8RuntimeGuardTests(unittest.TestCase):
             self._parse_with_guards(raw)
         self.assertIn("supporting elements", str(ctx.exception).lower())
 
+    @patch.dict(os.environ, {"ADR8_DUAL_FLOOR_ENABLED": "true"})
     def test_runtime_guard_dual_floor_hard_fail(self) -> None:
         raw = json.dumps(
             {

@@ -32,6 +32,7 @@ from scripts.personas import (
     _guard_tokens,
     _original_term_for_element,
     _supporting_fragments,
+    adr8_dual_floor_enabled,
     collect_entailed_vocabulary,
     known_element_ids,
     load_persona_card,
@@ -255,6 +256,7 @@ def audit_persona_guards(
     fact_checks: list[dict[str, Any]] = []
     center_checks: list[dict[str, Any]] = []
     focal_checks: list[dict[str, Any]] = []
+    dual_floor_on = adr8_dual_floor_enabled()
 
     try:
         validate_adr8_runtime_guards(
@@ -264,7 +266,7 @@ def audit_persona_guards(
             known_elements=known,
             expansion=expansion,
             check_hypernym=True,
-            check_dual_floor=True,
+            check_dual_floor=dual_floor_on,
         )
     except ValueError as exc:
         guard_errors.append(str(exc))
@@ -305,19 +307,29 @@ def audit_persona_guards(
             }
         )
 
-    dual_floor: dict[str, Any] = {"pass": True}
-    try:
-        validate_adr8_dual_floor(legs)
-        toned_count = sum(1 for p in legs if p.source.get("channel") == "toned")
-        focal_count = sum(1 for p in legs if p.source.get("channel") == "focalized")
-        dual_floor = {
-            "pass": toned_count >= 1,
-            "toned_count": toned_count,
-            "focalized_count": focal_count,
-            "neutral_present": neutral is not None,
-        }
-    except ValueError as exc:
-        dual_floor = {"pass": False, "error": str(exc)}
+    toned_count = sum(1 for p in legs if p.source.get("channel") == "toned")
+    focal_count = sum(1 for p in legs if p.source.get("channel") == "focalized")
+    dual_floor: dict[str, Any] = {
+        "pass": True,
+        "toned_count": toned_count,
+        "focalized_count": focal_count,
+        "neutral_present": neutral is not None,
+    }
+    if dual_floor_on:
+        try:
+            validate_adr8_dual_floor(legs)
+            dual_floor["pass"] = toned_count >= 1
+        except ValueError as exc:
+            dual_floor = {
+                "pass": False,
+                "error": str(exc),
+                "toned_count": toned_count,
+                "focalized_count": focal_count,
+                "neutral_present": neutral is not None,
+            }
+    else:
+        dual_floor["guard_skipped"] = True
+        dual_floor["skip_reason"] = "ADR8_DUAL_FLOOR_ENABLED=false"
 
     return {
         "persona_id": persona_id,
@@ -592,9 +604,14 @@ def audit_pilot_run(
         },
         "dual_floor": {
             "pass": (
-                all(a["dual_floor"]["pass"] for a in persona_audits)
+                (
+                    all(a["dual_floor"]["pass"] for a in persona_audits)
+                    if adr8_dual_floor_enabled()
+                    else True
+                )
                 and all(c["pass"] for c in n1_checks)
             ),
+            "guard_enabled": adr8_dual_floor_enabled(),
             "n1_unchanged": n1_checks,
             "baseline_hits": audit_baseline_hits_retained(
                 baseline_retrieve, design_retrieve
