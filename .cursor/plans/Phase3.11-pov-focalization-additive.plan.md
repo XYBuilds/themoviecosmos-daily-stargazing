@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: p311-1
     content: 3.11.1 · 预测试：用 3.11.0 措辞让运行时 LLM 按新构图（元素中心 + POV）重写 N 条新闻跑检索，核验差集是否有当前 pseudo 漏掉的新共振片 [需人工验收 · Go/No-Go]
-    status: pending
+    status: completed
   - id: p311-2
     content: 3.11.2 · 生成层实现：贪心声明式元素中心构图 + 多视角 POV（focalized 通道）+ provenance 标签 + 代码侧记分排序 + 单测
     status: pending
@@ -173,9 +173,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] 差集中**真有**新共振片 → Go，进 3.11.2
+- [x] 差集中**真有**新共振片 → Go，进 3.11.2
 - [ ] 差集全是老片/噪声 → **No-Go**：回退 ADR-0007 单视角口径或砍检索层 POV，与总编另议
-- [ ] `[需人工验收 · Go/No-Go]`：用户裁决
+- [x] [需人工验收 · Go/No-Go]：用户裁决（Conditional Go）
 
 ---
 
