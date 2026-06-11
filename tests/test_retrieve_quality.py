@@ -143,7 +143,7 @@ class RetrieveQualityIntegrationTests(unittest.TestCase):
         self.assertIn("quality_reason", shared)
         self.assertEqual(shared["distinct_agents"], 0)
         self.assertFalse(shared["quality_candidate"])
-        self.assertIn("toned_agents=0", shared["quality_reason"])
+        self.assertIn("composition_agents=0", shared["quality_reason"])
 
     @patch("scripts.retrieve._get_model")
     @patch("scripts.retrieve._load_index")

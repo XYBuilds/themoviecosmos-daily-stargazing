@@ -16,10 +16,10 @@ todos:
     status: completed
   - id: p311-4
     content: 3.11.4 · 候选漏斗：去重 + 汇聚排序（扩展撞车票）+ 预算 top-N + A/B 池差按通道分解输出 + 单测
-    status: pending
+    status: completed
   - id: p311-5
     content: 3.11.5 · 打分 schema 加 `POV变换` 共振类型子标签 + judge/人工双侧支持 + 单测
-    status: pending
+    status: completed
   - id: p311-6
     content: 3.11.6 · 单点 pilot A/B + 防火墙审计（事实漂移 + 中心声明真实性 + 视角派生正确性 + 双地板）[需人工验收 · Go/No-Go]
     status: pending
@@ -220,9 +220,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest`（漏斗相关）通过
-- [ ] 去重/排序/预算/抽审兜底齐；不靠调高 judge 门槛控量
-- [ ] 池差可按通道分解输出
+- [x] `python -m unittest`（漏斗相关）通过
+- [x] 去重/排序/预算/抽审兜底齐；不靠调高 judge 门槛控量
+- [x] 池差可按通道分解输出
 
 ---
 
@@ -235,9 +235,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest`（标签相关）通过
-- [ ] judge/人工均可标 `POV变换`
-- [ ] 标签与 2×2 共振类型兼容
+- [x] `python -m unittest`（标签相关）通过
+- [x] judge/人工均可标 `POV变换`
+- [x] 标签与 2×2 共振类型兼容
 
 ---
 

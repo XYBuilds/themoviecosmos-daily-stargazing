@@ -17,6 +17,8 @@ from scripts.agents import (
     PseudoSegment,
     annotate_fragment_ids,
 )
+from scripts.retrieve import compare_pool_diff_by_channel
+
 from scripts.personas import (
     NEUTRAL_PSEUDO_ID,
     AltElement,
@@ -66,6 +68,7 @@ class PoolDiffResult:
     gap_a_targets_in_net_new: list[dict[str, Any]]
     gap_a_targets_in_baseline_only: list[dict[str, Any]]
     net_new_details: list[dict[str, Any]] = field(default_factory=list)
+    by_channel: dict[str, list[int]] = field(default_factory=dict)
 
 
 def load_gap_a_samples(
@@ -361,6 +364,12 @@ def compare_pool_diff(
         if d is not None
     ]
 
+    channel_diff = compare_pool_diff_by_channel(
+        run_id=run_id,
+        baseline_retrieve=baseline_retrieve,
+        design_retrieve=pretest_retrieve,
+    )
+
     return PoolDiffResult(
         run_id=run_id,
         baseline_candidate_count=len(base_ids),
@@ -371,6 +380,7 @@ def compare_pool_diff(
         gap_a_targets_in_net_new=gap_in_net,
         gap_a_targets_in_baseline_only=gap_baseline_only,
         net_new_details=net_new_details,
+        by_channel=channel_diff.by_channel,
     )
 
 
@@ -463,6 +473,7 @@ def pool_diff_result_to_dict(result: PoolDiffResult) -> dict[str, Any]:
         "gap_a_targets_in_net_new": result.gap_a_targets_in_net_new,
         "gap_a_targets_in_baseline_only": result.gap_a_targets_in_baseline_only,
         "net_new_details": result.net_new_details,
+        "by_channel": result.by_channel,
     }
 
 
