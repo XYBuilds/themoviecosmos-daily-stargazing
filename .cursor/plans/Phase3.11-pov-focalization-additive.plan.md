@@ -10,7 +10,7 @@ todos:
     status: completed
   - id: p311-2
     content: 3.11.2 · 生成层实现：贪心声明式元素中心构图 + 多视角 POV（focalized 通道）+ provenance 标签 + 代码侧记分排序 + 单测
-    status: pending
+    status: completed
   - id: p311-3
     content: 3.11.3 · 运行时守卫：center∈decon ids + 支撑元素上限 + focal∈who-* + 事实守卫 + 双地板校验 + 单测
     status: pending
@@ -189,9 +189,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest`（生成相关）通过
-- [ ] 措辞引 3.11.0 权威源与 card 清单；中性 n1 wording 零改动
-- [ ] 中心确按 salience 贪心派生、focalized 确按清单实例化派生
+- [x] `python -m unittest`（生成相关）通过
+- [x] 措辞引 3.11.0 权威源与 card 清单；中性 n1 wording 零改动
+- [x] 中心确按 salience 贪心派生、focalized 确按清单实例化派生
 
 ---
 
