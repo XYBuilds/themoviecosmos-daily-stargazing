@@ -142,9 +142,12 @@ BOTH news and film; set it to "" only when Axis 2 = NO. `rationale` is brief fre
 
 **共振类型标注（总编打分时填，最小体温计）**：`共振分` 与 `共振类型` **必须**按上表一致；打 1 / 2 分时标对应类型，0 分留空。用于诊断「创作视角的强共振 vs 仅逻辑 / 仅表层」（直接喂 §5.1 第 2 条；见 ADR-0002 / ADR-0007）。LLM judge 同样输出 `score` + `resonance_type` + `causal_test`（因果反测句），校验同一矩阵。
 
+**可选子标签 · POV变换**（ADR-0007 D7 / Phase 3.11.5）：仅 score 2 时可标；表示强共振靠 POV/尺度变换才可见。judge 输出 `pov_transform: true|false`；人工侧 `- **POV变换**: 是`。
+
 ```markdown
 - **共振分**: 2
 - **共振类型**: 强共振（表层 + 逻辑）    <!-- 0 分留空；1→深层共振（仅逻辑，无表层）|表层沾边；2→强共振（表层 + 逻辑） -->
+- **POV变换**: 是    <!-- 可选；仅 score 2 -->
 ```
 
 ---8<--- rubric-ready 止 ---8<---

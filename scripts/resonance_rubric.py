@@ -9,6 +9,8 @@ TYPE_DEEP = "深层共振（仅逻辑，无表层）"
 TYPE_SURFACE = "表层沾边"
 TYPE_STRONG = "强共振（表层 + 逻辑）"
 
+SUB_LABEL_POV_TRANSFORM = "POV变换"
+
 VALID_SCORE_TYPES = frozenset({TYPE_DEEP, TYPE_SURFACE, TYPE_STRONG})
 STRUCTURAL_TYPES = frozenset({TYPE_DEEP, TYPE_STRONG})
 
@@ -69,3 +71,33 @@ def validate_score_type_pair(score: int, resonance_type: str | None) -> None:
         )
     if score == 2 and resonance_type != TYPE_STRONG:
         raise ValueError(f"score 2 must use {TYPE_STRONG!r}")
+
+
+def parse_pov_transform(raw: str) -> bool | None:
+    """Parse human or judge POV变换 sub-label line; None = unset."""
+    cleaned = strip_html_comments(raw).strip()
+    if not cleaned:
+        return None
+    if SUB_LABEL_POV_TRANSFORM in cleaned:
+        return True
+    lowered = cleaned.lower()
+    if lowered in {"是", "yes", "true", "y", "1"}:
+        return True
+    if lowered in {"否", "no", "false", "n", "0", "—", "-", "无", "留空"}:
+        return False
+    return None
+
+
+def validate_pov_transform_sub_label(
+    score: int,
+    resonance_type: str | None,
+    pov_transform: bool | None,
+) -> bool | None:
+    """Normalize POV变换 sub-label; must stay compatible with the 2×2 matrix."""
+    if pov_transform is None or pov_transform is False:
+        return False if pov_transform is False else None
+    if score != 2 or resonance_type != TYPE_STRONG:
+        raise ValueError(
+            f"{SUB_LABEL_POV_TRANSFORM} applies only to score 2 + {TYPE_STRONG!r}"
+        )
+    return True
