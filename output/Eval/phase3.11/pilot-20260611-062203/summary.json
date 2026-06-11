@@ -1,0 +1,336 @@
+{
+  "run_count": 1,
+  "dry_run": false,
+  "skip_retrieval": false,
+  "baseline_dir": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10",
+  "go_no_go": {
+    "verdict": "No-Go",
+    "reason": "6 runtime guard hard failure(s) — tighten 3.11.2/3.11.3 before full batch."
+  },
+  "runs": [
+    {
+      "run_id": "01-grid-outage",
+      "retrieval": "live",
+      "persona_errors": [
+        {
+          "persona_id": "The-Innocent",
+          "error": "pseudo p1: fact guard — novel proper noun 'In May'"
+        },
+        {
+          "persona_id": "The-Everyman",
+          "error": "pseudo p1: fact guard — invented inner monologue or interiority"
+        },
+        {
+          "persona_id": "The-Outlaw",
+          "error": "pseudo p3: supporting elements must be 2–4, got 5"
+        },
+        {
+          "persona_id": "The-Lover",
+          "error": "pseudo p1: supporting elements must be 2–4, got 5"
+        },
+        {
+          "persona_id": "The-Ruler",
+          "error": "pseudo p1: supporting elements must be 2–4, got 5"
+        },
+        {
+          "persona_id": "The-Jester",
+          "error": "pseudo p1: fact guard — invented inner monologue or interiority"
+        }
+      ],
+      "all_automated_pass": false,
+      "pool_diff": {
+        "run_id": "01-grid-outage",
+        "baseline_candidate_count": 19,
+        "pretest_candidate_count": 19,
+        "overlap_count": 9,
+        "net_new_tmdb_ids": [
+          2154,
+          6499,
+          14161,
+          43552,
+          58770,
+          63333,
+          158091,
+          720321,
+          949698,
+          969686
+        ],
+        "lost_tmdb_ids": [
+          46221,
+          100063,
+          111750,
+          190738,
+          194834,
+          210219,
+          280492,
+          370097,
+          431892,
+          1223272
+        ],
+        "gap_a_targets_in_net_new": [],
+        "gap_a_targets_in_baseline_only": [
+          {
+            "tmdb_id": 429918,
+            "title": "Survival Family",
+            "human_score": 2,
+            "judge_resonance_type": "表层沾边"
+          }
+        ],
+        "net_new_details": [
+          {
+            "tmdb_id": 2154,
+            "title": "The Dark Side of the Moon",
+            "similarity": 0.47056305408477783,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-SAGE"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-SAGE",
+                "pseudo_id": "p1",
+                "channel_role": "toned",
+                "fragments": [
+                  "why-0",
+                  "how-1",
+                  "how-2",
+                  "result-0"
+                ],
+                "similarity": 0.47056305408477783
+              }
+            ]
+          },
+          {
+            "tmdb_id": 6499,
+            "title": "Turbo: A Power Rangers Movie",
+            "similarity": 0.5183676481246948,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-HERO"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-HERO",
+                "pseudo_id": "p3",
+                "channel_role": "focalized",
+                "fragments": [
+                  "why-0",
+                  "how-1",
+                  "how-2",
+                  "why-2"
+                ],
+                "similarity": 0.5183676481246948
+              }
+            ]
+          },
+          {
+            "tmdb_id": 14161,
+            "title": "2012",
+            "similarity": 0.4441601634025574,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-CREATOR"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-CREATOR",
+                "pseudo_id": "p1",
+                "channel_role": "toned",
+                "fragments": [
+                  "why-0",
+                  "how-1"
+                ],
+                "similarity": 0.4441601634025574
+              }
+            ]
+          },
+          {
+            "tmdb_id": 43552,
+            "title": "Vanishing on 7th Street",
+            "similarity": 0.49635156989097595,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-CAREGIVER"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-CAREGIVER",
+                "pseudo_id": "p1",
+                "channel_role": "toned",
+                "fragments": [
+                  "why-0",
+                  "how-2",
+                  "result-0"
+                ],
+                "similarity": 0.49635156989097595
+              }
+            ]
+          },
+          {
+            "tmdb_id": 58770,
+            "title": "The Trigger Effect",
+            "similarity": 0.4565765857696533,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-SAGE"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-SAGE",
+                "pseudo_id": "p2",
+                "channel_role": "toned",
+                "fragments": [
+                  "why-0",
+                  "why-1",
+                  "why-2"
+                ],
+                "similarity": 0.4565765857696533
+              }
+            ]
+          },
+          {
+            "tmdb_id": 63333,
+            "title": "Gog",
+            "similarity": 0.4799930453300476,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-CREATOR"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-CREATOR",
+                "pseudo_id": "p3",
+                "channel_role": "focalized",
+                "fragments": [
+                  "why-0",
+                  "why-1",
+                  "why-2",
+                  "result-0"
+                ],
+                "similarity": 0.4799930453300476
+              }
+            ]
+          },
+          {
+            "tmdb_id": 158091,
+            "title": "Metro Manila",
+            "similarity": 0.5080589056015015,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-EXPLORER"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-EXPLORER",
+                "pseudo_id": "p1",
+                "channel_role": "toned",
+                "fragments": [
+                  "how-2",
+                  "result-0"
+                ],
+                "similarity": 0.5080589056015015
+              }
+            ]
+          },
+          {
+            "tmdb_id": 720321,
+            "title": "Breathe",
+            "similarity": 0.45060038566589355,
+            "quality_candidate": false,
+            "triggered_by": [],
+            "hit_sources": [
+              {
+                "agent_id": "THE-HERO",
+                "pseudo_id": "n1",
+                "channel_role": "neutral",
+                "fragments": [
+                  "result-0",
+                  "how-2",
+                  "who-2",
+                  "why-0",
+                  "how-1"
+                ],
+                "similarity": 0.4163302183151245
+              },
+              {
+                "agent_id": "THE-SAGE",
+                "pseudo_id": "n1",
+                "channel_role": "neutral",
+                "fragments": [
+                  "result-0",
+                  "why-0",
+                  "why-1",
+                  "why-2",
+                  "how-0"
+                ],
+                "similarity": 0.45060038566589355
+              }
+            ]
+          },
+          {
+            "tmdb_id": 949698,
+            "title": "Flashover",
+            "similarity": 0.4588300287723541,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-EXPLORER"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-EXPLORER",
+                "pseudo_id": "p3",
+                "channel_role": "focalized",
+                "fragments": [
+                  "why-0",
+                  "how-1",
+                  "result-0"
+                ],
+                "similarity": 0.4588300287723541
+              }
+            ]
+          },
+          {
+            "tmdb_id": 969686,
+            "title": "4 Horsemen: Apocalypse",
+            "similarity": 0.5372195243835449,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-MAGICIAN"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-MAGICIAN",
+                "pseudo_id": "p3",
+                "channel_role": "focalized",
+                "fragments": [
+                  "why-2",
+                  "how-1",
+                  "how-2"
+                ],
+                "similarity": 0.5372195243835449
+              }
+            ]
+          }
+        ],
+        "by_channel": {
+          "focalized": [
+            6499,
+            63333,
+            949698,
+            969686
+          ],
+          "neutral": [
+            720321
+          ],
+          "toned": [
+            2154,
+            14161,
+            43552,
+            58770,
+            158091
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,375 @@
+{
+  "persona_id": "The-Creator",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Creator",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "grid system orchestrator",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "power network manager",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "electricity grid controller",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "crisis dispatcher",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "emergency response architects",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "system regulators",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "load-shedding order issuers",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "initiated a system-wide power alert",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "declared a grid red alert",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "triggered an emergency power status",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "unleashed a grid crisis protocol",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "executed a precision load-reduction design",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "implemented controlled power curtailment",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "ordered emergency power disconnection",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "forced a brutal power cutoff",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "a power unit suffered a critical malfunction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a generator experienced a system failure",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "extended facility shutdowns",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "prolonged plant failures",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "a massive 950-megawatt power deficit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a colossal generation void",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-1",
+      "how-2",
+      "why-0",
+      "who-0",
+      "result-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "The Philippines grid operator placed the Visayas under red alert. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator. more than 950 megawatts unavailable The event unfolds across triggered an emergency power status and alert declaration.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "how-1",
+          "how-2",
+          "why-0",
+          "who-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "The Philippines grid operator placed the Visayas under red alert",
+            "provenance": "surface"
+          },
+          {
+            "term": "triggered an emergency power status",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "alert declaration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid management action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency response",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+            "provenance": "surface"
+          },
+          {
+            "term": "ordered emergency power disconnection",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "load shedding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency measure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid stabilization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "control action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kepco SPC Power's Unit 2 tripped offline",
+            "provenance": "surface"
+          },
+          {
+            "term": "a power unit suffered a critical malfunction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power outage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The Philippines grid operator",
+            "provenance": "surface"
+          },
+          {
+            "term": "electricity grid controller",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid operator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "utility",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy sector entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "a massive 950-megawatt power deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "shortage",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "In the crucible of May's seasonal heat, the grid system orchestrator, facing a critical equipment failure, initiated a system-wide power alert for the Visayas. This emergency response, a necessary grid management action, was the first step in a designed control sequence. The event unfolded as a complex piece of system architecture, where the orchestrator's decision became the foundational layer upon which further stabilization measures would be built, all to address the growing demand increase.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "how-1"
+        ],
+        "center": "how-1",
+        "channel": "toned",
+        "channel_role": "toned",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 0
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "System regulators, acting as emergency response architects, executed a precision load-reduction design. This controlled power curtailment was a deliberate measure to prevent a critical 230-kilovolt transmission line from overloading, a direct response to the equipment failure that had reduced available capacity. The action represented a calculated intervention, a piece of crisis engineering meant to stabilize the grid and manage the resulting power shortage, even as it meant a planned disconnection of service.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "how-2",
+          "result-0"
+        ],
+        "center": "how-2",
+        "channel": "toned",
+        "channel_role": "toned",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "From the vantage of the grid system orchestrator, the event began with the sudden system failure of a power unit, an initial equipment failure that shattered the operational design. This malfunction, occurring amid prolonged plant failures and a seasonal heatwave, forced an immediate reassessment. The orchestrator's focus shifted to the core problem: a critical loss of generation capacity that demanded a swift, architectural response to prevent cascading grid instability.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "why-2",
+          "result-0"
+        ],
+        "center": "why-0",
+        "channel": "focalized",
+        "channel_role": "focalized",
+        "focal": "who-0",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 2,
+        "focal_role_id": "who-0"
+      },
+      "warnings": [
+        "pseudo p3: focalized channel but center 'why-0' does not instantiate a card vantage seat"
+      ],
+      "fit": 0.7
+    }
+  ],
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"In the crucible of May's seasonal heat, the grid system orchestrator, facing a critical equipment failure, initiated a system-wide power alert for the Visayas. This emergency response, a necessary grid management action, was the first step in a designed control sequence. The event unfolded as a complex piece of system architecture, where the orchestrator's decision became the foundational layer upon which further stabilization measures would be built, all to address the growing demand increase.\",\n      \"fit\": 0.85,\n      \"center\": \"how-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\n          \"why-0\",\n          \"how-1\"\n        ]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"System regulators, acting as emergency response architects, executed a precision load-reduction design. This controlled power curtailment was a deliberate measure to prevent a critical 230-kilovolt transmission line from overloading, a direct response to the equipment failure that had reduced available capacity. The action represented a calculated intervention, a piece of crisis engineering meant to stabilize the grid and manage the resulting power shortage, even as it meant a planned disconnection of service.\",\n      \"fit\": 0.78,\n      \"center\": \"how-2\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\n          \"why-0\",\n          \"how-2\",\n          \"result-0\"\n        ]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"From the vantage of the grid system orchestrator, the event began with the sudden system failure of a power unit, an initial equipment failure that shattered the operational design. This malfunction, occurring amid prolonged plant failures and a seasonal heatwave, forced an immediate reassessment. The orchestrator's focus shifted to the core problem: a critical loss of generation capacity that demanded a swift, architectural response to prevent cascading grid instability.\",\n      \"fit\": 0.7,\n      \"center\": \"why-0\",\n      \"channel\": \"focalized\",\n      \"focal\": \"who-0\",\n      \"source\": {\n        \"fragments\": [\n          \"why-0\",\n          \"why-1\",\n          \"why-2\",\n          \"result-0\"\n        ]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ]
+}

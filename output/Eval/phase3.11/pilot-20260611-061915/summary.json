@@ -1,0 +1,160 @@
+{
+  "run_count": 1,
+  "dry_run": true,
+  "skip_retrieval": false,
+  "baseline_dir": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10",
+  "go_no_go": {
+    "verdict": "Pending live run",
+    "reason": "Dry-run scaffold only — rerun with LLM + retrieval for Go/No-Go."
+  },
+  "runs": [
+    {
+      "run_id": "01-grid-outage",
+      "retrieval": "live",
+      "persona_errors": [],
+      "all_automated_pass": false,
+      "pool_diff": {
+        "run_id": "01-grid-outage",
+        "baseline_candidate_count": 19,
+        "pretest_candidate_count": 19,
+        "overlap_count": 17,
+        "net_new_tmdb_ids": [
+          720321,
+          1484253
+        ],
+        "lost_tmdb_ids": [
+          33787,
+          266727
+        ],
+        "gap_a_targets_in_net_new": [],
+        "gap_a_targets_in_baseline_only": [
+          {
+            "tmdb_id": 429918,
+            "title": "Survival Family",
+            "human_score": 2,
+            "judge_resonance_type": "表层沾边"
+          }
+        ],
+        "net_new_details": [
+          {
+            "tmdb_id": 720321,
+            "title": "Breathe",
+            "similarity": 0.45060038566589355,
+            "quality_candidate": false,
+            "triggered_by": [],
+            "hit_sources": [
+              {
+                "agent_id": "THE-INNOCENT",
+                "pseudo_id": "n1",
+                "channel_role": "neutral",
+                "fragments": [
+                  "result-0",
+                  "who-1",
+                  "who-3",
+                  "why-2",
+                  "how-2"
+                ],
+                "similarity": 0.4383590817451477
+              },
+              {
+                "agent_id": "THE-EVERYMAN",
+                "pseudo_id": "n1",
+                "channel_role": "neutral",
+                "fragments": [
+                  "result-0",
+                  "how-2",
+                  "who-1",
+                  "who-3",
+                  "why-2"
+                ],
+                "similarity": 0.44313034415245056
+              },
+              {
+                "agent_id": "THE-HERO",
+                "pseudo_id": "n1",
+                "channel_role": "neutral",
+                "fragments": [
+                  "result-0",
+                  "how-2",
+                  "who-2",
+                  "why-0",
+                  "how-1"
+                ],
+                "similarity": 0.4163302183151245
+              },
+              {
+                "agent_id": "THE-LOVER",
+                "pseudo_id": "n1",
+                "channel_role": "neutral",
+                "fragments": [
+                  "result-0",
+                  "why-2",
+                  "who-3",
+                  "how-2",
+                  "why-0"
+                ],
+                "similarity": 0.44555795192718506
+              },
+              {
+                "agent_id": "THE-SAGE",
+                "pseudo_id": "n1",
+                "channel_role": "neutral",
+                "fragments": [
+                  "result-0",
+                  "why-0",
+                  "why-1",
+                  "why-2",
+                  "how-0"
+                ],
+                "similarity": 0.45060038566589355
+              }
+            ]
+          },
+          {
+            "tmdb_id": 1484253,
+            "title": "Trainwreck: Poop Cruise",
+            "similarity": 0.42916741967201233,
+            "quality_candidate": false,
+            "triggered_by": [],
+            "hit_sources": [
+              {
+                "agent_id": "THE-EXPLORER",
+                "pseudo_id": "n1",
+                "channel_role": "neutral",
+                "fragments": [
+                  "how-2",
+                  "result-0",
+                  "who-0",
+                  "who-2",
+                  "why-2"
+                ],
+                "similarity": 0.41472288966178894
+              },
+              {
+                "agent_id": "THE-JESTER",
+                "pseudo_id": "n1",
+                "channel_role": "neutral",
+                "fragments": [
+                  "how-2",
+                  "result-0",
+                  "why-2",
+                  "who-0",
+                  "how-1"
+                ],
+                "similarity": 0.42916741967201233
+              }
+            ]
+          }
+        ],
+        "by_channel": {
+          "focalized": [],
+          "neutral": [
+            720321,
+            1484253
+          ],
+          "toned": []
+        }
+      }
+    }
+  ]
+}
