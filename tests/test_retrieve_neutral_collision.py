@@ -105,7 +105,7 @@ class NeutralCollisionIntegrationTests(unittest.TestCase):
         self.assertAlmostEqual(movie["neutral_hit_rate"], 1.0)
         self.assertFalse(movie["quality_candidate"])
         self.assertIn("neutral_hits=12", movie["quality_reason"])
-        self.assertIn("toned_agents=0", movie["quality_reason"])
+        self.assertIn("composition_agents=0", movie["quality_reason"])
 
     @patch("scripts.retrieve._get_model")
     @patch("scripts.retrieve._load_index")
