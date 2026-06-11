@@ -13,7 +13,7 @@ todos:
     status: completed
   - id: p311-3
     content: 3.11.3 · 运行时守卫：center∈decon ids + 支撑元素上限 + focal∈who-* + 事实守卫 + 双地板校验 + 单测
-    status: pending
+    status: completed
   - id: p311-4
     content: 3.11.4 · 候选漏斗：去重 + 汇聚排序（扩展撞车票）+ 预算 top-N + A/B 池差按通道分解输出 + 单测
     status: pending
@@ -204,9 +204,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest`（守卫相关）通过
-- [ ] 非法 center / 非法 focal / 新增事实 / 双地板缺失即硬失败
-- [ ] hypernym 锚守卫不被 POV 绕过
+- [x] `python -m unittest`（守卫相关）通过
+- [x] 非法 center / 非法 focal / 新增事实 / 双地板缺失即硬失败
+- [x] hypernym 锚守卫不被 POV 绕过
 
 ---
 

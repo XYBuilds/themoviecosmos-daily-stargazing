@@ -13,6 +13,7 @@ if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
 from scripts.agents import (
+    PseudoSegment,
     annotate_fragment_ids,
     load_deconstruction_from_file,
     parse_pseudos_response,
@@ -48,9 +49,15 @@ from scripts.personas import (
     resolve_neutral_fragment_ids,
     run_persona_pipeline,
     salience_rank_of_center,
+    validate_adr8_dual_floor,
+    validate_adr8_fact_guard,
+    validate_adr8_runtime_guards,
+    validate_center_in_decon,
     validate_center_mutual_exclusion,
+    validate_focal_char_in_decon_who,
     validate_neutral_pseudo_batch_diversity,
     validate_salience,
+    validate_supporting_element_cap,
     who_instantiates_vantage_seat,
 )
 from scripts.run_persona_batch import (
@@ -1190,6 +1197,254 @@ class PersonaAdr8CompositionTests(unittest.TestCase):
             known_elements=_known_elements(),
         )
         validate_center_mutual_exclusion(legs)
+
+
+class PersonaAdr8RuntimeGuardTests(unittest.TestCase):
+    _SALIENCE = ["who-0", "why-0", "how-0", "result-0", "how-1"]
+
+    def _overlay(self) -> AltPoolOverlay:
+        return parse_alt_pool_response(
+            _alt_pool_json_with_salience(self._SALIENCE),
+            persona_id="The-Everyman",
+            known_elements=_known_elements(),
+        )
+
+    def _parse_with_guards(self, raw: str) -> list:
+        return parse_adr8_pseudos_response(
+            raw,
+            agent_id="The-Everyman",
+            known_fragments=_known_fragments(),
+            known_elements=_known_elements(),
+            deconstruction=_fixture_dec_inner(),
+            alt_pool=self._overlay(),
+            expansion=_full_expansion_fixture(),
+        )
+
+    def _valid_adr8_raw(self, **overrides: object) -> str:
+        base = {
+            "id": "p1",
+            "text": (
+                "Grid operators face a large-scale power deficit after seasonal heat "
+                "drove demand into a thin margin, forcing emergency measures across "
+                "the power grid and critical infrastructure."
+            ),
+            "fit": 0.8,
+            "center": "who-0",
+            "channel": "toned",
+            "source": {"fragments": ["why-0", "how-0", "result-0"]},
+        }
+        base.update(overrides)
+        p2 = {
+            "id": "p2",
+            "text": (
+                "A prolonged heat wave strains the Philippines grid operator "
+                "network as plant outages leave more than nine hundred "
+                "megawatts unavailable across the power grid."
+            ),
+            "fit": 0.75,
+            "center": "why-0",
+            "channel": "toned",
+            "source": {"fragments": ["why-0", "how-1", "result-0"]},
+        }
+        return json.dumps({"pseudos": [base, p2]})
+
+    def test_runtime_guard_rejects_illegal_center(self) -> None:
+        raw = self._valid_adr8_raw(center="who-99")
+        with self.assertRaises(ValueError) as ctx:
+            self._parse_with_guards(raw)
+        msg = str(ctx.exception).lower()
+        self.assertTrue("illegal center" in msg or "unknown center" in msg)
+        self.assertIn("who-99", msg)
+
+    def test_runtime_guard_rejects_illegal_focal(self) -> None:
+        raw = self._valid_adr8_raw(
+            channel="focalized",
+            focal="where-0",
+            text=(
+                "From the Visayas control room, officials watch red-alert warnings "
+                "climb as a power plant outage spreads across the power grid."
+            ),
+        )
+        with self.assertRaises(ValueError) as ctx:
+            self._parse_with_guards(raw)
+        msg = str(ctx.exception).lower()
+        self.assertTrue("illegal focal" in msg or "focal must be who" in msg)
+
+    def test_runtime_guard_rejects_inner_monologue(self) -> None:
+        raw = self._valid_adr8_raw(
+            text=(
+                "She wondered whether the power grid could survive another night "
+                "as plant outages spread across critical infrastructure."
+            ),
+        )
+        with self.assertRaises(ValueError) as ctx:
+            self._parse_with_guards(raw)
+        self.assertIn("fact guard", str(ctx.exception).lower())
+        self.assertIn("inner monologue", str(ctx.exception).lower())
+
+    def test_runtime_guard_rejects_novel_event(self) -> None:
+        raw = self._valid_adr8_raw(
+            text=(
+                "A secret plot inside the power grid operator triggered emergency "
+                "load shedding across critical infrastructure."
+            ),
+        )
+        with self.assertRaises(ValueError) as ctx:
+            self._parse_with_guards(raw)
+        self.assertIn("fact guard", str(ctx.exception).lower())
+
+    def test_runtime_guard_rejects_supporting_cap_violation(self) -> None:
+        raw = self._valid_adr8_raw(
+            source={"fragments": ["why-0"]},
+        )
+        with self.assertRaises(ValueError) as ctx:
+            self._parse_with_guards(raw)
+        self.assertIn("supporting elements", str(ctx.exception).lower())
+
+    def test_runtime_guard_dual_floor_hard_fail(self) -> None:
+        raw = json.dumps(
+            {
+                "pseudos": [
+                    {
+                        "id": "p1",
+                        "text": (
+                            "From the control room, the Philippines grid operator "
+                            "watches red-alert warnings climb as a power plant outage "
+                            "spreads across the power grid."
+                        ),
+                        "fit": 0.8,
+                        "center": "who-0",
+                        "channel": "focalized",
+                        "focal": "who-0",
+                        "source": {"fragments": ["why-0", "how-0", "result-0"]},
+                    }
+                ]
+            }
+        )
+        with self.assertRaises(ValueError) as ctx:
+            self._parse_with_guards(raw)
+        self.assertIn("dual floor", str(ctx.exception).lower())
+
+    def test_focalized_hypernym_anchor_not_bypassed(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = AltPoolOverlay(
+            persona_id="The-Everyman",
+            elements=[
+                AltElement(
+                    element_id="why-0",
+                    original_term="unit tripped offline",
+                    alternatives=[
+                        AltTerm("unit tripped offline", "neutral", "surface"),
+                    ],
+                )
+            ],
+            salience=self._SALIENCE,
+        )
+        anchor_only_expansion = {
+            "elements": [
+                {
+                    "element_id": "why-0",
+                    "surface": "Kepco SPC Power Unit 2 tripped offline",
+                    "hypernyms": ["zorbax anchor phrase"],
+                }
+            ]
+        }
+        legs = parse_adr8_pseudos_response(
+            json.dumps(
+                {
+                    "pseudos": [
+                        {
+                            "id": "p1",
+                            "text": (
+                                "From the control room, officials watch warnings climb "
+                                "as seasonal heat drives demand during plant outages."
+                            ),
+                            "fit": 0.8,
+                            "center": "who-0",
+                            "channel": "focalized",
+                            "focal": "who-0",
+                            "source": {"fragments": ["why-0", "how-0", "result-0"]},
+                        },
+                        {
+                            "id": "p2",
+                            "text": (
+                                "Seasonal heat drove demand while the zorbax anchor "
+                                "phrase explains outages across the region."
+                            ),
+                            "fit": 0.7,
+                            "center": "why-0",
+                            "channel": "toned",
+                            "source": {"fragments": ["why-0", "how-1", "result-0"]},
+                        },
+                    ]
+                }
+            ),
+            agent_id="The-Everyman",
+            known_fragments=_known_fragments(),
+            known_elements=_known_elements(),
+        )
+        with self.assertRaises(ValueError) as ctx:
+            assemble_adr8_channel_pseudos(
+                "The-Everyman",
+                dec,
+                overlay,
+                legs,
+                anchor_only_expansion,
+            )
+        self.assertIn("hypernym anchor", str(ctx.exception).lower())
+
+    def test_validate_adr8_runtime_guards_unit_helpers(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = self._overlay()
+        pseudo = PseudoSegment(
+            "p1",
+            "Valid power grid text without invention.",
+            {
+                "center": "why-0",
+                "channel": "toned",
+                "fragments": ["why-0", "how-0", "result-0"],
+            },
+            [],
+            fit=0.8,
+        )
+        validate_center_in_decon(pseudo, _known_elements())
+        validate_supporting_element_cap(pseudo)
+        validate_focal_char_in_decon_who(pseudo, _known_elements())
+        validate_adr8_fact_guard(
+            pseudo,
+            deconstruction=dec,
+            vocab={"power", "grid", "valid", "text", "without", "invention"},
+            allowed_proper_nouns=set(),
+        )
+        validate_adr8_dual_floor(
+            [
+                pseudo,
+                PseudoSegment(
+                    "p2",
+                    "Another toned leg with power grid wording.",
+                    {"center": "who-0", "channel": "toned", "fragments": ["why-0", "how-1", "result-0"]},
+                    [],
+                    fit=0.7,
+                ),
+            ]
+        )
+        validate_adr8_runtime_guards(
+            [
+                pseudo,
+                PseudoSegment(
+                    "p2",
+                    "Another toned leg mentioning power grid and supply shortfall.",
+                    {"center": "who-0", "channel": "toned", "fragments": ["why-0", "how-1", "result-0"]},
+                    [],
+                    fit=0.7,
+                ),
+            ],
+            deconstruction=dec,
+            alt_pool=overlay,
+            known_elements=_known_elements(),
+            expansion=_full_expansion_fixture(),
+            check_hypernym=False,
+        )
 
 
 class PersonaRepairTests(unittest.IsolatedAsyncioTestCase):
