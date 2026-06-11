@@ -30,6 +30,7 @@ from scripts.agents import (
     AgentOutput,
     PseudoSegment,
     _agent_llm_timeout,
+    _CAPITALIZED_NAME_RE,
     _known_fragment_ids,
     _model_name,
     _resolve_provider,
@@ -62,6 +63,32 @@ _ELEMENT_ID_RE = re.compile(r"^(who|where|why|how|result)-\d+$")
 
 # ADR-0008 composition: salience-ranked pseudo budget (toned + focalized legs).
 _ADR8_TONED_BUDGET_DEFAULT = 3
+_ADR8_SUPPORTING_MIN = 2
+_ADR8_SUPPORTING_MAX = 4
+
+# ADR-0008 runtime fact guard (inner monologue / novel events / causality / outcomes).
+_INNER_MONOLOGUE_RE = re.compile(
+    r"\b(?:thought|wondered|felt|realized|feared|hoped|prayed|mused|"
+    r"brooded|panicked|dreaded|sighed)\b",
+    re.IGNORECASE,
+)
+_INTERIORITY_RE = re.compile(
+    r"\b(?:in (?:his|her|their) mind|heart (?:sank|raced)|stomach churned)\b",
+    re.IGNORECASE,
+)
+_NOVEL_OUTCOME_RE = re.compile(
+    r"\b(?:resigned|acquitted|convicted|impeached|declared (?:war|victory)|"
+    r"filed (?:for )?bankruptcy|won the election|lost the election)\b",
+    re.IGNORECASE,
+)
+_NOVEL_EVENT_RE = re.compile(
+    r"\b(?:secret plot|cover-up|conspiracy|assassination|bombing|invasion)\b",
+    re.IGNORECASE,
+)
+_CAUSAL_INVENTION_RE = re.compile(
+    r"\bbecause (?:a |the )?(?:secret|hidden|covert|undisclosed)\b",
+    re.IGNORECASE,
+)
 
 # Batch diversity guard: fail when pairwise near-duplicate on text AND fragment overlap.
 _NEUTRAL_DIVERSITY_SIM_THRESHOLD = 0.92
@@ -832,12 +859,227 @@ def attach_adr8_provenance(
         pseudo.source["focal_role_id"] = pseudo.source["focal"]
 
 
+def _guard_tokens(text: str) -> set[str]:
+    return {w.lower() for w in re.findall(r"[a-z]{4,}", text.lower())}
+
+
+def collect_entailed_vocabulary(
+    deconstruction: dict[str, Any],
+    alt_pool: AltPoolOverlay,
+    expansion: dict[str, Any] | None,
+) -> set[str]:
+    """Lowercase tokens (4+ letters) entailed by decon + alt-pool + expansion."""
+    vocab: set[str] = set()
+    ann = annotate_element_ids(deconstruction)
+    for section in _ELEMENT_SECTIONS:
+        for item in ann.get(section) or []:
+            if not isinstance(item, dict):
+                continue
+            for key in ("text", "step"):
+                raw = item.get(key)
+                if raw:
+                    vocab |= _guard_tokens(str(raw))
+    for el in alt_pool.elements:
+        vocab |= _guard_tokens(el.original_term)
+        for alt in el.alternatives:
+            vocab |= _guard_tokens(alt.term)
+    for row in expansion_elements_by_id(expansion).values():
+        vocab |= _guard_tokens(str(row.get("surface", "") or ""))
+        hypernyms = row.get("hypernyms")
+        if isinstance(hypernyms, list):
+            for raw in hypernyms:
+                vocab |= _guard_tokens(str(raw))
+    return vocab
+
+
+def _allowed_proper_noun_phrases(
+    deconstruction: dict[str, Any],
+    alt_pool: AltPoolOverlay,
+    expansion: dict[str, Any] | None,
+) -> set[str]:
+    phrases: set[str] = set()
+    ann = annotate_element_ids(deconstruction)
+    for section in _ELEMENT_SECTIONS:
+        for item in ann.get(section) or []:
+            if not isinstance(item, dict):
+                continue
+            for key in ("text", "step"):
+                raw = item.get(key)
+                if not raw:
+                    continue
+                for match in _CAPITALIZED_NAME_RE.finditer(str(raw)):
+                    phrases.add(match.group(0).lower())
+    for el in alt_pool.elements:
+        for match in _CAPITALIZED_NAME_RE.finditer(el.original_term):
+            phrases.add(match.group(0).lower())
+        for alt in el.alternatives:
+            for match in _CAPITALIZED_NAME_RE.finditer(alt.term):
+                phrases.add(match.group(0).lower())
+    for row in expansion_elements_by_id(expansion).values():
+        for match in _CAPITALIZED_NAME_RE.finditer(str(row.get("surface", "") or "")):
+            phrases.add(match.group(0).lower())
+    return phrases
+
+
+def _result_section_tokens(deconstruction: dict[str, Any]) -> set[str]:
+    tokens: set[str] = set()
+    ann = annotate_element_ids(deconstruction)
+    for item in ann.get("result") or []:
+        if isinstance(item, dict) and item.get("text"):
+            tokens |= _guard_tokens(str(item["text"]))
+    return tokens
+
+
+def _supporting_fragments(pseudo: PseudoSegment) -> list[str]:
+    frags = pseudo.source.get("fragments")
+    if isinstance(frags, list):
+        return [str(f).strip() for f in frags if str(f).strip()]
+    return []
+
+
+def validate_supporting_element_cap(pseudo: PseudoSegment) -> None:
+    """ADR-0008: each pseudo declares 2–4 supporting fragment elements."""
+    count = len(_supporting_fragments(pseudo))
+    if count < _ADR8_SUPPORTING_MIN or count > _ADR8_SUPPORTING_MAX:
+        raise ValueError(
+            f"pseudo {pseudo.id}: supporting elements must be "
+            f"{_ADR8_SUPPORTING_MIN}–{_ADR8_SUPPORTING_MAX}, got {count}"
+        )
+
+
+def validate_center_in_decon(pseudo: PseudoSegment, known_elements: set[str]) -> None:
+    center = str(pseudo.source.get("center", "")).strip()
+    if not center:
+        raise ValueError(f"pseudo {pseudo.id}: center is required in ADR-0008 mode")
+    if center not in known_elements:
+        raise ValueError(f"pseudo {pseudo.id}: illegal center element {center!r}")
+
+
+def validate_focal_char_in_decon_who(
+    pseudo: PseudoSegment,
+    known_elements: set[str],
+) -> None:
+    """focal ∈ decon who-*; required and equal to center when channel=focalized."""
+    channel = str(pseudo.source.get("channel", "toned"))
+    focal = str(pseudo.source.get("focal", "")).strip()
+    center = str(pseudo.source.get("center", "")).strip()
+    if channel != "focalized":
+        return
+    if not focal:
+        raise ValueError(f"pseudo {pseudo.id}: focal required when channel=focalized")
+    if not focal.startswith("who-"):
+        raise ValueError(f"pseudo {pseudo.id}: illegal focal {focal!r} (must be who-*)")
+    if focal not in known_elements:
+        raise ValueError(f"pseudo {pseudo.id}: illegal focal element {focal!r}")
+    if center.startswith("who-") and focal != center:
+        raise ValueError(
+            f"pseudo {pseudo.id}: when center is who-*, focal {focal!r} "
+            f"must equal center {center!r}"
+        )
+
+
+def validate_adr8_fact_guard(
+    pseudo: PseudoSegment,
+    *,
+    deconstruction: dict[str, Any],
+    vocab: set[str],
+    allowed_proper_nouns: set[str],
+) -> None:
+    """Reject invented inner monologue, events, causality, or outcomes."""
+    text = pseudo.text
+    pseudo_id = pseudo.id
+    if _INNER_MONOLOGUE_RE.search(text) or _INTERIORITY_RE.search(text):
+        raise ValueError(
+            f"pseudo {pseudo_id}: fact guard — invented inner monologue or interiority"
+        )
+    if _CAUSAL_INVENTION_RE.search(text):
+        raise ValueError(
+            f"pseudo {pseudo_id}: fact guard — invented causal link"
+        )
+    if _NOVEL_EVENT_RE.search(text):
+        match = _NOVEL_EVENT_RE.search(text)
+        assert match is not None
+        phrase = match.group(0).lower()
+        if phrase not in vocab:
+            raise ValueError(
+                f"pseudo {pseudo_id}: fact guard — novel event {phrase!r}"
+            )
+    if _NOVEL_OUTCOME_RE.search(text):
+        result_tokens = _result_section_tokens(deconstruction)
+        outcome_match = _NOVEL_OUTCOME_RE.search(text)
+        assert outcome_match is not None
+        outcome_phrase = outcome_match.group(0).lower()
+        if outcome_phrase not in vocab and not (
+            result_tokens & _guard_tokens(outcome_phrase)
+        ):
+            raise ValueError(
+                f"pseudo {pseudo_id}: fact guard — novel outcome {outcome_phrase!r}"
+            )
+    for phrase in _CAPITALIZED_NAME_RE.findall(text):
+        lowered = phrase.lower()
+        if lowered in allowed_proper_nouns:
+            continue
+        words = [w.lower() for w in phrase.split() if len(w) > 2]
+        if words and not any(w in vocab for w in words):
+            raise ValueError(
+                f"pseudo {pseudo_id}: fact guard — novel proper noun {phrase!r}"
+            )
+
+
+def validate_adr8_dual_floor(pseudos: list[PseudoSegment]) -> None:
+    """≥1 non-focalized third-person toned pseudo among ADR-0008 legs."""
+    toned_count = sum(1 for p in pseudos if p.source.get("channel") == "toned")
+    if toned_count < 1:
+        raise ValueError(
+            "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+        )
+
+
+def validate_adr8_runtime_guards(
+    pseudos: list[PseudoSegment],
+    *,
+    deconstruction: dict[str, Any],
+    alt_pool: AltPoolOverlay,
+    known_elements: set[str],
+    expansion: dict[str, Any] | None = None,
+    hypernyms: set[str] | None = None,
+    check_hypernym: bool = True,
+    check_dual_floor: bool = True,
+) -> None:
+    """ADR-0008 runtime guards: center/focal/supporting/fact/hypernym/dual-floor."""
+    vocab = collect_entailed_vocabulary(deconstruction, alt_pool, expansion)
+    allowed_proper = _allowed_proper_noun_phrases(deconstruction, alt_pool, expansion)
+    hypernym_terms = hypernyms if hypernyms is not None else collect_hypernym_anchor_terms(
+        alt_pool, expansion
+    )
+
+    validate_center_mutual_exclusion(pseudos)
+    for pseudo in pseudos:
+        validate_center_in_decon(pseudo, known_elements)
+        validate_supporting_element_cap(pseudo)
+        validate_focal_char_in_decon_who(pseudo, known_elements)
+        validate_adr8_fact_guard(
+            pseudo,
+            deconstruction=deconstruction,
+            vocab=vocab,
+            allowed_proper_nouns=allowed_proper,
+        )
+        if check_hypernym:
+            validate_toned_hypernym_anchor(pseudo, hypernym_terms)
+
+    if check_dual_floor:
+        validate_adr8_dual_floor(pseudos)
+
+
 def parse_adr8_pseudos_response(
     raw: str,
     *,
     agent_id: str,
     known_fragments: set[str],
     known_elements: set[str],
+    deconstruction: dict[str, Any] | None = None,
+    alt_pool: AltPoolOverlay | None = None,
+    expansion: dict[str, Any] | None = None,
 ) -> list[PseudoSegment]:
     """Parse screenwriter JSON with center/channel/focal provenance fields."""
     data = extract_json_object(raw)
@@ -905,11 +1147,19 @@ def parse_adr8_pseudos_response(
             )
         )
 
-    validate_center_mutual_exclusion(tagged)
-
-    toned_count = sum(1 for p in tagged if p.source.get("channel") == "toned")
-    if toned_count < 1:
-        raise ValueError("ADR-0008 dual floor: need ≥1 non-focalized toned pseudo")
+    if deconstruction is not None and alt_pool is not None:
+        validate_adr8_runtime_guards(
+            tagged,
+            deconstruction=deconstruction,
+            alt_pool=alt_pool,
+            known_elements=known_elements,
+            expansion=expansion,
+            check_hypernym=False,
+            check_dual_floor=True,
+        )
+    else:
+        validate_center_mutual_exclusion(tagged)
+        validate_adr8_dual_floor(tagged)
 
     return tagged
 
@@ -938,8 +1188,17 @@ def assemble_adr8_channel_pseudos(
     budgeted = apply_adr8_pseudo_budget(ranked, salience, budget=budget)
 
     hypernyms = collect_hypernym_anchor_terms(alt_pool, expansion)
+    validate_adr8_runtime_guards(
+        budgeted,
+        deconstruction=deconstruction,
+        alt_pool=alt_pool,
+        known_elements=known_element_ids(deconstruction),
+        expansion=expansion,
+        hypernyms=hypernyms,
+        check_hypernym=True,
+        check_dual_floor=True,
+    )
     for pseudo in budgeted:
-        validate_toned_hypernym_anchor(pseudo, hypernyms)
         pseudo.source["agent_id"] = persona_id
         pseudo.warnings.extend(
             validate_focalized_derivation(pseudo, deconstruction, persona_card)
@@ -1297,6 +1556,9 @@ async def run_screenwriter(
                 agent_id=persona_id,
                 known_fragments=known_frags,
                 known_elements=known_elements,
+                deconstruction=deconstruction,
+                alt_pool=alt_pool,
+                expansion=expansion,
             )
         else:
             pseudos = parse_pseudos_response(
