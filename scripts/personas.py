@@ -48,15 +48,20 @@ from scripts.lib.paths import repo_root
 
 Valence = Literal["positive", "neutral", "negative"]
 Provenance = Literal["surface", "hypernym", "lens"]
-ChannelRole = Literal["neutral", "toned"]
+ChannelRole = Literal["neutral", "toned", "focalized"]
+CompositionChannel = Literal["toned", "focalized"]
 
 NEUTRAL_PSEUDO_ID = "n1"
+_COMPOSITION_MARKER = "Composition mode: ADR-0008"
 
 # Per-persona salience → neutral fragment selection (ADR-0006 D6).
 _SALIENCE_TOP_K_DEFAULT = 5
 _SALIENCE_TOP_K_MIN = 4
 _SALIENCE_TOP_K_MAX = 5
 _ELEMENT_ID_RE = re.compile(r"^(who|where|why|how|result)-\d+$")
+
+# ADR-0008 composition: salience-ranked pseudo budget (toned + focalized legs).
+_ADR8_TONED_BUDGET_DEFAULT = 3
 
 # Batch diversity guard: fail when pairwise near-duplicate on text AND fragment overlap.
 _NEUTRAL_DIVERSITY_SIM_THRESHOLD = 0.92
@@ -105,7 +110,8 @@ _DECON_TOP_LEVEL_KEYS: frozenset[str] = frozenset(
 
 _VALID_VALENCES: frozenset[str] = frozenset({"positive", "neutral", "negative"})
 _VALID_PROVENANCES: frozenset[str] = frozenset({"surface", "hypernym", "lens"})
-_CHANNEL_ROLES: frozenset[str] = frozenset({"neutral", "toned"})
+_CHANNEL_ROLES: frozenset[str] = frozenset({"neutral", "toned", "focalized"})
+_COMPOSITION_CHANNELS: frozenset[str] = frozenset({"toned", "focalized"})
 
 _SYSTEM_ALT = (
     "You are a persona alt-creator. Follow the user message exactly. "
@@ -614,6 +620,356 @@ def assemble_persona_channel_pseudos(
     return [neutral, *toned]
 
 
+def composition_mode_active(alt_pool: AltPoolOverlay) -> bool:
+    """ADR-0008 activates when alt-creator supplies a non-empty salience ranking."""
+    return bool(alt_pool.salience)
+
+
+def inject_adr8_composition_mode(
+    prompt: str,
+    *,
+    salience: list[str],
+) -> str:
+    """Append ADR-0008 activation marker + salience (contract § authoritative rule source)."""
+    salience_json = json.dumps(salience, ensure_ascii=False, indent=2)
+    block = (
+        f"\n## {_COMPOSITION_MARKER} (active)\n\n"
+        "The Element-centered composition & POV focalization section in the contract "
+        "above is **active**. Follow it exactly.\n\n"
+        "Injected salience ranking (greedy top-down center selection):\n\n"
+        f"```json\n{salience_json}\n```\n\n"
+        "Each toned/focalized pseudo **must** declare `center`, `channel`, and `focal` "
+        "(when `channel` is `focalized`). At least one pseudo must be non-focalized "
+        "third-person toned (dual floor).\n"
+    )
+    return prompt + block
+
+
+def build_adr8_screenwriter_user_prompt(
+    persona_id: str,
+    deconstruction: dict[str, Any],
+    alt_pool: AltPoolOverlay,
+    *,
+    expansion: dict[str, Any] | None = None,
+    repair_context: str | None = None,
+    prompts_dir: Path | None = None,
+) -> str:
+    base = build_screenwriter_user_prompt(
+        persona_id,
+        deconstruction,
+        alt_pool,
+        expansion=expansion,
+        repair_context=repair_context,
+        prompts_dir=prompts_dir,
+    )
+    if not alt_pool.salience:
+        raise ValueError(f"{persona_id}: alt_pool.salience required for ADR-0008 composition")
+    return inject_adr8_composition_mode(base, salience=list(alt_pool.salience))
+
+
+def _parse_composition_channel(row: dict[str, Any]) -> CompositionChannel:
+    channel = str(row.get("channel", "toned")).strip().lower()
+    if channel not in _COMPOSITION_CHANNELS:
+        raise ValueError(f"invalid channel {channel!r}; expected toned|focalized")
+    return channel  # type: ignore[return-value]
+
+
+def salience_rank_of_center(center: str, salience: list[str]) -> int:
+    """Lower rank = higher salience (greedy top-down). Unknown centers sort last."""
+    try:
+        return salience.index(center)
+    except ValueError:
+        return len(salience)
+
+
+def validate_center_mutual_exclusion(pseudos: list[PseudoSegment]) -> None:
+    """Each ADR-0008 pseudo must declare a distinct center element."""
+    seen: set[str] = set()
+    for pseudo in pseudos:
+        center = str(pseudo.source.get("center", "")).strip()
+        if not center:
+            raise ValueError(f"pseudo {pseudo.id}: center is required in ADR-0008 mode")
+        if center in seen:
+            raise ValueError(
+                f"ADR-0008 center mutual exclusion failed: duplicate center {center!r}"
+            )
+        seen.add(center)
+
+
+def rank_adr8_pseudos_by_salience(
+    pseudos: list[PseudoSegment],
+    salience: list[str],
+) -> list[PseudoSegment]:
+    """Sort toned/focalized legs by declared center's salience rank (greedy top-down)."""
+    return sorted(
+        pseudos,
+        key=lambda p: (
+            salience_rank_of_center(str(p.source.get("center", "")), salience),
+            str(p.id),
+        ),
+    )
+
+
+def apply_adr8_pseudo_budget(
+    pseudos: list[PseudoSegment],
+    salience: list[str],
+    *,
+    budget: int = _ADR8_TONED_BUDGET_DEFAULT,
+) -> list[PseudoSegment]:
+    """Greedy salience-ranked budget; preserve dual floor (≥1 non-focalized toned)."""
+    ranked = rank_adr8_pseudos_by_salience(pseudos, salience)
+    if len(ranked) <= budget:
+        return ranked
+    trimmed = ranked[:budget]
+    if any(p.source.get("channel") == "toned" for p in trimmed):
+        return trimmed
+    best_toned = next((p for p in ranked if p.source.get("channel") == "toned"), None)
+    if best_toned is None:
+        return trimmed
+    return trimmed[:-1] + [best_toned]
+
+
+def _vantage_keywords_from_card(card: str) -> list[str]:
+    """Extract Who 正极 vantage-seat keyword phrases from persona card attention inventory."""
+    keywords: list[str] = []
+    in_who = False
+    for line in card.splitlines():
+        stripped = line.strip()
+        if "Who" in line and "人物" in line:
+            in_who = True
+            continue
+        if not in_who:
+            continue
+        if stripped.startswith("- **负极**"):
+            break
+        if "正极" not in line:
+            continue
+        m = re.search(r"[—–-]\s*(.+)$", line)
+        if not m:
+            continue
+        tail = m.group(1).strip().rstrip(".")
+        for chunk in re.split(r"[/,]", tail):
+            chunk = re.sub(r"[\u4e00-\u9fff（）()]+", " ", chunk).strip().lower()
+            if len(chunk) > 2:
+                keywords.append(chunk)
+            for word in re.findall(r"[a-z]{4,}", chunk):
+                keywords.append(word)
+    for line in card.splitlines():
+        if line.strip().startswith("- **Who:**"):
+            for word in re.findall(r"[a-z]{4,}", line.lower()):
+                keywords.append(word)
+            break
+    return keywords
+
+
+def who_instantiates_vantage_seat(who_text: str, vantage_keywords: list[str]) -> bool:
+    """True when decon who element text matches a card Who 正极 vantage prototype."""
+    text = who_text.lower()
+    for kw in vantage_keywords:
+        if kw in text:
+            return True
+        for word in re.findall(r"[a-z]{4,}", kw):
+            if word in text:
+                return True
+            if word.endswith("s") and word[:-1] in text:
+                return True
+            if f"{word}s" in text:
+                return True
+    return False
+
+
+def derive_expected_channel(
+    center: str,
+    deconstruction: dict[str, Any],
+    persona_card: str | None,
+) -> CompositionChannel:
+    """focalized when center is who-* and instantiates card vantage seat; else toned."""
+    if not center.startswith("who-"):
+        return "toned"
+    if not persona_card:
+        return "toned"
+    who_text = _original_term_for_element(deconstruction, center) or ""
+    keywords = _vantage_keywords_from_card(persona_card)
+    if who_instantiates_vantage_seat(who_text, keywords):
+        return "focalized"
+    return "toned"
+
+
+def validate_focalized_derivation(
+    pseudo: PseudoSegment,
+    deconstruction: dict[str, Any],
+    persona_card: str | None,
+) -> list[str]:
+    """Return warnings when declared channel disagrees with vantage-seat derivation."""
+    warnings: list[str] = []
+    center = str(pseudo.source.get("center", ""))
+    channel = str(pseudo.source.get("channel", "toned"))
+    expected = derive_expected_channel(center, deconstruction, persona_card)
+    if channel == "focalized" and expected != "focalized":
+        warnings.append(
+            f"pseudo {pseudo.id}: focalized channel but center {center!r} "
+            "does not instantiate a card vantage seat"
+        )
+    elif channel == "toned" and expected == "focalized":
+        warnings.append(
+            f"pseudo {pseudo.id}: center {center!r} instantiates vantage seat "
+            "but channel is toned (expected focalized)"
+        )
+    return warnings
+
+
+def attach_adr8_provenance(
+    pseudo: PseudoSegment,
+    salience: list[str],
+) -> None:
+    """Stamp provenance tags: center, channel, focal, salience_rank, composition_mode."""
+    center = str(pseudo.source.get("center", ""))
+    pseudo.source["composition_mode"] = "ADR-0008"
+    pseudo.source["channel_role"] = str(pseudo.source.get("channel", "toned"))
+    if center:
+        pseudo.source["salience_rank"] = salience_rank_of_center(center, salience)
+    if pseudo.source.get("channel") == "focalized" and pseudo.source.get("focal"):
+        pseudo.source["focal_role_id"] = pseudo.source["focal"]
+
+
+def parse_adr8_pseudos_response(
+    raw: str,
+    *,
+    agent_id: str,
+    known_fragments: set[str],
+    known_elements: set[str],
+) -> list[PseudoSegment]:
+    """Parse screenwriter JSON with center/channel/focal provenance fields."""
+    data = extract_json_object(raw)
+    rows = data.get("pseudos")
+    if not isinstance(rows, list):
+        raise ValueError("JSON must contain a 'pseudos' array")
+
+    base_segments = parse_pseudos_response(
+        raw,
+        agent_id=agent_id,
+        known_fragments=known_fragments,
+        require_fit=True,
+    )
+    row_by_id = {str(r.get("id")): r for r in rows if isinstance(r, dict)}
+
+    tagged: list[PseudoSegment] = []
+    for seg in base_segments:
+        row = row_by_id.get(seg.id, {})
+        center = str(row.get("center", "")).strip()
+        if not center:
+            raise ValueError(f"pseudo {seg.id}: center is required in ADR-0008 mode")
+        if center not in known_elements:
+            raise ValueError(f"pseudo {seg.id}: unknown center element {center!r}")
+        channel = _parse_composition_channel(row)
+        focal = str(row.get("focal", "")).strip() or None
+        if channel == "focalized":
+            if not focal:
+                raise ValueError(f"pseudo {seg.id}: focal required when channel=focalized")
+            if not focal.startswith("who-"):
+                raise ValueError(f"pseudo {seg.id}: focal must be who-* id, got {focal!r}")
+            if focal not in known_elements:
+                raise ValueError(f"pseudo {seg.id}: unknown focal element {focal!r}")
+            if center.startswith("who-") and focal != center:
+                raise ValueError(
+                    f"pseudo {seg.id}: when center is who-*, focal {focal!r} "
+                    f"must equal center {center!r}"
+                )
+        elif focal:
+            seg = PseudoSegment(
+                seg.id,
+                seg.text,
+                seg.source,
+                [*seg.warnings, f"ignored focal {focal!r} on toned channel"],
+                fit=seg.fit,
+            )
+            focal = None
+
+        source = dict(seg.source)
+        source.update(
+            {
+                "center": center,
+                "channel": channel,
+                "channel_role": channel,
+            }
+        )
+        if focal:
+            source["focal"] = focal
+        tagged.append(
+            PseudoSegment(
+                seg.id,
+                seg.text,
+                source,
+                seg.warnings,
+                fit=seg.fit,
+            )
+        )
+
+    validate_center_mutual_exclusion(tagged)
+
+    toned_count = sum(1 for p in tagged if p.source.get("channel") == "toned")
+    if toned_count < 1:
+        raise ValueError("ADR-0008 dual floor: need ≥1 non-focalized toned pseudo")
+
+    return tagged
+
+
+def assemble_adr8_channel_pseudos(
+    persona_id: str,
+    deconstruction: dict[str, Any],
+    alt_pool: AltPoolOverlay,
+    adr8_legs: list[PseudoSegment],
+    expansion: dict[str, Any] | None = None,
+    *,
+    top_k: int = _SALIENCE_TOP_K_DEFAULT,
+    budget: int = _ADR8_TONED_BUDGET_DEFAULT,
+    neutral_override: PseudoSegment | None = None,
+) -> list[PseudoSegment]:
+    """ADR-0008: code-built neutral n1 (wording unchanged) + salience-ranked legs."""
+    salience = list(alt_pool.salience)
+    if not salience:
+        raise ValueError(f"{persona_id}: salience required for ADR-0008 assembly")
+
+    persona_card = load_persona_card(persona_id)
+    for pseudo in adr8_legs:
+        attach_adr8_provenance(pseudo, salience)
+
+    ranked = rank_adr8_pseudos_by_salience(adr8_legs, salience)
+    budgeted = apply_adr8_pseudo_budget(ranked, salience, budget=budget)
+
+    hypernyms = collect_hypernym_anchor_terms(alt_pool, expansion)
+    for pseudo in budgeted:
+        validate_toned_hypernym_anchor(pseudo, hypernyms)
+        pseudo.source["agent_id"] = persona_id
+        pseudo.warnings.extend(
+            validate_focalized_derivation(pseudo, deconstruction, persona_card)
+        )
+
+    if neutral_override is not None:
+        neutral = PseudoSegment(
+            neutral_override.id,
+            neutral_override.text,
+            dict(neutral_override.source),
+            list(neutral_override.warnings),
+            fit=neutral_override.fit,
+        )
+    else:
+        fragment_ids = resolve_neutral_fragment_ids(
+            deconstruction, alt_pool, top_k=top_k
+        )
+        neutral = build_objective_floor_neutral_pseudo(
+            persona_id,
+            deconstruction,
+            alt_pool,
+            expansion,
+            fragment_ids=fragment_ids,
+        )
+    neutral.source["agent_id"] = persona_id
+    neutral.source["channel_role"] = "neutral"
+
+    return [neutral, *budgeted]
+
+
 def _original_term_for_element(
     deconstruction: dict[str, Any], element_id: str
 ) -> str | None:
@@ -898,16 +1254,28 @@ async def run_screenwriter(
     expansion: dict[str, Any] | None = None,
     repair_context: str | None = None,
     prompts_dir: Path | None = None,
+    composition_mode: bool = False,
 ) -> tuple[list[PseudoSegment] | None, str | None]:
     known_frags = _known_fragment_ids(annotate_fragment_ids(deconstruction))
-    prompt = build_screenwriter_user_prompt(
-        persona_id,
-        deconstruction,
-        alt_pool,
-        expansion=expansion,
-        repair_context=repair_context,
-        prompts_dir=prompts_dir,
-    )
+    known_elements = known_element_ids(deconstruction)
+    if composition_mode:
+        prompt = build_adr8_screenwriter_user_prompt(
+            persona_id,
+            deconstruction,
+            alt_pool,
+            expansion=expansion,
+            repair_context=repair_context,
+            prompts_dir=prompts_dir,
+        )
+    else:
+        prompt = build_screenwriter_user_prompt(
+            persona_id,
+            deconstruction,
+            alt_pool,
+            expansion=expansion,
+            repair_context=repair_context,
+            prompts_dir=prompts_dir,
+        )
     try:
         raw = await asyncio.wait_for(
             asyncio.to_thread(
@@ -923,12 +1291,20 @@ async def run_screenwriter(
     if not raw.strip():
         return None, "screenwriter empty LLM response"
     try:
-        pseudos = parse_pseudos_response(
-            raw,
-            agent_id=persona_id,
-            known_fragments=known_frags,
-            require_fit=True,
-        )
+        if composition_mode:
+            pseudos = parse_adr8_pseudos_response(
+                raw,
+                agent_id=persona_id,
+                known_fragments=known_frags,
+                known_elements=known_elements,
+            )
+        else:
+            pseudos = parse_pseudos_response(
+                raw,
+                agent_id=persona_id,
+                known_fragments=known_frags,
+                require_fit=True,
+            )
         cleaned = [
             PseudoSegment(
                 p.id,
@@ -939,6 +1315,8 @@ async def run_screenwriter(
             )
             for p in pseudos
         ]
+        if composition_mode:
+            return cleaned, None
         out = post_process_output(
             AgentOutput(
                 agent_id=persona_id,
@@ -996,6 +1374,7 @@ async def run_persona_pipeline(
 
     repair_retries: list[dict[str, str]] = []
     repaired = False
+    adr8_mode = composition_mode_active(alt_pool)
 
     pseudos, sw_err = await run_screenwriter(
         persona_id,
@@ -1006,6 +1385,7 @@ async def run_persona_pipeline(
         timeout,
         expansion=expansion,
         prompts_dir=prompts_dir,
+        composition_mode=adr8_mode,
     )
     if sw_err or pseudos is None:
         repair_retries.append(
@@ -1025,6 +1405,7 @@ async def run_persona_pipeline(
             expansion=expansion,
             repair_context=sw_err or "screenwriter failed",
             prompts_dir=prompts_dir,
+            composition_mode=adr8_mode,
         )
         repaired = True
         repair_retries.append(
@@ -1044,13 +1425,22 @@ async def run_persona_pipeline(
         )
 
     try:
-        channel_pseudos = assemble_persona_channel_pseudos(
-            persona_id,
-            dec,
-            alt_pool,
-            pseudos,
-            expansion,
-        )
+        if adr8_mode:
+            channel_pseudos = assemble_adr8_channel_pseudos(
+                persona_id,
+                dec,
+                alt_pool,
+                pseudos,
+                expansion,
+            )
+        else:
+            channel_pseudos = assemble_persona_channel_pseudos(
+                persona_id,
+                dec,
+                alt_pool,
+                pseudos,
+                expansion,
+            )
     except ValueError as exc:
         asm_err = f"channel_assembly: {exc}"
         repair_retries.append(
@@ -1073,6 +1463,7 @@ async def run_persona_pipeline(
             expansion=expansion,
             repair_context=asm_err,
             prompts_dir=prompts_dir,
+            composition_mode=adr8_mode,
         )
         repaired = True
         repair_retries.append(
@@ -1090,13 +1481,22 @@ async def run_persona_pipeline(
                 error=sw_err or "screenwriter failed after assembly repair",
             )
         try:
-            channel_pseudos = assemble_persona_channel_pseudos(
-                persona_id,
-                dec,
-                alt_pool,
-                pseudos,
-                expansion,
-            )
+            if adr8_mode:
+                channel_pseudos = assemble_adr8_channel_pseudos(
+                    persona_id,
+                    dec,
+                    alt_pool,
+                    pseudos,
+                    expansion,
+                )
+            else:
+                channel_pseudos = assemble_persona_channel_pseudos(
+                    persona_id,
+                    dec,
+                    alt_pool,
+                    pseudos,
+                    expansion,
+                )
         except ValueError as exc2:
             retry_asm = f"channel_assembly: {exc2}"
             repair_retries.append(

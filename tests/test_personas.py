@@ -24,23 +24,34 @@ from scripts.personas import (
     AltPoolOverlay,
     AltTerm,
     annotate_element_ids,
+    apply_adr8_pseudo_budget,
+    assemble_adr8_channel_pseudos,
     assemble_persona_channel_pseudos,
+    build_adr8_screenwriter_user_prompt,
     build_alt_pool_overlay,
     build_objective_floor_neutral_pseudo,
     build_screenwriter_user_prompt,
     collect_hypernym_anchor_terms,
     collect_lens_terms,
+    composition_mode_active,
+    derive_expected_channel,
     fragment_ids_from_salience,
+    inject_adr8_composition_mode,
     known_element_ids,
     list_persona_ids,
     load_persona_card,
     overlay_forbids_decon_fork,
+    parse_adr8_pseudos_response,
     parse_alt_pool_response,
+    rank_adr8_pseudos_by_salience,
     render_persona_prompt,
     resolve_neutral_fragment_ids,
     run_persona_pipeline,
+    salience_rank_of_center,
+    validate_center_mutual_exclusion,
     validate_neutral_pseudo_batch_diversity,
     validate_salience,
+    who_instantiates_vantage_seat,
 )
 from scripts.run_persona_batch import (
     load_a1_agent_from_phase36,
@@ -866,6 +877,319 @@ class PersonaScaffoldTests(unittest.TestCase):
             "a high-level warning was declared for the region.",
             terms,
         )
+
+
+class PersonaAdr8CompositionTests(unittest.TestCase):
+    _SALIENCE = ["who-0", "why-0", "how-0", "result-0", "how-1"]
+
+    def _adr8_raw(
+        self,
+        *,
+        p1_center: str = "who-0",
+        p1_channel: str = "toned",
+        p2_center: str = "why-0",
+    ) -> str:
+        p1: dict = {
+            "id": "p1",
+            "text": (
+                "Grid operators face a large-scale power deficit after seasonal heat "
+                "drove demand into a thin margin, forcing emergency measures across "
+                "the power grid and critical infrastructure."
+            ),
+            "fit": 0.8,
+            "center": p1_center,
+            "channel": p1_channel,
+            "source": {"fragments": ["why-0", "how-0", "result-0"]},
+        }
+        if p1_channel == "focalized":
+            p1["focal"] = p1_center
+        return json.dumps(
+            {
+                "pseudos": [
+                    p1,
+                    {
+                        "id": "p2",
+                        "text": (
+                            "A prolonged heat wave strains the Philippines grid operator "
+                            "network as plant outages leave more than nine hundred "
+                            "megawatts unavailable across the power grid."
+                        ),
+                        "fit": 0.75,
+                        "center": p2_center,
+                        "channel": "toned",
+                        "source": {"fragments": ["why-0", "how-0"]},
+                    },
+                ]
+            }
+        )
+
+    def test_composition_mode_active_when_salience_present(self) -> None:
+        overlay = parse_alt_pool_response(
+            _alt_pool_json_with_salience(self._SALIENCE),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        self.assertTrue(composition_mode_active(overlay))
+        bare = AltPoolOverlay(persona_id="The-Ruler", elements=overlay.elements)
+        self.assertFalse(composition_mode_active(bare))
+
+    def test_inject_adr8_composition_mode_marker(self) -> None:
+        prompt = inject_adr8_composition_mode("base", salience=["who-0", "why-0"])
+        self.assertIn("Composition mode: ADR-0008", prompt)
+        self.assertIn("who-0", prompt)
+
+    def test_build_adr8_screenwriter_prompt_includes_marker(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json_with_salience(self._SALIENCE),
+            persona_id="The-Everyman",
+            known_elements=_known_elements(),
+        )
+        prompt = build_adr8_screenwriter_user_prompt("The-Everyman", dec, overlay)
+        self.assertIn("Composition mode: ADR-0008", prompt)
+        self.assertIn("Element-centered composition", prompt)
+
+    def test_parse_adr8_pseudos_provenance_tags(self) -> None:
+        pseudos = parse_adr8_pseudos_response(
+            self._adr8_raw(),
+            agent_id="The-Everyman",
+            known_fragments=_known_fragments(),
+            known_elements=_known_elements(),
+        )
+        self.assertEqual(len(pseudos), 2)
+        for pseudo in pseudos:
+            self.assertIn("center", pseudo.source)
+            self.assertIn("channel", pseudo.source)
+            self.assertIn(pseudo.source["channel"], ("toned", "focalized"))
+
+    def test_parse_adr8_rejects_duplicate_center(self) -> None:
+        raw = json.dumps(
+            {
+                "pseudos": [
+                    {
+                        "id": "p1",
+                        "text": _LONG_TEXT,
+                        "fit": 0.8,
+                        "center": "why-0",
+                        "channel": "toned",
+                        "source": {"fragments": ["why-0", "how-0", "result-0"]},
+                    },
+                    {
+                        "id": "p2",
+                        "text": _LONG_TEXT + " Additional context on grid strain.",
+                        "fit": 0.7,
+                        "center": "why-0",
+                        "channel": "toned",
+                        "source": {"fragments": ["why-0", "how-1"]},
+                    },
+                ]
+            }
+        )
+        with self.assertRaises(ValueError) as ctx:
+            parse_adr8_pseudos_response(
+                raw,
+                agent_id="The-Everyman",
+                known_fragments=_known_fragments(),
+                known_elements=_known_elements(),
+            )
+        self.assertIn("mutual exclusion", str(ctx.exception).lower())
+
+    def test_parse_adr8_dual_floor_requires_toned(self) -> None:
+        raw = json.dumps(
+            {
+                "pseudos": [
+                    {
+                        "id": "p1",
+                        "text": (
+                            "From the control room, the Philippines grid operator "
+                            "watches red-alert warnings climb as a power plant outage "
+                            "spreads across the power grid."
+                        ),
+                        "fit": 0.8,
+                        "center": "who-0",
+                        "channel": "focalized",
+                        "focal": "who-0",
+                        "source": {"fragments": ["why-0", "how-0", "result-0"]},
+                    }
+                ]
+            }
+        )
+        with self.assertRaises(ValueError) as ctx:
+            parse_adr8_pseudos_response(
+                raw,
+                agent_id="The-Everyman",
+                known_fragments=_known_fragments(),
+                known_elements=_known_elements(),
+            )
+        self.assertIn("dual floor", str(ctx.exception).lower())
+
+    def test_salience_rank_and_greedy_ordering(self) -> None:
+        salience = self._SALIENCE
+        self.assertEqual(salience_rank_of_center("who-0", salience), 0)
+        self.assertEqual(salience_rank_of_center("how-1", salience), 4)
+        self.assertEqual(salience_rank_of_center("where-0", salience), 5)
+
+        pseudos = parse_adr8_pseudos_response(
+            self._adr8_raw(p1_center="result-0", p2_center="who-0"),
+            agent_id="The-Everyman",
+            known_fragments=_known_fragments(),
+            known_elements=_known_elements(),
+        )
+        ranked = rank_adr8_pseudos_by_salience(pseudos, salience)
+        self.assertEqual(ranked[0].source["center"], "who-0")
+        self.assertEqual(ranked[1].source["center"], "result-0")
+
+    def test_apply_adr8_budget_preserves_dual_floor(self) -> None:
+        legs = parse_adr8_pseudos_response(
+            json.dumps(
+                {
+                    "pseudos": [
+                        {
+                            "id": "p1",
+                            "text": (
+                                "From the plant floor, operators watch emergency load "
+                                "shedding ripple across the power grid during a major "
+                                "power plant outage."
+                            ),
+                            "fit": 0.8,
+                            "center": "who-0",
+                            "channel": "focalized",
+                            "focal": "who-0",
+                            "source": {"fragments": ["why-0", "how-0", "result-0"]},
+                        },
+                        {
+                            "id": "p2",
+                            "text": _LONG_TEXT + " More on outages.",
+                            "fit": 0.7,
+                            "center": "how-1",
+                            "channel": "focalized",
+                            "focal": "who-0",
+                            "source": {"fragments": ["how-1", "result-0"]},
+                        },
+                        {
+                            "id": "p3",
+                            "text": _LONG_TEXT + " Toned third-person leg.",
+                            "fit": 0.65,
+                            "center": "why-0",
+                            "channel": "toned",
+                            "source": {"fragments": ["why-0", "how-0"]},
+                        },
+                    ]
+                }
+            ),
+            agent_id="The-Everyman",
+            known_fragments=_known_fragments(),
+            known_elements=_known_elements(),
+        )
+        from scripts.agents import PseudoSegment
+
+        four_legs = legs + [
+            PseudoSegment(
+                "p4",
+                _LONG_TEXT + " Another toned leg.",
+                {
+                    "center": "result-0",
+                    "channel": "toned",
+                    "fragments": ["result-0", "why-0"],
+                },
+                [],
+                fit=0.6,
+            )
+        ]
+        budgeted = apply_adr8_pseudo_budget(four_legs, self._SALIENCE, budget=3)
+        self.assertEqual(len(budgeted), 3)
+        self.assertTrue(any(p.source.get("channel") == "toned" for p in budgeted))
+
+    def test_focalized_derivation_everyman_grid_operator(self) -> None:
+        dec = _fixture_dec_inner()
+        card = load_persona_card("The-Everyman")
+        assert card is not None
+        self.assertTrue(
+            who_instantiates_vantage_seat(
+                "Philippines grid operator",
+                ["operators", "ordinary people", "fair-minded"],
+            )
+        )
+        self.assertEqual(
+            derive_expected_channel("who-0", dec, card),
+            "focalized",
+        )
+        self.assertEqual(
+            derive_expected_channel("why-0", dec, card),
+            "toned",
+        )
+
+    def test_assemble_adr8_neutral_n1_unchanged_vs_legacy(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json_with_salience(self._SALIENCE),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        expansion = _full_expansion_fixture()
+        frags = resolve_neutral_fragment_ids(dec, overlay)
+        legacy_neutral = build_objective_floor_neutral_pseudo(
+            "The-Ruler",
+            dec,
+            overlay,
+            expansion,
+            fragment_ids=frags,
+        )
+        legs = parse_adr8_pseudos_response(
+            self._adr8_raw(),
+            agent_id="The-Ruler",
+            known_fragments=_known_fragments(),
+            known_elements=_known_elements(),
+        )
+        assembled = assemble_adr8_channel_pseudos(
+            "The-Ruler",
+            dec,
+            overlay,
+            legs,
+            expansion,
+        )
+        self.assertEqual(assembled[0].id, NEUTRAL_PSEUDO_ID)
+        self.assertEqual(assembled[0].text, legacy_neutral.text)
+        self.assertEqual(assembled[0].source.get("channel_role"), "neutral")
+        self.assertGreaterEqual(len(assembled), 2)
+        toned = [p for p in assembled if p.id != NEUTRAL_PSEUDO_ID]
+        self.assertTrue(any(p.source.get("channel") == "toned" for p in toned))
+
+    def test_assemble_adr8_provenance_complete(self) -> None:
+        dec = _fixture_dec_inner()
+        overlay = parse_alt_pool_response(
+            _alt_pool_json_with_salience(self._SALIENCE),
+            persona_id="The-Everyman",
+            known_elements=_known_elements(),
+        )
+        legs = parse_adr8_pseudos_response(
+            self._adr8_raw(p1_center="who-0", p1_channel="focalized"),
+            agent_id="The-Everyman",
+            known_fragments=_known_fragments(),
+            known_elements=_known_elements(),
+        )
+        assembled = assemble_adr8_channel_pseudos(
+            "The-Everyman",
+            dec,
+            overlay,
+            legs,
+            _full_expansion_fixture(),
+        )
+        focal = next(p for p in assembled if p.source.get("channel") == "focalized")
+        self.assertEqual(focal.source.get("composition_mode"), "ADR-0008")
+        self.assertEqual(focal.source.get("center"), "who-0")
+        self.assertEqual(focal.source.get("focal"), "who-0")
+        self.assertEqual(focal.source.get("focal_role_id"), "who-0")
+        self.assertIsNotNone(focal.source.get("salience_rank"))
+
+    def test_validate_center_mutual_exclusion(self) -> None:
+        legs = parse_adr8_pseudos_response(
+            self._adr8_raw(),
+            agent_id="The-Everyman",
+            known_fragments=_known_fragments(),
+            known_elements=_known_elements(),
+        )
+        validate_center_mutual_exclusion(legs)
 
 
 class PersonaRepairTests(unittest.IsolatedAsyncioTestCase):

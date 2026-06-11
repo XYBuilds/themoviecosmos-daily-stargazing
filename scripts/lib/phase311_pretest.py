@@ -11,37 +11,30 @@ import re
 from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any
 
 from scripts.agents import (
     PseudoSegment,
-    _known_fragment_ids,
     annotate_fragment_ids,
-    extract_json_object,
-    minimal_clean,
-    parse_pseudos_response,
 )
 from scripts.personas import (
     NEUTRAL_PSEUDO_ID,
     AltElement,
     AltPoolOverlay,
     AltTerm,
-    build_screenwriter_user_prompt,
-    collect_hypernym_anchor_terms,
+    assemble_adr8_channel_pseudos,
+    build_adr8_screenwriter_user_prompt,
+    inject_adr8_composition_mode,
     list_persona_ids,
-    validate_toned_hypernym_anchor,
+    parse_adr8_pseudos_response,
 )
 
 _CANONICAL_PERSONA_BY_UPPER = {pid.upper(): pid for pid in list_persona_ids()}
-
-ChannelKind = Literal["toned", "focalized"]
 
 PHASE39_SCORES = Path("output/Eval/phase3.9/llm-judge-scores.json")
 PHASE310_ROOT = Path("output/Eval/phase3.10")
 PHASE311_ROOT = Path("output/Eval/phase3.11")
 PRETEST_MANIFEST = PHASE311_ROOT / "pretest-manifest.json"
-
-_COMPOSITION_MARKER = "Composition mode: ADR-0008"
 
 
 @dataclass
@@ -215,137 +208,6 @@ def parse_pretest_runs(manifest: dict[str, Any]) -> list[PretestRunSpec]:
     return specs
 
 
-def inject_adr8_composition_mode(
-    prompt: str,
-    *,
-    salience: list[str],
-) -> str:
-    """Append ADR-0008 activation marker + salience (contract § authoritative rule source)."""
-    salience_json = json.dumps(salience, ensure_ascii=False, indent=2)
-    block = (
-        f"\n## {_COMPOSITION_MARKER} (active)\n\n"
-        "The Element-centered composition & POV focalization section in the contract "
-        "above is **active**. Follow it exactly.\n\n"
-        "Injected salience ranking (greedy top-down center selection):\n\n"
-        f"```json\n{salience_json}\n```\n\n"
-        "Each toned/focalized pseudo **must** declare `center`, `channel`, and `focal` "
-        "(when `channel` is `focalized`). At least one pseudo must be non-focalized "
-        "third-person toned (dual floor).\n"
-    )
-    return prompt + block
-
-
-def build_adr8_screenwriter_user_prompt(
-    persona_id: str,
-    deconstruction: dict[str, Any],
-    alt_pool: AltPoolOverlay,
-    *,
-    expansion: dict[str, Any] | None = None,
-    repair_context: str | None = None,
-    prompts_dir: Path | None = None,
-) -> str:
-    base = build_screenwriter_user_prompt(
-        persona_id,
-        deconstruction,
-        alt_pool,
-        expansion=expansion,
-        repair_context=repair_context,
-        prompts_dir=prompts_dir,
-    )
-    salience = list(alt_pool.salience)
-    if not salience:
-        raise ValueError(f"{persona_id}: alt_pool.salience required for ADR-0008 pretest")
-    return inject_adr8_composition_mode(base, salience=salience)
-
-
-def _parse_channel(row: dict[str, Any]) -> ChannelKind:
-    channel = str(row.get("channel", "toned")).strip().lower()
-    if channel not in ("toned", "focalized"):
-        raise ValueError(f"invalid channel {channel!r}; expected toned|focalized")
-    return channel  # type: ignore[return-value]
-
-
-def parse_adr8_pseudos_response(
-    raw: str,
-    *,
-    agent_id: str,
-    known_fragments: set[str],
-    known_elements: set[str],
-) -> list[PseudoSegment]:
-    """Parse screenwriter JSON with center/channel/focal provenance fields."""
-    data = extract_json_object(raw)
-    rows = data.get("pseudos")
-    if not isinstance(rows, list):
-        raise ValueError("JSON must contain a 'pseudos' array")
-
-    # Reuse fragment/fit validation from agents.parse_pseudos_response.
-    base_segments = parse_pseudos_response(
-        raw,
-        agent_id=agent_id,
-        known_fragments=known_fragments,
-        require_fit=True,
-    )
-    row_by_id = {str(r.get("id")): r for r in rows if isinstance(r, dict)}
-
-    tagged: list[PseudoSegment] = []
-    for seg in base_segments:
-        row = row_by_id.get(seg.id, {})
-        center = str(row.get("center", "")).strip()
-        if not center:
-            raise ValueError(f"pseudo {seg.id}: center is required in ADR-0008 mode")
-        if center not in known_elements:
-            raise ValueError(f"pseudo {seg.id}: unknown center element {center!r}")
-        channel = _parse_channel(row)
-        focal = str(row.get("focal", "")).strip() or None
-        if channel == "focalized":
-            if not focal:
-                raise ValueError(f"pseudo {seg.id}: focal required when channel=focalized")
-            if not focal.startswith("who-"):
-                raise ValueError(f"pseudo {seg.id}: focal must be who-* id, got {focal!r}")
-            if focal not in known_elements:
-                raise ValueError(f"pseudo {seg.id}: unknown focal element {focal!r}")
-            if center.startswith("who-") and focal != center:
-                raise ValueError(
-                    f"pseudo {seg.id}: when center is who-*, focal {focal!r} must equal center {center!r}"
-                )
-        elif focal:
-            seg = type(seg)(
-                seg.id,
-                seg.text,
-                seg.source,
-                [*seg.warnings, f"ignored focal {focal!r} on toned channel"],
-                fit=seg.fit,
-            )
-            focal = None
-
-        source = dict(seg.source)
-        source.update(
-            {
-                "center": center,
-                "channel": channel,
-                "channel_role": channel,
-                "composition_mode": "ADR-0008",
-            }
-        )
-        if focal:
-            source["focal"] = focal
-        tagged.append(
-            PseudoSegment(
-                seg.id,
-                seg.text,
-                source,
-                seg.warnings,
-                fit=seg.fit,
-            )
-        )
-
-    toned_count = sum(1 for p in tagged if p.source.get("channel") == "toned")
-    if toned_count < 1:
-        raise ValueError("ADR-0008 dual floor: need ≥1 non-focalized toned pseudo")
-
-    return tagged
-
-
 def load_alt_pool_overlay(path: Path) -> AltPoolOverlay:
     data = json.loads(path.read_text(encoding="utf-8"))
     pid = str(data.get("persona_id", ""))
@@ -398,7 +260,7 @@ def load_baseline_neutral_pseudo(
     raise FileNotFoundError(f"neutral n1 missing in {path}")
 
 
-def assemble_adr8_channel_pseudos(
+def assemble_adr8_channel_pseudos_with_baseline_neutral(
     persona_id: str,
     deconstruction: dict[str, Any],
     alt_pool: AltPoolOverlay,
@@ -406,23 +268,15 @@ def assemble_adr8_channel_pseudos(
     baseline_neutral: PseudoSegment,
     expansion: dict[str, Any] | None = None,
 ) -> list[PseudoSegment]:
-    """neutral n1 from baseline + ADR-0008 toned/focalized legs."""
-    hypernyms = collect_hypernym_anchor_terms(alt_pool, expansion)
-    for pseudo in adr8_toned:
-        validate_toned_hypernym_anchor(pseudo, hypernyms)
-        pseudo.source["agent_id"] = persona_id
-
-    neutral = PseudoSegment(
-        baseline_neutral.id,
-        baseline_neutral.text,
-        dict(baseline_neutral.source),
-        baseline_neutral.warnings,
-        fit=baseline_neutral.fit,
+    """Pretest: reuse 3.10 neutral n1 verbatim (ADR-0008 D3 zero-change rule)."""
+    return assemble_adr8_channel_pseudos(
+        persona_id,
+        deconstruction,
+        alt_pool,
+        adr8_toned,
+        expansion,
+        neutral_override=baseline_neutral,
     )
-    neutral.source["agent_id"] = persona_id
-    neutral.source["channel_role"] = "neutral"
-
-    return [neutral, *adr8_toned]
 
 
 def pseudo_segment_to_dict(pseudo: PseudoSegment) -> dict[str, Any]:

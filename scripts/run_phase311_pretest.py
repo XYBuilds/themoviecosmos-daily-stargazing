@@ -38,7 +38,7 @@ from scripts.lib.phase311_pretest import (
     PHASE310_ROOT,
     PHASE311_ROOT,
     PretestRunSpec,
-    assemble_adr8_channel_pseudos,
+    assemble_adr8_channel_pseudos_with_baseline_neutral,
     build_adr8_screenwriter_user_prompt,
     compare_pool_diff,
     go_no_go_recommendation,
@@ -124,7 +124,7 @@ async def run_adr8_screenwriter(
         for t in toned
     ]
     neutral = load_baseline_neutral_pseudo(baseline_run_dir, persona_id)
-    channel_pseudos = assemble_adr8_channel_pseudos(
+    channel_pseudos = assemble_adr8_channel_pseudos_with_baseline_neutral(
         persona_id,
         deconstruction,
         alt_pool,
