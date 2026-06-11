@@ -80,6 +80,12 @@ def adr8_dual_floor_enabled(*, enable_dual_floor: bool | None = None) -> bool:
         "yes",
     )
 
+
+def center_kind_from_element_id(center: str) -> str:
+    """Element-centered pseudo identity: who / where / why / how / result."""
+    m = re.match(r"^(who|where|why|how|result)-", str(center).strip())
+    return m.group(1) if m else "unknown"
+
 # ADR-0008 runtime fact guard (inner monologue / novel events / causality / outcomes).
 _INNER_MONOLOGUE_RE = re.compile(
     r"\b(?:thought|wondered|felt|realized|feared|hoped|prayed|mused|"
@@ -866,11 +872,12 @@ def attach_adr8_provenance(
     pseudo: PseudoSegment,
     salience: list[str],
 ) -> None:
-    """Stamp provenance tags: center, channel, focal, salience_rank, composition_mode."""
+    """Stamp provenance tags: center, center_kind, element_centered role, salience_rank."""
     center = str(pseudo.source.get("center", ""))
     pseudo.source["composition_mode"] = "ADR-0008"
-    pseudo.source["channel_role"] = str(pseudo.source.get("channel", "toned"))
+    pseudo.source["channel_role"] = "element_centered"
     if center:
+        pseudo.source["center_kind"] = center_kind_from_element_id(center)
         pseudo.source["salience_rank"] = salience_rank_of_center(center, salience)
     if pseudo.source.get("channel") == "focalized" and pseudo.source.get("focal"):
         pseudo.source["focal_role_id"] = pseudo.source["focal"]
@@ -1089,6 +1096,59 @@ def validate_adr8_runtime_guards(
         validate_adr8_dual_floor(pseudos)
 
 
+def filter_adr8_pseudos_individually(
+    pseudos: list[PseudoSegment],
+    *,
+    deconstruction: dict[str, Any],
+    alt_pool: AltPoolOverlay,
+    known_elements: set[str],
+    expansion: dict[str, Any] | None = None,
+    hypernyms: set[str] | None = None,
+    check_hypernym: bool = False,
+) -> tuple[list[PseudoSegment], list[dict[str, str]]]:
+    """Drop failing pseudos individually; persona continues when ≥1 valid leg remains."""
+    vocab = collect_entailed_vocabulary(deconstruction, alt_pool, expansion)
+    allowed_proper = _allowed_proper_noun_phrases(deconstruction, alt_pool, expansion)
+    hypernym_terms = (
+        hypernyms
+        if hypernyms is not None
+        else collect_hypernym_anchor_terms(alt_pool, expansion)
+    )
+
+    kept: list[PseudoSegment] = []
+    drop_reasons: list[dict[str, str]] = []
+    seen_centers: set[str] = set()
+
+    for pseudo in pseudos:
+        try:
+            validate_center_in_decon(pseudo, known_elements)
+            validate_supporting_element_cap(pseudo)
+            validate_focal_char_in_decon_who(pseudo, known_elements)
+            validate_adr8_fact_guard(
+                pseudo,
+                deconstruction=deconstruction,
+                vocab=vocab,
+                allowed_proper_nouns=allowed_proper,
+            )
+            if check_hypernym:
+                validate_toned_hypernym_anchor(pseudo, hypernym_terms)
+            center = str(pseudo.source.get("center", "")).strip()
+            if center in seen_centers:
+                drop_reasons.append(
+                    {
+                        "pseudo_id": pseudo.id,
+                        "reason": f"duplicate center element {center!r}",
+                    }
+                )
+                continue
+            seen_centers.add(center)
+            kept.append(pseudo)
+        except ValueError as exc:
+            drop_reasons.append({"pseudo_id": pseudo.id, "reason": str(exc)})
+
+    return kept, drop_reasons
+
+
 def parse_adr8_pseudos_response(
     raw: str,
     *,
@@ -1099,6 +1159,7 @@ def parse_adr8_pseudos_response(
     alt_pool: AltPoolOverlay | None = None,
     expansion: dict[str, Any] | None = None,
     enable_dual_floor: bool | None = None,
+    drop_reasons: list[dict[str, str]] | None = None,
 ) -> list[PseudoSegment]:
     """Parse screenwriter JSON with center/channel/focal provenance fields."""
     data = extract_json_object(raw)
@@ -1150,8 +1211,9 @@ def parse_adr8_pseudos_response(
         source.update(
             {
                 "center": center,
+                "center_kind": center_kind_from_element_id(center),
                 "channel": channel,
-                "channel_role": channel,
+                "channel_role": "element_centered",
             }
         )
         if focal:
@@ -1168,19 +1230,31 @@ def parse_adr8_pseudos_response(
 
     dual_floor_on = adr8_dual_floor_enabled(enable_dual_floor=enable_dual_floor)
     if deconstruction is not None and alt_pool is not None:
-        validate_adr8_runtime_guards(
+        kept, drops = filter_adr8_pseudos_individually(
             tagged,
             deconstruction=deconstruction,
             alt_pool=alt_pool,
             known_elements=known_elements,
             expansion=expansion,
             check_hypernym=False,
-            check_dual_floor=dual_floor_on,
         )
-    else:
-        validate_center_mutual_exclusion(tagged)
+        if drop_reasons is not None:
+            drop_reasons.extend(drops)
         if dual_floor_on:
-            validate_adr8_dual_floor(tagged)
+            try:
+                validate_adr8_dual_floor(kept)
+            except ValueError as exc:
+                if drop_reasons is not None:
+                    drop_reasons.append({"pseudo_id": "*", "reason": str(exc)})
+                kept = []
+        if not kept:
+            detail = drops[0]["reason"] if drops else "no valid pseudos after guard filter"
+            raise ValueError(detail)
+        return kept
+
+    validate_center_mutual_exclusion(tagged)
+    if dual_floor_on:
+        validate_adr8_dual_floor(tagged)
 
     return tagged
 
@@ -1196,6 +1270,7 @@ def assemble_adr8_channel_pseudos(
     budget: int = _ADR8_TONED_BUDGET_DEFAULT,
     neutral_override: PseudoSegment | None = None,
     enable_dual_floor: bool | None = None,
+    drop_reasons: list[dict[str, str]] | None = None,
 ) -> list[PseudoSegment]:
     """ADR-0008: code-built neutral n1 (wording unchanged) + salience-ranked legs."""
     salience = list(alt_pool.salience)
@@ -1216,7 +1291,7 @@ def assemble_adr8_channel_pseudos(
     )
 
     hypernyms = collect_hypernym_anchor_terms(alt_pool, expansion)
-    validate_adr8_runtime_guards(
+    budgeted, assembly_drops = filter_adr8_pseudos_individually(
         budgeted,
         deconstruction=deconstruction,
         alt_pool=alt_pool,
@@ -1224,8 +1299,16 @@ def assemble_adr8_channel_pseudos(
         expansion=expansion,
         hypernyms=hypernyms,
         check_hypernym=True,
-        check_dual_floor=dual_floor_on,
     )
+    if drop_reasons is not None:
+        drop_reasons.extend(assembly_drops)
+    if dual_floor_on and budgeted:
+        try:
+            validate_adr8_dual_floor(budgeted)
+        except ValueError as exc:
+            if drop_reasons is not None:
+                drop_reasons.append({"pseudo_id": "*", "reason": str(exc)})
+            budgeted = []
     for pseudo in budgeted:
         pseudo.source["agent_id"] = persona_id
         pseudo.warnings.extend(

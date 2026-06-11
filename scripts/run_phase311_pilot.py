@@ -109,6 +109,7 @@ async def run_design_on_persona(
     known_frags = _known_fragment_ids(annotate_fragment_ids(deconstruction))
     known_elements = known_element_ids(deconstruction)
     repair_retries: list[dict[str, str]] = []
+    drop_reasons: list[dict[str, str]] = []
     repair_context: str | None = None
     raw = ""
     toned = None
@@ -128,6 +129,7 @@ async def run_design_on_persona(
             timeout=timeout,
         )
         try:
+            attempt_drops: list[dict[str, str]] = []
             toned = parse_adr8_pseudos_response(
                 raw,
                 agent_id=persona_id,
@@ -136,6 +138,7 @@ async def run_design_on_persona(
                 deconstruction=deconstruction,
                 alt_pool=alt_pool,
                 expansion=expansion,
+                drop_reasons=attempt_drops,
             )
             toned = [
                 type(t)(
@@ -155,7 +158,9 @@ async def run_design_on_persona(
                 toned,
                 neutral,
                 expansion,
+                drop_reasons=attempt_drops,
             )
+            drop_reasons = attempt_drops
             repair_retries.append(
                 {"stage": "screenwriter", "attempt": str(attempt), "error": "ok"}
             )
@@ -175,6 +180,7 @@ async def run_design_on_persona(
     if not alt_dest.is_file():
         shutil.copy2(alt_pool_path, alt_dest)
 
+    element_centered = [p for p in channel_pseudos if p.id != NEUTRAL_PSEUDO_ID]
     pipeline = {
         "persona_id": persona_id,
         "composition_mode": "ADR-0008",
@@ -182,6 +188,11 @@ async def run_design_on_persona(
         "pseudos": [pseudo_segment_to_dict(p) for p in channel_pseudos],
         "screenwriter_raw": raw,
         "repair_retries": repair_retries,
+        "pseudo_guard": {
+            "kept_pseudos": len(element_centered),
+            "dropped_pseudos": len(drop_reasons),
+            "drop_reasons": drop_reasons,
+        },
     }
     (out_persona_dir / "persona-pipeline.json").write_text(
         json.dumps(pipeline, ensure_ascii=False, indent=2) + "\n",
@@ -395,8 +406,14 @@ async def main_async(args: argparse.Namespace) -> int:
         )
         run_summaries.append(summary)
 
-    primary_audit = run_summaries[0]["audit"] if run_summaries else {}
-    go = go_no_go_pilot_recommendation(primary_audit, dry_run=dry_run)
+    primary = run_summaries[0] if run_summaries else {}
+    primary_audit = primary.get("audit") or {}
+    go = go_no_go_pilot_recommendation(
+        primary_audit,
+        dry_run=dry_run,
+        persona_errors=primary.get("persona_errors"),
+        skip_retrieval=skip_retrieval,
+    )
 
     aggregate = {
         "run_count": len(run_summaries),
@@ -404,6 +421,7 @@ async def main_async(args: argparse.Namespace) -> int:
         "skip_retrieval": skip_retrieval,
         "baseline_dir": str(baseline_root.resolve()),
         "go_no_go": go,
+        "pipeline_go_metrics": go.get("metrics"),
         "runs": [
             {
                 "run_id": s["run_id"],

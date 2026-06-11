@@ -553,9 +553,13 @@ def audit_pilot_run(
             alt_path = baseline_personas / pid / "alt-pool-overlay.json"
         alt_pool = load_alt_pool_overlay(alt_path)
 
-        persona_audits.append(
-            audit_persona_guards(pid, pipeline, deconstruction, alt_pool, expansion)
+        persona_audit = audit_persona_guards(
+            pid, pipeline, deconstruction, alt_pool, expansion
         )
+        guard_meta = pipeline.get("pseudo_guard")
+        if isinstance(guard_meta, dict):
+            persona_audit["pseudo_guard"] = guard_meta
+        persona_audits.append(persona_audit)
 
         baseline_pipe_path = baseline_personas / pid / "persona-pipeline.json"
         if baseline_pipe_path.is_file():
@@ -649,67 +653,114 @@ def audit_pilot_run(
     }
 
 
-def go_no_go_pilot_recommendation(audit: dict[str, Any], *, dry_run: bool) -> dict[str, Any]:
-    """Heuristic Go/No-Go for 3.11.6 human gate."""
+def compute_pipeline_go_metrics(
+    audit: dict[str, Any],
+    *,
+    persona_errors: list[dict[str, str]] | None = None,
+    skip_retrieval: bool = False,
+) -> dict[str, Any]:
+    """Element-centered pipeline go metrics (decision doc §5–§8)."""
+    persona_audits = audit.get("personas") or []
+    total_personas = max(len(persona_audits), 1)
+    covered_personas = 0
+    generated_legs = 0
+    kept_legs = 0
+    valid_center_legs = 0
+    drop_reasons: list[dict[str, str]] = []
+
+    for pa in persona_audits:
+        pid = str(pa.get("persona_id", ""))
+        if any(e.get("persona_id") == pid for e in (persona_errors or [])):
+            continue
+        guard = pa.get("pseudo_guard") or {}
+        kept = int(guard.get("kept_pseudos", 0))
+        dropped = int(guard.get("dropped_pseudos", 0))
+        generated_legs += kept + dropped
+        kept_legs += kept
+        if kept >= 1:
+            covered_personas += 1
+        for row in guard.get("drop_reasons") or []:
+            if isinstance(row, dict):
+                drop_reasons.append({**row, "persona_id": pid})
+        checks = pa.get("center_truthfulness", {}).get("checks") or []
+        for chk in checks:
+            if chk.get("pass") and chk.get("center"):
+                valid_center_legs += 1
+
+    pool = audit.get("pool_diff") or {}
+    retrieve_ok = not skip_retrieval or bool(pool)
+    pool_diff_ok = pool.get("baseline_candidate_count") is not None
+
+    survival = kept_legs / generated_legs if generated_legs else 0.0
+    valid_center_rate = (
+        valid_center_legs / kept_legs if kept_legs else 0.0
+    )
+
+    pipeline_go = (
+        covered_personas >= max(1, total_personas // 2)
+        and retrieve_ok
+        and pool_diff_ok
+        and (len(drop_reasons) > 0 or kept_legs > 0)
+    )
+
+    return {
+        "persona_coverage": f"{covered_personas}/{total_personas}",
+        "persona_coverage_count": covered_personas,
+        "persona_coverage_total": total_personas,
+        "pseudo_survival_rate": round(survival, 4),
+        "valid_center_rate": round(valid_center_rate, 4),
+        "drop_reasons": drop_reasons,
+        "dropped_pseudo_count": len(drop_reasons),
+        "retrieve_complete": retrieve_ok,
+        "pool_diff_produced": pool_diff_ok,
+        "pipeline_go": pipeline_go,
+        "overlap_count": pool.get("overlap_count"),
+        "net_new_count": len(pool.get("net_new_tmdb_ids") or []),
+        "lost_count": len(pool.get("lost_tmdb_ids") or []),
+    }
+
+
+def go_no_go_pilot_recommendation(
+    audit: dict[str, Any],
+    *,
+    dry_run: bool,
+    persona_errors: list[dict[str, str]] | None = None,
+    skip_retrieval: bool = False,
+) -> dict[str, Any]:
+    """Pipeline Go heuristic for element-centered 3.11.6 (decision doc)."""
     if dry_run:
         return {
             "verdict": "Pending live run",
             "reason": "Dry-run scaffold only — rerun with LLM + retrieval for Go/No-Go.",
+            "pipeline_go": False,
         }
 
-    dims = audit.get("dimensions") or {}
-    hard_guards = int(dims.get("fact_drift", {}).get("hard_guard_failures", 0))
-    if hard_guards > 0:
-        return {
-            "verdict": "No-Go",
-            "reason": (
-                f"{hard_guards} runtime guard hard failure(s) — tighten 3.11.2/3.11.3 "
-                "before full batch."
-            ),
-        }
+    metrics = compute_pipeline_go_metrics(
+        audit,
+        persona_errors=persona_errors,
+        skip_retrieval=skip_retrieval,
+    )
 
-    failures: list[str] = []
-    for key, label in (
-        ("fact_drift", "fact drift"),
-        ("center_truthfulness", "center truthfulness"),
-        ("focalized_derivation", "focalized derivation"),
-        ("dual_floor", "dual floor"),
-        ("funnel", "funnel"),
-    ):
-        if not dims.get(key, {}).get("pass"):
-            failures.append(label)
+    if metrics["pipeline_go"]:
+        verdict = "Pipeline Go"
+        reason = (
+            f"persona_coverage={metrics['persona_coverage']}, "
+            f"pseudo_survival_rate={metrics['pseudo_survival_rate']}, "
+            f"dropped={metrics['dropped_pseudo_count']}, "
+            f"net_new={metrics['net_new_count']}, lost={metrics['lost_count']} (recorded only)"
+        )
+    else:
+        verdict = "Pipeline No-Go"
+        reason = (
+            f"persona_coverage={metrics['persona_coverage']} below threshold or "
+            f"retrieve/pool_diff incomplete"
+        )
 
-    lost = dims.get("dual_floor", {}).get("baseline_hits", {}).get("lost_tmdb_ids") or []
-    if lost:
-        failures.append(f"baseline hits lost ({len(lost)} films)")
-
-    if failures:
-        return {
-            "verdict": "No-Go",
-            "reason": "Automated audit failed: " + "; ".join(failures),
-        }
-
-    open_d = dims.get("open_d_weak_fit", {})
-    weak_bad = [
-        o["persona_id"]
-        for o in open_d.get("observations") or []
-        if o.get("quality") in ("failed", "guard_fail", "weak_and_drift")
-    ]
-    if weak_bad:
-        return {
-            "verdict": "Conditional Go",
-            "reason": (
-                f"Core guards pass but weak-fit personas need eyeball: {', '.join(weak_bad)}"
-            ),
-        }
-
-    net_new = len((audit.get("pool_diff") or {}).get("net_new_tmdb_ids") or [])
     return {
-        "verdict": "Go",
-        "reason": (
-            f"All firewall dimensions pass automated checks; "
-            f"{net_new} net-new candidate(s) vs baseline. Human sign-off still required."
-        ),
+        "verdict": verdict,
+        "reason": reason,
+        "pipeline_go": metrics["pipeline_go"],
+        "metrics": metrics,
     }
 
 

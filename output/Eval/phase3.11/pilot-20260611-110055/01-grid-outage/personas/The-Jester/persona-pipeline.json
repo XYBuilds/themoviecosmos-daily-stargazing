@@ -1,0 +1,436 @@
+{
+  "persona_id": "The-Jester",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Jester",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "the power overseer",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the grid's circus master",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the pompous official",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power's Unit 2",
+          "alternatives": [
+            {
+              "term": "a power generator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the flimsy performer that tripped",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the unreliable machine",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "decision-makers",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the sober-faced jesters",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the self-serious bureaucrats",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Eleven generators",
+          "alternatives": [
+            {
+              "term": "power sources",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the supporting cast in the blackout farce",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the silent, failing machines",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "a generator failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a comical slip of the machine",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a foolish breakdown",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "ongoing power interruptions",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the long-running gag of broken plants",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a boring saga of failures",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "high temperatures increased power usage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the heat's absurd timing squeezed the grid",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the predictable heatwave that officials ignored",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "the unit failed",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the unit took a clumsy fall",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the unit quit ungracefully",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "the grid operator issued an emergency alert",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the grid operator raised a frantic red flag",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the grid operator panicked into a red alert",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "officials directed power cuts to protect infrastructure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "officials orchestrated a dramatic blackout ballet",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "officials botched the grid with desperate cuts",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "a significant power shortage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a glorious blackout spectacle",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a massive failure of responsibility",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-2",
+      "result-0",
+      "why-2",
+      "who-0",
+      "how-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. more than 950 megawatts unavailable. seasonal heat drove demand into a thin operating margin. The Philippines grid operator. The Philippines grid operator placed the Visayas under red alert The event unfolds across officials directed power cuts to protect infrastructure and load shedding.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "how-2",
+          "result-0",
+          "why-2",
+          "who-0",
+          "how-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+            "provenance": "surface"
+          },
+          {
+            "term": "officials directed power cuts to protect infrastructure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "load shedding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency measure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid stabilization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "control action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "a significant power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "seasonal heat drove demand into a thin operating margin",
+            "provenance": "surface"
+          },
+          {
+            "term": "high temperatures increased power usage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "high demand",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "heatwave impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy demand spike",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "demand increase",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The Philippines grid operator",
+            "provenance": "surface"
+          },
+          {
+            "term": "the power overseer",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid operator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "utility",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy sector entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The Philippines grid operator placed the Visayas under red alert",
+            "provenance": "surface"
+          },
+          {
+            "term": "the grid operator issued an emergency alert",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "alert declaration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid management action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency response",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "With the heat's absurd timing squeezing the grid, officials found themselves orchestrating a dramatic blackout ballet. They directed emergency load shedding—a last-ditch emergency measure to keep a critical 230-kilovolt transmission line from overloading—after the Visayas plunged into a red alert. The result was a glorious blackout spectacle, leaving more than 950 megawatts unavailable, a chaotic dance between demand and a grid's desperate, flailing response.",
+      "source": {
+        "agent_id": "The-Jester",
+        "fragments": [
+          "why-2",
+          "how-2",
+          "result-0"
+        ],
+        "center": "how-2",
+        "center_kind": "how",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 0
+      },
+      "warnings": [],
+      "fit": 0.85
+    }
+  ],
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"With the heat's absurd timing squeezing the grid, officials found themselves orchestrating a dramatic blackout ballet. They directed emergency load shedding—a last-ditch emergency measure to keep a critical 230-kilovolt transmission line from overloading—after the Visayas plunged into a red alert. The result was a glorious blackout spectacle, leaving more than 950 megawatts unavailable, a chaotic dance between demand and a grid's desperate, flailing response.\",\n      \"fit\": 0.85,\n      \"center\": \"how-2\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-2\", \"how-2\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"The grid operator, the power overseer for the Philippines, watched the island group's situation spiral. After a generator failure from Kepco SPC Power's Unit 2 and ongoing power interruptions, the high demand from seasonal heat was the final straw. They issued an emergency alert, a frantic grid management action, leaving the region facing a massive, capacity-dimming energy deficit that was anything but a joke.\",\n      \"fit\": 0.78,\n      \"center\": \"who-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"why-1\", \"why-2\", \"how-1\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"As the grid operator, I saw the red alert light up my screen—a frantic grid management action born from a foolish breakdown of a flimsy performer that tripped. The heatwave's demand spike, the long-running gag of broken plants, it all converged. My team orchestrated a desperate control action to stabilize the grid, but the outcome was stark: a significant power shortage across the Visayas, our island group left in a precarious, dimming balance.\",\n      \"fit\": 0.72,\n      \"center\": \"who-0\",\n      \"channel\": \"focalized\",\n      \"focal\": \"who-0\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"why-1\", \"why-2\", \"how-1\", \"how-2\", \"result-0\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 1,
+    "dropped_pseudos": 2,
+    "drop_reasons": [
+      {
+        "pseudo_id": "p2",
+        "reason": "pseudo p2: supporting elements must be 2–4, got 5"
+      },
+      {
+        "pseudo_id": "p3",
+        "reason": "pseudo p3: supporting elements must be 2–4, got 6"
+      }
+    ]
+  }
+}

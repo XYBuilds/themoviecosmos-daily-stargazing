@@ -270,6 +270,7 @@ def assemble_adr8_channel_pseudos_with_baseline_neutral(
     adr8_toned: list[PseudoSegment],
     baseline_neutral: PseudoSegment,
     expansion: dict[str, Any] | None = None,
+    drop_reasons: list[dict[str, str]] | None = None,
 ) -> list[PseudoSegment]:
     """Pretest: reuse 3.10 neutral n1 verbatim (ADR-0008 D3 zero-change rule)."""
     return assemble_adr8_channel_pseudos(
@@ -279,6 +280,7 @@ def assemble_adr8_channel_pseudos_with_baseline_neutral(
         adr8_toned,
         expansion,
         neutral_override=baseline_neutral,
+        drop_reasons=drop_reasons,
     )
 
 

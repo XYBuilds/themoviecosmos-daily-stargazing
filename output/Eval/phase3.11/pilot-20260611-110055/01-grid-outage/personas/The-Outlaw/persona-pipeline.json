@@ -1,0 +1,454 @@
+{
+  "persona_id": "The-Outlaw",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Outlaw",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "power grid enforcer",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "grid authority",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "system operator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "crisis manager",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power's Unit 2",
+          "alternatives": [
+            {
+              "term": "failing corporate asset",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "power plant unit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "vulnerable infrastructure",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "state enforcers",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "decision-makers",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "authorities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Eleven generators",
+          "alternatives": [
+            {
+              "term": "system's casualties",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "power producers",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "affected parties",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "corporate infrastructure failed",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "technical malfunction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "system breakdown exposed",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "chronic system neglect",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "ongoing maintenance failures",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "extended outages",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "profit-driven demand squeezing supply",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "environmental pressure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "unprepared system",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "failure triggered cascade",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "outage occurred",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "vulnerability surfaced",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "imposed emergency control",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "issued warning",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "activated crisis protocol",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "enforced blackout to protect elite infrastructure",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "conducted load reduction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "crisis management",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "massive power deficit",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "supply shortage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "system collapse",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "who-0",
+      "how-2",
+      "why-0",
+      "why-1",
+      "result-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "The Philippines grid operator. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Kepco SPC Power's Unit 2 tripped offline. other long-running plant outages. more than 950 megawatts unavailable The event unfolds across system operator and grid operator.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "who-0",
+          "how-2",
+          "why-0",
+          "why-1",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "The Philippines grid operator",
+            "provenance": "surface"
+          },
+          {
+            "term": "system operator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid operator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "utility",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy sector entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+            "provenance": "surface"
+          },
+          {
+            "term": "conducted load reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "load shedding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency measure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid stabilization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "control action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kepco SPC Power's Unit 2 tripped offline",
+            "provenance": "surface"
+          },
+          {
+            "term": "technical malfunction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power outage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "other long-running plant outages",
+            "provenance": "surface"
+          },
+          {
+            "term": "extended outages",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "plant outages",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "maintenance shutdowns",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "unavailability",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "downtime",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "supply shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "shortage",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p2",
+      "text": "Officials, acting as state enforcers, responded to the cascading power outage by imposing emergency load shedding. This crisis management action was a direct order to conduct load reduction on a critical 230-kilovolt transmission line to prevent overloading. The measure was necessitated by a vulnerable infrastructure failure—the tripping of a power plant component—and a severe energy demand spike. This control action, while stabilizing the grid, highlights a system forced to make harsh choices to manage a deepening power shortage.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "how-2",
+          "why-0",
+          "why-2"
+        ],
+        "center": "how-2",
+        "center_kind": "how",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "A technical malfunction at a power plant unit—the tripping offline of Kepco SPC Power's Unit 2—was the spark for a broader grid incident. This equipment failure, occurring amid extended outages from other plants, directly caused a supply shortfall that crippled the region. The system operator was then forced to activate crisis protocol, revealing how a single point of failure in critical energy infrastructure can trigger a widespread energy deficit across the grid.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "how-1",
+          "result-0"
+        ],
+        "center": "why-0",
+        "center_kind": "why",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 2
+      },
+      "warnings": [],
+      "fit": 0.82
+    }
+  ],
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"The Visayas, an island group in the Philippines, plunged into crisis when the system operator, the Philippines grid operator, declared a red alert. This emergency response was triggered after Kepco SPC Power's Unit 2, a failing corporate asset, tripped offline—a critical equipment failure. Chronic system neglect from other long-running plant outages had already weakened the grid, while seasonal heat drove demand into a thin operating margin. The result was a massive power deficit: over 950 megawatts became unavailable, exposing the grid's vulnerability.\",\n      \"fit\": 0.85,\n      \"center\": \"who-0\",\n      \"channel\": \"focalized\",\n      \"focal\": \"who-0\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"why-1\", \"why-2\", \"how-1\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"Officials, acting as state enforcers, responded to the cascading power outage by imposing emergency load shedding. This crisis management action was a direct order to conduct load reduction on a critical 230-kilovolt transmission line to prevent overloading. The measure was necessitated by a vulnerable infrastructure failure—the tripping of a power plant component—and a severe energy demand spike. This control action, while stabilizing the grid, highlights a system forced to make harsh choices to manage a deepening power shortage.\",\n      \"fit\": 0.78,\n      \"center\": \"how-2\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-2\", \"why-0\", \"why-2\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"A technical malfunction at a power plant unit—the tripping offline of Kepco SPC Power's Unit 2—was the spark for a broader grid incident. This equipment failure, occurring amid extended outages from other plants, directly caused a supply shortfall that crippled the region. The system operator was then forced to activate crisis protocol, revealing how a single point of failure in critical energy infrastructure can trigger a widespread energy deficit across the grid.\",\n      \"fit\": 0.82,\n      \"center\": \"why-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"why-1\", \"how-1\", \"result-0\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 2,
+    "dropped_pseudos": 1,
+    "drop_reasons": [
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5"
+      }
+    ]
+  }
+}
