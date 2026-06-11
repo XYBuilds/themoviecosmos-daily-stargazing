@@ -1,0 +1,370 @@
+{
+  "persona_id": "The-Everyman",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Ken Paxton",
+          "alternatives": [
+            {
+              "term": "the candidate backed by the people's chosen president",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a politician in a party system",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the winning primary candidate",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a figure enabled by powerful insider support",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "John Cornyn",
+          "alternatives": [
+            {
+              "term": "the veteran senator who lost his bid for another term",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an incumbent politician",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the losing primary candidate",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a longtime officeholder turned out by his own party's voters",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the sitting president",
+          "alternatives": [
+            {
+              "term": "the leader who made a decisive endorsement",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the nation's president",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a distant power-broker influencing a state contest",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Texas",
+          "alternatives": [
+            {
+              "term": "the state where ordinary voters made their choice",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "Texas",
+              "valence": "neutral",
+              "provenance": "surface"
+            },
+            {
+              "term": "a political battleground",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "aided by a late endorsement from the sitting president",
+          "alternatives": [
+            {
+              "term": "boosted by a timely nod from the party's leader",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "with an endorsement from the president",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "propelled by a last-minute insider intervention",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "despite substantially outraising and outspending his rival",
+          "alternatives": [
+            {
+              "term": "even though his opponent had far more money from big donors",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "despite being outspent by his rival",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "overcoming the fundraising advantage of an entrenched incumbent",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+          "alternatives": [
+            {
+              "term": "voters gave him a clear majority, choosing change over a fifth term",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the candidate won approximately 64% of the vote in the runoff",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a landslide win for one candidate and a decisive rejection of the other",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Ken Paxton won the Texas Senate Republican runoff",
+          "alternatives": [
+            {
+              "term": "the people's preferred candidate won the primary",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the candidate won the runoff election",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a challenger backed by the establishment triumphed",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+          "alternatives": [
+            {
+              "term": "a longtime senator was held accountable by his party's voters",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the incumbent senator lost his party's renomination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a once-safe seat holder was cast out by the people he represented",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate",
+          "alternatives": [
+            {
+              "term": "the next contest will offer voters a clear choice with big consequences for the country",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the nominee will face the other party's candidate in the general election",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a high-stakes power struggle is coming that ordinary people will live with",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-0",
+      "result-1",
+      "why-1",
+      "result-0",
+      "who-0",
+      "result-2"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term. John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970. despite substantially outraising and outspending his rival. Ken Paxton won the Texas Senate Republican runoff. Ken Paxton The event unfolds across the candidate won approximately 64% of the vote in the runoff and the incumbent senator lost his party's renomination.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "result-1",
+          "why-1",
+          "result-0",
+          "who-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+            "provenance": "surface"
+          },
+          {
+            "term": "the candidate won approximately 64% of the vote in the runoff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+            "provenance": "surface"
+          },
+          {
+            "term": "the incumbent senator lost his party's renomination",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "despite substantially outraising and outspending his rival",
+            "provenance": "surface"
+          },
+          {
+            "term": "despite being outspent by his rival",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton won the Texas Senate Republican runoff",
+            "provenance": "surface"
+          },
+          {
+            "term": "the candidate won the runoff election",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton",
+            "provenance": "surface"
+          },
+          {
+            "term": "the winning primary candidate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "election candidate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "politician",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "In the Texas Senate Republican runoff, voters gave the winning primary candidate a clear majority, choosing change over a fifth term, as the incumbent senator lost his party's renomination—the first time a sitting Republican senator from Texas has been defeated for renomination since 1970.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "result-1"
+        ],
+        "center": "how-0",
+        "channel": "toned",
+        "channel_role": "toned",
+        "composition_mode": "ADR-0008"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The veteran senator who lost his bid for another term watched as voters in the U.S. state decided to turn the page, ending a long tenure despite his substantial fundraising advantage, a moment that felt like a changing of the guard in a party he had long served.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "result-1",
+          "why-1"
+        ],
+        "center": "result-1",
+        "channel": "focalized",
+        "channel_role": "focalized",
+        "composition_mode": "ADR-0008",
+        "focal": "who-1"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "The winning primary candidate overcame being outspent by his rival, propelled by a last-minute insider intervention from the nation's president, a result that now sets up a general election contest that could reshape control of the U.S. Senate for ordinary people across the country.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-1",
+          "result-0",
+          "result-2"
+        ],
+        "center": "why-1",
+        "channel": "toned",
+        "channel_role": "toned",
+        "composition_mode": "ADR-0008"
+      },
+      "warnings": [],
+      "fit": 0.8
+    }
+  ],
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"In the Texas Senate Republican runoff, voters gave the winning primary candidate a clear majority, choosing change over a fifth term, as the incumbent senator lost his party's renomination—the first time a sitting Republican senator from Texas has been defeated for renomination since 1970.\",\n      \"fit\": 0.85,\n      \"center\": \"how-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"result-1\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"The veteran senator who lost his bid for another term watched as voters in the U.S. state decided to turn the page, ending a long tenure despite his substantial fundraising advantage, a moment that felt like a changing of the guard in a party he had long served.\",\n      \"fit\": 0.78,\n      \"center\": \"result-1\",\n      \"channel\": \"focalized\",\n      \"focal\": \"who-1\",\n      \"source\": {\n        \"fragments\": [\"result-1\", \"why-1\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"The winning primary candidate overcame being outspent by his rival, propelled by a last-minute insider intervention from the nation's president, a result that now sets up a general election contest that could reshape control of the U.S. Senate for ordinary people across the country.\",\n      \"fit\": 0.80,\n      \"center\": \"why-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-1\", \"result-0\", \"result-2\"]\n      }\n    }\n  ]\n}"
+}

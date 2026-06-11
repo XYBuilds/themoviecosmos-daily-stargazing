@@ -1,0 +1,403 @@
+{
+  "run_id": "09-cultural-backlash",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 19,
+  "overlap_count": 5,
+  "net_new_tmdb_ids": [
+    665,
+    4486,
+    48605,
+    63400,
+    98301,
+    126200,
+    128042,
+    216457,
+    270124,
+    323426,
+    468735,
+    665894,
+    1047128,
+    1250508
+  ],
+  "lost_tmdb_ids": [
+    27425,
+    32690,
+    45054,
+    118379,
+    133369,
+    179100,
+    197082,
+    333266,
+    446173,
+    525825,
+    617397,
+    619139,
+    1002470,
+    1584125
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [
+    {
+      "tmdb_id": 194224,
+      "title": "L'Odissea",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    }
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 665,
+      "title": "Ben-Hur",
+      "similarity": 0.603271484375,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.603271484375
+        }
+      ]
+    },
+    {
+      "tmdb_id": 4486,
+      "title": "Jesus of Montreal",
+      "similarity": 0.5769016742706299,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5769016742706299
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-3",
+            "how-1",
+            "why-1",
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.5160751938819885
+        }
+      ]
+    },
+    {
+      "tmdb_id": 48605,
+      "title": "Conflict",
+      "similarity": 0.5712095499038696,
+      "quality_candidate": true,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "who-3",
+            "result-0",
+            "how-3",
+            "why-1",
+            "how-1"
+          ],
+          "similarity": 0.5108423233032227
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-1",
+            "why-0",
+            "result-1"
+          ],
+          "similarity": 0.5712095499038696
+        }
+      ]
+    },
+    {
+      "tmdb_id": 63400,
+      "title": "Venom and Eternity",
+      "similarity": 0.607285737991333,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.607285737991333
+        }
+      ]
+    },
+    {
+      "tmdb_id": 98301,
+      "title": "Adventure in Manhattan",
+      "similarity": 0.5868517160415649,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "result-1"
+          ],
+          "similarity": 0.5868517160415649
+        }
+      ]
+    },
+    {
+      "tmdb_id": 126200,
+      "title": "Rage Net",
+      "similarity": 0.5646302700042725,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5646302700042725
+        }
+      ]
+    },
+    {
+      "tmdb_id": 128042,
+      "title": "The Scenic Route",
+      "similarity": 0.5830078125,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5830078125
+        }
+      ]
+    },
+    {
+      "tmdb_id": 216457,
+      "title": "Jealousy",
+      "similarity": 0.5794244408607483,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "result-1"
+          ],
+          "similarity": 0.5794244408607483
+        }
+      ]
+    },
+    {
+      "tmdb_id": 270124,
+      "title": "The Song of the Shirt",
+      "similarity": 0.5501224994659424,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.5501224994659424
+        }
+      ]
+    },
+    {
+      "tmdb_id": 323426,
+      "title": "Shamitabh",
+      "similarity": 0.5545224547386169,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1",
+            "result-0"
+          ],
+          "similarity": 0.5545224547386169
+        }
+      ]
+    },
+    {
+      "tmdb_id": 468735,
+      "title": "Madeline's Madeline",
+      "similarity": 0.5603182315826416,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-3",
+            "why-0",
+            "result-1"
+          ],
+          "similarity": 0.5603182315826416
+        }
+      ]
+    },
+    {
+      "tmdb_id": 665894,
+      "title": "Really Love",
+      "similarity": 0.5354102849960327,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "why-0",
+            "result-1"
+          ],
+          "similarity": 0.5354102849960327
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1047128,
+      "title": "Apolonia, Apolonia",
+      "similarity": 0.6048189401626587,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.6048189401626587
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1250508,
+      "title": "Kaantha",
+      "similarity": 0.570591926574707,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1",
+            "result-0"
+          ],
+          "similarity": 0.570591926574707
+        }
+      ]
+    }
+  ]
+}

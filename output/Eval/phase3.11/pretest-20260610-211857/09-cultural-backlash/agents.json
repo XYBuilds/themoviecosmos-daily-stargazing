@@ -1,0 +1,712 @@
+{
+  "agents": [
+    {
+      "agent_id": "The-Hero",
+      "persona_name": "The-Hero",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "defenders. the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film. defenders argued diverse casting treats the Western canon as shared civilizational heritage. fierce online attacks drawn The event unfolds across advocates and supporters.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "who-3",
+              "result-0",
+              "how-3",
+              "why-1",
+              "how-1"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "defenders",
+                "provenance": "surface"
+              },
+              {
+                "term": "advocates",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "supporters",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "individuals",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film",
+                "provenance": "surface"
+              },
+              {
+                "term": "cultural controversy",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "public debate",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "social conflict",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+                "provenance": "surface"
+              },
+              {
+                "term": "counter-argument",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "defense statement",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "cultural perspective",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "argument",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "defense",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "cultural claim",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "fierce online attacks drawn",
+                "provenance": "surface"
+              },
+              {
+                "term": "online criticism",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "digital backlash",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "social media conflict",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "The defenders who stood up for the casting found themselves at the heart of a battle over representation in film. Their counter-argument, a defense of inclusive storytelling, was made against an assault on the creative team. This ideological conflict ignited a cultural controversy, turning a mythic epic into a flashpoint over who may claim classical stories.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-1",
+              "result-0"
+            ],
+            "center": "who-3",
+            "channel": "focalized",
+            "channel_role": "focalized",
+            "composition_mode": "ADR-0008",
+            "focal": "who-3"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.95
+        },
+        {
+          "id": "p2",
+          "text": "The dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film. A defense of inclusive storytelling clashed with an attack on the production's creative choices, igniting a public debate and social conflict. This cultural controversy, fought out in a digital space, became a larger fight over cultural ownership.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "result-0",
+              "why-1",
+              "why-0",
+              "result-1"
+            ],
+            "center": "result-0",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p3",
+          "text": "A counter-argument made in defense of the casting was deployed against hostile reactions online. Protectors of diverse storytelling argued their moral stance, countering the stated grievance of the accusers. This defense statement, a cultural perspective, confronted the public accusation and media criticism that sought to erase European history.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "how-3",
+              "how-1",
+              "why-1",
+              "why-0",
+              "how-2"
+            ],
+            "center": "how-3",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [],
+          "fit": 0.85
+        }
+      ]
+    },
+    {
+      "agent_id": "The-Explorer",
+      "persona_name": "The-Explorer",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation. defenders argued diverse casting treats the Western canon as shared civilizational heritage. the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film. Lupita Nyong'o The event unfolds across casting decision and film production activity.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-0",
+              "how-3",
+              "result-0",
+              "who-1",
+              "why-1"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation",
+                "provenance": "surface"
+              },
+              {
+                "term": "casting decision",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "film production activity",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "cultural event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+                "provenance": "surface"
+              },
+              {
+                "term": "counter-argument",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "defense statement",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "cultural perspective",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film",
+                "provenance": "surface"
+              },
+              {
+                "term": "cultural controversy",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "public debate",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "social conflict",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Lupita Nyong'o",
+                "provenance": "surface"
+              },
+              {
+                "term": "affected",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "actress",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "performer",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "individual",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "argument",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "defense",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "cultural claim",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "When Lupita Nyong'o was cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation, it represented a bold casting choice that crosses traditional mythic boundaries. This film production activity, set in a digital space where cultural boundaries are contested, immediately drew fierce online attacks. Voices guarding traditional cultural boundaries accused the production of erasing European history, while advocates for exploring the Western canon as open territory argued it was a defense of shared heritage.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3"
+            ],
+            "center": "how-0",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "As the actress venturing into a mythic role, pioneering new representation, I found my casting in Christopher Nolan's upcoming Homer adaptation ignited a cultural controversy. The public debate online centered on a defense statement I made, arguing the Western canon is open territory to be explored by all. The dispute has turned this mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-0",
+              "why-1",
+              "result-0"
+            ],
+            "center": "who-1",
+            "channel": "focalized",
+            "channel_role": "focalized",
+            "composition_mode": "ADR-0008",
+            "focal": "who-1"
+          },
+          "warnings": [],
+          "fit": 0.9
+        },
+        {
+          "id": "p3",
+          "text": "The journey into classical mythology has become a frontier struggle over story ownership, a social conflict that erupted after a casting decision crossed boundaries. What began as an actor cast in a classical adaptation escalated into an ideological conflict where prominent commentators sought to fence off a cultural frontier against defenders who saw the canon as open ground for exploration.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0",
+              "result-1"
+            ],
+            "center": "result-0",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.88
+        }
+      ]
+    },
+    {
+      "agent_id": "The-Lover",
+      "persona_name": "The-Lover",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "Lupita Nyong'o. Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation. defenders. the production. accusations of erasing European history The event unfolds across actress and performer.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "who-1",
+              "how-0",
+              "who-3",
+              "who-4",
+              "why-0"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "Lupita Nyong'o",
+                "provenance": "surface"
+              },
+              {
+                "term": "actress",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "performer",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "individual",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation",
+                "provenance": "surface"
+              },
+              {
+                "term": "a casting decision",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "casting decision",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "film production activity",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "cultural event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "defenders",
+                "provenance": "surface"
+              },
+              {
+                "term": "supporters",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "advocates",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "individuals",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "the production",
+                "provenance": "surface"
+              },
+              {
+                "term": "the film project",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "film production",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "creative project",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "organization",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "accusations of erasing European history",
+                "provenance": "surface"
+              },
+              {
+                "term": "claims of cultural erasure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "allegation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "criticism",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "statement",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "A beautiful artist entrusted with embodying legendary lovers is cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation. The decision, a casting choice at the heart of a passionate dispute, quickly drew an intense wave of public criticism. Voices publicly shaming an intimate creative choice emerged, turning this cultural event into a painful public rupture for those who cherish a shared, beautiful legacy.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "result-1"
+            ],
+            "center": "who-1",
+            "channel": "focalized",
+            "channel_role": "focalized",
+            "composition_mode": "ADR-0008",
+            "focal": "who-1"
+          },
+          "warnings": [],
+          "fit": 0.9
+        },
+        {
+          "id": "p2",
+          "text": "The casting decision for Nolan's Homer adaptation ignited an ideological conflict. While accusations of erasing European history formed a betrayal of a shared romantic past, advocates for a shared, inclusive vision of beauty countered with a plea for a more inclusive and beautiful shared story. This public debate over narrative ownership has transformed the intimate creative circle's project into a public conflict over identity and narrative rights.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "result-0"
+            ],
+            "center": "why-0",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p3",
+          "text": "Guardians of a shared, beautiful legacy argue that diverse casting is an appeal to a common cultural inheritance. They stand against those seeking to rupture a shared vision of beauty, who level claims of cultural erasure. This societal debate, unfolding in the cold, exposed public square of the internet, has made the film production itself an entity under siege in a passionate, painful public rupture.",
+          "source": {
+            "agent_id": "The-Lover",
+            "fragments": [
+              "how-3",
+              "why-0",
+              "result-1"
+            ],
+            "center": "who-3",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [],
+          "fit": 0.88
+        }
+      ]
+    },
+    {
+      "agent_id": "The-Creator",
+      "persona_name": "The-Creator",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation. the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film. Christopher Nolan. the production. defenders argued diverse casting treats the Western canon as shared civilizational heritage The event unfolds across an act of creative interpretation and casting decision.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "how-0",
+              "result-0",
+              "who-0",
+              "who-4",
+              "how-3"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation",
+                "provenance": "surface"
+              },
+              {
+                "term": "an act of creative interpretation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "casting decision",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "film production activity",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "cultural event",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film",
+                "provenance": "surface"
+              },
+              {
+                "term": "a dispute about interpretation",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "cultural controversy",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "public debate",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "social conflict",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Christopher Nolan",
+                "provenance": "surface"
+              },
+              {
+                "term": "filmmaker",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "film director",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "artist",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "individual",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "the production",
+                "provenance": "surface"
+              },
+              {
+                "term": "the project",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "film production",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "creative project",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "organization",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+                "provenance": "surface"
+              },
+              {
+                "term": "a defense of casting",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "counter-argument",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "defense statement",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "cultural perspective",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "The bold casting of an epic adaptation, placing the performer in classical roles, became a cultural flashpoint. What began as a film production activity swiftly generated fierce online attacks, a digital backlash that overwhelmed discussion of the craft itself. Commentators launched a public accusation, framing the move as historical erasure, while advocates countered with a defense of interpretation, arguing the Western canon is shared creative material. The ensuing cultural controversy has forced a re-evaluation of who may claim these stories, transforming a creative project into a battleground for competing visions of heritage.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "how-3",
+              "result-0"
+            ],
+            "center": "how-0",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p2",
+          "text": "The auteur-filmmaker crafting a mythic epic watches the adaptation project become a flashpoint for cultural conflict. His casting decision, meant to reinterpret a shared civilizational heritage, instead ignited a culture-war fight that overshadows the craft. He sees the digital agora where craft battles are fought consumed by outrage, as critics shape public reception away from the film's artistry. The filmmaker, the individual at the center of this artistic endeavor, now navigates a public dispute that threatens to define his work not by its vision, but by the ideological conflict surrounding it.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-1"
+            ],
+            "center": "who-0",
+            "channel": "focalized",
+            "channel_role": "focalized",
+            "composition_mode": "ADR-0008",
+            "focal": "who-0"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p3",
+          "text": "The creative enterprise faces a culture-war fight that consumes creative intent. Defenders presented an argument for diverse interpretation, a vision of the canon as living, shared material for new creators, countering charges of erasure. This defense of casting, however, drew a backlash that drowns out craft, a public controversy where the film production is judged not on its artistic merit but on its stance in an ongoing societal debate. The project, once an act of creative interpretation, is now a symbol in a public dispute over who owns classical narratives.",
+          "source": {
+            "agent_id": "The-Creator",
+            "fragments": [
+              "how-1",
+              "how-2",
+              "how-3",
+              "why-0",
+              "result-1"
+            ],
+            "center": "who-4",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [
+            "how_fragments_expanded_to_contiguous_span"
+          ],
+          "fit": 0.82
+        }
+      ]
+    }
+  ]
+}

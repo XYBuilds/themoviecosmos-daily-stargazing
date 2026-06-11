@@ -1,0 +1,488 @@
+{
+  "persona_id": "The-Hero",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Hero",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "the grid guardians",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the system overseer",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "grid management authority",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power's Unit 2",
+          "alternatives": [
+            {
+              "term": "the failed power unit",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the offline generator",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "power generation equipment",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "the decisive crisis managers",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the authorities",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "government representatives",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "bureaucrats who delayed",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Eleven generators",
+          "alternatives": [
+            {
+              "term": "the weakened power fleet",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the power stations",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "electricity production facilities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Visayas",
+          "alternatives": [
+            {
+              "term": "the frontline of the power crisis",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the affected region",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a geographic area in the Philippines",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "the critical system failure",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the unit's unexpected shutdown",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an equipment malfunction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "compounding system vulnerabilities",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "extended plant shutdowns",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "ongoing maintenance issues",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "the relentless assault of summer demand",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the heat-driven demand surge",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "increased electricity consumption due to high temperatures",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "the point of initial failure",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the first domino to fall",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the triggering event",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "the defenders raised the alarm",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the authorities declared a red alert",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a high-level warning was issued",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "they failed to prevent the crisis",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "the courageous decision to prevent total collapse",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the emergency load reduction",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an operational procedure to avoid overload",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a drastic, painful measure",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "a massive power deficit to overcome",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a significant loss of generation capacity",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a substantial reduction in available electricity",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "how-2",
+      "who-2",
+      "why-0",
+      "how-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "more than 950 megawatts unavailable. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Officials. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator placed the Visayas under red alert The event unfolds across a substantial reduction in available electricity and power shortage.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "result-0",
+          "how-2",
+          "who-2",
+          "why-0",
+          "how-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "a substantial reduction in available electricity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+            "provenance": "surface"
+          },
+          {
+            "term": "an operational procedure to avoid overload",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "load shedding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency measure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid stabilization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "control action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials",
+            "provenance": "surface"
+          },
+          {
+            "term": "government representatives",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "authorities",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government officials",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision-makers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kepco SPC Power's Unit 2 tripped offline",
+            "provenance": "surface"
+          },
+          {
+            "term": "an equipment malfunction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power outage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "The Philippines grid operator placed the Visayas under red alert",
+            "provenance": "surface"
+          },
+          {
+            "term": "a high-level warning was issued",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "alert declaration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid management action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency response",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "Faced with a massive power deficit to overcome, decisive crisis managers moved swiftly. After the critical system failure of Kepco SPC Power's Unit 2 and compounded by extended plant shutdowns, the authorities declared a red alert for the island group. They then implemented the courageous decision to prevent total collapse, ordering emergency load shedding to stabilize the grid and avert a wider energy deficit.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "center": "result-0",
+        "channel": "toned",
+        "channel_role": "toned",
+        "composition_mode": "ADR-0008"
+      },
+      "warnings": [
+        "ignored focal 'None' on toned channel"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "We saw the high demand from seasonal heat push the system to its limit. Our generators were already offline. When the critical equipment failure hit our power unit, we faced an impossible choice. To protect the wider grid from collapse, we had to make a drastic, painful measure. We ordered the emergency load reduction, knowing it would cause significant loss of generation capacity but preventing a total blackout.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-2",
+          "why-1",
+          "why-0",
+          "how-2",
+          "result-0"
+        ],
+        "center": "how-2",
+        "channel": "focalized",
+        "channel_role": "focalized",
+        "composition_mode": "ADR-0008",
+        "focal": "who-2"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "The grid guardians faced an unexpected shutdown that cascaded into a full crisis. With seasonal heat driving demand into a thin operating margin, the initial failure exposed deep system vulnerabilities. Their emergency response was a high-level warning, a red alert for the affected region, to manage the sudden shortage and prevent a catastrophic overload of critical transmission lines.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-0",
+          "why-2",
+          "why-1",
+          "how-1",
+          "result-0"
+        ],
+        "center": "who-0",
+        "channel": "toned",
+        "channel_role": "toned",
+        "composition_mode": "ADR-0008"
+      },
+      "warnings": [
+        "ignored focal 'None' on toned channel"
+      ],
+      "fit": 0.72
+    }
+  ],
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"Faced with a massive power deficit to overcome, decisive crisis managers moved swiftly. After the critical system failure of Kepco SPC Power's Unit 2 and compounded by extended plant shutdowns, the authorities declared a red alert for the island group. They then implemented the courageous decision to prevent total collapse, ordering emergency load shedding to stabilize the grid and avert a wider energy deficit.\",\n      \"fit\": 0.85,\n      \"center\": \"result-0\",\n      \"channel\": \"toned\",\n      \"focal\": null,\n      \"source\": {\n        \"fragments\": [\"why-0\", \"why-1\", \"how-1\", \"how-2\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"We saw the high demand from seasonal heat push the system to its limit. Our generators were already offline. When the critical equipment failure hit our power unit, we faced an impossible choice. To protect the wider grid from collapse, we had to make a drastic, painful measure. We ordered the emergency load reduction, knowing it would cause significant loss of generation capacity but preventing a total blackout.\",\n      \"fit\": 0.78,\n      \"center\": \"how-2\",\n      \"channel\": \"focalized\",\n      \"focal\": \"who-2\",\n      \"source\": {\n        \"fragments\": [\"why-2\", \"why-1\", \"why-0\", \"how-2\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"The grid guardians faced an unexpected shutdown that cascaded into a full crisis. With seasonal heat driving demand into a thin operating margin, the initial failure exposed deep system vulnerabilities. Their emergency response was a high-level warning, a red alert for the affected region, to manage the sudden shortage and prevent a catastrophic overload of critical transmission lines.\",\n      \"fit\": 0.72,\n      \"center\": \"who-0\",\n      \"channel\": \"toned\",\n      \"focal\": null,\n      \"source\": {\n        \"fragments\": [\"why-0\", \"why-2\", \"why-1\", \"how-1\", \"result-0\"]\n      }\n    }\n  ]\n}"
+}

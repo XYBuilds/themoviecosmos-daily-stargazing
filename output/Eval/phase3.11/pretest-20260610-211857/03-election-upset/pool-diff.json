@@ -1,0 +1,219 @@
+{
+  "run_id": "03-election-upset",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 15,
+  "overlap_count": 8,
+  "net_new_tmdb_ids": [
+    9440,
+    10411,
+    50033,
+    52657,
+    158715,
+    432301,
+    933554
+  ],
+  "lost_tmdb_ids": [
+    379,
+    21711,
+    46563,
+    100420,
+    239070,
+    342442,
+    376455,
+    532869,
+    536176,
+    1168015,
+    1278099
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [
+    {
+      "tmdb_id": 77953,
+      "title": "The Campaign",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    },
+    {
+      "tmdb_id": 239070,
+      "title": "120 Seconds to Get Elected",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    }
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 9440,
+      "title": "Primary Colors",
+      "similarity": 0.5768175721168518,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-SAGE"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "why-1"
+          ],
+          "similarity": 0.5768175721168518
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "why-1",
+            "why-0",
+            "how-0",
+            "result-2"
+          ],
+          "similarity": 0.5395753979682922
+        }
+      ]
+    },
+    {
+      "tmdb_id": 10411,
+      "title": "The Distinguished Gentleman",
+      "similarity": 0.5513033866882324,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "why-1"
+          ],
+          "similarity": 0.5513033866882324
+        }
+      ]
+    },
+    {
+      "tmdb_id": 50033,
+      "title": "Savage Sam",
+      "similarity": 0.4599543511867523,
+      "quality_candidate": false,
+      "triggered_by": [],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "result-0",
+            "who-0",
+            "how-0",
+            "why-0",
+            "result-1"
+          ],
+          "similarity": 0.4599543511867523
+        }
+      ]
+    },
+    {
+      "tmdb_id": 52657,
+      "title": "Avenging Force",
+      "similarity": 0.5813339948654175,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5813339948654175
+        }
+      ]
+    },
+    {
+      "tmdb_id": 158715,
+      "title": "The Restless Breed",
+      "similarity": 0.5187990665435791,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "why-0",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.5187990665435791
+        }
+      ]
+    },
+    {
+      "tmdb_id": 432301,
+      "title": "Chappaquiddick",
+      "similarity": 0.5460637807846069,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "why-1",
+            "how-0",
+            "result-2"
+          ],
+          "similarity": 0.5460637807846069
+        }
+      ]
+    },
+    {
+      "tmdb_id": 933554,
+      "title": "2000 Mules",
+      "similarity": 0.4994935393333435,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-SAGE"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "how-0",
+            "result-1",
+            "why-0",
+            "why-1"
+          ],
+          "similarity": 0.4994935393333435
+        }
+      ]
+    }
+  ]
+}

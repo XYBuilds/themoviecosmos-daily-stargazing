@@ -1,0 +1,265 @@
+{
+  "run_id": "01-grid-outage",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 15,
+  "overlap_count": 7,
+  "net_new_tmdb_ids": [
+    40663,
+    58770,
+    139329,
+    472921,
+    530076,
+    720321,
+    949698,
+    1484253
+  ],
+  "lost_tmdb_ids": [
+    33495,
+    33787,
+    46221,
+    100063,
+    111750,
+    190738,
+    194834,
+    210219,
+    370097,
+    431892,
+    533885,
+    1223272
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [
+    {
+      "tmdb_id": 429918,
+      "title": "Survival Family",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    }
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 40663,
+      "title": "Gasland",
+      "similarity": 0.4528811573982239,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "result-0"
+          ],
+          "similarity": 0.4528811573982239
+        }
+      ]
+    },
+    {
+      "tmdb_id": 58770,
+      "title": "The Trigger Effect",
+      "similarity": 0.5331172347068787,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "why-1",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5331172347068787
+        }
+      ]
+    },
+    {
+      "tmdb_id": 139329,
+      "title": "Back to 1942",
+      "similarity": 0.4396619200706482,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4396619200706482
+        }
+      ]
+    },
+    {
+      "tmdb_id": 472921,
+      "title": "Skybound",
+      "similarity": 0.48954546451568604,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.48954546451568604
+        }
+      ]
+    },
+    {
+      "tmdb_id": 530076,
+      "title": "Corporate Animals",
+      "similarity": 0.4897459149360657,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4897459149360657
+        }
+      ]
+    },
+    {
+      "tmdb_id": 720321,
+      "title": "Breathe",
+      "similarity": 0.4836811423301697,
+      "quality_candidate": true,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "result-0",
+            "how-2",
+            "who-1",
+            "who-3",
+            "why-2"
+          ],
+          "similarity": 0.44313034415245056
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "result-0",
+            "how-2",
+            "who-2",
+            "why-0",
+            "how-1"
+          ],
+          "similarity": 0.4163302183151245
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "result-0",
+            "who-1",
+            "who-3",
+            "why-2",
+            "how-2"
+          ],
+          "similarity": 0.4383590817451477
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "why-1",
+            "why-0",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4836811423301697
+        }
+      ]
+    },
+    {
+      "tmdb_id": 949698,
+      "title": "Flashover",
+      "similarity": 0.49152475595474243,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.49152475595474243
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1484253,
+      "title": "Trainwreck: Poop Cruise",
+      "similarity": 0.41472288966178894,
+      "quality_candidate": false,
+      "triggered_by": [],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "how-2",
+            "result-0",
+            "who-0",
+            "who-2",
+            "why-2"
+          ],
+          "similarity": 0.41472288966178894
+        }
+      ]
+    }
+  ]
+}

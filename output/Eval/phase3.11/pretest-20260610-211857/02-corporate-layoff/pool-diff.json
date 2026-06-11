@@ -1,0 +1,195 @@
+{
+  "run_id": "02-corporate-layoff",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 16,
+  "overlap_count": 10,
+  "net_new_tmdb_ids": [
+    16020,
+    55561,
+    116741,
+    402907,
+    753232,
+    1161617
+  ],
+  "lost_tmdb_ids": [
+    16814,
+    53416,
+    56589,
+    71172,
+    88442,
+    133463,
+    485162,
+    762823,
+    1173076
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [
+    {
+      "tmdb_id": 619090,
+      "title": "The Plan",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    },
+    {
+      "tmdb_id": 485162,
+      "title": "At War",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    }
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 16020,
+      "title": "Day Zero",
+      "similarity": 0.4458097815513611,
+      "quality_candidate": false,
+      "triggered_by": [],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "result-3",
+            "who-2",
+            "how-1",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.4458097815513611
+        }
+      ]
+    },
+    {
+      "tmdb_id": 55561,
+      "title": "Clockwatchers",
+      "similarity": 0.4576209485530853,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-3",
+            "how-1",
+            "how-0"
+          ],
+          "similarity": 0.4576209485530853
+        }
+      ]
+    },
+    {
+      "tmdb_id": 116741,
+      "title": "The Internship",
+      "similarity": 0.4346693754196167,
+      "quality_candidate": true,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "result-3",
+            "who-2",
+            "how-1",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.41434139013290405
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4346693754196167
+        }
+      ]
+    },
+    {
+      "tmdb_id": 402907,
+      "title": "Odd Job",
+      "similarity": 0.4950590431690216,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.4950590431690216
+        }
+      ]
+    },
+    {
+      "tmdb_id": 753232,
+      "title": "The Commando",
+      "similarity": 0.44772085547447205,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "result-2",
+            "how-1",
+            "result-3"
+          ],
+          "similarity": 0.44772085547447205
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1161617,
+      "title": "Code 3",
+      "similarity": 0.46738186478614807,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-3",
+            "how-1",
+            "how-0"
+          ],
+          "similarity": 0.46738186478614807
+        }
+      ]
+    }
+  ]
+}

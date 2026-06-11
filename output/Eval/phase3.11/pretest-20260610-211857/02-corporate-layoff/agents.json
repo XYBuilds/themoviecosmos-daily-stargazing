@@ -1,0 +1,706 @@
+{
+  "agents": [
+    {
+      "agent_id": "The-Everyman",
+      "persona_name": "The-Everyman",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "about 3,000 full-time roles to be eliminated. affected U.S. employees. affected employees offered 16 weeks of base pay plus two weeks per year of tenure. Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure. Intuit The event unfolds across thousands of jobs disappearing and job elimination.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "result-1",
+              "who-2",
+              "result-3",
+              "how-1",
+              "who-0"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "about 3,000 full-time roles to be eliminated",
+                "provenance": "surface"
+              },
+              {
+                "term": "thousands of jobs disappearing",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "job elimination",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "role reduction",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "headcount decrease",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "affected U.S. employees",
+                "provenance": "surface"
+              },
+              {
+                "term": "workers losing their jobs",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "employees",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "workers",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "staff",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "personnel",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+                "provenance": "surface"
+              },
+              {
+                "term": "a defined severance offer for terminated employees",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "severance package",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "compensation offer",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+                "provenance": "surface"
+              },
+              {
+                "term": "a severance package for laid-off employees",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "employee benefit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Intuit",
+                "provenance": "surface"
+              },
+              {
+                "term": "the company behind the decision",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "tax-software company",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "technology company",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "company",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "corporation",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "For 3,000 workers at the tax-software company, the future just narrowed sharply. The company's chief executive announced a major workforce reduction, eliminating about 3,000 full-time roles and winding down offices in Reno and Woodland Hills. Those affected employees were offered a severance package of 16 weeks of base pay plus two weeks per year of tenure, a financial cushion meant to help them navigate the sudden disruption to their careers and the search for a new path forward.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "how-2",
+              "result-0",
+              "result-1",
+              "result-2",
+              "result-3"
+            ],
+            "center": "result-1",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The news landed as a top-down mandate for the employees bearing the cost of the company's strategic shift. As ordinary people facing a sudden career disruption, they learned their jobs were gone. They were offered a defined severance offer for terminated employees—16 weeks of base pay plus two weeks for each year of service. It was a package meant to help workers transition, but for many, it underscored the vulnerability of being a worker in a corporate system making a difficult, organizational change.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-1",
+              "result-3"
+            ],
+            "center": "who-2",
+            "channel": "focalized",
+            "channel_role": "focalized",
+            "composition_mode": "ADR-0008",
+            "focal": "who-2"
+          },
+          "warnings": [],
+          "fit": 0.9
+        },
+        {
+          "id": "p3",
+          "text": "The employer cutting thousands of jobs is co-locating its teams in strategic hubs to accelerate AI-driven product work, a strategic business rationale for the cuts that involves a large-scale reduction affecting many ordinary families. The announcement of widespread job eliminations came with a severance package for laid-off employees, but the process leaves ordinary workers as the ones who pay for this product development acceleration, with local economies in two cities losing a corporate presence as offices wind down.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "how-1",
+              "result-0",
+              "result-1",
+              "result-2"
+            ],
+            "center": "who-0",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [],
+          "fit": 0.75
+        }
+      ]
+    },
+    {
+      "agent_id": "The-Hero",
+      "persona_name": "The-Hero",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "affected U.S. employees. roughly 17% of workforce to be cut. about 3,000 full-time roles to be eliminated. Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure. as a painful but necessary reinvention after months of internal review The event unfolds across the employees offered severance and employees.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "who-2",
+              "result-0",
+              "result-1",
+              "how-1",
+              "why-1"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "affected U.S. employees",
+                "provenance": "surface"
+              },
+              {
+                "term": "the employees offered severance",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "employees",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "workers",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "staff",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "personnel",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "roughly 17% of workforce to be cut",
+                "provenance": "surface"
+              },
+              {
+                "term": "roughly 17% of the workforce to be cut",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "workforce reduction",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "staff layoff",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "organizational downsizing",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "about 3,000 full-time roles to be eliminated",
+                "provenance": "surface"
+              },
+              {
+                "term": "job elimination",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "role reduction",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "headcount decrease",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+                "provenance": "surface"
+              },
+              {
+                "term": "the offer of 16 weeks base pay plus tenure bonus",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "severance package",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "compensation offer",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "employee benefit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "as a painful but necessary reinvention after months of internal review",
+                "provenance": "surface"
+              },
+              {
+                "term": "as a painful but necessary reinvention",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "The tax-software company Intuit, as a painful but necessary reinvention, has initiated a devastating blow to nearly a fifth of its workforce. About 3,000 full-time roles are to be eliminated, a significant workforce reduction aimed at co-locating teams for product development acceleration. Affected employees were offered a severance package to shield them, while offices in Reno and Woodland Hills are winding down. This corporate restructuring, while presenting a stated goal of strengthening the company's future, represents a loss of livelihoods that must be acknowledged.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "result-0",
+              "result-1",
+              "why-1",
+              "how-1",
+              "result-2"
+            ],
+            "center": "result-0",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [
+            "ignored focal 'None' on toned channel"
+          ],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "From the vantage of the vulnerable workers bearing the cost, the announcement shattered job security. They learned that roughly 17% of the workforce is to be cut, a significant organizational downsizing. While Intuit's chief executive framed it as a necessary fight for reinvention and co-locating teams for AI work, their immediate reality is the loss of 3,000 livelihoods, including their own. The severance package offered, while substantial, is a promised compensation to ease a burden they never sought. Offices in their cities are now falling.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "how-0",
+              "result-0",
+              "why-1",
+              "why-0",
+              "result-1",
+              "how-1",
+              "result-2"
+            ],
+            "center": "who-2",
+            "channel": "focalized",
+            "channel_role": "focalized",
+            "composition_mode": "ADR-0008",
+            "focal": "who-2"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p3",
+          "text": "Intuit, the decision-maker, executed a painful corporate restructuring to accelerate product work. The chief executive who delivered the blow communicated the elimination of roles to the staff, framing it as a business strategy. The result is a major workforce reduction and the winding down of offices in strategic locations. This move, while intended for organizational change, has displaced a significant portion of the company's personnel, leaving them to navigate the offered severance package and the loss of their professional footholds.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "how-0",
+              "why-0",
+              "result-0",
+              "result-2",
+              "how-1"
+            ],
+            "center": "who-0",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [
+            "ignored focal 'None' on toned channel"
+          ],
+          "fit": 0.72
+        }
+      ]
+    },
+    {
+      "agent_id": "The-Innocent",
+      "persona_name": "The-Innocent",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure. affected U.S. employees. Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure. as a painful but necessary reinvention after months of internal review. roughly 17% of workforce to be cut The event unfolds across severance and transition support provided and severance package.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "result-3",
+              "who-2",
+              "how-1",
+              "why-1",
+              "result-0"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+                "provenance": "surface"
+              },
+              {
+                "term": "severance and transition support provided",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "severance package",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "compensation offer",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "affected U.S. employees",
+                "provenance": "surface"
+              },
+              {
+                "term": "affected workers",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "employees",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "workers",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "staff",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "personnel",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+                "provenance": "surface"
+              },
+              {
+                "term": "the severance offer extended to departing employees",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "employee benefit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "as a painful but necessary reinvention after months of internal review",
+                "provenance": "surface"
+              },
+              {
+                "term": "a painful but necessary reinvention after months of internal review",
+                "provenance": "surface"
+              },
+              {
+                "term": "roughly 17% of workforce to be cut",
+                "provenance": "surface"
+              },
+              {
+                "term": "a large number of employees will lose their jobs",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "workforce reduction",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "staff layoff",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "organizational downsizing",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "As a sincere effort to adapt and survive for the long term, a company seeking to renew itself for the future is reorganizing. The company's leader communicated the difficult decision directly to staff: the tax-software company will eliminate about 3,000 full-time roles as part of a painful but necessary reinvention. This corporate announcement, a step in organizational change, is aimed at building a stronger, more focused future together. Colleagues deserving protection and fair support are being offered a structured support package, a gesture of care and support for those leaving, with affected workers receiving severance and transition support provided.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-1",
+              "how-0",
+              "result-1",
+              "how-1",
+              "result-3"
+            ],
+            "center": "how-0",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [],
+          "fit": 0.65
+        },
+        {
+          "id": "p2",
+          "text": "People whose trust has been disrupted are the affected U.S. employees, workers facing a workforce reduction where roughly 17% of the workforce is to be cut. They learn of the loss of thousands of positions and the closure of two offices, communities where trust may be shaken. In response, affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure. This severance package, a compensation offer extended to departing employees, is a gesture of care and support for those leaving, though compensation that may not fully repair the loss.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "result-0",
+              "result-2",
+              "how-1",
+              "result-3"
+            ],
+            "center": "who-2",
+            "channel": "focalized",
+            "channel_role": "focalized",
+            "composition_mode": "ADR-0008",
+            "focal": "who-2"
+          },
+          "warnings": [],
+          "fit": 0.78
+        }
+      ]
+    },
+    {
+      "agent_id": "The-Caregiver",
+      "persona_name": "The-Caregiver",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "roughly 17% of workforce to be cut. affected U.S. employees. affected employees offered 16 weeks of base pay plus two weeks per year of tenure. Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure. Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles The event unfolds across significant workforce reduction and workforce reduction.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "result-0",
+              "who-2",
+              "result-3",
+              "how-1",
+              "how-0"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "roughly 17% of workforce to be cut",
+                "provenance": "surface"
+              },
+              {
+                "term": "significant workforce reduction",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "workforce reduction",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "staff layoff",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "organizational downsizing",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "affected U.S. employees",
+                "provenance": "surface"
+              },
+              {
+                "term": "employees",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "workers",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "staff",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "personnel",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+                "provenance": "surface"
+              },
+              {
+                "term": "severance payments provided",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "severance package",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "compensation offer",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+                "provenance": "surface"
+              },
+              {
+                "term": "severance package offered to laid-off employees",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "employee benefit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+                "provenance": "surface"
+              },
+              {
+                "term": "announcement of major layoffs",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "corporate announcement",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "decision communication",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "staff notification",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "A significant workforce reduction at Intuit, a tax-software company, will eliminate roughly 17% of its workforce. This organizational downsizing, driven by a corporate strategic realignment to co-locate teams and accelerate AI work, directly harms employees and their families. The company is offering a severance package, but the sudden loss of livelihoods for thousands of workers creates substantial instability for their communities.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "result-0",
+              "how-0",
+              "result-3"
+            ],
+            "center": "result-0",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [
+            "ignored focal 'None' on toned channel"
+          ],
+          "fit": 0.9
+        },
+        {
+          "id": "p2",
+          "text": "For the vulnerable employees needing support, the news came as a shock. The corporate announcement from the chief executive communicated the elimination of about 3,000 full-time roles, leaving people whose livelihoods are at stake facing job loss. While a financial cushion was offered, the compensation may not fully mitigate the harm of job loss, and the loss of their physical workplaces in Reno and Woodland Hills compounds the displacement.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "how-0",
+              "how-1",
+              "result-2"
+            ],
+            "center": "who-2",
+            "channel": "focalized",
+            "channel_role": "focalized",
+            "composition_mode": "ADR-0008",
+            "focal": "who-2"
+          },
+          "warnings": [],
+          "fit": 0.95
+        },
+        {
+          "id": "p3",
+          "text": "The severance payments provided to affected employees—16 weeks of base pay plus two weeks per year of tenure—are a form of support offered to those impacted by layoffs. This employee benefit, communicated as part of the decision communication from the company leader, represents a financial assistance designed to cushion the transition, though its long-term adequacy remains uncertain for many facing this sudden change.",
+          "source": {
+            "agent_id": "The-Caregiver",
+            "fragments": [
+              "result-3",
+              "how-1",
+              "how-0"
+            ],
+            "center": "result-3",
+            "channel": "toned",
+            "channel_role": "toned",
+            "composition_mode": "ADR-0008"
+          },
+          "warnings": [
+            "ignored focal 'None' on toned channel"
+          ],
+          "fit": 0.85
+        }
+      ]
+    }
+  ]
+}

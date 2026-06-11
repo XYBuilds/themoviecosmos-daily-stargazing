@@ -1,0 +1,794 @@
+{
+  "agents": [
+    {
+      "agent_id": "The-Everyman",
+      "persona_name": "The-Everyman",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "more than 950 megawatts unavailable. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Kepco SPC Power's Unit 2. Eleven generators. seasonal heat drove demand into a thin operating margin The event unfolds across a major power shortfall and power shortage.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "result-0",
+              "how-2",
+              "who-1",
+              "who-3",
+              "why-2"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "more than 950 megawatts unavailable",
+                "provenance": "surface"
+              },
+              {
+                "term": "a major power shortfall",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power shortage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "capacity loss",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy deficit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "shortage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+                "provenance": "surface"
+              },
+              {
+                "term": "authorities mandated power cuts",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "load shedding",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "emergency measure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "grid stabilization",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "control action",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Kepco SPC Power's Unit 2",
+                "provenance": "surface"
+              },
+              {
+                "term": "a major power plant",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power unit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "generating unit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power plant component",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy infrastructure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Eleven generators",
+                "provenance": "surface"
+              },
+              {
+                "term": "power stations",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "generators",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power generators",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "equipment",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy assets",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "seasonal heat drove demand into a thin operating margin",
+                "provenance": "surface"
+              },
+              {
+                "term": "high summer demand strained the system",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "high demand",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "heatwave impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy demand spike",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "demand increase",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "When a major power plant in the Visayas region failed, it triggered a grid incident that left the island group on high alert. The power grid managers and government authorities had to order emergency load shedding as a grid stabilization measure, resulting in a major power shortfall of over 950 megawatts for everyone in the area. This sudden energy deficit, driven by high summer demand straining the system, shows how a single equipment failure can disrupt daily life for ordinary people who depend on reliable electricity.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p2",
+          "text": "The recent blackout in the Visayas region stems from a power unit failing, adding to ongoing shutdowns at other plants. High summer demand strained the system to its limit, leading authorities to mandate power cuts to prevent a bigger outage. This energy deficit left hundreds of thousands of homes without power, a huge loss for ordinary people just trying to keep cool during the seasonal heat.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p3",
+          "text": "Critical equipment let us down when a machine broke down, and the system couldn't handle everyone needing power at once. The power managers issued a warning, but rolling blackouts hit our community in the Visayas anyway because the grid failed to stabilize. Enough electricity to power hundreds of thousands of homes was gone—a stark reminder of how vulnerable everyday infrastructure is when demand spikes.",
+          "source": {
+            "agent_id": "The-Everyman",
+            "fragments": [
+              "why-0",
+              "why-2",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.72
+        }
+      ]
+    },
+    {
+      "agent_id": "The-Hero",
+      "persona_name": "The-Hero",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "more than 950 megawatts unavailable. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Officials. Kepco SPC Power's Unit 2 tripped offline. The Philippines grid operator placed the Visayas under red alert The event unfolds across a substantial reduction in available electricity and power shortage.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "result-0",
+              "how-2",
+              "who-2",
+              "why-0",
+              "how-1"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "more than 950 megawatts unavailable",
+                "provenance": "surface"
+              },
+              {
+                "term": "a substantial reduction in available electricity",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power shortage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "capacity loss",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy deficit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "shortage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+                "provenance": "surface"
+              },
+              {
+                "term": "an operational procedure to avoid overload",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "load shedding",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "emergency measure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "grid stabilization",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "control action",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Officials",
+                "provenance": "surface"
+              },
+              {
+                "term": "government representatives",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "authorities",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "government officials",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "decision-makers",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Kepco SPC Power's Unit 2 tripped offline",
+                "provenance": "surface"
+              },
+              {
+                "term": "an equipment malfunction",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "equipment failure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power outage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "grid incident",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "The Philippines grid operator placed the Visayas under red alert",
+                "provenance": "surface"
+              },
+              {
+                "term": "a high-level warning was issued",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "alert declaration",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "grid management action",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "emergency response",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "action",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "When the critical system failure at Kepco SPC Power's Unit 2 triggered a grid incident, the grid guardians were forced to respond. Faced with compounding system vulnerabilities and a relentless assault of summer demand, they issued a high-level warning for the affected region. Their courageous decision to prevent total collapse—an emergency load shedding—was a drastic but necessary measure to stabilize the power grid against a massive power deficit. This decisive action by the energy sector entity averted wider catastrophe.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.88
+        },
+        {
+          "id": "p2",
+          "text": "The authorities, acting as decisive crisis managers, confronted the point of initial failure when the offline generator suddenly shut down. Amidst high demand and ongoing maintenance issues, they declared a red alert for the frontline of the power crisis. Their operational procedure to avoid overload, though a significant loss of generation capacity, protected the energy infrastructure from a shortage. This grid management action demonstrated the resolve of government officials to manage the emergency.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "why-2",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.81
+        },
+        {
+          "id": "p3",
+          "text": "The system overseer faced the triggering event: a power outage from a failed power unit, compounded by extended plant shutdowns and a heat-driven demand surge. Raising the alarm for the affected region, they implemented an emergency measure to avoid overload. This grid stabilization effort, despite resulting in a capacity loss, was a critical control action by the utility to address the demand spike. Their response was a vital measure against the equipment malfunction that threatened the power generation equipment.",
+          "source": {
+            "agent_id": "The-Hero",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.75
+        }
+      ]
+    },
+    {
+      "agent_id": "The-Innocent",
+      "persona_name": "The-Innocent",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2. Eleven generators. seasonal heat drove demand into a thin operating margin. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading The event unfolds across a large-scale power deficit and power shortage.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "result-0",
+              "who-1",
+              "who-3",
+              "why-2",
+              "how-2"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "more than 950 megawatts unavailable",
+                "provenance": "surface"
+              },
+              {
+                "term": "a large-scale power deficit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power shortage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "capacity loss",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy deficit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "shortage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Kepco SPC Power's Unit 2",
+                "provenance": "surface"
+              },
+              {
+                "term": "the affected power unit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power unit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "generating unit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power plant component",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy infrastructure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Eleven generators",
+                "provenance": "surface"
+              },
+              {
+                "term": "the affected generators",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "generators",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power generators",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "equipment",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy assets",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "seasonal heat drove demand into a thin operating margin",
+                "provenance": "surface"
+              },
+              {
+                "term": "increased demand due to heat",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "high demand",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "heatwave impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy demand spike",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "demand increase",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+                "provenance": "surface"
+              },
+              {
+                "term": "load shedding was implemented for grid stability",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "load shedding",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "emergency measure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "grid stabilization",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "control action",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "In May 2026, the trusted grid guardian worked to protect the Visayas region after a sudden operational interruption at a power unit. Duty-bound decision-makers issued a protective warning and implemented emergency measures to maintain grid stability, responding to increased demand due to heat that strained the system. Their actions aimed to prevent a large-scale power deficit, though a significant power shortfall still affected the area as over 950 megawatts became unavailable.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "why-2",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.78
+        },
+        {
+          "id": "p2",
+          "text": "When the affected power unit experienced a sudden shutdown, the grid management authority declared a red alert for the affected community in the Visayas. This grid management action, combined with load shedding for grid stability, was a direct response to prolonged operational challenges and ongoing maintenance issues across eleven power generators. The measures sought to mitigate the energy deficit, highlighting the system's vulnerability to equipment failure.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "how-0",
+              "how-1",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.72
+        },
+        {
+          "id": "p3",
+          "text": "Public authorities in the Philippines acted to safeguard the region in need of stability after Kepco SPC Power's Unit 2 tripped offline. Their emergency response, including load shedding, was necessitated by a heatwave impact that drove high demand and compounded the effects of other long-running plant outages. This collective effort aimed to address the resulting power shortage and protect critical energy infrastructure.",
+          "source": {
+            "agent_id": "The-Innocent",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.65
+        }
+      ]
+    },
+    {
+      "agent_id": "The-Explorer",
+      "persona_name": "The-Explorer",
+      "role": "persona",
+      "pseudos": [
+        {
+          "id": "n1",
+          "text": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. more than 950 megawatts unavailable. The Philippines grid operator. Officials. seasonal heat drove demand into a thin operating margin The event unfolds across officials ordered load shedding to protect the grid and load shedding.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "how-2",
+              "result-0",
+              "who-0",
+              "who-2",
+              "why-2"
+            ],
+            "channel_role": "neutral",
+            "provenance_layers": [
+              "hypernym",
+              "surface"
+            ],
+            "terms": [
+              {
+                "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+                "provenance": "surface"
+              },
+              {
+                "term": "officials ordered load shedding to protect the grid",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "load shedding",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "emergency measure",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "grid stabilization",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "control action",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "more than 950 megawatts unavailable",
+                "provenance": "surface"
+              },
+              {
+                "term": "over 950 megawatts of power capacity unavailable",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "power shortage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "capacity loss",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy deficit",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "shortage",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "The Philippines grid operator",
+                "provenance": "surface"
+              },
+              {
+                "term": "the power system operator",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "grid operator",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "utility",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy sector entity",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "organization",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "Officials",
+                "provenance": "surface"
+              },
+              {
+                "term": "the emergency decision-makers",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "authorities",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "government officials",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "decision-makers",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "seasonal heat drove demand into a thin operating margin",
+                "provenance": "surface"
+              },
+              {
+                "term": "seasonal heat increased demand",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "high demand",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "heatwave impact",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "energy demand spike",
+                "provenance": "hypernym"
+              },
+              {
+                "term": "demand increase",
+                "provenance": "hypernym"
+              }
+            ]
+          },
+          "warnings": [],
+          "fit": 1.0
+        },
+        {
+          "id": "p1",
+          "text": "When the failed power unit breached its operational limits, the grid operator crossed into crisis territory. Seasonal heat had already pushed the grid into new frontiers of stress, and the emergency decision-makers responded by navigating the situation with load shedding, a critical grid stabilization measure. This journey into uncharted operational territory resulted in a significant power shortfall, a frontier crisis for the island group's energy sector entity.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.9
+        },
+        {
+          "id": "p2",
+          "text": "The power system operator faced a cascade of challenges as multiple plant outages compounded the crisis. Officials, acting as crisis navigators, ordered load shedding to protect the grid from overloading a critical transmission line. The emergency response was a necessary action to manage the energy deficit caused by high demand from the heatwave impact, leaving over 950 megawatts of power capacity unavailable in the region.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "why-1",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.85
+        },
+        {
+          "id": "p3",
+          "text": "A unit's reckless operational crossing triggered a grid incident, forcing the grid's reactive controller to lock down the Visayas under a red alert. The officials who caged demand imposed emergency restrictions to prevent a massive deficit caging the grid. This forced the power generators into uncharted territory as they navigated the energy demand spike, exposing the system's festering vulnerabilities in a critical time of shortage.",
+          "source": {
+            "agent_id": "The-Explorer",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "channel_role": "toned"
+          },
+          "warnings": [],
+          "fit": 0.75
+        }
+      ]
+    }
+  ]
+}

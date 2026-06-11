@@ -1,0 +1,376 @@
+{
+  "persona_id": "The-Everyman",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "U.S. Border Patrol",
+          "alternatives": [
+            {
+              "term": "the agency enforcing immigration laws at the border",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the officers carrying out policy on the ground",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "8,268 people apprehended",
+          "alternatives": [
+            {
+              "term": "ordinary people caught by the system",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "individuals facing the consequences of policy",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "those apprehended at the border",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "analysts",
+          "alternatives": [
+            {
+              "term": "observers tracking the data",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "people whose job is to watch the numbers",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "lawmakers",
+          "alternatives": [
+            {
+              "term": "elected officials who set the rules everyone else lives under",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the politicians stuck in a standoff",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "government representatives",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "milder spring weather",
+          "alternatives": [
+            {
+              "term": "conditions that make the journey more survivable",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the seasonal change that increases crossings",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+          "alternatives": [
+            {
+              "term": "the numbers show a seasonal bump in people trying to cross",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a documented rise in border apprehensions between two months",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+          "alternatives": [
+            {
+              "term": "the policies have kept overall numbers down, hitting people hard in the process",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "crossings stay historically low because of current enforcement rules",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the system is holding the line, but ordinary people bear the cost",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+          "alternatives": [
+            {
+              "term": "the people in charge can't agree on how to fund the agencies that affect everyone's daily reality",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a political stalemate over agency funding",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "southwest border",
+          "alternatives": [
+            {
+              "term": "the shared boundary where policy meets real people",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a stretch of the U.S. border",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "who-1",
+      "result-0",
+      "how-0",
+      "result-1",
+      "who-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "8,268 people apprehended. year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies. apprehensions increased from 6,598 in February to 8,268 in March along the southwest border. lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package. U.S. Border Patrol The event unfolds across those apprehended at the border and apprehended individuals.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "who-1",
+          "result-0",
+          "how-0",
+          "result-1",
+          "who-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "8,268 people apprehended",
+            "provenance": "surface"
+          },
+          {
+            "term": "those apprehended at the border",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "apprehended individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detainees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border crossers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected population",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+            "provenance": "surface"
+          },
+          {
+            "term": "crossings stay historically low because of current enforcement rules",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "low crossing numbers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "enforcement policy outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "immigration statistics",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security effect",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+            "provenance": "surface"
+          },
+          {
+            "term": "a documented rise in border apprehensions between two months",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "increase in apprehensions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "statistical trend",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "numerical change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border activity metric",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+            "provenance": "surface"
+          },
+          {
+            "term": "a political stalemate over agency funding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political deadlock",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legislative stalemate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "funding dispute",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government impasse",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. Border Patrol",
+            "provenance": "surface"
+          },
+          {
+            "term": "the agency enforcing immigration laws at the border",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security agency",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "federal law enforcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "U.S. government entity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "security force",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "Even as overall border crossings stay at historic lows, the data from spring shows a seasonal pattern playing out: the number of apprehended individuals along the U.S. border climbed from 6,598 in February to 8,268 in March. For the ordinary people caught by the system—people whose journeys are shaped by weather and circumstance—this increase means more of them are facing the real-world consequences of enforcement policies. The system is holding the line on the numbers, but the cost is borne by those with the fewest options.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "center": "who-1",
+        "channel": "toned",
+        "channel_role": "toned",
+        "composition_mode": "ADR-0008"
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The enforcement rules are producing their intended effect: immigration statistics show crossings staying historically low, a clear enforcement policy outcome. But this stability comes at a price that ordinary people bear. The seasonal change that increases crossings—milder spring weather—has brought a numerical change in border activity metrics, yet the overall trajectory remains flat. For the affected population, the policies have kept the numbers down while hitting them hard in the process, a reality that feels far from any political debate.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "result-0"
+        ],
+        "center": "result-0",
+        "channel": "toned",
+        "channel_role": "toned",
+        "composition_mode": "ADR-0008"
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "From where I stand, watching the officers carrying out policy on the ground, the numbers tell a simple story: spring arrives, and more people try to cross. They see the apprehension numbers climb month to month—a documented rise in border apprehensions between February and March—and they know the pattern will likely continue as the weather warms. Their job is to enforce rules set by politicians stuck in a standoff, officials who remain deadlocked over how to fund the agencies that shape this shared boundary where policy meets real people.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "result-1"
+        ],
+        "center": "who-0",
+        "channel": "focalized",
+        "channel_role": "focalized",
+        "composition_mode": "ADR-0008",
+        "focal": "who-0"
+      },
+      "warnings": [],
+      "fit": 0.82
+    }
+  ],
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"Even as overall border crossings stay at historic lows, the data from spring shows a seasonal pattern playing out: the number of apprehended individuals along the U.S. border climbed from 6,598 in February to 8,268 in March. For the ordinary people caught by the system—people whose journeys are shaped by weather and circumstance—this increase means more of them are facing the real-world consequences of enforcement policies. The system is holding the line on the numbers, but the cost is borne by those with the fewest options.\",\n      \"fit\": 0.85,\n      \"center\": \"who-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-0\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"The enforcement rules are producing their intended effect: immigration statistics show crossings staying historically low, a clear enforcement policy outcome. But this stability comes at a price that ordinary people bear. The seasonal change that increases crossings—milder spring weather—has brought a numerical change in border activity metrics, yet the overall trajectory remains flat. For the affected population, the policies have kept the numbers down while hitting them hard in the process, a reality that feels far from any political debate.\",\n      \"fit\": 0.78,\n      \"center\": \"result-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"From where I stand, watching the officers carrying out policy on the ground, the numbers tell a simple story: spring arrives, and more people try to cross. They see the apprehension numbers climb month to month—a documented rise in border apprehensions between February and March—and they know the pattern will likely continue as the weather warms. Their job is to enforce rules set by politicians stuck in a standoff, officials who remain deadlocked over how to fund the agencies that shape this shared boundary where policy meets real people.\",\n      \"fit\": 0.82,\n      \"center\": \"who-0\",\n      \"channel\": \"focalized\",\n      \"focal\": \"who-0\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"result-1\"]\n      }\n    }\n  ]\n}"
+}

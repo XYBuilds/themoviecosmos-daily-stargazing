@@ -1,0 +1,154 @@
+{
+  "run_id": "07-migration-border",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 12,
+  "overlap_count": 7,
+  "net_new_tmdb_ids": [
+    20348,
+    117251,
+    204046,
+    253412,
+    1014629
+  ],
+  "lost_tmdb_ids": [
+    1775,
+    9366,
+    49097,
+    127822,
+    151708,
+    210913,
+    252990,
+    273481,
+    362202,
+    1006462,
+    1418657,
+    1447971
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [
+    {
+      "tmdb_id": 381018,
+      "title": "Transpecos",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    },
+    {
+      "tmdb_id": 273481,
+      "title": "Sicario",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    }
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 20348,
+      "title": "Fandango",
+      "similarity": 0.43473124504089355,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.43473124504089355
+        }
+      ]
+    },
+    {
+      "tmdb_id": 117251,
+      "title": "White House Down",
+      "similarity": 0.4967280924320221,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "result-1"
+          ],
+          "similarity": 0.4967280924320221
+        }
+      ]
+    },
+    {
+      "tmdb_id": 204046,
+      "title": "The Informant",
+      "similarity": 0.5445858240127563,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5445858240127563
+        }
+      ]
+    },
+    {
+      "tmdb_id": 253412,
+      "title": "Everest",
+      "similarity": 0.4726993441581726,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.4726993441581726
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1014629,
+      "title": "The Fearway",
+      "similarity": 0.461855411529541,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.461855411529541
+        }
+      ]
+    }
+  ]
+}
