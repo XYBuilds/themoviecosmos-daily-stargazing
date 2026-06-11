@@ -24,11 +24,14 @@ from scripts.eval_batch_manifest import load_manifest
 from scripts.lib.env import default_llm_provider, load_env
 from scripts.lib.llm import get_llm_client
 from scripts.resonance_rubric import (
+    SUB_LABEL_POV_TRANSFORM,
     TYPE_DEEP,
     TYPE_NONE,
     TYPE_STRONG,
     TYPE_SURFACE,
+    parse_pov_transform,
     parse_resonance_type,
+    validate_pov_transform_sub_label,
     validate_score_type_pair,
 )
 from scripts.run_persona_batch import OBS_RUN_PREFIXES, split_obs_holdout
@@ -38,7 +41,7 @@ from scripts.summarize_eval import (
     parse_unified_review,
 )
 
-_JUDGE_SCHEMA_VERSION = 3
+_JUDGE_SCHEMA_VERSION = 4
 _VALID_SCORES = frozenset({0, 1, 2})
 _JSON_FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)\s*```", re.IGNORECASE)
 
@@ -62,7 +65,9 @@ _JUDGE_SYSTEM = (
     "if you cannot, 底层逻辑 = NO. Apply the logic 0-guard: if that sentence "
     "would still hold for an unrelated news item paired with the same film, "
     "底层逻辑 = NO. When uncertain between score 0 and 1, prefer 0. "
-    "Then map to score and resonance_type."
+    "Then map to score and resonance_type. "
+    "Optionally set pov_transform=true only when score=2 and the resonance "
+    "becomes visible only after a POV or scale shift (Gap A pattern)."
 )
 
 _JUDGE_RUBRIC = f"""\
@@ -103,10 +108,15 @@ telling and an individual-scale telling of the **same** engine still count as th
 **0-guard restated**: if an unrelated news item could explain the film equally well
 → 无表层 + 无逻辑 → score 0 (resonance_type null; conceptually {TYPE_NONE}).
 
+**Optional sub-label — {SUB_LABEL_POV_TRANSFORM}**: set `pov_transform` to true **only**
+when score = 2 and the pair reads as strong resonance **because** a POV or scale shift
+was needed to see the shared causal engine (institutional news ↔ individual film, etc.).
+Otherwise false. Never set true for score 0/1.
+
 Output JSON. All fields required. `resonance_type` is null only at score 0.
 `causal_test` is the bidirectional "X under constraint Z drives Y" sentence that holds for
 BOTH news and film; set it to "" only when Axis 2 = NO. `rationale` is brief free text.
-{{"score": 0|1|2, "resonance_type": {TYPE_DEEP!r}|{TYPE_SURFACE!r}|{TYPE_STRONG!r}|null, "causal_test": "X under constraint Z drives Y — true of both news and film, or \\"\\" if none", "rationale": "brief"}}
+{{"score": 0|1|2, "resonance_type": {TYPE_DEEP!r}|{TYPE_SURFACE!r}|{TYPE_STRONG!r}|null, "pov_transform": true|false, "causal_test": "X under constraint Z drives Y — true of both news and film, or \\"\\" if none", "rationale": "brief"}}
 """
 
 
@@ -120,6 +130,7 @@ class JudgeItem:
     movie_overview: str
     human_score: int | None = None
     human_resonance_type: str | None = None
+    human_pov_transform: bool | None = None
 
     @property
     def key(self) -> tuple[str, str]:
@@ -137,6 +148,8 @@ class JudgeResult:
     causal_test: str = ""
     human_score: int | None = None
     human_resonance_type: str | None = None
+    human_pov_transform: bool | None = None
+    judge_pov_transform: bool | None = None
     disagreement: bool = False
     trusted: bool = True
 
@@ -199,10 +212,28 @@ def parse_plain_human_type(raw: str) -> str | None:
     return parse_resonance_type(raw)
 
 
+def _parse_pov_transform_field(raw: Any) -> bool | None:
+    if raw is None or raw == "":
+        return None
+    if isinstance(raw, bool):
+        return raw
+    if isinstance(raw, (int, float)):
+        return bool(raw)
+    parsed = parse_pov_transform(str(raw))
+    if parsed is not None:
+        return parsed
+    lowered = str(raw).strip().lower()
+    if lowered in {"true", "yes", "1"}:
+        return True
+    if lowered in {"false", "no", "0"}:
+        return False
+    raise ValueError(f"invalid pov_transform {raw!r}")
+
+
 def validate_judge_payload(
     payload: dict[str, Any],
-) -> tuple[int, str | None, str]:
-    """Validate LLM judge JSON; return (score, resonance_type, causal_test)."""
+) -> tuple[int, str | None, str, bool | None]:
+    """Validate LLM judge JSON; return (score, resonance_type, causal_test, pov_transform)."""
     if not isinstance(payload, dict):
         raise ValueError("judge payload must be a JSON object")
     raw_score = payload.get("score")
@@ -225,7 +256,13 @@ def validate_judge_payload(
         raise ValueError("score 2 requires non-empty causal_test")
     if resonance_type == TYPE_DEEP and not causal_test:
         raise ValueError(f"{TYPE_DEEP!r} requires non-empty causal_test")
-    return score, resonance_type, causal_test
+    raw_pov = payload.get("pov_transform")
+    pov_transform = (
+        _parse_pov_transform_field(raw_pov) if raw_pov is not None else None
+    )
+    return score, resonance_type, causal_test, validate_pov_transform_sub_label(
+        score, resonance_type, pov_transform
+    )
 
 
 def compute_calibration(
@@ -306,10 +343,13 @@ def _overview_from_block(body: str) -> str:
 
 _SCORE_LINE = re.compile(r"^-\s*\*\*共振分\*\*:\s*(.*)$", re.MULTILINE)
 _TYPE_LINE = re.compile(r"^-\s*\*\*共振类型\*\*:\s*(.*)$", re.MULTILINE)
+_POV_TRANSFORM_LINE = re.compile(r"^-\s*\*\*POV变换\*\*:\s*(.*)$", re.MULTILINE)
 _TMDB_LINE = re.compile(r"^-\s*\*\*tmdb_id\*\*:\s*(\S+)", re.MULTILINE)
 
 
-def _human_fields_from_block(block: str) -> tuple[int | None, str | None]:
+def _human_fields_from_block(
+    block: str,
+) -> tuple[int | None, str | None, bool | None]:
     score_match = _SCORE_LINE.search(block)
     human_score = (
         parse_plain_human_score(score_match.group(1)) if score_match else None
@@ -318,7 +358,15 @@ def _human_fields_from_block(block: str) -> tuple[int | None, str | None]:
     human_type = (
         parse_plain_human_type(type_match.group(1)) if type_match else None
     )
-    return human_score, human_type
+    pov_match = _POV_TRANSFORM_LINE.search(block)
+    human_pov = (
+        parse_pov_transform(pov_match.group(1)) if pov_match else None
+    )
+    if human_score is not None and human_type is not None:
+        human_pov = validate_pov_transform_sub_label(
+            human_score, human_type, human_pov
+        )
+    return human_score, human_type, human_pov
 
 
 def _blocks_from_text(text: str) -> list[tuple[str, str]]:
@@ -375,7 +423,7 @@ def collect_judge_items(
                     block_by_tmdb[tmdb_match.group(1)] = (heading, body)
             for cand in run.candidates:
                 block = block_by_tmdb.get(cand.tmdb_id, ("", ""))[1]
-                human_score, human_type = _human_fields_from_block(block)
+                human_score, human_type, human_pov = _human_fields_from_block(block)
                 if human_score is None:
                     human_score = cand.score
                     human_type = cand.resonance_type
@@ -389,6 +437,7 @@ def collect_judge_items(
                         movie_overview=_overview_from_block(block),
                         human_score=human_score,
                         human_resonance_type=human_type,
+                        human_pov_transform=human_pov,
                     )
                 )
         return items
@@ -412,7 +461,7 @@ def collect_judge_items(
                 block_by_tmdb[tmdb_match.group(1)] = body
         for cand in run.candidates:
             block = block_by_tmdb.get(cand.tmdb_id, "")
-            human_score, human_type = _human_fields_from_block(block)
+            human_score, human_type, human_pov = _human_fields_from_block(block)
             if human_score is None:
                 human_score = cand.score
                 human_type = cand.resonance_type
@@ -426,6 +475,7 @@ def collect_judge_items(
                     movie_overview=_overview_from_block(block),
                     human_score=human_score,
                     human_resonance_type=human_type,
+                    human_pov_transform=human_pov,
                 )
             )
     return items
@@ -443,15 +493,17 @@ def build_judge_user_prompt(item: JudgeItem) -> str:
     )
 
 
-def parse_judge_response(text: str) -> tuple[int, str | None, str, str]:
+def parse_judge_response(
+    text: str,
+) -> tuple[int, str | None, str, str, bool | None]:
     cleaned = text.strip()
     fence = _JSON_FENCE_RE.search(cleaned)
     if fence:
         cleaned = fence.group(1).strip()
     payload = json.loads(cleaned)
-    score, resonance_type, causal_test = validate_judge_payload(payload)
+    score, resonance_type, causal_test, pov_transform = validate_judge_payload(payload)
     rationale = str(payload.get("rationale") or "").strip()
-    return score, resonance_type, rationale, causal_test
+    return score, resonance_type, rationale, causal_test, pov_transform
 
 
 def call_llm_judge(
@@ -459,7 +511,7 @@ def call_llm_judge(
     *,
     provider: str | None = None,
     client: Any | None = None,
-) -> tuple[int, str | None, str, str]:
+) -> tuple[int, str | None, str, str, bool | None]:
     load_env()
     prov = (provider or default_llm_provider()).strip().lower()
     llm = client or get_llm_client(prov)
@@ -482,7 +534,7 @@ def call_llm_judge(
     return parse_judge_response(content)
 
 
-JudgeFn = Callable[[JudgeItem], tuple[int, str | None, str, str]]
+JudgeFn = Callable[[JudgeItem], tuple[int, str | None, str, str, bool | None]]
 
 
 def score_items(
@@ -501,7 +553,7 @@ def score_items(
     cal_pairs: list[tuple[int, int]] = []
 
     for item in items:
-        judge_score, judge_type, rationale, causal_test = judge_fn(item)
+        judge_score, judge_type, rationale, causal_test, pov_transform = judge_fn(item)
         disagreement = (
             item.human_score is not None and item.human_score != judge_score
         )
@@ -515,6 +567,8 @@ def score_items(
             causal_test=causal_test,
             human_score=item.human_score,
             human_resonance_type=item.human_resonance_type,
+            human_pov_transform=item.human_pov_transform,
+            judge_pov_transform=pov_transform,
             disagreement=disagreement,
             trusted=True,
         )
@@ -549,6 +603,9 @@ _JUDGE_CAUSAL_TEST_LINE = re.compile(
 _JUDGE_RATIONALE_LINE = re.compile(
     r"^-\s*\*\*(?:judge理由|rationale)\*\*:.*$", re.MULTILINE
 )
+_JUDGE_POV_TRANSFORM_LINE = re.compile(
+    r"^-\s*\*\*judge POV变换\*\*:.*$", re.MULTILINE
+)
 _SCORING_REMARK_LINE = re.compile(r"^(-\s*\*\*打分备注\*\*:.*)$", re.MULTILINE)
 _REVIEW_JUDGE_HEADER = re.compile(
     r"^- \*\*LLM judge:\*\*.*$", re.MULTILINE
@@ -581,6 +638,8 @@ def load_judge_output(path: Path) -> JudgeOutput:
             causal_test=str(row.get("causal_test") or ""),
             human_score=row.get("human_score"),
             human_resonance_type=row.get("human_resonance_type"),
+            human_pov_transform=row.get("human_pov_transform"),
+            judge_pov_transform=row.get("judge_pov_transform"),
             disagreement=bool(row.get("disagreement")),
             trusted=bool(row.get("trusted", calibration.trusted)),
         )
@@ -601,6 +660,8 @@ def format_judge_block_lines(
     lines.append(
         f"- **judge共振类型**: {result.judge_resonance_type or ''}"
     )
+    if result.judge_pov_transform:
+        lines.append(f"- **judge POV变换**: 是")
     if result.disagreement:
         lines.append("- **judge分歧**: ⚠")
     if calibration.screening_only or not calibration.trusted:
@@ -624,6 +685,7 @@ def _strip_existing_judge_lines(block: str) -> str:
         _JUDGE_TRUST_LINE,
         _JUDGE_CAUSAL_TEST_LINE,
         _JUDGE_RATIONALE_LINE,
+        _JUDGE_POV_TRANSFORM_LINE,
     ):
         block = pattern.sub("", block)
     return re.sub(r"\n{3,}", "\n\n", block.rstrip()) + "\n"
@@ -777,8 +839,10 @@ def write_judge_markdown(path: Path, output: JudgeOutput) -> None:
             f"- **tmdb_id**: {row.tmdb_id}\n"
             f"- **judge_score**: {row.judge_score}\n"
             f"- **judge_resonance_type**: {row.judge_resonance_type or ''}\n"
+            f"- **judge_pov_transform**: {row.judge_pov_transform or ''}\n"
             f"- **human_score**: {row.human_score if row.human_score is not None else ''}\n"
             f"- **human_resonance_type**: {row.human_resonance_type or ''}\n"
+            f"- **human_pov_transform**: {row.human_pov_transform or ''}\n"
             f"- **causal_test**: {row.causal_test}\n"
             f"- **rationale**: {row.rationale}\n"
         )
@@ -878,20 +942,21 @@ def main(argv: list[str] | None = None) -> int:
             (s["run_id"], str(s["tmdb_id"])): s for s in prior.get("scores", [])
         }
 
-        def _replay(item: JudgeItem) -> tuple[int, str | None, str, str]:
+        def _replay(item: JudgeItem) -> tuple[int, str | None, str, str, bool | None]:
             row = by_key[(item.run_id, item.tmdb_id)]
             return (
                 int(row["judge_score"]),
                 row.get("judge_resonance_type"),
                 str(row.get("rationale") or ""),
                 str(row.get("causal_test") or ""),
+                row.get("judge_pov_transform"),
             )
 
         judge_fn: JudgeFn = _replay
     else:
         provider = args.provider
 
-        def _llm(item: JudgeItem) -> tuple[int, str | None, str]:
+        def _llm(item: JudgeItem) -> tuple[int, str | None, str, str, bool | None]:
             return call_llm_judge(item, provider=provider)
 
         judge_fn = _llm

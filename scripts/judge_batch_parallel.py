@@ -13,7 +13,7 @@ from typing import Callable
 
 from scripts.llm_judge import JudgeItem, call_llm_judge
 
-JudgeScoreFn = Callable[[JudgeItem], tuple[int, str | None, str, str]]
+JudgeScoreFn = Callable[[JudgeItem], tuple[int, str | None, str, str, bool | None]]
 CheckpointFn = Callable[[], None]
 
 
@@ -32,6 +32,7 @@ def pair_result_row(
     judge_type: str | None,
     rationale: str,
     causal_test: str,
+    pov_transform: bool | None = None,
 ) -> dict:
     return {
         "run_id": item.run_id,
@@ -39,10 +40,12 @@ def pair_result_row(
         "title": item.title,
         "judge_score": judge_score,
         "judge_resonance_type": judge_type,
+        "judge_pov_transform": pov_transform,
         "rationale": rationale,
         "causal_test": causal_test,
         "human_score": item.human_score,
         "human_resonance_type": item.human_resonance_type,
+        "human_pov_transform": item.human_pov_transform,
         "disagreement": item.human_score is not None and item.human_score != judge_score,
     }
 
@@ -67,12 +70,16 @@ def score_pending_pairs(
 
     def _score_one(item: JudgeItem) -> tuple[JudgeItem, dict]:
         if score_fn is not None:
-            judge_score, judge_type, rationale, causal_test = score_fn(item)
-        else:
-            judge_score, judge_type, rationale, causal_test = call_llm_judge(
-                item, provider=provider
+            judge_score, judge_type, rationale, causal_test, pov_transform = score_fn(
+                item
             )
-        row = pair_result_row(item, judge_score, judge_type, rationale, causal_test)
+        else:
+            judge_score, judge_type, rationale, causal_test, pov_transform = (
+                call_llm_judge(item, provider=provider)
+            )
+        row = pair_result_row(
+            item, judge_score, judge_type, rationale, causal_test, pov_transform
+        )
         return item, row
 
     def _commit(item: JudgeItem, row: dict, idx: int, *, flush: bool) -> None:

@@ -50,7 +50,7 @@ class JudgeBatchParallelTests(unittest.TestCase):
             time.sleep(0.05)
             with lock:
                 peak -= 1
-            return 2, TYPE_STRONG, f"ok {item.tmdb_id}", _CAUSAL
+            return 2, TYPE_STRONG, f"ok {item.tmdb_id}", _CAUSAL, None
 
         with TemporaryDirectory() as tmp:
             out_json = Path(tmp) / "scores.json"
@@ -88,7 +88,7 @@ class JudgeBatchParallelTests(unittest.TestCase):
 
         def mock_score(item: JudgeItem):
             calls.append(item.tmdb_id)
-            return 1, None, "r", ""
+            return 1, None, "r", "", None
 
         partial: dict[tuple[str, str], dict] = {
             ("05-a", "1"): {

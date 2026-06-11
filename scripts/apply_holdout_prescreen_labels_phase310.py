@@ -287,7 +287,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  [{i + 1}/{len(items)}] {item.run_id} · {item.title}", file=sys.stderr)
         if args.dry_run:
             continue
-        score, rtype, rationale, causal_test = call_editor_label(
+        score, rtype, rationale, causal_test, _pov = call_editor_label(
             item, provider=args.provider
         )
         validate_score_type_pair(score, rtype)

@@ -295,7 +295,7 @@ def call_editor_label(
     provider: str | None = None,
     client=None,
     max_retries: int = 3,
-) -> tuple[int, str | None, str, str]:  # score, type, rationale, causal_test
+) -> tuple[int, str | None, str, str, bool | None]:
     load_env()
     prov = (provider or default_llm_provider()).strip().lower()
     llm = client or get_llm_client(prov)
@@ -318,8 +318,10 @@ def call_editor_label(
                 temperature=0.2,
             )
             content = (response.choices[0].message.content or "").strip()
-            score, resonance_type, rationale, causal_test = parse_judge_response(content)
-            return score, resonance_type, rationale, causal_test
+            score, resonance_type, rationale, causal_test, _pov = parse_judge_response(
+                content
+            )
+            return score, resonance_type, rationale, causal_test, _pov
         except Exception as exc:
             last_err = exc
             if attempt + 1 < max_retries:
@@ -499,7 +501,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  [{i + 1}/{len(items)}] {item.run_id} · {item.title}", file=sys.stderr)
         if args.dry_run:
             continue
-        score, rtype, rationale, causal_test = call_editor_label(
+        score, rtype, rationale, causal_test, _pov = call_editor_label(
             item, provider=args.provider
         )
         validate_score_type_pair(score, rtype)

@@ -51,7 +51,7 @@ class JudgeSchemaTests(unittest.TestCase):
         self.assertIn("prefer 0", _JUDGE_SYSTEM.lower())
 
     def test_validate_score_zero_no_type(self):
-        score, rtype, causal = validate_judge_payload(
+        score, rtype, causal, pov = validate_judge_payload(
             {
                 "score": 0,
                 "resonance_type": None,
@@ -62,9 +62,10 @@ class JudgeSchemaTests(unittest.TestCase):
         self.assertEqual(score, 0)
         self.assertIsNone(rtype)
         self.assertEqual(causal, "")
+        self.assertIsNone(pov)
 
     def test_validate_score_two_strong(self):
-        score, rtype, causal = validate_judge_payload(
+        score, rtype, causal, pov = validate_judge_payload(
             {
                 "score": 2,
                 "resonance_type": TYPE_STRONG,
@@ -77,7 +78,7 @@ class JudgeSchemaTests(unittest.TestCase):
         self.assertEqual(causal, _CAUSAL)
 
     def test_validate_accepts_legacy_dual_alias(self):
-        score, rtype, causal = validate_judge_payload(
+        score, rtype, causal, pov = validate_judge_payload(
             {
                 "score": 2,
                 "resonance_type": "双重",
@@ -89,7 +90,7 @@ class JudgeSchemaTests(unittest.TestCase):
         self.assertEqual(rtype, TYPE_STRONG)
 
     def test_validate_score_one_deep_logic_requires_causal_test(self):
-        score, rtype, causal = validate_judge_payload(
+        score, rtype, causal, pov = validate_judge_payload(
             {
                 "score": 1,
                 "resonance_type": TYPE_DEEP,
@@ -130,7 +131,7 @@ class JudgeSchemaTests(unittest.TestCase):
             )
 
     def test_validate_surface_only_allows_empty_causal_test(self):
-        score, rtype, causal = validate_judge_payload(
+        score, rtype, causal, pov = validate_judge_payload(
             {
                 "score": 1,
                 "resonance_type": TYPE_SURFACE,
@@ -158,11 +159,12 @@ class JudgeSchemaTests(unittest.TestCase):
             f'```json\n{{"score": 1, "resonance_type": "{TYPE_SURFACE}", '
             f'"causal_test": "", "rationale": "x"}}\n```'
         )
-        score, rtype, rationale, causal = parse_judge_response(text)
+        score, rtype, rationale, causal, pov = parse_judge_response(text)
         self.assertEqual(score, 1)
         self.assertEqual(rtype, TYPE_SURFACE)
         self.assertEqual(rationale, "x")
         self.assertEqual(causal, "")
+        self.assertIsNone(pov)
 
     def test_score_type_matrix_consistency_new_constants(self):
         for score, rtype, causal in (
@@ -171,7 +173,7 @@ class JudgeSchemaTests(unittest.TestCase):
             (1, TYPE_SURFACE, ""),
             (2, TYPE_STRONG, _CAUSAL),
         ):
-            got_score, got_type, got_causal = validate_judge_payload(
+            got_score, got_type, got_causal, got_pov = validate_judge_payload(
                 {
                     "score": score,
                     "resonance_type": rtype,
@@ -179,7 +181,9 @@ class JudgeSchemaTests(unittest.TestCase):
                     "rationale": "ok",
                 }
             )
-            self.assertEqual((got_score, got_type, got_causal), (score, rtype, causal))
+            self.assertEqual(
+                (got_score, got_type, got_causal, got_pov), (score, rtype, causal, None)
+            )
 
     def test_output_schema_roundtrip(self):
         cal = compute_calibration(
@@ -238,9 +242,9 @@ class CalibrationTests(unittest.TestCase):
 class ScoreItemsTests(unittest.TestCase):
     def _mock_judge(
         self,
-        mapping: dict[tuple[str, str], tuple[int, str | None, str, str]],
+        mapping: dict[tuple[str, str], tuple[int, str | None, str, str, bool | None]],
     ):
-        def _fn(item: JudgeItem) -> tuple[int, str | None, str, str]:
+        def _fn(item: JudgeItem) -> tuple[int, str | None, str, str, bool | None]:
             return mapping[(item.run_id, item.tmdb_id)]
 
         return _fn
@@ -295,11 +299,11 @@ class ScoreItemsTests(unittest.TestCase):
         ]
         judge_fn = self._mock_judge(
             {
-                ("01-grid-outage", "100"): (0, None, "disagree", ""),
-                ("01-grid-outage", "200"): (2, TYPE_STRONG, "disagree", _CAUSAL),
-                ("02-corporate-layoff", "300"): (2, TYPE_STRONG, "off", _CAUSAL),
-                ("02-corporate-layoff", "400"): (0, None, "off", ""),
-                ("02-corporate-layoff", "500"): (1, TYPE_SURFACE, "ok", ""),
+                ("01-grid-outage", "100"): (0, None, "disagree", "", None),
+                ("01-grid-outage", "200"): (2, TYPE_STRONG, "disagree", _CAUSAL, None),
+                ("02-corporate-layoff", "300"): (2, TYPE_STRONG, "off", _CAUSAL, None),
+                ("02-corporate-layoff", "400"): (0, None, "off", "", None),
+                ("02-corporate-layoff", "500"): (1, TYPE_SURFACE, "ok", "", None),
             }
         )
         output = score_items(
@@ -367,11 +371,11 @@ class ScoreItemsTests(unittest.TestCase):
         ]
         judge_fn = self._mock_judge(
             {
-                ("01-grid-outage", "429918"): (2, TYPE_STRONG, "strong", _CAUSAL),
-                ("01-grid-outage", "274855"): (1, TYPE_SURFACE, "surface", ""),
-                ("02-corporate-layoff", "100001"): (0, None, "none", ""),
-                ("02-corporate-layoff", "100002"): (1, TYPE_DEEP, "logic", _CAUSAL),
-                ("03-election-upset", "100003"): (1, TYPE_SURFACE, "surface", ""),
+                ("01-grid-outage", "429918"): (2, TYPE_STRONG, "strong", _CAUSAL, None),
+                ("01-grid-outage", "274855"): (1, TYPE_SURFACE, "surface", "", None),
+                ("02-corporate-layoff", "100001"): (0, None, "none", "", None),
+                ("02-corporate-layoff", "100002"): (1, TYPE_DEEP, "logic", _CAUSAL, None),
+                ("03-election-upset", "100003"): (1, TYPE_SURFACE, "surface", "", None),
             }
         )
         output = score_items(

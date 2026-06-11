@@ -153,6 +153,7 @@ def _write_checkpoint(
             row.get("judge_resonance_type"),
             str(row.get("rationale") or ""),
             str(row.get("causal_test") or ""),
+            row.get("judge_pov_transform"),
         )
 
     output = score_items(scored_items, replay, observation_run_ids=obs_ids)

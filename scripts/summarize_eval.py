@@ -11,13 +11,19 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from scripts.resonance_rubric import STRUCTURAL_TYPES, parse_resonance_type
+from scripts.resonance_rubric import (
+    STRUCTURAL_TYPES,
+    parse_pov_transform,
+    parse_resonance_type,
+    validate_pov_transform_sub_label,
+)
 from scripts.run_persona_batch import OBS_RUN_PREFIXES
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 
 _SCORE_LINE = re.compile(r"^-\s*\*\*共振分\*\*:\s*(.*)$", re.MULTILINE)
 _RESONANCE_TYPE_LINE = re.compile(r"^-\s*\*\*共振类型\*\*:\s*(.*)$", re.MULTILINE)
+_POV_TRANSFORM_LINE = re.compile(r"^-\s*\*\*POV变换\*\*:\s*(.*)$", re.MULTILINE)
 _STRUCTURAL_TYPES = STRUCTURAL_TYPES | frozenset({"结构", "双重"})
 _TMDB_LINE = re.compile(r"^-\s*\*\*tmdb_id\*\*:\s*(\S+)", re.MULTILINE)
 _SIMILARITY_LINE = re.compile(r"^-\s*\*\*相似度\*\*:\s*([\d.]+)", re.MULTILINE)
@@ -83,6 +89,7 @@ class CandidateScore:
     also_baseline: bool
     score: int | None  # None = missing
     resonance_type: str | None = None  # canonical 2×2 type; None = unset
+    pov_transform: bool | None = None  # optional POV变换 sub-label (score 2 only)
     quality_candidate: bool | None = None  # None = infer from heading agents
     similarity: float | None = None
     max_fit: float | None = None
@@ -1145,6 +1152,15 @@ def parse_eval_markdown(path: Path, text: str) -> RunSummary:
         if type_match:
             resonance_type = _parse_resonance_type(type_match.group(1))
 
+        pov_transform: bool | None = None
+        pov_match = _POV_TRANSFORM_LINE.search(body)
+        if pov_match:
+            pov_transform = parse_pov_transform(pov_match.group(1))
+        if score is not None and resonance_type is not None:
+            pov_transform = validate_pov_transform_sub_label(
+                score, resonance_type, pov_transform
+            )
+
         similarity: float | None = None
         sim_match = _SIMILARITY_LINE.search(body)
         if sim_match:
@@ -1161,6 +1177,7 @@ def parse_eval_markdown(path: Path, text: str) -> RunSummary:
                 also_baseline=also_baseline,
                 score=score,
                 resonance_type=resonance_type,
+                pov_transform=pov_transform,
                 quality_candidate=quality_candidate,
                 similarity=similarity,
                 max_fit=max_fit,
@@ -1353,6 +1370,7 @@ def _fit_sim_ranking(runs: list[RunSummary]) -> list[dict[str, Any]]:
                     "fit_sim_score": round(cand.fit_sim_score, 4),
                     "score": cand.score,
                     "resonance_type": cand.resonance_type,
+                    "pov_transform": cand.pov_transform,
                 }
             )
     ranked.sort(key=lambda row: row["fit_sim_score"], reverse=True)
