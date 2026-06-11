@@ -79,6 +79,8 @@ flowchart TD
   T5 --> T6 --> T7 --> T8
 ```
 
+
+
 `3.10.0` 是**双轴定义的唯一权威措辞源**；`3.10.1`（judge prompt）与 `3.10.2`（rubric 文档）必须**逐字传播同一措辞**，不得各自改写——否则 judge 与人类又按不同尺子打分（重蹈 14 例分歧）。`3.10.3`/`3.10.4` 可与 `3.10.1`/`3.10.2` 并行。
 
 > **执行分工标记**：`[需聪明模型]` = **执行该条时须在 Cursor 把 agent 模型切到 Opus**（agent 亲手撰写权威措辞）。注意区分两类「智能」：① **Cursor agent 模型**——只有 `3.10.0` 这种撰写权威措辞的活才需切 Opus；② **运行时 LLM**（pseudo 生成 / judge 打分，由 `.env` 的 MiMo Pro / DeepSeek 决定）——与 Cursor agent 模型无关，跑脚本即可。`3.10.1`（粘贴进 judge prompt + 代码/测试）、`3.10.2`（粘贴进 rubric 文档）只要 `3.10.0` 成稿就是**机械传播**，Cursor 普通模型即可；`3.10.3/4` 机械、`3.10.5–8` 跑批/打分，均无须切 Opus。
@@ -87,7 +89,7 @@ flowchart TD
 
 ### In scope
 
-- `prompts/_shared/*` + `CONTEXT.md`：双轴定义权威措辞源。
+- `prompts/_shared/`* + `CONTEXT.md`：双轴定义权威措辞源。
 - `scripts/llm_judge.py`：rubric 双轴重写 + 强制因果反测句。
 - `docs/eval-the-bet.md` §4：共振 rubric 双轴 + 反测 + 2×2 措辞。
 - `scripts/summarize_eval.py` / `scripts/score_eval_candidates.py`：砍 Q1'、A1 只读、成功标准两条、抽审回加权。
@@ -105,24 +107,28 @@ flowchart TD
 
 ## SSOT
 
-| 文档 | 用途 |
-| --- | --- |
-| [docs/adr/0007-*.md](../../docs/adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) | 本 Phase 全部决策（D1 双轴 / D2 不动历史 / D3 分两步 / D4 预筛 / D5 砍 Q1'）；`proposed`，3.10 GATE go 后 D1–D5 升 `accepted` |
-| [docs/adr/0006-*.md](../../docs/adr/0006-a1-as-held-out-oracle-per-persona-neutral-and-three-bucket-eval.md) | salience≠valence 架构 / 中性通道 / 三桶（保留）；其 Q1' 删除闸被 ADR-0007 砍 |
-| [docs/eval-the-bet.md](../../docs/eval-the-bet.md) §4 | 共振 rubric（本 Phase 改双轴；judge 与人工共用） |
-| [output/Eval/phase3.9/llm-judge-scores.json](../../output/Eval/phase3.9/llm-judge-scores.json) | 14 例分歧 + 混淆矩阵（D1 证据、阈值参考） |
-| [output/Eval/phase3.9/GATE_RESULT.md](../../output/Eval/phase3.9/GATE_RESULT.md) | 3.9 结案（legacy 基线） |
+
+| 文档                                                                                                         | 用途                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| [docs/adr/0007-*.md](../../docs/adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md)            | 本 Phase 全部决策（D1 双轴 / D2 不动历史 / D3 分两步 / D4 预筛 / D5 砍 Q1'）；`proposed`，3.10 GATE go 后 D1–D5 升 `accepted` |
+| [docs/adr/0006-*.md](../../docs/adr/0006-a1-as-held-out-oracle-per-persona-neutral-and-three-bucket-eval.md) | salience≠valence 架构 / 中性通道 / 三桶（保留）；其 Q1' 删除闸被 ADR-0007 砍                                                  |
+| [docs/eval-the-bet.md](../../docs/eval-the-bet.md) §4                                                        | 共振 rubric（本 Phase 改双轴；judge 与人工共用）                                                                              |
+| [output/Eval/phase3.9/llm-judge-scores.json](../../output/Eval/phase3.9/llm-judge-scores.json)               | 14 例分歧 + 混淆矩阵（D1 证据、阈值参考）                                                                                     |
+| [output/Eval/phase3.9/GATE_RESULT.md](../../output/Eval/phase3.9/GATE_RESULT.md)                             | 3.9 结案（legacy 基线）                                                                                                       |
+
 
 ## 判据与闸门（本 Phase 定稿 · 与 ADR-0007 D1/D4/D5 一致）
 
-| 代号 | 定稿 |
-| --- | --- |
-| **双轴定义（D1）** | 表层=具体可命名过0分守门；逻辑=POV/尺度不变因果引擎+反测句；抽象权力角色归逻辑轴；2×2 矩阵不变只换措辞 |
-| **judge 预筛（D4）** | 全量打分不删；`0`降级/`≥1`人工/`2`高亮；阈值 `judge≥1` 在 obs 验证「零 human-2 被杀」才冻结 |
-| **拒绝集抽审（D4）** | 每 run 盲评 `judge=0` 堆随机 k%；捞到 human=2 ⇒ 门槛不安全，放宽 |
-| **成功 · 共振侧（D5）** | 新双轴定义下 combo 2 分率 **>** pure_fact，控相似度后仍成立，obs/holdout 不裂口 |
-| **成功 · 工作流侧（D5）** | 减负 ~50%+ 且零 human-2 被杀（抽审证实）+ judge 校准采信 |
-| **A1（D5）** | 仅只读质量参照，不进任何闸；Q1' 删除闸**已删** |
+
+| 代号                      | 定稿                                                                                                   |
+| ------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **双轴定义（D1）**        | 表层=具体可命名过0分守门；逻辑=POV/尺度不变因果引擎+反测句；抽象权力角色归逻辑轴；2×2 矩阵不变只换措辞 |
+| **judge 预筛（D4）**      | 全量打分不删；`0`降级/`≥1`人工/`2`高亮；阈值 `judge≥1` 在 obs 验证「零 human-2 被杀」才冻结            |
+| **拒绝集抽审（D4）**      | 每 run 盲评 `judge=0` 堆随机 k%；捞到 human=2 ⇒ 门槛不安全，放宽                                       |
+| **成功 · 共振侧（D5）**   | 新双轴定义下 combo 2 分率 **>** pure_fact，控相似度后仍成立，obs/holdout 不裂口                        |
+| **成功 · 工作流侧（D5）** | 减负 ~50%+ 且零 human-2 被杀（抽审证实）+ judge 校准采信                                               |
+| **A1（D5）**              | 仅只读质量参照，不进任何闸；Q1' 删除闸**已删**                                                         |
+
 
 ---
 
@@ -154,8 +160,8 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest`（judge 相关）通过
-- [ ] judge prompt 措辞与 3.10.0 权威源逐字一致（无私自改写）
+- [x] `python -m unittest`（judge 相关）通过
+- [x] judge prompt 措辞与 3.10.0 权威源逐字一致（无私自改写）
 - [x] judge 输出含因果反测句 rationale
 
 ---
@@ -200,9 +206,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] `python -m unittest tests.test_summarize_eval -v` 通过
-- [ ] 报告不含 Q1'/A1 删除判据；A1 仅参照
-- [ ] 成功标准两条 + 抽审回加权可产出
+- [x] `python -m unittest tests.test_summarize_eval -v` 通过
+- [x] 报告不含 Q1'/A1 删除判据；A1 仅参照
+- [x] 成功标准两条 + 抽审回加权可产出
 
 ---
 
@@ -262,9 +268,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] holdout 预筛 + 人工复核 + 抽审完成
-- [ ] combo>pure_fact(新def) 与减负率/安全核验数据齐 → 可进 3.10.8
-- [ ] `[需人工验收]`：用户 approve holdout 数据
+- [x] holdout 预筛 + 人工复核 + 抽审完成
+- [x] combo>pure_fact(新def) 与减负率/安全核验数据齐 → 可进 3.10.8
+- [x] `[需人工验收]`：用户 approve holdout 数据
 
 ---
 
@@ -282,15 +288,6 @@ flowchart TD
 
 ---
 
-## Phase 3.10 整体验收
-
-- [x] 3.10.0 双轴权威措辞源 approve
-- [x] 3.10.1–3.10.4 各单测通过：judge 双轴 rubric、rubric 文档、砍 Q1'/A1、预筛编排+抽审
-- [x] 3.10.5 全链重跑 + obs 新定义鲜标
-- [x] 3.10.6 judge 重校准采信 + 阈值「零 human-2 被杀」冻结
-- [x] 3.10.7 holdout 预筛 + 复检基线
-- [x] 3.10.8 书面 GATE（两条成功标准）→ 裁决（**go**）
-
 ## 风险与约束
 
 - **校准过拟合**：obs 鲜标须先于 holdout 预筛冻结，否则 judge 校准与阈值过拟合。
@@ -302,8 +299,11 @@ flowchart TD
 
 ## 交给下一 Phase
 
-| 条件 | 下一动作 |
-| --- | --- |
-| **GATE go** | 新定义复检基线成立 + 预筛安全可用 ⇒ 进 **Phase 3.11**（POV 派生式追加，以本 Phase 为 POV-off 对照臂）；ADR-0007 D1–D5 升 accepted |
-| **GATE no-go · 共振侧** | combo 未超 pure_fact（新尺子下仍不成立）⇒ 回看生成侧或定义反测句是否过严 |
-| **GATE no-go · 工作流侧** | 抽审捞到 human=2 / 校准不达标 ⇒ 放宽阈值或回 3.10.1 修 rubric，预筛暂不上线 |
+
+| 条件                      | 下一动作                                                                                                                          |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **GATE go**               | 新定义复检基线成立 + 预筛安全可用 ⇒ 进 **Phase 3.11**（POV 派生式追加，以本 Phase 为 POV-off 对照臂）；ADR-0007 D1–D5 升 accepted |
+| **GATE no-go · 共振侧**   | combo 未超 pure_fact（新尺子下仍不成立）⇒ 回看生成侧或定义反测句是否过严                                                          |
+| **GATE no-go · 工作流侧** | 抽审捞到 human=2 / 校准不达标 ⇒ 放宽阈值或回 3.10.1 修 rubric，预筛暂不上线                                                       |
+
+

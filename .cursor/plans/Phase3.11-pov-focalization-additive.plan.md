@@ -4,31 +4,31 @@ overview: 按 ADR-0008（supersede ADR-0007 D6，修订 D7 通道结构，继承
 todos:
   - id: p311-0
     content: 3.11.0 · 权威措辞源对齐 ADR-0008：contract 重写（轴对齐 P-Select + 元素中心构图 + POV 派生规则）+ alt-creator 契约 valence 降级 + 12 persona card 注意力清单 + CONTEXT 术语 [需聪明模型] [需人工验收]
-    status: complete
+    status: completed
   - id: p311-1
     content: 3.11.1 · 预测试：用 3.11.0 措辞让运行时 LLM 按新构图（元素中心 + POV）重写 N 条新闻跑检索，核验差集是否有当前 pseudo 漏掉的新共振片 [需人工验收 · Go/No-Go]
-    status: todo
+    status: completed
   - id: p311-2
     content: 3.11.2 · 生成层实现：贪心声明式元素中心构图 + 多视角 POV（focalized 通道）+ provenance 标签 + 代码侧记分排序 + 单测
-    status: todo
+    status: pending
   - id: p311-3
     content: 3.11.3 · 运行时守卫：center∈decon ids + 支撑元素上限 + focal∈who-* + 事实守卫 + 双地板校验 + 单测
-    status: todo
+    status: pending
   - id: p311-4
     content: 3.11.4 · 候选漏斗：去重 + 汇聚排序（扩展撞车票）+ 预算 top-N + A/B 池差按通道分解输出 + 单测
-    status: todo
+    status: pending
   - id: p311-5
     content: 3.11.5 · 打分 schema 加 `POV变换` 共振类型子标签 + judge/人工双侧支持 + 单测
-    status: todo
+    status: pending
   - id: p311-6
     content: 3.11.6 · 单点 pilot A/B + 防火墙审计（事实漂移 + 中心声明真实性 + 视角派生正确性 + 双地板）[需人工验收 · Go/No-Go]
-    status: todo
+    status: pending
   - id: p311-7
     content: 3.11.7 · 全批 A/B（新设计-on vs 3.10 基线，同新闻同 def 同 judge）+ 通道分解调优 + 抽审 [需人工验收]
-    status: todo
+    status: pending
   - id: p311-8
     content: 3.11.8 · GATE（调优指南针口径）：池差净新增 human-2>0 + 精度不崩 + 守卫零硬失败 + 双地板不塌 → GATE_RESULT [GATE · 需人工验收]
-    status: todo
+    status: pending
 isProject: true
 ---
 
@@ -40,7 +40,7 @@ isProject: true
 
 > **重设计备注**：本 plan 原为「单视角派生 POV 追加通道」（ADR-0007 D6–D8 口径），其 3.11.0 v1 权威措辞已完成并搁置于 `feat/phase3.11.0-pov-wording-source` @ `834e788`（12 行 canonical vantage 表按 ADR-0008 **作废**；CONTEXT 术语中 候选漏斗 / POV-recalled 两条可回收）。总编于 3.11.0 验收讨论中决定扩大改动面，形成 ADR-0008，本 plan 全文按新口径改写。
 
-**核心**：生成层从「valence 覆盖组织变化」转向「**salience 元素中心组织变化**」，并把 POV（focalization）作为中心元素为 `who-*` 时的派生表达引入。人类感受到的共振常含视角变换（ADR-0007 D1 Gap A 的 8 例），当前 persona 只有 valence 取景 + 语气，做不到 focalization；同时 valence 光谱覆盖的期待把模糊元素硬安极性、且回答不了「authority(+) 在 ungoverned zone(−) 建立新秩序算正还是负」这类不存在的问题——轴对齐（axis-alignment）才是 persona-ness 的判据。
+**核心**：生成层从「valence 覆盖组织变化」转向「**salience 元素中心组织变化**」，并把 POV（focalization）作为中心元素为 `who-`* 时的派生表达引入。人类感受到的共振常含视角变换（ADR-0007 D1 Gap A 的 8 例），当前 persona 只有 valence 取景 + 语气，做不到 focalization；同时 valence 光谱覆盖的期待把模糊元素硬安极性、且回答不了「authority(+) 在 ungoverned zone(−) 建立新秩序算正还是负」这类不存在的问题——轴对齐（axis-alignment）才是 persona-ness 的判据。
 
 **性质**：POV 与元素中心构图是**底层必备的产品能力**（总编决策），**不设"通不过就砍"的判决闸**；3.11 度量是**调优指南针**——测「哪个 persona / 哪类中心 / 哪类视角有用、哪里伤匹配、往哪调」。
 
@@ -80,6 +80,8 @@ flowchart TD
   T6 -->|No-Go| T2
 ```
 
+
+
 `3.11.0` 是**新构图与 POV 的唯一权威措辞源**（规则在 contract、视角清单在 card）；`3.11.1` 预测试、`3.11.2` 生成实现都**引用同一措辞**。`3.11.1` 为 Go/No-Go 省钱闸。
 
 > **执行分工标记**：`[需聪明模型]` = **执行该条时须在 Cursor 把 agent 模型切到能撰写权威措辞的模型**。本 Phase 只有 `3.11.0` 属此类（contract 规则 + 12 张 card 注意力清单成稿）。其余条目的「智能」来自**运行时 LLM**（pseudo 生成、judge 打分，由 `.env` 决定），Cursor 普通模型即可。**唯一例外**：若 `3.11.7` 调优需回改 3.11.0 措辞，那次回改仍按撰写权威措辞处理。
@@ -110,28 +112,32 @@ flowchart TD
 
 ## SSOT
 
-| 文档 | 用途 |
-| --- | --- |
-| [docs/adr/0008-*.md](../../docs/adr/0008-salience-driven-element-composition-and-multi-vantage-pov.md) | 本 Phase 决策（D1 注意力清单 / D2 轴对齐 / D3 元素中心构图 / D4 多视角 POV / D5 双地板 / D6 打包归因）；`proposed`，3.11 GATE go 后升 `accepted` |
-| [docs/adr/0007-*.md](../../docs/adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) | D1–D5（定义/预筛）accepted 继续有效；D6–D8 由 0008 接管 |
-| [.cursor/plans/Phase3.10-*.plan.md](Phase3.10-logic-resonance-and-judge-prescreen.plan.md) | 前置 Phase；提供新定义尺子 + 对照臂基线 |
-| [prompts/_shared/persona_screenwriter_contract.md](../../prompts/_shared/persona_screenwriter_contract.md) | 构图与 POV 规则落地处（本 Phase 改） |
-| [prompts/_shared/persona_alt_creator_contract.md](../../prompts/_shared/persona_alt_creator_contract.md) | valence 降级落地处（本 Phase 改） |
-| [docs/SSOT/personas-12.md](../../docs/SSOT/personas-12.md) + `prompts/personas/*/persona_card.md` | 注意力清单 / 视角原型 SSOT（本 Phase 改 card） |
-| [output/Eval/phase3.9/llm-judge-scores.json](../../output/Eval/phase3.9/llm-judge-scores.json) | Gap A 8 例（POV-resonance 样本来源，预测试参考） |
+
+| 文档                                                                                                       | 用途                                                                                                                                             |
+| ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [docs/adr/0008-*.md](../../docs/adr/0008-salience-driven-element-composition-and-multi-vantage-pov.md)     | 本 Phase 决策（D1 注意力清单 / D2 轴对齐 / D3 元素中心构图 / D4 多视角 POV / D5 双地板 / D6 打包归因）；`proposed`，3.11 GATE go 后升 `accepted` |
+| [docs/adr/0007-*.md](../../docs/adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md)          | D1–D5（定义/预筛）accepted 继续有效；D6–D8 由 0008 接管                                                                                          |
+| [.cursor/plans/Phase3.10-*.plan.md](Phase3.10-logic-resonance-and-judge-prescreen.plan.md)                 | 前置 Phase；提供新定义尺子 + 对照臂基线                                                                                                          |
+| [prompts/_shared/persona_screenwriter_contract.md](../../prompts/_shared/persona_screenwriter_contract.md) | 构图与 POV 规则落地处（本 Phase 改）                                                                                                             |
+| [prompts/_shared/persona_alt_creator_contract.md](../../prompts/_shared/persona_alt_creator_contract.md)   | valence 降级落地处（本 Phase 改）                                                                                                                |
+| [docs/SSOT/personas-12.md](../../docs/SSOT/personas-12.md) + `prompts/personas/*/persona_card.md`          | 注意力清单 / 视角原型 SSOT（本 Phase 改 card）                                                                                                   |
+| [output/Eval/phase3.9/llm-judge-scores.json](../../output/Eval/phase3.9/llm-judge-scores.json)             | Gap A 8 例（POV-resonance 样本来源，预测试参考）                                                                                                 |
+
 
 ## 判据与口径（本 Phase 定稿 · 与 ADR-0008 一致）
 
-| 代号 | 定稿 |
-| --- | --- |
-| **注意力清单（D1）** | card Who/Where/When 极 = 叙事注意力清单；valence 降级元素层可选着色；模糊元素一等公民 |
-| **轴对齐（D2）** | pseudo 无极性；判据 = 逐元素透过价值轴框定；两极同场张力欢迎 |
-| **元素中心构图（D3）** | 每条 toned/POV pseudo 声明 1 中心元素 + 2–4 支撑；中心按 salience 贪心自上而下、互异；LLM 声明、代码记分；中性 n1 wording 零改动 |
-| **多视角 POV（D4）** | 视角清单 = card Who 极原型（共情座位，负极排除）；中心是 who-* 且实例化原型 ⇒ focalized；focal∈decon who-*；不新增内心戏/事件/因果/结果；hypernym 锚保留；硬失败即重生成 |
-| **双地板（D5）** | 中性 n1 零改动 + 每 persona ≥1 条非聚焦第三人称 toned；focalized 纯增 |
-| **打包归因（D6）** | A/B 测整包新设计 vs 3.10 基线（同新闻同 def 同 judge）；provenance 标签按通道分解恢复粗归因；度量=指南针非判决闸 |
-| **候选漏斗（继承 0007 D8）** | 去重 → 汇聚排序（多通道命中排前）→ judge 预筛 → 预算 top-N；上限以下 judge≥1 进抽审；**绝不调高 judge 门槛控量** |
-| **GATE（指南针口径）** | 池差净新增 human-2>0 + 差集 2 分率不显著低于 baseline combo（精度不崩）+ 守卫零硬失败 + 双地板不塌（3.10 命中片不丢） |
+
+| 代号                         | 定稿                                                                                                                                                                     |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **注意力清单（D1）**         | card Who/Where/When 极 = 叙事注意力清单；valence 降级元素层可选着色；模糊元素一等公民                                                                                    |
+| **轴对齐（D2）**             | pseudo 无极性；判据 = 逐元素透过价值轴框定；两极同场张力欢迎                                                                                                             |
+| **元素中心构图（D3）**       | 每条 toned/POV pseudo 声明 1 中心元素 + 2–4 支撑；中心按 salience 贪心自上而下、互异；LLM 声明、代码记分；中性 n1 wording 零改动                                         |
+| **多视角 POV（D4）**         | 视角清单 = card Who 极原型（共情座位，负极排除）；中心是 who-* 且实例化原型 ⇒ focalized；focal∈decon who-*；不新增内心戏/事件/因果/结果；hypernym 锚保留；硬失败即重生成 |
+| **双地板（D5）**             | 中性 n1 零改动 + 每 persona ≥1 条非聚焦第三人称 toned；focalized 纯增                                                                                                    |
+| **打包归因（D6）**           | A/B 测整包新设计 vs 3.10 基线（同新闻同 def 同 judge）；provenance 标签按通道分解恢复粗归因；度量=指南针非判决闸                                                         |
+| **候选漏斗（继承 0007 D8）** | 去重 → 汇聚排序（多通道命中排前）→ judge 预筛 → 预算 top-N；上限以下 judge≥1 进抽审；**绝不调高 judge 门槛控量**                                                         |
+| **GATE（指南针口径）**       | 池差净新增 human-2>0 + 差集 2 分率不显著低于 baseline combo（精度不崩）+ 守卫零硬失败 + 双地板不塌（3.10 命中片不丢）                                                    |
+
 
 ---
 
@@ -142,7 +148,7 @@ flowchart TD
 - `prompts/_shared/persona_screenwriter_contract.md`（唯一规则权威源）：
   - P-Select 引导改**轴对齐**措辞（逐元素透过价值轴框定；两极同场张力欢迎；删 "prefer value tendency" 旧引导）。
   - **元素中心构图规则**：每条 pseudo 声明 1 个中心元素 id + 2–4 支撑元素；中心按注入的 salience 自上而下贪心取、各条互异；声明字段进 response schema。
-  - **POV 派生规则**：中心是 `who-*` 且实例化本 persona card 视角原型 ⇒ 写成 focalized（共情座位原则、负极排除）；focal∈who-*、不新增内心戏/事件/因果/结果、hypernym 锚保留；通道类型声明（toned / focalized）。
+  - **POV 派生规则**：中心是 `who-`* 且实例化本 persona card 视角原型 ⇒ 写成 focalized（共情座位原则、负极排除）；focal∈who-*、不新增内心戏/事件/因果/结果、hypernym 锚保留；通道类型声明（toned / focalized）。
   - **双地板声明**：≥1 条非聚焦第三人称 toned 必须存在。
 - `prompts/_shared/persona_alt_creator_contract.md`：valence 降级为可选标注、取消逐元素光谱覆盖期待（salience 机制不动）。
 - `prompts/personas/*/persona_card.md`（12 张）：价值轴段重定位为**注意力清单**，标注哪些 Who 原型是合法**视角座位**（共情座位）。
@@ -167,9 +173,9 @@ flowchart TD
 
 ### 验收
 
-- [ ] 差集中**真有**新共振片 → Go，进 3.11.2
+- [x] 差集中**真有**新共振片 → Go，进 3.11.2
 - [ ] 差集全是老片/噪声 → **No-Go**：回退 ADR-0007 单视角口径或砍检索层 POV，与总编另议
-- [ ] `[需人工验收 · Go/No-Go]`：用户裁决
+- [x] [需人工验收 · Go/No-Go]：用户裁决（Conditional Go）
 
 ---
 
@@ -193,7 +199,7 @@ flowchart TD
 
 **依赖：** 3.11.2
 
-- 校验：center ∈ decon element ids；支撑元素 2–4 上限；focal-char ∈ decon `who-*`；事实守卫拒绝新增内心戏/事件/因果/结果；hypernym 锚仍校验；双地板校验（缺非聚焦 toned = 硬失败）。
+- 校验：center ∈ decon element ids；支撑元素 2–4 上限；focal-char ∈ decon `who-`*；事实守卫拒绝新增内心戏/事件/因果/结果；hypernym 锚仍校验；双地板校验（缺非聚焦 toned = 硬失败）。
 - 硬失败即重生成（携错误重问 1 次）。
 
 ### 验收
@@ -280,15 +286,6 @@ flowchart TD
 
 ---
 
-## Phase 3.11 整体验收
-
-- [x] 3.11.0 权威措辞源 + 注意力清单 approve
-- [ ] 3.11.1 预测试 Go（差集有新共振片）
-- [ ] 3.11.2–3.11.5 各单测通过：元素中心构图 + POV 生成、守卫、漏斗 + 池差通道分解、POV变换 标签
-- [ ] 3.11.6 单点 pilot A/B + 审计 Go（守卫零硬失败、双地板完好）
-- [ ] 3.11.7 全批 A/B + 通道分解调优 + 抽审
-- [ ] 3.11.8 书面 GATE（指南针口径）→ 裁决
-
 ## 风险与约束
 
 - **事实漂移（主要失败模式）**：POV 易编内心戏/新事实；靠硬守卫 + pilot 专审 + 运行时守卫三层兜底。
@@ -303,8 +300,11 @@ flowchart TD
 
 ## 交给下一 Phase
 
-| 条件 | 下一动作 |
-| --- | --- |
-| **GATE go** | 新构图 + POV 扩大强共振边界且精度不崩 ⇒ 成生成层标配；ADR-0008 升 accepted；考虑呈现层 POV（OPEN a）、删 A1 复议（生成已变）、中心元素粒度定稿（OPEN c） |
-| **预测试 No-Go** | 新构图无召回价值 ⇒ 回退 ADR-0007 单视角口径或砍检索层 POV，与总编另议 |
-| **GATE no-go（精度崩）** | 召回多但净是噪声 ⇒ 回 3.11.2 收紧派生/守卫/支撑上限，或调漏斗预算/排序权重 |
+
+| 条件                     | 下一动作                                                                                                                                                 |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **GATE go**              | 新构图 + POV 扩大强共振边界且精度不崩 ⇒ 成生成层标配；ADR-0008 升 accepted；考虑呈现层 POV（OPEN a）、删 A1 复议（生成已变）、中心元素粒度定稿（OPEN c） |
+| **预测试 No-Go**         | 新构图无召回价值 ⇒ 回退 ADR-0007 单视角口径或砍检索层 POV，与总编另议                                                                                    |
+| **GATE no-go（精度崩）** | 召回多但净是噪声 ⇒ 回 3.11.2 收紧派生/守卫/支撑上限，或调漏斗预算/排序权重                                                                               |
+
+
