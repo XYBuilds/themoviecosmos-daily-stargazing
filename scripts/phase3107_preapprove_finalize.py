@@ -118,8 +118,8 @@ def write_baseline(eval_dir: Path) -> dict:
     d5 = summary.get("success_criteria") or summary["global"]["d5_success_criteria"]
     res = d5["resonance"]
     full = res["full_batch"]
-    combo = full["combo"]
-    pure = full["pure_fact"]
+    focal = full["focal_channel"]
+    neutral_diag = full["neutral_diagnostic"]
     wf = d5.get("workflow") or {}
     ts = prescreen.threshold_safety
     wr = (
@@ -140,15 +140,15 @@ def write_baseline(eval_dir: Path) -> dict:
         f"- manual (judge=1): {prescreen.bucket_counts.get('manual', 0)}",
         f"- highlight (judge=2): {prescreen.bucket_counts.get('highlight', 0)}",
         "",
-        "## Resonance recheck (dual-axis v2 · similarity-controlled)",
+        "## Resonance recheck (dual-axis v2 · n1 diagnostic-only)",
         "",
-        "| Metric | combo | pure_fact | lift? |",
+        "| Metric | focal_channel | n1_diagnostic | signal? |",
         "| --- | --- | --- | --- |",
-        f"| structural_2_rate | {combo.get('structural_2_rate', 0):.1%} | "
-        f"{pure.get('structural_2_rate', 0):.1%} | "
-        f"{'YES' if res.get('combo_gt_pure_fact') else 'NO'} |",
-        f"| obs combo>pure_fact | {res.get('obs_combo_gt_pure_fact')} |",
-        f"| holdout combo>pure_fact | {res.get('holdout_combo_gt_pure_fact')} |",
+        f"| structural_2_rate | {focal.get('structural_2_rate', 0):.1%} | "
+        f"{neutral_diag.get('structural_2_rate', 0):.1%} | "
+        f"{'YES' if res.get('focal_channel_has_signal') else 'NO'} |",
+        f"| obs focal signal | {res.get('obs_focal_channel_has_signal')} |",
+        f"| holdout focal signal | {res.get('holdout_focal_channel_has_signal')} |",
         f"| obs/holdout consistent | {res.get('obs_holdout_consistent')} |",
         "",
         "## Workflow safety",
@@ -186,8 +186,8 @@ def main() -> int:
         f"holdout killed={holdout_ts.n_human_two_killed}"
     )
     print(
-        f"combo={res['full_batch']['combo'].get('structural_2_rate', 0):.1%} "
-        f"pure={res['full_batch']['pure_fact'].get('structural_2_rate', 0):.1%}"
+        f"focal={res['full_batch']['focal_channel'].get('structural_2_rate', 0):.1%} "
+        f"n1_diag={res['full_batch']['neutral_diagnostic'].get('structural_2_rate', 0):.1%}"
     )
     return 0
 

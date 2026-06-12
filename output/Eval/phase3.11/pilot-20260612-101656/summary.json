@@ -1,0 +1,270 @@
+{
+  "run_count": 1,
+  "dry_run": false,
+  "skip_retrieval": false,
+  "baseline_dir": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.10",
+  "go_no_go": {
+    "verdict": "Pipeline Go",
+    "reason": "persona_coverage=12/12, pseudo_survival_rate=0.8857, dropped=4, net_new=5, lost=5 (recorded only)",
+    "pipeline_go": true,
+    "metrics": {
+      "persona_coverage": "12/12",
+      "persona_coverage_count": 12,
+      "persona_coverage_total": 12,
+      "pseudo_survival_rate": 0.8857,
+      "valid_center_rate": 1.0,
+      "drop_reasons": [
+        {
+          "pseudo_id": "p1",
+          "reason": "pseudo p1: supporting elements must be 2–4, got 5",
+          "persona_id": "The-Explorer"
+        },
+        {
+          "pseudo_id": "p2",
+          "reason": "pseudo p2: supporting elements must be 2–4, got 5",
+          "persona_id": "The-Explorer"
+        },
+        {
+          "pseudo_id": "p1",
+          "reason": "pseudo p1: supporting elements must be 2–4, got 5",
+          "persona_id": "The-Jester"
+        },
+        {
+          "pseudo_id": "p1",
+          "reason": "pseudo p1: supporting elements must be 2–4, got 5",
+          "persona_id": "The-Lover"
+        }
+      ],
+      "dropped_pseudo_count": 4,
+      "retrieve_complete": true,
+      "pool_diff_produced": true,
+      "pipeline_go": true,
+      "overlap_count": 14,
+      "net_new_count": 5,
+      "lost_count": 5
+    }
+  },
+  "pipeline_go_metrics": {
+    "persona_coverage": "12/12",
+    "persona_coverage_count": 12,
+    "persona_coverage_total": 12,
+    "pseudo_survival_rate": 0.8857,
+    "valid_center_rate": 1.0,
+    "drop_reasons": [
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5",
+        "persona_id": "The-Explorer"
+      },
+      {
+        "pseudo_id": "p2",
+        "reason": "pseudo p2: supporting elements must be 2–4, got 5",
+        "persona_id": "The-Explorer"
+      },
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5",
+        "persona_id": "The-Jester"
+      },
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5",
+        "persona_id": "The-Lover"
+      }
+    ],
+    "dropped_pseudo_count": 4,
+    "retrieve_complete": true,
+    "pool_diff_produced": true,
+    "pipeline_go": true,
+    "overlap_count": 14,
+    "net_new_count": 5,
+    "lost_count": 5
+  },
+  "runs": [
+    {
+      "run_id": "01-grid-outage",
+      "retrieval": "live",
+      "persona_errors": [],
+      "all_automated_pass": false,
+      "pool_diff": {
+        "run_id": "01-grid-outage",
+        "baseline_candidate_count": 19,
+        "pretest_candidate_count": 19,
+        "overlap_count": 14,
+        "net_new_tmdb_ids": [
+          25241,
+          55281,
+          58770,
+          158091,
+          949698
+        ],
+        "lost_tmdb_ids": [
+          46221,
+          100063,
+          210219,
+          431892,
+          533885
+        ],
+        "gap_a_targets_in_net_new": [],
+        "gap_a_targets_in_baseline_only": [
+          {
+            "tmdb_id": 429918,
+            "title": "Survival Family",
+            "human_score": 2,
+            "judge_resonance_type": "表层沾边"
+          }
+        ],
+        "net_new_details": [
+          {
+            "tmdb_id": 25241,
+            "title": "Squirm",
+            "similarity": 0.5315197110176086,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-JESTER"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-JESTER",
+                "pseudo_id": "su-persona-The-Jester-p2",
+                "channel_role": "toned",
+                "fragments": [
+                  "result-0",
+                  "why-0",
+                  "why-1",
+                  "why-2"
+                ],
+                "similarity": 0.5315197110176086,
+                "search_unit_kind": "persona-semantic",
+                "center_element": "result-0"
+              }
+            ]
+          },
+          {
+            "tmdb_id": 55281,
+            "title": "NYC: Tornado Terror",
+            "similarity": 0.505867063999176,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-MAGICIAN"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-MAGICIAN",
+                "pseudo_id": "su-persona-The-Magician-p1",
+                "channel_role": "toned",
+                "fragments": [
+                  "how-1",
+                  "how-0",
+                  "how-2",
+                  "result-0"
+                ],
+                "similarity": 0.505867063999176,
+                "search_unit_kind": "persona-semantic",
+                "center_element": "how-1"
+              }
+            ]
+          },
+          {
+            "tmdb_id": 58770,
+            "title": "The Trigger Effect",
+            "similarity": 0.5159871578216553,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-OUTLAW"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-OUTLAW",
+                "pseudo_id": "su-persona-The-Outlaw-p3",
+                "channel_role": "toned",
+                "fragments": [
+                  "why-0",
+                  "why-1",
+                  "why-2"
+                ],
+                "similarity": 0.5159871578216553,
+                "search_unit_kind": "persona-semantic",
+                "center_element": "why-0"
+              }
+            ]
+          },
+          {
+            "tmdb_id": 158091,
+            "title": "Metro Manila",
+            "similarity": 0.48300251364707947,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-HERO",
+              "THE-RULER"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-HERO",
+                "pseudo_id": "su-persona-The-Hero-p1",
+                "channel_role": "toned",
+                "fragments": [
+                  "result-0",
+                  "how-1",
+                  "how-2"
+                ],
+                "similarity": 0.48300251364707947,
+                "search_unit_kind": "persona-semantic",
+                "center_element": "result-0"
+              },
+              {
+                "agent_id": "THE-RULER",
+                "pseudo_id": "su-persona-The-Ruler-p1",
+                "channel_role": "toned",
+                "fragments": [
+                  "result-0",
+                  "why-0",
+                  "how-1"
+                ],
+                "similarity": 0.4638161063194275,
+                "search_unit_kind": "persona-semantic",
+                "center_element": "result-0"
+              }
+            ]
+          },
+          {
+            "tmdb_id": 949698,
+            "title": "Flashover",
+            "similarity": 0.4732644855976105,
+            "quality_candidate": false,
+            "triggered_by": [
+              "THE-INNOCENT"
+            ],
+            "hit_sources": [
+              {
+                "agent_id": "THE-INNOCENT",
+                "pseudo_id": "su-persona-The-Innocent-p3",
+                "channel_role": "toned",
+                "fragments": [
+                  "who-1",
+                  "why-0",
+                  "how-0",
+                  "how-1",
+                  "result-0"
+                ],
+                "similarity": 0.4732644855976105,
+                "search_unit_kind": "persona-semantic",
+                "center_element": "who-1"
+              }
+            ]
+          }
+        ],
+        "by_channel": {
+          "focalized": [],
+          "toned": [
+            25241,
+            55281,
+            58770,
+            158091,
+            949698
+          ]
+        }
+      }
+    }
+  ]
+}

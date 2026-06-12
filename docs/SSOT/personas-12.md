@@ -50,5 +50,5 @@ prompts/personas/The-Everyman/persona_card.md
 
 ## 与 alt-creator / screenwriter 的关系
 
-- **P-Source**：每 persona 的 alt-creator 读 **同一份** A0 中性 decon，自产该 persona 偏好的 valence spectrum（正–中–负）。
+- **P-Source**：每 persona 的 alt-creator 读 **同一份** A0 中性 decon，自产 persona-relative lens alternatives；`valence` 只作为正/中/负标注，不是覆盖目标或选择判据。
 - **P-Select**：上表「典型替换取向」仅为 **取向示例**，实际用词须 **事实蕴含**；04 对 Ruler / Sage / Outlaw 等应 **`fit` 偏高**，对 Innocent / Everyman / Explorer / Lover 等可 **`fit` 偏低** 但仍强迫产出（P-Force）。

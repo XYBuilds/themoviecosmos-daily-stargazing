@@ -5,8 +5,8 @@ per-run `candidates.md` when present, e.g. phase3.5/3.6). Phase 3.7 batch runs
 do not write per-run candidates.md; the review file is the editor SSOT.
 
 pseudo命中分 is a **secondary review/sort key** (ADR-0003 D1): it helps editors triage
-candidates but does **not** gate quality_candidate or eval summarize gates. 共振分 remains
-the primary human score for publish gates.
+candidates but does **not** gate eval summarize gates. `quality_candidate` is a retrieve
+annotation only. 共振分 remains the primary human score for publish gates.
 """
 
 from __future__ import annotations
@@ -37,7 +37,7 @@ def _default_review_path(eval_dir: Path) -> Path:
     return eval_dir / "high-hit-score-review.md"
 
 _HIT_LINE = re.compile(
-    r"^(\s+-\s+)([A-Z0-9][A-Z0-9-]*)/(p\d+)"
+    r"^(\s+-\s+)([A-Z0-9][A-Z0-9-]*)/([A-Za-z0-9][A-Za-z0-9._-]*)"
     r"(?:\s*·\s*fit=[\d.]+)?\s*:\s*fragments=\[(.*?)\]\s*·\s*sim=([\d.]+)"
     r"(?:\s*·\s*\*\*命中分=\d+\*\*)?$"
 )
@@ -56,17 +56,29 @@ class HitScore:
     fragments: list[str]
     similarity: float | None
     score: int
+    channel_role: str = "toned"
 
 
 @dataclass
 class RetrieveDiagnostics:
-    """ADR-0005 channel fields from retrieve.json (for summarize_eval diagnostics)."""
+    """Candidate-level automatic scoring signals from retrieve.json."""
 
     quality_candidate: bool
     neutral_hits: int
     neutral_total: int
     neutral_hit_rate: float
     distinct_agents: int
+    objective_match: bool = False
+    surface_match: bool = False
+    event_match: bool = False
+    persona_semantic_match: bool = False
+    convergent_score: float | None = None
+    persona_agent_count: int = 0
+    source_hit_counts: dict[str, int] = field(default_factory=dict)
+    search_unit_kinds: list[str] = field(default_factory=list)
+    center_dimensions: list[str] = field(default_factory=list)
+    baseline_overlap: bool = False
+    quality_reason: str = ""
 
 
 @dataclass
@@ -89,10 +101,18 @@ class RunHighHitReview:
     single_agent: list[ScoredCandidate] = field(default_factory=list)
 
 
+def _is_diagnostic_hit(hit: HitScore) -> bool:
+    return hit.channel_role == "neutral" or hit.pseudo_id.lower() == "n1"
+
+
+def _scoring_hits(hits: list[HitScore]) -> list[HitScore]:
+    return [h for h in hits if not _is_diagnostic_hit(h)]
+
+
 def _agents_from_hit_sources(hits: list[HitScore]) -> list[str]:
     seen: set[str] = set()
     ordered: list[str] = []
-    for h in hits:
+    for h in _scoring_hits(hits):
         aid = h.agent_id.upper()
         if aid and aid not in seen:
             seen.add(aid)
@@ -101,14 +121,12 @@ def _agents_from_hit_sources(hits: list[HitScore]) -> list[str]:
 
 
 def _is_multi_agent_hit(*, quality_candidate: bool, agents: list[str]) -> bool:
-    """D1 bucketing aligned with run_eval / retrieve quality_candidate."""
-    if quality_candidate:
-        return True
+    """Multi-hit bucketing ignores quality_candidate annotations."""
     return len(agents) >= 2
 
 
 def _is_pure_neutral_candidate(diag: RetrieveDiagnostics | None) -> bool:
-    """ADR-0006 D4: neutral vote without toned convergence (pure-fact bucket)."""
+    """Diagnostic-only: neutral vote without toned convergence."""
     if diag is None:
         return False
     return diag.neutral_hits >= 1 and diag.distinct_agents == 0
@@ -120,10 +138,8 @@ def _eligible_for_scoring_pool(
     min_total_score: int,
     diag: RetrieveDiagnostics | None,
 ) -> bool:
-    """High-hit / scoring pool: pseudo总分 threshold OR pure-neutral (neutral-only)."""
-    if total_score >= min_total_score:
-        return True
-    return _is_pure_neutral_candidate(diag)
+    """High-hit / scoring pool: pseudo总分 threshold only; n1 is diagnostic-only."""
+    return total_score >= min_total_score
 
 
 def _load_retrieve_meta(
@@ -146,15 +162,57 @@ def _load_retrieve_meta(
             else (float(neutral_hits) / neutral_total if neutral_total > 0 else 0.0)
         )
         distinct_agents = int(cand.get("distinct_agents") or 0)
+        hit_sources = cand.get("hit_sources") or []
+        source_hit_counts = {"surface": 0, "event": 0, "persona": 0}
+        fallback_kinds: set[str] = set()
+        fallback_center_dimensions: set[str] = set()
+        for src in hit_sources:
+            kind = str(src.get("search_unit_kind") or "").strip()
+            if kind:
+                fallback_kinds.add(kind)
+            if kind.startswith("surface"):
+                source_hit_counts["surface"] += 1
+            elif kind.startswith("event"):
+                source_hit_counts["event"] += 1
+            elif kind.startswith("persona"):
+                source_hit_counts["persona"] += 1
+            center = str(src.get("center_element") or "").strip()
+            if "-" in center:
+                fallback_center_dimensions.add(center.split("-", 1)[0])
+        match = cand.get("match_diagnostics") or {}
+        surface_match = bool(match.get("surface_match", source_hit_counts["surface"] > 0))
+        event_match = bool(match.get("event_match", source_hit_counts["event"] > 0))
+        persona_semantic_match = bool(
+            match.get("persona_semantic_match", source_hit_counts["persona"] > 0)
+        )
+        raw_score = cand.get("convergent_score")
+        search_unit_kinds = [
+            str(item) for item in (match.get("search_unit_kinds") or sorted(fallback_kinds))
+        ]
+        center_dimensions = [
+            str(item)
+            for item in (match.get("center_dimensions") or sorted(fallback_center_dimensions))
+        ]
         diagnostics_by_tmdb[tmdb_id] = RetrieveDiagnostics(
             quality_candidate=quality,
             neutral_hits=neutral_hits,
             neutral_total=neutral_total,
             neutral_hit_rate=neutral_hit_rate,
             distinct_agents=distinct_agents,
+            objective_match=surface_match or event_match,
+            surface_match=surface_match,
+            event_match=event_match,
+            persona_semantic_match=persona_semantic_match,
+            convergent_score=float(raw_score) if isinstance(raw_score, (int, float)) else None,
+            persona_agent_count=int(cand.get("convergence_persona_count") or distinct_agents),
+            source_hit_counts=source_hit_counts,
+            search_unit_kinds=search_unit_kinds,
+            center_dimensions=center_dimensions,
+            baseline_overlap=bool(cand.get("also_baseline")),
+            quality_reason=str(cand.get("quality_reason") or "").strip(),
         )
         hits: list[HitScore] = []
-        for src in cand.get("hit_sources") or []:
+        for src in hit_sources:
             frags = list(src.get("fragments") or [])
             sim = src.get("similarity")
             hits.append(
@@ -164,6 +222,7 @@ def _load_retrieve_meta(
                     fragments=frags,
                     similarity=float(sim) if isinstance(sim, (int, float)) else None,
                     score=len(frags),
+                    channel_role=str(src.get("channel_role") or src.get("channel") or "toned").strip().lower(),
                 )
             )
         hits_by_tmdb[tmdb_id] = hits
@@ -175,19 +234,71 @@ def _load_hit_scores(retrieve_path: Path) -> dict[int, list[HitScore]]:
     return hits_by_tmdb
 
 
+_AUTO_SCORE_TOP_LEVEL_FIELDS = {
+    "quality_candidate",
+    "quality_candidate_annotation",
+    "neutral_hits",
+    "neutral_total",
+    "neutral_hit_rate",
+    "distinct_agents",
+    "also_baseline",
+}
+
+
+def _auto_score_lines(diag: RetrieveDiagnostics) -> list[str]:
+    score_text = f"{diag.convergent_score:.4f}" if diag.convergent_score is not None else "—"
+    counts = {"surface": 0, "event": 0, "persona": 0, **diag.source_hit_counts}
+    lines = [
+        "- **自动打分**:",
+        f"  - **quality_candidate**: {str(diag.quality_candidate).lower()}",
+        f"  - **objective_match**: {str(diag.objective_match).lower()} (surface={str(diag.surface_match).lower()}, event={str(diag.event_match).lower()})",
+        f"  - **persona_semantic_match**: {str(diag.persona_semantic_match).lower()}",
+        f"  - **convergent_score**: {score_text}",
+        f"  - **persona_agent_count**: {diag.persona_agent_count}",
+        f"  - **source_hits**: surface={counts['surface']} / event={counts['event']} / persona={counts['persona']}",
+    ]
+    if diag.search_unit_kinds:
+        lines.append(f"  - **search_unit_kinds**: {', '.join(diag.search_unit_kinds)}")
+    if diag.center_dimensions:
+        lines.append(f"  - **center_dimensions**: {', '.join(diag.center_dimensions)}")
+    lines.append(f"  - **baseline_overlap**: {str(diag.baseline_overlap).lower()}")
+    if diag.quality_reason:
+        lines.append(f"  - **quality_reason**: {diag.quality_reason}")
+    return lines
+
+
+def _strip_existing_auto_score(lines: list[str]) -> list[str]:
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if line == "- **自动打分**:":
+            i += 1
+            while i < len(lines) and line_starts_auto_child(lines[i]):
+                i += 1
+            continue
+        field_match = re.match(r"^- \*\*(.+?)\*\*:", line)
+        if field_match and field_match.group(1) in _AUTO_SCORE_TOP_LEVEL_FIELDS:
+            i += 1
+            continue
+        out.append(line)
+        i += 1
+    return out
+
+
+def line_starts_auto_child(line: str) -> bool:
+    return line.startswith("  - **")
+
+
 def _inject_retrieve_diagnostics(block: str, diag: RetrieveDiagnostics) -> str:
-    """Insert ADR-0005 retrieve fields after tmdb_id for summarize_eval parsing."""
-    lines = block.split("\n")
+    """Replace legacy candidate annotations with simplified search-unit scoring."""
+    lines = _strip_existing_auto_score(block.split("\n"))
     out: list[str] = []
     injected = False
     for line in lines:
         out.append(line)
         if not injected and _TMDB_LINE.match(line):
-            out.append(f"- **quality_candidate**: {str(diag.quality_candidate).lower()}")
-            out.append(f"- **neutral_hits**: {diag.neutral_hits}")
-            out.append(f"- **neutral_total**: {diag.neutral_total}")
-            out.append(f"- **neutral_hit_rate**: {diag.neutral_hit_rate:.4f}")
-            out.append(f"- **distinct_agents**: {diag.distinct_agents}")
+            out.extend(_auto_score_lines(diag))
             injected = True
     text = "\n".join(out)
     if text and not text.endswith("\n"):
@@ -205,7 +316,7 @@ def _score_lookup(hits: list[HitScore]) -> dict[tuple[str, str], int]:
 
 def _per_agent_totals(hits: list[HitScore]) -> dict[str, int]:
     totals: dict[str, int] = {}
-    for h in hits:
+    for h in _scoring_hits(hits):
         totals[h.agent_id] = totals.get(h.agent_id, 0) + h.score
     return totals
 
@@ -245,7 +356,10 @@ def _patch_hit_line(line: str, lookup: dict[tuple[str, str], int]) -> tuple[str,
         return line, 0
     prefix, agent_id, pseudo_id, frag_text, _sim = m.groups()
     frags = [f.strip() for f in frag_text.split(",") if f.strip()]
-    score = lookup.get(_hit_key(agent_id, pseudo_id), len(frags))
+    key = _hit_key(agent_id, pseudo_id)
+    if key not in lookup:
+        return base, 0
+    score = lookup[key]
     return f"{base} · **命中分={score}**", score
 
 
@@ -347,8 +461,9 @@ def score_candidates_md(
             continue
         tmdb_id = int(tmdb_m.group(1))
         hits = hits_by_tmdb.get(tmdb_id, [])
-        lookup = _score_lookup(hits)
-        total = sum(h.score for h in hits)
+        scoring_hits = _scoring_hits(hits)
+        lookup = _score_lookup(scoring_hits)
+        total = sum(h.score for h in scoring_hits)
         patched = _patch_candidate_block(part, lookup, total)
         diag = (diagnostics_by_tmdb or {}).get(tmdb_id)
         if diag is not None:
@@ -357,9 +472,7 @@ def score_candidates_md(
         patched = patched.rstrip("\n") + "\n\n"
         patched_blocks.append(patched)
 
-        agents = _agents_from_heading(heading)
-        if not agents and hits:
-            agents = _agents_from_hit_sources(hits)
+        agents = _agents_from_hit_sources(hits) if hits else _agents_from_heading(heading)
         quality = (quality_by_tmdb or {}).get(tmdb_id, False)
         is_multi = _is_multi_agent_hit(quality_candidate=quality, agents=agents)
         if _eligible_for_scoring_pool(
@@ -457,21 +570,23 @@ def _format_high_hit_review(
         "",
         "### Pseudo 命中分（二级审阅键 · 非质量闸）",
         "",
-        f"**High-hit review** lists candidates with **pseudo命中分合计 ≥ {min_score}**",
-        "or **pure-neutral** hits (`neutral_hits≥1` and `distinct_agents=0`, ADR-0006 D4).",
-        "Inclusion is **not** a quality gate; D1 `quality_candidate` is from retrieve.",
+        f"**High-hit review** lists candidates with **pseudo命中分合计 ≥ {min_score}**.",
+        "`surface/event` objective hits are diagnostic; only persona-semantic search units contribute to the inline pseudo命中分.",
+        "Inclusion is **not** a quality gate; `quality_candidate` means objective surface/event evidence plus persona-semantic evidence.",
         "",
-        "For each hit line under **命中视角/碎片**, count entries in `fragments=[...]`",
-        "— **each fragment id = 1 point** for that pseudo.",
+        "For each scored hit line under **命中视角/碎片**, count entries in `fragments=[...]`",
+        "— **each fragment id = 1 point** for that persona-semantic search unit.",
+        "Surface/event bundle lines stay visible as diagnostics but do not receive inline 命中分.",
         "",
-        "- **Candidate 总分** (`pseudo命中分合计`) = sum of pseudo 命中分 across all hit lines.",
-        "- Shown inline per line, e.g. `A2/p1: fragments=[...] · sim=... · **命中分=3**`.",
+        "- **Candidate 总分** (`pseudo命中分合计`) = sum of persona-semantic 命中分 across all hit lines.",
+        "- **自动打分** shows candidate-level retrieve signals: objective_match, persona_semantic_match, convergent_score, source_hits, center_dimensions, and baseline_overlap.",
+        "- Shown inline per scored line, e.g. `A2/su-persona-...: fragments=[...] · sim=... · **命中分=3**`.",
         "",
         "### Per-news layout",
         "",
         "- News sections follow `tests/eval_news/batch-manifest.json` order (01–10).",
         "- Each section opens with that run's `reality.md`.",
-        "- **多 agents 命中**: `quality_candidate` or ≥2 agents in heading / hit_sources.",
+        "- **多 agents 命中**: ≥2 agents in heading / hit_sources; `quality_candidate` is displayed only as annotation.",
         "- **单 agent 命中**: all other high-hit candidates.",
         "- Within each subsection, sort by **pseudo命中分合计** descending.",
         "",

@@ -1,0 +1,179 @@
+{
+  "run_id": "01-grid-outage",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 19,
+  "overlap_count": 14,
+  "net_new_tmdb_ids": [
+    25241,
+    55281,
+    58770,
+    158091,
+    949698
+  ],
+  "lost_tmdb_ids": [
+    46221,
+    100063,
+    210219,
+    431892,
+    533885
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [
+    {
+      "tmdb_id": 429918,
+      "title": "Survival Family",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    }
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 25241,
+      "title": "Squirm",
+      "similarity": 0.5315197110176086,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "su-persona-The-Jester-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "why-1",
+            "why-2"
+          ],
+          "similarity": 0.5315197110176086,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 55281,
+      "title": "NYC: Tornado Terror",
+      "similarity": 0.505867063999176,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-persona-The-Magician-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-0",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.505867063999176,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 58770,
+      "title": "The Trigger Effect",
+      "similarity": 0.5159871578216553,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-persona-The-Outlaw-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2"
+          ],
+          "similarity": 0.5159871578216553,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 158091,
+      "title": "Metro Manila",
+      "similarity": 0.48300251364707947,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-RULER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.48300251364707947,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-persona-The-Ruler-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-1"
+          ],
+          "similarity": 0.4638161063194275,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 949698,
+      "title": "Flashover",
+      "similarity": 0.4732644855976105,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.4732644855976105,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        }
+      ]
+    }
+  ],
+  "by_channel": {
+    "focalized": [],
+    "toned": [
+      25241,
+      55281,
+      58770,
+      158091,
+      949698
+    ]
+  }
+}

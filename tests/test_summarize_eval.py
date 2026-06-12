@@ -69,7 +69,7 @@ class SummarizeEvalResonanceTypeTests(unittest.TestCase):
         self.assertEqual(report["gate"]["verdict"], "GATE_FAIL")
         self.assertEqual(report["gate"]["compare_mode"], "multi_vs_single")
 
-    def test_quality_candidate_field_overrides_heading_agent_count(self):
+    def test_quality_annotation_does_not_override_heading_agent_count(self):
         text = """# fixture
 
 ## 候选星轨（共 2 部）
@@ -141,7 +141,8 @@ class SummarizeEvalPhase38DiagnosticTests(unittest.TestCase):
         self.assertTrue(d2["q2_combo_lift_ok"])
         self.assertEqual(report["gate"]["compare_mode"], "d5_success_criteria")
         self.assertIn("success_criteria", report)
-        self.assertTrue(report["success_criteria"]["resonance"]["combo_gt_pure_fact"])
+        self.assertTrue(report["success_criteria"]["resonance"]["focal_channel_has_signal"])
+        self.assertTrue(report["success_criteria"]["resonance"]["n1_diagnostic_only"])
         self.assertEqual(report["gate"]["verdict"], "GATE_FAIL")
         self.assertIn("workflow", report["gate"]["reasons"][0].lower())
         self.assertEqual(report["a1_reference"]["status"], "reference_only")
@@ -167,7 +168,11 @@ class SummarizeEvalPhase38DiagnosticTests(unittest.TestCase):
         self.assertGreater(d2["neutral_only_scored"], 0)
         self.assertFalse(d2["q2_combo_lift_ok"])
         self.assertEqual(report["gate"]["verdict"], "GATE_FAIL")
-        self.assertFalse(report["success_criteria"]["resonance"]["combo_gt_pure_fact"])
+        self.assertFalse(report["success_criteria"]["resonance"]["focal_channel_has_signal"])
+        self.assertTrue(report["success_criteria"]["resonance"]["n1_diagnostic_only"])
+        full = report["success_criteria"]["resonance"]["full_batch"]
+        self.assertAlmostEqual(full["focal_channel"]["structural_2_rate"], 0.0)
+        self.assertAlmostEqual(full["neutral_diagnostic"]["structural_2_rate"], 1.0)
 
     def test_similarity_bins_present_in_diagnostic_1(self):
         run = _load_run("phase38-dual-diagnostic-pass/candidates.md")

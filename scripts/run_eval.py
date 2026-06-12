@@ -141,11 +141,10 @@ def _pseudo_hit_total(cand: dict[str, Any]) -> int:
 
 
 def _sort_candidates_for_display(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Quality-first, then pseudo hit total (secondary), then similarity."""
+    """Display by pseudo hit total, then similarity; annotations do not rank."""
     return sorted(
         candidates,
         key=lambda c: (
-            -int(bool(c.get("quality_candidate"))),
             -_pseudo_hit_total(c),
             -(c.get("similarity") or 0.0),
             c.get("tmdb_id") or 0,
@@ -163,20 +162,66 @@ def _candidate_heading(cand: dict[str, Any]) -> str:
     if agents:
         suffix_parts.append(f"[{', '.join(agents)}]")
     if cand.get("quality_candidate"):
-        suffix_parts.append("[优质·多agent]")
+        suffix_parts.append("[汇聚标注]")
 
     suffix = f" {' '.join(suffix_parts)}" if suffix_parts else ""
     return f"### {title}{year_part}{suffix}"
 
 
+def _candidate_auto_score_lines(cand: dict[str, Any]) -> list[str]:
+    hit_sources = cand.get("hit_sources") or []
+    counts = {"surface": 0, "event": 0, "persona": 0}
+    kinds: set[str] = set()
+    center_dimensions: set[str] = set()
+    for src in hit_sources:
+        kind = str(src.get("search_unit_kind") or "").strip()
+        if kind:
+            kinds.add(kind)
+        if kind.startswith("surface"):
+            counts["surface"] += 1
+        elif kind.startswith("event"):
+            counts["event"] += 1
+        elif kind.startswith("persona"):
+            counts["persona"] += 1
+        center = str(src.get("center_element") or "").strip()
+        if "-" in center:
+            center_dimensions.add(center.split("-", 1)[0])
+
+    match = cand.get("match_diagnostics") or {}
+    surface_match = bool(match.get("surface_match", counts["surface"] > 0))
+    event_match = bool(match.get("event_match", counts["event"] > 0))
+    persona_match = bool(match.get("persona_semantic_match", counts["persona"] > 0))
+    objective_match = surface_match or event_match
+    search_unit_kinds = list(match.get("search_unit_kinds") or sorted(kinds))
+    center_dims = list(match.get("center_dimensions") or sorted(center_dimensions))
+    persona_count = cand.get("convergence_persona_count", cand.get("distinct_agents"))
+    score = cand.get("convergent_score")
+    score_text = f"{score:.4f}" if isinstance(score, (int, float)) else "—"
+
+    lines = [
+        "- **自动打分**:",
+        f"  - **quality_candidate**: {str(bool(cand.get('quality_candidate'))).lower()}",
+        f"  - **objective_match**: {str(objective_match).lower()} (surface={str(surface_match).lower()}, event={str(event_match).lower()})",
+        f"  - **persona_semantic_match**: {str(persona_match).lower()}",
+        f"  - **convergent_score**: {score_text}",
+        f"  - **persona_agent_count**: {persona_count if persona_count is not None else 0}",
+        f"  - **source_hits**: surface={counts['surface']} / event={counts['event']} / persona={counts['persona']}",
+    ]
+    if search_unit_kinds:
+        lines.append(f"  - **search_unit_kinds**: {', '.join(search_unit_kinds)}")
+    if center_dims:
+        lines.append(f"  - **center_dimensions**: {', '.join(center_dims)}")
+    lines.append(f"  - **baseline_overlap**: {str(bool(cand.get('also_baseline'))).lower()}")
+    reason = str(cand.get("quality_reason") or "").strip()
+    if reason:
+        lines.append(f"  - **quality_reason**: {reason}")
+    return lines
+
+
 def _format_candidate_block(cand: dict[str, Any], *, include_score: bool) -> list[str]:
     lines = [_candidate_heading(cand)]
     lines.append(f"- **tmdb_id**: {cand.get('tmdb_id', '')}")
-    quality = bool(cand.get("quality_candidate"))
-    lines.append(f"- **优质候选**: {str(quality).lower()}")
-    distinct = cand.get("distinct_agents")
-    if distinct is not None:
-        lines.append(f"- **distinct_agents**: {distinct}")
+    lines.extend(_candidate_auto_score_lines(cand))
     sim = cand.get("similarity")
     sim_text = f"{sim:.4f}" if isinstance(sim, (int, float)) else str(sim)
     lines.append(f"- **相似度**: {sim_text}")
@@ -186,7 +231,6 @@ def _format_candidate_block(cand: dict[str, Any], *, include_score: bool) -> lis
     overview = (cand.get("overview") or "").replace("\n", " ").strip()
     lines.append(f"- **overview**: {overview or '—'}")
     lines.append(f"- **跳转**: {cand.get('movie_url', '')}")
-    lines.append(f"- **also_baseline**: {str(bool(cand.get('also_baseline'))).lower()}")
     hit_sources = cand.get("hit_sources") or []
     if hit_sources:
         lines.append("- **命中视角/碎片**:")

@@ -1,0 +1,1819 @@
+{
+  "run_id": "01-grid-outage",
+  "persona_count": 12,
+  "personas": [
+    {
+      "persona_id": "The-Caregiver",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "affecting",
+              "countless",
+              "deficit",
+              "homes",
+              "massive",
+              "megawatts",
+              "power",
+              "shortage"
+            ],
+            "support_token_overlap": [
+              "critical",
+              "emergency",
+              "kepco",
+              "load",
+              "megawatts",
+              "offline",
+              "power",
+              "shedding"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "who-3",
+            "center_token_overlap": [
+              "eleven",
+              "energy",
+              "exposed",
+              "generators",
+              "left",
+              "power",
+              "suppliers",
+              "vulnerable"
+            ],
+            "support_token_overlap": [
+              "demand",
+              "drove",
+              "grid"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "who-0",
+            "center_token_overlap": [
+              "emergency",
+              "grid",
+              "operator",
+              "overseer",
+              "philippines",
+              "power",
+              "stability",
+              "system",
+              "triggered"
+            ],
+            "support_token_overlap": [
+              "alert",
+              "demand",
+              "grid",
+              "margin",
+              "operating",
+              "operator",
+              "philippines",
+              "power"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": false,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "who-3",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "focalized",
+            "center": "who-0",
+            "focal": "who-0",
+            "derivation_warnings": [
+              "pseudo p3: focalized channel but center 'who-0' does not instantiate a card vantage seat"
+            ],
+            "pass": false
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 2,
+        "focalized_count": 1,
+        "neutral_present": true
+      },
+      "pipeline_error": null
+    },
+    {
+      "persona_id": "The-Creator",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "how-1",
+            "center_token_overlap": [
+              "alert",
+              "emergency",
+              "grid",
+              "initiated",
+              "power",
+              "system",
+              "visayas",
+              "wide"
+            ],
+            "support_token_overlap": [
+              "alert",
+              "grid",
+              "power",
+              "visayas"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "how-2",
+            "center_token_overlap": [
+              "controlled",
+              "critical",
+              "curtailment",
+              "design",
+              "disconnection",
+              "emergency",
+              "executed",
+              "from",
+              "kilovolt",
+              "line",
+              "load",
+              "overloading",
+              "power",
+              "precision",
+              "reduction",
+              "transmission"
+            ],
+            "support_token_overlap": [
+              "critical",
+              "emergency",
+              "from",
+              "kilovolt",
+              "line",
+              "load",
+              "overloading",
+              "power"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "why-0",
+            "center_token_overlap": [
+              "critical",
+              "failure",
+              "malfunction",
+              "power",
+              "system",
+              "unit"
+            ],
+            "support_token_overlap": [
+              "plant",
+              "power",
+              "seasonal",
+              "unit"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": false,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "how-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "how-2",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "focalized",
+            "center": "why-0",
+            "focal": "who-0",
+            "derivation_warnings": [
+              "pseudo p3: focalized channel but center 'why-0' does not instantiate a card vantage seat"
+            ],
+            "pass": false
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 2,
+        "focalized_count": 1,
+        "neutral_present": true
+      },
+      "pipeline_error": null
+    },
+    {
+      "persona_id": "The-Everyman",
+      "guard_hard_failures": [
+        "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      ],
+      "fact_drift": {
+        "pass": false,
+        "checks": []
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": []
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "checks": []
+      },
+      "dual_floor": {
+        "pass": false,
+        "error": "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      },
+      "pipeline_error": "pseudo p1: fact guard — invented inner monologue or interiority"
+    },
+    {
+      "persona_id": "The-Explorer",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "how-2",
+            "center_token_overlap": [
+              "critical",
+              "demand",
+              "emergency",
+              "from",
+              "grid",
+              "kilovolt",
+              "line",
+              "load",
+              "navigated",
+              "officials",
+              "overloading",
+              "protect",
+              "shedding",
+              "transmission"
+            ],
+            "support_token_overlap": [
+              "critical",
+              "emergency",
+              "from",
+              "kilovolt",
+              "line",
+              "load",
+              "megawatts",
+              "officials"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "caging",
+              "deficit",
+              "grid",
+              "massive",
+              "megawatts",
+              "more",
+              "power",
+              "shortfall",
+              "than",
+              "unavailable"
+            ],
+            "support_token_overlap": [
+              "demand",
+              "drove",
+              "heat",
+              "into",
+              "margin",
+              "megawatts",
+              "more",
+              "offline"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "who-0",
+            "center_token_overlap": [
+              "grid",
+              "operator",
+              "power",
+              "system"
+            ],
+            "support_token_overlap": [
+              "alert",
+              "grid",
+              "megawatts",
+              "offline",
+              "operator",
+              "placed",
+              "power",
+              "tripped"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "how-2",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "focalized",
+            "center": "who-0",
+            "focal": "who-0",
+            "derivation_warnings": [],
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 2,
+        "focalized_count": 1,
+        "neutral_present": true
+      },
+      "pipeline_error": null
+    },
+    {
+      "persona_id": "The-Hero",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "deficit",
+              "massive",
+              "overcome",
+              "power",
+              "reduction"
+            ],
+            "support_token_overlap": [
+              "critical",
+              "emergency",
+              "from",
+              "keep",
+              "kilovolt",
+              "line",
+              "load",
+              "ordered"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "how-2",
+            "center_token_overlap": [
+              "emergency",
+              "measure"
+            ],
+            "support_token_overlap": [
+              "alert",
+              "emergency",
+              "grid",
+              "offline",
+              "power",
+              "unit",
+              "visayas"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "who-2",
+            "center_token_overlap": [
+              "crisis"
+            ],
+            "support_token_overlap": [
+              "critical",
+              "grid",
+              "power"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": false,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "how-2",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "focalized",
+            "center": "who-2",
+            "focal": "who-2",
+            "derivation_warnings": [
+              "pseudo p3: focalized channel but center 'who-2' does not instantiate a card vantage seat"
+            ],
+            "pass": false
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 2,
+        "focalized_count": 1,
+        "neutral_present": true
+      },
+      "pipeline_error": null
+    },
+    {
+      "persona_id": "The-Innocent",
+      "guard_hard_failures": [
+        "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      ],
+      "fact_drift": {
+        "pass": false,
+        "checks": []
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": []
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "checks": []
+      },
+      "dual_floor": {
+        "pass": false,
+        "error": "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      },
+      "pipeline_error": "pseudo p1: fact guard — novel proper noun 'In May'"
+    },
+    {
+      "persona_id": "The-Jester",
+      "guard_hard_failures": [
+        "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      ],
+      "fact_drift": {
+        "pass": false,
+        "checks": []
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": []
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "checks": []
+      },
+      "dual_floor": {
+        "pass": false,
+        "error": "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      },
+      "pipeline_error": "pseudo p1: fact guard — invented inner monologue or interiority"
+    },
+    {
+      "persona_id": "The-Lover",
+      "guard_hard_failures": [
+        "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      ],
+      "fact_drift": {
+        "pass": false,
+        "checks": []
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": []
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "checks": []
+      },
+      "dual_floor": {
+        "pass": false,
+        "error": "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      },
+      "pipeline_error": "pseudo p1: supporting elements must be 2–4, got 5"
+    },
+    {
+      "persona_id": "The-Magician",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "how-1",
+            "center_token_overlap": [
+              "alarm",
+              "alert",
+              "grid",
+              "high",
+              "level",
+              "system",
+              "under",
+              "visayas",
+              "warning"
+            ],
+            "support_token_overlap": [
+              "alert",
+              "grid",
+              "kepco",
+              "megawatts",
+              "power",
+              "unavailable",
+              "under",
+              "unit"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "why-2",
+            "center_token_overlap": [
+              "climate",
+              "demand",
+              "heat",
+              "hidden",
+              "induced",
+              "lever",
+              "margin",
+              "operating",
+              "pressure",
+              "seasonal",
+              "surge"
+            ],
+            "support_token_overlap": [
+              "demand",
+              "heat",
+              "long",
+              "margin",
+              "operating",
+              "power",
+              "seasonal",
+              "unit"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "who-0",
+            "center_token_overlap": [
+              "grid"
+            ],
+            "support_token_overlap": [
+              "critical",
+              "demand",
+              "emergency",
+              "from",
+              "grid",
+              "heat",
+              "keep",
+              "kilovolt"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "how-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "why-2",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "focalized",
+            "center": "who-0",
+            "focal": "who-0",
+            "derivation_warnings": [],
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 2,
+        "focalized_count": 1,
+        "neutral_present": true
+      },
+      "pipeline_error": null
+    },
+    {
+      "persona_id": "The-Outlaw",
+      "guard_hard_failures": [
+        "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      ],
+      "fact_drift": {
+        "pass": false,
+        "checks": []
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": []
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "checks": []
+      },
+      "dual_floor": {
+        "pass": false,
+        "error": "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      },
+      "pipeline_error": "pseudo p3: supporting elements must be 2–4, got 5"
+    },
+    {
+      "persona_id": "The-Ruler",
+      "guard_hard_failures": [
+        "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      ],
+      "fact_drift": {
+        "pass": false,
+        "checks": []
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": []
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "checks": []
+      },
+      "dual_floor": {
+        "pass": false,
+        "error": "ADR-0008 dual floor: need ≥1 non-focalized toned pseudo"
+      },
+      "pipeline_error": "pseudo p1: supporting elements must be 2–4, got 5"
+    },
+    {
+      "persona_id": "The-Sage",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "capacity",
+              "deficit",
+              "generation",
+              "megawatts",
+              "more",
+              "power",
+              "quantified",
+              "shortfall",
+              "significant",
+              "than",
+              "unavailable"
+            ],
+            "support_token_overlap": [
+              "critical",
+              "emergency",
+              "grid",
+              "kilovolt",
+              "line",
+              "load",
+              "megawatts",
+              "more"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "why-0",
+            "center_token_overlap": [
+              "documented",
+              "equipment",
+              "failure",
+              "offline",
+              "outage",
+              "power",
+              "tripped",
+              "unit",
+              "verified"
+            ],
+            "support_token_overlap": [
+              "demand",
+              "long",
+              "offline",
+              "other",
+              "outages",
+              "plant",
+              "power",
+              "running"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "who-0",
+            "center_token_overlap": [
+              "grid",
+              "management",
+              "overseer",
+              "stability",
+              "system"
+            ],
+            "support_token_overlap": [
+              "emergency",
+              "grid",
+              "load",
+              "power",
+              "tripped",
+              "unit"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": false,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "why-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "focalized",
+            "center": "who-0",
+            "focal": "who-0",
+            "derivation_warnings": [
+              "pseudo p3: focalized channel but center 'who-0' does not instantiate a card vantage seat"
+            ],
+            "pass": false
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 2,
+        "focalized_count": 1,
+        "neutral_present": true
+      },
+      "pipeline_error": null
+    }
+  ],
+  "dimensions": {
+    "fact_drift": {
+      "pass": false,
+      "hard_guard_failures": 6,
+      "persona_failures": [
+        "The-Everyman",
+        "The-Innocent",
+        "The-Jester",
+        "The-Lover",
+        "The-Outlaw",
+        "The-Ruler"
+      ]
+    },
+    "center_truthfulness": {
+      "pass": true,
+      "persona_failures": []
+    },
+    "focalized_derivation": {
+      "pass": false,
+      "persona_failures": [
+        "The-Caregiver",
+        "The-Creator",
+        "The-Hero",
+        "The-Sage"
+      ]
+    },
+    "dual_floor": {
+      "pass": false,
+      "n1_unchanged": [
+        {
+          "persona_id": "The-Caregiver",
+          "pass": true,
+          "baseline_chars": 298,
+          "design_chars": 298,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Creator",
+          "pass": true,
+          "baseline_chars": 368,
+          "design_chars": 368,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Everyman",
+          "pass": false,
+          "reason": "neutral n1 missing in design or baseline"
+        },
+        {
+          "persona_id": "The-Explorer",
+          "pass": true,
+          "baseline_chars": 340,
+          "design_chars": 340,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Hero",
+          "pass": true,
+          "baseline_chars": 358,
+          "design_chars": 358,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Innocent",
+          "pass": false,
+          "reason": "neutral n1 missing in design or baseline"
+        },
+        {
+          "persona_id": "The-Jester",
+          "pass": false,
+          "reason": "neutral n1 missing in design or baseline"
+        },
+        {
+          "persona_id": "The-Lover",
+          "pass": false,
+          "reason": "neutral n1 missing in design or baseline"
+        },
+        {
+          "persona_id": "The-Magician",
+          "pass": true,
+          "baseline_chars": 384,
+          "design_chars": 384,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Outlaw",
+          "pass": false,
+          "reason": "neutral n1 missing in design or baseline"
+        },
+        {
+          "persona_id": "The-Ruler",
+          "pass": false,
+          "reason": "neutral n1 missing in design or baseline"
+        },
+        {
+          "persona_id": "The-Sage",
+          "pass": true,
+          "baseline_chars": 246,
+          "design_chars": 246,
+          "reason": "ok"
+        }
+      ],
+      "baseline_hits": {
+        "pass": false,
+        "baseline_count": 19,
+        "design_count": 19,
+        "overlap_count": 9,
+        "lost_tmdb_ids": [
+          46221,
+          100063,
+          111750,
+          190738,
+          194834,
+          210219,
+          280492,
+          370097,
+          431892,
+          1223272
+        ]
+      },
+      "persona_dual_failures": [
+        "The-Everyman",
+        "The-Innocent",
+        "The-Jester",
+        "The-Lover",
+        "The-Outlaw",
+        "The-Ruler"
+      ]
+    },
+    "funnel": {
+      "pass": false,
+      "meta": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 24,
+        "sorted_count": 24,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "issues": [
+        "human_candidates not monotonic by convergence/sort key"
+      ],
+      "candidate_count": 19
+    },
+    "open_d_weak_fit": {
+      "pass": false,
+      "weak_fit_personas": [
+        "The-Creator",
+        "The-Innocent",
+        "The-Jester",
+        "The-Lover"
+      ],
+      "observations": [
+        {
+          "persona_id": "The-Creator",
+          "weak_fit_cohort": true,
+          "min_fit": 0.7,
+          "max_fit": 0.85,
+          "low_fit": false,
+          "quality": "acceptable",
+          "notes": [],
+          "pseudo_count": 3,
+          "channels": [
+            "toned",
+            "toned",
+            "focalized"
+          ]
+        },
+        {
+          "persona_id": "The-Innocent",
+          "weak_fit_cohort": true,
+          "min_fit": null,
+          "max_fit": null,
+          "low_fit": false,
+          "quality": "failed",
+          "notes": [
+            "pipeline error"
+          ],
+          "pseudo_count": 0,
+          "channels": []
+        },
+        {
+          "persona_id": "The-Jester",
+          "weak_fit_cohort": true,
+          "min_fit": null,
+          "max_fit": null,
+          "low_fit": false,
+          "quality": "failed",
+          "notes": [
+            "pipeline error"
+          ],
+          "pseudo_count": 0,
+          "channels": []
+        },
+        {
+          "persona_id": "The-Lover",
+          "weak_fit_cohort": true,
+          "min_fit": null,
+          "max_fit": null,
+          "low_fit": false,
+          "quality": "failed",
+          "notes": [
+            "pipeline error"
+          ],
+          "pseudo_count": 0,
+          "channels": []
+        }
+      ],
+      "open_d_note": "Observe whether weak-fit personas still produce fact-entailed, axis-aligned pseudos without forced valence coverage after 3.11.0 downgrade."
+    }
+  },
+  "pool_diff": {
+    "run_id": "01-grid-outage",
+    "baseline_candidate_count": 19,
+    "pretest_candidate_count": 19,
+    "overlap_count": 9,
+    "net_new_tmdb_ids": [
+      2154,
+      6499,
+      14161,
+      43552,
+      58770,
+      63333,
+      158091,
+      720321,
+      949698,
+      969686
+    ],
+    "lost_tmdb_ids": [
+      46221,
+      100063,
+      111750,
+      190738,
+      194834,
+      210219,
+      280492,
+      370097,
+      431892,
+      1223272
+    ],
+    "gap_a_targets_in_net_new": [],
+    "gap_a_targets_in_baseline_only": [
+      {
+        "tmdb_id": 429918,
+        "title": "Survival Family",
+        "human_score": 2,
+        "judge_resonance_type": "表层沾边"
+      }
+    ],
+    "net_new_details": [
+      {
+        "tmdb_id": 2154,
+        "title": "The Dark Side of the Moon",
+        "similarity": 0.47056305408477783,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-SAGE"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-SAGE",
+            "pseudo_id": "p1",
+            "channel_role": "toned",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "result-0"
+            ],
+            "similarity": 0.47056305408477783
+          }
+        ]
+      },
+      {
+        "tmdb_id": 6499,
+        "title": "Turbo: A Power Rangers Movie",
+        "similarity": 0.5183676481246948,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-HERO"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-HERO",
+            "pseudo_id": "p3",
+            "channel_role": "focalized",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "how-2",
+              "why-2"
+            ],
+            "similarity": 0.5183676481246948
+          }
+        ]
+      },
+      {
+        "tmdb_id": 14161,
+        "title": "2012",
+        "similarity": 0.4441601634025574,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-CREATOR"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-CREATOR",
+            "pseudo_id": "p1",
+            "channel_role": "toned",
+            "fragments": [
+              "why-0",
+              "how-1"
+            ],
+            "similarity": 0.4441601634025574
+          }
+        ]
+      },
+      {
+        "tmdb_id": 43552,
+        "title": "Vanishing on 7th Street",
+        "similarity": 0.49635156989097595,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-CAREGIVER"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-CAREGIVER",
+            "pseudo_id": "p1",
+            "channel_role": "toned",
+            "fragments": [
+              "why-0",
+              "how-2",
+              "result-0"
+            ],
+            "similarity": 0.49635156989097595
+          }
+        ]
+      },
+      {
+        "tmdb_id": 58770,
+        "title": "The Trigger Effect",
+        "similarity": 0.4565765857696533,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-SAGE"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-SAGE",
+            "pseudo_id": "p2",
+            "channel_role": "toned",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2"
+            ],
+            "similarity": 0.4565765857696533
+          }
+        ]
+      },
+      {
+        "tmdb_id": 63333,
+        "title": "Gog",
+        "similarity": 0.4799930453300476,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-CREATOR"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-CREATOR",
+            "pseudo_id": "p3",
+            "channel_role": "focalized",
+            "fragments": [
+              "why-0",
+              "why-1",
+              "why-2",
+              "result-0"
+            ],
+            "similarity": 0.4799930453300476
+          }
+        ]
+      },
+      {
+        "tmdb_id": 158091,
+        "title": "Metro Manila",
+        "similarity": 0.5080589056015015,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-EXPLORER"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-EXPLORER",
+            "pseudo_id": "p1",
+            "channel_role": "toned",
+            "fragments": [
+              "how-2",
+              "result-0"
+            ],
+            "similarity": 0.5080589056015015
+          }
+        ]
+      },
+      {
+        "tmdb_id": 720321,
+        "title": "Breathe",
+        "similarity": 0.45060038566589355,
+        "quality_candidate": false,
+        "triggered_by": [],
+        "hit_sources": [
+          {
+            "agent_id": "THE-HERO",
+            "pseudo_id": "n1",
+            "channel_role": "neutral",
+            "fragments": [
+              "result-0",
+              "how-2",
+              "who-2",
+              "why-0",
+              "how-1"
+            ],
+            "similarity": 0.4163302183151245
+          },
+          {
+            "agent_id": "THE-SAGE",
+            "pseudo_id": "n1",
+            "channel_role": "neutral",
+            "fragments": [
+              "result-0",
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-0"
+            ],
+            "similarity": 0.45060038566589355
+          }
+        ]
+      },
+      {
+        "tmdb_id": 949698,
+        "title": "Flashover",
+        "similarity": 0.4588300287723541,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-EXPLORER"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-EXPLORER",
+            "pseudo_id": "p3",
+            "channel_role": "focalized",
+            "fragments": [
+              "why-0",
+              "how-1",
+              "result-0"
+            ],
+            "similarity": 0.4588300287723541
+          }
+        ]
+      },
+      {
+        "tmdb_id": 969686,
+        "title": "4 Horsemen: Apocalypse",
+        "similarity": 0.5372195243835449,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-MAGICIAN"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-MAGICIAN",
+            "pseudo_id": "p3",
+            "channel_role": "focalized",
+            "fragments": [
+              "why-2",
+              "how-1",
+              "how-2"
+            ],
+            "similarity": 0.5372195243835449
+          }
+        ]
+      }
+    ],
+    "by_channel": {
+      "focalized": [
+        6499,
+        63333,
+        949698,
+        969686
+      ],
+      "neutral": [
+        720321
+      ],
+      "toned": [
+        2154,
+        14161,
+        43552,
+        58770,
+        158091
+      ]
+    }
+  },
+  "pool_diff_by_channel": {
+    "run_id": "01-grid-outage",
+    "baseline_candidate_count": 19,
+    "design_candidate_count": 19,
+    "overlap_count": 9,
+    "net_new_tmdb_ids": [
+      2154,
+      6499,
+      14161,
+      43552,
+      58770,
+      63333,
+      158091,
+      720321,
+      949698,
+      969686
+    ],
+    "lost_tmdb_ids": [
+      46221,
+      100063,
+      111750,
+      190738,
+      194834,
+      210219,
+      280492,
+      370097,
+      431892,
+      1223272
+    ],
+    "by_channel": {
+      "focalized": [
+        6499,
+        63333,
+        949698,
+        969686
+      ],
+      "neutral": [
+        720321
+      ],
+      "toned": [
+        2154,
+        14161,
+        43552,
+        58770,
+        158091
+      ]
+    },
+    "net_new_details": [
+      {
+        "tmdb_id": 2154,
+        "title": "The Dark Side of the Moon",
+        "similarity": 0.47056305408477783,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "triggered_by": [
+          "THE-SAGE"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 6499,
+        "title": "Turbo: A Power Rangers Movie",
+        "similarity": 0.5183676481246948,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "focalized"
+        ],
+        "triggered_by": [
+          "THE-HERO"
+        ],
+        "convergence_channels": [
+          "focalized"
+        ]
+      },
+      {
+        "tmdb_id": 14161,
+        "title": "2012",
+        "similarity": 0.4441601634025574,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "triggered_by": [
+          "THE-CREATOR"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 43552,
+        "title": "Vanishing on 7th Street",
+        "similarity": 0.49635156989097595,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "triggered_by": [
+          "THE-CAREGIVER"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 58770,
+        "title": "The Trigger Effect",
+        "similarity": 0.4565765857696533,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "triggered_by": [
+          "THE-SAGE"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 63333,
+        "title": "Gog",
+        "similarity": 0.4799930453300476,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "focalized"
+        ],
+        "triggered_by": [
+          "THE-CREATOR"
+        ],
+        "convergence_channels": [
+          "focalized"
+        ]
+      },
+      {
+        "tmdb_id": 158091,
+        "title": "Metro Manila",
+        "similarity": 0.5080589056015015,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "triggered_by": [
+          "THE-EXPLORER"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 720321,
+        "title": "Breathe",
+        "similarity": 0.45060038566589355,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "neutral"
+        ],
+        "triggered_by": [],
+        "convergence_channels": [
+          "neutral"
+        ]
+      },
+      {
+        "tmdb_id": 949698,
+        "title": "Flashover",
+        "similarity": 0.4588300287723541,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "focalized"
+        ],
+        "triggered_by": [
+          "THE-EXPLORER"
+        ],
+        "convergence_channels": [
+          "focalized"
+        ]
+      },
+      {
+        "tmdb_id": 969686,
+        "title": "4 Horsemen: Apocalypse",
+        "similarity": 0.5372195243835449,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "focalized"
+        ],
+        "triggered_by": [
+          "THE-MAGICIAN"
+        ],
+        "convergence_channels": [
+          "focalized"
+        ]
+      }
+    ]
+  },
+  "center_granularity": {
+    "center_element_counts": {
+      "result-0": 4,
+      "who-3": 1,
+      "who-0": 4,
+      "how-1": 2,
+      "how-2": 3,
+      "why-0": 2,
+      "who-2": 1,
+      "why-2": 1
+    },
+    "channel_counts": {
+      "toned": 12,
+      "focalized": 6
+    },
+    "focal_who_counts": {
+      "who-0": 5,
+      "who-2": 1
+    },
+    "per_persona": {
+      "The-Caregiver": [
+        {
+          "pseudo_id": "p1",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "who-3",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "who-0",
+          "channel": "focalized"
+        }
+      ],
+      "The-Creator": [
+        {
+          "pseudo_id": "p1",
+          "center": "how-1",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "how-2",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "why-0",
+          "channel": "focalized"
+        }
+      ],
+      "The-Everyman": [],
+      "The-Explorer": [
+        {
+          "pseudo_id": "p1",
+          "center": "how-2",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "who-0",
+          "channel": "focalized"
+        }
+      ],
+      "The-Hero": [
+        {
+          "pseudo_id": "p1",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "how-2",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "who-2",
+          "channel": "focalized"
+        }
+      ],
+      "The-Innocent": [],
+      "The-Jester": [],
+      "The-Lover": [],
+      "The-Magician": [
+        {
+          "pseudo_id": "p1",
+          "center": "how-1",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "why-2",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "who-0",
+          "channel": "focalized"
+        }
+      ],
+      "The-Outlaw": [],
+      "The-Ruler": [],
+      "The-Sage": [
+        {
+          "pseudo_id": "p1",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "why-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "who-0",
+          "channel": "focalized"
+        }
+      ]
+    },
+    "open_c_note": "Centers span who/where/why/how/result element ids; observe whether salience-greedy who-* centers unlock POV focalization without over-coarse buckets."
+  },
+  "all_automated_pass": false
+}

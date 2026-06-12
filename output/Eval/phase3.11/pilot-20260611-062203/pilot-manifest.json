@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "description": "Phase 3.11.6 single-news pilot: ADR-0008 design-on vs 3.10 baseline with firewall audit",
+  "runs": [
+    {
+      "run_id": "01-grid-outage",
+      "note": "Grid outage · Gap A POV-resonance news · full 12-persona chain",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": [
+        {
+          "tmdb_id": "429918",
+          "title": "Survival Family",
+          "human_score": 2,
+          "judge_score": 1,
+          "judge_resonance_type": "表层沾边",
+          "rationale": "News and film share a load-bearing anchor of power outages driving the stories, but skeletons are not isomorphic: news involves institutional crisis response to grid scarcity, while film depicts personal survival in societal collapse."
+        }
+      ]
+    }
+  ]
+}

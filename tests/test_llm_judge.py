@@ -166,6 +166,18 @@ class JudgeSchemaTests(unittest.TestCase):
         self.assertEqual(causal, "")
         self.assertIsNone(pov)
 
+    def test_parse_judge_response_extracts_embedded_json(self):
+        text = (
+            f'Here is the judgment:\n{{"score": 1, "resonance_type": "{TYPE_SURFACE}", '
+            f'"causal_test": "", "rationale": "surface only"}}\nDone.'
+        )
+        score, rtype, rationale, causal, pov = parse_judge_response(text)
+        self.assertEqual(score, 1)
+        self.assertEqual(rtype, TYPE_SURFACE)
+        self.assertEqual(rationale, "surface only")
+        self.assertEqual(causal, "")
+        self.assertIsNone(pov)
+
     def test_score_type_matrix_consistency_new_constants(self):
         for score, rtype, causal in (
             (0, None, ""),

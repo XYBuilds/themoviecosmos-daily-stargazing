@@ -207,10 +207,10 @@
 | **hypernym** | P-Expand 共享梯 | 客观地板 | 中性通道 + toned 的**题面锚** |
 | **lens** | alt-creator persona 相对价 | lens | **语气通道** only；含 persona 中点中性 |
 
-**中性通道（C-Neutral）**：每 persona **恰好 1 条** pseudo，仅用 `surface` + `hypernym`，**无 lens**。  
+**中性通道（C-Neutral）**：每 persona **恰好 1 条** pseudo，仅用 `surface` + `hypernym`，**无 lens**；当前只作为 n1 / neutral_hits / neutral_hit_rate / A1 对照诊断，不作质量判据、排序依据、截断依据、审阅纳入兜底或 Go/No-Go 依据。  
 **语气通道（C-Toned）**：每条 toned pseudo = **hypernym 锚（留在题面）+ lens 倾斜**；发自己的 anchored 检索 query。
 
-撞车主判据（ADR-0005）：中性通道整体算 **1 张去重 agent 票**（所有中性 pseudo 命中的 union）；**优质候选 = 中性票 + ≥1 toned lens 汇聚到同一部电影**。
+撞车诊断（ADR-0005 legacy shape, downgraded）：中性通道整体算 **1 张去重 agent 票**（所有中性 pseudo 命中的 union）；`quality_candidate = 中性票 + ≥1 toned/focalized lens 汇聚到同一部电影` 仅作检索汇聚 annotation。中性票 / `n1` 本身也是 diagnostic-only，不作质量判据、排序依据、截断依据或 Go/No-Go 依据。
 
 ---
 

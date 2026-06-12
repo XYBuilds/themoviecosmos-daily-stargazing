@@ -1,0 +1,264 @@
+{
+  "run_id": "01-grid-outage",
+  "persona_count": 0,
+  "personas": [],
+  "dimensions": {
+    "fact_drift": {
+      "pass": true,
+      "hard_guard_failures": 0,
+      "persona_failures": []
+    },
+    "center_truthfulness": {
+      "pass": true,
+      "persona_failures": []
+    },
+    "focalized_derivation": {
+      "pass": true,
+      "persona_failures": []
+    },
+    "dual_floor": {
+      "pass": true,
+      "n1_unchanged": [],
+      "baseline_hits": {
+        "pass": false,
+        "baseline_count": 19,
+        "design_count": 19,
+        "overlap_count": 17,
+        "lost_tmdb_ids": [
+          33787,
+          266727
+        ]
+      },
+      "persona_dual_failures": []
+    },
+    "funnel": {
+      "pass": false,
+      "meta": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 25,
+        "sorted_count": 25,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "issues": [
+        "human_candidates not monotonic by convergence/sort key"
+      ],
+      "candidate_count": 19
+    },
+    "open_d_weak_fit": {
+      "pass": true,
+      "weak_fit_personas": [
+        "The-Creator",
+        "The-Innocent",
+        "The-Jester",
+        "The-Lover"
+      ],
+      "observations": [],
+      "open_d_note": "Observe whether weak-fit personas still produce fact-entailed, axis-aligned pseudos without forced valence coverage after 3.11.0 downgrade."
+    }
+  },
+  "pool_diff": {
+    "run_id": "01-grid-outage",
+    "baseline_candidate_count": 19,
+    "pretest_candidate_count": 19,
+    "overlap_count": 17,
+    "net_new_tmdb_ids": [
+      720321,
+      1484253
+    ],
+    "lost_tmdb_ids": [
+      33787,
+      266727
+    ],
+    "gap_a_targets_in_net_new": [],
+    "gap_a_targets_in_baseline_only": [
+      {
+        "tmdb_id": 429918,
+        "title": "Survival Family",
+        "human_score": 2,
+        "judge_resonance_type": "表层沾边"
+      }
+    ],
+    "net_new_details": [
+      {
+        "tmdb_id": 720321,
+        "title": "Breathe",
+        "similarity": 0.45060038566589355,
+        "quality_candidate": false,
+        "triggered_by": [],
+        "hit_sources": [
+          {
+            "agent_id": "THE-INNOCENT",
+            "pseudo_id": "n1",
+            "channel_role": "neutral",
+            "fragments": [
+              "result-0",
+              "who-1",
+              "who-3",
+              "why-2",
+              "how-2"
+            ],
+            "similarity": 0.4383590817451477
+          },
+          {
+            "agent_id": "THE-EVERYMAN",
+            "pseudo_id": "n1",
+            "channel_role": "neutral",
+            "fragments": [
+              "result-0",
+              "how-2",
+              "who-1",
+              "who-3",
+              "why-2"
+            ],
+            "similarity": 0.44313034415245056
+          },
+          {
+            "agent_id": "THE-HERO",
+            "pseudo_id": "n1",
+            "channel_role": "neutral",
+            "fragments": [
+              "result-0",
+              "how-2",
+              "who-2",
+              "why-0",
+              "how-1"
+            ],
+            "similarity": 0.4163302183151245
+          },
+          {
+            "agent_id": "THE-LOVER",
+            "pseudo_id": "n1",
+            "channel_role": "neutral",
+            "fragments": [
+              "result-0",
+              "why-2",
+              "who-3",
+              "how-2",
+              "why-0"
+            ],
+            "similarity": 0.44555795192718506
+          },
+          {
+            "agent_id": "THE-SAGE",
+            "pseudo_id": "n1",
+            "channel_role": "neutral",
+            "fragments": [
+              "result-0",
+              "why-0",
+              "why-1",
+              "why-2",
+              "how-0"
+            ],
+            "similarity": 0.45060038566589355
+          }
+        ]
+      },
+      {
+        "tmdb_id": 1484253,
+        "title": "Trainwreck: Poop Cruise",
+        "similarity": 0.42916741967201233,
+        "quality_candidate": false,
+        "triggered_by": [],
+        "hit_sources": [
+          {
+            "agent_id": "THE-EXPLORER",
+            "pseudo_id": "n1",
+            "channel_role": "neutral",
+            "fragments": [
+              "how-2",
+              "result-0",
+              "who-0",
+              "who-2",
+              "why-2"
+            ],
+            "similarity": 0.41472288966178894
+          },
+          {
+            "agent_id": "THE-JESTER",
+            "pseudo_id": "n1",
+            "channel_role": "neutral",
+            "fragments": [
+              "how-2",
+              "result-0",
+              "why-2",
+              "who-0",
+              "how-1"
+            ],
+            "similarity": 0.42916741967201233
+          }
+        ]
+      }
+    ],
+    "by_channel": {
+      "focalized": [],
+      "neutral": [
+        720321,
+        1484253
+      ],
+      "toned": []
+    }
+  },
+  "pool_diff_by_channel": {
+    "run_id": "01-grid-outage",
+    "baseline_candidate_count": 19,
+    "design_candidate_count": 19,
+    "overlap_count": 17,
+    "net_new_tmdb_ids": [
+      720321,
+      1484253
+    ],
+    "lost_tmdb_ids": [
+      33787,
+      266727
+    ],
+    "by_channel": {
+      "focalized": [],
+      "neutral": [
+        720321,
+        1484253
+      ],
+      "toned": []
+    },
+    "net_new_details": [
+      {
+        "tmdb_id": 720321,
+        "title": "Breathe",
+        "similarity": 0.45060038566589355,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "neutral"
+        ],
+        "triggered_by": [],
+        "convergence_channels": [
+          "neutral"
+        ]
+      },
+      {
+        "tmdb_id": 1484253,
+        "title": "Trainwreck: Poop Cruise",
+        "similarity": 0.42916741967201233,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "neutral"
+        ],
+        "triggered_by": [],
+        "convergence_channels": [
+          "neutral"
+        ]
+      }
+    ]
+  },
+  "center_granularity": {
+    "center_element_counts": {},
+    "channel_counts": {},
+    "focal_who_counts": {},
+    "per_persona": {},
+    "open_c_note": "Centers span who/where/why/how/result element ids; observe whether salience-greedy who-* centers unlock POV focalization without over-coarse buckets."
+  },
+  "all_automated_pass": false
+}

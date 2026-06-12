@@ -8,7 +8,8 @@
       候选漏斗（ADR-0007 D8 / ADR-0008）: 汇聚排序 → 可选 judge 预筛 → 预算 top-N 给人工;
       预算以下 ``judge≥1`` 进 ``audit_pool``（抽审兜底，不靠调高 judge 门槛控量）.
       记录命中 `(agent_id, pseudo_id, fragments)`；撞车展示不含 A1/baseline（toned/focalized triggered_by）.
-      撞车主判据（ADR-0005 + ADR-0008）: 中性 union = 1 票 + ≥1 toned/focalized 汇聚 → quality_candidate.
+      撞车诊断标注（ADR-0005 + ADR-0008）: 中性 union = 1 票 + ≥1 toned/focalized 汇聚 → quality_candidate；
+      该字段仅作 annotation，不参与排序、截断、Go/No-Go 或评估分桶.
       A1 held-out oracle（ADR-0006）: baseline 查询独立并跑 → ``a1_oracle`` + ``oracle_comparison``;
       不进 ``candidates`` / 撞车票 / 排序.
 
@@ -48,9 +49,13 @@ DEFAULT_QUALITY_FLOOR = 0.40
 DEFAULT_MIN_JUDGE_SCORE = 1
 DEFAULT_MOVIE_LINK_PREFIX = "https://themoviecosmos.com/movie/"
 
-# Convergent-sort weights (ADR-0007 D8 layer 2): multi-channel > multi-persona > similarity.
+# Convergent-sort weights: match diagnostics + diversity + similarity.
 _CONVERGENT_WEIGHT_CHANNEL = 100
 _CONVERGENT_WEIGHT_PERSONA = 10
+_CONVERGENT_WEIGHT_SURFACE = 60
+_CONVERGENT_WEIGHT_EVENT = 80
+_CONVERGENT_WEIGHT_PERSONA_SEMANTIC = 100
+_CONVERGENT_WEIGHT_CENTER_DIMENSION = 8
 
 _AGENT_ORDER: tuple[str, ...] = ("A2", "A4", "A7", "A1")
 
@@ -58,7 +63,12 @@ _ORACLE_AGENT_IDS: frozenset[str] = frozenset({"A1"})
 
 _CHANNEL_ROLES: frozenset[str] = frozenset({"neutral", "toned", "focalized", "baseline"})
 _PROVENANCE_CHANNELS: frozenset[str] = frozenset({"neutral", "toned", "focalized"})
+_SIGNAL_PROVENANCE_CHANNELS: frozenset[str] = frozenset({"toned", "focalized"})
+_DIAGNOSTIC_PROVENANCE_CHANNELS: frozenset[str] = frozenset({"neutral"})
 _COMPOSITION_CHANNELS: frozenset[str] = frozenset({"toned", "focalized"})
+_SEARCH_UNIT_KINDS: frozenset[str] = frozenset(
+    {"surface-fragment-bundle", "event-fragment-bundle", "persona-semantic"}
+)
 
 _ROLE_BY_AGENT: dict[str, str] = {
     "A1": "baseline",
@@ -222,7 +232,14 @@ def _resolve_channel_role(
     source: dict[str, Any],
     agent_id: str,
 ) -> str:
-    """Map pseudo source + agent defaults to neutral / toned / focalized / baseline."""
+    """Map pseudo/search-unit source + agent defaults to recall provenance role."""
+    kind = str(source.get("kind") or source.get("search_unit_kind") or "").strip().lower()
+    if kind == "surface-fragment-bundle":
+        return "neutral"
+    if kind == "event-fragment-bundle":
+        return "neutral"
+    if kind == "persona-semantic":
+        return "toned"
     channel = str(
         source.get("channel_role") or source.get("channel") or ""
     ).strip().lower()
@@ -250,6 +267,52 @@ def _expand_retrieval_queries(
         agent_id = str(agent.get("agent_id", "")).upper()
         if not agent_id or agent_id in failed:
             continue
+        search_units = agent.get("search_units")
+        if isinstance(search_units, dict):
+            flat_units: list[dict[str, Any]] = []
+            for key in (
+                "surface_fragment_bundles",
+                "event_fragment_bundles",
+                "persona_semantic_units",
+            ):
+                rows = search_units.get(key)
+                if isinstance(rows, list):
+                    flat_units.extend(row for row in rows if isinstance(row, dict))
+            if flat_units:
+                for row in flat_units:
+                    text = str(row.get("search_text") or row.get("text") or "").strip()
+                    if not text:
+                        continue
+                    unit_id = str(row.get("id") or f"su{len(queries) + 1}").strip()
+                    source_elements = row.get("source_elements")
+                    if not isinstance(source_elements, list):
+                        source_elements = []
+                    kind = str(row.get("kind") or "").strip().lower()
+                    source = {
+                        "kind": kind,
+                        "fragments": [str(item) for item in source_elements if str(item).strip()],
+                    }
+                    channel_role = _resolve_channel_role(agent, source, agent_id)
+                    queries.append(
+                        {
+                            "agent_id": agent_id,
+                            "role": channel_role,
+                            "channel_role": channel_role,
+                            "pseudo_id": unit_id,
+                            "search_unit_id": unit_id,
+                            "search_unit_kind": kind,
+                            "center_element": row.get("center_element"),
+                            "text": text,
+                            "source": {
+                                "agent_id": agent_id,
+                                "fragments": source["fragments"],
+                                "channel_role": channel_role,
+                                "search_unit_kind": kind,
+                                "center_element": row.get("center_element"),
+                            },
+                        }
+                    )
+                continue
         pseudos = agent.get("pseudos")
         if isinstance(pseudos, list) and pseudos:
             for row in pseudos:
@@ -421,6 +484,12 @@ def _append_hit_source(
         "fragments": list(query["source"].get("fragments") or []),
         "similarity": float(similarity),
     }
+    search_unit_kind = query.get("search_unit_kind") or query["source"].get("search_unit_kind")
+    if search_unit_kind:
+        entry["search_unit_kind"] = str(search_unit_kind)
+    center_element = query.get("center_element") or query["source"].get("center_element")
+    if center_element:
+        entry["center_element"] = str(center_element)
     sources: list[dict[str, Any]] = cand.setdefault("hit_sources", [])
     for existing in sources:
         if (
@@ -467,7 +536,7 @@ def _hit_sources_above_floor(
     ]
 
 
-def _distinct_provenance_channels(
+def _distinct_signal_provenance_channels(
     cand: dict[str, Any],
     *,
     quality_floor: float,
@@ -475,7 +544,20 @@ def _distinct_provenance_channels(
     channels: set[str] = set()
     for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
         channel = _hit_source_channel_role(source)
-        if channel in _PROVENANCE_CHANNELS:
+        if channel in _SIGNAL_PROVENANCE_CHANNELS:
+            channels.add(channel)
+    return channels
+
+
+def _distinct_diagnostic_provenance_channels(
+    cand: dict[str, Any],
+    *,
+    quality_floor: float,
+) -> set[str]:
+    channels: set[str] = set()
+    for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
+        channel = _hit_source_channel_role(source)
+        if channel in _DIAGNOSTIC_PROVENANCE_CHANNELS:
             channels.add(channel)
     return channels
 
@@ -487,6 +569,8 @@ def _distinct_personas_above_floor(
 ) -> set[str]:
     personas: set[str] = set()
     for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
+        if _hit_source_channel_role(source) not in _SIGNAL_PROVENANCE_CHANNELS:
+            continue
         agent_id = str(source.get("agent_id", "")).upper()
         if agent_id:
             personas.add(agent_id)
@@ -552,6 +636,48 @@ def _distinct_agents_above_floor(
     return _composition_agents_above_floor(cand, quality_floor=quality_floor)
 
 
+def _search_unit_kinds_above_floor(
+    cand: dict[str, Any],
+    *,
+    quality_floor: float,
+) -> set[str]:
+    kinds: set[str] = set()
+    for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
+        kind = str(source.get("search_unit_kind") or "").strip().lower()
+        if kind in _SEARCH_UNIT_KINDS:
+            kinds.add(kind)
+    return kinds
+
+
+def _center_dimensions_above_floor(
+    cand: dict[str, Any],
+    *,
+    quality_floor: float,
+) -> set[str]:
+    dims: set[str] = set()
+    for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
+        center = str(source.get("center_element") or "").strip()
+        if "-" in center:
+            dims.add(center.split("-", 1)[0])
+    return dims
+
+
+def _apply_match_diagnostics(
+    cand: dict[str, Any],
+    *,
+    quality_floor: float,
+) -> None:
+    kinds = _search_unit_kinds_above_floor(cand, quality_floor=quality_floor)
+    center_dims = _center_dimensions_above_floor(cand, quality_floor=quality_floor)
+    cand["match_diagnostics"] = {
+        "surface_match": "surface-fragment-bundle" in kinds,
+        "event_match": "event-fragment-bundle" in kinds,
+        "persona_semantic_match": "persona-semantic" in kinds,
+        "search_unit_kinds": sorted(kinds),
+        "center_dimensions": sorted(center_dims),
+    }
+
+
 def _apply_quality_fields(
     cand: dict[str, Any],
     *,
@@ -562,9 +688,12 @@ def _apply_quality_fields(
     composition_agents = _composition_agents_above_floor(
         cand, quality_floor=quality_floor
     )
+    kinds = _search_unit_kinds_above_floor(cand, quality_floor=quality_floor)
     neutral_hits = len(neutral_keys)
-    neutral_vote = neutral_hits >= 1
-    composition_converge = len(composition_agents) >= 1
+    objective_match = bool(
+        {"surface-fragment-bundle", "event-fragment-bundle"} & kinds
+    ) or neutral_hits >= 1
+    semantic_match = "persona-semantic" in kinds or len(composition_agents) >= 1
 
     cand["neutral_hits"] = neutral_hits
     cand["neutral_total"] = neutral_total
@@ -572,29 +701,23 @@ def _apply_quality_fields(
         float(neutral_hits) / float(neutral_total) if neutral_total > 0 else 0.0
     )
     cand["distinct_agents"] = len(composition_agents)
-    cand["quality_candidate"] = neutral_vote and composition_converge
+    cand["quality_candidate"] = objective_match and semantic_match
 
     if cand["quality_candidate"]:
         agent_list = ",".join(_sort_agent_ids(list(composition_agents)))
         cand["quality_reason"] = (
-            f"neutral_vote=1 + composition_agents={len(composition_agents)}: {agent_list}"
+            "objective_match=1 + persona_semantic_match=1"
+            + (f"; composition_agents={len(composition_agents)}: {agent_list}" if agent_list else "")
         )
-    elif not neutral_vote and not composition_converge:
+    elif not objective_match and not semantic_match:
         cand["quality_reason"] = (
-            "neutral_vote=0 + composition_agents=0 "
-            "(neutral union + ≥1 toned/focalized required)"
+            "objective_match=0 + persona_semantic_match=0 "
+            "(surface/event match + persona-semantic hit expected)"
         )
-    elif not neutral_vote:
-        cand["quality_reason"] = (
-            f"neutral_vote=0 (neutral union required; "
-            f"composition_agents={len(composition_agents)})"
-        )
+    elif not objective_match:
+        cand["quality_reason"] = "objective_match=0 (surface/event match expected)"
     else:
-        agent_list = ",".join(_sort_agent_ids(list(composition_agents))) or "none"
-        cand["quality_reason"] = (
-            f"composition_agents=0 (≥1 toned/focalized required; "
-            f"neutral_hits={neutral_hits}, composition={agent_list})"
-        )
+        cand["quality_reason"] = "persona_semantic_match=0 (persona-semantic hit expected)"
 
 
 def _apply_convergence_fields(
@@ -602,24 +725,41 @@ def _apply_convergence_fields(
     *,
     quality_floor: float,
 ) -> None:
-    """ADR-0007 D8 layer 2: multi-channel / multi-persona convergence signals."""
-    channels = _distinct_provenance_channels(cand, quality_floor=quality_floor)
+    """Candidate funnel sort: surface/event/persona-semantic match + diversity."""
+    signal_channels = _distinct_signal_provenance_channels(
+        cand, quality_floor=quality_floor
+    )
+    diagnostic_channels = _distinct_diagnostic_provenance_channels(
+        cand, quality_floor=quality_floor
+    )
     personas = _distinct_personas_above_floor(cand, quality_floor=quality_floor)
-    channel_count = len(channels)
+    kinds = _search_unit_kinds_above_floor(cand, quality_floor=quality_floor)
+    center_dims = _center_dimensions_above_floor(cand, quality_floor=quality_floor)
+    channel_count = len(signal_channels)
     persona_count = len(personas)
-    cand["convergence_channels"] = sorted(channels)
+    surface_score = _CONVERGENT_WEIGHT_SURFACE if "surface-fragment-bundle" in kinds else 0
+    event_score = _CONVERGENT_WEIGHT_EVENT if "event-fragment-bundle" in kinds else 0
+    persona_semantic_score = (
+        _CONVERGENT_WEIGHT_PERSONA_SEMANTIC if "persona-semantic" in kinds else 0
+    )
+    cand["convergence_channels"] = sorted(signal_channels)
     cand["convergence_channel_count"] = channel_count
+    cand["diagnostic_channels"] = sorted(diagnostic_channels)
     cand["convergence_persona_count"] = persona_count
+    _apply_match_diagnostics(cand, quality_floor=quality_floor)
     cand["convergent_score"] = (
-        channel_count * _CONVERGENT_WEIGHT_CHANNEL
+        surface_score
+        + event_score
+        + persona_semantic_score
         + persona_count * _CONVERGENT_WEIGHT_PERSONA
+        + len(center_dims) * _CONVERGENT_WEIGHT_CENTER_DIMENSION
+        + channel_count * _CONVERGENT_WEIGHT_CHANNEL
         + float(cand.get("similarity", 0.0))
     )
 
 
 def _convergent_sort_key(cand: dict[str, Any]) -> tuple[Any, ...]:
     return (
-        -int(bool(cand.get("quality_candidate"))),
         -int(cand.get("convergent_score", 0.0)),
         -float(cand.get("similarity", 0.0)),
         int(cand.get("tmdb_id", 0)),
@@ -634,7 +774,13 @@ def _merge_hit_source_record(
         "agent_id": str(source.get("agent_id", "")).upper(),
         "pseudo_id": str(source.get("pseudo_id", "")).strip(),
         "channel_role": _hit_source_channel_role(source),
-        "source": {"fragments": list(source.get("fragments") or [])},
+        "search_unit_kind": source.get("search_unit_kind"),
+        "center_element": source.get("center_element"),
+        "source": {
+            "fragments": list(source.get("fragments") or []),
+            "search_unit_kind": source.get("search_unit_kind"),
+            "center_element": source.get("center_element"),
+        },
     }
     _append_hit_source(cand, query, float(source.get("similarity", 0.0)))
 
@@ -673,6 +819,7 @@ def sort_candidates_convergent(
     enriched: list[dict[str, Any]] = []
     for cand in candidates:
         row = dict(cand)
+        _apply_quality_fields(row, quality_floor=quality_floor, neutral_total=0)
         _apply_convergence_fields(row, quality_floor=quality_floor)
         enriched.append(row)
     return sorted(enriched, key=_convergent_sort_key)
@@ -740,7 +887,7 @@ def apply_candidate_funnel(
 
 @dataclass
 class PoolDiffByChannel:
-    """A/B pool diff (design-on ∖ baseline) with provenance channel decomposition."""
+    """A/B pool diff (design-on ∖ baseline) with signal + diagnostic channel decomposition."""
 
     run_id: str
     baseline_candidate_count: int
@@ -749,6 +896,7 @@ class PoolDiffByChannel:
     lost_tmdb_ids: list[int]
     overlap_count: int
     by_channel: dict[str, list[int]] = field(default_factory=dict)
+    diagnostic_by_channel: dict[str, list[int]] = field(default_factory=dict)
     net_new_details: list[dict[str, Any]] = field(default_factory=list)
 
 
@@ -756,7 +904,16 @@ def _provenance_channels_for_candidate(cand: dict[str, Any]) -> set[str]:
     channels: set[str] = set()
     for source in cand.get("hit_sources") or []:
         channel = _hit_source_channel_role(source)
-        if channel in _PROVENANCE_CHANNELS:
+        if channel in _SIGNAL_PROVENANCE_CHANNELS:
+            channels.add(channel)
+    return channels
+
+
+def _diagnostic_channels_for_candidate(cand: dict[str, Any]) -> set[str]:
+    channels: set[str] = set()
+    for source in cand.get("hit_sources") or []:
+        channel = _hit_source_channel_role(source)
+        if channel in _DIAGNOSTIC_PROVENANCE_CHANNELS:
             channels.add(channel)
     return channels
 
@@ -781,7 +938,10 @@ def compare_pool_diff_by_channel(
     lost = sorted(base_ids - design_ids)
 
     by_channel: dict[str, list[int]] = {
-        channel: [] for channel in sorted(_PROVENANCE_CHANNELS)
+        channel: [] for channel in sorted(_SIGNAL_PROVENANCE_CHANNELS)
+    }
+    diagnostic_by_channel: dict[str, list[int]] = {
+        channel: [] for channel in sorted(_DIAGNOSTIC_PROVENANCE_CHANNELS)
     }
     net_new_details: list[dict[str, Any]] = []
 
@@ -794,8 +954,11 @@ def compare_pool_diff_by_channel(
     for tmdb_id in net_new:
         cand = design_index.get(tmdb_id, {})
         channels = sorted(_provenance_channels_for_candidate(cand))
+        diagnostic_channels = sorted(_diagnostic_channels_for_candidate(cand))
         for channel in channels:
             by_channel[channel].append(tmdb_id)
+        for channel in diagnostic_channels:
+            diagnostic_by_channel[channel].append(tmdb_id)
         net_new_details.append(
             {
                 "tmdb_id": tmdb_id,
@@ -803,6 +966,7 @@ def compare_pool_diff_by_channel(
                 "similarity": cand.get("similarity"),
                 "quality_candidate": cand.get("quality_candidate"),
                 "provenance_channels": channels,
+                "diagnostic_channels": diagnostic_channels,
                 "triggered_by": cand.get("triggered_by"),
                 "convergence_channels": cand.get("convergence_channels"),
             }
@@ -816,6 +980,7 @@ def compare_pool_diff_by_channel(
         lost_tmdb_ids=lost,
         overlap_count=len(base_ids & design_ids),
         by_channel=by_channel,
+        diagnostic_by_channel=diagnostic_by_channel,
         net_new_details=net_new_details,
     )
 
@@ -829,6 +994,7 @@ def pool_diff_by_channel_to_dict(result: PoolDiffByChannel) -> dict[str, Any]:
         "net_new_tmdb_ids": result.net_new_tmdb_ids,
         "lost_tmdb_ids": result.lost_tmdb_ids,
         "by_channel": result.by_channel,
+        "diagnostic_by_channel": result.diagnostic_by_channel,
         "net_new_details": result.net_new_details,
     }
 
@@ -840,12 +1006,10 @@ def _apply_containment(
 ) -> list[dict[str, Any]]:
     if max_candidates <= 0 or len(candidates) <= max_candidates:
         return candidates
-    quality = [c for c in candidates if c.get("quality_candidate")]
-    non_quality = [c for c in candidates if not c.get("quality_candidate")]
-    sort_key = lambda item: (-item["similarity"], item["tmdb_id"])
-    quality.sort(key=sort_key)
-    non_quality.sort(key=sort_key)
-    return (quality + non_quality)[:max_candidates]
+    return sorted(
+        candidates,
+        key=lambda item: (-float(item.get("similarity", 0.0)), int(item.get("tmdb_id", 0))),
+    )[:max_candidates]
 
 
 def _group_per_agent(per_pseudo: list[dict[str, Any]]) -> list[dict[str, Any]]:

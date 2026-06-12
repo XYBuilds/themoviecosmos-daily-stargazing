@@ -14,6 +14,7 @@ import asyncio
 import copy
 import difflib
 import json
+import os
 import re
 import sys
 from dataclasses import dataclass, field
@@ -51,6 +52,21 @@ Valence = Literal["positive", "neutral", "negative"]
 Provenance = Literal["surface", "hypernym", "lens"]
 ChannelRole = Literal["neutral", "toned", "focalized"]
 CompositionChannel = Literal["toned", "focalized"]
+FragmentLevel = Literal[
+    "surface",
+    "alias",
+    "objective_close",
+    "objective_mid",
+    "objective_broad",
+    "interpretive",
+    "perspective",
+    "persona_relative",
+]
+SearchUnitKind = Literal[
+    "surface-fragment-bundle",
+    "event-fragment-bundle",
+    "persona-semantic",
+]
 
 NEUTRAL_PSEUDO_ID = "n1"
 _COMPOSITION_MARKER = "Composition mode: ADR-0008"
@@ -59,12 +75,31 @@ _COMPOSITION_MARKER = "Composition mode: ADR-0008"
 _SALIENCE_TOP_K_DEFAULT = 5
 _SALIENCE_TOP_K_MIN = 4
 _SALIENCE_TOP_K_MAX = 5
-_ELEMENT_ID_RE = re.compile(r"^(who|where|why|how|result)-\d+$")
+_ELEMENT_ID_RE = re.compile(r"^(when|who|where|why|how|result)-\d+$")
 
 # ADR-0008 composition: salience-ranked pseudo budget (toned + focalized legs).
 _ADR8_TONED_BUDGET_DEFAULT = 3
 _ADR8_SUPPORTING_MIN = 2
 _ADR8_SUPPORTING_MAX = 4
+_ADR8_DUAL_FLOOR_ENV = "ADR8_DUAL_FLOOR_ENABLED"
+
+
+def adr8_dual_floor_enabled(*, enable_dual_floor: bool | None = None) -> bool:
+    """ADR-0008 D5 dual floor guard toggle (env default: off)."""
+    if enable_dual_floor is not None:
+        return enable_dual_floor
+    load_env()
+    return os.getenv(_ADR8_DUAL_FLOOR_ENV, "false").strip().lower() in (
+        "1",
+        "true",
+        "yes",
+    )
+
+
+def center_kind_from_element_id(center: str) -> str:
+    """Element-centered pseudo identity: who / where / why / how / result."""
+    m = re.match(r"^(who|where|why|how|result)-", str(center).strip())
+    return m.group(1) if m else "unknown"
 
 # ADR-0008 runtime fact guard (inner monologue / novel events / causality / outcomes).
 _INNER_MONOLOGUE_RE = re.compile(
@@ -128,7 +163,7 @@ def list_persona_ids(ssot_path: Path | None = None) -> list[str]:
         raise ValueError(f"expected 12 persona_ids in {path}, got {len(ids)}: {ids}")
     return ids
 
-_ELEMENT_SECTIONS: tuple[str, ...] = ("who", "where", "why", "how", "result")
+_ELEMENT_SECTIONS: tuple[str, ...] = ("when", "who", "where", "why", "how", "result")
 
 # Top-level decon keys that must not appear on alt-pool overlay (P-SSOT: no fork).
 _DECON_TOP_LEVEL_KEYS: frozenset[str] = frozenset(
@@ -139,6 +174,22 @@ _VALID_VALENCES: frozenset[str] = frozenset({"positive", "neutral", "negative"})
 _VALID_PROVENANCES: frozenset[str] = frozenset({"surface", "hypernym", "lens"})
 _CHANNEL_ROLES: frozenset[str] = frozenset({"neutral", "toned", "focalized"})
 _COMPOSITION_CHANNELS: frozenset[str] = frozenset({"toned", "focalized"})
+_OBJECTIVE_FRAGMENT_LEVELS: frozenset[str] = frozenset(
+    {"surface", "alias", "objective_close", "objective_mid", "objective_broad"}
+)
+_INTERPRETIVE_FRAGMENT_LEVELS: frozenset[str] = frozenset(
+    {"interpretive", "perspective", "persona_relative"}
+)
+_FRAGMENT_LEVEL_WEIGHTS: dict[str, float] = {
+    "surface": 1.0,
+    "alias": 0.95,
+    "objective_close": 0.82,
+    "objective_mid": 0.58,
+    "objective_broad": 0.34,
+    "interpretive": 0.38,
+    "perspective": 0.34,
+    "persona_relative": 0.34,
+}
 
 _SYSTEM_ALT = (
     "You are a persona alt-creator. Follow the user message exactly. "
@@ -156,6 +207,85 @@ class AltTerm:
     term: str
     valence: str
     provenance: str | None = None
+
+
+@dataclass
+class FragmentTerm:
+    text: str
+    weight: float
+    level: FragmentLevel
+    element_id: str
+
+
+@dataclass
+class FragmentLadder:
+    element_id: str
+    dimension: str
+    fragments: list[FragmentTerm]
+
+    def objective_fragments(self) -> list[FragmentTerm]:
+        return [
+            item
+            for item in self.fragments
+            if item.level in _OBJECTIVE_FRAGMENT_LEVELS
+        ]
+
+    def interpretive_fragments(self) -> list[FragmentTerm]:
+        return [
+            item
+            for item in self.fragments
+            if item.level in _INTERPRETIVE_FRAGMENT_LEVELS
+        ]
+
+    def to_dict(self) -> dict[str, Any]:
+        payload: dict[str, Any] = {
+            "element_id": self.element_id,
+            "dimension": self.dimension,
+        }
+        for fragment in self.fragments:
+            bucket = payload.setdefault(fragment.level, [])
+            bucket.append({"text": fragment.text, "weight": fragment.weight})
+        return payload
+
+
+@dataclass
+class SearchUnit:
+    id: str
+    kind: SearchUnitKind
+    search_text: str
+    source_elements: list[str]
+    fragments: list[FragmentTerm] = field(default_factory=list)
+    persona_id: str | None = None
+    center_element: str | None = None
+    supporting_elements: list[str] = field(default_factory=list)
+    fit: str | float | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        payload: dict[str, Any] = {
+            "id": self.id,
+            "kind": self.kind,
+            "source_elements": list(self.source_elements),
+            "search_text": self.search_text,
+        }
+        if self.fragments:
+            payload["fragments"] = [
+                {
+                    "element_id": item.element_id,
+                    "level": item.level,
+                    "text": item.text,
+                    "weight": item.weight,
+                }
+                for item in self.fragments
+            ]
+        if self.persona_id:
+            payload["persona_id"] = self.persona_id
+        if self.center_element:
+            payload["center_element"] = self.center_element
+        if self.supporting_elements:
+            payload["supporting_elements"] = list(self.supporting_elements)
+        if self.fit is not None:
+            payload["fit"] = self.fit
+        return payload
 
 
 @dataclass
@@ -197,6 +327,7 @@ class PersonaPipelineResult:
     persona_id: str
     overlay: AltPoolOverlay
     pseudos: list[PseudoSegment] = field(default_factory=list)
+    workflow: dict[str, Any] = field(default_factory=dict)
     warnings: list[str] = field(default_factory=list)
     repair_retries: list[dict[str, str]] = field(default_factory=list)
     error: str | None = None
@@ -248,14 +379,12 @@ def _alt_term_to_dict(term: AltTerm) -> dict[str, str]:
 
 
 def _resolve_provenance(valence: str, explicit: str | None) -> str:
-    """Default provenance when alt-creator omits the tag (ADR-0005)."""
+    """Resolve provenance independently from valence; valence is annotation only."""
     if explicit:
         prov = explicit.strip().lower()
         if prov not in _VALID_PROVENANCES:
             raise ValueError(f"invalid provenance {explicit!r} (expected surface|hypernym|lens)")
         return prov
-    if valence in ("positive", "negative"):
-        return "lens"
     return "lens"
 
 
@@ -327,6 +456,243 @@ def collect_lens_terms(alt_pool: AltPoolOverlay) -> set[str]:
             if prov == "lens":
                 terms.add(alt.term.lower())
     return terms
+
+
+def _fragment_dimension(element_id: str) -> str:
+    return element_id.split("-", 1)[0] if "-" in element_id else "unknown"
+
+
+def _add_ladder_fragment(
+    fragments: list[FragmentTerm],
+    seen: set[tuple[str, str]],
+    *,
+    element_id: str,
+    text: str,
+    level: FragmentLevel,
+    weight: float | None = None,
+) -> None:
+    cleaned = " ".join(str(text).strip().split())
+    if not cleaned:
+        return
+    key = (level, cleaned.lower())
+    if key in seen:
+        return
+    seen.add(key)
+    fragments.append(
+        FragmentTerm(
+            text=cleaned,
+            weight=float(weight if weight is not None else _FRAGMENT_LEVEL_WEIGHTS[level]),
+            level=level,
+            element_id=element_id,
+        )
+    )
+
+
+def build_fragment_ladders(
+    alt_pool: AltPoolOverlay,
+    expansion: dict[str, Any] | None = None,
+) -> dict[str, FragmentLadder]:
+    """Build fragment ladders by folding old surface/hypernym/lens material into levels."""
+    by_id = expansion_elements_by_id(expansion)
+    ladders: dict[str, FragmentLadder] = {}
+    for element in alt_pool.elements:
+        fragments: list[FragmentTerm] = []
+        seen: set[tuple[str, str]] = set()
+        eid = element.element_id
+        _add_ladder_fragment(
+            fragments,
+            seen,
+            element_id=eid,
+            text=element.original_term,
+            level="surface",
+        )
+        for alt in element.alternatives:
+            provenance = alt.provenance or _resolve_provenance(alt.valence, None)
+            if provenance == "surface":
+                level: FragmentLevel = "alias"
+            elif provenance == "hypernym":
+                level = "objective_close"
+            else:
+                level = "interpretive"
+            _add_ladder_fragment(
+                fragments,
+                seen,
+                element_id=eid,
+                text=alt.term,
+                level=level,
+            )
+        row = by_id.get(eid)
+        if row:
+            _add_ladder_fragment(
+                fragments,
+                seen,
+                element_id=eid,
+                text=str(row.get("surface", "") or ""),
+                level="surface",
+            )
+            for raw in row.get("hypernyms") or []:
+                _add_ladder_fragment(
+                    fragments,
+                    seen,
+                    element_id=eid,
+                    text=str(raw),
+                    level="objective_close",
+                )
+        ladders[eid] = FragmentLadder(
+            element_id=eid,
+            dimension=_fragment_dimension(eid),
+            fragments=fragments,
+        )
+    return ladders
+
+
+def fragment_ladders_to_dict(
+    ladders: dict[str, FragmentLadder],
+) -> dict[str, Any]:
+    return {"elements": [ladders[eid].to_dict() for eid in sorted(ladders)]}
+
+
+def _fragments_for_elements(
+    ladders: dict[str, FragmentLadder],
+    element_ids: list[str],
+    *,
+    objective_only: bool,
+) -> list[FragmentTerm]:
+    out: list[FragmentTerm] = []
+    seen: set[tuple[str, str, str]] = set()
+    for eid in element_ids:
+        ladder = ladders.get(eid)
+        if not ladder:
+            continue
+        fragments = ladder.objective_fragments() if objective_only else ladder.fragments
+        for fragment in fragments:
+            key = (fragment.element_id, fragment.level, fragment.text.lower())
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(fragment)
+    return out
+
+
+def build_fragment_bundle_search_units(
+    ladders: dict[str, FragmentLadder],
+) -> list[SearchUnit]:
+    """Build surface/event fragment bundles from objective ladder levels only."""
+    surface_ids = [
+        eid
+        for eid, ladder in ladders.items()
+        if ladder.dimension in {"when", "where", "who"}
+    ]
+    event_ids = [
+        eid
+        for eid, ladder in ladders.items()
+        if ladder.dimension in {"why", "how", "result"}
+    ]
+    units: list[SearchUnit] = []
+    if surface_ids:
+        fragments = _fragments_for_elements(ladders, surface_ids, objective_only=True)
+        units.append(
+            SearchUnit(
+                id="su-surface-1",
+                kind="surface-fragment-bundle",
+                source_elements=surface_ids,
+                fragments=fragments,
+                search_text="; ".join(item.text for item in fragments),
+            )
+        )
+    if event_ids:
+        fragments = _fragments_for_elements(ladders, event_ids, objective_only=True)
+        units.append(
+            SearchUnit(
+                id="su-event-1",
+                kind="event-fragment-bundle",
+                source_elements=event_ids,
+                fragments=fragments,
+                search_text="; ".join(item.text for item in fragments),
+            )
+        )
+    return units
+
+
+def search_unit_from_pseudo(
+    pseudo: PseudoSegment,
+    *,
+    persona_id: str,
+) -> SearchUnit:
+    center = str(pseudo.source.get("center", "")).strip()
+    supporting = _supporting_fragments(pseudo)
+    source_elements = [center, *supporting] if center else supporting
+    return SearchUnit(
+        id=f"su-persona-{persona_id}-{pseudo.id}",
+        kind="persona-semantic",
+        persona_id=persona_id,
+        center_element=center or None,
+        supporting_elements=supporting,
+        source_elements=list(dict.fromkeys(source_elements)),
+        search_text=pseudo.text,
+        fit=pseudo.fit,
+    )
+
+
+def validate_search_unit(
+    unit: SearchUnit,
+    known_elements: set[str],
+) -> None:
+    if unit.kind in {"surface-fragment-bundle", "event-fragment-bundle"}:
+        illegal = [
+            item
+            for item in unit.fragments
+            if item.level not in _OBJECTIVE_FRAGMENT_LEVELS
+        ]
+        if illegal:
+            raise ValueError(f"{unit.id}: fragment bundle cannot use interpretive levels")
+        if unit.persona_id:
+            raise ValueError(f"{unit.id}: fragment bundle must not bind persona")
+    if unit.kind == "persona-semantic":
+        if not unit.persona_id:
+            raise ValueError(f"{unit.id}: persona-semantic requires persona_id")
+        if not unit.center_element or unit.center_element not in known_elements:
+            raise ValueError(f"{unit.id}: invalid center_element {unit.center_element!r}")
+        if len(unit.supporting_elements) > _ADR8_SUPPORTING_MAX:
+            raise ValueError(f"{unit.id}: too many supporting_elements")
+    for eid in [*unit.source_elements, *unit.supporting_elements]:
+        if eid and eid not in known_elements:
+            raise ValueError(f"{unit.id}: unknown source element {eid!r}")
+
+
+def build_search_units_payload(
+    *,
+    persona_id: str,
+    alt_pool: AltPoolOverlay,
+    pseudos: list[PseudoSegment],
+    expansion: dict[str, Any] | None,
+    known_elements: set[str],
+) -> dict[str, Any]:
+    ladders = build_fragment_ladders(alt_pool, expansion)
+    bundle_units = build_fragment_bundle_search_units(ladders)
+    persona_units = [
+        search_unit_from_pseudo(pseudo, persona_id=persona_id)
+        for pseudo in pseudos
+        if pseudo.source.get("channel") in _COMPOSITION_CHANNELS
+    ]
+    for unit in [*bundle_units, *persona_units]:
+        validate_search_unit(unit, known_elements)
+    return {
+        "fragment_ladders": fragment_ladders_to_dict(ladders),
+        "search_units": {
+            "surface_fragment_bundles": [
+                unit.to_dict()
+                for unit in bundle_units
+                if unit.kind == "surface-fragment-bundle"
+            ],
+            "event_fragment_bundles": [
+                unit.to_dict()
+                for unit in bundle_units
+                if unit.kind == "event-fragment-bundle"
+            ],
+            "persona_semantic_units": [unit.to_dict() for unit in persona_units],
+        },
+    }
 
 
 def _fragment_text_for_id(ann: dict[str, Any], fragment_id: str) -> str | None:
@@ -665,9 +1031,9 @@ def inject_adr8_composition_mode(
         "above is **active**. Follow it exactly.\n\n"
         "Injected salience ranking (greedy top-down center selection):\n\n"
         f"```json\n{salience_json}\n```\n\n"
-        "Each toned/focalized pseudo **must** declare `center`, `channel`, and `focal` "
-        "(when `channel` is `focalized`). At least one pseudo must be non-focalized "
-        "third-person toned (dual floor).\n"
+        "Each toned/focalized pseudo **must** declare `center` and `channel`; `focal` "
+        "is optional diagnostic provenance when the wording genuinely reads as a viewpoint "
+        "shift. At least one pseudo must be non-focalized third-person toned (dual floor).\n"
     )
     return prompt + block
 
@@ -742,12 +1108,15 @@ def apply_adr8_pseudo_budget(
     salience: list[str],
     *,
     budget: int = _ADR8_TONED_BUDGET_DEFAULT,
+    enable_dual_floor: bool | None = None,
 ) -> list[PseudoSegment]:
     """Greedy salience-ranked budget; preserve dual floor (≥1 non-focalized toned)."""
     ranked = rank_adr8_pseudos_by_salience(pseudos, salience)
     if len(ranked) <= budget:
         return ranked
     trimmed = ranked[:budget]
+    if not adr8_dual_floor_enabled(enable_dual_floor=enable_dual_floor):
+        return trimmed
     if any(p.source.get("channel") == "toned" for p in trimmed):
         return trimmed
     best_toned = next((p for p in ranked if p.source.get("channel") == "toned"), None)
@@ -849,11 +1218,12 @@ def attach_adr8_provenance(
     pseudo: PseudoSegment,
     salience: list[str],
 ) -> None:
-    """Stamp provenance tags: center, channel, focal, salience_rank, composition_mode."""
+    """Stamp provenance tags: center, center_kind, element_centered role, salience_rank."""
     center = str(pseudo.source.get("center", ""))
     pseudo.source["composition_mode"] = "ADR-0008"
-    pseudo.source["channel_role"] = str(pseudo.source.get("channel", "toned"))
+    pseudo.source["channel_role"] = "element_centered"
     if center:
+        pseudo.source["center_kind"] = center_kind_from_element_id(center)
         pseudo.source["salience_rank"] = salience_rank_of_center(center, salience)
     if pseudo.source.get("channel") == "focalized" and pseudo.source.get("focal"):
         pseudo.source["focal_role_id"] = pseudo.source["focal"]
@@ -959,23 +1329,8 @@ def validate_focal_char_in_decon_who(
     pseudo: PseudoSegment,
     known_elements: set[str],
 ) -> None:
-    """focal ∈ decon who-*; required and equal to center when channel=focalized."""
-    channel = str(pseudo.source.get("channel", "toned"))
-    focal = str(pseudo.source.get("focal", "")).strip()
-    center = str(pseudo.source.get("center", "")).strip()
-    if channel != "focalized":
-        return
-    if not focal:
-        raise ValueError(f"pseudo {pseudo.id}: focal required when channel=focalized")
-    if not focal.startswith("who-"):
-        raise ValueError(f"pseudo {pseudo.id}: illegal focal {focal!r} (must be who-*)")
-    if focal not in known_elements:
-        raise ValueError(f"pseudo {pseudo.id}: illegal focal element {focal!r}")
-    if center.startswith("who-") and focal != center:
-        raise ValueError(
-            f"pseudo {pseudo.id}: when center is who-*, focal {focal!r} "
-            f"must equal center {center!r}"
-        )
+    """focal is diagnostic-only; never reject a pseudo for focal metadata."""
+    return None
 
 
 def validate_adr8_fact_guard(
@@ -1027,7 +1382,7 @@ def validate_adr8_fact_guard(
 
 
 def validate_adr8_dual_floor(pseudos: list[PseudoSegment]) -> None:
-    """≥1 non-focalized third-person toned pseudo among ADR-0008 legs."""
+    """≥1 third-person toned pseudo among ADR-0008 legs."""
     toned_count = sum(1 for p in pseudos if p.source.get("channel") == "toned")
     if toned_count < 1:
         raise ValueError(
@@ -1044,9 +1399,10 @@ def validate_adr8_runtime_guards(
     expansion: dict[str, Any] | None = None,
     hypernyms: set[str] | None = None,
     check_hypernym: bool = True,
-    check_dual_floor: bool = True,
+    check_dual_floor: bool | None = None,
 ) -> None:
-    """ADR-0008 runtime guards: center/focal/supporting/fact/hypernym/dual-floor."""
+    """ADR-0008 runtime guards: center/supporting/fact/hypernym/dual-floor."""
+    dual_floor_on = adr8_dual_floor_enabled(enable_dual_floor=check_dual_floor)
     vocab = collect_entailed_vocabulary(deconstruction, alt_pool, expansion)
     allowed_proper = _allowed_proper_noun_phrases(deconstruction, alt_pool, expansion)
     hypernym_terms = hypernyms if hypernyms is not None else collect_hypernym_anchor_terms(
@@ -1067,8 +1423,61 @@ def validate_adr8_runtime_guards(
         if check_hypernym:
             validate_toned_hypernym_anchor(pseudo, hypernym_terms)
 
-    if check_dual_floor:
+    if dual_floor_on:
         validate_adr8_dual_floor(pseudos)
+
+
+def filter_adr8_pseudos_individually(
+    pseudos: list[PseudoSegment],
+    *,
+    deconstruction: dict[str, Any],
+    alt_pool: AltPoolOverlay,
+    known_elements: set[str],
+    expansion: dict[str, Any] | None = None,
+    hypernyms: set[str] | None = None,
+    check_hypernym: bool = False,
+) -> tuple[list[PseudoSegment], list[dict[str, str]]]:
+    """Drop failing pseudos individually; persona continues when ≥1 valid leg remains."""
+    vocab = collect_entailed_vocabulary(deconstruction, alt_pool, expansion)
+    allowed_proper = _allowed_proper_noun_phrases(deconstruction, alt_pool, expansion)
+    hypernym_terms = (
+        hypernyms
+        if hypernyms is not None
+        else collect_hypernym_anchor_terms(alt_pool, expansion)
+    )
+
+    kept: list[PseudoSegment] = []
+    drop_reasons: list[dict[str, str]] = []
+    seen_centers: set[str] = set()
+
+    for pseudo in pseudos:
+        try:
+            validate_center_in_decon(pseudo, known_elements)
+            validate_supporting_element_cap(pseudo)
+            validate_focal_char_in_decon_who(pseudo, known_elements)
+            validate_adr8_fact_guard(
+                pseudo,
+                deconstruction=deconstruction,
+                vocab=vocab,
+                allowed_proper_nouns=allowed_proper,
+            )
+            if check_hypernym:
+                validate_toned_hypernym_anchor(pseudo, hypernym_terms)
+            center = str(pseudo.source.get("center", "")).strip()
+            if center in seen_centers:
+                drop_reasons.append(
+                    {
+                        "pseudo_id": pseudo.id,
+                        "reason": f"duplicate center element {center!r}",
+                    }
+                )
+                continue
+            seen_centers.add(center)
+            kept.append(pseudo)
+        except ValueError as exc:
+            drop_reasons.append({"pseudo_id": pseudo.id, "reason": str(exc)})
+
+    return kept, drop_reasons
 
 
 def parse_adr8_pseudos_response(
@@ -1080,6 +1489,8 @@ def parse_adr8_pseudos_response(
     deconstruction: dict[str, Any] | None = None,
     alt_pool: AltPoolOverlay | None = None,
     expansion: dict[str, Any] | None = None,
+    enable_dual_floor: bool | None = None,
+    drop_reasons: list[dict[str, str]] | None = None,
 ) -> list[PseudoSegment]:
     """Parse screenwriter JSON with center/channel/focal provenance fields."""
     data = extract_json_object(raw)
@@ -1105,24 +1516,15 @@ def parse_adr8_pseudos_response(
             raise ValueError(f"pseudo {seg.id}: unknown center element {center!r}")
         channel = _parse_composition_channel(row)
         focal = str(row.get("focal", "")).strip() or None
-        if channel == "focalized":
-            if not focal:
-                raise ValueError(f"pseudo {seg.id}: focal required when channel=focalized")
-            if not focal.startswith("who-"):
-                raise ValueError(f"pseudo {seg.id}: focal must be who-* id, got {focal!r}")
-            if focal not in known_elements:
-                raise ValueError(f"pseudo {seg.id}: unknown focal element {focal!r}")
-            if center.startswith("who-") and focal != center:
-                raise ValueError(
-                    f"pseudo {seg.id}: when center is who-*, focal {focal!r} "
-                    f"must equal center {center!r}"
-                )
-        elif focal:
+        if focal and (not focal.startswith("who-") or focal not in known_elements):
             seg = PseudoSegment(
                 seg.id,
                 seg.text,
                 seg.source,
-                [*seg.warnings, f"ignored focal {focal!r} on toned channel"],
+                [
+                    *seg.warnings,
+                    f"diagnostic focal {focal!r} ignored: not an existing who-* element",
+                ],
                 fit=seg.fit,
             )
             focal = None
@@ -1131,8 +1533,9 @@ def parse_adr8_pseudos_response(
         source.update(
             {
                 "center": center,
+                "center_kind": center_kind_from_element_id(center),
                 "channel": channel,
-                "channel_role": channel,
+                "channel_role": "element_centered",
             }
         )
         if focal:
@@ -1147,18 +1550,32 @@ def parse_adr8_pseudos_response(
             )
         )
 
+    dual_floor_on = adr8_dual_floor_enabled(enable_dual_floor=enable_dual_floor)
     if deconstruction is not None and alt_pool is not None:
-        validate_adr8_runtime_guards(
+        kept, drops = filter_adr8_pseudos_individually(
             tagged,
             deconstruction=deconstruction,
             alt_pool=alt_pool,
             known_elements=known_elements,
             expansion=expansion,
             check_hypernym=False,
-            check_dual_floor=True,
         )
-    else:
-        validate_center_mutual_exclusion(tagged)
+        if drop_reasons is not None:
+            drop_reasons.extend(drops)
+        if dual_floor_on:
+            try:
+                validate_adr8_dual_floor(kept)
+            except ValueError as exc:
+                if drop_reasons is not None:
+                    drop_reasons.append({"pseudo_id": "*", "reason": str(exc)})
+                kept = []
+        if not kept:
+            detail = drops[0]["reason"] if drops else "no valid pseudos after guard filter"
+            raise ValueError(detail)
+        return kept
+
+    validate_center_mutual_exclusion(tagged)
+    if dual_floor_on:
         validate_adr8_dual_floor(tagged)
 
     return tagged
@@ -1174,6 +1591,8 @@ def assemble_adr8_channel_pseudos(
     top_k: int = _SALIENCE_TOP_K_DEFAULT,
     budget: int = _ADR8_TONED_BUDGET_DEFAULT,
     neutral_override: PseudoSegment | None = None,
+    enable_dual_floor: bool | None = None,
+    drop_reasons: list[dict[str, str]] | None = None,
 ) -> list[PseudoSegment]:
     """ADR-0008: code-built neutral n1 (wording unchanged) + salience-ranked legs."""
     salience = list(alt_pool.salience)
@@ -1185,10 +1604,16 @@ def assemble_adr8_channel_pseudos(
         attach_adr8_provenance(pseudo, salience)
 
     ranked = rank_adr8_pseudos_by_salience(adr8_legs, salience)
-    budgeted = apply_adr8_pseudo_budget(ranked, salience, budget=budget)
+    dual_floor_on = adr8_dual_floor_enabled(enable_dual_floor=enable_dual_floor)
+    budgeted = apply_adr8_pseudo_budget(
+        ranked,
+        salience,
+        budget=budget,
+        enable_dual_floor=dual_floor_on,
+    )
 
     hypernyms = collect_hypernym_anchor_terms(alt_pool, expansion)
-    validate_adr8_runtime_guards(
+    budgeted, assembly_drops = filter_adr8_pseudos_individually(
         budgeted,
         deconstruction=deconstruction,
         alt_pool=alt_pool,
@@ -1196,8 +1621,16 @@ def assemble_adr8_channel_pseudos(
         expansion=expansion,
         hypernyms=hypernyms,
         check_hypernym=True,
-        check_dual_floor=True,
     )
+    if drop_reasons is not None:
+        drop_reasons.extend(assembly_drops)
+    if dual_floor_on and budgeted:
+        try:
+            validate_adr8_dual_floor(budgeted)
+        except ValueError as exc:
+            if drop_reasons is not None:
+                drop_reasons.append({"pseudo_id": "*", "reason": str(exc)})
+            budgeted = []
     for pseudo in budgeted:
         pseudo.source["agent_id"] = persona_id
         pseudo.warnings.extend(
@@ -1771,10 +2204,19 @@ async def run_persona_pipeline(
                 error=retry_asm,
             )
 
+    workflow_payload = build_search_units_payload(
+        persona_id=persona_id,
+        alt_pool=alt_pool,
+        pseudos=channel_pseudos,
+        expansion=expansion,
+        known_elements=known_element_ids(dec),
+    )
+
     return PersonaPipelineResult(
         persona_id=persona_id,
         overlay=alt_pool,
         pseudos=channel_pseudos,
+        workflow=workflow_payload,
         repair_retries=repair_retries,
     )
 
@@ -1786,6 +2228,8 @@ def pipeline_result_to_dict(result: PersonaPipelineResult) -> dict[str, Any]:
         "pseudos": [pseudo_to_dict(p) for p in result.pseudos],
         "warnings": result.warnings,
     }
+    if result.workflow:
+        payload.update(result.workflow)
     if result.repair_retries:
         payload["repair_retries"] = result.repair_retries
     if result.error:

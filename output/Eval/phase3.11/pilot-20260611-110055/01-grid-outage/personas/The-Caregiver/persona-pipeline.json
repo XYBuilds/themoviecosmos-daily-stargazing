@@ -1,0 +1,506 @@
+{
+  "persona_id": "The-Caregiver",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Caregiver",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "the guardian of the grid's stability",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the power system overseer",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "grid operator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the entity that triggered the emergency",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power's Unit 2",
+          "alternatives": [
+            {
+              "term": "the critical power source that failed the community",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the disabled generating unit",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "power plant unit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "protective authorities managing the crisis",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "decision-makers",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "officials",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "those who ordered the power cuts",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Eleven generators",
+          "alternatives": [
+            {
+              "term": "the vulnerable energy suppliers left exposed",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the affected power plants",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "generators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the sources of the power shortfall",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Visayas",
+          "alternatives": [
+            {
+              "term": "the community left in the dark",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the affected region",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "Visayas",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the area bearing the brunt of the outage",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "the failure that left families powerless",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the unit's unexpected shutdown",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "equipment failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "prolonged neglect of critical infrastructure",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "extended maintenance periods",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "plant outages",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "dangerous heatwave stressing the vulnerable system",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "high seasonal demand",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "demand pressure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "the cascading failure began",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the unit went offline",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "system failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "the urgent warning was sounded to protect the grid",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a red alert was declared",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "alert status",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "emergency measures to prevent a wider blackout",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "load shedding was implemented",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "power rationing",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "forced power cuts that harmed households",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "a massive power shortage affecting countless homes",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a significant generation deficit",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "power unavailability",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "who-1",
+      "who-3",
+      "why-0",
+      "how-2",
+      "why-2"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "more than 950 megawatts unavailable. Kepco SPC Power's Unit 2. Eleven generators. Kepco SPC Power's Unit 2 tripped offline. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading The event unfolds across power unavailability and power shortage.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "result-0",
+          "who-1",
+          "who-3",
+          "why-0",
+          "how-2"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "power unavailability",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kepco SPC Power's Unit 2",
+            "provenance": "surface"
+          },
+          {
+            "term": "power plant unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "generating unit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power plant component",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy infrastructure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Eleven generators",
+            "provenance": "surface"
+          },
+          {
+            "term": "generators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power generators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy assets",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kepco SPC Power's Unit 2 tripped offline",
+            "provenance": "surface"
+          },
+          {
+            "term": "equipment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power outage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid incident",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+            "provenance": "surface"
+          },
+          {
+            "term": "power rationing",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "load shedding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency measure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid stabilization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "control action",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The cascading failure began when Kepco SPC Power's Unit 2 tripped offline, leaving the community in the dark. This equipment failure, combined with prolonged plant outages, resulted in a massive power shortage affecting countless homes in the Visayas. The critical power source that failed the community was disabled, forcing authorities to declare a red alert to protect the grid from further collapse.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "center": "who-1",
+        "center_kind": "who",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "Eleven generators, the vulnerable energy suppliers left exposed, became the sources of the power shortfall after the initial grid incident. The sudden unavailability of these power generators, coupled with seasonal heat driving demand into a thin operating margin, created an energy deficit that officials struggled to manage, leading to emergency measures to prevent a wider blackout.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-2",
+          "how-2",
+          "result-0"
+        ],
+        "center": "who-3",
+        "center_kind": "who",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 2
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "From the perspective of the Philippines grid operator, the guardian of the grid's stability, the sudden equipment failure triggered an urgent response. The unit's unexpected shutdown demanded immediate grid management action, culminating in load shedding to stabilize the critical 230-kilovolt line and avert a capacity loss across the region.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "how-2"
+        ],
+        "center": "who-0",
+        "center_kind": "who",
+        "channel": "focalized",
+        "channel_role": "element_centered",
+        "focal": "who-0",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 6,
+        "focal_role_id": "who-0"
+      },
+      "warnings": [
+        "pseudo p3: focalized channel but center 'who-0' does not instantiate a card vantage seat"
+      ],
+      "fit": 0.9
+    }
+  ],
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"The cascading failure began when Kepco SPC Power's Unit 2 tripped offline, leaving the community in the dark. This equipment failure, combined with prolonged plant outages, resulted in a massive power shortage affecting countless homes in the Visayas. The critical power source that failed the community was disabled, forcing authorities to declare a red alert to protect the grid from further collapse.\",\n      \"fit\": 0.85,\n      \"center\": \"who-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-0\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"Eleven generators, the vulnerable energy suppliers left exposed, became the sources of the power shortfall after the initial grid incident. The sudden unavailability of these power generators, coupled with seasonal heat driving demand into a thin operating margin, created an energy deficit that officials struggled to manage, leading to emergency measures to prevent a wider blackout.\",\n      \"fit\": 0.78,\n      \"center\": \"who-3\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-2\", \"how-2\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"From the perspective of the Philippines grid operator, the guardian of the grid's stability, the sudden equipment failure triggered an urgent response. The unit's unexpected shutdown demanded immediate grid management action, culminating in load shedding to stabilize the critical 230-kilovolt line and avert a capacity loss across the region.\",\n      \"fit\": 0.90,\n      \"center\": \"who-0\",\n      \"channel\": \"focalized\",\n      \"focal\": \"who-0\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-1\", \"how-2\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 3,
+    "dropped_pseudos": 0,
+    "drop_reasons": []
+  }
+}

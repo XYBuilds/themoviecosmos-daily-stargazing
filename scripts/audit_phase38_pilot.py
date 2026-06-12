@@ -132,15 +132,15 @@ def audit_run(run_dir: Path) -> dict[str, Any]:
     retrieve_path = run_dir / "retrieve.json"
     retrieve = json.loads(retrieve_path.read_text(encoding="utf-8"))
     candidates = retrieve.get("candidates") or []
-    quality = [c for c in candidates if c.get("quality_candidate")]
+    annotations = [c for c in candidates if c.get("quality_candidate")]
     max_neutral_hits = max((c.get("neutral_hits", 0) for c in candidates), default=0)
     neutral_total = next(
         (c.get("neutral_total") for c in candidates if c.get("neutral_total")),
         neutral_count,
     )
-    # Collision gate: neutral union contributes one binary vote (neutral_vote=1), not per-persona.
+    # Collision diagnostic: neutral union contributes one binary vote (neutral_vote=1), not per-persona.
     union_vote_ok = any(
-        "neutral_vote=1" in str(c.get("quality_reason", "")) for c in quality
+        "neutral_vote=1" in str(c.get("quality_reason", "")) for c in annotations
     )
 
     report["neutral_channel"] = {
@@ -161,7 +161,7 @@ def audit_run(run_dir: Path) -> dict[str, Any]:
     }
     report["retrieve"] = {
         "candidate_count": len(candidates),
-        "quality_candidate_count": len(quality),
+        "convergence_annotation_count": len(annotations),
         "meta": retrieve.get("meta") or {},
     }
     report["firewall"] = {
@@ -205,7 +205,7 @@ def render_markdown(report: dict[str, Any], run_id: str) -> str:
             f"| 3 | 12 neutrals = objective floor; collision = 1 vote | "
             f"{neu['neutral_pseudo_count']}/12 neutrals; union_vote={neu['collision_union_one_vote']} "
             f"(neutral_hits diag max={neu['max_neutral_hits_on_candidate']}) | "
-            f"Spot-check neutrals have no persona lens; confirm quality_reason shows neutral_vote=1 |",
+            f"Spot-check neutrals have no persona lens; quality_reason is diagnostic only |",
             f"| 4 | Toned hypernym anchor, on-topic | "
             f"{neu['toned_pseudo_count']} toned; anchor errors={len(toned['missing_anchor_errors'])} | "
             f"Read toned pseudos vs news; confirm anchors not decorative |",
@@ -230,7 +230,7 @@ def render_markdown(report: dict[str, Any], run_id: str) -> str:
             f"- Neutral pseudos: {neu['neutral_pseudo_count']} · toned: {neu['toned_pseudo_count']}",
             f"- Max neutral_hits diagnostic on any candidate: {neu['max_neutral_hits_on_candidate']} "
             f"(union vote binary: {neu['collision_union_one_vote']})",
-            f"- Quality candidates: {report['retrieve']['quality_candidate_count']}",
+            f"- Convergence annotations: {report['retrieve']['convergence_annotation_count']}",
             "",
             "### 4 · Toned anchors",
             f"- Status: **{status(toned['pass'])}**",

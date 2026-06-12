@@ -32,6 +32,92 @@ def _cand(
     }
 
 
+class SearchUnitFunnelTests(unittest.TestCase):
+    def test_surface_event_persona_semantic_match_beats_plain_single_pseudo(self) -> None:
+        plain = _cand(
+            1,
+            similarity=0.99,
+            hit_sources=[
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "p1",
+                    "channel_role": "toned",
+                    "similarity": 0.99,
+                    "fragments": [],
+                }
+            ],
+        )
+        structured = _cand(
+            2,
+            similarity=0.5,
+            hit_sources=[
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "su-surface-1",
+                    "channel_role": "neutral",
+                    "search_unit_kind": "surface-fragment-bundle",
+                    "similarity": 0.5,
+                    "fragments": ["who-0"],
+                },
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "su-event-1",
+                    "channel_role": "neutral",
+                    "search_unit_kind": "event-fragment-bundle",
+                    "similarity": 0.5,
+                    "fragments": ["why-0", "how-0"],
+                },
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "su-persona-The-Ruler-p1",
+                    "channel_role": "toned",
+                    "search_unit_kind": "persona-semantic",
+                    "center_element": "result-0",
+                    "similarity": 0.5,
+                    "fragments": ["result-0"],
+                },
+            ],
+        )
+        ranked = sort_candidates_convergent(
+            [plain, structured], quality_floor=DEFAULT_QUALITY_FLOOR
+        )
+        self.assertEqual(ranked[0]["tmdb_id"], 2)
+        diag = ranked[0]["match_diagnostics"]
+        self.assertTrue(diag["surface_match"])
+        self.assertTrue(diag["event_match"])
+        self.assertTrue(diag["persona_semantic_match"])
+        self.assertEqual(diag["center_dimensions"], ["result"])
+
+    def test_quality_candidate_uses_objective_plus_persona_semantic_match(self) -> None:
+        pool = [
+            _cand(
+                7,
+                similarity=0.8,
+                hit_sources=[
+                    {
+                        "agent_id": "A2",
+                        "pseudo_id": "su-event-1",
+                        "channel_role": "neutral",
+                        "search_unit_kind": "event-fragment-bundle",
+                        "similarity": 0.8,
+                        "fragments": ["why-0"],
+                    },
+                    {
+                        "agent_id": "A2",
+                        "pseudo_id": "su-persona-The-Ruler-p1",
+                        "channel_role": "toned",
+                        "search_unit_kind": "persona-semantic",
+                        "similarity": 0.8,
+                        "fragments": ["result-0"],
+                    },
+                ],
+            )
+        ]
+        result = apply_candidate_funnel(pool, human_budget=1)
+        self.assertTrue(result["human_candidates"][0]["quality_candidate"])
+        self.assertIn("objective_match=1", result["human_candidates"][0]["quality_reason"])
+
+
 class DedupeTests(unittest.TestCase):
     def test_merges_same_tmdb_id_hit_sources(self) -> None:
         a = _cand(
@@ -68,7 +154,7 @@ class DedupeTests(unittest.TestCase):
 
 
 class ConvergentSortTests(unittest.TestCase):
-    def test_multi_channel_ranks_above_single_channel(self) -> None:
+    def test_signal_multi_channel_ranks_above_single_channel(self) -> None:
         single = _cand(
             1,
             similarity=0.99,
@@ -88,14 +174,14 @@ class ConvergentSortTests(unittest.TestCase):
             hit_sources=[
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "n1",
-                    "channel_role": "neutral",
+                    "pseudo_id": "t1",
+                    "channel_role": "toned",
                     "similarity": 0.5,
                     "fragments": [],
                 },
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "t1",
+                    "pseudo_id": "f1",
                     "channel_role": "focalized",
                     "similarity": 0.5,
                     "fragments": [],
@@ -107,10 +193,53 @@ class ConvergentSortTests(unittest.TestCase):
             [single, multi], quality_floor=DEFAULT_QUALITY_FLOOR
         )
         self.assertEqual(ranked[0]["tmdb_id"], 2)
+        self.assertEqual(ranked[0]["convergence_channels"], ["focalized", "toned"])
         self.assertGreater(
             ranked[0]["convergent_score"],
             ranked[1]["convergent_score"],
         )
+
+    def test_neutral_channel_is_diagnostic_only_for_convergent_sort(self) -> None:
+        strong_single = _cand(
+            1,
+            similarity=0.99,
+            hit_sources=[
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "t1",
+                    "channel_role": "toned",
+                    "similarity": 0.99,
+                    "fragments": [],
+                }
+            ],
+        )
+        neutral_plus_focal = _cand(
+            2,
+            similarity=0.5,
+            hit_sources=[
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "n1",
+                    "channel_role": "neutral",
+                    "similarity": 0.5,
+                    "fragments": [],
+                },
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "f1",
+                    "channel_role": "focalized",
+                    "similarity": 0.5,
+                    "fragments": [],
+                },
+            ],
+            quality_candidate=True,
+        )
+        ranked = sort_candidates_convergent(
+            [strong_single, neutral_plus_focal], quality_floor=DEFAULT_QUALITY_FLOOR
+        )
+        self.assertEqual(ranked[0]["tmdb_id"], 1)
+        self.assertEqual(ranked[1]["convergence_channels"], ["focalized"])
+        self.assertEqual(ranked[1]["diagnostic_channels"], ["neutral"])
 
     def test_multi_persona_adds_convergent_weight(self) -> None:
         one_persona = _cand(
@@ -310,10 +439,12 @@ class PoolDiffChannelTests(unittest.TestCase):
         )
         self.assertEqual(diff.net_new_tmdb_ids, [100, 101])
         self.assertIn(100, diff.by_channel["focalized"])
-        self.assertIn(101, diff.by_channel["neutral"])
+        self.assertNotIn("neutral", diff.by_channel)
+        self.assertIn(101, diff.diagnostic_by_channel["neutral"])
         self.assertIn(101, diff.by_channel["toned"])
         payload = pool_diff_by_channel_to_dict(diff)
         self.assertEqual(payload["run_id"], "01-test")
+        self.assertIn(101, payload["diagnostic_by_channel"]["neutral"])
         self.assertEqual(len(payload["net_new_details"]), 2)
 
 
