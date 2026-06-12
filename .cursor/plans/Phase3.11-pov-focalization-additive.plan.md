@@ -23,11 +23,14 @@ todos:
   - id: p311-6
     content: 3.11.6 · 单点 pilot A/B + 防火墙审计（事实漂移 + 中心声明真实性 + POV/focal 诊断分布 + 双地板）[需人工验收 · Go/No-Go]
     status: completed
+  - id: p311-6b
+    content: 3.11.6b · Fragment ladder 架构迁移 + ADR-0009：移除 toned/focalized/neutral 三通道，实现 fragment ladder + search unit（surface-fragment-bundle / event-fragment-bundle / persona-semantic）+ hybrid recall + 新 convergent sort + 守卫迁移 + 单测 + ADR-0009 文档
+    status: pending
   - id: p311-7
-    content: 3.11.7 · 全批 A/B（新设计-on vs 3.10 基线，同新闻同 def 同 judge）+ 通道分解调优 + 抽审 [需人工验收]
+    content: 3.11.7 · 全批 A/B（fragment ladder design-on vs 3.10 基线，同新闻同 def 同 judge）+ search_unit_kind 分解调优 + 抽审 [需人工验收]
     status: pending
   - id: p311-8
-    content: 3.11.8 · GATE（调优指南针口径）：池差净新增 human-2>0 + 精度不崩 + 守卫零硬失败 + 双地板不塌 → GATE_RESULT [GATE · 需人工验收]
+    content: 3.11.8 · GATE（调优指南针口径）：池差净新增 human-2>0 + 精度不崩 + 守卫零硬失败 + 3.10 已确认 human-2 不丢 → GATE_RESULT [GATE · 需人工验收]
     status: pending
 isProject: true
 ---
@@ -65,7 +68,8 @@ flowchart TD
   T4["3.11.4 候选漏斗 + 池差通道分解"]
   T5["3.11.5 POV变换 标签"]
   T6["3.11.6 pilot A/B + 审计"]
-  T7["3.11.7 全批 A/B + 通道分解调优"]
+  T6b["3.11.6b fragment ladder 迁移 + ADR-0009"]
+  T7["3.11.7 全批 A/B + search_unit_kind 分解"]
   T8["3.11.8 GATE 指南针"]
   P310 --> ADR8 --> T0 --> T1
   T1 -->|Go| T2
@@ -76,7 +80,8 @@ flowchart TD
   T3 --> T6
   T4 --> T6
   T5 --> T6
-  T6 -->|Go| T7 --> T8
+  T6 -->|Go| T6b
+  T6b --> T7 --> T8
   T6 -->|No-Go| T2
 ```
 
@@ -127,16 +132,16 @@ flowchart TD
 ## 判据与口径（本 Phase 定稿 · 与 ADR-0008 一致）
 
 
-| 代号                         | 定稿                                                                                                                                                                     |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **注意力清单（D1）**         | card Who/Where/When 极 = 叙事注意力清单；valence 降级元素层可选着色；模糊元素一等公民                                                                                    |
-| **轴对齐（D2）**             | pseudo 无极性；判据 = 逐元素透过价值轴框定；两极同场张力欢迎                                                                                                             |
-| **元素中心构图（D3）**       | 每条 toned/POV pseudo 声明 1 中心元素 + 2–4 支撑；中心按 salience 贪心自上而下、互异；LLM 声明、代码记分；中性 n1 wording 零改动                                         |
+| 代号                         | 定稿                                                                                                                                                                                             |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **注意力清单（D1）**         | card Who/Where/When 极 = 叙事注意力清单；valence 降级元素层可选着色；模糊元素一等公民                                                                                                            |
+| **轴对齐（D2）**             | pseudo 无极性；判据 = 逐元素透过价值轴框定；两极同场张力欢迎                                                                                                                                     |
+| **元素中心构图（D3）**       | 每条 toned/POV pseudo 声明 1 中心元素 + 2–4 支撑；中心按 salience 贪心自上而下、互异；LLM 声明、代码记分；中性 n1 wording 零改动                                                                 |
 | **多视角 POV（D4）**         | POV/focal 只作评测解释标签和通道诊断；可标记文本是否读起来像视角变换，但不要求 center 必须是 who-*、不要求匹配 card vantage seat、不作为生成硬失败；不新增内心戏/事件/因果/结果；hypernym 锚保留 |
-| **双地板（D5）**             | 中性 n1 零改动 + 每 persona ≥1 条第三人称 toned；focal/POV 标注纯诊断，不得顶替第三人称通道                                                                                 |
-| **打包归因（D6）**           | A/B 测整包新设计 vs 3.10 基线（同新闻同 def 同 judge）；provenance 标签按通道分解恢复粗归因；度量=指南针非判决闸                                                         |
-| **候选漏斗（继承 0007 D8）** | 去重 → 汇聚排序（多通道命中排前）→ judge 预筛 → 预算 top-N；上限以下 judge≥1 进抽审；**绝不调高 judge 门槛控量**                                                         |
-| **GATE（指南针口径）**       | 池差净新增 human-2>0 + 差集 2 分率不显著低于 baseline combo（精度不崩）+ 守卫零硬失败 + 双地板不塌（3.10 命中片不丢）                                                    |
+| **双地板（D5）**             | 中性 n1 零改动 + 每 persona ≥1 条第三人称 toned；focal/POV 标注纯诊断，不得顶替第三人称通道                                                                                                      |
+| **打包归因（D6）**           | A/B 测整包新设计 vs 3.10 基线（同新闻同 def 同 judge）；provenance 标签按通道分解恢复粗归因；度量=指南针非判决闸                                                                                 |
+| **候选漏斗（继承 0007 D8）** | 去重 → 汇聚排序（多通道命中排前）→ judge 预筛 → 预算 top-N；上限以下 judge≥1 进抽审；**绝不调高 judge 门槛控量**                                                                                 |
+| **GATE（指南针口径）**       | 池差净新增 human-2>0 + 差集 2 分率不显著低于 baseline combo（精度不崩）+ 守卫零硬失败 + 双地板不塌（3.10 命中片不丢）                                                                            |
 
 
 ---
@@ -255,18 +260,46 @@ flowchart TD
 
 ---
 
-## Todo 3.11.7 · 全批 A/B + 通道分解调优 + 抽审 [需人工验收]
+## Todo 3.11.6b · Fragment ladder 架构迁移 + ADR-0009
 
 **依赖：** 3.11.6 Go
 
-- 全批新设计-on（同新闻集 01–10）vs 3.10 基线（**同新闻同 def 同 judge**，差异=整包新设计，按 ADR-0008 D6 打包归因）。
-- 计池差新定义 2 分率（**按通道分解**：focalized 独家 / toned 中心化独家 / 撞车增益）+ `POV变换` 标签分布；按指南针口径**调优**（哪 persona / 哪类中心 / 哪类视角有用，漏斗权重，预算 N）。
+**权威设计源：** `docs/temp/simplified-news-to-film-workflow.md`
+
+移除 `toned / focalized / neutral` 三通道概念，全局迁移到 fragment ladder + search unit 架构：
+
+- **ADR-0009** 文档：记录从 ADR-0008 三通道到 fragment ladder / search unit 的演进决策，supersede ADR-0008 的通道结构部分（D3 构图保留元素中心概念，D4 POV 下线为通用 `center_element`，D5 双地板下线，D7 通道结构全部替换）。
+- **Fragment ladder 实现**：`scripts/personas.py` → 合并原 hypernym / alternative / lens 为统一 ladder（surface / alias / objective_close / objective_mid / objective_broad / interpretive / perspective）；每个 element 产一个 ladder。
+- **Search unit 生成**：替换原 pseudo 生成，产出三类 search unit：
+  - `surface-fragment-bundle`：只用 objective levels，来自 when/where/who
+  - `event-fragment-bundle`：只用 objective levels，来自 why/how/result
+  - `persona-semantic`：可用 interpretive/perspective，20–80 words，绑 center_element + supporting_elements
+- **Retrieve 迁移**：`scripts/retrieve.py` → 新 convergent sort（surface_match + event_match + persona_semantic_match + persona_diversity + center_dimension_diversity + dense_similarity），移除旧 channel_count 排序。
+- **守卫迁移**：fragment-bundle 只用 objective levels 硬守卫；persona-semantic 必须有 center_element + objective anchor；移除旧 dual-floor / neutral-n1 / focalized 守卫。
+- **Contract 清理**：`prompts/_shared/persona_screenwriter_contract.md` 和 `persona_alt_creator_contract.md` 按新口径改写或标注废弃段落。
+- **单测迁移**：既有测试适配新数据结构，新增 fragment ladder / search unit / 新 convergent sort 单测。
+
+### 验收
+
+- [ ] ADR-0009 文档完成，与 `docs/temp/simplified-news-to-film-workflow.md` 一致
+- [ ] 旧代码中 `toned` / `focalized` / `neutral` channel 概念不再作为运行时主路径
+- [ ] `python -m unittest` 全量通过
+- [ ] pilot 脚本可在新架构下跑通单条新闻（产物结构符合新 schema）
+
+---
+
+## Todo 3.11.7 · 全批 A/B（fragment ladder design-on vs 3.10 基线）+ search_unit_kind 分解调优 + 抽审 [需人工验收]
+
+**依赖：** 3.11.6b
+
+- 全批 fragment ladder design-on（同新闻集 01–10）vs 3.10 基线（**同新闻同 def 同 judge**，差异=整包新设计，按 ADR-0009 打包归因）。
+- 计池差按 `search_unit_kind` 分解（surface-fragment-bundle 独家 / event-fragment-bundle 独家 / persona-semantic 独家 / 撞车增益）+ `POV变换` 人工子标签分布；按指南针口径**调优**（哪 persona / 哪类 center_element / 哪类 search unit 有用，convergent sort 权重，预算 N）。
 - 拒绝集抽审延续，监控「零 human-2 被杀」。
 
 ### 验收
 
 - [ ] 产出位于 `output/Eval/phase3.11/{run_id}/`；3.10 及更早未改写
-- [ ] 池差通道分解 + POV变换 分布 + 调优记录在案
+- [ ] 池差 search_unit_kind 分解 + POV变换 分布 + 调优记录在案
 - [ ] `[需人工验收]`：用户 approve 数据 → 进 3.11.8
 
 ---
@@ -275,9 +308,9 @@ flowchart TD
 
 **依赖：** 3.11.7
 
-- 写 `output/Eval/phase3.11/GATE_RESULT.md`：① 池差净新增 human-2 > 0（扩大强共振边界）；② 差集 2 分率不显著低于 baseline combo（精度不崩）；③ 守卫零硬失败；④ 双地板不塌（3.10 命中片不丢）。
-- 裁决（ADR-0008 性质）：元素中心构图与 POV 是必备能力，GATE 为**调优是否收敛**，非「要不要」。
-- GATE go ⇒ ADR-0008 升 `accepted`。
+- 写 `output/Eval/phase3.11/GATE_RESULT.md`：① 池差净新增 human-2 > 0（扩大强共振边界）；② 差集 2 分率不显著低于 baseline combo（精度不崩）；③ 守卫零硬失败；④ 3.10 已确认 human-2 候选不丢。
+- 裁决（ADR-0009 性质）：fragment ladder + search unit 是底层架构升级，GATE 为**调优是否收敛**，非「要不要」。
+- GATE go ⇒ ADR-0009 升 `accepted`；ADR-0008 标注 superseded by 0009。
 
 ### 验收
 
