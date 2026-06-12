@@ -22,7 +22,7 @@ todos:
     status: completed
   - id: p311-6
     content: 3.11.6 · 单点 pilot A/B + 防火墙审计（事实漂移 + 中心声明真实性 + POV/focal 诊断分布 + 双地板）[需人工验收 · Go/No-Go]
-    status: pending
+    status: completed
   - id: p311-7
     content: 3.11.7 · 全批 A/B（新设计-on vs 3.10 基线，同新闻同 def 同 judge）+ 通道分解调优 + 抽审 [需人工验收]
     status: pending
