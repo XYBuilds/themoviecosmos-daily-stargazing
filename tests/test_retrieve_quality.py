@@ -52,7 +52,7 @@ class QualityFieldTests(unittest.TestCase):
         _apply_quality_fields(cand, quality_floor=0.40, neutral_total=2)
         self.assertEqual(cand["distinct_agents"], 1)
         self.assertFalse(cand["quality_candidate"])
-        self.assertIn("neutral_vote=0", cand["quality_reason"])
+        self.assertIn("objective_match=0", cand["quality_reason"])
 
     def test_quality_candidate_requires_neutral_vote_and_toned_convergence(self) -> None:
         cand = {
@@ -143,7 +143,7 @@ class RetrieveQualityIntegrationTests(unittest.TestCase):
         self.assertIn("quality_reason", shared)
         self.assertEqual(shared["distinct_agents"], 0)
         self.assertFalse(shared["quality_candidate"])
-        self.assertIn("composition_agents=0", shared["quality_reason"])
+        self.assertIn("persona_semantic_match=0", shared["quality_reason"])
 
     @patch("scripts.retrieve._get_model")
     @patch("scripts.retrieve._load_index")

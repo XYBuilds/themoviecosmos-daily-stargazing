@@ -491,6 +491,7 @@ def _add_ladder_fragment(
 def build_fragment_ladders(
     alt_pool: AltPoolOverlay,
     expansion: dict[str, Any] | None = None,
+    deconstruction: dict[str, Any] | None = None,
 ) -> dict[str, FragmentLadder]:
     """Build fragment ladders by folding old surface/hypernym/lens material into levels."""
     by_id = expansion_elements_by_id(expansion)
@@ -543,6 +544,57 @@ def build_fragment_ladders(
             dimension=_fragment_dimension(eid),
             fragments=fragments,
         )
+
+    for eid, row in by_id.items():
+        if eid in ladders:
+            continue
+        fragments: list[FragmentTerm] = []
+        seen: set[tuple[str, str]] = set()
+        _add_ladder_fragment(
+            fragments,
+            seen,
+            element_id=eid,
+            text=str(row.get("surface", "") or ""),
+            level="surface",
+        )
+        for raw in row.get("hypernyms") or []:
+            _add_ladder_fragment(
+                fragments,
+                seen,
+                element_id=eid,
+                text=str(raw),
+                level="objective_close",
+            )
+        ladders[eid] = FragmentLadder(
+            element_id=eid,
+            dimension=_fragment_dimension(eid),
+            fragments=fragments,
+        )
+
+    if deconstruction:
+        ann = annotate_element_ids(deconstruction)
+        for section in _ELEMENT_SECTIONS:
+            for item in ann.get(section) or []:
+                if not isinstance(item, dict) or not item.get("id"):
+                    continue
+                eid = str(item["id"])
+                if eid in ladders:
+                    continue
+                text = str(item.get("text", "") or item.get("step", "") or "").strip()
+                fragments: list[FragmentTerm] = []
+                seen: set[tuple[str, str]] = set()
+                _add_ladder_fragment(
+                    fragments,
+                    seen,
+                    element_id=eid,
+                    text=text,
+                    level="surface",
+                )
+                ladders[eid] = FragmentLadder(
+                    element_id=eid,
+                    dimension=_fragment_dimension(eid),
+                    fragments=fragments,
+                )
     return ladders
 
 
@@ -618,10 +670,18 @@ def search_unit_from_pseudo(
     pseudo: PseudoSegment,
     *,
     persona_id: str,
+    ladders: dict[str, FragmentLadder] | None = None,
 ) -> SearchUnit:
     center = str(pseudo.source.get("center", "")).strip()
     supporting = _supporting_fragments(pseudo)
     source_elements = [center, *supporting] if center else supporting
+    objective_anchor_fragments: list[FragmentTerm] = []
+    if ladders:
+        objective_anchor_fragments = _fragments_for_elements(
+            ladders,
+            list(dict.fromkeys(source_elements)),
+            objective_only=True,
+        )[:6]
     return SearchUnit(
         id=f"su-persona-{persona_id}-{pseudo.id}",
         kind="persona-semantic",
@@ -629,6 +689,7 @@ def search_unit_from_pseudo(
         center_element=center or None,
         supporting_elements=supporting,
         source_elements=list(dict.fromkeys(source_elements)),
+        fragments=objective_anchor_fragments,
         search_text=pseudo.text,
         fit=pseudo.fit,
     )
@@ -655,6 +716,8 @@ def validate_search_unit(
             raise ValueError(f"{unit.id}: invalid center_element {unit.center_element!r}")
         if len(unit.supporting_elements) > _ADR8_SUPPORTING_MAX:
             raise ValueError(f"{unit.id}: too many supporting_elements")
+        if not any(item.level in _OBJECTIVE_FRAGMENT_LEVELS for item in unit.fragments):
+            raise ValueError(f"{unit.id}: persona-semantic requires objective anchor")
     for eid in [*unit.source_elements, *unit.supporting_elements]:
         if eid and eid not in known_elements:
             raise ValueError(f"{unit.id}: unknown source element {eid!r}")
@@ -667,11 +730,12 @@ def build_search_units_payload(
     pseudos: list[PseudoSegment],
     expansion: dict[str, Any] | None,
     known_elements: set[str],
+    deconstruction: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    ladders = build_fragment_ladders(alt_pool, expansion)
+    ladders = build_fragment_ladders(alt_pool, expansion, deconstruction=deconstruction)
     bundle_units = build_fragment_bundle_search_units(ladders)
     persona_units = [
-        search_unit_from_pseudo(pseudo, persona_id=persona_id)
+        search_unit_from_pseudo(pseudo, persona_id=persona_id, ladders=ladders)
         for pseudo in pseudos
         if pseudo.source.get("channel") in _COMPOSITION_CHANNELS
     ]
@@ -2210,6 +2274,7 @@ async def run_persona_pipeline(
         pseudos=channel_pseudos,
         expansion=expansion,
         known_elements=known_element_ids(dec),
+        deconstruction=dec,
     )
 
     return PersonaPipelineResult(

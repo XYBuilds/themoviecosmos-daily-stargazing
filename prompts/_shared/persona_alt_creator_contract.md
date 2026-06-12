@@ -1,6 +1,6 @@
-# Persona Alt-Creator Contract (Phase 3.9 · ADR-0006)
+# Persona Alt-Creator Contract (Phase 3.11.6b · ADR-0009 fragment ladder input)
 
-> **Role:** Per-persona step (P-Lens) after A0 verbatim extract + shared objective expansion pass. Input is **verbatim decon + expansion overlay** (no pre-built lens alternatives). Output is an **alt-pool overlay** referencing stable element ids **plus a `salience` ranking** — not a fork of the full deconstruction text.
+> **Role:** Per-persona step after A0 verbatim extract + shared objective expansion pass. Output is an **alt-pool overlay** referencing stable element ids plus `salience`. Downstream folds `surface` / `hypernym` / persona alternatives into a unified `fragment ladder`; there is no longer a primary `neutral` / `toned` / `focalized` channel architecture.
 
 ## Input
 
@@ -42,9 +42,9 @@ Return **only** valid JSON (no markdown fences, no preamble):
 6. **Coverage:** Prefer covering all `who`, `why`, `how`, and `result` elements **with at least objective-floor terms** (`surface` / `hypernym`); include `where` when persona lens benefits. Polar lens alternatives only where the axis has a genuine stance (rule 1) — never pad fuzzy elements with forced polarity or fiction.
 7. **No decon fork:** Do not echo the full deconstruction object, anchor block, or news body in your response — only `persona_id` + `salience[]` + `elements[]` alt-pool rows.
 
-## Salience (neutral-channel fragment SELECTION · ADR-0006 D6)
+## Salience (center_element priority · ADR-0009)
 
-`salience` is a **top-level field** (sibling to `elements[]`). It expresses **which facts this persona cares about most** for the **neutral channel only** — it does **not** change how you build lens alternatives in `elements[]`.
+`salience` is a **top-level field** (sibling to `elements[]`). It expresses **which facts this persona cares about most** for this news item and drives downstream `persona-semantic` center selection.
 
 ### Field spec
 
@@ -55,14 +55,14 @@ Return **only** valid JSON (no markdown fences, no preamble):
 | **membership** | **subset / permutation only** of ids present in the injected decon (`who-*`, `where-*`, `why-*`, `how-*`, `result-*`) |
 | **forbidden** | inventing ids; adding words, labels, commentary, or prose; paraphrasing element text into `salience` |
 
-### Iron rule: selection ≠ wording
+### Iron rule: priority ≠ wording
 
-**`salience` only drives neutral fragment SELECTION; it never affects wording.**
+**`salience` ranks element importance; it does not authorize new facts or free prose.**
 
-- You **never** write neutral pseudo prose here.
-- Downstream takes **Top-K (4–5)** ids from `salience` (head of the list) as `fragment_ids` for `build_objective_floor_neutral_pseudo`.
-- Neutral sentences are **always** assembled by template from selected fragments' **`surface`** (verbatim) + **`hypernym`** (objective floor) — persona-neutral vocabulary, **no lens**.
-- Valence has **no carrier** in the neutral channel because the persona LLM never authors neutral wording — only ids.
+- You **never** write search unit prose here.
+- Downstream uses salience to choose `center_element` candidates for `persona-semantic` units.
+- Objective recall is built separately from fragment ladders using `surface` / `alias` / `objective_*` levels.
+- Valence remains only an element-level coloring annotation; it never gates eligibility, ranking, or candidate quality.
 
 ### How to rank
 
@@ -92,14 +92,14 @@ Valence does **not** decide objective-floor eligibility, channel role, ranking, 
 
 **Polarity is coloring, not eligibility (ADR-0008 D1/D2):** the card's value axis doubles as the persona's **attention inventory** — both poles name element archetypes the persona attends to, and **both are equally legitimate material** for downstream composition (the archetypal story frames a positive-pole and a negative-pole element in the same pseudo). Tagging an element negative does not demote it; leaving an element untagged (fuzzy zone) does not exclude it.
 
-## Two neutrals (do not confuse)
+## Fragment ladder layers
 
-There are **two distinct neutrals** — the contract and the cards keep them separate:
+Downstream folds this alt-pool plus shared expansion into a `fragment ladder` per element:
 
-1. **Objective-floor neutral** = the surface verbatim term + uncontested `hypernym`. It passes the **客观性试金石** (objectivity touchstone): *would two different personas — e.g. A2 sociologist & A4 mythologist — disagree about it? If no → objective floor; if yes → it's a lens.* The **neutral CHANNEL pseudo** is built from **objective-floor vocabulary only** (surface + hypernym), **never** from a persona-midpoint. **Selection** of which fragments enter that pseudo is **persona-relative** via `salience`; **wording** stays persona-neutral (template-assembled).
-2. **Persona-midpoint neutral** = the midpoint of **this persona's** value axis — private, just the middle of the lens spectrum. It is the `valence: "neutral"` bucket's lens-flavored option.
+1. **Objective levels** = `surface`, `alias`, `objective_close`, `objective_mid`, `objective_broad`. They power `surface-fragment-bundle` and `event-fragment-bundle` and must remain fact-entailed.
+2. **Interpretive / perspective levels** = persona-colored alternatives. They may influence `persona-semantic` wording, but still must bind to existing elements and must not invent facts.
 
-The persona's value axis describes the **lens spectrum (b)** and guides **`salience` ranking (a)**. It **must NOT redefine objective-floor vocabulary**: hypernym/surface wording stays objective; only **which** fragments are selected may differ per persona.
+The persona's value axis guides both `salience` and interpretive alternatives. It **must NOT redefine objective vocabulary**: surface/hypernym wording stays objective; only element priority and persona-colored terms differ per persona.
 
 ## Provenance layers
 

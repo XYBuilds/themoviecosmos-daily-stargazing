@@ -9,8 +9,10 @@ from scripts.retrieve import (
     DEFAULT_QUALITY_FLOOR,
     apply_candidate_funnel,
     compare_pool_diff_by_channel,
+    compare_pool_diff_by_search_unit_kind,
     dedupe_candidates_by_tmdb_id,
     pool_diff_by_channel_to_dict,
+    pool_diff_by_search_unit_kind_to_dict,
     sort_candidates_convergent,
 )
 
@@ -154,7 +156,7 @@ class DedupeTests(unittest.TestCase):
 
 
 class ConvergentSortTests(unittest.TestCase):
-    def test_signal_multi_channel_ranks_above_single_channel(self) -> None:
+    def test_search_unit_kind_convergence_ranks_above_plain_single_pseudo(self) -> None:
         single = _cand(
             1,
             similarity=0.99,
@@ -174,17 +176,28 @@ class ConvergentSortTests(unittest.TestCase):
             hit_sources=[
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "t1",
-                    "channel_role": "toned",
+                    "pseudo_id": "su-surface-1",
+                    "channel_role": "neutral",
+                    "search_unit_kind": "surface-fragment-bundle",
                     "similarity": 0.5,
-                    "fragments": [],
+                    "fragments": ["who-0"],
                 },
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "f1",
-                    "channel_role": "focalized",
+                    "pseudo_id": "su-event-1",
+                    "channel_role": "neutral",
+                    "search_unit_kind": "event-fragment-bundle",
                     "similarity": 0.5,
-                    "fragments": [],
+                    "fragments": ["why-0"],
+                },
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "su-persona-The-Ruler-p1",
+                    "channel_role": "toned",
+                    "search_unit_kind": "persona-semantic",
+                    "center_element": "result-0",
+                    "similarity": 0.5,
+                    "fragments": ["result-0"],
                 },
             ],
             quality_candidate=True,
@@ -193,7 +206,10 @@ class ConvergentSortTests(unittest.TestCase):
             [single, multi], quality_floor=DEFAULT_QUALITY_FLOOR
         )
         self.assertEqual(ranked[0]["tmdb_id"], 2)
-        self.assertEqual(ranked[0]["convergence_channels"], ["focalized", "toned"])
+        self.assertEqual(
+            ranked[0]["match_diagnostics"]["search_unit_kinds"],
+            ["event-fragment-bundle", "persona-semantic", "surface-fragment-bundle"],
+        )
         self.assertGreater(
             ranked[0]["convergent_score"],
             ranked[1]["convergent_score"],
@@ -248,10 +264,12 @@ class ConvergentSortTests(unittest.TestCase):
             hit_sources=[
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "t1",
+                    "pseudo_id": "su-persona-A2-p1",
                     "channel_role": "toned",
+                    "search_unit_kind": "persona-semantic",
+                    "center_element": "why-0",
                     "similarity": 0.8,
-                    "fragments": [],
+                    "fragments": ["why-0"],
                 }
             ],
         )
@@ -261,17 +279,21 @@ class ConvergentSortTests(unittest.TestCase):
             hit_sources=[
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "t1",
+                    "pseudo_id": "su-persona-A2-p1",
                     "channel_role": "toned",
+                    "search_unit_kind": "persona-semantic",
+                    "center_element": "why-0",
                     "similarity": 0.6,
-                    "fragments": [],
+                    "fragments": ["why-0"],
                 },
                 {
                     "agent_id": "A7",
-                    "pseudo_id": "t1",
+                    "pseudo_id": "su-persona-A7-p1",
                     "channel_role": "toned",
+                    "search_unit_kind": "persona-semantic",
+                    "center_element": "result-0",
                     "similarity": 0.55,
-                    "fragments": [],
+                    "fragments": ["result-0"],
                 },
             ],
         )
@@ -356,33 +378,36 @@ class FunnelBudgetTests(unittest.TestCase):
         self.assertEqual([c["tmdb_id"] for c in result["audit_pool"]], [2])
         self.assertEqual([c["tmdb_id"] for c in result["judge_zero"]], [3])
 
-    def test_focalized_counts_toward_extended_collision_ticket(self) -> None:
-        focal_only = _cand(
+    def test_persona_semantic_with_objective_match_counts_toward_quality_candidate(self) -> None:
+        candidate = _cand(
             99,
             similarity=0.75,
             hit_sources=[
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "n1",
+                    "pseudo_id": "su-event-1",
                     "channel_role": "neutral",
+                    "search_unit_kind": "event-fragment-bundle",
                     "similarity": 0.75,
-                    "fragments": [],
+                    "fragments": ["why-0"],
                 },
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "f1",
-                    "channel_role": "focalized",
+                    "pseudo_id": "su-persona-A2-p1",
+                    "channel_role": "toned",
+                    "search_unit_kind": "persona-semantic",
+                    "center_element": "result-0",
                     "similarity": 0.75,
-                    "fragments": [],
+                    "fragments": ["result-0"],
                 },
             ],
         )
         from scripts.retrieve import _apply_quality_fields
 
         _apply_quality_fields(
-            focal_only, quality_floor=DEFAULT_QUALITY_FLOOR, neutral_total=1
+            candidate, quality_floor=DEFAULT_QUALITY_FLOOR, neutral_total=1
         )
-        self.assertTrue(focal_only["quality_candidate"])
+        self.assertTrue(candidate["quality_candidate"])
 
 
 class PoolDiffChannelTests(unittest.TestCase):
@@ -446,6 +471,65 @@ class PoolDiffChannelTests(unittest.TestCase):
         self.assertEqual(payload["run_id"], "01-test")
         self.assertIn(101, payload["diagnostic_by_channel"]["neutral"])
         self.assertEqual(len(payload["net_new_details"]), 2)
+
+
+class PoolDiffSearchUnitKindTests(unittest.TestCase):
+    def test_decomposes_net_new_by_search_unit_kind(self) -> None:
+        baseline = {"candidates": [{"tmdb_id": 1, "title": "Kept"}]}
+        design = {
+            "candidates": [
+                {"tmdb_id": 1, "title": "Kept"},
+                {
+                    "tmdb_id": 200,
+                    "title": "Surface only",
+                    "similarity": 0.6,
+                    "hit_sources": [
+                        {
+                            "agent_id": "A2",
+                            "pseudo_id": "su-surface-1",
+                            "search_unit_kind": "surface-fragment-bundle",
+                            "similarity": 0.6,
+                            "fragments": ["who-0"],
+                        }
+                    ],
+                },
+                {
+                    "tmdb_id": 201,
+                    "title": "Collision gain",
+                    "similarity": 0.7,
+                    "hit_sources": [
+                        {
+                            "agent_id": "A2",
+                            "pseudo_id": "su-event-1",
+                            "search_unit_kind": "event-fragment-bundle",
+                            "similarity": 0.7,
+                            "fragments": ["why-0"],
+                        },
+                        {
+                            "agent_id": "A2",
+                            "pseudo_id": "su-persona-A2-p1",
+                            "search_unit_kind": "persona-semantic",
+                            "center_element": "result-0",
+                            "similarity": 0.65,
+                            "fragments": ["result-0"],
+                        },
+                    ],
+                },
+            ]
+        }
+        diff = compare_pool_diff_by_search_unit_kind(
+            run_id="01-test",
+            baseline_retrieve=baseline,
+            design_retrieve=design,
+        )
+        self.assertEqual(diff.net_new_tmdb_ids, [200, 201])
+        self.assertIn(200, diff.by_search_unit_kind["surface-fragment-bundle"])
+        self.assertIn(201, diff.by_search_unit_kind["event-fragment-bundle"])
+        self.assertIn(201, diff.by_search_unit_kind["persona-semantic"])
+        self.assertEqual(diff.collision_gain_tmdb_ids, [201])
+        payload = pool_diff_by_search_unit_kind_to_dict(diff)
+        self.assertEqual(payload["run_id"], "01-test")
+        self.assertEqual(payload["collision_gain_tmdb_ids"], [201])
 
 
 if __name__ == "__main__":

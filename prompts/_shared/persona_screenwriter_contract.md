@@ -1,6 +1,6 @@
-# Persona Screenwriter Contract (Phase 3.8 · ADR-0005; element-centered composition & POV Phase 3.11 · ADR-0008)
+# Persona Screenwriter Contract (Phase 3.11.6b · ADR-0009 fragment ladder / search unit)
 
-> Extends `multi_pseudo_output_contract.md` for the second persona step: compose pseudo-overviews from the **alt-pool overlay** + fragment ids, with optional tone rephrase (P-Tone) and mandatory **fit** self-score (P-Force). §「Element-centered composition & POV focalization」 below is the **single authoritative rule source** for the ADR-0008 composition mode (per-persona vantage seats live in each persona card's attention inventory).
+> Extends `multi_pseudo_output_contract.md` for the persona semantic drafting step. The LLM drafts compact, fact-entailed persona-semantic text around `center_element`; downstream code converts it into `search_units.persona_semantic_units`. `toned` / `focalized` / `neutral` are legacy compatibility labels only and are not the runtime retrieval architecture.
 
 ## Shared base
 
@@ -57,44 +57,30 @@ Return **only** valid JSON:
 2. **fit (required):** Each pseudo must include `"fit": <number>` with **0 ≤ fit ≤ 1** — how well this pseudo reflects the persona lens on this event (1 = strong natural fit, 0 = forced but still fact-entailed). Do not abstain or omit pseudos (P-Force); use low `fit` when steering is weak.
 3. **Fragments:** Same as base contract — only `why-*`, `how-*`, `result-*` in `source.fragments`; contiguous `how-*` blocks. **Never** use `who-*` or `where-*` element ids here.
 4. **Count:** 1–3 pseudos, unique `p1`/`p2`/`p3`, consecutive from `p1`.
-5. **Variation:** When multiple pseudos, differ by fragment bundles and/or alt-pool choices, not mere paraphrase. (In ADR-0008 composition mode, variation is organized by **distinct center elements** — see below.)
+5. **Variation:** When multiple pseudos, differ by center element and/or fact bundle, not mere paraphrase. In ADR-0009 runtime these drafts become `persona-semantic` search units.
 6. **No flavored decon fork:** Do not return the alt-pool or full deconstruction in this response — only `pseudos[]`.
 
-## Element-centered composition & POV focalization (Phase 3.11 · ADR-0008 — authoritative rule source)
+## Persona-semantic search unit drafting (Phase 3.11.6b · ADR-0009)
 
-> **Status & activation:** This section is the **single authoritative rule source** for the ADR-0008 composition mode. It applies **only when the prompt assembly explicitly injects the marker `Composition mode: ADR-0008`** together with this persona's `salience` ranking (wired by code in 3.11.2). Absent that marker, ignore this section entirely — your output rules are unchanged. Downstream consumers (3.11.1 pre-test scaffolding, 3.11.2 generation wiring) must **quote this section verbatim**; per-persona vantage seats are **not** listed here — their SSOT is each persona card's attention inventory (价值轴 Who 正极, marked 视角座位).
+> **Runtime status:** retrieval no longer runs `neutral` / `toned` / `focalized` as primary channels. Code builds `surface-fragment-bundle` and `event-fragment-bundle` from objective fragment ladders, then converts your center-based drafts into `persona-semantic` search units. The `pseudos[]` wrapper remains only because the current parser expects it.
 
-### Element-centered composition (ADR-0008 D3)
+### Centered semantic drafting
 
-Variation is organized by **which element each pseudo is built around**, not by valence coverage:
+1. **One declared center per draft.** Each draft is composed around exactly one `center` element id (`when-*`, `where-*`, `who-*`, `why-*`, `how-*`, `result-*`) and 1–4 naturally entailed supporting elements in `source.fragments`.
+2. **Greedy salience.** Use the injected salience ranking top-down. Prefer distinct centers across drafts. If a high-ranked element cannot support a fact-entailed 20–80 word semantic unit, move down.
+3. **Objective anchor required.** Each draft must include at least one objective phrase from the expansion / fragment ladder vocabulary (`surface`, alias, or objective hypernym). Persona language may add interpretive framing, but cannot float without an objective anchor.
+4. **No free facts.** Do not add invented inner monologue, feelings, events, causal links, motives, actors, or outcomes. Only change attention, scale, and phrasing.
+5. **POV downshift.** Do not optimize for `focalized` or `focal`. If a viewpoint read naturally appears, it may remain in prose, but runtime treats it as generic `center_element` semantics, not a separate channel.
+6. **No dual-floor rule.** The old `neutral n1` and non-POV toned floor are replaced by objective fragment bundles plus persona-semantic search units.
 
-1. **One declared center per pseudo.** Each toned/focalized pseudo is composed **around exactly one center element** (any decon element id: `who-*`, `where-*`, `why-*`, `how-*`, `result-*`), supported by **2–4 supporting elements** naturally entailed alongside it.
-2. **Greedy top-down centering.** Take this persona's injected `salience` ranking from the top: if a fact-entailed 60–120 word pseudo can be composed **with that element as its center**, write it; otherwise move down to the next element. **Centers must be distinct across your pseudos.**
-3. **Declare, don't score.** You only **declare** each pseudo's center; ranking and budgeting are computed downstream in code from the center's salience rank. Do not self-score, reorder, or pad elements to game importance — element stuffing degrades the overview voice and will be rejected (supporting-element cap enforced).
+### Response additions in compatibility mode
 
-### POV / focal annotation (ADR-0008 D4 · evaluation explanation label)
-
-POV / focal information is now a **diagnostic explanation label**, not a generation validity rule.
-
-- **No hard derivation gate:** A pseudo is valid by element-centered composition, factual entailment, support cap, hypernym anchor, and dual floor. It does **not** fail because its `center` is or is not a `who-*`, because it lacks `focal`, or because its `focal` does not match a card vantage-seat prototype.
-- **Optional annotation only:** When the wording genuinely reads as a viewpoint shift through an existing character, the pseudo may declare `channel: "focalized"` and `focal: "who-*"`. This is kept as provenance for later review and may inform the human/Judge `POV变换` label.
-- **No free facts:** The fact guard is unchanged. Viewpoint wording must not add invented inner monologue, feelings, events, causal links, or outcomes. It may only change what is foregrounded, near/far, or at stake in the prose.
-- **Card seats are interpretive hints:** Persona card Who-positive seats help reviewers explain why a viewpoint read may be present, but they are not a runtime acceptance criterion.
-- **Third-person grammar is fine:** Focal annotation is about explanation, not pronouns. A close third-person paragraph may be annotated; first person is never required.
-
-### Dual floor (ADR-0008 D5 — mandatory)
-
-- The code-built neutral `n1` is untouched by this mode (not your concern, stated for completeness).
-- **At least one of your pseudos must remain third-person toned / non-POV-annotated.** POV/focal annotations are additive diagnostics — they never replace the third-person channel.
-
-### Response additions in composition mode
-
-Each pseudo object additionally declares (base format otherwise unchanged — fragments / fit / 60–120 words / TMDB voice all still apply):
+Each pseudo object additionally declares fields that downstream maps to `persona-semantic`:
 
 ```json
 {
   "id": "p1",
-  "text": "<single English paragraph, 60–120 words>",
+  "text": "<single English paragraph, 20–80 words>",
   "fit": 0.82,
   "center": "who-1",
   "channel": "toned",
@@ -102,12 +88,13 @@ Each pseudo object additionally declares (base format otherwise unchanged — fr
 }
 ```
 
-- `center` (required): the declared center element id (must exist in the injected decon/pool).
-- `channel` (required): `"toned"` by default; `"focalized"` may be used only as an optional explanation/provenance label when the wording genuinely reads as a viewpoint shift.
-- `focal` (optional): if present, it should identify an existing `who-*` element, but focal metadata is diagnostic and must not decide candidate validity.
-- **No pseudo-level valence field exists** — pseudos have no polarity (axis-alignment is the persona-ness criterion, see rule 1).
+- `center` (required): becomes `center_element`.
+- `source.fragments` (required): becomes `supporting_elements`; use existing element ids only.
+- `channel` (compatibility): use `"toned"`. `"focalized"` is accepted only for legacy parser compatibility and must not imply a separate runtime path.
+- `fit` (required): 0–1 natural fit score for this persona on this event.
+- No pseudo-level valence field exists.
 
 ### Propagation contract
 
-- This section (rules) + persona card attention inventories (vantage seats) are the **only** places ADR-0008 composition wording lives. 3.11.1 (pre-test) and 3.11.2 (generation wiring) **reference and inject them verbatim** — no private copies or rewordings.
-- Any change to composition rules, the facticity guard, or vantage-seat semantics is an edit **to this section / the cards** (authoritative-wording change discipline applies, see Phase 3.11 plan).
+- ADR-0009 architecture lives in this section, `docs/adr/0009-*.md`, and `docs/temp/simplified-news-to-film-workflow.md`.
+- Any future change to search unit kinds, center/supporting rules, or objective-anchor semantics must update those three sources together.

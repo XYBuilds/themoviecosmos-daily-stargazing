@@ -64,6 +64,7 @@ class JudgeBatchParallelTests(unittest.TestCase):
                     all_items,
                     partial,
                     obs_ids=["01-grid-outage"],
+                    prompt_version="test",
                 )
 
             score_pending_pairs(
