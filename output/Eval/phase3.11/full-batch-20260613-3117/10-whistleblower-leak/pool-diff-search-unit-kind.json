@@ -1,0 +1,365 @@
+{
+  "run_id": "10-whistleblower-leak",
+  "baseline_candidate_count": 19,
+  "design_candidate_count": 19,
+  "overlap_count": 7,
+  "net_new_tmdb_ids": [
+    1647,
+    16277,
+    20777,
+    39854,
+    46100,
+    58185,
+    88269,
+    313055,
+    427557,
+    887697,
+    1020662,
+    1115239
+  ],
+  "lost_tmdb_ids": [
+    21106,
+    44909,
+    75649,
+    87400,
+    136116,
+    138372,
+    194963,
+    383121,
+    431808,
+    448337,
+    876671,
+    1030206
+  ],
+  "by_search_unit_kind": {
+    "event-fragment-bundle": [
+      1647,
+      20777
+    ],
+    "persona-semantic": [
+      1647,
+      16277,
+      20777,
+      39854,
+      46100,
+      58185,
+      88269,
+      313055,
+      427557,
+      887697,
+      1020662,
+      1115239
+    ],
+    "surface-fragment-bundle": []
+  },
+  "collision_gain_tmdb_ids": [
+    1647,
+    20777
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 1647,
+      "title": "The Recruit",
+      "similarity": 0.5661355257034302,
+      "quality_candidate": true,
+      "search_unit_kinds": [
+        "event-fragment-bundle",
+        "persona-semantic"
+      ],
+      "collision_gain": true,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": true,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "event-fragment-bundle",
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 16277,
+      "title": "Skirt Day",
+      "similarity": 0.556020975112915,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 20777,
+      "title": "The Killing Room",
+      "similarity": 0.4885920286178589,
+      "quality_candidate": true,
+      "search_unit_kinds": [
+        "event-fragment-bundle",
+        "persona-semantic"
+      ],
+      "collision_gain": true,
+      "triggered_by": [
+        "THE-SAGE"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": true,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "event-fragment-bundle",
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 39854,
+      "title": "In the Line of Duty 4",
+      "similarity": 0.5805965662002563,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 46100,
+      "title": "Secrets Behind the Wall",
+      "similarity": 0.5813910365104675,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 58185,
+      "title": "The Last Judgment",
+      "similarity": 0.455234169960022,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-JESTER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how",
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 88269,
+      "title": "I Flunked, But...",
+      "similarity": 0.4919484853744507,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-HERO"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how",
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 313055,
+      "title": "Discount",
+      "similarity": 0.5932369232177734,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-CREATOR",
+        "THE-MAGICIAN"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how",
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 427557,
+      "title": "Attitude Test",
+      "similarity": 0.47048521041870117,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CREATOR",
+        "THE-JESTER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 887697,
+      "title": "Test",
+      "similarity": 0.5033894777297974,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-RULER",
+        "THE-SAGE"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how",
+          "result",
+          "why"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 1020662,
+      "title": "Inside Man",
+      "similarity": 0.5817207098007202,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 1115239,
+      "title": "Por Thozhil",
+      "similarity": 0.5690391063690186,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1608 @@
+{
+  "persona_id": "The-Everyman",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Intuit",
+          "alternatives": [
+            {
+              "term": "the company behind the decision",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a large corporation making a corporate restructuring",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the employer cutting thousands of jobs",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Sasan Goodarzi",
+          "alternatives": [
+            {
+              "term": "the company's chief executive",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a company leader announcing major layoffs",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the executive delivering the bad news",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "affected U.S. employees",
+          "alternatives": [
+            {
+              "term": "workers losing their jobs",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "ordinary people facing a sudden career disruption",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "employees bearing the cost of the company's strategic shift",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Reno",
+          "alternatives": [
+            {
+              "term": "an office location being closed",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a community losing a major employer",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "Woodland Hills",
+          "alternatives": [
+            {
+              "term": "an office location being closed",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a neighborhood losing a workplace hub",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+          "alternatives": [
+            {
+              "term": "a strategic business rationale for the cuts",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "prioritizing new technology over current employees",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "as a painful but necessary reinvention after months of internal review",
+          "alternatives": [
+            {
+              "term": "a difficult corporate decision",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a measure framed as tough but inevitable by leadership",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a process that leaves ordinary workers as the ones who pay",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+          "alternatives": [
+            {
+              "term": "the announcement of widespread job eliminations",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a top-down mandate affecting thousands of workers",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "a severance package for laid-off employees",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a financial cushion for workers navigating unemployment",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "compensation that may not fully cover the disruption to workers' lives",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Offices in Reno and Woodland Hills are winding down",
+          "alternatives": [
+            {
+              "term": "the closure of specific office locations",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the end of local workplaces for many employees",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "roughly 17% of workforce to be cut",
+          "alternatives": [
+            {
+              "term": "a significant portion of the workforce losing their jobs",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a large-scale reduction affecting many ordinary families",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "about 3,000 full-time roles to be eliminated",
+          "alternatives": [
+            {
+              "term": "thousands of jobs disappearing",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "3,000 people and their households directly impacted by the decision",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "offices in Reno and Woodland Hills winding down",
+          "alternatives": [
+            {
+              "term": "the cessation of operations at two locations",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "local economies in two cities losing a corporate presence",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "a defined severance offer for terminated employees",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a package meant to help workers transition",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a payout that underscores the vulnerability of workers in a corporate system",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-1",
+      "who-2",
+      "result-3",
+      "how-1",
+      "who-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "about 3,000 full-time roles to be eliminated. affected U.S. employees. affected employees offered 16 weeks of base pay plus two weeks per year of tenure. Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure. Intuit The event unfolds across thousands of jobs disappearing and job elimination.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "result-1",
+          "who-2",
+          "result-3",
+          "how-1",
+          "who-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "about 3,000 full-time roles to be eliminated",
+            "provenance": "surface"
+          },
+          {
+            "term": "thousands of jobs disappearing",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "job elimination",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "role reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "headcount decrease",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected U.S. employees",
+            "provenance": "surface"
+          },
+          {
+            "term": "workers losing their jobs",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "employees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "workers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "personnel",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+            "provenance": "surface"
+          },
+          {
+            "term": "a defined severance offer for terminated employees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "severance package",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "compensation offer",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "provenance": "surface"
+          },
+          {
+            "term": "a severance package for laid-off employees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "employee benefit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Intuit",
+            "provenance": "surface"
+          },
+          {
+            "term": "the company behind the decision",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tax-software company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "corporation",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "Ordinary people facing a sudden career disruption are the real story when about 3,000 full-time roles to be eliminated by a tax-software company. The affected U.S. employees, workers losing their jobs, will receive a severance package for laid-off employees, but the financial cushion for workers navigating unemployment may not fully cover the disruption to their lives. This is a large-scale reduction affecting many ordinary families, a direct consequence of a corporate announcement and the company's strategic business rationale for the cuts.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "result-1",
+          "how-1",
+          "why-0"
+        ],
+        "center": "who-2",
+        "center_kind": "who",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "Affected U.S. employees, ordinary people facing a sudden career disruption, were offered a defined severance offer for terminated employees. This severance package, a compensation offer, is meant to help workers transition. However, the payout underscores the vulnerability of workers in a corporate system, a financial cushion that may not fully cover the disruption to their lives. The affected employees offered 16 weeks of base pay plus two weeks per year of tenure now face the reality of job elimination and headcount decrease.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-1",
+          "result-1"
+        ],
+        "center": "result-3",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 2
+      },
+      "warnings": [],
+      "fit": 0.79
+    },
+    {
+      "id": "p2",
+      "text": "A significant portion of the workforce losing their jobs is the result of a corporate restructuring by a large corporation making a corporate restructuring. The company behind the decision, a technology company, is prioritizing new technology over current employees to accelerate AI-driven product work. This difficult corporate decision, framed as tough but inevitable by leadership, leaves ordinary workers as the ones who pay, bearing the cost of the company's strategic shift.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "how-0"
+        ],
+        "center": "result-0",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 5
+      },
+      "warnings": [],
+      "fit": 0.82
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the announcement of widespread job eliminations",
+            "weight": 0.82
+          },
+          {
+            "text": "corporate announcement",
+            "weight": 0.82
+          },
+          {
+            "text": "decision communication",
+            "weight": 0.82
+          },
+          {
+            "text": "staff notification",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a top-down mandate affecting thousands of workers",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a severance package for laid-off employees",
+            "weight": 0.82
+          },
+          {
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "text": "compensation offer",
+            "weight": 0.82
+          },
+          {
+            "text": "employee benefit",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a financial cushion for workers navigating unemployment",
+            "weight": 0.38
+          },
+          {
+            "text": "compensation that may not fully cover the disruption to workers' lives",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Offices in Reno and Woodland Hills are winding down",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the closure of specific office locations",
+            "weight": 0.82
+          },
+          {
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "text": "location shutdown",
+            "weight": 0.82
+          },
+          {
+            "text": "real estate disposal",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the end of local workplaces for many employees",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "roughly 17% of workforce to be cut",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a significant portion of the workforce losing their jobs",
+            "weight": 0.82
+          },
+          {
+            "text": "workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "text": "staff layoff",
+            "weight": 0.82
+          },
+          {
+            "text": "organizational downsizing",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a large-scale reduction affecting many ordinary families",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "about 3,000 full-time roles to be eliminated",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "thousands of jobs disappearing",
+            "weight": 0.82
+          },
+          {
+            "text": "job elimination",
+            "weight": 0.82
+          },
+          {
+            "text": "role reduction",
+            "weight": 0.82
+          },
+          {
+            "text": "headcount decrease",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "3,000 people and their households directly impacted by the decision",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "offices in Reno and Woodland Hills winding down",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the cessation of operations at two locations",
+            "weight": 0.82
+          },
+          {
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "text": "location shutdown",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "local economies in two cities losing a corporate presence",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "result-3",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a defined severance offer for terminated employees",
+            "weight": 0.82
+          },
+          {
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "text": "compensation offer",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a package meant to help workers transition",
+            "weight": 0.38
+          },
+          {
+            "text": "a payout that underscores the vulnerability of workers in a corporate system",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Reno",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "an office location being closed",
+            "weight": 0.82
+          },
+          {
+            "text": "city",
+            "weight": 0.82
+          },
+          {
+            "text": "Nevada",
+            "weight": 0.82
+          },
+          {
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "text": "North America",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a community losing a major employer",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "where-1",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Woodland Hills",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "an office location being closed",
+            "weight": 0.82
+          },
+          {
+            "text": "neighborhood",
+            "weight": 0.82
+          },
+          {
+            "text": "Los Angeles",
+            "weight": 0.82
+          },
+          {
+            "text": "California",
+            "weight": 0.82
+          },
+          {
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "text": "North America",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a neighborhood losing a workplace hub",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Intuit",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the company behind the decision",
+            "weight": 0.82
+          },
+          {
+            "text": "tax-software company",
+            "weight": 0.82
+          },
+          {
+            "text": "technology company",
+            "weight": 0.82
+          },
+          {
+            "text": "company",
+            "weight": 0.82
+          },
+          {
+            "text": "corporation",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a large corporation making a corporate restructuring",
+            "weight": 0.38
+          },
+          {
+            "text": "the employer cutting thousands of jobs",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Sasan Goodarzi",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the company's chief executive",
+            "weight": 0.82
+          },
+          {
+            "text": "chief executive",
+            "weight": 0.82
+          },
+          {
+            "text": "executive",
+            "weight": 0.82
+          },
+          {
+            "text": "company leader",
+            "weight": 0.82
+          },
+          {
+            "text": "person",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a company leader announcing major layoffs",
+            "weight": 0.38
+          },
+          {
+            "text": "the executive delivering the bad news",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "affected U.S. employees",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "workers losing their jobs",
+            "weight": 0.82
+          },
+          {
+            "text": "employees",
+            "weight": 0.82
+          },
+          {
+            "text": "workers",
+            "weight": 0.82
+          },
+          {
+            "text": "staff",
+            "weight": 0.82
+          },
+          {
+            "text": "personnel",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "ordinary people facing a sudden career disruption",
+            "weight": 0.38
+          },
+          {
+            "text": "employees bearing the cost of the company's strategic shift",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a strategic business rationale for the cuts",
+            "weight": 0.82
+          },
+          {
+            "text": "business strategy",
+            "weight": 0.82
+          },
+          {
+            "text": "organizational change",
+            "weight": 0.82
+          },
+          {
+            "text": "product development acceleration",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "prioritizing new technology over current employees",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "as a painful but necessary reinvention after months of internal review",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a difficult corporate decision",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a measure framed as tough but inevitable by leadership",
+            "weight": 0.38
+          },
+          {
+            "text": "a process that leaves ordinary workers as the ones who pay",
+            "weight": 0.38
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "where-0",
+          "where-1"
+        ],
+        "search_text": "Intuit; the company behind the decision; tax-software company; technology company; company; corporation; Sasan Goodarzi; the company's chief executive; chief executive; executive; company leader; person; affected U.S. employees; workers losing their jobs; employees; workers; staff; personnel; Reno; an office location being closed; city; Nevada; United States; North America; Woodland Hills; an office location being closed; neighborhood; Los Angeles; California; United States; North America",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "Intuit",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "the company behind the decision",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "tax-software company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "technology company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "corporation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "Sasan Goodarzi",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "the company's chief executive",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "chief executive",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "executive",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "company leader",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "person",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "affected U.S. employees",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "workers losing their jobs",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "employees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "workers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "staff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "personnel",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "Reno",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "an office location being closed",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "city",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "Nevada",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "North America",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "surface",
+            "text": "Woodland Hills",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "an office location being closed",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "neighborhood",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "Los Angeles",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "California",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "North America",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "why-1",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1",
+          "result-2",
+          "result-3"
+        ],
+        "search_text": "to co-locate teams in strategic hubs and accelerate AI-driven product work; a strategic business rationale for the cuts; business strategy; organizational change; product development acceleration; as a painful but necessary reinvention after months of internal review; a difficult corporate decision; Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles; the announcement of widespread job eliminations; corporate announcement; decision communication; staff notification; Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure; a severance package for laid-off employees; severance package; compensation offer; employee benefit; Offices in Reno and Woodland Hills are winding down; the closure of specific office locations; office closure; location shutdown; real estate disposal; roughly 17% of workforce to be cut; a significant portion of the workforce losing their jobs; workforce reduction; staff layoff; organizational downsizing; about 3,000 full-time roles to be eliminated; thousands of jobs disappearing; job elimination; role reduction; headcount decrease; offices in Reno and Woodland Hills winding down; the cessation of operations at two locations; office closure; location shutdown; affected employees offered 16 weeks of base pay plus two weeks per year of tenure; a defined severance offer for terminated employees; severance package; compensation offer",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "a strategic business rationale for the cuts",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "business strategy",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "organizational change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "product development acceleration",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "surface",
+            "text": "as a painful but necessary reinvention after months of internal review",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "a difficult corporate decision",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "the announcement of widespread job eliminations",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "corporate announcement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "decision communication",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "staff notification",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "a severance package for laid-off employees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "compensation offer",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "employee benefit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "Offices in Reno and Woodland Hills are winding down",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "the closure of specific office locations",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "location shutdown",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "real estate disposal",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "roughly 17% of workforce to be cut",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "a significant portion of the workforce losing their jobs",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "staff layoff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "organizational downsizing",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "about 3,000 full-time roles to be eliminated",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "thousands of jobs disappearing",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "job elimination",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "role reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "headcount decrease",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "surface",
+            "text": "offices in Reno and Woodland Hills winding down",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "the cessation of operations at two locations",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "location shutdown",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "surface",
+            "text": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "a defined severance offer for terminated employees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "compensation offer",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Everyman-p1",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "who-2",
+          "result-1",
+          "how-1",
+          "why-0"
+        ],
+        "search_text": "Ordinary people facing a sudden career disruption are the real story when about 3,000 full-time roles to be eliminated by a tax-software company. The affected U.S. employees, workers losing their jobs, will receive a severance package for laid-off employees, but the financial cushion for workers navigating unemployment may not fully cover the disruption to their lives. This is a large-scale reduction affecting many ordinary families, a direct consequence of a corporate announcement and the company's strategic business rationale for the cuts.",
+        "fragments": [
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "affected U.S. employees",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "workers losing their jobs",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "employees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "workers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "staff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "personnel",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Everyman",
+        "center_element": "who-2",
+        "supporting_elements": [
+          "result-1",
+          "how-1",
+          "why-0"
+        ],
+        "fit": 0.85
+      },
+      {
+        "id": "su-persona-The-Everyman-p3",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-3",
+          "how-1",
+          "result-1"
+        ],
+        "search_text": "Affected U.S. employees, ordinary people facing a sudden career disruption, were offered a defined severance offer for terminated employees. This severance package, a compensation offer, is meant to help workers transition. However, the payout underscores the vulnerability of workers in a corporate system, a financial cushion that may not fully cover the disruption to their lives. The affected employees offered 16 weeks of base pay plus two weeks per year of tenure now face the reality of job elimination and headcount decrease.",
+        "fragments": [
+          {
+            "element_id": "result-3",
+            "level": "surface",
+            "text": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "a defined severance offer for terminated employees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "compensation offer",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "a severance package for laid-off employees",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Everyman",
+        "center_element": "result-3",
+        "supporting_elements": [
+          "how-1",
+          "result-1"
+        ],
+        "fit": 0.79
+      },
+      {
+        "id": "su-persona-The-Everyman-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-0",
+          "why-0",
+          "why-1",
+          "how-0"
+        ],
+        "search_text": "A significant portion of the workforce losing their jobs is the result of a corporate restructuring by a large corporation making a corporate restructuring. The company behind the decision, a technology company, is prioritizing new technology over current employees to accelerate AI-driven product work. This difficult corporate decision, framed as tough but inevitable by leadership, leaves ordinary workers as the ones who pay, bearing the cost of the company's strategic shift.",
+        "fragments": [
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "roughly 17% of workforce to be cut",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "a significant portion of the workforce losing their jobs",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "staff layoff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "organizational downsizing",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Everyman",
+        "center_element": "result-0",
+        "supporting_elements": [
+          "why-0",
+          "why-1",
+          "how-0"
+        ],
+        "fit": 0.82
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"Ordinary people facing a sudden career disruption are the real story when about 3,000 full-time roles to be eliminated by a tax-software company. The affected U.S. employees, workers losing their jobs, will receive a severance package for laid-off employees, but the financial cushion for workers navigating unemployment may not fully cover the disruption to their lives. This is a large-scale reduction affecting many ordinary families, a direct consequence of a corporate announcement and the company's strategic business rationale for the cuts.\",\n      \"fit\": 0.85,\n      \"center\": \"who-2\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"result-1\", \"how-1\", \"why-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"A significant portion of the workforce losing their jobs is the result of a corporate restructuring by a large corporation making a corporate restructuring. The company behind the decision, a technology company, is prioritizing new technology over current employees to accelerate AI-driven product work. This difficult corporate decision, framed as tough but inevitable by leadership, leaves ordinary workers as the ones who pay, bearing the cost of the company's strategic shift.\",\n      \"fit\": 0.82,\n      \"center\": \"result-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"why-1\", \"how-0\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"Affected U.S. employees, ordinary people facing a sudden career disruption, were offered a defined severance offer for terminated employees. This severance package, a compensation offer, is meant to help workers transition. However, the payout underscores the vulnerability of workers in a corporate system, a financial cushion that may not fully cover the disruption to their lives. The affected employees offered 16 weeks of base pay plus two weeks per year of tenure now face the reality of job elimination and headcount decrease.\",\n      \"fit\": 0.79,\n      \"center\": \"result-3\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-1\", \"result-1\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 3,
+    "dropped_pseudos": 0,
+    "drop_reasons": []
+  }
+}

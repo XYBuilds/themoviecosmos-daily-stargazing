@@ -1,0 +1,701 @@
+{
+  "run_id": "10-whistleblower-leak",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 19,
+  "overlap_count": 7,
+  "net_new_tmdb_ids": [
+    1647,
+    16277,
+    20777,
+    39854,
+    46100,
+    58185,
+    88269,
+    313055,
+    427557,
+    887697,
+    1020662,
+    1115239
+  ],
+  "lost_tmdb_ids": [
+    21106,
+    44909,
+    75649,
+    87400,
+    136116,
+    138372,
+    194963,
+    383121,
+    431808,
+    448337,
+    876671,
+    1030206
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [],
+  "net_new_details": [
+    {
+      "tmdb_id": 1647,
+      "title": "The Recruit",
+      "similarity": 0.5661355257034302,
+      "quality_candidate": true,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.38966047763824463,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.4067509174346924,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.4180707633495331,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "why-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.5661355257034302,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 16277,
+      "title": "Skirt Day",
+      "similarity": 0.556020975112915,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "su-persona-The-Everyman-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-5",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.556020975112915,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-5"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 20777,
+      "title": "The Killing Room",
+      "similarity": 0.4885920286178589,
+      "quality_candidate": true,
+      "triggered_by": [
+        "THE-SAGE"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2",
+            "how-2",
+            "how-3"
+          ],
+          "similarity": 0.4074794352054596,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.42665913701057434,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.40522700548171997,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.3982190489768982,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.3984226584434509,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.3951510787010193,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "result-0",
+            "result-1",
+            "result-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4"
+          ],
+          "similarity": 0.44670772552490234,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.40230217576026917,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-1",
+            "result-2"
+          ],
+          "similarity": 0.41179800033569336,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-3",
+            "how-4",
+            "result-0",
+            "result-2",
+            "how-0",
+            "how-2",
+            "result-1"
+          ],
+          "similarity": 0.41659319400787354,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-persona-The-Sage-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.4885920286178589,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 39854,
+      "title": "In the Line of Duty 4",
+      "similarity": 0.5805965662002563,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-3",
+            "how-2",
+            "how-3",
+            "result-1"
+          ],
+          "similarity": 0.5805965662002563,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-3"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 46100,
+      "title": "Secrets Behind the Wall",
+      "similarity": 0.5813910365104675,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "who-5",
+            "why-0",
+            "how-3"
+          ],
+          "similarity": 0.5813910365104675,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-5"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 58185,
+      "title": "The Last Judgment",
+      "similarity": 0.455234169960022,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-JESTER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-4",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.455234169960022,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-4"
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "su-persona-The-Jester-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-2",
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.44709616899490356,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 88269,
+      "title": "I Flunked, But...",
+      "similarity": 0.4919484853744507,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-2",
+            "result-0"
+          ],
+          "similarity": 0.46159860491752625,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-2"
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-1"
+          ],
+          "similarity": 0.4303041696548462,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-4",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.4919484853744507,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-4"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 313055,
+      "title": "Discount",
+      "similarity": 0.5932369232177734,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-CREATOR",
+        "THE-MAGICIAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-2",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-1"
+          ],
+          "similarity": 0.5932369232177734,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-2"
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-0",
+            "why-0"
+          ],
+          "similarity": 0.563762903213501,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-1"
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-persona-The-Magician-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.4775999188423157,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 427557,
+      "title": "Attitude Test",
+      "similarity": 0.47048521041870117,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR",
+        "THE-JESTER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-1",
+            "result-2"
+          ],
+          "similarity": 0.4613168239593506,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "su-persona-The-Jester-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-1"
+          ],
+          "similarity": 0.47048521041870117,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 887697,
+      "title": "Test",
+      "similarity": 0.5033894777297974,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-RULER",
+        "THE-SAGE"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "how-0",
+            "how-1",
+            "result-2"
+          ],
+          "similarity": 0.49300616979599,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-persona-The-Ruler-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.47303250432014465,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-2"
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-persona-The-Sage-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5033894777297974,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1020662,
+      "title": "Inside Man",
+      "similarity": 0.5817207098007202,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-3",
+            "how-2",
+            "how-3",
+            "result-1"
+          ],
+          "similarity": 0.5817207098007202,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-3"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1115239,
+      "title": "Por Thozhil",
+      "similarity": 0.5690391063690186,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-5",
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-1"
+          ],
+          "similarity": 0.5690391063690186,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-5"
+        }
+      ]
+    }
+  ],
+  "by_channel": {
+    "focalized": [],
+    "toned": [
+      1647,
+      16277,
+      20777,
+      39854,
+      46100,
+      58185,
+      88269,
+      313055,
+      427557,
+      887697,
+      1020662,
+      1115239
+    ]
+  }
+}

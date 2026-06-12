@@ -1,0 +1,2184 @@
+{
+  "persona_id": "The-Everyman",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Everyman",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "whistleblower in Sikar",
+          "alternatives": [
+            {
+              "term": "concerned citizen who exposed the leak",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "ordinary person speaking up",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "informant",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "tipster",
+              "valence": "neutral",
+              "provenance": "surface"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "India's National Testing Agency (NTA)",
+          "alternatives": [
+            {
+              "term": "the exam authority that acted on the tip",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the government testing body",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "testing agency",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the agency whose process was compromised",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "26–27 paper setters and translators",
+          "alternatives": [
+            {
+              "term": "the exam staff whose work was breached",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "subject matter experts involved in the exam",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "personnel",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Central Bureau of Investigation (CBI)",
+          "alternatives": [
+            {
+              "term": "the national police agency investigating the case",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "investigators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "the individuals held for the leak",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the suspects",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the accused",
+              "valence": "neutral",
+              "provenance": "surface"
+            }
+          ]
+        },
+        {
+          "element_id": "who-5",
+          "original_term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+          "alternatives": [
+            {
+              "term": "a trusted advocate now implicated in the leak",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a prominent tutor arrested in the case",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a person who spoke for students before",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Sikar",
+          "alternatives": [
+            {
+              "term": "the city where the tip originated",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a location in India",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "India",
+          "alternatives": [
+            {
+              "term": "the country where the exam was held",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "nation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+          "alternatives": [
+            {
+              "term": "evidence that the exam paper was leaked",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "proof of a security breach",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "indication of compromise",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Medical entrance exam held on May 3",
+          "alternatives": [
+            {
+              "term": "the scheduled test date",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the examination event",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+          "alternatives": [
+            {
+              "term": "the tip that reached the authorities",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a report was made",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "NTA referred 26–27 paper setters and translators to CBI",
+          "alternatives": [
+            {
+              "term": "the agency handed the matter to police",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a referral was made for investigation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Thirteen people arrested, including a coaching figure",
+          "alternatives": [
+            {
+              "term": "multiple arrests made in the case",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "individuals were detained",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "a new test date set for all candidates",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a fresh chance for students to take the exam",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a rescheduled event",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "NEET-UG 2026 cancelled",
+          "alternatives": [
+            {
+              "term": "the entire exam was scrapped due to the leak",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a major test invalidated",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "annulment of the examination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "Thirteen people arrested",
+          "alternatives": [
+            {
+              "term": "accused individuals now in custody",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "people were detained",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Re-examination scheduled for June 21",
+          "alternatives": [
+            {
+              "term": "a second chance for the affected students",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the exam will be held again",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a retest is planned",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "who-5",
+      "who-2",
+      "how-4",
+      "why-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "NEET-UG 2026 cancelled. coaching figure who had publicly championed student justice during the 2024 leak scandal. 26–27 paper setters and translators. Re-examination scheduled for June 21. whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology The event unfolds across annulment of the examination and cancellation.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "result-0",
+          "who-5",
+          "who-2",
+          "how-4",
+          "why-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "NEET-UG 2026 cancelled",
+            "provenance": "surface"
+          },
+          {
+            "term": "annulment of the examination",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "cancellation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "result",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+            "provenance": "surface"
+          },
+          {
+            "term": "coach",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "educator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public figure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "26–27 paper setters and translators",
+            "provenance": "surface"
+          },
+          {
+            "term": "personnel",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professionals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "group",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "people",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Re-examination scheduled for June 21",
+            "provenance": "surface"
+          },
+          {
+            "term": "a rescheduled event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "rescheduling",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "planned event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "step",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+            "provenance": "surface"
+          },
+          {
+            "term": "indication of compromise",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "tip",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "information disclosure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "report",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disclosure",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p2",
+      "text": "A prominent tutor, once a trusted advocate for students, was arrested along with other exam staff whose work was breached. This happened after the government testing body acted on a whistleblower's report, resulting in the cancellation of the major test.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-2",
+          "how-3",
+          "result-0"
+        ],
+        "center": "who-5",
+        "center_kind": "who",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [
+        "pseudo p2: center 'who-5' instantiates vantage seat but channel is toned (expected focalized)"
+      ],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "For the students who had studied for the May 3 entrance exam, the news brought a mix of frustration and hope. While the cancellation was a blow, they now have a second chance with a rescheduled event planned for June 21.",
+      "source": {
+        "agent_id": "The-Everyman",
+        "fragments": [
+          "how-0",
+          "result-0",
+          "result-2"
+        ],
+        "center": "how-4",
+        "center_kind": "how",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 3
+      },
+      "warnings": [],
+      "fit": 0.8
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Medical entrance exam held on May 3",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the scheduled test date",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the examination event",
+            "weight": 0.82
+          },
+          {
+            "text": "examination",
+            "weight": 0.82
+          },
+          {
+            "text": "test",
+            "weight": 0.82
+          },
+          {
+            "text": "event",
+            "weight": 0.82
+          },
+          {
+            "text": "assessment",
+            "weight": 0.82
+          },
+          {
+            "text": "entrance exam",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the tip that reached the authorities",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a report was made",
+            "weight": 0.82
+          },
+          {
+            "text": "communication",
+            "weight": 0.82
+          },
+          {
+            "text": "receipt of information",
+            "weight": 0.82
+          },
+          {
+            "text": "action",
+            "weight": 0.82
+          },
+          {
+            "text": "step",
+            "weight": 0.82
+          },
+          {
+            "text": "event",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "NTA referred 26–27 paper setters and translators to CBI",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the agency handed the matter to police",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a referral was made for investigation",
+            "weight": 0.82
+          },
+          {
+            "text": "referral",
+            "weight": 0.82
+          },
+          {
+            "text": "investigation initiation",
+            "weight": 0.82
+          },
+          {
+            "text": "action",
+            "weight": 0.82
+          },
+          {
+            "text": "step",
+            "weight": 0.82
+          },
+          {
+            "text": "event",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Thirteen people arrested, including a coaching figure",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "multiple arrests made in the case",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "individuals were detained",
+            "weight": 0.82
+          },
+          {
+            "text": "arrest",
+            "weight": 0.82
+          },
+          {
+            "text": "law enforcement action",
+            "weight": 0.82
+          },
+          {
+            "text": "consequence",
+            "weight": 0.82
+          },
+          {
+            "text": "event",
+            "weight": 0.82
+          },
+          {
+            "text": "action",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Re-examination scheduled for June 21",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a new test date set for all candidates",
+            "weight": 0.38
+          },
+          {
+            "text": "a fresh chance for students to take the exam",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a rescheduled event",
+            "weight": 0.82
+          },
+          {
+            "text": "rescheduling",
+            "weight": 0.82
+          },
+          {
+            "text": "planned event",
+            "weight": 0.82
+          },
+          {
+            "text": "action",
+            "weight": 0.82
+          },
+          {
+            "text": "step",
+            "weight": 0.82
+          },
+          {
+            "text": "event",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "NEET-UG 2026 cancelled",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the entire exam was scrapped due to the leak",
+            "weight": 0.38
+          },
+          {
+            "text": "a major test invalidated",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "annulment of the examination",
+            "weight": 0.82
+          },
+          {
+            "text": "cancellation",
+            "weight": 0.82
+          },
+          {
+            "text": "outcome",
+            "weight": 0.82
+          },
+          {
+            "text": "result",
+            "weight": 0.82
+          },
+          {
+            "text": "event outcome",
+            "weight": 0.82
+          },
+          {
+            "text": "consequence",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "Thirteen people arrested",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "accused individuals now in custody",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "people were detained",
+            "weight": 0.82
+          },
+          {
+            "text": "arrests",
+            "weight": 0.82
+          },
+          {
+            "text": "law enforcement result",
+            "weight": 0.82
+          },
+          {
+            "text": "outcome",
+            "weight": 0.82
+          },
+          {
+            "text": "consequence",
+            "weight": 0.82
+          },
+          {
+            "text": "event",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "Re-examination scheduled for June 21",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a second chance for the affected students",
+            "weight": 0.38
+          },
+          {
+            "text": "the exam will be held again",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a retest is planned",
+            "weight": 0.82
+          },
+          {
+            "text": "rescheduling",
+            "weight": 0.82
+          },
+          {
+            "text": "planned re-examination",
+            "weight": 0.82
+          },
+          {
+            "text": "outcome",
+            "weight": 0.82
+          },
+          {
+            "text": "result",
+            "weight": 0.82
+          },
+          {
+            "text": "event",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Sikar",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the city where the tip originated",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a location in India",
+            "weight": 0.82
+          },
+          {
+            "text": "city",
+            "weight": 0.82
+          },
+          {
+            "text": "urban area",
+            "weight": 0.82
+          },
+          {
+            "text": "geographic location",
+            "weight": 0.82
+          },
+          {
+            "text": "India",
+            "weight": 0.82
+          },
+          {
+            "text": "South Asia",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-1",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "India",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the country where the exam was held",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "nation",
+            "weight": 0.82
+          },
+          {
+            "text": "country",
+            "weight": 0.82
+          },
+          {
+            "text": "sovereign state",
+            "weight": 0.82
+          },
+          {
+            "text": "geographic entity",
+            "weight": 0.82
+          },
+          {
+            "text": "South Asian nation",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "whistleblower in Sikar",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "concerned citizen who exposed the leak",
+            "weight": 0.38
+          },
+          {
+            "text": "ordinary person speaking up",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "informant",
+            "weight": 0.82
+          },
+          {
+            "text": "individual",
+            "weight": 0.82
+          },
+          {
+            "text": "person",
+            "weight": 0.82
+          },
+          {
+            "text": "source",
+            "weight": 0.82
+          },
+          {
+            "text": "entity",
+            "weight": 0.82
+          }
+        ],
+        "alias": [
+          {
+            "text": "tipster",
+            "weight": 0.95
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "India's National Testing Agency (NTA)",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the exam authority that acted on the tip",
+            "weight": 0.38
+          },
+          {
+            "text": "the government testing body",
+            "weight": 0.38
+          },
+          {
+            "text": "the agency whose process was compromised",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "testing agency",
+            "weight": 0.82
+          },
+          {
+            "text": "government agency",
+            "weight": 0.82
+          },
+          {
+            "text": "organization",
+            "weight": 0.82
+          },
+          {
+            "text": "institution",
+            "weight": 0.82
+          },
+          {
+            "text": "body",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "26–27 paper setters and translators",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the exam staff whose work was breached",
+            "weight": 0.38
+          },
+          {
+            "text": "subject matter experts involved in the exam",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "personnel",
+            "weight": 0.82
+          },
+          {
+            "text": "professionals",
+            "weight": 0.82
+          },
+          {
+            "text": "staff",
+            "weight": 0.82
+          },
+          {
+            "text": "group",
+            "weight": 0.82
+          },
+          {
+            "text": "individuals",
+            "weight": 0.82
+          },
+          {
+            "text": "people",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Central Bureau of Investigation (CBI)",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the national police agency investigating the case",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "investigators",
+            "weight": 0.82
+          },
+          {
+            "text": "investigation agency",
+            "weight": 0.82
+          },
+          {
+            "text": "law enforcement agency",
+            "weight": 0.82
+          },
+          {
+            "text": "government organization",
+            "weight": 0.82
+          },
+          {
+            "text": "agency",
+            "weight": 0.82
+          },
+          {
+            "text": "bureau",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-4",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "thirteen people arrested",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the individuals held for the leak",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the suspects",
+            "weight": 0.82
+          },
+          {
+            "text": "arrested individuals",
+            "weight": 0.82
+          },
+          {
+            "text": "suspects",
+            "weight": 0.82
+          },
+          {
+            "text": "people",
+            "weight": 0.82
+          },
+          {
+            "text": "group",
+            "weight": 0.82
+          },
+          {
+            "text": "persons",
+            "weight": 0.82
+          }
+        ],
+        "alias": [
+          {
+            "text": "the accused",
+            "weight": 0.95
+          }
+        ]
+      },
+      {
+        "element_id": "who-5",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a trusted advocate now implicated in the leak",
+            "weight": 0.38
+          },
+          {
+            "text": "a prominent tutor arrested in the case",
+            "weight": 0.38
+          },
+          {
+            "text": "a person who spoke for students before",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "coach",
+            "weight": 0.82
+          },
+          {
+            "text": "educator",
+            "weight": 0.82
+          },
+          {
+            "text": "public figure",
+            "weight": 0.82
+          },
+          {
+            "text": "individual",
+            "weight": 0.82
+          },
+          {
+            "text": "person",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "evidence that the exam paper was leaked",
+            "weight": 0.38
+          },
+          {
+            "text": "proof of a security breach",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "indication of compromise",
+            "weight": 0.82
+          },
+          {
+            "text": "tip",
+            "weight": 0.82
+          },
+          {
+            "text": "information disclosure",
+            "weight": 0.82
+          },
+          {
+            "text": "evidence",
+            "weight": 0.82
+          },
+          {
+            "text": "report",
+            "weight": 0.82
+          },
+          {
+            "text": "disclosure",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "who-3",
+          "who-4",
+          "who-5",
+          "where-0",
+          "where-1"
+        ],
+        "search_text": "whistleblower in Sikar; informant; tipster; individual; person; source; entity; India's National Testing Agency (NTA); testing agency; government agency; organization; institution; body; 26–27 paper setters and translators; personnel; professionals; staff; group; individuals; people; Central Bureau of Investigation (CBI); investigators; investigation agency; law enforcement agency; government organization; agency; bureau; thirteen people arrested; the suspects; the accused; arrested individuals; suspects; people; group; persons; coaching figure who had publicly championed student justice during the 2024 leak scandal; coach; educator; public figure; individual; person; Sikar; a location in India; city; urban area; geographic location; India; South Asia; India; nation; country; sovereign state; geographic entity; South Asian nation",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "whistleblower in Sikar",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "informant",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "alias",
+            "text": "tipster",
+            "weight": 0.95
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "individual",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "person",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "source",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "entity",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "India's National Testing Agency (NTA)",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "testing agency",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "government agency",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "organization",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "institution",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "body",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "26–27 paper setters and translators",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "personnel",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "professionals",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "staff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "group",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "individuals",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "people",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "surface",
+            "text": "Central Bureau of Investigation (CBI)",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "investigators",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "investigation agency",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "law enforcement agency",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "government organization",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "agency",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "bureau",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "surface",
+            "text": "thirteen people arrested",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "the suspects",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "alias",
+            "text": "the accused",
+            "weight": 0.95
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "arrested individuals",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "suspects",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "people",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "group",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "persons",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-5",
+            "level": "surface",
+            "text": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-5",
+            "level": "objective_close",
+            "text": "coach",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-5",
+            "level": "objective_close",
+            "text": "educator",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-5",
+            "level": "objective_close",
+            "text": "public figure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-5",
+            "level": "objective_close",
+            "text": "individual",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-5",
+            "level": "objective_close",
+            "text": "person",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "Sikar",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "a location in India",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "city",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "urban area",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "geographic location",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "India",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "South Asia",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "surface",
+            "text": "India",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "nation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "country",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "sovereign state",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "geographic entity",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "South Asian nation",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0",
+          "result-1",
+          "result-2"
+        ],
+        "search_text": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology; indication of compromise; tip; information disclosure; evidence; report; disclosure; Medical entrance exam held on May 3; the examination event; examination; test; event; assessment; entrance exam; NTA received email from whistleblower in Sikar with PDFs matching chemistry paper; a report was made; communication; receipt of information; action; step; event; NTA referred 26–27 paper setters and translators to CBI; a referral was made for investigation; referral; investigation initiation; action; step; event; Thirteen people arrested, including a coaching figure; individuals were detained; arrest; law enforcement action; consequence; event; action; Re-examination scheduled for June 21; a rescheduled event; rescheduling; planned event; action; step; event; NEET-UG 2026 cancelled; annulment of the examination; cancellation; outcome; result; event outcome; consequence; Thirteen people arrested; people were detained; arrests; law enforcement result; outcome; consequence; event; Re-examination scheduled for June 21; a retest is planned; rescheduling; planned re-examination; outcome; result; event",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "whistleblower tip with PDFs that matched 100% of chemistry questions and part of biology",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "indication of compromise",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "tip",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "information disclosure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "evidence",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "report",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "disclosure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Medical entrance exam held on May 3",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "the examination event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "examination",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "test",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "assessment",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "entrance exam",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "NTA received email from whistleblower in Sikar with PDFs matching chemistry paper",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "a report was made",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "communication",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "receipt of information",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "step",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "NTA referred 26–27 paper setters and translators to CBI",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "a referral was made for investigation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "referral",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "investigation initiation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "step",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "surface",
+            "text": "Thirteen people arrested, including a coaching figure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "individuals were detained",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "arrest",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "law enforcement action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "consequence",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "surface",
+            "text": "Re-examination scheduled for June 21",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "a rescheduled event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "rescheduling",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "planned event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "step",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "NEET-UG 2026 cancelled",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "annulment of the examination",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "cancellation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "outcome",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "result",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "event outcome",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "consequence",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "Thirteen people arrested",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "people were detained",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "arrests",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "law enforcement result",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "outcome",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "consequence",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "surface",
+            "text": "Re-examination scheduled for June 21",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "a retest is planned",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "rescheduling",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "planned re-examination",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "outcome",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "result",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "event",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Everyman-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "who-5",
+          "how-2",
+          "how-3",
+          "result-0"
+        ],
+        "search_text": "A prominent tutor, once a trusted advocate for students, was arrested along with other exam staff whose work was breached. This happened after the government testing body acted on a whistleblower's report, resulting in the cancellation of the major test.",
+        "fragments": [
+          {
+            "element_id": "who-5",
+            "level": "surface",
+            "text": "coaching figure who had publicly championed student justice during the 2024 leak scandal",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-5",
+            "level": "objective_close",
+            "text": "coach",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-5",
+            "level": "objective_close",
+            "text": "educator",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-5",
+            "level": "objective_close",
+            "text": "public figure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-5",
+            "level": "objective_close",
+            "text": "individual",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-5",
+            "level": "objective_close",
+            "text": "person",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Everyman",
+        "center_element": "who-5",
+        "supporting_elements": [
+          "how-2",
+          "how-3",
+          "result-0"
+        ],
+        "fit": 0.85
+      },
+      {
+        "id": "su-persona-The-Everyman-p3",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "how-4",
+          "how-0",
+          "result-0",
+          "result-2"
+        ],
+        "search_text": "For the students who had studied for the May 3 entrance exam, the news brought a mix of frustration and hope. While the cancellation was a blow, they now have a second chance with a rescheduled event planned for June 21.",
+        "fragments": [
+          {
+            "element_id": "how-4",
+            "level": "surface",
+            "text": "Re-examination scheduled for June 21",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "a rescheduled event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "rescheduling",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "planned event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "step",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Everyman",
+        "center_element": "how-4",
+        "supporting_elements": [
+          "how-0",
+          "result-0",
+          "result-2"
+        ],
+        "fit": 0.8
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"A concerned citizen who exposed the leak sent a tip with PDFs that matched 100% of the chemistry questions and part of biology to the testing agency. The agency received the email and referred the matter to investigators, leading to multiple arrests. The entire exam was scrapped due to the leak, and a retest is planned.\",\n      \"fit\": 0.9,\n      \"center\": \"why-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-1\", \"how-2\", \"result-0\", \"result-2\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"A prominent tutor, once a trusted advocate for students, was arrested along with other exam staff whose work was breached. This happened after the government testing body acted on a whistleblower's report, resulting in the cancellation of the major test.\",\n      \"fit\": 0.85,\n      \"center\": \"who-5\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-2\", \"how-3\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"For the students who had studied for the May 3 entrance exam, the news brought a mix of frustration and hope. While the cancellation was a blow, they now have a second chance with a rescheduled event planned for June 21.\",\n      \"fit\": 0.8,\n      \"center\": \"how-4\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"result-0\", \"result-2\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "pseudo p1: supporting elements must be 2–4, got 7"
+    },
+    {
+      "stage": "screenwriter",
+      "attempt": "2",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 2,
+    "dropped_pseudos": 1,
+    "drop_reasons": [
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5"
+      }
+    ]
+  }
+}

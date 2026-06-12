@@ -1,0 +1,119 @@
+{
+  "persona_id": "The-Creator",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "YouTuber",
+        "alternatives": [
+          {
+            "term": "digital fabricator",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "content creator",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "online content producer",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "spread false claims for financial gain",
+        "alternatives": [
+          {
+            "term": "weaponized fabrication for profit",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "commerical distribution of unverified content",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "spreading unverified claims",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+        "alternatives": [
+          {
+            "term": "crafted an AI-forged illusion with manipulated media",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "composed allegations using synthetic audio and edited visuals",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "creating and distributing digital content",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "YouTuber arrested",
+        "alternatives": [
+          {
+            "term": "fabricator apprehended",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "content producer facing legal action",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "an individual taken into custody",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+        "alternatives": [
+          {
+            "term": "the forged narrative disrupted a career and public life",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the controversy paused professional engagements",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "a situation causing interruptions to public activities",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "how-0",
+    "result-1",
+    "why-0",
+    "who-0",
+    "result-0"
+  ]
+}

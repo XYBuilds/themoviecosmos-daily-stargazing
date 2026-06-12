@@ -1,0 +1,449 @@
+{
+  "run_id": "06-tech-monopoly",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 19,
+  "overlap_count": 10,
+  "net_new_tmdb_ids": [
+    9989,
+    37455,
+    47291,
+    53416,
+    64578,
+    112090,
+    121793,
+    297702,
+    1403327
+  ],
+  "lost_tmdb_ids": [
+    13748,
+    18457,
+    52077,
+    121342,
+    142977,
+    148866,
+    320318,
+    438798,
+    888917
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [],
+  "net_new_details": [
+    {
+      "tmdb_id": 9989,
+      "title": "Antitrust",
+      "similarity": 0.5726262927055359,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "who-2",
+            "why-0",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5726262927055359,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 37455,
+      "title": "Police Python 357",
+      "similarity": 0.4993037283420563,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-persona-The-Magician-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "why-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.4993037283420563,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 47291,
+      "title": "Chicken and Duck Talk",
+      "similarity": 0.499276340007782,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-EXPLORER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.3690182566642761,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "su-persona-The-Explorer-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "why-1",
+            "result-0",
+            "how-3"
+          ],
+          "similarity": 0.49490612745285034,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.499276340007782,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 53416,
+      "title": "The Floorwalker",
+      "similarity": 0.49342477321624756,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-EVERYMAN",
+        "THE-RULER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.38970673084259033,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0",
+            "result-1",
+            "how-3"
+          ],
+          "similarity": 0.3901294469833374,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.38519465923309326,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.3860410153865814,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.3585217595100403,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.38443464040756226,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "su-persona-The-Everyman-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-2",
+            "why-1",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.49342477321624756,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-2"
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-2",
+            "why-0",
+            "why-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4218282401561737,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-2"
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-persona-The-Ruler-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "how-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.4618079662322998,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 64578,
+      "title": "Yakuza Graveyard",
+      "similarity": 0.5259751081466675,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-SAGE"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-persona-The-Sage-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-3"
+          ],
+          "similarity": 0.5259751081466675,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 112090,
+      "title": "Branded",
+      "similarity": 0.48700445890426636,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "su-persona-The-Explorer-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "why-1",
+            "result-0",
+            "how-3"
+          ],
+          "similarity": 0.48700445890426636,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 121793,
+      "title": "Capital",
+      "similarity": 0.4985209107398987,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR",
+        "THE-RULER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "how-0",
+            "how-1",
+            "why-1"
+          ],
+          "similarity": 0.4985209107398987,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-2"
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-persona-The-Ruler-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.42229223251342773,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 297702,
+      "title": "Gutshot Straight",
+      "similarity": 0.5232228636741638,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0"
+          ],
+          "similarity": 0.5232228636741638,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1403327,
+      "title": "Coartadas",
+      "similarity": 0.5738308429718018,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "who-2",
+            "why-0",
+            "how-3",
+            "result-0"
+          ],
+          "similarity": 0.5738308429718018,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-2"
+        }
+      ]
+    }
+  ],
+  "by_channel": {
+    "focalized": [],
+    "toned": [
+      9989,
+      37455,
+      47291,
+      53416,
+      64578,
+      112090,
+      121793,
+      297702,
+      1403327
+    ]
+  }
+}

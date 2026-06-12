@@ -1,0 +1,1216 @@
+{
+  "phase": "3.11.7",
+  "output_dir": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.11\\full-batch-20260613-3117",
+  "baseline_dir": "output\\Eval\\phase3.10",
+  "run_count": 10,
+  "totals": {
+    "baseline_candidates": 190,
+    "design_candidates": 190,
+    "net_new_candidates": 102,
+    "lost_candidates": 102,
+    "automated_pass_runs": 0,
+    "guard_hard_failures": 0
+  },
+  "search_unit_kind_decomposition": {
+    "any_kind_counts": {
+      "event-fragment-bundle": 11,
+      "persona-semantic": 100,
+      "surface-fragment-bundle": 1
+    },
+    "exclusive_counts": {
+      "event-fragment-bundle": 0,
+      "persona-semantic": 89,
+      "surface-fragment-bundle": 0
+    },
+    "collision_gain_count": 12,
+    "collision_gain_tmdb_ids": [
+      1647,
+      20777,
+      28498,
+      30706,
+      47291,
+      53416,
+      56971,
+      68924,
+      248556,
+      382220,
+      720321,
+      1047128
+    ]
+  },
+  "tuning_compass": {
+    "persona_net_new_counts": {
+      "THE-INNOCENT": 17,
+      "THE-CAREGIVER": 15,
+      "THE-CREATOR": 15,
+      "THE-LOVER": 15,
+      "THE-EXPLORER": 14,
+      "THE-HERO": 12,
+      "THE-RULER": 12,
+      "THE-OUTLAW": 11,
+      "THE-MAGICIAN": 10,
+      "THE-EVERYMAN": 8,
+      "THE-JESTER": 8,
+      "THE-SAGE": 8
+    },
+    "center_dimension_net_new_counts": {
+      "who": 47,
+      "result": 42,
+      "how": 28,
+      "why": 15,
+      "where": 1
+    },
+    "budget_N": {
+      "per_run_human_budget": [
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "per_run_human_count": [
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "min_human_count": 19,
+      "max_human_count": 19
+    }
+  },
+  "rejection_audit": {
+    "zero_human_two_killed_by_judge_zero": true,
+    "human_two_in_judge_zero": [],
+    "human_two_missing_from_design_review": [
+      {
+        "run_id": "01-grid-outage",
+        "tmdb_ids": [
+          431892
+        ]
+      },
+      {
+        "run_id": "02-corporate-layoff",
+        "tmdb_ids": [
+          485162
+        ]
+      },
+      {
+        "run_id": "05-climate-disaster",
+        "tmdb_ids": [
+          33196
+        ]
+      },
+      {
+        "run_id": "06-tech-monopoly",
+        "tmdb_ids": [
+          13748
+        ]
+      },
+      {
+        "run_id": "08-sports-underdog",
+        "tmdb_ids": [
+          248555
+        ]
+      }
+    ],
+    "note": "judge_zero exists only when retrieve was run with judge_scores; missing_from_design_review is a review-pool retention warning, not final GATE裁决。"
+  },
+  "pov_transform_distribution": {
+    "source": null,
+    "human": {
+      "true": 0,
+      "false": 0,
+      "unknown": 0
+    },
+    "judge": {
+      "true": 0,
+      "false": 0,
+      "unknown": 0
+    },
+    "note": "pending human labels / judge output"
+  },
+  "runs": [
+    {
+      "run_id": "01-grid-outage",
+      "baseline_candidate_count": 19,
+      "design_candidate_count": 19,
+      "net_new_count": 9,
+      "lost_count": 9,
+      "net_new_tmdb_ids": [
+        9453,
+        14394,
+        15667,
+        52302,
+        58770,
+        139329,
+        178989,
+        720321,
+        1032795
+      ],
+      "lost_tmdb_ids": [
+        33787,
+        46221,
+        100063,
+        210219,
+        266727,
+        418879,
+        431892,
+        533885,
+        1223272
+      ],
+      "by_search_unit_kind": {
+        "event-fragment-bundle": [
+          720321
+        ],
+        "persona-semantic": [
+          9453,
+          14394,
+          15667,
+          52302,
+          58770,
+          139329,
+          178989,
+          720321,
+          1032795
+        ],
+        "surface-fragment-bundle": []
+      },
+      "exclusive_by_search_unit_kind": {
+        "surface-fragment-bundle": [],
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          9453,
+          14394,
+          15667,
+          52302,
+          58770,
+          139329,
+          178989,
+          1032795
+        ]
+      },
+      "collision_gain_tmdb_ids": [
+        720321
+      ],
+      "persona_net_new_counts": {
+        "THE-CAREGIVER": 2,
+        "THE-CREATOR": 2,
+        "THE-HERO": 1,
+        "THE-LOVER": 1,
+        "THE-MAGICIAN": 1,
+        "THE-OUTLAW": 1,
+        "THE-RULER": 2,
+        "THE-SAGE": 1
+      },
+      "center_dimension_net_new_counts": {
+        "how": 3,
+        "result": 2,
+        "who": 2,
+        "why": 3
+      },
+      "funnel": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 26,
+        "sorted_count": 26,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "audit_pool_count": 0,
+      "judge_zero_count": 0,
+      "baseline_human_two_tmdb_ids": [
+        33495,
+        429918,
+        431892
+      ],
+      "human_two_in_judge_zero_tmdb_ids": [],
+      "human_two_missing_from_design_review_tmdb_ids": [
+        431892
+      ],
+      "zero_human_two_killed": true,
+      "all_automated_pass": false,
+      "guard_hard_failures": 0
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "baseline_candidate_count": 19,
+      "design_candidate_count": 19,
+      "net_new_count": 8,
+      "lost_count": 8,
+      "net_new_tmdb_ids": [
+        25665,
+        37769,
+        69896,
+        116741,
+        313055,
+        438639,
+        1097549,
+        1161617
+      ],
+      "lost_tmdb_ids": [
+        16814,
+        53416,
+        71172,
+        133463,
+        485162,
+        750145,
+        1173076,
+        1233620
+      ],
+      "by_search_unit_kind": {
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          25665,
+          37769,
+          69896,
+          116741,
+          313055,
+          438639,
+          1097549,
+          1161617
+        ],
+        "surface-fragment-bundle": []
+      },
+      "exclusive_by_search_unit_kind": {
+        "surface-fragment-bundle": [],
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          25665,
+          37769,
+          69896,
+          116741,
+          313055,
+          438639,
+          1097549,
+          1161617
+        ]
+      },
+      "collision_gain_tmdb_ids": [],
+      "persona_net_new_counts": {
+        "THE-CAREGIVER": 2,
+        "THE-EXPLORER": 1,
+        "THE-HERO": 1,
+        "THE-INNOCENT": 3,
+        "THE-MAGICIAN": 1,
+        "THE-OUTLAW": 1,
+        "THE-RULER": 1
+      },
+      "center_dimension_net_new_counts": {
+        "how": 4,
+        "result": 2,
+        "who": 2,
+        "why": 2
+      },
+      "funnel": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 38,
+        "sorted_count": 38,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "audit_pool_count": 0,
+      "judge_zero_count": 0,
+      "baseline_human_two_tmdb_ids": [
+        485162,
+        619090
+      ],
+      "human_two_in_judge_zero_tmdb_ids": [],
+      "human_two_missing_from_design_review_tmdb_ids": [
+        485162
+      ],
+      "zero_human_two_killed": true,
+      "all_automated_pass": false,
+      "guard_hard_failures": 0
+    },
+    {
+      "run_id": "03-election-upset",
+      "baseline_candidate_count": 19,
+      "design_candidate_count": 19,
+      "net_new_count": 8,
+      "lost_count": 8,
+      "net_new_tmdb_ids": [
+        6521,
+        10411,
+        14050,
+        52657,
+        114645,
+        142142,
+        264518,
+        432301
+      ],
+      "lost_tmdb_ids": [
+        379,
+        46563,
+        100420,
+        239070,
+        342442,
+        532869,
+        536176,
+        1168015
+      ],
+      "by_search_unit_kind": {
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          6521,
+          10411,
+          14050,
+          52657,
+          114645,
+          142142,
+          264518,
+          432301
+        ],
+        "surface-fragment-bundle": []
+      },
+      "exclusive_by_search_unit_kind": {
+        "surface-fragment-bundle": [],
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          6521,
+          10411,
+          14050,
+          52657,
+          114645,
+          142142,
+          264518,
+          432301
+        ]
+      },
+      "collision_gain_tmdb_ids": [],
+      "persona_net_new_counts": {
+        "THE-CAREGIVER": 2,
+        "THE-CREATOR": 1,
+        "THE-HERO": 1,
+        "THE-INNOCENT": 1,
+        "THE-JESTER": 2,
+        "THE-LOVER": 1,
+        "THE-MAGICIAN": 2,
+        "THE-OUTLAW": 3
+      },
+      "center_dimension_net_new_counts": {
+        "how": 1,
+        "result": 5,
+        "who": 6
+      },
+      "funnel": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 25,
+        "sorted_count": 25,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "audit_pool_count": 0,
+      "judge_zero_count": 0,
+      "baseline_human_two_tmdb_ids": [
+        37593
+      ],
+      "human_two_in_judge_zero_tmdb_ids": [],
+      "human_two_missing_from_design_review_tmdb_ids": [],
+      "zero_human_two_killed": true,
+      "all_automated_pass": false,
+      "guard_hard_failures": 0
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "baseline_candidate_count": 19,
+      "design_candidate_count": 19,
+      "net_new_count": 9,
+      "lost_count": 9,
+      "net_new_tmdb_ids": [
+        16070,
+        87110,
+        151913,
+        322125,
+        336200,
+        382220,
+        505951,
+        531384,
+        873097
+      ],
+      "lost_tmdb_ids": [
+        19644,
+        140785,
+        369384,
+        448337,
+        602463,
+        715253,
+        735919,
+        1020662,
+        1262124
+      ],
+      "by_search_unit_kind": {
+        "event-fragment-bundle": [
+          382220
+        ],
+        "persona-semantic": [
+          16070,
+          87110,
+          151913,
+          322125,
+          336200,
+          382220,
+          505951,
+          531384,
+          873097
+        ],
+        "surface-fragment-bundle": []
+      },
+      "exclusive_by_search_unit_kind": {
+        "surface-fragment-bundle": [],
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          16070,
+          87110,
+          151913,
+          322125,
+          336200,
+          505951,
+          531384,
+          873097
+        ]
+      },
+      "collision_gain_tmdb_ids": [
+        382220
+      ],
+      "persona_net_new_counts": {
+        "THE-CREATOR": 4,
+        "THE-EVERYMAN": 1,
+        "THE-EXPLORER": 2,
+        "THE-INNOCENT": 2,
+        "THE-JESTER": 2,
+        "THE-LOVER": 1,
+        "THE-OUTLAW": 1,
+        "THE-SAGE": 1
+      },
+      "center_dimension_net_new_counts": {
+        "how": 5,
+        "result": 3,
+        "who": 4
+      },
+      "funnel": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 41,
+        "sorted_count": 41,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "audit_pool_count": 0,
+      "judge_zero_count": 0,
+      "baseline_human_two_tmdb_ids": [
+        32690,
+        250332,
+        347483
+      ],
+      "human_two_in_judge_zero_tmdb_ids": [],
+      "human_two_missing_from_design_review_tmdb_ids": [],
+      "zero_human_two_killed": true,
+      "all_automated_pass": false,
+      "guard_hard_failures": 0
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "baseline_candidate_count": 19,
+      "design_candidate_count": 19,
+      "net_new_count": 11,
+      "lost_count": 11,
+      "net_new_tmdb_ids": [
+        14111,
+        38828,
+        53080,
+        62652,
+        68924,
+        121890,
+        258947,
+        285427,
+        333545,
+        514690,
+        937393
+      ],
+      "lost_tmdb_ids": [
+        26693,
+        33196,
+        38141,
+        43593,
+        44325,
+        107100,
+        210219,
+        274855,
+        437031,
+        613658,
+        797840
+      ],
+      "by_search_unit_kind": {
+        "event-fragment-bundle": [
+          68924
+        ],
+        "persona-semantic": [
+          14111,
+          38828,
+          53080,
+          62652,
+          68924,
+          121890,
+          258947,
+          285427,
+          333545,
+          514690,
+          937393
+        ],
+        "surface-fragment-bundle": []
+      },
+      "exclusive_by_search_unit_kind": {
+        "surface-fragment-bundle": [],
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          14111,
+          38828,
+          53080,
+          62652,
+          121890,
+          258947,
+          285427,
+          333545,
+          514690,
+          937393
+        ]
+      },
+      "collision_gain_tmdb_ids": [
+        68924
+      ],
+      "persona_net_new_counts": {
+        "THE-CAREGIVER": 2,
+        "THE-CREATOR": 1,
+        "THE-HERO": 1,
+        "THE-INNOCENT": 2,
+        "THE-LOVER": 4,
+        "THE-OUTLAW": 2,
+        "THE-RULER": 1,
+        "THE-SAGE": 1
+      },
+      "center_dimension_net_new_counts": {
+        "how": 3,
+        "result": 7,
+        "who": 3
+      },
+      "funnel": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 37,
+        "sorted_count": 37,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "audit_pool_count": 0,
+      "judge_zero_count": 0,
+      "baseline_human_two_tmdb_ids": [
+        22624,
+        29602,
+        33196,
+        163293,
+        257637
+      ],
+      "human_two_in_judge_zero_tmdb_ids": [],
+      "human_two_missing_from_design_review_tmdb_ids": [
+        33196
+      ],
+      "zero_human_two_killed": true,
+      "all_automated_pass": false,
+      "guard_hard_failures": 0
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "baseline_candidate_count": 19,
+      "design_candidate_count": 19,
+      "net_new_count": 9,
+      "lost_count": 9,
+      "net_new_tmdb_ids": [
+        9989,
+        37455,
+        47291,
+        53416,
+        64578,
+        112090,
+        121793,
+        297702,
+        1403327
+      ],
+      "lost_tmdb_ids": [
+        13748,
+        18457,
+        52077,
+        121342,
+        142977,
+        148866,
+        320318,
+        438798,
+        888917
+      ],
+      "by_search_unit_kind": {
+        "event-fragment-bundle": [
+          47291,
+          53416
+        ],
+        "persona-semantic": [
+          9989,
+          37455,
+          47291,
+          53416,
+          64578,
+          112090,
+          121793,
+          297702,
+          1403327
+        ],
+        "surface-fragment-bundle": []
+      },
+      "exclusive_by_search_unit_kind": {
+        "surface-fragment-bundle": [],
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          9989,
+          37455,
+          64578,
+          112090,
+          121793,
+          297702,
+          1403327
+        ]
+      },
+      "collision_gain_tmdb_ids": [
+        47291,
+        53416
+      ],
+      "persona_net_new_counts": {
+        "THE-CREATOR": 1,
+        "THE-EVERYMAN": 1,
+        "THE-EXPLORER": 2,
+        "THE-HERO": 1,
+        "THE-INNOCENT": 1,
+        "THE-LOVER": 3,
+        "THE-MAGICIAN": 1,
+        "THE-RULER": 2,
+        "THE-SAGE": 1
+      },
+      "center_dimension_net_new_counts": {
+        "how": 2,
+        "result": 2,
+        "who": 5,
+        "why": 3
+      },
+      "funnel": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 44,
+        "sorted_count": 44,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "audit_pool_count": 0,
+      "judge_zero_count": 0,
+      "baseline_human_two_tmdb_ids": [
+        4959,
+        13748
+      ],
+      "human_two_in_judge_zero_tmdb_ids": [],
+      "human_two_missing_from_design_review_tmdb_ids": [
+        13748
+      ],
+      "zero_human_two_killed": true,
+      "all_automated_pass": false,
+      "guard_hard_failures": 0
+    },
+    {
+      "run_id": "07-migration-border",
+      "baseline_candidate_count": 19,
+      "design_candidate_count": 19,
+      "net_new_count": 10,
+      "lost_count": 10,
+      "net_new_tmdb_ids": [
+        20764,
+        25012,
+        33638,
+        58383,
+        68924,
+        158015,
+        319910,
+        372753,
+        473760,
+        508664
+      ],
+      "lost_tmdb_ids": [
+        1775,
+        9366,
+        46221,
+        49097,
+        127822,
+        252990,
+        362202,
+        1006462,
+        1418657,
+        1447971
+      ],
+      "by_search_unit_kind": {
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          20764,
+          25012,
+          33638,
+          58383,
+          68924,
+          158015,
+          319910,
+          372753,
+          473760,
+          508664
+        ],
+        "surface-fragment-bundle": []
+      },
+      "exclusive_by_search_unit_kind": {
+        "surface-fragment-bundle": [],
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          20764,
+          25012,
+          33638,
+          58383,
+          68924,
+          158015,
+          319910,
+          372753,
+          473760,
+          508664
+        ]
+      },
+      "collision_gain_tmdb_ids": [],
+      "persona_net_new_counts": {
+        "THE-CAREGIVER": 1,
+        "THE-CREATOR": 2,
+        "THE-EVERYMAN": 2,
+        "THE-EXPLORER": 2,
+        "THE-HERO": 2,
+        "THE-INNOCENT": 1,
+        "THE-JESTER": 1,
+        "THE-LOVER": 1,
+        "THE-MAGICIAN": 2,
+        "THE-RULER": 1,
+        "THE-SAGE": 1
+      },
+      "center_dimension_net_new_counts": {
+        "how": 1,
+        "result": 6,
+        "where": 1,
+        "who": 6,
+        "why": 1
+      },
+      "funnel": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 27,
+        "sorted_count": 27,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "audit_pool_count": 0,
+      "judge_zero_count": 0,
+      "baseline_human_two_tmdb_ids": [
+        4170,
+        273481,
+        301633
+      ],
+      "human_two_in_judge_zero_tmdb_ids": [],
+      "human_two_missing_from_design_review_tmdb_ids": [],
+      "zero_human_two_killed": true,
+      "all_automated_pass": false,
+      "guard_hard_failures": 0
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "baseline_candidate_count": 19,
+      "design_candidate_count": 19,
+      "net_new_count": 13,
+      "lost_count": 13,
+      "net_new_tmdb_ids": [
+        8344,
+        9091,
+        30706,
+        61301,
+        75074,
+        98586,
+        100340,
+        126644,
+        178998,
+        243683,
+        248556,
+        360339,
+        434853
+      ],
+      "lost_tmdb_ids": [
+        4929,
+        18784,
+        41612,
+        66876,
+        82685,
+        232679,
+        248555,
+        467867,
+        589752,
+        647581,
+        1018648,
+        1190511,
+        1210646
+      ],
+      "by_search_unit_kind": {
+        "event-fragment-bundle": [
+          30706
+        ],
+        "persona-semantic": [
+          8344,
+          9091,
+          30706,
+          61301,
+          75074,
+          98586,
+          100340,
+          126644,
+          178998,
+          243683,
+          248556,
+          360339,
+          434853
+        ],
+        "surface-fragment-bundle": [
+          248556
+        ]
+      },
+      "exclusive_by_search_unit_kind": {
+        "surface-fragment-bundle": [],
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          8344,
+          9091,
+          61301,
+          75074,
+          98586,
+          100340,
+          126644,
+          178998,
+          243683,
+          360339,
+          434853
+        ]
+      },
+      "collision_gain_tmdb_ids": [
+        30706,
+        248556
+      ],
+      "persona_net_new_counts": {
+        "THE-CAREGIVER": 2,
+        "THE-CREATOR": 1,
+        "THE-EVERYMAN": 2,
+        "THE-EXPLORER": 4,
+        "THE-HERO": 1,
+        "THE-INNOCENT": 3,
+        "THE-LOVER": 1,
+        "THE-RULER": 1
+      },
+      "center_dimension_net_new_counts": {
+        "result": 2,
+        "who": 8,
+        "why": 3
+      },
+      "funnel": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 32,
+        "sorted_count": 32,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "audit_pool_count": 0,
+      "judge_zero_count": 0,
+      "baseline_human_two_tmdb_ids": [
+        5693,
+        248555,
+        456929
+      ],
+      "human_two_in_judge_zero_tmdb_ids": [],
+      "human_two_missing_from_design_review_tmdb_ids": [
+        248555
+      ],
+      "zero_human_two_killed": true,
+      "all_automated_pass": false,
+      "guard_hard_failures": 0
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "baseline_candidate_count": 19,
+      "design_candidate_count": 19,
+      "net_new_count": 13,
+      "lost_count": 13,
+      "net_new_tmdb_ids": [
+        665,
+        4486,
+        15855,
+        28498,
+        56971,
+        90001,
+        277387,
+        326598,
+        347148,
+        663866,
+        895435,
+        1047128,
+        1195631
+      ],
+      "lost_tmdb_ids": [
+        16305,
+        27425,
+        32690,
+        45054,
+        86962,
+        118379,
+        133369,
+        333266,
+        446173,
+        525825,
+        617397,
+        619139,
+        1002470
+      ],
+      "by_search_unit_kind": {
+        "event-fragment-bundle": [
+          28498,
+          56971,
+          1047128
+        ],
+        "persona-semantic": [
+          665,
+          4486,
+          15855,
+          28498,
+          56971,
+          90001,
+          277387,
+          326598,
+          347148,
+          663866,
+          895435,
+          1047128,
+          1195631
+        ],
+        "surface-fragment-bundle": []
+      },
+      "exclusive_by_search_unit_kind": {
+        "surface-fragment-bundle": [],
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          665,
+          4486,
+          15855,
+          90001,
+          277387,
+          326598,
+          347148,
+          663866,
+          895435,
+          1195631
+        ]
+      },
+      "collision_gain_tmdb_ids": [
+        28498,
+        56971,
+        1047128
+      ],
+      "persona_net_new_counts": {
+        "THE-CAREGIVER": 1,
+        "THE-CREATOR": 1,
+        "THE-EVERYMAN": 1,
+        "THE-EXPLORER": 3,
+        "THE-HERO": 1,
+        "THE-INNOCENT": 2,
+        "THE-JESTER": 1,
+        "THE-LOVER": 1,
+        "THE-MAGICIAN": 2,
+        "THE-OUTLAW": 3,
+        "THE-RULER": 3,
+        "THE-SAGE": 1
+      },
+      "center_dimension_net_new_counts": {
+        "how": 4,
+        "result": 9,
+        "who": 4,
+        "why": 2
+      },
+      "funnel": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 43,
+        "sorted_count": 43,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "audit_pool_count": 0,
+      "judge_zero_count": 0,
+      "baseline_human_two_tmdb_ids": [],
+      "human_two_in_judge_zero_tmdb_ids": [],
+      "human_two_missing_from_design_review_tmdb_ids": [],
+      "zero_human_two_killed": true,
+      "all_automated_pass": false,
+      "guard_hard_failures": 0
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "baseline_candidate_count": 19,
+      "design_candidate_count": 19,
+      "net_new_count": 12,
+      "lost_count": 12,
+      "net_new_tmdb_ids": [
+        1647,
+        16277,
+        20777,
+        39854,
+        46100,
+        58185,
+        88269,
+        313055,
+        427557,
+        887697,
+        1020662,
+        1115239
+      ],
+      "lost_tmdb_ids": [
+        21106,
+        44909,
+        75649,
+        87400,
+        136116,
+        138372,
+        194963,
+        383121,
+        431808,
+        448337,
+        876671,
+        1030206
+      ],
+      "by_search_unit_kind": {
+        "event-fragment-bundle": [
+          1647,
+          20777
+        ],
+        "persona-semantic": [
+          1647,
+          16277,
+          20777,
+          39854,
+          46100,
+          58185,
+          88269,
+          313055,
+          427557,
+          887697,
+          1020662,
+          1115239
+        ],
+        "surface-fragment-bundle": []
+      },
+      "exclusive_by_search_unit_kind": {
+        "surface-fragment-bundle": [],
+        "event-fragment-bundle": [],
+        "persona-semantic": [
+          16277,
+          39854,
+          46100,
+          58185,
+          88269,
+          313055,
+          427557,
+          887697,
+          1020662,
+          1115239
+        ]
+      },
+      "collision_gain_tmdb_ids": [
+        1647,
+        20777
+      ],
+      "persona_net_new_counts": {
+        "THE-CAREGIVER": 3,
+        "THE-CREATOR": 2,
+        "THE-EVERYMAN": 1,
+        "THE-HERO": 3,
+        "THE-INNOCENT": 2,
+        "THE-JESTER": 2,
+        "THE-LOVER": 2,
+        "THE-MAGICIAN": 1,
+        "THE-RULER": 1,
+        "THE-SAGE": 2
+      },
+      "center_dimension_net_new_counts": {
+        "how": 5,
+        "result": 4,
+        "who": 7,
+        "why": 1
+      },
+      "funnel": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 43,
+        "sorted_count": 43,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "audit_pool_count": 0,
+      "judge_zero_count": 0,
+      "baseline_human_two_tmdb_ids": [],
+      "human_two_in_judge_zero_tmdb_ids": [],
+      "human_two_missing_from_design_review_tmdb_ids": [],
+      "zero_human_two_killed": true,
+      "all_automated_pass": false,
+      "guard_hard_failures": 0
+    }
+  ]
+}

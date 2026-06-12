@@ -1,0 +1,237 @@
+{
+  "persona_id": "The-Hero",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "European regulators",
+        "alternatives": [
+          {
+            "term": "the guardians of fair competition",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "regulatory enforcers",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "regulators",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Google",
+        "alternatives": [
+          {
+            "term": "the dominant gatekeeper exploiting its power",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the tech giant facing accountability",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "the parent company",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "rival comparison services",
+        "alternatives": [
+          {
+            "term": "the competitors fighting for a level playing field",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "market rivals",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "Alphabet",
+        "alternatives": [
+          {
+            "term": "the corporate conglomerate being held to account",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the multinational corporation",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+        "alternatives": [
+          {
+            "term": "for rigging the search results to favor its own services and stifle competition",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "for prioritizing its own comparison services in search rankings",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "for unfair self-preferencing",
+            "valence": "negative",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "original_term": "under the bloc's gatekeeper rules",
+        "alternatives": [
+          {
+            "term": "under the laws designed to protect the digital marketplace from domination",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "under the EU's Digital Markets Act",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+        "alternatives": [
+          {
+            "term": "A long and determined investigation to hold the powerful to account",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "A multi-year regulatory process",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "Brussels rejected the company's remedy proposals",
+        "alternatives": [
+          {
+            "term": "The authorities refused to accept the corporation's weak concessions",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "The regulator dismissed the proposed fixes",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+        "alternatives": [
+          {
+            "term": "The enforcers are preparing a decisive financial blow to uphold the rules",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "The penalty is being calculated",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "penalty expected to reach the high hundreds of millions of euros",
+        "alternatives": [
+          {
+            "term": "a massive fine as a victory for justice and fair play",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "a substantial financial penalty",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "adding to more than a decade of accumulated competition fines against Alphabet",
+        "alternatives": [
+          {
+            "term": "the latest chapter in a long fight against its anti-competitive dominance",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "a continuation of previous competition enforcement actions",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "original_term": "EU",
+        "alternatives": [
+          {
+            "term": "the regulatory arena where the battle for digital fairness is being fought",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the European Union",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "where-1",
+        "original_term": "Brussels",
+        "alternatives": [
+          {
+            "term": "the frontline where the Commission is confronting the tech titan",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the seat of the European Commission",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "who-0",
+    "how-1",
+    "why-0",
+    "how-2",
+    "result-0"
+  ]
+}

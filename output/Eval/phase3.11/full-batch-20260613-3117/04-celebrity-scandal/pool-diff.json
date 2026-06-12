@@ -1,0 +1,443 @@
+{
+  "run_id": "04-celebrity-scandal",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 19,
+  "overlap_count": 10,
+  "net_new_tmdb_ids": [
+    16070,
+    87110,
+    151913,
+    322125,
+    336200,
+    382220,
+    505951,
+    531384,
+    873097
+  ],
+  "lost_tmdb_ids": [
+    19644,
+    140785,
+    369384,
+    448337,
+    602463,
+    715253,
+    735919,
+    1020662,
+    1262124
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [],
+  "net_new_details": [
+    {
+      "tmdb_id": 16070,
+      "title": "This Film Is Not Yet Rated",
+      "similarity": 0.6051667332649231,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "why-0",
+            "result-1"
+          ],
+          "similarity": 0.6051667332649231,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 87110,
+      "title": "Eternal Evil",
+      "similarity": 0.5861192941665649,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "why-0",
+            "result-1"
+          ],
+          "similarity": 0.5861192941665649,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 151913,
+      "title": "I Like Mountain Music",
+      "similarity": 0.6036849021911621,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-OUTLAW",
+        "THE-JESTER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5608769655227661,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "su-persona-The-Jester-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-1"
+          ],
+          "similarity": 0.6036849021911621,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-persona-The-Outlaw-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5319775342941284,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 322125,
+      "title": "A Perfect Man",
+      "similarity": 0.585446834564209,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "su-persona-The-Everyman-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "why-0",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.585446834564209,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 336200,
+      "title": "Panama",
+      "similarity": 0.6032001376152039,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-0",
+            "how-0",
+            "result-1"
+          ],
+          "similarity": 0.5597379207611084,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.6032001376152039,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 382220,
+      "title": "Master",
+      "similarity": 0.5766892433166504,
+      "quality_candidate": true,
+      "triggered_by": [
+        "THE-EXPLORER",
+        "THE-CREATOR",
+        "THE-SAGE"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1",
+            "how-1"
+          ],
+          "similarity": 0.5062987804412842,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4933893382549286,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5067008137702942,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5006359815597534,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5200315117835999,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.49768009781837463,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5141867399215698,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "why-0",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.5766892433166504,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "su-persona-The-Explorer-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.575707197189331,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-0"
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-persona-The-Sage-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5455660223960876,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 505951,
+      "title": "Kannum Kannum Kollaiyadithaal",
+      "similarity": 0.5997004508972168,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "why-0",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.5997004508972168,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 531384,
+      "title": "Project Gutenberg",
+      "similarity": 0.6086046695709229,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "su-persona-The-Explorer-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-0",
+            "why-0",
+            "result-0"
+          ],
+          "similarity": 0.6086046695709229,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 873097,
+      "title": "For a Fistful of Fries",
+      "similarity": 0.5922247767448425,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "su-persona-The-Jester-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-0",
+            "why-0",
+            "result-0"
+          ],
+          "similarity": 0.5922247767448425,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-1"
+        }
+      ]
+    }
+  ],
+  "by_channel": {
+    "focalized": [],
+    "toned": [
+      16070,
+      87110,
+      151913,
+      322125,
+      336200,
+      382220,
+      505951,
+      531384,
+      873097
+    ]
+  }
+}

@@ -1,0 +1,1294 @@
+{
+  "persona_id": "The-Hero",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Hero",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Christopher Nolan",
+          "alternatives": [
+            {
+              "term": "the decision-maker who cast the roles",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Lupita Nyong'o",
+          "alternatives": [
+            {
+              "term": "the actor cast in the roles",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "prominent commentators",
+          "alternatives": [
+            {
+              "term": "accusers attacking the production",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "critics of the casting",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "defenders",
+          "alternatives": [
+            {
+              "term": "those who stood up for the casting",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "protectors of diverse storytelling",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "the production",
+          "alternatives": [
+            {
+              "term": "the team facing the attacks",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "online",
+          "alternatives": [
+            {
+              "term": "the battleground where the fight plays out",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "accusations of erasing European history",
+          "alternatives": [
+            {
+              "term": "an attack on the production's creative choices",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the stated grievance of the accusers",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+          "alternatives": [
+            {
+              "term": "a defense of inclusive storytelling",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the moral stance of the defenders",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation",
+          "alternatives": [
+            {
+              "term": "a casting decision",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "fierce online attacks drawn",
+          "alternatives": [
+            {
+              "term": "an assault on the creative team",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "hostile reactions online",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "prominent commentators accused the production of erasing European history",
+          "alternatives": [
+            {
+              "term": "public figures leading the charge against the production",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+          "alternatives": [
+            {
+              "term": "a counter-argument made in defense of the casting",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film",
+          "alternatives": [
+            {
+              "term": "a larger fight over cultural ownership has erupted",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "culture-war fight ignited",
+          "alternatives": [
+            {
+              "term": "a battle over representation in film",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "who-3",
+      "result-0",
+      "how-3",
+      "why-1",
+      "how-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "defenders. the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film. defenders argued diverse casting treats the Western canon as shared civilizational heritage. fierce online attacks drawn The event unfolds across advocates and supporters.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "who-3",
+          "result-0",
+          "how-3",
+          "why-1",
+          "how-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "defenders",
+            "provenance": "surface"
+          },
+          {
+            "term": "advocates",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "supporters",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film",
+            "provenance": "surface"
+          },
+          {
+            "term": "cultural controversy",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "public debate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "social conflict",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+            "provenance": "surface"
+          },
+          {
+            "term": "counter-argument",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "defense statement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "cultural perspective",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "argument",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "defense",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "cultural claim",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fierce online attacks drawn",
+            "provenance": "surface"
+          },
+          {
+            "term": "online criticism",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital backlash",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "social media conflict",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p2",
+      "text": "The cultural controversy ignited by this casting has forced a confrontation on a new battleground. On the internet, protectors of diverse storytelling stood their ground against hostile reactions online, defending the moral stance that the Western canon is shared civilizational heritage. This battle over representation in film is a direct challenge to those who would claim classical stories belong only to one history.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "why-1",
+          "how-1",
+          "result-1"
+        ],
+        "center": "result-0",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "In response to critics of the casting, a counter-argument was made in defense of the artistic choice. This defense statement asserted that inclusive storytelling is not erasure but evolution, treating the Western canon as shared civilizational heritage for a modern audience. The fight now extends beyond the film to a larger public debate over who gets to tell these stories.",
+      "source": {
+        "agent_id": "The-Hero",
+        "fragments": [
+          "how-2",
+          "why-1",
+          "result-0"
+        ],
+        "center": "how-3",
+        "center_kind": "how",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 2
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a casting decision",
+            "weight": 0.82
+          },
+          {
+            "text": "casting decision",
+            "weight": 0.82
+          },
+          {
+            "text": "film production activity",
+            "weight": 0.82
+          },
+          {
+            "text": "cultural event",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "fierce online attacks drawn",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "an assault on the creative team",
+            "weight": 0.38
+          },
+          {
+            "text": "hostile reactions online",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "online criticism",
+            "weight": 0.82
+          },
+          {
+            "text": "digital backlash",
+            "weight": 0.82
+          },
+          {
+            "text": "social media conflict",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "prominent commentators accused the production of erasing European history",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "public figures leading the charge against the production",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "public accusation",
+            "weight": 0.82
+          },
+          {
+            "text": "media criticism",
+            "weight": 0.82
+          },
+          {
+            "text": "cultural debate",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a counter-argument made in defense of the casting",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "counter-argument",
+            "weight": 0.82
+          },
+          {
+            "text": "defense statement",
+            "weight": 0.82
+          },
+          {
+            "text": "cultural perspective",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a larger fight over cultural ownership has erupted",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "cultural controversy",
+            "weight": 0.82
+          },
+          {
+            "text": "public debate",
+            "weight": 0.82
+          },
+          {
+            "text": "social conflict",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "culture-war fight ignited",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a battle over representation in film",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "ideological conflict",
+            "weight": 0.82
+          },
+          {
+            "text": "public dispute",
+            "weight": 0.82
+          },
+          {
+            "text": "societal debate",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "online",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the battleground where the fight plays out",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "digital space",
+            "weight": 0.82
+          },
+          {
+            "text": "virtual environment",
+            "weight": 0.82
+          },
+          {
+            "text": "internet",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Christopher Nolan",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the decision-maker who cast the roles",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "film director",
+            "weight": 0.82
+          },
+          {
+            "text": "artist",
+            "weight": 0.82
+          },
+          {
+            "text": "individual",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Lupita Nyong'o",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the actor cast in the roles",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "actress",
+            "weight": 0.82
+          },
+          {
+            "text": "performer",
+            "weight": 0.82
+          },
+          {
+            "text": "individual",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "prominent commentators",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "accusers attacking the production",
+            "weight": 0.38
+          },
+          {
+            "text": "critics of the casting",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "commentators",
+            "weight": 0.82
+          },
+          {
+            "text": "media professionals",
+            "weight": 0.82
+          },
+          {
+            "text": "public figures",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "defenders",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "those who stood up for the casting",
+            "weight": 0.38
+          },
+          {
+            "text": "protectors of diverse storytelling",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "advocates",
+            "weight": 0.82
+          },
+          {
+            "text": "supporters",
+            "weight": 0.82
+          },
+          {
+            "text": "individuals",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-4",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "the production",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the team facing the attacks",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "film production",
+            "weight": 0.82
+          },
+          {
+            "text": "creative project",
+            "weight": 0.82
+          },
+          {
+            "text": "organization",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "accusations of erasing European history",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "an attack on the production's creative choices",
+            "weight": 0.38
+          },
+          {
+            "text": "the stated grievance of the accusers",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "allegation",
+            "weight": 0.82
+          },
+          {
+            "text": "criticism",
+            "weight": 0.82
+          },
+          {
+            "text": "statement",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a defense of inclusive storytelling",
+            "weight": 0.38
+          },
+          {
+            "text": "the moral stance of the defenders",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "argument",
+            "weight": 0.82
+          },
+          {
+            "text": "defense",
+            "weight": 0.82
+          },
+          {
+            "text": "cultural claim",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "who-3",
+          "who-4",
+          "where-0"
+        ],
+        "search_text": "Christopher Nolan; film director; artist; individual; Lupita Nyong'o; actress; performer; individual; prominent commentators; commentators; media professionals; public figures; defenders; advocates; supporters; individuals; the production; film production; creative project; organization; online; digital space; virtual environment; internet",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "Christopher Nolan",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "film director",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "artist",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "individual",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "Lupita Nyong'o",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "actress",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "performer",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "individual",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "prominent commentators",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "commentators",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "media professionals",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "public figures",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "surface",
+            "text": "defenders",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "advocates",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "supporters",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "individuals",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "surface",
+            "text": "the production",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "film production",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "creative project",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "organization",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "online",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "digital space",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "virtual environment",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "internet",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "why-1",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ],
+        "search_text": "accusations of erasing European history; allegation; criticism; statement; defenders argued diverse casting treats the Western canon as shared civilizational heritage; argument; defense; cultural claim; Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation; a casting decision; casting decision; film production activity; cultural event; fierce online attacks drawn; online criticism; digital backlash; social media conflict; prominent commentators accused the production of erasing European history; public accusation; media criticism; cultural debate; defenders argued diverse casting treats the Western canon as shared civilizational heritage; counter-argument; defense statement; cultural perspective; the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film; cultural controversy; public debate; social conflict; culture-war fight ignited; ideological conflict; public dispute; societal debate",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "accusations of erasing European history",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "allegation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "criticism",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "statement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "surface",
+            "text": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "argument",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "defense",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "cultural claim",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Lupita Nyong'o cast as Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "a casting decision",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "casting decision",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "film production activity",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "cultural event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "fierce online attacks drawn",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "online criticism",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "digital backlash",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "social media conflict",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "prominent commentators accused the production of erasing European history",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "public accusation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "media criticism",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "cultural debate",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "surface",
+            "text": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "counter-argument",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "defense statement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "cultural perspective",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "cultural controversy",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "public debate",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "social conflict",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "culture-war fight ignited",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "ideological conflict",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "public dispute",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "societal debate",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Hero-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-0",
+          "why-1",
+          "how-1",
+          "result-1"
+        ],
+        "search_text": "The cultural controversy ignited by this casting has forced a confrontation on a new battleground. On the internet, protectors of diverse storytelling stood their ground against hostile reactions online, defending the moral stance that the Western canon is shared civilizational heritage. This battle over representation in film is a direct challenge to those who would claim classical stories belong only to one history.",
+        "fragments": [
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "the dispute has turned a mythic epic into a flashpoint over identity, belonging, and who may claim classical stories in mass-market film",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "cultural controversy",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "public debate",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "social conflict",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "surface",
+            "text": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "argument",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Hero",
+        "center_element": "result-0",
+        "supporting_elements": [
+          "why-1",
+          "how-1",
+          "result-1"
+        ],
+        "fit": 0.85
+      },
+      {
+        "id": "su-persona-The-Hero-p3",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "how-3",
+          "how-2",
+          "why-1",
+          "result-0"
+        ],
+        "search_text": "In response to critics of the casting, a counter-argument was made in defense of the artistic choice. This defense statement asserted that inclusive storytelling is not erasure but evolution, treating the Western canon as shared civilizational heritage for a modern audience. The fight now extends beyond the film to a larger public debate over who gets to tell these stories.",
+        "fragments": [
+          {
+            "element_id": "how-3",
+            "level": "surface",
+            "text": "defenders argued diverse casting treats the Western canon as shared civilizational heritage",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "counter-argument",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "defense statement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "cultural perspective",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "prominent commentators accused the production of erasing European history",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "public accusation",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Hero",
+        "center_element": "how-3",
+        "supporting_elements": [
+          "how-2",
+          "why-1",
+          "result-0"
+        ],
+        "fit": 0.78
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"After a casting decision placed the actor cast in the roles of Helen of Troy and Clytemnestra in Christopher Nolan's upcoming Homer adaptation, a fierce online backlash erupted. Those who stood up for the casting faced digital backlash from accusers attacking the production, who leveled a public accusation of erasing European history. The defenders argued that diverse storytelling honors shared cultural heritage, but the dispute has turned the mythic epic into a flashpoint over identity and belonging.\",\n      \"fit\": 0.92,\n      \"center\": \"who-3\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"how-1\", \"how-2\", \"how-3\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"The cultural controversy ignited by this casting has forced a confrontation on a new battleground. On the internet, protectors of diverse storytelling stood their ground against hostile reactions online, defending the moral stance that the Western canon is shared civilizational heritage. This battle over representation in film is a direct challenge to those who would claim classical stories belong only to one history.\",\n      \"fit\": 0.85,\n      \"center\": \"result-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-1\", \"how-1\", \"result-1\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"In response to critics of the casting, a counter-argument was made in defense of the artistic choice. This defense statement asserted that inclusive storytelling is not erasure but evolution, treating the Western canon as shared civilizational heritage for a modern audience. The fight now extends beyond the film to a larger public debate over who gets to tell these stories.\",\n      \"fit\": 0.78,\n      \"center\": \"how-3\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-2\", \"why-1\", \"result-0\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 2,
+    "dropped_pseudos": 1,
+    "drop_reasons": [
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5"
+      }
+    ]
+  }
+}

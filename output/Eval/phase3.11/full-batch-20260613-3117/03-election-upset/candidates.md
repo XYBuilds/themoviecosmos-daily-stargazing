@@ -1,0 +1,539 @@
+# 候选星轨 · 03-election-upset
+
+## 元信息
+- run_id: 03-election-upset
+
+## 候选星轨（共 19 部）
+
+### Game Change (2012) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-EXPLORER, THE-OUTLAW, THE-CREATOR, THE-SAGE, THE-JESTER, THE-CAREGIVER, THE-LOVER, THE-MAGICIAN] [汇聚标注]
+- **tmdb_id**: 91010
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=true, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 294.5721
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=11 / event=8 / persona=3
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic, surface-fragment-bundle
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=3: THE-EXPLORER,THE-EVERYMAN,THE-OUTLAW
+- **相似度**: 0.5721
+- **genres** / **language**: TV Movie, Drama, Comedy, History / en
+- **overview**: During the Republican run of the 2008 Presidential election, candidate John McCain picks a relative unknown, Alaskan governor Sarah Palin, to be his running mate.  As the campaign kicks into high gear, her lack of experience, in both political and media savvy, becomes a drain upon McCain and his strategists.
+- **跳转**: https://themoviecosmos.com/movie/91010
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5253
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5323
+  - THE-HERO/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5084
+  - THE-EXPLORER/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5242
+  - THE-OUTLAW/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5307
+  - THE-CREATOR/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5362
+  - THE-SAGE/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5398
+  - THE-JESTER/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5402
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[how-0, result-0, result-1] · sim=0.4773
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[result-1, how-0, result-2] · sim=0.4910
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[who-1, how-0, result-1] · sim=0.4977
+  - THE-INNOCENT/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5343
+  - THE-EVERYMAN/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5561
+  - THE-HERO/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5530
+  - THE-CAREGIVER/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5462
+  - THE-EXPLORER/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5721
+  - THE-OUTLAW/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5706
+  - THE-LOVER/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5065
+  - THE-CREATOR/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5430
+  - THE-MAGICIAN/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5322
+  - THE-SAGE/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5115
+  - THE-JESTER/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5546
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Swing Vote (2008) [THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-EXPLORER, THE-MAGICIAN, THE-SAGE, THE-INNOCENT, THE-JESTER] [汇聚标注]
+- **tmdb_id**: 10187
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=true, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 324.6131
+  - **persona_agent_count**: 6
+  - **source_hits**: surface=11 / event=5 / persona=6
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic, surface-fragment-bundle
+  - **center_dimensions**: how, who, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=6: THE-HERO,THE-MAGICIAN,THE-SAGE,THE-CREATOR,THE-EXPLORER,THE-EVERYMAN
+- **相似度**: 0.6131
+- **genres** / **language**: Comedy, Drama / en
+- **overview**: In a remarkable turn of events, the result of the presidential election comes down to one man's vote.
+- **跳转**: https://themoviecosmos.com/movie/10187
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5434
+  - THE-HERO/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5250
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.4842
+  - THE-OUTLAW/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5235
+  - THE-LOVER/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5021
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[why-0, result-0, result-2] · sim=0.5801
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[why-1, result-0, result-2] · sim=0.6131
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[how-0, why-0, result-0, result-2] · sim=0.5372
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[who-0, why-0, result-0, why-1] · sim=0.5728
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[who-2, why-0, why-1, result-0] · sim=0.5184
+  - THE-SAGE/su-persona-The-Sage-p3: fragments=[why-0, how-0] · sim=0.4666
+  - THE-INNOCENT/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5104
+  - THE-EVERYMAN/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5487
+  - THE-HERO/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5084
+  - THE-CAREGIVER/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5605
+  - THE-EXPLORER/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5411
+  - THE-OUTLAW/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5181
+  - THE-LOVER/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5081
+  - THE-CREATOR/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5003
+  - THE-MAGICIAN/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5211
+  - THE-SAGE/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.4828
+  - THE-JESTER/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5201
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Lone Star (1952) [THE-INNOCENT, THE-CAREGIVER, THE-EXPLORER, THE-LOVER, THE-MAGICIAN, THE-EVERYMAN, THE-HERO, THE-SAGE] [汇聚标注]
+- **tmdb_id**: 37593
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 244.5760
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=5 / persona=4
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=4: THE-EVERYMAN,THE-HERO,THE-LOVER,THE-SAGE
+- **相似度**: 0.5760
+- **genres** / **language**: Western / en
+- **overview**: Cattle baron Devereaux Burke is enlisted by an aging Andrew Jackson to dissuade Sam Houston from establishing Texas as a republic. Burke must fight state senator Thomas Craden, in the process winning the heart of Craden's newspaper-editor girlfriend Martha Ronda.
+- **跳转**: https://themoviecosmos.com/movie/37593
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5409
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5064
+  - THE-EXPLORER/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5394
+  - THE-LOVER/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5329
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5141
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[how-0, result-0, result-1] · sim=0.5373
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[result-1, how-0, result-2] · sim=0.4805
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-0, how-0, why-1, result-0] · sim=0.5760
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[result-0, how-0, result-1] · sim=0.5051
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Campaign (2012) [THE-CREATOR, THE-MAGICIAN, THE-SAGE, THE-JESTER, THE-HERO] [汇聚标注]
+- **tmdb_id**: 77953
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 208.5956
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=4 / persona=2
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=2: THE-SAGE,THE-HERO
+- **相似度**: 0.5956
+- **genres** / **language**: Comedy / en
+- **overview**: Two rival politicians compete to win an election to represent their small North Carolina congressional district in the United States House of Representatives.
+- **跳转**: https://themoviecosmos.com/movie/77953
+- **命中视角/碎片**:
+  - THE-CREATOR/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5419
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5092
+  - THE-SAGE/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5292
+  - THE-JESTER/su-event-1: fragments=[why-0, why-1, how-0, result-0, result-1, result-2] · sim=0.5421
+  - THE-HERO/su-persona-The-Hero-p1: fragments=[result-0, how-0, why-1, result-2] · sim=0.5918
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[result-1, why-1, result-2] · sim=0.5956
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Machete (2010) [THE-CAREGIVER, THE-EXPLORER, THE-HERO, THE-INNOCENT, THE-JESTER, THE-LOVER, THE-MAGICIAN]
+- **tmdb_id**: 23631
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 186.5410
+  - **persona_agent_count**: 7
+  - **source_hits**: surface=0 / event=0 / persona=7
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5410
+- **genres** / **language**: Action, Comedy, Thriller / en
+- **overview**: After being set-up and betrayed by the man who hired him to assassinate a Texas Senator, an ex-Federale launches a brutal rampage of revenge against his former boss.
+- **跳转**: https://themoviecosmos.com/movie/23631
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-1, result-1, how-0, why-0] · sim=0.5071
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[result-1, how-0, result-2] · sim=0.4903
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[result-1, how-0, result-2] · sim=0.5000
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-1, why-0, how-0, result-2] · sim=0.5356
+  - THE-JESTER/su-persona-The-Jester-p1: fragments=[result-1, why-1, how-0] · sim=0.5351
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, result-1, why-0, how-0] · sim=0.5410
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[who-2, why-0, why-1, result-0] · sim=0.5241
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Long Live Freedom (2013) [THE-EVERYMAN, THE-MAGICIAN, THE-OUTLAW, THE-SAGE]
+- **tmdb_id**: 167221
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 164.6310
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=0 / persona=5
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6310
+- **genres** / **language**: Comedy, Drama / it
+- **overview**: Elections are approaching and things don't look too good for the opposition. Their leader can't stand the pressure and disappears. To avoid a scandal, the upper echelons of the party concoct a risky plan: to replace him with his identical twin, a philosopher with BPD, whose eclectic ideas and direct approach unexpectedly make the party surge in the polls.
+- **跳转**: https://themoviecosmos.com/movie/167221
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[why-1, result-0, result-2] · sim=0.6310
+  - THE-EVERYMAN/su-persona-The-Everyman-p3: fragments=[result-1, result-2] · sim=0.5464
+  - THE-MAGICIAN/su-persona-The-Magician-p1: fragments=[why-0, how-0, result-0, result-2] · sim=0.5870
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[who-0, why-0, how-0, result-0, result-1] · sim=0.5490
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[result-1, why-1, result-2] · sim=0.5998
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Independent (2022) [THE-CREATOR, THE-JESTER, THE-SAGE]
+- **tmdb_id**: 878183
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 154.6578
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=5
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6578
+- **genres** / **language**: Thriller, Mystery, Crime / en
+- **overview**: It's the final weeks of the most consequential presidential election in history. America is poised to elect either its first female president or its first viable independent candidate. Reporting history as it's made, an idealistic young journalist teams up with her idol, legendary journalist Nick Booker, to uncover a conspiracy that places the fate of the election, and the country, in their hands.
+- **跳转**: https://themoviecosmos.com/movie/878183
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[how-0, why-0, why-1] · sim=0.5074
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[result-1, result-2, how-0] · sim=0.6340
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[why-0, result-0, result-2] · sim=0.6578
+  - THE-JESTER/su-persona-The-Jester-p3: fragments=[result-0, result-2] · sim=0.5419
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[result-0, how-0, result-1] · sim=0.4916
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Gli onorevoli (1963) [THE-CREATOR, THE-EXPLORER, THE-HERO, THE-SAGE]
+- **tmdb_id**: 64946
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 164.6357
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=0 / persona=4
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6357
+- **genres** / **language**: Comedy / it
+- **overview**: Some political candidates are determined to win the electors' preference during an election campaign in Italy.
+- **跳转**: https://themoviecosmos.com/movie/64946
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[how-0, why-0, why-1] · sim=0.5746
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[how-0, why-0, result-0, result-2] · sim=0.6357
+  - THE-HERO/su-persona-The-Hero-p1: fragments=[result-0, how-0, why-1, result-2] · sim=0.5684
+  - THE-SAGE/su-persona-The-Sage-p3: fragments=[why-0, how-0] · sim=0.5006
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Judge Archer (2016) [THE-CAREGIVER, THE-HERO, THE-OUTLAW]
+- **tmdb_id**: 264518
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 154.5606
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5606
+- **genres** / **language**: Action, Drama / zh
+- **overview**: The spear signifies political power, the arrow personal ambition. What happens when the two collide?
+- **跳转**: https://themoviecosmos.com/movie/264518
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[result-2, result-0, why-1] · sim=0.5606
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[who-0, why-0, result-0, why-1] · sim=0.5439
+  - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[how-0, why-0, why-1, result-0] · sim=0.5293
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Distinguished Gentleman (1992) [THE-CAREGIVER, THE-INNOCENT]
+- **tmdb_id**: 10411
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5001
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5001
+- **genres** / **language**: Comedy / en
+- **overview**: A Florida con man uses the recent death of the long time Congressman from his district, who he just happens to share a last name with, to get elected to his version of paradise, the U.S. Congress, where the money flows from lobbyists.
+- **跳转**: https://themoviecosmos.com/movie/10411
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-1, result-1, how-0, why-0] · sim=0.5001
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-1, why-0, how-0, result-2] · sim=0.4879
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Avenging Force (1986) [THE-MAGICIAN, THE-OUTLAW]
+- **tmdb_id**: 52657
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.5930
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5930
+- **genres** / **language**: Action, Drama, Thriller / en
+- **overview**: A senator is targeted by the Pentangle, a right wing paramilitary group. His pal, a former CIA agent and martial artist, tries to help him. The group kidnaps the agent's sister and tries to hunt him down, "The Most Dangerous Game" style.
+- **跳转**: https://themoviecosmos.com/movie/52657
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[who-1, why-1, how-0, result-1] · sim=0.5930
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[who-1, how-0, result-1] · sim=0.5011
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Chappaquiddick (2018) [THE-JESTER, THE-LOVER]
+- **tmdb_id**: 432301
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5354
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5354
+- **genres** / **language**: History, Drama, Thriller / en
+- **overview**: Ted Kennedy's life and political career become derailed in the aftermath of a fatal car accident in 1969 that claims the life of a young campaign strategist, Mary Jo Kopechne.
+- **跳转**: https://themoviecosmos.com/movie/432301
+- **命中视角/碎片**:
+  - THE-JESTER/su-persona-The-Jester-p1: fragments=[result-1, why-1, how-0] · sim=0.5354
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, result-1, why-0, how-0] · sim=0.5312
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Days of '36 (1972) [THE-OUTLAW]
+- **tmdb_id**: 114645
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5567
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5567
+- **genres** / **language**: Drama, History / el
+- **overview**: The assassin of a prominent trade unionist takes a conservative MP hostage, throwing the government into a state of disarray.
+- **跳转**: https://themoviecosmos.com/movie/114645
+- **命中视角/碎片**:
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[who-0, why-0, how-0, result-0, result-1] · sim=0.5567
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Contender (2000) [THE-MAGICIAN]
+- **tmdb_id**: 6521
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5741
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5741
+- **genres** / **language**: Drama, Thriller / en
+- **overview**: The vice president is dead, and as the president makes his choice for a replacement, a secret contest of wills is being waged by a formidable rival. When Senator Laine Hanson is nominated as the first woman in history to hold the office, hidden agendas explode into a battle for power.
+- **跳转**: https://themoviecosmos.com/movie/6521
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[who-1, why-1, how-0, result-1] · sim=0.5741
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Candidate (1972) [THE-LOVER]
+- **tmdb_id**: 21711
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5606
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5606
+- **genres** / **language**: Comedy, Drama / en
+- **overview**: Bill McKay is a candidate for the U.S. Senate from California. He has no hope of winning, so he is willing to tweak the establishment.
+- **跳转**: https://themoviecosmos.com/movie/21711
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[why-0, result-2, result-0, how-0] · sim=0.5606
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Recount (2008) [THE-CREATOR]
+- **tmdb_id**: 14050
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5607
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5607
+- **genres** / **language**: Drama, History, TV Movie / en
+- **overview**: In 2000, the election of the U.S. Presidential boiled down to a few precious votes in the state of Florida — and a recount that would add "hanging chad" to every American's vocabulary.
+- **跳转**: https://themoviecosmos.com/movie/14050
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[result-1, result-2, how-0] · sim=0.5607
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Kodi (2016) [THE-CAREGIVER]
+- **tmdb_id**: 376455
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5478
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5478
+- **genres** / **language**: Action, Drama, Thriller / ta
+- **overview**: A young politician finds himself in a position where he has to contest against his girlfriend, who is ambitious. Circumstances force his look-alike twin to also get involved in this political battle.
+- **跳转**: https://themoviecosmos.com/movie/376455
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[result-2, result-0, why-1] · sim=0.5478
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Honest Candidate (2024) [THE-EVERYMAN]
+- **tmdb_id**: 1278099
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6248
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6248
+- **genres** / **language**: Comedy / es
+- **overview**: A former idealistic leader turned corrupt politician is cursed by his grandmother on the eve of the presidential election, forcing him to be honest. Can he win without lies and what will be the conditions?
+- **跳转**: https://themoviecosmos.com/movie/1278099
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p3: fragments=[result-1, result-2] · sim=0.6248
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Thanks a Million (1935) [THE-JESTER]
+- **tmdb_id**: 142142
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5501
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5501
+- **genres** / **language**: Comedy, Music, Romance / en
+- **overview**: A show troupe is engaged by Judge Culliman, who is running for Governor, to enhance his political campaign. When the inebriated Judge has to be replaced in doing his campaign speech by the troupe crooner, Eric Land, his political backers decide that they want him to run for Governor in the Judge's place. Romance, music, political corruption and the election results follow.
+- **跳转**: https://themoviecosmos.com/movie/142142
+- **命中视角/碎片**:
+  - THE-JESTER/su-persona-The-Jester-p3: fragments=[result-0, result-2] · sim=0.5501
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）

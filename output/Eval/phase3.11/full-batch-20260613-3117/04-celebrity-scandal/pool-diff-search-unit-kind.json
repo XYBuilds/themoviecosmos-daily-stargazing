@@ -1,0 +1,276 @@
+{
+  "run_id": "04-celebrity-scandal",
+  "baseline_candidate_count": 19,
+  "design_candidate_count": 19,
+  "overlap_count": 10,
+  "net_new_tmdb_ids": [
+    16070,
+    87110,
+    151913,
+    322125,
+    336200,
+    382220,
+    505951,
+    531384,
+    873097
+  ],
+  "lost_tmdb_ids": [
+    19644,
+    140785,
+    369384,
+    448337,
+    602463,
+    715253,
+    735919,
+    1020662,
+    1262124
+  ],
+  "by_search_unit_kind": {
+    "event-fragment-bundle": [
+      382220
+    ],
+    "persona-semantic": [
+      16070,
+      87110,
+      151913,
+      322125,
+      336200,
+      382220,
+      505951,
+      531384,
+      873097
+    ],
+    "surface-fragment-bundle": []
+  },
+  "collision_gain_tmdb_ids": [
+    382220
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 16070,
+      "title": "This Film Is Not Yet Rated",
+      "similarity": 0.6051667332649231,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 87110,
+      "title": "Eternal Evil",
+      "similarity": 0.5861192941665649,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 151913,
+      "title": "I Like Mountain Music",
+      "similarity": 0.6036849021911621,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-OUTLAW",
+        "THE-JESTER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result",
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 322125,
+      "title": "A Perfect Man",
+      "similarity": 0.585446834564209,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 336200,
+      "title": "Panama",
+      "similarity": 0.6032001376152039,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-LOVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result",
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 382220,
+      "title": "Master",
+      "similarity": 0.5766892433166504,
+      "quality_candidate": true,
+      "search_unit_kinds": [
+        "event-fragment-bundle",
+        "persona-semantic"
+      ],
+      "collision_gain": true,
+      "triggered_by": [
+        "THE-EXPLORER",
+        "THE-CREATOR",
+        "THE-SAGE"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": true,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "event-fragment-bundle",
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how",
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 505951,
+      "title": "Kannum Kannum Kollaiyadithaal",
+      "similarity": 0.5997004508972168,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 531384,
+      "title": "Project Gutenberg",
+      "similarity": 0.6086046695709229,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 873097,
+      "title": "For a Fistful of Fries",
+      "similarity": 0.5922247767448425,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    }
+  ]
+}

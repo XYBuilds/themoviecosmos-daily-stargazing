@@ -1,0 +1,1232 @@
+{
+  "persona_id": "The-Explorer",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Explorer",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Ken Paxton",
+          "alternatives": [
+            {
+              "term": "boundary-crosser",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "political trailblazer",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "challenger of the status quo",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the election winner",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a Republican politician",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the endorsed candidate",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "an office-seeker",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "John Cornyn",
+          "alternatives": [
+            {
+              "term": "the entrenched incumbent",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the long-serving establishment figure",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the defeated incumbent",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a U.S. senator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the affected party",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a candidate who failed to adapt",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the sitting president",
+          "alternatives": [
+            {
+              "term": "the kingmaker",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the power broker",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the endorser",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the establishment backer",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "aided by a late endorsement from the sitting president",
+          "alternatives": [
+            {
+              "term": "a decisive intervention from the highest authority",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a game-changing external endorsement",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a late-stage endorsement from the sitting president",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a last-minute power play",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "outside assistance that altered the contest",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "despite substantially outraising and outspending his rival",
+          "alternatives": [
+            {
+              "term": "against conventional financial advantage",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "overcoming a resource gap",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "despite being outspent by his rival",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "defying the money trail",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "regardless of financial disadvantage",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+          "alternatives": [
+            {
+              "term": "a decisive popular mandate for change",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a clear voter-driven rejection of the old guard",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "winning the runoff election with a large margin",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a landslide victory ending an era",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a convincing electoral win",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Ken Paxton won the Texas Senate Republican runoff",
+          "alternatives": [
+            {
+              "term": "the dawn of a new political path",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a successful frontier breach in politics",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "winning the party's nomination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a changing of the guard",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "securing a place on the ballot",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+          "alternatives": [
+            {
+              "term": "a historic boundary finally broken",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the end of a decades-long political dynasty",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the first incumbent Texas Republican senator to lose renomination since 1970",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a rare disruption to an entrenched pattern",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an unprecedented defeat for an incumbent",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate",
+          "alternatives": [
+            {
+              "term": "the opening of a new, uncertain contest",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a venture into uncharted electoral territory",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "advancing to the general election",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a high-stakes future challenge",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a potential shift in national power dynamics",
+              "valence": "positive",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Texas",
+          "alternatives": [
+            {
+              "term": "the expansive political frontier",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a vast arena for political contest",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the site of a significant election",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a traditional stronghold facing change",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a politically significant state",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "result-1",
+      "how-0",
+      "why-0",
+      "who-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Ken Paxton won the Texas Senate Republican runoff. John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970. Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term. aided by a late endorsement from the sitting president. Ken Paxton The event unfolds across winning the party's nomination and the first incumbent Texas Republican senator to lose renomination since 1970.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "result-0",
+          "result-1",
+          "how-0",
+          "why-0",
+          "who-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Ken Paxton won the Texas Senate Republican runoff",
+            "provenance": "surface"
+          },
+          {
+            "term": "winning the party's nomination",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+            "provenance": "surface"
+          },
+          {
+            "term": "the first incumbent Texas Republican senator to lose renomination since 1970",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+            "provenance": "surface"
+          },
+          {
+            "term": "winning the runoff election with a large margin",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "aided by a late endorsement from the sitting president",
+            "provenance": "surface"
+          },
+          {
+            "term": "a late-stage endorsement from the sitting president",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Ken Paxton",
+            "provenance": "surface"
+          },
+          {
+            "term": "the election winner",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a Republican politician",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "election candidate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "politician",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p2",
+      "text": "The first incumbent Texas Republican senator to lose renomination since 1970, a candidate who failed to adapt, faced a clear voter-driven rejection of the old guard. The entrenched incumbent's defeat opened a new, uncertain contest against a Democratic state Representative in a race that could reshape control of the U.S. Senate.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "result-1",
+          "how-0",
+          "result-2"
+        ],
+        "center": "result-1",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.8
+    },
+    {
+      "id": "p3",
+      "text": "Winning the runoff election with a large margin, the endorsed candidate from the site of a significant election secured the party's nomination. This convincing electoral win, aided by a decisive intervention from the highest authority, ventures into uncharted electoral territory for the November race.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-0",
+          "why-0",
+          "result-0",
+          "result-2"
+        ],
+        "center": "how-0",
+        "center_kind": "how",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 2
+      },
+      "warnings": [],
+      "fit": 0.75
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a decisive popular mandate for change",
+            "weight": 0.38
+          },
+          {
+            "text": "a clear voter-driven rejection of the old guard",
+            "weight": 0.38
+          },
+          {
+            "text": "a landslide victory ending an era",
+            "weight": 0.38
+          },
+          {
+            "text": "a convincing electoral win",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "winning the runoff election with a large margin",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "Ken Paxton won the Texas Senate Republican runoff",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the dawn of a new political path",
+            "weight": 0.38
+          },
+          {
+            "text": "a successful frontier breach in politics",
+            "weight": 0.38
+          },
+          {
+            "text": "a changing of the guard",
+            "weight": 0.38
+          },
+          {
+            "text": "securing a place on the ballot",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "winning the party's nomination",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a historic boundary finally broken",
+            "weight": 0.38
+          },
+          {
+            "text": "the end of a decades-long political dynasty",
+            "weight": 0.38
+          },
+          {
+            "text": "a rare disruption to an entrenched pattern",
+            "weight": 0.38
+          },
+          {
+            "text": "an unprecedented defeat for an incumbent",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the first incumbent Texas Republican senator to lose renomination since 1970",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the opening of a new, uncertain contest",
+            "weight": 0.38
+          },
+          {
+            "text": "a venture into uncharted electoral territory",
+            "weight": 0.38
+          },
+          {
+            "text": "a high-stakes future challenge",
+            "weight": 0.38
+          },
+          {
+            "text": "a potential shift in national power dynamics",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "advancing to the general election",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Texas",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the expansive political frontier",
+            "weight": 0.38
+          },
+          {
+            "text": "a vast arena for political contest",
+            "weight": 0.38
+          },
+          {
+            "text": "a traditional stronghold facing change",
+            "weight": 0.38
+          },
+          {
+            "text": "a politically significant state",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the site of a significant election",
+            "weight": 0.82
+          },
+          {
+            "text": "U.S. state",
+            "weight": 0.82
+          },
+          {
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "text": "North America",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Ken Paxton",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "boundary-crosser",
+            "weight": 0.38
+          },
+          {
+            "text": "political trailblazer",
+            "weight": 0.38
+          },
+          {
+            "text": "challenger of the status quo",
+            "weight": 0.38
+          },
+          {
+            "text": "the endorsed candidate",
+            "weight": 0.38
+          },
+          {
+            "text": "an office-seeker",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the election winner",
+            "weight": 0.82
+          },
+          {
+            "text": "a Republican politician",
+            "weight": 0.82
+          },
+          {
+            "text": "election candidate",
+            "weight": 0.82
+          },
+          {
+            "text": "politician",
+            "weight": 0.82
+          },
+          {
+            "text": "person",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "John Cornyn",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the entrenched incumbent",
+            "weight": 0.38
+          },
+          {
+            "text": "the long-serving establishment figure",
+            "weight": 0.38
+          },
+          {
+            "text": "the affected party",
+            "weight": 0.38
+          },
+          {
+            "text": "a candidate who failed to adapt",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the defeated incumbent",
+            "weight": 0.82
+          },
+          {
+            "text": "a U.S. senator",
+            "weight": 0.82
+          },
+          {
+            "text": "senator",
+            "weight": 0.82
+          },
+          {
+            "text": "politician",
+            "weight": 0.82
+          },
+          {
+            "text": "person",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "the sitting president",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the kingmaker",
+            "weight": 0.38
+          },
+          {
+            "text": "the power broker",
+            "weight": 0.38
+          },
+          {
+            "text": "the establishment backer",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the endorser",
+            "weight": 0.82
+          },
+          {
+            "text": "head of state",
+            "weight": 0.82
+          },
+          {
+            "text": "political leader",
+            "weight": 0.82
+          },
+          {
+            "text": "person",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "aided by a late endorsement from the sitting president",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a decisive intervention from the highest authority",
+            "weight": 0.38
+          },
+          {
+            "text": "a game-changing external endorsement",
+            "weight": 0.38
+          },
+          {
+            "text": "a last-minute power play",
+            "weight": 0.38
+          },
+          {
+            "text": "outside assistance that altered the contest",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a late-stage endorsement from the sitting president",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "despite substantially outraising and outspending his rival",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "against conventional financial advantage",
+            "weight": 0.38
+          },
+          {
+            "text": "overcoming a resource gap",
+            "weight": 0.38
+          },
+          {
+            "text": "defying the money trail",
+            "weight": 0.38
+          },
+          {
+            "text": "regardless of financial disadvantage",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "despite being outspent by his rival",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "where-0"
+        ],
+        "search_text": "Ken Paxton; the election winner; a Republican politician; election candidate; politician; person; John Cornyn; the defeated incumbent; a U.S. senator; senator; politician; person; the sitting president; the endorser; head of state; political leader; person; Texas; the site of a significant election; U.S. state; United States; North America",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "Ken Paxton",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "the election winner",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "a Republican politician",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "election candidate",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "politician",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "person",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "John Cornyn",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "the defeated incumbent",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "a U.S. senator",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "senator",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "politician",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "person",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "the sitting president",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "the endorser",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "head of state",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "political leader",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "person",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "Texas",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "the site of a significant election",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "U.S. state",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "North America",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "why-1",
+          "how-0",
+          "result-0",
+          "result-1",
+          "result-2"
+        ],
+        "search_text": "aided by a late endorsement from the sitting president; a late-stage endorsement from the sitting president; despite substantially outraising and outspending his rival; despite being outspent by his rival; Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term; winning the runoff election with a large margin; Ken Paxton won the Texas Senate Republican runoff; winning the party's nomination; John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970; the first incumbent Texas Republican senator to lose renomination since 1970; Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate; advancing to the general election",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "aided by a late endorsement from the sitting president",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "a late-stage endorsement from the sitting president",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "surface",
+            "text": "despite substantially outraising and outspending his rival",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "despite being outspent by his rival",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "winning the runoff election with a large margin",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "Ken Paxton won the Texas Senate Republican runoff",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "winning the party's nomination",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "the first incumbent Texas Republican senator to lose renomination since 1970",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "surface",
+            "text": "Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "advancing to the general election",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Explorer-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-1",
+          "how-0",
+          "result-2"
+        ],
+        "search_text": "The first incumbent Texas Republican senator to lose renomination since 1970, a candidate who failed to adapt, faced a clear voter-driven rejection of the old guard. The entrenched incumbent's defeat opened a new, uncertain contest against a Democratic state Representative in a race that could reshape control of the U.S. Senate.",
+        "fragments": [
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "John Cornyn became the first sitting Republican senator from Texas to lose renomination since 1970",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "the first incumbent Texas Republican senator to lose renomination since 1970",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "winning the runoff election with a large margin",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "surface",
+            "text": "Paxton will face Democratic state Representative James Talarico in November in a race that could reshape control of the U.S. Senate",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "advancing to the general election",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Explorer",
+        "center_element": "result-1",
+        "supporting_elements": [
+          "result-1",
+          "how-0",
+          "result-2"
+        ],
+        "fit": 0.8
+      },
+      {
+        "id": "su-persona-The-Explorer-p3",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "how-0",
+          "why-0",
+          "result-0",
+          "result-2"
+        ],
+        "search_text": "Winning the runoff election with a large margin, the endorsed candidate from the site of a significant election secured the party's nomination. This convincing electoral win, aided by a decisive intervention from the highest authority, ventures into uncharted electoral territory for the November race.",
+        "fragments": [
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Ken Paxton won about 64% of the vote to end Senator John Cornyn's bid for a fifth term",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "winning the runoff election with a large margin",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "aided by a late endorsement from the sitting president",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "a late-stage endorsement from the sitting president",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "Ken Paxton won the Texas Senate Republican runoff",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "winning the party's nomination",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Explorer",
+        "center_element": "how-0",
+        "supporting_elements": [
+          "how-0",
+          "why-0",
+          "result-0",
+          "result-2"
+        ],
+        "fit": 0.75
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"A political trailblazer secured a place on the ballot in Texas, the expansive political frontier. This boundary-crosser's decisive popular mandate for change came despite a late-stage endorsement from the sitting president and overcoming a resource gap, ending the long-serving establishment figure's bid and breaking a historic boundary in U.S. state politics.\",\n      \"fit\": 0.85,\n      \"center\": \"result-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"result-0\", \"how-0\", \"why-0\", \"why-1\", \"result-1\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"The first incumbent Texas Republican senator to lose renomination since 1970, a candidate who failed to adapt, faced a clear voter-driven rejection of the old guard. The entrenched incumbent's defeat opened a new, uncertain contest against a Democratic state Representative in a race that could reshape control of the U.S. Senate.\",\n      \"fit\": 0.8,\n      \"center\": \"result-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"result-1\", \"how-0\", \"result-2\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"Winning the runoff election with a large margin, the endorsed candidate from the site of a significant election secured the party's nomination. This convincing electoral win, aided by a decisive intervention from the highest authority, ventures into uncharted electoral territory for the November race.\",\n      \"fit\": 0.75,\n      \"center\": \"how-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"why-0\", \"result-0\", \"result-2\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 2,
+    "dropped_pseudos": 1,
+    "drop_reasons": [
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5"
+      }
+    ]
+  }
+}

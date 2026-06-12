@@ -1,0 +1,486 @@
+# 候选星轨 · 05-climate-disaster
+
+## 元信息
+- run_id: 05-climate-disaster
+
+## 候选星轨（共 19 部）
+
+### The Ice Storm (1997) [THE-INNOCENT, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE] [汇聚标注]
+- **tmdb_id**: 68924
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 198.5350
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=10 / persona=1
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-CAREGIVER
+- **相似度**: 0.5350
+- **genres** / **language**: Drama / en
+- **overview**: In the weekend after thanksgiving 1973 the Hood family is skidding out of control. Then an ice storm hits, the worst in a century.
+- **跳转**: https://themoviecosmos.com/movie/68924
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.4888
+  - THE-HERO/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.4757
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.4722
+  - THE-EXPLORER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.4779
+  - THE-OUTLAW/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.4744
+  - THE-LOVER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.4633
+  - THE-CREATOR/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.4813
+  - THE-RULER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.4743
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, how-0, how-1, how-5, result-0, result-4, result-5, how-2, how-3, how-4, result-1, result-2, result-3] · sim=0.4676
+  - THE-SAGE/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.4618
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[how-2, why-0, how-1, how-3] · sim=0.5350
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Poem of the Sea (1958) [THE-MAGICIAN, THE-EXPLORER, THE-OUTLAW] [汇聚标注]
+- **tmdb_id**: 257637
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 226.5635
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=1 / persona=4
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how, result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=3: THE-EXPLORER,THE-MAGICIAN,THE-OUTLAW
+- **相似度**: 0.5635
+- **genres** / **language**: Drama / ru
+- **overview**: A Soviet dam project means that many old Ukrainian villages will end up under water. There are conflicts between the dam engineers and villagers who don't want to move.
+- **跳转**: https://themoviecosmos.com/movie/257637
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, how-0, how-1, how-5, result-0, result-4, result-5, how-2, how-3, how-4, result-1, result-2, result-3] · sim=0.4328
+  - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[how-0, why-0, how-1] · sim=0.5467
+  - THE-MAGICIAN/su-persona-The-Magician-p1: fragments=[how-5, why-0, how-0, how-1] · sim=0.5635
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[how-0, why-0, how-1, result-0] · sim=0.5348
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[result-0, why-0, how-0, how-1] · sim=0.5311
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Flood (2007) [THE-LOVER, THE-CAREGIVER, THE-CREATOR, THE-MAGICIAN] [汇聚标注]
+- **tmdb_id**: 6309
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 226.5504
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=1 / persona=3
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how, result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=3: THE-CREATOR,THE-CAREGIVER,THE-MAGICIAN
+- **相似度**: 0.5504
+- **genres** / **language**: Drama, Action, Thriller / en
+- **overview**: Timely yet terrifying, The Flood predicts the unthinkable. When a raging storm coincides with high seas it unleashes a colossal tidal surge, which travels mercilessly down England's East Coast and into the Thames Estuary. Overwhelming the Barrier, torrents of water pour into the city. The lives of millions of Londoners are at stake.
+- **跳转**: https://themoviecosmos.com/movie/6309
+- **命中视角/碎片**:
+  - THE-LOVER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, how-5, result-0, result-1, result-2, result-3, result-4, result-5] · sim=0.4585
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[how-2, why-0, how-1, how-3] · sim=0.5289
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[result-0, why-0, how-1, result-2] · sim=0.5504
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[how-0, why-0, how-1, result-0] · sim=0.5413
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Bloat (2025) [THE-CAREGIVER, THE-INNOCENT, THE-LOVER]
+- **tmdb_id**: 937393
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 146.6060
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=4
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6060
+- **genres** / **language**: Horror / en
+- **overview**: After a near-death drowning accident, a young boy's family is horrified to discover he has become possessed by a legendary demon from the depths of the lake. As the family races against time to save the boy's soul, the evil monster inside the child tears the family apart as it seeks to destroy everyone in its path.
+- **跳转**: https://themoviecosmos.com/movie/937393
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-1, result-0, why-0, how-0, result-1] · sim=0.5393
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-0, why-0, how-1] · sim=0.5538
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[result-0, why-0, how-1, how-2] · sim=0.5901
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, why-0, how-2, result-0, result-1] · sim=0.6060
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Disaster Wars: Earthquake vs. Tsunami (2013) [THE-HERO, THE-RULER]
+- **tmdb_id**: 289214
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.6032
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6032
+- **genres** / **language**: Thriller, Action, Drama, Science Fiction / en
+- **overview**: Deep underwater in the Marianas Trench an accident results in a devastating Tsunami that destroys the Hawaiian Islands as it continues toward the west coast. Panic ensues all up and down the western coast of North and South America. In an attempt to lessen its impact, scientists launch an underwater explosion that inadvertently makes the tsunami more powerful and focused on Los Angeles. Scientists rush to a solution while the military begins planning for the worst. Los Angeles begins emergency evacuation. Lives and loves are lost even as a brash young grad student comes up with a solution: start the mother of all earthquakes to counter the rushing torrent and raise the continental shelf off the coast of the United States.
+- **跳转**: https://themoviecosmos.com/movie/289214
+- **命中视角/碎片**:
+  - THE-HERO/su-persona-The-Hero-p1: fragments=[result-0, why-0, how-2, result-5] · sim=0.5717
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[how-4, how-2, how-3, result-0, result-2] · sim=0.6032
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Sweet Hereafter (1997) [THE-EXPLORER, THE-LOVER]
+- **tmdb_id**: 10217
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.6030
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6030
+- **genres** / **language**: Drama / en
+- **overview**: A small mountain community in Canada is devastated when a school bus accident leaves more than a dozen of its children dead. A big-city lawyer arrives to help the survivors' and victims' families prepare a class-action suit, but his efforts only seem to push the townspeople further apart. At the same time, one teenage survivor of the accident has to reckon with the loss of innocence brought about by a different kind of damage.
+- **跳转**: https://themoviecosmos.com/movie/10217
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[result-0, how-5, result-4] · sim=0.5607
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, why-0, how-2, result-0, result-1] · sim=0.6030
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Storm (2009) [THE-CAREGIVER, THE-EXPLORER]
+- **tmdb_id**: 29602
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5821
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5821
+- **genres** / **language**: Drama / nl
+- **overview**: A fictional story within the historical context of the disastrous flood that engulfed the Dutch coastal province of Zeeland in 1953. When their farmhouse is destroyed by the flood, teenage mother Julia gets separated from her baby boy, whom she kept hidden in a box. She is saved from drowning by a young air force lieutenant, who agrees to go help looking for Julia's little son.
+- **跳转**: https://themoviecosmos.com/movie/29602
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-1, result-0, why-0, how-0, result-1] · sim=0.5501
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[result-0, how-5, result-4] · sim=0.5821
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Global Meltdown (2017) [THE-HERO, THE-OUTLAW]
+- **tmdb_id**: 514690
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5490
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5490
+- **genres** / **language**: Action, Science Fiction, Thriller, TV Movie / en
+- **overview**: A helicopter pilot and an environmental scientist lead a exodus of survivors in a search for a safe haven after a catastrophic tectonic event causes the crust of the earth to break apart.
+- **跳转**: https://themoviecosmos.com/movie/514690
+- **命中视角/碎片**:
+  - THE-HERO/su-persona-The-Hero-p1: fragments=[result-0, why-0, how-2, result-5] · sim=0.5490
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[who-1, why-0, how-2, result-1] · sim=0.5396
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Malibu Shark Attack (2009) [THE-RULER]
+- **tmdb_id**: 53080
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5748
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5748
+- **genres** / **language**: Horror, Action, TV Movie / en
+- **overview**: An underwater earthquake generates a tsunami that strikes Malibu, bringing a hunting pack of prehistoric-looking goblin sharks to the surface. Although the beach is evacuated before the big wave strikes, a group of lifeguards and a crew of construction workers are stranded in the high water and have to fight the sharks to get to dry land.
+- **跳转**: https://themoviecosmos.com/movie/53080
+- **命中视角/碎片**:
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[how-4, how-2, how-3, result-0, result-2] · sim=0.5748
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Left Behind: World at War (2005) [THE-CREATOR]
+- **tmdb_id**: 38828
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5904
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5904
+- **genres** / **language**: Action, Adventure, Fantasy, Science Fiction, Thriller / en
+- **overview**: A year and a half ago, the globe was hit with the biggest catastrophe it had ever seen. Without warning and without explanation, hundreds of millions simply vanished off the face of the Earth. The world was in chaos like never before. Yet somehow one man seemed to rise to the challenge. One man had the strength and conviction to unite a shattered world. One man gave the world hope. That man was Nicolae Carpathia, who now rules the entire world.
+- **跳转**: https://themoviecosmos.com/movie/38828
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[result-0, why-0, how-1, result-2] · sim=0.5904
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Deluge (1933) [THE-SAGE]
+- **tmdb_id**: 163293
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5613
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5613
+- **genres** / **language**: Science Fiction, Drama, Thriller / en
+- **overview**: A massive earthquake strikes the United States, which destroys the West Coast and unleashes a massive flood that threatens to destroy the East Coast as well.
+- **跳转**: https://themoviecosmos.com/movie/163293
+- **命中视角/碎片**:
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[how-2, how-3, how-4, result-5] · sim=0.5613
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Quel maledetto ponte sull'Elba (1969) [THE-SAGE]
+- **tmdb_id**: 285427
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5466
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5466
+- **genres** / **language**: War / it
+- **overview**: Quel maledetto ponte sull'Elba
+- **跳转**: https://themoviecosmos.com/movie/285427
+- **命中视角/碎片**:
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[how-2, how-3, how-4, result-5] · sim=0.5466
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Bamako (2006) [THE-OUTLAW]
+- **tmdb_id**: 62652
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5302
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5302
+- **genres** / **language**: Drama / fr
+- **overview**: Caught in the stranglehold of debt and structural adjustment, Africa is fighting for its survival. In the face of disaster, representatives of African society bring an action against international financial institutions. The trial takes place in Bamako, in the yard of a house, among its inhabitants.
+- **跳转**: https://themoviecosmos.com/movie/62652
+- **命中视角/碎片**:
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[who-1, why-0, how-2, result-1] · sim=0.5302
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Battle for Haditha (2007) [THE-LOVER]
+- **tmdb_id**: 14111
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5263
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5263
+- **genres** / **language**: Action, Adventure, Drama, History, War / en
+- **overview**: An investigation of the massacre of 24 men, women and children in Haditha, Iraq allegedly shot by 4 U.S. Marines in retaliation for the death of a U.S. Marine killed by a roadside bomb. The movie follows the story of the Marines of Kilo Company, an Iraqi family, and the insurgents who plant the roadside bomb.
+- **跳转**: https://themoviecosmos.com/movie/14111
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[result-0, why-0, how-1, how-2] · sim=0.5263
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Road Wars (2015) [THE-INNOCENT]
+- **tmdb_id**: 333545
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5663
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5663
+- **genres** / **language**: Science Fiction, Action / en
+- **overview**: After the earth’s water supply is depleted, the survivors form roving road gangs, armed to the teeth and desperate to find and protect water supplies. But when a new breed of blood-drinking humans emerges, the survivors must contend with a whole new threat to their existence.
+- **跳转**: https://themoviecosmos.com/movie/333545
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-0, why-0, how-1] · sim=0.5663
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Water Wrackets (1978) [THE-EXPLORER]
+- **tmdb_id**: 249011
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5482
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5482
+- **genres** / **language**: Fantasy / en
+- **overview**: Multifarious images of a lake are overlaid with water effects and a narrated history of the campaigns fought by the fictional water-wracket army.
+- **跳转**: https://themoviecosmos.com/movie/249011
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[how-2, how-3, how-4] · sim=0.5482
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Raining Cats and Frogs (2003) [THE-EXPLORER]
+- **tmdb_id**: 22624
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5432
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5432
+- **genres** / **language**: Animation, Fantasy, Adventure / fr
+- **overview**: It's a catastrophe! A flood has hit our planet and an unusual group of people are all that remains. Led by Ferdinand, a modern day Noah, this little group have managed to defy the furiously raging elements. People and animals alike are dragged through this incredible whirlpool of an adventure.
+- **跳转**: https://themoviecosmos.com/movie/22624
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[how-2, how-3, how-4] · sim=0.5432
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Deadly Virtues: Love. Honour. Obey. (2014) [THE-LOVER]
+- **tmdb_id**: 258947
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5763
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5763
+- **genres** / **language**: Thriller, Drama / en
+- **overview**: A home invasion irrevocably changes the lives of all involved in ways neither victims nor perpetrator could have imagined
+- **跳转**: https://themoviecosmos.com/movie/258947
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[result-1, how-2] · sim=0.5763
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### An Enemy of the People (1978) [THE-LOVER]
+- **tmdb_id**: 121890
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5496
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5496
+- **genres** / **language**: Drama / en
+- **overview**: A small forest town is trying to promote itself as a place for tourists to come enjoy the therapeutic hot springs and unspoiled nature. Dr. Stockmann, however, makes the inconvenient discovery that the nature around the village is not so unspoiled. In fact, the runoff from the local tanning mill has contaminated the water to a dangerous degree. The town fathers argue that cleaning up the mess would be far too expensive and the publicity would destroy the town's reputation, so therefore news of the pollution should be suppressed. Dr. Stockmann decides to fight to get the word out to the people, but receives as very mixed reaction.
+- **跳转**: https://themoviecosmos.com/movie/121890
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[result-1, how-2] · sim=0.5496
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）

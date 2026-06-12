@@ -1,0 +1,226 @@
+{
+  "persona_id": "The-Caregiver",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "Intuit",
+        "alternatives": [
+          {
+            "term": "corporate decision-maker",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "employer responsible for employee welfare",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Sasan Goodarzi",
+        "alternatives": [
+          {
+            "term": "chief executive",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "corporate leader initiating layoffs",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "affected U.S. employees",
+        "alternatives": [
+          {
+            "term": "workers facing job loss",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "vulnerable employees needing support",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "people whose livelihoods are at stake",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+        "alternatives": [
+          {
+            "term": "corporate strategic realignment",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "prioritizing technological progress over human stability",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "original_term": "as a painful but necessary reinvention after months of internal review",
+        "alternatives": [
+          {
+            "term": "organizational change",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a decision that inflicts pain on employees",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+        "alternatives": [
+          {
+            "term": "announcement of major layoffs",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "communication of job elimination to a large workforce",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+        "alternatives": [
+          {
+            "term": "severance package offered to laid-off employees",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a financial cushion for those losing their jobs",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "compensation that may not fully mitigate the harm of job loss",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "Offices in Reno and Woodland Hills are winding down",
+        "alternatives": [
+          {
+            "term": "office closures",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "loss of physical workplaces for employees",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "roughly 17% of workforce to be cut",
+        "alternatives": [
+          {
+            "term": "significant workforce reduction",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a large number of jobs eliminated",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "substantial harm to employee families and communities",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "about 3,000 full-time roles to be eliminated",
+        "alternatives": [
+          {
+            "term": "numerous jobs cut",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "thousands of people facing unemployment",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "original_term": "offices in Reno and Woodland Hills winding down",
+        "alternatives": [
+          {
+            "term": "workplace shutdowns",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "sites of former employment being closed",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-3",
+        "original_term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+        "alternatives": [
+          {
+            "term": "severance payments provided",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "support offered to those impacted by layoffs",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "financial assistance that may not cover long-term needs",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "result-0",
+    "who-2",
+    "result-3",
+    "how-1",
+    "how-0"
+  ]
+}

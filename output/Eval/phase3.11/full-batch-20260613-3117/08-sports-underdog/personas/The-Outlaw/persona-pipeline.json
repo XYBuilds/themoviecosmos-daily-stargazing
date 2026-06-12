@@ -1,0 +1,1318 @@
+{
+  "persona_id": "The-Outlaw",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Outlaw",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Vegas Golden Knights",
+          "alternatives": [
+            {
+              "term": "the establishment's chosen champions",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a corporate franchise",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the victorious team",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Colorado Avalanche",
+          "alternatives": [
+            {
+              "term": "the disempowered underdogs",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the fallen favorites",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the defeated team",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "John Tortorella",
+          "alternatives": [
+            {
+              "term": "the disruptive change agent",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the hired fixer",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the interim coach",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Cale Makar",
+          "alternatives": [
+            {
+              "term": "a key asset sidelined by fate",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the injured star",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Nathan MacKinnon",
+          "alternatives": [
+            {
+              "term": "a silenced superstar",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the injured forward",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "the franchise fired its coach with eight regular-season games left",
+          "alternatives": [
+            {
+              "term": "dismantled the old guard mid-crisis",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "made a coaching change",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "John Tortorella guided a 7-0-1 close",
+          "alternatives": [
+            {
+              "term": "imposed his will for a near-perfect finish",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "led the team to a strong finish",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "John Tortorella guided playoff runs past Utah and Anaheim",
+          "alternatives": [
+            {
+              "term": "defied expectations through the playoffs",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "coached the team to series victories",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4",
+          "alternatives": [
+            {
+              "term": "stifled the silenced stars' team",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "won Game 4 defensively",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "completing a four-game Western Conference Final sweep on May 26",
+          "alternatives": [
+            {
+              "term": "executing a total collapse of the rival",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "winning the series in four games",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+          "alternatives": [
+            {
+              "term": "the system broke their key players",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "injuries deprived them of talent",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Vegas reached the Stanley Cup Final",
+          "alternatives": [
+            {
+              "term": "the establishment's team seized the final stage",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the team advanced to the championship round",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-0",
+      "result-0",
+      "who-0",
+      "why-0",
+      "how-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "the franchise fired its coach with eight regular-season games left. Vegas reached the Stanley Cup Final. Vegas Golden Knights. Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries. John Tortorella guided a 7-0-1 close The event unfolds across made a coaching change and coaching change.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "how-0",
+          "result-0",
+          "who-0",
+          "why-0",
+          "how-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "the franchise fired its coach with eight regular-season games left",
+            "provenance": "surface"
+          },
+          {
+            "term": "made a coaching change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "management decision",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "mid-season firing",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Vegas reached the Stanley Cup Final",
+            "provenance": "surface"
+          },
+          {
+            "term": "the team advanced to the championship round",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "playoff advancement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "championship series qualification",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team achievement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Vegas Golden Knights",
+            "provenance": "surface"
+          },
+          {
+            "term": "the victorious team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NHL team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "hockey team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional sports team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+            "provenance": "surface"
+          },
+          {
+            "term": "injuries deprived them of talent",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "injury",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "player injury",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Tortorella guided a 7-0-1 close",
+            "provenance": "surface"
+          },
+          {
+            "term": "led the team to a strong finish",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching performance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team improvement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "winning record",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p2",
+      "text": "The establishment's team seized the final stage, advancing to the Stanley Cup Final. This achievement came after the system broke Colorado's key players, sidelining assets like the injured star and the injured forward. The victorious team's defensive performance and offensive execution in Game 4 were decisive, holding the disempowered underdogs' league-leading offense to a single goal and completing the playoff series win.",
+      "source": {
+        "agent_id": "The-Outlaw",
+        "fragments": [
+          "result-0",
+          "why-0",
+          "how-3",
+          "how-4"
+        ],
+        "center": "result-0",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "the franchise fired its coach with eight regular-season games left",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "dismantled the old guard mid-crisis",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "made a coaching change",
+            "weight": 0.82
+          },
+          {
+            "text": "coaching change",
+            "weight": 0.82
+          },
+          {
+            "text": "management decision",
+            "weight": 0.82
+          },
+          {
+            "text": "mid-season firing",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "John Tortorella guided a 7-0-1 close",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "imposed his will for a near-perfect finish",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "led the team to a strong finish",
+            "weight": 0.82
+          },
+          {
+            "text": "coaching performance",
+            "weight": 0.82
+          },
+          {
+            "text": "team improvement",
+            "weight": 0.82
+          },
+          {
+            "text": "winning record",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "John Tortorella guided playoff runs past Utah and Anaheim",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "defied expectations through the playoffs",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "coached the team to series victories",
+            "weight": 0.82
+          },
+          {
+            "text": "playoff coaching",
+            "weight": 0.82
+          },
+          {
+            "text": "team advancement",
+            "weight": 0.82
+          },
+          {
+            "text": "series victory",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "stifled the silenced stars' team",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "won Game 4 defensively",
+            "weight": 0.82
+          },
+          {
+            "text": "game strategy",
+            "weight": 0.82
+          },
+          {
+            "text": "defensive performance",
+            "weight": 0.82
+          },
+          {
+            "text": "offensive execution",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "completing a four-game Western Conference Final sweep on May 26",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "executing a total collapse of the rival",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "winning the series in four games",
+            "weight": 0.82
+          },
+          {
+            "text": "series sweep",
+            "weight": 0.82
+          },
+          {
+            "text": "playoff series win",
+            "weight": 0.82
+          },
+          {
+            "text": "sweep completion",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "Vegas reached the Stanley Cup Final",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the establishment's team seized the final stage",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the team advanced to the championship round",
+            "weight": 0.82
+          },
+          {
+            "text": "playoff advancement",
+            "weight": 0.82
+          },
+          {
+            "text": "championship series qualification",
+            "weight": 0.82
+          },
+          {
+            "text": "team achievement",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Western Conference Final",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "conference final",
+            "weight": 0.82
+          },
+          {
+            "text": "playoff series",
+            "weight": 0.82
+          },
+          {
+            "text": "sports event",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Vegas Golden Knights",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the establishment's chosen champions",
+            "weight": 0.38
+          },
+          {
+            "text": "a corporate franchise",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the victorious team",
+            "weight": 0.82
+          },
+          {
+            "text": "NHL team",
+            "weight": 0.82
+          },
+          {
+            "text": "hockey team",
+            "weight": 0.82
+          },
+          {
+            "text": "professional sports team",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Colorado Avalanche",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the disempowered underdogs",
+            "weight": 0.38
+          },
+          {
+            "text": "the fallen favorites",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the defeated team",
+            "weight": 0.82
+          },
+          {
+            "text": "NHL team",
+            "weight": 0.82
+          },
+          {
+            "text": "hockey team",
+            "weight": 0.82
+          },
+          {
+            "text": "professional sports team",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "John Tortorella",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the disruptive change agent",
+            "weight": 0.38
+          },
+          {
+            "text": "the hired fixer",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the interim coach",
+            "weight": 0.82
+          },
+          {
+            "text": "hockey coach",
+            "weight": 0.82
+          },
+          {
+            "text": "sports coach",
+            "weight": 0.82
+          },
+          {
+            "text": "professional",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Cale Makar",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a key asset sidelined by fate",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the injured star",
+            "weight": 0.82
+          },
+          {
+            "text": "hockey player",
+            "weight": 0.82
+          },
+          {
+            "text": "athlete",
+            "weight": 0.82
+          },
+          {
+            "text": "professional athlete",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-4",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Nathan MacKinnon",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a silenced superstar",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the injured forward",
+            "weight": 0.82
+          },
+          {
+            "text": "hockey player",
+            "weight": 0.82
+          },
+          {
+            "text": "athlete",
+            "weight": 0.82
+          },
+          {
+            "text": "professional athlete",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the system broke their key players",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "injuries deprived them of talent",
+            "weight": 0.82
+          },
+          {
+            "text": "injury",
+            "weight": 0.82
+          },
+          {
+            "text": "player injury",
+            "weight": 0.82
+          },
+          {
+            "text": "team loss",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "who-3",
+          "who-4",
+          "where-0"
+        ],
+        "search_text": "Vegas Golden Knights; the victorious team; NHL team; hockey team; professional sports team; Colorado Avalanche; the defeated team; NHL team; hockey team; professional sports team; John Tortorella; the interim coach; hockey coach; sports coach; professional; Cale Makar; the injured star; hockey player; athlete; professional athlete; Nathan MacKinnon; the injured forward; hockey player; athlete; professional athlete; Western Conference Final; conference final; playoff series; sports event",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "Vegas Golden Knights",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "the victorious team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "NHL team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "hockey team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "professional sports team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "Colorado Avalanche",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "the defeated team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "NHL team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "hockey team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "professional sports team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "John Tortorella",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "the interim coach",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "hockey coach",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "sports coach",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "professional",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "surface",
+            "text": "Cale Makar",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "the injured star",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "hockey player",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "athlete",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "professional athlete",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "surface",
+            "text": "Nathan MacKinnon",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "the injured forward",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "hockey player",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "athlete",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "professional athlete",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "Western Conference Final",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "conference final",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "playoff series",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "sports event",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "why-0",
+          "result-0"
+        ],
+        "search_text": "the franchise fired its coach with eight regular-season games left; made a coaching change; coaching change; management decision; mid-season firing; John Tortorella guided a 7-0-1 close; led the team to a strong finish; coaching performance; team improvement; winning record; John Tortorella guided playoff runs past Utah and Anaheim; coached the team to series victories; playoff coaching; team advancement; series victory; Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4; won Game 4 defensively; game strategy; defensive performance; offensive execution; completing a four-game Western Conference Final sweep on May 26; winning the series in four games; series sweep; playoff series win; sweep completion; Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries; injuries deprived them of talent; injury; player injury; team loss; Vegas reached the Stanley Cup Final; the team advanced to the championship round; playoff advancement; championship series qualification; team achievement",
+        "fragments": [
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "the franchise fired its coach with eight regular-season games left",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "made a coaching change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "coaching change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "management decision",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "mid-season firing",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "John Tortorella guided a 7-0-1 close",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "led the team to a strong finish",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "coaching performance",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "team improvement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "winning record",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "John Tortorella guided playoff runs past Utah and Anaheim",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "coached the team to series victories",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "playoff coaching",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "team advancement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "series victory",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "surface",
+            "text": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "won Game 4 defensively",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "game strategy",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "defensive performance",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "offensive execution",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "surface",
+            "text": "completing a four-game Western Conference Final sweep on May 26",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "winning the series in four games",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "series sweep",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "playoff series win",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "sweep completion",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "injuries deprived them of talent",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "injury",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "player injury",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "team loss",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "Vegas reached the Stanley Cup Final",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "the team advanced to the championship round",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "playoff advancement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "championship series qualification",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "team achievement",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Outlaw-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-0",
+          "why-0",
+          "how-3",
+          "how-4"
+        ],
+        "search_text": "The establishment's team seized the final stage, advancing to the Stanley Cup Final. This achievement came after the system broke Colorado's key players, sidelining assets like the injured star and the injured forward. The victorious team's defensive performance and offensive execution in Game 4 were decisive, holding the disempowered underdogs' league-leading offense to a single goal and completing the playoff series win.",
+        "fragments": [
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "Vegas reached the Stanley Cup Final",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "the team advanced to the championship round",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "playoff advancement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "championship series qualification",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "team achievement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Outlaw",
+        "center_element": "result-0",
+        "supporting_elements": [
+          "result-0",
+          "why-0",
+          "how-3",
+          "how-4"
+        ],
+        "fit": 0.78
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"The franchise dismantled the old guard mid-crisis, firing its coach with eight regular-season games left. The disruptive change agent, John Tortorella, then imposed his will for a near-perfect 7-0-1 close and guided playoff runs past Utah and Anaheim. This set the stage for the establishment's chosen champions, a corporate franchise, to stifle the silenced stars' team in the Western Conference Final, winning the series in four games.\",\n      \"fit\": 0.85,\n      \"center\": \"how-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"how-1\", \"how-2\", \"how-3\", \"how-4\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"The establishment's team seized the final stage, advancing to the Stanley Cup Final. This achievement came after the system broke Colorado's key players, sidelining assets like the injured star and the injured forward. The victorious team's defensive performance and offensive execution in Game 4 were decisive, holding the disempowered underdogs' league-leading offense to a single goal and completing the playoff series win.\",\n      \"fit\": 0.78,\n      \"center\": \"result-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"result-0\", \"why-0\", \"how-3\", \"how-4\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 1,
+    "dropped_pseudos": 1,
+    "drop_reasons": [
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5"
+      }
+    ]
+  }
+}

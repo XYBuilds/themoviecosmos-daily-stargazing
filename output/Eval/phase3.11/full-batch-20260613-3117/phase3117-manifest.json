@@ -1,0 +1,278 @@
+{
+  "version": 1,
+  "description": "Phase 3.11.7 full-batch fragment-ladder design-on vs Phase 3.10 baseline",
+  "baseline": "output/Eval/phase3.10",
+  "run_ids": [
+    "01-grid-outage",
+    "02-corporate-layoff",
+    "03-election-upset",
+    "04-celebrity-scandal",
+    "05-climate-disaster",
+    "06-tech-monopoly",
+    "07-migration-border",
+    "08-sports-underdog",
+    "09-cultural-backlash",
+    "10-whistleblower-leak"
+  ],
+  "runs": [
+    {
+      "run_id": "01-grid-outage",
+      "note": "Phase 3.11.7 full-batch A/B run",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": [
+        {
+          "tmdb_id": "429918",
+          "title": "Survival Family",
+          "human_score": 2,
+          "judge_score": 1,
+          "judge_resonance_type": "表层沾边",
+          "rationale": "News and film share a load-bearing anchor of power outages driving the stories, but skeletons are not isomorphic: news involves institutional crisis response to grid scarcity, while film depicts personal survival in societal collapse."
+        }
+      ]
+    },
+    {
+      "run_id": "02-corporate-layoff",
+      "note": "Phase 3.11.7 full-batch A/B run",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": [
+        {
+          "tmdb_id": "619090",
+          "title": "The Plan",
+          "human_score": 2,
+          "judge_score": 1,
+          "judge_resonance_type": "表层沾边",
+          "rationale": "Both stories share the load-bearing concrete anchor of employees being fired from a company, which drives the narrative in each case. However, the thematic skeletons are not isomorphic: the news focuses on corporate restructuring for AI and strategic growth, while the film centers on personal demoralization and a practical plan amid unemployment, lacking alignment in power dynamics or overarching themes."
+        },
+        {
+          "tmdb_id": "485162",
+          "title": "At War",
+          "human_score": 2,
+          "judge_score": 1,
+          "judge_resonance_type": "表层沾边",
+          "rationale": "Both stories center on corporate decisions leading to job losses (load-bearing anchor), but the news focuses on AI-driven restructuring while the film emphasizes broken promises and worker resistance; thematic skeletons are not isomorphic."
+        }
+      ]
+    },
+    {
+      "run_id": "03-election-upset",
+      "note": "Phase 3.11.7 full-batch A/B run",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": [
+        {
+          "tmdb_id": "77953",
+          "title": "The Campaign",
+          "human_score": 2,
+          "judge_score": 1,
+          "judge_resonance_type": "表层沾边",
+          "rationale": "Both stories center on political elections and rival politicians, providing a shared load-bearing surface anchor (event type and role type). However, the news involves serious real-life power dynamics with endorsements and incumbency losses, while the film is a fictional satire without isomorphic skeletal themes of power or fate."
+        },
+        {
+          "tmdb_id": "239070",
+          "title": "120 Seconds to Get Elected",
+          "human_score": 2,
+          "judge_score": 1,
+          "judge_resonance_type": "表层沾边",
+          "rationale": "Both share the load-bearing anchor of political elections and campaigns, but the news involves a specific primary outcome with real-world factors like endorsements and spending, while the film abstracts electioneering into a general persuasive pitch, lacking deeper structural isomorphism in power or theme skeletons."
+        }
+      ]
+    },
+    {
+      "run_id": "04-celebrity-scandal",
+      "note": "Phase 3.11.7 full-batch A/B run",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": []
+    },
+    {
+      "run_id": "05-climate-disaster",
+      "note": "Phase 3.11.7 full-batch A/B run",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": []
+    },
+    {
+      "run_id": "06-tech-monopoly",
+      "note": "Phase 3.11.7 full-batch A/B run",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": []
+    },
+    {
+      "run_id": "07-migration-border",
+      "note": "Phase 3.11.7 full-batch A/B run",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": [
+        {
+          "tmdb_id": "381018",
+          "title": "Transpecos",
+          "human_score": 2,
+          "judge_score": 1,
+          "judge_resonance_type": "表层沾边",
+          "rationale": "Both share the load-bearing concrete anchor of U.S. Border Patrol and southwest border enforcement, but their core skeletons are not isomorphic: the news focuses on migration patterns and policy dynamics, while the film explores internal agency corruption and personal survival."
+        },
+        {
+          "tmdb_id": "273481",
+          "title": "Sicario",
+          "human_score": 2,
+          "judge_score": 1,
+          "judge_resonance_type": "表层沾边",
+          "rationale": "Both share the U.S.-Mexico border and law enforcement as load-bearing anchors, but the news centers on immigration policy and seasonal factors, while the film focuses on the drug war and moral ambiguity, lacking isomorphic power or theme skeletons."
+        }
+      ]
+    },
+    {
+      "run_id": "08-sports-underdog",
+      "note": "Phase 3.11.7 full-batch A/B run",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": []
+    },
+    {
+      "run_id": "09-cultural-backlash",
+      "note": "Phase 3.11.7 full-batch A/B run",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": [
+        {
+          "tmdb_id": "194224",
+          "title": "L'Odissea",
+          "human_score": 2,
+          "judge_score": 1,
+          "judge_resonance_type": "表层沾边",
+          "rationale": "Both the news and film share a load-bearing concrete anchor: adaptations of Homer's Odyssey. However, the skeletons are not isomorphic; the news centers on modern cultural wars over representation, while the film focuses on classical mythic narrative without such meta-conflict."
+        }
+      ]
+    },
+    {
+      "run_id": "10-whistleblower-leak",
+      "note": "Phase 3.11.7 full-batch A/B run",
+      "personas": [
+        "The-Innocent",
+        "The-Everyman",
+        "The-Hero",
+        "The-Caregiver",
+        "The-Explorer",
+        "The-Outlaw",
+        "The-Lover",
+        "The-Creator",
+        "The-Ruler",
+        "The-Magician",
+        "The-Sage",
+        "The-Jester"
+      ],
+      "gap_a_targets": []
+    }
+  ]
+}

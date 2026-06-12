@@ -1,0 +1,161 @@
+{
+  "persona_id": "The-Creator",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "The Philippines grid operator",
+        "alternatives": [
+          {
+            "term": "grid system orchestrator",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "power network manager",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "electricity grid controller",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "crisis dispatcher",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "Officials",
+        "alternatives": [
+          {
+            "term": "emergency response architects",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "system regulators",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "load-shedding order issuers",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "The Philippines grid operator placed the Visayas under red alert",
+        "alternatives": [
+          {
+            "term": "initiated a system-wide power alert",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "declared a grid red alert",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "triggered an emergency power status",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "unleashed a grid crisis protocol",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+        "alternatives": [
+          {
+            "term": "executed a precision load-reduction design",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "implemented controlled power curtailment",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "ordered emergency power disconnection",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "forced a brutal power cutoff",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+        "alternatives": [
+          {
+            "term": "a power unit suffered a critical malfunction",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a generator experienced a system failure",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "original_term": "other long-running plant outages",
+        "alternatives": [
+          {
+            "term": "extended facility shutdowns",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "prolonged plant failures",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "more than 950 megawatts unavailable",
+        "alternatives": [
+          {
+            "term": "a massive 950-megawatt power deficit",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "a colossal generation void",
+            "valence": "negative",
+            "provenance": "lens"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "how-1",
+    "how-2",
+    "why-0",
+    "who-0",
+    "result-0"
+  ]
+}

@@ -1,0 +1,400 @@
+{
+  "run_id": "07-migration-border",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 19,
+  "overlap_count": 9,
+  "net_new_tmdb_ids": [
+    20764,
+    25012,
+    33638,
+    58383,
+    68924,
+    158015,
+    319910,
+    372753,
+    473760,
+    508664
+  ],
+  "lost_tmdb_ids": [
+    1775,
+    9366,
+    46221,
+    49097,
+    127822,
+    252990,
+    362202,
+    1006462,
+    1418657,
+    1447971
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [
+    {
+      "tmdb_id": 381018,
+      "title": "Transpecos",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    },
+    {
+      "tmdb_id": 273481,
+      "title": "Sicario",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    }
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 20764,
+      "title": "Sleep Dealer",
+      "similarity": 0.49703285098075867,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-EVERYMAN",
+        "THE-EXPLORER",
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "su-persona-The-Everyman-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "how-0",
+            "result-1"
+          ],
+          "similarity": 0.49703285098075867,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "su-persona-The-Explorer-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "where-0",
+            "why-0",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.485536128282547,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "where-0"
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "how-0",
+            "why-0",
+            "result-1"
+          ],
+          "similarity": 0.4908224940299988,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-0",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.4730742871761322,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 25012,
+      "title": "Absolute Zero",
+      "similarity": 0.4581485986709595,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-EXPLORER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "su-persona-The-Everyman-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-0",
+            "how-0",
+            "result-1"
+          ],
+          "similarity": 0.4269750416278839,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "su-persona-The-Explorer-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-1"
+          ],
+          "similarity": 0.4581485986709595,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 33638,
+      "title": "The Life and Times of Judge Roy Bean",
+      "similarity": 0.5641672015190125,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "su-persona-The-Jester-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-3",
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5641672015190125,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-3"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 58383,
+      "title": "Hands Over the City",
+      "similarity": 0.5080934166908264,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "how-0",
+            "why-0"
+          ],
+          "similarity": 0.5080934166908264,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 68924,
+      "title": "The Ice Storm",
+      "similarity": 0.4452267587184906,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-MAGICIAN",
+        "THE-SAGE"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-persona-The-Magician-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "why-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.4452267587184906,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-0"
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-persona-The-Sage-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-0"
+          ],
+          "similarity": 0.40728944540023804,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 158015,
+      "title": "The Purge",
+      "similarity": 0.5099433660507202,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-persona-The-Magician-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "result-0",
+            "why-0",
+            "how-0"
+          ],
+          "similarity": 0.5099433660507202,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 319910,
+      "title": "Broken Horses",
+      "similarity": 0.5039684176445007,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-RULER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5039684176445007,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-persona-The-Ruler-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "how-0",
+            "why-0",
+            "result-0"
+          ],
+          "similarity": 0.49994200468063354,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 372753,
+      "title": "Snow White and Her 7 Lovers",
+      "similarity": 0.4900800287723541,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-0",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.4900800287723541,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 473760,
+      "title": "The Order of Things",
+      "similarity": 0.498016357421875,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "how-0",
+            "why-0"
+          ],
+          "similarity": 0.498016357421875,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 508664,
+      "title": "Danger Close: The Battle of Long Tan",
+      "similarity": 0.5033186078071594,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5033186078071594,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        }
+      ]
+    }
+  ],
+  "by_channel": {
+    "focalized": [],
+    "toned": [
+      20764,
+      25012,
+      33638,
+      58383,
+      68924,
+      158015,
+      319910,
+      372753,
+      473760,
+      508664
+    ]
+  }
+}

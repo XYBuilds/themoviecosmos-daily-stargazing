@@ -1,0 +1,498 @@
+# 候选星轨 · 08-sports-underdog
+
+## 元信息
+- run_id: 08-sports-underdog
+
+## 候选星轨（共 19 部）
+
+### Hurricane Season (2010) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-LOVER, THE-CREATOR, THE-RULER, THE-MAGICIAN] [汇聚标注]
+- **tmdb_id**: 32007
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 198.5105
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=9 / persona=1
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-HERO
+- **相似度**: 0.5105
+- **genres** / **language**: Drama / en
+- **overview**: Based on true events amid the wreckage and chaos dealt by Hurricane Katrina; one basketball coach in Marrero, Louisiana just will not give up. Coach Al Collins, gathers other players from hard-hit schools and builds a team actually worthy enough to go to the state playoffs.
+- **跳转**: https://themoviecosmos.com/movie/32007
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4820
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4993
+  - THE-HERO/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4677
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4815
+  - THE-EXPLORER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.5105
+  - THE-LOVER/su-event-1: fragments=[why-0, how-4, result-0, how-0, how-1, how-2, how-3] · sim=0.4505
+  - THE-CREATOR/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.5068
+  - THE-RULER/su-event-1: fragments=[why-0, how-0, how-1, how-4, result-0, how-2, how-3] · sim=0.4724
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4773
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[who-1, why-0, how-4] · sim=0.4620
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Goal! Goal! (1964) [THE-EVERYMAN, THE-INNOCENT, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-RULER, THE-MAGICIAN] [汇聚标注]
+- **tmdb_id**: 248556
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=true, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 178.4931
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=10 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic, surface-fragment-bundle
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-EVERYMAN
+- **相似度**: 0.4931
+- **genres** / **language**: Animation / ru
+- **overview**: Two teams, quite different by their techniques, meet in a hockey match.
+- **跳转**: https://themoviecosmos.com/movie/248556
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[who-1, why-0, how-4, result-0] · sim=0.4915
+  - THE-INNOCENT/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, where-0] · sim=0.4931
+  - THE-EVERYMAN/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, where-0] · sim=0.4332
+  - THE-HERO/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, where-0] · sim=0.4520
+  - THE-CAREGIVER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, where-0] · sim=0.4765
+  - THE-EXPLORER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, where-0] · sim=0.4646
+  - THE-OUTLAW/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, where-0] · sim=0.4612
+  - THE-LOVER/su-surface-1: fragments=[who-0, who-1, who-3, who-4, where-0, who-2] · sim=0.4689
+  - THE-CREATOR/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, where-0] · sim=0.4668
+  - THE-RULER/su-surface-1: fragments=[who-0, who-1, who-2, where-0, who-3, who-4] · sim=0.4886
+  - THE-MAGICIAN/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, where-0] · sim=0.4667
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Fatal Games (1984) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-LOVER, THE-RULER] [汇聚标注]
+- **tmdb_id**: 30706
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 198.5658
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=7 / persona=1
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-INNOCENT
+- **相似度**: 0.5658
+- **genres** / **language**: Horror, Thriller / en
+- **overview**: The young athletes of Falcon Academy are training hard to earn their place in the nationals. But when these burgeoning sports stars start disappearing one after the other, Dr. Jordine and his team - who’ve started plying their athletes with new and untested performance-enhancing drugs - are baffled.
+- **跳转**: https://themoviecosmos.com/movie/30706
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4466
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4569
+  - THE-HERO/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4437
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4477
+  - THE-EXPLORER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0] · sim=0.4642
+  - THE-LOVER/su-event-1: fragments=[why-0, how-4, result-0, how-0, how-1, how-2, how-3] · sim=0.4531
+  - THE-RULER/su-event-1: fragments=[why-0, how-0, how-1, how-4, result-0, how-2, how-3] · sim=0.4464
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[who-3, why-0, result-0, how-1] · sim=0.5658
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Three Seconds (2017) [THE-EVERYMAN, THE-LOVER, THE-MAGICIAN, THE-OUTLAW]
+- **tmdb_id**: 444218
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 156.5397
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=0 / persona=4
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5397
+- **genres** / **language**: Drama / ru
+- **overview**: The story is set at the 1972 Munich Olympics where the U.S. team lost the basketball championship for the first time in 36 years. The final moments of the final game have become one of the most controversial events in Olympic history. With play tied, the score table horn sounded during a second free throw attempt that put the U.S. ahead by one. But the Soviets claimed they had called for a time out before the basket and confusion ensued. The clock was set back by three seconds twice in a row and the Russians finally prevailed at the very last. The U.S. protested, but a jury decided in the USSR’s favor and Team USA voted unanimously to refuse its silver medals. The Soviet players have been treated as heroes at home.
+- **跳转**: https://themoviecosmos.com/movie/444218
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[who-1, why-0, how-4, result-0] · sim=0.4858
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, why-0, how-3, how-4, result-0] · sim=0.5397
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[result-0, how-3, how-4] · sim=0.5124
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[result-0, why-0, how-3, how-4] · sim=0.5064
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Hoosiers (1986) [THE-OUTLAW, THE-CAREGIVER, THE-EVERYMAN] [汇聚标注]
+- **tmdb_id**: 5693
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 216.5343
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=1 / persona=2
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=2: THE-CAREGIVER,THE-EVERYMAN
+- **相似度**: 0.5343
+- **genres** / **language**: Drama, Family / en
+- **overview**: Failed college coach Norman Dale gets a chance at redemption when he is hired to coach a high school basketball team in a tiny Indiana town. After a teacher persuades star player Jimmy Chitwood to quit and focus on his long-neglected studies, Dale struggles to develop a winning team in the face of community criticism for his temper and his unconventional choice of assistant coach: Shooter, a notorious alcoholic.
+- **跳转**: https://themoviecosmos.com/movie/5693
+- **命中视角/碎片**:
+  - THE-OUTLAW/su-event-1: fragments=[how-0, how-1, how-2, how-3, how-4, why-0, result-0] · sim=0.5305
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[who-2, how-0, how-1, how-2] · sim=0.5315
+  - THE-EVERYMAN/su-persona-The-Everyman-p3: fragments=[how-0, how-1, how-2] · sim=0.5343
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### One Piece: Dream Soccer King! (2002) [THE-INNOCENT, THE-MAGICIAN, THE-OUTLAW]
+- **tmdb_id**: 464198
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 146.5460
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5460
+- **genres** / **language**: Fantasy, Comedy, Animation / ja
+- **overview**: At a huge pillar stadium, the Grand Line Cup Final is being held. The "Straw Hat Pirate Team"(Luffy, Zoro, Usopp, Sanji, and Chopper) are having a tie breaker shoot out against the "Villian All Star Team"(Buggy, Bon Clay, Jango, Hatchan, and a soccer like head player named Odacchi). Everyone of them gets a turn in kicking the ball to the goal. While Coby is taking the goalie position, and isn't doing too good in blocking the goal. One after another, the game eventually comes to a sudden death match. Which team will win the Grand Line Cup?
+- **跳转**: https://themoviecosmos.com/movie/464198
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[why-0, how-3, how-4] · sim=0.5460
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[result-0, how-3, how-4] · sim=0.4761
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[result-0, why-0, how-3, how-4] · sim=0.5446
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### In Which We Serve (1942) [THE-CAREGIVER, THE-HERO]
+- **tmdb_id**: 28093
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.6242
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6242
+- **genres** / **language**: Drama, War / en
+- **overview**: The story of the HMS Torrin, from its construction to its sinking in the Mediterranean during action in World War II. The ship’s first and only commanding officer is Captain E.V. Kinross, who trains his men not only to be loyal to him and the country, but—most importantly—to themselves.
+- **跳转**: https://themoviecosmos.com/movie/28093
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[who-2, how-0, how-1, how-2] · sim=0.6242
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[who-2, how-2, how-3, how-4] · sim=0.5039
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### By the Law (1926) [THE-HERO, THE-LOVER]
+- **tmdb_id**: 126644
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.5263
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5263
+- **genres** / **language**: Drama, Western, Mystery, Action / ru
+- **overview**: After a man kills two members of his Yukon gold prospecting team, the other two surviving members struggle to keep him subdued for the next several months until they can turn him over to the law. Based on Jack London's 'The Unexpected' (1905).
+- **跳转**: https://themoviecosmos.com/movie/126644
+- **命中视角/碎片**:
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[who-1, why-0, how-4] · sim=0.5263
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, why-0, how-3, how-4, result-0] · sim=0.4860
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Wild Soccer Bunch 2 (2005) [THE-CREATOR, THE-INNOCENT]
+- **tmdb_id**: 8344
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.5514
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5514
+- **genres** / **language**: Adventure, Family, Comedy / de
+- **overview**: An unsupervised junior soccer team loses its ace player to the leader of a rival gang. Since only an entire team can win, they must have her back to be able to win the game against the national team. The existence of The Wild Soccer Bunch is at stake ...
+- **跳转**: https://themoviecosmos.com/movie/8344
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[why-0, how-3, how-4, result-0] · sim=0.5170
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[why-0, how-3, how-4] · sim=0.5514
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Step Up All In (2014) [THE-EVERYMAN]
+- **tmdb_id**: 243683
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5755
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5755
+- **genres** / **language**: Romance, Drama, Music / en
+- **overview**: All-stars from previous installments convene in glittering Las Vegas, battling for a victory that could define their dreams and their careers.
+- **跳转**: https://themoviecosmos.com/movie/243683
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[who-0, how-3, how-4, result-0] · sim=0.5755
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Touchback (2011) [THE-INNOCENT]
+- **tmdb_id**: 75074
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5405
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5405
+- **genres** / **language**: Drama, Family, Fantasy / en
+- **overview**: A former high-school football star loses his shot at a college scholarship due to a devastating gridiron injury, but gets a second chance at living his dream.
+- **跳转**: https://themoviecosmos.com/movie/75074
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[who-3, why-0, result-0, how-1] · sim=0.5405
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Derby (1896) [THE-EXPLORER]
+- **tmdb_id**: 178998
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5344
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5344
+- **genres** / **language**: Documentary / en
+- **overview**: The Derby
+- **跳转**: https://themoviecosmos.com/movie/178998
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[who-0, how-3, how-4, result-0] · sim=0.5344
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Rabbit Punch (1948) [THE-EXPLORER]
+- **tmdb_id**: 100340
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5108
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5108
+- **genres** / **language**: Animation, Comedy / en
+- **overview**: Heckling the Champ gets Bugs into the world championship fight as the challenger.
+- **跳转**: https://themoviecosmos.com/movie/100340
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[who-0, how-3, how-4, result-0] · sim=0.5108
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Winning Streak (2012) [THE-CAREGIVER]
+- **tmdb_id**: 98586
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5072
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5072
+- **genres** / **language**: Drama / es
+- **overview**: Winning Streak is the astonishing story of a group of young down-and-outs who are presented with a once-in-a-lifetime opportunity; to change their luck and set off on the adventure of their lives. Thanks to an infallible method based on the roulette wheel’s imperfection, their lifestyle is about to become better than their wildest dreams, as they set out to break the banks at casinos around the world.
+- **跳转**: https://themoviecosmos.com/movie/98586
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[result-0, how-3, how-4, why-0] · sim=0.5072
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Sudden Death (1995) [THE-CAREGIVER]
+- **tmdb_id**: 9091
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4994
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4994
+- **genres** / **language**: Action, Drama, Thriller, Crime / en
+- **overview**: When a man's daughter is suddenly taken during a championship hockey game – with the captors demanding a billion dollars by game's end – he frantically sets a plan in motion to rescue her and abort an impending explosion before the final buzzer.
+- **跳转**: https://themoviecosmos.com/movie/9091
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[result-0, how-3, how-4, why-0] · sim=0.4994
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### 4 Crazy Draftees at the Army (1974) [THE-RULER]
+- **tmdb_id**: 61301
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4960
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4960
+- **genres** / **language**: Comedy / it
+- **overview**: Our four incompetent types thrown into the field whether they liked it or not....They preferred to run the other way, but can never get there act together! How will they win the war' How can they get out of this mess'
+- **跳转**: https://themoviecosmos.com/movie/61301
+- **命中视角/碎片**:
+  - THE-RULER/su-persona-The-Ruler-p3: fragments=[who-0, why-0, how-3, how-4] · sim=0.4960
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Space/Time (2025) [THE-EXPLORER]
+- **tmdb_id**: 434853
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5609
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5609
+- **genres** / **language**: Science Fiction, Action, Thriller / en
+- **overview**: After a fatal test shuts down their project, a disgraced team of scientists enters the criminal underworld to rebuild a forbidden space-bending engine that could rescue humanity or annihilate it entirely.
+- **跳转**: https://themoviecosmos.com/movie/434853
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[why-0, how-3, how-4] · sim=0.5609
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Eden (2015) [THE-EXPLORER]
+- **tmdb_id**: 360339
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5580
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5580
+- **genres** / **language**: Thriller, Drama / en
+- **overview**: After their plane crashes off the coast of a deserted Pacific island, the surviving members of an American soccer team find themselves in the most dire of circumstances with limited resources, dwindling food supply and no rescue coming any time soon.  Team spirit evaporates as disagreements cause the group to separate into factions - a violent one lead by an unbalanced ruler, and a compassionate one led by a selfless player.
+- **跳转**: https://themoviecosmos.com/movie/360339
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[why-0, how-3, how-4] · sim=0.5580
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Champions (2018) [THE-EVERYMAN]
+- **tmdb_id**: 456929
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5312
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5312
+- **genres** / **language**: Comedy, Family, Drama / es
+- **overview**: A disgraced basketball coach is given the chance to coach Los Amigos, a team of players who are intellectually disabled, and soon realizes they just might have what it takes to make it to the national championships.
+- **跳转**: https://themoviecosmos.com/movie/456929
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p3: fragments=[how-0, how-1, how-2] · sim=0.5312
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）

@@ -1,0 +1,327 @@
+{
+  "run_id": "05-climate-disaster",
+  "baseline_candidate_count": 19,
+  "design_candidate_count": 19,
+  "overlap_count": 8,
+  "net_new_tmdb_ids": [
+    14111,
+    38828,
+    53080,
+    62652,
+    68924,
+    121890,
+    258947,
+    285427,
+    333545,
+    514690,
+    937393
+  ],
+  "lost_tmdb_ids": [
+    26693,
+    33196,
+    38141,
+    43593,
+    44325,
+    107100,
+    210219,
+    274855,
+    437031,
+    613658,
+    797840
+  ],
+  "by_search_unit_kind": {
+    "event-fragment-bundle": [
+      68924
+    ],
+    "persona-semantic": [
+      14111,
+      38828,
+      53080,
+      62652,
+      68924,
+      121890,
+      258947,
+      285427,
+      333545,
+      514690,
+      937393
+    ],
+    "surface-fragment-bundle": []
+  },
+  "collision_gain_tmdb_ids": [
+    68924
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 14111,
+      "title": "Battle for Haditha",
+      "similarity": 0.5263327360153198,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 38828,
+      "title": "Left Behind: World at War",
+      "similarity": 0.5903992056846619,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 53080,
+      "title": "Malibu Shark Attack",
+      "similarity": 0.5748425126075745,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 62652,
+      "title": "Bamako",
+      "similarity": 0.5301871299743652,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 68924,
+      "title": "The Ice Storm",
+      "similarity": 0.5350177884101868,
+      "quality_candidate": true,
+      "search_unit_kinds": [
+        "event-fragment-bundle",
+        "persona-semantic"
+      ],
+      "collision_gain": true,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": true,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "event-fragment-bundle",
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 121890,
+      "title": "An Enemy of the People",
+      "similarity": 0.5496293306350708,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 258947,
+      "title": "Deadly Virtues: Love. Honour. Obey.",
+      "similarity": 0.5763194561004639,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 285427,
+      "title": "Quel maledetto ponte sull'Elba",
+      "similarity": 0.5466321110725403,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-SAGE"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 333545,
+      "title": "Road Wars",
+      "similarity": 0.5663390159606934,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 514690,
+      "title": "Global Meltdown",
+      "similarity": 0.5490367412567139,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-OUTLAW"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result",
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 937393,
+      "title": "Bloat",
+      "similarity": 0.6059625148773193,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-CAREGIVER",
+        "THE-LOVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result",
+          "who"
+        ]
+      }
+    }
+  ]
+}

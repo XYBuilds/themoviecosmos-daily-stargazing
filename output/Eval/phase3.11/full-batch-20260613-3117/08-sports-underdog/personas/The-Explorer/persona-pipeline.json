@@ -1,0 +1,1424 @@
+{
+  "persona_id": "The-Explorer",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Explorer",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Vegas Golden Knights",
+          "alternatives": [
+            {
+              "term": "trailblazers who conquered the final frontier",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the team that pushed through to the championship stage",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the executor of the sweep",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Colorado Avalanche",
+          "alternatives": [
+            {
+              "term": "the fallen giants whose path was blocked by injury",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the team that failed to cross the final threshold",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the affected party in the series",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "John Tortorella",
+          "alternatives": [
+            {
+              "term": "the guide who charted a new course from chaos to contention",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the coach who took the reins mid-journey",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the executor of the coaching change",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Cale Makar",
+          "alternatives": [
+            {
+              "term": "a key pioneer forced to halt his expedition",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a star sidelined by injury",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-4",
+          "original_term": "Nathan MacKinnon",
+          "alternatives": [
+            {
+              "term": "another trailblazer whose journey was cut short",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a top player affected by injury",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+          "alternatives": [
+            {
+              "term": "the expedition was crippled by the loss of its leading navigators",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "key players were unavailable due to injury",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "the franchise fired its coach with eight regular-season games left",
+          "alternatives": [
+            {
+              "term": "a bold mid-course correction to find a new path",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a decisive leadership change during the campaign",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the removal of a coach",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "John Tortorella guided a 7-0-1 close",
+          "alternatives": [
+            {
+              "term": "he steered the team through uncharted, dominant waters",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "he led a successful finish to the regular season",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the coach managed a strong closing record",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "John Tortorella guided playoff runs past Utah and Anaheim",
+          "alternatives": [
+            {
+              "term": "he navigated the team through two rounds of unfamiliar territory",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "he oversaw series victories",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the coach managed playoff progress",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4",
+          "alternatives": [
+            {
+              "term": "they mastered the challenge and sealed the frontier",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "they won the decisive game and limited the opponent",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "completing a four-game Western Conference Final sweep on May 26",
+          "alternatives": [
+            {
+              "term": "achieving total conquest of the final barrier",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "completing the series sweep",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "Vegas reached the Stanley Cup Final",
+          "alternatives": [
+            {
+              "term": "they arrived at the ultimate destination",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "they advanced to the championship series",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-4",
+      "how-1",
+      "how-2",
+      "who-0",
+      "result-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "completing a four-game Western Conference Final sweep on May 26. John Tortorella guided a 7-0-1 close. John Tortorella guided playoff runs past Utah and Anaheim. Vegas Golden Knights. Vegas reached the Stanley Cup Final The event unfolds across completing the series sweep and series sweep.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-4",
+          "how-1",
+          "how-2",
+          "who-0",
+          "result-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "completing a four-game Western Conference Final sweep on May 26",
+            "provenance": "surface"
+          },
+          {
+            "term": "completing the series sweep",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "series sweep",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "playoff series win",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "sweep completion",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Tortorella guided a 7-0-1 close",
+            "provenance": "surface"
+          },
+          {
+            "term": "the coach managed a strong closing record",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "coaching performance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team improvement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "winning record",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "John Tortorella guided playoff runs past Utah and Anaheim",
+            "provenance": "surface"
+          },
+          {
+            "term": "the coach managed playoff progress",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "playoff coaching",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team advancement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "series victory",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Vegas Golden Knights",
+            "provenance": "surface"
+          },
+          {
+            "term": "the executor of the sweep",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "NHL team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "hockey team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "professional sports team",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Vegas reached the Stanley Cup Final",
+            "provenance": "surface"
+          },
+          {
+            "term": "they advanced to the championship series",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "playoff advancement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "championship series qualification",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "team achievement",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p3",
+      "text": "The executor of the sweep pushed through to the championship stage, a professional sports team that conquered the final frontier. Their offensive execution and defensive performance in the decisive game limited the opponent, completing a playoff series win that advanced them as trailblazers. This team achievement marks their arrival at the ultimate destination, a testament to the explorer's drive to break new ground.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "center": "who-0",
+        "center_kind": "who",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 3
+      },
+      "warnings": [],
+      "fit": 0.9
+    },
+    {
+      "id": "p2",
+      "text": "Injury crippled the expedition, sidelining key navigators and leaving the affected party stalled at the threshold. The fallen giants, whose path was blocked by injury, could not cross the final barrier, their journey cut short against a rival who mastered the challenge. This team loss, a stark halt in their playoff run, underscores the cruel frontier where even the best explorers can be forced to turn back.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-3",
+          "how-4"
+        ],
+        "center": "why-0",
+        "center_kind": "why",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 5
+      },
+      "warnings": [],
+      "fit": 0.78
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "the franchise fired its coach with eight regular-season games left",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a bold mid-course correction to find a new path",
+            "weight": 0.38
+          },
+          {
+            "text": "a decisive leadership change during the campaign",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the removal of a coach",
+            "weight": 0.82
+          },
+          {
+            "text": "coaching change",
+            "weight": 0.82
+          },
+          {
+            "text": "management decision",
+            "weight": 0.82
+          },
+          {
+            "text": "mid-season firing",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "John Tortorella guided a 7-0-1 close",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "he steered the team through uncharted, dominant waters",
+            "weight": 0.38
+          },
+          {
+            "text": "he led a successful finish to the regular season",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the coach managed a strong closing record",
+            "weight": 0.82
+          },
+          {
+            "text": "coaching performance",
+            "weight": 0.82
+          },
+          {
+            "text": "team improvement",
+            "weight": 0.82
+          },
+          {
+            "text": "winning record",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "John Tortorella guided playoff runs past Utah and Anaheim",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "he navigated the team through two rounds of unfamiliar territory",
+            "weight": 0.38
+          },
+          {
+            "text": "he oversaw series victories",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the coach managed playoff progress",
+            "weight": 0.82
+          },
+          {
+            "text": "playoff coaching",
+            "weight": 0.82
+          },
+          {
+            "text": "team advancement",
+            "weight": 0.82
+          },
+          {
+            "text": "series victory",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "they mastered the challenge and sealed the frontier",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "they won the decisive game and limited the opponent",
+            "weight": 0.82
+          },
+          {
+            "text": "game strategy",
+            "weight": 0.82
+          },
+          {
+            "text": "defensive performance",
+            "weight": 0.82
+          },
+          {
+            "text": "offensive execution",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "completing a four-game Western Conference Final sweep on May 26",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "achieving total conquest of the final barrier",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "completing the series sweep",
+            "weight": 0.82
+          },
+          {
+            "text": "series sweep",
+            "weight": 0.82
+          },
+          {
+            "text": "playoff series win",
+            "weight": 0.82
+          },
+          {
+            "text": "sweep completion",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "Vegas reached the Stanley Cup Final",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "they arrived at the ultimate destination",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "they advanced to the championship series",
+            "weight": 0.82
+          },
+          {
+            "text": "playoff advancement",
+            "weight": 0.82
+          },
+          {
+            "text": "championship series qualification",
+            "weight": 0.82
+          },
+          {
+            "text": "team achievement",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Western Conference Final",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "conference final",
+            "weight": 0.82
+          },
+          {
+            "text": "playoff series",
+            "weight": 0.82
+          },
+          {
+            "text": "sports event",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Vegas Golden Knights",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "trailblazers who conquered the final frontier",
+            "weight": 0.38
+          },
+          {
+            "text": "the team that pushed through to the championship stage",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the executor of the sweep",
+            "weight": 0.82
+          },
+          {
+            "text": "NHL team",
+            "weight": 0.82
+          },
+          {
+            "text": "hockey team",
+            "weight": 0.82
+          },
+          {
+            "text": "professional sports team",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Colorado Avalanche",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the fallen giants whose path was blocked by injury",
+            "weight": 0.38
+          },
+          {
+            "text": "the team that failed to cross the final threshold",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the affected party in the series",
+            "weight": 0.82
+          },
+          {
+            "text": "NHL team",
+            "weight": 0.82
+          },
+          {
+            "text": "hockey team",
+            "weight": 0.82
+          },
+          {
+            "text": "professional sports team",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "John Tortorella",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the guide who charted a new course from chaos to contention",
+            "weight": 0.38
+          },
+          {
+            "text": "the coach who took the reins mid-journey",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the executor of the coaching change",
+            "weight": 0.82
+          },
+          {
+            "text": "hockey coach",
+            "weight": 0.82
+          },
+          {
+            "text": "sports coach",
+            "weight": 0.82
+          },
+          {
+            "text": "professional",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Cale Makar",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a key pioneer forced to halt his expedition",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a star sidelined by injury",
+            "weight": 0.82
+          },
+          {
+            "text": "hockey player",
+            "weight": 0.82
+          },
+          {
+            "text": "athlete",
+            "weight": 0.82
+          },
+          {
+            "text": "professional athlete",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-4",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Nathan MacKinnon",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "another trailblazer whose journey was cut short",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a top player affected by injury",
+            "weight": 0.82
+          },
+          {
+            "text": "hockey player",
+            "weight": 0.82
+          },
+          {
+            "text": "athlete",
+            "weight": 0.82
+          },
+          {
+            "text": "professional athlete",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the expedition was crippled by the loss of its leading navigators",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "key players were unavailable due to injury",
+            "weight": 0.82
+          },
+          {
+            "text": "injury",
+            "weight": 0.82
+          },
+          {
+            "text": "player injury",
+            "weight": 0.82
+          },
+          {
+            "text": "team loss",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "who-3",
+          "who-4",
+          "where-0"
+        ],
+        "search_text": "Vegas Golden Knights; the executor of the sweep; NHL team; hockey team; professional sports team; Colorado Avalanche; the affected party in the series; NHL team; hockey team; professional sports team; John Tortorella; the executor of the coaching change; hockey coach; sports coach; professional; Cale Makar; a star sidelined by injury; hockey player; athlete; professional athlete; Nathan MacKinnon; a top player affected by injury; hockey player; athlete; professional athlete; Western Conference Final; conference final; playoff series; sports event",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "Vegas Golden Knights",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "the executor of the sweep",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "NHL team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "hockey team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "professional sports team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "Colorado Avalanche",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "the affected party in the series",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "NHL team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "hockey team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "professional sports team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "John Tortorella",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "the executor of the coaching change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "hockey coach",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "sports coach",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "professional",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "surface",
+            "text": "Cale Makar",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "a star sidelined by injury",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "hockey player",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "athlete",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "professional athlete",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "surface",
+            "text": "Nathan MacKinnon",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "a top player affected by injury",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "hockey player",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "athlete",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-4",
+            "level": "objective_close",
+            "text": "professional athlete",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "Western Conference Final",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "conference final",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "playoff series",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "sports event",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "search_text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries; key players were unavailable due to injury; injury; player injury; team loss; the franchise fired its coach with eight regular-season games left; the removal of a coach; coaching change; management decision; mid-season firing; John Tortorella guided a 7-0-1 close; the coach managed a strong closing record; coaching performance; team improvement; winning record; John Tortorella guided playoff runs past Utah and Anaheim; the coach managed playoff progress; playoff coaching; team advancement; series victory; Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4; they won the decisive game and limited the opponent; game strategy; defensive performance; offensive execution; completing a four-game Western Conference Final sweep on May 26; completing the series sweep; series sweep; playoff series win; sweep completion; Vegas reached the Stanley Cup Final; they advanced to the championship series; playoff advancement; championship series qualification; team achievement",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "key players were unavailable due to injury",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "injury",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "player injury",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "team loss",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "the franchise fired its coach with eight regular-season games left",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "the removal of a coach",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "coaching change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "management decision",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "mid-season firing",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "John Tortorella guided a 7-0-1 close",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "the coach managed a strong closing record",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "coaching performance",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "team improvement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "winning record",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "John Tortorella guided playoff runs past Utah and Anaheim",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "the coach managed playoff progress",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "playoff coaching",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "team advancement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "series victory",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "surface",
+            "text": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "they won the decisive game and limited the opponent",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "game strategy",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "defensive performance",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "offensive execution",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "surface",
+            "text": "completing a four-game Western Conference Final sweep on May 26",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "completing the series sweep",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "series sweep",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "playoff series win",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "sweep completion",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "Vegas reached the Stanley Cup Final",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "they advanced to the championship series",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "playoff advancement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "championship series qualification",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "team achievement",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Explorer-p3",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "who-0",
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "search_text": "The executor of the sweep pushed through to the championship stage, a professional sports team that conquered the final frontier. Their offensive execution and defensive performance in the decisive game limited the opponent, completing a playoff series win that advanced them as trailblazers. This team achievement marks their arrival at the ultimate destination, a testament to the explorer's drive to break new ground.",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "Vegas Golden Knights",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "the executor of the sweep",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "NHL team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "hockey team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "professional sports team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "surface",
+            "text": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Explorer",
+        "center_element": "who-0",
+        "supporting_elements": [
+          "how-3",
+          "how-4",
+          "result-0"
+        ],
+        "fit": 0.9
+      },
+      {
+        "id": "su-persona-The-Explorer-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "why-0",
+          "how-3",
+          "how-4"
+        ],
+        "search_text": "Injury crippled the expedition, sidelining key navigators and leaving the affected party stalled at the threshold. The fallen giants, whose path was blocked by injury, could not cross the final barrier, their journey cut short against a rival who mastered the challenge. This team loss, a stark halt in their playoff run, underscores the cruel frontier where even the best explorers can be forced to turn back.",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "Colorado lost top stars Cale Makar and Nathan MacKinnon to injuries",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "key players were unavailable due to injury",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "injury",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "player injury",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "team loss",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "surface",
+            "text": "Vegas scored twice and held Colorado's league-leading offense to one goal in Game 4",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Explorer",
+        "center_element": "why-0",
+        "supporting_elements": [
+          "why-0",
+          "how-3",
+          "how-4"
+        ],
+        "fit": 0.78
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"The coach managed a strong closing record, steering his team through unfamiliar playoff territory to achieve total conquest of the final barrier. After a decisive leadership change during the campaign, the guide charted a new course, navigating series victories and finally arriving at the ultimate destination: the championship series qualification. This forward march culminated in a series sweep, sealing the team's advance as explorers of a new competitive frontier.\",\n      \"fit\": 0.85,\n      \"center\": \"how-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-1\", \"how-2\", \"how-4\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"Injury crippled the expedition, sidelining key navigators and leaving the affected party stalled at the threshold. The fallen giants, whose path was blocked by injury, could not cross the final barrier, their journey cut short against a rival who mastered the challenge. This team loss, a stark halt in their playoff run, underscores the cruel frontier where even the best explorers can be forced to turn back.\",\n      \"fit\": 0.78,\n      \"center\": \"why-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-3\", \"how-4\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"The executor of the sweep pushed through to the championship stage, a professional sports team that conquered the final frontier. Their offensive execution and defensive performance in the decisive game limited the opponent, completing a playoff series win that advanced them as trailblazers. This team achievement marks their arrival at the ultimate destination, a testament to the explorer's drive to break new ground.\",\n      \"fit\": 0.90,\n      \"center\": \"who-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-3\", \"how-4\", \"result-0\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "pseudo p1: supporting elements must be 2–4, got 6"
+    },
+    {
+      "stage": "screenwriter",
+      "attempt": "2",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 2,
+    "dropped_pseudos": 1,
+    "drop_reasons": [
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5"
+      }
+    ]
+  }
+}
