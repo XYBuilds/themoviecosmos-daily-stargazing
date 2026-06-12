@@ -1,20 +1,19 @@
 """retrieve.py · 跨类型纯文本召回.
 
-输入: 各 Agent 的 pseudo-overview（`agents[].pseudos[]`，legacy 回退 `text`）.
+输入: 优先读取 agents[].search_units；兼容旧 agents[].pseudos[] / agents[].text。
 索引: data/index/embeddings.npy + data/index/meta.parquet.
 模型: paraphrase-multilingual-MiniLM-L12-v2 (与 build_index 严格同模型).
 
-输出: 每段 pseudo Top-K（默认 2）→ 按 tmdb_id 聚合去重;
-      候选漏斗（ADR-0007 D8 / ADR-0008）: 汇聚排序 → 可选 judge 预筛 → 预算 top-N 给人工;
-      预算以下 ``judge≥1`` 进 ``audit_pool``（抽审兜底，不靠调高 judge 门槛控量）.
-      记录命中 `(agent_id, pseudo_id, fragments)`；撞车展示不含 A1/baseline（toned/focalized triggered_by）.
-      撞车诊断标注（ADR-0005 + ADR-0008）: 中性 union = 1 票 + ≥1 toned/focalized 汇聚 → quality_candidate；
-      该字段仅作 annotation，不参与排序、截断、Go/No-Go 或评估分桶.
-      A1 held-out oracle（ADR-0006）: baseline 查询独立并跑 → ``a1_oracle`` + ``oracle_comparison``;
-      不进 ``candidates`` / 撞车票 / 排序.
+输出: 每个 search unit Top-K（默认 2）→ 按 tmdb_id 聚合去重；
+      候选漏斗（ADR-0009）: 去重 → match 诊断 → 新 convergent sort → 可选 judge 预筛 → 预算 top-N；
+      预算以下 ``judge≥1`` 进 ``audit_pool``（抽审兜底，不靠调高 judge 门槛控量）。
+      主排序信号来自 surface_match / event_match / persona_semantic_match / persona diversity /
+      center dimension diversity / dense similarity；旧 neutral / toned / focalized channel 只作兼容字段。
+      A1 held-out oracle（ADR-0006）: baseline 查询独立并跑 → ``a1_oracle`` + ``oracle_comparison``；
+      不进 ``candidates`` / 撞车票 / 排序。
 
 不做:
-  - 相似度阈值过滤（quality_floor 仅用于撞车票/汇聚计数）
+  - 相似度阈值过滤（quality_floor 仅用于 match 诊断/汇聚计数）
   - 评分 / 年代 / 成人内容过滤
   - 历史去重
 """
@@ -50,11 +49,10 @@ DEFAULT_MIN_JUDGE_SCORE = 1
 DEFAULT_MOVIE_LINK_PREFIX = "https://themoviecosmos.com/movie/"
 
 # Convergent-sort weights: match diagnostics + diversity + similarity.
-_CONVERGENT_WEIGHT_CHANNEL = 100
-_CONVERGENT_WEIGHT_PERSONA = 10
 _CONVERGENT_WEIGHT_SURFACE = 60
 _CONVERGENT_WEIGHT_EVENT = 80
 _CONVERGENT_WEIGHT_PERSONA_SEMANTIC = 100
+_CONVERGENT_WEIGHT_PERSONA = 10
 _CONVERGENT_WEIGHT_CENTER_DIMENSION = 8
 
 _AGENT_ORDER: tuple[str, ...] = ("A2", "A4", "A7", "A1")
@@ -569,7 +567,10 @@ def _distinct_personas_above_floor(
 ) -> set[str]:
     personas: set[str] = set()
     for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
-        if _hit_source_channel_role(source) not in _SIGNAL_PROVENANCE_CHANNELS:
+        kind = str(source.get("search_unit_kind") or "").strip().lower()
+        if kind and kind != "persona-semantic":
+            continue
+        if not kind and _hit_source_channel_role(source) not in _SIGNAL_PROVENANCE_CHANNELS:
             continue
         agent_id = str(source.get("agent_id", "")).upper()
         if agent_id:
@@ -735,7 +736,6 @@ def _apply_convergence_fields(
     personas = _distinct_personas_above_floor(cand, quality_floor=quality_floor)
     kinds = _search_unit_kinds_above_floor(cand, quality_floor=quality_floor)
     center_dims = _center_dimensions_above_floor(cand, quality_floor=quality_floor)
-    channel_count = len(signal_channels)
     persona_count = len(personas)
     surface_score = _CONVERGENT_WEIGHT_SURFACE if "surface-fragment-bundle" in kinds else 0
     event_score = _CONVERGENT_WEIGHT_EVENT if "event-fragment-bundle" in kinds else 0
@@ -743,7 +743,7 @@ def _apply_convergence_fields(
         _CONVERGENT_WEIGHT_PERSONA_SEMANTIC if "persona-semantic" in kinds else 0
     )
     cand["convergence_channels"] = sorted(signal_channels)
-    cand["convergence_channel_count"] = channel_count
+    cand["convergence_channel_count"] = len(signal_channels)
     cand["diagnostic_channels"] = sorted(diagnostic_channels)
     cand["convergence_persona_count"] = persona_count
     _apply_match_diagnostics(cand, quality_floor=quality_floor)
@@ -753,7 +753,6 @@ def _apply_convergence_fields(
         + persona_semantic_score
         + persona_count * _CONVERGENT_WEIGHT_PERSONA
         + len(center_dims) * _CONVERGENT_WEIGHT_CENTER_DIMENSION
-        + channel_count * _CONVERGENT_WEIGHT_CHANNEL
         + float(cand.get("similarity", 0.0))
     )
 
@@ -814,12 +813,13 @@ def sort_candidates_convergent(
     candidates: list[dict[str, Any]],
     *,
     quality_floor: float,
+    neutral_total: int = 0,
 ) -> list[dict[str, Any]]:
     """Layer 2 funnel: convergent sort (multi-channel / multi-persona rank higher)."""
     enriched: list[dict[str, Any]] = []
     for cand in candidates:
         row = dict(cand)
-        _apply_quality_fields(row, quality_floor=quality_floor, neutral_total=0)
+        _apply_quality_fields(row, quality_floor=quality_floor, neutral_total=neutral_total)
         _apply_convergence_fields(row, quality_floor=quality_floor)
         enriched.append(row)
     return sorted(enriched, key=_convergent_sort_key)
@@ -830,6 +830,7 @@ def apply_candidate_funnel(
     *,
     human_budget: int = DEFAULT_HUMAN_BUDGET,
     quality_floor: float = DEFAULT_QUALITY_FLOOR,
+    neutral_total: int = 0,
     judge_scores: dict[int, int] | None = None,
     min_judge_score: int = DEFAULT_MIN_JUDGE_SCORE,
 ) -> dict[str, Any]:
@@ -838,7 +839,11 @@ def apply_candidate_funnel(
         raise ValueError("human_budget must be >= 1")
 
     deduped = dedupe_candidates_by_tmdb_id(candidates)
-    sorted_pool = sort_candidates_convergent(deduped, quality_floor=quality_floor)
+    sorted_pool = sort_candidates_convergent(
+        deduped,
+        quality_floor=quality_floor,
+        neutral_total=neutral_total,
+    )
 
     for cand in sorted_pool:
         if judge_scores is not None:
@@ -886,8 +891,23 @@ def apply_candidate_funnel(
 
 
 @dataclass
+class PoolDiffBySearchUnitKind:
+    """A/B pool diff (design-on ∖ baseline) with search-unit-kind decomposition."""
+
+    run_id: str
+    baseline_candidate_count: int
+    design_candidate_count: int
+    net_new_tmdb_ids: list[int]
+    lost_tmdb_ids: list[int]
+    overlap_count: int
+    by_search_unit_kind: dict[str, list[int]] = field(default_factory=dict)
+    collision_gain_tmdb_ids: list[int] = field(default_factory=list)
+    net_new_details: list[dict[str, Any]] = field(default_factory=list)
+
+
+@dataclass
 class PoolDiffByChannel:
-    """A/B pool diff (design-on ∖ baseline) with signal + diagnostic channel decomposition."""
+    """Legacy A/B pool diff with old provenance-channel decomposition."""
 
     run_id: str
     baseline_candidate_count: int
@@ -898,6 +918,90 @@ class PoolDiffByChannel:
     by_channel: dict[str, list[int]] = field(default_factory=dict)
     diagnostic_by_channel: dict[str, list[int]] = field(default_factory=dict)
     net_new_details: list[dict[str, Any]] = field(default_factory=list)
+
+
+def _search_unit_kinds_for_candidate(cand: dict[str, Any]) -> set[str]:
+    kinds: set[str] = set()
+    for source in cand.get("hit_sources") or []:
+        kind = str(source.get("search_unit_kind") or "").strip().lower()
+        if kind in _SEARCH_UNIT_KINDS:
+            kinds.add(kind)
+    return kinds
+
+
+def compare_pool_diff_by_search_unit_kind(
+    *,
+    run_id: str,
+    baseline_retrieve: dict[str, Any],
+    design_retrieve: dict[str, Any],
+) -> PoolDiffBySearchUnitKind:
+    """Net-new candidates decomposed by surface/event/persona-semantic search unit kind."""
+    def _ids(payload: dict[str, Any]) -> set[int]:
+        ids: set[int] = set()
+        for row in payload.get("candidates") or []:
+            if isinstance(row, dict) and row.get("tmdb_id") is not None:
+                ids.add(int(row["tmdb_id"]))
+        return ids
+
+    base_ids = _ids(baseline_retrieve)
+    design_ids = _ids(design_retrieve)
+    net_new = sorted(design_ids - base_ids)
+    lost = sorted(base_ids - design_ids)
+    by_kind: dict[str, list[int]] = {kind: [] for kind in sorted(_SEARCH_UNIT_KINDS)}
+    collision_gain: list[int] = []
+    net_new_details: list[dict[str, Any]] = []
+
+    design_index = {
+        int(row["tmdb_id"]): row
+        for row in design_retrieve.get("candidates") or []
+        if isinstance(row, dict) and row.get("tmdb_id") is not None
+    }
+
+    for tmdb_id in net_new:
+        cand = design_index.get(tmdb_id, {})
+        kinds = sorted(_search_unit_kinds_for_candidate(cand))
+        for kind in kinds:
+            by_kind[kind].append(tmdb_id)
+        if len(kinds) >= 2:
+            collision_gain.append(tmdb_id)
+        net_new_details.append(
+            {
+                "tmdb_id": tmdb_id,
+                "title": cand.get("title"),
+                "similarity": cand.get("similarity"),
+                "quality_candidate": cand.get("quality_candidate"),
+                "search_unit_kinds": kinds,
+                "collision_gain": len(kinds) >= 2,
+                "triggered_by": cand.get("triggered_by"),
+                "match_diagnostics": cand.get("match_diagnostics"),
+            }
+        )
+
+    return PoolDiffBySearchUnitKind(
+        run_id=run_id,
+        baseline_candidate_count=len(base_ids),
+        design_candidate_count=len(design_ids),
+        net_new_tmdb_ids=net_new,
+        lost_tmdb_ids=lost,
+        overlap_count=len(base_ids & design_ids),
+        by_search_unit_kind=by_kind,
+        collision_gain_tmdb_ids=collision_gain,
+        net_new_details=net_new_details,
+    )
+
+
+def pool_diff_by_search_unit_kind_to_dict(result: PoolDiffBySearchUnitKind) -> dict[str, Any]:
+    return {
+        "run_id": result.run_id,
+        "baseline_candidate_count": result.baseline_candidate_count,
+        "design_candidate_count": result.design_candidate_count,
+        "overlap_count": result.overlap_count,
+        "net_new_tmdb_ids": result.net_new_tmdb_ids,
+        "lost_tmdb_ids": result.lost_tmdb_ids,
+        "by_search_unit_kind": result.by_search_unit_kind,
+        "collision_gain_tmdb_ids": result.collision_gain_tmdb_ids,
+        "net_new_details": result.net_new_details,
+    }
 
 
 def _provenance_channels_for_candidate(cand: dict[str, Any]) -> set[str]:
@@ -1143,7 +1247,11 @@ def _run_query_batch(
             cand = candidate_map[tmdb_id]
             _append_hit_source(cand, query, similarity)
             channel = str(query.get("channel_role") or role).strip().lower()
-            if channel in _COMPOSITION_CHANNELS and agent_id not in cand["triggered_by"]:
+            search_unit_kind = str(query.get("search_unit_kind") or "").strip().lower()
+            is_persona_signal = search_unit_kind == "persona-semantic" or (
+                not search_unit_kind and channel in _COMPOSITION_CHANNELS
+            )
+            if is_persona_signal and agent_id not in cand["triggered_by"]:
                 cand["triggered_by"].append(agent_id)
 
         per_pseudo.append({**query, "hits": hits})
@@ -1254,6 +1362,7 @@ def retrieve_from_agents(
         list(candidate_map.values()),
         human_budget=budget,
         quality_floor=quality_floor,
+        neutral_total=neutral_total,
         judge_scores=judge_scores,
         min_judge_score=min_judge_score,
     )

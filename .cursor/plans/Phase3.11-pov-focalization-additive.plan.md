@@ -25,7 +25,7 @@ todos:
     status: completed
   - id: p311-6b
     content: 3.11.6b · Fragment ladder 架构迁移 + ADR-0009：移除 toned/focalized/neutral 三通道，实现 fragment ladder + search unit（surface-fragment-bundle / event-fragment-bundle / persona-semantic）+ hybrid recall + 新 convergent sort + 守卫迁移 + 单测 + ADR-0009 文档
-    status: pending
+    status: completed
   - id: p311-7
     content: 3.11.7 · 全批 A/B（fragment ladder design-on vs 3.10 基线，同新闻同 def 同 judge）+ search_unit_kind 分解调优 + 抽审 [需人工验收]
     status: pending
@@ -281,10 +281,10 @@ flowchart TD
 
 ### 验收
 
-- [ ] ADR-0009 文档完成，与 `docs/temp/simplified-news-to-film-workflow.md` 一致
-- [ ] 旧代码中 `toned` / `focalized` / `neutral` channel 概念不再作为运行时主路径
-- [ ] `python -m unittest` 全量通过
-- [ ] pilot 脚本可在新架构下跑通单条新闻（产物结构符合新 schema）
+- [x] ADR-0009 文档完成，与 `docs/temp/simplified-news-to-film-workflow.md` 一致
+- [x] 旧代码中 `toned` / `focalized` / `neutral` channel 概念不再作为运行时主路径
+- [x] `python -m unittest discover -s tests -p "test*.py"` 全量通过
+- [x] pilot 脚本可在新架构下跑通单条新闻（产物结构符合新 schema）
 
 ---
 

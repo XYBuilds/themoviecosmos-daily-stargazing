@@ -1,6 +1,6 @@
 # salience 驱动的元素中心构图、valence 降级为元素层可选着色、多视角 POV 派生
 
-**Status**: proposed（Phase 3.11 GATE go 后升 accepted）；**supersedes ADR-0007 D6（单视角派生），修订 D7 通道结构（原则继承），D8 漏斗全量继承**
+**Status**: proposed（Phase 3.11 GATE go 后升 accepted）；**supersedes ADR-0007 D6（单视角派生），修订 D7 通道结构（原则继承），D8 漏斗全量继承；通道结构 / POV channel / 双地板已由 [ADR-0009](0009-fragment-ladder-and-search-unit-architecture.md) supersede（Phase 3.11.6b）**
 
 > **背景**：ADR-0007 D6–D8（`proposed`）原计划把 POV 作为「单一派生视角的追加通道」引入。Phase 3.11.0 v1 权威措辞（contract 内 12 persona 单 canonical vantage 表，搁置于 `feat/phase3.11.0-pov-wording-source` @ `834e788`）交人工验收时，总编对生成层架构做出更深的修订决定，本 ADR 把这次讨论的结论钉死。
 >

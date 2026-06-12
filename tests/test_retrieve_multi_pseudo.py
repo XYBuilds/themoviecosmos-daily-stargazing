@@ -137,7 +137,7 @@ class RetrieveAggregateTests(unittest.TestCase):
         self.assertIn("quality_reason", movie_a)
         self.assertEqual(movie_a["distinct_agents"], 1)
         self.assertFalse(movie_a["quality_candidate"])
-        self.assertIn("neutral_vote=0", movie_a["quality_reason"])
+        self.assertIn("objective_match=0", movie_a["quality_reason"])
 
         per_a2 = next(p for p in result["per_agent"] if p["agent_id"] == "A2")
         self.assertEqual(len(per_a2["pseudos"]), 2)

@@ -104,8 +104,7 @@ class NeutralCollisionIntegrationTests(unittest.TestCase):
         self.assertEqual(movie["neutral_total"], 12)
         self.assertAlmostEqual(movie["neutral_hit_rate"], 1.0)
         self.assertFalse(movie["quality_candidate"])
-        self.assertIn("neutral_hits=12", movie["quality_reason"])
-        self.assertIn("composition_agents=0", movie["quality_reason"])
+        self.assertIn("persona_semantic_match=0", movie["quality_reason"])
 
     @patch("scripts.retrieve._get_model")
     @patch("scripts.retrieve._load_index")
@@ -149,7 +148,7 @@ class NeutralCollisionIntegrationTests(unittest.TestCase):
         )
         movie = next(c for c in result["candidates"] if c["tmdb_id"] == 1)
         self.assertTrue(movie["quality_candidate"])
-        self.assertIn("neutral_vote=1", movie["quality_reason"])
+        self.assertIn("objective_match=1", movie["quality_reason"])
         self.assertIn("P12", movie["quality_reason"])
         self.assertIn("P12", movie["triggered_by"])
 

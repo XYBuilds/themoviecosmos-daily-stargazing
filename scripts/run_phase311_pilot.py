@@ -188,6 +188,7 @@ async def run_design_on_persona(
         pseudos=channel_pseudos,
         expansion=expansion,
         known_elements=known_element_ids(deconstruction),
+        deconstruction=deconstruction,
     )
     pipeline = {
         "persona_id": persona_id,
