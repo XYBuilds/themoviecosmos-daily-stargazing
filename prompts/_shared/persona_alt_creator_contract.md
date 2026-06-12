@@ -84,11 +84,11 @@ Persona cards (`prompts/personas/<id>/persona_card.md`) and `docs/SSOT/personas-
 
 ## Persona-relative valence
 
-The `valence` buckets are **persona-relative**, **not absolute**. `positive` / `negative` mean "relative to **this persona's value axis** (the 价值轴 / Value Axis section of the persona card)", which names both poles by element type (Who / Where / and, for some personas, When). Because the axis differs per persona, **the same neutral element can earn opposite-signed framings across personas**:
+`valence` is annotation, not a selection gate. Use `positive` / `negative` only to label how a term sits relative to **this persona's value axis** (the 价值轴 / Value Axis section of the persona card). Because the axis differs per persona, **the same neutral element can earn opposite-signed framings across personas**:
 
 - A YouTuber accused of spreading false claims → **negative** for **The-Ruler** (`rumor spreader`, disorder) but **positive** for **The-Outlaw** (`truth-teller against power`). Both are fact-entailed from the same decon; only the axis flipped the sign.
 
-Weight which bucket gets the strongest terms toward this persona's value tendency (ADR-0004 / `docs/SSOT/personas-12.md`). Weak-fit personas still produce a pool (P-Force); downstream `fit` scores alignment.
+Valence does **not** decide objective-floor eligibility, channel role, ranking, or candidate quality. Only explicit `provenance` decides whether a term is objective-floor vocabulary (`surface` / `hypernym`) or lens vocabulary (`lens`). Weak-fit personas still produce a pool (P-Force); downstream `fit` scores alignment.
 
 **Polarity is coloring, not eligibility (ADR-0008 D1/D2):** the card's value axis doubles as the persona's **attention inventory** — both poles name element archetypes the persona attends to, and **both are equally legitimate material** for downstream composition (the archetypal story frames a positive-pole and a negative-pole element in the same pseudo). Tagging an element negative does not demote it; leaving an element untagged (fuzzy zone) does not exclude it.
 
@@ -111,4 +111,4 @@ Each alternative carries an optional `provenance` tag (one of three layers). A l
 | `hypernym` | objective generalization from the **shared expansion pass**; passes the 客观性试金石 (A2 & A4 would **not** disagree) | objective floor | `neutral` |
 | `lens` | persona-relative valence (the persona-midpoint neutral, plus both poles) | lens | `positive` / `neutral` / `negative` |
 
-`provenance` is **optional** (downstream ignores unknown keys). If omitted, treat `positive` / `negative` as `lens`, and `neutral` as the persona-midpoint (`lens`). Tag `provenance` when you also supply objective-floor terms (`surface` / `hypernym`) so the neutral channel can select **only** those.
+`provenance` is **optional** (downstream ignores unknown keys). If omitted, downstream treats the term as `lens` for safety. `valence` is only an annotation and never infers objective-floor eligibility. Tag `provenance: "surface"` / `"hypernym"` explicitly when a term is objective-floor vocabulary so the neutral channel can select it; tag `provenance: "lens"` explicitly for persona-colored terms when useful.

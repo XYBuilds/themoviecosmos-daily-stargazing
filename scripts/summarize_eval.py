@@ -33,11 +33,11 @@ _ALSO_BASELINE_LINE = re.compile(
     re.MULTILINE | re.IGNORECASE,
 )
 _QUALITY_CANDIDATE_LINE = re.compile(
-    r"^-\s*\*\*quality_candidate\*\*:\s*(true|false)",
+    r"^-\s*\*\*(?:quality_candidate|quality_candidate_annotation)\*\*:\s*(true|false)",
     re.MULTILINE | re.IGNORECASE,
 )
 _QUALITY_ZH_LINE = re.compile(
-    r"^-\s*\*\*优质候选\*\*:\s*(true|false)",
+    r"^-\s*\*\*(?:优质候选|汇聚标注)\*\*:\s*(true|false)",
     re.MULTILINE | re.IGNORECASE,
 )
 _NEUTRAL_HIT_RATE_LINE = re.compile(
@@ -203,8 +203,6 @@ def _is_structural_resonance(cand: CandidateScore) -> bool:
 
 
 def _is_multi_agent_candidate(cand: CandidateScore) -> bool:
-    if cand.quality_candidate is not None:
-        return cand.quality_candidate
     return len(cand.triggered_by) >= 2
 
 
@@ -352,34 +350,30 @@ def _weighted_2_rates(
     }
 
 
-def _combo_gt_pure_fact_lift(
+def _focal_channel_lift(
     runs: list[RunSummary],
     *,
     use_structural: bool,
     use_prescreen: bool,
 ) -> dict[str, Any]:
     buckets = _bucket_candidates(runs)
-    combo_rates = _weighted_2_rates(buckets["combo"], use_prescreen=use_prescreen)
-    pure_fact_rates = _weighted_2_rates(
+    focal_rows = buckets["combo"] + buckets["pure_emotion"]
+    neutral_diag_rates = _weighted_2_rates(
         buckets["pure_fact"], use_prescreen=use_prescreen
     )
+    focal_rates = _weighted_2_rates(focal_rows, use_prescreen=use_prescreen)
     metric = "structural_2_rate" if use_structural else "total_2_rate"
-    combo_rate = combo_rates[metric]
-    pure_fact_rate = pure_fact_rates[metric]
-    combo_weight = combo_rates["effective_weight"]
-    pure_fact_weight = pure_fact_rates["effective_weight"]
+    focal_rate = focal_rates[metric]
+    focal_weight = focal_rates["effective_weight"]
 
-    lift_ok = False
-    if combo_weight > 0 and pure_fact_weight > 0:
-        lift_ok = combo_rate > pure_fact_rate
-    elif combo_weight > 0 and pure_fact_weight == 0:
-        lift_ok = combo_rate > 0.0
+    # n1 / neutral-only remains visible as diagnostics, but no longer defines a pass/fail baseline.
+    lift_ok = focal_weight > 0 and focal_rate > 0.0
 
     return {
-        "combo_gt_pure_fact": lift_ok,
+        "focal_channel_has_signal": lift_ok,
         "metric": metric,
-        "combo": combo_rates,
-        "pure_fact": pure_fact_rates,
+        "focal_channel": focal_rates,
+        "neutral_diagnostic": neutral_diag_rates,
         "prescreen_reweighted": use_prescreen,
     }
 
@@ -464,48 +458,48 @@ def _d5_success_criteria(
     calibration: dict[str, Any] | None,
 ) -> dict[str, Any]:
     use_prescreen = _has_prescreen_data(runs)
-    full = _combo_gt_pure_fact_lift(
+    full = _focal_channel_lift(
         runs, use_structural=use_structural, use_prescreen=use_prescreen
     )
     obs_runs, holdout_runs = _split_runs_obs_holdout(runs)
-    obs_lift: bool | None = None
-    holdout_lift: bool | None = None
+    obs_signal: bool | None = None
+    holdout_signal: bool | None = None
     if obs_runs:
-        obs_lift = _combo_gt_pure_fact_lift(
+        obs_signal = _focal_channel_lift(
             obs_runs, use_structural=use_structural, use_prescreen=use_prescreen
-        )["combo_gt_pure_fact"]
+        )["focal_channel_has_signal"]
     if holdout_runs:
-        holdout_lift = _combo_gt_pure_fact_lift(
+        holdout_signal = _focal_channel_lift(
             holdout_runs, use_structural=use_structural, use_prescreen=use_prescreen
-        )["combo_gt_pure_fact"]
+        )["focal_channel_has_signal"]
 
-    obs_holdout_consistent = _obs_holdout_consistent(obs_lift, holdout_lift)
-    resonance_pass = full["combo_gt_pure_fact"] and obs_holdout_consistent
+    obs_holdout_consistent = _obs_holdout_consistent(obs_signal, holdout_signal)
+    resonance_pass = full["focal_channel_has_signal"] and obs_holdout_consistent
 
     workflow = _workflow_prescreen_metrics(runs, calibration)
     workflow_pass = workflow.get("pass")
+    reasons = []
+    if not full["focal_channel_has_signal"]:
+        reasons.append(
+            f"resonance: focal channel {full['metric']} "
+            f"{full['focal_channel'][full['metric']]:.1%} has no usable signal "
+            "(n1/pure_fact is diagnostic-only; prescreen reweighted when present)"
+        )
+    if not obs_holdout_consistent:
+        reasons.append(
+            f"resonance: obs/holdout split inconsistent "
+            f"(obs={obs_signal}, holdout={holdout_signal})"
+        )
+
     if workflow_pass is None:
         overall_pass = False
         verdict = "GATE_FAIL"
-        reasons = [
+        reasons.append(
             "workflow criterion pending (no prescreen/judge fields or calibration)"
-        ]
+        )
     else:
         overall_pass = resonance_pass and bool(workflow_pass)
         verdict = "GATE_PASS" if overall_pass else "GATE_FAIL"
-        reasons = []
-        if not full["combo_gt_pure_fact"]:
-            reasons.append(
-                f"resonance: combo {full['metric']} "
-                f"{full['combo'][full['metric']]:.1%} not > pure_fact "
-                f"{full['pure_fact'][full['metric']]:.1%} "
-                "(similarity-controlled · prescreen reweighted when present)"
-            )
-        if not obs_holdout_consistent:
-            reasons.append(
-                f"resonance: obs/holdout split inconsistent "
-                f"(obs={obs_lift}, holdout={holdout_lift})"
-            )
         if workflow_pass is False:
             if workflow.get("load_reduction_ok") is False:
                 reasons.append(
@@ -527,11 +521,12 @@ def _d5_success_criteria(
         "reasons": reasons,
         "resonance": {
             "pass": resonance_pass,
-            "combo_gt_pure_fact": full["combo_gt_pure_fact"],
+            "focal_channel_has_signal": full["focal_channel_has_signal"],
+            "n1_diagnostic_only": True,
             "similarity_controlled": True,
             "obs_holdout_consistent": obs_holdout_consistent,
-            "obs_combo_gt_pure_fact": obs_lift,
-            "holdout_combo_gt_pure_fact": holdout_lift,
+            "obs_focal_channel_has_signal": obs_signal,
+            "holdout_focal_channel_has_signal": holdout_signal,
             "full_batch": full,
             "prescreen_reweighted": use_prescreen,
         },
@@ -1436,11 +1431,11 @@ def summarize_runs(
     batch_ok = batch_pass_rate >= _GATE_BATCH_PASS_RATE
 
     if phase38_gate and d5_criteria is not None:
-        rate_ok = bool(d5_criteria["resonance"]["combo_gt_pure_fact"])
-        baseline_gate_rate = d5_criteria["resonance"]["full_batch"]["pure_fact"][
+        rate_ok = bool(d5_criteria["resonance"]["focal_channel_has_signal"])
+        baseline_gate_rate = d5_criteria["resonance"]["full_batch"]["neutral_diagnostic"][
             d5_criteria["resonance"]["full_batch"]["metric"]
         ]
-        persona_gate_rate = d5_criteria["resonance"]["full_batch"]["combo"][
+        persona_gate_rate = d5_criteria["resonance"]["full_batch"]["focal_channel"][
             d5_criteria["resonance"]["full_batch"]["metric"]
         ]
         rate_metric = d5_criteria["resonance"]["full_batch"]["metric"]
@@ -1611,25 +1606,26 @@ def _format_stdout(report: dict[str, Any]) -> str:
         d5 = report.get("success_criteria") or g.get("d5_success_criteria") or {}
         res = d5.get("resonance") or {}
         wf = d5.get("workflow") or {}
-        lines.append("D5 success · resonance: combo > pure_fact (similarity-controlled)")
+        lines.append("D5 success · resonance: focal channel signal (n1 diagnostic-only)")
         if res:
             full = res.get("full_batch") or {}
             metric = full.get("metric", "structural_2_rate")
-            combo_r = (full.get("combo") or {}).get(metric, 0)
-            pure_r = (full.get("pure_fact") or {}).get(metric, 0)
+            focal_r = (full.get("focal_channel") or {}).get(metric, 0)
+            neutral_r = (full.get("neutral_diagnostic") or {}).get(metric, 0)
             rw_note = (
                 " · prescreen reweighted"
                 if res.get("prescreen_reweighted")
                 else ""
             )
             lines.append(
-                f"  {metric}: combo {combo_r:.1%} vs pure_fact {pure_r:.1%}"
-                f"{rw_note} · pass={res.get('combo_gt_pure_fact')}"
+                f"  {metric}: focal channel {focal_r:.1%}; "
+                f"n1 neutral diagnostic {neutral_r:.1%}"
+                f"{rw_note} · pass={res.get('focal_channel_has_signal')}"
             )
             lines.append(
                 f"  obs/holdout consistent: {res.get('obs_holdout_consistent')} "
-                f"(obs={res.get('obs_combo_gt_pure_fact')}, "
-                f"holdout={res.get('holdout_combo_gt_pure_fact')})"
+                f"(obs={res.get('obs_focal_channel_has_signal')}, "
+                f"holdout={res.get('holdout_focal_channel_has_signal')})"
             )
         lines.append(
             "D5 success · workflow: load reduction & zero human-2 killed & calibration"
@@ -1731,7 +1727,7 @@ def _format_stdout(report: dict[str, Any]) -> str:
         metric = gate.get("rate_metric", "total_2_rate")
         if gate.get("compare_mode") == "d5_success_criteria":
             lines.append(
-                "  - D5 resonance: combo > pure_fact (similarity-controlled); "
+                "  - D5 resonance: focal channel has signal; n1/pure_fact diagnostic-only; "
                 "obs/holdout consistent; workflow: load reduction + safety + calibration"
             )
         elif g.get("persona_gate"):

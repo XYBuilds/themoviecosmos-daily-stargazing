@@ -1458,14 +1458,728 @@
       "neutral_hit_rate": 0.8333333333333334,
       "distinct_agents": 10,
       "quality_candidate": true,
-      "quality_reason": "neutral_vote=1 + composition_agents=10: THE-RULER,THE-EVERYMAN,THE-LOVER,THE-INNOCENT,THE-SAGE,THE-CREATOR,THE-HERO,THE-CAREGIVER,THE-OUTLAW,THE-EXPLORER",
+      "quality_reason": "neutral_vote=1 + composition_agents=10: THE-SAGE,THE-LOVER,THE-CAREGIVER,THE-OUTLAW,THE-EXPLORER,THE-INNOCENT,THE-CREATOR,THE-RULER,THE-EVERYMAN,THE-HERO",
       "convergence_channels": [
-        "neutral",
         "toned"
       ],
-      "convergence_channel_count": 2,
-      "convergence_persona_count": 11,
-      "convergent_score": 310.6093615293503
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [
+        "neutral"
+      ],
+      "convergence_persona_count": 10,
+      "convergent_score": 200.60936152935028
+    },
+    {
+      "tmdb_id": 274855,
+      "title": "Geostorm",
+      "overview": "After an unprecedented series of natural disasters threatened the planet, the world's leaders came together to create an intricate network of satellites to control the global climate and keep everyone safe. But now, something has gone wrong: the system built to protect Earth is attacking it, and it becomes a race against the clock to uncover the real threat before a worldwide geostorm wipes out everything and everyone along with it.",
+      "genres": "Action, Science Fiction, Thriller",
+      "release_year": 2017,
+      "language": "en",
+      "poster_path": "/nrsx0jEaBgXq4PWo7SooSnYJTv.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/274855",
+      "similarity": 0.5162100195884705,
+      "triggered_by": [
+        "THE-LOVER",
+        "THE-RULER",
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "why-1"
+          ],
+          "similarity": 0.4942361116409302
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.4888874292373657
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-2"
+          ],
+          "similarity": 0.5162100195884705
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.4240337014198303
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 3,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=3)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 3,
+      "convergent_score": 130.51621001958847
+    },
+    {
+      "tmdb_id": 475946,
+      "title": "Blade Runner: Black Out 2022",
+      "overview": "This animated short revolves around the events causing an electrical systems failure on the west coast of the US. According to Blade Runner 2049’s official timeline, this failure leads to cities shutting down, financial and trade markets being thrown into chaos, and food supplies dwindling. There’s no proof as to what caused the blackouts, but Replicants — the bio-engineered robots featured in the original Blade Runner, are blamed.",
+      "genres": "Action, Animation, Science Fiction",
+      "release_year": 2017,
+      "language": "en",
+      "poster_path": "/zzRjnUOVXyjp2WudgT7KxJLYh9D.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/475946",
+      "similarity": 0.5161346197128296,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-RULER",
+        "THE-SAGE"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.5161346197128296
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.47086048126220703
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.44641831517219543
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 3,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=3)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 3,
+      "convergent_score": 130.51613461971283
+    },
+    {
+      "tmdb_id": 418879,
+      "title": "The Current War",
+      "overview": "Electricity titans Thomas Edison and George Westinghouse compete to create a sustainable system and market it to the American people.",
+      "genres": "Drama, History",
+      "release_year": 2018,
+      "language": "en",
+      "poster_path": "/eqTjO8yTaPRSKWj7i6Qnr7R5cls.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/418879",
+      "similarity": 0.5429369211196899,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5255892276763916
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5429369211196899
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4501984417438507
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 2,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 2,
+      "convergent_score": 120.54293692111969
+    },
+    {
+      "tmdb_id": 841793,
+      "title": "Stranded",
+      "overview": "Tensions run high while food runs low as six influencers find themselves stranded on a secluded island after plans for a weekend escape go awry.",
+      "genres": "Drama",
+      "release_year": 2021,
+      "language": "pt",
+      "poster_path": "/jZonuUeC9bH2D5A609w7nkplhyj.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/841793",
+      "similarity": 0.5376034379005432,
+      "triggered_by": [
+        "THE-LOVER",
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "how-1",
+            "why-2",
+            "how-2",
+            "result-0",
+            "who-0"
+          ],
+          "similarity": 0.4517078995704651
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.5376034379005432
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.46789655089378357
+        }
+      ],
+      "neutral_hits": 1,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.08333333333333333,
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "neutral_vote=1 + composition_agents=2: THE-MAGICIAN,THE-LOVER",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [
+        "neutral"
+      ],
+      "convergence_persona_count": 2,
+      "convergent_score": 120.53760343790054
+    },
+    {
+      "tmdb_id": 32033,
+      "title": "Pulse",
+      "overview": "An intelligent pulse of electricity moves from house to house, terrorizing occupants through their own appliances. Having already destroyed one household in a quiet neighborhood, the pulse finds itself in the home of a boy and his divorced father.",
+      "genres": "Horror, Science Fiction",
+      "release_year": 1988,
+      "language": "en",
+      "poster_path": "/3klryy0WVJFh5HAkMWrY6TY6QiP.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/32033",
+      "similarity": 0.5131213068962097,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4380938410758972
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-1"
+          ],
+          "similarity": 0.5131213068962097
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 2,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 2,
+      "convergent_score": 120.51312130689621
+    },
+    {
+      "tmdb_id": 337876,
+      "title": "Gabbar Is Back",
+      "overview": "A vigilante network taking out corrupt officials draws the notice of the authorities.",
+      "genres": "Drama, Action",
+      "release_year": 2015,
+      "language": "hi",
+      "poster_path": "/dhIVF43jCqVzxuo11hYcHQxjzS6.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/337876",
+      "similarity": 0.48159292340278625,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "why-0",
+            "why-2"
+          ],
+          "similarity": 0.48159292340278625
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-1",
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.4666457176208496
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 2,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 2,
+      "convergent_score": 120.48159292340279
+    },
+    {
+      "tmdb_id": 243278,
+      "title": "Snow",
+      "overview": "Comprising train and track footage quickly shot just before a heavy winter's snowfall was melting, the multi-award-winning classic that emerged from the cutting-room compresses British Rail's dedication to blizzard-battling into a thrilling eight-minute montage cut to music. Tough-as-boots workers struggling to keep the line clear are counterpointed with passengers' buffet-car comforts.",
+      "genres": "Documentary",
+      "release_year": 1963,
+      "language": "en",
+      "poster_path": "/4tV1seZm1PhEOdqkCB0RfeYwTNb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/243278",
+      "similarity": 0.5442109107971191,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5442109107971191
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.54421091079712
+    },
+    {
+      "tmdb_id": 43552,
+      "title": "Vanishing on 7th Street",
+      "overview": "A mysterious global blackout yields countless populations to simply vanish, leaving only their clothes and possessions behind. A small handful of survivors band together in a dimly-lit tavern on 7th Street, struggling to combat the apocalyptic horror. Realizing they may in fact be the last people on earth, a dark shadow hones in on them alone.",
+      "genres": "Mystery, Horror, Thriller",
+      "release_year": 2010,
+      "language": "en",
+      "poster_path": "/8LkZFmL2UHbmP7UnjlRP5gqvvqh.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/43552",
+      "similarity": 0.5381686687469482,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5381686687469482
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.53816866874695
+    },
+    {
+      "tmdb_id": 58770,
+      "title": "The Trigger Effect",
+      "overview": "A blackout leaves those affected to consider what is necessary, what is legal, and what is questionable, in order to survive in a predatory environment.",
+      "genres": "Drama, Thriller",
+      "release_year": 1996,
+      "language": "en",
+      "poster_path": "/9LZLXVwhhmkdye4JXoLP06fm5G2.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/58770",
+      "similarity": 0.5358806848526001,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5358806848526001
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.5358806848526
+    },
+    {
+      "tmdb_id": 455306,
+      "title": "34th Express",
+      "overview": "Fast train N34 went exactly on schedule. The passengers were quietly getting ready for bed when the empty compartment from the outstanding cigarette lit up the curtain. Soon the wagon caught fire. Disaster is imminent. Railwaymen and passengers are working together to prevent misfortune and save hundreds of people…",
+      "genres": "Action, Drama",
+      "release_year": 1981,
+      "language": "ru",
+      "poster_path": "/5piYGlGTtbsIJYLQt7Noi8nlRV8.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/455306",
+      "similarity": 0.5315141081809998,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5315141081809998
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.531514108181
+    },
+    {
+      "tmdb_id": 190738,
+      "title": "Assembling a Generator",
+      "overview": "A group of men work on various parts of a large generator, assembling the pieces",
+      "genres": "Documentary",
+      "release_year": 1904,
+      "language": "en",
+      "poster_path": "",
+      "movie_url": "https://themoviecosmos.com/movie/190738",
+      "similarity": 0.5258319973945618,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5258319973945618
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.52583199739456
+    },
+    {
+      "tmdb_id": 1159518,
+      "title": "Black Noise",
+      "overview": "Members of an elite security team deployed to rescue a VIP on an exclusive island.The rescue mission becomes a desperate attempt to survive, escape the island and elude the sinister presence that seeks to harm them.",
+      "genres": "Action, Science Fiction, Horror, Thriller",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/snKpXexv5dtWqEKEmXrJtp8QGQC.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1159518",
+      "similarity": 0.5121653079986572,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.5121653079986572
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.51216530799866
+    },
+    {
+      "tmdb_id": 370097,
+      "title": "Stormageddon",
+      "overview": "What happens when you ask the most powerful computer program, run by the most powerful computers, to follow, listen and predict human behavior? The program learns, becomes sentient and begins to behave like a human. When a master computer program, Echelon, takes over America's entire online system, our country is threatened to be brought to its knees. Hacking into DARPA, Echelon gains the ability to manipulate the weather, create earthquakes, and cause a level of destruction unlike anything the country could ever imagine. But how do you stop a computer program when it has control over any and every defense you have?",
+      "genres": "Action, Drama, Thriller, Science Fiction",
+      "release_year": 2015,
+      "language": "en",
+      "poster_path": "/loZHFn4RoTeh4t1I4hS01DRYF7q.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/370097",
+      "similarity": 0.5081261992454529,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.5081261992454529
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.50812619924545
+    },
+    {
+      "tmdb_id": 1223272,
+      "title": "Contagion of Fear",
+      "overview": "A catastrophic train derailment sends the city spiraling into chaos. But the derailment is just the beginning. A biological gas attack sees crash survivors collapsing and dying within minutes. And the sickness is rapidly spreading.",
+      "genres": "Science Fiction, Thriller",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/A5muc6PtApC9ubfmJW3ADRnIIfi.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1223272",
+      "similarity": 0.48827797174453735,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "why-1"
+          ],
+          "similarity": 0.48827797174453735
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.48827797174454
     },
     {
       "tmdb_id": 720321,
@@ -1566,748 +2280,41 @@
       "quality_candidate": true,
       "quality_reason": "neutral_vote=1 + composition_agents=1: THE-LOVER",
       "convergence_channels": [
-        "neutral",
-        "toned"
-      ],
-      "convergence_channel_count": 2,
-      "convergence_persona_count": 5,
-      "convergent_score": 250.4868820309639
-    },
-    {
-      "tmdb_id": 841793,
-      "title": "Stranded",
-      "overview": "Tensions run high while food runs low as six influencers find themselves stranded on a secluded island after plans for a weekend escape go awry.",
-      "genres": "Drama",
-      "release_year": 2021,
-      "language": "pt",
-      "poster_path": "/jZonuUeC9bH2D5A609w7nkplhyj.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/841793",
-      "similarity": 0.5376034379005432,
-      "triggered_by": [
-        "THE-LOVER",
-        "THE-MAGICIAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "how-1",
-            "why-2",
-            "how-2",
-            "result-0",
-            "who-0"
-          ],
-          "similarity": 0.4517078995704651
-        },
-        {
-          "agent_id": "THE-LOVER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "why-1",
-            "result-0"
-          ],
-          "similarity": 0.5376034379005432
-        },
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "how-0",
-            "result-0"
-          ],
-          "similarity": 0.46789655089378357
-        }
-      ],
-      "neutral_hits": 1,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.08333333333333333,
-      "distinct_agents": 2,
-      "quality_candidate": true,
-      "quality_reason": "neutral_vote=1 + composition_agents=2: THE-LOVER,THE-MAGICIAN",
-      "convergence_channels": [
-        "neutral",
-        "toned"
-      ],
-      "convergence_channel_count": 2,
-      "convergence_persona_count": 2,
-      "convergent_score": 220.53760343790054
-    },
-    {
-      "tmdb_id": 786357,
-      "title": "Animals on the Loose: A You vs. Wild Movie",
-      "overview": "When there’s a power outage at a safari reserve, Bear Grylls is called and he needs your help. The situation is dire: an escaped lion is headed for a nearby village; a baboon has broken free and is going towards the sea cliffs, and the power must be restored before more animals escape.",
-      "genres": "Adventure",
-      "release_year": 2021,
-      "language": "en",
-      "poster_path": "/6ZkhIiJRYLzghOkHrA9X6dbcK3K.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/786357",
-      "similarity": 0.4434904158115387,
-      "triggered_by": [
-        "THE-HERO"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-CAREGIVER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "result-0",
-            "who-1",
-            "who-3",
-            "why-0",
-            "how-2"
-          ],
-          "similarity": 0.43441152572631836
-        },
-        {
-          "agent_id": "THE-HERO",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.4434904158115387
-        }
-      ],
-      "neutral_hits": 1,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.08333333333333333,
-      "distinct_agents": 1,
-      "quality_candidate": true,
-      "quality_reason": "neutral_vote=1 + composition_agents=1: THE-HERO",
-      "convergence_channels": [
-        "neutral",
-        "toned"
-      ],
-      "convergence_channel_count": 2,
-      "convergence_persona_count": 2,
-      "convergent_score": 220.44349041581154
-    },
-    {
-      "tmdb_id": 274855,
-      "title": "Geostorm",
-      "overview": "After an unprecedented series of natural disasters threatened the planet, the world's leaders came together to create an intricate network of satellites to control the global climate and keep everyone safe. But now, something has gone wrong: the system built to protect Earth is attacking it, and it becomes a race against the clock to uncover the real threat before a worldwide geostorm wipes out everything and everyone along with it.",
-      "genres": "Action, Science Fiction, Thriller",
-      "release_year": 2017,
-      "language": "en",
-      "poster_path": "/nrsx0jEaBgXq4PWo7SooSnYJTv.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/274855",
-      "similarity": 0.5162100195884705,
-      "triggered_by": [
-        "THE-LOVER",
-        "THE-RULER",
-        "THE-MAGICIAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "how-1",
-            "how-2",
-            "why-1"
-          ],
-          "similarity": 0.4942361116409302
-        },
-        {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "how-1",
-            "why-0",
-            "how-2"
-          ],
-          "similarity": 0.4888874292373657
-        },
-        {
-          "agent_id": "THE-LOVER",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "how-2"
-          ],
-          "similarity": 0.5162100195884705
-        },
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "how-1",
-            "why-0",
-            "how-2"
-          ],
-          "similarity": 0.4240337014198303
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 3,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=3)",
-      "convergence_channels": [
         "toned"
       ],
       "convergence_channel_count": 1,
-      "convergence_persona_count": 3,
-      "convergent_score": 130.51621001958847
-    },
-    {
-      "tmdb_id": 475946,
-      "title": "Blade Runner: Black Out 2022",
-      "overview": "This animated short revolves around the events causing an electrical systems failure on the west coast of the US. According to Blade Runner 2049’s official timeline, this failure leads to cities shutting down, financial and trade markets being thrown into chaos, and food supplies dwindling. There’s no proof as to what caused the blackouts, but Replicants — the bio-engineered robots featured in the original Blade Runner, are blamed.",
-      "genres": "Action, Animation, Science Fiction",
-      "release_year": 2017,
-      "language": "en",
-      "poster_path": "/zzRjnUOVXyjp2WudgT7KxJLYh9D.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/475946",
-      "similarity": 0.5161346197128296,
-      "triggered_by": [
-        "THE-CAREGIVER",
-        "THE-RULER",
-        "THE-SAGE"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-CAREGIVER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-0",
-            "result-0"
-          ],
-          "similarity": 0.5161346197128296
-        },
-        {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "result-0"
-          ],
-          "similarity": 0.47086048126220703
-        },
-        {
-          "agent_id": "THE-SAGE",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-0",
-            "how-1"
-          ],
-          "similarity": 0.44641831517219543
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 3,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=3)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 3,
-      "convergent_score": 130.51613461971283
-    },
-    {
-      "tmdb_id": 111750,
-      "title": "The Real Glory",
-      "overview": "Fort Mysang, southern Philippine Islands, under US rule, 1906. A small group of army officers and native troops resist the fierce and treacherous attacks of the ruthless Alisang and his fanatical followers.",
-      "genres": "Drama, War",
-      "release_year": 1939,
-      "language": "en",
-      "poster_path": "/fWUlNt585JRfFNBFdYGrfBGO7GS.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/111750",
-      "similarity": 0.43398547172546387,
-      "triggered_by": [],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-OUTLAW",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "who-0",
-            "how-2",
-            "why-0",
-            "why-1",
-            "result-0"
-          ],
-          "similarity": 0.43398547172546387
-        },
-        {
-          "agent_id": "THE-CREATOR",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "how-1",
-            "how-2",
-            "why-0",
-            "who-0",
-            "result-0"
-          ],
-          "similarity": 0.41380107402801514
-        },
-        {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "result-0",
-            "who-0",
-            "how-0",
-            "why-0",
-            "how-1"
-          ],
-          "similarity": 0.4208536148071289
-        }
-      ],
-      "neutral_hits": 3,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.25,
-      "distinct_agents": 0,
-      "quality_candidate": false,
-      "quality_reason": "composition_agents=0 (≥1 toned/focalized required; neutral_hits=3, composition=none)",
-      "convergence_channels": [
+      "diagnostic_channels": [
         "neutral"
       ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 3,
-      "convergent_score": 130.43398547172546
+      "convergence_persona_count": 1,
+      "convergent_score": 110.4868820309639
     },
     {
-      "tmdb_id": 418879,
-      "title": "The Current War",
-      "overview": "Electricity titans Thomas Edison and George Westinghouse compete to create a sustainable system and market it to the American people.",
-      "genres": "Drama, History",
-      "release_year": 2018,
+      "tmdb_id": 46221,
+      "title": "The Tunnel",
+      "overview": "An investigation into a government cover-up leads to a network of abandoned train tunnels deep beneath the heart of Sydney. As a journalist and her crew hunt for the story it quickly becomes clear the story is hunting them.",
+      "genres": "Horror, Thriller, Mystery",
+      "release_year": 2011,
       "language": "en",
-      "poster_path": "/eqTjO8yTaPRSKWj7i6Qnr7R5cls.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/418879",
-      "similarity": 0.5429369211196899,
+      "poster_path": "/d9cWMXgqRYZhBqnf7UI4eaFTJsF.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/46221",
+      "similarity": 0.48133301734924316,
       "triggered_by": [
-        "THE-CAREGIVER",
-        "THE-CREATOR"
+        "THE-EXPLORER"
       ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-CAREGIVER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5255892276763916
-        },
-        {
-          "agent_id": "THE-CREATOR",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5429369211196899
-        },
-        {
-          "agent_id": "THE-CREATOR",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.4501984417438507
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 2,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 2,
-      "convergent_score": 120.54293692111969
-    },
-    {
-      "tmdb_id": 32033,
-      "title": "Pulse",
-      "overview": "An intelligent pulse of electricity moves from house to house, terrorizing occupants through their own appliances. Having already destroyed one household in a quiet neighborhood, the pulse finds itself in the home of a boy and his divorced father.",
-      "genres": "Horror, Science Fiction",
-      "release_year": 1988,
-      "language": "en",
-      "poster_path": "/3klryy0WVJFh5HAkMWrY6TY6QiP.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/32033",
-      "similarity": 0.5131213068962097,
-      "triggered_by": [
-        "THE-EVERYMAN",
-        "THE-LOVER"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-EVERYMAN",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.4380938410758972
-        },
-        {
-          "agent_id": "THE-LOVER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "how-1"
-          ],
-          "similarity": 0.5131213068962097
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 2,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 2,
-      "convergent_score": 120.51312130689621
-    },
-    {
-      "tmdb_id": 337876,
-      "title": "Gabbar Is Back",
-      "overview": "A vigilante network taking out corrupt officials draws the notice of the authorities.",
-      "genres": "Drama, Action",
-      "release_year": 2015,
-      "language": "hi",
-      "poster_path": "/dhIVF43jCqVzxuo11hYcHQxjzS6.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/337876",
-      "similarity": 0.48159292340278625,
-      "triggered_by": [
-        "THE-HERO",
-        "THE-OUTLAW"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-OUTLAW",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "how-2",
-            "why-0",
-            "why-2"
-          ],
-          "similarity": 0.48159292340278625
-        },
-        {
-          "agent_id": "THE-HERO",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "why-1",
-            "how-0",
-            "how-1"
-          ],
-          "similarity": 0.4666457176208496
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 2,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 2,
-      "convergent_score": 120.48159292340279
-    },
-    {
-      "tmdb_id": 1484253,
-      "title": "Trainwreck: Poop Cruise",
-      "overview": "An engine fire leaves 4,000 passengers stranded at sea without power and plumbing in this wild documentary about the infamous \"poop cruise\" of 2013.",
-      "genres": "Documentary, Drama",
-      "release_year": 2025,
-      "language": "en",
-      "poster_path": "/nJZlsBpDxx3LrGwXvwXkQyVnp9A.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/1484253",
-      "similarity": 0.42916741967201233,
-      "triggered_by": [],
       "also_baseline": false,
       "hit_sources": [
         {
           "agent_id": "THE-EXPLORER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "how-2",
-            "result-0",
-            "who-0",
-            "who-2",
-            "why-2"
-          ],
-          "similarity": 0.41472288966178894
-        },
-        {
-          "agent_id": "THE-JESTER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "how-2",
-            "result-0",
-            "why-2",
-            "who-0",
-            "how-1"
-          ],
-          "similarity": 0.42916741967201233
-        }
-      ],
-      "neutral_hits": 2,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.16666666666666666,
-      "distinct_agents": 0,
-      "quality_candidate": false,
-      "quality_reason": "composition_agents=0 (≥1 toned/focalized required; neutral_hits=2, composition=none)",
-      "convergence_channels": [
-        "neutral"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 2,
-      "convergent_score": 120.42916741967201
-    },
-    {
-      "tmdb_id": 243278,
-      "title": "Snow",
-      "overview": "Comprising train and track footage quickly shot just before a heavy winter's snowfall was melting, the multi-award-winning classic that emerged from the cutting-room compresses British Rail's dedication to blizzard-battling into a thrilling eight-minute montage cut to music. Tough-as-boots workers struggling to keep the line clear are counterpointed with passengers' buffet-car comforts.",
-      "genres": "Documentary",
-      "release_year": 1963,
-      "language": "en",
-      "poster_path": "/4tV1seZm1PhEOdqkCB0RfeYwTNb.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/243278",
-      "similarity": 0.5442109107971191,
-      "triggered_by": [
-        "THE-JESTER"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-JESTER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5442109107971191
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 1,
-      "convergent_score": 110.54421091079712
-    },
-    {
-      "tmdb_id": 43552,
-      "title": "Vanishing on 7th Street",
-      "overview": "A mysterious global blackout yields countless populations to simply vanish, leaving only their clothes and possessions behind. A small handful of survivors band together in a dimly-lit tavern on 7th Street, struggling to combat the apocalyptic horror. Realizing they may in fact be the last people on earth, a dark shadow hones in on them alone.",
-      "genres": "Mystery, Horror, Thriller",
-      "release_year": 2010,
-      "language": "en",
-      "poster_path": "/8LkZFmL2UHbmP7UnjlRP5gqvvqh.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/43552",
-      "similarity": 0.5381686687469482,
-      "triggered_by": [
-        "THE-EVERYMAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-EVERYMAN",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5381686687469482
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 1,
-      "convergent_score": 110.53816866874695
-    },
-    {
-      "tmdb_id": 58770,
-      "title": "The Trigger Effect",
-      "overview": "A blackout leaves those affected to consider what is necessary, what is legal, and what is questionable, in order to survive in a predatory environment.",
-      "genres": "Drama, Thriller",
-      "release_year": 1996,
-      "language": "en",
-      "poster_path": "/9LZLXVwhhmkdye4JXoLP06fm5G2.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/58770",
-      "similarity": 0.5358806848526001,
-      "triggered_by": [
-        "THE-EVERYMAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-EVERYMAN",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5358806848526001
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 1,
-      "convergent_score": 110.5358806848526
-    },
-    {
-      "tmdb_id": 455306,
-      "title": "34th Express",
-      "overview": "Fast train N34 went exactly on schedule. The passengers were quietly getting ready for bed when the empty compartment from the outstanding cigarette lit up the curtain. Soon the wagon caught fire. Disaster is imminent. Railwaymen and passengers are working together to prevent misfortune and save hundreds of people…",
-      "genres": "Action, Drama",
-      "release_year": 1981,
-      "language": "ru",
-      "poster_path": "/5piYGlGTtbsIJYLQt7Noi8nlRV8.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/455306",
-      "similarity": 0.5315141081809998,
-      "triggered_by": [
-        "THE-JESTER"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-JESTER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5315141081809998
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 1,
-      "convergent_score": 110.531514108181
-    },
-    {
-      "tmdb_id": 190738,
-      "title": "Assembling a Generator",
-      "overview": "A group of men work on various parts of a large generator, assembling the pieces",
-      "genres": "Documentary",
-      "release_year": 1904,
-      "language": "en",
-      "poster_path": "",
-      "movie_url": "https://themoviecosmos.com/movie/190738",
-      "similarity": 0.5258319973945618,
-      "triggered_by": [
-        "THE-CREATOR"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-CREATOR",
           "pseudo_id": "p2",
           "channel_role": "toned",
           "fragments": [
             "why-0",
             "why-1",
-            "how-2",
+            "how-1",
             "result-0"
           ],
-          "similarity": 0.5258319973945618
+          "similarity": 0.48133301734924316
         }
       ],
       "neutral_hits": 0,
@@ -2320,34 +2327,35 @@
         "toned"
       ],
       "convergence_channel_count": 1,
+      "diagnostic_channels": [],
       "convergence_persona_count": 1,
-      "convergent_score": 110.52583199739456
+      "convergent_score": 110.48133301734924
     },
     {
-      "tmdb_id": 1159518,
-      "title": "Black Noise",
-      "overview": "Members of an elite security team deployed to rescue a VIP on an exclusive island.The rescue mission becomes a desperate attempt to survive, escape the island and elude the sinister presence that seeks to harm them.",
-      "genres": "Action, Science Fiction, Horror, Thriller",
-      "release_year": 2023,
-      "language": "en",
-      "poster_path": "/snKpXexv5dtWqEKEmXrJtp8QGQC.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/1159518",
-      "similarity": 0.5121653079986572,
+      "tmdb_id": 513302,
+      "title": "Minuscule 2: Mandibles from Far Away",
+      "overview": "When the first snow falls in the valley, it is urgent to prepare its reserves for the winter. Alas, during the operation, a small ladybug is trapped in a box - to the Caribbean. One solution: reform the shock team.",
+      "genres": "Animation, Adventure, Family, Comedy",
+      "release_year": 2019,
+      "language": "fr",
+      "poster_path": "/QVglFM8WHuA5F07IMzFcKu6RXa.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/513302",
+      "similarity": 0.4784160256385803,
       "triggered_by": [
-        "THE-RULER"
+        "THE-CAREGIVER"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "p2",
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p3",
           "channel_role": "toned",
           "fragments": [
-            "how-1",
             "why-0",
+            "how-1",
             "how-2"
           ],
-          "similarity": 0.5121653079986572
+          "similarity": 0.4784160256385803
         }
       ],
       "neutral_hits": 0,
@@ -2360,19 +2368,20 @@
         "toned"
       ],
       "convergence_channel_count": 1,
+      "diagnostic_channels": [],
       "convergence_persona_count": 1,
-      "convergent_score": 110.51216530799866
+      "convergent_score": 110.47841602563858
     },
     {
-      "tmdb_id": 370097,
-      "title": "Stormageddon",
-      "overview": "What happens when you ask the most powerful computer program, run by the most powerful computers, to follow, listen and predict human behavior? The program learns, becomes sentient and begins to behave like a human. When a master computer program, Echelon, takes over America's entire online system, our country is threatened to be brought to its knees. Hacking into DARPA, Echelon gains the ability to manipulate the weather, create earthquakes, and cause a level of destruction unlike anything the country could ever imagine. But how do you stop a computer program when it has control over any and every defense you have?",
-      "genres": "Action, Drama, Thriller, Science Fiction",
-      "release_year": 2015,
-      "language": "en",
-      "poster_path": "/loZHFn4RoTeh4t1I4hS01DRYF7q.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/370097",
-      "similarity": 0.5081261992454529,
+      "tmdb_id": 139329,
+      "title": "Back to 1942",
+      "overview": "In 1942, Henan Province was devastated by one of the most tragic famines in modern Chinese history, resulting in the deaths of at least three million men, women and children. Although the primary cause of the famine was a severe drought, it was exacerbated by locusts, windstorms, earthquakes, epidemic disease and the corruption of the ruling Kuomintang government.",
+      "genres": "War, Drama",
+      "release_year": 2012,
+      "language": "zh",
+      "poster_path": "/3VY5D7RrqnfEfmTTYKRsPgEMO5g.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/139329",
+      "similarity": 0.47504904866218567,
       "triggered_by": [
         "THE-HERO"
       ],
@@ -2387,7 +2396,7 @@
             "how-1",
             "how-2"
           ],
-          "similarity": 0.5081261992454529
+          "similarity": 0.47504904866218567
         }
       ],
       "neutral_hits": 0,
@@ -2400,48 +2409,9 @@
         "toned"
       ],
       "convergence_channel_count": 1,
+      "diagnostic_channels": [],
       "convergence_persona_count": 1,
-      "convergent_score": 110.50812619924545
-    },
-    {
-      "tmdb_id": 1223272,
-      "title": "Contagion of Fear",
-      "overview": "A catastrophic train derailment sends the city spiraling into chaos. But the derailment is just the beginning. A biological gas attack sees crash survivors collapsing and dying within minutes. And the sickness is rapidly spreading.",
-      "genres": "Science Fiction, Thriller",
-      "release_year": 2023,
-      "language": "en",
-      "poster_path": "/A5muc6PtApC9ubfmJW3ADRnIIfi.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/1223272",
-      "similarity": 0.48827797174453735,
-      "triggered_by": [
-        "THE-MAGICIAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "how-1",
-            "how-2",
-            "why-1"
-          ],
-          "similarity": 0.48827797174453735
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 1,
-      "convergent_score": 110.48827797174454
+      "convergent_score": 110.47504904866219
     }
   ],
   "human_candidates": [
@@ -2799,14 +2769,728 @@
       "neutral_hit_rate": 0.8333333333333334,
       "distinct_agents": 10,
       "quality_candidate": true,
-      "quality_reason": "neutral_vote=1 + composition_agents=10: THE-RULER,THE-EVERYMAN,THE-LOVER,THE-INNOCENT,THE-SAGE,THE-CREATOR,THE-HERO,THE-CAREGIVER,THE-OUTLAW,THE-EXPLORER",
+      "quality_reason": "neutral_vote=1 + composition_agents=10: THE-SAGE,THE-LOVER,THE-CAREGIVER,THE-OUTLAW,THE-EXPLORER,THE-INNOCENT,THE-CREATOR,THE-RULER,THE-EVERYMAN,THE-HERO",
       "convergence_channels": [
-        "neutral",
         "toned"
       ],
-      "convergence_channel_count": 2,
-      "convergence_persona_count": 11,
-      "convergent_score": 310.6093615293503
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [
+        "neutral"
+      ],
+      "convergence_persona_count": 10,
+      "convergent_score": 200.60936152935028
+    },
+    {
+      "tmdb_id": 274855,
+      "title": "Geostorm",
+      "overview": "After an unprecedented series of natural disasters threatened the planet, the world's leaders came together to create an intricate network of satellites to control the global climate and keep everyone safe. But now, something has gone wrong: the system built to protect Earth is attacking it, and it becomes a race against the clock to uncover the real threat before a worldwide geostorm wipes out everything and everyone along with it.",
+      "genres": "Action, Science Fiction, Thriller",
+      "release_year": 2017,
+      "language": "en",
+      "poster_path": "/nrsx0jEaBgXq4PWo7SooSnYJTv.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/274855",
+      "similarity": 0.5162100195884705,
+      "triggered_by": [
+        "THE-LOVER",
+        "THE-RULER",
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "why-1"
+          ],
+          "similarity": 0.4942361116409302
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.4888874292373657
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-2"
+          ],
+          "similarity": 0.5162100195884705
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.4240337014198303
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 3,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=3)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 3,
+      "convergent_score": 130.51621001958847
+    },
+    {
+      "tmdb_id": 475946,
+      "title": "Blade Runner: Black Out 2022",
+      "overview": "This animated short revolves around the events causing an electrical systems failure on the west coast of the US. According to Blade Runner 2049’s official timeline, this failure leads to cities shutting down, financial and trade markets being thrown into chaos, and food supplies dwindling. There’s no proof as to what caused the blackouts, but Replicants — the bio-engineered robots featured in the original Blade Runner, are blamed.",
+      "genres": "Action, Animation, Science Fiction",
+      "release_year": 2017,
+      "language": "en",
+      "poster_path": "/zzRjnUOVXyjp2WudgT7KxJLYh9D.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/475946",
+      "similarity": 0.5161346197128296,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-RULER",
+        "THE-SAGE"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.5161346197128296
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.47086048126220703
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.44641831517219543
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 3,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=3)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 3,
+      "convergent_score": 130.51613461971283
+    },
+    {
+      "tmdb_id": 418879,
+      "title": "The Current War",
+      "overview": "Electricity titans Thomas Edison and George Westinghouse compete to create a sustainable system and market it to the American people.",
+      "genres": "Drama, History",
+      "release_year": 2018,
+      "language": "en",
+      "poster_path": "/eqTjO8yTaPRSKWj7i6Qnr7R5cls.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/418879",
+      "similarity": 0.5429369211196899,
+      "triggered_by": [
+        "THE-CAREGIVER",
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5255892276763916
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5429369211196899
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4501984417438507
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 2,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 2,
+      "convergent_score": 120.54293692111969
+    },
+    {
+      "tmdb_id": 841793,
+      "title": "Stranded",
+      "overview": "Tensions run high while food runs low as six influencers find themselves stranded on a secluded island after plans for a weekend escape go awry.",
+      "genres": "Drama",
+      "release_year": 2021,
+      "language": "pt",
+      "poster_path": "/jZonuUeC9bH2D5A609w7nkplhyj.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/841793",
+      "similarity": 0.5376034379005432,
+      "triggered_by": [
+        "THE-LOVER",
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "n1",
+          "channel_role": "neutral",
+          "fragments": [
+            "how-1",
+            "why-2",
+            "how-2",
+            "result-0",
+            "who-0"
+          ],
+          "similarity": 0.4517078995704651
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.5376034379005432
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.46789655089378357
+        }
+      ],
+      "neutral_hits": 1,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.08333333333333333,
+      "distinct_agents": 2,
+      "quality_candidate": true,
+      "quality_reason": "neutral_vote=1 + composition_agents=2: THE-MAGICIAN,THE-LOVER",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [
+        "neutral"
+      ],
+      "convergence_persona_count": 2,
+      "convergent_score": 120.53760343790054
+    },
+    {
+      "tmdb_id": 32033,
+      "title": "Pulse",
+      "overview": "An intelligent pulse of electricity moves from house to house, terrorizing occupants through their own appliances. Having already destroyed one household in a quiet neighborhood, the pulse finds itself in the home of a boy and his divorced father.",
+      "genres": "Horror, Science Fiction",
+      "release_year": 1988,
+      "language": "en",
+      "poster_path": "/3klryy0WVJFh5HAkMWrY6TY6QiP.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/32033",
+      "similarity": 0.5131213068962097,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-LOVER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.4380938410758972
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-1"
+          ],
+          "similarity": 0.5131213068962097
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 2,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 2,
+      "convergent_score": 120.51312130689621
+    },
+    {
+      "tmdb_id": 337876,
+      "title": "Gabbar Is Back",
+      "overview": "A vigilante network taking out corrupt officials draws the notice of the authorities.",
+      "genres": "Drama, Action",
+      "release_year": 2015,
+      "language": "hi",
+      "poster_path": "/dhIVF43jCqVzxuo11hYcHQxjzS6.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/337876",
+      "similarity": 0.48159292340278625,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-OUTLAW"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "why-0",
+            "why-2"
+          ],
+          "similarity": 0.48159292340278625
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-1",
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.4666457176208496
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 2,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 2,
+      "convergent_score": 120.48159292340279
+    },
+    {
+      "tmdb_id": 243278,
+      "title": "Snow",
+      "overview": "Comprising train and track footage quickly shot just before a heavy winter's snowfall was melting, the multi-award-winning classic that emerged from the cutting-room compresses British Rail's dedication to blizzard-battling into a thrilling eight-minute montage cut to music. Tough-as-boots workers struggling to keep the line clear are counterpointed with passengers' buffet-car comforts.",
+      "genres": "Documentary",
+      "release_year": 1963,
+      "language": "en",
+      "poster_path": "/4tV1seZm1PhEOdqkCB0RfeYwTNb.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/243278",
+      "similarity": 0.5442109107971191,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5442109107971191
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.54421091079712
+    },
+    {
+      "tmdb_id": 43552,
+      "title": "Vanishing on 7th Street",
+      "overview": "A mysterious global blackout yields countless populations to simply vanish, leaving only their clothes and possessions behind. A small handful of survivors band together in a dimly-lit tavern on 7th Street, struggling to combat the apocalyptic horror. Realizing they may in fact be the last people on earth, a dark shadow hones in on them alone.",
+      "genres": "Mystery, Horror, Thriller",
+      "release_year": 2010,
+      "language": "en",
+      "poster_path": "/8LkZFmL2UHbmP7UnjlRP5gqvvqh.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/43552",
+      "similarity": 0.5381686687469482,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5381686687469482
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.53816866874695
+    },
+    {
+      "tmdb_id": 58770,
+      "title": "The Trigger Effect",
+      "overview": "A blackout leaves those affected to consider what is necessary, what is legal, and what is questionable, in order to survive in a predatory environment.",
+      "genres": "Drama, Thriller",
+      "release_year": 1996,
+      "language": "en",
+      "poster_path": "/9LZLXVwhhmkdye4JXoLP06fm5G2.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/58770",
+      "similarity": 0.5358806848526001,
+      "triggered_by": [
+        "THE-EVERYMAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5358806848526001
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.5358806848526
+    },
+    {
+      "tmdb_id": 455306,
+      "title": "34th Express",
+      "overview": "Fast train N34 went exactly on schedule. The passengers were quietly getting ready for bed when the empty compartment from the outstanding cigarette lit up the curtain. Soon the wagon caught fire. Disaster is imminent. Railwaymen and passengers are working together to prevent misfortune and save hundreds of people…",
+      "genres": "Action, Drama",
+      "release_year": 1981,
+      "language": "ru",
+      "poster_path": "/5piYGlGTtbsIJYLQt7Noi8nlRV8.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/455306",
+      "similarity": 0.5315141081809998,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5315141081809998
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.531514108181
+    },
+    {
+      "tmdb_id": 190738,
+      "title": "Assembling a Generator",
+      "overview": "A group of men work on various parts of a large generator, assembling the pieces",
+      "genres": "Documentary",
+      "release_year": 1904,
+      "language": "en",
+      "poster_path": "",
+      "movie_url": "https://themoviecosmos.com/movie/190738",
+      "similarity": 0.5258319973945618,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.5258319973945618
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.52583199739456
+    },
+    {
+      "tmdb_id": 1159518,
+      "title": "Black Noise",
+      "overview": "Members of an elite security team deployed to rescue a VIP on an exclusive island.The rescue mission becomes a desperate attempt to survive, escape the island and elude the sinister presence that seeks to harm them.",
+      "genres": "Action, Science Fiction, Horror, Thriller",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/snKpXexv5dtWqEKEmXrJtp8QGQC.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1159518",
+      "similarity": 0.5121653079986572,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "why-0",
+            "how-2"
+          ],
+          "similarity": 0.5121653079986572
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.51216530799866
+    },
+    {
+      "tmdb_id": 370097,
+      "title": "Stormageddon",
+      "overview": "What happens when you ask the most powerful computer program, run by the most powerful computers, to follow, listen and predict human behavior? The program learns, becomes sentient and begins to behave like a human. When a master computer program, Echelon, takes over America's entire online system, our country is threatened to be brought to its knees. Hacking into DARPA, Echelon gains the ability to manipulate the weather, create earthquakes, and cause a level of destruction unlike anything the country could ever imagine. But how do you stop a computer program when it has control over any and every defense you have?",
+      "genres": "Action, Drama, Thriller, Science Fiction",
+      "release_year": 2015,
+      "language": "en",
+      "poster_path": "/loZHFn4RoTeh4t1I4hS01DRYF7q.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/370097",
+      "similarity": 0.5081261992454529,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.5081261992454529
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.50812619924545
+    },
+    {
+      "tmdb_id": 1223272,
+      "title": "Contagion of Fear",
+      "overview": "A catastrophic train derailment sends the city spiraling into chaos. But the derailment is just the beginning. A biological gas attack sees crash survivors collapsing and dying within minutes. And the sickness is rapidly spreading.",
+      "genres": "Science Fiction, Thriller",
+      "release_year": 2023,
+      "language": "en",
+      "poster_path": "/A5muc6PtApC9ubfmJW3ADRnIIfi.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/1223272",
+      "similarity": 0.48827797174453735,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "also_baseline": false,
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-2",
+            "why-1"
+          ],
+          "similarity": 0.48827797174453735
+        }
+      ],
+      "neutral_hits": 0,
+      "neutral_total": 12,
+      "neutral_hit_rate": 0.0,
+      "distinct_agents": 1,
+      "quality_candidate": false,
+      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
+      "convergence_channels": [
+        "toned"
+      ],
+      "convergence_channel_count": 1,
+      "diagnostic_channels": [],
+      "convergence_persona_count": 1,
+      "convergent_score": 110.48827797174454
     },
     {
       "tmdb_id": 720321,
@@ -2907,748 +3591,41 @@
       "quality_candidate": true,
       "quality_reason": "neutral_vote=1 + composition_agents=1: THE-LOVER",
       "convergence_channels": [
-        "neutral",
-        "toned"
-      ],
-      "convergence_channel_count": 2,
-      "convergence_persona_count": 5,
-      "convergent_score": 250.4868820309639
-    },
-    {
-      "tmdb_id": 841793,
-      "title": "Stranded",
-      "overview": "Tensions run high while food runs low as six influencers find themselves stranded on a secluded island after plans for a weekend escape go awry.",
-      "genres": "Drama",
-      "release_year": 2021,
-      "language": "pt",
-      "poster_path": "/jZonuUeC9bH2D5A609w7nkplhyj.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/841793",
-      "similarity": 0.5376034379005432,
-      "triggered_by": [
-        "THE-LOVER",
-        "THE-MAGICIAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "how-1",
-            "why-2",
-            "how-2",
-            "result-0",
-            "who-0"
-          ],
-          "similarity": 0.4517078995704651
-        },
-        {
-          "agent_id": "THE-LOVER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "why-1",
-            "result-0"
-          ],
-          "similarity": 0.5376034379005432
-        },
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "how-0",
-            "result-0"
-          ],
-          "similarity": 0.46789655089378357
-        }
-      ],
-      "neutral_hits": 1,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.08333333333333333,
-      "distinct_agents": 2,
-      "quality_candidate": true,
-      "quality_reason": "neutral_vote=1 + composition_agents=2: THE-LOVER,THE-MAGICIAN",
-      "convergence_channels": [
-        "neutral",
-        "toned"
-      ],
-      "convergence_channel_count": 2,
-      "convergence_persona_count": 2,
-      "convergent_score": 220.53760343790054
-    },
-    {
-      "tmdb_id": 786357,
-      "title": "Animals on the Loose: A You vs. Wild Movie",
-      "overview": "When there’s a power outage at a safari reserve, Bear Grylls is called and he needs your help. The situation is dire: an escaped lion is headed for a nearby village; a baboon has broken free and is going towards the sea cliffs, and the power must be restored before more animals escape.",
-      "genres": "Adventure",
-      "release_year": 2021,
-      "language": "en",
-      "poster_path": "/6ZkhIiJRYLzghOkHrA9X6dbcK3K.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/786357",
-      "similarity": 0.4434904158115387,
-      "triggered_by": [
-        "THE-HERO"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-CAREGIVER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "result-0",
-            "who-1",
-            "who-3",
-            "why-0",
-            "how-2"
-          ],
-          "similarity": 0.43441152572631836
-        },
-        {
-          "agent_id": "THE-HERO",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.4434904158115387
-        }
-      ],
-      "neutral_hits": 1,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.08333333333333333,
-      "distinct_agents": 1,
-      "quality_candidate": true,
-      "quality_reason": "neutral_vote=1 + composition_agents=1: THE-HERO",
-      "convergence_channels": [
-        "neutral",
-        "toned"
-      ],
-      "convergence_channel_count": 2,
-      "convergence_persona_count": 2,
-      "convergent_score": 220.44349041581154
-    },
-    {
-      "tmdb_id": 274855,
-      "title": "Geostorm",
-      "overview": "After an unprecedented series of natural disasters threatened the planet, the world's leaders came together to create an intricate network of satellites to control the global climate and keep everyone safe. But now, something has gone wrong: the system built to protect Earth is attacking it, and it becomes a race against the clock to uncover the real threat before a worldwide geostorm wipes out everything and everyone along with it.",
-      "genres": "Action, Science Fiction, Thriller",
-      "release_year": 2017,
-      "language": "en",
-      "poster_path": "/nrsx0jEaBgXq4PWo7SooSnYJTv.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/274855",
-      "similarity": 0.5162100195884705,
-      "triggered_by": [
-        "THE-LOVER",
-        "THE-RULER",
-        "THE-MAGICIAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "how-1",
-            "how-2",
-            "why-1"
-          ],
-          "similarity": 0.4942361116409302
-        },
-        {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "how-1",
-            "why-0",
-            "how-2"
-          ],
-          "similarity": 0.4888874292373657
-        },
-        {
-          "agent_id": "THE-LOVER",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "how-2"
-          ],
-          "similarity": 0.5162100195884705
-        },
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "how-1",
-            "why-0",
-            "how-2"
-          ],
-          "similarity": 0.4240337014198303
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 3,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=3)",
-      "convergence_channels": [
         "toned"
       ],
       "convergence_channel_count": 1,
-      "convergence_persona_count": 3,
-      "convergent_score": 130.51621001958847
-    },
-    {
-      "tmdb_id": 475946,
-      "title": "Blade Runner: Black Out 2022",
-      "overview": "This animated short revolves around the events causing an electrical systems failure on the west coast of the US. According to Blade Runner 2049’s official timeline, this failure leads to cities shutting down, financial and trade markets being thrown into chaos, and food supplies dwindling. There’s no proof as to what caused the blackouts, but Replicants — the bio-engineered robots featured in the original Blade Runner, are blamed.",
-      "genres": "Action, Animation, Science Fiction",
-      "release_year": 2017,
-      "language": "en",
-      "poster_path": "/zzRjnUOVXyjp2WudgT7KxJLYh9D.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/475946",
-      "similarity": 0.5161346197128296,
-      "triggered_by": [
-        "THE-CAREGIVER",
-        "THE-RULER",
-        "THE-SAGE"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-CAREGIVER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-0",
-            "result-0"
-          ],
-          "similarity": 0.5161346197128296
-        },
-        {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "result-0"
-          ],
-          "similarity": 0.47086048126220703
-        },
-        {
-          "agent_id": "THE-SAGE",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-0",
-            "how-1"
-          ],
-          "similarity": 0.44641831517219543
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 3,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=3)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 3,
-      "convergent_score": 130.51613461971283
-    },
-    {
-      "tmdb_id": 111750,
-      "title": "The Real Glory",
-      "overview": "Fort Mysang, southern Philippine Islands, under US rule, 1906. A small group of army officers and native troops resist the fierce and treacherous attacks of the ruthless Alisang and his fanatical followers.",
-      "genres": "Drama, War",
-      "release_year": 1939,
-      "language": "en",
-      "poster_path": "/fWUlNt585JRfFNBFdYGrfBGO7GS.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/111750",
-      "similarity": 0.43398547172546387,
-      "triggered_by": [],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-OUTLAW",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "who-0",
-            "how-2",
-            "why-0",
-            "why-1",
-            "result-0"
-          ],
-          "similarity": 0.43398547172546387
-        },
-        {
-          "agent_id": "THE-CREATOR",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "how-1",
-            "how-2",
-            "why-0",
-            "who-0",
-            "result-0"
-          ],
-          "similarity": 0.41380107402801514
-        },
-        {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "result-0",
-            "who-0",
-            "how-0",
-            "why-0",
-            "how-1"
-          ],
-          "similarity": 0.4208536148071289
-        }
-      ],
-      "neutral_hits": 3,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.25,
-      "distinct_agents": 0,
-      "quality_candidate": false,
-      "quality_reason": "composition_agents=0 (≥1 toned/focalized required; neutral_hits=3, composition=none)",
-      "convergence_channels": [
+      "diagnostic_channels": [
         "neutral"
       ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 3,
-      "convergent_score": 130.43398547172546
+      "convergence_persona_count": 1,
+      "convergent_score": 110.4868820309639
     },
     {
-      "tmdb_id": 418879,
-      "title": "The Current War",
-      "overview": "Electricity titans Thomas Edison and George Westinghouse compete to create a sustainable system and market it to the American people.",
-      "genres": "Drama, History",
-      "release_year": 2018,
+      "tmdb_id": 46221,
+      "title": "The Tunnel",
+      "overview": "An investigation into a government cover-up leads to a network of abandoned train tunnels deep beneath the heart of Sydney. As a journalist and her crew hunt for the story it quickly becomes clear the story is hunting them.",
+      "genres": "Horror, Thriller, Mystery",
+      "release_year": 2011,
       "language": "en",
-      "poster_path": "/eqTjO8yTaPRSKWj7i6Qnr7R5cls.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/418879",
-      "similarity": 0.5429369211196899,
+      "poster_path": "/d9cWMXgqRYZhBqnf7UI4eaFTJsF.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/46221",
+      "similarity": 0.48133301734924316,
       "triggered_by": [
-        "THE-CAREGIVER",
-        "THE-CREATOR"
+        "THE-EXPLORER"
       ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-CAREGIVER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5255892276763916
-        },
-        {
-          "agent_id": "THE-CREATOR",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5429369211196899
-        },
-        {
-          "agent_id": "THE-CREATOR",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.4501984417438507
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 2,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 2,
-      "convergent_score": 120.54293692111969
-    },
-    {
-      "tmdb_id": 32033,
-      "title": "Pulse",
-      "overview": "An intelligent pulse of electricity moves from house to house, terrorizing occupants through their own appliances. Having already destroyed one household in a quiet neighborhood, the pulse finds itself in the home of a boy and his divorced father.",
-      "genres": "Horror, Science Fiction",
-      "release_year": 1988,
-      "language": "en",
-      "poster_path": "/3klryy0WVJFh5HAkMWrY6TY6QiP.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/32033",
-      "similarity": 0.5131213068962097,
-      "triggered_by": [
-        "THE-EVERYMAN",
-        "THE-LOVER"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-EVERYMAN",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.4380938410758972
-        },
-        {
-          "agent_id": "THE-LOVER",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "why-1",
-            "how-1"
-          ],
-          "similarity": 0.5131213068962097
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 2,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 2,
-      "convergent_score": 120.51312130689621
-    },
-    {
-      "tmdb_id": 337876,
-      "title": "Gabbar Is Back",
-      "overview": "A vigilante network taking out corrupt officials draws the notice of the authorities.",
-      "genres": "Drama, Action",
-      "release_year": 2015,
-      "language": "hi",
-      "poster_path": "/dhIVF43jCqVzxuo11hYcHQxjzS6.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/337876",
-      "similarity": 0.48159292340278625,
-      "triggered_by": [
-        "THE-HERO",
-        "THE-OUTLAW"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-OUTLAW",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "how-2",
-            "why-0",
-            "why-2"
-          ],
-          "similarity": 0.48159292340278625
-        },
-        {
-          "agent_id": "THE-HERO",
-          "pseudo_id": "p3",
-          "channel_role": "toned",
-          "fragments": [
-            "why-1",
-            "how-0",
-            "how-1"
-          ],
-          "similarity": 0.4666457176208496
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 2,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=2)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 2,
-      "convergent_score": 120.48159292340279
-    },
-    {
-      "tmdb_id": 1484253,
-      "title": "Trainwreck: Poop Cruise",
-      "overview": "An engine fire leaves 4,000 passengers stranded at sea without power and plumbing in this wild documentary about the infamous \"poop cruise\" of 2013.",
-      "genres": "Documentary, Drama",
-      "release_year": 2025,
-      "language": "en",
-      "poster_path": "/nJZlsBpDxx3LrGwXvwXkQyVnp9A.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/1484253",
-      "similarity": 0.42916741967201233,
-      "triggered_by": [],
       "also_baseline": false,
       "hit_sources": [
         {
           "agent_id": "THE-EXPLORER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "how-2",
-            "result-0",
-            "who-0",
-            "who-2",
-            "why-2"
-          ],
-          "similarity": 0.41472288966178894
-        },
-        {
-          "agent_id": "THE-JESTER",
-          "pseudo_id": "n1",
-          "channel_role": "neutral",
-          "fragments": [
-            "how-2",
-            "result-0",
-            "why-2",
-            "who-0",
-            "how-1"
-          ],
-          "similarity": 0.42916741967201233
-        }
-      ],
-      "neutral_hits": 2,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.16666666666666666,
-      "distinct_agents": 0,
-      "quality_candidate": false,
-      "quality_reason": "composition_agents=0 (≥1 toned/focalized required; neutral_hits=2, composition=none)",
-      "convergence_channels": [
-        "neutral"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 2,
-      "convergent_score": 120.42916741967201
-    },
-    {
-      "tmdb_id": 243278,
-      "title": "Snow",
-      "overview": "Comprising train and track footage quickly shot just before a heavy winter's snowfall was melting, the multi-award-winning classic that emerged from the cutting-room compresses British Rail's dedication to blizzard-battling into a thrilling eight-minute montage cut to music. Tough-as-boots workers struggling to keep the line clear are counterpointed with passengers' buffet-car comforts.",
-      "genres": "Documentary",
-      "release_year": 1963,
-      "language": "en",
-      "poster_path": "/4tV1seZm1PhEOdqkCB0RfeYwTNb.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/243278",
-      "similarity": 0.5442109107971191,
-      "triggered_by": [
-        "THE-JESTER"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-JESTER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5442109107971191
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 1,
-      "convergent_score": 110.54421091079712
-    },
-    {
-      "tmdb_id": 43552,
-      "title": "Vanishing on 7th Street",
-      "overview": "A mysterious global blackout yields countless populations to simply vanish, leaving only their clothes and possessions behind. A small handful of survivors band together in a dimly-lit tavern on 7th Street, struggling to combat the apocalyptic horror. Realizing they may in fact be the last people on earth, a dark shadow hones in on them alone.",
-      "genres": "Mystery, Horror, Thriller",
-      "release_year": 2010,
-      "language": "en",
-      "poster_path": "/8LkZFmL2UHbmP7UnjlRP5gqvvqh.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/43552",
-      "similarity": 0.5381686687469482,
-      "triggered_by": [
-        "THE-EVERYMAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-EVERYMAN",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5381686687469482
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 1,
-      "convergent_score": 110.53816866874695
-    },
-    {
-      "tmdb_id": 58770,
-      "title": "The Trigger Effect",
-      "overview": "A blackout leaves those affected to consider what is necessary, what is legal, and what is questionable, in order to survive in a predatory environment.",
-      "genres": "Drama, Thriller",
-      "release_year": 1996,
-      "language": "en",
-      "poster_path": "/9LZLXVwhhmkdye4JXoLP06fm5G2.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/58770",
-      "similarity": 0.5358806848526001,
-      "triggered_by": [
-        "THE-EVERYMAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-EVERYMAN",
-          "pseudo_id": "p2",
-          "channel_role": "toned",
-          "fragments": [
-            "why-0",
-            "how-1",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5358806848526001
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 1,
-      "convergent_score": 110.5358806848526
-    },
-    {
-      "tmdb_id": 455306,
-      "title": "34th Express",
-      "overview": "Fast train N34 went exactly on schedule. The passengers were quietly getting ready for bed when the empty compartment from the outstanding cigarette lit up the curtain. Soon the wagon caught fire. Disaster is imminent. Railwaymen and passengers are working together to prevent misfortune and save hundreds of people…",
-      "genres": "Action, Drama",
-      "release_year": 1981,
-      "language": "ru",
-      "poster_path": "/5piYGlGTtbsIJYLQt7Noi8nlRV8.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/455306",
-      "similarity": 0.5315141081809998,
-      "triggered_by": [
-        "THE-JESTER"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-JESTER",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "why-2",
-            "how-2",
-            "result-0"
-          ],
-          "similarity": 0.5315141081809998
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 1,
-      "convergent_score": 110.531514108181
-    },
-    {
-      "tmdb_id": 190738,
-      "title": "Assembling a Generator",
-      "overview": "A group of men work on various parts of a large generator, assembling the pieces",
-      "genres": "Documentary",
-      "release_year": 1904,
-      "language": "en",
-      "poster_path": "",
-      "movie_url": "https://themoviecosmos.com/movie/190738",
-      "similarity": 0.5258319973945618,
-      "triggered_by": [
-        "THE-CREATOR"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-CREATOR",
           "pseudo_id": "p2",
           "channel_role": "toned",
           "fragments": [
             "why-0",
             "why-1",
-            "how-2",
+            "how-1",
             "result-0"
           ],
-          "similarity": 0.5258319973945618
+          "similarity": 0.48133301734924316
         }
       ],
       "neutral_hits": 0,
@@ -3661,34 +3638,35 @@
         "toned"
       ],
       "convergence_channel_count": 1,
+      "diagnostic_channels": [],
       "convergence_persona_count": 1,
-      "convergent_score": 110.52583199739456
+      "convergent_score": 110.48133301734924
     },
     {
-      "tmdb_id": 1159518,
-      "title": "Black Noise",
-      "overview": "Members of an elite security team deployed to rescue a VIP on an exclusive island.The rescue mission becomes a desperate attempt to survive, escape the island and elude the sinister presence that seeks to harm them.",
-      "genres": "Action, Science Fiction, Horror, Thriller",
-      "release_year": 2023,
-      "language": "en",
-      "poster_path": "/snKpXexv5dtWqEKEmXrJtp8QGQC.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/1159518",
-      "similarity": 0.5121653079986572,
+      "tmdb_id": 513302,
+      "title": "Minuscule 2: Mandibles from Far Away",
+      "overview": "When the first snow falls in the valley, it is urgent to prepare its reserves for the winter. Alas, during the operation, a small ladybug is trapped in a box - to the Caribbean. One solution: reform the shock team.",
+      "genres": "Animation, Adventure, Family, Comedy",
+      "release_year": 2019,
+      "language": "fr",
+      "poster_path": "/QVglFM8WHuA5F07IMzFcKu6RXa.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/513302",
+      "similarity": 0.4784160256385803,
       "triggered_by": [
-        "THE-RULER"
+        "THE-CAREGIVER"
       ],
       "also_baseline": false,
       "hit_sources": [
         {
-          "agent_id": "THE-RULER",
-          "pseudo_id": "p2",
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "p3",
           "channel_role": "toned",
           "fragments": [
-            "how-1",
             "why-0",
+            "how-1",
             "how-2"
           ],
-          "similarity": 0.5121653079986572
+          "similarity": 0.4784160256385803
         }
       ],
       "neutral_hits": 0,
@@ -3701,19 +3679,20 @@
         "toned"
       ],
       "convergence_channel_count": 1,
+      "diagnostic_channels": [],
       "convergence_persona_count": 1,
-      "convergent_score": 110.51216530799866
+      "convergent_score": 110.47841602563858
     },
     {
-      "tmdb_id": 370097,
-      "title": "Stormageddon",
-      "overview": "What happens when you ask the most powerful computer program, run by the most powerful computers, to follow, listen and predict human behavior? The program learns, becomes sentient and begins to behave like a human. When a master computer program, Echelon, takes over America's entire online system, our country is threatened to be brought to its knees. Hacking into DARPA, Echelon gains the ability to manipulate the weather, create earthquakes, and cause a level of destruction unlike anything the country could ever imagine. But how do you stop a computer program when it has control over any and every defense you have?",
-      "genres": "Action, Drama, Thriller, Science Fiction",
-      "release_year": 2015,
-      "language": "en",
-      "poster_path": "/loZHFn4RoTeh4t1I4hS01DRYF7q.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/370097",
-      "similarity": 0.5081261992454529,
+      "tmdb_id": 139329,
+      "title": "Back to 1942",
+      "overview": "In 1942, Henan Province was devastated by one of the most tragic famines in modern Chinese history, resulting in the deaths of at least three million men, women and children. Although the primary cause of the famine was a severe drought, it was exacerbated by locusts, windstorms, earthquakes, epidemic disease and the corruption of the ruling Kuomintang government.",
+      "genres": "War, Drama",
+      "release_year": 2012,
+      "language": "zh",
+      "poster_path": "/3VY5D7RrqnfEfmTTYKRsPgEMO5g.jpg",
+      "movie_url": "https://themoviecosmos.com/movie/139329",
+      "similarity": 0.47504904866218567,
       "triggered_by": [
         "THE-HERO"
       ],
@@ -3728,7 +3707,7 @@
             "how-1",
             "how-2"
           ],
-          "similarity": 0.5081261992454529
+          "similarity": 0.47504904866218567
         }
       ],
       "neutral_hits": 0,
@@ -3741,48 +3720,9 @@
         "toned"
       ],
       "convergence_channel_count": 1,
+      "diagnostic_channels": [],
       "convergence_persona_count": 1,
-      "convergent_score": 110.50812619924545
-    },
-    {
-      "tmdb_id": 1223272,
-      "title": "Contagion of Fear",
-      "overview": "A catastrophic train derailment sends the city spiraling into chaos. But the derailment is just the beginning. A biological gas attack sees crash survivors collapsing and dying within minutes. And the sickness is rapidly spreading.",
-      "genres": "Science Fiction, Thriller",
-      "release_year": 2023,
-      "language": "en",
-      "poster_path": "/A5muc6PtApC9ubfmJW3ADRnIIfi.jpg",
-      "movie_url": "https://themoviecosmos.com/movie/1223272",
-      "similarity": 0.48827797174453735,
-      "triggered_by": [
-        "THE-MAGICIAN"
-      ],
-      "also_baseline": false,
-      "hit_sources": [
-        {
-          "agent_id": "THE-MAGICIAN",
-          "pseudo_id": "p1",
-          "channel_role": "toned",
-          "fragments": [
-            "how-1",
-            "how-2",
-            "why-1"
-          ],
-          "similarity": 0.48827797174453735
-        }
-      ],
-      "neutral_hits": 0,
-      "neutral_total": 12,
-      "neutral_hit_rate": 0.0,
-      "distinct_agents": 1,
-      "quality_candidate": false,
-      "quality_reason": "neutral_vote=0 (neutral union required; composition_agents=1)",
-      "convergence_channels": [
-        "toned"
-      ],
-      "convergence_channel_count": 1,
-      "convergence_persona_count": 1,
-      "convergent_score": 110.48827797174454
+      "convergent_score": 110.47504904866219
     }
   ],
   "audit_pool": [],

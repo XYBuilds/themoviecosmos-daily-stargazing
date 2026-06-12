@@ -970,6 +970,42 @@ class PersonaAdr8CompositionTests(unittest.TestCase):
             self.assertIn("channel", pseudo.source)
             self.assertIn(pseudo.source["channel"], ("toned", "focalized"))
 
+    def test_focal_metadata_is_diagnostic_only(self) -> None:
+        raw = json.dumps(
+            {
+                "pseudos": [
+                    {
+                        "id": "p1",
+                        "text": _LONG_TEXT,
+                        "fit": 0.8,
+                        "center": "how-0",
+                        "channel": "focalized",
+                        "source": {"fragments": ["why-0", "how-0", "result-0"]},
+                    },
+                    {
+                        "id": "p2",
+                        "text": _LONG_TEXT + " Additional grid context.",
+                        "fit": 0.7,
+                        "center": "result-0",
+                        "channel": "focalized",
+                        "focal": "where-0",
+                        "source": {"fragments": ["why-0", "how-1"]},
+                    },
+                ]
+            }
+        )
+        pseudos = parse_adr8_pseudos_response(
+            raw,
+            agent_id="The-Everyman",
+            known_fragments=_known_fragments(),
+            known_elements=_known_elements(),
+        )
+        self.assertEqual(len(pseudos), 2)
+        self.assertEqual(pseudos[0].source.get("channel"), "focalized")
+        self.assertNotIn("focal", pseudos[0].source)
+        self.assertNotIn("focal", pseudos[1].source)
+        self.assertTrue(any("diagnostic focal" in w for w in pseudos[1].warnings))
+
     def test_parse_adr8_rejects_duplicate_center(self) -> None:
         raw = json.dumps(
             {
@@ -1242,7 +1278,11 @@ class PersonaAdr8RuntimeGuardTests(unittest.TestCase):
             known_elements=_known_elements(),
         )
 
-    def _parse_with_guards(self, raw: str) -> list:
+    def _parse_with_guards(
+        self,
+        raw: str,
+        drop_reasons: list[dict[str, str]] | None = None,
+    ) -> list:
         return parse_adr8_pseudos_response(
             raw,
             agent_id="The-Everyman",
@@ -1251,6 +1291,7 @@ class PersonaAdr8RuntimeGuardTests(unittest.TestCase):
             deconstruction=_fixture_dec_inner(),
             alt_pool=self._overlay(),
             expansion=_full_expansion_fixture(),
+            drop_reasons=drop_reasons,
         )
 
     def _valid_adr8_raw(self, **overrides: object) -> str:
@@ -1289,7 +1330,7 @@ class PersonaAdr8RuntimeGuardTests(unittest.TestCase):
         self.assertTrue("illegal center" in msg or "unknown center" in msg)
         self.assertIn("who-99", msg)
 
-    def test_runtime_guard_rejects_illegal_focal(self) -> None:
+    def test_runtime_guard_tolerates_illegal_focal_as_diagnostic(self) -> None:
         raw = self._valid_adr8_raw(
             channel="focalized",
             focal="where-0",
@@ -1298,10 +1339,22 @@ class PersonaAdr8RuntimeGuardTests(unittest.TestCase):
                 "climb as a power plant outage spreads across the power grid."
             ),
         )
-        with self.assertRaises(ValueError) as ctx:
-            self._parse_with_guards(raw)
-        msg = str(ctx.exception).lower()
-        self.assertTrue("illegal focal" in msg or "focal must be who" in msg)
+        pseudos = self._parse_with_guards(raw)
+        self.assertEqual(pseudos[0].source.get("channel"), "focalized")
+        self.assertNotIn("focal", pseudos[0].source)
+        self.assertTrue(any("diagnostic focal" in w for w in pseudos[0].warnings))
+
+    def test_runtime_guard_tolerates_missing_focal_as_diagnostic(self) -> None:
+        raw = self._valid_adr8_raw(
+            channel="focalized",
+            text=(
+                "From the Visayas control room, officials watch red-alert warnings "
+                "climb as a power plant outage spreads across the power grid."
+            ),
+        )
+        pseudos = self._parse_with_guards(raw)
+        self.assertEqual(pseudos[0].source.get("channel"), "focalized")
+        self.assertNotIn("focal", pseudos[0].source)
 
     def test_runtime_guard_rejects_inner_monologue(self) -> None:
         raw = self._valid_adr8_raw(
@@ -1310,10 +1363,12 @@ class PersonaAdr8RuntimeGuardTests(unittest.TestCase):
                 "as plant outages spread across critical infrastructure."
             ),
         )
-        with self.assertRaises(ValueError) as ctx:
-            self._parse_with_guards(raw)
-        self.assertIn("fact guard", str(ctx.exception).lower())
-        self.assertIn("inner monologue", str(ctx.exception).lower())
+        drops: list[dict[str, str]] = []
+        pseudos = self._parse_with_guards(raw, drop_reasons=drops)
+        self.assertEqual([p.id for p in pseudos], ["p2"])
+        msg = " ".join(d["reason"].lower() for d in drops)
+        self.assertIn("fact guard", msg)
+        self.assertIn("inner monologue", msg)
 
     def test_runtime_guard_rejects_novel_event(self) -> None:
         raw = self._valid_adr8_raw(
@@ -1322,17 +1377,21 @@ class PersonaAdr8RuntimeGuardTests(unittest.TestCase):
                 "load shedding across critical infrastructure."
             ),
         )
-        with self.assertRaises(ValueError) as ctx:
-            self._parse_with_guards(raw)
-        self.assertIn("fact guard", str(ctx.exception).lower())
+        drops: list[dict[str, str]] = []
+        pseudos = self._parse_with_guards(raw, drop_reasons=drops)
+        self.assertEqual([p.id for p in pseudos], ["p2"])
+        msg = " ".join(d["reason"].lower() for d in drops)
+        self.assertIn("fact guard", msg)
 
     def test_runtime_guard_rejects_supporting_cap_violation(self) -> None:
         raw = self._valid_adr8_raw(
             source={"fragments": ["why-0"]},
         )
-        with self.assertRaises(ValueError) as ctx:
-            self._parse_with_guards(raw)
-        self.assertIn("supporting elements", str(ctx.exception).lower())
+        drops: list[dict[str, str]] = []
+        pseudos = self._parse_with_guards(raw, drop_reasons=drops)
+        self.assertEqual([p.id for p in pseudos], ["p2"])
+        msg = " ".join(d["reason"].lower() for d in drops)
+        self.assertIn("supporting elements", msg)
 
     @patch.dict(os.environ, {"ADR8_DUAL_FLOOR_ENABLED": "true"})
     def test_runtime_guard_dual_floor_hard_fail(self) -> None:
@@ -1355,9 +1414,11 @@ class PersonaAdr8RuntimeGuardTests(unittest.TestCase):
                 ]
             }
         )
+        drops: list[dict[str, str]] = []
         with self.assertRaises(ValueError) as ctx:
-            self._parse_with_guards(raw)
-        self.assertIn("dual floor", str(ctx.exception).lower())
+            self._parse_with_guards(raw, drop_reasons=drops)
+        msg = " ".join(d["reason"].lower() for d in drops)
+        self.assertIn("dual floor", msg or str(ctx.exception).lower())
 
     def test_focalized_hypernym_anchor_not_bypassed(self) -> None:
         dec = _fixture_dec_inner()
@@ -1417,15 +1478,18 @@ class PersonaAdr8RuntimeGuardTests(unittest.TestCase):
             known_fragments=_known_fragments(),
             known_elements=_known_elements(),
         )
-        with self.assertRaises(ValueError) as ctx:
-            assemble_adr8_channel_pseudos(
-                "The-Everyman",
-                dec,
-                overlay,
-                legs,
-                anchor_only_expansion,
-            )
-        self.assertIn("hypernym anchor", str(ctx.exception).lower())
+        drops: list[dict[str, str]] = []
+        assembled = assemble_adr8_channel_pseudos(
+            "The-Everyman",
+            dec,
+            overlay,
+            legs,
+            anchor_only_expansion,
+            drop_reasons=drops,
+        )
+        self.assertEqual([p.id for p in assembled if p.id != NEUTRAL_PSEUDO_ID], ["p2"])
+        msg = " ".join(d["reason"].lower() for d in drops)
+        self.assertIn("hypernym anchor", msg)
 
     def test_validate_adr8_runtime_guards_unit_helpers(self) -> None:
         dec = _fixture_dec_inner()

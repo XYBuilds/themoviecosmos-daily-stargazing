@@ -27,7 +27,7 @@ class CandidateHeadingTests(unittest.TestCase):
         }
         heading = _candidate_heading(cand)
         self.assertIn("[A2, A1]", heading)
-        self.assertIn("[优质·多agent]", heading)
+        self.assertIn("[汇聚标注]", heading)
         self.assertNotIn("baseline only", heading)
 
     def test_single_agent_heading_no_quality_tag(self) -> None:
@@ -39,7 +39,7 @@ class CandidateHeadingTests(unittest.TestCase):
         }
         heading = _candidate_heading(cand)
         self.assertIn("[A1]", heading)
-        self.assertNotIn("优质", heading)
+        self.assertNotIn("汇聚标注", heading)
         self.assertNotIn("baseline only", heading)
 
     def test_format_block_includes_quality_field(self) -> None:
@@ -57,12 +57,12 @@ class CandidateHeadingTests(unittest.TestCase):
             "hit_sources": [],
         }
         text = "\n".join(_format_candidate_block(cand, include_score=False))
-        self.assertIn("- **优质候选**: true", text)
+        self.assertIn("- **quality_candidate_annotation**: true", text)
         self.assertIn("- **distinct_agents**: 2", text)
 
 
 class CandidateSortTests(unittest.TestCase):
-    def test_quality_first_then_pseudo_hit_total(self) -> None:
+    def test_annotation_does_not_rank_before_pseudo_hit_total(self) -> None:
         candidates = [
             {
                 "tmdb_id": 1,
@@ -84,7 +84,7 @@ class CandidateSortTests(unittest.TestCase):
             },
         ]
         ordered = _sort_candidates_for_display(candidates)
-        self.assertEqual([c["tmdb_id"] for c in ordered], [3, 2, 1])
+        self.assertEqual([c["tmdb_id"] for c in ordered], [1, 3, 2])
 
     def test_pseudo_hit_total_sums_fragments(self) -> None:
         cand = {
@@ -102,7 +102,7 @@ class CandidatesMarkdownTests(unittest.TestCase):
             "test-run",
             [
                 {
-                    "title": "Low Quality High Sim",
+                    "title": "High Hit Non Annotation",
                     "tmdb_id": 1,
                     "quality_candidate": False,
                     "distinct_agents": 1,
@@ -112,7 +112,9 @@ class CandidatesMarkdownTests(unittest.TestCase):
                     "overview": "",
                     "movie_url": "",
                     "also_baseline": False,
-                    "hit_sources": [{"agent_id": "A2", "pseudo_id": "p1", "fragments": []}],
+                    "hit_sources": [
+                        {"agent_id": "A2", "pseudo_id": "p1", "fragments": ["a", "b", "c"]}
+                    ],
                 },
                 {
                     "title": "Quality Multi",
@@ -133,19 +135,19 @@ class CandidatesMarkdownTests(unittest.TestCase):
                 },
             ],
         )
-        quality_pos = md.find("Quality Multi")
-        low_pos = md.find("Low Quality High Sim")
-        self.assertLess(quality_pos, low_pos)
-        self.assertIn("[A2, A1] [优质·多agent]", md)
+        high_hit_pos = md.find("High Hit Non Annotation")
+        annotation_pos = md.find("Quality Multi")
+        self.assertLess(high_hit_pos, annotation_pos)
+        self.assertIn("[A2, A1] [汇聚标注]", md)
 
 
 class ScoreEvalHeadingParseTests(unittest.TestCase):
     def test_agents_from_new_heading_skips_quality_bracket(self) -> None:
-        heading = "Movie (2020) [A1, A2, A4] [优质·多agent]"
+        heading = "Movie (2020) [A1, A2, A4] [汇聚标注]"
         self.assertEqual(_agents_from_heading(heading), ["A1", "A2", "A4"])
 
     def test_title_strips_agent_and_quality_brackets(self) -> None:
-        heading = "Movie (2020) [A1, A2] [优质·多agent]"
+        heading = "Movie (2020) [A1, A2] [汇聚标注]"
         self.assertEqual(_title_from_heading(heading), "Movie")
 
 

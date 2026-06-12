@@ -8,7 +8,8 @@
       候选漏斗（ADR-0007 D8 / ADR-0008）: 汇聚排序 → 可选 judge 预筛 → 预算 top-N 给人工;
       预算以下 ``judge≥1`` 进 ``audit_pool``（抽审兜底，不靠调高 judge 门槛控量）.
       记录命中 `(agent_id, pseudo_id, fragments)`；撞车展示不含 A1/baseline（toned/focalized triggered_by）.
-      撞车主判据（ADR-0005 + ADR-0008）: 中性 union = 1 票 + ≥1 toned/focalized 汇聚 → quality_candidate.
+      撞车诊断标注（ADR-0005 + ADR-0008）: 中性 union = 1 票 + ≥1 toned/focalized 汇聚 → quality_candidate；
+      该字段仅作 annotation，不参与排序、截断、Go/No-Go 或评估分桶.
       A1 held-out oracle（ADR-0006）: baseline 查询独立并跑 → ``a1_oracle`` + ``oracle_comparison``;
       不进 ``candidates`` / 撞车票 / 排序.
 
@@ -58,6 +59,8 @@ _ORACLE_AGENT_IDS: frozenset[str] = frozenset({"A1"})
 
 _CHANNEL_ROLES: frozenset[str] = frozenset({"neutral", "toned", "focalized", "baseline"})
 _PROVENANCE_CHANNELS: frozenset[str] = frozenset({"neutral", "toned", "focalized"})
+_SIGNAL_PROVENANCE_CHANNELS: frozenset[str] = frozenset({"toned", "focalized"})
+_DIAGNOSTIC_PROVENANCE_CHANNELS: frozenset[str] = frozenset({"neutral"})
 _COMPOSITION_CHANNELS: frozenset[str] = frozenset({"toned", "focalized"})
 
 _ROLE_BY_AGENT: dict[str, str] = {
@@ -467,7 +470,7 @@ def _hit_sources_above_floor(
     ]
 
 
-def _distinct_provenance_channels(
+def _distinct_signal_provenance_channels(
     cand: dict[str, Any],
     *,
     quality_floor: float,
@@ -475,7 +478,20 @@ def _distinct_provenance_channels(
     channels: set[str] = set()
     for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
         channel = _hit_source_channel_role(source)
-        if channel in _PROVENANCE_CHANNELS:
+        if channel in _SIGNAL_PROVENANCE_CHANNELS:
+            channels.add(channel)
+    return channels
+
+
+def _distinct_diagnostic_provenance_channels(
+    cand: dict[str, Any],
+    *,
+    quality_floor: float,
+) -> set[str]:
+    channels: set[str] = set()
+    for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
+        channel = _hit_source_channel_role(source)
+        if channel in _DIAGNOSTIC_PROVENANCE_CHANNELS:
             channels.add(channel)
     return channels
 
@@ -487,6 +503,8 @@ def _distinct_personas_above_floor(
 ) -> set[str]:
     personas: set[str] = set()
     for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
+        if _hit_source_channel_role(source) not in _SIGNAL_PROVENANCE_CHANNELS:
+            continue
         agent_id = str(source.get("agent_id", "")).upper()
         if agent_id:
             personas.add(agent_id)
@@ -602,13 +620,19 @@ def _apply_convergence_fields(
     *,
     quality_floor: float,
 ) -> None:
-    """ADR-0007 D8 layer 2: multi-channel / multi-persona convergence signals."""
-    channels = _distinct_provenance_channels(cand, quality_floor=quality_floor)
+    """ADR-0007 D8 layer 2: signal-channel / multi-persona convergence signals."""
+    signal_channels = _distinct_signal_provenance_channels(
+        cand, quality_floor=quality_floor
+    )
+    diagnostic_channels = _distinct_diagnostic_provenance_channels(
+        cand, quality_floor=quality_floor
+    )
     personas = _distinct_personas_above_floor(cand, quality_floor=quality_floor)
-    channel_count = len(channels)
+    channel_count = len(signal_channels)
     persona_count = len(personas)
-    cand["convergence_channels"] = sorted(channels)
+    cand["convergence_channels"] = sorted(signal_channels)
     cand["convergence_channel_count"] = channel_count
+    cand["diagnostic_channels"] = sorted(diagnostic_channels)
     cand["convergence_persona_count"] = persona_count
     cand["convergent_score"] = (
         channel_count * _CONVERGENT_WEIGHT_CHANNEL
@@ -619,7 +643,6 @@ def _apply_convergence_fields(
 
 def _convergent_sort_key(cand: dict[str, Any]) -> tuple[Any, ...]:
     return (
-        -int(bool(cand.get("quality_candidate"))),
         -int(cand.get("convergent_score", 0.0)),
         -float(cand.get("similarity", 0.0)),
         int(cand.get("tmdb_id", 0)),
@@ -740,7 +763,7 @@ def apply_candidate_funnel(
 
 @dataclass
 class PoolDiffByChannel:
-    """A/B pool diff (design-on ∖ baseline) with provenance channel decomposition."""
+    """A/B pool diff (design-on ∖ baseline) with signal + diagnostic channel decomposition."""
 
     run_id: str
     baseline_candidate_count: int
@@ -749,6 +772,7 @@ class PoolDiffByChannel:
     lost_tmdb_ids: list[int]
     overlap_count: int
     by_channel: dict[str, list[int]] = field(default_factory=dict)
+    diagnostic_by_channel: dict[str, list[int]] = field(default_factory=dict)
     net_new_details: list[dict[str, Any]] = field(default_factory=list)
 
 
@@ -756,7 +780,16 @@ def _provenance_channels_for_candidate(cand: dict[str, Any]) -> set[str]:
     channels: set[str] = set()
     for source in cand.get("hit_sources") or []:
         channel = _hit_source_channel_role(source)
-        if channel in _PROVENANCE_CHANNELS:
+        if channel in _SIGNAL_PROVENANCE_CHANNELS:
+            channels.add(channel)
+    return channels
+
+
+def _diagnostic_channels_for_candidate(cand: dict[str, Any]) -> set[str]:
+    channels: set[str] = set()
+    for source in cand.get("hit_sources") or []:
+        channel = _hit_source_channel_role(source)
+        if channel in _DIAGNOSTIC_PROVENANCE_CHANNELS:
             channels.add(channel)
     return channels
 
@@ -781,7 +814,10 @@ def compare_pool_diff_by_channel(
     lost = sorted(base_ids - design_ids)
 
     by_channel: dict[str, list[int]] = {
-        channel: [] for channel in sorted(_PROVENANCE_CHANNELS)
+        channel: [] for channel in sorted(_SIGNAL_PROVENANCE_CHANNELS)
+    }
+    diagnostic_by_channel: dict[str, list[int]] = {
+        channel: [] for channel in sorted(_DIAGNOSTIC_PROVENANCE_CHANNELS)
     }
     net_new_details: list[dict[str, Any]] = []
 
@@ -794,8 +830,11 @@ def compare_pool_diff_by_channel(
     for tmdb_id in net_new:
         cand = design_index.get(tmdb_id, {})
         channels = sorted(_provenance_channels_for_candidate(cand))
+        diagnostic_channels = sorted(_diagnostic_channels_for_candidate(cand))
         for channel in channels:
             by_channel[channel].append(tmdb_id)
+        for channel in diagnostic_channels:
+            diagnostic_by_channel[channel].append(tmdb_id)
         net_new_details.append(
             {
                 "tmdb_id": tmdb_id,
@@ -803,6 +842,7 @@ def compare_pool_diff_by_channel(
                 "similarity": cand.get("similarity"),
                 "quality_candidate": cand.get("quality_candidate"),
                 "provenance_channels": channels,
+                "diagnostic_channels": diagnostic_channels,
                 "triggered_by": cand.get("triggered_by"),
                 "convergence_channels": cand.get("convergence_channels"),
             }
@@ -816,6 +856,7 @@ def compare_pool_diff_by_channel(
         lost_tmdb_ids=lost,
         overlap_count=len(base_ids & design_ids),
         by_channel=by_channel,
+        diagnostic_by_channel=diagnostic_by_channel,
         net_new_details=net_new_details,
     )
 
@@ -829,6 +870,7 @@ def pool_diff_by_channel_to_dict(result: PoolDiffByChannel) -> dict[str, Any]:
         "net_new_tmdb_ids": result.net_new_tmdb_ids,
         "lost_tmdb_ids": result.lost_tmdb_ids,
         "by_channel": result.by_channel,
+        "diagnostic_by_channel": result.diagnostic_by_channel,
         "net_new_details": result.net_new_details,
     }
 
@@ -840,12 +882,10 @@ def _apply_containment(
 ) -> list[dict[str, Any]]:
     if max_candidates <= 0 or len(candidates) <= max_candidates:
         return candidates
-    quality = [c for c in candidates if c.get("quality_candidate")]
-    non_quality = [c for c in candidates if not c.get("quality_candidate")]
-    sort_key = lambda item: (-item["similarity"], item["tmdb_id"])
-    quality.sort(key=sort_key)
-    non_quality.sort(key=sort_key)
-    return (quality + non_quality)[:max_candidates]
+    return sorted(
+        candidates,
+        key=lambda item: (-float(item.get("similarity", 0.0)), int(item.get("tmdb_id", 0))),
+    )[:max_candidates]
 
 
 def _group_per_agent(per_pseudo: list[dict[str, Any]]) -> list[dict[str, Any]]:

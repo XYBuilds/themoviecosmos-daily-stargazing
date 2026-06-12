@@ -45,8 +45,8 @@ def write_baseline_summary(
     res = d5.get("resonance") or {}
     wf = d5.get("workflow") or {}
     full = res.get("full_batch") or {}
-    combo = full.get("combo") or {}
-    pure = full.get("pure_fact") or {}
+    focal = full.get("focal_channel") or {}
+    neutral_diag = full.get("neutral_diagnostic") or {}
 
     lines = [
         "# Phase 3.10.7 · Holdout prescreen recheck baseline",
@@ -61,15 +61,15 @@ def write_baseline_summary(
         f"- manual (judge=1): {prescreen.bucket_counts.get('manual', 0)}",
         f"- highlight (judge=2): {prescreen.bucket_counts.get('highlight', 0)}",
         "",
-        "## Resonance recheck (dual-axis v2 · similarity-controlled)",
+        "## Resonance recheck (dual-axis v2 · n1 diagnostic-only)",
         "",
-        "| Metric | combo | pure_fact | lift? |",
+        "| Metric | focal_channel | n1_diagnostic | signal? |",
         "| --- | --- | --- | --- |",
-        f"| structural_2_rate | {combo.get('structural_2_rate', 0):.1%} | "
-        f"{pure.get('structural_2_rate', 0):.1%} | "
-        f"{'YES' if res.get('combo_gt_pure_fact') else 'NO'} |",
-        f"| obs combo>pure_fact | {res.get('obs_combo_gt_pure_fact')} |",
-        f"| holdout combo>pure_fact | {res.get('holdout_combo_gt_pure_fact')} |",
+        f"| structural_2_rate | {focal.get('structural_2_rate', 0):.1%} | "
+        f"{neutral_diag.get('structural_2_rate', 0):.1%} | "
+        f"{'YES' if res.get('focal_channel_has_signal') else 'NO'} |",
+        f"| obs focal signal | {res.get('obs_focal_channel_has_signal')} |",
+        f"| holdout focal signal | {res.get('holdout_focal_channel_has_signal')} |",
         f"| obs/holdout consistent | {res.get('obs_holdout_consistent')} |",
         "",
         "## Workflow safety",

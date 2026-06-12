@@ -15,7 +15,7 @@ Follow all rules in:
 - `{{deconstruction_json}}`: verbatim decon (fragment ids only — for `source.fragments` provenance).
 - `{{expansion_json}}` (when present): shared hypernym overlay — **visible anchor vocabulary** for toned pseudos; use these hypernyms verbatim in toned text.
 - `{{alt_pool_json}}`: persona alt-pool overlay (`persona_id` + `elements[]` with `element_id`, `original_term`, `alternatives[]`). **Select terms from this pool** when wording entities; do not invent replacements outside the pool.
-- Persona card (when present): steer tone and which valence bucket to favor.
+- Persona card (when present): steer tone and attention inventory; `valence` tags in the pool are annotations only, not selection priority.
 
 ## Critical id distinction (do not mix)
 
@@ -72,20 +72,20 @@ Variation is organized by **which element each pseudo is built around**, not by 
 2. **Greedy top-down centering.** Take this persona's injected `salience` ranking from the top: if a fact-entailed 60–120 word pseudo can be composed **with that element as its center**, write it; otherwise move down to the next element. **Centers must be distinct across your pseudos.**
 3. **Declare, don't score.** You only **declare** each pseudo's center; ranking and budgeting are computed downstream in code from the center's salience rank. Do not self-score, reorder, or pad elements to game importance — element stuffing degrades the overview voice and will be rejected (supporting-element cap enforced).
 
-### POV focalization (ADR-0008 D4)
+### POV / focal annotation (ADR-0008 D4 · evaluation explanation label)
 
-A **focalized pseudo** retells the event **through the eyes of one character already present in the decon** — focalization (vantage), not just tone.
+POV / focal information is now a **diagnostic explanation label**, not a generation validity rule.
 
-- **Derivation (no free choice):** When a pseudo's center element is a `who-*` **and** that character instantiates one of the **vantage seats** in this persona's card (attention inventory → Who 正极, marked 视角座位), write that pseudo **focalized through that character**. Otherwise write it as third-person element-centered prose. You never freely pick an interesting character: vantage = salience-derived center × card vantage-seat instantiation.
-- **Empathy-seat principle:** Vantage seats are only the Who archetypes this persona **inhabits** (its positive pole). Negative-pole characters are what the persona **watches and opposes** — they are seen, never seen through.
-- **Only the eyes change (iron rules — violation = hard fail, regenerate):** The focal character **must be an existing decon `who-*` element**. Focalization changes **from whose vantage the event is seen** — what is near or far, what is at stake *for them*, the order in which the event reaches them. It must **not add anything**: no invented inner monologue or feelings beyond what the decon entails, no new events, no new causal links, no new outcomes.
-- **Hypernym anchor retained:** Like every toned pseudo, a focalized pseudo **must verbatim embed ≥1 hypernym anchor phrase** from `{{expansion_json}}` / pool `provenance: hypernym` terms (case-insensitive substring). Focalized wording does not replace the anchor.
-- **Third-person grammar is fine:** Focalization is about vantage, not pronouns. Close third person ("she watches the floodwater climb the stairs") is preferred; first person is allowed but never required. De-entification rules apply unchanged.
+- **No hard derivation gate:** A pseudo is valid by element-centered composition, factual entailment, support cap, hypernym anchor, and dual floor. It does **not** fail because its `center` is or is not a `who-*`, because it lacks `focal`, or because its `focal` does not match a card vantage-seat prototype.
+- **Optional annotation only:** When the wording genuinely reads as a viewpoint shift through an existing character, the pseudo may declare `channel: "focalized"` and `focal: "who-*"`. This is kept as provenance for later review and may inform the human/Judge `POV变换` label.
+- **No free facts:** The fact guard is unchanged. Viewpoint wording must not add invented inner monologue, feelings, events, causal links, or outcomes. It may only change what is foregrounded, near/far, or at stake in the prose.
+- **Card seats are interpretive hints:** Persona card Who-positive seats help reviewers explain why a viewpoint read may be present, but they are not a runtime acceptance criterion.
+- **Third-person grammar is fine:** Focal annotation is about explanation, not pronouns. A close third-person paragraph may be annotated; first person is never required.
 
 ### Dual floor (ADR-0008 D5 — mandatory)
 
 - The code-built neutral `n1` is untouched by this mode (not your concern, stated for completeness).
-- **At least one of your pseudos must be a non-focalized third-person toned pseudo.** Focalized pseudos are additive — they never replace the third-person channel.
+- **At least one of your pseudos must remain third-person toned / non-POV-annotated.** POV/focal annotations are additive diagnostics — they never replace the third-person channel.
 
 ### Response additions in composition mode
 
@@ -97,15 +97,14 @@ Each pseudo object additionally declares (base format otherwise unchanged — fr
   "text": "<single English paragraph, 60–120 words>",
   "fit": 0.82,
   "center": "who-1",
-  "channel": "focalized",
-  "focal": "who-1",
+  "channel": "toned",
   "source": { "fragments": ["why-0", "how-1", "result-0"] }
 }
 ```
 
 - `center` (required): the declared center element id (must exist in the injected decon/pool).
-- `channel` (required): `"toned"` (third-person) or `"focalized"`.
-- `focal` (required iff `channel: "focalized"`): the focal character's `who-*` id; must equal `center` and satisfy the derivation rule.
+- `channel` (required): `"toned"` by default; `"focalized"` may be used only as an optional explanation/provenance label when the wording genuinely reads as a viewpoint shift.
+- `focal` (optional): if present, it should identify an existing `who-*` element, but focal metadata is diagnostic and must not decide candidate validity.
 - **No pseudo-level valence field exists** — pseudos have no polarity (axis-alignment is the persona-ness criterion, see rule 1).
 
 ### Propagation contract

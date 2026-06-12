@@ -5,8 +5,8 @@ per-run `candidates.md` when present, e.g. phase3.5/3.6). Phase 3.7 batch runs
 do not write per-run candidates.md; the review file is the editor SSOT.
 
 pseudo命中分 is a **secondary review/sort key** (ADR-0003 D1): it helps editors triage
-candidates but does **not** gate quality_candidate or eval summarize gates. 共振分 remains
-the primary human score for publish gates.
+candidates but does **not** gate eval summarize gates. `quality_candidate` is a retrieve
+annotation only. 共振分 remains the primary human score for publish gates.
 """
 
 from __future__ import annotations
@@ -56,6 +56,7 @@ class HitScore:
     fragments: list[str]
     similarity: float | None
     score: int
+    channel_role: str = "toned"
 
 
 @dataclass
@@ -89,10 +90,18 @@ class RunHighHitReview:
     single_agent: list[ScoredCandidate] = field(default_factory=list)
 
 
+def _is_diagnostic_hit(hit: HitScore) -> bool:
+    return hit.channel_role == "neutral" or hit.pseudo_id.lower() == "n1"
+
+
+def _scoring_hits(hits: list[HitScore]) -> list[HitScore]:
+    return [h for h in hits if not _is_diagnostic_hit(h)]
+
+
 def _agents_from_hit_sources(hits: list[HitScore]) -> list[str]:
     seen: set[str] = set()
     ordered: list[str] = []
-    for h in hits:
+    for h in _scoring_hits(hits):
         aid = h.agent_id.upper()
         if aid and aid not in seen:
             seen.add(aid)
@@ -101,14 +110,12 @@ def _agents_from_hit_sources(hits: list[HitScore]) -> list[str]:
 
 
 def _is_multi_agent_hit(*, quality_candidate: bool, agents: list[str]) -> bool:
-    """D1 bucketing aligned with run_eval / retrieve quality_candidate."""
-    if quality_candidate:
-        return True
+    """Multi-hit bucketing ignores quality_candidate annotations."""
     return len(agents) >= 2
 
 
 def _is_pure_neutral_candidate(diag: RetrieveDiagnostics | None) -> bool:
-    """ADR-0006 D4: neutral vote without toned convergence (pure-fact bucket)."""
+    """Diagnostic-only: neutral vote without toned convergence."""
     if diag is None:
         return False
     return diag.neutral_hits >= 1 and diag.distinct_agents == 0
@@ -120,10 +127,8 @@ def _eligible_for_scoring_pool(
     min_total_score: int,
     diag: RetrieveDiagnostics | None,
 ) -> bool:
-    """High-hit / scoring pool: pseudo总分 threshold OR pure-neutral (neutral-only)."""
-    if total_score >= min_total_score:
-        return True
-    return _is_pure_neutral_candidate(diag)
+    """High-hit / scoring pool: pseudo总分 threshold only; n1 is diagnostic-only."""
+    return total_score >= min_total_score
 
 
 def _load_retrieve_meta(
@@ -164,6 +169,7 @@ def _load_retrieve_meta(
                     fragments=frags,
                     similarity=float(sim) if isinstance(sim, (int, float)) else None,
                     score=len(frags),
+                    channel_role=str(src.get("channel_role") or src.get("channel") or "toned").strip().lower(),
                 )
             )
         hits_by_tmdb[tmdb_id] = hits
@@ -205,7 +211,7 @@ def _score_lookup(hits: list[HitScore]) -> dict[tuple[str, str], int]:
 
 def _per_agent_totals(hits: list[HitScore]) -> dict[str, int]:
     totals: dict[str, int] = {}
-    for h in hits:
+    for h in _scoring_hits(hits):
         totals[h.agent_id] = totals.get(h.agent_id, 0) + h.score
     return totals
 
@@ -347,8 +353,9 @@ def score_candidates_md(
             continue
         tmdb_id = int(tmdb_m.group(1))
         hits = hits_by_tmdb.get(tmdb_id, [])
-        lookup = _score_lookup(hits)
-        total = sum(h.score for h in hits)
+        scoring_hits = _scoring_hits(hits)
+        lookup = _score_lookup(scoring_hits)
+        total = sum(h.score for h in scoring_hits)
         patched = _patch_candidate_block(part, lookup, total)
         diag = (diagnostics_by_tmdb or {}).get(tmdb_id)
         if diag is not None:
@@ -357,9 +364,7 @@ def score_candidates_md(
         patched = patched.rstrip("\n") + "\n\n"
         patched_blocks.append(patched)
 
-        agents = _agents_from_heading(heading)
-        if not agents and hits:
-            agents = _agents_from_hit_sources(hits)
+        agents = _agents_from_hit_sources(hits) if hits else _agents_from_heading(heading)
         quality = (quality_by_tmdb or {}).get(tmdb_id, False)
         is_multi = _is_multi_agent_hit(quality_candidate=quality, agents=agents)
         if _eligible_for_scoring_pool(
@@ -457,9 +462,9 @@ def _format_high_hit_review(
         "",
         "### Pseudo 命中分（二级审阅键 · 非质量闸）",
         "",
-        f"**High-hit review** lists candidates with **pseudo命中分合计 ≥ {min_score}**",
-        "or **pure-neutral** hits (`neutral_hits≥1` and `distinct_agents=0`, ADR-0006 D4).",
-        "Inclusion is **not** a quality gate; D1 `quality_candidate` is from retrieve.",
+        f"**High-hit review** lists candidates with **pseudo命中分合计 ≥ {min_score}**.",
+        "`neutral_hits` / n1 coverage are displayed as retrieve diagnostics only and do not include candidates by themselves.",
+        "Inclusion is **not** a quality gate; `quality_candidate` is a retrieve annotation only.",
         "",
         "For each hit line under **命中视角/碎片**, count entries in `fragments=[...]`",
         "— **each fragment id = 1 point** for that pseudo.",
@@ -471,7 +476,7 @@ def _format_high_hit_review(
         "",
         "- News sections follow `tests/eval_news/batch-manifest.json` order (01–10).",
         "- Each section opens with that run's `reality.md`.",
-        "- **多 agents 命中**: `quality_candidate` or ≥2 agents in heading / hit_sources.",
+        "- **多 agents 命中**: ≥2 agents in heading / hit_sources; `quality_candidate` is displayed only as annotation.",
         "- **单 agent 命中**: all other high-hit candidates.",
         "- Within each subsection, sort by **pseudo命中分合计** descending.",
         "",

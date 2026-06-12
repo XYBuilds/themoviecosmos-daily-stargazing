@@ -16,6 +16,7 @@ from scripts.lib.phase311_pilot import (
     audit_center_truthfulness,
     audit_funnel_reasonable,
     audit_neutral_n1_unchanged,
+    audit_persona_guards,
     build_default_pilot_manifest,
     go_no_go_pilot_recommendation,
     load_pilot_manifest,
@@ -98,6 +99,78 @@ class Phase311PilotTests(unittest.TestCase):
         self.assertFalse(result["pass"])
         self.assertTrue(result.get("stuffing_risk") or result["reason"])
 
+    def test_focal_derivation_warning_is_diagnostic_only(self) -> None:
+        dec = load_deconstruction_from_file(FIXTURE)
+        alt_pool = AltPoolOverlay(
+            persona_id="The-Everyman",
+            elements=[
+                AltElement(
+                    element_id="who-0",
+                    original_term="Philippines grid operator",
+                    alternatives=[AltTerm(term="power grid", valence="neutral", provenance="hypernym")],
+                ),
+                AltElement(
+                    element_id="how-2",
+                    original_term="more than 950 megawatts became unavailable",
+                    alternatives=[AltTerm(term="power shortage", valence="neutral", provenance="hypernym")],
+                ),
+                AltElement(
+                    element_id="why-0",
+                    original_term="Kepco SPC Power Unit 2 tripped offline alongside other long-running plant outages",
+                    alternatives=[AltTerm(term="power plant outage", valence="neutral", provenance="hypernym")],
+                ),
+            ],
+            salience=["how-2", "why-0", "who-0"],
+        )
+        pipeline = {
+            "persona_id": "The-Everyman",
+            "pseudos": [
+                {
+                    "id": "p1",
+                    "text": (
+                        "The Visayas grid was placed under red alert as more than "
+                        "950 megawatts became unavailable across the power grid, "
+                        "with emergency load shedding ordered to protect a critical "
+                        "transmission line."
+                    ),
+                    "fit": 0.8,
+                    "source": {
+                        "center": "how-2",
+                        "channel": "focalized",
+                        "focal": "where-0",
+                        "fragments": ["why-0", "how-1", "result-0"],
+                    },
+                },
+                {
+                    "id": "p2",
+                    "text": (
+                        "Seasonal heat drove demand into a thin operating margin "
+                        "after a power plant outage, while emergency load shedding "
+                        "spread across the power grid."
+                    ),
+                    "fit": 0.75,
+                    "source": {
+                        "center": "why-0",
+                        "channel": "toned",
+                        "fragments": ["why-0", "how-0", "result-0"],
+                    },
+                },
+            ],
+        }
+        result = audit_persona_guards(
+            "The-Everyman",
+            pipeline,
+            dec,
+            alt_pool,
+            expansion={"elements": []},
+        )
+        focal = result["focalized_derivation"]
+        self.assertTrue(focal["pass"])
+        self.assertTrue(focal["diagnostic_only"])
+        self.assertGreater(focal["warning_count"], 0)
+        self.assertTrue(result["fact_drift"]["pass"])
+        self.assertTrue(result["center_truthfulness"]["pass"])
+
     def test_neutral_n1_unchanged(self) -> None:
         text = "neutral baseline wording"
         design = {"pseudos": [{"id": "n1", "text": text}]}
@@ -146,7 +219,7 @@ class Phase311PilotTests(unittest.TestCase):
             "pool_diff": {"net_new_tmdb_ids": []},
         }
         go = go_no_go_pilot_recommendation(audit, dry_run=False)
-        self.assertEqual(go["verdict"], "No-Go")
+        self.assertEqual(go["verdict"], "Pipeline No-Go")
 
     def test_go_no_go_all_pass(self) -> None:
         audit = {
@@ -161,10 +234,22 @@ class Phase311PilotTests(unittest.TestCase):
                 "funnel": {"pass": True},
                 "open_d_weak_fit": {"pass": True, "observations": []},
             },
-            "pool_diff": {"net_new_tmdb_ids": [429918]},
+            "personas": [
+                {
+                    "persona_id": "The-Everyman",
+                    "pseudo_guard": {"kept_pseudos": 1, "dropped_pseudos": 0},
+                    "center_truthfulness": {
+                        "checks": [{"pass": True, "center": "who-0"}],
+                    },
+                }
+            ],
+            "pool_diff": {
+                "baseline_candidate_count": 1,
+                "net_new_tmdb_ids": [429918],
+            },
         }
         go = go_no_go_pilot_recommendation(audit, dry_run=False)
-        self.assertEqual(go["verdict"], "Go")
+        self.assertEqual(go["verdict"], "Pipeline Go")
 
     def test_load_pilot_manifest_roundtrip(self) -> None:
         manifest = build_default_pilot_manifest()

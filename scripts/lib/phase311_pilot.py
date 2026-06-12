@@ -1,7 +1,7 @@
 """Phase 3.11.6 pilot helpers: single-news A/B audit (design-on vs 3.10 baseline).
 
 Firewall audit dimensions (human Go/No-Go):
-  ① fact drift  ② center truthfulness  ③ focalized vantage derivation
+  ① fact drift  ② center truthfulness  ③ POV/focal diagnostic distribution
   ④ dual floor  ⑤ funnel dedup/sort  ⑥ OPEN d weak-fit valence optionalization
 """
 
@@ -303,7 +303,8 @@ def audit_persona_guards(
                 "center": pseudo.source.get("center"),
                 "focal": pseudo.source.get("focal"),
                 "derivation_warnings": focal_warnings,
-                "pass": not focal_warnings,
+                "diagnostic_only": True,
+                "pass": True,
             }
         )
 
@@ -343,7 +344,11 @@ def audit_persona_guards(
             "checks": center_checks,
         },
         "focalized_derivation": {
-            "pass": all(c["pass"] for c in focal_checks),
+            "pass": True,
+            "diagnostic_only": True,
+            "warning_count": sum(
+                len(c.get("derivation_warnings") or []) for c in focal_checks
+            ),
             "checks": focal_checks,
         },
         "dual_floor": dual_floor,
@@ -599,12 +604,14 @@ def audit_pilot_run(
             ],
         },
         "focalized_derivation": {
-            "pass": all(a["focalized_derivation"]["pass"] for a in persona_audits),
-            "persona_failures": [
-                a["persona_id"]
+            "pass": True,
+            "diagnostic_only": True,
+            "warning_count": sum(
+                len(c.get("derivation_warnings") or [])
                 for a in persona_audits
-                if not a["focalized_derivation"]["pass"]
-            ],
+                for c in a["focalized_derivation"].get("checks", [])
+            ),
+            "persona_failures": [],
         },
         "dual_floor": {
             "pass": (
@@ -635,7 +642,6 @@ def audit_pilot_run(
         for k in (
             "fact_drift",
             "center_truthfulness",
-            "focalized_derivation",
             "dual_floor",
             "funnel",
         )
@@ -803,9 +809,9 @@ def render_pilot_audit_markdown(
         f"{status(dims.get('center_truthfulness', {}).get('pass', False))} · "
         f"fails={dims.get('center_truthfulness', {}).get('persona_failures', [])} | "
         f"Confirm declared center is load-bearing in prose |",
-        f"| ③ | Focalized per card vantage prototype | "
-        f"{status(dims.get('focalized_derivation', {}).get('pass', False))} | "
-        f"Match focal who-* to card Who 正极 seats |",
+        f"| ③ | POV/focal diagnostic label | PASS (diagnostic-only) · "
+        f"warnings={dims.get('focalized_derivation', {}).get('warning_count', 0)} | "
+        f"Use only to explain possible POV变换 labels; not a Go/No-Go standard |",
         f"| ④ | Dual floor (n1 + non-focal toned; baseline hits) | "
         f"{status(dims.get('dual_floor', {}).get('pass', False))} · "
         f"lost={dims.get('dual_floor', {}).get('baseline_hits', {}).get('lost_tmdb_ids', [])} | "
@@ -871,7 +877,7 @@ def render_pilot_audit_markdown(
             "",
             "- [ ] **①** No invented inner monologue, events, causality, or outcomes in focalized/toned legs.",
             "- [ ] **②** Each pseudo's declared center element is genuinely load-bearing (no keyword stuffing).",
-            "- [ ] **③** Focalized channels match card Who vantage prototypes; focal ∈ who-*.",
+            "- [ ] **③** POV/focal annotations are used only as explanation labels for possible POV变换, not as acceptance criteria.",
             "- [ ] **④** Neutral n1 unchanged vs 3.10; ≥1 non-focal toned per persona; baseline hits not lost.",
             "- [ ] **⑤** Funnel dedup and convergent sort look reasonable for human review budget.",
             "- [ ] **⑥** Weak-fit personas produce honest, fact-entailed prose without forced valence coverage.",

@@ -69,14 +69,14 @@ class QualityFieldTests(unittest.TestCase):
 
 
 class QualityContainmentTests(unittest.TestCase):
-    def test_quality_candidates_retained_before_similarity_fill(self) -> None:
+    def test_quality_annotation_does_not_affect_similarity_containment(self) -> None:
         items = [
             {"tmdb_id": 1, "similarity": 0.95, "quality_candidate": False},
             {"tmdb_id": 2, "similarity": 0.50, "quality_candidate": True},
             {"tmdb_id": 3, "similarity": 0.80, "quality_candidate": False},
         ]
         capped = _apply_containment(items, max_candidates=2)
-        self.assertEqual([c["tmdb_id"] for c in capped], [2, 1])
+        self.assertEqual([c["tmdb_id"] for c in capped], [1, 3])
 
 
 class RetrieveQualityIntegrationTests(unittest.TestCase):

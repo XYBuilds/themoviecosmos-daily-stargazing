@@ -8,6 +8,7 @@ from pathlib import Path
 
 from scripts.eval_editor_fields import SCORING_REMARK_PLACEHOLDER
 from scripts.score_eval_candidates import (
+    HitScore,
     RetrieveDiagnostics,
     _eligible_for_scoring_pool,
     _format_high_hit_review,
@@ -69,7 +70,7 @@ class RetrieveDiagnosticsInjectionTests(unittest.TestCase):
 
 
 class PureNeutralPoolTests(unittest.TestCase):
-    def test_pure_neutral_eligible_below_min_score(self):
+    def test_pure_neutral_is_diagnostic_only_below_min_score(self):
         diag = RetrieveDiagnostics(
             quality_candidate=False,
             neutral_hits=3,
@@ -78,9 +79,46 @@ class PureNeutralPoolTests(unittest.TestCase):
             distinct_agents=0,
         )
         self.assertTrue(_is_pure_neutral_candidate(diag))
-        self.assertTrue(_eligible_for_scoring_pool(1, min_total_score=5, diag=diag))
+        self.assertFalse(_eligible_for_scoring_pool(1, min_total_score=5, diag=diag))
 
-    def test_neutral_only_run_included_in_review(self):
+    def test_neutral_hits_do_not_contribute_to_high_hit_score(self):
+        text = """# candidates
+
+### Neutral Heavy Film (2020) [A2, A4]
+- **tmdb_id**: 123
+- **相似度**: 0.50
+- **命中视角/碎片**:
+  - A2/n1: fragments=[a, b, c, d, e] · sim=0.50
+  - A4/p1: fragments=[x] · sim=0.49
+- **共振分**: 
+- **共振类型**: 
+- **打分备注**: 
+"""
+        hits = {
+            123: [
+                HitScore(
+                    agent_id="A2",
+                    pseudo_id="n1",
+                    fragments=["a", "b", "c", "d", "e"],
+                    similarity=0.50,
+                    score=5,
+                    channel_role="neutral",
+                ),
+                HitScore(
+                    agent_id="A4",
+                    pseudo_id="p1",
+                    fragments=["x"],
+                    similarity=0.49,
+                    score=1,
+                    channel_role="toned",
+                ),
+            ]
+        }
+        out, high = score_candidates_md(text, "run-x", hits, min_total_score=5)
+        self.assertIn("- **pseudo命中分合计**: 1", out)
+        self.assertEqual(high, [])
+
+    def test_neutral_only_run_not_included_by_n1_alone(self):
         neutral_batch = _FIXTURES / "neutral-only-batch"
         _reviews, high, missing, scanned = process_eval_dir(
             neutral_batch,
@@ -89,14 +127,12 @@ class PureNeutralPoolTests(unittest.TestCase):
         )
         self.assertEqual(scanned, 1)
         self.assertEqual(missing, [])
-        self.assertEqual(len(high), 1)
-        self.assertEqual(high[0].tmdb_id, 400)
-        self.assertEqual(high[0].total_score, 1)
+        self.assertEqual(high, [])
 
 
 class MultiAgentBucketTests(unittest.TestCase):
-    def test_quality_candidate_forces_multi(self):
-        self.assertTrue(_is_multi_agent_hit(quality_candidate=True, agents=["A1"]))
+    def test_quality_candidate_is_annotation_not_multi(self):
+        self.assertFalse(_is_multi_agent_hit(quality_candidate=True, agents=["A1"]))
 
     def test_two_agents_without_quality_flag(self):
         self.assertTrue(_is_multi_agent_hit(quality_candidate=False, agents=["A4", "A7"]))

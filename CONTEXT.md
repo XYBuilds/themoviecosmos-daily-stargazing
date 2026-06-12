@@ -47,9 +47,9 @@ _Avoid_: 角色、机器人
 现实记录员 Agent:只做去实体化白描、不注入任何隐喻,因此其伪剧情停留在题材平面。Phase 3.9 起 A1 **并跑但不参与判断**——**不进候选池、不进撞车票、不进排序**;仅作**召回与质量神谕**(正确答案集代理),供 per-persona 中性腿对照「能否追平 A1」。删 A1 须待 GATE **Q1′** 证明 12 条 neutral n1 命中 union **⊇ A1_two**（A1 命中且人工共振分=2）后再议；全量 A1 superset / 质量对比仅为 legacy 诊断。
 _Avoid_: 默认、基础、平权竞争者(ADR-0003 旧口径)
 
-**撞车 (Cross-agent Collision · ADR-0005 形状)**:
-优质候选主判据（复活 ADR-0003）：**中性通道整体 = 1 张去重 agent 票**（所有中性 pseudo 命中的 union）+ **≥1 语气通道（toned）汇聚到同一部电影**。防止 12 条近重复中性 pseudo 毒化信号，又不饿死召回。验证前 `retrieve.py` 仍可能用旧对称 `distinct_agents >= 2` 口径。
-_Avoid_: 12 票饱和、纯 An+An 对称计票（旧口径）
+**撞车 (Cross-agent Collision · diagnostic annotation)**:
+撞车现在只作为**检索汇聚诊断标注**，不是质量判据：**中性通道整体 = 1 张去重 agent 票**（所有中性 pseudo 命中的 union）+ **≥1 toned/focalized 通道汇聚到同一部电影**时，`retrieve.py` 可标出 `quality_candidate=true` / `quality_reason`。该字段仅用于解释候选来源，不进排序、不进截断、不进三桶分桶、不进 Go/No-Go；当前结果解读不得把它当「优质候选」。`positive` / `negative` / `neutral` 也同理仅是 persona-relative annotation，客观/中性资格只看显式 `provenance: surface|hypernym`。
+_Avoid_: 12 票饱和、纯 An+An 对称计票（旧口径）、把 `quality_candidate` 当判据或质量分
 
 **总编 (Editor-in-chief)**:
 唯一的人类裁决者。负责:从抓取的新闻池手挑要跑的新闻、对候选电影评分(共振 0/1/2,见 `docs/eval-the-bet.md` §4 两轴 rubric)、从中文审核稿勾选定稿。
@@ -74,9 +74,9 @@ _Avoid_: 绝对中性、真空中性源、persona 书写中性散文
 某 persona **价值轴**的中点，仅活在该 persona 的 lens spectrum 内（alt-pool 的 `valence: neutral` + `provenance: lens`）。**不进**中性通道。
 _Avoid_: 与客观地板混用
 
-**中性通道 (Neutral channel · C-Neutral)**:
-每 persona **恰好 1 条** pseudo，仅用客观地板 vocabulary（surface + hypernym，**无 lens**），由 **per-persona salience** 选 Top-K 碎片驱动选材。扛**题面召回**;质量对照 **held-out oracle (A1)**。见 ADR-0005 / ADR-0006。
-_Avoid_: persona 语气 pseudo、共享固定碎片(3.8 退化模式)
+**中性通道 (Neutral channel · C-Neutral · diagnostic-only)**:
+每 persona **恰好 1 条** pseudo（通常 `n1`），仅用客观地板 vocabulary（surface + hypernym，**无 lens**），由 **per-persona salience** 选 Top-K 碎片驱动选材。现在只承担**诊断覆盖 / 召回解释 / A1 只读对照**：`neutral_hits`、`neutral_hit_rate`、`n1` union、pure_fact/three-bucket 都保留输出，但不进候选质量、排序、截断、high-hit 纳入、Go/No-Go 或 D5 成功判据。
+_Avoid_: persona 语气 pseudo、共享固定碎片(3.8 退化模式)、把 `n1` 当质量腿或 gate 基线
 
 **per-persona salience**:
 alt-creator 输出的 **既有 `element_id` 有序列表**(最→次),表达本 persona 价值轴最关注哪些事实。**只重排/取子集既有 ids,不新增词、不写评注**;下游取 Top-K(4–5) 作中性碎片 SELECTION。**铁律:salience 只驱动选材,绝不影响 wording**(中性句由模板从 surface+hypernym 拼装)。主选:LLM 按新闻动态决定;plan B 回退:persona card **价值轴**作软先验(非硬规则)。见 ADR-0006 D6。
@@ -85,9 +85,10 @@ alt-creator 输出的 **既有 `element_id` 有序列表**(最→次),表达本 
 批内 12 条中性 pseudo 两两检查近重复。**硬失败**仅当该对的中性与 toned 均近重复;若仅中性撞车而 toned 仍各异,记 warning 并继续(差异化由 toned + 检索兜底)。中性 body 对同一 surface 文本只渲染一次。
 _Avoid_: salience 写散文、salience 渗入 valence
 
-**三桶对照 (Three-bucket comparison · ADR-0006)**:
-评测候选按来源归入三桶并横向比 2 分率:**① 纯事实**(中性/oracle 命中、无 toned 汇聚)、**② 纯情绪**(toned-only)、**③ 组合**(中性票 + ≥1 toned 汇聚)。用于干净验证「组合拳 > 纯事实」(诊断②)。
-_Avoid_: neutral_only 恒空(3.8 结构性缺陷)、无控相似度结论
+**三桶诊断 (Three-bucket diagnostics · ADR-0006 legacy shape)**:
+评测候选仍可按来源诊断性归入三桶:**① 纯事实**(中性/oracle 命中、无 toned 汇聚)、**② 纯情绪**(toned-only)、**③ 组合**(中性票 + ≥1 toned 汇聚)。该三桶现在只用于观察 `n1` 覆盖与通道交互，不再作为 Go/No-Go 或 D5 成功判据。
+_Avoid_: neutral_only 恒空(3.8 结构性缺陷)、无控相似度结论、把 combo>pure_fact 当当前 gate
+
 
 **留出冻结 (Holdout-freeze discipline · ADR-0006)**:
 只在**观察集**调 prompt/阈值 → **冻结** → **留出集只打一次分**。留出 ≈ 观察 ⇒ 提升为真;留出垮 ⇒ 过拟合。评测编排纪律,非产品功能。

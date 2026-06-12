@@ -68,7 +68,7 @@ class DedupeTests(unittest.TestCase):
 
 
 class ConvergentSortTests(unittest.TestCase):
-    def test_multi_channel_ranks_above_single_channel(self) -> None:
+    def test_signal_multi_channel_ranks_above_single_channel(self) -> None:
         single = _cand(
             1,
             similarity=0.99,
@@ -88,14 +88,14 @@ class ConvergentSortTests(unittest.TestCase):
             hit_sources=[
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "n1",
-                    "channel_role": "neutral",
+                    "pseudo_id": "t1",
+                    "channel_role": "toned",
                     "similarity": 0.5,
                     "fragments": [],
                 },
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "t1",
+                    "pseudo_id": "f1",
                     "channel_role": "focalized",
                     "similarity": 0.5,
                     "fragments": [],
@@ -107,10 +107,53 @@ class ConvergentSortTests(unittest.TestCase):
             [single, multi], quality_floor=DEFAULT_QUALITY_FLOOR
         )
         self.assertEqual(ranked[0]["tmdb_id"], 2)
+        self.assertEqual(ranked[0]["convergence_channels"], ["focalized", "toned"])
         self.assertGreater(
             ranked[0]["convergent_score"],
             ranked[1]["convergent_score"],
         )
+
+    def test_neutral_channel_is_diagnostic_only_for_convergent_sort(self) -> None:
+        strong_single = _cand(
+            1,
+            similarity=0.99,
+            hit_sources=[
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "t1",
+                    "channel_role": "toned",
+                    "similarity": 0.99,
+                    "fragments": [],
+                }
+            ],
+        )
+        neutral_plus_focal = _cand(
+            2,
+            similarity=0.5,
+            hit_sources=[
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "n1",
+                    "channel_role": "neutral",
+                    "similarity": 0.5,
+                    "fragments": [],
+                },
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "f1",
+                    "channel_role": "focalized",
+                    "similarity": 0.5,
+                    "fragments": [],
+                },
+            ],
+            quality_candidate=True,
+        )
+        ranked = sort_candidates_convergent(
+            [strong_single, neutral_plus_focal], quality_floor=DEFAULT_QUALITY_FLOOR
+        )
+        self.assertEqual(ranked[0]["tmdb_id"], 1)
+        self.assertEqual(ranked[1]["convergence_channels"], ["focalized"])
+        self.assertEqual(ranked[1]["diagnostic_channels"], ["neutral"])
 
     def test_multi_persona_adds_convergent_weight(self) -> None:
         one_persona = _cand(
@@ -310,10 +353,12 @@ class PoolDiffChannelTests(unittest.TestCase):
         )
         self.assertEqual(diff.net_new_tmdb_ids, [100, 101])
         self.assertIn(100, diff.by_channel["focalized"])
-        self.assertIn(101, diff.by_channel["neutral"])
+        self.assertNotIn("neutral", diff.by_channel)
+        self.assertIn(101, diff.diagnostic_by_channel["neutral"])
         self.assertIn(101, diff.by_channel["toned"])
         payload = pool_diff_by_channel_to_dict(diff)
         self.assertEqual(payload["run_id"], "01-test")
+        self.assertIn(101, payload["diagnostic_by_channel"]["neutral"])
         self.assertEqual(len(payload["net_new_details"]), 2)
 
 

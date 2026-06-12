@@ -18,8 +18,6 @@ from scripts.summarize_eval import (  # noqa: E402
     _DISTINCT_AGENTS_LINE,
     _NEUTRAL_HIT_RATE_LINE,
     _NEUTRAL_HITS_LINE,
-    _QUALITY_CANDIDATE_LINE,
-    _QUALITY_ZH_LINE,
     _REVIEW_RUN_SECTION,
     _parse_agents_from_heading,
 )
@@ -83,18 +81,6 @@ def _is_multi_agent(block: str) -> bool:
     if len(hit_agents) >= 2:
         return True
 
-    quality: bool | None = None
-    q_match = _QUALITY_CANDIDATE_LINE.search(block)
-    if q_match:
-        quality = q_match.group(1).lower() == "true"
-    else:
-        zh_match = _QUALITY_ZH_LINE.search(block)
-        if zh_match:
-            quality = zh_match.group(1).lower() == "true"
-
-    if quality and (len(agents_from_heading) >= 2 or len(hit_agents) >= 2):
-        return True
-
     return False
 
 
@@ -109,7 +95,7 @@ def _has_neutral_hits(block: str) -> bool:
 
 
 def _matches_filter(block: str) -> bool:
-    return _is_multi_agent(block) and _has_neutral_hits(block)
+    return _is_multi_agent(block)
 
 
 def _extract_global_header(text: str) -> str:
@@ -142,14 +128,14 @@ def render_filtered_review(
     run_counts = {run_id: len(blocks) for run_id, blocks in sorted(per_run.items())}
 
     lines = [
-        "# Multi-Agent + Neutral Hits — Filtered Review",
+        "# Multi-Agent Hits — Filtered Review",
         "",
         "## Filter summary",
         "",
         f"- **Source:** `{source_name}`",
         "- **Filter criteria (ALL must match):**",
-        "  1. **多 agent 命中** — `distinct_agents` ≥ 2, or ≥2 agents in heading / hit lines, or `quality_candidate` with multi-agent convergence",
-        "  2. **neutral_hits > 0** — `neutral_hits` > 0, or `neutral_hit_rate` > 0 when hits field absent",
+        "  1. **多 agent 命中** — `distinct_agents` ≥ 2, or ≥2 agents in heading / hit lines; `quality_candidate` is ignored as a filter and shown only as retrieve annotation",
+        "  2. **n1 / neutral_hits** — diagnostic-only; shown when present, never used as this filter's inclusion criterion",
         f"- **Generated:** {gen_date}",
         f"- **Total matching candidates:** {total}",
         f"- **Runs with matches:** {len(run_counts)}",
@@ -183,7 +169,7 @@ def render_filtered_review(
             if cleaned:
                 lines.append(cleaned)
                 lines.append("")
-        lines.append("### 多 agents 命中 · neutral channel")
+        lines.append("### 多 agents 命中")
         lines.append("")
         lines.append(f"**Count:** {len(blocks)} candidate(s)")
         lines.append("")

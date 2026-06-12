@@ -141,11 +141,10 @@ def _pseudo_hit_total(cand: dict[str, Any]) -> int:
 
 
 def _sort_candidates_for_display(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Quality-first, then pseudo hit total (secondary), then similarity."""
+    """Display by pseudo hit total, then similarity; annotations do not rank."""
     return sorted(
         candidates,
         key=lambda c: (
-            -int(bool(c.get("quality_candidate"))),
             -_pseudo_hit_total(c),
             -(c.get("similarity") or 0.0),
             c.get("tmdb_id") or 0,
@@ -163,7 +162,7 @@ def _candidate_heading(cand: dict[str, Any]) -> str:
     if agents:
         suffix_parts.append(f"[{', '.join(agents)}]")
     if cand.get("quality_candidate"):
-        suffix_parts.append("[优质·多agent]")
+        suffix_parts.append("[汇聚标注]")
 
     suffix = f" {' '.join(suffix_parts)}" if suffix_parts else ""
     return f"### {title}{year_part}{suffix}"
@@ -173,7 +172,7 @@ def _format_candidate_block(cand: dict[str, Any], *, include_score: bool) -> lis
     lines = [_candidate_heading(cand)]
     lines.append(f"- **tmdb_id**: {cand.get('tmdb_id', '')}")
     quality = bool(cand.get("quality_candidate"))
-    lines.append(f"- **优质候选**: {str(quality).lower()}")
+    lines.append(f"- **quality_candidate_annotation**: {str(quality).lower()}")
     distinct = cand.get("distinct_agents")
     if distinct is not None:
         lines.append(f"- **distinct_agents**: {distinct}")

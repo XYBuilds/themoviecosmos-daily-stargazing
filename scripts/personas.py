@@ -268,14 +268,12 @@ def _alt_term_to_dict(term: AltTerm) -> dict[str, str]:
 
 
 def _resolve_provenance(valence: str, explicit: str | None) -> str:
-    """Default provenance when alt-creator omits the tag (ADR-0005)."""
+    """Resolve provenance independently from valence; valence is annotation only."""
     if explicit:
         prov = explicit.strip().lower()
         if prov not in _VALID_PROVENANCES:
             raise ValueError(f"invalid provenance {explicit!r} (expected surface|hypernym|lens)")
         return prov
-    if valence in ("positive", "negative"):
-        return "lens"
     return "lens"
 
 
@@ -685,9 +683,9 @@ def inject_adr8_composition_mode(
         "above is **active**. Follow it exactly.\n\n"
         "Injected salience ranking (greedy top-down center selection):\n\n"
         f"```json\n{salience_json}\n```\n\n"
-        "Each toned/focalized pseudo **must** declare `center`, `channel`, and `focal` "
-        "(when `channel` is `focalized`). At least one pseudo must be non-focalized "
-        "third-person toned (dual floor).\n"
+        "Each toned/focalized pseudo **must** declare `center` and `channel`; `focal` "
+        "is optional diagnostic provenance when the wording genuinely reads as a viewpoint "
+        "shift. At least one pseudo must be non-focalized third-person toned (dual floor).\n"
     )
     return prompt + block
 
@@ -983,23 +981,8 @@ def validate_focal_char_in_decon_who(
     pseudo: PseudoSegment,
     known_elements: set[str],
 ) -> None:
-    """focal ∈ decon who-*; required and equal to center when channel=focalized."""
-    channel = str(pseudo.source.get("channel", "toned"))
-    focal = str(pseudo.source.get("focal", "")).strip()
-    center = str(pseudo.source.get("center", "")).strip()
-    if channel != "focalized":
-        return
-    if not focal:
-        raise ValueError(f"pseudo {pseudo.id}: focal required when channel=focalized")
-    if not focal.startswith("who-"):
-        raise ValueError(f"pseudo {pseudo.id}: illegal focal {focal!r} (must be who-*)")
-    if focal not in known_elements:
-        raise ValueError(f"pseudo {pseudo.id}: illegal focal element {focal!r}")
-    if center.startswith("who-") and focal != center:
-        raise ValueError(
-            f"pseudo {pseudo.id}: when center is who-*, focal {focal!r} "
-            f"must equal center {center!r}"
-        )
+    """focal is diagnostic-only; never reject a pseudo for focal metadata."""
+    return None
 
 
 def validate_adr8_fact_guard(
@@ -1051,7 +1034,7 @@ def validate_adr8_fact_guard(
 
 
 def validate_adr8_dual_floor(pseudos: list[PseudoSegment]) -> None:
-    """≥1 non-focalized third-person toned pseudo among ADR-0008 legs."""
+    """≥1 third-person toned pseudo among ADR-0008 legs."""
     toned_count = sum(1 for p in pseudos if p.source.get("channel") == "toned")
     if toned_count < 1:
         raise ValueError(
@@ -1070,7 +1053,7 @@ def validate_adr8_runtime_guards(
     check_hypernym: bool = True,
     check_dual_floor: bool | None = None,
 ) -> None:
-    """ADR-0008 runtime guards: center/focal/supporting/fact/hypernym/dual-floor."""
+    """ADR-0008 runtime guards: center/supporting/fact/hypernym/dual-floor."""
     dual_floor_on = adr8_dual_floor_enabled(enable_dual_floor=check_dual_floor)
     vocab = collect_entailed_vocabulary(deconstruction, alt_pool, expansion)
     allowed_proper = _allowed_proper_noun_phrases(deconstruction, alt_pool, expansion)
@@ -1185,24 +1168,15 @@ def parse_adr8_pseudos_response(
             raise ValueError(f"pseudo {seg.id}: unknown center element {center!r}")
         channel = _parse_composition_channel(row)
         focal = str(row.get("focal", "")).strip() or None
-        if channel == "focalized":
-            if not focal:
-                raise ValueError(f"pseudo {seg.id}: focal required when channel=focalized")
-            if not focal.startswith("who-"):
-                raise ValueError(f"pseudo {seg.id}: focal must be who-* id, got {focal!r}")
-            if focal not in known_elements:
-                raise ValueError(f"pseudo {seg.id}: unknown focal element {focal!r}")
-            if center.startswith("who-") and focal != center:
-                raise ValueError(
-                    f"pseudo {seg.id}: when center is who-*, focal {focal!r} "
-                    f"must equal center {center!r}"
-                )
-        elif focal:
+        if focal and (not focal.startswith("who-") or focal not in known_elements):
             seg = PseudoSegment(
                 seg.id,
                 seg.text,
                 seg.source,
-                [*seg.warnings, f"ignored focal {focal!r} on toned channel"],
+                [
+                    *seg.warnings,
+                    f"diagnostic focal {focal!r} ignored: not an existing who-* element",
+                ],
                 fit=seg.fit,
             )
             focal = None
