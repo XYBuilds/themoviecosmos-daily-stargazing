@@ -1,0 +1,1331 @@
+{
+  "persona_id": "The-Lover",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Lover",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "The Philippines grid operator",
+          "alternatives": [
+            {
+              "term": "the guardian of the grid's stability",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the entity managing power relationships",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "grid operator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Kepco SPC Power's Unit 2",
+          "alternatives": [
+            {
+              "term": "a failing heart of the system",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a power generation unit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "Officials",
+          "alternatives": [
+            {
+              "term": "those who intervene in the crisis",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "authorities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Eleven generators",
+          "alternatives": [
+            {
+              "term": "vital, yet silent, partners in the grid's dance",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "power generation units",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "unreliable assets in the energy relationship",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "a sudden, jarring rupture in the power supply",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "an equipment failure event",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "other long-running plant outages",
+          "alternatives": [
+            {
+              "term": "a pattern of systemic neglect",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "prolonged equipment downtime",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-2",
+          "original_term": "seasonal heat drove demand into a thin operating margin",
+          "alternatives": [
+            {
+              "term": "an intense, unmet craving for power",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "peak demand pressure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Kepco SPC Power's Unit 2 tripped offline",
+          "alternatives": [
+            {
+              "term": "the moment the connection was severed",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "an unplanned outage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "The Philippines grid operator placed the Visayas under red alert",
+          "alternatives": [
+            {
+              "term": "sounding an urgent alarm for a threatened region",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "declaring a high-risk operational state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+          "alternatives": [
+            {
+              "term": "forcibly severing connections to save the vital line",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a painful but necessary sacrifice for the system's integrity",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "implementing emergency load reduction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "more than 950 megawatts unavailable",
+          "alternatives": [
+            {
+              "term": "a vast, aching void of lost power",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "a significant power capacity deficit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Visayas",
+          "alternatives": [
+            {
+              "term": "the vulnerable heart now under threat",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the region in crisis",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the Visayas grid region",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "why-2",
+      "who-3",
+      "how-2",
+      "why-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "more than 950 megawatts unavailable. seasonal heat drove demand into a thin operating margin. Eleven generators. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading. Kepco SPC Power's Unit 2 tripped offline The event unfolds across a significant power capacity deficit and power shortage.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "result-0",
+          "why-2",
+          "who-3",
+          "how-2",
+          "why-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "more than 950 megawatts unavailable",
+            "provenance": "surface"
+          },
+          {
+            "term": "a significant power capacity deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "capacity loss",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy deficit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "shortage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "seasonal heat drove demand into a thin operating margin",
+            "provenance": "surface"
+          },
+          {
+            "term": "peak demand pressure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "high demand",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "heatwave impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy demand spike",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "demand increase",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Eleven generators",
+            "provenance": "surface"
+          },
+          {
+            "term": "power generation units",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "generators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power generators",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "energy assets",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+            "provenance": "surface"
+          },
+          {
+            "term": "implementing emergency load reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "load shedding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "emergency measure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid stabilization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "control action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Kepco SPC Power's Unit 2 tripped offline",
+            "provenance": "surface"
+          },
+          {
+            "term": "an equipment failure event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "equipment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "power outage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "grid incident",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p2",
+      "text": "As the intense, unmet craving for power intensified, the grid's delicate balance was tested. The failure of Kepco SPC Power's Unit 2, a power generation unit, was a key trigger. This event, an equipment failure event, combined with other long-running plant outages, represented a pattern of systemic neglect. The system's vital, yet silent, partners in the grid's dance—eleven power generators—were stretched to their limits. The pressure from high demand exposed the energy deficit, making the need for grid stabilization painfully clear.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "why-1",
+          "why-2",
+          "how-0"
+        ],
+        "center": "why-2",
+        "center_kind": "why",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.7
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Kepco SPC Power's Unit 2 tripped offline",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the moment the connection was severed",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "an unplanned outage",
+            "weight": 0.82
+          },
+          {
+            "text": "equipment failure",
+            "weight": 0.82
+          },
+          {
+            "text": "power outage",
+            "weight": 0.82
+          },
+          {
+            "text": "grid incident",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "The Philippines grid operator placed the Visayas under red alert",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "sounding an urgent alarm for a threatened region",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "declaring a high-risk operational state",
+            "weight": 0.82
+          },
+          {
+            "text": "alert declaration",
+            "weight": 0.82
+          },
+          {
+            "text": "grid management action",
+            "weight": 0.82
+          },
+          {
+            "text": "emergency response",
+            "weight": 0.82
+          },
+          {
+            "text": "action",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "forcibly severing connections to save the vital line",
+            "weight": 0.38
+          },
+          {
+            "text": "a painful but necessary sacrifice for the system's integrity",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "implementing emergency load reduction",
+            "weight": 0.82
+          },
+          {
+            "text": "load shedding",
+            "weight": 0.82
+          },
+          {
+            "text": "emergency measure",
+            "weight": 0.82
+          },
+          {
+            "text": "grid stabilization",
+            "weight": 0.82
+          },
+          {
+            "text": "control action",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "more than 950 megawatts unavailable",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a vast, aching void of lost power",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a significant power capacity deficit",
+            "weight": 0.82
+          },
+          {
+            "text": "power shortage",
+            "weight": 0.82
+          },
+          {
+            "text": "capacity loss",
+            "weight": 0.82
+          },
+          {
+            "text": "energy deficit",
+            "weight": 0.82
+          },
+          {
+            "text": "shortage",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Visayas",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the vulnerable heart now under threat",
+            "weight": 0.38
+          },
+          {
+            "text": "the region in crisis",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "the Visayas grid region",
+            "weight": 0.82
+          },
+          {
+            "text": "island group",
+            "weight": 0.82
+          },
+          {
+            "text": "region",
+            "weight": 0.82
+          },
+          {
+            "text": "Philippines",
+            "weight": 0.82
+          },
+          {
+            "text": "Southeast Asia",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "The Philippines grid operator",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the guardian of the grid's stability",
+            "weight": 0.38
+          },
+          {
+            "text": "the entity managing power relationships",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "grid operator",
+            "weight": 0.82
+          },
+          {
+            "text": "utility",
+            "weight": 0.82
+          },
+          {
+            "text": "energy sector entity",
+            "weight": 0.82
+          },
+          {
+            "text": "organization",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Kepco SPC Power's Unit 2",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a failing heart of the system",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a power generation unit",
+            "weight": 0.82
+          },
+          {
+            "text": "power unit",
+            "weight": 0.82
+          },
+          {
+            "text": "generating unit",
+            "weight": 0.82
+          },
+          {
+            "text": "power plant component",
+            "weight": 0.82
+          },
+          {
+            "text": "energy infrastructure",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Officials",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "those who intervene in the crisis",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "authorities",
+            "weight": 0.82
+          },
+          {
+            "text": "government officials",
+            "weight": 0.82
+          },
+          {
+            "text": "decision-makers",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Eleven generators",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "vital, yet silent, partners in the grid's dance",
+            "weight": 0.38
+          },
+          {
+            "text": "unreliable assets in the energy relationship",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "power generation units",
+            "weight": 0.82
+          },
+          {
+            "text": "generators",
+            "weight": 0.82
+          },
+          {
+            "text": "power generators",
+            "weight": 0.82
+          },
+          {
+            "text": "equipment",
+            "weight": 0.82
+          },
+          {
+            "text": "energy assets",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "Kepco SPC Power's Unit 2 tripped offline",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a sudden, jarring rupture in the power supply",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "an equipment failure event",
+            "weight": 0.82
+          },
+          {
+            "text": "equipment failure",
+            "weight": 0.82
+          },
+          {
+            "text": "power outage",
+            "weight": 0.82
+          },
+          {
+            "text": "grid incident",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "other long-running plant outages",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a pattern of systemic neglect",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "prolonged equipment downtime",
+            "weight": 0.82
+          },
+          {
+            "text": "plant outages",
+            "weight": 0.82
+          },
+          {
+            "text": "maintenance shutdowns",
+            "weight": 0.82
+          },
+          {
+            "text": "unavailability",
+            "weight": 0.82
+          },
+          {
+            "text": "downtime",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-2",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "seasonal heat drove demand into a thin operating margin",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "an intense, unmet craving for power",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "peak demand pressure",
+            "weight": 0.82
+          },
+          {
+            "text": "high demand",
+            "weight": 0.82
+          },
+          {
+            "text": "heatwave impact",
+            "weight": 0.82
+          },
+          {
+            "text": "energy demand spike",
+            "weight": 0.82
+          },
+          {
+            "text": "demand increase",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "who-3",
+          "where-0"
+        ],
+        "search_text": "The Philippines grid operator; grid operator; utility; energy sector entity; organization; Kepco SPC Power's Unit 2; a power generation unit; power unit; generating unit; power plant component; energy infrastructure; Officials; authorities; government officials; decision-makers; Eleven generators; power generation units; generators; power generators; equipment; energy assets; Visayas; the Visayas grid region; island group; region; Philippines; Southeast Asia",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "The Philippines grid operator",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "grid operator",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "utility",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "energy sector entity",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "organization",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "Kepco SPC Power's Unit 2",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "a power generation unit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "power unit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "generating unit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "power plant component",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "energy infrastructure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "Officials",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "authorities",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "government officials",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "decision-makers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "surface",
+            "text": "Eleven generators",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "power generation units",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "generators",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "power generators",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "equipment",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "energy assets",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "Visayas",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "the Visayas grid region",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "island group",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "region",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "Philippines",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "Southeast Asia",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "why-1",
+          "why-2",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0"
+        ],
+        "search_text": "Kepco SPC Power's Unit 2 tripped offline; an equipment failure event; equipment failure; power outage; grid incident; other long-running plant outages; prolonged equipment downtime; plant outages; maintenance shutdowns; unavailability; downtime; seasonal heat drove demand into a thin operating margin; peak demand pressure; high demand; heatwave impact; energy demand spike; demand increase; Kepco SPC Power's Unit 2 tripped offline; an unplanned outage; equipment failure; power outage; grid incident; The Philippines grid operator placed the Visayas under red alert; declaring a high-risk operational state; alert declaration; grid management action; emergency response; action; Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading; implementing emergency load reduction; load shedding; emergency measure; grid stabilization; control action; more than 950 megawatts unavailable; a significant power capacity deficit; power shortage; capacity loss; energy deficit; shortage",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "Kepco SPC Power's Unit 2 tripped offline",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "an equipment failure event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "equipment failure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "power outage",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "grid incident",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "surface",
+            "text": "other long-running plant outages",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "prolonged equipment downtime",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "plant outages",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "maintenance shutdowns",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "unavailability",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "downtime",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-2",
+            "level": "surface",
+            "text": "seasonal heat drove demand into a thin operating margin",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-2",
+            "level": "objective_close",
+            "text": "peak demand pressure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-2",
+            "level": "objective_close",
+            "text": "high demand",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-2",
+            "level": "objective_close",
+            "text": "heatwave impact",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-2",
+            "level": "objective_close",
+            "text": "energy demand spike",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-2",
+            "level": "objective_close",
+            "text": "demand increase",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Kepco SPC Power's Unit 2 tripped offline",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "an unplanned outage",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "equipment failure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "power outage",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "grid incident",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "The Philippines grid operator placed the Visayas under red alert",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "declaring a high-risk operational state",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "alert declaration",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "grid management action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "emergency response",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "implementing emergency load reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "load shedding",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "emergency measure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "grid stabilization",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "control action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "more than 950 megawatts unavailable",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "a significant power capacity deficit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "power shortage",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "capacity loss",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "energy deficit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "shortage",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Lover-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "why-2",
+          "why-0",
+          "why-1",
+          "how-0"
+        ],
+        "search_text": "As the intense, unmet craving for power intensified, the grid's delicate balance was tested. The failure of Kepco SPC Power's Unit 2, a power generation unit, was a key trigger. This event, an equipment failure event, combined with other long-running plant outages, represented a pattern of systemic neglect. The system's vital, yet silent, partners in the grid's dance—eleven power generators—were stretched to their limits. The pressure from high demand exposed the energy deficit, making the need for grid stabilization painfully clear.",
+        "persona_id": "The-Lover",
+        "center_element": "why-2",
+        "supporting_elements": [
+          "why-0",
+          "why-1",
+          "why-2",
+          "how-0"
+        ],
+        "fit": 0.7
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"The Visayas region awoke to a fragile dawn, its heart suddenly exposed. A sudden, jarring rupture in the power supply, a failing heart of the system, had plunged the grid into crisis. This intense, unmet craving for power, driven by seasonal heat, left the vulnerable heart now under threat. The grid operator, the guardian of the grid's stability, sounded an urgent alarm for a threatened region. In a painful but necessary sacrifice for the system's integrity, officials ordered emergency load shedding, forcibly severing connections to save the vital line. The aftermath was a vast, aching void of lost power, with more than 950 megawatts unavailable.\",\n      \"fit\": 0.75,\n      \"center\": \"result-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"why-2\", \"how-1\", \"how-2\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"As the intense, unmet craving for power intensified, the grid's delicate balance was tested. The failure of Kepco SPC Power's Unit 2, a power generation unit, was a key trigger. This event, an equipment failure event, combined with other long-running plant outages, represented a pattern of systemic neglect. The system's vital, yet silent, partners in the grid's dance—eleven power generators—were stretched to their limits. The pressure from high demand exposed the energy deficit, making the need for grid stabilization painfully clear.\",\n      \"fit\": 0.7,\n      \"center\": \"why-2\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"why-1\", \"why-2\", \"how-0\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "pseudo p2: unknown fragment ids ['who-3']"
+    },
+    {
+      "stage": "screenwriter",
+      "attempt": "2",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 1,
+    "dropped_pseudos": 1,
+    "drop_reasons": [
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5"
+      }
+    ]
+  }
+}

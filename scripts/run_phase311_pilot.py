@@ -56,6 +56,7 @@ from scripts.lib.phase311_pretest import (
 from scripts.personas import (
     NEUTRAL_PSEUDO_ID,
     _sync_llm_call_with_system,
+    build_search_units_payload,
     known_element_ids,
     parse_adr8_pseudos_response,
 )
@@ -181,11 +182,19 @@ async def run_design_on_persona(
         shutil.copy2(alt_pool_path, alt_dest)
 
     element_centered = [p for p in channel_pseudos if p.id != NEUTRAL_PSEUDO_ID]
+    workflow_payload = build_search_units_payload(
+        persona_id=persona_id,
+        alt_pool=alt_pool,
+        pseudos=channel_pseudos,
+        expansion=expansion,
+        known_elements=known_element_ids(deconstruction),
+    )
     pipeline = {
         "persona_id": persona_id,
         "composition_mode": "ADR-0008",
         "overlay": alt_pool.to_dict() if hasattr(alt_pool, "to_dict") else {},
         "pseudos": [pseudo_segment_to_dict(p) for p in channel_pseudos],
+        **workflow_payload,
         "screenwriter_raw": raw,
         "repair_retries": repair_retries,
         "pseudo_guard": {
@@ -293,6 +302,8 @@ async def run_pilot_for_spec(
             for p in pipeline.get("pseudos") or []
         ]
         persona_agents[pid] = persona_agent_from_pseudos(pid, pseudo_objs)
+        if isinstance(pipeline.get("search_units"), dict):
+            persona_agents[pid]["search_units"] = pipeline["search_units"]
 
     agents_payload = {"agents": reorder_persona_agents(spec.personas, persona_agents)}
     (out_run_dir / "agents.json").write_text(

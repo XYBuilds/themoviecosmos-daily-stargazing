@@ -134,7 +134,7 @@ class JudgePovTransformTests(unittest.TestCase):
             ),
             cal,
         )
-        self.assertIn("- **judge POV变换**: 是", lines)
+        self.assertIn("  - **judge POV变换**: 是", lines)
 
     def test_integrate_judge_includes_pov_transform_line(self):
         review = """## 01-grid-outage

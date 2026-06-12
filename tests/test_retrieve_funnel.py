@@ -32,6 +32,92 @@ def _cand(
     }
 
 
+class SearchUnitFunnelTests(unittest.TestCase):
+    def test_surface_event_persona_semantic_match_beats_plain_single_pseudo(self) -> None:
+        plain = _cand(
+            1,
+            similarity=0.99,
+            hit_sources=[
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "p1",
+                    "channel_role": "toned",
+                    "similarity": 0.99,
+                    "fragments": [],
+                }
+            ],
+        )
+        structured = _cand(
+            2,
+            similarity=0.5,
+            hit_sources=[
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "su-surface-1",
+                    "channel_role": "neutral",
+                    "search_unit_kind": "surface-fragment-bundle",
+                    "similarity": 0.5,
+                    "fragments": ["who-0"],
+                },
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "su-event-1",
+                    "channel_role": "neutral",
+                    "search_unit_kind": "event-fragment-bundle",
+                    "similarity": 0.5,
+                    "fragments": ["why-0", "how-0"],
+                },
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "su-persona-The-Ruler-p1",
+                    "channel_role": "toned",
+                    "search_unit_kind": "persona-semantic",
+                    "center_element": "result-0",
+                    "similarity": 0.5,
+                    "fragments": ["result-0"],
+                },
+            ],
+        )
+        ranked = sort_candidates_convergent(
+            [plain, structured], quality_floor=DEFAULT_QUALITY_FLOOR
+        )
+        self.assertEqual(ranked[0]["tmdb_id"], 2)
+        diag = ranked[0]["match_diagnostics"]
+        self.assertTrue(diag["surface_match"])
+        self.assertTrue(diag["event_match"])
+        self.assertTrue(diag["persona_semantic_match"])
+        self.assertEqual(diag["center_dimensions"], ["result"])
+
+    def test_quality_candidate_uses_objective_plus_persona_semantic_match(self) -> None:
+        pool = [
+            _cand(
+                7,
+                similarity=0.8,
+                hit_sources=[
+                    {
+                        "agent_id": "A2",
+                        "pseudo_id": "su-event-1",
+                        "channel_role": "neutral",
+                        "search_unit_kind": "event-fragment-bundle",
+                        "similarity": 0.8,
+                        "fragments": ["why-0"],
+                    },
+                    {
+                        "agent_id": "A2",
+                        "pseudo_id": "su-persona-The-Ruler-p1",
+                        "channel_role": "toned",
+                        "search_unit_kind": "persona-semantic",
+                        "similarity": 0.8,
+                        "fragments": ["result-0"],
+                    },
+                ],
+            )
+        ]
+        result = apply_candidate_funnel(pool, human_budget=1)
+        self.assertTrue(result["human_candidates"][0]["quality_candidate"])
+        self.assertIn("objective_match=1", result["human_candidates"][0]["quality_reason"])
+
+
 class DedupeTests(unittest.TestCase):
     def test_merges_same_tmdb_id_hit_sources(self) -> None:
         a = _cand(

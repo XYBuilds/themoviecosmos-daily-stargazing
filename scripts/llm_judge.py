@@ -45,6 +45,22 @@ _JUDGE_SCHEMA_VERSION = 4
 _VALID_SCORES = frozenset({0, 1, 2})
 _JSON_FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)\s*```", re.IGNORECASE)
 
+
+def _extract_json_object(text: str) -> str:
+    cleaned = text.strip()
+    if not cleaned:
+        raise ValueError("Empty LLM judge response")
+    fence = _JSON_FENCE_RE.search(cleaned)
+    if fence:
+        return fence.group(1).strip()
+    if cleaned.startswith("{") and cleaned.endswith("}"):
+        return cleaned
+    start = cleaned.find("{")
+    end = cleaned.rfind("}")
+    if start >= 0 and end > start:
+        return cleaned[start : end + 1].strip()
+    raise ValueError("LLM judge response did not contain a JSON object")
+
 DEFAULT_MIN_EXACT_AGREEMENT = 0.60
 DEFAULT_MIN_PEARSON = 0.50
 DEFAULT_MIN_CALIBRATION_PAIRS = 5
@@ -496,11 +512,7 @@ def build_judge_user_prompt(item: JudgeItem) -> str:
 def parse_judge_response(
     text: str,
 ) -> tuple[int, str | None, str, str, bool | None]:
-    cleaned = text.strip()
-    fence = _JSON_FENCE_RE.search(cleaned)
-    if fence:
-        cleaned = fence.group(1).strip()
-    payload = json.loads(cleaned)
+    payload = json.loads(_extract_json_object(text))
     score, resonance_type, causal_test, pov_transform = validate_judge_payload(payload)
     rationale = str(payload.get("rationale") or "").strip()
     return score, resonance_type, rationale, causal_test, pov_transform
@@ -522,16 +534,31 @@ def call_llm_judge(
     if not model:
         raise RuntimeError(f"Missing {model_env} for provider {prov!r}")
 
-    response = llm.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": _JUDGE_SYSTEM},
-            {"role": "user", "content": build_judge_user_prompt(item)},
-        ],
-        temperature=0.2,
-    )
-    content = (response.choices[0].message.content or "").strip()
-    return parse_judge_response(content)
+    def _request_content(extra_user_prompt: str = "") -> str:
+        user_content = build_judge_user_prompt(item)
+        if extra_user_prompt:
+            user_content = f"{user_content}\n\n{extra_user_prompt}"
+        response = llm.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": _JUDGE_SYSTEM},
+                {"role": "user", "content": user_content},
+            ],
+            temperature=0.2,
+            max_tokens=700,
+            timeout=90,
+        )
+        return (response.choices[0].message.content or "").strip()
+
+    content = _request_content()
+    try:
+        return parse_judge_response(content)
+    except (json.JSONDecodeError, ValueError):
+        retry_content = _request_content(
+            "Your previous answer was not valid JSON. Return exactly one JSON object only, "
+            "with keys: score, resonance_type, causal_test, rationale, pov_transform."
+        )
+        return parse_judge_response(retry_content)
 
 
 JudgeFn = Callable[[JudgeItem], tuple[int, str | None, str, str, bool | None]]
@@ -593,18 +620,29 @@ def score_items(
 
 
 _RUN_ID_COMMENT = re.compile(r"^<!-- run_id: (\S+) -->$", re.MULTILINE)
-_JUDGE_SCORE_LINE = re.compile(r"^-\s*\*\*judge分\*\*:.*$", re.MULTILINE)
-_JUDGE_TYPE_LINE = re.compile(r"^-\s*\*\*judge共振类型\*\*:.*$", re.MULTILINE)
-_JUDGE_DISAGREE_LINE = re.compile(r"^-\s*\*\*judge分歧\*\*:.*$", re.MULTILINE)
-_JUDGE_TRUST_LINE = re.compile(r"^-\s*\*\*judge采信\*\*:.*$", re.MULTILINE)
+_JUDGE_SCORE_LINE = re.compile(
+    r"^\s*-\s*\*\*judge分\*\*:.*$", re.MULTILINE
+)
+_JUDGE_TYPE_LINE = re.compile(
+    r"^\s*-\s*\*\*judge共振类型\*\*:.*$", re.MULTILINE
+)
+_JUDGE_DISAGREE_LINE = re.compile(
+    r"^\s*-\s*\*\*judge分歧\*\*:.*$", re.MULTILINE
+)
+_JUDGE_TRUST_LINE = re.compile(
+    r"^\s*-\s*\*\*judge采信\*\*:.*$", re.MULTILINE
+)
 _JUDGE_CAUSAL_TEST_LINE = re.compile(
-    r"^-\s*\*\*judge因果反测\*\*:.*$", re.MULTILINE
+    r"^\s*-\s*\*\*judge因果反测\*\*:.*$", re.MULTILINE
 )
 _JUDGE_RATIONALE_LINE = re.compile(
-    r"^-\s*\*\*(?:judge理由|rationale)\*\*:.*$", re.MULTILINE
+    r"^\s*-\s*\*\*(?:judge理由|rationale)\*\*:.*$", re.MULTILINE
 )
 _JUDGE_POV_TRANSFORM_LINE = re.compile(
-    r"^-\s*\*\*judge POV变换\*\*:.*$", re.MULTILINE
+    r"^\s*-\s*\*\*judge POV变换\*\*:.*$", re.MULTILINE
+)
+_JUDGE_BLOCK_HEADER_LINE = re.compile(
+    r"^-\s*\*\*LLM Judge（自动评审）\*\*:.*$", re.MULTILINE
 )
 _SCORING_REMARK_LINE = re.compile(r"^(-\s*\*\*打分备注\*\*:.*)$", re.MULTILINE)
 _REVIEW_JUDGE_HEADER = re.compile(
@@ -655,30 +693,32 @@ def load_judge_output(path: Path) -> JudgeOutput:
 def format_judge_block_lines(
     result: JudgeResult, calibration: CalibrationReport
 ) -> list[str]:
-    """Inline judge fields for a high-hit review candidate block."""
-    lines = [f"- **judge分**: {result.judge_score}"]
-    lines.append(
-        f"- **judge共振类型**: {result.judge_resonance_type or ''}"
-    )
+    """Candidate-local LLM judge block, separate from human editor fields."""
+    lines = [
+        "- **LLM Judge（自动评审）**:",
+        f"  - **judge分**: {result.judge_score}",
+        f"  - **judge共振类型**: {result.judge_resonance_type or ''}",
+    ]
     if result.judge_pov_transform:
-        lines.append(f"- **judge POV变换**: 是")
+        lines.append("  - **judge POV变换**: 是")
     if result.disagreement:
-        lines.append("- **judge分歧**: ⚠")
+        lines.append("  - **judge分歧**: ⚠")
     if calibration.screening_only or not calibration.trusted:
         lines.append(
-            f"- **judge采信**: {calibration.trust_status} · screening only"
+            f"  - **judge采信**: {calibration.trust_status} · screening only"
         )
     else:
-        lines.append(f"- **judge采信**: {calibration.trust_status}")
+        lines.append(f"  - **judge采信**: {calibration.trust_status}")
     if result.causal_test:
-        lines.append(f"- **judge因果反测**: {result.causal_test}")
+        lines.append(f"  - **judge因果反测**: {result.causal_test}")
     if result.rationale:
-        lines.append(f"- **judge理由**: {result.rationale}")
+        lines.append(f"  - **judge理由**: {result.rationale}")
     return lines
 
 
 def _strip_existing_judge_lines(block: str) -> str:
     for pattern in (
+        _JUDGE_BLOCK_HEADER_LINE,
         _JUDGE_SCORE_LINE,
         _JUDGE_TYPE_LINE,
         _JUDGE_DISAGREE_LINE,
@@ -720,9 +760,9 @@ def _ensure_review_judge_header(text: str, calibration: CalibrationReport) -> st
         f"trust_status={calibration.trust_status}"
     )
     if calibration.screening_only:
-        note += " (screening only; inline judge fields per candidate)"
+        note += " (screening only; separate LLM Judge block per candidate)"
     else:
-        note += " (inline judge fields per candidate)"
+        note += " (separate LLM Judge block per candidate)"
     if _REVIEW_JUDGE_HEADER.search(text):
         return _REVIEW_JUDGE_HEADER.sub(note, text, count=1)
     anchor = "- **Editor fields:**"

@@ -1,0 +1,110 @@
+{
+  "run_id": "01-grid-outage",
+  "persona_count": 0,
+  "personas": [],
+  "dimensions": {
+    "fact_drift": {
+      "pass": true,
+      "hard_guard_failures": 0,
+      "persona_failures": []
+    },
+    "center_truthfulness": {
+      "pass": true,
+      "persona_failures": []
+    },
+    "focalized_derivation": {
+      "pass": true,
+      "diagnostic_only": true,
+      "warning_count": 0,
+      "persona_failures": []
+    },
+    "dual_floor": {
+      "pass": true,
+      "guard_enabled": false,
+      "n1_unchanged": [],
+      "baseline_hits": {
+        "pass": true,
+        "baseline_count": 19,
+        "design_count": 19,
+        "overlap_count": 19,
+        "lost_tmdb_ids": []
+      },
+      "persona_dual_failures": []
+    },
+    "funnel": {
+      "pass": false,
+      "meta": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 25,
+        "sorted_count": 25,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "issues": [
+        "human_candidates not monotonic by convergence/sort key"
+      ],
+      "candidate_count": 19
+    },
+    "open_d_weak_fit": {
+      "pass": true,
+      "weak_fit_personas": [
+        "The-Creator",
+        "The-Innocent",
+        "The-Jester",
+        "The-Lover"
+      ],
+      "observations": [],
+      "open_d_note": "Observe whether weak-fit personas still produce fact-entailed, axis-aligned pseudos without forced valence coverage after 3.11.0 downgrade."
+    }
+  },
+  "pool_diff": {
+    "run_id": "01-grid-outage",
+    "baseline_candidate_count": 19,
+    "pretest_candidate_count": 19,
+    "overlap_count": 19,
+    "net_new_tmdb_ids": [],
+    "lost_tmdb_ids": [],
+    "gap_a_targets_in_net_new": [],
+    "gap_a_targets_in_baseline_only": [
+      {
+        "tmdb_id": 429918,
+        "title": "Survival Family",
+        "human_score": 2,
+        "judge_resonance_type": "表层沾边"
+      }
+    ],
+    "net_new_details": [],
+    "by_channel": {
+      "focalized": [],
+      "toned": []
+    }
+  },
+  "pool_diff_by_channel": {
+    "run_id": "01-grid-outage",
+    "baseline_candidate_count": 19,
+    "design_candidate_count": 19,
+    "overlap_count": 19,
+    "net_new_tmdb_ids": [],
+    "lost_tmdb_ids": [],
+    "by_channel": {
+      "focalized": [],
+      "toned": []
+    },
+    "diagnostic_by_channel": {
+      "neutral": []
+    },
+    "net_new_details": []
+  },
+  "center_granularity": {
+    "center_element_counts": {},
+    "channel_counts": {},
+    "focal_who_counts": {},
+    "per_persona": {},
+    "open_c_note": "Centers span who/where/why/how/result element ids; observe whether salience-greedy who-* centers unlock POV focalization without over-coarse buckets."
+  },
+  "all_automated_pass": false
+}

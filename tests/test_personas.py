@@ -31,8 +31,11 @@ from scripts.personas import (
     assemble_persona_channel_pseudos,
     build_adr8_screenwriter_user_prompt,
     build_alt_pool_overlay,
+    build_fragment_bundle_search_units,
+    build_fragment_ladders,
     build_objective_floor_neutral_pseudo,
     build_screenwriter_user_prompt,
+    build_search_units_payload,
     collect_hypernym_anchor_terms,
     collect_lens_terms,
     composition_mode_active,
@@ -196,6 +199,86 @@ def _full_expansion_fixture() -> dict:
                     }
                 )
     return {"elements": elements}
+
+
+class FragmentLadderSearchUnitTests(unittest.TestCase):
+    def test_build_fragment_ladders_maps_old_layers_to_new_levels(self) -> None:
+        overlay = parse_alt_pool_response(
+            _alt_pool_json_with_salience(["who-0", "where-0", "why-0", "how-0"]),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        ladders = build_fragment_ladders(overlay, _expansion_fixture())
+        who = ladders["who-0"].to_dict()
+        self.assertIn("surface", who)
+        self.assertIn("objective_close", who)
+        self.assertIn("interpretive", who)
+        objective_terms = {row["text"] for row in who["objective_close"]}
+        interpretive_terms = {row["text"] for row in who["interpretive"]}
+        self.assertIn("power grid", objective_terms)
+        self.assertIn("grid steward", interpretive_terms)
+
+    def test_fragment_bundle_units_use_only_objective_levels(self) -> None:
+        overlay = parse_alt_pool_response(
+            _alt_pool_json_with_salience(["who-0", "where-0", "why-0", "how-0"]),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        units = build_fragment_bundle_search_units(
+            build_fragment_ladders(overlay, _expansion_fixture())
+        )
+        self.assertEqual(
+            {unit.kind for unit in units},
+            {"surface-fragment-bundle", "event-fragment-bundle"},
+        )
+        for unit in units:
+            self.assertTrue(unit.search_text)
+            self.assertFalse(unit.persona_id)
+            self.assertTrue(
+                all(
+                    fragment.level
+                    in {
+                        "surface",
+                        "alias",
+                        "objective_close",
+                        "objective_mid",
+                        "objective_broad",
+                    }
+                    for fragment in unit.fragments
+                )
+            )
+
+    def test_build_search_units_payload_adds_persona_semantic_units(self) -> None:
+        overlay = parse_alt_pool_response(
+            _alt_pool_json_with_salience(["who-0", "where-0", "why-0", "how-0"]),
+            persona_id="The-Ruler",
+            known_elements=_known_elements(),
+        )
+        pseudo = PseudoSegment(
+            "p1",
+            "A grid authority faces public scarcity after infrastructure failures force emergency power rationing.",
+            {
+                "center": "why-0",
+                "channel": "toned",
+                "fragments": ["who-0", "how-0", "result-0"],
+            },
+            [],
+            fit=0.8,
+        )
+        payload = build_search_units_payload(
+            persona_id="The-Ruler",
+            alt_pool=overlay,
+            pseudos=[pseudo],
+            expansion=_full_expansion_fixture(),
+            known_elements=_known_elements(),
+        )
+        self.assertIn("fragment_ladders", payload)
+        units = payload["search_units"]
+        self.assertEqual(len(units["persona_semantic_units"]), 1)
+        self.assertEqual(
+            units["persona_semantic_units"][0]["center_element"],
+            "why-0",
+        )
 
 
 class PersonaSalienceTests(unittest.TestCase):

@@ -52,6 +52,21 @@ Valence = Literal["positive", "neutral", "negative"]
 Provenance = Literal["surface", "hypernym", "lens"]
 ChannelRole = Literal["neutral", "toned", "focalized"]
 CompositionChannel = Literal["toned", "focalized"]
+FragmentLevel = Literal[
+    "surface",
+    "alias",
+    "objective_close",
+    "objective_mid",
+    "objective_broad",
+    "interpretive",
+    "perspective",
+    "persona_relative",
+]
+SearchUnitKind = Literal[
+    "surface-fragment-bundle",
+    "event-fragment-bundle",
+    "persona-semantic",
+]
 
 NEUTRAL_PSEUDO_ID = "n1"
 _COMPOSITION_MARKER = "Composition mode: ADR-0008"
@@ -60,7 +75,7 @@ _COMPOSITION_MARKER = "Composition mode: ADR-0008"
 _SALIENCE_TOP_K_DEFAULT = 5
 _SALIENCE_TOP_K_MIN = 4
 _SALIENCE_TOP_K_MAX = 5
-_ELEMENT_ID_RE = re.compile(r"^(who|where|why|how|result)-\d+$")
+_ELEMENT_ID_RE = re.compile(r"^(when|who|where|why|how|result)-\d+$")
 
 # ADR-0008 composition: salience-ranked pseudo budget (toned + focalized legs).
 _ADR8_TONED_BUDGET_DEFAULT = 3
@@ -148,7 +163,7 @@ def list_persona_ids(ssot_path: Path | None = None) -> list[str]:
         raise ValueError(f"expected 12 persona_ids in {path}, got {len(ids)}: {ids}")
     return ids
 
-_ELEMENT_SECTIONS: tuple[str, ...] = ("who", "where", "why", "how", "result")
+_ELEMENT_SECTIONS: tuple[str, ...] = ("when", "who", "where", "why", "how", "result")
 
 # Top-level decon keys that must not appear on alt-pool overlay (P-SSOT: no fork).
 _DECON_TOP_LEVEL_KEYS: frozenset[str] = frozenset(
@@ -159,6 +174,22 @@ _VALID_VALENCES: frozenset[str] = frozenset({"positive", "neutral", "negative"})
 _VALID_PROVENANCES: frozenset[str] = frozenset({"surface", "hypernym", "lens"})
 _CHANNEL_ROLES: frozenset[str] = frozenset({"neutral", "toned", "focalized"})
 _COMPOSITION_CHANNELS: frozenset[str] = frozenset({"toned", "focalized"})
+_OBJECTIVE_FRAGMENT_LEVELS: frozenset[str] = frozenset(
+    {"surface", "alias", "objective_close", "objective_mid", "objective_broad"}
+)
+_INTERPRETIVE_FRAGMENT_LEVELS: frozenset[str] = frozenset(
+    {"interpretive", "perspective", "persona_relative"}
+)
+_FRAGMENT_LEVEL_WEIGHTS: dict[str, float] = {
+    "surface": 1.0,
+    "alias": 0.95,
+    "objective_close": 0.82,
+    "objective_mid": 0.58,
+    "objective_broad": 0.34,
+    "interpretive": 0.38,
+    "perspective": 0.34,
+    "persona_relative": 0.34,
+}
 
 _SYSTEM_ALT = (
     "You are a persona alt-creator. Follow the user message exactly. "
@@ -176,6 +207,85 @@ class AltTerm:
     term: str
     valence: str
     provenance: str | None = None
+
+
+@dataclass
+class FragmentTerm:
+    text: str
+    weight: float
+    level: FragmentLevel
+    element_id: str
+
+
+@dataclass
+class FragmentLadder:
+    element_id: str
+    dimension: str
+    fragments: list[FragmentTerm]
+
+    def objective_fragments(self) -> list[FragmentTerm]:
+        return [
+            item
+            for item in self.fragments
+            if item.level in _OBJECTIVE_FRAGMENT_LEVELS
+        ]
+
+    def interpretive_fragments(self) -> list[FragmentTerm]:
+        return [
+            item
+            for item in self.fragments
+            if item.level in _INTERPRETIVE_FRAGMENT_LEVELS
+        ]
+
+    def to_dict(self) -> dict[str, Any]:
+        payload: dict[str, Any] = {
+            "element_id": self.element_id,
+            "dimension": self.dimension,
+        }
+        for fragment in self.fragments:
+            bucket = payload.setdefault(fragment.level, [])
+            bucket.append({"text": fragment.text, "weight": fragment.weight})
+        return payload
+
+
+@dataclass
+class SearchUnit:
+    id: str
+    kind: SearchUnitKind
+    search_text: str
+    source_elements: list[str]
+    fragments: list[FragmentTerm] = field(default_factory=list)
+    persona_id: str | None = None
+    center_element: str | None = None
+    supporting_elements: list[str] = field(default_factory=list)
+    fit: str | float | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        payload: dict[str, Any] = {
+            "id": self.id,
+            "kind": self.kind,
+            "source_elements": list(self.source_elements),
+            "search_text": self.search_text,
+        }
+        if self.fragments:
+            payload["fragments"] = [
+                {
+                    "element_id": item.element_id,
+                    "level": item.level,
+                    "text": item.text,
+                    "weight": item.weight,
+                }
+                for item in self.fragments
+            ]
+        if self.persona_id:
+            payload["persona_id"] = self.persona_id
+        if self.center_element:
+            payload["center_element"] = self.center_element
+        if self.supporting_elements:
+            payload["supporting_elements"] = list(self.supporting_elements)
+        if self.fit is not None:
+            payload["fit"] = self.fit
+        return payload
 
 
 @dataclass
@@ -217,6 +327,7 @@ class PersonaPipelineResult:
     persona_id: str
     overlay: AltPoolOverlay
     pseudos: list[PseudoSegment] = field(default_factory=list)
+    workflow: dict[str, Any] = field(default_factory=dict)
     warnings: list[str] = field(default_factory=list)
     repair_retries: list[dict[str, str]] = field(default_factory=list)
     error: str | None = None
@@ -345,6 +456,243 @@ def collect_lens_terms(alt_pool: AltPoolOverlay) -> set[str]:
             if prov == "lens":
                 terms.add(alt.term.lower())
     return terms
+
+
+def _fragment_dimension(element_id: str) -> str:
+    return element_id.split("-", 1)[0] if "-" in element_id else "unknown"
+
+
+def _add_ladder_fragment(
+    fragments: list[FragmentTerm],
+    seen: set[tuple[str, str]],
+    *,
+    element_id: str,
+    text: str,
+    level: FragmentLevel,
+    weight: float | None = None,
+) -> None:
+    cleaned = " ".join(str(text).strip().split())
+    if not cleaned:
+        return
+    key = (level, cleaned.lower())
+    if key in seen:
+        return
+    seen.add(key)
+    fragments.append(
+        FragmentTerm(
+            text=cleaned,
+            weight=float(weight if weight is not None else _FRAGMENT_LEVEL_WEIGHTS[level]),
+            level=level,
+            element_id=element_id,
+        )
+    )
+
+
+def build_fragment_ladders(
+    alt_pool: AltPoolOverlay,
+    expansion: dict[str, Any] | None = None,
+) -> dict[str, FragmentLadder]:
+    """Build fragment ladders by folding old surface/hypernym/lens material into levels."""
+    by_id = expansion_elements_by_id(expansion)
+    ladders: dict[str, FragmentLadder] = {}
+    for element in alt_pool.elements:
+        fragments: list[FragmentTerm] = []
+        seen: set[tuple[str, str]] = set()
+        eid = element.element_id
+        _add_ladder_fragment(
+            fragments,
+            seen,
+            element_id=eid,
+            text=element.original_term,
+            level="surface",
+        )
+        for alt in element.alternatives:
+            provenance = alt.provenance or _resolve_provenance(alt.valence, None)
+            if provenance == "surface":
+                level: FragmentLevel = "alias"
+            elif provenance == "hypernym":
+                level = "objective_close"
+            else:
+                level = "interpretive"
+            _add_ladder_fragment(
+                fragments,
+                seen,
+                element_id=eid,
+                text=alt.term,
+                level=level,
+            )
+        row = by_id.get(eid)
+        if row:
+            _add_ladder_fragment(
+                fragments,
+                seen,
+                element_id=eid,
+                text=str(row.get("surface", "") or ""),
+                level="surface",
+            )
+            for raw in row.get("hypernyms") or []:
+                _add_ladder_fragment(
+                    fragments,
+                    seen,
+                    element_id=eid,
+                    text=str(raw),
+                    level="objective_close",
+                )
+        ladders[eid] = FragmentLadder(
+            element_id=eid,
+            dimension=_fragment_dimension(eid),
+            fragments=fragments,
+        )
+    return ladders
+
+
+def fragment_ladders_to_dict(
+    ladders: dict[str, FragmentLadder],
+) -> dict[str, Any]:
+    return {"elements": [ladders[eid].to_dict() for eid in sorted(ladders)]}
+
+
+def _fragments_for_elements(
+    ladders: dict[str, FragmentLadder],
+    element_ids: list[str],
+    *,
+    objective_only: bool,
+) -> list[FragmentTerm]:
+    out: list[FragmentTerm] = []
+    seen: set[tuple[str, str, str]] = set()
+    for eid in element_ids:
+        ladder = ladders.get(eid)
+        if not ladder:
+            continue
+        fragments = ladder.objective_fragments() if objective_only else ladder.fragments
+        for fragment in fragments:
+            key = (fragment.element_id, fragment.level, fragment.text.lower())
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(fragment)
+    return out
+
+
+def build_fragment_bundle_search_units(
+    ladders: dict[str, FragmentLadder],
+) -> list[SearchUnit]:
+    """Build surface/event fragment bundles from objective ladder levels only."""
+    surface_ids = [
+        eid
+        for eid, ladder in ladders.items()
+        if ladder.dimension in {"when", "where", "who"}
+    ]
+    event_ids = [
+        eid
+        for eid, ladder in ladders.items()
+        if ladder.dimension in {"why", "how", "result"}
+    ]
+    units: list[SearchUnit] = []
+    if surface_ids:
+        fragments = _fragments_for_elements(ladders, surface_ids, objective_only=True)
+        units.append(
+            SearchUnit(
+                id="su-surface-1",
+                kind="surface-fragment-bundle",
+                source_elements=surface_ids,
+                fragments=fragments,
+                search_text="; ".join(item.text for item in fragments),
+            )
+        )
+    if event_ids:
+        fragments = _fragments_for_elements(ladders, event_ids, objective_only=True)
+        units.append(
+            SearchUnit(
+                id="su-event-1",
+                kind="event-fragment-bundle",
+                source_elements=event_ids,
+                fragments=fragments,
+                search_text="; ".join(item.text for item in fragments),
+            )
+        )
+    return units
+
+
+def search_unit_from_pseudo(
+    pseudo: PseudoSegment,
+    *,
+    persona_id: str,
+) -> SearchUnit:
+    center = str(pseudo.source.get("center", "")).strip()
+    supporting = _supporting_fragments(pseudo)
+    source_elements = [center, *supporting] if center else supporting
+    return SearchUnit(
+        id=f"su-persona-{persona_id}-{pseudo.id}",
+        kind="persona-semantic",
+        persona_id=persona_id,
+        center_element=center or None,
+        supporting_elements=supporting,
+        source_elements=list(dict.fromkeys(source_elements)),
+        search_text=pseudo.text,
+        fit=pseudo.fit,
+    )
+
+
+def validate_search_unit(
+    unit: SearchUnit,
+    known_elements: set[str],
+) -> None:
+    if unit.kind in {"surface-fragment-bundle", "event-fragment-bundle"}:
+        illegal = [
+            item
+            for item in unit.fragments
+            if item.level not in _OBJECTIVE_FRAGMENT_LEVELS
+        ]
+        if illegal:
+            raise ValueError(f"{unit.id}: fragment bundle cannot use interpretive levels")
+        if unit.persona_id:
+            raise ValueError(f"{unit.id}: fragment bundle must not bind persona")
+    if unit.kind == "persona-semantic":
+        if not unit.persona_id:
+            raise ValueError(f"{unit.id}: persona-semantic requires persona_id")
+        if not unit.center_element or unit.center_element not in known_elements:
+            raise ValueError(f"{unit.id}: invalid center_element {unit.center_element!r}")
+        if len(unit.supporting_elements) > _ADR8_SUPPORTING_MAX:
+            raise ValueError(f"{unit.id}: too many supporting_elements")
+    for eid in [*unit.source_elements, *unit.supporting_elements]:
+        if eid and eid not in known_elements:
+            raise ValueError(f"{unit.id}: unknown source element {eid!r}")
+
+
+def build_search_units_payload(
+    *,
+    persona_id: str,
+    alt_pool: AltPoolOverlay,
+    pseudos: list[PseudoSegment],
+    expansion: dict[str, Any] | None,
+    known_elements: set[str],
+) -> dict[str, Any]:
+    ladders = build_fragment_ladders(alt_pool, expansion)
+    bundle_units = build_fragment_bundle_search_units(ladders)
+    persona_units = [
+        search_unit_from_pseudo(pseudo, persona_id=persona_id)
+        for pseudo in pseudos
+        if pseudo.source.get("channel") in _COMPOSITION_CHANNELS
+    ]
+    for unit in [*bundle_units, *persona_units]:
+        validate_search_unit(unit, known_elements)
+    return {
+        "fragment_ladders": fragment_ladders_to_dict(ladders),
+        "search_units": {
+            "surface_fragment_bundles": [
+                unit.to_dict()
+                for unit in bundle_units
+                if unit.kind == "surface-fragment-bundle"
+            ],
+            "event_fragment_bundles": [
+                unit.to_dict()
+                for unit in bundle_units
+                if unit.kind == "event-fragment-bundle"
+            ],
+            "persona_semantic_units": [unit.to_dict() for unit in persona_units],
+        },
+    }
 
 
 def _fragment_text_for_id(ann: dict[str, Any], fragment_id: str) -> str | None:
@@ -1856,10 +2204,19 @@ async def run_persona_pipeline(
                 error=retry_asm,
             )
 
+    workflow_payload = build_search_units_payload(
+        persona_id=persona_id,
+        alt_pool=alt_pool,
+        pseudos=channel_pseudos,
+        expansion=expansion,
+        known_elements=known_element_ids(dec),
+    )
+
     return PersonaPipelineResult(
         persona_id=persona_id,
         overlay=alt_pool,
         pseudos=channel_pseudos,
+        workflow=workflow_payload,
         repair_retries=repair_retries,
     )
 
@@ -1871,6 +2228,8 @@ def pipeline_result_to_dict(result: PersonaPipelineResult) -> dict[str, Any]:
         "pseudos": [pseudo_to_dict(p) for p in result.pseudos],
         "warnings": result.warnings,
     }
+    if result.workflow:
+        payload.update(result.workflow)
     if result.repair_retries:
         payload["repair_retries"] = result.repair_retries
     if result.error:

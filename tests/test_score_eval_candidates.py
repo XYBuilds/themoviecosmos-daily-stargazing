@@ -38,9 +38,11 @@ class RetrieveDiagnosticsInjectionTests(unittest.TestCase):
             distinct_agents=2,
         )
         patched = _inject_retrieve_diagnostics(block, diag)
-        self.assertIn("- **neutral_hit_rate**: 0.5000", patched)
-        self.assertIn("- **distinct_agents**: 2", patched)
-        self.assertLess(patched.index("tmdb_id"), patched.index("neutral_hit_rate"))
+        self.assertIn("- **自动打分**:", patched)
+        self.assertIn("  - **quality_candidate**: true", patched)
+        self.assertIn("  - **objective_match**: false (surface=false, event=false)", patched)
+        self.assertIn("  - **baseline_overlap**: false", patched)
+        self.assertLess(patched.index("tmdb_id"), patched.index("自动打分"))
 
     def test_score_candidates_md_writes_diagnostics_from_retrieve(self):
         text = """# candidates
@@ -66,7 +68,43 @@ class RetrieveDiagnosticsInjectionTests(unittest.TestCase):
             diagnostics_by_tmdb=diag,
             min_total_score=999,
         )
-        self.assertIn("- **neutral_hits**: 3", out)
+        self.assertIn("- **自动打分**:", out)
+        self.assertIn("  - **quality_candidate**: false", out)
+    def test_replaces_legacy_flat_auto_score_fields(self):
+        block = """### Film (2020) [A2]
+- **tmdb_id**: 42
+- **quality_candidate**: false
+- **neutral_hits**: 9
+- **quality_candidate_annotation**: false
+- **distinct_agents**: 1
+- **相似度**: 0.5100
+- **also_baseline**: true
+"""
+        diag = RetrieveDiagnostics(
+            quality_candidate=True,
+            neutral_hits=1,
+            neutral_total=0,
+            neutral_hit_rate=0.0,
+            distinct_agents=2,
+            objective_match=True,
+            surface_match=False,
+            event_match=True,
+            persona_semantic_match=True,
+            convergent_score=123.456,
+            persona_agent_count=2,
+            source_hit_counts={"surface": 0, "event": 1, "persona": 2},
+            search_unit_kinds=["event-fragment-bundle", "persona-semantic"],
+            center_dimensions=["result", "who"],
+            baseline_overlap=False,
+            quality_reason="objective_match=1 + persona_semantic_match=1",
+        )
+        patched = _inject_retrieve_diagnostics(block, diag)
+        self.assertNotIn("- **neutral_hits**:", patched)
+        self.assertNotIn("- **quality_candidate_annotation**:", patched)
+        self.assertNotIn("- **also_baseline**:", patched)
+        self.assertIn("  - **objective_match**: true (surface=false, event=true)", patched)
+        self.assertIn("  - **source_hits**: surface=0 / event=1 / persona=2", patched)
+        self.assertIn("  - **baseline_overlap**: false", patched)
 
 
 class PureNeutralPoolTests(unittest.TestCase):
@@ -117,6 +155,47 @@ class PureNeutralPoolTests(unittest.TestCase):
         out, high = score_candidates_md(text, "run-x", hits, min_total_score=5)
         self.assertIn("- **pseudo命中分合计**: 1", out)
         self.assertEqual(high, [])
+
+    def test_search_unit_ids_receive_inline_scores(self):
+        text = """# candidates
+
+### Search Unit Film (2026) [THE-SAGE]
+- **tmdb_id**: 456
+- **相似度**: 0.50
+- **命中视角/碎片**:
+  - THE-SAGE/su-event-1: fragments=[a, b, c] · sim=0.40
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[x, y] · sim=0.52
+- **共振分**: 
+- **共振类型**: 
+- **打分备注**: 
+"""
+        hits = {
+            456: [
+                HitScore(
+                    agent_id="THE-SAGE",
+                    pseudo_id="su-event-1",
+                    fragments=["a", "b", "c"],
+                    similarity=0.40,
+                    score=3,
+                    channel_role="neutral",
+                ),
+                HitScore(
+                    agent_id="THE-SAGE",
+                    pseudo_id="su-persona-The-Sage-p1",
+                    fragments=["x", "y"],
+                    similarity=0.52,
+                    score=2,
+                    channel_role="toned",
+                ),
+            ]
+        }
+        out, high = score_candidates_md(text, "run-x", hits, min_total_score=2)
+        self.assertIn(
+            "THE-SAGE/su-persona-The-Sage-p1: fragments=[x, y] · sim=0.52 · **命中分=2**",
+            out,
+        )
+        self.assertNotIn("THE-SAGE/su-event-1: fragments=[a, b, c] · sim=0.40 · **命中分=3**", out)
+        self.assertEqual(len(high), 1)
 
     def test_neutral_only_run_not_included_by_n1_alone(self):
         neutral_batch = _FIXTURES / "neutral-only-batch"

@@ -42,23 +42,51 @@ class CandidateHeadingTests(unittest.TestCase):
         self.assertNotIn("汇聚标注", heading)
         self.assertNotIn("baseline only", heading)
 
-    def test_format_block_includes_quality_field(self) -> None:
+    def test_format_block_includes_auto_score_section(self) -> None:
         cand = {
             "title": "X",
             "tmdb_id": 42,
             "quality_candidate": True,
-            "distinct_agents": 2,
+            "quality_reason": "objective_match=1 + persona_semantic_match=1",
+            "convergence_persona_count": 2,
+            "convergent_score": 123.456,
+            "match_diagnostics": {
+                "surface_match": True,
+                "event_match": False,
+                "persona_semantic_match": True,
+                "search_unit_kinds": ["surface-fragment-bundle", "persona-semantic"],
+                "center_dimensions": ["how"],
+            },
             "similarity": 0.9,
             "genres": "drama",
             "language": "en",
             "overview": "test",
             "movie_url": "http://x",
             "also_baseline": False,
-            "hit_sources": [],
+            "hit_sources": [
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "su-surface-1",
+                    "fragments": ["who-0"],
+                    "search_unit_kind": "surface-fragment-bundle",
+                },
+                {
+                    "agent_id": "A2",
+                    "pseudo_id": "su-persona-A2-p1",
+                    "fragments": ["how-2"],
+                    "search_unit_kind": "persona-semantic",
+                    "center_element": "how-2",
+                },
+            ],
         }
         text = "\n".join(_format_candidate_block(cand, include_score=False))
-        self.assertIn("- **quality_candidate_annotation**: true", text)
-        self.assertIn("- **distinct_agents**: 2", text)
+        self.assertIn("- **自动打分**:", text)
+        self.assertIn("  - **quality_candidate**: true", text)
+        self.assertIn("  - **objective_match**: true (surface=true, event=false)", text)
+        self.assertIn("  - **source_hits**: surface=1 / event=0 / persona=1", text)
+        self.assertIn("  - **baseline_overlap**: false", text)
+        self.assertNotIn("quality_candidate_annotation", text)
+        self.assertNotIn("also_baseline", text)
 
 
 class CandidateSortTests(unittest.TestCase):
