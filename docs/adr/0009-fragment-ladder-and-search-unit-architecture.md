@@ -1,6 +1,6 @@
 # Fragment ladder / search unit 架构迁移
 
-**Status**: proposed（Phase 3.11.8 GATE go 后升 accepted）；**supersedes ADR-0008 的通道结构部分**（D3 保留元素中心思想；D4 POV 下线为通用 `center_element`；D5 双地板下线；D6 provenance 粗归因改为 `search_unit_kind` 分解；D8 漏斗改为 match 诊断 + 新 convergent sort）
+**Status**: accepted（Phase 3.11.8 GATE go, 2026-06-13）；**supersedes ADR-0008 的通道结构部分**（D3 保留元素中心思想；D4 POV 下线为通用 `center_element`；D5 双地板下线；D6 provenance 粗归因改为 `search_unit_kind` 分解；D8 漏斗改为 match 诊断 + 新 convergent sort）
 
 > 权威设计源：[`docs/temp/simplified-news-to-film-workflow.md`](../temp/simplified-news-to-film-workflow.md)。本 ADR 把 3.11.6b 的工程迁移决策钉成可执行口径。
 
