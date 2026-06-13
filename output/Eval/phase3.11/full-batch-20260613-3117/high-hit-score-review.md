@@ -27,6 +27,15 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 ### Sources
 
 - **Primary:** `hit_sources` in each run's `retrieve.json` (fragment arrays).
+- **LLM judge:** `llm-judge-scores.json` — trust_status=不采信 (screening only; separate LLM Judge block per candidate)
+- **LLM judge prompt_version:** `3.11.7-mimo-v2.5-pro-thinking-disabled`
+- **LLM judge provider:** `mimo`
+- **LLM judge condition note:** MiMo judge run with thinking disabled; not directly comparable to MiMo runs where thinking was enabled or unspecified.
+- **LLM judge thinking-enabled:** `llm-judge-scores-thinking-enabled.json` — trust_status=不采信 (screening only; separate LLM Judge thinking block per candidate)
+- **LLM judge thinking prompt_version:** `3.11.7-mimo-v2.5-pro-thinking-enabled`
+- **LLM judge thinking provider:** `mimo`
+- **LLM judge thinking_mode:** `enabled`
+- **LLM judge thinking condition note:** MiMo judge run with thinking enabled; separate from and not directly comparable to MiMo thinking-disabled judge artifacts.
 - **Editor fields:** 共振分 / 共振类型 / 打分备注 are placeholders only (not filled by this script).
 
 - **Generation date:** 2026-06-13
@@ -101,6 +110,19 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 2
+  - **judge共振类型**: 强共振（表层 + 逻辑）
+  - **judge POV变换**: 是
+  - **judge采信**: 不采信 · screening only
+  - **judge因果反测**: Electrical grid failure under extreme demand and infrastructure constraints forces emergency load shedding and societal disruption.
+  - **judge理由**: Both news and film share the concrete surface element of electrical grid failure/power outage. The underlying logic is identical: insufficient power supply under high demand and infrastructure constraints forces emergency rationing (load shedding in news, societal collapse in film). The POV shift from institutional grid management to individual family survival makes the resonance visible.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Electrical power unavailability under societal dependence drives critical emergencies and survival actions.
+  - **thinking judge理由**: Both stories center on electrical outages as a concrete event (surface element), and share the causal-stakes engine where power shortages force urgent responses, though the news is regional and institutional while the film is global and individual.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 14 -->
@@ -126,10 +148,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-CREATOR/su-persona-The-Creator-p3: fragments=[who-0, why-0, why-1, why-2, result-0] · sim=0.5030 · **命中分=5**
   - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[who-0, how-1, result-0, why-2, why-0] · sim=0.4694 · **命中分=5**
 - **pseudo命中分合计**: 14
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (energy crisis is too broad, fails 0-guard). No specific causal-stakes engine invariant under POV/scale change that holds for both.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Energy scarcity under the constraint of infrastructure breakdown forces emergency rationing or societal collapse.
+  - **thinking judge理由**: Both news and film feature an energy crisis as the central, load-bearing element. The underlying logic of acute energy shortages driving extreme actions (load shedding in news, survival in film) holds true, with the causal engine invariant under scale shift.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 14 -->
@@ -160,6 +193,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about a regional power grid failure in the Philippines, while the film is about a global satellite climate control system going rogue. No load-bearing concrete anchor shared. No underlying logic: the causal engine 'systemic infrastructure failure under operational stress forces emergency protective measures' could apply to many unrelated news-film pairs (e.g., a bridge collapse news paired with a disaster film), failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element (e.g., news focuses on electrical grid failure; film on satellite system malfunction—different domains). Underlying logic is too general; a causal-test sentence like 'A system's failure under stress drives a crisis' could apply to unrelated news (e.g., bank system crash) paired with the film, failing the logic 0-guard.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 11 -->
@@ -189,6 +232,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: 'power crunch' (news) vs 'stranded on island' (film) share no concrete, nameable anchor. No underlying logic: cannot write a single 'X under constraint Z drives Y' sentence literally true of both (e.g., 'systemic scarcity forces survival mode' is too broad and would hold for unrelated news paired with the film).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No load-bearing concrete surface element shared; the resource scarcity logic is too broad and fails the falsifiable causal counter-test and logic 0-guard.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 9 -->
@@ -217,6 +270,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element is shared (e.g., power grid, blackout, Arctic drilling). The underlying logic differs: the news is about systemic infrastructure failure under demand pressure, while the film is about psychological disintegration in an isolated, hostile environment. No 'X under constraint Z drives Y' sentence holds for both without being overly generic (e.g., 'pressure causes breakdown' would apply to many unrelated pairs).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element is shared; news focuses on power grid failure, while film centers on oil drilling with supernatural elements. The underlying logic potential (e.g., industrial operations under stress) is too broad and fails the 0-guard, as it would apply to unrelated news items paired with the film.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 9 -->
@@ -245,6 +308,18 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 2
+  - **judge共振类型**: 强共振（表层 + 逻辑）
+  - **judge采信**: 不采信 · screening only
+  - **judge因果反测**: A critical power infrastructure failure, under the constraint of insufficient generation capacity and high demand, forces emergency load shedding to prevent cascading system collapse.
+  - **judge理由**: Both news and film center on electrical grid failure (表层元素: power blackout). Both share the same causal engine: insufficient supply under high demand forces emergency load shedding to prevent total collapse (底层逻辑). The news is real-world Visayas; the film is fictional West Coast US, but the underlying logic is identical.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Electrical system failure under the constraint of high demand or insufficient capacity drives emergency load shedding and widespread societal disruption.
+  - **thinking judge理由**: Both stories center on electrical blackouts causing chaos: the news details grid failures and load shedding in Visayas, while the film depicts a blackout leading to city shutdowns and market collapse. The shared causal engine of failure driving disruption holds, and the surface element of 'blackout' is load-bearing in both.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 6 -->
@@ -269,10 +344,23 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[why-0, why-2, how-1] · sim=0.5294 · **命中分=3**
   - THE-HERO/su-persona-The-Hero-p3: fragments=[why-0, how-1, result-0] · sim=0.4750 · **命中分=3**
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: true  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 2
+  - **judge共振类型**: 强共振（表层 + 逻辑）
+  - **judge POV变换**: 是
+  - **judge采信**: 不采信 · screening only
+  - **judge因果反测**: A sudden loss of critical power infrastructure under conditions of high demand and thin margins forces authorities and individuals into emergency survival decisions that test legal and ethical boundaries.
+  - **judge理由**: 表层元素：两者都围绕电力中断/停电这一具体事件展开，且停电在两个故事中都是推动情节的核心要素。底层逻辑：新闻中，发电机组故障+高温需求导致电网濒临崩溃，迫使官方实施紧急减载；电影中，停电迫使居民在掠夺性环境中做出生存决策。两者共享同一因果引擎：关键电力基础设施的突然丧失，在高需求和脆弱系统条件下，迫使各方采取紧急且可能越界的行动。需要POV变换（新闻为机构/系统层面，电影为个人/社区层面）才能看到共享逻辑。
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: A sudden loss of electrical power under the constraint of critical societal or individual dependencies drives emergency survival measures.
+  - **thinking judge理由**: Both stories center on a blackout as a concrete, load-bearing event, and share the underlying logic where power failure forces crisis-driven actions: institutional load shedding in the news and individual survival decisions in the film.
 
 ### 单 agent 命中
 
@@ -304,6 +392,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (power grid crisis vs. island survival). No shared causal-stakes engine: news is about infrastructure failure forcing load shedding; film is about scarcity driving psychological transformation. The causal test sentence 'resource scarcity under survival constraint drives desperate behavior' would hold for many unrelated news-film pairs, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, nameable surface element is load-bearing in both stories (e.g., power grid vs. island survival). The underlying scarcity logic is too generic and fails the 0-guard, as it would hold for unrelated resource-scarcity news paired with the film.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -327,10 +425,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **命中视角/碎片**:
   - THE-RULER/su-persona-The-Ruler-p2: fragments=[result-0, why-0, why-1, how-1, how-2] · sim=0.4831 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层逻辑  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: 'power grid failure' and '1940s famine' share no concrete, nameable load-bearing element. No underlying logic: cannot write a single 'X under constraint Z drives Y' sentence literally true of both a modern power grid crisis and a wartime famine with multiple causes (drought, locusts, corruption) that wouldn't also apply to unrelated disasters paired with the film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 深层共振（仅逻辑，无表层）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Resource scarcity under environmental and systemic constraints drives severe societal consequences.
+  - **thinking judge理由**: News involves electricity scarcity from plant failures and heat demand, leading to blackout risks; film depicts food scarcity from drought and corruption, leading to famine. Both share the underlying logic of resource shortage under stress driving crises, but no concrete surface element like place, occupation, or event type is shared.
 
 <!-- run_id: 01-grid-outage -->
 <!-- pseudo命中分合计: 5 -->
@@ -359,6 +468,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No shared load-bearing surface element (power grid crisis vs. rural supernatural/political events). No shared causal-stakes engine: the news is about technical grid failure under demand pressure, the film is about societal collapse under martial law; any proposed causal sentence (e.g., 'systemic failure under external pressure drives societal instability') is too abstract and would fit many unrelated news-film pairs, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No shared load-bearing surface elements (news: power crisis; film: Martial Law and supernatural events). No common causal engine: cannot write a 'X under constraint Z drives Y' sentence true for both without being overly vague, failing specificity and the 0-guard.
 
 ## 02-corporate-layoff
 
@@ -412,6 +531,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about corporate layoffs for AI restructuring, while the film is about post-apocalyptic bounty hunters targeting corporate criminals. The only shared concept is 'corporations,' but this is too generic and not load-bearing in both stories (an unrelated corporate news item would fit equally well). No underlying logic: cannot write a specific 'X under constraint Z drives Y' sentence that is literally true of both. The news involves corporate cost-cutting for efficiency; the film involves vigilante justice against corporate criminals—different causal engines.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared (e.g., 'corporations' is too broad and fails 0-guard). No specific causal-stakes engine true for both; any general corporate consequence sentence would also apply to unrelated news paired with the film, failing the logic 0-guard.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 29 -->
@@ -445,6 +574,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 1
+  - **judge共振类型**: 表层沾边
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: 表层元素：两者共享'大规模裁员/解雇员工'这一具体、承重的事件元素，且在各自故事中均为核心驱动事件。底层逻辑：新闻中裁员是公司为AI转型而主动进行的战略重组；电影中裁员是雇主压迫性劳动政策的体现，引发工人抗议。两者背后的因果-利害引擎不同（战略转型 vs 劳资对抗），无法写出一个同时字面成立的'X在约束Z下驱动Y'句子。
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element passes the 0-guard; the shared 'layoffs' is generic and could apply to many unrelated news-film pairs. No specific causal-stakes engine holds for both, as the news focuses on corporate restructuring for AI without worker protest, while the film centers on labor rights protest.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 24 -->
@@ -473,10 +612,20 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[result-0, why-0, how-1, how-2, result-1] · sim=0.4741 · **命中分=5**
   - THE-SAGE/su-persona-The-Sage-p2: fragments=[how-1, how-0, result-1] · sim=0.4443 · **命中分=3**
 - **pseudo命中分合计**: 24
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: 是  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: 可以作为“普通人被解雇后发生的事”作为和现实的关联点
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: 'being fired' is too generic (fails 0-guard—any layoff news would fit). No shared causal engine: the news is about corporate AI-driven restructuring; the film is about unemployed friends planning a trip with a broken car. No 'X under constraint Z drives Y' sentence holds specifically for both.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 表层沾边
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: Surface element of job loss/firing is concrete and load-bearing in both, but underlying logic differs: news has AI-driven corporate restructuring, while film's cause of firing is unspecified and focuses on personal demoralization and a broken-car obstacle.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 16 -->
@@ -507,6 +656,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about corporate layoffs in tech/AI, while the film is a slasher-horror set at a public sector retreat—no concrete, load-bearing overlap. No underlying logic: the news's causal engine (AI-driven restructuring forces workforce cuts) is unrelated to the film's engine (group discord amid a killer threat). The causal test fails: no 'X under constraint Z drives Y' sentence holds for both.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element shared; news is about corporate layoffs due to AI restructuring, film is a horror thriller at a retreat. No specific causal-stakes engine common to both; any generalized sentence would fail the 0-guard by applying to unrelated news paired with the same film.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 13 -->
@@ -537,6 +696,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared: news is about AI-driven layoffs at a tax-software company; film is about a corporate retreat to reunite a divided team. No underlying causal-stakes engine holds for both: the news's 'AI restructuring forces workforce cuts' logic does not match the film's 'corporate retreat forces team reconciliation' logic. The 0-guard applies: an unrelated corporate news item (e.g., merger, scandal) could pair with the film equally well.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete shared surface element (e.g., layoffs vs. retreat) passes the 0-guard, and no specific causal-stakes engine ('X under constraint Z drives Y') holds for both without being overly vague or failing the logic 0-guard.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 10 -->
@@ -562,10 +731,20 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[how-2, why-1, result-2] · sim=0.4605 · **命中分=3**
   - THE-SAGE/su-persona-The-Sage-p3: fragments=[result-2, result-0, result-1] · sim=0.5002 · **命中分=3**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: 是  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: 深层结构有相关
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: 'AI restructuring' and 'factory closure' are different industries/contexts; 'layoffs' alone fails the 0-guard (any corporate news fits). No underlying logic: cannot write a specific causal sentence true of both—Intuit's layoffs are strategic reinvention for AI, while The Factory's closure is owner-driven economic failure; the engines differ (corporate optimization vs. labor-vs-capital conflict).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 表层沾边
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: Both share a surface element of mass job loss (layoffs in news, factory closure in film), but the underlying logic differs: news focuses on AI-driven restructuring for reinvention, film on worker action against closure, failing the causal counter-test for a unified engine.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 9 -->
@@ -594,6 +773,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about corporate layoffs in tech/software, while the film is about paramedic work—no concrete, nameable load-bearing element shared. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence that is literally true of both (e.g., 'corporate restructuring forces workforce reduction' does not apply to a paramedic's last shift). The 0-guard applies: an unrelated news item about any corporate layoff could pair with this film equally well.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element connects the news (tech layoffs) to the film (paramedic burnout). The underlying logic of job-related stress is too general, failing the 0-guard as it would apply to unrelated news items paired with the same film.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 6 -->
@@ -636,6 +825,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element connects the news (corporate AI-driven layoffs) to the film (a 1977 French comedy about soldiers' misadventures). The abstract theme of 'restructuring' or 'disruption' fails the 0-guard, as it could apply to countless unrelated news items. No specific causal-stakes engine ('X under constraint Z drives Y') can be written that is literally true of both.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared between news (corporate AI restructuring) and film (war comedy). Causal logic test fails: no specific 'X under constraint Z drives Y' sentence holds for both without being too vague or passing logic 0-guard with unrelated news.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 6 -->
@@ -664,6 +863,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (Intuit's AI restructuring vs. a comedy about an incompetent director of a declining company). No specific causal-stakes engine holds for both: 'corporate restructuring drives workforce displacement' is too generic and would fit many unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No shared load-bearing surface element; abstract corporate themes like 'company decline' fail the 0-guard as unrelated news could pair similarly. Underlying causal engines differ: news features strategic AI-driven layoffs by competent leadership, while film centers on incompetent leadership and employee ingenuity in decline; no specific 'X under Z drives Y' sentence holds for both without being overly broad and failing logic 0-guard.
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 5 -->
@@ -692,6 +901,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about tech layoffs for AI restructuring, while the film is about a new CEO's management style in a department store—no concrete, load-bearing shared element. No underlying logic: a causal sentence like 'A new leader, under pressure to improve performance, drives organizational change' would hold for almost any corporate news paired with this film, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No load-bearing surface element (abstract leader-change pairing fails 0-guard); underlying logic is generic ('business pressure drives disruptive organizational change') and not specific to this pair, failing the logic 0-guard.
 
 ### 单 agent 命中
 
@@ -724,6 +943,17 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 2
+  - **judge共振类型**: 强共振（表层 + 逻辑）
+  - **judge采信**: 不采信 · screening only
+  - **judge因果反测**: Corporate restructuring under financial/strategic pressure drives mass layoffs that disrupt employees' livelihoods and identities.
+  - **judge理由**: Both share the concrete surface element of corporate layoffs/restructuring. The underlying logic is identical: a company facing strategic pressure (AI transition in news, unspecified in film) implements layoffs that destabilize employees, with the company framing it as necessary reinvention. The causal engine holds for both.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element is load-bearing and specific to this pair; layoffs are too general and fail the 0-guard. No causal-stakes engine invariant under POV/scale can be written that is literally true for both without being overly broad or failing the counter-test (e.g., generic corporate pressure scenarios apply to unrelated news items).
 
 <!-- run_id: 02-corporate-layoff -->
 <!-- pseudo命中分合计: 5 -->
@@ -751,6 +981,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared: the news is about corporate AI-driven layoffs at a specific tech company, while the film is a satirical comedy about a generic office worker's daily humiliations under bosses. The 'employee vs. corporate power' dynamic is an abstract power-role pairing that fails the 0-guard (any institutional news about layoffs could fit). No specific causal-stakes engine links them: the news's engine is 'strategic restructuring forces workforce elimination,' while the film's engine is 'hierarchical office culture forces absurd compliance' — these are different engines, and no single 'X under constraint Z drives Y' sentence is literally true of both without being trivially true of many unrelated pairings.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element shared (e.g., layoffs or AI restructuring not present in film); no shared causal-stakes engine that passes the falsifiable test and 0-guard.
 
 ## 03-election-upset
 
@@ -798,10 +1038,20 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, result-1, why-0, how-0] · sim=0.5410 · **命中分=4**
   - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[who-2, why-0, why-1, result-0] · sim=0.5241 · **命中分=4**
 - **pseudo命中分合计**: 25
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层元素  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
-- **打分备注**: （可选）
+- **打分备注**: 只有表层相关
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: 'Texas Senator' is too generic and not load-bearing in the film (the assassination target is a plot device, not the core subject). No underlying logic: The news is about political renomination; the film is about revenge after betrayal. No single 'X under constraint Z drives Y' sentence holds for both without being trivially true of many unrelated news items paired with the same film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 表层沾边
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: Shared concrete element of Texas Senator is load-bearing in both stories, but no common causal-stakes engine holds: news involves electoral competition, film involves personal revenge from betrayal.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 20 -->
@@ -850,6 +1100,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about a Texas Senate primary runoff between two established politicians, while the film is about a single ordinary man deciding a presidential election. No underlying logic: the causal engine 'a single decisive vote determines an election outcome' does not apply to the news, where Paxton won by a large margin (64%) in a primary, not a single-vote scenario. The film's engine is too specific to the 'one vote' premise, which the news lacks.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element (e.g., elections are too broad and unrelated news could pair equally well). No underlying logic because a causal sentence like 'under electoral uncertainty, a pivotal factor drives outcome' is too vague and would hold for unrelated election news, failing specificity.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 17 -->
@@ -881,6 +1141,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element (e.g., Texas politics, specific election type, or named figures) is shared. The abstract 'election upset' or 'political replacement' themes fail the 0-guard, as many unrelated news items could pair with the film. No specific causal engine (X under constraint Z drives Y) can be written that is literally true of both the Texas Senate runoff and the film's plot about a twin replacing a missing party leader.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element (e.g., specific place, occupation, or event) is load-bearing in both; the election theme is too broad and fails the 0-guard. The underlying causal logic of electoral interventions driving outcomes is generic and not specific to this pair, as it could apply to many unrelated political stories, failing the logic 0-guard.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 14 -->
@@ -912,6 +1182,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element (Texas Senate race vs. presidential election; different offices, states, and political contexts). No shared causal-stakes engine: the news is about intra-party primary challenge dynamics, while the film is about election conspiracy investigation—no 'X under constraint Z drives Y' sentence holds for both without also holding for unrelated political news paired with the same film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element: 'U.S. political election' is too broad and fails the 0-guard, as unrelated election news could pair equally well with the film. No shared causal-stakes engine: the news centers on candidate success via endorsements, while the film focuses on journalistic exposure of conspiracy, and no 'X under constraint Z drives Y' sentence holds literally for both without being generic.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 13 -->
@@ -943,10 +1223,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-0, how-0, why-1, result-0] · sim=0.5760 · **命中分=4**
   - THE-SAGE/su-persona-The-Sage-p1: fragments=[result-0, how-0, result-1] · sim=0.5051 · **命中分=3**
 - **pseudo命中分合计**: 13
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: 'Texas politics' is too broad and not load-bearing in the film (which is a 1950s Western about Texas independence). No underlying logic: cannot write a specific 'X under constraint Z drives Y' sentence true of both a modern Republican primary and a 19th-century independence struggle without it being trivially true of any political conflict paired with the film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Under the constraint of a politically contentious environment, strategic endorsements or alliances drive the success of ambitious political figures.
+  - **thinking judge理由**: Both stories are centered on Texas political struggles: the news involves a modern Senate election influenced by endorsement, while the film features historical political conflict with alliances shaping outcomes. The shared surface element is Texas politics, and the underlying logic involves endorsements or alliances driving political success in contested settings.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 13 -->
@@ -977,6 +1268,17 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (Texas Republican runoff vs. Italian election campaign). No specific causal-stakes engine holds for both: a sentence like 'political ambition under electoral constraint drives campaign tactics' would be true of any political news paired with any political film, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Political candidates, under the constraint of electoral competition and the need for endorsements or public support, drive campaigns to achieve electoral victories.
+  - **thinking judge理由**: Both the news and film share the concrete surface element of political elections, and they instantiate the same underlying logic of candidates striving to win under electoral constraints.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 11 -->
@@ -1006,6 +1308,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, nameable surface element is shared (e.g., Texas politics, Senate race, or specific political figures are not present in the film). The abstract theme of 'political power vs. personal ambition' is too broad and fails the 0-guard: an unrelated political news item could pair with the film equally well. No specific causal engine can be articulated that is literally true of both the news (a specific electoral upset) and the film (a martial arts allegory about power and ambition).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element is shared (news is specific to a Texas Senate election; film is abstract with metaphors for power and ambition). The potential underlying logic of personal ambition challenging political power is too general and fails the logic 0-guard, as it could apply to many unrelated news items.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 9 -->
@@ -1050,10 +1362,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-SAGE/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5115
   - THE-JESTER/su-surface-1: fragments=[who-0, who-1, who-2, where-0] · sim=0.5546
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层结构  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about a Texas Senate runoff between two established Republicans, while the film is about the 2008 presidential campaign's VP selection. No underlying logic: a causal sentence like 'A political establishment, under pressure to energize its base, selects an unconventional candidate who then creates strategic complications' does not hold for both—the news involves defeating an incumbent, not selecting a running mate, and the film's core is about a VP pick's inexperience, not a primary challenge.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 深层共振（仅逻辑，无表层）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Under the constraint of needing to energize the Republican base for electoral success, a key political figure's endorsement or selection of a disruptive candidate drives campaign outcomes — true of both news (Trump's endorsement aiding Paxton's win) and film (McCain's selection of Palin altering campaign dynamics).
+  - **thinking judge理由**: No concrete surface element like same event type or location; however, underlying logic of endorsements/selections impacting Republican campaign trajectories resonates.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 8 -->
@@ -1082,6 +1405,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: the news is about a real Texas Senate primary upset; the film is a fictional comedy about a con man impersonating a dead Congressman. The shared 'election' or 'Congress' setting is too generic (fails 0-guard: any political news could pair with this film). No underlying logic: the news involves ideological realignment and party endorsement power; the film involves identity fraud and lobbyist corruption. No single 'X under constraint Z drives Y' sentence holds for both without being trivially true of any political story.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No load-bearing surface element (U.S. elections are too broad, failing 0-guard), and no specific causal engine ties the news's endorsement-driven upset to the film's deception-based election without being overly general or failing the counter-test.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 7 -->
@@ -1110,6 +1443,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (news: political primary election; film: paramilitary assassination plot). No shared causal-stakes engine: news is about intra-party electoral competition aided by presidential endorsement; film is about paramilitary violence against a senator. Any causal sentence would be too generic (e.g., 'political figures face threats') and would pass the logic 0-guard for unrelated news.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: The surface element 'senator' is present but not load-bearing in both stories; the news focuses on political election dynamics, while the film centers on paramilitary action and physical threat. No common causal-stakes engine (e.g., 'X under constraint Z drives Y') can be written that is specific and true for both without being overly general, failing the logic 0-guard.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 7 -->
@@ -1142,6 +1485,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 1
+  - **judge共振类型**: 表层沾边
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: Both share the surface element of a competitive political election (表层元素: 有). However, the underlying logic differs: the news involves an incumbent's defeat driven by presidential endorsement and party realignment, while the film is a satirical farce about absurd campaign tactics. No single 'X under constraint Z drives Y' sentence holds for both without being trivially true of any political news-film pair (e.g., 'ambition under electoral rules drives competition' would apply to any election story paired with any election film, failing the logic 0-guard).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element is load-bearing for this specific pair, as any news about a U.S. political election could equally match the film's theme. No underlying causal-stakes engine can be written that is literally true for both without relying on generalities that fail the logic 0-guard.
 
 <!-- run_id: 03-election-upset -->
 <!-- pseudo命中分合计: 7 -->
@@ -1170,6 +1523,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete surface element (Texas politics vs. 1969 Massachusetts scandal). No shared causal engine: Paxton's win is about ideological realignment and presidential endorsement; Chappaquiddick is about personal scandal derailing a political career. The causal test sentence would be too generic (e.g., 'political ambition under public scrutiny drives career consequences') and would apply to unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared (news centers on a primary election outcome, film on a personal scandal; broad 'U.S. politics' fails the 0-guard). No specific causal-stakes engine holds uniquely for both; any plausible 'X under Z drives Y' sentence (e.g., 'external events under public pressure shape political careers') would apply to unrelated news-film pairs.
 
 ### 单 agent 命中
 
@@ -1201,6 +1564,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves a Republican primary election in Texas, while the film involves a hostage crisis in Greece. No underlying logic: the news is about intra-party electoral competition aided by presidential endorsement, while the film is about political hostage-taking causing government disarray. The causal engines differ fundamentally—one is democratic electoral politics, the other is political violence and state crisis.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element overlaps (election vs. hostage crisis), and no specific causal-stakes engine is shared; a falsifiable 'X under constraint Z drives Y' sentence true for both cannot be written without being overly vague or applicable to unrelated pairs.
 
 ## 04-celebrity-scandal
 
@@ -1247,10 +1620,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[why-0, result-1, result-0, how-0] · sim=0.5827 · **命中分=4**
   - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[how-1, how-0, why-0, result-0, result-1] · sim=0.5761 · **命中分=5**
 - **pseudo命中分合计**: 25
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: the news involves AI-fabricated claims about a Korean actor, while the film involves a photograph and court case about a painter and singer—these are distinct concrete elements. No underlying logic: a causal sentence like 'media manipulation under financial incentive drives public scandal' would hold for many unrelated news-film pairs, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Media entities, under the constraint of financial gain and audience engagement, drive the fabrication of sensational stories, causing scandals that damage celebrity reputations and careers.
+  - **thinking judge理由**: Both news and film share a concrete surface element of celebrity scandal caused by media manipulation (tabloid/YouTuber). The underlying logic is the same: profit-motivated media fabrication drives reputational harm, with a causal engine that holds for both.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 18 -->
@@ -1284,10 +1668,20 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[result-0, why-0, how-0, how-1] · sim=0.4757 · **命中分=4**
   - THE-SAGE/su-persona-The-Sage-p1: fragments=[how-0, how-1, result-0] · sim=0.5777 · **命中分=3**
 - **pseudo命中分合计**: 18
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: the news involves AI-fabricated celebrity scandal for financial gain, while the film involves cyber crime investigation of violent threat videos posted by a dismissed IT worker. The shared 'online platform' element is too generic (fails 0-guard). No underlying logic: cannot write a specific 'X under constraint Z drives Y' sentence true of both without it being trivially true of unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 表层沾边
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: Both stories share a concrete surface element: the use of a video-sharing platform (YouTube/YOURTUBE) to spread content with real-world consequences. However, the underlying causal logic differs: the news involves AI-fabricated false claims for financial gain, while the film involves crime warnings as revenge after unfair dismissal. A specific 'X under constraint Z drives Y' sentence that holds for both and passes the 0-guard could not be formulated without being too broad (applicable to unrelated news items), so Axis 2 is NO.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 13 -->
@@ -1317,6 +1711,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No shared load-bearing surface element: news involves AI-fabricated celebrity scandal; film is a 1933 cartoon with magazine covers coming to life. No shared causal engine: news is about misinformation for profit; film is a whimsical animated variety show. Any causal sentence would be too generic (e.g., 'celebrity culture drives public spectacle') and would fail the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared (news is about AI-fabricated scandal in entertainment; film is a 1933 cartoon with celebrity cameos and robbery). The underlying logic of deception for gain is too broad and not specific, as an unrelated news item (e.g., about theft) would fit the film equally well, failing the logic 0-guard.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 12 -->
@@ -1358,6 +1762,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves AI-fabricated celebrity scandal and social media manipulation, while the film is a 1940s masked vigilante crime-fighting story. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both that wouldn't also apply to unrelated news paired with the film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element: news has YouTuber/AI scandal, film has newspaper publisher/vigilante deception—occupation and contexts differ, and 0-guard applies. No underlying logic: cannot write a specific 'X under constraint Z drives Y' sentence that is literally true for both without being too broad (e.g., deception for different purposes), and 0-guard fails due to lack of specificity.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 11 -->
@@ -1394,6 +1808,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves AI-fabricated celebrity defamation for financial gain, while the film depicts a network marketing scam and systemic corruption. No shared concrete, load-bearing element (e.g., AI, defamation, celebrity, or network marketing). No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both that isn't generic (e.g., 'deception under financial pressure drives harm' would apply to many unrelated news-film pairs, failing the logic 0-guard).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element shared (news: AI-driven entertainment scandal; film: network marketing business scam). No specific underlying logic engine: a general 'deception for gain drives scandal' sentence would fit many unrelated news items with the same film, failing the logic 0-guard.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 9 -->
@@ -1422,6 +1846,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (AI fabrication vs. digital communication/pornography are too broad; celebrity scandal vs. thriller about love are different subjects). No specific causal-stakes engine holds for both: 'Digital tools enable exploitation for gain' would also apply to countless unrelated news-film pairs, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element is shared; the news involves AI-fabricated false claims leading to legal arrest, while the film focuses on how digital communication and vanity obstruct emotions, with no specific causal engine that uniquely applies to both without being overly broad.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 9 -->
@@ -1450,6 +1884,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element (0-guard: an unrelated news item about any scandal could pair with this film). No shared causal-stakes engine (cannot write a specific 'X under constraint Z drives Y' sentence true of both; any such sentence would be too generic and pass the logic 0-guard).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No load-bearing surface element (YouTuber/AI fabrication vs. journalist/murder cases); no common causal engine (financial gain drives false claims vs. story pursuit drives crime uncovering).
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 9 -->
@@ -1478,6 +1922,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (AI fabrication vs. soccer/celebrity exploitation). No specific causal-stakes engine holds for both: the news involves deliberate misinformation for profit, while the film involves naive celebrity exploitation by various causes. Any causal sentence (e.g., 'celebrity status under public scrutiny drives exploitation') would be too generic and apply to unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, nameable surface element is load-bearing in both stories (e.g., specific occupation or event differs). Underlying logic of celebrity exploitation for external gain is too broad; it fails the 0-guard as an unrelated celebrity scandal news item could pair equally well with the film.
 
 <!-- run_id: 04-celebrity-scandal -->
 <!-- pseudo命中分合计: 7 -->
@@ -1506,6 +1960,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element (0-guard: an unrelated celebrity scandal news item could pair equally well with this film about an advertiser covering up infidelity). No underlying causal engine: the news involves AI-fabricated claims for financial gain, while the film involves a false alibi to protect a marriage—different motivations, constraints, and stakes. Cannot write a single 'X under constraint Z drives Y' sentence true of both without it being generic (e.g., 'deception to protect reputation drives consequences' would apply to many unrelated pairs).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No load-bearing surface element shared (e.g., celebrity scandal or false claims are too broad and fail the 0-guard). No specific underlying causal engine: the common logic of deception for self-interest leading to backlash is too generic and would apply to unrelated news-film pairs, failing the falsifiable counter-test and logic 0-guard.
 
 ### 单 agent 命中
 
@@ -1542,6 +2006,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element connects the news (AI-fabricated celebrity scandal) and film (photographer coerced into political espionage). The abstract themes of 'false accusations' and 'witnessing' fail the 0-guard as they could apply to many unrelated news-film pairs. No specific causal engine (X under constraint Z drives Y) holds for both without being overly generic.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element (e.g., AI fabrication vs. photography spying, celebrity scandal vs. political crime); abstract false accusation theme fails 0-guard. No specific underlying causal engine: while both involve false claims, the drivers (financial gain vs. coercion) and contexts differ, and a generic causal sentence (e.g., 'motivation under pressure drives false narratives') would apply to unrelated news-film pairs, failing the logic 0-guard.
 
 ## 05-climate-disaster
 
@@ -1586,10 +2060,20 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-LOVER/su-persona-The-Lover-p1: fragments=[result-0, why-0, how-1, how-2] · sim=0.5901 · **命中分=4**
   - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, why-0, how-2, result-0, result-1] · sim=0.6060 · **命中分=5**
 - **pseudo命中分合计**: 17
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves real-world flooding and drowning in Syria, while the film is a supernatural horror about demonic possession after a drowning accident—these are not load-bearing shared elements (an unrelated news item about any natural disaster could pair with the film). No underlying logic: no 'X under constraint Z drives Y' sentence holds for both; the news is about natural disaster response, the film is about supernatural evil destroying a family.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 表层沾边
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: Both stories involve water-related drowning as a load-bearing surface element, but the news depicts natural flooding and institutional response, while the film introduces supernatural possession, preventing a shared causal-stakes engine.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 15 -->
@@ -1617,10 +2101,22 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[how-0, why-0, how-1, result-0] · sim=0.5348 · **命中分=4**
   - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[result-0, why-0, how-0, how-1] · sim=0.5311 · **命中分=4**
 - **pseudo命中分合计**: 15
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 2
+  - **judge共振类型**: 强共振（表层 + 逻辑）
+  - **judge采信**: 不采信 · screening only
+  - **judge因果反测**: Large-scale water infrastructure projects (dams, reservoirs, flood control) under the constraint of managing powerful rivers drive displacement, conflict, and human tragedy for local communities.
+  - **judge理由**: Surface: Both involve Euphrates/river flooding and dam/reservoir operations as central, load-bearing elements. Logic: Both stories are driven by the same engine—human attempts to control large water systems (dam construction, flood management) under the constraint of powerful rivers create displacement, conflict, and tragedy for affected communities. The causal test holds specifically for this pair.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Dam operations or constructions, under the constraint of environmental pressures or development agendas, drive the submersion of inhabited lands and trigger evacuations or resistance.
+  - **thinking judge理由**: Both news and film share the concrete surface element of dams causing water-related disasters or projects that submerge communities. The underlying logic is identical: large-scale water control initiatives, under constraints like natural forces or human goals, force displacement and create conflict, passing the causal counter-test.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 12 -->
@@ -1647,10 +2143,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-CREATOR/su-persona-The-Creator-p2: fragments=[result-0, why-0, how-1, result-2] · sim=0.5504 · **命中分=4**
   - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[how-0, why-0, how-1, result-0] · sim=0.5413 · **命中分=4**
 - **pseudo命中分合计**: 12
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: 是  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: 表层的地理元素可能不相关，但是关键元素洪水和洪水中发生的事可以是共振，low 2
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves river flooding in Syria, while the film involves tidal surge in London—different water sources, geographies, and contexts. No underlying logic: a causal sentence like 'extreme water volume under infrastructure limits drives catastrophic urban inundation' could apply to many unrelated flood scenarios, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 深层共振（仅逻辑，无表层）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Extreme weather under the constraint of insufficient flood defenses drives catastrophic flooding and mass evacuations.
+  - **thinking judge理由**: No load-bearing surface element (flooding is too general, failing 0-guard); underlying logic shared: both involve weather events overwhelming infrastructure, leading to emergency responses.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 9 -->
@@ -1679,6 +2186,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves Euphrates flooding from heavy rains/dam operations, while the film involves a tsunami/earthquake in the Pacific—different geographic settings, water types, and disaster mechanisms. No underlying logic: the causal engine 'natural disaster forces emergency response and evacuation' is too generic and would hold for any unrelated disaster news paired with the film, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared (e.g., flooding vs. tsunami/earthquake are similar but not identical; ruler/authority is abstract and fails 0-guard). No specific underlying causal engine: a generic sentence like 'natural disaster drives evacuations' would apply to unrelated news paired with the film, failing the logic 0-guard.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 8 -->
@@ -1703,10 +2220,20 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[result-0, how-5, result-4] · sim=0.5607 · **命中分=3**
   - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, why-0, how-2, result-0, result-1] · sim=0.6030 · **命中分=5**
 - **pseudo命中分合计**: 8
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: the news involves a natural flood disaster in Syria, while the film involves a school bus accident in a Canadian mountain town. The shared 'children dying' is too abstract and fails the 0-guard (any tragedy involving children could match). No underlying logic: a causal sentence like 'A sudden catastrophic event, under the constraint of community vulnerability, drives collective trauma and legal/social fragmentation' could be written, but it would remain true for many unrelated disaster/tragedy news items paired with the same film, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 表层沾边
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: Surface element: both stories center on the death of children due to a tragic event (flood vs. bus accident), which is concrete and load-bearing. Underlying logic: no shared causal-stakes engine; the news focuses on natural disaster response and government action, while the film explores legal and interpersonal aftermath of an accident, making a specific 'X under Z drives Y' sentence that holds for both and is not overly broad unachievable.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 8 -->
@@ -1735,6 +2262,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: 'flood' is too generic (fails 0-guard). No specific causal engine: 'natural disaster forces separation/survival' is too broad and would fit many unrelated disaster news items with the same film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: Both involve major floods as a central event, but 'flood' as a surface element fails the 0-guard because an unrelated flood news item could pair equally well with the film. The underlying logic (e.g., 'flooding drives search/rescue') is too general and fails the logic 0-guard, as it would hold for any flood-related news with this film.
 
 <!-- run_id: 05-climate-disaster -->
 <!-- pseudo命中分合计: 8 -->
@@ -1763,6 +2300,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves river flooding in Syria, while the film involves global tectonic collapse—no concrete, load-bearing shared element. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both; the news is about localized flood management, while the film is about global survival exodus after crustal breakup. Any causal sentence would be too generic (e.g., 'disaster forces evacuation') and would pass the logic 0-guard for unrelated disaster news paired with the film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No shared concrete surface element (flood vs. tectonic event). Underlying logic differs: hydrological disaster vs. geological catastrophe; no specific 'X under constraint Z drives Y' sentence holds for both without being overly broad or failing the 0-guard.
 
 ### 单 agent 命中
 
@@ -1794,6 +2341,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (Syrian flood vs. Malibu tsunami/sharks). No specific causal-stakes engine holds for both: 'Natural disaster forces evacuation and survival' is too generic and would fit many unrelated news-film pairs, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete shared surface element that is load-bearing; the water disaster theme is too broad and fails the 0-guard (an unrelated flood news could pair equally well). No specific causal-stakes engine that passes the falsifiable counter-test and logic 0-guard, as any water-based disaster news could fit the film's logic.
 
 ## 06-tech-monopoly
 
@@ -1842,6 +2399,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (EU regulatory action vs. 1970s French drug enforcement). No causal-stakes engine holds for both: the news involves institutional penalty for market dominance abuse, while the film involves individual vigilante action against criminals. Any proposed 'X under constraint Z drives Y' sentence either fails the bidirectional test or would apply to unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared (e.g., tech regulation vs. cop vigilante justice); no common causal-stakes engine passes the falsifiable counter-test—any broad sentence like 'perceived injustice drives action' would fit unrelated news items paired with the same film.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 14 -->
@@ -1877,6 +2444,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element connects EU antitrust action against Google's search self-preferencing to a 1916 slapstick comedy about a chaotic department store heist. The abstract 'authority vs. rule-breaker' pairing fails the 0-guard (unrelated institutional news could match the film equally well). No specific causal-stakes engine ('X under constraint Z drives Y') holds for both sides without collapsing into generic conflict narratives.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element shared (news is about digital regulatory fines, film is physical store theft); no common causal engine found (antitrust self-preferencing vs. criminal theft chaos), and any vague logic fails the specificity guard.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 13 -->
@@ -1902,10 +2479,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[who-2, why-1, how-2, result-0, result-1] · sim=0.5231 · **命中分=5**
   - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[who-2, why-0, why-1, how-3, result-1] · sim=0.4439 · **命中分=5**
 - **pseudo命中分合计**: 13
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete shared surface element (EU antitrust enforcement vs. Indian vigilante action). No shared causal engine: the news is about regulatory punishment of market self-preferencing, while the film is about extrajudicial violence against corruption. Any plausible 'X under constraint Z drives Y' sentence (e.g., 'powerful entity abusing position drives institutional response') would also hold for countless unrelated news-film pairings, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 深层共振（仅逻辑，无表层）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Under the constraint of competition or justice norms, an oversight body drives penalties against entities that engage in self-preferential or corrupt behavior.
+  - **thinking judge理由**: The news involves EU regulators fining Google for self-preferencing under digital market laws, while the film depicts vigilantes punishing corrupt officials under moral justice. Both instantiate a causal engine where a corrective force acts against power abuse, but no concrete surface element (e.g., specific setting or occupation) is shared, leading to score 1.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 9 -->
@@ -1934,6 +2522,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news concerns EU antitrust regulation of Google's search practices, while the film is a Cold War spy thriller in Vienna—no concrete, load-bearing element (place, occupation, event type, setting) is shared. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both; the news involves regulatory enforcement against market dominance, the film involves espionage and security leaks—different causal engines. An unrelated news item (e.g., about corporate fraud) could pair with the film equally well, failing both 0-guards.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete shared surface elements (EU regulation vs. spy thriller), and no specific underlying causal-stakes engine can be identified that applies to both without being too vague or applicable to unrelated pairs.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 8 -->
@@ -1962,6 +2560,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (EU regulatory action vs. French police comedy). No underlying causal-stakes engine holds for both: the news involves institutional enforcement of competition law against self-preferencing, while the film involves a criminal deceiving incompetent police—these are fundamentally different dynamics with no shared 'X under constraint Z drives Y' that wouldn't also apply to unrelated news.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface elements overlap (e.g., tech regulation vs. crime comedy). No specific causal-stakes engine can be written that is uniquely true of both; any generic sentence would apply to unrelated news-film pairs.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 8 -->
@@ -1991,6 +2599,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, nameable surface element is shared (EU regulatory action vs. Hong Kong fast-food satire). No underlying causal engine holds: the news involves institutional antitrust enforcement against self-preferencing, while the film depicts conglomerates crushing independents—these are different mechanisms (regulatory penalty vs. market predation). The abstract 'big entity vs. small competitor' pairing fails the 0-guard (any corporate dominance story would fit the film equally well).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element: news is about EU regulatory fines on Google for digital search self-preferencing, film is a satire on fast food business and corporate tactics; abstract competition theme fails the 0-guard. Underlying logic: anti-competitive corporate behavior is too broad; causal engine (e.g., 'dominant firms, under market pressure, drive exclusionary practices to crush rivals') would hold for unrelated news items paired with the same film, failing specificity.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 8 -->
@@ -2019,6 +2637,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (EU regulatory action vs. corporate takeover battle). No specific causal-stakes engine holds for both: 'A dominant entity under competitive pressure uses its position to maintain control' is too generic and would apply to many unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, nameable surface element shared that is load-bearing in both stories; abstract corporate power dynamics are too broad and fail the 0-guard. Underlying logic cannot be specified without being generic, and any causal sentence would hold for unrelated pairs, failing the logic 0-guard.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 7 -->
@@ -2047,6 +2675,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete surface element connects EU antitrust enforcement against Google's self-preferencing to a hostage situation over a lottery ticket. No causal-stakes engine can be written that is literally true of both: the news involves regulatory punishment for market dominance abuse, while the film involves interpersonal violence over sudden wealth. An unrelated corporate fine news item would pair equally poorly with the film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element (e.g., specific setting, occupation, event) is shared. The underlying logic of self-interest driving conflict is too broad; the causal test 'Under high stakes, entities take extreme actions for gain, leading to conflict' would hold for many unrelated news-film pairs, failing the 0-guard for specificity.
 
 ### 单 agent 命中
 
@@ -2078,6 +2716,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element connects EU antitrust enforcement against Google's search self-preferencing to a 1957 film about a Paris garage owner running a robbery gang. The abstract 'authority vs. rule-breaker' pairing fails the 0-guard (any regulatory news could match). No specific causal engine (e.g., 'systemic market dominance forces anti-competitive behavior') is uniquely shared; the film's logic is about maintaining a criminal front under threat of betrayal, not regulatory pressure on a dominant platform.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared (e.g., EU tech regulation vs. Paris criminal garage); the underlying logic of 'an entity under external constraint biases actions for advantage, leading to conflict' is too generic and fails the 0-guard, as it would hold for unrelated news items paired with the same film.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 5 -->
@@ -2105,6 +2753,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete surface element connects EU antitrust enforcement against Google to a Vichy France show trial. No causal-stakes engine holds for both: the news involves regulatory punishment of market dominance, while the film involves authoritarian coercion to manufacture judicial legitimacy. Any plausible 'X under constraint Z drives Y' sentence (e.g., 'powerful authority under political pressure forces institutional compliance') would be too generic and pass the logic 0-guard, fitting unrelated news paired with the same film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared (e.g., regulatory fines vs. sham trials); underlying logic lacks a specific causal-stakes engine that passes the 0-guard, as a generic 'authority under pressure drives action' would apply to unrelated pairs.
 
 <!-- run_id: 06-tech-monopoly -->
 <!-- pseudo命中分合计: 5 -->
@@ -2132,6 +2790,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: news is about EU regulatory fine on Google's search self-preferencing; film is about diamond heist in Antwerp. No shared concrete, load-bearing element. No underlying logic: cannot write a single 'X under constraint Z drives Y' sentence true of both. The causal engines are fundamentally different (regulatory enforcement vs. criminal heist planning).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No shared concrete surface element; news involves regulatory fines for digital market abuse, while film centers on a physical diamond heist. No specific causal-stakes engine fits both without being overly generic, failing the logic 0-guard.
 
 ## 07-migration-border
 
@@ -2197,10 +2865,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-SAGE/su-persona-The-Sage-p2: fragments=[how-0, result-0, why-0] · sim=0.4698 · **命中分=3**
   - THE-SAGE/su-persona-The-Sage-p3: fragments=[result-1, how-0, result-0] · sim=0.4604 · **命中分=3**
 - **pseudo命中分合计**: 93
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: 是  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: 深层故事其实不想管，但是“边境与封锁”处发生的故事可以是共振的基点，是个low 2
+- **LLM Judge（自动评审）**:
+  - **judge分**: 2
+  - **judge共振类型**: 强共振（表层 + 逻辑）
+  - **judge采信**: 不采信 · screening only
+  - **judge因果反测**: Border enforcement personnel, under the constraint of a dangerous and morally ambiguous border environment, are driven to confront threats that emerge from within their own institutional structures.
+  - **judge理由**: 表层元素：新闻与电影共享'美国边境巡逻'这一具体、负载性的职业与场景。底层逻辑：两者均呈现边境执法人员在制度性压力与道德模糊地带下，被迫面对来自系统内部的威胁（新闻中政策僵局与季节性压力，电影中内部阴谋），构成相同的因果-利害引擎。
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 表层沾边
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: Both share the concrete, load-bearing surface element of U.S. Border Patrol enforcement (news focuses on apprehensions and policy; film centers on agents and a plot). However, no invariant causal-stakes engine links them: the news is driven by seasonal migration and institutional deadlock, while the film is driven by internal conspiracy and agent peril.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 42 -->
@@ -2240,6 +2919,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about U.S.-Mexico border enforcement and seasonal migration patterns; the film is about the Berlin Wall's opening at a specific crossing. These are different borders, different eras, different contexts. No underlying logic: a causal sentence like 'political deadlock under institutional constraint drives enforcement rigidity' could apply to many unrelated policy news items paired with the same film, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: Surface element 'border' is present but too generic, failing the 0-guard as unrelated border news could equally pair with the film. Underlying logic lacks a unique causal engine specific to this pair; a test sentence would hold for other news-film combinations.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 15 -->
@@ -2266,10 +2955,22 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[result-0, how-0, why-0, result-1] · sim=0.4908 · **命中分=4**
   - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-1, why-0, how-0, result-0] · sim=0.4731 · **命中分=4**
 - **pseudo命中分合计**: 15
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: 是  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: the news is about real-world U.S. border enforcement and seasonal migration patterns, while the film is a speculative fiction about virtual labor and mind-connection technology. The shared 'border' concept is too abstract and fails the 0-guard—any border-related news could pair with this film. No underlying logic: the causal engine 'hardened enforcement under political deadlock drives seasonal migration fluctuations' is not true of the film's world, where borders are closed but the conflict is about technological exploitation and human connection, not enforcement policy cycles.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge POV变换**: 是
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Human desire for mobility under border enforcement constraints drives individuals to adopt risky or innovative means to cross or connect.
+  - **thinking judge理由**: Surface element: both involve borders and migration as load-bearing elements. Underlying logic: constraints on movement force people to seek alternative pathways, evident in news (seasonal migrants despite enforcement) and film (characters using technology to bypass closed borders). POV shift from institutional news to individual film highlights the resonance.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 9 -->
@@ -2298,6 +2999,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element connects border enforcement to 19th-century railroad construction. No causal-stakes engine ('X under constraint Z drives Y') holds for both: the news is about seasonal migration patterns under policy enforcement, while the film is about industrial expansion and sabotage. Any plausible causal sentence (e.g., 'ambitious projects face obstruction') would be too generic and pass the logic 0-guard for unrelated news.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No shared concrete surface element (border enforcement vs. railroad construction); no common causal engine can be formulated that is specific and falsifiable for both, as attempts result in vague or non-literal matches.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 9 -->
@@ -2326,6 +3037,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: the news is about U.S.-Mexico border enforcement and migration statistics; the film is about a 1994 Mexican political assassination and conspiracy. No shared concrete anchor (place, event type, occupation) that is load-bearing in both. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both without it being so generic it would fit unrelated news items paired with the film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No shared load-bearing surface element: the news focuses on U.S. border enforcement and seasonal migration, while the film centers on political assassination and conspiracy in Mexico. No common causal-stakes engine: cannot write a single 'X under constraint Z drives Y' sentence true for both without being overly vague or failing the logic 0-guard.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 9 -->
@@ -2350,10 +3071,22 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-HERO/su-persona-The-Hero-p1: fragments=[who-0, why-0, how-0, result-0, result-1] · sim=0.5040 · **命中分=5**
   - THE-RULER/su-persona-The-Ruler-p3: fragments=[result-1, how-0, why-0, result-0] · sim=0.4999 · **命中分=4**
 - **pseudo命中分合计**: 9
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: 是  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (border setting is too generic and fails 0-guard). No specific causal-stakes engine invariant under POV/scale change that holds for both news and film without also holding for unrelated border news.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge POV变换**: 是
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Under the constraint of hardened US-Mexico border enforcement and socio-economic pressures, individuals are driven to engage in high-risk activities leading to confrontation or apprehension.
+  - **thinking judge理由**: The US-Mexico border is a concrete, load-bearing surface element in both the news (site of apprehensions) and the film (setting for gang wars). The underlying logic involves border constraints and pressures forcing individuals into dangerous behaviors with violent or legal consequences, invariant under a scale shift from institutional news to individual film narratives.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 8 -->
@@ -2382,6 +3115,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about border enforcement and migration patterns, while the film is a comedic travel tour through Europe. No underlying logic: cannot construct a 'X under constraint Z drives Y' sentence that is literally true of both a border enforcement policy analysis and a lighthearted group travel comedy.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No load-bearing surface element: news is about U.S. border enforcement and seasonal migration, film is about European tourism. Underlying logic is too vague—'constraints drive movement' could apply to many unrelated news items (e.g., traffic or sports), failing the specificity test.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 7 -->
@@ -2410,6 +3153,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: 'border apprehensions' and 'climate catastrophe' share no concrete, load-bearing anchor. No underlying logic: cannot write a causal sentence true of both—news is about policy/weather-driven migration patterns, film is about survival against sudden climate collapse; any such sentence would be too generic (e.g., 'environmental forces drive human movement') and would pass the logic 0-guard for unrelated news.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: News focuses on border apprehensions due to seasonal weather and immigration policies, while film depicts a climate catastrophe forcing survival in extreme cold. No concrete, load-bearing surface element is shared (e.g., place, occupation, event). No specific causal-stakes engine ('X under constraint Z drives Y') holds for both without being overly broad; the underlying logics are distinct: policy-driven migration vs. environmental apocalypse survival.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 7 -->
@@ -2438,6 +3191,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element connects the news (border enforcement, migration) to the film (suburban family crisis, ice storm). The abstract 'external force disrupts a system' logic fails the 0-guard, as it would apply to countless unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element: weather is mentioned in both but not load-bearing (news focuses on immigration policy, film on family drama). No specific underlying logic: a causal test sentence would be too general (e.g., 'weather under constraints drives behavior'), failing the 0-guard for unrelated pairs.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 7 -->
@@ -2466,6 +3229,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: news is about border enforcement and migration patterns; film is about a glacier mutating wildlife. No underlying logic: cannot write a single 'X under constraint Z drives Y' sentence true of both without it being trivially true of unrelated news-film pairs (e.g., 'environmental change drives unexpected consequences' would fit many unrelated news items with this film).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No load-bearing surface element: news is about border enforcement and human migration, film about wildlife mutations from glacier melt—climate/weather is too broad and not specific to both. No common underlying logic: cannot write a precise 'X under constraint Z drives Y' sentence true of both without being overly general, and it would fail the 0-guard (e.g., an unrelated climate news item could pair similarly with the film).
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 6 -->
@@ -2502,10 +3275,22 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-SAGE/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4954
   - THE-JESTER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.5023
 - **pseudo命中分合计**: 6
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: 是  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 1
+  - **judge共振类型**: 表层沾边
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: 表层元素：两者共享'美墨边境执法'这一具体、负载性的场景/主题，新闻中的边境巡逻与电影中的缉毒战争均以此为核心背景，满足表层元素要求。底层逻辑：无法写出一个同时适用于新闻（季节性移民潮与政策僵局）和电影（FBI探员卷入缉毒战争）的'X在Z约束下驱动Y'的因果引擎句子。新闻关注的是移民数据波动与政治僵局，电影关注的是执法行动中的道德困境与暴力升级，两者因果逻辑不同。
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge POV变换**: 是
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Unauthorized cross-border activities, under heightened security constraints, drive intensified enforcement responses and associated human costs.
+  - **thinking judge理由**: Both stories share the load-bearing surface element of U.S.-Mexico border security operations, and the underlying logic of border threats (migration in news, drug trafficking in film) under strict enforcement policies escalating conflicts and human impacts, requiring a POV shift from institutional to individual scale to see the resonance.
 
 ### 单 agent 命中
 
@@ -2535,10 +3320,22 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[result-0, why-0, how-0, result-1] · sim=0.4594 · **命中分=4**
   - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[who-0, how-0, result-0, result-1] · sim=0.5206 · **命中分=4**
 - **pseudo命中分合计**: 13
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: 是  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about border enforcement statistics and policy deadlock, while the film is about human trafficking and forced prostitution—different concrete subjects. No underlying logic: cannot write a single 'X under constraint Z drives Y' sentence that is literally true of both; the news's seasonal migration patterns and enforcement dynamics do not share a causal engine with the film's narrative of abduction and exploitation.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge POV变换**: 是
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Desperation for a better life, under constraint of harsh immigration enforcement and exploitation networks, drives risky border crossings and human trafficking.
+  - **thinking judge理由**: Shared surface element: U.S.-Mexico border and immigration. Underlying logic: vulnerability and external constraints drive dangerous migration and exploitation, visible across institutional (news) and individual (film) scales.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 5 -->
@@ -2562,10 +3359,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **命中视角/碎片**:
   - THE-JESTER/su-persona-The-Jester-p2: fragments=[who-3, why-0, how-0, result-0, result-1] · sim=0.5642 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: the news concerns modern border enforcement and seasonal migration patterns, while the film is a Western about a self-appointed frontier judge. The abstract pairing of 'authority enforcing rules in a border region' fails the 0-guard (any law enforcement news could match). No specific causal engine links them.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 深层共振（仅逻辑，无表层）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: The influx of outsiders into a lawless or under-policed frontier area, under the constraint of establishing order, drives the emergence of ad-hoc control mechanisms.
+  - **thinking judge理由**: Both the news and film share a causal logic where outsiders in border/frontier zones prompt control responses under constraints, but no concrete, load-bearing surface element is shared; the film focuses on a self-appointed judge in a historical setting, while the news addresses modern border enforcement.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 5 -->
@@ -2593,6 +3401,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: news is about border enforcement/migration; film is about Vietnam War combat. No shared concrete, load-bearing element. No underlying logic: cannot write a causal sentence true of both (e.g., 'seasonal weather under enforcement pressure drives migration surges' vs. 'enemy numerical superiority under jungle terrain drives tactical desperation').
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No shared concrete, load-bearing surface element (e.g., border vs. battle); no specific causal-stakes engine that holds for both without being overly broad or failing the logic 0-guard.
 
 <!-- run_id: 07-migration-border -->
 <!-- pseudo命中分合计: 5 -->
@@ -2632,6 +3450,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element (e.g., island, influencers, border, migration) is shared. No specific causal-stakes engine ('X under constraint Z drives Y') can be written that is literally true of both the news (seasonal migration vs. enforcement) and the film (influencers stranded on an island).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element overlaps; the news involves institutional border enforcement and migration policy, while the film focuses on interpersonal survival among influencers on an island. The causal engines differ (seasonal migration under enforcement drives apprehensions vs. resource scarcity in isolation drives tensions), and no specific 'X under constraint Z drives Y' sentence holds uniquely for both without being overly broad.
 
 ## 08-sports-underdog
 
@@ -2676,10 +3504,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[result-0, how-3, how-4] · sim=0.5124 · **命中分=3**
   - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[result-0, why-0, how-3, how-4] · sim=0.5064 · **命中分=4**
 - **pseudo命中分合计**: 16
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振分**: 0  <!-- 总编填写 0 / 1 / 2 -->
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element (0-guard: an unrelated sports upset news could pair with this film equally well). No specific causal-stakes engine (logic 0-guard: 'underdog team overcomes favored opponent' is too generic and would hold for many unrelated news-film pairs).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 深层共振（仅逻辑，无表层）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: A sports team, under the constraint of championship pressure and unforeseen disruptions, drives an upset victory over a favored opponent.
+  - **thinking judge理由**: Both stories share a causal engine where underdogs overcome favored teams in high-stakes sports championships with external disruptions (injuries/coach change vs. clock controversy), but they lack a concrete, load-bearing surface element as the sports and settings differ.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 10 -->
@@ -2709,6 +3548,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: 'sports playoff/final' is too generic (0-guard fails). No specific causal engine: 'underdog team defeats favored opponent' is too broad and would fit many unrelated news-film pairs (logic 0-guard fails).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No shared concrete, load-bearing surface element (real hockey vs. fictional anime soccer); no specific causal-stakes engine holds for both without being too broad or failing the logic 0-guard.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 8 -->
@@ -2737,6 +3586,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, nameable surface element is load-bearing in both stories (hockey vs. WWII naval warfare). No causal-stakes engine can be written that is literally true of both: the news involves a sports team overcoming injuries and coaching changes to upset favorites, while the film depicts a warship's crew maintaining loyalty and self-sacrifice through combat and sinking. Any proposed 'X under constraint Z drives Y' sentence would be too generic (e.g., 'leadership under pressure drives team cohesion') and would fail the logic 0-guard, as it would hold for many unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No load-bearing surface element: shared themes like leadership or team are abstract and fail the 0-guard. Underlying logic cannot yield a specific causal-test sentence that passes the 0-guard, as any generic leadership-in-adversity pairing would fit unrelated news items.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 8 -->
@@ -2765,6 +3624,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (hockey vs. Yukon gold prospecting). No causal-stakes engine holds for both: the news involves a team overcoming favorites through coaching changes and opponent injuries, while the film involves individuals maintaining law/order in isolation. Any proposed 'X under constraint Z drives Y' sentence (e.g., 'underdogs overcome adversity') would be too generic and pass the logic 0-guard for unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element (hockey playoffs vs. Yukon gold prospecting survival), and no common underlying causal engine: any plausible 'X under constraint Z drives Y' sentence (e.g., under adversity, group drives success) is too vague and would hold for unrelated news paired with the film, failing the logic 0-guard.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 7 -->
@@ -2794,6 +3663,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (hockey vs. basketball, professional vs. high school, different sports/levels). No specific causal-stakes engine holds for both: 'underdog team overcomes adversity' is too generic and would fit many unrelated news-film pairs, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No load-bearing surface element (different sports, abstract coaching/underdog themes fail 0-guard). No specific underlying logic engine; a generic causal sentence (e.g., coach under pressure drives team success) would hold for unrelated news paired with the film, failing the logic 0-guard.
 
 <!-- run_id: 08-sports-underdog -->
 <!-- pseudo命中分合计: 7 -->
@@ -2822,6 +3701,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element (e.g., hockey vs. soccer, specific team/league). No shared causal-stakes engine: the news is about an underdog team overcoming injuries and coaching changes to upset a favorite; the film is about a team needing to recover a specific player to avoid dissolution. A sentence like 'A team, under the constraint of losing a key player, must overcome adversity to win' is too generic and would hold for many unrelated sports stories paired with the film, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, nameable surface element is load-bearing for both (sports types and player loss contexts differ). Underlying logic is general (team overcoming adversity) and fails the logic 0-guard, as similar causal sentences could apply to unrelated sports news.
 
 ### 单 agent 命中
 
@@ -2879,6 +3768,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element connects the news (casting controversy over a mythic epic) and the film (an artist investigating an urban legend at an Irish estate). The abstract theme of 'obsession with a story's origins' is too broad and fails the 0-guard. No specific causal-stakes engine is shared.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete shared surface element; underlying logics differ: news involves public debate over representation in film adaptation of classical myth, while film involves personal investigation of an urban legend at an Irish estate with no invariant causal engine.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 21 -->
@@ -2910,6 +3809,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (casting controversy vs. audition power play). No causal-stakes engine invariant under POV/scale shift: the news is about cultural gatekeeping in adaptation, the film is about gender dynamics in artistic audition—any 'X under constraint Z drives Y' sentence would be too generic (e.g., 'power dynamics under artistic ambition drive conflict') and would hold for unrelated news-film pairs, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No shared load-bearing surface element: 'casting/audition' is too general and fails the 0-guard (any audition-related news could pair with the film). No common underlying logic: the news's causal engine involves racial representation under public scrutiny, while the film's involves gender power dynamics in an audition; no invariant 'X under constraint Z drives Y' sentence holds specifically for both.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 14 -->
@@ -2939,6 +3848,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete surface element connects the news (casting controversy in a mythic epic) to the film (a theatre actress's personal career struggles). The news involves cultural identity debates around classical adaptation, while the film focuses on individual artistic sacrifice. No 'X under constraint Z drives Y' sentence can be written that is literally true of both without being generic enough to apply to unrelated news-film pairs (e.g., 'ambition under professional pressure drives personal sacrifice' would fit many unrelated stories).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared (news focuses on casting controversy in a mythic epic; film on personal struggles of a theatre actress). For underlying logic, no specific 'X under constraint Z drives Y' sentence can be written that is true for both without being overly broad and failing the logic 0-guard (e.g., a similar engine could apply to unrelated news items).
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 13 -->
@@ -2964,10 +3883,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-JESTER/su-persona-The-Jester-p2: fragments=[how-1, how-0, why-0, result-0] · sim=0.5447 · **命中分=4**
   - THE-RULER/su-persona-The-Ruler-p2: fragments=[who-0, how-0, how-1, how-2] · sim=0.6177 · **命中分=4**
 - **pseudo命中分合计**: 13
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 深层逻辑  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
-- **打分备注**: （可选）
+- **打分备注**: 这是一个深层逻辑的强共振，表层确实不多
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (casting controversy vs. 1975 filmmaking). No specific causal-stakes engine holds for both: 'cultural gatekeeping drives backlash' would also apply to many unrelated news items paired with the same film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 深层共振（仅逻辑，无表层）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Cultural tensions or upheavals under the constraint of the contemporary context drive film production decisions that ignite public discourse or spur artistic innovation.
+  - **thinking judge理由**: No concrete surface element matches (news has Homer's Odyssey, film has 1975 America), but both share a causal-stakes engine where cultural pressures fuel film-related actions and responses.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 10 -->
@@ -2997,6 +3927,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about casting controversy in a modern film production, while Ben-Hur is an ancient epic about Roman occupation—no concrete, nameable load-bearing element is shared. No underlying logic: any causal-stakes sentence (e.g., 'cultural representation under ideological pressure drives conflict') would be too generic and could apply to many unrelated news-film pairs, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element (e.g., shared characters, specific events, or settings) links the news's casting controversy to Ben-Hur's ancient Judean saga. For underlying logic, potential causal engines (e.g., 'cultural heritage under threat drives conflict') are too broad and would hold for unrelated news items paired with Ben-Hur, failing the 0-guard for specificity.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 10 -->
@@ -3023,10 +3963,20 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[how-0, how-1, how-2, how-3] · sim=0.5817 · **命中分=4**
   - THE-MAGICIAN/su-persona-The-Magician-p1: fragments=[how-0, how-1] · sim=0.6123 · **命中分=2**
 - **pseudo命中分合计**: 10
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
-- **打分备注**: （可选）
+- **打分备注**: 这是一部老电影，与现代作品/事件的对应本身就有共振能力
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: both involve Homer's Odyssey adaptations, but the news's load-bearing element is casting controversy over racial identity, while the 1911 film is a straightforward adaptation without that element. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both (the news's engine is 'diverse casting under cultural gatekeeping drives identity debates'; the film's engine is 'mythic narrative under cinematic adaptation drives storytelling'). The Odyssey setting alone fails the 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 1
+  - **thinking judge共振类型**: 表层沾边
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: Both the news and film are adaptations of Homer's Odyssey, sharing a concrete surface element. However, the news focuses on cultural conflict over casting and representation, while the film is a direct narrative retelling; no invariant causal-stakes engine links them.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 9 -->
@@ -3055,6 +4005,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (Helen of Troy casting controversy vs. disfigured phantom in opera). No shared causal-stakes engine: the news involves cultural gatekeeping over classical narratives, while the film involves personal obsession and revenge in artistic production. Any 'X under constraint Z drives Y' sentence would be too generic (e.g., 'obsession drives destructive action') and would pass the logic 0-guard for unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element shared; the news's focus on identity-based casting controversy and the film's gothic revenge plot lack a common load-bearing element. No underlying logic identified, as causal engines differ: cultural debate vs. personal obsession.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 9 -->
@@ -3083,6 +4043,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news concerns casting controversy in a mythic epic adaptation, while the film concerns digital-age emotional obstruction—no concrete shared anchor. No underlying logic: no 'X under constraint Z drives Y' sentence holds for both; the news's engine (identity politics in cultural gatekeeping) is unrelated to the film's engine (technology distorting intimacy).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No load-bearing surface element shared (e.g., Homer adaptation vs. digital-age thriller), and no common underlying causal engine: the news involves diversity casting driving cultural debate, while the film involves technology obstructing love.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 9 -->
@@ -3112,6 +4082,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (casting controversy vs. documentary portrait of an artist). No causal-stakes engine holds for both: the news involves cultural gatekeeping over classical adaptation casting, while the film is a personal documentary about artistic life and female bonding. Any proposed 'X under constraint Z drives Y' sentence would be too generic or fail the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No shared concrete surface element (e.g., news is about casting in a mythic film adaptation, film is about an artist's biography); no common causal engine as the news involves cultural debates over identity in casting, while the film focuses on personal artistic journey without explicit similar constraints driving conflicts.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 8 -->
@@ -3140,6 +4120,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about casting controversy in a mythic epic adaptation, while the film is a historical resistance narrative. No underlying logic: the causal engine 'ethnic/racial identity conflict drives cultural gatekeeping' does not hold for the film, which is about political oppression and national resistance, not identity-based casting disputes. The logic 0-guard fails because the causal sentence would not be literally true of both.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element: news is about modern casting controversy in a film, while film is a historical resistance narrative. Underlying logic fails specificity: a broad sentence like 'identity threats drive defensive actions' could fit many unrelated news-film pairs, not specific to this one.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 7 -->
@@ -3164,10 +4154,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-CREATOR/su-persona-The-Creator-p2: fragments=[result-0, how-3, result-1] · sim=0.4699 · **命中分=3**
   - THE-HERO/su-persona-The-Hero-p2: fragments=[result-0, why-1, how-1, result-1] · sim=0.5353 · **命中分=4**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, nameable surface element is load-bearing in both stories. The news involves casting controversy in a mythic epic adaptation; the film involves a modern Passion Play production facing church opposition. While both involve theatrical productions of classical/mythic material, this is too generic to be load-bearing (0-guard: an unrelated news item about any theatrical adaptation could pair equally well). No specific causal-stakes engine can be written that is literally true of both without being trivially broad.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Creative adaptation of a classical mythic or religious narrative, under the constraint of cultural or religious orthodoxy, drives conflict over identity and ownership.
+  - **thinking judge理由**: Both the news and film feature controversial adaptations of foundational stories (Homer's Odyssey and the Passion of Christ) that ignite societal conflict due to interpretive liberties clashing with established norms.
 
 ### 单 agent 命中
 
@@ -3199,6 +4200,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news concerns casting controversy in a mythic epic, while the film is a romantic comedy about a fan's love triangle—no concrete, load-bearing element (place, occupation, event type, setting) is shared. No underlying logic: no 'X under constraint Z drives Y' sentence holds for both; the news's engine (identity politics in cultural representation) is unrelated to the film's engine (personal romantic indecision).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element (e.g., setting, occupation) is load-bearing in both; news centers on cultural war over casting, film on personal romantic conflict. No shared underlying causal engine can be formulated without being too broad or inapplicable to both.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -3226,6 +4237,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No load-bearing surface element: the news concerns casting controversy in a mythic epic, while the film is a silent-era comedy about mistaken identity in a cinema. No shared causal engine: the news's 'diverse casting in classical stories sparks identity debates' cannot be mapped to the film's 'romantic pursuit leads to accidental same-sex encounter' without being trivially true of many unrelated pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete load-bearing surface element shared; news centers on casting controversy in a mythic epic, film on sexual molestation in a cinema, with no common causal engine.
 
 <!-- run_id: 09-cultural-backlash -->
 <!-- pseudo命中分合计: 5 -->
@@ -3249,10 +4270,21 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **命中视角/碎片**:
   - THE-RULER/su-persona-The-Ruler-p3: fragments=[result-1, result-0, how-1, how-2, how-3] · sim=0.6354 · **命中分=5**
 - **pseudo命中分合计**: 5
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 表层  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
-- **打分备注**: （可选）
+- **打分备注**: 没看出有深层结构/逻辑性联系
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about casting controversy in a mythic epic adaptation, while the film is a murder mystery set in Republican-era Shanghai film industry. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both that isn't trivially true of any unrelated news-film pair.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: The production of a film under the constraint of adapting controversial or real-world content drives the emergence of conflicts that challenge the boundaries between fiction and reality.
+  - **thinking judge理由**: Both news and film share the concrete surface element of film production/adaptation, and instantiate the same underlying logic where adapting contentious material leads to conflicts blurring fiction and reality.
 
 ## 10-whistleblower-leak
 
@@ -3317,6 +4349,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (exam paper leak vs. vigilante targeting corrupt officials). No specific causal-stakes engine holds for both: 'Whistleblower exposure forces institutional accountability' would also fit many unrelated news items paired with the film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared; corruption is abstract and fails the 0-guard. Underlying logic of corruption driving individual resistance is too broad and not specific to this pair, failing the logic 0-guard as it would hold for unrelated corruption news paired with the film.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 12 -->
@@ -3346,6 +4388,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (exam leak vs. unspecified 'Test' film). No causal-stakes engine can be written that holds for both sides without also holding for unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No specific shared load-bearing element (film overview is vague, only 'Test' title, so 'test/exam' element fails 0-guard as it's too broad). Underlying logic cannot be established without film plot details; cannot write a causal sentence true for both.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 11 -->
@@ -3375,6 +4427,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, nameable surface element connects a leaked exam paper scandal to supermarket workers creating a discount outlet. The underlying logics differ: the news involves institutional corruption and exam integrity, while the film involves labor resistance and resource salvage. No 'X under constraint Z drives Y' sentence holds for both without being generic enough to apply to unrelated news.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element shared (exam fraud vs. retail automation). Underlying logic of 'individuals under systemic threat drive exposure/alternatives' is too broad and fails the 0-guard, as unrelated whistleblowing news could pair equally well with the film.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 9 -->
@@ -3403,6 +4465,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves exam paper leaks and institutional testing, while the film involves a judge investigating a suspicious death in a provincial town—no concrete, load-bearing element is shared. No underlying logic: a causal sentence like 'A whistleblower's tip under institutional pressure drives exposure of corruption' could apply to many unrelated news-film pairs, failing the logic 0-guard.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete shared surface element (e.g., exam leak vs. suspicious death); underlying logic lacks specificity as a generic 'corruption investigation drives scandal' causal test applies to many unrelated news items paired with the film.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 9 -->
@@ -3431,6 +4503,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete, load-bearing surface element shared (exam leak vs. academic mentorship/speech contest). No causal-stakes engine invariant under POV/scale change that holds for both.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete load-bearing surface element shared (exam leak vs. mentorship/speech contest); no specific underlying causal engine: news involves whistleblowing and institutional accountability for academic fraud, while film involves personal conflict and forced mentorship leading to redemption—no 'X under constraint Z drives Y' sentence holds for both without overgeneralization.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 8 -->
@@ -3456,10 +4538,22 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-0, why-0, how-1] · sim=0.4303 · **命中分=3**
   - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[how-4, result-0, result-2] · sim=0.4919 · **命中分=3**
 - **pseudo命中分合计**: 8
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
-- **打分备注**: （可选）
+- **共振分**: 2  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: 是  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: 这是一个非常好的视角转换的强共振候选案例。
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves institutional exam fraud at a national testing agency, while the film depicts student cheating on college finals—different scales and contexts. No underlying logic: a causal sentence like 'institutional corruption under pressure to maintain standards drives systemic fraud' fits the news but not the film, where the engine is 'student desperation under academic pressure drives individual cheating attempts.' The logic 0-guard fails because the causal test for the news would not hold for the film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge POV变换**: 是
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: High-stakes examination pressure under academic and social constraints drives individuals to engage in cheating, leading to scandal and reassessment.
+  - **thinking judge理由**: Both stories center on exam cheating as a load-bearing element, and the underlying logic of pressure-induced cheating driving exposure and correction holds despite institutional vs. individual scales.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 7 -->
@@ -3488,6 +4582,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news is about an exam paper leak and whistleblower in India, while the film is about divine judgment in Naples—no concrete, load-bearing element connects them. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both; the news's engine (whistleblower exposure forces institutional accountability) differs fundamentally from the film's engine (imminent divine judgment forces existential reckoning).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element (e.g., place, occupation, event type) shared between the exam leak news and the apocalyptic judgment film. The underlying logic of 'sudden revelation driving response' is too general and fails the specificity test, as it would apply to unrelated news items (e.g., pandemic announcements) paired with the same film.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 7 -->
@@ -3512,10 +4616,22 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
   - THE-CREATOR/su-persona-The-Creator-p1: fragments=[result-0, why-0, how-1, result-2] · sim=0.4613 · **命中分=4**
   - THE-JESTER/su-persona-The-Jester-p1: fragments=[result-0, why-0, how-1] · sim=0.4705 · **命中分=3**
 - **pseudo命中分合计**: 7
-- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
-- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
-- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
-- **打分备注**: （可选）
+- **共振分**: 1  <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**: 双重  <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**: 是  <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: 有较强的相关性，但是overview的内容太少很难判断是否和现实事件相关。high 1 or low 2
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves a real exam leak with institutional consequences, while the film is a fictional comedy about stealing an exam for personal gain—these are different contexts. No underlying logic: a causal sentence like 'A compromised high-stakes exam, under pressure to maintain fairness, forces institutional intervention' holds for the news but not the film (the film's logic is about accidental loss and comedic consequences, not systemic integrity). The 0-guard applies: an unrelated news item about exam fraud would pair equally well with the film.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 2
+  - **thinking judge共振类型**: 强共振（表层 + 逻辑）
+  - **thinking judge POV变换**: 是
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge因果反测**: Unauthorized access to a high-stakes entrance exam, under the pressure of competitive admissions, drives escalatory actions and unintended consequences.
+  - **thinking judge理由**: Both stories revolve around the compromise of an entrance exam paper (leak in news, theft in film), which is a load-bearing surface element. The underlying causal logic is identical: exam fraud under high-stakes conditions forces disruptive responses, though told at institutional (news) and individual (film) scales.
 
 ### 单 agent 命中
 
@@ -3549,6 +4665,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news concerns an Indian exam leak scandal; the film concerns a CIA paranormal incident in Quebec. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both without it being trivially true of unrelated pairs (e.g., 'institutional secrecy under external pressure drives disclosure' would fit many unrelated news items paired with the same film).
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete surface element shared (news: exam leak scandal; film: paranormal declassification). No specific causal engine: whistleblower-driven investigation vs. court-mandated release; any broad logic (e.g., secrecy leading to exposure) fails the 0-guard as it applies to unrelated news items paired with the film.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 5 -->
@@ -3576,6 +4702,16 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No surface element: the news involves exam paper leaks and institutional corruption, while the film is about a job interview with a lie detector. No underlying logic: the news's engine is 'whistleblower exposure forces institutional accountability for systemic cheating,' while the film's is 'technological truth-telling reveals personal secrets in a social setting.' These are fundamentally different causal-stakes engines.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element shared; the news involves exam leak and whistleblower, while the film centers on a lie detector in a job interview. Underlying logic about detection of deception is too abstract and fails the 0-guard, as a similar causal sentence could apply to unrelated news items paired with the same film.
 
 <!-- run_id: 10-whistleblower-leak -->
 <!-- pseudo命中分合计: 5 -->
@@ -3603,4 +4739,14 @@ Surface/event bundle lines stay visible as diagnostics but do not receive inline
 - **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
 - **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
 - **打分备注**: （可选）
+- **LLM Judge（自动评审）**:
+  - **judge分**: 0
+  - **judge共振类型**: 
+  - **judge采信**: 不采信 · screening only
+  - **judge理由**: No concrete surface element shared (exam leak vs. serial murder investigation). No underlying causal engine: the news involves institutional corruption and whistleblowing in education, while the film is a police procedural about a serial killer. Any causal sentence would be too generic (e.g., 'investigation under pressure drives truth') and would pass the logic 0-guard for unrelated news-film pairs.
+- **LLM Judge（thinking 自动评审）**:
+  - **thinking judge分**: 0
+  - **thinking judge共振类型**: 
+  - **thinking judge采信**: 不采信 · screening only
+  - **thinking judge理由**: No concrete, load-bearing surface element (e.g., exam vs. murder investigation). Underlying logic fails the 0-guard: a broad sentence like 'investigation under constraint uncovers hidden wrongdoings' applies to many unrelated news-film pairs, so not specific.
 
