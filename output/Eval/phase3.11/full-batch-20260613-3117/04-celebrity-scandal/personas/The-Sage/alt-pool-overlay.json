@@ -1,0 +1,173 @@
+{
+  "persona_id": "The-Sage",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "YouTuber",
+        "alternatives": [
+          {
+            "term": "evidence fabricator",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "claimant",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "content creator",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "Kim Soo-hyun",
+        "alternatives": [
+          {
+            "term": "subject of unverified allegations",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "public figure",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "original_term": "Seoul police",
+        "alternatives": [
+          {
+            "term": "investigators",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "law enforcement",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "Prosecutors",
+        "alternatives": [
+          {
+            "term": "verifiers of evidence",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "legal authorities",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "spread false claims for financial gain",
+        "alternatives": [
+          {
+            "term": "fabricated misinformation for profit",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "motivated by financial gain",
+            "valence": "neutral",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+        "alternatives": [
+          {
+            "term": "employed fabricated digital evidence",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "employed synthetic media and edited records",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "created manipulated materials",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "original_term": "Seoul police secured an arrest warrant",
+        "alternatives": [
+          {
+            "term": "obtained a judicial authorization",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "secured a legal warrant",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "YouTuber arrested",
+        "alternatives": [
+          {
+            "term": "held accountable by authorities",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "taken into custody",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+        "alternatives": [
+          {
+            "term": "consequences of unverified claims",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "professional impact from allegations",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "professional suspension",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "how-0",
+    "why-0",
+    "result-0",
+    "who-0",
+    "how-1"
+  ]
+}

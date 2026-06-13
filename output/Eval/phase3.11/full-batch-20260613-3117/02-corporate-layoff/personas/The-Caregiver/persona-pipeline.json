@@ -1,0 +1,1512 @@
+{
+  "persona_id": "The-Caregiver",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Caregiver",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Intuit",
+          "alternatives": [
+            {
+              "term": "corporate decision-maker",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "employer responsible for employee welfare",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Sasan Goodarzi",
+          "alternatives": [
+            {
+              "term": "chief executive",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "corporate leader initiating layoffs",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "affected U.S. employees",
+          "alternatives": [
+            {
+              "term": "workers facing job loss",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "vulnerable employees needing support",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "people whose livelihoods are at stake",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+          "alternatives": [
+            {
+              "term": "corporate strategic realignment",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "prioritizing technological progress over human stability",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "as a painful but necessary reinvention after months of internal review",
+          "alternatives": [
+            {
+              "term": "organizational change",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a decision that inflicts pain on employees",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+          "alternatives": [
+            {
+              "term": "announcement of major layoffs",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "communication of job elimination to a large workforce",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "severance package offered to laid-off employees",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a financial cushion for those losing their jobs",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "compensation that may not fully mitigate the harm of job loss",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Offices in Reno and Woodland Hills are winding down",
+          "alternatives": [
+            {
+              "term": "office closures",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "loss of physical workplaces for employees",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "roughly 17% of workforce to be cut",
+          "alternatives": [
+            {
+              "term": "significant workforce reduction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a large number of jobs eliminated",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "substantial harm to employee families and communities",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "about 3,000 full-time roles to be eliminated",
+          "alternatives": [
+            {
+              "term": "numerous jobs cut",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "thousands of people facing unemployment",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "offices in Reno and Woodland Hills winding down",
+          "alternatives": [
+            {
+              "term": "workplace shutdowns",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "sites of former employment being closed",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "severance payments provided",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "support offered to those impacted by layoffs",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "financial assistance that may not cover long-term needs",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "result-0",
+      "who-2",
+      "result-3",
+      "how-1",
+      "how-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "roughly 17% of workforce to be cut. affected U.S. employees. affected employees offered 16 weeks of base pay plus two weeks per year of tenure. Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure. Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles The event unfolds across significant workforce reduction and workforce reduction.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "result-0",
+          "who-2",
+          "result-3",
+          "how-1",
+          "how-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "roughly 17% of workforce to be cut",
+            "provenance": "surface"
+          },
+          {
+            "term": "significant workforce reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "workforce reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff layoff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organizational downsizing",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected U.S. employees",
+            "provenance": "surface"
+          },
+          {
+            "term": "employees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "workers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "personnel",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+            "provenance": "surface"
+          },
+          {
+            "term": "severance payments provided",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "severance package",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "compensation offer",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "provenance": "surface"
+          },
+          {
+            "term": "severance package offered to laid-off employees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "employee benefit",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "provenance": "surface"
+          },
+          {
+            "term": "announcement of major layoffs",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "corporate announcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision communication",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff notification",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The tax-software company's announcement of major layoffs will affect thousands of people facing unemployment. Workers facing job loss now confront a significant workforce reduction that will eliminate roughly 17% of the company's staff. While a severance package has been offered, the support for those impacted by the layoffs may not fully mitigate the long-term harm to families and communities who depended on these stable roles.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "how-0",
+          "result-0",
+          "result-1",
+          "result-3"
+        ],
+        "center": "result-0",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 0
+      },
+      "warnings": [],
+      "fit": 0.9
+    },
+    {
+      "id": "p2",
+      "text": "Vulnerable employees needing support learned of the decision through a corporate announcement that communicates job elimination to a large workforce. The employer responsible for employee welfare stated that organizational change was the goal, yet the affected personnel, whose livelihoods are now at stake, must navigate a painful transition. The compensation offer provides a financial cushion, but for many, the loss of their workplace represents a profound disruption to their stability.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "how-0",
+          "why-0",
+          "how-1",
+          "how-2"
+        ],
+        "center": "who-2",
+        "center_kind": "who",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p3",
+      "text": "A severance package offered to laid-off employees includes sixteen weeks of base pay and additional compensation per year of tenure. This employee benefit is intended as support for those impacted by layoffs. However, as sites of former employment are being closed in Reno and Woodland Hills, the financial assistance may be a temporary relief for people whose livelihoods have been suddenly upended by a large number of jobs cut across the workforce.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "how-1",
+          "result-3",
+          "result-2",
+          "result-1"
+        ],
+        "center": "result-3",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 2
+      },
+      "warnings": [],
+      "fit": 0.8
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "announcement of major layoffs",
+            "weight": 0.82
+          },
+          {
+            "text": "corporate announcement",
+            "weight": 0.82
+          },
+          {
+            "text": "decision communication",
+            "weight": 0.82
+          },
+          {
+            "text": "staff notification",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "communication of job elimination to a large workforce",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "severance package offered to laid-off employees",
+            "weight": 0.82
+          },
+          {
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "text": "compensation offer",
+            "weight": 0.82
+          },
+          {
+            "text": "employee benefit",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a financial cushion for those losing their jobs",
+            "weight": 0.38
+          },
+          {
+            "text": "compensation that may not fully mitigate the harm of job loss",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Offices in Reno and Woodland Hills are winding down",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "office closures",
+            "weight": 0.82
+          },
+          {
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "text": "location shutdown",
+            "weight": 0.82
+          },
+          {
+            "text": "real estate disposal",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "loss of physical workplaces for employees",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "roughly 17% of workforce to be cut",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "significant workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "text": "workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "text": "staff layoff",
+            "weight": 0.82
+          },
+          {
+            "text": "organizational downsizing",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a large number of jobs eliminated",
+            "weight": 0.38
+          },
+          {
+            "text": "substantial harm to employee families and communities",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "about 3,000 full-time roles to be eliminated",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "numerous jobs cut",
+            "weight": 0.82
+          },
+          {
+            "text": "job elimination",
+            "weight": 0.82
+          },
+          {
+            "text": "role reduction",
+            "weight": 0.82
+          },
+          {
+            "text": "headcount decrease",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "thousands of people facing unemployment",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "offices in Reno and Woodland Hills winding down",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "workplace shutdowns",
+            "weight": 0.82
+          },
+          {
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "text": "location shutdown",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "sites of former employment being closed",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "result-3",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "severance payments provided",
+            "weight": 0.82
+          },
+          {
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "text": "compensation offer",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "support offered to those impacted by layoffs",
+            "weight": 0.38
+          },
+          {
+            "text": "financial assistance that may not cover long-term needs",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Reno",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "city",
+            "weight": 0.82
+          },
+          {
+            "text": "Nevada",
+            "weight": 0.82
+          },
+          {
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "text": "North America",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-1",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Woodland Hills",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "neighborhood",
+            "weight": 0.82
+          },
+          {
+            "text": "Los Angeles",
+            "weight": 0.82
+          },
+          {
+            "text": "California",
+            "weight": 0.82
+          },
+          {
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "text": "North America",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Intuit",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "corporate decision-maker",
+            "weight": 0.82
+          },
+          {
+            "text": "tax-software company",
+            "weight": 0.82
+          },
+          {
+            "text": "technology company",
+            "weight": 0.82
+          },
+          {
+            "text": "company",
+            "weight": 0.82
+          },
+          {
+            "text": "corporation",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "employer responsible for employee welfare",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Sasan Goodarzi",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "chief executive",
+            "weight": 0.82
+          },
+          {
+            "text": "executive",
+            "weight": 0.82
+          },
+          {
+            "text": "company leader",
+            "weight": 0.82
+          },
+          {
+            "text": "person",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "corporate leader initiating layoffs",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "affected U.S. employees",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "workers facing job loss",
+            "weight": 0.38
+          },
+          {
+            "text": "vulnerable employees needing support",
+            "weight": 0.38
+          },
+          {
+            "text": "people whose livelihoods are at stake",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "employees",
+            "weight": 0.82
+          },
+          {
+            "text": "workers",
+            "weight": 0.82
+          },
+          {
+            "text": "staff",
+            "weight": 0.82
+          },
+          {
+            "text": "personnel",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "corporate strategic realignment",
+            "weight": 0.82
+          },
+          {
+            "text": "business strategy",
+            "weight": 0.82
+          },
+          {
+            "text": "organizational change",
+            "weight": 0.82
+          },
+          {
+            "text": "product development acceleration",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "prioritizing technological progress over human stability",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "as a painful but necessary reinvention after months of internal review",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "organizational change",
+            "weight": 0.82
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a decision that inflicts pain on employees",
+            "weight": 0.38
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "where-0",
+          "where-1"
+        ],
+        "search_text": "Intuit; corporate decision-maker; tax-software company; technology company; company; corporation; Sasan Goodarzi; chief executive; executive; company leader; person; affected U.S. employees; employees; workers; staff; personnel; Reno; city; Nevada; United States; North America; Woodland Hills; neighborhood; Los Angeles; California; United States; North America",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "Intuit",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "corporate decision-maker",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "tax-software company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "technology company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "corporation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "Sasan Goodarzi",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "chief executive",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "executive",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "company leader",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "person",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "affected U.S. employees",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "employees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "workers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "staff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "personnel",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "Reno",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "city",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "Nevada",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "North America",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "surface",
+            "text": "Woodland Hills",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "neighborhood",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "Los Angeles",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "California",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "North America",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "why-1",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1",
+          "result-2",
+          "result-3"
+        ],
+        "search_text": "to co-locate teams in strategic hubs and accelerate AI-driven product work; corporate strategic realignment; business strategy; organizational change; product development acceleration; as a painful but necessary reinvention after months of internal review; organizational change; Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles; announcement of major layoffs; corporate announcement; decision communication; staff notification; Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure; severance package offered to laid-off employees; severance package; compensation offer; employee benefit; Offices in Reno and Woodland Hills are winding down; office closures; office closure; location shutdown; real estate disposal; roughly 17% of workforce to be cut; significant workforce reduction; workforce reduction; staff layoff; organizational downsizing; about 3,000 full-time roles to be eliminated; numerous jobs cut; job elimination; role reduction; headcount decrease; offices in Reno and Woodland Hills winding down; workplace shutdowns; office closure; location shutdown; affected employees offered 16 weeks of base pay plus two weeks per year of tenure; severance payments provided; severance package; compensation offer",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "corporate strategic realignment",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "business strategy",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "organizational change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "product development acceleration",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "surface",
+            "text": "as a painful but necessary reinvention after months of internal review",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "organizational change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "announcement of major layoffs",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "corporate announcement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "decision communication",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "staff notification",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "severance package offered to laid-off employees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "compensation offer",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "employee benefit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "Offices in Reno and Woodland Hills are winding down",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "office closures",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "location shutdown",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "real estate disposal",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "roughly 17% of workforce to be cut",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "significant workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "staff layoff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "organizational downsizing",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "about 3,000 full-time roles to be eliminated",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "numerous jobs cut",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "job elimination",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "role reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "headcount decrease",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "surface",
+            "text": "offices in Reno and Woodland Hills winding down",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "workplace shutdowns",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "location shutdown",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "surface",
+            "text": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "severance payments provided",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "compensation offer",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Caregiver-p1",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-0",
+          "how-0",
+          "result-1",
+          "result-3"
+        ],
+        "search_text": "The tax-software company's announcement of major layoffs will affect thousands of people facing unemployment. Workers facing job loss now confront a significant workforce reduction that will eliminate roughly 17% of the company's staff. While a severance package has been offered, the support for those impacted by the layoffs may not fully mitigate the long-term harm to families and communities who depended on these stable roles.",
+        "fragments": [
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "roughly 17% of workforce to be cut",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "significant workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "staff layoff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "organizational downsizing",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Caregiver",
+        "center_element": "result-0",
+        "supporting_elements": [
+          "how-0",
+          "result-0",
+          "result-1",
+          "result-3"
+        ],
+        "fit": 0.9
+      },
+      {
+        "id": "su-persona-The-Caregiver-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "who-2",
+          "how-0",
+          "why-0",
+          "how-1",
+          "how-2"
+        ],
+        "search_text": "Vulnerable employees needing support learned of the decision through a corporate announcement that communicates job elimination to a large workforce. The employer responsible for employee welfare stated that organizational change was the goal, yet the affected personnel, whose livelihoods are now at stake, must navigate a painful transition. The compensation offer provides a financial cushion, but for many, the loss of their workplace represents a profound disruption to their stability.",
+        "fragments": [
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "affected U.S. employees",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "employees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "workers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "staff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "personnel",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Caregiver",
+        "center_element": "who-2",
+        "supporting_elements": [
+          "how-0",
+          "why-0",
+          "how-1",
+          "how-2"
+        ],
+        "fit": 0.85
+      },
+      {
+        "id": "su-persona-The-Caregiver-p3",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-3",
+          "how-1",
+          "result-2",
+          "result-1"
+        ],
+        "search_text": "A severance package offered to laid-off employees includes sixteen weeks of base pay and additional compensation per year of tenure. This employee benefit is intended as support for those impacted by layoffs. However, as sites of former employment are being closed in Reno and Woodland Hills, the financial assistance may be a temporary relief for people whose livelihoods have been suddenly upended by a large number of jobs cut across the workforce.",
+        "fragments": [
+          {
+            "element_id": "result-3",
+            "level": "surface",
+            "text": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "severance payments provided",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "compensation offer",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "severance package offered to laid-off employees",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Caregiver",
+        "center_element": "result-3",
+        "supporting_elements": [
+          "how-1",
+          "result-3",
+          "result-2",
+          "result-1"
+        ],
+        "fit": 0.8
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"The tax-software company's announcement of major layoffs will affect thousands of people facing unemployment. Workers facing job loss now confront a significant workforce reduction that will eliminate roughly 17% of the company's staff. While a severance package has been offered, the support for those impacted by the layoffs may not fully mitigate the long-term harm to families and communities who depended on these stable roles.\",\n      \"fit\": 0.9,\n      \"center\": \"result-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"result-0\", \"result-1\", \"result-3\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"Vulnerable employees needing support learned of the decision through a corporate announcement that communicates job elimination to a large workforce. The employer responsible for employee welfare stated that organizational change was the goal, yet the affected personnel, whose livelihoods are now at stake, must navigate a painful transition. The compensation offer provides a financial cushion, but for many, the loss of their workplace represents a profound disruption to their stability.\",\n      \"fit\": 0.85,\n      \"center\": \"who-2\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"why-0\", \"how-1\", \"how-2\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"A severance package offered to laid-off employees includes sixteen weeks of base pay and additional compensation per year of tenure. This employee benefit is intended as support for those impacted by layoffs. However, as sites of former employment are being closed in Reno and Woodland Hills, the financial assistance may be a temporary relief for people whose livelihoods have been suddenly upended by a large number of jobs cut across the workforce.\",\n      \"fit\": 0.8,\n      \"center\": \"result-3\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-1\", \"result-3\", \"result-2\", \"result-1\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 3,
+    "dropped_pseudos": 0,
+    "drop_reasons": []
+  }
+}

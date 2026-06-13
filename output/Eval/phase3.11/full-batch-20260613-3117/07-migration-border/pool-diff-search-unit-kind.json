@@ -1,0 +1,300 @@
+{
+  "run_id": "07-migration-border",
+  "baseline_candidate_count": 19,
+  "design_candidate_count": 19,
+  "overlap_count": 9,
+  "net_new_tmdb_ids": [
+    20764,
+    25012,
+    33638,
+    58383,
+    68924,
+    158015,
+    319910,
+    372753,
+    473760,
+    508664
+  ],
+  "lost_tmdb_ids": [
+    1775,
+    9366,
+    46221,
+    49097,
+    127822,
+    252990,
+    362202,
+    1006462,
+    1418657,
+    1447971
+  ],
+  "by_search_unit_kind": {
+    "event-fragment-bundle": [],
+    "persona-semantic": [
+      20764,
+      25012,
+      33638,
+      58383,
+      68924,
+      158015,
+      319910,
+      372753,
+      473760,
+      508664
+    ],
+    "surface-fragment-bundle": []
+  },
+  "collision_gain_tmdb_ids": [],
+  "net_new_details": [
+    {
+      "tmdb_id": 20764,
+      "title": "Sleep Dealer",
+      "similarity": 0.49703285098075867,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-EVERYMAN",
+        "THE-EXPLORER",
+        "THE-LOVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result",
+          "where",
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 25012,
+      "title": "Absolute Zero",
+      "similarity": 0.4581485986709595,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-EVERYMAN",
+        "THE-EXPLORER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who",
+          "why"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 33638,
+      "title": "The Life and Times of Judge Roy Bean",
+      "similarity": 0.5641672015190125,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 58383,
+      "title": "Hands Over the City",
+      "similarity": 0.5080934166908264,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 68924,
+      "title": "The Ice Storm",
+      "similarity": 0.4452267587184906,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-MAGICIAN",
+        "THE-SAGE"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how",
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 158015,
+      "title": "The Purge",
+      "similarity": 0.5099433660507202,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 319910,
+      "title": "Broken Horses",
+      "similarity": 0.5039684176445007,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-RULER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result",
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 372753,
+      "title": "Snow White and Her 7 Lovers",
+      "similarity": 0.4900800287723541,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 473760,
+      "title": "The Order of Things",
+      "similarity": 0.498016357421875,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 508664,
+      "title": "Danger Close: The Battle of Long Tan",
+      "similarity": 0.5033186078071594,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-HERO"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    }
+  ]
+}

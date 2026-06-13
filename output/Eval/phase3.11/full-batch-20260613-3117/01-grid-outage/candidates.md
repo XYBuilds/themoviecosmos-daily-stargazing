@@ -1,0 +1,507 @@
+# 候选星轨 · 01-grid-outage
+
+## 元信息
+- run_id: 01-grid-outage
+
+## 候选星轨（共 19 部）
+
+### Survival Family (2017) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-CREATOR] [汇聚标注]
+- **tmdb_id**: 429918
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 302.6126
+  - **persona_agent_count**: 9
+  - **source_hits**: surface=0 / event=10 / persona=15
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how, result, who, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=9: THE-HERO,THE-OUTLAW,THE-CAREGIVER,THE-MAGICIAN,THE-SAGE,THE-CREATOR,THE-INNOCENT,THE-EVERYMAN,THE-LOVER
+- **相似度**: 0.6126
+- **genres** / **language**: Comedy, Drama, Adventure / ja
+- **overview**: A world wide electrical outage occurs. Everything that requires electricity comes to a stop. Tokyo is nearly ruined. Yoshiyuki Suzuki decides to escape from Tokyo with his family.
+- **跳转**: https://themoviecosmos.com/movie/429918
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.4759
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.4941
+  - THE-HERO/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.4815
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.4758
+  - THE-EXPLORER/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.4867
+  - THE-OUTLAW/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.4757
+  - THE-LOVER/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.4796
+  - THE-RULER/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.4808
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.4814
+  - THE-SAGE/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.4969
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-1, why-0, how-1, result-0] · sim=0.5918
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[who-3, why-1, why-2, how-2] · sim=0.5140
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[why-0, why-2, how-1] · sim=0.5396
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[how-1, why-0, result-0] · sim=0.4734
+  - THE-EVERYMAN/su-persona-The-Everyman-p3: fragments=[who-1, why-0, why-1, result-0] · sim=0.4749
+  - THE-HERO/su-persona-The-Hero-p1: fragments=[result-0, how-2, why-0] · sim=0.5693
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[how-1, why-1, why-0] · sim=0.4200
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[why-0, how-1, result-0] · sim=0.6126
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[how-2, why-0, why-2, result-0] · sim=0.5745
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[why-0, why-1, result-0] · sim=0.5580
+  - THE-MAGICIAN/su-persona-The-Magician-p1: fragments=[how-1, why-0, why-1, why-2, result-0] · sim=0.4797
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[how-2, how-0, result-0] · sim=0.4865
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[how-2, why-0, how-1, result-0] · sim=0.4796
+  - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[who-0, how-1, how-2, result-0] · sim=0.5021
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[why-0, why-1, why-2, how-0] · sim=0.4735
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Breathe (2024) [THE-INNOCENT, THE-EVERYMAN, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-SAGE]
+- **tmdb_id**: 720321
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4603
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=7 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4603
+- **genres** / **language**: Action, Science Fiction, Mystery, Thriller / en
+- **overview**: Air-supply is scarce in the near future, forcing a mother and daughter to fight for survival when two strangers arrive desperate for an oxygenated haven.
+- **跳转**: https://themoviecosmos.com/movie/720321
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.3856
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.3942
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.3739
+  - THE-EXPLORER/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.3952
+  - THE-OUTLAW/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.3729
+  - THE-LOVER/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.3882
+  - THE-SAGE/su-event-1: fragments=[why-0, why-1, why-2, how-0, how-1, how-2, result-0] · sim=0.3983
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[why-0, why-1, why-2, how-0] · sim=0.4603
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Assembling a Generator (1904) [THE-CREATOR, THE-CAREGIVER, THE-OUTLAW, THE-RULER]
+- **tmdb_id**: 190738
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4616
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=3 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4616
+- **genres** / **language**: Documentary / en
+- **overview**: A group of men work on various parts of a large generator, assembling the pieces
+- **跳转**: https://themoviecosmos.com/movie/190738
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[how-2, why-0, why-1, result-0] · sim=0.4616
+  - THE-CAREGIVER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.3927
+  - THE-OUTLAW/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.3846
+  - THE-RULER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.3897
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### 2061 - Un anno eccezionale (2007) [THE-CAREGIVER, THE-CREATOR, THE-EXPLORER]
+- **tmdb_id**: 33495
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 138.5359
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5359
+- **genres** / **language**: Comedy, Science Fiction / it
+- **overview**: In a post-apocalyptic future, the Italian peninsula is going through a dark moment due to a terrible energy crisis.
+- **跳转**: https://themoviecosmos.com/movie/33495
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[who-3, why-1, why-2, how-2] · sim=0.5359
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[who-0, why-0, why-1, why-2, result-0] · sim=0.5030
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[who-0, how-1, result-0, why-2, why-0] · sim=0.4694
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Geostorm (2017) [THE-CREATOR, THE-MAGICIAN, THE-OUTLAW, THE-SAGE]
+- **tmdb_id**: 274855
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 156.5268
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=0 / persona=4
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5268
+- **genres** / **language**: Action, Science Fiction, Thriller / en
+- **overview**: After an unprecedented series of natural disasters threatened the planet, the world's leaders came together to create an intricate network of satellites to control the global climate and keep everyone safe. But now, something has gone wrong: the system built to protect Earth is attacking it, and it becomes a race against the clock to uncover the real threat before a worldwide geostorm wipes out everything and everyone along with it.
+- **跳转**: https://themoviecosmos.com/movie/274855
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[how-1, why-0, result-0] · sim=0.4896
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[how-2, how-0, result-0] · sim=0.5177
+  - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[who-0, how-1, how-2, result-0] · sim=0.5268
+  - THE-SAGE/su-persona-The-Sage-p3: fragments=[how-2, how-0, how-1, result-0] · sim=0.4663
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### From What Is Before (2014) [THE-CREATOR, THE-EXPLORER] [汇聚标注]
+- **tmdb_id**: 280492
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 198.4517
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=1 / persona=1
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-EXPLORER
+- **相似度**: 0.4517
+- **genres** / **language**: Drama / tl
+- **overview**: The Philippines, 1972. Mysterious things are happening in a remote barrio. Wails are heard from the forest, cows are hacked to death, a man is found bleeding to death at the crossroad, and houses are burned. Ferdinand E. Marcos announces Proclamation No. 1081, putting the entire country under Martial Law.
+- **跳转**: https://themoviecosmos.com/movie/280492
+- **命中视角/碎片**:
+  - THE-CREATOR/su-event-1: fragments=[how-1, how-2, why-0, why-1, result-0, why-2, how-0] · sim=0.4464
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[who-0, how-1, result-0, why-2, why-0] · sim=0.4517
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Stranded (2021) [THE-HERO, THE-INNOCENT, THE-MAGICIAN]
+- **tmdb_id**: 841793
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 146.5478
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5478
+- **genres** / **language**: Drama / pt
+- **overview**: Tensions run high while food runs low as six influencers find themselves stranded on a secluded island after plans for a weekend escape go awry.
+- **跳转**: https://themoviecosmos.com/movie/841793
+- **命中视角/碎片**:
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[how-1, why-1, why-0] · sim=0.4272
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[how-2, why-0, why-2, result-0] · sim=0.4785
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[why-2, why-0, why-1, result-0] · sim=0.5478
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Blade Runner: Black Out 2022 (2017) [THE-MAGICIAN, THE-OUTLAW]
+- **tmdb_id**: 475946
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5191
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5191
+- **genres** / **language**: Action, Animation, Science Fiction / en
+- **overview**: This animated short revolves around the events causing an electrical systems failure on the west coast of the US. According to Blade Runner 2049’s official timeline, this failure leads to cities shutting down, financial and trade markets being thrown into chaos, and food supplies dwindling. There’s no proof as to what caused the blackouts, but Replicants — the bio-engineered robots featured in the original Blade Runner, are blamed.
+- **跳转**: https://themoviecosmos.com/movie/475946
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-persona-The-Magician-p1: fragments=[how-1, why-0, why-1, why-2, result-0] · sim=0.4855
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[why-0, how-0, why-1, how-1] · sim=0.5191
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Last Winter (2006) [THE-CREATOR, THE-MAGICIAN]
+- **tmdb_id**: 15667
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.4807
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4807
+- **genres** / **language**: Horror, Thriller / en
+- **overview**: In the Arctic region of Northern Alaska, an oil company's advance team struggles to establish a drilling base that will forever alter the pristine land. After one team member is found dead, a disorientation slowly claims the sanity of the others as each of them succumbs to a mysterious fear.
+- **跳转**: https://themoviecosmos.com/movie/15667
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[who-0, why-0, why-1, why-2, result-0] · sim=0.4807
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[why-2, why-0, why-1, result-0] · sim=0.4562
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Trigger Effect (1996) [THE-CAREGIVER, THE-HERO]
+- **tmdb_id**: 58770
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.5294
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5294
+- **genres** / **language**: Drama, Thriller / en
+- **overview**: A blackout leaves those affected to consider what is necessary, what is legal, and what is questionable, in order to survive in a predatory environment.
+- **跳转**: https://themoviecosmos.com/movie/58770
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[why-0, why-2, how-1] · sim=0.5294
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[why-0, how-1, result-0] · sim=0.4750
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Matango (1963) [THE-RULER]
+- **tmdb_id**: 52302
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4964
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4964
+- **genres** / **language**: Horror, Science Fiction, Thriller, Drama, Mystery, Fantasy / ja
+- **overview**: Five vacationers and two crewmen become stranded on a tropical island near the equator. The island has little edible food for them to use as they try to live in a fungus covered hulk while repairing Kessei's yacht. Eventually they struggle over the food rations which were left behind by the former crew. Soon they discover something unfriendly there...
+- **跳转**: https://themoviecosmos.com/movie/52302
+- **命中视角/碎片**:
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[result-0, why-0, why-1, how-1, how-2] · sim=0.4964
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Back to 1942 (2012) [THE-RULER]
+- **tmdb_id**: 139329
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4831
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4831
+- **genres** / **language**: War, Drama / zh
+- **overview**: In 1942, Henan Province was devastated by one of the most tragic famines in modern Chinese history, resulting in the deaths of at least three million men, women and children. Although the primary cause of the famine was a severe drought, it was exacerbated by locusts, windstorms, earthquakes, epidemic disease and the corruption of the ruling Kuomintang government.
+- **跳转**: https://themoviecosmos.com/movie/139329
+- **命中视角/碎片**:
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[result-0, why-0, why-1, how-1, how-2] · sim=0.4831
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Stormageddon (2015) [THE-OUTLAW]
+- **tmdb_id**: 370097
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5021
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5021
+- **genres** / **language**: Action, Drama, Thriller, Science Fiction / en
+- **overview**: What happens when you ask the most powerful computer program, run by the most powerful computers, to follow, listen and predict human behavior? The program learns, becomes sentient and begins to behave like a human. When a master computer program, Echelon, takes over America's entire online system, our country is threatened to be brought to its knees. Hacking into DARPA, Echelon gains the ability to manipulate the weather, create earthquakes, and cause a level of destruction unlike anything the country could ever imagine. But how do you stop a computer program when it has control over any and every defense you have?
+- **跳转**: https://themoviecosmos.com/movie/370097
+- **命中视角/碎片**:
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[why-0, how-0, why-1, how-1] · sim=0.5021
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Sarkar Raj (2008) [THE-CAREGIVER]
+- **tmdb_id**: 14394
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4938
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4938
+- **genres** / **language**: Action, Adventure, Crime, Drama / hi
+- **overview**: When Anita Raja, CEO of Sheppard power plant, brings a power plant proposal to set up in rural Mahrashtra before the Nagres, insightful Shankar is quick to realise the benefits the power plant can bring to the people.
+- **跳转**: https://themoviecosmos.com/movie/14394
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-1, why-0, how-1, result-0] · sim=0.4938
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Hijacking of Flight 375 (2023) [THE-OUTLAW]
+- **tmdb_id**: 1032795
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4772
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4772
+- **genres** / **language**: Thriller, Drama / pt
+- **overview**: Brazil, 1988. An unemployed tractor driver hijacks VASP flight 375 and orders commander Murilo to crash the plane on the Planalto Palace to kill the president - whom he considers guilty for the country's devastating economic crisis.
+- **跳转**: https://themoviecosmos.com/movie/1032795
+- **命中视角/碎片**:
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[how-2, why-0, how-1, result-0] · sim=0.4772
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Pompiers : attaque du feu (1896) [THE-CREATOR]
+- **tmdb_id**: 178989
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4752
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4752
+- **genres** / **language**: Documentary / fr
+- **overview**: A firefighter, at the top of the ladder, sprays the building with his hose; to the right, two other hoses are activated.
+- **跳转**: https://themoviecosmos.com/movie/178989
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[how-2, why-0, why-1, result-0] · sim=0.4752
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Re-Generator (2010) [THE-HERO]
+- **tmdb_id**: 194834
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5104
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5104
+- **genres** / **language**: Action, Science Fiction / en
+- **overview**: A plane containing a highly classified government project crashes outside of a small town in the US. Realizing the level of danger, the government tries to secretly fix the problem. As tensions grow, the situation gets out of control, and civilians from the town find themselves facing their worst nightmare: a genetically enhanced killing machine that doesn't know how to stop.
+- **跳转**: https://themoviecosmos.com/movie/194834
+- **命中视角/碎片**:
+  - THE-HERO/su-persona-The-Hero-p1: fragments=[result-0, how-2, why-0] · sim=0.5104
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Caligula (1979) [THE-LOVER]
+- **tmdb_id**: 9453
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4609
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4609
+- **genres** / **language**: Drama, History / it
+- **overview**: After the death of the paranoid emperor Tiberius, Caligula, his heir, seizes power and plunges the empire into a bloody spiral of madness and depravity.
+- **跳转**: https://themoviecosmos.com/movie/9453
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[how-2, result-0] · sim=0.4609
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Real Glory (1939) [THE-LOVER]
+- **tmdb_id**: 111750
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4603
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4603
+- **genres** / **language**: Drama, War / en
+- **overview**: Fort Mysang, southern Philippine Islands, under US rule, 1906. A small group of army officers and native troops resist the fierce and treacherous attacks of the ruthless Alisang and his fanatical followers.
+- **跳转**: https://themoviecosmos.com/movie/111750
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[how-2, result-0] · sim=0.4603
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）

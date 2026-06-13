@@ -1,0 +1,326 @@
+{
+  "run_id": "03-election-upset",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 19,
+  "overlap_count": 11,
+  "net_new_tmdb_ids": [
+    6521,
+    10411,
+    14050,
+    52657,
+    114645,
+    142142,
+    264518,
+    432301
+  ],
+  "lost_tmdb_ids": [
+    379,
+    46563,
+    100420,
+    239070,
+    342442,
+    532869,
+    536176,
+    1168015
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [
+    {
+      "tmdb_id": 77953,
+      "title": "The Campaign",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    },
+    {
+      "tmdb_id": 239070,
+      "title": "120 Seconds to Get Elected",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    }
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 6521,
+      "title": "The Contender",
+      "similarity": 0.5740505456924438,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-persona-The-Magician-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-1",
+            "how-0",
+            "result-1"
+          ],
+          "similarity": 0.5740505456924438,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 10411,
+      "title": "The Distinguished Gentleman",
+      "similarity": 0.5001081228256226,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "result-1",
+            "how-0",
+            "why-0"
+          ],
+          "similarity": 0.5001081228256226,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "why-0",
+            "how-0",
+            "result-2"
+          ],
+          "similarity": 0.4878884553909302,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 14050,
+      "title": "Recount",
+      "similarity": 0.5607325434684753,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "result-2",
+            "how-0"
+          ],
+          "similarity": 0.5607325434684753,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 52657,
+      "title": "Avenging Force",
+      "similarity": 0.593001127243042,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-OUTLAW",
+        "THE-MAGICIAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-persona-The-Magician-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-1",
+            "how-0",
+            "result-1"
+          ],
+          "similarity": 0.593001127243042,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-persona-The-Outlaw-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "how-0",
+            "result-1"
+          ],
+          "similarity": 0.5010862350463867,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 114645,
+      "title": "Days of '36",
+      "similarity": 0.5566856861114502,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-persona-The-Outlaw-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "why-0",
+            "how-0",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.5566856861114502,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 142142,
+      "title": "Thanks a Million",
+      "similarity": 0.5500787496566772,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "su-persona-The-Jester-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.5500787496566772,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 264518,
+      "title": "Judge Archer",
+      "similarity": 0.560575008392334,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-CAREGIVER",
+        "THE-OUTLAW"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-2",
+            "result-0",
+            "why-1"
+          ],
+          "similarity": 0.560575008392334,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-2"
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "why-0",
+            "result-0",
+            "why-1"
+          ],
+          "similarity": 0.5438529253005981,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-persona-The-Outlaw-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.5292785167694092,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 432301,
+      "title": "Chappaquiddick",
+      "similarity": 0.535388708114624,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER",
+        "THE-JESTER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-JESTER",
+          "pseudo_id": "su-persona-The-Jester-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "why-1",
+            "how-0"
+          ],
+          "similarity": 0.535388708114624,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "result-1",
+            "why-0",
+            "how-0"
+          ],
+          "similarity": 0.5311853289604187,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        }
+      ]
+    }
+  ],
+  "by_channel": {
+    "focalized": [],
+    "toned": [
+      6521,
+      10411,
+      14050,
+      52657,
+      114645,
+      142142,
+      264518,
+      432301
+    ]
+  }
+}

@@ -1,0 +1,506 @@
+# 候选星轨 · 10-whistleblower-leak
+
+## 元信息
+- run_id: 10-whistleblower-leak
+
+## 候选星轨（共 19 部）
+
+### Gabbar Is Back (2015) [THE-CAREGIVER, THE-INNOCENT, THE-LOVER, THE-MAGICIAN, THE-RULER, THE-EVERYMAN, THE-HERO, THE-EXPLORER, THE-OUTLAW, THE-CREATOR, THE-SAGE, THE-JESTER] [汇聚标注]
+- **tmdb_id**: 337876
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=true, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 234.6323
+  - **persona_agent_count**: 5
+  - **source_hits**: surface=12 / event=0 / persona=8
+  - **search_unit_kinds**: persona-semantic, surface-fragment-bundle
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=5: THE-CAREGIVER,THE-INNOCENT,THE-LOVER,THE-RULER,THE-MAGICIAN
+- **相似度**: 0.6323
+- **genres** / **language**: Drama, Action / hi
+- **overview**: A vigilante network taking out corrupt officials draws the notice of the authorities.
+- **跳转**: https://themoviecosmos.com/movie/337876
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[who-2, how-1, how-2, how-3, result-1] · sim=0.5826
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[who-0, why-0, how-1, how-2] · sim=0.6000
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[who-0, why-0, how-1, how-2] · sim=0.6323
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[how-1, how-2, how-3, result-2] · sim=0.5270
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[how-2, result-0, result-2] · sim=0.4847
+  - THE-RULER/su-persona-The-Ruler-p1: fragments=[result-0, why-0, how-2, how-3, result-2] · sim=0.4313
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[how-3, why-0, how-1, how-2] · sim=0.6302
+  - THE-RULER/su-persona-The-Ruler-p3: fragments=[how-2, why-0, how-1, result-0] · sim=0.4691
+  - THE-INNOCENT/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.4931
+  - THE-EVERYMAN/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.4966
+  - THE-HERO/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.4864
+  - THE-CAREGIVER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.5225
+  - THE-EXPLORER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.5041
+  - THE-OUTLAW/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.4842
+  - THE-LOVER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.5308
+  - THE-CREATOR/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.4864
+  - THE-RULER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.5032
+  - THE-MAGICIAN/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.4986
+  - THE-SAGE/su-surface-1: fragments=[who-0, who-1, who-3, who-4, who-5, where-0, where-1, who-2] · sim=0.5270
+  - THE-JESTER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, who-4, who-5, where-0, where-1] · sim=0.5126
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Killing Room (2009) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-MAGICIAN, THE-SAGE, THE-JESTER] [汇聚标注]
+- **tmdb_id**: 20777
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 198.4886
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=10 / persona=1
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-SAGE
+- **相似度**: 0.4886
+- **genres** / **language**: Thriller, Drama / en
+- **overview**: Four volunteers sign up for what initially appears to be a typical paid research study, only to discover that they've unwittingly become involved with a classified government program that was said to have been terminated nearly two decades ago.
+- **跳转**: https://themoviecosmos.com/movie/20777
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, how-0, how-1, how-4, result-0, result-1, result-2, how-2, how-3] · sim=0.4075
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.4267
+  - THE-HERO/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.4052
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.3982
+  - THE-EXPLORER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.3984
+  - THE-OUTLAW/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.3952
+  - THE-LOVER/su-event-1: fragments=[why-0, result-0, result-1, result-2, how-0, how-1, how-2, how-3, how-4] · sim=0.4467
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.4023
+  - THE-SAGE/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.4118
+  - THE-JESTER/su-event-1: fragments=[why-0, how-1, how-3, how-4, result-0, result-2, how-0, how-2, result-1] · sim=0.4166
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[how-1, how-2, how-3, result-0] · sim=0.4886
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Recruit (2003) [THE-CAREGIVER, THE-OUTLAW, THE-CREATOR, THE-LOVER] [汇聚标注]
+- **tmdb_id**: 1647
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 198.5661
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=3 / persona=1
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-LOVER
+- **相似度**: 0.5661
+- **genres** / **language**: Action, Thriller / en
+- **overview**: A brilliant CIA trainee must prove his worth at the Farm, the agency's secret training grounds, where he learns to watch his back and trust no one.
+- **跳转**: https://themoviecosmos.com/movie/1647
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.3897
+  - THE-OUTLAW/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.4068
+  - THE-CREATOR/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.4181
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[who-0, why-0, how-1, how-2] · sim=0.5661
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Gracefield Incident (2017) [THE-INNOCENT, THE-MAGICIAN, THE-EXPLORER]
+- **tmdb_id**: 327253
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5914
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=2 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5914
+- **genres** / **language**: Horror, Science Fiction, Action, Mystery / en
+- **overview**: On August 16, 2013, the Supreme Court mandated the CIA to declassify files that had been kept secret for the past 75 years. Visual records of documented paranormal events were released to the public. The following incident took place in Gracefield, Quebec.
+- **跳转**: https://themoviecosmos.com/movie/327253
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, how-0, how-1, how-4, result-0, result-1, result-2, how-2, how-3] · sim=0.3945
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, how-0, how-1, how-2, how-3, how-4, result-0, result-1, result-2] · sim=0.3821
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[who-0, why-0, how-1, how-2, result-1] · sim=0.5914
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Test (2006) [THE-CAREGIVER, THE-RULER, THE-SAGE]
+- **tmdb_id**: 887697
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 154.5034
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5034
+- **genres** / **language**: Animation, Drama / cs
+- **overview**: Test
+- **跳转**: https://themoviecosmos.com/movie/887697
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[result-0, how-0, how-1, result-2] · sim=0.4930
+  - THE-RULER/su-persona-The-Ruler-p3: fragments=[how-2, why-0, how-1, result-0] · sim=0.4730
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[why-0, how-1, how-2, result-0] · sim=0.5034
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Discount (2014) [THE-CAREGIVER, THE-CREATOR, THE-MAGICIAN]
+- **tmdb_id**: 313055
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 146.5932
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5932
+- **genres** / **language**: Comedy / fr
+- **overview**: To fight against the introduction of automatic checkouts that threaten their jobs, staff members at Hard Discounts secretly create their own "Alternative Discount" outlet by salvaging products that would otherwise have been wasted.
+- **跳转**: https://themoviecosmos.com/movie/313055
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[who-2, how-1, how-2, how-3, result-1] · sim=0.5932
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[how-1, how-0, why-0] · sim=0.5638
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[how-2, result-0, result-2] · sim=0.4776
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Le Brio (2017) [THE-EVERYMAN, THE-LOVER]
+- **tmdb_id**: 452187
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.6388
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6388
+- **genres** / **language**: Drama, Comedy / fr
+- **overview**: After an incident, a brilliant professor known for his outbursts is forced to mentor the student he wronged for a speech contest.
+- **跳转**: https://themoviecosmos.com/movie/452187
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[who-5, how-2, how-3, result-0] · sim=0.6388
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-5, why-0, how-1, how-2, result-1] · sim=0.5837
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Black Dossier (1955) [THE-OUTLAW, THE-SAGE]
+- **tmdb_id**: 199252
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.6116
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6116
+- **genres** / **language**: Crime, Drama / fr
+- **overview**: In the 1950s, in a small provincial town, a young inexperienced judge clashes with an influential notable during an investigation into a suspicious death. His perseverance to get to the truth will cause a huge scandal.
+- **跳转**: https://themoviecosmos.com/movie/199252
+- **命中视角/碎片**:
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[why-0, how-2, how-3, result-1, result-2] · sim=0.6116
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[how-1, how-2, how-3, result-0] · sim=0.4794
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### I Flunked, But... (1930) [THE-HERO, THE-INNOCENT]
+- **tmdb_id**: 88269
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.4919
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4919
+- **genres** / **language**: Comedy / ja
+- **overview**: After the plans of a group of college students to cheat on their final exams goes awry, they're left to reassess their lives and educations and get back on track.
+- **跳转**: https://themoviecosmos.com/movie/88269
+- **命中视角/碎片**:
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[result-2, result-0] · sim=0.4616
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-0, why-0, how-1] · sim=0.4303
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[how-4, result-0, result-2] · sim=0.4919
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Attitude Test (2016) [THE-CREATOR, THE-JESTER]
+- **tmdb_id**: 427557
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.4705
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4705
+- **genres** / **language**: Comedy / es
+- **overview**: Four high school seniors steal an important college entrance exam and go on vacation to "study," but accidentally lose the exam while partying.
+- **跳转**: https://themoviecosmos.com/movie/427557
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[result-0, why-0, how-1, result-2] · sim=0.4613
+  - THE-JESTER/su-persona-The-Jester-p1: fragments=[result-0, why-0, how-1] · sim=0.4705
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Last Judgment (1961) [THE-INNOCENT, THE-JESTER]
+- **tmdb_id**: 58185
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.4552
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4552
+- **genres** / **language**: Comedy / it
+- **overview**: In Naples, a voice from the skies announces one morning that the final judgment will be at 6 p.m. on that day. What follows is a series of vignettes depicting various people's reactions (or lack thereof) to the announcement.
+- **跳转**: https://themoviecosmos.com/movie/58185
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[how-4, result-0, result-2] · sim=0.4552
+  - THE-JESTER/su-persona-The-Jester-p3: fragments=[result-2, how-0, how-1, how-2] · sim=0.4471
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Lie Detector (2011) [THE-EXPLORER]
+- **tmdb_id**: 375384
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6137
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6137
+- **genres** / **language**: Comedy / en
+- **overview**: A job interview takes an awkward turn when a lie detector reveals the unfiltered truths and hidden feelings of everyone involved.
+- **跳转**: https://themoviecosmos.com/movie/375384
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[who-0, why-0, how-1, how-2, result-1] · sim=0.6137
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Por Thozhil (2023) [THE-LOVER]
+- **tmdb_id**: 1115239
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5690
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5690
+- **genres** / **language**: Crime, Thriller, Action / ta
+- **overview**: Loganathan, a senior cop is asked to mentor Prakash, an academically bright but faint-hearted rookie and this unlikely duo team up to investigate a series of murder cases, and realize all of them are interlinked and that a psychopath serial killer is on the run.
+- **跳转**: https://themoviecosmos.com/movie/1115239
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-5, why-0, how-1, how-2, result-1] · sim=0.5690
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Inside Man (2023) [THE-HERO]
+- **tmdb_id**: 1020662
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5817
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5817
+- **genres** / **language**: Crime, Thriller, Drama / en
+- **overview**: Based on true events. A disgraced police detective seeking redemption goes undercover to expose a violent crime syndicate. But as he sinks deeper into the mob, the price for absolution may be higher than he can afford.
+- **跳转**: https://themoviecosmos.com/movie/1020662
+- **命中视角/碎片**:
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[who-3, how-2, how-3, result-1] · sim=0.5817
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### In the Line of Duty 4 (1989) [THE-HERO]
+- **tmdb_id**: 39854
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5806
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5806
+- **genres** / **language**: Action, Crime / cn
+- **overview**: Two detectives who are up to their necks in trouble and in each other's face, as they try to shut down a drug-trafficking scheme that could be connected with international ties to organized crime. But in the midst of their investigation, innocent immigrant dock worker Luk Wan-Ting gets caught up in the mix when he witnesses the murder of an intelligence operative and is framed for the crime.
+- **跳转**: https://themoviecosmos.com/movie/39854
+- **命中视角/碎片**:
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[who-3, how-2, how-3, result-1] · sim=0.5806
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Scare Out (2026) [THE-INNOCENT]
+- **tmdb_id**: 1447971
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5711
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5711
+- **genres** / **language**: Crime, Thriller, Action / zh
+- **overview**: After a critical intelligence leak, a national security unit launches an intensive investigation. But successive setbacks in their arrest operations reveal a shocking truth: the trail leads back to within the unit itself. Amidst a storm of trust and betrayal, a silent battle begins to unfold...
+- **跳转**: https://themoviecosmos.com/movie/1447971
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[who-0, why-0, how-1, how-2] · sim=0.5711
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Skirt Day (2008) [THE-EVERYMAN]
+- **tmdb_id**: 16277
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5560
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5560
+- **genres** / **language**: Drama / fr
+- **overview**: A teacher, driven to exasperation from insults and insubordination, takes her class hostage.
+- **跳转**: https://themoviecosmos.com/movie/16277
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[who-5, how-2, how-3, result-0] · sim=0.5560
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Secrets Behind the Wall (1965) [THE-CAREGIVER]
+- **tmdb_id**: 46100
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5814
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5814
+- **genres** / **language**: Drama / ja
+- **overview**: In a housing complex, a college prep student is spying on his neighbor, a former peace activist, who now leads an ordinary life as a housewife, having a secret affair with an ex-lover.
+- **跳转**: https://themoviecosmos.com/movie/46100
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[who-5, why-0, how-3] · sim=0.5814
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Haraamkhor (2015) [THE-CAREGIVER]
+- **tmdb_id**: 314690
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5661
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5661
+- **genres** / **language**: Drama / hi
+- **overview**: When a vulnerable new student finds comfort in her brash teacher, their academic relationship takes a manipulative and troubling turn.
+- **跳转**: https://themoviecosmos.com/movie/314690
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[who-5, why-0, how-3] · sim=0.5661
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）

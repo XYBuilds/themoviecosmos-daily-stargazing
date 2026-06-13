@@ -1,0 +1,244 @@
+{
+  "run_id": "03-election-upset",
+  "baseline_candidate_count": 19,
+  "design_candidate_count": 19,
+  "overlap_count": 11,
+  "net_new_tmdb_ids": [
+    6521,
+    10411,
+    14050,
+    52657,
+    114645,
+    142142,
+    264518,
+    432301
+  ],
+  "lost_tmdb_ids": [
+    379,
+    46563,
+    100420,
+    239070,
+    342442,
+    532869,
+    536176,
+    1168015
+  ],
+  "by_search_unit_kind": {
+    "event-fragment-bundle": [],
+    "persona-semantic": [
+      6521,
+      10411,
+      14050,
+      52657,
+      114645,
+      142142,
+      264518,
+      432301
+    ],
+    "surface-fragment-bundle": []
+  },
+  "collision_gain_tmdb_ids": [],
+  "net_new_details": [
+    {
+      "tmdb_id": 6521,
+      "title": "The Contender",
+      "similarity": 0.5740505456924438,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-MAGICIAN"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 10411,
+      "title": "The Distinguished Gentleman",
+      "similarity": 0.5001081228256226,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-CAREGIVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result",
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 14050,
+      "title": "Recount",
+      "similarity": 0.5607325434684753,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 52657,
+      "title": "Avenging Force",
+      "similarity": 0.593001127243042,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-OUTLAW",
+        "THE-MAGICIAN"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 114645,
+      "title": "Days of '36",
+      "similarity": 0.5566856861114502,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 142142,
+      "title": "Thanks a Million",
+      "similarity": 0.5500787496566772,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-JESTER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 264518,
+      "title": "Judge Archer",
+      "similarity": 0.560575008392334,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-CAREGIVER",
+        "THE-OUTLAW"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how",
+          "result",
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 432301,
+      "title": "Chappaquiddick",
+      "similarity": 0.535388708114624,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-LOVER",
+        "THE-JESTER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result",
+          "who"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1234 @@
+{
+  "persona_id": "The-Lover",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Lover",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "U.S. Border Patrol",
+          "alternatives": [
+            {
+              "term": "boundary enforcers",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "immigration enforcement agency",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "8,268 people apprehended",
+          "alternatives": [
+            {
+              "term": "souls crossing the divide",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "people seeking connection on the other side",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "apprehended individuals",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "those caught in the boundary's grasp",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "analysts",
+          "alternatives": [
+            {
+              "term": "observers of the emotional landscape",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "commentators",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "lawmakers",
+          "alternatives": [
+            {
+              "term": "those who hold the power to unite or divide",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "deadlocked legislators",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "government officials",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "milder spring weather",
+          "alternatives": [
+            {
+              "term": "the season's gentle call",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "seasonal weather change",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+          "alternatives": [
+            {
+              "term": "a rising tide of human connection seeking to happen",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a surge in border crossings",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a growing rupture in the boundary's fabric",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+          "alternatives": [
+            {
+              "term": "a maintained separation, deep and long-standing",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "crossings remain at historic lows",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+          "alternatives": [
+            {
+              "term": "a profound impasse, a failure to find common ground",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "political deadlock on funding",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "who-1",
+      "result-0",
+      "how-0",
+      "why-0",
+      "result-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "8,268 people apprehended. year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies. apprehensions increased from 6,598 in February to 8,268 in March along the southwest border. milder spring weather. lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package The event unfolds across apprehended individuals and detainees.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "who-1",
+          "result-0",
+          "how-0",
+          "why-0",
+          "result-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "8,268 people apprehended",
+            "provenance": "surface"
+          },
+          {
+            "term": "apprehended individuals",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detainees",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border crossers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "affected population",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+            "provenance": "surface"
+          },
+          {
+            "term": "crossings remain at historic lows",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "low crossing numbers",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "enforcement policy outcome",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "immigration statistics",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border security effect",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+            "provenance": "surface"
+          },
+          {
+            "term": "a surge in border crossings",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "increase in apprehensions",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "statistical trend",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "numerical change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "border activity metric",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "milder spring weather",
+            "provenance": "surface"
+          },
+          {
+            "term": "seasonal weather change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spring weather",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "seasonal climate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "weather condition",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "environmental factor",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+            "provenance": "surface"
+          },
+          {
+            "term": "political deadlock on funding",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "political deadlock",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legislative stalemate",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "funding dispute",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "government impasse",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The gentle call of spring weather drew more border crossers to the U.S. border, with apprehensions surging from 6,598 in February to 8,268 in March—a rising tide of human connection seeking to happen. Yet this seasonal increase belies a deeper pattern: crossings remain at historic lows, a maintained separation enforced by strict asylum shutdown and deportation policies. Observers note the tension between those caught in the boundary's grasp and the security force tasked with apprehending them.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "center": "who-1",
+        "center_kind": "who",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 0
+      },
+      "warnings": [],
+      "fit": 0.65
+    },
+    {
+      "id": "p2",
+      "text": "Despite the numerical change showing increased border activity along the southwest border, enforcement policy outcome keeps year-to-date crossings near multi-decade lows. This maintained separation, deep and long-standing, reflects a failure to find common ground among government officials, who remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package. The political deadlock on funding underscores a profound impasse where the power to unite or divide lies unresolved.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "center": "result-0",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.55
+    },
+    {
+      "id": "p3",
+      "text": "A growing rupture in the boundary's fabric appeared as a surge in border crossings marked by the increase in apprehensions from February to March. Policy observers and security analysts watch as souls crossing the divide meet a border security agency enforcing policies that maintain low crossing numbers. Meanwhile, deadlocked legislators fail to bridge the funding dispute, leaving the geographic region caught between desire for connection and the reality of enforced separation.",
+      "source": {
+        "agent_id": "The-Lover",
+        "fragments": [
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "center": "how-0",
+        "center_kind": "how",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 2
+      },
+      "warnings": [],
+      "fit": 0.6
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a rising tide of human connection seeking to happen",
+            "weight": 0.38
+          },
+          {
+            "text": "a growing rupture in the boundary's fabric",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "a surge in border crossings",
+            "weight": 0.82
+          },
+          {
+            "text": "increase in apprehensions",
+            "weight": 0.82
+          },
+          {
+            "text": "statistical trend",
+            "weight": 0.82
+          },
+          {
+            "text": "numerical change",
+            "weight": 0.82
+          },
+          {
+            "text": "border activity metric",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a maintained separation, deep and long-standing",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "crossings remain at historic lows",
+            "weight": 0.82
+          },
+          {
+            "text": "low crossing numbers",
+            "weight": 0.82
+          },
+          {
+            "text": "enforcement policy outcome",
+            "weight": 0.82
+          },
+          {
+            "text": "immigration statistics",
+            "weight": 0.82
+          },
+          {
+            "text": "border security effect",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a profound impasse, a failure to find common ground",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "political deadlock on funding",
+            "weight": 0.82
+          },
+          {
+            "text": "political deadlock",
+            "weight": 0.82
+          },
+          {
+            "text": "legislative stalemate",
+            "weight": 0.82
+          },
+          {
+            "text": "funding dispute",
+            "weight": 0.82
+          },
+          {
+            "text": "government impasse",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "southwest border",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "U.S. border",
+            "weight": 0.82
+          },
+          {
+            "text": "international boundary",
+            "weight": 0.82
+          },
+          {
+            "text": "geopolitical region",
+            "weight": 0.82
+          },
+          {
+            "text": "border area",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "U.S. Border Patrol",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "boundary enforcers",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "immigration enforcement agency",
+            "weight": 0.82
+          },
+          {
+            "text": "border security agency",
+            "weight": 0.82
+          },
+          {
+            "text": "federal law enforcement",
+            "weight": 0.82
+          },
+          {
+            "text": "U.S. government entity",
+            "weight": 0.82
+          },
+          {
+            "text": "security force",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "8,268 people apprehended",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "souls crossing the divide",
+            "weight": 0.38
+          },
+          {
+            "text": "people seeking connection on the other side",
+            "weight": 0.38
+          },
+          {
+            "text": "those caught in the boundary's grasp",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "apprehended individuals",
+            "weight": 0.82
+          },
+          {
+            "text": "detainees",
+            "weight": 0.82
+          },
+          {
+            "text": "border crossers",
+            "weight": 0.82
+          },
+          {
+            "text": "affected population",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "analysts",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "observers of the emotional landscape",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "commentators",
+            "weight": 0.82
+          },
+          {
+            "text": "security analysts",
+            "weight": 0.82
+          },
+          {
+            "text": "policy observers",
+            "weight": 0.82
+          },
+          {
+            "text": "experts",
+            "weight": 0.82
+          },
+          {
+            "text": "researchers",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "lawmakers",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "those who hold the power to unite or divide",
+            "weight": 0.38
+          },
+          {
+            "text": "deadlocked legislators",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "government officials",
+            "weight": 0.82
+          },
+          {
+            "text": "legislators",
+            "weight": 0.82
+          },
+          {
+            "text": "politicians",
+            "weight": 0.82
+          },
+          {
+            "text": "decision-makers",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "milder spring weather",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the season's gentle call",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "seasonal weather change",
+            "weight": 0.82
+          },
+          {
+            "text": "spring weather",
+            "weight": 0.82
+          },
+          {
+            "text": "seasonal climate",
+            "weight": 0.82
+          },
+          {
+            "text": "weather condition",
+            "weight": 0.82
+          },
+          {
+            "text": "environmental factor",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "who-3",
+          "where-0"
+        ],
+        "search_text": "U.S. Border Patrol; immigration enforcement agency; border security agency; federal law enforcement; U.S. government entity; security force; 8,268 people apprehended; apprehended individuals; detainees; border crossers; affected population; analysts; commentators; security analysts; policy observers; experts; researchers; lawmakers; government officials; legislators; politicians; decision-makers; southwest border; U.S. border; international boundary; geopolitical region; border area",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "U.S. Border Patrol",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "immigration enforcement agency",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "border security agency",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "federal law enforcement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "U.S. government entity",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "security force",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "8,268 people apprehended",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "apprehended individuals",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "detainees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "border crossers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "affected population",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "analysts",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "commentators",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "security analysts",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "policy observers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "experts",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "researchers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "surface",
+            "text": "lawmakers",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "government officials",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "legislators",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "politicians",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "decision-makers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "southwest border",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "U.S. border",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "international boundary",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "geopolitical region",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "border area",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "search_text": "milder spring weather; seasonal weather change; spring weather; seasonal climate; weather condition; environmental factor; apprehensions increased from 6,598 in February to 8,268 in March along the southwest border; a surge in border crossings; increase in apprehensions; statistical trend; numerical change; border activity metric; year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies; crossings remain at historic lows; low crossing numbers; enforcement policy outcome; immigration statistics; border security effect; lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package; political deadlock on funding; political deadlock; legislative stalemate; funding dispute; government impasse",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "milder spring weather",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "seasonal weather change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "spring weather",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "seasonal climate",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "weather condition",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "environmental factor",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "a surge in border crossings",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "increase in apprehensions",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "statistical trend",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "numerical change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "border activity metric",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "crossings remain at historic lows",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "low crossing numbers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "enforcement policy outcome",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "immigration statistics",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "border security effect",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "political deadlock on funding",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "political deadlock",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "legislative stalemate",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "funding dispute",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "government impasse",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Lover-p1",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "who-1",
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "search_text": "The gentle call of spring weather drew more border crossers to the U.S. border, with apprehensions surging from 6,598 in February to 8,268 in March—a rising tide of human connection seeking to happen. Yet this seasonal increase belies a deeper pattern: crossings remain at historic lows, a maintained separation enforced by strict asylum shutdown and deportation policies. Observers note the tension between those caught in the boundary's grasp and the security force tasked with apprehending them.",
+        "fragments": [
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "8,268 people apprehended",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "apprehended individuals",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "detainees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "border crossers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "affected population",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "milder spring weather",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Lover",
+        "center_element": "who-1",
+        "supporting_elements": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "fit": 0.65
+      },
+      {
+        "id": "su-persona-The-Lover-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-0",
+          "how-0",
+          "result-1"
+        ],
+        "search_text": "Despite the numerical change showing increased border activity along the southwest border, enforcement policy outcome keeps year-to-date crossings near multi-decade lows. This maintained separation, deep and long-standing, reflects a failure to find common ground among government officials, who remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package. The political deadlock on funding underscores a profound impasse where the power to unite or divide lies unresolved.",
+        "fragments": [
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "crossings remain at historic lows",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "low crossing numbers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "enforcement policy outcome",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "immigration statistics",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "border security effect",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Lover",
+        "center_element": "result-0",
+        "supporting_elements": [
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "fit": 0.55
+      },
+      {
+        "id": "su-persona-The-Lover-p3",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "search_text": "A growing rupture in the boundary's fabric appeared as a surge in border crossings marked by the increase in apprehensions from February to March. Policy observers and security analysts watch as souls crossing the divide meet a border security agency enforcing policies that maintain low crossing numbers. Meanwhile, deadlocked legislators fail to bridge the funding dispute, leaving the geographic region caught between desire for connection and the reality of enforced separation.",
+        "fragments": [
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "a surge in border crossings",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "increase in apprehensions",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "statistical trend",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "numerical change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "border activity metric",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Lover",
+        "center_element": "how-0",
+        "supporting_elements": [
+          "how-0",
+          "result-0",
+          "result-1"
+        ],
+        "fit": 0.6
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"The gentle call of spring weather drew more border crossers to the U.S. border, with apprehensions surging from 6,598 in February to 8,268 in March—a rising tide of human connection seeking to happen. Yet this seasonal increase belies a deeper pattern: crossings remain at historic lows, a maintained separation enforced by strict asylum shutdown and deportation policies. Observers note the tension between those caught in the boundary's grasp and the security force tasked with apprehending them.\",\n      \"fit\": 0.65,\n      \"center\": \"who-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-0\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"Despite the numerical change showing increased border activity along the southwest border, enforcement policy outcome keeps year-to-date crossings near multi-decade lows. This maintained separation, deep and long-standing, reflects a failure to find common ground among government officials, who remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package. The political deadlock on funding underscores a profound impasse where the power to unite or divide lies unresolved.\",\n      \"fit\": 0.55,\n      \"center\": \"result-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"result-0\", \"result-1\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"A growing rupture in the boundary's fabric appeared as a surge in border crossings marked by the increase in apprehensions from February to March. Policy observers and security analysts watch as souls crossing the divide meet a border security agency enforcing policies that maintain low crossing numbers. Meanwhile, deadlocked legislators fail to bridge the funding dispute, leaving the geographic region caught between desire for connection and the reality of enforced separation.\",\n      \"fit\": 0.60,\n      \"center\": \"how-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"result-0\", \"result-1\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 3,
+    "dropped_pseudos": 0,
+    "drop_reasons": []
+  }
+}

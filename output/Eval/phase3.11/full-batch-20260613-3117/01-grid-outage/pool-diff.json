@@ -1,0 +1,419 @@
+{
+  "run_id": "01-grid-outage",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 19,
+  "overlap_count": 10,
+  "net_new_tmdb_ids": [
+    9453,
+    14394,
+    15667,
+    52302,
+    58770,
+    139329,
+    178989,
+    720321,
+    1032795
+  ],
+  "lost_tmdb_ids": [
+    33787,
+    46221,
+    100063,
+    210219,
+    266727,
+    418879,
+    431892,
+    533885,
+    1223272
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [
+    {
+      "tmdb_id": 429918,
+      "title": "Survival Family",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    }
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 9453,
+      "title": "Caligula",
+      "similarity": 0.46089968085289,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.46089968085289,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 14394,
+      "title": "Sarkar Raj",
+      "similarity": 0.4937916398048401,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.4937916398048401,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 15667,
+      "title": "The Last Winter",
+      "similarity": 0.48071467876434326,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR",
+        "THE-MAGICIAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "who-0",
+            "why-0",
+            "why-1",
+            "why-2",
+            "result-0"
+          ],
+          "similarity": 0.48071467876434326,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-0"
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-persona-The-Magician-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.45622292160987854,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 52302,
+      "title": "Matango",
+      "similarity": 0.4963960349559784,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-persona-The-Ruler-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "why-1",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.4963960349559784,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 58770,
+      "title": "The Trigger Effect",
+      "similarity": 0.5294109582901001,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-2",
+            "how-1"
+          ],
+          "similarity": 0.5294109582901001,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-0"
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.47503939270973206,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 139329,
+      "title": "Back to 1942",
+      "similarity": 0.4830511808395386,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-persona-The-Ruler-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "why-1",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.4830511808395386,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 178989,
+      "title": "Pompiers : attaque du feu",
+      "similarity": 0.47518789768218994,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "why-0",
+            "why-1",
+            "result-0"
+          ],
+          "similarity": 0.47518789768218994,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 720321,
+      "title": "Breathe",
+      "similarity": 0.46034932136535645,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-SAGE"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.3856218457221985,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-EVERYMAN",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.39419621229171753,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.373936265707016,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.39520999789237976,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.37285709381103516,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.3881503641605377,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-0",
+            "how-1",
+            "how-2",
+            "result-0"
+          ],
+          "similarity": 0.3983338475227356,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-persona-The-Sage-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "why-1",
+            "why-2",
+            "how-0"
+          ],
+          "similarity": 0.46034932136535645,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1032795,
+      "title": "The Hijacking of Flight 375",
+      "similarity": 0.47716885805130005,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-persona-The-Outlaw-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "why-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.47716885805130005,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-2"
+        }
+      ]
+    }
+  ],
+  "by_channel": {
+    "focalized": [],
+    "toned": [
+      9453,
+      14394,
+      15667,
+      52302,
+      58770,
+      139329,
+      178989,
+      720321,
+      1032795
+    ]
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "run_id": "02-corporate-layoff",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 19,
+  "overlap_count": 11,
+  "net_new_tmdb_ids": [
+    25665,
+    37769,
+    69896,
+    116741,
+    313055,
+    438639,
+    1097549,
+    1161617
+  ],
+  "lost_tmdb_ids": [
+    16814,
+    53416,
+    71172,
+    133463,
+    485162,
+    750145,
+    1173076,
+    1233620
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [
+    {
+      "tmdb_id": 619090,
+      "title": "The Plan",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    },
+    {
+      "tmdb_id": 485162,
+      "title": "At War",
+      "human_score": 2,
+      "judge_resonance_type": "表层沾边"
+    }
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 25665,
+      "title": "One Last Dance",
+      "similarity": 0.5351153016090393,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "why-1"
+          ],
+          "similarity": 0.5351153016090393,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 37769,
+      "title": "The Second Tragic Fantozzi",
+      "similarity": 0.5483034253120422,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-2",
+            "how-0",
+            "why-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.5483034253120422,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 69896,
+      "title": "Little Nothings",
+      "similarity": 0.5503073930740356,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-RULER",
+        "THE-MAGICIAN"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-persona-The-Magician-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "result-0"
+          ],
+          "similarity": 0.5503073930740356,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-0"
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-persona-The-Ruler-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "why-0"
+          ],
+          "similarity": 0.4931813180446625,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 116741,
+      "title": "The Internship",
+      "similarity": 0.5427723526954651,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-2",
+            "result-0",
+            "why-0"
+          ],
+          "similarity": 0.5427723526954651,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 313055,
+      "title": "Discount",
+      "similarity": 0.5346605181694031,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-persona-The-Outlaw-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "why-1",
+            "how-0",
+            "how-1",
+            "result-0"
+          ],
+          "similarity": 0.5346605181694031,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "why-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 438639,
+      "title": "Dismissal",
+      "similarity": 0.5303434729576111,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-3",
+            "why-1",
+            "how-0",
+            "how-1"
+          ],
+          "similarity": 0.5303434729576111,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-3"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1097549,
+      "title": "Babygirl",
+      "similarity": 0.5343732833862305,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "su-persona-The-Explorer-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-0",
+            "why-1",
+            "how-1",
+            "result-3"
+          ],
+          "similarity": 0.5343732833862305,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 1161617,
+      "title": "Code 3",
+      "similarity": 0.5004117488861084,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-3",
+            "how-1",
+            "result-2",
+            "result-1"
+          ],
+          "similarity": 0.5004117488861084,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-3"
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-1",
+            "how-0",
+            "result-0",
+            "result-1",
+            "result-3"
+          ],
+          "similarity": 0.4737759828567505,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-1"
+        }
+      ]
+    }
+  ],
+  "by_channel": {
+    "focalized": [],
+    "toned": [
+      25665,
+      37769,
+      69896,
+      116741,
+      313055,
+      438639,
+      1097549,
+      1161617
+    ]
+  }
+}

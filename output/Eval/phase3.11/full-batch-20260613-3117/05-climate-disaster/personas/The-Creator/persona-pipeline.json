@@ -1,0 +1,1740 @@
+{
+  "persona_id": "The-Creator",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Creator",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Syria's president",
+          "alternatives": [
+            {
+              "term": "visiting surveyor of the destruction",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "head of state",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "several children",
+          "alternatives": [
+            {
+              "term": "young victims of the flood's unforgiving design",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "casualties",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "the navy",
+          "alternatives": [
+            {
+              "term": "emergency response fleet",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "military branch",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Turkey",
+          "alternatives": [
+            {
+              "term": "upstream water controller",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "neighboring country",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "one of the heaviest rainy seasons in three decades",
+          "alternatives": [
+            {
+              "term": "an unprecedented climatic deluge",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "extreme weather event",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Reservoirs filled beyond 97% capacity",
+          "alternatives": [
+            {
+              "term": "critical hydraulic overfill",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "infrastructure at capacity",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Dam operations and seasonal rains pushed the river past protective embankments",
+          "alternatives": [
+            {
+              "term": "failure of engineered water control",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "the process that breached the banks",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "hydraulic system breach",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+          "alternatives": [
+            {
+              "term": "destructive inundation of inhabited areas",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "water incursion",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "An earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "structural disintegration",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "infrastructure failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-4",
+          "original_term": "The navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "deployment of watercraft for rescue operations",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "rescue mission",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-5",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "diplomatic adjustment of water flow",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "interstate agreement",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "several children drowned",
+          "alternatives": [
+            {
+              "term": "loss of young life to the waters",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "fatalities",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+          "alternatives": [
+            {
+              "term": "devastation of built and cultivated environments",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "widespread property damage",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "an earthen bridge collapsed",
+          "alternatives": [
+            {
+              "term": "collapse of a man-made structure",
+              "valence": "negative",
+              "provenance": "lens"
+            },
+            {
+              "term": "structural failure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "the navy deployed boats for evacuations",
+          "alternatives": [
+            {
+              "term": "naval craft put to use for human rescue",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "rescue deployment",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-4",
+          "original_term": "Turkey agreed to reduce upstream releases",
+          "alternatives": [
+            {
+              "term": "water treaty intervention",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "diplomatic concession",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-5",
+          "original_term": "Syria's president visited the flood zones",
+          "alternatives": [
+            {
+              "term": "executive survey of the affected area",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "official visit",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-1",
+      "how-0",
+      "how-2",
+      "result-2",
+      "how-3"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "Dam operations and seasonal rains pushed the river past protective embankments. Reservoirs filled beyond 97% capacity. Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa. an earthen bridge collapsed The event unfolds across hydraulic system breach and flood causation.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "how-1",
+          "how-0",
+          "how-2",
+          "result-2",
+          "how-3"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "Dam operations and seasonal rains pushed the river past protective embankments",
+            "provenance": "surface"
+          },
+          {
+            "term": "hydraulic system breach",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flood causation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water release",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "embankment failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Reservoirs filled beyond 97% capacity",
+            "provenance": "surface"
+          },
+          {
+            "term": "infrastructure at capacity",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "reservoir overflow",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "water storage issue",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "infrastructure problem",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+            "provenance": "surface"
+          },
+          {
+            "term": "water incursion",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "flooding event",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "property damage",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "disaster impact",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "an earthen bridge collapsed",
+            "provenance": "surface"
+          },
+          {
+            "term": "structural failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "bridge collapse",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "infrastructure failure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "infrastructure damage",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p2",
+      "text": "An unprecedented climatic deluge, one of the heaviest in three decades, pushed the Euphrates past its embankments. The subsequent loss of young life to the waters and the collapse of a man-made structure stand as a stark disaster outcome, the human cost of a system pushed beyond its limits.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "result-0",
+          "result-2"
+        ],
+        "center": "result-0",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 5
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "Following widespread property damage across the Syrian regions, the head of state toured the devastation. His executive survey of the affected area coincided with a diplomatic concession from the neighboring country, an interstate agreement to manage the water flow and begin flood mitigation.",
+      "source": {
+        "agent_id": "The-Creator",
+        "fragments": [
+          "result-1",
+          "result-5",
+          "result-4"
+        ],
+        "center": "result-5",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 5
+      },
+      "warnings": [],
+      "fit": 0.65
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Reservoirs filled beyond 97% capacity",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "critical hydraulic overfill",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "infrastructure at capacity",
+            "weight": 0.82
+          },
+          {
+            "text": "reservoir overflow",
+            "weight": 0.82
+          },
+          {
+            "text": "water storage issue",
+            "weight": 0.82
+          },
+          {
+            "text": "infrastructure problem",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Dam operations and seasonal rains pushed the river past protective embankments",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "failure of engineered water control",
+            "weight": 0.38
+          },
+          {
+            "text": "the process that breached the banks",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "hydraulic system breach",
+            "weight": 0.82
+          },
+          {
+            "text": "flood causation",
+            "weight": 0.82
+          },
+          {
+            "text": "water release",
+            "weight": 0.82
+          },
+          {
+            "text": "embankment failure",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "destructive inundation of inhabited areas",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "water incursion",
+            "weight": 0.82
+          },
+          {
+            "text": "flooding event",
+            "weight": 0.82
+          },
+          {
+            "text": "property damage",
+            "weight": 0.82
+          },
+          {
+            "text": "disaster impact",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "An earthen bridge collapsed",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "structural disintegration",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "infrastructure failure",
+            "weight": 0.82
+          },
+          {
+            "text": "bridge collapse",
+            "weight": 0.82
+          },
+          {
+            "text": "structural failure",
+            "weight": 0.82
+          },
+          {
+            "text": "infrastructure damage",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-4",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "The navy deployed boats for evacuations",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "deployment of watercraft for rescue operations",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "rescue mission",
+            "weight": 0.82
+          },
+          {
+            "text": "evacuation operation",
+            "weight": 0.82
+          },
+          {
+            "text": "military deployment",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-5",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Turkey agreed to reduce upstream releases",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "diplomatic adjustment of water flow",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "interstate agreement",
+            "weight": 0.82
+          },
+          {
+            "text": "water management agreement",
+            "weight": 0.82
+          },
+          {
+            "text": "international cooperation",
+            "weight": 0.82
+          },
+          {
+            "text": "flood mitigation",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "several children drowned",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "loss of young life to the waters",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "fatalities",
+            "weight": 0.82
+          },
+          {
+            "text": "drowning incident",
+            "weight": 0.82
+          },
+          {
+            "text": "fatality",
+            "weight": 0.82
+          },
+          {
+            "text": "disaster outcome",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "devastation of built and cultivated environments",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "widespread property damage",
+            "weight": 0.82
+          },
+          {
+            "text": "flooding damage",
+            "weight": 0.82
+          },
+          {
+            "text": "agricultural loss",
+            "weight": 0.82
+          },
+          {
+            "text": "educational disruption",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "an earthen bridge collapsed",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "collapse of a man-made structure",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "structural failure",
+            "weight": 0.82
+          },
+          {
+            "text": "bridge collapse",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-3",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "the navy deployed boats for evacuations",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "naval craft put to use for human rescue",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "rescue deployment",
+            "weight": 0.82
+          },
+          {
+            "text": "evacuation effort",
+            "weight": 0.82
+          },
+          {
+            "text": "rescue operation",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-4",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "Turkey agreed to reduce upstream releases",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "water treaty intervention",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "diplomatic concession",
+            "weight": 0.82
+          },
+          {
+            "text": "agreement",
+            "weight": 0.82
+          },
+          {
+            "text": "cooperation measure",
+            "weight": 0.82
+          },
+          {
+            "text": "flood response",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-5",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "Syria's president visited the flood zones",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "executive survey of the affected area",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "official visit",
+            "weight": 0.82
+          },
+          {
+            "text": "presidential visit",
+            "weight": 0.82
+          },
+          {
+            "text": "disaster inspection",
+            "weight": 0.82
+          },
+          {
+            "text": "political action",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Euphrates",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "river",
+            "weight": 0.82
+          },
+          {
+            "text": "waterway",
+            "weight": 0.82
+          },
+          {
+            "text": "geographical feature",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-1",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Deir Ezzor and Raqqa",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "Syrian regions",
+            "weight": 0.82
+          },
+          {
+            "text": "Middle Eastern regions",
+            "weight": 0.82
+          },
+          {
+            "text": "geographical areas",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Syria's president",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "visiting surveyor of the destruction",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "head of state",
+            "weight": 0.82
+          },
+          {
+            "text": "president",
+            "weight": 0.82
+          },
+          {
+            "text": "political leader",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "several children",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "young victims of the flood's unforgiving design",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "casualties",
+            "weight": 0.82
+          },
+          {
+            "text": "children",
+            "weight": 0.82
+          },
+          {
+            "text": "minors",
+            "weight": 0.82
+          },
+          {
+            "text": "civilians",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "the navy",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "emergency response fleet",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "military branch",
+            "weight": 0.82
+          },
+          {
+            "text": "naval force",
+            "weight": 0.82
+          },
+          {
+            "text": "rescue team",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Turkey",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "upstream water controller",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "neighboring country",
+            "weight": 0.82
+          },
+          {
+            "text": "country",
+            "weight": 0.82
+          },
+          {
+            "text": "nation-state",
+            "weight": 0.82
+          },
+          {
+            "text": "sovereign entity",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "one of the heaviest rainy seasons in three decades",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "an unprecedented climatic deluge",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "extreme weather event",
+            "weight": 0.82
+          },
+          {
+            "text": "heavy rainfall",
+            "weight": 0.82
+          },
+          {
+            "text": "climatic anomaly",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "who-3",
+          "where-0",
+          "where-1"
+        ],
+        "search_text": "Syria's president; head of state; president; political leader; several children; casualties; children; minors; civilians; the navy; military branch; naval force; rescue team; Turkey; neighboring country; country; nation-state; sovereign entity; Euphrates; river; waterway; geographical feature; Deir Ezzor and Raqqa; Syrian regions; Middle Eastern regions; geographical areas",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "Syria's president",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "head of state",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "president",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "political leader",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "several children",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "casualties",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "children",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "minors",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "civilians",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "the navy",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "military branch",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "naval force",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "rescue team",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "surface",
+            "text": "Turkey",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "neighboring country",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "country",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "nation-state",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "sovereign entity",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "Euphrates",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "river",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "waterway",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "geographical feature",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "surface",
+            "text": "Deir Ezzor and Raqqa",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "Syrian regions",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "Middle Eastern regions",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "geographical areas",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "how-4",
+          "how-5",
+          "result-0",
+          "result-1",
+          "result-2",
+          "result-3",
+          "result-4",
+          "result-5"
+        ],
+        "search_text": "one of the heaviest rainy seasons in three decades; extreme weather event; heavy rainfall; climatic anomaly; Reservoirs filled beyond 97% capacity; infrastructure at capacity; reservoir overflow; water storage issue; infrastructure problem; Dam operations and seasonal rains pushed the river past protective embankments; hydraulic system breach; flood causation; water release; embankment failure; Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa; water incursion; flooding event; property damage; disaster impact; An earthen bridge collapsed; infrastructure failure; bridge collapse; structural failure; infrastructure damage; The navy deployed boats for evacuations; rescue mission; evacuation operation; military deployment; Turkey agreed to reduce upstream releases; interstate agreement; water management agreement; international cooperation; flood mitigation; several children drowned; fatalities; drowning incident; fatality; disaster outcome; homes, farms, and schools in Deir Ezzor and Raqqa flooded; widespread property damage; flooding damage; agricultural loss; educational disruption; an earthen bridge collapsed; structural failure; bridge collapse; the navy deployed boats for evacuations; rescue deployment; evacuation effort; rescue operation; Turkey agreed to reduce upstream releases; diplomatic concession; agreement; cooperation measure; flood response; Syria's president visited the flood zones; official visit; presidential visit; disaster inspection; political action",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "one of the heaviest rainy seasons in three decades",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "extreme weather event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "heavy rainfall",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "climatic anomaly",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Reservoirs filled beyond 97% capacity",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "infrastructure at capacity",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "reservoir overflow",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "water storage issue",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "infrastructure problem",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Dam operations and seasonal rains pushed the river past protective embankments",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "hydraulic system breach",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "flood causation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "water release",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "embankment failure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "Surging flows flooded homes, farms, and schools in Deir Ezzor and Raqqa",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "water incursion",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "flooding event",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "property damage",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "disaster impact",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "surface",
+            "text": "An earthen bridge collapsed",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "infrastructure failure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "bridge collapse",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "structural failure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "objective_close",
+            "text": "infrastructure damage",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "surface",
+            "text": "The navy deployed boats for evacuations",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "rescue mission",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "evacuation operation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-4",
+            "level": "objective_close",
+            "text": "military deployment",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-5",
+            "level": "surface",
+            "text": "Turkey agreed to reduce upstream releases",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-5",
+            "level": "objective_close",
+            "text": "interstate agreement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-5",
+            "level": "objective_close",
+            "text": "water management agreement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-5",
+            "level": "objective_close",
+            "text": "international cooperation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-5",
+            "level": "objective_close",
+            "text": "flood mitigation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "several children drowned",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "fatalities",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "drowning incident",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "fatality",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "disaster outcome",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "widespread property damage",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "flooding damage",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "agricultural loss",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "educational disruption",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "surface",
+            "text": "an earthen bridge collapsed",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "structural failure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "bridge collapse",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "surface",
+            "text": "the navy deployed boats for evacuations",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "rescue deployment",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "evacuation effort",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "rescue operation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-4",
+            "level": "surface",
+            "text": "Turkey agreed to reduce upstream releases",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-4",
+            "level": "objective_close",
+            "text": "diplomatic concession",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-4",
+            "level": "objective_close",
+            "text": "agreement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-4",
+            "level": "objective_close",
+            "text": "cooperation measure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-4",
+            "level": "objective_close",
+            "text": "flood response",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-5",
+            "level": "surface",
+            "text": "Syria's president visited the flood zones",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-5",
+            "level": "objective_close",
+            "text": "official visit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-5",
+            "level": "objective_close",
+            "text": "presidential visit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-5",
+            "level": "objective_close",
+            "text": "disaster inspection",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-5",
+            "level": "objective_close",
+            "text": "political action",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Creator-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-0",
+          "why-0",
+          "how-1",
+          "result-2"
+        ],
+        "search_text": "An unprecedented climatic deluge, one of the heaviest in three decades, pushed the Euphrates past its embankments. The subsequent loss of young life to the waters and the collapse of a man-made structure stand as a stark disaster outcome, the human cost of a system pushed beyond its limits.",
+        "fragments": [
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "several children drowned",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "fatalities",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "drowning incident",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "fatality",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "disaster outcome",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "one of the heaviest rainy seasons in three decades",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Creator",
+        "center_element": "result-0",
+        "supporting_elements": [
+          "why-0",
+          "how-1",
+          "result-0",
+          "result-2"
+        ],
+        "fit": 0.78
+      },
+      {
+        "id": "su-persona-The-Creator-p3",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-5",
+          "result-1",
+          "result-4"
+        ],
+        "search_text": "Following widespread property damage across the Syrian regions, the head of state toured the devastation. His executive survey of the affected area coincided with a diplomatic concession from the neighboring country, an interstate agreement to manage the water flow and begin flood mitigation.",
+        "fragments": [
+          {
+            "element_id": "result-5",
+            "level": "surface",
+            "text": "Syria's president visited the flood zones",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-5",
+            "level": "objective_close",
+            "text": "official visit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-5",
+            "level": "objective_close",
+            "text": "presidential visit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-5",
+            "level": "objective_close",
+            "text": "disaster inspection",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-5",
+            "level": "objective_close",
+            "text": "political action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "homes, farms, and schools in Deir Ezzor and Raqqa flooded",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Creator",
+        "center_element": "result-5",
+        "supporting_elements": [
+          "result-1",
+          "result-5",
+          "result-4"
+        ],
+        "fit": 0.65
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"In the Syrian regions of Deir Ezzor and Raqqa, the failure of engineered water control—a critical hydraulic overfill in reservoirs—catastrophically re-shaped the landscape. The resulting destructive inundation of inhabited areas swept away a man-made structure, an earthen bridge, before the emergency response fleet could deploy naval craft for human rescue.\",\n      \"fit\": 0.85,\n      \"center\": \"how-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"how-1\", \"how-2\", \"how-3\", \"how-4\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"An unprecedented climatic deluge, one of the heaviest in three decades, pushed the Euphrates past its embankments. The subsequent loss of young life to the waters and the collapse of a man-made structure stand as a stark disaster outcome, the human cost of a system pushed beyond its limits.\",\n      \"fit\": 0.78,\n      \"center\": \"result-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-1\", \"result-0\", \"result-2\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"Following widespread property damage across the Syrian regions, the head of state toured the devastation. His executive survey of the affected area coincided with a diplomatic concession from the neighboring country, an interstate agreement to manage the water flow and begin flood mitigation.\",\n      \"fit\": 0.65,\n      \"center\": \"result-5\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"result-1\", \"result-5\", \"result-4\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 2,
+    "dropped_pseudos": 1,
+    "drop_reasons": [
+      {
+        "pseudo_id": "p1",
+        "reason": "pseudo p1: supporting elements must be 2–4, got 5"
+      }
+    ]
+  }
+}

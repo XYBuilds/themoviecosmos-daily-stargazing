@@ -1,0 +1,1130 @@
+{
+  "persona_id": "The-Explorer",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Explorer",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "YouTuber",
+          "alternatives": [
+            {
+              "term": "digital pioneer",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "online provocateur",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "reckless spreader of falsehoods",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+          "alternatives": [
+            {
+              "term": "pioneered the use of deepfake audio and digital forgeries",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "employed novel AI tools and media manipulation",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "utilized synthetic media and edited screenshots",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "exploited uncharted tech for false narratives",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Seoul police secured an arrest warrant",
+          "alternatives": [
+            {
+              "term": "authorities crossed a new jurisdictional threshold",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "law enforcement acted on the case",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "police obtained legal authorization",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "imposed a closed, legalistic response",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "YouTuber arrested",
+          "alternatives": [
+            {
+              "term": "pioneer's journey halted by authority",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "content creator detained",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "individual taken into custody",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "boundary-crosser confined",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "spread false claims for financial gain",
+          "alternatives": [
+            {
+              "term": "exploited a frontier for profit",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "motivated by economic incentives",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "driven by financial motives",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "fled into deception for material escape",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+          "alternatives": [
+            {
+              "term": "actor's public journey paused at a threshold",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "celebrity's engagements were suspended",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "professional activities were put on hold",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "public figure confined to silence",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "how-0",
+      "how-1",
+      "who-0",
+      "result-0",
+      "why-0"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor. Seoul police secured an arrest warrant. YouTuber. YouTuber arrested. spread false claims for financial gain The event unfolds across utilized synthetic media and edited screenshots and digital manipulation.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "who-0",
+          "result-0",
+          "why-0"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "provenance": "surface"
+          },
+          {
+            "term": "utilized synthetic media and edited screenshots",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "digital manipulation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "AI-generated content",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "fabrication of evidence",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Seoul police secured an arrest warrant",
+            "provenance": "surface"
+          },
+          {
+            "term": "police obtained legal authorization",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "legal procedure",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest warrant issuance",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "law enforcement action",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber",
+            "provenance": "surface"
+          },
+          {
+            "term": "content creator",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "online personality",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "individual",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "YouTuber arrested",
+            "provenance": "surface"
+          },
+          {
+            "term": "individual taken into custody",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "arrest",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "detention",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "consequence of crime",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "spread false claims for financial gain",
+            "provenance": "surface"
+          },
+          {
+            "term": "driven by financial motives",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "misinformation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "deceptive practice",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "illegal activity",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "In Seoul, a content creator, driven by financial incentives, employed novel AI tools and media manipulation to spread false claims against a public figure. This pioneering use of digital manipulation for deceptive practice forced a law enforcement agency to cross a new jurisdictional threshold. The result was the content creator's detention, a stark consequence of an illegal activity.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0"
+        ],
+        "center": "how-0",
+        "center_kind": "how",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 0
+      },
+      "warnings": [],
+      "fit": 0.75
+    },
+    {
+      "id": "p2",
+      "text": "Seoul police obtained legal authorization to act on a case involving an individual who had pioneered deepfake audio and digital forgeries. This law enforcement action was a response to the individual's exploitation of a frontier for profit, which constituted a fabrication of evidence. The arrest of the boundary-crosser marked a significant turning point for the celebrity scandal.",
+      "source": {
+        "agent_id": "The-Explorer",
+        "fragments": [
+          "how-0",
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "center": "how-1",
+        "center_kind": "how",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.68
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "pioneered the use of deepfake audio and digital forgeries",
+            "weight": 0.38
+          },
+          {
+            "text": "employed novel AI tools and media manipulation",
+            "weight": 0.38
+          },
+          {
+            "text": "exploited uncharted tech for false narratives",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "utilized synthetic media and edited screenshots",
+            "weight": 0.82
+          },
+          {
+            "text": "digital manipulation",
+            "weight": 0.82
+          },
+          {
+            "text": "AI-generated content",
+            "weight": 0.82
+          },
+          {
+            "text": "fabrication of evidence",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Seoul police secured an arrest warrant",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "authorities crossed a new jurisdictional threshold",
+            "weight": 0.38
+          },
+          {
+            "text": "law enforcement acted on the case",
+            "weight": 0.38
+          },
+          {
+            "text": "imposed a closed, legalistic response",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "police obtained legal authorization",
+            "weight": 0.82
+          },
+          {
+            "text": "legal procedure",
+            "weight": 0.82
+          },
+          {
+            "text": "arrest warrant issuance",
+            "weight": 0.82
+          },
+          {
+            "text": "law enforcement action",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "YouTuber arrested",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "pioneer's journey halted by authority",
+            "weight": 0.38
+          },
+          {
+            "text": "content creator detained",
+            "weight": 0.38
+          },
+          {
+            "text": "boundary-crosser confined",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "individual taken into custody",
+            "weight": 0.82
+          },
+          {
+            "text": "arrest",
+            "weight": 0.82
+          },
+          {
+            "text": "detention",
+            "weight": 0.82
+          },
+          {
+            "text": "consequence of crime",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "actor's public journey paused at a threshold",
+            "weight": 0.38
+          },
+          {
+            "text": "celebrity's engagements were suspended",
+            "weight": 0.38
+          },
+          {
+            "text": "public figure confined to silence",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "professional activities were put on hold",
+            "weight": 0.82
+          },
+          {
+            "text": "professional impact",
+            "weight": 0.82
+          },
+          {
+            "text": "reputational damage",
+            "weight": 0.82
+          },
+          {
+            "text": "consequence of scandal",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Seoul",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "capital city",
+            "weight": 0.82
+          },
+          {
+            "text": "South Korea",
+            "weight": 0.82
+          },
+          {
+            "text": "East Asia",
+            "weight": 0.82
+          },
+          {
+            "text": "urban center",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "YouTuber",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "digital pioneer",
+            "weight": 0.38
+          },
+          {
+            "text": "online provocateur",
+            "weight": 0.38
+          },
+          {
+            "text": "reckless spreader of falsehoods",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "content creator",
+            "weight": 0.82
+          },
+          {
+            "text": "online personality",
+            "weight": 0.82
+          },
+          {
+            "text": "individual",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Kim Soo-hyun",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "actor",
+            "weight": 0.82
+          },
+          {
+            "text": "celebrity",
+            "weight": 0.82
+          },
+          {
+            "text": "public figure",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Seoul police",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "police force",
+            "weight": 0.82
+          },
+          {
+            "text": "law enforcement agency",
+            "weight": 0.82
+          },
+          {
+            "text": "government body",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Prosecutors",
+            "weight": 1.0
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "legal professionals",
+            "weight": 0.82
+          },
+          {
+            "text": "government officials",
+            "weight": 0.82
+          },
+          {
+            "text": "prosecutorial agency",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "spread false claims for financial gain",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "exploited a frontier for profit",
+            "weight": 0.38
+          },
+          {
+            "text": "motivated by economic incentives",
+            "weight": 0.38
+          },
+          {
+            "text": "fled into deception for material escape",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "driven by financial motives",
+            "weight": 0.82
+          },
+          {
+            "text": "misinformation",
+            "weight": 0.82
+          },
+          {
+            "text": "deceptive practice",
+            "weight": 0.82
+          },
+          {
+            "text": "illegal activity",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "where-0",
+          "who-1",
+          "who-2",
+          "who-3"
+        ],
+        "search_text": "YouTuber; content creator; online personality; individual; Seoul; capital city; South Korea; East Asia; urban center; Kim Soo-hyun; actor; celebrity; public figure; Seoul police; police force; law enforcement agency; government body; Prosecutors; legal professionals; government officials; prosecutorial agency",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "YouTuber",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "content creator",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "online personality",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "individual",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "Seoul",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "capital city",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "South Korea",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "East Asia",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "urban center",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "Kim Soo-hyun",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "actor",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "celebrity",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "public figure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "Seoul police",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "police force",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "law enforcement agency",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "government body",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "surface",
+            "text": "Prosecutors",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "legal professionals",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "government officials",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "prosecutorial agency",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "how-0",
+          "how-1",
+          "result-0",
+          "why-0",
+          "result-1"
+        ],
+        "search_text": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor; utilized synthetic media and edited screenshots; digital manipulation; AI-generated content; fabrication of evidence; Seoul police secured an arrest warrant; police obtained legal authorization; legal procedure; arrest warrant issuance; law enforcement action; YouTuber arrested; individual taken into custody; arrest; detention; consequence of crime; spread false claims for financial gain; driven by financial motives; misinformation; deceptive practice; illegal activity; scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025; professional activities were put on hold; professional impact; reputational damage; consequence of scandal",
+        "fragments": [
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "utilized synthetic media and edited screenshots",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "digital manipulation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "AI-generated content",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "fabrication of evidence",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Seoul police secured an arrest warrant",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "police obtained legal authorization",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "legal procedure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "arrest warrant issuance",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "law enforcement action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "YouTuber arrested",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "individual taken into custody",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "arrest",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "detention",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "consequence of crime",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "spread false claims for financial gain",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "driven by financial motives",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "misinformation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "deceptive practice",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "illegal activity",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "scandal halted Kim Soo-hyun's endorsements and public appearances since early 2025",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "professional activities were put on hold",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "professional impact",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "reputational damage",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "consequence of scandal",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Explorer-p1",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "how-0",
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "search_text": "In Seoul, a content creator, driven by financial incentives, employed novel AI tools and media manipulation to spread false claims against a public figure. This pioneering use of digital manipulation for deceptive practice forced a law enforcement agency to cross a new jurisdictional threshold. The result was the content creator's detention, a stark consequence of an illegal activity.",
+        "fragments": [
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "utilized synthetic media and edited screenshots",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "digital manipulation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "AI-generated content",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "fabrication of evidence",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "spread false claims for financial gain",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Explorer",
+        "center_element": "how-0",
+        "supporting_elements": [
+          "why-0",
+          "how-0",
+          "how-1",
+          "result-0"
+        ],
+        "fit": 0.75
+      },
+      {
+        "id": "su-persona-The-Explorer-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "how-1",
+          "how-0",
+          "why-0",
+          "result-0"
+        ],
+        "search_text": "Seoul police obtained legal authorization to act on a case involving an individual who had pioneered deepfake audio and digital forgeries. This law enforcement action was a response to the individual's exploitation of a frontier for profit, which constituted a fabrication of evidence. The arrest of the boundary-crosser marked a significant turning point for the celebrity scandal.",
+        "fragments": [
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Seoul police secured an arrest warrant",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "police obtained legal authorization",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "legal procedure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "arrest warrant issuance",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "law enforcement action",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "used AI-generated audio and manipulated chat screenshots to claim the actor dated a late co-star while she was a minor",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Explorer",
+        "center_element": "how-1",
+        "supporting_elements": [
+          "how-0",
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "fit": 0.68
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"In Seoul, a content creator, driven by financial incentives, employed novel AI tools and media manipulation to spread false claims against a public figure. This pioneering use of digital manipulation for deceptive practice forced a law enforcement agency to cross a new jurisdictional threshold. The result was the content creator's detention, a stark consequence of an illegal activity.\",\n      \"fit\": 0.75,\n      \"center\": \"how-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-0\", \"how-1\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"Seoul police obtained legal authorization to act on a case involving an individual who had pioneered deepfake audio and digital forgeries. This law enforcement action was a response to the individual's exploitation of a frontier for profit, which constituted a fabrication of evidence. The arrest of the boundary-crosser marked a significant turning point for the celebrity scandal.\",\n      \"fit\": 0.68,\n      \"center\": \"how-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"why-0\", \"how-1\", \"result-0\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 2,
+    "dropped_pseudos": 0,
+    "drop_reasons": []
+  }
+}

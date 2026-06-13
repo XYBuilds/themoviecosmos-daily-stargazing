@@ -1,0 +1,511 @@
+# 候选星轨 · 04-celebrity-scandal
+
+## 元信息
+- run_id: 04-celebrity-scandal
+
+## 候选星轨（共 19 部）
+
+### The Green Hornet (1940) [THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-LOVER, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-JESTER] [汇聚标注]
+- **tmdb_id**: 250332
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=true, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 206.5575
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=12 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic, surface-fragment-bundle
+  - **center_dimensions**: how, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=3: THE-EXPLORER,THE-CAREGIVER,THE-OUTLAW
+- **相似度**: 0.5575
+- **genres** / **language**: Adventure, Crime, Science Fiction / en
+- **overview**: A newspaper publisher and his Korean servant fight crime as vigilantes who pose as a notorious masked gangster and his aide.
+- **跳转**: https://themoviecosmos.com/movie/250332
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[who-0, how-0, how-1, result-0] · sim=0.5402
+  - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[how-0, why-0, how-1, result-0] · sim=0.5575
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[who-0, how-0, how-1, result-0] · sim=0.5252
+  - THE-INNOCENT/su-surface-1: fragments=[who-0, who-1, who-2, where-0, who-3] · sim=0.4682
+  - THE-EVERYMAN/su-surface-1: fragments=[who-0, who-1, where-0, who-2, who-3] · sim=0.5018
+  - THE-HERO/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4453
+  - THE-CAREGIVER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4651
+  - THE-EXPLORER/su-surface-1: fragments=[who-0, where-0, who-1, who-2, who-3] · sim=0.4689
+  - THE-OUTLAW/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4653
+  - THE-LOVER/su-surface-1: fragments=[who-0, who-1, where-0, who-2, who-3] · sim=0.4676
+  - THE-CREATOR/su-surface-1: fragments=[who-0, where-0, who-1, who-2, who-3] · sim=0.4672
+  - THE-RULER/su-surface-1: fragments=[who-0, who-2, who-3, where-0, who-1] · sim=0.4629
+  - THE-MAGICIAN/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4602
+  - THE-SAGE/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4653
+  - THE-JESTER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4688
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Prophecy (2015) [THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-RULER, THE-SAGE, THE-JESTER, THE-HERO, THE-INNOCENT] [汇聚标注]
+- **tmdb_id**: 347483
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 244.5777
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=6 / persona=5
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=4: THE-HERO,THE-CAREGIVER,THE-INNOCENT,THE-SAGE
+- **相似度**: 0.5777
+- **genres** / **language**: Mystery, Thriller / ja
+- **overview**: The cyber crime investigation division at the Tokyo Metropolitan Police Department finds a video on website "YOURTUBE." In the video, a man covered by a newspaper, warns that a fire will be set at a food processing company. More crime notices are soon found involving violent crimes.  Geitsu is the main guy behind the group "Shinbunshi," which has posted the videos. He used to work as a temporary employee at an IT company, but was unfairly dismissed. He then begins doing manual labor work and meets the other members of "Shinbushi."
+- **跳转**: https://themoviecosmos.com/movie/347483
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5059
+  - THE-OUTLAW/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5046
+  - THE-LOVER/su-event-1: fragments=[why-0, how-0, result-1, how-1, result-0] · sim=0.5000
+  - THE-RULER/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5047
+  - THE-SAGE/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5124
+  - THE-JESTER/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5152
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[who-0, how-0, how-1, result-0] · sim=0.5269
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[how-1, how-0, result-0] · sim=0.5772
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[result-0, why-0, how-0, how-1] · sim=0.5534
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[result-0, why-0, how-0, how-1] · sim=0.4757
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[how-0, how-1, result-0] · sim=0.5777
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Master (2016) [THE-INNOCENT, THE-HERO, THE-CAREGIVER, THE-OUTLAW, THE-RULER, THE-MAGICIAN, THE-JESTER, THE-CREATOR, THE-EXPLORER, THE-SAGE] [汇聚标注]
+- **tmdb_id**: 382220
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 226.5767
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=7 / persona=3
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=3: THE-EXPLORER,THE-CREATOR,THE-SAGE
+- **相似度**: 0.5767
+- **genres** / **language**: Crime, Action / ko
+- **overview**: Korea’s biggest network marketing scam reveals a far greater network of corruption and conspiracy lurking underneath.
+- **跳转**: https://themoviecosmos.com/movie/382220
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, how-0, result-0, result-1, how-1] · sim=0.5063
+  - THE-HERO/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.4934
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5067
+  - THE-OUTLAW/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5006
+  - THE-RULER/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5200
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.4977
+  - THE-JESTER/su-event-1: fragments=[why-0, how-0, how-1, result-0, result-1] · sim=0.5142
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[who-0, why-0, how-0, result-0] · sim=0.5767
+  - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[how-0, why-0, how-1, result-0] · sim=0.5757
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[how-0, how-1, result-0] · sim=0.5456
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Peligro en tu mirada (2021) [THE-EVERYMAN, THE-EXPLORER, THE-LOVER, THE-CREATOR] [汇聚标注]
+- **tmdb_id**: 841297
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 206.6109
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=4 / persona=2
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-EVERYMAN
+- **相似度**: 0.6109
+- **genres** / **language**: Drama, Thriller / es
+- **overview**: A female photographer is coerced into spying on the affaire of a political candidate, becoming the sole witness of a crime of which he is falsely accused
+- **跳转**: https://themoviecosmos.com/movie/841297
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, how-0, result-0, result-1, how-1] · sim=0.5057
+  - THE-EXPLORER/su-event-1: fragments=[how-0, how-1, result-0, why-0, result-1] · sim=0.5095
+  - THE-LOVER/su-event-1: fragments=[why-0, how-0, result-1, how-1, result-0] · sim=0.4949
+  - THE-CREATOR/su-event-1: fragments=[why-0, how-0, result-0, result-1, how-1] · sim=0.5038
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[who-0, how-0, why-0, how-1] · sim=0.6109
+  - THE-EVERYMAN/su-persona-The-Everyman-p3: fragments=[how-0, how-1, result-0] · sim=0.5423
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Scandal (1950) [THE-CREATOR, THE-EVERYMAN, THE-INNOCENT, THE-LOVER, THE-MAGICIAN, THE-OUTLAW]
+- **tmdb_id**: 32690
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 184.6635
+  - **persona_agent_count**: 6
+  - **source_hits**: surface=0 / event=0 / persona=6
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6635
+- **genres** / **language**: Drama / ja
+- **overview**: A celebrity photograph sparks a court case as a tabloid magazine spins a scandalous yarn over a painter and a famous singer.
+- **跳转**: https://themoviecosmos.com/movie/32690
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[result-1, how-1, result-0, why-0] · sim=0.5732
+  - THE-EVERYMAN/su-persona-The-Everyman-p3: fragments=[how-0, how-1, result-0] · sim=0.5937
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-1, why-0, how-1, result-0] · sim=0.5841
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[result-1, why-0, how-0, how-1, result-0] · sim=0.6635
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[why-0, result-1, result-0, how-0] · sim=0.5827
+  - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[how-1, how-0, why-0, result-0, result-1] · sim=0.5761
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### I Like Mountain Music (1933) [THE-INNOCENT, THE-JESTER, THE-OUTLAW]
+- **tmdb_id**: 151913
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 146.6037
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6037
+- **genres** / **language**: Animation, Comedy, Family, Music / en
+- **overview**: After hours, individuals on various magazine covers in a drugstore come to life and sing, speak, or perform. Caricature celebrity depictions include George Arliss, Eddie Cantor, Sonja Henie, Benito Mussolini, Ignacy Paderewski, Edward G. Robinson, Will Rogers, and Ed Wynn. A robbery sequence features bad guys breaking into the cash register and Sherlock Holmes and Dr. Watson on the case. King Kong also makes an appearance. A Merrie Melody cartoon.
+- **跳转**: https://themoviecosmos.com/movie/151913
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-1, why-0, how-1, result-0] · sim=0.5609
+  - THE-JESTER/su-persona-The-Jester-p1: fragments=[result-0, why-0, how-0, how-1, result-1] · sim=0.6037
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[who-0, how-0, how-1, result-0] · sim=0.5320
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Panama (2015) [THE-INNOCENT, THE-LOVER]
+- **tmdb_id**: 336200
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.6032
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6032
+- **genres** / **language**: Thriller, Drama / sr
+- **overview**: A thriller that depicts how digital communication, pornography and vanity obstruct true emotions and love.
+- **跳转**: https://themoviecosmos.com/movie/336200
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[who-1, why-0, how-0, result-1] · sim=0.5597
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[result-1, why-0, how-0, how-1, result-0] · sim=0.6032
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Diamantino (2018) [THE-LOVER, THE-MAGICIAN]
+- **tmdb_id**: 518495
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5964
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5964
+- **genres** / **language**: Comedy, Science Fiction, Fantasy / pt
+- **overview**: A disgraced soccer star seeks redemption but is exploited by a variety of causes hoping to capitalize on his celebrity.
+- **跳转**: https://themoviecosmos.com/movie/518495
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, why-0, how-0, how-1, result-1] · sim=0.5964
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[why-0, result-1, result-0, how-0] · sim=0.5766
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### U Turn (2016) [THE-EVERYMAN, THE-JESTER]
+- **tmdb_id**: 397490
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5633
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5633
+- **genres** / **language**: Mystery, Thriller, Crime, Horror / kn
+- **overview**: A journalist who intents to write an article on traffic rule breakers gets dragged into a whirlpool of murder cases and deception.
+- **跳转**: https://themoviecosmos.com/movie/397490
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[result-1, why-0, how-0, result-0] · sim=0.5509
+  - THE-JESTER/su-persona-The-Jester-p2: fragments=[who-0, how-0, why-0, how-1, result-0] · sim=0.5633
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### One Way (2006) [THE-LOVER, THE-SAGE]
+- **tmdb_id**: 7298
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.6283
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6283
+- **genres** / **language**: Crime, Mystery, Thriller / en
+- **overview**: To cover up his infidelities and protect his upcoming marriage, a star advertiser helps free an accused rapist by giving a false alibi and suffers the brutal revenge of the victim.
+- **跳转**: https://themoviecosmos.com/movie/7298
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[who-1, why-0, how-0, how-1, result-1] · sim=0.5953
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[why-0, result-1] · sim=0.6283
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Project Gutenberg (2018) [THE-EXPLORER]
+- **tmdb_id**: 531384
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6086
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6086
+- **genres** / **language**: Action, Crime, Mystery / cn
+- **overview**: The Hong Kong police is hunting a counterfeiting gang led by a mastermind code-named "Painter" . The gang possesses exceptional counterfeiting skills which makes it difficult to distinguish the authenticity of its counterfeit currency. The scope of their criminal activities extends globally and greatly attracts the attention of the police. In order to crack the true identity of "Painter", the police recruits a painter named Lee Man to assist in solving the case.
+- **跳转**: https://themoviecosmos.com/movie/531384
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[how-1, how-0, why-0, result-0] · sim=0.6086
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Kannum Kannum Kollaiyadithaal (2020) [THE-CREATOR]
+- **tmdb_id**: 505951
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5997
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5997
+- **genres** / **language**: Romance, Comedy, Drama / ta
+- **overview**: Two wily online scammers mend their fraudulent ways after meeting the girls of their dreams — until a deceitful discovery throws their world for a loop.
+- **跳转**: https://themoviecosmos.com/movie/505951
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[who-0, why-0, how-0, result-0] · sim=0.5997
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### For a Fistful of Fries (2022) [THE-JESTER]
+- **tmdb_id**: 873097
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5922
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5922
+- **genres** / **language**: Documentary, Crime, Thriller / fr
+- **overview**: For several days, a team of police officers (backed by Judge Anne Gruwez, the revelation from their previous So Help Me God) sift through the evidence in a murder case that’s tougher than it appears. Jean Libon and Yves Hinant lead a police investigation unlike anything you’ve ever seen. With every banal turn of events, camaraderie and professionalism go hand in hand as humour meets tragedy and a handful of fries, a Tupperware container and St. Rita heighten the suspense. Hilariously scathing, yet filled with tenderness.
+- **跳转**: https://themoviecosmos.com/movie/873097
+- **命中视角/碎片**:
+  - THE-JESTER/su-persona-The-Jester-p3: fragments=[how-1, how-0, why-0, result-0] · sim=0.5922
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Roundup 3: No Way Out (2023) [THE-RULER]
+- **tmdb_id**: 955555
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5883
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5883
+- **genres** / **language**: Action, Crime, Comedy, Thriller / ko
+- **overview**: Detective Ma Seok-do changes his affiliation from the Geumcheon Police Station to the Metropolitan Investigation Team, in order to eradicate Japanese gangsters who enter Korea to commit heinous crimes.
+- **跳转**: https://themoviecosmos.com/movie/955555
+- **命中视角/碎片**:
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[how-1, why-0, how-0, result-0] · sim=0.5883
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### A Perfect Man (2015) [THE-EVERYMAN]
+- **tmdb_id**: 322125
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5854
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5854
+- **genres** / **language**: Drama, Thriller / fr
+- **overview**: A struggling writer finds a shortcut to fame, but a blackmailer threatens to ruin his perfect life.
+- **跳转**: https://themoviecosmos.com/movie/322125
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[result-1, why-0, how-0, result-0] · sim=0.5854
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### This Film Is Not Yet Rated (2006) [THE-CREATOR]
+- **tmdb_id**: 16070
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6052
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6052
+- **genres** / **language**: Documentary / en
+- **overview**: Kirby Dick's provocative documentary investigates the secretive and inconsistent process by which the Motion Picture Association of America rates films, revealing the organization's underhanded efforts to control culture. Dick questions whether certain studios get preferential treatment and exposes the discrepancies in how the MPAA views sex and violence.
+- **跳转**: https://themoviecosmos.com/movie/16070
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[how-0, why-0, result-1] · sim=0.6052
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Cobweb (2023) [THE-CAREGIVER]
+- **tmdb_id**: 901121
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5939
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5939
+- **genres** / **language**: Comedy, Drama / ko
+- **overview**: In the 1970s, Director Kim is obsessed by the desire to re-shoot the ending of his completed film Cobweb, but chaos and turmoil grip the set with interference from the censorship authorities, and the complaints of actors and producers who can't understand the re-written ending. Will Kim be able to find a way through this chaos to fulfill his artistic ambitions and complete his masterpiece?
+- **跳转**: https://themoviecosmos.com/movie/901121
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[result-1, how-0, why-0] · sim=0.5939
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Eternal Evil (1985) [THE-CREATOR]
+- **tmdb_id**: 87110
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5861
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5861
+- **genres** / **language**: Horror, Science Fiction / en
+- **overview**: A dissatisfied Montreal director of TV commercials is taught to astrally project himself by a mysterious woman. But soon he finds that he does it against his will when he sleeps, and while he does it, he commits savage acts against those in his life.
+- **跳转**: https://themoviecosmos.com/movie/87110
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[how-0, why-0, result-1] · sim=0.5861
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Black Money (2019) [THE-SAGE]
+- **tmdb_id**: 603314
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6257
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6257
+- **genres** / **language**: Crime, Drama, Thriller / ko
+- **overview**: A prosecutor is falsely accused of sexual assault in a suicide note from a woman that he is convinced was actually murdered. As he investigates her death to clear his name, he realizes that the truth lies in a huge financial scandal.
+- **跳转**: https://themoviecosmos.com/movie/603314
+- **命中视角/碎片**:
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[why-0, result-1] · sim=0.6257
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）

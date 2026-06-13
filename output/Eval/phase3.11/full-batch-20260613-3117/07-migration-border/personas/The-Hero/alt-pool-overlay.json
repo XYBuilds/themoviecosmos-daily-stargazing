@@ -1,0 +1,137 @@
+{
+  "persona_id": "The-Hero",
+  "alt_pool": {
+    "elements": [
+      {
+        "element_id": "who-0",
+        "original_term": "U.S. Border Patrol",
+        "alternatives": [
+          {
+            "term": "the defenders securing the nation's frontier",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "the agency tasked with border enforcement",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "the enforcers operating under current policy",
+            "valence": "neutral",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "original_term": "8,268 people apprehended",
+        "alternatives": [
+          {
+            "term": "those intercepted crossing the border illegally",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the individuals detained by authorities",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "people caught up in the enforcement action",
+            "valence": "neutral",
+            "provenance": "lens"
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "original_term": "lawmakers",
+        "alternatives": [
+          {
+            "term": "the officials failing to provide necessary resources",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "the legislators holding the funding decision",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "original_term": "milder spring weather",
+        "alternatives": [
+          {
+            "term": "the seasonal conditions that invite a challenge",
+            "valence": "neutral",
+            "provenance": "lens"
+          },
+          {
+            "term": "spring weather",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "how-0",
+        "original_term": "apprehensions increased from 6,598 in February to 8,268 in March along the southwest border",
+        "alternatives": [
+          {
+            "term": "the surge in border confrontations that enforcers had to meet head-on",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "a rise in the number of people apprehended",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "original_term": "year-to-date crossings remain near multi-decade lows under asylum shutdown and deportation policies",
+        "alternatives": [
+          {
+            "term": "a decisive victory for the enforcement mission, holding crossings at historic lows",
+            "valence": "positive",
+            "provenance": "lens"
+          },
+          {
+            "term": "crossings that remain near multi-decade lows",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "original_term": "lawmakers remain deadlocked over separate funding for immigration enforcement agencies in a pending reconciliation package",
+        "alternatives": [
+          {
+            "term": "the political gridlock that leaves enforcers without the backing they deserve",
+            "valence": "negative",
+            "provenance": "lens"
+          },
+          {
+            "term": "a legislative stalemate on funding",
+            "valence": "neutral",
+            "provenance": "hypernym"
+          }
+        ]
+      }
+    ]
+  },
+  "salience": [
+    "who-0",
+    "result-0",
+    "how-0",
+    "why-0",
+    "result-1",
+    "who-1"
+  ]
+}

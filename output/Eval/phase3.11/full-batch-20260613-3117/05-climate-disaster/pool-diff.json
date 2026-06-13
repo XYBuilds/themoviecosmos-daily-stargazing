@@ -1,0 +1,603 @@
+{
+  "run_id": "05-climate-disaster",
+  "baseline_candidate_count": 19,
+  "pretest_candidate_count": 19,
+  "overlap_count": 8,
+  "net_new_tmdb_ids": [
+    14111,
+    38828,
+    53080,
+    62652,
+    68924,
+    121890,
+    258947,
+    285427,
+    333545,
+    514690,
+    937393
+  ],
+  "lost_tmdb_ids": [
+    26693,
+    33196,
+    38141,
+    43593,
+    44325,
+    107100,
+    210219,
+    274855,
+    437031,
+    613658,
+    797840
+  ],
+  "gap_a_targets_in_net_new": [],
+  "gap_a_targets_in_baseline_only": [],
+  "net_new_details": [
+    {
+      "tmdb_id": 14111,
+      "title": "Battle for Haditha",
+      "similarity": 0.5263327360153198,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.5263327360153198,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 38828,
+      "title": "Left Behind: World at War",
+      "similarity": 0.5903992056846619,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-persona-The-Creator-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-1",
+            "result-2"
+          ],
+          "similarity": 0.5903992056846619,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 53080,
+      "title": "Malibu Shark Attack",
+      "similarity": 0.5748425126075745,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-persona-The-Ruler-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-4",
+            "how-2",
+            "how-3",
+            "result-0",
+            "result-2"
+          ],
+          "similarity": 0.5748425126075745,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-4"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 62652,
+      "title": "Bamako",
+      "similarity": 0.5301871299743652,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-persona-The-Outlaw-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-0",
+            "how-2",
+            "result-1"
+          ],
+          "similarity": 0.5301871299743652,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 68924,
+      "title": "The Ice Storm",
+      "similarity": 0.5350177884101868,
+      "quality_candidate": true,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.4888302981853485,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.4756885766983032,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.47216594219207764,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-EXPLORER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.477928102016449,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.47443312406539917,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.4633335769176483,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-CREATOR",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.48134738206863403,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-RULER",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.4743492901325226,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-MAGICIAN",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-5",
+            "result-0",
+            "result-4",
+            "result-5",
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-1",
+            "result-2",
+            "result-3"
+          ],
+          "similarity": 0.4676411747932434,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-event-1",
+          "channel_role": "neutral",
+          "fragments": [
+            "why-0",
+            "how-0",
+            "how-1",
+            "how-2",
+            "how-3",
+            "how-4",
+            "how-5",
+            "result-0",
+            "result-1",
+            "result-2",
+            "result-3",
+            "result-4",
+            "result-5"
+          ],
+          "similarity": 0.46182185411453247,
+          "search_unit_kind": "event-fragment-bundle"
+        },
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "why-0",
+            "how-1",
+            "how-3"
+          ],
+          "similarity": 0.5350177884101868,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 121890,
+      "title": "An Enemy of the People",
+      "similarity": 0.5496293306350708,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "how-2"
+          ],
+          "similarity": 0.5496293306350708,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 258947,
+      "title": "Deadly Virtues: Love. Honour. Obey.",
+      "similarity": 0.5763194561004639,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p3",
+          "channel_role": "toned",
+          "fragments": [
+            "result-1",
+            "how-2"
+          ],
+          "similarity": 0.5763194561004639,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 285427,
+      "title": "Quel maledetto ponte sull'Elba",
+      "similarity": 0.5466321110725403,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-SAGE"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-SAGE",
+          "pseudo_id": "su-persona-The-Sage-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "how-2",
+            "how-3",
+            "how-4",
+            "result-5"
+          ],
+          "similarity": 0.5466321110725403,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "how-2"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 333545,
+      "title": "Road Wars",
+      "similarity": 0.5663390159606934,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-1"
+          ],
+          "similarity": 0.5663390159606934,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 514690,
+      "title": "Global Meltdown",
+      "similarity": 0.5490367412567139,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-OUTLAW"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-HERO",
+          "pseudo_id": "su-persona-The-Hero-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-2",
+            "result-5"
+          ],
+          "similarity": 0.5490367412567139,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        },
+        {
+          "agent_id": "THE-OUTLAW",
+          "pseudo_id": "su-persona-The-Outlaw-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-0",
+            "how-2",
+            "result-1"
+          ],
+          "similarity": 0.5396461486816406,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        }
+      ]
+    },
+    {
+      "tmdb_id": 937393,
+      "title": "Bloat",
+      "similarity": 0.6059625148773193,
+      "quality_candidate": false,
+      "triggered_by": [
+        "THE-INNOCENT",
+        "THE-CAREGIVER",
+        "THE-LOVER"
+      ],
+      "hit_sources": [
+        {
+          "agent_id": "THE-CAREGIVER",
+          "pseudo_id": "su-persona-The-Caregiver-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "result-0",
+            "why-0",
+            "how-0",
+            "result-1"
+          ],
+          "similarity": 0.5392528772354126,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        },
+        {
+          "agent_id": "THE-INNOCENT",
+          "pseudo_id": "su-persona-The-Innocent-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-1"
+          ],
+          "similarity": 0.5537533760070801,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p1",
+          "channel_role": "toned",
+          "fragments": [
+            "result-0",
+            "why-0",
+            "how-1",
+            "how-2"
+          ],
+          "similarity": 0.5900609493255615,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "result-0"
+        },
+        {
+          "agent_id": "THE-LOVER",
+          "pseudo_id": "su-persona-The-Lover-p2",
+          "channel_role": "toned",
+          "fragments": [
+            "who-1",
+            "why-0",
+            "how-2",
+            "result-0",
+            "result-1"
+          ],
+          "similarity": 0.6059625148773193,
+          "search_unit_kind": "persona-semantic",
+          "center_element": "who-1"
+        }
+      ]
+    }
+  ],
+  "by_channel": {
+    "focalized": [],
+    "toned": [
+      14111,
+      38828,
+      53080,
+      62652,
+      68924,
+      121890,
+      258947,
+      285427,
+      333545,
+      514690,
+      937393
+    ]
+  }
+}

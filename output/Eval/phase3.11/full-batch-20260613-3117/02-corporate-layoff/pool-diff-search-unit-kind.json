@@ -1,0 +1,239 @@
+{
+  "run_id": "02-corporate-layoff",
+  "baseline_candidate_count": 19,
+  "design_candidate_count": 19,
+  "overlap_count": 11,
+  "net_new_tmdb_ids": [
+    25665,
+    37769,
+    69896,
+    116741,
+    313055,
+    438639,
+    1097549,
+    1161617
+  ],
+  "lost_tmdb_ids": [
+    16814,
+    53416,
+    71172,
+    133463,
+    485162,
+    750145,
+    1173076,
+    1233620
+  ],
+  "by_search_unit_kind": {
+    "event-fragment-bundle": [],
+    "persona-semantic": [
+      25665,
+      37769,
+      69896,
+      116741,
+      313055,
+      438639,
+      1097549,
+      1161617
+    ],
+    "surface-fragment-bundle": []
+  },
+  "collision_gain_tmdb_ids": [],
+  "net_new_details": [
+    {
+      "tmdb_id": 25665,
+      "title": "One Last Dance",
+      "similarity": 0.5351153016090393,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 37769,
+      "title": "The Second Tragic Fantozzi",
+      "similarity": 0.5483034253120422,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 69896,
+      "title": "Little Nothings",
+      "similarity": 0.5503073930740356,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-RULER",
+        "THE-MAGICIAN"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how",
+          "why"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 116741,
+      "title": "The Internship",
+      "similarity": 0.5427723526954651,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 313055,
+      "title": "Discount",
+      "similarity": 0.5346605181694031,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "why"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 438639,
+      "title": "Dismissal",
+      "similarity": 0.5303434729576111,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-INNOCENT"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 1097549,
+      "title": "Babygirl",
+      "similarity": 0.5343732833862305,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-EXPLORER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 1161617,
+      "title": "Code 3",
+      "similarity": 0.5004117488861084,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-CAREGIVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how",
+          "result"
+        ]
+      }
+    }
+  ]
+}

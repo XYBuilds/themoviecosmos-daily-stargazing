@@ -1,0 +1,1661 @@
+{
+  "persona_id": "The-Sage",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Sage",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "Intuit",
+          "alternatives": [
+            {
+              "term": "the decision-maker pursuing strategic hubs",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the company undertaking workforce restructuring",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "organization",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Sasan Goodarzi",
+          "alternatives": [
+            {
+              "term": "the executive communicating a clear strategic rationale",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the chief executive overseeing a necessary reinvention",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "chief executive",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "the leader presenting a decision without transparent data",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "affected U.S. employees",
+          "alternatives": [
+            {
+              "term": "employees whose roles are eliminated as part of a strategic shift",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "individuals impacted by corporate restructuring",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "employees",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "workers displaced by top-down decisions",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "Reno",
+          "alternatives": [
+            {
+              "term": "a site where operational consolidation is occurring",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "location",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "Woodland Hills",
+          "alternatives": [
+            {
+              "term": "a site where operational consolidation is occurring",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "location",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+          "alternatives": [
+            {
+              "term": "a reasoned objective for enhanced efficiency and innovation",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a stated operational goal",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "objective",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "as a painful but necessary reinvention after months of internal review",
+          "alternatives": [
+            {
+              "term": "an evidence-based conclusion from internal analysis",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a justification following internal assessment",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "rationale",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a conclusion presented without detailing the review's findings",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+          "alternatives": [
+            {
+              "term": "a direct and unambiguous communication of a major operational change",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "an announcement of planned job eliminations",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "communication",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a top-down decree lacking elaboration on the decision's foundation",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "a structured severance package with a tenure-based formula",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "compensation terms offered to affected employees",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "severance",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            },
+            {
+              "term": "a financial offer that does not address long-term career impact",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "Offices in Reno and Woodland Hills are winding down",
+          "alternatives": [
+            {
+              "term": "the closure of specific operational sites",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "relocation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "roughly 17% of workforce to be cut",
+          "alternatives": [
+            {
+              "term": "a significant and quantifiable workforce reduction",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a major workforce reduction",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "reduction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "about 3,000 full-time roles to be eliminated",
+          "alternatives": [
+            {
+              "term": "the elimination of a large number of positions as part of strategic re-focusing",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the planned elimination of roles",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "elimination",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-2",
+          "original_term": "offices in Reno and Woodland Hills winding down",
+          "alternatives": [
+            {
+              "term": "the consolidation of physical locations",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "closure",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "result-3",
+          "original_term": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+          "alternatives": [
+            {
+              "term": "a defined compensation structure for displaced workers",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the financial terms provided to affected employees",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "compensation",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "why-0",
+      "how-0",
+      "result-0",
+      "who-1",
+      "why-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work. Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles. roughly 17% of workforce to be cut. Sasan Goodarzi. as a painful but necessary reinvention after months of internal review The event unfolds across objective and business strategy.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0",
+          "who-1",
+          "why-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "provenance": "surface"
+          },
+          {
+            "term": "objective",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "business strategy",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organizational change",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "product development acceleration",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "provenance": "surface"
+          },
+          {
+            "term": "communication",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "corporate announcement",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "decision communication",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff notification",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "roughly 17% of workforce to be cut",
+            "provenance": "surface"
+          },
+          {
+            "term": "reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "workforce reduction",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "staff layoff",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "organizational downsizing",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "Sasan Goodarzi",
+            "provenance": "surface"
+          },
+          {
+            "term": "chief executive",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "executive",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "company leader",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "person",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "as a painful but necessary reinvention after months of internal review",
+            "provenance": "surface"
+          },
+          {
+            "term": "rationale",
+            "provenance": "hypernym"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "The tax-software company, Intuit, announced a major organizational change: the elimination of roughly 3,000 full-time roles, a workforce reduction of about 17%. Chief executive Sasan Goodarzi communicated this as a necessary reinvention to co-locate teams in strategic hubs, presenting a stated operational goal to accelerate AI-driven product work. The decision, described as following months of internal review, represents a significant strategic shift for the technology company.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "center": "why-0",
+        "center_kind": "why",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 0
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "As part of a corporate announcement, affected U.S. employees were informed of their role elimination and offered a severance package. The compensation terms consisted of 16 weeks of base pay plus two weeks per year of tenure, a structured financial offer for those impacted by this corporate restructuring. This staff notification details the direct consequences for individuals whose positions are being eliminated.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "how-0",
+          "how-1",
+          "result-1"
+        ],
+        "center": "how-1",
+        "center_kind": "how",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 5
+      },
+      "warnings": [],
+      "fit": 0.78
+    },
+    {
+      "id": "p3",
+      "text": "The planned outcome involves a major workforce reduction and the closure of specific operational sites. Offices in Reno and Woodland Hills are winding down, a consolidation of physical locations tied to the job elimination. This represents a clear case of organizational downsizing, where the company is eliminating roles and shutting down locations as part of its strategic re-focusing.",
+      "source": {
+        "agent_id": "The-Sage",
+        "fragments": [
+          "result-0",
+          "result-1",
+          "result-2"
+        ],
+        "center": "result-2",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 5
+      },
+      "warnings": [],
+      "fit": 0.72
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a direct and unambiguous communication of a major operational change",
+            "weight": 0.38
+          },
+          {
+            "text": "an announcement of planned job eliminations",
+            "weight": 0.38
+          },
+          {
+            "text": "a top-down decree lacking elaboration on the decision's foundation",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "communication",
+            "weight": 0.82
+          },
+          {
+            "text": "corporate announcement",
+            "weight": 0.82
+          },
+          {
+            "text": "decision communication",
+            "weight": 0.82
+          },
+          {
+            "text": "staff notification",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a structured severance package with a tenure-based formula",
+            "weight": 0.38
+          },
+          {
+            "text": "compensation terms offered to affected employees",
+            "weight": 0.38
+          },
+          {
+            "text": "a financial offer that does not address long-term career impact",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "severance",
+            "weight": 0.82
+          },
+          {
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "text": "compensation offer",
+            "weight": 0.82
+          },
+          {
+            "text": "employee benefit",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Offices in Reno and Woodland Hills are winding down",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the closure of specific operational sites",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "relocation",
+            "weight": 0.82
+          },
+          {
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "text": "location shutdown",
+            "weight": 0.82
+          },
+          {
+            "text": "real estate disposal",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "roughly 17% of workforce to be cut",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a significant and quantifiable workforce reduction",
+            "weight": 0.38
+          },
+          {
+            "text": "a major workforce reduction",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "reduction",
+            "weight": 0.82
+          },
+          {
+            "text": "workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "text": "staff layoff",
+            "weight": 0.82
+          },
+          {
+            "text": "organizational downsizing",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "about 3,000 full-time roles to be eliminated",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the elimination of a large number of positions as part of strategic re-focusing",
+            "weight": 0.38
+          },
+          {
+            "text": "the planned elimination of roles",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "elimination",
+            "weight": 0.82
+          },
+          {
+            "text": "job elimination",
+            "weight": 0.82
+          },
+          {
+            "text": "role reduction",
+            "weight": 0.82
+          },
+          {
+            "text": "headcount decrease",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-2",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "offices in Reno and Woodland Hills winding down",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the consolidation of physical locations",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "closure",
+            "weight": 0.82
+          },
+          {
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "text": "location shutdown",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-3",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a defined compensation structure for displaced workers",
+            "weight": 0.38
+          },
+          {
+            "text": "the financial terms provided to affected employees",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "compensation",
+            "weight": 0.82
+          },
+          {
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "text": "compensation offer",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Reno",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a site where operational consolidation is occurring",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "location",
+            "weight": 0.82
+          },
+          {
+            "text": "city",
+            "weight": 0.82
+          },
+          {
+            "text": "Nevada",
+            "weight": 0.82
+          },
+          {
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "text": "North America",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-1",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Woodland Hills",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a site where operational consolidation is occurring",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "location",
+            "weight": 0.82
+          },
+          {
+            "text": "neighborhood",
+            "weight": 0.82
+          },
+          {
+            "text": "Los Angeles",
+            "weight": 0.82
+          },
+          {
+            "text": "California",
+            "weight": 0.82
+          },
+          {
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "text": "North America",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Intuit",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the decision-maker pursuing strategic hubs",
+            "weight": 0.38
+          },
+          {
+            "text": "the company undertaking workforce restructuring",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "organization",
+            "weight": 0.82
+          },
+          {
+            "text": "tax-software company",
+            "weight": 0.82
+          },
+          {
+            "text": "technology company",
+            "weight": 0.82
+          },
+          {
+            "text": "company",
+            "weight": 0.82
+          },
+          {
+            "text": "corporation",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Sasan Goodarzi",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the executive communicating a clear strategic rationale",
+            "weight": 0.38
+          },
+          {
+            "text": "the chief executive overseeing a necessary reinvention",
+            "weight": 0.38
+          },
+          {
+            "text": "the leader presenting a decision without transparent data",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "chief executive",
+            "weight": 0.82
+          },
+          {
+            "text": "executive",
+            "weight": 0.82
+          },
+          {
+            "text": "company leader",
+            "weight": 0.82
+          },
+          {
+            "text": "person",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "affected U.S. employees",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "employees whose roles are eliminated as part of a strategic shift",
+            "weight": 0.38
+          },
+          {
+            "text": "individuals impacted by corporate restructuring",
+            "weight": 0.38
+          },
+          {
+            "text": "workers displaced by top-down decisions",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "employees",
+            "weight": 0.82
+          },
+          {
+            "text": "workers",
+            "weight": 0.82
+          },
+          {
+            "text": "staff",
+            "weight": 0.82
+          },
+          {
+            "text": "personnel",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a reasoned objective for enhanced efficiency and innovation",
+            "weight": 0.38
+          },
+          {
+            "text": "a stated operational goal",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "objective",
+            "weight": 0.82
+          },
+          {
+            "text": "business strategy",
+            "weight": 0.82
+          },
+          {
+            "text": "organizational change",
+            "weight": 0.82
+          },
+          {
+            "text": "product development acceleration",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "as a painful but necessary reinvention after months of internal review",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "an evidence-based conclusion from internal analysis",
+            "weight": 0.38
+          },
+          {
+            "text": "a justification following internal assessment",
+            "weight": 0.38
+          },
+          {
+            "text": "a conclusion presented without detailing the review's findings",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "rationale",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "where-0",
+          "where-1"
+        ],
+        "search_text": "Intuit; organization; tax-software company; technology company; company; corporation; Sasan Goodarzi; chief executive; executive; company leader; person; affected U.S. employees; employees; workers; staff; personnel; Reno; location; city; Nevada; United States; North America; Woodland Hills; location; neighborhood; Los Angeles; California; United States; North America",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "Intuit",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "organization",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "tax-software company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "technology company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "corporation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "Sasan Goodarzi",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "chief executive",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "executive",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "company leader",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "person",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "affected U.S. employees",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "employees",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "workers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "staff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "personnel",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "Reno",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "location",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "city",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "Nevada",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "North America",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "surface",
+            "text": "Woodland Hills",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "location",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "neighborhood",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "Los Angeles",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "California",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "United States",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "North America",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "why-1",
+          "how-0",
+          "how-1",
+          "how-2",
+          "result-0",
+          "result-1",
+          "result-2",
+          "result-3"
+        ],
+        "search_text": "to co-locate teams in strategic hubs and accelerate AI-driven product work; objective; business strategy; organizational change; product development acceleration; as a painful but necessary reinvention after months of internal review; rationale; Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles; communication; corporate announcement; decision communication; staff notification; Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure; severance; severance package; compensation offer; employee benefit; Offices in Reno and Woodland Hills are winding down; relocation; office closure; location shutdown; real estate disposal; roughly 17% of workforce to be cut; reduction; workforce reduction; staff layoff; organizational downsizing; about 3,000 full-time roles to be eliminated; elimination; job elimination; role reduction; headcount decrease; offices in Reno and Woodland Hills winding down; closure; office closure; location shutdown; affected employees offered 16 weeks of base pay plus two weeks per year of tenure; compensation; severance package; compensation offer",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "objective",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "business strategy",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "organizational change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "product development acceleration",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "surface",
+            "text": "as a painful but necessary reinvention after months of internal review",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "rationale",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "communication",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "corporate announcement",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "decision communication",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "objective_close",
+            "text": "staff notification",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "severance",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "compensation offer",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "employee benefit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "Offices in Reno and Woodland Hills are winding down",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "relocation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "location shutdown",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "real estate disposal",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "roughly 17% of workforce to be cut",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "workforce reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "staff layoff",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "organizational downsizing",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "about 3,000 full-time roles to be eliminated",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "elimination",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "job elimination",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "role reduction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "objective_close",
+            "text": "headcount decrease",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "surface",
+            "text": "offices in Reno and Woodland Hills winding down",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "closure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "location shutdown",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "surface",
+            "text": "affected employees offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "compensation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-3",
+            "level": "objective_close",
+            "text": "compensation offer",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Sage-p1",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "search_text": "The tax-software company, Intuit, announced a major organizational change: the elimination of roughly 3,000 full-time roles, a workforce reduction of about 17%. Chief executive Sasan Goodarzi communicated this as a necessary reinvention to co-locate teams in strategic hubs, presenting a stated operational goal to accelerate AI-driven product work. The decision, described as following months of internal review, represents a significant strategic shift for the technology company.",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "to co-locate teams in strategic hubs and accelerate AI-driven product work",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "objective",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "business strategy",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "organizational change",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "objective_close",
+            "text": "product development acceleration",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Sage",
+        "center_element": "why-0",
+        "supporting_elements": [
+          "why-0",
+          "how-0",
+          "result-0"
+        ],
+        "fit": 0.85
+      },
+      {
+        "id": "su-persona-The-Sage-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "how-1",
+          "how-0",
+          "result-1"
+        ],
+        "search_text": "As part of a corporate announcement, affected U.S. employees were informed of their role elimination and offered a severance package. The compensation terms consisted of 16 weeks of base pay plus two weeks per year of tenure, a structured financial offer for those impacted by this corporate restructuring. This staff notification details the direct consequences for individuals whose positions are being eliminated.",
+        "fragments": [
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Affected U.S. employees were offered 16 weeks of base pay plus two weeks per year of tenure",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "severance",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "severance package",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "compensation offer",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-1",
+            "level": "objective_close",
+            "text": "employee benefit",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Chief executive Sasan Goodarzi told staff the tax-software company will eliminate about 3,000 full-time roles",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Sage",
+        "center_element": "how-1",
+        "supporting_elements": [
+          "how-0",
+          "how-1",
+          "result-1"
+        ],
+        "fit": 0.78
+      },
+      {
+        "id": "su-persona-The-Sage-p3",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-2",
+          "result-0",
+          "result-1"
+        ],
+        "search_text": "The planned outcome involves a major workforce reduction and the closure of specific operational sites. Offices in Reno and Woodland Hills are winding down, a consolidation of physical locations tied to the job elimination. This represents a clear case of organizational downsizing, where the company is eliminating roles and shutting down locations as part of its strategic re-focusing.",
+        "fragments": [
+          {
+            "element_id": "result-2",
+            "level": "surface",
+            "text": "offices in Reno and Woodland Hills winding down",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "closure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "office closure",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-2",
+            "level": "objective_close",
+            "text": "location shutdown",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "roughly 17% of workforce to be cut",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "reduction",
+            "weight": 0.82
+          }
+        ],
+        "persona_id": "The-Sage",
+        "center_element": "result-2",
+        "supporting_elements": [
+          "result-0",
+          "result-1",
+          "result-2"
+        ],
+        "fit": 0.72
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"The tax-software company, Intuit, announced a major organizational change: the elimination of roughly 3,000 full-time roles, a workforce reduction of about 17%. Chief executive Sasan Goodarzi communicated this as a necessary reinvention to co-locate teams in strategic hubs, presenting a stated operational goal to accelerate AI-driven product work. The decision, described as following months of internal review, represents a significant strategic shift for the technology company.\",\n      \"fit\": 0.85,\n      \"center\": \"why-0\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-0\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"As part of a corporate announcement, affected U.S. employees were informed of their role elimination and offered a severance package. The compensation terms consisted of 16 weeks of base pay plus two weeks per year of tenure, a structured financial offer for those impacted by this corporate restructuring. This staff notification details the direct consequences for individuals whose positions are being eliminated.\",\n      \"fit\": 0.78,\n      \"center\": \"how-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"how-0\", \"how-1\", \"result-1\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"The planned outcome involves a major workforce reduction and the closure of specific operational sites. Offices in Reno and Woodland Hills are winding down, a consolidation of physical locations tied to the job elimination. This represents a clear case of organizational downsizing, where the company is eliminating roles and shutting down locations as part of its strategic re-focusing.\",\n      \"fit\": 0.72,\n      \"center\": \"result-2\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"result-0\", \"result-1\", \"result-2\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 3,
+    "dropped_pseudos": 0,
+    "drop_reasons": []
+  }
+}

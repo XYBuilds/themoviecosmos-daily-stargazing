@@ -1,0 +1,188 @@
+{
+  "center_element_counts": {
+    "who-1": 4,
+    "result-2": 1,
+    "how-0": 4,
+    "why-0": 4,
+    "result-1": 7,
+    "why-1": 1,
+    "result-0": 3,
+    "who-0": 4,
+    "who-2": 1
+  },
+  "channel_counts": {
+    "toned": 29
+  },
+  "focal_who_counts": {},
+  "per_persona": {
+    "The-Caregiver": [
+      {
+        "pseudo_id": "p1",
+        "center": "who-1",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p2",
+        "center": "result-2",
+        "channel": "toned"
+      }
+    ],
+    "The-Creator": [
+      {
+        "pseudo_id": "p1",
+        "center": "how-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p3",
+        "center": "why-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p2",
+        "center": "result-1",
+        "channel": "toned"
+      }
+    ],
+    "The-Everyman": [
+      {
+        "pseudo_id": "p1",
+        "center": "how-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p3",
+        "center": "result-1",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p2",
+        "center": "why-1",
+        "channel": "toned"
+      }
+    ],
+    "The-Explorer": [
+      {
+        "pseudo_id": "p2",
+        "center": "result-1",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p3",
+        "center": "how-0",
+        "channel": "toned"
+      }
+    ],
+    "The-Hero": [
+      {
+        "pseudo_id": "p1",
+        "center": "result-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p2",
+        "center": "who-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p3",
+        "center": "result-1",
+        "channel": "toned"
+      }
+    ],
+    "The-Innocent": [
+      {
+        "pseudo_id": "p1",
+        "center": "result-1",
+        "channel": "toned"
+      }
+    ],
+    "The-Jester": [
+      {
+        "pseudo_id": "p1",
+        "center": "result-1",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p2",
+        "center": "who-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p3",
+        "center": "result-0",
+        "channel": "toned"
+      }
+    ],
+    "The-Lover": [
+      {
+        "pseudo_id": "p1",
+        "center": "who-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p2",
+        "center": "who-1",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p3",
+        "center": "why-0",
+        "channel": "toned"
+      }
+    ],
+    "The-Magician": [
+      {
+        "pseudo_id": "p1",
+        "center": "why-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p3",
+        "center": "who-2",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p2",
+        "center": "who-1",
+        "channel": "toned"
+      }
+    ],
+    "The-Outlaw": [
+      {
+        "pseudo_id": "p1",
+        "center": "who-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p3",
+        "center": "how-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p2",
+        "center": "who-1",
+        "channel": "toned"
+      }
+    ],
+    "The-Ruler": [],
+    "The-Sage": [
+      {
+        "pseudo_id": "p1",
+        "center": "result-0",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p2",
+        "center": "result-1",
+        "channel": "toned"
+      },
+      {
+        "pseudo_id": "p3",
+        "center": "why-0",
+        "channel": "toned"
+      }
+    ]
+  },
+  "open_c_note": "Centers span who/where/why/how/result element ids; observe whether salience-greedy who-* centers unlock POV focalization without over-coarse buckets."
+}

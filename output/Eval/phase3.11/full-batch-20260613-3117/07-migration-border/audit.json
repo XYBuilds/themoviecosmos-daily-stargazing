@@ -1,0 +1,2964 @@
+{
+  "run_id": "07-migration-border",
+  "persona_count": 12,
+  "personas": [
+    {
+      "persona_id": "The-Caregiver",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "who-1",
+            "center_token_overlap": [
+              "apprehended",
+              "facing",
+              "journeys",
+              "migrants",
+              "perilous",
+              "safety"
+            ],
+            "support_token_overlap": [
+              "asylum",
+              "border",
+              "crossings",
+              "date",
+              "decade",
+              "lows",
+              "multi",
+              "near"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "crossing",
+              "enforcement",
+              "historically",
+              "measures",
+              "numbers",
+              "policies",
+              "restriction",
+              "resulting",
+              "safety",
+              "system",
+              "that"
+            ],
+            "support_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "deadlocked",
+              "enforcement",
+              "funding",
+              "increased",
+              "policies"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "result-1",
+            "center_token_overlap": [
+              "border",
+              "deadlocked",
+              "delaying",
+              "enforcement",
+              "funding",
+              "impasse",
+              "leaves",
+              "legislative",
+              "limbo",
+              "operations",
+              "people",
+              "political",
+              "stalemate",
+              "support",
+              "vulnerable"
+            ],
+            "support_token_overlap": [
+              "border",
+              "deadlocked",
+              "enforcement",
+              "funding"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 0,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "who-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "result-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Creator",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "how-0",
+            "center_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "data",
+              "flow",
+              "people",
+              "shift",
+              "showed",
+              "southwest",
+              "surge",
+              "upward"
+            ],
+            "support_token_overlap": [
+              "agencies",
+              "along",
+              "apprehensions",
+              "border",
+              "deadlocked",
+              "enforcement",
+              "funding",
+              "immigration"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "result-1",
+            "center_token_overlap": [
+              "creative",
+              "enforcement",
+              "failure",
+              "funding",
+              "immigration",
+              "legislative",
+              "package",
+              "process",
+              "reconciliation"
+            ],
+            "support_token_overlap": [
+              "apprehensions",
+              "border",
+              "enforcement",
+              "funding",
+              "immigration",
+              "package",
+              "reconciliation",
+              "spring"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "who-0",
+            "center_token_overlap": [
+              "border",
+              "enforcement"
+            ],
+            "support_token_overlap": [
+              "along",
+              "border",
+              "spring",
+              "weather"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 0,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "how-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "result-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "who-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Everyman",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "who-1",
+            "center_token_overlap": [
+              "apprehended",
+              "border",
+              "caught",
+              "ordinary",
+              "people",
+              "system",
+              "those"
+            ],
+            "support_token_overlap": [
+              "agencies",
+              "along",
+              "apprehensions",
+              "border",
+              "deadlocked",
+              "february",
+              "from",
+              "funding"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "asylum",
+              "bear",
+              "cost",
+              "crossings",
+              "date",
+              "decade",
+              "deportation",
+              "holding",
+              "line",
+              "lows",
+              "multi",
+              "near",
+              "ordinary",
+              "people",
+              "policies",
+              "remain",
+              "shutdown",
+              "system",
+              "under",
+              "year"
+            ],
+            "support_token_overlap": [
+              "agencies",
+              "apprehensions",
+              "asylum",
+              "border",
+              "crossings",
+              "date",
+              "decade",
+              "deportation"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 1,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "who-1",
+            "focal": null,
+            "derivation_warnings": [
+              "pseudo p1: center 'who-1' instantiates vantage seat but channel is toned (expected focalized)"
+            ],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 2,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 2,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Explorer",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "where-0",
+            "center_token_overlap": [
+              "border",
+              "boundary",
+              "frontier",
+              "geopolitical",
+              "line",
+              "zone"
+            ],
+            "support_token_overlap": [
+              "along",
+              "border",
+              "crossings",
+              "date",
+              "february",
+              "from",
+              "march",
+              "milder"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "who-1",
+            "center_token_overlap": [
+              "along",
+              "apprehended",
+              "boundary",
+              "crossers",
+              "line",
+              "routes"
+            ],
+            "support_token_overlap": [
+              "along",
+              "asylum",
+              "border",
+              "deportation",
+              "from",
+              "policies",
+              "shutdown",
+              "southwest"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "why-0",
+            "center_token_overlap": [
+              "change",
+              "climatic",
+              "opening",
+              "routes",
+              "seasonal",
+              "spring"
+            ],
+            "support_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "deadlocked",
+              "funding",
+              "over",
+              "package",
+              "reconciliation"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 0,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "where-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "who-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "why-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Hero",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "who-0",
+            "center_token_overlap": [
+              "agency",
+              "border",
+              "defenders",
+              "enforcement",
+              "frontier",
+              "nation",
+              "policy",
+              "securing",
+              "with"
+            ],
+            "support_token_overlap": [
+              "border",
+              "crossings",
+              "deadlocked",
+              "decade",
+              "enforcement",
+              "funding",
+              "lows",
+              "march"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "crossings",
+              "decade",
+              "decisive",
+              "enforcement",
+              "lows",
+              "mission",
+              "multi",
+              "near",
+              "that",
+              "victory"
+            ],
+            "support_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "enforcement",
+              "february",
+              "from",
+              "march",
+              "southwest"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "how-0",
+            "center_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "confrontations",
+              "from",
+              "head",
+              "march",
+              "southwest",
+              "surge",
+              "that"
+            ],
+            "support_token_overlap": [
+              "crossings",
+              "deadlocked",
+              "enforcement",
+              "funding",
+              "lows",
+              "over",
+              "remain",
+              "spring"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 0,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "who-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "how-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Innocent",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "who-1",
+            "center_token_overlap": [
+              "apprehended",
+              "better",
+              "life",
+              "people",
+              "policy",
+              "seeking"
+            ],
+            "support_token_overlap": [
+              "apprehensions",
+              "border",
+              "deadlocked",
+              "decade",
+              "enforcement",
+              "february",
+              "from",
+              "funding"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "crossings",
+              "date",
+              "decade",
+              "hope",
+              "lows",
+              "measures",
+              "multi",
+              "near",
+              "place",
+              "remain",
+              "remains",
+              "restrictive",
+              "stability",
+              "year"
+            ],
+            "support_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "enforcement",
+              "february",
+              "from",
+              "march",
+              "remain"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "result-1",
+            "center_token_overlap": [
+              "agencies",
+              "common",
+              "enforcement",
+              "failure",
+              "find",
+              "funding",
+              "ground",
+              "immigration",
+              "impasse",
+              "legislative",
+              "over",
+              "package",
+              "pending",
+              "reconciliation"
+            ],
+            "support_token_overlap": [
+              "apprehensions",
+              "border",
+              "crossings",
+              "spring",
+              "weather"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 1,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "who-1",
+            "focal": null,
+            "derivation_warnings": [
+              "pseudo p1: center 'who-1' instantiates vantage seat but channel is toned (expected focalized)"
+            ],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "result-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Jester",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "result-1",
+            "center_token_overlap": [
+              "deadlocked",
+              "funding",
+              "goes",
+              "over",
+              "progress",
+              "reconciliation",
+              "remain",
+              "where"
+            ],
+            "support_token_overlap": [
+              "apprehensions",
+              "border",
+              "crossings",
+              "date",
+              "deadlocked",
+              "decade",
+              "february",
+              "from"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "who-3",
+            "center_token_overlap": [
+              "deadlocked",
+              "farce",
+              "lawmakers",
+              "legislative",
+              "performers",
+              "reconciliation",
+              "stuck",
+              "traffic"
+            ],
+            "support_token_overlap": [
+              "apprehensions",
+              "border",
+              "deadlocked",
+              "enforcement",
+              "funding",
+              "immigration",
+              "lawmakers",
+              "over"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "how-0",
+            "center_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "february",
+              "from",
+              "march",
+              "numbers",
+              "southwest"
+            ],
+            "support_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "crossings",
+              "date",
+              "deadlocked",
+              "decade",
+              "february"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 0,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "result-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "who-3",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "how-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Lover",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "who-1",
+            "center_token_overlap": [
+              "boundary",
+              "caught",
+              "connection",
+              "grasp",
+              "seeking",
+              "those"
+            ],
+            "support_token_overlap": [
+              "apprehensions",
+              "asylum",
+              "border",
+              "crossings",
+              "deportation",
+              "february",
+              "from",
+              "lows"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "crossings",
+              "date",
+              "decade",
+              "deep",
+              "long",
+              "lows",
+              "maintained",
+              "multi",
+              "near",
+              "remain",
+              "separation",
+              "standing",
+              "year"
+            ],
+            "support_token_overlap": [
+              "agencies",
+              "along",
+              "border",
+              "crossings",
+              "date",
+              "deadlocked",
+              "decade",
+              "enforcement"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "how-0",
+            "center_token_overlap": [
+              "apprehensions",
+              "border",
+              "boundary",
+              "connection",
+              "crossings",
+              "fabric",
+              "february",
+              "from",
+              "growing",
+              "march",
+              "rupture",
+              "surge"
+            ],
+            "support_token_overlap": [
+              "apprehensions",
+              "border",
+              "crossings",
+              "deadlocked",
+              "february",
+              "from",
+              "funding",
+              "march"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 0,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "who-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "how-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Magician",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "architecture",
+              "asylum",
+              "crossings",
+              "date",
+              "decade",
+              "deportation",
+              "enforcement",
+              "firm",
+              "held",
+              "lows",
+              "measurable",
+              "multi",
+              "near",
+              "outcome",
+              "policies",
+              "policy",
+              "produced",
+              "regime",
+              "shutdown",
+              "under",
+              "year"
+            ],
+            "support_token_overlap": [
+              "agencies",
+              "along",
+              "apprehensions",
+              "asylum",
+              "border",
+              "crossings",
+              "date",
+              "decade"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "how-0",
+            "center_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "change",
+              "data",
+              "february",
+              "from",
+              "increased",
+              "march",
+              "pattern",
+              "revealed",
+              "southwest",
+              "system"
+            ],
+            "support_token_overlap": [
+              "agencies",
+              "along",
+              "apprehensions",
+              "border",
+              "crossings",
+              "date",
+              "decade",
+              "enforcement"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "result-1",
+            "center_token_overlap": [
+              "agencies",
+              "align",
+              "components",
+              "deadlocked",
+              "enforcement",
+              "failed",
+              "funding",
+              "immigration",
+              "lawmakers",
+              "legislative",
+              "over",
+              "package",
+              "pending",
+              "political",
+              "process",
+              "reconciliation",
+              "separate",
+              "system"
+            ],
+            "support_token_overlap": [
+              "agencies",
+              "asylum",
+              "border",
+              "crossings",
+              "date",
+              "deadlocked",
+              "decade",
+              "deportation"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 0,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "how-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "result-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Outlaw",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "who-1",
+            "center_token_overlap": [
+              "caught",
+              "crossing",
+              "enforcement",
+              "individuals",
+              "migrants",
+              "system"
+            ],
+            "support_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "enforcement",
+              "funding",
+              "milder",
+              "policies",
+              "southwest"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "asylum",
+              "crossing",
+              "deportation",
+              "harsh",
+              "have",
+              "historic",
+              "historical",
+              "lows",
+              "movement",
+              "near",
+              "numbers",
+              "policies",
+              "regime",
+              "remain",
+              "shutdown",
+              "suppressed",
+              "under"
+            ],
+            "support_token_overlap": [
+              "along",
+              "border",
+              "enforcement",
+              "funding",
+              "march",
+              "milder",
+              "over",
+              "remain"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "who-0",
+            "center_token_overlap": [
+              "enforcement",
+              "immigration",
+              "long",
+              "rigid",
+              "system"
+            ],
+            "support_token_overlap": [
+              "along",
+              "apprehensions",
+              "deadlocked",
+              "enforcement",
+              "february",
+              "from",
+              "funding",
+              "immigration"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 0,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "who-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "who-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Ruler",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "border",
+              "contained",
+              "crisis",
+              "crossings",
+              "date",
+              "decade",
+              "have",
+              "lows",
+              "multi",
+              "near",
+              "policies",
+              "remain",
+              "strict",
+              "successfully",
+              "year"
+            ],
+            "support_token_overlap": [
+              "agencies",
+              "along",
+              "apprehensions",
+              "border",
+              "crossings",
+              "date",
+              "deadlocked",
+              "decade"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "who-0",
+            "center_token_overlap": [
+              "agency",
+              "border",
+              "enforcement",
+              "federal",
+              "security"
+            ],
+            "support_token_overlap": [
+              "agencies",
+              "along",
+              "apprehensions",
+              "asylum",
+              "border",
+              "deadlocked",
+              "deportation",
+              "enforcement"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "result-1",
+            "center_token_overlap": [
+              "agencies",
+              "border",
+              "capacity",
+              "deadlocked",
+              "dysfunction",
+              "enforcement",
+              "funding",
+              "immigration",
+              "institutional",
+              "over",
+              "package",
+              "pending",
+              "political",
+              "reconciliation",
+              "remain",
+              "secure",
+              "separate"
+            ],
+            "support_token_overlap": [
+              "agencies",
+              "along",
+              "apprehensions",
+              "border",
+              "deadlocked",
+              "decade",
+              "enforcement",
+              "february"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 1,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "who-0",
+            "focal": null,
+            "derivation_warnings": [
+              "pseudo p2: center 'who-0' instantiates vantage seat but channel is toned (expected focalized)"
+            ],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "result-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    },
+    {
+      "persona_id": "The-Sage",
+      "guard_hard_failures": [],
+      "fact_drift": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true
+          }
+        ]
+      },
+      "center_truthfulness": {
+        "pass": true,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "pass": true,
+            "center": "result-0",
+            "center_token_overlap": [
+              "baseline",
+              "context",
+              "corroborated",
+              "crossings",
+              "date",
+              "decade",
+              "long",
+              "lows",
+              "multi",
+              "near",
+              "policies",
+              "remain",
+              "statistical",
+              "term",
+              "under",
+              "year"
+            ],
+            "support_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "crossings",
+              "date",
+              "decade",
+              "february",
+              "from"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p2",
+            "pass": true,
+            "center": "how-0",
+            "center_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "data",
+              "enforcement",
+              "february",
+              "from",
+              "increase",
+              "march",
+              "metric",
+              "observation",
+              "quantitative",
+              "shift",
+              "southwest",
+              "statistical"
+            ],
+            "support_token_overlap": [
+              "along",
+              "apprehensions",
+              "border",
+              "date",
+              "decade",
+              "february",
+              "from",
+              "lows"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          },
+          {
+            "pseudo_id": "p3",
+            "pass": true,
+            "center": "result-1",
+            "center_token_overlap": [
+              "allocation",
+              "analysis",
+              "clarity",
+              "factual",
+              "funding",
+              "impasse",
+              "legislative",
+              "policy",
+              "political",
+              "remain"
+            ],
+            "support_token_overlap": [
+              "apprehensions",
+              "border",
+              "crossings",
+              "funding",
+              "remain"
+            ],
+            "stuffing_risk": false,
+            "reason": "ok"
+          }
+        ]
+      },
+      "focalized_derivation": {
+        "pass": true,
+        "diagnostic_only": true,
+        "warning_count": 0,
+        "checks": [
+          {
+            "pseudo_id": "p1",
+            "channel": "toned",
+            "center": "result-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p2",
+            "channel": "toned",
+            "center": "how-0",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          },
+          {
+            "pseudo_id": "p3",
+            "channel": "toned",
+            "center": "result-1",
+            "focal": null,
+            "derivation_warnings": [],
+            "diagnostic_only": true,
+            "pass": true
+          }
+        ]
+      },
+      "dual_floor": {
+        "pass": true,
+        "toned_count": 3,
+        "focalized_count": 0,
+        "neutral_present": true,
+        "guard_skipped": true,
+        "skip_reason": "ADR8_DUAL_FLOOR_ENABLED=false"
+      },
+      "pipeline_error": null,
+      "pseudo_guard": {
+        "kept_pseudos": 3,
+        "dropped_pseudos": 0,
+        "drop_reasons": []
+      }
+    }
+  ],
+  "dimensions": {
+    "fact_drift": {
+      "pass": true,
+      "hard_guard_failures": 0,
+      "persona_failures": []
+    },
+    "center_truthfulness": {
+      "pass": true,
+      "persona_failures": []
+    },
+    "focalized_derivation": {
+      "pass": true,
+      "diagnostic_only": true,
+      "warning_count": 3,
+      "persona_failures": []
+    },
+    "dual_floor": {
+      "pass": true,
+      "guard_enabled": false,
+      "n1_unchanged": [
+        {
+          "persona_id": "The-Caregiver",
+          "pass": true,
+          "baseline_chars": 462,
+          "design_chars": 462,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Creator",
+          "pass": true,
+          "baseline_chars": 450,
+          "design_chars": 450,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Everyman",
+          "pass": true,
+          "baseline_chars": 448,
+          "design_chars": 448,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Explorer",
+          "pass": true,
+          "baseline_chars": 319,
+          "design_chars": 319,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Hero",
+          "pass": true,
+          "baseline_chars": 454,
+          "design_chars": 454,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Innocent",
+          "pass": true,
+          "baseline_chars": 429,
+          "design_chars": 429,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Jester",
+          "pass": true,
+          "baseline_chars": 420,
+          "design_chars": 420,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Lover",
+          "pass": true,
+          "baseline_chars": 429,
+          "design_chars": 429,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Magician",
+          "pass": true,
+          "baseline_chars": 463,
+          "design_chars": 463,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Outlaw",
+          "pass": true,
+          "baseline_chars": 425,
+          "design_chars": 425,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Ruler",
+          "pass": true,
+          "baseline_chars": 437,
+          "design_chars": 437,
+          "reason": "ok"
+        },
+        {
+          "persona_id": "The-Sage",
+          "pass": true,
+          "baseline_chars": 455,
+          "design_chars": 455,
+          "reason": "ok"
+        }
+      ],
+      "baseline_hits": {
+        "pass": false,
+        "baseline_count": 19,
+        "design_count": 19,
+        "overlap_count": 9,
+        "lost_tmdb_ids": [
+          1775,
+          9366,
+          46221,
+          49097,
+          127822,
+          252990,
+          362202,
+          1006462,
+          1418657,
+          1447971
+        ]
+      },
+      "persona_dual_failures": []
+    },
+    "funnel": {
+      "pass": false,
+      "meta": {
+        "human_budget": 19,
+        "quality_floor": 0.4,
+        "min_judge_score": 1,
+        "judge_prescreen_applied": false,
+        "deduped_count": 27,
+        "sorted_count": 27,
+        "human_count": 19,
+        "audit_pool_count": 0,
+        "judge_zero_count": 0
+      },
+      "issues": [
+        "human_candidates not monotonic by convergence/sort key"
+      ],
+      "candidate_count": 19
+    },
+    "open_d_weak_fit": {
+      "pass": true,
+      "weak_fit_personas": [
+        "The-Creator",
+        "The-Innocent",
+        "The-Jester",
+        "The-Lover"
+      ],
+      "observations": [
+        {
+          "persona_id": "The-Creator",
+          "weak_fit_cohort": true,
+          "min_fit": 0.6,
+          "max_fit": 0.75,
+          "low_fit": false,
+          "quality": "acceptable",
+          "notes": [],
+          "pseudo_count": 3,
+          "channels": [
+            "toned",
+            "toned",
+            "toned"
+          ]
+        },
+        {
+          "persona_id": "The-Innocent",
+          "weak_fit_cohort": true,
+          "min_fit": 0.55,
+          "max_fit": 0.68,
+          "low_fit": false,
+          "quality": "acceptable",
+          "notes": [],
+          "pseudo_count": 3,
+          "channels": [
+            "toned",
+            "toned",
+            "toned"
+          ]
+        },
+        {
+          "persona_id": "The-Jester",
+          "weak_fit_cohort": true,
+          "min_fit": 0.82,
+          "max_fit": 0.88,
+          "low_fit": false,
+          "quality": "acceptable",
+          "notes": [],
+          "pseudo_count": 3,
+          "channels": [
+            "toned",
+            "toned",
+            "toned"
+          ]
+        },
+        {
+          "persona_id": "The-Lover",
+          "weak_fit_cohort": true,
+          "min_fit": 0.55,
+          "max_fit": 0.65,
+          "low_fit": false,
+          "quality": "acceptable",
+          "notes": [],
+          "pseudo_count": 3,
+          "channels": [
+            "toned",
+            "toned",
+            "toned"
+          ]
+        }
+      ],
+      "open_d_note": "Observe whether weak-fit personas still produce fact-entailed, axis-aligned pseudos without forced valence coverage after 3.11.0 downgrade."
+    }
+  },
+  "pool_diff": {
+    "run_id": "07-migration-border",
+    "baseline_candidate_count": 19,
+    "pretest_candidate_count": 19,
+    "overlap_count": 9,
+    "net_new_tmdb_ids": [
+      20764,
+      25012,
+      33638,
+      58383,
+      68924,
+      158015,
+      319910,
+      372753,
+      473760,
+      508664
+    ],
+    "lost_tmdb_ids": [
+      1775,
+      9366,
+      46221,
+      49097,
+      127822,
+      252990,
+      362202,
+      1006462,
+      1418657,
+      1447971
+    ],
+    "gap_a_targets_in_net_new": [],
+    "gap_a_targets_in_baseline_only": [
+      {
+        "tmdb_id": 381018,
+        "title": "Transpecos",
+        "human_score": 2,
+        "judge_resonance_type": "表层沾边"
+      },
+      {
+        "tmdb_id": 273481,
+        "title": "Sicario",
+        "human_score": 2,
+        "judge_resonance_type": "表层沾边"
+      }
+    ],
+    "net_new_details": [
+      {
+        "tmdb_id": 20764,
+        "title": "Sleep Dealer",
+        "similarity": 0.49703285098075867,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-INNOCENT",
+          "THE-EVERYMAN",
+          "THE-EXPLORER",
+          "THE-LOVER"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-EVERYMAN",
+            "pseudo_id": "su-persona-The-Everyman-p2",
+            "channel_role": "toned",
+            "fragments": [
+              "result-0",
+              "how-0",
+              "result-1"
+            ],
+            "similarity": 0.49703285098075867,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "result-0"
+          },
+          {
+            "agent_id": "THE-EXPLORER",
+            "pseudo_id": "su-persona-The-Explorer-p1",
+            "channel_role": "toned",
+            "fragments": [
+              "where-0",
+              "why-0",
+              "how-0",
+              "result-0"
+            ],
+            "similarity": 0.485536128282547,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "where-0"
+          },
+          {
+            "agent_id": "THE-INNOCENT",
+            "pseudo_id": "su-persona-The-Innocent-p2",
+            "channel_role": "toned",
+            "fragments": [
+              "result-0",
+              "how-0",
+              "why-0",
+              "result-1"
+            ],
+            "similarity": 0.4908224940299988,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "result-0"
+          },
+          {
+            "agent_id": "THE-LOVER",
+            "pseudo_id": "su-persona-The-Lover-p1",
+            "channel_role": "toned",
+            "fragments": [
+              "who-1",
+              "why-0",
+              "how-0",
+              "result-0"
+            ],
+            "similarity": 0.4730742871761322,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "who-1"
+          }
+        ]
+      },
+      {
+        "tmdb_id": 25012,
+        "title": "Absolute Zero",
+        "similarity": 0.4581485986709595,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-EVERYMAN",
+          "THE-EXPLORER"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-EVERYMAN",
+            "pseudo_id": "su-persona-The-Everyman-p1",
+            "channel_role": "toned",
+            "fragments": [
+              "who-1",
+              "why-0",
+              "how-0",
+              "result-1"
+            ],
+            "similarity": 0.4269750416278839,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "who-1"
+          },
+          {
+            "agent_id": "THE-EXPLORER",
+            "pseudo_id": "su-persona-The-Explorer-p3",
+            "channel_role": "toned",
+            "fragments": [
+              "why-0",
+              "how-0",
+              "result-1"
+            ],
+            "similarity": 0.4581485986709595,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "why-0"
+          }
+        ]
+      },
+      {
+        "tmdb_id": 33638,
+        "title": "The Life and Times of Judge Roy Bean",
+        "similarity": 0.5641672015190125,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-JESTER"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-JESTER",
+            "pseudo_id": "su-persona-The-Jester-p2",
+            "channel_role": "toned",
+            "fragments": [
+              "who-3",
+              "why-0",
+              "how-0",
+              "result-0",
+              "result-1"
+            ],
+            "similarity": 0.5641672015190125,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "who-3"
+          }
+        ]
+      },
+      {
+        "tmdb_id": 58383,
+        "title": "Hands Over the City",
+        "similarity": 0.5080934166908264,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-CREATOR"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-CREATOR",
+            "pseudo_id": "su-persona-The-Creator-p2",
+            "channel_role": "toned",
+            "fragments": [
+              "result-1",
+              "how-0",
+              "why-0"
+            ],
+            "similarity": 0.5080934166908264,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "result-1"
+          }
+        ]
+      },
+      {
+        "tmdb_id": 68924,
+        "title": "The Ice Storm",
+        "similarity": 0.4452267587184906,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-MAGICIAN",
+          "THE-SAGE"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-MAGICIAN",
+            "pseudo_id": "su-persona-The-Magician-p2",
+            "channel_role": "toned",
+            "fragments": [
+              "how-0",
+              "why-0",
+              "result-0",
+              "result-1"
+            ],
+            "similarity": 0.4452267587184906,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "how-0"
+          },
+          {
+            "agent_id": "THE-SAGE",
+            "pseudo_id": "su-persona-The-Sage-p1",
+            "channel_role": "toned",
+            "fragments": [
+              "result-0",
+              "why-0",
+              "how-0"
+            ],
+            "similarity": 0.40728944540023804,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "result-0"
+          }
+        ]
+      },
+      {
+        "tmdb_id": 158015,
+        "title": "The Purge",
+        "similarity": 0.5099433660507202,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-MAGICIAN"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-MAGICIAN",
+            "pseudo_id": "su-persona-The-Magician-p3",
+            "channel_role": "toned",
+            "fragments": [
+              "result-1",
+              "result-0",
+              "why-0",
+              "how-0"
+            ],
+            "similarity": 0.5099433660507202,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "result-1"
+          }
+        ]
+      },
+      {
+        "tmdb_id": 319910,
+        "title": "Broken Horses",
+        "similarity": 0.5039684176445007,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-HERO",
+          "THE-RULER"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-HERO",
+            "pseudo_id": "su-persona-The-Hero-p1",
+            "channel_role": "toned",
+            "fragments": [
+              "who-0",
+              "why-0",
+              "how-0",
+              "result-0",
+              "result-1"
+            ],
+            "similarity": 0.5039684176445007,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "who-0"
+          },
+          {
+            "agent_id": "THE-RULER",
+            "pseudo_id": "su-persona-The-Ruler-p3",
+            "channel_role": "toned",
+            "fragments": [
+              "result-1",
+              "how-0",
+              "why-0",
+              "result-0"
+            ],
+            "similarity": 0.49994200468063354,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "result-1"
+          }
+        ]
+      },
+      {
+        "tmdb_id": 372753,
+        "title": "Snow White and Her 7 Lovers",
+        "similarity": 0.4900800287723541,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-CAREGIVER"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-CAREGIVER",
+            "pseudo_id": "su-persona-The-Caregiver-p1",
+            "channel_role": "toned",
+            "fragments": [
+              "who-1",
+              "why-0",
+              "how-0",
+              "result-0"
+            ],
+            "similarity": 0.4900800287723541,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "who-1"
+          }
+        ]
+      },
+      {
+        "tmdb_id": 473760,
+        "title": "The Order of Things",
+        "similarity": 0.498016357421875,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-CREATOR"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-CREATOR",
+            "pseudo_id": "su-persona-The-Creator-p2",
+            "channel_role": "toned",
+            "fragments": [
+              "result-1",
+              "how-0",
+              "why-0"
+            ],
+            "similarity": 0.498016357421875,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "result-1"
+          }
+        ]
+      },
+      {
+        "tmdb_id": 508664,
+        "title": "Danger Close: The Battle of Long Tan",
+        "similarity": 0.5033186078071594,
+        "quality_candidate": false,
+        "triggered_by": [
+          "THE-HERO"
+        ],
+        "hit_sources": [
+          {
+            "agent_id": "THE-HERO",
+            "pseudo_id": "su-persona-The-Hero-p1",
+            "channel_role": "toned",
+            "fragments": [
+              "who-0",
+              "why-0",
+              "how-0",
+              "result-0",
+              "result-1"
+            ],
+            "similarity": 0.5033186078071594,
+            "search_unit_kind": "persona-semantic",
+            "center_element": "who-0"
+          }
+        ]
+      }
+    ],
+    "by_channel": {
+      "focalized": [],
+      "toned": [
+        20764,
+        25012,
+        33638,
+        58383,
+        68924,
+        158015,
+        319910,
+        372753,
+        473760,
+        508664
+      ]
+    }
+  },
+  "pool_diff_by_channel": {
+    "run_id": "07-migration-border",
+    "baseline_candidate_count": 19,
+    "design_candidate_count": 19,
+    "overlap_count": 9,
+    "net_new_tmdb_ids": [
+      20764,
+      25012,
+      33638,
+      58383,
+      68924,
+      158015,
+      319910,
+      372753,
+      473760,
+      508664
+    ],
+    "lost_tmdb_ids": [
+      1775,
+      9366,
+      46221,
+      49097,
+      127822,
+      252990,
+      362202,
+      1006462,
+      1418657,
+      1447971
+    ],
+    "by_channel": {
+      "focalized": [],
+      "toned": [
+        20764,
+        25012,
+        33638,
+        58383,
+        68924,
+        158015,
+        319910,
+        372753,
+        473760,
+        508664
+      ]
+    },
+    "diagnostic_by_channel": {
+      "neutral": []
+    },
+    "net_new_details": [
+      {
+        "tmdb_id": 20764,
+        "title": "Sleep Dealer",
+        "similarity": 0.49703285098075867,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "diagnostic_channels": [],
+        "triggered_by": [
+          "THE-INNOCENT",
+          "THE-EVERYMAN",
+          "THE-EXPLORER",
+          "THE-LOVER"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 25012,
+        "title": "Absolute Zero",
+        "similarity": 0.4581485986709595,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "diagnostic_channels": [],
+        "triggered_by": [
+          "THE-EVERYMAN",
+          "THE-EXPLORER"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 33638,
+        "title": "The Life and Times of Judge Roy Bean",
+        "similarity": 0.5641672015190125,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "diagnostic_channels": [],
+        "triggered_by": [
+          "THE-JESTER"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 58383,
+        "title": "Hands Over the City",
+        "similarity": 0.5080934166908264,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "diagnostic_channels": [],
+        "triggered_by": [
+          "THE-CREATOR"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 68924,
+        "title": "The Ice Storm",
+        "similarity": 0.4452267587184906,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "diagnostic_channels": [],
+        "triggered_by": [
+          "THE-MAGICIAN",
+          "THE-SAGE"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 158015,
+        "title": "The Purge",
+        "similarity": 0.5099433660507202,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "diagnostic_channels": [],
+        "triggered_by": [
+          "THE-MAGICIAN"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 319910,
+        "title": "Broken Horses",
+        "similarity": 0.5039684176445007,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "diagnostic_channels": [],
+        "triggered_by": [
+          "THE-HERO",
+          "THE-RULER"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 372753,
+        "title": "Snow White and Her 7 Lovers",
+        "similarity": 0.4900800287723541,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "diagnostic_channels": [],
+        "triggered_by": [
+          "THE-CAREGIVER"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 473760,
+        "title": "The Order of Things",
+        "similarity": 0.498016357421875,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "diagnostic_channels": [],
+        "triggered_by": [
+          "THE-CREATOR"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      },
+      {
+        "tmdb_id": 508664,
+        "title": "Danger Close: The Battle of Long Tan",
+        "similarity": 0.5033186078071594,
+        "quality_candidate": false,
+        "provenance_channels": [
+          "toned"
+        ],
+        "diagnostic_channels": [],
+        "triggered_by": [
+          "THE-HERO"
+        ],
+        "convergence_channels": [
+          "toned"
+        ]
+      }
+    ]
+  },
+  "center_granularity": {
+    "center_element_counts": {
+      "who-1": 6,
+      "result-0": 9,
+      "result-1": 7,
+      "how-0": 6,
+      "who-0": 4,
+      "where-0": 1,
+      "why-0": 1,
+      "who-3": 1
+    },
+    "channel_counts": {
+      "toned": 35
+    },
+    "focal_who_counts": {},
+    "per_persona": {
+      "The-Caregiver": [
+        {
+          "pseudo_id": "p1",
+          "center": "who-1",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "result-1",
+          "channel": "toned"
+        }
+      ],
+      "The-Creator": [
+        {
+          "pseudo_id": "p1",
+          "center": "how-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "result-1",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "who-0",
+          "channel": "toned"
+        }
+      ],
+      "The-Everyman": [
+        {
+          "pseudo_id": "p1",
+          "center": "who-1",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "result-0",
+          "channel": "toned"
+        }
+      ],
+      "The-Explorer": [
+        {
+          "pseudo_id": "p1",
+          "center": "where-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "who-1",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "why-0",
+          "channel": "toned"
+        }
+      ],
+      "The-Hero": [
+        {
+          "pseudo_id": "p1",
+          "center": "who-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "how-0",
+          "channel": "toned"
+        }
+      ],
+      "The-Innocent": [
+        {
+          "pseudo_id": "p1",
+          "center": "who-1",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "result-1",
+          "channel": "toned"
+        }
+      ],
+      "The-Jester": [
+        {
+          "pseudo_id": "p1",
+          "center": "result-1",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "who-3",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "how-0",
+          "channel": "toned"
+        }
+      ],
+      "The-Lover": [
+        {
+          "pseudo_id": "p1",
+          "center": "who-1",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "how-0",
+          "channel": "toned"
+        }
+      ],
+      "The-Magician": [
+        {
+          "pseudo_id": "p1",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "how-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "result-1",
+          "channel": "toned"
+        }
+      ],
+      "The-Outlaw": [
+        {
+          "pseudo_id": "p1",
+          "center": "who-1",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "who-0",
+          "channel": "toned"
+        }
+      ],
+      "The-Ruler": [
+        {
+          "pseudo_id": "p1",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "who-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "result-1",
+          "channel": "toned"
+        }
+      ],
+      "The-Sage": [
+        {
+          "pseudo_id": "p1",
+          "center": "result-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p2",
+          "center": "how-0",
+          "channel": "toned"
+        },
+        {
+          "pseudo_id": "p3",
+          "center": "result-1",
+          "channel": "toned"
+        }
+      ]
+    },
+    "open_c_note": "Centers span who/where/why/how/result element ids; observe whether salience-greedy who-* centers unlock POV focalization without over-coarse buckets."
+  },
+  "all_automated_pass": false
+}

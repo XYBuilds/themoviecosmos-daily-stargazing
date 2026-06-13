@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import random
+import re
 import sys
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -449,6 +450,60 @@ def write_threshold_safety_report(path: Path, report: PrescreenReport) -> None:
     lines.append(f"## Verdict: {verdict}")
     lines.append("")
     path.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+
+
+_PRESCREEN_LINE = re.compile(r"^-\s*\*\*Judge Prescreen\*\*:.*$", re.MULTILINE)
+_TMDB_LINE = re.compile(r"^-\s*\*\*tmdb_id\*\*:\s*(\S+)", re.MULTILINE)
+_RUN_ID_COMMENT = re.compile(r"^<!-- run_id: (\S+) -->$", re.MULTILINE)
+
+
+def _prescreen_status(item: PrescreenItem) -> str:
+    sampled = " · rejection-audit-sampled" if item.rejection_audit_sampled else ""
+    return (
+        f"- **Judge Prescreen**: {item.bucket} "
+        f"(judge={item.judge_score}, pass_threshold={str(item.passes_threshold).lower()})"
+        f"{sampled}"
+    )
+
+
+def _strip_existing_prescreen_line(block: str) -> str:
+    return _PRESCREEN_LINE.sub("", block).rstrip() + "\n"
+
+
+def _insert_prescreen_line(block: str, line: str) -> str:
+    marker = "- **LLM Judge（自动评审）**:"
+    if marker in block:
+        return block.replace(marker, f"{line}\n{marker}", 1)
+    return block.rstrip() + "\n" + line + "\n"
+
+
+def integrate_prescreen_into_review(review_text: str, report: PrescreenReport) -> str:
+    """Merge prescreen bucket annotations into a unified review markdown."""
+    by_key = {(item.run_id, str(item.tmdb_id)): item for item in report.items}
+    chunks = re.split(r"(?=<!-- run_id: )", review_text)
+    if len(chunks) <= 1:
+        return review_text
+
+    out_parts: list[str] = [chunks[0]]
+    for chunk in chunks[1:]:
+        run_match = _RUN_ID_COMMENT.match(chunk)
+        run_id = run_match.group(1) if run_match else ""
+        heading_parts = re.split(r"(?=^### )", chunk, flags=re.MULTILINE)
+        patched_chunk = heading_parts[0]
+        for part in heading_parts[1:]:
+            if not part.strip():
+                continue
+            tmdb_match = _TMDB_LINE.search(part)
+            item = by_key.get((run_id, tmdb_match.group(1))) if tmdb_match and run_id else None
+            if item is not None:
+                part = _strip_existing_prescreen_line(part)
+                part = _insert_prescreen_line(part, _prescreen_status(item))
+            if part and not part.endswith("\n\n"):
+                part = part.rstrip() + "\n\n"
+            patched_chunk += part
+        out_parts.append(patched_chunk)
+    merged = "".join(out_parts)
+    return merged if merged.endswith("\n") else merged + "\n"
 
 
 def load_prescreen_report(path: Path) -> PrescreenReport:

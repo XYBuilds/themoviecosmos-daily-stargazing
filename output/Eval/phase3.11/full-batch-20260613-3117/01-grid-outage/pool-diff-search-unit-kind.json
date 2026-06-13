@@ -1,0 +1,270 @@
+{
+  "run_id": "01-grid-outage",
+  "baseline_candidate_count": 19,
+  "design_candidate_count": 19,
+  "overlap_count": 10,
+  "net_new_tmdb_ids": [
+    9453,
+    14394,
+    15667,
+    52302,
+    58770,
+    139329,
+    178989,
+    720321,
+    1032795
+  ],
+  "lost_tmdb_ids": [
+    33787,
+    46221,
+    100063,
+    210219,
+    266727,
+    418879,
+    431892,
+    533885,
+    1223272
+  ],
+  "by_search_unit_kind": {
+    "event-fragment-bundle": [
+      720321
+    ],
+    "persona-semantic": [
+      9453,
+      14394,
+      15667,
+      52302,
+      58770,
+      139329,
+      178989,
+      720321,
+      1032795
+    ],
+    "surface-fragment-bundle": []
+  },
+  "collision_gain_tmdb_ids": [
+    720321
+  ],
+  "net_new_details": [
+    {
+      "tmdb_id": 9453,
+      "title": "Caligula",
+      "similarity": 0.46089968085289,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-LOVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 14394,
+      "title": "Sarkar Raj",
+      "similarity": 0.4937916398048401,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CAREGIVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 15667,
+      "title": "The Last Winter",
+      "similarity": 0.48071467876434326,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CREATOR",
+        "THE-MAGICIAN"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "who",
+          "why"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 52302,
+      "title": "Matango",
+      "similarity": 0.4963960349559784,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 58770,
+      "title": "The Trigger Effect",
+      "similarity": 0.5294109582901001,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-HERO",
+        "THE-CAREGIVER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "why"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 139329,
+      "title": "Back to 1942",
+      "similarity": 0.4830511808395386,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-RULER"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "result"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 178989,
+      "title": "Pompiers : attaque du feu",
+      "similarity": 0.47518789768218994,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-CREATOR"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 720321,
+      "title": "Breathe",
+      "similarity": 0.46034932136535645,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "event-fragment-bundle",
+        "persona-semantic"
+      ],
+      "collision_gain": true,
+      "triggered_by": [
+        "THE-SAGE"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "why"
+        ]
+      }
+    },
+    {
+      "tmdb_id": 1032795,
+      "title": "The Hijacking of Flight 375",
+      "similarity": 0.47716885805130005,
+      "quality_candidate": false,
+      "search_unit_kinds": [
+        "persona-semantic"
+      ],
+      "collision_gain": false,
+      "triggered_by": [
+        "THE-OUTLAW"
+      ],
+      "match_diagnostics": {
+        "surface_match": false,
+        "event_match": false,
+        "persona_semantic_match": true,
+        "search_unit_kinds": [
+          "persona-semantic"
+        ],
+        "center_dimensions": [
+          "how"
+        ]
+      }
+    }
+  ]
+}

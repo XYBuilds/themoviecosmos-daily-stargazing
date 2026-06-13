@@ -1,0 +1,501 @@
+# 候选星轨 · 09-cultural-backlash
+
+## 元信息
+- run_id: 09-cultural-backlash
+
+## 候选星轨（共 19 部）
+
+### Theatre of Blood (1973) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-RULER, THE-SAGE, THE-JESTER] [汇聚标注]
+- **tmdb_id**: 28498
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 198.5130
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=10 / persona=1
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-SAGE
+- **相似度**: 0.5130
+- **genres** / **language**: Comedy, Horror / en
+- **overview**: A Shakespearean actor takes poetic revenge on the critics who denied him recognition.
+- **跳转**: https://themoviecosmos.com/movie/28498
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5125
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5020
+  - THE-HERO/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5085
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5021
+  - THE-EXPLORER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4813
+  - THE-OUTLAW/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5061
+  - THE-LOVER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4877
+  - THE-RULER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5040
+  - THE-SAGE/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4898
+  - THE-JESTER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5130
+  - THE-SAGE/su-persona-The-Sage-p3: fragments=[how-3, why-0, why-1, result-1] · sim=0.4639
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Don't Leave Home (2018) [THE-MAGICIAN, THE-SAGE, THE-CAREGIVER, THE-CREATOR, THE-EXPLORER, THE-HERO] [汇聚标注]
+- **tmdb_id**: 502167
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 254.6509
+  - **persona_agent_count**: 5
+  - **source_hits**: surface=0 / event=2 / persona=7
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=5: THE-SAGE,THE-HERO,THE-EXPLORER,THE-CREATOR,THE-CAREGIVER
+- **相似度**: 0.6509
+- **genres** / **language**: Thriller, Mystery / en
+- **overview**: An American artist's obsession with a disturbing urban legend leads her to an investigation of the story's origins at the crumbling estate of a reclusive painter in Ireland.
+- **跳转**: https://themoviecosmos.com/movie/502167
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.5173
+  - THE-SAGE/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4917
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-1, how-0, how-1, how-2, result-0] · sim=0.5822
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[how-0, how-1, how-2, result-0] · sim=0.5713
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[who-0, how-1, how-2, how-3, result-0] · sim=0.6509
+  - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[how-0, how-1, how-2, how-3] · sim=0.5109
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[result-0, why-1, how-1, result-1] · sim=0.5158
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[how-3, how-2, why-1, result-0] · sim=0.5124
+  - THE-SAGE/su-persona-The-Sage-p3: fragments=[how-3, why-0, why-1, result-1] · sim=0.4616
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Venus in Fur (2013) [THE-EVERYMAN, THE-EXPLORER, THE-INNOCENT, THE-MAGICIAN]
+- **tmdb_id**: 197082
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 164.6850
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=0 / persona=5
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6850
+- **genres** / **language**: Drama / fr
+- **overview**: An enigmatic actress may have a hidden agenda when she auditions for a part in a misogynistic writer's play.
+- **跳转**: https://themoviecosmos.com/movie/197082
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[who-1, how-0, how-1, result-0, result-1] · sim=0.6467
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[who-1, how-0, how-1, how-2, why-0] · sim=0.6115
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-0, how-0, how-1, why-1] · sim=0.6850
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[who-1, how-0, how-1, how-2, how-3] · sim=0.5841
+  - THE-MAGICIAN/su-persona-The-Magician-p1: fragments=[how-0, how-1] · sim=0.5516
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### L'Odissea (1911) [THE-CREATOR, THE-EXPLORER, THE-MAGICIAN] [汇聚标注]
+- **tmdb_id**: 194224
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 218.6123
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=1 / persona=3
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=3: THE-EXPLORER,THE-CREATOR,THE-MAGICIAN
+- **相似度**: 0.6123
+- **genres** / **language**: Drama, Adventure / it
+- **overview**: Film adaptation of Homer's 'The Odyssey.'
+- **跳转**: https://themoviecosmos.com/movie/194224
+- **命中视角/碎片**:
+  - THE-CREATOR/su-event-1: fragments=[how-0, how-1, how-2, how-3, result-0, result-1, why-0, why-1] · sim=0.5715
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[how-0, how-1, how-2, result-0] · sim=0.5990
+  - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[how-0, how-1, how-2, how-3] · sim=0.5817
+  - THE-MAGICIAN/su-persona-The-Magician-p1: fragments=[how-0, how-1] · sim=0.6123
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The New Monsters Today (2009) [THE-LOVER, THE-RULER, THE-MAGICIAN] [汇聚标注]
+- **tmdb_id**: 56971
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 198.4922
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=2 / persona=1
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-MAGICIAN
+- **相似度**: 0.4922
+- **genres** / **language**: Comedy / it
+- **overview**: Talks about the fears, vices and weaknesses that bedevil the contemporary Italian society. Highlights the degeneration that is plaguing certain quarters of the Italian society today.
+- **跳转**: https://themoviecosmos.com/movie/56971
+- **命中视角/碎片**:
+  - THE-LOVER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4920
+  - THE-RULER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.4708
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[how-2, how-3] · sim=0.4922
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Apolonia, Apolonia (2023) [THE-CREATOR, THE-EXPLORER, THE-OUTLAW] [汇聚标注]
+- **tmdb_id**: 1047128
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 216.6034
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=1 / persona=2
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=2: THE-EXPLORER,THE-OUTLAW
+- **相似度**: 0.6034
+- **genres** / **language**: Documentary / da
+- **overview**: When Danish filmmaker Lea Glob first portrayed Apolonia Sokol in 2009, she appeared to be leading a storybook life. The talented Apolonia was born in an underground theater in Paris and grew up in an artists’ community—the ultimate bohemian existence. In her 20s, she studied at the Beaux-Arts de Paris, one of the most prestigious art academies in Europe. Over the years, Lea Glob kept returning to film the charismatic Apolonia and a special bond developed between the two young women.
+- **跳转**: https://themoviecosmos.com/movie/1047128
+- **命中视角/碎片**:
+  - THE-CREATOR/su-event-1: fragments=[how-0, how-1, how-2, how-3, result-0, result-1, why-0, why-1] · sim=0.5551
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[who-1, how-0, how-1, how-2, why-0] · sim=0.6034
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[result-0, how-0, how-1, how-2] · sim=0.5682
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### W's Tragedy (1984) [THE-EVERYMAN, THE-INNOCENT]
+- **tmdb_id**: 326598
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.6071
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6071
+- **genres** / **language**: Drama, Mystery / ja
+- **overview**: A young theatre actress fights for her uncertain career while having to confront the personal sacrifices that will arise from it.
+- **跳转**: https://themoviecosmos.com/movie/326598
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[who-1, how-0, how-1, result-0, result-1] · sim=0.5885
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-0, how-0, how-1, why-1] · sim=0.6015
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[who-1, how-0, how-1, how-2, how-3] · sim=0.6071
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Breakdown: 1975 (2025) [THE-EVERYMAN, THE-JESTER, THE-RULER]
+- **tmdb_id**: 1584125
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 146.6177
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6177
+- **genres** / **language**: Documentary / en
+- **overview**: In 1975, as America faced social and political upheaval, filmmakers turned chaos into art.
+- **跳转**: https://themoviecosmos.com/movie/1584125
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[who-4, why-0, how-1, how-2, result-1] · sim=0.5948
+  - THE-JESTER/su-persona-The-Jester-p2: fragments=[how-1, how-0, why-0, result-0] · sim=0.5447
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[who-0, how-0, how-1, how-2] · sim=0.6177
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Ben-Hur (1959) [THE-EXPLORER, THE-MAGICIAN, THE-OUTLAW]
+- **tmdb_id**: 665
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 154.5413
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5413
+- **genres** / **language**: History, Drama, Adventure / en
+- **overview**: In ancient Judea, a Jewish aristocrat opposing Roman occupation of his homeland reunites with his childhood friend, now a Roman commander — setting in motion a saga of betrayal, adventure, tragedy, revenge, and faith.
+- **跳转**: https://themoviecosmos.com/movie/665
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[result-0, why-0, how-2, how-3] · sim=0.5413
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[how-2, how-3] · sim=0.4945
+  - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[why-0, how-2, why-1, how-3] · sim=0.4741
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Panama (2015) [THE-LOVER, THE-SAGE]
+- **tmdb_id**: 336200
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.6459
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6459
+- **genres** / **language**: Thriller, Drama / sr
+- **overview**: A thriller that depicts how digital communication, pornography and vanity obstruct true emotions and love.
+- **跳转**: https://themoviecosmos.com/movie/336200
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-1, how-0, how-1, why-0, why-1] · sim=0.6459
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[why-0, how-1, why-1, result-1] · sim=0.5372
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Phantom of the Opera (1943) [THE-CAREGIVER, THE-JESTER]
+- **tmdb_id**: 15855
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5806
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5806
+- **genres** / **language**: Horror, Romance / en
+- **overview**: Following a tragic accident that leaves him disfigured, crazed composer Erique Claudin transformed into a masked phantom who schemes to make beautiful young soprano Christine Dubois the star of the opera and wreak revenge on those who stole his music.
+- **跳转**: https://themoviecosmos.com/movie/15855
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-1, how-0, how-1, how-2, result-0] · sim=0.5806
+  - THE-JESTER/su-persona-The-Jester-p1: fragments=[result-1, how-0, how-1, how-2] · sim=0.5338
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### William Tell (2025) [THE-EXPLORER, THE-OUTLAW]
+- **tmdb_id**: 1195631
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5740
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5740
+- **genres** / **language**: Action, Adventure, Drama, History / en
+- **overview**: The narrative unfolds in the 14th Century, when the European nations vie for supremacy within the Holy Roman Empire. The ambitious Austrian Empire, desiring more land, invades neighbouring Switzerland, a serene and pastoral nation. Protagonist William Tell, a formerly peaceful hunter, finds himself forced to take action as his family and homeland come under threat from the oppressive Austrian King and his ruthless warlords.
+- **跳转**: https://themoviecosmos.com/movie/1195631
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[result-0, why-0, how-2, how-3] · sim=0.5740
+  - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[why-0, how-2, why-1, how-3] · sim=0.4772
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Jesus of Montreal (1989) [THE-CREATOR, THE-HERO]
+- **tmdb_id**: 4486
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.5353
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5353
+- **genres** / **language**: Drama, Comedy, Romance / fr
+- **overview**: A group of actors putting on an interpretive Passion Play in Montreal begin to experience a meshing of their characters and their private lives as the production takes form against the growing opposition of the Catholic church.
+- **跳转**: https://themoviecosmos.com/movie/4486
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[result-0, how-3, result-1] · sim=0.4699
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[result-0, why-1, how-1, result-1] · sim=0.5353
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Be Somebody (2021) [THE-RULER]
+- **tmdb_id**: 895435
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6354
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6354
+- **genres** / **language**: Comedy, Mystery, Drama / zh
+- **overview**: During the Republican era, a group of frustrated people from the movie industry is invited in a luxurious mansion to make a movie out of a gruesome case that has recently rattled the city of Shanghai, in the hopes that it would turn into a huge sensation and make them famous. However, they never expected that the murderer would be in their midst and that the truth behind the case would be far more bizarre than their fictional movie plot.
+- **跳转**: https://themoviecosmos.com/movie/895435
+- **命中视角/碎片**:
+  - THE-RULER/su-persona-The-Ruler-p3: fragments=[result-1, result-0, how-1, how-2, how-3] · sim=0.6354
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Just a Little Chemistry (2015) [THE-LOVER]
+- **tmdb_id**: 277387
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6226
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6226
+- **genres** / **language**: Comedy, Romance / es
+- **overview**: Fan girl finds herself torn between the attraction for her film idol and her best male friend.
+- **跳转**: https://themoviecosmos.com/movie/277387
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-1, how-0, how-1, why-0, why-1] · sim=0.6226
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### At the Cinema Show (1912) [THE-RULER]
+- **tmdb_id**: 347148
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6155
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6155
+- **genres** / **language**: Comedy / it
+- **overview**: A cinema becomes the site of sexual intrigue when a man looking for romance in the dark follows a woman into the movies and finds himself molesting her husband instead.
+- **跳转**: https://themoviecosmos.com/movie/347148
+- **命中视角/碎片**:
+  - THE-RULER/su-persona-The-Ruler-p3: fragments=[result-1, result-0, how-1, how-2, how-3] · sim=0.6155
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Abuse of Weakness (2013) [THE-RULER]
+- **tmdb_id**: 179100
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6154
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6154
+- **genres** / **language**: Drama / fr
+- **overview**: A stroke-afflicted filmmaker is manipulated by a notorious con man.
+- **跳转**: https://themoviecosmos.com/movie/179100
+- **命中视角/碎片**:
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[who-0, how-0, how-1, how-2] · sim=0.6154
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Censor (2021) [THE-RULER]
+- **tmdb_id**: 663866
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6081
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6081
+- **genres** / **language**: Horror, Mystery / en
+- **overview**: A screener at the British Board of Film Classification (BBFC), who has earned an unsavory reputation for being the strictest censor of violent films, begins to spiral out of control after viewing a low-budget horror with similarities to the disappearance of her sister.
+- **跳转**: https://themoviecosmos.com/movie/663866
+- **命中视角/碎片**:
+  - THE-RULER/su-persona-The-Ruler-p1: fragments=[result-0, how-1, how-2, how-3] · sim=0.6081
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Film, Film, Film (1968) [THE-INNOCENT]
+- **tmdb_id**: 90001
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.6058
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6058
+- **genres** / **language**: Comedy, Animation / ru
+- **overview**: The trials and tribulations of putting a feature film together.
+- **跳转**: https://themoviecosmos.com/movie/90001
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[how-0, how-1, how-2, how-3] · sim=0.6058
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）

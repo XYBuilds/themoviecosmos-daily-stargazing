@@ -1,0 +1,508 @@
+# 候选星轨 · 02-corporate-layoff
+
+## 元信息
+- run_id: 02-corporate-layoff
+
+## 候选星轨（共 19 部）
+
+### The Seventh Company Outdoors (1977) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-JESTER] [汇聚标注]
+- **tmdb_id**: 56589
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=true, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 276.5603
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=2 / event=12 / persona=2
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic, surface-fragment-bundle
+  - **center_dimensions**: how, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=2: THE-EXPLORER,THE-SAGE
+- **相似度**: 0.5603
+- **genres** / **language**: Comedy / fr
+- **overview**: The third part of Seventh Company adventures.
+- **跳转**: https://themoviecosmos.com/movie/56589
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5351
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5603
+  - THE-HERO/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5335
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5082
+  - THE-EXPLORER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5022
+  - THE-OUTLAW/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5274
+  - THE-LOVER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5371
+  - THE-CREATOR/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5465
+  - THE-RULER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5343
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5254
+  - THE-SAGE/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.4986
+  - THE-JESTER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, result-2, result-3] · sim=0.5046
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[how-2, why-1, result-2] · sim=0.4518
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[why-0, how-0, result-0] · sim=0.4710
+  - THE-EVERYMAN/su-surface-1: fragments=[who-0, who-1, who-2, where-0, where-1] · sim=0.4929
+  - THE-RULER/su-surface-1: fragments=[who-0, who-1, who-2, where-0, where-1] · sim=0.4320
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Bounty Killer (2013) [THE-CREATOR, THE-EXPLORER, THE-HERO, THE-INNOCENT, THE-JESTER, THE-MAGICIAN, THE-RULER, THE-EVERYMAN] [汇聚标注]
+- **tmdb_id**: 209504
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=true, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 254.5699
+  - **persona_agent_count**: 7
+  - **source_hits**: surface=1 / event=0 / persona=8
+  - **search_unit_kinds**: persona-semantic, surface-fragment-bundle
+  - **center_dimensions**: how, result, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=7: THE-HERO,THE-MAGICIAN,THE-CREATOR,THE-EXPLORER,THE-INNOCENT,THE-RULER,THE-JESTER
+- **相似度**: 0.5699
+- **genres** / **language**: Action, Science Fiction / en
+- **overview**: It’s been 20 years since the corporations took over the world’s governments. Their thirst for power and profits led to the Corporate Wars, a fierce global battle that laid waste to society as we know it. Born from the ash, the Council of Nine rose as a new law and order for this dark age. To avenge the corporations’ reckless destruction, the Council issues death warrants for all white collar criminals. Their hunters—the bounty killer. From amateur savage to graceful assassin, the bounty killers now compete for body count, fame and a fat stack of cash. They’re ending the plague of corporate greed and providing the survivors of the apocalypse with retribution. These are the new heroes. This is the age of the BOUNTY KILLER.
+- **跳转**: https://themoviecosmos.com/movie/209504
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[why-0, how-0, result-1, result-0] · sim=0.5625
+  - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4808
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[how-0, why-1, how-1, result-3] · sim=0.5352
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[result-0, why-0, how-0, result-1] · sim=0.4748
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-3, why-1, how-0, how-1] · sim=0.5699
+  - THE-JESTER/su-persona-The-Jester-p2: fragments=[how-0, why-0, result-1, how-1] · sim=0.5686
+  - THE-MAGICIAN/su-persona-The-Magician-p1: fragments=[why-0, how-0, result-0] · sim=0.5315
+  - THE-RULER/su-persona-The-Ruler-p1: fragments=[result-0, why-0, how-0, result-3] · sim=0.4793
+  - THE-EVERYMAN/su-surface-1: fragments=[who-0, who-1, who-2, where-0, where-1] · sim=0.4774
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Cart (2014) [THE-CAREGIVER, THE-EVERYMAN, THE-HERO, THE-OUTLAW, THE-SAGE]
+- **tmdb_id**: 287647
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 174.5189
+  - **persona_agent_count**: 5
+  - **source_hits**: surface=0 / event=0 / persona=7
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5189
+- **genres** / **language**: Drama / ko
+- **overview**: In response to a sudden dismissal of staff, workers at a big retail store begin a protest against their employer's oppressive labor policies.
+- **跳转**: https://themoviecosmos.com/movie/287647
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[result-0, how-0, result-1, result-3] · sim=0.5029
+  - THE-EVERYMAN/su-persona-The-Everyman-p3: fragments=[result-3, how-1, result-1] · sim=0.5163
+  - THE-HERO/su-persona-The-Hero-p1: fragments=[who-2, how-0, how-1, result-0, result-1] · sim=0.5155
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[result-0, why-0, how-0, result-1] · sim=0.5189
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[who-2, why-1, how-0, result-0, result-1] · sim=0.4591
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[result-0, why-0, how-1, how-2, result-1] · sim=0.4888
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[how-1, how-0, result-1] · sim=0.4839
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Plan (2018) [THE-EVERYMAN, THE-LOVER, THE-OUTLAW, THE-SAGE]
+- **tmdb_id**: 619090
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 164.5507
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=0 / persona=6
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5507
+- **genres** / **language**: Comedy, Drama / es
+- **overview**: Three friends who have been fired from the company where they worked and are demoralized because of their unemployment status. In these circumstances, they meet to undertake the plan that mentions the title but there is a problem: the car with which they would travel has broken down and the crane must wait.
+- **跳转**: https://themoviecosmos.com/movie/619090
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[who-2, result-1, how-1, why-0] · sim=0.5507
+  - THE-EVERYMAN/su-persona-The-Everyman-p3: fragments=[result-3, how-1, result-1] · sim=0.4863
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-2, why-1, how-1, result-0] · sim=0.5214
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[who-2, why-1, how-0, result-0, result-1] · sim=0.4709
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[result-0, why-0, how-1, how-2, result-1] · sim=0.4741
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[how-1, how-0, result-1] · sim=0.4443
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Conference (2023) [THE-EVERYMAN, THE-HERO, THE-INNOCENT, THE-LOVER]
+- **tmdb_id**: 1161048
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 148.5586
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=0 / persona=4
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5586
+- **genres** / **language**: Horror, Comedy / sv
+- **overview**: A ragtag group of public sector employees battle not only their own discord but also a bloodthirsty killer during a seemingly innocuous retreat.
+- **跳转**: https://themoviecosmos.com/movie/1161048
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[who-2, result-1, how-1, why-0] · sim=0.5299
+  - THE-HERO/su-persona-The-Hero-p1: fragments=[who-2, how-0, how-1, result-0, result-1] · sim=0.5312
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[who-2, result-0, why-0] · sim=0.5586
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-2, why-1, how-1, result-0] · sim=0.5311
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Mirreyes contra Godínez 2: El retiro (2022) [THE-EVERYMAN, THE-INNOCENT, THE-OUTLAW, THE-RULER]
+- **tmdb_id**: 1002695
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 164.5509
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=0 / persona=4
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5509
+- **genres** / **language**: Comedy / es
+- **overview**: A divided team heads to a corporate retreat after receiving an enticing proposal. During their time away, they must overcome their differences and find a way to reunite.
+- **跳转**: https://themoviecosmos.com/movie/1002695
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[result-0, why-0, why-1, how-0] · sim=0.5166
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[how-2, why-1] · sim=0.4590
+  - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[why-1, how-0, how-1, result-0] · sim=0.5509
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[how-1, why-1, how-2] · sim=0.4397
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Factory (2018) [THE-EVERYMAN, THE-EXPLORER, THE-SAGE]
+- **tmdb_id**: 513349
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 146.5347
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5347
+- **genres** / **language**: Thriller, Drama, Crime / ru
+- **overview**: When a factory is bound to close, a group of workers decides to take action against the owner.
+- **跳转**: https://themoviecosmos.com/movie/513349
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[result-0, why-0, why-1, how-0] · sim=0.5347
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[how-2, why-1, result-2] · sim=0.4605
+  - THE-SAGE/su-persona-The-Sage-p3: fragments=[result-2, result-0, result-1] · sim=0.5002
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Blood Is Dry (1960) [THE-CAREGIVER]
+- **tmdb_id**: 88442
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 126.5870
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5870
+- **genres** / **language**: Drama / ja
+- **overview**: An employee in an assurance company threatens to commit suicide when management announces a massive layoff, the company uses this threat to its own advantage by turning the incident into an advertising campaign. With the success of the campaign, however, he is no longer a desperate man pointing a gun to his head, but a potential leader who wishes to take advantage of his failed suicide.
+- **跳转**: https://themoviecosmos.com/movie/88442
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[result-0, how-0, result-1, result-3] · sim=0.5473
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[who-2, how-0, why-0, how-1, how-2] · sim=0.5870
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Code 3 (2025) [THE-CAREGIVER, THE-HERO]
+- **tmdb_id**: 1161617
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5004
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5004
+- **genres** / **language**: Comedy, Action, Drama / en
+- **overview**: A burned-out paramedic tries to survive his last 24 hours on the job while training a new recruit.
+- **跳转**: https://themoviecosmos.com/movie/1161617
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[result-3, how-1, result-2, result-1] · sim=0.5004
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[how-1, how-0, result-0, result-1, result-3] · sim=0.4738
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Camera Cafe: The Movie (2022) [THE-MAGICIAN, THE-SAGE]
+- **tmdb_id**: 762823
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.4720
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4720
+- **genres** / **language**: Comedy / es
+- **overview**: Jesús Quesada, an incompetent executive, is appointed as the new director of a company in decline whose survival will now depend on both the ingenuity and ambition of his former colleagues.
+- **跳转**: https://themoviecosmos.com/movie/762823
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[how-0, result-0, why-1] · sim=0.4513
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[why-0, how-0, result-0] · sim=0.4720
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Little Nothings (1992) [THE-MAGICIAN, THE-RULER]
+- **tmdb_id**: 69896
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5503
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5503
+- **genres** / **language**: Comedy / fr
+- **overview**: Lepetit, an ambitious and determined man, is named the new CEO of a department store. His mission is to improve the store's financial position. He decides that the human factor will be his catchword and introduces new methods, which he also applied to himself. But tensions slowly arise between members of the staff.
+- **跳转**: https://themoviecosmos.com/movie/69896
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-persona-The-Magician-p1: fragments=[why-0, how-0, result-0] · sim=0.5503
+  - THE-RULER/su-persona-The-Ruler-p3: fragments=[how-0, why-0] · sim=0.4932
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Second Tragic Fantozzi (1976) [THE-CAREGIVER]
+- **tmdb_id**: 37769
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5483
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5483
+- **genres** / **language**: Comedy / it
+- **overview**: The frustrating adventures of a humble employee who all the time has to fullfill the wishes and desires of his bosses.
+- **跳转**: https://themoviecosmos.com/movie/37769
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[who-2, how-0, why-0, how-1, how-2] · sim=0.5483
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Corporate Animals (2019) [THE-JESTER]
+- **tmdb_id**: 530076
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5855
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5855
+- **genres** / **language**: Horror, Comedy / en
+- **overview**: Disaster strikes when the egotistical CEO of an edible cutlery company leads her long-suffering staff on a corporate team-building trip in New Mexico. Trapped underground, this mismatched and disgruntled group must pull together to survive.
+- **跳转**: https://themoviecosmos.com/movie/530076
+- **命中视角/碎片**:
+  - THE-JESTER/su-persona-The-Jester-p2: fragments=[how-0, why-0, result-1, how-1] · sim=0.5855
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Another World (2022) [THE-CREATOR]
+- **tmdb_id**: 664506
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5389
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5389
+- **genres** / **language**: Drama / fr
+- **overview**: An executive manager, his wife and his family, at the point when his professional choices are about to overturn all their lives. Philippe Lemesle and his wife are separating, their love irretrievably damaged by pressures of work. A successful executive in industrial conglomerate, Philippe no longer knows how to respond to the contradictory demands of his bosses. Yesterday they wanted a manager, today an enforcer. Now he must decide what his life really means.
+- **跳转**: https://themoviecosmos.com/movie/664506
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[why-0, how-0, result-1, result-0] · sim=0.5389
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Discount (2014) [THE-OUTLAW]
+- **tmdb_id**: 313055
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5347
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5347
+- **genres** / **language**: Comedy / fr
+- **overview**: To fight against the introduction of automatic checkouts that threaten their jobs, staff members at Hard Discounts secretly create their own "Alternative Discount" outlet by salvaging products that would otherwise have been wasted.
+- **跳转**: https://themoviecosmos.com/movie/313055
+- **命中视角/碎片**:
+  - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[why-1, how-0, how-1, result-0] · sim=0.5347
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Babygirl (2024) [THE-EXPLORER]
+- **tmdb_id**: 1097549
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5344
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5344
+- **genres** / **language**: Romance, Thriller / en
+- **overview**: A high-powered CEO puts her career and family on the line when she begins a torrid affair with her much younger intern.
+- **跳转**: https://themoviecosmos.com/movie/1097549
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[how-0, why-1, how-1, result-3] · sim=0.5344
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Dismissal (2017) [THE-INNOCENT]
+- **tmdb_id**: 438639
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5303
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5303
+- **genres** / **language**: Comedy / es
+- **overview**: A successful Spanish executive from a telecommunications company working in Argentina is about to face the most important week of his life, but all his plans will be sabotaged by an eccentric character who will make his week a living hell…
+- **跳转**: https://themoviecosmos.com/movie/438639
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[result-3, why-1, how-0, how-1] · sim=0.5303
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Internship (2013) [THE-INNOCENT]
+- **tmdb_id**: 116741
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5428
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5428
+- **genres** / **language**: Comedy / en
+- **overview**: Two recently laid-off men in their 40s try to make it as interns at a successful Internet company where their managers are in their 20s.
+- **跳转**: https://themoviecosmos.com/movie/116741
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[who-2, result-0, why-0] · sim=0.5428
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### One Last Dance (2003) [THE-INNOCENT]
+- **tmdb_id**: 25665
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5351
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5351
+- **genres** / **language**: Romance, Drama, Music / en
+- **overview**: In the wake of tragedy, a renowed New York dance company is on the brink of collapse. After leaving the dance world for good, Travis, Chrissa, and Max are pulled in to resurrect the dance that shattered their careers. They have one last chance to save the company, re-connect with the passion and magic, and prove that miracles really can happen.
+- **跳转**: https://themoviecosmos.com/movie/25665
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[how-2, why-1] · sim=0.5351
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）

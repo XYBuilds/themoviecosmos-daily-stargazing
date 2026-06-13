@@ -1,0 +1,535 @@
+# 候选星轨 · 07-migration-border
+
+## 元信息
+- run_id: 07-migration-border
+
+## 候选星轨（共 19 部）
+
+### Transpecos (2016) [THE-CAREGIVER, THE-CREATOR, THE-EVERYMAN, THE-EXPLORER, THE-HERO, THE-INNOCENT, THE-JESTER, THE-LOVER, THE-MAGICIAN, THE-OUTLAW, THE-RULER, THE-SAGE]
+- **tmdb_id**: 381018
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 260.6271
+  - **persona_agent_count**: 12
+  - **source_hits**: surface=0 / event=0 / persona=25
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, where, who, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.6271
+- **genres** / **language**: Thriller / en
+- **overview**: For three US Border Patrol agents, the contents of one car reveal an insidious plot within their own ranks. The next 24 hours may cost them their lives.
+- **跳转**: https://themoviecosmos.com/movie/381018
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[result-1, how-0, result-0] · sim=0.5822
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[result-0, why-0, how-0, result-1] · sim=0.4836
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[how-0, why-0, result-0, result-1] · sim=0.5654
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[who-0, how-0, why-0, result-0] · sim=0.4971
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[result-0, how-0, result-1] · sim=0.5332
+  - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[where-0, why-0, how-0, result-0] · sim=0.4975
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[who-1, how-0, result-0] · sim=0.5497
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[why-0, how-0, result-1] · sim=0.4645
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[result-0, why-0, how-0, result-1] · sim=0.4917
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[how-0, why-0, result-0, result-1] · sim=0.4867
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[result-0, how-0, why-0, result-1] · sim=0.4819
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[result-1, why-0, how-0, result-0] · sim=0.5225
+  - THE-JESTER/su-persona-The-Jester-p1: fragments=[result-1, why-0, how-0, result-0] · sim=0.4831
+  - THE-JESTER/su-persona-The-Jester-p3: fragments=[how-0, why-0, result-0, result-1] · sim=0.4939
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[result-0, how-0, result-1] · sim=0.6220
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[how-0, result-0, result-1] · sim=0.6271
+  - THE-MAGICIAN/su-persona-The-Magician-p1: fragments=[result-0, how-0, why-0, result-1] · sim=0.5167
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[result-1, result-0, why-0, how-0] · sim=0.5308
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[who-1, why-0, how-0, result-0, result-1] · sim=0.4823
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[result-0, why-0, how-0, result-1] · sim=0.4855
+  - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[who-0, how-0, result-0, result-1] · sim=0.5266
+  - THE-RULER/su-persona-The-Ruler-p1: fragments=[result-0, how-0, result-1] · sim=0.5685
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[who-0, how-0, why-0, result-0, result-1] · sim=0.5226
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[how-0, result-0, why-0] · sim=0.4698
+  - THE-SAGE/su-persona-The-Sage-p3: fragments=[result-1, how-0, result-0] · sim=0.4604
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Sicario (2015) [THE-CAREGIVER, THE-RULER, THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-MAGICIAN, THE-SAGE, THE-JESTER] [汇聚标注]
+- **tmdb_id**: 273481
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=true, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 188.5525
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=12 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic, surface-fragment-bundle
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=2: THE-RULER,THE-CAREGIVER
+- **相似度**: 0.5525
+- **genres** / **language**: Action, Crime, Thriller / en
+- **overview**: An idealistic FBI agent is enlisted by a government task force to aid in the escalating war against drugs at the border area between the U.S. and Mexico.
+- **跳转**: https://themoviecosmos.com/movie/273481
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[result-1, how-0, result-0] · sim=0.5300
+  - THE-RULER/su-persona-The-Ruler-p1: fragments=[result-0, how-0, result-1] · sim=0.5525
+  - THE-INNOCENT/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4726
+  - THE-EVERYMAN/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.5419
+  - THE-HERO/su-surface-1: fragments=[who-0, who-1, who-3, where-0, who-2] · sim=0.5254
+  - THE-CAREGIVER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.5218
+  - THE-EXPLORER/su-surface-1: fragments=[where-0, who-0, who-1, who-2, who-3] · sim=0.4773
+  - THE-OUTLAW/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4799
+  - THE-LOVER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4787
+  - THE-CREATOR/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4955
+  - THE-RULER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4695
+  - THE-MAGICIAN/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4844
+  - THE-SAGE/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.4954
+  - THE-JESTER/su-surface-1: fragments=[who-0, who-1, who-2, who-3, where-0] · sim=0.5023
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Stranded (2021) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-JESTER] [汇聚标注]
+- **tmdb_id**: 841793
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=false, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 198.4923
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=12 / persona=1
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=1: THE-INNOCENT
+- **相似度**: 0.4923
+- **genres** / **language**: Drama / pt
+- **overview**: Tensions run high while food runs low as six influencers find themselves stranded on a secluded island after plans for a weekend escape go awry.
+- **跳转**: https://themoviecosmos.com/movie/841793
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4123
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4054
+  - THE-HERO/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4265
+  - THE-CAREGIVER/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4184
+  - THE-EXPLORER/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4028
+  - THE-OUTLAW/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4214
+  - THE-LOVER/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.3970
+  - THE-CREATOR/su-event-1: fragments=[how-0, why-0, result-0, result-1] · sim=0.4153
+  - THE-RULER/su-event-1: fragments=[how-0, why-0, result-0, result-1] · sim=0.4046
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.3918
+  - THE-SAGE/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.3726
+  - THE-JESTER/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4146
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[who-1, why-0, how-0, result-0, result-1] · sim=0.4923
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Open the Wall (2014) [THE-EVERYMAN, THE-CAREGIVER, THE-CREATOR, THE-EXPLORER, THE-HERO, THE-JESTER, THE-LOVER, THE-RULER] [汇聚标注]
+- **tmdb_id**: 301633
+- **自动打分**:
+  - **quality_candidate**: true
+  - **objective_match**: true (surface=true, event=true)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 334.6276
+  - **persona_agent_count**: 7
+  - **source_hits**: surface=1 / event=1 / persona=11
+  - **search_unit_kinds**: event-fragment-bundle, persona-semantic, surface-fragment-bundle
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=1 + persona_semantic_match=1; composition_agents=7: THE-EXPLORER,THE-JESTER,THE-RULER,THE-HERO,THE-LOVER,THE-CREATOR,THE-CAREGIVER
+- **相似度**: 0.6276
+- **genres** / **language**: Drama, Comedy / de
+- **overview**: A lighthearted look at the opening of the border crossing of Bornholmer Straße in Berlin from the point of view of the confused border guards.
+- **跳转**: https://themoviecosmos.com/movie/301633
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, how-0, result-0, result-1] · sim=0.4142
+  - THE-CAREGIVER/su-persona-The-Caregiver-p3: fragments=[result-0, why-0, how-0, result-1] · sim=0.5020
+  - THE-CREATOR/su-persona-The-Creator-p1: fragments=[how-0, why-0, result-0, result-1] · sim=0.4859
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[who-0, how-0, why-0, result-0] · sim=0.4836
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[who-1, how-0, result-0] · sim=0.5778
+  - THE-HERO/su-persona-The-Hero-p2: fragments=[result-0, why-0, how-0, result-1] · sim=0.5201
+  - THE-JESTER/su-persona-The-Jester-p1: fragments=[result-1, why-0, how-0, result-0] · sim=0.4892
+  - THE-JESTER/su-persona-The-Jester-p3: fragments=[how-0, why-0, result-0, result-1] · sim=0.5651
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-1, why-0, how-0, result-0] · sim=0.4821
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[result-0, how-0, result-1] · sim=0.5231
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[how-0, result-0, result-1] · sim=0.6276
+  - THE-RULER/su-persona-The-Ruler-p2: fragments=[who-0, how-0, why-0, result-0, result-1] · sim=0.4681
+  - THE-EXPLORER/su-surface-1: fragments=[where-0, who-0, who-1, who-2, who-3] · sim=0.4611
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Sleep Dealer (2008) [THE-EVERYMAN, THE-EXPLORER, THE-INNOCENT, THE-LOVER]
+- **tmdb_id**: 20764
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 164.4970
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=0 / persona=4
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, where, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4970
+- **genres** / **language**: Drama, Science Fiction, Thriller / en
+- **overview**: Set in a near-future, militarized world marked by closed borders, virtual labor and a global digital network that joins minds and experiences, three strangers risk their lives to connect with each other and break the barriers of technology.
+- **跳转**: https://themoviecosmos.com/movie/20764
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[result-0, how-0, result-1] · sim=0.4970
+  - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[where-0, why-0, how-0, result-0] · sim=0.4855
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[result-0, how-0, why-0, result-1] · sim=0.4908
+  - THE-LOVER/su-persona-The-Lover-p1: fragments=[who-1, why-0, how-0, result-0] · sim=0.4731
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Trade (2007) [THE-OUTLAW]
+- **tmdb_id**: 4170
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 126.5206
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5206
+- **genres** / **language**: Thriller / en
+- **overview**: A Texas cop, whose own daughter might have been forced into sexual slavery, joins forces with a Mexican youth to find the boy's sister, who was abducted and forced into prostitution. Meanwhile, a Polish woman who was promised a better life in America also becomes a victim.
+- **跳转**: https://themoviecosmos.com/movie/4170
+- **命中视角/碎片**:
+  - THE-OUTLAW/su-persona-The-Outlaw-p1: fragments=[who-1, why-0, how-0, result-0, result-1] · sim=0.5037
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[result-0, why-0, how-0, result-1] · sim=0.4594
+  - THE-OUTLAW/su-persona-The-Outlaw-p3: fragments=[who-0, how-0, result-0, result-1] · sim=0.5206
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Union Pacific (1939) [THE-INNOCENT, THE-JESTER]
+- **tmdb_id**: 43837
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5663
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5663
+- **genres** / **language**: Drama, Western / en
+- **overview**: One of the last bills signed by President Lincoln authorizes pushing the Union Pacific Railroad across the wilderness to California. But financial opportunist Asa Barrows hopes to profit from obstructing it. Chief troubleshooter Jeff Butler has his hands full fighting Barrows' agent, gambler Sid Campeau; Campeau's partner Dick Allen is Jeff's war buddy and rival suitor for engineer's daughter Molly Monahan. Who will survive the effort to push the railroad through at any cost?
+- **跳转**: https://themoviecosmos.com/movie/43837
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p3: fragments=[result-1, why-0, how-0, result-0] · sim=0.5407
+  - THE-JESTER/su-persona-The-Jester-p2: fragments=[who-3, why-0, how-0, result-0, result-1] · sim=0.5663
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Broken Horses (2015) [THE-HERO, THE-RULER]
+- **tmdb_id**: 319910
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5040
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5040
+- **genres** / **language**: Thriller, Mystery, Drama, Crime / en
+- **overview**: The bonds of brotherhood, the laws of loyalty, and the futility of violence in the shadows of the US Mexico border gang wars.
+- **跳转**: https://themoviecosmos.com/movie/319910
+- **命中视角/碎片**:
+  - THE-HERO/su-persona-The-Hero-p1: fragments=[who-0, why-0, how-0, result-0, result-1] · sim=0.5040
+  - THE-RULER/su-persona-The-Ruler-p3: fragments=[result-1, how-0, why-0, result-0] · sim=0.4999
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Colosio (2012) [THE-INNOCENT, THE-RULER]
+- **tmdb_id**: 151708
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5014
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5014
+- **genres** / **language**: Crime, Drama, Thriller / es
+- **overview**: It's 1994 in Mexico, the nation was witnessing a turbulent year since its beginnings. An indigenous rebellion shakes the country. Three months later, the ruling party's presidential candidate is brutally murdered during a rally in Tijuana. The country is concerned. Nobody knows who's behind this event, it all points to a conspiracy. Andrés Vázquez, an intelligence expert, is commissioned to lead a secret investigation parallel to the official government issued one. But another expert agent, el Seco, has received orders to wipe out all witnesses and get rid of the evidence surrounding the candidate's murder. As Andrés begins putting the pieces of this intricate puzzle together and comes closer to the truth, he realizes he's also putting his life and that of his loved ones in peril.
+- **跳转**: https://themoviecosmos.com/movie/151708
+- **命中视角/碎片**:
+  - THE-INNOCENT/su-persona-The-Innocent-p1: fragments=[who-1, why-0, how-0, result-0, result-1] · sim=0.4666
+  - THE-RULER/su-persona-The-Ruler-p3: fragments=[result-1, how-0, why-0, result-0] · sim=0.5014
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### If It's Tuesday, This Must Be Belgium (1969) [THE-CAREGIVER, THE-EVERYMAN]
+- **tmdb_id**: 11643
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.5350
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5350
+- **genres** / **language**: Romance, Comedy, Adventure / en
+- **overview**: A group of travelers from the United States race through seven European countries in 18 days.
+- **跳转**: https://themoviecosmos.com/movie/11643
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-1, why-0, how-0, result-0] · sim=0.5350
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[who-1, why-0, how-0, result-1] · sim=0.4186
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Absolute Zero (2006) [THE-EVERYMAN, THE-EXPLORER]
+- **tmdb_id**: 25012
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.4581
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4581
+- **genres** / **language**: Action, Science Fiction, TV Movie / en
+- **overview**: INTER SCI climatologist Dr. David Kotzman has evidence that a shift in the Earth's polarity triggered the last Ice Age...in a single day. Now, it's happening again, and there's no time to escape. As the temperature plummets, Miami is blasted with snow and ice. Evacuation routes are jammed. The only chance David, his old flame Bryn, and a few other hopeful survivors have is to hole themselves up in a special chamber at INTER SCI. A desperate race for survival is ignited as nature's fury rages and the temperature plunges toward -459.67° F...ABSOLUTE ZERO!
+- **跳转**: https://themoviecosmos.com/movie/25012
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-persona-The-Everyman-p1: fragments=[who-1, why-0, how-0, result-1] · sim=0.4270
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[why-0, how-0, result-1] · sim=0.4581
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Blood Glacier (2013) [THE-MAGICIAN, THE-SAGE]
+- **tmdb_id**: 210913
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.4574
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4574
+- **genres** / **language**: Horror / de
+- **overview**: At a climate research station in the Alps, the scientists are stunned as the nearby melting glacier is leaking a red liquid. It quickly turns to be very special juice — with unexpected genetic effects on the local wildlife.
+- **跳转**: https://themoviecosmos.com/movie/210913
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[how-0, why-0, result-0, result-1] · sim=0.4574
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[result-0, why-0, how-0] · sim=0.4040
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Ice Storm (1997) [THE-MAGICIAN, THE-SAGE]
+- **tmdb_id**: 68924
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.4452
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4452
+- **genres** / **language**: Drama / en
+- **overview**: In the weekend after thanksgiving 1973 the Hood family is skidding out of control. Then an ice storm hits, the worst in a century.
+- **跳转**: https://themoviecosmos.com/movie/68924
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[how-0, why-0, result-0, result-1] · sim=0.4452
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[result-0, why-0, how-0] · sim=0.4073
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Life and Times of Judge Roy Bean (1972) [THE-JESTER]
+- **tmdb_id**: 33638
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5642
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5642
+- **genres** / **language**: Western, Comedy / en
+- **overview**: Outlaw and self-appointed lawmaker Judge Roy Bean rules over an empty stretch of the West that gradually grows, under his iron fist, into a thriving town, while dispensing his his own quirky brand of frontier justice upon strangers passing by.
+- **跳转**: https://themoviecosmos.com/movie/33638
+- **命中视角/碎片**:
+  - THE-JESTER/su-persona-The-Jester-p2: fragments=[who-3, why-0, how-0, result-0, result-1] · sim=0.5642
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Danger Close: The Battle of Long Tan (2019) [THE-HERO]
+- **tmdb_id**: 508664
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5033
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5033
+- **genres** / **language**: War, Action, Drama, History / en
+- **overview**: Vietnam War, 1966. Australia and New Zealand send troops to support the United States and South Vietnamese in their fight against the communist North. Soldiers are very young men, recruits and volunteers who have never been involved in a combat. On August 18th, members of Delta Company will face the true horror of a ruthless battle among the trees of a rubber plantation called Long Tân. They are barely a hundred. The enemy is a human wave ready to destroy them.
+- **跳转**: https://themoviecosmos.com/movie/508664
+- **命中视角/碎片**:
+  - THE-HERO/su-persona-The-Hero-p1: fragments=[who-0, why-0, how-0, result-0, result-1] · sim=0.5033
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Purge (2013) [THE-MAGICIAN]
+- **tmdb_id**: 158015
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5099
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5099
+- **genres** / **language**: Science Fiction, Horror, Thriller / en
+- **overview**: Given the country's overcrowded prisons, the U.S. government begins to allow 12-hour periods of time in which all illegal activity is legal. During one of these free-for-alls, a family must protect themselves from a home invasion.
+- **跳转**: https://themoviecosmos.com/movie/158015
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-persona-The-Magician-p3: fragments=[result-1, result-0, why-0, how-0] · sim=0.5099
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Snow White and Her 7 Lovers (1980) [THE-CAREGIVER]
+- **tmdb_id**: 372753
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4901
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4901
+- **genres** / **language**: Adventure / es
+- **overview**: An undercover policewoman tracks seven escaped convicts to the deserted island where they've set up a camp.
+- **跳转**: https://themoviecosmos.com/movie/372753
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-1, why-0, how-0, result-0] · sim=0.4901
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Hands Over the City (1963) [THE-CREATOR]
+- **tmdb_id**: 58383
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5081
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5081
+- **genres** / **language**: Drama / it
+- **overview**: Prior to a city council election, the collapse of a building leaves a land developer and his political backers defending themselves against a scandal.
+- **跳转**: https://themoviecosmos.com/movie/58383
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[result-1, how-0, why-0] · sim=0.5081
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Order of Things (2017) [THE-CREATOR]
+- **tmdb_id**: 473760
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4980
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4980
+- **genres** / **language**: Drama / it
+- **overview**: An immigration agent is torn between the job and his humanity.
+- **跳转**: https://themoviecosmos.com/movie/473760
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p2: fragments=[result-1, how-0, why-0] · sim=0.4980
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）

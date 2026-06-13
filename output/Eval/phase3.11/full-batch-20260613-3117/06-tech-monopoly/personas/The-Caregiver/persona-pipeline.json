@@ -1,0 +1,1304 @@
+{
+  "persona_id": "The-Caregiver",
+  "composition_mode": "ADR-0008",
+  "overlay": {
+    "persona_id": "The-Caregiver",
+    "alt_pool": {
+      "elements": [
+        {
+          "element_id": "who-0",
+          "original_term": "European regulators",
+          "alternatives": [
+            {
+              "term": "protectors of market fairness",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulatory authority",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "gatekeeper enforcers",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "who-1",
+          "original_term": "Google",
+          "alternatives": [
+            {
+              "term": "the dominant platform with a duty of care",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a gatekeeper company",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the entity prioritizing its own services",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-2",
+          "original_term": "rival comparison services",
+          "alternatives": [
+            {
+              "term": "smaller businesses squeezed out",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "affected competitors",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "businesses unfairly disadvantaged",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "who-3",
+          "original_term": "Alphabet",
+          "alternatives": [
+            {
+              "term": "the parent entity bearing cumulative accountability",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the parent company",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "the corporation with a history of harm",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-0",
+          "original_term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+          "alternatives": [
+            {
+              "term": "for suppressing smaller rivals who deserve visibility",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "for self-preferencing in search results",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "for exploiting its position to the detriment of others",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "why-1",
+          "original_term": "under the bloc's gatekeeper rules",
+          "alternatives": [
+            {
+              "term": "under protective regulations for fair competition",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "under the bloc's gatekeeper rules",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-0",
+          "original_term": "Proceedings under the bloc's gatekeeper rules for more than two years",
+          "alternatives": [
+            {
+              "term": "a long pursuit of justice for those harmed",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "regulatory proceedings",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a protracted process allowing harm to continue",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-1",
+          "original_term": "Brussels rejected the company's remedy proposals",
+          "alternatives": [
+            {
+              "term": "holding the company accountable for inadequate fixes",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "rejecting proposed remedies",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "dismissing attempts to shield the company from responsibility",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "how-2",
+          "original_term": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "securing substantial recompense for those disadvantaged",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "finalizing a financial penalty",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "imposing a major financial sanction",
+              "valence": "neutral",
+              "provenance": "hypernym"
+            }
+          ]
+        },
+        {
+          "element_id": "how-3",
+          "original_term": "A formal decision is expected before the Commission's August recess",
+          "alternatives": [
+            {
+              "term": "delivering a timely resolution before the break",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a formal decision expected soon",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-0",
+          "original_term": "penalty expected to reach the high hundreds of millions of euros",
+          "alternatives": [
+            {
+              "term": "a significant penalty aimed at correcting past harm",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a major financial penalty",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "a punitive financial outcome",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "result-1",
+          "original_term": "adding to more than a decade of accumulated competition fines against Alphabet",
+          "alternatives": [
+            {
+              "term": "a pattern of accountability for a corporation that has caused repeated harm",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "a history of regulatory fines",
+              "valence": "neutral",
+              "provenance": "lens"
+            },
+            {
+              "term": "evidence of chronic corporate misconduct",
+              "valence": "negative",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-0",
+          "original_term": "EU",
+          "alternatives": [
+            {
+              "term": "a jurisdiction protecting smaller businesses",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the EU regulatory authority",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        },
+        {
+          "element_id": "where-1",
+          "original_term": "Brussels",
+          "alternatives": [
+            {
+              "term": "the seat of protective policy-making",
+              "valence": "positive",
+              "provenance": "lens"
+            },
+            {
+              "term": "the location of the European Commission",
+              "valence": "neutral",
+              "provenance": "lens"
+            }
+          ]
+        }
+      ]
+    },
+    "salience": [
+      "who-2",
+      "result-1",
+      "who-1",
+      "why-0",
+      "how-1"
+    ]
+  },
+  "pseudos": [
+    {
+      "id": "n1",
+      "text": "rival comparison services. adding to more than a decade of accumulated competition fines against Alphabet. Google. for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results. Brussels rejected the company's remedy proposals The event unfolds across online services and comparison platforms.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "who-2",
+          "result-1",
+          "who-1",
+          "why-0",
+          "how-1"
+        ],
+        "channel_role": "neutral",
+        "provenance_layers": [
+          "hypernym",
+          "surface"
+        ],
+        "terms": [
+          {
+            "term": "rival comparison services",
+            "provenance": "surface"
+          },
+          {
+            "term": "online services",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "comparison platforms",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "business competitors",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "adding to more than a decade of accumulated competition fines against Alphabet",
+            "provenance": "surface"
+          },
+          {
+            "term": "Google",
+            "provenance": "surface"
+          },
+          {
+            "term": "technology company",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "search engine provider",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "multinational corporation",
+            "provenance": "hypernym"
+          },
+          {
+            "term": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "provenance": "surface"
+          },
+          {
+            "term": "Brussels rejected the company's remedy proposals",
+            "provenance": "surface"
+          }
+        ]
+      },
+      "warnings": [],
+      "fit": 1.0
+    },
+    {
+      "id": "p1",
+      "text": "After more than two years of proceedings under competition law, regulators have rejected inadequate remedy proposals and are finalizing a major financial sanction. This action against the search engine provider aims to correct the harm done to smaller businesses squeezed out by self-preferencing in search results, securing substantial recompense before the Commission's August recess.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "center": "who-2",
+        "center_kind": "who",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 0
+      },
+      "warnings": [],
+      "fit": 0.85
+    },
+    {
+      "id": "p2",
+      "text": "The parent entity bearing cumulative accountability now faces another antitrust fine, adding to a pattern of regulatory action. This penalty is a response to a gatekeeper company exploiting its position, aiming to deliver justice for those disadvantaged by its practices in the digital markets framework.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-0",
+          "result-1"
+        ],
+        "center": "result-1",
+        "center_kind": "result",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 1
+      },
+      "warnings": [],
+      "fit": 0.8
+    },
+    {
+      "id": "p3",
+      "text": "The technology company with a duty of care saw its remedy proposals dismissed as insufficient. Protecting market fairness, European authorities are now imposing a monetary sanction to address the company's self-preferencing, a decision expected to provide recompense for the harm caused to rival comparison platforms.",
+      "source": {
+        "agent_id": "The-Caregiver",
+        "fragments": [
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "center": "who-1",
+        "center_kind": "who",
+        "channel": "toned",
+        "channel_role": "element_centered",
+        "composition_mode": "ADR-0008",
+        "salience_rank": 2
+      },
+      "warnings": [],
+      "fit": 0.75
+    }
+  ],
+  "fragment_ladders": {
+    "elements": [
+      {
+        "element_id": "how-0",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Proceedings under the bloc's gatekeeper rules for more than two years",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a long pursuit of justice for those harmed",
+            "weight": 0.38
+          },
+          {
+            "text": "regulatory proceedings",
+            "weight": 0.38
+          },
+          {
+            "text": "a protracted process allowing harm to continue",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "how-1",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "Brussels rejected the company's remedy proposals",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "holding the company accountable for inadequate fixes",
+            "weight": 0.38
+          },
+          {
+            "text": "rejecting proposed remedies",
+            "weight": 0.38
+          },
+          {
+            "text": "dismissing attempts to shield the company from responsibility",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "how-2",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "securing substantial recompense for those disadvantaged",
+            "weight": 0.38
+          },
+          {
+            "text": "finalizing a financial penalty",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "imposing a major financial sanction",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "how-3",
+        "dimension": "how",
+        "surface": [
+          {
+            "text": "A formal decision is expected before the Commission's August recess",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "delivering a timely resolution before the break",
+            "weight": 0.38
+          },
+          {
+            "text": "a formal decision expected soon",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "result-0",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "penalty expected to reach the high hundreds of millions of euros",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a significant penalty aimed at correcting past harm",
+            "weight": 0.38
+          },
+          {
+            "text": "a major financial penalty",
+            "weight": 0.38
+          },
+          {
+            "text": "a punitive financial outcome",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "financial penalty",
+            "weight": 0.82
+          },
+          {
+            "text": "antitrust fine",
+            "weight": 0.82
+          },
+          {
+            "text": "monetary sanction",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "result-1",
+        "dimension": "result",
+        "surface": [
+          {
+            "text": "adding to more than a decade of accumulated competition fines against Alphabet",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a pattern of accountability for a corporation that has caused repeated harm",
+            "weight": 0.38
+          },
+          {
+            "text": "a history of regulatory fines",
+            "weight": 0.38
+          },
+          {
+            "text": "evidence of chronic corporate misconduct",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "where-0",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "EU",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "a jurisdiction protecting smaller businesses",
+            "weight": 0.38
+          },
+          {
+            "text": "the EU regulatory authority",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "political union",
+            "weight": 0.82
+          },
+          {
+            "text": "supranational organization",
+            "weight": 0.82
+          },
+          {
+            "text": "regulatory jurisdiction",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "where-1",
+        "dimension": "where",
+        "surface": [
+          {
+            "text": "Brussels",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the seat of protective policy-making",
+            "weight": 0.38
+          },
+          {
+            "text": "the location of the European Commission",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "capital city",
+            "weight": 0.82
+          },
+          {
+            "text": "administrative center",
+            "weight": 0.82
+          },
+          {
+            "text": "European city",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-0",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "European regulators",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "protectors of market fairness",
+            "weight": 0.38
+          },
+          {
+            "text": "regulatory authority",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "gatekeeper enforcers",
+            "weight": 0.82
+          },
+          {
+            "text": "government regulators",
+            "weight": 0.82
+          },
+          {
+            "text": "European authorities",
+            "weight": 0.82
+          },
+          {
+            "text": "regulatory agencies",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-1",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Google",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the dominant platform with a duty of care",
+            "weight": 0.38
+          },
+          {
+            "text": "a gatekeeper company",
+            "weight": 0.38
+          },
+          {
+            "text": "the entity prioritizing its own services",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "technology company",
+            "weight": 0.82
+          },
+          {
+            "text": "search engine provider",
+            "weight": 0.82
+          },
+          {
+            "text": "multinational corporation",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-2",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "rival comparison services",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "smaller businesses squeezed out",
+            "weight": 0.38
+          },
+          {
+            "text": "affected competitors",
+            "weight": 0.38
+          },
+          {
+            "text": "businesses unfairly disadvantaged",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "online services",
+            "weight": 0.82
+          },
+          {
+            "text": "comparison platforms",
+            "weight": 0.82
+          },
+          {
+            "text": "business competitors",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "who-3",
+        "dimension": "who",
+        "surface": [
+          {
+            "text": "Alphabet",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "the parent entity bearing cumulative accountability",
+            "weight": 0.38
+          },
+          {
+            "text": "the parent company",
+            "weight": 0.38
+          },
+          {
+            "text": "the corporation with a history of harm",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "parent company",
+            "weight": 0.82
+          },
+          {
+            "text": "holding corporation",
+            "weight": 0.82
+          },
+          {
+            "text": "technology conglomerate",
+            "weight": 0.82
+          }
+        ]
+      },
+      {
+        "element_id": "why-0",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "for suppressing smaller rivals who deserve visibility",
+            "weight": 0.38
+          },
+          {
+            "text": "for self-preferencing in search results",
+            "weight": 0.38
+          },
+          {
+            "text": "for exploiting its position to the detriment of others",
+            "weight": 0.38
+          }
+        ]
+      },
+      {
+        "element_id": "why-1",
+        "dimension": "why",
+        "surface": [
+          {
+            "text": "under the bloc's gatekeeper rules",
+            "weight": 1.0
+          }
+        ],
+        "interpretive": [
+          {
+            "text": "under protective regulations for fair competition",
+            "weight": 0.38
+          },
+          {
+            "text": "under the bloc's gatekeeper rules",
+            "weight": 0.38
+          }
+        ],
+        "objective_close": [
+          {
+            "text": "EU regulations",
+            "weight": 0.82
+          },
+          {
+            "text": "competition law",
+            "weight": 0.82
+          },
+          {
+            "text": "digital markets framework",
+            "weight": 0.82
+          }
+        ]
+      }
+    ]
+  },
+  "search_units": {
+    "surface_fragment_bundles": [
+      {
+        "id": "su-surface-1",
+        "kind": "surface-fragment-bundle",
+        "source_elements": [
+          "who-0",
+          "who-1",
+          "who-2",
+          "who-3",
+          "where-0",
+          "where-1"
+        ],
+        "search_text": "European regulators; gatekeeper enforcers; government regulators; European authorities; regulatory agencies; Google; technology company; search engine provider; multinational corporation; rival comparison services; online services; comparison platforms; business competitors; Alphabet; parent company; holding corporation; technology conglomerate; EU; political union; supranational organization; regulatory jurisdiction; Brussels; capital city; administrative center; European city",
+        "fragments": [
+          {
+            "element_id": "who-0",
+            "level": "surface",
+            "text": "European regulators",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "gatekeeper enforcers",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "government regulators",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "European authorities",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-0",
+            "level": "objective_close",
+            "text": "regulatory agencies",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "Google",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "technology company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "search engine provider",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "multinational corporation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "rival comparison services",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "online services",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "comparison platforms",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "business competitors",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "surface",
+            "text": "Alphabet",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "parent company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "holding corporation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-3",
+            "level": "objective_close",
+            "text": "technology conglomerate",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "surface",
+            "text": "EU",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "political union",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "supranational organization",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-0",
+            "level": "objective_close",
+            "text": "regulatory jurisdiction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "surface",
+            "text": "Brussels",
+            "weight": 1.0
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "capital city",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "administrative center",
+            "weight": 0.82
+          },
+          {
+            "element_id": "where-1",
+            "level": "objective_close",
+            "text": "European city",
+            "weight": 0.82
+          }
+        ]
+      }
+    ],
+    "event_fragment_bundles": [
+      {
+        "id": "su-event-1",
+        "kind": "event-fragment-bundle",
+        "source_elements": [
+          "why-0",
+          "why-1",
+          "how-0",
+          "how-1",
+          "how-2",
+          "how-3",
+          "result-0",
+          "result-1"
+        ],
+        "search_text": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results; under the bloc's gatekeeper rules; EU regulations; competition law; digital markets framework; Proceedings under the bloc's gatekeeper rules for more than two years; Brussels rejected the company's remedy proposals; European regulators are finalizing a penalty expected to reach high hundreds of millions of euros; imposing a major financial sanction; A formal decision is expected before the Commission's August recess; penalty expected to reach the high hundreds of millions of euros; financial penalty; antitrust fine; monetary sanction; adding to more than a decade of accumulated competition fines against Alphabet",
+        "fragments": [
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-1",
+            "level": "surface",
+            "text": "under the bloc's gatekeeper rules",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "EU regulations",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "competition law",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-1",
+            "level": "objective_close",
+            "text": "digital markets framework",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Proceedings under the bloc's gatekeeper rules for more than two years",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Brussels rejected the company's remedy proposals",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "surface",
+            "text": "European regulators are finalizing a penalty expected to reach high hundreds of millions of euros",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-2",
+            "level": "objective_close",
+            "text": "imposing a major financial sanction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "how-3",
+            "level": "surface",
+            "text": "A formal decision is expected before the Commission's August recess",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "surface",
+            "text": "penalty expected to reach the high hundreds of millions of euros",
+            "weight": 1.0
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "financial penalty",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "antitrust fine",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-0",
+            "level": "objective_close",
+            "text": "monetary sanction",
+            "weight": 0.82
+          },
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "adding to more than a decade of accumulated competition fines against Alphabet",
+            "weight": 1.0
+          }
+        ]
+      }
+    ],
+    "persona_semantic_units": [
+      {
+        "id": "su-persona-The-Caregiver-p1",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "who-2",
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "search_text": "After more than two years of proceedings under competition law, regulators have rejected inadequate remedy proposals and are finalizing a major financial sanction. This action against the search engine provider aims to correct the harm done to smaller businesses squeezed out by self-preferencing in search results, securing substantial recompense before the Commission's August recess.",
+        "fragments": [
+          {
+            "element_id": "who-2",
+            "level": "surface",
+            "text": "rival comparison services",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "online services",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "comparison platforms",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-2",
+            "level": "objective_close",
+            "text": "business competitors",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Brussels rejected the company's remedy proposals",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Caregiver",
+        "center_element": "who-2",
+        "supporting_elements": [
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "fit": 0.85
+      },
+      {
+        "id": "su-persona-The-Caregiver-p2",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "result-1",
+          "why-0",
+          "how-0"
+        ],
+        "search_text": "The parent entity bearing cumulative accountability now faces another antitrust fine, adding to a pattern of regulatory action. This penalty is a response to a gatekeeper company exploiting its position, aiming to deliver justice for those disadvantaged by its practices in the digital markets framework.",
+        "fragments": [
+          {
+            "element_id": "result-1",
+            "level": "surface",
+            "text": "adding to more than a decade of accumulated competition fines against Alphabet",
+            "weight": 1.0
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-0",
+            "level": "surface",
+            "text": "Proceedings under the bloc's gatekeeper rules for more than two years",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Caregiver",
+        "center_element": "result-1",
+        "supporting_elements": [
+          "why-0",
+          "how-0",
+          "result-1"
+        ],
+        "fit": 0.8
+      },
+      {
+        "id": "su-persona-The-Caregiver-p3",
+        "kind": "persona-semantic",
+        "source_elements": [
+          "who-1",
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "search_text": "The technology company with a duty of care saw its remedy proposals dismissed as insufficient. Protecting market fairness, European authorities are now imposing a monetary sanction to address the company's self-preferencing, a decision expected to provide recompense for the harm caused to rival comparison platforms.",
+        "fragments": [
+          {
+            "element_id": "who-1",
+            "level": "surface",
+            "text": "Google",
+            "weight": 1.0
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "technology company",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "search engine provider",
+            "weight": 0.82
+          },
+          {
+            "element_id": "who-1",
+            "level": "objective_close",
+            "text": "multinational corporation",
+            "weight": 0.82
+          },
+          {
+            "element_id": "why-0",
+            "level": "surface",
+            "text": "for ranking Google's own shopping, flight, and hotel units above rival comparison services in search results",
+            "weight": 1.0
+          },
+          {
+            "element_id": "how-1",
+            "level": "surface",
+            "text": "Brussels rejected the company's remedy proposals",
+            "weight": 1.0
+          }
+        ],
+        "persona_id": "The-Caregiver",
+        "center_element": "who-1",
+        "supporting_elements": [
+          "why-0",
+          "how-1",
+          "result-0"
+        ],
+        "fit": 0.75
+      }
+    ]
+  },
+  "screenwriter_raw": "{\n  \"pseudos\": [\n    {\n      \"id\": \"p1\",\n      \"text\": \"After more than two years of proceedings under competition law, regulators have rejected inadequate remedy proposals and are finalizing a major financial sanction. This action against the search engine provider aims to correct the harm done to smaller businesses squeezed out by self-preferencing in search results, securing substantial recompense before the Commission's August recess.\",\n      \"fit\": 0.85,\n      \"center\": \"who-2\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-1\", \"result-0\"]\n      }\n    },\n    {\n      \"id\": \"p2\",\n      \"text\": \"The parent entity bearing cumulative accountability now faces another antitrust fine, adding to a pattern of regulatory action. This penalty is a response to a gatekeeper company exploiting its position, aiming to deliver justice for those disadvantaged by its practices in the digital markets framework.\",\n      \"fit\": 0.8,\n      \"center\": \"result-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-0\", \"result-1\"]\n      }\n    },\n    {\n      \"id\": \"p3\",\n      \"text\": \"The technology company with a duty of care saw its remedy proposals dismissed as insufficient. Protecting market fairness, European authorities are now imposing a monetary sanction to address the company's self-preferencing, a decision expected to provide recompense for the harm caused to rival comparison platforms.\",\n      \"fit\": 0.75,\n      \"center\": \"who-1\",\n      \"channel\": \"toned\",\n      \"source\": {\n        \"fragments\": [\"why-0\", \"how-1\", \"result-0\"]\n      }\n    }\n  ]\n}",
+  "repair_retries": [
+    {
+      "stage": "screenwriter",
+      "attempt": "1",
+      "error": "ok"
+    }
+  ],
+  "pseudo_guard": {
+    "kept_pseudos": 3,
+    "dropped_pseudos": 0,
+    "drop_reasons": []
+  }
+}

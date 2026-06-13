@@ -1,0 +1,481 @@
+# 候选星轨 · 06-tech-monopoly
+
+## 元信息
+- run_id: 06-tech-monopoly
+
+## 候选星轨（共 19 部）
+
+### The Floorwalker (1916) [THE-EVERYMAN, THE-HERO, THE-OUTLAW, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-INNOCENT]
+- **tmdb_id**: 53416
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 146.4934
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=6 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4934
+- **genres** / **language**: Comedy / en
+- **overview**: An impecunious customer creates chaos in a department store while the manager and his assistant plot to steal the money kept in the establishment's safe.
+- **跳转**: https://themoviecosmos.com/movie/53416
+- **命中视角/碎片**:
+  - THE-EVERYMAN/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.3897
+  - THE-HERO/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, result-0, result-1, how-3] · sim=0.3901
+  - THE-OUTLAW/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.3852
+  - THE-RULER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.3860
+  - THE-MAGICIAN/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.3585
+  - THE-SAGE/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.3844
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[who-2, why-1, how-2, result-0, result-1] · sim=0.4934
+  - THE-INNOCENT/su-persona-The-Innocent-p2: fragments=[who-2, why-0, why-1, result-0, result-1] · sim=0.4218
+  - THE-RULER/su-persona-The-Ruler-p1: fragments=[result-0, how-0, how-1, how-2] · sim=0.4618
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Cop (1970) [THE-CAREGIVER, THE-CREATOR, THE-EXPLORER, THE-SAGE]
+- **tmdb_id**: 94376
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 164.5211
+  - **persona_agent_count**: 4
+  - **source_hits**: surface=0 / event=0 / persona=4
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5211
+- **genres** / **language**: Drama, Crime, Thriller / fr
+- **overview**: A crackdown on drugs leads a burned out cop to take the law into his own hands and seek revenge against villainous drug dealers. Word comes down from above that the United States feels French authorities have been lax on their arrests of the dealers. A violent action feature finds the harried inspector battling his colleagues as much as the criminal element targeted for extermination.
+- **跳转**: https://themoviecosmos.com/movie/94376
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p1: fragments=[who-2, why-0, how-1, result-0] · sim=0.4501
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[how-2, how-0, how-1, why-1] · sim=0.5211
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[result-0, why-0, how-0, why-1] · sim=0.5175
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[how-0, how-1, result-0, result-1] · sim=0.4325
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Chicken and Duck Talk (1988) [THE-RULER, THE-EXPLORER, THE-HERO]
+- **tmdb_id**: 47291
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.4993
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=1 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4993
+- **genres** / **language**: Comedy / cn
+- **overview**: A witty and thoroughly engaging send-up of both the fast food business and the cut-throat techniques often employed by conglomerates to crush independent competition.
+- **跳转**: https://themoviecosmos.com/movie/47291
+- **命中视角/碎片**:
+  - THE-RULER/su-event-1: fragments=[why-0, why-1, how-0, how-1, how-2, how-3, result-0, result-1] · sim=0.3690
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[who-0, why-1, result-0, how-3] · sim=0.4949
+  - THE-HERO/su-persona-The-Hero-p3: fragments=[why-0, how-2, result-0, result-1] · sim=0.4993
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Gabbar Is Back (2015) [THE-CAREGIVER, THE-EVERYMAN, THE-OUTLAW]
+- **tmdb_id**: 337876
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 146.5231
+  - **persona_agent_count**: 3
+  - **source_hits**: surface=0 / event=0 / persona=3
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5231
+- **genres** / **language**: Drama, Action / hi
+- **overview**: A vigilante network taking out corrupt officials draws the notice of the authorities.
+- **跳转**: https://themoviecosmos.com/movie/337876
+- **命中视角/碎片**:
+  - THE-CAREGIVER/su-persona-The-Caregiver-p2: fragments=[result-1, why-0, how-0] · sim=0.4790
+  - THE-EVERYMAN/su-persona-The-Everyman-p2: fragments=[who-2, why-1, how-2, result-0, result-1] · sim=0.5231
+  - THE-OUTLAW/su-persona-The-Outlaw-p2: fragments=[who-2, why-0, why-1, how-3, result-1] · sim=0.4439
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### To Skin a Spy (1966) [THE-EXPLORER, THE-SAGE]
+- **tmdb_id**: 82098
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.5513
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5513
+- **genres** / **language**: Thriller / fr
+- **overview**: A French secret agent gets a license to kill when he is sent to Vienna to plug a security leak in this routine spy saga. He is caught in the crossfire of international enemy agents trying to eliminate the French.
+- **跳转**: https://themoviecosmos.com/movie/82098
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[how-1, how-0, result-0, result-1] · sim=0.4824
+  - THE-SAGE/su-persona-The-Sage-p3: fragments=[who-0, result-0, how-1, result-1, why-1] · sim=0.5513
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Capital (2012) [THE-CREATOR, THE-RULER]
+- **tmdb_id**: 121793
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 136.4985
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how, why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4985
+- **genres** / **language**: Drama, Thriller / fr
+- **overview**: The head of a giant European investment bank desperately clings to power when an American hedge fund company tries to buy them out.
+- **跳转**: https://themoviecosmos.com/movie/121793
+- **命中视角/碎片**:
+  - THE-CREATOR/su-persona-The-Creator-p3: fragments=[how-2, how-0, how-1, why-1] · sim=0.4985
+  - THE-RULER/su-persona-The-Ruler-p3: fragments=[why-0, why-1, how-3, result-0] · sim=0.4223
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Taxi 4 (2007) [THE-EXPLORER, THE-SAGE]
+- **tmdb_id**: 2335
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.4866
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4866
+- **genres** / **language**: Action, Comedy, Crime / fr
+- **overview**: Before being extradited to Africa to stand trial, a notorious Belgian criminal is entrusted to the Marseilles police department for less than 24 hours. But the wily crook convinces bumbling policeman Emilien he's a lowly Belgian embassy employee who got railroaded by the brilliant master criminal.
+- **跳转**: https://themoviecosmos.com/movie/2335
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p1: fragments=[how-1, how-0, result-0, result-1] · sim=0.4623
+  - THE-SAGE/su-persona-The-Sage-p1: fragments=[how-0, how-1, result-0, result-1] · sim=0.4866
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Your Lucky Day (2023) [THE-JESTER, THE-LOVER]
+- **tmdb_id**: 923993
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 128.5627
+  - **persona_agent_count**: 2
+  - **source_hits**: surface=0 / event=0 / persona=2
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5627
+- **genres** / **language**: Thriller, Crime, Action / en
+- **overview**: After a dispute over a winning lottery ticket turns into a deadly hostage situation, the witnesses must decide exactly how far they’ll go—and how much blood they’re willing to spill—for a cut of the $156 million.
+- **跳转**: https://themoviecosmos.com/movie/923993
+- **命中视角/碎片**:
+  - THE-JESTER/su-persona-The-Jester-p3: fragments=[result-0, why-0, how-2, how-3, result-1] · sim=0.4908
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[result-0, why-0] · sim=0.5627
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Speaking of Murder (1957) [THE-JESTER]
+- **tmdb_id**: 58926
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5251
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5251
+- **genres** / **language**: Crime, Drama, Thriller / fr
+- **overview**: Louis Bertain is the owner of a Paris garage which is the front for a robbery gang. He and his accomplices are careful to keep up a civic veneer by day, indulging in criminal activities only when "the red light is on" at night. This status quo is upset when one of the gang members becomes convinced that Louis' younger brother is a police informer.
+- **跳转**: https://themoviecosmos.com/movie/58926
+- **命中视角/碎片**:
+  - THE-JESTER/su-persona-The-Jester-p1: fragments=[how-3, how-0, how-1, how-2, result-0] · sim=0.5251
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Stolen: Heist of the Century (2025) [THE-JESTER]
+- **tmdb_id**: 1513598
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5186
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5186
+- **genres** / **language**: Documentary, Crime / en
+- **overview**: Antwerp, 2003. A gang of thieves rob the impenetrable Diamond Center. Who was behind one of the world's biggest heists - and how did they pull it off?
+- **跳转**: https://themoviecosmos.com/movie/1513598
+- **命中视角/碎片**:
+  - THE-JESTER/su-persona-The-Jester-p1: fragments=[how-3, how-0, how-1, how-2, result-0] · sim=0.5186
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Special Section (1975) [THE-SAGE]
+- **tmdb_id**: 79921
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5101
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5101
+- **genres** / **language**: Drama, History, Thriller / fr
+- **overview**: In Nazi-occupied France, a German officer is assassinated. The Germans demand justice, and the Vichy government is quick to capitulate. Unable to apprehend the actual culprits, Minister of Justice Joseph Barthélémy decides the execution of token Frenchmen will suffice, but the problem is finding judges and jurors eager to participate in a sham trial of innocent men. The solution is a Special Section, a court comprised of individuals handpicked for this exact purpose.
+- **跳转**: https://themoviecosmos.com/movie/79921
+- **命中视角/碎片**:
+  - THE-SAGE/su-persona-The-Sage-p3: fragments=[who-0, result-0, how-1, result-1, why-1] · sim=0.5101
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Coartadas (2025) [THE-LOVER]
+- **tmdb_id**: 1403327
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5738
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5738
+- **genres** / **language**: Comedy, Romance / es
+- **overview**: Follows the founder of a company who offers alibis to customers who are dishonest or disloyal.
+- **跳转**: https://themoviecosmos.com/movie/1403327
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[who-2, why-0, how-3, result-0] · sim=0.5738
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Antitrust (2001) [THE-LOVER]
+- **tmdb_id**: 9989
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5726
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5726
+- **genres** / **language**: Action, Crime, Drama / en
+- **overview**: A computer programmer's dream job at a hot Portland-based firm turns nightmarish when he discovers his boss has a secret and ruthless means of dispatching anti-trust problems.
+- **跳转**: https://themoviecosmos.com/movie/9989
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p3: fragments=[who-2, why-0, how-3, result-0] · sim=0.5726
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The International (2009) [THE-EXPLORER]
+- **tmdb_id**: 4959
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5325
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5325
+- **genres** / **language**: Action, Thriller, Crime, Mystery / en
+- **overview**: An interpol agent and an attorney are determined to bring one of the world's most powerful banks to justice. Uncovering money laundering, arms trading, and conspiracy to destabilize world governments, their investigation takes them from Berlin, Milan, New York and Istanbul. Finding themselves in a chase across the globe, their relentless tenacity puts their own lives at risk.
+- **跳转**: https://themoviecosmos.com/movie/4959
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p2: fragments=[result-0, why-0, how-0, why-1] · sim=0.5325
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Police Python 357 (1976) [THE-MAGICIAN]
+- **tmdb_id**: 37455
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4993
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: how
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4993
+- **genres** / **language**: Crime, Thriller, Drama / fr
+- **overview**: A methodical police inspector becomes entangled in a web of deceit after a murder investigation reveals disturbing connections to his own department. As suspicion tightens around him, he must outwit both the killer and the system to survive.
+- **跳转**: https://themoviecosmos.com/movie/37455
+- **命中视角/碎片**:
+  - THE-MAGICIAN/su-persona-The-Magician-p2: fragments=[how-0, why-0, how-1, how-2] · sim=0.4993
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Branded (2012) [THE-EXPLORER]
+- **tmdb_id**: 112090
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.4870
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: who
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.4870
+- **genres** / **language**: Science Fiction, Thriller / en
+- **overview**: In a dystopian future, where corporate brands have created a disillusioned population, one man's effort to unlock the truth behind the conspiracy leads to an epic battle with hidden forces that control the world.
+- **跳转**: https://themoviecosmos.com/movie/112090
+- **命中视角/碎片**:
+  - THE-EXPLORER/su-persona-The-Explorer-p3: fragments=[who-0, why-1, result-0, how-3] · sim=0.4870
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### The Cost of Deception (2021) [THE-SAGE]
+- **tmdb_id**: 876671
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5729
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5729
+- **genres** / **language**: Crime, Drama / hu
+- **overview**: When a young, ambitious market researcher finds out her boss is involved in the leaking of a scandalous Prime Minister speech, she decides to investigate the case to gain a position among the big-shots. Based on actual events.
+- **跳转**: https://themoviecosmos.com/movie/876671
+- **命中视角/碎片**:
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[why-0, why-1, how-3] · sim=0.5729
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Yakuza Graveyard (1976) [THE-SAGE]
+- **tmdb_id**: 64578
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5260
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: why
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5260
+- **genres** / **language**: Action, Crime, Drama / ja
+- **overview**: A police investigator cracks down on yakuza business, but once he realizes the police are in negotiations with certain factions, he sides with his own syndicate of choice.
+- **跳转**: https://themoviecosmos.com/movie/64578
+- **命中视角/碎片**:
+  - THE-SAGE/su-persona-The-Sage-p2: fragments=[why-0, why-1, how-3] · sim=0.5260
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
+
+### Gutshot Straight (2014) [THE-LOVER]
+- **tmdb_id**: 297702
+- **自动打分**:
+  - **quality_candidate**: false
+  - **objective_match**: false (surface=false, event=false)
+  - **persona_semantic_match**: true
+  - **convergent_score**: 118.5232
+  - **persona_agent_count**: 1
+  - **source_hits**: surface=0 / event=0 / persona=1
+  - **search_unit_kinds**: persona-semantic
+  - **center_dimensions**: result
+  - **baseline_overlap**: false
+  - **quality_reason**: objective_match=0 (surface/event match expected)
+- **相似度**: 0.5232
+- **genres** / **language**: Thriller / en
+- **overview**: A professional poker player falls deep into underworld when he takes an unexpected wager from a mysterious high roller.
+- **跳转**: https://themoviecosmos.com/movie/297702
+- **命中视角/碎片**:
+  - THE-LOVER/su-persona-The-Lover-p2: fragments=[result-0, why-0] · sim=0.5232
+- **共振分**:   <!-- 总编填写 0 / 1 / 2 -->
+- **共振类型**:   <!-- 0 留空；1→深层共振（仅结构，无表层）|表层沾边；2→强共振（表层 + 结构） -->
+- **POV变换**:   <!-- 可选；仅 score 2 时填 是，标记靠视角/尺度变换才看得出的强共振 -->
+- **打分备注**: （可选）
