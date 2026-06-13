@@ -302,8 +302,8 @@ flowchart TD
 ### 验收
 
 - [ ] 产出位于 `output/Eval/phase3.11/{run_id}/`；3.10 及更早未改写
-- [ ] thinking-on `llm-judge-scores.json` / `.md` 写入 `run_metadata.thinking_mode=enabled`，人工筛选依据 `judge_score>0` 的 thinking-on 结果
-- [ ] judge 批任务按默认并行参数可恢复执行，并在终端持续输出可监控进度
+- [x] thinking-on `llm-judge-scores.json` / `.md` 写入 `run_metadata.thinking_mode=enabled`，人工筛选依据 `judge_score>0` 的 thinking-on 结果
+- [x] judge 批任务按默认并行参数可恢复执行，并在终端持续输出可监控进度
 - [ ] 池差 search_unit_kind 分解 + POV变换 分布 + 调优记录在案
 - [ ] `[需人工验收]`：用户 approve 数据 → 进 3.11.8
 
