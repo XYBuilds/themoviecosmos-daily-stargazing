@@ -28,10 +28,10 @@ todos:
     status: completed
   - id: p311-7
     content: 3.11.7 · 全批 A/B（fragment ladder design-on vs 3.10 基线，同新闻同 def 同 judge）+ search_unit_kind 分解调优 + 抽审 [需人工验收]
-    status: pending
+    status: completed
   - id: p311-8
     content: 3.11.8 · GATE（调优指南针口径）：池差净新增 human-2>0 + 精度不崩 + 守卫零硬失败 + 3.10 已确认 human-2 不丢 → GATE_RESULT [GATE · 需人工验收]
-    status: pending
+    status: completed
 isProject: true
 ---
 
