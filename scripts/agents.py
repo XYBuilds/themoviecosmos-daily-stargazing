@@ -461,6 +461,102 @@ def parse_pseudos_response(
     return segments
 
 
+MIN_SUPPORTING_ELEMENTS = 2
+MAX_SUPPORTING_ELEMENTS = 4
+
+
+def parse_search_units_response(
+    raw: str,
+    *,
+    agent_id: str,
+    known_elements: set[str],
+    require_fit: bool = True,
+) -> list[PseudoSegment]:
+    """Parse ADR-0009 native ``search_units[]`` into persona-semantic segments.
+
+    The LLM emits center-based semantic drafts directly (no pseudos/channel
+    wrapper). Each unit carries a ``center_element`` plus 2–4
+    ``supporting_elements`` (element ids), ``search_text`` and ``fit``. The
+    result reuses :class:`PseudoSegment` so the downstream
+    ``search_unit_from_pseudo`` path consumes it unchanged: ``source.center``
+    holds the center element and ``source.fragments`` the supporting elements.
+    """
+    data = extract_json_object(raw)
+    rows = data.get("search_units")
+    if not isinstance(rows, list):
+        raise ValueError("JSON must contain a 'search_units' array")
+    if len(rows) < MIN_PSEUDO_COUNT or len(rows) > MAX_PSEUDO_COUNT:
+        raise ValueError(
+            f"expected {MIN_PSEUDO_COUNT}–{MAX_PSEUDO_COUNT} search units, got {len(rows)}"
+        )
+
+    segments: list[PseudoSegment] = []
+    seen_ids: set[str] = set()
+    seen_centers: set[str] = set()
+    for idx, row in enumerate(rows):
+        if not isinstance(row, dict):
+            raise ValueError("each search unit must be an object")
+        unit_id = str(row.get("id", "")).strip() or f"p{idx + 1}"
+        if unit_id in seen_ids:
+            raise ValueError(f"duplicate search unit id {unit_id!r}")
+        seen_ids.add(unit_id)
+
+        text = str(row.get("search_text", "")).strip()
+        if not text:
+            raise ValueError(f"search unit {unit_id} has empty search_text")
+
+        center = str(row.get("center_element", "")).strip()
+        if not center:
+            raise ValueError(f"search unit {unit_id}: center_element is required")
+        if center not in known_elements:
+            raise ValueError(f"search unit {unit_id}: unknown center_element {center!r}")
+        if center in seen_centers:
+            raise ValueError(
+                f"search unit center mutual exclusion failed: duplicate {center!r}"
+            )
+        seen_centers.add(center)
+
+        supporting = row.get("supporting_elements")
+        if not isinstance(supporting, list):
+            raise ValueError(
+                f"search unit {unit_id}: supporting_elements must be a list"
+            )
+        support_ids = [str(s).strip() for s in supporting if str(s).strip()]
+        if (
+            len(support_ids) < MIN_SUPPORTING_ELEMENTS
+            or len(support_ids) > MAX_SUPPORTING_ELEMENTS
+        ):
+            raise ValueError(
+                f"search unit {unit_id}: supporting_elements must be "
+                f"{MIN_SUPPORTING_ELEMENTS}–{MAX_SUPPORTING_ELEMENTS}, "
+                f"got {len(support_ids)}"
+            )
+        unknown = [s for s in support_ids if s not in known_elements]
+        if unknown:
+            raise ValueError(
+                f"search unit {unit_id}: unknown supporting elements {unknown}"
+            )
+
+        fit = _parse_fit_value(row.get("fit"), pseudo_id=unit_id)
+        if require_fit and fit is None:
+            raise ValueError(f"search unit {unit_id}: fit is required")
+
+        segments.append(
+            PseudoSegment(
+                id=unit_id,
+                text=text,
+                source={
+                    "agent_id": agent_id,
+                    "center": center,
+                    "fragments": support_ids,
+                },
+                fit=fit,
+            )
+        )
+
+    return segments
+
+
 def _collapse_paragraph(text: str) -> str:
     collapsed = re.sub(r"\s*\n+\s*", " ", text.strip())
     return re.sub(r" +", " ", collapsed).strip()

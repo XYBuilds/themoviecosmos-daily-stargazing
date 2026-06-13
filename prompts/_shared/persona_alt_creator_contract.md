@@ -1,11 +1,10 @@
-# Persona Alt-Creator Contract (Phase 3.11.6b · ADR-0009 fragment ladder input)
+# Persona Alt-Creator Contract (ADR-0009 fragment ladder input)
 
-> **Role:** Per-persona step after A0 verbatim extract + shared objective expansion pass. Output is an **alt-pool overlay** referencing stable element ids plus `salience`. Downstream folds `surface` / `hypernym` / persona alternatives into a unified `fragment ladder`; there is no longer a primary `neutral` / `toned` / `focalized` channel architecture.
+> **Role:** Per-persona step after A0 verbatim extract. Output is an **alt-pool overlay** referencing stable element ids plus `salience`. Downstream folds `surface` / objective / persona alternatives into a unified `fragment ladder`; the objective hypernym levels are generated **inline in code** (no separate expansion pass), and there is no `neutral` / `toned` / `focalized` channel architecture.
 
 ## Input
 
 - Injected `{{deconstruction_json}}`: verbatim decon from A0 (`anchor`, `when`, `where`, `who`, `why`, `how`, `result`) with stable ids (`who-0`, `where-0`, `why-0`, `how-0`, `result-0`, …). **Surface terms = verbatim source wording (incl. source valence).**
-- Injected `{{expansion_json}}` (when present): shared **hypernym** ladder per `element_id` from P-Expand — persona-independent objective floor.
 - Persona card (when present): emotion / value tendency for this Pearson archetype.
 - **Forbidden in input:** any `alternatives`, `valence`, or replacement terms from A0 — A0 does not produce them (P-Source).
 
