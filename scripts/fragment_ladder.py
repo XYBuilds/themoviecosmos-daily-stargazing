@@ -1,12 +1,15 @@
-"""objective_expansion.py · Shared objective expansion pass (P-Expand).
+"""fragment_ladder.py · Inlined objective expansion for the fragment ladder.
 
-Reads A0 verbatim deconstruction → LLM → hypernym ladder overlay with
-objectivity touchstone filtering → reality-expanded.json.
+Phase 3.12.1 folded the standalone P-Expand pass (formerly
+`scripts/objective_expansion.py`) into this module. The shared objective
+expansion still runs **once per news item** and stays persona-independent;
+only the file boundary and the on-disk `reality-expanded.json` orchestration
+moved here. The objectivity touchstone and hypernym filter remain pure
+functions reused by `scripts/personas.py` when building fragment ladders.
 """
 
 from __future__ import annotations
 
-import argparse
 import json
 import os
 import sys
@@ -19,12 +22,9 @@ if str(_REPO_ROOT) not in sys.path:
 
 from openai import OpenAI
 
-from scripts.agents import annotate_fragment_ids, extract_json_object, load_deconstruction_from_file
+from scripts.agents import annotate_fragment_ids, extract_json_object
 from scripts.lib.env import default_llm_provider, load_env
 from scripts.lib.llm import get_llm_client
-from scripts.lib.paths import repo_root
-
-_CONTRACT_FILE = repo_root() / "prompts" / "_shared" / "objective_expansion_contract.md"
 
 _MODEL_ENV: dict[str, str] = {
     "mimo": "MIMO_MODEL",
@@ -78,6 +78,61 @@ _FORBIDDEN_EXPANSION_KEYS: frozenset[str] = frozenset(
         "hypernym",
     }
 )
+
+# Inlined objective expansion contract (formerly
+# prompts/_shared/objective_expansion_contract.md). One shared pass after A0
+# verbatim extract; hypernym ladders only, persona-independent.
+_EXPANSION_CONTRACT = """# Objective Expansion Contract (P-Expand · shared hypernym ladder)
+
+> **Role:** One **shared** pass after A0 verbatim extract. Input = `reality-deconstructed.json`. Output = `reality-expanded.json` with **hypernym ladders only** — persona-independent objective floor for the neutral channel and toned anchors.
+
+## Input
+
+- Injected `{{deconstruction_json}}`: verbatim A0 output (`anchor`, `when`, `where`, `who`, `why`, `how`, `result`) with stable element ids:
+  - `who-{i}`, `where-{i}`, `why-{i}`, `how-{i}`, `result-{i}`
+
+{{deconstruction_json}}
+
+## Output format
+
+Return **only** valid JSON (no markdown fences, no preamble):
+
+```json
+{
+  "elements": [
+    {
+      "element_id": "where-0",
+      "surface": "Dharavi, Mumbai",
+      "hypernyms": ["Mumbai", "Maharashtra", "India", "South Asia", "slum", "urban neighborhood"]
+    },
+    {
+      "element_id": "who-0",
+      "surface": "residents across central-northern India",
+      "hypernyms": ["civilians", "affected population"]
+    }
+  ]
+}
+```
+
+## Rules
+
+1. **Hypernym only:** For each covered element, list broader terms from **more specific → more abstract** (English). Do not repeat the surface verbatim as a hypernym.
+2. **Objectivity touchstone (mandatory):** Every hypernym must pass — *"Would A2 (sociologist) and A4 (mythologist) disagree on this label?"* If **yes** → it is **lens**, not objective → **omit**.
+   - **Keep:** taxonomic / geographic generalizations (`slum`, `India`, `extreme weather`, `power grid`).
+   - **Reject:** dramatic or valence-laden framing (`destiny's cage`, `crushing the individual`, `fateful prison`, `systemic oppression` when not verbatim in source).
+3. **Fact-entailed:** Hypernyms must follow from A0 facts. Do not add events, actors, charges, or unstated causality.
+4. **Shared, not per-persona:** One expansion for all personas. Persona differences belong in P-Lens.
+5. **Coverage:** Prefer `who` and `where`; include `why` / `how` / `result` when a clean objective generalization exists. Skip when no defensible hypernym passes the touchstone.
+6. **No inert fields:** Do not output `geocode`, `coordinates`, `scale`, `scene_archetype`, `tags`, `valence`, `alternatives`, or `lens` terms.
+
+## Touchstone examples
+
+| Surface (verbatim) | Keep (objective hypernym) | Reject (lens) |
+| --- | --- | --- |
+| Dharavi slum, Mumbai | `slum`, `Mumbai`, `India` | `destiny's cage`, `fateful trap` |
+| central-northern India heatwave | `India`, `extreme weather`, `climate hazard` | `crushing the powerless`, `apocalyptic reckoning` |
+| national power grid | `power grid`, `critical infrastructure` | `fragile lifeline of a dying regime` |
+"""
 
 
 def _resolve_provider(explicit: str | None) -> str:
@@ -198,9 +253,7 @@ def filter_hypernyms(
 
 
 def load_expansion_contract() -> str:
-    if not _CONTRACT_FILE.is_file():
-        raise FileNotFoundError(f"Expansion contract not found: {_CONTRACT_FILE}")
-    return _CONTRACT_FILE.read_text(encoding="utf-8")
+    return _EXPANSION_CONTRACT
 
 
 def render_expansion_prompt(deconstruction: dict[str, Any]) -> str:
@@ -333,7 +386,7 @@ def run_expansion(
     *,
     provider: str | None = None,
 ) -> dict[str, Any]:
-    """Run P-Expand; return payload with expansion, errors, warnings."""
+    """Run the shared P-Expand pass; return payload with expansion, errors, warnings."""
     load_env()
     resolved = _resolve_provider(provider)
     errors: list[dict[str, str]] = []
@@ -402,51 +455,3 @@ def write_outputs(payload: dict[str, Any], out_dir: Path) -> Path:
         encoding="utf-8",
     )
     return json_path
-
-
-def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(
-        description="Run shared objective expansion pass on A0 deconstruction JSON.",
-    )
-    parser.add_argument(
-        "--decon-file",
-        required=True,
-        help="Path to reality-deconstructed.json (or raw deconstruction object).",
-    )
-    parser.add_argument(
-        "--out-dir",
-        help="Directory for reality-expanded.json (default: same dir as decon file).",
-    )
-    parser.add_argument(
-        "--provider",
-        choices=["mimo", "deepseek"],
-        help="LLM provider override (default: DEFAULT_LLM_PROVIDER).",
-    )
-    args = parser.parse_args(argv)
-
-    decon_path = Path(args.decon_file)
-    if not decon_path.is_file():
-        print(f"error: deconstruction file not found: {decon_path}", file=sys.stderr)
-        return 2
-
-    try:
-        deconstruction = load_deconstruction_from_file(decon_path)
-    except ValueError as exc:
-        print(f"error: {exc}", file=sys.stderr)
-        return 2
-
-    out_dir = Path(args.out_dir) if args.out_dir else decon_path.parent
-    if not out_dir.is_absolute():
-        out_dir = _REPO_ROOT / out_dir
-
-    payload = run_expansion(deconstruction, provider=args.provider)
-    json_path = write_outputs(payload, out_dir)
-
-    print(f"Wrote {json_path.resolve()}", file=sys.stderr)
-    if payload.get("errors"):
-        print(f"completed with {len(payload['errors'])} error(s) (MVP: exit 0)", file=sys.stderr)
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())

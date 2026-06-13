@@ -13,7 +13,7 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from scripts.deconstruct import _collect_forbidden_keys  # noqa: E402
-from scripts.objective_expansion import _LENS_FRAMED_SNIPPETS  # noqa: E402
+from scripts.fragment_ladder import _LENS_FRAMED_SNIPPETS  # noqa: E402
 
 _FORBIDDEN_A0 = frozenset(
     {

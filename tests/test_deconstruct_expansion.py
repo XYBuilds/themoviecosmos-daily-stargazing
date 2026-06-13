@@ -1,4 +1,4 @@
-"""Tests for A0 verbatim deconstruction and objective expansion pass (Phase 3.8.1)."""
+"""Tests for A0 verbatim deconstruction and inlined objective expansion (Phase 3.8.1; inlined into fragment_ladder in Phase 3.12.1)."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ if str(_REPO) not in sys.path:
 
 from scripts.agents import load_deconstruction_from_file
 from scripts.deconstruct import strip_inert_fields, validate_deconstruction
-from scripts.objective_expansion import (
+from scripts.fragment_ladder import (
     apply_touchstone_to_expansion,
     filter_hypernyms,
     list_expandable_elements,
@@ -161,6 +161,33 @@ class ObjectiveExpansionTests(unittest.TestCase):
         errors, warnings = validate_expansion(raw, dec)
         self.assertEqual(errors, [])
         self.assertTrue(any("touchstone rejected" in w for w in warnings))
+
+
+class InlinedExpansionModuleTests(unittest.TestCase):
+    """Phase 3.12.1: objective expansion lives in fragment_ladder, not a standalone pass."""
+
+    def test_objective_expansion_module_removed(self) -> None:
+        import importlib
+
+        with self.assertRaises(ModuleNotFoundError):
+            importlib.import_module("scripts.objective_expansion")
+
+    def test_expansion_contract_inlined_no_external_file(self) -> None:
+        from scripts.fragment_ladder import load_expansion_contract
+
+        contract = load_expansion_contract()
+        self.assertIn("Objective Expansion Contract", contract)
+        self.assertIn("{{deconstruction_json}}", contract)
+        legacy = _REPO / "prompts" / "_shared" / "objective_expansion_contract.md"
+        self.assertFalse(legacy.exists())
+
+    def test_render_prompt_self_contained(self) -> None:
+        from scripts.fragment_ladder import render_expansion_prompt
+
+        dec = load_deconstruction_from_file(_INDIA_FIXTURE)
+        prompt = render_expansion_prompt(dec)
+        self.assertNotIn("{{deconstruction_json}}", prompt)
+        self.assertIn("who-0", prompt)
 
 
 if __name__ == "__main__":

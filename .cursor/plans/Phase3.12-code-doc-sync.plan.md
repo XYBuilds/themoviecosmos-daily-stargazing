@@ -4,7 +4,7 @@ overview: 把代码侧从「ADR-0008 旧通道 + 独立 P-Expand pass」并存�
 todos:
   - id: 3.12.1
     content: objective 能力内联：迁移 touchstone/filter_hypernyms 纯函数进 ladder 模块，build_fragment_ladders 自产 objective 层，删除 objective_expansion.py + contract + reality-expanded.json 产物，更新 test_deconstruct_expansion.py
-    status: pending
+    status: complete
   - id: 3.12.2
     content: personas.py 旧通道清除：删除 build_objective_floor_neutral_pseudo/tag_toned_pseudos/assemble_persona_channel_pseudos/validate_adr8_dual_floor/derive_expected_channel 等 ADR-0008 逻辑，收敛为单一 ladder→search_unit 路径，更新 test_personas.py/test_pov_transform_label.py
     status: pending
