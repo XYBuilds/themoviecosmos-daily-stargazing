@@ -2,7 +2,7 @@
 
 > **SSOT 用途**：`persona_id`、情绪与价值倾向、视角摘要、典型替换取向。实现见 `prompts/personas/<persona_id>/persona_card.md`（3.7.3 起逐张落地）。
 >
-> **设计决策**：[ADR-0004](../adr/0004-persona-emotional-diffusion.md)（`Status: proposed` 至 3.7.5 GATE）。
+> **设计决策**：[ADR-0004](../adr/0004-persona-emotional-diffusion.md)（`Status: superseded`；3.7 GATE_FAIL 后情绪扩散主轴被 ADR-0008 降级、通道结构被 ADR-0009 替换为 fragment ladder / search unit）。**12 原型 roster 本身仍是当前架构**。
 >
 > **示例新闻**：`04-celebrity-scandal`（YouTuber 深度伪造诽谤案）— 用于说明 **典型替换取向**；天然弱契合的原型用 `—` 标注，由下游 **`fit`** 体现，不硬凑。
 
@@ -23,7 +23,7 @@
 
 ## 价值轴 (Value Axis) 速览
 
-> **Persona-relative valence**：下表「正极 / 负极」只相对**该 persona 自己的价值轴**，**非绝对褒贬**。同一中性元素在不同 persona 可得**相反符号**（例：被控造谣的 YouTuber，对 The-Ruler 是「造谣者」**负**，对 The-Outlaw 是「揭真者」**正**）。完整双极（含 Where / persona-midpoint）见各卡 `## 价值轴 (Value Axis)`；valence 桶的 persona-relative 语义、**两个 neutral**（objective-floor vs persona-midpoint）与 `surface / hypernym / lens` provenance 三层见 `prompts/_shared/persona_alt_creator_contract.md`。
+> **Persona-relative valence**：下表「正极 / 负极」只相对**该 persona 自己的价值轴**，**非绝对褒贬**。同一中性元素在不同 persona 可得**相反符号**（例：被控造谣的 YouTuber，对 The-Ruler 是「造谣者」**负**，对 The-Outlaw 是「揭真者」**正**）。完整双极见各卡 `## 价值轴 (Value Axis)`。valence 的 persona-relative 语义在当前架构（ADR-0009）中并入 fragment ladder 的 `interpretive / perspective` 层，作为可选着色标注；客观题面锚由 ladder 的 `surface / objective_*` 层与 surface/event fragment bundle 承担。
 
 | persona_id | Who 正极 | Who 负极 | When |
 | --- | --- | --- | --- |
@@ -48,7 +48,7 @@ prompts/personas/The-Everyman/persona_card.md
 …（共 12，3.7.3 起按 pilot 节奏补齐）
 ```
 
-## 与 alt-creator / screenwriter 的关系
+## 与 fragment ladder / search unit 的关系
 
-- **P-Source**：每 persona 的 alt-creator 读 **同一份** A0 中性 decon，自产 persona-relative lens alternatives；`valence` 只作为正/中/负标注，不是覆盖目标或选择判据。
-- **P-Select**：上表「典型替换取向」仅为 **取向示例**，实际用词须 **事实蕴含**；04 对 Ruler / Sage / Outlaw 等应 **`fit` 偏高**，对 Innocent / Everyman / Explorer / Lover 等可 **`fit` 偏低** 但仍强迫产出（P-Force）。
+- **素材来源**：每 persona 读 **同一份** A0 decon（[`reality-deconstruction-contract.md`](reality-deconstruction-contract.md)），结合 salience 选材，在 element 上展开 fragment ladder 的 `interpretive / perspective` 层；`valence` 只作为正/中/负的可选着色标注，不是覆盖目标或选择判据。
+- **产出**：persona 结合 salience 与 interpretive/perspective 材料生成 **persona-semantic search unit**（绑定 `center_element` + `supporting_elements`）。上表「典型替换取向」仅为 **取向示例**，实际用词须 **事实蕴含**；04 对 Ruler / Sage / Outlaw 等应 **`fit` 偏高**，对 Innocent / Everyman / Explorer / Lover 等可 **`fit` 偏低** 但仍强迫产出。详见 [`simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md) §4.3。

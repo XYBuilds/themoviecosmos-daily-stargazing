@@ -1,8 +1,12 @@
-# 现实解构 · 产出契约（v2 · ADR-0005 · verbatim + 客观扩展）
+# 现实解构 · 产出契约（A0 抽取层 · verbatim）
 
-> 本文件是管线前两段——**P-Extract（A0）** 与 **P-Expand（共享客观扩展 pass）**——的产出契约 SSOT。决策来源：[ADR-0005](../adr/0005-objective-extraction-neutral-channel-and-collision-vote.md)。承接 [ADR-0002](../adr/0002-pivot-to-event-logic-resonance.md) 的对题召回前提；撞车形状见 [ADR-0003](../adr/0003-multi-agent-resonance-quality-and-a1-as-peer.md)（由 ADR-0005 复活「中性 + ≥1 toned」）。
+> **当前状态（2026-06-14）**：本文件中 **P-Extract（A0）逐字抽取契约仍是 SSOT**，fragment ladder 的 `surface` 层与所有 element 引用都依赖它。
+>
+> **已被取代的部分**：原 **P-Expand 独立 hypernym 层（`reality-expanded.json`）、三层 provenance（surface/hypernym/lens）、中性通道 / 语气通道、撞车票** 已由 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 的 **fragment ladder / search unit** 整体替换——hypernym 并入 ladder 的 `objective_*` 层，lens 并入 `interpretive / perspective` 层，召回改由 surface/event/persona search unit 承担。工作流权威源见 [`docs/SSOT/simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md)。
+>
+> 决策来源：[ADR-0005](../adr/0005-objective-extraction-neutral-channel-and-collision-vote.md)（已 superseded，A0 抽取部分被本契约延续）。承接 [ADR-0002](../adr/0002-pivot-to-event-logic-resonance.md) 的对题召回前提。
 
-> **定位**：pseudo 撰写**之前**的结构化素材层。**A0 只做逐字抽取**；**客观扩展 pass 只产 hypernym 梯**。persona 相对价（lens）与 pseudo 组装在下游（P-Lens / P-Compose），不在此层。
+> **定位**：fragment ladder 生成**之前**的结构化素材层。**A0 只做逐字抽取**；persona 相对价与 ladder/search unit 组装在下游（见工作流文档 §3.4 起），不在此层。
 
 ---
 
@@ -11,30 +15,25 @@
 ```text
 1. 网络接口收热点新闻（英文）     → reality.md（现实波澜，人类可读）
 2. P-Extract · A0                → reality-deconstructed.json（逐字抽取）
-3. P-Expand · 共享客观扩展 pass   → reality-expanded.json（hypernym 梯 overlay）
-4. P-Lens · per-persona alt-creator → alt-pool（persona 相对 valence + 三层 provenance）
-5. P-Compose · screenwriter      → pseudos（中性通道 + 语气通道）
-6. 检索                          → 候选聚合
+3. Fragment ladder + search unit  → 见 simplified-news-to-film-workflow.md §3.4 起
+4. Hybrid recall                 → 候选聚合
 ```
 
-- **语言链**：新闻输入为**英文** → A0 → 扩展 → alt-pool → pseudo → 检索。**英进英出，无翻译步骤**（唯一中文化 = 最终推荐文案给总编）。
-- **产物格式（双写）**：
+- **本契约只覆盖第 2 段（A0）**。第 3 段起（fragment ladder 生成、search unit、hybrid recall、候选漏斗）以 [`simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md) 为权威源。
+- **语言链**：新闻输入为**英文** → A0 → ladder → search unit → 检索。**英进英出，无翻译步骤**（唯一中文化 = 最终推荐文案给总编）。
+- **A0 产物（双写）**：
   - `reality-deconstructed.json`：A0 契约本体，机器读。
   - `reality-deconstructed.md`：A0 的人类视图，供总编扫读。
-  - `reality-expanded.json`（或等价 overlay）：扩展 pass 产出，附在稳定 element id 上。
 
 ---
 
 ## 0. 原则
 
 1. **A0 = 逐字 only（P-Extract）**：只记录原文**怎么写**——who / where / when / why / how / result，外加 `role` 与 `relations`。**逐字保留原文用词与其自带价（source valence）**；A0 **不产**任何「中性」替代词、**不做** hypernym 扩展、**不**做视角框定。
-2. **客观扩展 = hypernym only（P-Expand）**：**一份共享拷贝**（非 per-persona），为每个 element 产 **hypernym 上位词梯**，受**客观性试金石**约束：「**A2 社会学家与 A4 神话学者会不会给出不同答案？** 会 → 它是 lens，不是 objective；不会 → 可进客观地板。」
-3. **三层 provenance（下游消费）**：screenwriter 从池组装 pseudo 时区分三层——`surface`（逐字原文词）/ `hypernym`（客观共享桥）/ `lens`（persona 相对价）。详见 §4 与 `prompts/_shared/persona_alt_creator_contract.md`。
-4. **两个「中性」不可混用**：
-   - **(a) 客观地板中性（objective-floor neutral）** = `surface` + `hypernym`，共享、persona 无关 → **中性通道**用它。
-   - **(b) persona 中点中性（persona-midpoint neutral）** = 某 persona 价值轴的中点，仅活在其 lens spectrum 内 → **不进**中性通道。
-5. **事实 vs 解读**：本两层（A0 + 扩展）只装**事实**与**原文断言**；解读、相对价、意味全是 P-Lens / P-Compose 的活。
-6. **多值并存用 list**：`role`、`role_in_event`、`relations`、`modality` 等可并存的字段用 JSON 数组，不强制单选。
+2. **事实 vs 解读**：本层只装**事实**与**原文断言**；解读、相对价、意味全是下游 fragment ladder（`interpretive / perspective` 层）的活。
+3. **多值并存用 list**：`role`、`role_in_event`、`relations`、`modality` 等可并存的字段用 JSON 数组，不强制单选。
+
+> **下游接口（已迁移，不在本层）**：原 hypernym 扩展、三层 provenance（surface/hypernym/lens）、中性/语气通道、撞车票均已被 ADR-0009 的 fragment ladder / search unit 取代。本契约不再维护这些概念；fragment ladder 直接消费 A0 的 element 与 `element_id`。
 
 ### 丢弃的惰性字段（inert fields）
 
@@ -127,37 +126,9 @@
 
 ---
 
-## 2. P-Expand（共享客观扩展 pass）
+## 2. 客观扩展 / hypernym（已迁移 · 不在本契约）
 
-**输入**：`reality-deconstructed.json`（A0 逐字产出）。  
-**输出**：`reality-expanded.json`——在同一 element id 上附加 **hypernym 梯**，**一份共享拷贝**，所有 persona 共用。
-
-### 规则
-
-1. **只产 `hypernym`**：每个覆盖的 element 提供从**较具体 → 较抽象**的上位词/类别词列表（英文）。例：`Dharavi → Mumbai → Maharashtra → India → South Asia`；`heatwave → extreme weather → climate hazard`。
-2. **客观性试金石**：每条 hypernym 须通过——「A2 与 A4 会不会对此给出不同答案？」会 → **不得**写入 hypernym（那是 lens，留给 alt-creator）。
-3. **fact-entailed**：hypernym 须可由 A0 逐字事实推出，**不新增**事件、人物、指控或因果。
-4. **不重复 A0 表面词**：`surface` 层 = A0 的 `text`；扩展 pass 只添上位/generalization，不替代表述。
-5. **共享、非 per-persona**：禁止为每个 persona 各跑一份扩展；persona 差异只在 P-Lens。
-
-### 扩展产出示例（片段）
-
-```json
-{
-  "elements": [
-    {
-      "element_id": "where-0",
-      "surface": "central-northern India",
-      "hypernyms": ["India", "South Asia", "inland region", "densely populated area"]
-    },
-    {
-      "element_id": "who-0",
-      "surface": "residents across central-northern India",
-      "hypernyms": ["civilians", "affected population"]
-    }
-  ]
-}
-```
+> 原 **P-Expand 共享客观扩展 pass（`reality-expanded.json` · hypernym 梯）已被 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 取代**。hypernym 能力并入每个 element 的 **fragment ladder 的 `objective_close / objective_mid / objective_broad` 层**，不再作为独立 overlay 维护。生成规则、客观性试金石、fact-entailed 约束均迁移至 [`simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md) §2.3 / §3.4。本契约只保证 A0 产出稳定的 element 与 `element_id` 供 ladder 消费。
 
 ---
 
@@ -197,28 +168,22 @@
 
 ---
 
-## 4. 三层 provenance（下游 · P-Lens / P-Compose）
+## 4. 下游消费（已迁移 · 不在本契约）
 
-本层不产出 provenance 标签，但契约规定下游语义，以便中性通道与语气通道口径一致：
+> 原 §4 三层 provenance（surface/hypernym/lens）、中性通道 / 语气通道、§5 撞车票与 A1 退场口径**均已被 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 取代**，当前架构对照如下（权威定义见 [`simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md) §9 新旧映射）：
 
-| 层 | 来源 | 客观 vs lens | 用于 |
-| --- | --- | --- | --- |
-| **surface** | A0 逐字 `text` | 客观地板 | 中性通道；保留 source valence |
-| **hypernym** | P-Expand 共享梯 | 客观地板 | 中性通道 + toned 的**题面锚** |
-| **lens** | alt-creator persona 相对价 | lens | **语气通道** only；含 persona 中点中性 |
+| 旧概念（本契约 v2） | 新位置（ADR-0009） |
+| --- | --- |
+| `surface` 层 | fragment ladder `surface`（仍来自 A0 逐字 `text`） |
+| `hypernym` 层 | fragment ladder `objective_close / objective_mid / objective_broad` |
+| `lens` 层 | fragment ladder `interpretive / perspective` |
+| 中性通道（C-Neutral）/ n1 | 下线；事实参照由 surface/event fragment bundle 承担 |
+| 语气通道（C-Toned）| 下线；电影化表达并入 persona-semantic search unit |
+| 撞车票 / `quality_candidate` | 改为 `surface_match / event_match / persona_semantic_match` 收敛诊断 |
+| A1 退场 / 中性 union | A1 已 diagnostic-only 退场；中性基线只读参照，不进任何闸 |
 
-**中性通道（C-Neutral）**：每 persona **恰好 1 条** pseudo，仅用 `surface` + `hypernym`，**无 lens**；当前只作为 n1 / neutral_hits / neutral_hit_rate / A1 对照诊断，不作质量判据、排序依据、截断依据、审阅纳入兜底或 Go/No-Go 依据。  
-**语气通道（C-Toned）**：每条 toned pseudo = **hypernym 锚（留在题面）+ lens 倾斜**；发自己的 anchored 检索 query。
-
-撞车诊断（ADR-0005 legacy shape, downgraded）：中性通道整体算 **1 张去重 agent 票**（所有中性 pseudo 命中的 union）；`quality_candidate = 中性票 + ≥1 toned/focalized lens 汇聚到同一部电影` 仅作检索汇聚 annotation。中性票 / `n1` 本身也是 diagnostic-only，不作质量判据、排序依据、截断依据或 Go/No-Go 依据。
-
----
-
-## 5. 下游消费（备忘 · 不在此层产出）
-
-- **碎片选取**：`why-*` / `result-*` 每行可单独成 pseudo；`how-*` 只能取**连续**多条。详见 persona screenwriter 契约。
-- **A1 退场**：由**中性通道 union**取代；首轮验证须并跑 A1，证明中性 union ⊇ A1 命中且 2 分率 ≥ A1 后才删 A1（ADR-0005 §A1 退场）。
-- **诊断**：`neutral_hit_rate = (命中该片的中性 pseudo 数) / (运行的 persona 数)`；须在控制 `max_similarity` 下解读（ADR-0005 §NEUTRAL HIT RATE）。
+- **碎片选取惯例（仍有效）**：`why-*` / `result-*` 每行可单独成搜索碎片；`how-*` 只能取**连续**多条。
+- **A0 的下游唯一职责**：提供稳定 element 与 `element_id`，供 fragment ladder 绑定。
 
 ---
 
@@ -276,17 +241,4 @@
 }
 ```
 
-### P-Expand · overlay（节选）
-
-```json
-{
-  "elements": [
-    { "element_id": "where-0", "surface": "central-northern India",
-      "hypernyms": ["India", "South Asia", "inland region", "densely populated area"] },
-    { "element_id": "who-0", "surface": "residents across central-northern India",
-      "hypernyms": ["civilians", "affected population"] }
-  ]
-}
-```
-
-> A0 保留原文事实与措辞；「体制碾压边缘群体」类骨架属 persona lens，不在此层。「穷人买不起空调」若原文未陈述，亦不在此层。
+> A0 保留原文事实与措辞；「体制碾压边缘群体」类骨架属下游 fragment ladder 的 interpretive 层，不在此层。「穷人买不起空调」若原文未陈述，亦不在此层。fragment ladder 如何在这些 element 上展开 objective / interpretive 层，见 [`simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md) §2.2。

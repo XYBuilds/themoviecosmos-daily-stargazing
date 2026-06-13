@@ -1,6 +1,8 @@
-# 新闻到电影候选工作流：fragment ladder 精简版草案
+# 新闻到电影候选工作流：fragment ladder / search unit 架构
 
-> 用途：这份文档记录基于当前讨论后的新版 workflow 口径。核心目标是移除 `lens / neutral / toned / focalized / fact-anchor query / 独立 hypernym` 这些高负担概念，改用更底层、更可解释的 `fragment ladder`、`search unit`、`center_element` 和 hybrid recall。
+> **状态**：当前 workflow SSOT（权威设计源，见 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md)，Phase 3.11.8 GATE go · 2026-06-13）。
+>
+> **定位**：本文件登记从 A0 现实解构到人工共振评审的完整链路口径。核心是移除 `lens / neutral / toned / focalized / fact-anchor query / 独立 hypernym` 这些高负担概念，改用更底层、更可解释的 `fragment ladder`、`search unit`、`center_element` 和 hybrid recall。A0 抽取层契约见 [`reality-deconstruction-contract.md`](reality-deconstruction-contract.md)。
 
 ---
 

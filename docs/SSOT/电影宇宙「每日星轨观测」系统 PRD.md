@@ -99,25 +99,23 @@ embedding 输入文本模板（**已对齐 3D 宇宙索引**，ADR-0001）：
 
 ## 4. 多智能体编剧室（Multi-Agent Screenwriting Room）
 
-> 管线的结构化素材层与生成层契约 SSOT：[`docs/SSOT/reality-deconstruction-contract.md`](reality-deconstruction-contract.md)（A0 + 客观扩展）、[`docs/SSOT/personas-12.md`](personas-12.md)（12 persona roster）。
+> 管线的结构化素材层契约 SSOT：[`docs/SSOT/reality-deconstruction-contract.md`](reality-deconstruction-contract.md)（A0 逐字抽取）、[`docs/SSOT/personas-12.md`](personas-12.md)（12 persona roster）；完整 workflow 见 [`docs/SSOT/simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md)（fragment ladder / search unit）。
 
-### 4.0 五段流水（当前架构）
+### 4.0 五段流水（当前架构 · ADR-0009）
 
 ```text
 1. 网络接口收热点新闻（英文）        → reality.md（人类可读）
-2. P-Extract · A0                   → reality-deconstructed.json（逐字抽取，稳定 element id）
-3. P-Expand · 共享客观扩展 pass      → reality-expanded.json（hypernym 上位词梯 overlay）
-4. P-Lens · per-persona alt-creator → alt-pool（persona 相对 valence + 三层 provenance）
-5. P-Compose · screenwriter         → search units（围绕新闻 element 组织）
-6. 检索                             → 候选聚合 + convergent sort + judge 预筛
+2. A0 现实解构                      → reality-deconstructed.json（逐字抽取，稳定 element id）
+3. Fragment ladder                 → 每个 element 展开 surface/alias/objective_*/interpretive/perspective 层
+4. Persona salience + search unit   → surface/event fragment bundle + persona-semantic（绑定 center_element）
+5. Hybrid recall + 候选漏斗          → 候选聚合 + convergent sort + judge 预筛
 ```
 
 | 段 | 脚本 / 契约 | 铁律 |
 | --- | --- | --- |
-| **A0（P-Extract）** | `prompts/A0_reality_deconstructor.md` · `scripts/deconstruct.py` | **只做逐字抽取**（who/where/when/why/how/result + role + relations）；保留原文用词与 source valence；不产中性替代、不做 hypernym、不做视角框定 |
-| **客观扩展（P-Expand）** | `prompts/_shared/objective_expansion_contract.md` · `scripts/objective_expansion.py` | **一份共享拷贝**，只产 hypernym 上位词梯；受客观性试金石约束（「社会学家与神话学者会不会给不同答案？会 → 是 lens 不是 objective」） |
-| **P-Lens（alt-creator）** | `prompts/_shared/persona_alt_creator_contract.md` | 每 persona 读同一份中性 decon，自产 persona 相对 lens；`valence`（正/中/负）退为**可选**着色标注，模糊地带不标 |
-| **P-Compose（screenwriter）** | `prompts/_shared/persona_screenwriter_contract.md` · `scripts/personas.py` | 围绕 element 中心构图，产 fragment ladder + search unit（见 §4.2） |
+| **A0 现实解构** | `prompts/A0_reality_deconstructor.md` · `scripts/deconstruct.py` | **只做逐字抽取**（who/where/when/why/how/result + role + relations）；保留原文用词与 source valence；不产中性替代、不做视角框定 |
+| **Fragment ladder** | `prompts/_shared/persona_alt_creator_contract.md` · `scripts/personas.py` | 每 element 展开 ladder：`surface`(A0 原文) / `alias` / `objective_*`(吸收原 hypernym 客观扩展) / `interpretive`+`perspective`(吸收 persona lens)；每个 fragment 绑定既有 `element_id`，不新增人物/事件/因果/结果 |
+| **Search unit** | `prompts/_shared/persona_screenwriter_contract.md` · `scripts/personas.py` | 三类召回入口：`surface-fragment-bundle` / `event-fragment-bundle`（只用 objective 层、不绑 persona）+ `persona-semantic`（绑 `persona_id` + `center_element` + `supporting_elements`，须有 objective anchor）；`valence` 退为可选着色标注 |
 
 ### 4.1 Persona 总览（12 Pearson 原型）
 
@@ -336,7 +334,7 @@ themoviecosmos-daily-stargazing/        ← Obsidian Vault Root
 │       ├── 电影宇宙「每日星轨观测」系统 PRD.md   # 本文件
 │       ├── personas-12.md              # 12 persona roster
 │       ├── simplified-news-to-film-workflow.md  # fragment ladder 精简版工作流
-│       └── reality-deconstruction-contract.md  # A0 + 客观扩展契约
+│       └── reality-deconstruction-contract.md  # A0 逐字抽取契约
 ├── prompts/
 │   ├── _shared/
 │   │   ├── deentification_rules.md
