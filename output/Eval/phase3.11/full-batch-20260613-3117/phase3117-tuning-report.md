@@ -28,9 +28,11 @@
 
 ## 4. POV变换 分布
 
-- human: `{'true': 0, 'false': 0, 'unknown': 0}`
-- judge: `{'true': 0, 'false': 0, 'unknown': 0}`
-- source: `None`
+- human: `{'true': 0, 'false': 0, 'unknown': 110}`
+- judge: `{'true': 2, 'false': 108, 'unknown': 0}`
+- source: `output/Eval/phase3.11/full-batch-20260613-3117/llm-judge-scores.json`
+- prompt_version: `3.11.7-mimo-v2.5-pro-thinking-disabled`
+- run_metadata: `{'provider': 'mimo', 'request_options': {'max_completion_tokens': 1024, 'extra_body': {'thinking': {'type': 'disabled'}}}, 'thinking_mode': 'disabled', 'judge_condition_note': 'MiMo judge run with thinking disabled; not directly comparable to MiMo runs where thinking was enabled or unspecified.'}`
 
 ## 5. 拒绝集 / human-2 监控
 

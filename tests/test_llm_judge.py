@@ -13,6 +13,8 @@ from scripts.llm_judge import (
     TRUST_STATUS_UNTRUSTED,
     _JUDGE_RUBRIC,
     _JUDGE_SYSTEM,
+    _is_retryable_llm_error,
+    _judge_request_options,
     JudgeItem,
     JudgeOutput,
     JudgeResult,
@@ -41,6 +43,24 @@ class JudgeSchemaTests(unittest.TestCase):
         self.assertIn("causal counter-test", _JUDGE_RUBRIC)
         self.assertNotIn("骨架同构", _JUDGE_RUBRIC)
         self.assertIn("falsifiable causal counter-test", _JUDGE_SYSTEM.lower())
+
+    def test_mimo_judge_uses_completion_tokens_with_thinking_disabled(self):
+        self.assertEqual(_judge_request_options("deepseek"), {"max_tokens": 700})
+        self.assertEqual(
+            _judge_request_options("mimo"),
+            {
+                "max_completion_tokens": 1024,
+                "extra_body": {"thinking": {"type": "disabled"}},
+            },
+        )
+
+    def test_mimo_rate_limit_errors_are_retryable(self):
+        class ErrorWithStatus(Exception):
+            status_code = 429
+
+        self.assertTrue(_is_retryable_llm_error(ErrorWithStatus("limited")))
+        self.assertTrue(_is_retryable_llm_error(Exception("Too many requests")))
+        self.assertFalse(_is_retryable_llm_error(Exception("invalid payload")))
 
     def test_logic_zero_guard_in_rubric_and_system(self):
         self.assertIn("Logic 0-guard", _JUDGE_RUBRIC)

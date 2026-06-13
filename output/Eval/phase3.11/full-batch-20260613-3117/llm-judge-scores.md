@@ -1,0 +1,1218 @@
+# LLM Judge Scores
+
+- **trust_status**: 不采信
+- **screening_only**: True
+- **calibration_pairs**: 0
+- **provider**: mimo
+- **thinking_mode**: disabled
+- **judge_condition_note**: MiMo judge run with thinking disabled; not directly comparable to MiMo runs where thinking was enabled or unspecified.
+
+### Survival Family (2017) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-CREATOR] [汇聚标注] (01-grid-outage) · 不采信
+- **tmdb_id**: 429918
+- **judge_score**: 2
+- **judge_resonance_type**: 强共振（表层 + 逻辑）
+- **judge_pov_transform**: True
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: Electrical grid failure under extreme demand and infrastructure constraints forces emergency load shedding and societal disruption.
+- **rationale**: Both news and film share the concrete surface element of electrical grid failure/power outage. The underlying logic is identical: insufficient power supply under high demand and infrastructure constraints forces emergency rationing (load shedding in news, societal collapse in film). The POV shift from institutional grid management to individual family survival makes the resonance visible.
+
+### 2061 - Un anno eccezionale (2007) [THE-CAREGIVER, THE-CREATOR, THE-EXPLORER] (01-grid-outage) · 不采信
+- **tmdb_id**: 33495
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (energy crisis is too broad, fails 0-guard). No specific causal-stakes engine invariant under POV/scale change that holds for both.
+
+### Geostorm (2017) [THE-CREATOR, THE-MAGICIAN, THE-OUTLAW, THE-SAGE] (01-grid-outage) · 不采信
+- **tmdb_id**: 274855
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about a regional power grid failure in the Philippines, while the film is about a global satellite climate control system going rogue. No load-bearing concrete anchor shared. No underlying logic: the causal engine 'systemic infrastructure failure under operational stress forces emergency protective measures' could apply to many unrelated news-film pairs (e.g., a bridge collapse news paired with a disaster film), failing the logic 0-guard.
+
+### Stranded (2021) [THE-HERO, THE-INNOCENT, THE-MAGICIAN] (01-grid-outage) · 不采信
+- **tmdb_id**: 841793
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: 'power crunch' (news) vs 'stranded on island' (film) share no concrete, nameable anchor. No underlying logic: cannot write a single 'X under constraint Z drives Y' sentence literally true of both (e.g., 'systemic scarcity forces survival mode' is too broad and would hold for unrelated news paired with the film).
+
+### The Last Winter (2006) [THE-CREATOR, THE-MAGICIAN] (01-grid-outage) · 不采信
+- **tmdb_id**: 15667
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element is shared (e.g., power grid, blackout, Arctic drilling). The underlying logic differs: the news is about systemic infrastructure failure under demand pressure, while the film is about psychological disintegration in an isolated, hostile environment. No 'X under constraint Z drives Y' sentence holds for both without being overly generic (e.g., 'pressure causes breakdown' would apply to many unrelated pairs).
+
+### Blade Runner: Black Out 2022 (2017) [THE-MAGICIAN, THE-OUTLAW] (01-grid-outage) · 不采信
+- **tmdb_id**: 475946
+- **judge_score**: 2
+- **judge_resonance_type**: 强共振（表层 + 逻辑）
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: A critical power infrastructure failure, under the constraint of insufficient generation capacity and high demand, forces emergency load shedding to prevent cascading system collapse.
+- **rationale**: Both news and film center on electrical grid failure (表层元素: power blackout). Both share the same causal engine: insufficient supply under high demand forces emergency load shedding to prevent total collapse (底层逻辑). The news is real-world Visayas; the film is fictional West Coast US, but the underlying logic is identical.
+
+### The Trigger Effect (1996) [THE-CAREGIVER, THE-HERO] (01-grid-outage) · 不采信
+- **tmdb_id**: 58770
+- **judge_score**: 2
+- **judge_resonance_type**: 强共振（表层 + 逻辑）
+- **judge_pov_transform**: True
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: A sudden loss of critical power infrastructure under conditions of high demand and thin margins forces authorities and individuals into emergency survival decisions that test legal and ethical boundaries.
+- **rationale**: 表层元素：两者都围绕电力中断/停电这一具体事件展开，且停电在两个故事中都是推动情节的核心要素。底层逻辑：新闻中，发电机组故障+高温需求导致电网濒临崩溃，迫使官方实施紧急减载；电影中，停电迫使居民在掠夺性环境中做出生存决策。两者共享同一因果引擎：关键电力基础设施的突然丧失，在高需求和脆弱系统条件下，迫使各方采取紧急且可能越界的行动。需要POV变换（新闻为机构/系统层面，电影为个人/社区层面）才能看到共享逻辑。
+
+### Matango (1963) [THE-RULER] (01-grid-outage) · 不采信
+- **tmdb_id**: 52302
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (power grid crisis vs. island survival). No shared causal-stakes engine: news is about infrastructure failure forcing load shedding; film is about scarcity driving psychological transformation. The causal test sentence 'resource scarcity under survival constraint drives desperate behavior' would hold for many unrelated news-film pairs, failing the logic 0-guard.
+
+### Back to 1942 (2012) [THE-RULER] (01-grid-outage) · 不采信
+- **tmdb_id**: 139329
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: 'power grid failure' and '1940s famine' share no concrete, nameable load-bearing element. No underlying logic: cannot write a single 'X under constraint Z drives Y' sentence literally true of both a modern power grid crisis and a wartime famine with multiple causes (drought, locusts, corruption) that wouldn't also apply to unrelated disasters paired with the film.
+
+### From What Is Before (2014) [THE-CREATOR, THE-EXPLORER] [汇聚标注] (01-grid-outage) · 不采信
+- **tmdb_id**: 280492
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No shared load-bearing surface element (power grid crisis vs. rural supernatural/political events). No shared causal-stakes engine: the news is about technical grid failure under demand pressure, the film is about societal collapse under martial law; any proposed causal sentence (e.g., 'systemic failure under external pressure drives societal instability') is too abstract and would fit many unrelated news-film pairs, failing the logic 0-guard.
+
+### Bounty Killer (2013) [THE-CREATOR, THE-EXPLORER, THE-HERO, THE-INNOCENT, THE-JESTER, THE-MAGICIAN, THE-RULER, THE-EVERYMAN] [汇聚标注] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 209504
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about corporate layoffs for AI restructuring, while the film is about post-apocalyptic bounty hunters targeting corporate criminals. The only shared concept is 'corporations,' but this is too generic and not load-bearing in both stories (an unrelated corporate news item would fit equally well). No underlying logic: cannot write a specific 'X under constraint Z drives Y' sentence that is literally true of both. The news involves corporate cost-cutting for efficiency; the film involves vigilante justice against corporate criminals—different causal engines.
+
+### Cart (2014) [THE-CAREGIVER, THE-EVERYMAN, THE-HERO, THE-OUTLAW, THE-SAGE] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 287647
+- **judge_score**: 1
+- **judge_resonance_type**: 表层沾边
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: 表层元素：两者共享'大规模裁员/解雇员工'这一具体、承重的事件元素，且在各自故事中均为核心驱动事件。底层逻辑：新闻中裁员是公司为AI转型而主动进行的战略重组；电影中裁员是雇主压迫性劳动政策的体现，引发工人抗议。两者背后的因果-利害引擎不同（战略转型 vs 劳资对抗），无法写出一个同时字面成立的'X在约束Z下驱动Y'句子。
+
+### The Plan (2018) [THE-EVERYMAN, THE-LOVER, THE-OUTLAW, THE-SAGE] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 619090
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: 'being fired' is too generic (fails 0-guard—any layoff news would fit). No shared causal engine: the news is about corporate AI-driven restructuring; the film is about unemployed friends planning a trip with a broken car. No 'X under constraint Z drives Y' sentence holds specifically for both.
+
+### The Conference (2023) [THE-EVERYMAN, THE-HERO, THE-INNOCENT, THE-LOVER] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 1161048
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about corporate layoffs in tech/AI, while the film is a slasher-horror set at a public sector retreat—no concrete, load-bearing overlap. No underlying logic: the news's causal engine (AI-driven restructuring forces workforce cuts) is unrelated to the film's engine (group discord amid a killer threat). The causal test fails: no 'X under constraint Z drives Y' sentence holds for both.
+
+### Mirreyes contra Godínez 2: El retiro (2022) [THE-EVERYMAN, THE-INNOCENT, THE-OUTLAW, THE-RULER] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 1002695
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared: news is about AI-driven layoffs at a tax-software company; film is about a corporate retreat to reunite a divided team. No underlying causal-stakes engine holds for both: the news's 'AI restructuring forces workforce cuts' logic does not match the film's 'corporate retreat forces team reconciliation' logic. The 0-guard applies: an unrelated corporate news item (e.g., merger, scandal) could pair with the film equally well.
+
+### The Factory (2018) [THE-EVERYMAN, THE-EXPLORER, THE-SAGE] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 513349
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: 'AI restructuring' and 'factory closure' are different industries/contexts; 'layoffs' alone fails the 0-guard (any corporate news fits). No underlying logic: cannot write a specific causal sentence true of both—Intuit's layoffs are strategic reinvention for AI, while The Factory's closure is owner-driven economic failure; the engines differ (corporate optimization vs. labor-vs-capital conflict).
+
+### Code 3 (2025) [THE-CAREGIVER, THE-HERO] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 1161617
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about corporate layoffs in tech/software, while the film is about paramedic work—no concrete, nameable load-bearing element shared. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence that is literally true of both (e.g., 'corporate restructuring forces workforce reduction' does not apply to a paramedic's last shift). The 0-guard applies: an unrelated news item about any corporate layoff could pair with this film equally well.
+
+### The Seventh Company Outdoors (1977) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-JESTER] [汇聚标注] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 56589
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element connects the news (corporate AI-driven layoffs) to the film (a 1977 French comedy about soldiers' misadventures). The abstract theme of 'restructuring' or 'disruption' fails the 0-guard, as it could apply to countless unrelated news items. No specific causal-stakes engine ('X under constraint Z drives Y') can be written that is literally true of both.
+
+### Camera Cafe: The Movie (2022) [THE-MAGICIAN, THE-SAGE] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 762823
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (Intuit's AI restructuring vs. a comedy about an incompetent director of a declining company). No specific causal-stakes engine holds for both: 'corporate restructuring drives workforce displacement' is too generic and would fit many unrelated news-film pairs.
+
+### Little Nothings (1992) [THE-MAGICIAN, THE-RULER] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 69896
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about tech layoffs for AI restructuring, while the film is about a new CEO's management style in a department store—no concrete, load-bearing shared element. No underlying logic: a causal sentence like 'A new leader, under pressure to improve performance, drives organizational change' would hold for almost any corporate news paired with this film, failing the logic 0-guard.
+
+### Blood Is Dry (1960) [THE-CAREGIVER] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 88442
+- **judge_score**: 2
+- **judge_resonance_type**: 强共振（表层 + 逻辑）
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: Corporate restructuring under financial/strategic pressure drives mass layoffs that disrupt employees' livelihoods and identities.
+- **rationale**: Both share the concrete surface element of corporate layoffs/restructuring. The underlying logic is identical: a company facing strategic pressure (AI transition in news, unspecified in film) implements layoffs that destabilize employees, with the company framing it as necessary reinvention. The causal engine holds for both.
+
+### The Second Tragic Fantozzi (1976) [THE-CAREGIVER] (02-corporate-layoff) · 不采信
+- **tmdb_id**: 37769
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared: the news is about corporate AI-driven layoffs at a specific tech company, while the film is a satirical comedy about a generic office worker's daily humiliations under bosses. The 'employee vs. corporate power' dynamic is an abstract power-role pairing that fails the 0-guard (any institutional news about layoffs could fit). No specific causal-stakes engine links them: the news's engine is 'strategic restructuring forces workforce elimination,' while the film's engine is 'hierarchical office culture forces absurd compliance' — these are different engines, and no single 'X under constraint Z drives Y' sentence is literally true of both without being trivially true of many unrelated pairings.
+
+### Machete (2010) [THE-CAREGIVER, THE-EXPLORER, THE-HERO, THE-INNOCENT, THE-JESTER, THE-LOVER, THE-MAGICIAN] (03-election-upset) · 不采信
+- **tmdb_id**: 23631
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: 'Texas Senator' is too generic and not load-bearing in the film (the assassination target is a plot device, not the core subject). No underlying logic: The news is about political renomination; the film is about revenge after betrayal. No single 'X under constraint Z drives Y' sentence holds for both without being trivially true of many unrelated news items paired with the same film.
+
+### Swing Vote (2008) [THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-EXPLORER, THE-MAGICIAN, THE-SAGE, THE-INNOCENT, THE-JESTER] [汇聚标注] (03-election-upset) · 不采信
+- **tmdb_id**: 10187
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about a Texas Senate primary runoff between two established politicians, while the film is about a single ordinary man deciding a presidential election. No underlying logic: the causal engine 'a single decisive vote determines an election outcome' does not apply to the news, where Paxton won by a large margin (64%) in a primary, not a single-vote scenario. The film's engine is too specific to the 'one vote' premise, which the news lacks.
+
+### Long Live Freedom (2013) [THE-EVERYMAN, THE-MAGICIAN, THE-OUTLAW, THE-SAGE] (03-election-upset) · 不采信
+- **tmdb_id**: 167221
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element (e.g., Texas politics, specific election type, or named figures) is shared. The abstract 'election upset' or 'political replacement' themes fail the 0-guard, as many unrelated news items could pair with the film. No specific causal engine (X under constraint Z drives Y) can be written that is literally true of both the Texas Senate runoff and the film's plot about a twin replacing a missing party leader.
+
+### The Independent (2022) [THE-CREATOR, THE-JESTER, THE-SAGE] (03-election-upset) · 不采信
+- **tmdb_id**: 878183
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element (Texas Senate race vs. presidential election; different offices, states, and political contexts). No shared causal-stakes engine: the news is about intra-party primary challenge dynamics, while the film is about election conspiracy investigation—no 'X under constraint Z drives Y' sentence holds for both without also holding for unrelated political news paired with the same film.
+
+### Lone Star (1952) [THE-INNOCENT, THE-CAREGIVER, THE-EXPLORER, THE-LOVER, THE-MAGICIAN, THE-EVERYMAN, THE-HERO, THE-SAGE] [汇聚标注] (03-election-upset) · 不采信
+- **tmdb_id**: 37593
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: 'Texas politics' is too broad and not load-bearing in the film (which is a 1950s Western about Texas independence). No underlying logic: cannot write a specific 'X under constraint Z drives Y' sentence true of both a modern Republican primary and a 19th-century independence struggle without it being trivially true of any political conflict paired with the film.
+
+### Gli onorevoli (1963) [THE-CREATOR, THE-EXPLORER, THE-HERO, THE-SAGE] (03-election-upset) · 不采信
+- **tmdb_id**: 64946
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (Texas Republican runoff vs. Italian election campaign). No specific causal-stakes engine holds for both: a sentence like 'political ambition under electoral constraint drives campaign tactics' would be true of any political news paired with any political film, failing the logic 0-guard.
+
+### Judge Archer (2016) [THE-CAREGIVER, THE-HERO, THE-OUTLAW] (03-election-upset) · 不采信
+- **tmdb_id**: 264518
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, nameable surface element is shared (e.g., Texas politics, Senate race, or specific political figures are not present in the film). The abstract theme of 'political power vs. personal ambition' is too broad and fails the 0-guard: an unrelated political news item could pair with the film equally well. No specific causal engine can be articulated that is literally true of both the news (a specific electoral upset) and the film (a martial arts allegory about power and ambition).
+
+### Game Change (2012) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-EXPLORER, THE-OUTLAW, THE-CREATOR, THE-SAGE, THE-JESTER, THE-CAREGIVER, THE-LOVER, THE-MAGICIAN] [汇聚标注] (03-election-upset) · 不采信
+- **tmdb_id**: 91010
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about a Texas Senate runoff between two established Republicans, while the film is about the 2008 presidential campaign's VP selection. No underlying logic: a causal sentence like 'A political establishment, under pressure to energize its base, selects an unconventional candidate who then creates strategic complications' does not hold for both—the news involves defeating an incumbent, not selecting a running mate, and the film's core is about a VP pick's inexperience, not a primary challenge.
+
+### The Distinguished Gentleman (1992) [THE-CAREGIVER, THE-INNOCENT] (03-election-upset) · 不采信
+- **tmdb_id**: 10411
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: the news is about a real Texas Senate primary upset; the film is a fictional comedy about a con man impersonating a dead Congressman. The shared 'election' or 'Congress' setting is too generic (fails 0-guard: any political news could pair with this film). No underlying logic: the news involves ideological realignment and party endorsement power; the film involves identity fraud and lobbyist corruption. No single 'X under constraint Z drives Y' sentence holds for both without being trivially true of any political story.
+
+### Avenging Force (1986) [THE-MAGICIAN, THE-OUTLAW] (03-election-upset) · 不采信
+- **tmdb_id**: 52657
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (news: political primary election; film: paramilitary assassination plot). No shared causal-stakes engine: news is about intra-party electoral competition aided by presidential endorsement; film is about paramilitary violence against a senator. Any causal sentence would be too generic (e.g., 'political figures face threats') and would pass the logic 0-guard for unrelated news.
+
+### The Campaign (2012) [THE-CREATOR, THE-MAGICIAN, THE-SAGE, THE-JESTER, THE-HERO] [汇聚标注] (03-election-upset) · 不采信
+- **tmdb_id**: 77953
+- **judge_score**: 1
+- **judge_resonance_type**: 表层沾边
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: Both share the surface element of a competitive political election (表层元素: 有). However, the underlying logic differs: the news involves an incumbent's defeat driven by presidential endorsement and party realignment, while the film is a satirical farce about absurd campaign tactics. No single 'X under constraint Z drives Y' sentence holds for both without being trivially true of any political news-film pair (e.g., 'ambition under electoral rules drives competition' would apply to any election story paired with any election film, failing the logic 0-guard).
+
+### Chappaquiddick (2018) [THE-JESTER, THE-LOVER] (03-election-upset) · 不采信
+- **tmdb_id**: 432301
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete surface element (Texas politics vs. 1969 Massachusetts scandal). No shared causal engine: Paxton's win is about ideological realignment and presidential endorsement; Chappaquiddick is about personal scandal derailing a political career. The causal test sentence would be too generic (e.g., 'political ambition under public scrutiny drives career consequences') and would apply to unrelated news-film pairs.
+
+### Days of '36 (1972) [THE-OUTLAW] (03-election-upset) · 不采信
+- **tmdb_id**: 114645
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves a Republican primary election in Texas, while the film involves a hostage crisis in Greece. No underlying logic: the news is about intra-party electoral competition aided by presidential endorsement, while the film is about political hostage-taking causing government disarray. The causal engines differ fundamentally—one is democratic electoral politics, the other is political violence and state crisis.
+
+### Scandal (1950) [THE-CREATOR, THE-EVERYMAN, THE-INNOCENT, THE-LOVER, THE-MAGICIAN, THE-OUTLAW] (04-celebrity-scandal) · 不采信
+- **tmdb_id**: 32690
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: the news involves AI-fabricated claims about a Korean actor, while the film involves a photograph and court case about a painter and singer—these are distinct concrete elements. No underlying logic: a causal sentence like 'media manipulation under financial incentive drives public scandal' would hold for many unrelated news-film pairs, failing the logic 0-guard.
+
+### Prophecy (2015) [THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-RULER, THE-SAGE, THE-JESTER, THE-HERO, THE-INNOCENT] [汇聚标注] (04-celebrity-scandal) · 不采信
+- **tmdb_id**: 347483
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: the news involves AI-fabricated celebrity scandal for financial gain, while the film involves cyber crime investigation of violent threat videos posted by a dismissed IT worker. The shared 'online platform' element is too generic (fails 0-guard). No underlying logic: cannot write a specific 'X under constraint Z drives Y' sentence true of both without it being trivially true of unrelated news-film pairs.
+
+### I Like Mountain Music (1933) [THE-INNOCENT, THE-JESTER, THE-OUTLAW] (04-celebrity-scandal) · 不采信
+- **tmdb_id**: 151913
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No shared load-bearing surface element: news involves AI-fabricated celebrity scandal; film is a 1933 cartoon with magazine covers coming to life. No shared causal engine: news is about misinformation for profit; film is a whimsical animated variety show. Any causal sentence would be too generic (e.g., 'celebrity culture drives public spectacle') and would fail the logic 0-guard.
+
+### The Green Hornet (1940) [THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-LOVER, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-JESTER] [汇聚标注] (04-celebrity-scandal) · 不采信
+- **tmdb_id**: 250332
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves AI-fabricated celebrity scandal and social media manipulation, while the film is a 1940s masked vigilante crime-fighting story. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both that wouldn't also apply to unrelated news paired with the film.
+
+### Master (2016) [THE-INNOCENT, THE-HERO, THE-CAREGIVER, THE-OUTLAW, THE-RULER, THE-MAGICIAN, THE-JESTER, THE-CREATOR, THE-EXPLORER, THE-SAGE] [汇聚标注] (04-celebrity-scandal) · 不采信
+- **tmdb_id**: 382220
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves AI-fabricated celebrity defamation for financial gain, while the film depicts a network marketing scam and systemic corruption. No shared concrete, load-bearing element (e.g., AI, defamation, celebrity, or network marketing). No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both that isn't generic (e.g., 'deception under financial pressure drives harm' would apply to many unrelated news-film pairs, failing the logic 0-guard).
+
+### Panama (2015) [THE-INNOCENT, THE-LOVER] (04-celebrity-scandal) · 不采信
+- **tmdb_id**: 336200
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (AI fabrication vs. digital communication/pornography are too broad; celebrity scandal vs. thriller about love are different subjects). No specific causal-stakes engine holds for both: 'Digital tools enable exploitation for gain' would also apply to countless unrelated news-film pairs, failing the logic 0-guard.
+
+### U Turn (2016) [THE-EVERYMAN, THE-JESTER] (04-celebrity-scandal) · 不采信
+- **tmdb_id**: 397490
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element (0-guard: an unrelated news item about any scandal could pair with this film). No shared causal-stakes engine (cannot write a specific 'X under constraint Z drives Y' sentence true of both; any such sentence would be too generic and pass the logic 0-guard).
+
+### Diamantino (2018) [THE-LOVER, THE-MAGICIAN] (04-celebrity-scandal) · 不采信
+- **tmdb_id**: 518495
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (AI fabrication vs. soccer/celebrity exploitation). No specific causal-stakes engine holds for both: the news involves deliberate misinformation for profit, while the film involves naive celebrity exploitation by various causes. Any causal sentence (e.g., 'celebrity status under public scrutiny drives exploitation') would be too generic and apply to unrelated news-film pairs.
+
+### One Way (2006) [THE-LOVER, THE-SAGE] (04-celebrity-scandal) · 不采信
+- **tmdb_id**: 7298
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element (0-guard: an unrelated celebrity scandal news item could pair equally well with this film about an advertiser covering up infidelity). No underlying causal engine: the news involves AI-fabricated claims for financial gain, while the film involves a false alibi to protect a marriage—different motivations, constraints, and stakes. Cannot write a single 'X under constraint Z drives Y' sentence true of both without it being generic (e.g., 'deception to protect reputation drives consequences' would apply to many unrelated pairs).
+
+### Peligro en tu mirada (2021) [THE-EVERYMAN, THE-EXPLORER, THE-LOVER, THE-CREATOR] [汇聚标注] (04-celebrity-scandal) · 不采信
+- **tmdb_id**: 841297
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element connects the news (AI-fabricated celebrity scandal) and film (photographer coerced into political espionage). The abstract themes of 'false accusations' and 'witnessing' fail the 0-guard as they could apply to many unrelated news-film pairs. No specific causal engine (X under constraint Z drives Y) holds for both without being overly generic.
+
+### Bloat (2025) [THE-CAREGIVER, THE-INNOCENT, THE-LOVER] (05-climate-disaster) · 不采信
+- **tmdb_id**: 937393
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves real-world flooding and drowning in Syria, while the film is a supernatural horror about demonic possession after a drowning accident—these are not load-bearing shared elements (an unrelated news item about any natural disaster could pair with the film). No underlying logic: no 'X under constraint Z drives Y' sentence holds for both; the news is about natural disaster response, the film is about supernatural evil destroying a family.
+
+### Poem of the Sea (1958) [THE-MAGICIAN, THE-EXPLORER, THE-OUTLAW] [汇聚标注] (05-climate-disaster) · 不采信
+- **tmdb_id**: 257637
+- **judge_score**: 2
+- **judge_resonance_type**: 强共振（表层 + 逻辑）
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: Large-scale water infrastructure projects (dams, reservoirs, flood control) under the constraint of managing powerful rivers drive displacement, conflict, and human tragedy for local communities.
+- **rationale**: Surface: Both involve Euphrates/river flooding and dam/reservoir operations as central, load-bearing elements. Logic: Both stories are driven by the same engine—human attempts to control large water systems (dam construction, flood management) under the constraint of powerful rivers create displacement, conflict, and tragedy for affected communities. The causal test holds specifically for this pair.
+
+### Flood (2007) [THE-LOVER, THE-CAREGIVER, THE-CREATOR, THE-MAGICIAN] [汇聚标注] (05-climate-disaster) · 不采信
+- **tmdb_id**: 6309
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves river flooding in Syria, while the film involves tidal surge in London—different water sources, geographies, and contexts. No underlying logic: a causal sentence like 'extreme water volume under infrastructure limits drives catastrophic urban inundation' could apply to many unrelated flood scenarios, failing the logic 0-guard.
+
+### Disaster Wars: Earthquake vs. Tsunami (2013) [THE-HERO, THE-RULER] (05-climate-disaster) · 不采信
+- **tmdb_id**: 289214
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves Euphrates flooding from heavy rains/dam operations, while the film involves a tsunami/earthquake in the Pacific—different geographic settings, water types, and disaster mechanisms. No underlying logic: the causal engine 'natural disaster forces emergency response and evacuation' is too generic and would hold for any unrelated disaster news paired with the film, failing the logic 0-guard.
+
+### The Sweet Hereafter (1997) [THE-EXPLORER, THE-LOVER] (05-climate-disaster) · 不采信
+- **tmdb_id**: 10217
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: the news involves a natural flood disaster in Syria, while the film involves a school bus accident in a Canadian mountain town. The shared 'children dying' is too abstract and fails the 0-guard (any tragedy involving children could match). No underlying logic: a causal sentence like 'A sudden catastrophic event, under the constraint of community vulnerability, drives collective trauma and legal/social fragmentation' could be written, but it would remain true for many unrelated disaster/tragedy news items paired with the same film, failing the logic 0-guard.
+
+### The Storm (2009) [THE-CAREGIVER, THE-EXPLORER] (05-climate-disaster) · 不采信
+- **tmdb_id**: 29602
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: 'flood' is too generic (fails 0-guard). No specific causal engine: 'natural disaster forces separation/survival' is too broad and would fit many unrelated disaster news items with the same film.
+
+### Global Meltdown (2017) [THE-HERO, THE-OUTLAW] (05-climate-disaster) · 不采信
+- **tmdb_id**: 514690
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves river flooding in Syria, while the film involves global tectonic collapse—no concrete, load-bearing shared element. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both; the news is about localized flood management, while the film is about global survival exodus after crustal breakup. Any causal sentence would be too generic (e.g., 'disaster forces evacuation') and would pass the logic 0-guard for unrelated disaster news paired with the film.
+
+### Malibu Shark Attack (2009) [THE-RULER] (05-climate-disaster) · 不采信
+- **tmdb_id**: 53080
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (Syrian flood vs. Malibu tsunami/sharks). No specific causal-stakes engine holds for both: 'Natural disaster forces evacuation and survival' is too generic and would fit many unrelated news-film pairs, failing the logic 0-guard.
+
+### The Cop (1970) [THE-CAREGIVER, THE-CREATOR, THE-EXPLORER, THE-SAGE] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 94376
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (EU regulatory action vs. 1970s French drug enforcement). No causal-stakes engine holds for both: the news involves institutional penalty for market dominance abuse, while the film involves individual vigilante action against criminals. Any proposed 'X under constraint Z drives Y' sentence either fails the bidirectional test or would apply to unrelated news-film pairs.
+
+### The Floorwalker (1916) [THE-EVERYMAN, THE-HERO, THE-OUTLAW, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-INNOCENT] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 53416
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element connects EU antitrust action against Google's search self-preferencing to a 1916 slapstick comedy about a chaotic department store heist. The abstract 'authority vs. rule-breaker' pairing fails the 0-guard (unrelated institutional news could match the film equally well). No specific causal-stakes engine ('X under constraint Z drives Y') holds for both sides without collapsing into generic conflict narratives.
+
+### Gabbar Is Back (2015) [THE-CAREGIVER, THE-EVERYMAN, THE-OUTLAW] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 337876
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete shared surface element (EU antitrust enforcement vs. Indian vigilante action). No shared causal engine: the news is about regulatory punishment of market self-preferencing, while the film is about extrajudicial violence against corruption. Any plausible 'X under constraint Z drives Y' sentence (e.g., 'powerful entity abusing position drives institutional response') would also hold for countless unrelated news-film pairings, failing the logic 0-guard.
+
+### To Skin a Spy (1966) [THE-EXPLORER, THE-SAGE] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 82098
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news concerns EU antitrust regulation of Google's search practices, while the film is a Cold War spy thriller in Vienna—no concrete, load-bearing element (place, occupation, event type, setting) is shared. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both; the news involves regulatory enforcement against market dominance, the film involves espionage and security leaks—different causal engines. An unrelated news item (e.g., about corporate fraud) could pair with the film equally well, failing both 0-guards.
+
+### Taxi 4 (2007) [THE-EXPLORER, THE-SAGE] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 2335
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (EU regulatory action vs. French police comedy). No underlying causal-stakes engine holds for both: the news involves institutional enforcement of competition law against self-preferencing, while the film involves a criminal deceiving incompetent police—these are fundamentally different dynamics with no shared 'X under constraint Z drives Y' that wouldn't also apply to unrelated news.
+
+### Chicken and Duck Talk (1988) [THE-RULER, THE-EXPLORER, THE-HERO] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 47291
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, nameable surface element is shared (EU regulatory action vs. Hong Kong fast-food satire). No underlying causal engine holds: the news involves institutional antitrust enforcement against self-preferencing, while the film depicts conglomerates crushing independents—these are different mechanisms (regulatory penalty vs. market predation). The abstract 'big entity vs. small competitor' pairing fails the 0-guard (any corporate dominance story would fit the film equally well).
+
+### Capital (2012) [THE-CREATOR, THE-RULER] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 121793
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (EU regulatory action vs. corporate takeover battle). No specific causal-stakes engine holds for both: 'A dominant entity under competitive pressure uses its position to maintain control' is too generic and would apply to many unrelated news-film pairs.
+
+### Your Lucky Day (2023) [THE-JESTER, THE-LOVER] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 923993
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete surface element connects EU antitrust enforcement against Google's self-preferencing to a hostage situation over a lottery ticket. No causal-stakes engine can be written that is literally true of both: the news involves regulatory punishment for market dominance abuse, while the film involves interpersonal violence over sudden wealth. An unrelated corporate fine news item would pair equally poorly with the film.
+
+### Speaking of Murder (1957) [THE-JESTER] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 58926
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element connects EU antitrust enforcement against Google's search self-preferencing to a 1957 film about a Paris garage owner running a robbery gang. The abstract 'authority vs. rule-breaker' pairing fails the 0-guard (any regulatory news could match). No specific causal engine (e.g., 'systemic market dominance forces anti-competitive behavior') is uniquely shared; the film's logic is about maintaining a criminal front under threat of betrayal, not regulatory pressure on a dominant platform.
+
+### Special Section (1975) [THE-SAGE] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 79921
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete surface element connects EU antitrust enforcement against Google to a Vichy France show trial. No causal-stakes engine holds for both: the news involves regulatory punishment of market dominance, while the film involves authoritarian coercion to manufacture judicial legitimacy. Any plausible 'X under constraint Z drives Y' sentence (e.g., 'powerful authority under political pressure forces institutional compliance') would be too generic and pass the logic 0-guard, fitting unrelated news paired with the same film.
+
+### Stolen: Heist of the Century (2025) [THE-JESTER] (06-tech-monopoly) · 不采信
+- **tmdb_id**: 1513598
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: news is about EU regulatory fine on Google's search self-preferencing; film is about diamond heist in Antwerp. No shared concrete, load-bearing element. No underlying logic: cannot write a single 'X under constraint Z drives Y' sentence true of both. The causal engines are fundamentally different (regulatory enforcement vs. criminal heist planning).
+
+### Transpecos (2016) [THE-CAREGIVER, THE-CREATOR, THE-EVERYMAN, THE-EXPLORER, THE-HERO, THE-INNOCENT, THE-JESTER, THE-LOVER, THE-MAGICIAN, THE-OUTLAW, THE-RULER, THE-SAGE] (07-migration-border) · 不采信
+- **tmdb_id**: 381018
+- **judge_score**: 2
+- **judge_resonance_type**: 强共振（表层 + 逻辑）
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: Border enforcement personnel, under the constraint of a dangerous and morally ambiguous border environment, are driven to confront threats that emerge from within their own institutional structures.
+- **rationale**: 表层元素：新闻与电影共享'美国边境巡逻'这一具体、负载性的职业与场景。底层逻辑：两者均呈现边境执法人员在制度性压力与道德模糊地带下，被迫面对来自系统内部的威胁（新闻中政策僵局与季节性压力，电影中内部阴谋），构成相同的因果-利害引擎。
+
+### Open the Wall (2014) [THE-EVERYMAN, THE-CAREGIVER, THE-CREATOR, THE-EXPLORER, THE-HERO, THE-JESTER, THE-LOVER, THE-RULER] [汇聚标注] (07-migration-border) · 不采信
+- **tmdb_id**: 301633
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about U.S.-Mexico border enforcement and seasonal migration patterns; the film is about the Berlin Wall's opening at a specific crossing. These are different borders, different eras, different contexts. No underlying logic: a causal sentence like 'political deadlock under institutional constraint drives enforcement rigidity' could apply to many unrelated policy news items paired with the same film, failing the logic 0-guard.
+
+### Sleep Dealer (2008) [THE-EVERYMAN, THE-EXPLORER, THE-INNOCENT, THE-LOVER] (07-migration-border) · 不采信
+- **tmdb_id**: 20764
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: the news is about real-world U.S. border enforcement and seasonal migration patterns, while the film is a speculative fiction about virtual labor and mind-connection technology. The shared 'border' concept is too abstract and fails the 0-guard—any border-related news could pair with this film. No underlying logic: the causal engine 'hardened enforcement under political deadlock drives seasonal migration fluctuations' is not true of the film's world, where borders are closed but the conflict is about technological exploitation and human connection, not enforcement policy cycles.
+
+### Union Pacific (1939) [THE-INNOCENT, THE-JESTER] (07-migration-border) · 不采信
+- **tmdb_id**: 43837
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element connects border enforcement to 19th-century railroad construction. No causal-stakes engine ('X under constraint Z drives Y') holds for both: the news is about seasonal migration patterns under policy enforcement, while the film is about industrial expansion and sabotage. Any plausible causal sentence (e.g., 'ambitious projects face obstruction') would be too generic and pass the logic 0-guard for unrelated news.
+
+### Colosio (2012) [THE-INNOCENT, THE-RULER] (07-migration-border) · 不采信
+- **tmdb_id**: 151708
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: the news is about U.S.-Mexico border enforcement and migration statistics; the film is about a 1994 Mexican political assassination and conspiracy. No shared concrete anchor (place, event type, occupation) that is load-bearing in both. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both without it being so generic it would fit unrelated news items paired with the film.
+
+### Broken Horses (2015) [THE-HERO, THE-RULER] (07-migration-border) · 不采信
+- **tmdb_id**: 319910
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (border setting is too generic and fails 0-guard). No specific causal-stakes engine invariant under POV/scale change that holds for both news and film without also holding for unrelated border news.
+
+### If It's Tuesday, This Must Be Belgium (1969) [THE-CAREGIVER, THE-EVERYMAN] (07-migration-border) · 不采信
+- **tmdb_id**: 11643
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about border enforcement and migration patterns, while the film is a comedic travel tour through Europe. No underlying logic: cannot construct a 'X under constraint Z drives Y' sentence that is literally true of both a border enforcement policy analysis and a lighthearted group travel comedy.
+
+### Absolute Zero (2006) [THE-EVERYMAN, THE-EXPLORER] (07-migration-border) · 不采信
+- **tmdb_id**: 25012
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: 'border apprehensions' and 'climate catastrophe' share no concrete, load-bearing anchor. No underlying logic: cannot write a causal sentence true of both—news is about policy/weather-driven migration patterns, film is about survival against sudden climate collapse; any such sentence would be too generic (e.g., 'environmental forces drive human movement') and would pass the logic 0-guard for unrelated news.
+
+### The Ice Storm (1997) [THE-MAGICIAN, THE-SAGE] (07-migration-border) · 不采信
+- **tmdb_id**: 68924
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element connects the news (border enforcement, migration) to the film (suburban family crisis, ice storm). The abstract 'external force disrupts a system' logic fails the 0-guard, as it would apply to countless unrelated news-film pairs.
+
+### Blood Glacier (2013) [THE-MAGICIAN, THE-SAGE] (07-migration-border) · 不采信
+- **tmdb_id**: 210913
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: news is about border enforcement and migration patterns; film is about a glacier mutating wildlife. No underlying logic: cannot write a single 'X under constraint Z drives Y' sentence true of both without it being trivially true of unrelated news-film pairs (e.g., 'environmental change drives unexpected consequences' would fit many unrelated news items with this film).
+
+### Sicario (2015) [THE-CAREGIVER, THE-RULER, THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-MAGICIAN, THE-SAGE, THE-JESTER] [汇聚标注] (07-migration-border) · 不采信
+- **tmdb_id**: 273481
+- **judge_score**: 1
+- **judge_resonance_type**: 表层沾边
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: 表层元素：两者共享'美墨边境执法'这一具体、负载性的场景/主题，新闻中的边境巡逻与电影中的缉毒战争均以此为核心背景，满足表层元素要求。底层逻辑：无法写出一个同时适用于新闻（季节性移民潮与政策僵局）和电影（FBI探员卷入缉毒战争）的'X在Z约束下驱动Y'的因果引擎句子。新闻关注的是移民数据波动与政治僵局，电影关注的是执法行动中的道德困境与暴力升级，两者因果逻辑不同。
+
+### Trade (2007) [THE-OUTLAW] (07-migration-border) · 不采信
+- **tmdb_id**: 4170
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about border enforcement statistics and policy deadlock, while the film is about human trafficking and forced prostitution—different concrete subjects. No underlying logic: cannot write a single 'X under constraint Z drives Y' sentence that is literally true of both; the news's seasonal migration patterns and enforcement dynamics do not share a causal engine with the film's narrative of abduction and exploitation.
+
+### The Life and Times of Judge Roy Bean (1972) [THE-JESTER] (07-migration-border) · 不采信
+- **tmdb_id**: 33638
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: the news concerns modern border enforcement and seasonal migration patterns, while the film is a Western about a self-appointed frontier judge. The abstract pairing of 'authority enforcing rules in a border region' fails the 0-guard (any law enforcement news could match). No specific causal engine links them.
+
+### Danger Close: The Battle of Long Tan (2019) [THE-HERO] (07-migration-border) · 不采信
+- **tmdb_id**: 508664
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: news is about border enforcement/migration; film is about Vietnam War combat. No shared concrete, load-bearing element. No underlying logic: cannot write a causal sentence true of both (e.g., 'seasonal weather under enforcement pressure drives migration surges' vs. 'enemy numerical superiority under jungle terrain drives tactical desperation').
+
+### Stranded (2021) [THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-EXPLORER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-RULER, THE-MAGICIAN, THE-SAGE, THE-JESTER] [汇聚标注] (07-migration-border) · 不采信
+- **tmdb_id**: 841793
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element (e.g., island, influencers, border, migration) is shared. No specific causal-stakes engine ('X under constraint Z drives Y') can be written that is literally true of both the news (seasonal migration vs. enforcement) and the film (influencers stranded on an island).
+
+### Three Seconds (2017) [THE-EVERYMAN, THE-LOVER, THE-MAGICIAN, THE-OUTLAW] (08-sports-underdog) · 不采信
+- **tmdb_id**: 444218
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element (0-guard: an unrelated sports upset news could pair with this film equally well). No specific causal-stakes engine (logic 0-guard: 'underdog team overcomes favored opponent' is too generic and would hold for many unrelated news-film pairs).
+
+### One Piece: Dream Soccer King! (2002) [THE-INNOCENT, THE-MAGICIAN, THE-OUTLAW] (08-sports-underdog) · 不采信
+- **tmdb_id**: 464198
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: 'sports playoff/final' is too generic (0-guard fails). No specific causal engine: 'underdog team defeats favored opponent' is too broad and would fit many unrelated news-film pairs (logic 0-guard fails).
+
+### In Which We Serve (1942) [THE-CAREGIVER, THE-HERO] (08-sports-underdog) · 不采信
+- **tmdb_id**: 28093
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, nameable surface element is load-bearing in both stories (hockey vs. WWII naval warfare). No causal-stakes engine can be written that is literally true of both: the news involves a sports team overcoming injuries and coaching changes to upset favorites, while the film depicts a warship's crew maintaining loyalty and self-sacrifice through combat and sinking. Any proposed 'X under constraint Z drives Y' sentence would be too generic (e.g., 'leadership under pressure drives team cohesion') and would fail the logic 0-guard, as it would hold for many unrelated news-film pairs.
+
+### By the Law (1926) [THE-HERO, THE-LOVER] (08-sports-underdog) · 不采信
+- **tmdb_id**: 126644
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (hockey vs. Yukon gold prospecting). No causal-stakes engine holds for both: the news involves a team overcoming favorites through coaching changes and opponent injuries, while the film involves individuals maintaining law/order in isolation. Any proposed 'X under constraint Z drives Y' sentence (e.g., 'underdogs overcome adversity') would be too generic and pass the logic 0-guard for unrelated news-film pairs.
+
+### Hoosiers (1986) [THE-OUTLAW, THE-CAREGIVER, THE-EVERYMAN] [汇聚标注] (08-sports-underdog) · 不采信
+- **tmdb_id**: 5693
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (hockey vs. basketball, professional vs. high school, different sports/levels). No specific causal-stakes engine holds for both: 'underdog team overcomes adversity' is too generic and would fit many unrelated news-film pairs, failing the logic 0-guard.
+
+### The Wild Soccer Bunch 2 (2005) [THE-CREATOR, THE-INNOCENT] (08-sports-underdog) · 不采信
+- **tmdb_id**: 8344
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element (e.g., hockey vs. soccer, specific team/league). No shared causal-stakes engine: the news is about an underdog team overcoming injuries and coaching changes to upset a favorite; the film is about a team needing to recover a specific player to avoid dissolution. A sentence like 'A team, under the constraint of losing a key player, must overcome adversity to win' is too generic and would hold for many unrelated sports stories paired with the film, failing the logic 0-guard.
+
+### Don't Leave Home (2018) [THE-MAGICIAN, THE-SAGE, THE-CAREGIVER, THE-CREATOR, THE-EXPLORER, THE-HERO] [汇聚标注] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 502167
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element connects the news (casting controversy over a mythic epic) and the film (an artist investigating an urban legend at an Irish estate). The abstract theme of 'obsession with a story's origins' is too broad and fails the 0-guard. No specific causal-stakes engine is shared.
+
+### Venus in Fur (2013) [THE-EVERYMAN, THE-EXPLORER, THE-INNOCENT, THE-MAGICIAN] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 197082
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (casting controversy vs. audition power play). No causal-stakes engine invariant under POV/scale shift: the news is about cultural gatekeeping in adaptation, the film is about gender dynamics in artistic audition—any 'X under constraint Z drives Y' sentence would be too generic (e.g., 'power dynamics under artistic ambition drive conflict') and would hold for unrelated news-film pairs, failing the logic 0-guard.
+
+### W's Tragedy (1984) [THE-EVERYMAN, THE-INNOCENT] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 326598
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete surface element connects the news (casting controversy in a mythic epic) to the film (a theatre actress's personal career struggles). The news involves cultural identity debates around classical adaptation, while the film focuses on individual artistic sacrifice. No 'X under constraint Z drives Y' sentence can be written that is literally true of both without being generic enough to apply to unrelated news-film pairs (e.g., 'ambition under professional pressure drives personal sacrifice' would fit many unrelated stories).
+
+### Breakdown: 1975 (2025) [THE-EVERYMAN, THE-JESTER, THE-RULER] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 1584125
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (casting controversy vs. 1975 filmmaking). No specific causal-stakes engine holds for both: 'cultural gatekeeping drives backlash' would also apply to many unrelated news items paired with the same film.
+
+### Ben-Hur (1959) [THE-EXPLORER, THE-MAGICIAN, THE-OUTLAW] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 665
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about casting controversy in a modern film production, while Ben-Hur is an ancient epic about Roman occupation—no concrete, nameable load-bearing element is shared. No underlying logic: any causal-stakes sentence (e.g., 'cultural representation under ideological pressure drives conflict') would be too generic and could apply to many unrelated news-film pairs, failing the logic 0-guard.
+
+### L'Odissea (1911) [THE-CREATOR, THE-EXPLORER, THE-MAGICIAN] [汇聚标注] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 194224
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: both involve Homer's Odyssey adaptations, but the news's load-bearing element is casting controversy over racial identity, while the 1911 film is a straightforward adaptation without that element. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both (the news's engine is 'diverse casting under cultural gatekeeping drives identity debates'; the film's engine is 'mythic narrative under cinematic adaptation drives storytelling'). The Odyssey setting alone fails the 0-guard.
+
+### Phantom of the Opera (1943) [THE-CAREGIVER, THE-JESTER] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 15855
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (Helen of Troy casting controversy vs. disfigured phantom in opera). No shared causal-stakes engine: the news involves cultural gatekeeping over classical narratives, while the film involves personal obsession and revenge in artistic production. Any 'X under constraint Z drives Y' sentence would be too generic (e.g., 'obsession drives destructive action') and would pass the logic 0-guard for unrelated news-film pairs.
+
+### Panama (2015) [THE-LOVER, THE-SAGE] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 336200
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news concerns casting controversy in a mythic epic adaptation, while the film concerns digital-age emotional obstruction—no concrete shared anchor. No underlying logic: no 'X under constraint Z drives Y' sentence holds for both; the news's engine (identity politics in cultural gatekeeping) is unrelated to the film's engine (technology distorting intimacy).
+
+### Apolonia, Apolonia (2023) [THE-CREATOR, THE-EXPLORER, THE-OUTLAW] [汇聚标注] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 1047128
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (casting controversy vs. documentary portrait of an artist). No causal-stakes engine holds for both: the news involves cultural gatekeeping over classical adaptation casting, while the film is a personal documentary about artistic life and female bonding. Any proposed 'X under constraint Z drives Y' sentence would be too generic or fail the logic 0-guard.
+
+### William Tell (2025) [THE-EXPLORER, THE-OUTLAW] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 1195631
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about casting controversy in a mythic epic adaptation, while the film is a historical resistance narrative. No underlying logic: the causal engine 'ethnic/racial identity conflict drives cultural gatekeeping' does not hold for the film, which is about political oppression and national resistance, not identity-based casting disputes. The logic 0-guard fails because the causal sentence would not be literally true of both.
+
+### Jesus of Montreal (1989) [THE-CREATOR, THE-HERO] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 4486
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, nameable surface element is load-bearing in both stories. The news involves casting controversy in a mythic epic adaptation; the film involves a modern Passion Play production facing church opposition. While both involve theatrical productions of classical/mythic material, this is too generic to be load-bearing (0-guard: an unrelated news item about any theatrical adaptation could pair equally well). No specific causal-stakes engine can be written that is literally true of both without being trivially broad.
+
+### Just a Little Chemistry (2015) [THE-LOVER] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 277387
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news concerns casting controversy in a mythic epic, while the film is a romantic comedy about a fan's love triangle—no concrete, load-bearing element (place, occupation, event type, setting) is shared. No underlying logic: no 'X under constraint Z drives Y' sentence holds for both; the news's engine (identity politics in cultural representation) is unrelated to the film's engine (personal romantic indecision).
+
+### At the Cinema Show (1912) [THE-RULER] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 347148
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No load-bearing surface element: the news concerns casting controversy in a mythic epic, while the film is a silent-era comedy about mistaken identity in a cinema. No shared causal engine: the news's 'diverse casting in classical stories sparks identity debates' cannot be mapped to the film's 'romantic pursuit leads to accidental same-sex encounter' without being trivially true of many unrelated pairs.
+
+### Be Somebody (2021) [THE-RULER] (09-cultural-backlash) · 不采信
+- **tmdb_id**: 895435
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about casting controversy in a mythic epic adaptation, while the film is a murder mystery set in Republican-era Shanghai film industry. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both that isn't trivially true of any unrelated news-film pair.
+
+### Gabbar Is Back (2015) [THE-CAREGIVER, THE-INNOCENT, THE-LOVER, THE-MAGICIAN, THE-RULER, THE-EVERYMAN, THE-HERO, THE-EXPLORER, THE-OUTLAW, THE-CREATOR, THE-SAGE, THE-JESTER] [汇聚标注] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 337876
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (exam paper leak vs. vigilante targeting corrupt officials). No specific causal-stakes engine holds for both: 'Whistleblower exposure forces institutional accountability' would also fit many unrelated news items paired with the film.
+
+### Test (2006) [THE-CAREGIVER, THE-RULER, THE-SAGE] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 887697
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (exam leak vs. unspecified 'Test' film). No causal-stakes engine can be written that holds for both sides without also holding for unrelated news-film pairs.
+
+### Discount (2014) [THE-CAREGIVER, THE-CREATOR, THE-MAGICIAN] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 313055
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, nameable surface element connects a leaked exam paper scandal to supermarket workers creating a discount outlet. The underlying logics differ: the news involves institutional corruption and exam integrity, while the film involves labor resistance and resource salvage. No 'X under constraint Z drives Y' sentence holds for both without being generic enough to apply to unrelated news.
+
+### Black Dossier (1955) [THE-OUTLAW, THE-SAGE] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 199252
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves exam paper leaks and institutional testing, while the film involves a judge investigating a suspicious death in a provincial town—no concrete, load-bearing element is shared. No underlying logic: a causal sentence like 'A whistleblower's tip under institutional pressure drives exposure of corruption' could apply to many unrelated news-film pairs, failing the logic 0-guard.
+
+### Le Brio (2017) [THE-EVERYMAN, THE-LOVER] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 452187
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete, load-bearing surface element shared (exam leak vs. academic mentorship/speech contest). No causal-stakes engine invariant under POV/scale change that holds for both.
+
+### I Flunked, But... (1930) [THE-HERO, THE-INNOCENT] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 88269
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves institutional exam fraud at a national testing agency, while the film depicts student cheating on college finals—different scales and contexts. No underlying logic: a causal sentence like 'institutional corruption under pressure to maintain standards drives systemic fraud' fits the news but not the film, where the engine is 'student desperation under academic pressure drives individual cheating attempts.' The logic 0-guard fails because the causal test for the news would not hold for the film.
+
+### The Last Judgment (1961) [THE-INNOCENT, THE-JESTER] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 58185
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news is about an exam paper leak and whistleblower in India, while the film is about divine judgment in Naples—no concrete, load-bearing element connects them. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both; the news's engine (whistleblower exposure forces institutional accountability) differs fundamentally from the film's engine (imminent divine judgment forces existential reckoning).
+
+### Attitude Test (2016) [THE-CREATOR, THE-JESTER] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 427557
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves a real exam leak with institutional consequences, while the film is a fictional comedy about stealing an exam for personal gain—these are different contexts. No underlying logic: a causal sentence like 'A compromised high-stakes exam, under pressure to maintain fairness, forces institutional intervention' holds for the news but not the film (the film's logic is about accidental loss and comedic consequences, not systemic integrity). The 0-guard applies: an unrelated news item about exam fraud would pair equally well with the film.
+
+### The Gracefield Incident (2017) [THE-INNOCENT, THE-MAGICIAN, THE-EXPLORER] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 327253
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news concerns an Indian exam leak scandal; the film concerns a CIA paranormal incident in Quebec. No underlying logic: cannot write a 'X under constraint Z drives Y' sentence true of both without it being trivially true of unrelated pairs (e.g., 'institutional secrecy under external pressure drives disclosure' would fit many unrelated news items paired with the same film).
+
+### Lie Detector (2011) [THE-EXPLORER] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 375384
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No surface element: the news involves exam paper leaks and institutional corruption, while the film is about a job interview with a lie detector. No underlying logic: the news's engine is 'whistleblower exposure forces institutional accountability for systemic cheating,' while the film's is 'technological truth-telling reveals personal secrets in a social setting.' These are fundamentally different causal-stakes engines.
+
+### Por Thozhil (2023) [THE-LOVER] (10-whistleblower-leak) · 不采信
+- **tmdb_id**: 1115239
+- **judge_score**: 0
+- **judge_resonance_type**: 
+- **judge_pov_transform**: 
+- **human_score**: 
+- **human_resonance_type**: 
+- **human_pov_transform**: 
+- **causal_test**: 
+- **rationale**: No concrete surface element shared (exam leak vs. serial murder investigation). No underlying causal engine: the news involves institutional corruption and whistleblowing in education, while the film is a police procedural about a serial killer. Any causal sentence would be too generic (e.g., 'investigation under pressure drives truth') and would pass the logic 0-guard for unrelated news-film pairs.

@@ -49,6 +49,17 @@ def _resolve_path(path: str | Path | None, *, default: Path) -> Path:
     return resolved
 
 
+def _artifact_source_path(path: Path) -> str:
+    try:
+        return path.resolve().relative_to(_REPO_ROOT.resolve()).as_posix()
+    except ValueError:
+        parts = path.parts
+        for marker in ("output", "docs", "scripts", "tests", ".cursor"):
+            if marker in parts:
+                return Path(*parts[parts.index(marker) :]).as_posix()
+        return path.as_posix()
+
+
 def _read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -118,13 +129,17 @@ def _load_pov_transform_distribution(judge_json: Path | None) -> dict[str, Any]:
     if judge_json is None or not judge_json.is_file():
         return {
             "source": None,
+            "prompt_version": None,
+            "run_metadata": {},
             "human": {"true": 0, "false": 0, "unknown": 0},
             "judge": {"true": 0, "false": 0, "unknown": 0},
             "note": "pending human labels / judge output",
         }
     data = _read_json(judge_json)
     dist = {
-        "source": str(judge_json),
+        "source": _artifact_source_path(judge_json),
+        "prompt_version": data.get("prompt_version"),
+        "run_metadata": data.get("run_metadata") or {},
         "human": Counter(),
         "judge": Counter(),
     }
@@ -135,6 +150,8 @@ def _load_pov_transform_distribution(judge_json: Path | None) -> dict[str, Any]:
             dist[side][bucket] += 1
     return {
         "source": dist["source"],
+        "prompt_version": dist["prompt_version"],
+        "run_metadata": dist["run_metadata"],
         "human": {k: int(dist["human"].get(k, 0)) for k in ("true", "false", "unknown")},
         "judge": {k: int(dist["judge"].get(k, 0)) for k in ("true", "false", "unknown")},
     }
@@ -408,6 +425,8 @@ def render_phase3117_report(summary: dict[str, Any]) -> str:
         f"- human: `{pov.get('human')}`",
         f"- judge: `{pov.get('judge')}`",
         f"- source: `{pov.get('source')}`",
+        f"- prompt_version: `{pov.get('prompt_version')}`",
+        f"- run_metadata: `{pov.get('run_metadata')}`",
         "",
         "## 5. 拒绝集 / human-2 监控",
         "",

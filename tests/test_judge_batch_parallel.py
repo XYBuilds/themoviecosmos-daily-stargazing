@@ -57,7 +57,11 @@ class JudgeBatchParallelTests(unittest.TestCase):
             out_md = Path(tmp) / "scores.md"
             all_items = items
 
+            checkpoint_count = 0
+
             def checkpoint() -> None:
+                nonlocal checkpoint_count
+                checkpoint_count += 1
                 _write_checkpoint(
                     out_json,
                     out_md,
@@ -65,6 +69,7 @@ class JudgeBatchParallelTests(unittest.TestCase):
                     partial,
                     obs_ids=["01-grid-outage"],
                     prompt_version="test",
+                    provider="mimo",
                 )
 
             score_pending_pairs(
@@ -76,9 +81,15 @@ class JudgeBatchParallelTests(unittest.TestCase):
             )
 
             self.assertEqual(len(partial), 8)
+            self.assertEqual(checkpoint_count, 8)
             data = json.loads(out_json.read_text(encoding="utf-8"))
             self.assertEqual(len(data["scores"]), 8)
+            self.assertEqual(data["run_metadata"]["thinking_mode"], "disabled")
+            self.assertIn("thinking disabled", data["run_metadata"]["judge_condition_note"])
             self.assertTrue(out_md.is_file())
+            md_text = out_md.read_text(encoding="utf-8")
+            self.assertIn("**thinking_mode**: disabled", md_text)
+            self.assertIn("thinking disabled", md_text)
             for row in data["scores"]:
                 self.assertEqual(row["judge_score"], 2)
 

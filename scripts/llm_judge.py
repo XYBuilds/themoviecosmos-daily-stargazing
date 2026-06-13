@@ -12,6 +12,7 @@ import argparse
 import json
 import re
 import sys
+import time
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Callable
@@ -44,6 +45,45 @@ from scripts.summarize_eval import (
 _JUDGE_SCHEMA_VERSION = 4
 _VALID_SCORES = frozenset({0, 1, 2})
 _JSON_FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)\s*```", re.IGNORECASE)
+_DEFAULT_JUDGE_MAX_TOKENS = 700
+_MIMO_JUDGE_MAX_COMPLETION_TOKENS = 1024
+_MIMO_THINKING_MODE = "disabled"
+_MIMO_RETRY_ATTEMPTS = 4
+_MIMO_RETRY_BASE_SECONDS = 8.0
+
+
+def _is_retryable_llm_error(exc: Exception) -> bool:
+    status_code = getattr(exc, "status_code", None)
+    if status_code in {408, 409, 429, 500, 502, 503, 504}:
+        return True
+    text = str(exc).lower()
+    return any(token in text for token in ("429", "too many requests", "rate limit", "limitation"))
+
+
+def _judge_request_options(provider: str) -> dict[str, Any]:
+    """Provider-specific request options for stable judge JSON output."""
+    if provider == "mimo":
+        return {
+            "max_completion_tokens": _MIMO_JUDGE_MAX_COMPLETION_TOKENS,
+            "extra_body": {"thinking": {"type": _MIMO_THINKING_MODE}},
+        }
+    return {"max_tokens": _DEFAULT_JUDGE_MAX_TOKENS}
+
+
+def judge_run_metadata(provider: str | None) -> dict[str, Any]:
+    prov = (provider or default_llm_provider()).strip().lower()
+    options = _judge_request_options(prov)
+    metadata: dict[str, Any] = {
+        "provider": prov,
+        "request_options": options,
+    }
+    if prov == "mimo":
+        metadata["thinking_mode"] = _MIMO_THINKING_MODE
+        metadata["judge_condition_note"] = (
+            "MiMo judge run with thinking disabled; not directly comparable to "
+            "MiMo runs where thinking was enabled or unspecified."
+        )
+    return metadata
 
 
 def _extract_json_object(text: str) -> str:
@@ -538,17 +578,25 @@ def call_llm_judge(
         user_content = build_judge_user_prompt(item)
         if extra_user_prompt:
             user_content = f"{user_content}\n\n{extra_user_prompt}"
-        response = llm.chat.completions.create(
-            model=model,
-            messages=[
-                {"role": "system", "content": _JUDGE_SYSTEM},
-                {"role": "user", "content": user_content},
-            ],
-            temperature=0.2,
-            max_tokens=700,
-            timeout=90,
-        )
-        return (response.choices[0].message.content or "").strip()
+        attempts = _MIMO_RETRY_ATTEMPTS if prov == "mimo" else 1
+        for attempt in range(attempts):
+            try:
+                response = llm.chat.completions.create(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": _JUDGE_SYSTEM},
+                        {"role": "user", "content": user_content},
+                    ],
+                    temperature=0.2,
+                    timeout=90,
+                    **_judge_request_options(prov),
+                )
+                return (response.choices[0].message.content or "").strip()
+            except Exception as exc:
+                if attempt >= attempts - 1 or not _is_retryable_llm_error(exc):
+                    raise
+                time.sleep(_MIMO_RETRY_BASE_SECONDS * (2**attempt))
+        raise RuntimeError("unreachable judge retry state")
 
     content = _request_content()
     try:
@@ -856,7 +904,11 @@ def _integrate_judge_blocks_without_comments(
     return merged
 
 
-def write_judge_markdown(path: Path, output: JudgeOutput) -> None:
+def write_judge_markdown(
+    path: Path,
+    output: JudgeOutput,
+    run_metadata: dict[str, Any] | None = None,
+) -> None:
     lines = [
         "# LLM Judge Scores",
         "",
@@ -864,6 +916,14 @@ def write_judge_markdown(path: Path, output: JudgeOutput) -> None:
         f"- **screening_only**: {output.calibration.screening_only}",
         f"- **calibration_pairs**: {output.calibration.n_pairs}",
     ]
+    if run_metadata:
+        lines.extend(
+            [
+                f"- **provider**: {run_metadata.get('provider', '')}",
+                f"- **thinking_mode**: {run_metadata.get('thinking_mode', '')}",
+                f"- **judge_condition_note**: {run_metadata.get('judge_condition_note', '')}",
+            ]
+        )
     if output.calibration.exact_agreement is not None:
         lines.append(
             f"- **exact_agreement**: {output.calibration.exact_agreement:.3f}"

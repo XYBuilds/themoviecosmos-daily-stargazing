@@ -24,6 +24,7 @@ from scripts.judge_batch_parallel import item_key, score_pending_pairs
 from scripts.llm_judge import (
     call_llm_judge,
     collect_judge_items,
+    judge_run_metadata,
     score_items,
     write_judge_markdown,
 )
@@ -102,6 +103,7 @@ def run_incremental(
             partial,
             obs_ids,
             prompt_version=prompt_version,
+            provider=provider,
         )
 
     def on_progress(idx: int, total: int, item) -> None:
@@ -143,6 +145,7 @@ def _write_checkpoint(
     obs_ids: list[str],
     *,
     prompt_version: str,
+    provider: str | None,
 ) -> None:
     scored_items = [i for i in all_items if item_key(i) in partial]
 
@@ -158,13 +161,15 @@ def _write_checkpoint(
 
     output = score_items(scored_items, replay, observation_run_ids=obs_ids)
     out_json.parent.mkdir(parents=True, exist_ok=True)
+    run_metadata = judge_run_metadata(provider)
     payload = output.to_dict()
     payload["prompt_version"] = prompt_version
+    payload["run_metadata"] = run_metadata
     text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
     tmp = out_json.with_suffix(out_json.suffix + ".tmp")
     tmp.write_text(text, encoding="utf-8")
     tmp.replace(out_json)
-    write_judge_markdown(out_md, output)
+    write_judge_markdown(out_md, output, run_metadata=run_metadata)
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -102,7 +102,4 @@ def score_pending_pairs(
         for future in as_completed(futures):
             item, row = future.result()
             done += 1
-            _commit(item, row, done, flush=False)
-        if checkpoint_fn is not None:
-            with lock:
-                checkpoint_fn()
+            _commit(item, row, done, flush=True)
