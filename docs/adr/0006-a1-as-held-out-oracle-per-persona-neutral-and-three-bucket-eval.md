@@ -1,6 +1,14 @@
 # A1 转 held-out oracle + per-persona 中性多样化 + 三桶对照度量：干净地重赌「组合拳」
 
-**Status**: proposed
+**Status**: **superseded**（2026-06-14；原为 `proposed`，3.9 GATE no-go 后从未升 accepted）
+
+> **被取代说明**：Phase 3.9 于 2026-06-09 `GATE no-go`。本 ADR 的归宿：
+> - **D1 A1 held-out oracle / D5 Q1′ 删除闸** → 被 [ADR-0007](0007-logic-resonance-judge-prescreen-and-pov-focalization.md) D5 **砍掉 Q1′、A1 降只读参照**；A1 / 中性通道在 [ADR-0009](0009-fragment-ladder-and-search-unit-architecture.md) 后为 diagnostic-only。
+> - **D2/D6 per-persona salience 选材机制** → 思想被 [ADR-0008](0008-salience-driven-element-composition-and-multi-vantage-pov.md) D3 **扩展**（salience 从「仅中性选材」扩为「全通道元素中心构图驱动」）。
+> - **D4 三桶对照 / LLM-as-judge** → 三桶降为诊断（非 Go/No-Go）；LLM-judge 被 ADR-0007 D4 正式确立为**评测预筛器**，是当前生效机制。
+> - **中性通道 / neutral_hit_rate / 留出冻结纪律** → 通道结构被 ADR-0009 重构；留出冻结纪律作为评测编排纪律仍有效。
+>
+> 本 ADR 的「A1 当尺子不当选手」「per-persona salience」是 3.10/3.11 设计的直接前身，保留全文备查。
 
 > **背景**：Phase 3.8 于 2026-06-06 `GATE no-go` 结案（见 [`output/Eval/phase3.8/GATE_RESULT.md`](../../output/Eval/phase3.8/GATE_RESULT.md)）。结案后复盘(逐 run 重算，数字与 GATE_RESULT 一致)发现：**3.8 的 no-go 性质不是「组合拳赌输」，而是「实验根本没跑成」**——两个核心赌注（中性通道多样召回、组合拳 > 纯事实）**一个都没被真正测到**。三条复盘硬证据：
 >

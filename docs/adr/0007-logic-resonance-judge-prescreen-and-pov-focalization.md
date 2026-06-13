@@ -2,6 +2,8 @@
 
 **Status**: accepted (D1–D5, Phase 3.10 GATE go 2026-06-10); D6 superseded、D7 通道结构 revised（原则继承）、D8 继承 — 均由 [ADR-0008](0008-salience-driven-element-composition-and-multi-vantage-pov.md)（2026-06-11，Phase 3.11 重设计）接管
 
+> **2026-06-14 补注**：D1–D5 仍是当前**在用的尺子**——双轴 rubric（表层元素 + 底层逻辑 + 因果反测句）与 LLM-judge 评测预筛，被 [ADR-0009](0009-fragment-ladder-and-search-unit-architecture.md) 的碎片梯/检索单元管线**原样继承**，未被取代。被取代的只有生成侧通道结构（D6–D8 那条 POV-追加通道 + 四层漏斗），其演进链为 ADR-0007 D6–D8 → ADR-0008（salience 驱动元素合成 + 多视点 POV）→ ADR-0009（碎片梯 / 检索单元，Phase 3.11.8 GATE go 2026-06-13）。
+
 > **背景**：Phase 3.9 于 2026-06-09 `GATE no-go` 结案（见 [`output/Eval/phase3.9/GATE_RESULT.md`](../../output/Eval/phase3.9/GATE_RESULT.md)）。结案后总编对本轮做了三点观察：① LLM-judge 在观察集校准达标（exact 0.639 / pearson 0.743 / within-one 1.0，**采信**），效果可用于减轻人工筛选；② 人工与 judge 的分歧并非噪声，而是系统性的定义错位；③ 人类感受到的共振常含**视角变换**（如从洪水中将溺亡的孩子视角讲述），当前管线无此能力。
 >
 > 复盘的硬证据来自本轮 152 个「人工×judge」配对打分的混淆矩阵（`output/Eval/phase3.9/llm-judge-scores.json`）：

@@ -1,6 +1,13 @@
 # 客观抽取 + 中性通道 + 撞车票：拆解 A0 的「单一中性源」，复活 ADR-0003 撞车判据
 
-**Status**: proposed
+**Status**: **superseded**（2026-06-14；原为 `proposed`，3.8 GATE no-go 后从未升 accepted）
+
+> **被取代说明**：Phase 3.8 于 2026-06-06 `GATE no-go`。本 ADR 的两条核心赌注归宿：
+> - **「删 A1 / 中性 union 取代 A1」** → 被 [ADR-0006](0006-a1-as-held-out-oracle-per-persona-neutral-and-three-bucket-eval.md) D1 **推翻**（A1 转 held-out oracle、不删）。
+> - **「客观地板中性 = 共享 · persona 无关」** → 被 ADR-0006 D2 改为「per-persona salience 选材 + persona 中立 wording」。
+> - **管线四段 / 撞车票 / hypernym 锚 / 两个中性区分** → 概念保留，但通道结构（neutral/toned/fact-anchor query）整体被 [ADR-0009](0009-fragment-ladder-and-search-unit-architecture.md) 替换为 fragment ladder / search unit；hypernym 并入 ladder 的 objective levels，lens 并入 interpretive/perspective levels。
+>
+> **仍可参考**：A0 = verbatim-only + 客观扩展 pass 的职责切分思想，仍体现在 [`reality-deconstruction-contract.md`](../SSOT/reality-deconstruction-contract.md)（该契约本身待按 ADR-0009 同步，见 ADR-0009 §SSOT 待同步）。本 ADR 保留全文。
 
 > **背景**：Phase 3.7 于 2026-06-05 `GATE_FAIL` 结案（见 [ADR-0004](0004-persona-emotional-diffusion.md) Outcome 与 [`output/Eval/phase3.7/GATE_RESULT.md`](../../output/Eval/phase3.7/GATE_RESULT.md)）。复盘硬数据：toned persona path 结构/双重 2 分率 **20.0%** vs A1 path **75.0%**（lift **−55.0%**）；`fit ↔ 共振` Pearson **r ≈ 0.14**（情绪滤镜**不**预测命中，**对题（topicality）**才预测）。本 ADR 是 **3.7 复盘后的重设计**，**取代 3.7 的部分做法**：3.7 让 A0 同时承担「中性事实源」与「中性替代词源」，复盘发现两条致命前提错误——**①原文文本本身已带价（valence），不存在真空中性源；②各 persona 对「什么算中性」本就不一致**。本 ADR 把 A0 被混为一谈的职责**拆成三件事**，并**复活 [ADR-0003](0003-multi-agent-resonance-quality-and-a1-as-peer.md) 的撞车主判据形状**（neutral + ≥1 creative）。
 >

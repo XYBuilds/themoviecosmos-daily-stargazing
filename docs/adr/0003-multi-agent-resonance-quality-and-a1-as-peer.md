@@ -1,6 +1,13 @@
 # 优质候选判据：多 agent 共振为主、命中分为辅；A1 从「对照」改为「平权 agent」
 
-**Status**: proposed（草案 · 待 §证据 的样本扩充后定稿；本 ADR 不解封 Phase 4，闸门口径见后果）
+**Status**: **superseded**（2026-06-14）
+
+> **被取代说明**：本 ADR 始终停留在 `proposed`，从未升 `accepted`。其两大核心主张已被后续链路推翻或重构：
+> - **D2「A1 平权」** → 被 [ADR-0006](0006-a1-as-held-out-oracle-per-persona-neutral-and-three-bucket-eval.md) 改为「A1 = held-out oracle（并跑不判断）」，再被 [ADR-0007](0007-logic-resonance-judge-prescreen-and-pov-focalization.md) D5 降为「只读参照」，A1 / 中性通道在 [ADR-0009](0009-fragment-ladder-and-search-unit-architecture.md) 后为 diagnostic-only。
+> - **D1「多 agent 撞车 = 主判据」** → 撞车形状几经 [ADR-0005](0005-objective-extraction-neutral-channel-and-collision-vote.md)（非对称中性 union + ≥1 toned）重构，最终被 [ADR-0009](0009-fragment-ladder-and-search-unit-architecture.md) 的 `convergent sort`（surface/event/persona-semantic match + diversity）取代；`quality_candidate` 降为观察字段、非硬闸。
+> - **D3 per-persona 实体预算 / D4 弹性 pseudo 配额** → 思想被 12 persona 注意力清单（ADR-0008）与 fragment ladder / search unit（ADR-0009）整体吸收。
+>
+> 历史价值：本 ADR 的 N=10 证据首次坐实「多 agent 是有效精度过滤器、命中分不能当质量闸」，是后续撞车/convergent sort 设计的起点，故保留全文备查。
 
 > 背景：Phase 3.5 新管线落地、`GATE_FAIL（发布）` 之后，总编对 N=10 产物做了人工评估，并对 9 条「多 agent 命中」候选补填了 `共振分` / `共振类型`。本 ADR 记录由此得出的产品判据与角色调整。承接 [ADR-0002](0002-pivot-to-event-logic-resonance.md)（表层共振合法化）。
 

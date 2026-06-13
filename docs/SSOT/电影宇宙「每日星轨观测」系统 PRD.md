@@ -1,10 +1,12 @@
 # 电影宇宙「每日星轨观测」系统 PRD
 
-> **当前版本**：v0.4（现实解构 + 多 pseudo 管线）
-> **更新日期**：2026-06-02
-> **状态**：MVP 建造期 · Phase 3.5 已落地新管线，**发布闸门 GATE_FAIL**（方向验证成立，未达发布标准；Phase 4 仍暂停）。**首要目标是验证「新闻 → 现实解构 → 多 Agent 多段 pseudo → 聚合召回 → 人类共振评分」链是否值得继续迭代**。所有非必要环节（自动发布、视觉切片、运维告警、内容过滤、历史去重等）均显式延后到 Post-MVP。
+> **当前版本**：v0.5（12 Pearson persona · fragment ladder / search unit · 双轴共振 + judge 预筛）
+> **更新日期**：2026-06-14
+> **状态**：MVP 建造期 · **Phase 3 全部 GATE GO**（3.10 双轴 rubric + judge 预筛收敛 2026-06-10；3.11.8 fragment ladder / search unit 架构收敛 2026-06-13），**即将进入 Phase 4（呈现层 / 中文文案）**。
 >
-> **v0.3 工作流要点（语种）**：电影库为全英文，故 **Persona prompts 与 pseudo-overview 统一用英文**做检索；召回电影后**用中文为每部候选写社媒文案供总编挑选审核**；总编选定后再**按平台生成对应语言版本（MVP 仅中英两种）**。
+> **本版定位**：本 PRD 是项目 SSOT，登记**当前真实设计**。Phase 3 经历了从「A2/A4/A7 + A1 四 agent」到「12 Pearson 原型 persona」、从「pseudo 通道」到「fragment ladder / search unit」的两次大重构，散落在 [ADR-0004](../adr/0004-persona-emotional-diffusion.md) / [ADR-0007](../adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) / [ADR-0008](../adr/0008-salience-driven-element-composition-and-multi-vantage-pov.md) / [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) / [ADR-0010](../adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md) 中。本版把这些决策收口进 SSOT。历史四 agent 写法（A1/A2/A4/A7）已**作废**，仅在历史报告中保留。
+>
+> **语种链**：电影库为全英文。**新闻输入 → 解构 → 扩展 → persona lens → search unit → 检索全程英文**（英进英出，无翻译步骤）。唯一中文化 = 召回后为候选写中文推荐文案给总编审核（Phase 4）；多平台多语言定稿在更下游。
 
 ---
 
@@ -16,15 +18,22 @@
 
 ### 1.2 产品目标
 
-打造一个「数字文化天文台」。以每日热点事件为引，挖掘现实事件与某一部电影之间的**共振**——**表层语境同构与抽象骨架同构均合法**（见 [ADR-0002](../adr/0002-pivot-to-event-logic-resonance.md)），不再把「绝妙的、非显然的隐喻」作为唯一产品标准。
+打造一个「数字文化天文台」。以每日热点事件为引，挖掘现实事件与某一部电影之间的**共振**。
 
-**核心理念**：推荐不是为了催促观看，而是展示「现实世界与数字宇宙的共振」（事件逻辑对齐 + Persona 再加工），以此满足好奇心并完成对 3D 电影宇宙的引流。
+**共振的定义已定稿为双轴**（[ADR-0007](../adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) D1，[`docs/eval-the-bet.md`](../eval-the-bet.md) §4）：
 
-### 1.3 MVP 验证目标（v0.2 新增）
+- **第一轴 · 表层元素**：候选与新闻共享**具体、可命名、承重**的元素（地点 / 人物类型 / 事件类型 / 设定 / 题材）。判据：换条无关新闻无法复用 = 承重。
+- **第二轴 · 底层逻辑**：新闻与电影实例化**同一个在 POV / 尺度变换下不变的因果-赌注引擎**（一句「X 在约束 Z 下驱动 Y」，机构尺度 ↔ 个人尺度也算），附**因果反测句**防给分膨胀。
 
-本阶段**只需要回答一个问题**：
+两轴都无 = 0；单轴 = 1；双轴 = 2。**表层与结构共振均合法**（[ADR-0002](../adr/0002-pivot-to-event-logic-resonance.md)），不再把「绝妙的、非显然的隐喻」作为唯一产品标准。
 
-> 在「单条新闻 → **现实解构** → 4 个 Persona（A2/A4/A7 + 基线 A1）各产**多段** pseudo-overview → **多路召回并聚合** → 在片单内做纯文本召回」的链路上，是否能稳定产出**值得展示的共振候选**（表层与/或结构），且**创作视角相对 A1 白描带来可测量的增量**（见 `docs/eval-the-bet.md` §5.1 第 2 条）？
+**核心理念**：推荐不是为了催促观看，而是展示「现实世界与数字宇宙的共振」，以此满足好奇心并完成对 3D 电影宇宙的引流。
+
+### 1.3 MVP 验证目标
+
+本阶段要回答的核心问题（[`docs/eval-the-bet.md`](../eval-the-bet.md) §5.1）：
+
+> 在「单条新闻 → 现实解构 → 客观扩展 → 12 persona 各自构图 → fragment ladder / search unit 多路召回聚合 → 人类双轴共振评分」的链路上，是否能稳定产出**值得展示的共振候选**，且**12 个原型 persona 的创作视角相对中性基线带来可测量的关联增量**？
 
 所有工程化、自动化、风控、UI 决策都让位于这个问题的回答。
 
@@ -32,205 +41,198 @@
 
 ## 2. 系统架构与技术栈（Architecture & Tech Stack）
 
-* **大模型编剧室（Multi-Agent 架构）**：物理隔离的 Persona 工作流。每个 Agent 拥有独立的 Markdown 人格文档，由主控脚本异步并发调用。
-* **LLM 提供方（MVP 决策）**：主用 **MiMo 2.5 / 2.5 Pro**（已持有 token）；备选 **DeepSeek**（成本低）。不做硬性 token 限制，按效果与用量动态调整。
-* **信息源**：**RSS 订阅源**（Python `feedparser` 直接抓取）。MVP 阶段使用免费源，接受其延迟与质量限制。
-* **总编与决策台（Human-in-the-Loop）**：当前项目根目录即 **Obsidian Vault**，每日简报落到 `output/Daily_Briefing/YYYY-MM-DD.md`，由人类总编在 Obsidian 中完成"火花甄别"。
-* **核心检索基建（专项优化）**：构建独立的「纯文本搜索专用库（Search-only Index）」。
-  * 模型：`paraphrase-multilingual-MiniLM-L12-v2`
-  * 输入：与原 3D 宇宙项目对齐，**直接使用 TMDB 原文（清洗后的 tagline + overview），不做机器翻译**。库为**全英文**，故**检索侧（pseudo-overview）也统一用英文**，与索引同分布，召回更稳；多语言模型能力作为冗余保障。
-  * 输出：`embeddings.npy`（L2 归一化）+ `meta.parquet`（仅保留检索/渲染必需字段）。
-  * 不做 UMAP / 不拼接 Genres / 不拼接 Language——**打破类型壁垒，纯粹基于剧情结构和隐喻做跨界检索**。
-  * 数据规模：**59,341 部**（3D 宇宙策展片单，从 119 万行 Kaggle 原始表清洗而来；非"全量"）。6 万级用 NumPy 矩阵乘法 + `argpartition` 毫秒级即可，**不引入 FAISS**。
-  * **索引来源（ADR-0001）**：MVP **直接复用** 3D 宇宙项目产出的 `cleaned.csv` + `text_embeddings.npy`（同模型、同 384 维、已 L2 归一、行序对齐），不自建。详见 `docs/adr/0001-reuse-cosmos-text-embeddings.md`。`build_index.py` 重算逻辑降级为 Post-MVP 备用。
+* **大模型编剧室（Multi-Agent 架构）**：12 个 Pearson 原型 persona（见 §4），每个 persona 拥有独立的 `persona_card.md`，由主控脚本异步并发调用。
+* **LLM 提供方（MVP 决策）**：主用 **MiMo 2.5 / 2.5 Pro**（已持有 token）；备选 **DeepSeek**（成本低）。`scripts/lib/llm.py` 统一封装，`--provider` 可切换。不做硬性 token 限制，按效果与用量动态调整。
+* **LLM-judge（评测预筛）**：独立 judge（`scripts/llm_judge.py` / `judge_prescreen.py`）用双轴 rubric 给全部候选打分，**物理上一个不删**，仅分档分流（`judge=0` 降级堆 / `judge≥1` 进人工 / `judge=2` 高亮）。当前为 `screening-only`，尚未采信为共振真值。
+* **信息源**：**RSS 订阅源**（Python `feedparser`），Phase 5 接入；评测期用手挑/手写 JSON。
+* **总编与决策台（Human-in-the-Loop）**：项目根目录即 **Obsidian Vault**，评测产物落 `output/Eval/{run_id}/`，正式日报落 `output/Daily_Briefing/YYYY-MM-DD.md`，由人类总编在 Obsidian 中完成「火花甄别」与共振评分。
+* **核心检索基建**：
+  * 模型：`paraphrase-multilingual-MiniLM-L12-v2`（与 3D 宇宙索引同模型、同 384 维）。
+  * 输入：与 3D 宇宙对齐，**直接使用 TMDB 原文（清洗后的 tagline + overview），不做机器翻译**；库为全英文，故检索侧 search unit 文本也统一英文，同分布召回更稳。
+  * 输出：`embeddings.npy`（L2 归一化）+ `meta.parquet`。
+  * 不做 UMAP / 不拼接 Genres / 不拼接 Language——纯粹基于剧情结构与隐喻做跨界检索。
+  * 数据规模：**59,341 部**（3D 宇宙策展片单）。6 万级用 NumPy 矩阵乘法 + `argpartition` 毫秒级即可，**不引入 FAISS**。
+  * **索引来源（[ADR-0001](../adr/0001-reuse-cosmos-text-embeddings.md)）**：MVP **直接复用** 3D 宇宙项目产出的 `cleaned.csv` + `text_embeddings.npy`（同模型、384 维、已 L2 归一、行序对齐），不自建。`build_index.py` 重算逻辑降级为 Post-MVP 备用。
+  * **召回底座**：当前 dense embedding 余弦检索为主；hybrid recall 的 lexical / weighted ladder 子信号尚未完全展开（[ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 已知局限）。
 
 ---
 
 ## 3. 数据层规约（Data Contract）
 
-### 3.1 源数据
+### 3.1 源数据与规模
 
-* **来源 CSV schema**：见 `data/subsample/TMDB_all_movies_random20.csv`。
 * **进入索引的必需字段**：`id, title, original_title, overview, tagline, genres, original_language, release_date, poster_path`。
-* **数据库规模**：**59,341 行**（策展片单 `cleaned.csv`）。20 行 subsample 仅用于验证管线（plumbing），**召回质量/评分只在全量片单上才算数**（见 ADR-0001 与 §10）。
+* **数据库规模**：**59,341 行**（策展片单 `cleaned.csv`）。subsample 仅用于验证管线（plumbing），**召回质量/评分只在全量片单上才算数**（[ADR-0001](../adr/0001-reuse-cosmos-text-embeddings.md)）。
 
 ### 3.2 文本清洗与缺失值处理
 
-按以下规则生成用于 embedding 的 `text_for_embedding` 字段：
-
 | 情况 | 处理 |
 | --- | --- |
-| `tagline` 大量为空 | **接受**，embedding 降级为 `overview` only |
+| `tagline` 大量为空 | 接受，embedding 降级为 `overview` only |
 | `overview` 缺失 | 用 `title`（必要时加 `original_title`）回填 |
-| `overview` 仍为空 | **剔除该行**（不进入索引） |
-| 仅有原语种简介 | **保留原文**，依赖多语言模型对齐 |
+| `overview` 仍为空 | 剔除该行（不进入索引） |
+| 仅有原语种简介 | 保留原文，依赖多语言模型对齐 |
 | 字符串前后空白、HTML 残片、引号变体 | 统一清洗 |
 
-embedding 输入文本模板（**已对齐 3D 宇宙索引,ADR-0001**）：
+embedding 输入文本模板（**已对齐 3D 宇宙索引**，ADR-0001）：
 
 ```
 有 tagline:  f"Tagline: {tagline}\nOverview: {overview}"
 无 tagline:  f"Overview: {overview}"
 ```
 
-> ⚠️ 此模板**同时约束查询侧**:`retrieve.py` 必须把每段 pseudo-overview 套成 `Overview: {pseudo}` 再 encode,保证查询与索引同分布。早期的裸拼接公式 `(tagline + ". ") + overview` **已作废**。
+> ⚠️ 此模板**同时约束查询侧**：`retrieve.py` 必须把每条 search unit 文本套成 `Overview: {text}` 再 encode，保证查询与索引同分布。早期裸拼接公式已作废。
 
 ### 3.3 索引产物
 
 | 产物 | 格式 | 用途 |
 | --- | --- | --- |
 | `data/index/embeddings.npy` | `float32 (N, 384)`，L2 归一化 | 余弦检索 |
-| `data/index/meta.parquet` | `id, title, original_title, overview, tagline, genres, original_language, release_date, poster_path` | 渲染 Markdown / 拼跳转链接 |
+| `data/index/meta.parquet` | 上述 9 列 | 渲染 Markdown / 拼跳转链接 |
 
 ### 3.4 索引更新策略
 
-* **MVP**：全量重跑。
-* **Post-MVP**：增量（按 TMDB `id` 比 diff，只对新增/修改行重新 embed 后 append/replace）。
+* **MVP**：全量重跑（实为复用 cosmos 产物）。
+* **Post-MVP**：增量（按 TMDB `id` diff，只对新增/修改行重 embed）。
 
 ---
 
 ## 4. 多智能体编剧室（Multi-Agent Screenwriting Room）
 
-### 4.0 现实解构（Reality Deconstruction，Step 1.5）
+> 管线的结构化素材层与生成层契约 SSOT：[`docs/SSOT/reality-deconstruction-contract.md`](reality-deconstruction-contract.md)（A0 + 客观扩展）、[`docs/SSOT/personas-12.md`](personas-12.md)（12 persona roster）。
 
-在编剧之前，**现实解构 agent**（`prompts/A0_reality_deconstructor.md`，`scripts/deconstruct.py`）把 RSS/手喂新闻转为 **`reality-deconstructed.json`**（+ 人类视图 `.md`）。
+### 4.0 五段流水（当前架构）
 
-| 要点 | 说明 |
-| --- | --- |
-| **契约** | `docs/SSOT/reality-deconstruction-contract.md` |
-| **铁律** | 无信息丢失、无主观解读、**镜头中立**（权力/反讽框定不下放本层） |
-| **结构** | 起因 / 经过 / 结果 碎片 + 实体 **标签梯**（客观属性穷举，不预选 load-bearing） |
-| **下游** | A1/A2/A4/A7 **自行挑选**碎片组合，每 agent **3 段** pseudo，带 `source` 碎片 id |
+```text
+1. 网络接口收热点新闻（英文）        → reality.md（人类可读）
+2. P-Extract · A0                   → reality-deconstructed.json（逐字抽取，稳定 element id）
+3. P-Expand · 共享客观扩展 pass      → reality-expanded.json（hypernym 上位词梯 overlay）
+4. P-Lens · per-persona alt-creator → alt-pool（persona 相对 valence + 三层 provenance）
+5. P-Compose · screenwriter         → search units（围绕新闻 element 组织）
+6. 检索                             → 候选聚合 + convergent sort + judge 预筛
+```
 
-### 4.1 Persona 总览
-
-| 代号 | 人格 | 核心动作 |
+| 段 | 脚本 / 契约 | 铁律 |
 | --- | --- | --- |
-| A1 | 现实记录员（**基线/对照**） | 去实体化白描核心物理动作，**不做隐喻** |
-| A2 | 社会学家 | 寻找阶级撕裂与资源矛盾 |
-| A3 | 心理医生 | 坍缩为个人心理创伤或偏执 |
-| A4 | 神话学者 | 套用古典悲剧 / 史诗内核 |
-| A5 | 边缘视界导演 | 边缘小人物视角的荒诞日常 |
-| A6 | 视觉美学师 | 提炼纯粹的视听奇观与感官氛围 |
-| A7 | 混沌理论家 | 倒推极其微小 / 荒谬的灾难起因 |
+| **A0（P-Extract）** | `prompts/A0_reality_deconstructor.md` · `scripts/deconstruct.py` | **只做逐字抽取**（who/where/when/why/how/result + role + relations）；保留原文用词与 source valence；不产中性替代、不做 hypernym、不做视角框定 |
+| **客观扩展（P-Expand）** | `prompts/_shared/objective_expansion_contract.md` · `scripts/objective_expansion.py` | **一份共享拷贝**，只产 hypernym 上位词梯；受客观性试金石约束（「社会学家与神话学者会不会给不同答案？会 → 是 lens 不是 objective」） |
+| **P-Lens（alt-creator）** | `prompts/_shared/persona_alt_creator_contract.md` | 每 persona 读同一份中性 decon，自产 persona 相对 lens；`valence`（正/中/负）退为**可选**着色标注，模糊地带不标 |
+| **P-Compose（screenwriter）** | `prompts/_shared/persona_screenwriter_contract.md` · `scripts/personas.py` | 围绕 element 中心构图，产 fragment ladder + search unit（见 §4.2） |
 
-### 4.2 Persona 文件结构
+### 4.1 Persona 总览（12 Pearson 原型）
 
-每个 Persona = `prompts/AX_xxx.md`，统一结构：
+历史的 A1/A2/A4/A7 四 agent 设计已**作废**。当前为 **12 个 Pearson 原型 persona**（[ADR-0004](../adr/0004-persona-emotional-diffusion.md)，roster SSOT 见 [`personas-12.md`](personas-12.md)）：
 
+| persona_id | 名称 | 核心情绪 |
+| --- | --- | --- |
+| The-Innocent | 天真者 | 希望 / 信任 / 幻灭 |
+| The-Everyman | 凡人 / 孤儿 | 归属 / 平等 / 不安 |
+| The-Hero | 英雄 / 战士 | 抗争 / 正义 / 尊严 |
+| The-Caregiver | 照护者 | 保护 / 受害 / 滋养 |
+| The-Explorer | 探索者 | 自由 / 越界 / 求真 |
+| The-Outlaw | 反叛者 | 反抗 / 颠覆 / 解放 |
+| The-Lover | 情人 | 亲密 / 背叛 / 美感 |
+| The-Creator | 创造者 | 造物 / 表达 / 失控 |
+| The-Ruler | 统治者 | 秩序 / 控制 / 稳定 |
+| The-Magician | 魔法师 | 转化 / 操纵 / 范式转移 |
+| The-Sage | 智者 | 真相 / 理性 / 辨识 |
+| The-Jester | 愚者 / 狂欢者 | 荒诞 / 当下 / 释放 |
+
+* **persona-relative valence**：每个 persona 的「正极 / 负极」只相对**自己的价值轴**，非绝对褒贬。同一中性元素在不同 persona 可得相反符号（被控造谣者：对 The-Ruler 是「造谣者」负，对 The-Outlaw 是「揭真者」正）。
+* **persona card** = `prompts/personas/<persona_id>/persona_card.md`，其 `价值轴 (Value Axis)` 是 **注意力清单**（叙事中重要的元素原型），是 P-Select 中心化与视角派生的 SSOT。
+* **中性基线取代 A1**：旧 A1「现实记录员」对照组已由**中性通道 union**（surface + hypernym，无 lens）取代，作为只读质量参照，不进任何闸。
+
+### 4.2 Fragment ladder / search unit（当前生成-检索架构，[ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md)）
+
+旧的 `neutral / toned / focalized` 三通道已**下线**。当前每个 decon element 生成一个 **fragment ladder**，检索围绕 **search unit** 组织：
+
+```text
+fragment ladder（每 element）：
+  surface / alias / objective_close / objective_mid / objective_broad / interpretive / perspective
+
+search unit（唯一召回入口，三类）：
+  surface-fragment-bundle   ← when/where/who，仅 objective levels，提供 surface_match
+  event-fragment-bundle     ← why/how/result，仅 objective levels，提供 event_match
+  persona-semantic          ← persona 结合 salience + interpretive/perspective，
+                              绑定 center_element + supporting_elements，提供 persona_semantic_match
 ```
-# AX · 人格名
 
-## 身份
-## 哲学准则
-## 写作风格
-## 示例（few-shot：原新闻 → 你的输出）
-## 当前任务（运行时由代码注入新闻字段）
-```
-
-**MVP 落地策略**：实现 **3 个创作视角（A2 社会学家 / A4 神话学者 / A7 混沌理论家）+ 1 个基线（A1 现实记录员）**。先跑通主链路、确认风格差异化有效后，再补齐剩余 Persona。**七个一开始全写容易风格趋同，且未验证 LLM 对人格设定的服从度。**
-
-> **A1 的定位 = 实验对照组**：A1 只做去实体化白描、不做任何隐喻，输出最接近 TMDB overview 的中性分布。它存在的唯一目的，是回答 MVP 的核心问题——「创作视角召回的电影，是否真比平铺直叙更妙？」。因此 A1 **不算创作视角**，在简报里单独标 `[baseline]`，且**不计入 §5.2 的跨 Agent 撞车展示**（它是对照组，不是一条创作路径）。
+* `surface` 来自 A0 原文；`alias / objective_*` 吸收原 hypernym / 客观扩展；`interpretive / perspective` 吸收 persona alternative / lens。
+* 每个 fragment 必须绑定既有 `element_id`，**不得新增人物 / 事件 / 因果 / 结果**。
+* **POV 下线为通用 center_element**：视角/尺度变换不再是运行时主通道，仍可作文本效果与人工 `POV变换` 子标签存在。`persona-semantic.center_element` = 任意既有 element id，`supporting_elements` = 1–4 个既有 element id。
+* **兼容层**：LLM screenwriter 当前仍返回 `pseudos[]`，代码映射到 `persona-semantic`；检索优先读 `agents[].search_units`。旧产物里的 `neutral/toned/focalized` 字段仅作兼容层，不再驱动排序。
 
 ### 4.3 去实体化（De-entification）规则
 
-**公共硬规则**（写入 `prompts/_shared/deentification_rules.md`，由所有 Persona 引用）：
+公共硬规则（`prompts/_shared/deentification_rules.md`，所有 persona 引用）：
 
-1. 不得出现真实人名 → 替换为身份角色（"一位政治领袖" / "一名科技寡头" / "一名记者"）
-2. **地名**：默认抽象为环境特征；**承重时可有意识保留专名**（如孟买热浪 → Mumbai），见 `deentification_rules.md` 规则 2（ADR-0002）
-3. 不得出现真实机构 / 品牌 / 政党 / 公司名 → 替换为类型（"一家跨国能源公司" / "一个执政党"）
-4. **数字/日期**：默认模糊量级；**承重时可保留**（伤亡、温度记录等），见规则 4
-5. 不得出现新闻八股（"据报道" / "声明称" / "日前" / "本台讯"）
-6. **输出语种 = 英文（统一）**：无论新闻原文是中文还是英文，pseudo-overview 一律写**英文**。原因：电影库为全英文，英文查询与索引同分布，召回更稳；其他语种的展示/文案在下游阶段处理（见 §5.3 / §7.4）。
+1. 不得出现真实人名 → 替换为身份角色。
+2. **地名**：默认抽象为环境特征；**承重时可有意识保留专名**（孟买热浪 → Mumbai），见规则 2（[ADR-0002](../adr/0002-pivot-to-event-logic-resonance.md) 放宽）。
+3. 不得出现真实机构 / 品牌 / 政党 / 公司名 → 替换为类型。
+4. **数字/日期**：默认模糊量级；**承重时可保留**（伤亡、温度记录等）。
+5. 不得出现新闻八股（"据报道" / "声明称"）。
+6. **输出语种 = 英文（统一）**：无论新闻原文语种，生成侧一律英文。
 
-**软规则**（写电影简介的口吻）：
+软规则：主语是「一个/某个 [角色]」非具名实体；优先现在时；单段 60~120 words；末尾不要「A film about…」元描述。
 
-* 主语必须是"一个 / 某个 [角色]"，不是具名实体
-* 优先现在时
-* 长度 **60 ~ 120 words**，单段
-* 末尾不要有"A film about…"之类的元描述
+### 4.4 失败处理（[ADR-0010](../adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md)）
 
-**few-shot 示例**（每个 Persona 自带 1 ~ 2 个，是对齐质量的关键）：
-
-> 原新闻：Elon Musk announced on X that Tesla will lay off 10% of its global workforce.
->
-> A2 社会学家输出（英文）：A prophet of technology proclaims, from the public square he himself built, that his empire of steel will spit out one in ten of its workers. The dream-machine, once wrapped in myth, shows its oldest face before a single cold earnings report — the reckoning of capital against labor.
-
-### 4.4 输出契约（Output Contract，Phase 3.5）
-
-* 每个 Agent 返回 **`pseudos: [{id, text, source}]`**（每 agent **3 段**，每段 60–120 words 英文）；`source` 记录用到的解构碎片 id（供 retrieve 聚合与评测溯源）。
-* `agents.py` 注入 `reality-deconstructed.json` 的 `deconstruction` 字段，不再直接喂原始新闻字段。
-* 失败/超时/格式异常 → **MVP 阶段允许跳过该 Agent**，主流程继续；记录到 `errors.md`。
+* **失败粒度 = pseudo 级（杀 pseudo 不杀 persona）**：单条 pseudo 违规（invented interiority / novel proper noun / supporting elements 超上限 / 非法 center 或 support / 事实守卫失败）→ 只丢该条，保留同 persona 其余合法 pseudo；剩 ≥1 条该 persona 继续参与检索。
+* **非静默**：必须记账 `kept_pseudos` / `dropped_pseudos` / `drop_reasons[{pseudo_id, reason}]`。
+* LLM 调用失败/超时/格式异常 → 评测期允许跳过，主流程继续，记录到 `errors.md`。
 
 ---
 
 ## 5. 检索与候选处理（Retrieval & Candidates）
 
-### 5.1 召回（多 pseudo 聚合）
+### 5.1 召回与排序（convergent sort，[ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) D5）
 
-* 每段**英文** pseudo（`Overview: {pseudo}` 模板）→ 384 维向量（L2 归一化）→ 每 pseudo **Top 2**。
-* 按 **`tmdb_id` 聚合去重**，合并 `triggered_by` / **`hit_sources`**（agent、pseudo id、碎片 id、相似度）。
-* **containment**：控制每 agent/碎片上限，避免组合爆炸（目标约 **15–19 候选/条**）。
-* 评测期：`scripts/score_eval_candidates.py` 可写 **pseudo命中分**（碎片计数辅助审阅，**不替代** 共振分闸门）。
+* 每条 search unit 文本（`Overview: {text}` 模板）→ 384 维向量（L2 归一化）→ Top-K 召回。
+* 按 `tmdb_id` 聚合去重，合并 `triggered_by` / `hit_sources`。
+* **新排序**（替代旧 `channel_count*100 + persona_count*10 + similarity`）：
 
-### 5.2 候选处理（MVP 决策）
+```text
+surface_match_score + event_match_score + persona_semantic_match_score
++ persona_diversity_weight + center_dimension_diversity_weight + dense_similarity
+```
 
-| 议题 | MVP 决策 |
+* 核心解释字段：`surface_match` / `event_match` / `persona_semantic_match` / `search_unit_kinds` / `center_dimensions` / `triggered_by`。
+* `quality_candidate = (surface_match OR event_match) + persona_semantic_match`，**仅观察字段，不作硬闸**。
+
+### 5.2 候选漏斗（[ADR-0007](../adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) D8）
+
+| 层 | 机制 |
 | --- | --- |
-| 跨 Agent 撞车（同一部电影被多个视角召回） | **仅作中性展示**：标注命中视角 / pseudo / 碎片来源，**MVP 不据此加权或排序**。**A1 基线不计入**跨创作撞车展示（仅作对照）。 |
-| 共振类型（评测体温计） | 总编在 `candidates.md` 对 1/2 分候选标注 `深层共振（仅结构，无表层）` / `表层沾边` / `强共振（表层 + 结构）`（0 分留空）；`summarize_eval.py` 优先比结构相关率（闸门第 2 条）。见 `docs/eval-the-bet.md` §4–§5.1。 |
+| **1 去重** | 按 `tmdb_id` 合并多 search unit 命中的同一片 |
+| **2 汇聚排序** | 被多类 search unit / 多 persona 同时命中的片排前（经得起换视角看 = 精度信号） |
+| **3 judge 预筛** | 滤掉放大池里 `judge=0`（降级堆，默认不进人工） |
+| **4 硬预算上限** | 排序 + 预筛后只给人工 top-N |
+
+**铁律**：**绝不靠调高 judge 门槛控膨胀**——那会威胁「零 human-2 被杀」。控量用排序+预算，保安全用门槛+抽审（`judge=0` 堆随机抽 k% 盲评监控漏杀）。
+
+### 5.3 候选展示（评测期中性口径）
+
+| 议题 | 决策 |
+| --- | --- |
+| 多视角撞车 | 仅作中性展示（标命中的 search unit / persona / element 来源），MVP 不据此加权排序之外的产品决策 |
 | 相似度下限 | 不设，先看效果 |
 | 候选过滤（评分/年代/成人内容） | 不做，先看效果 |
-| 历史去重（同一部电影不再推荐） | 不做（Post-MVP 必做） |
-| 召回的额外 metadata（导演/演员等） | 不做，MVP 仅 `title / overview / genres / release_year / language / poster_path / tmdb_id` |
+| 历史去重（同片不再推荐） | 不做（Post-MVP 必做） |
+| 额外 metadata（导演/演员） | 不做，仅 `title / overview / genres / release_year / language / poster_path / tmdb_id` |
 
-### 5.3 候选文案（中文审核稿）
+### 5.4 候选文案（中文审核稿 · Phase 4 gated）
 
-召回得到候选电影后，**为每一部候选电影用中文写一段社媒文案**，供人类总编在简报中挑选审核。
-
-* Prompt：`prompts/C1_copywriter_review.md`。
-* 输入：新闻语境（英文 pseudo / 摘要）+ 候选列表（title / year / overview / 触发它的 Agent 视角 / tmdb 链接）。
-* 输出：每部候选一段中文文案，写「现实 ↔ 这部电影」的共振点，**不剧透、不影评腔、不喊看片**。
-* 这是**审核稿**，不带 hashtag、不分平台；总编只需从中勾选「有味道」的那条。
-* 此阶段语种固定中文（总编母语审核）；与检索侧的英文互不影响。
+召回后为每部候选用中文写一段社媒文案（`prompts/C1_copywriter_review.md`），供总编审核。写「现实 ↔ 电影」共振点，不剧透、不影评腔、不喊看片；不带 hashtag、不分平台。**须 GATE_PASS 后才接**（当前 Phase 3 已 GO，Phase 4 即将启动）。
 
 ---
 
-## 6. 新闻源与新闻选择（News Source）
+## 6. 新闻源与新闻选择（News Source · Phase 5）
 
-### 6.1 RSS 源策略
-
-* **MVP**：暂用免费 RSS 源；具体清单未定，落到 `scripts/fetch_news.py` 的配置常量里，方便后续替换。
-* 接受免费源的延迟和质量限制。
-
-### 6.2 「最具张力的新闻」如何选
-
-* **MVP 决策**：按**热度排序**取 Top 1。
-* MVP 阶段允许人工挑选（即从拉取列表中手动指定一条 url 给主流程），把验证重心放在 Agent + 召回链路上。
-* 自动化的"热度评分"算法（多源同事件计数 + 时间近端加权）放到 Post-MVP。
-
-### 6.3 新闻字段（喂给 Agent 的 payload）
-
-```
-title          (必需)
-description    (必需，RSS 自带摘要，200~500 字够用)
-pub_time       (可选)
-source_name    (可选)
-```
-
-**不爬全文**——RSS summary 已是浓缩信号，全文反而稀释焦点。
-
-### 6.4 去重机制
-
-* **URL 级去重**：规范化 url（剥 utm 参数）后落 `state/seen_news.sqlite`，跑过即跳过。
-* **历史标题去重（轻量）**：保留过去 **14 天** 选过的标题，新选标题用 `difflib.SequenceMatcher` 比，相似度 ≥ 0.7 跳过。
-* 不上语义级（embedding）去重。
-
-### 6.5 内容过滤
-
-* **MVP 阶段不在新闻源做内容过滤**。
-* 内容把关由**人类总编在 Obsidian 简报阶段**或**社媒发布前**完成。
-* 若上线后发现高频踩雷，再考虑在源头加过滤。
+* **MVP**：暂用免费 RSS 源（`scripts/fetch_news.py`，feedparser），清单落配置常量。
+* **选新闻**：按热度排序取 Top 1；评测期允许人工指定一条。自动热度评分算法（多源同事件计数 + 时间近端加权）= Post-MVP。
+* **新闻字段**：`title`（必需）/ `description`（必需，RSS 摘要）/ `pub_time`（可选）/ `source_name`（可选）。**不爬全文**。
+* **去重**：URL 级（规范化后落 `state/seen_news.sqlite`）+ 历史标题（14 天，`difflib` 相似度 ≥ 0.7 跳过）。不上语义级去重。
+* **内容过滤**：MVP 不在源做过滤，由人类总编在简报阶段或发布前把关。
 
 ---
 
@@ -238,173 +240,147 @@ source_name    (可选)
 
 ### 7.1 输出位置
 
-* 项目根目录 = Obsidian Vault。
-* 简报目录：`output/Daily_Briefing/YYYY-MM-DD.md`。
-* Markdown 模板与归档结构细节先不固定，**等产出 3 ~ 5 份真实简报后再迭代模板**。
+* 评测产物：`output/Eval/{run_id}/`（与正式日报分离），结构见 [`docs/eval-the-bet.md`](../eval-the-bet.md) §3.3。
+* 正式日报：`output/Daily_Briefing/YYYY-MM-DD.md`。模板待产出 3~5 份真实简报后再迭代。
 
-### 7.2 简报内容（最小骨架）
+### 7.2 跳转链接
 
-```markdown
-# 每日星轨观测 · YYYY-MM-DD
+* 前端稳定深链：`https://themoviecosmos.com/movie/{tmdb_id}`（Phase 30 契约，分享/OG/`_redirects` 均以此为准）。`{tmdb_id}` = `cleaned.csv` 的 `id` 列（TMDB 数字 id）。
+* 可附 `?lang=` / `?theme=` / `?timeline=` query。旧版 `?focus_movie=xxx` **当前代码库不存在，勿用**。
 
-## 现实波澜
-- title / source / pub_time / url
-- summary
+### 7.3 文案定稿（多平台多语言 · Phase 4 gated）
 
-## 伪剧情（去实体化 · 英文，用于检索）
-- A2 The Sociologist: ...
-- A4 The Mythologist: ...
-- A7 The Chaos Theorist: ...
-- A1 The Reality Recorder [baseline]: ...
+总编勾选一条中文审核稿后，用 `prompts/C2_copywriter_multiplatform.md` 生成发布版本：
 
-## 候选星轨（共 N 部）
-### 1. {Title} ({year}) [由 A2, A4 共同召回]
-- 相似度: 0.xx
-- Genres: ...
-- Overview: ...
-- 跳转: https://themoviecosmos.com/movie/{tmdb_id}
-- 中文文案（审核稿，C1）: ...   ← 总编在此勾选「✅ 选用」
-```
+* **MVP 范围：仅中、英两种语言**（中文平台 ≤140 字 / 英文平台 ≤280 字符）。
+* 英文版非直译，保留同一共振内核重写。
+* 每版附跳转链接 + 0~2 个自然话题标签。
 
-> 总编工作流：在「候选星轨」里勾选 1 条满意的中文文案，再交给 C2 生成各平台版本（见 §7.4）。
+### 7.4 视觉切片与发布
 
-### 7.3 跳转链接
-
-* 格式：`https://themoviecosmos.com/movie/{tmdb_id}`
-* 简报里每部候选电影都附该链接，方便总编一键跳到 3D 宇宙。
-
-### 7.4 文案定稿（多平台多语言）
-
-总编从简报里勾选一条中文审核稿后，用 `prompts/C2_copywriter_multiplatform.md` 生成各平台发布版本：
-
-* **MVP 范围：仅中、英两种语言**，分别适配一个中文平台（微博 / 小红书，≤140 字）与一个英文平台（X / Twitter，≤280 字符）。
-* 英文版**非直译**：保留同一「现实 ↔ 电影」共振内核，用地道英文重写。
-* 每版附跳转 `https://themoviecosmos.com/movie/{tmdb_id}` 与 0~2 个自然话题标签。
-* 产物可落到简报同目录（如 `output/Daily_Briefing/YYYY-MM-DD_copy.md`）供复制发布。
-
-### 7.5 视觉切片与发布
-
-* `generate_planet.py`（生成星球视觉图）= **Post-MVP**。
-* 更多平台 / 更多语言版本（Instagram、Threads、日韩语等）= **Post-MVP**。
-* 社媒发布 = **始终先手动**，自动化是远期话题。
+* `generate_planet.py`（星球视觉）、更多平台/语种、社媒自动发布 = **Post-MVP**；社媒发布始终先手动。
 
 ---
 
-## 8. 自动化工作流（Workflow，MVP 范围）
+## 8. 验证闸门（The Bet）与 Phase 3 结果
 
-整条自动化管线只跑到 Obsidian 归档：
+> 完整手册：[`docs/eval-the-bet.md`](../eval-the-bet.md)。留出集纪律：[`docs/eval-phase3.10-holdout-freeze-discipline.md`](../eval-phase3.10-holdout-freeze-discipline.md)。
 
-| Step | 动作 | MVP 自动化级别 |
+### 8.1 共振评分 Rubric（双轴 0/1/2）
+
+| 表层元素 | 底层逻辑 | 分 | 共振类型 |
+| --- | --- | --- | --- |
+| 无 | 否 | **0** | 无共振 |
+| 无 | 是 | **1** | 深层共振（仅逻辑，无表层） |
+| 有 | 否 | **1** | 表层沾边 |
+| 有 | 是 | **2** | 强共振（表层 + 逻辑） |
+
+* **0 分守门**：纯偶然、非承重的表层重叠判 0（「换条无关新闻同样能解释这部片」= 0）。
+* **可选子标签 POV变换**：仅 `共振分 = 2` 时可标，表示该强共振靠视角/尺度变换才看得出来（Gap A 模式）。
+* LLM judge 输出 `score + resonance_type + causal_test`（因果反测句），校验同一矩阵。
+
+### 8.2 通过线（N=10）
+
+1. **批次通过率 ≥ 60%**（必要下限，证明力弱）。
+2. **关联增量优于基线（验收核心）**：中性基线候选集 2 分率 **<** 创作侧（12 persona 合并）候选集 2 分率。优先比 `共振类型 ∈ {深层共振, 强共振}` 的率或单独比强共振 2 分率。
+
+### 8.3 Phase 3 闸门结果（截至 2026-06-14）
+
+| Phase | 主题 | 结果 |
 | --- | --- | --- |
-| 1 | 拉取 RSS → 候选新闻列表 → 选 1 条（评测期：`--news-file` 手喂 JSON） | 半自动 |
-| **1.5** | **现实解构**（A0）→ `reality-deconstructed.json` / `.md` | 自动 |
-| 2 | 异步并发 4 Agent（A2/A4/A7 + 基线 A1）消费解构 JSON → **每 agent 3 段** pseudo | 自动 |
-| 3 | 每段 pseudo → 向量 → Top 2 → **按 tmdb_id 聚合**（~15–19 候选/条；A1 标 `[baseline]`） | 自动 |
-| 4 | C1 为每部候选写中文审核文案 | 自动 · **Phase 4 gated（须 GATE_PASS）** |
-| 5 | 渲染 Markdown → `output/Daily_Briefing/` 或 `output/Eval/` | 自动 |
-| 6 | 人类总编填 **共振分** + **共振类型**；可选 `score_eval_candidates.py` 命中分审阅 | 人工 |
-| 7 | C2 多平台定稿 | 自动（人工触发）· **gated** |
+| 3.5 / 3.6 | 现实解构 + 多 pseudo 管线 | 方向成立、未达发布标准（历史 GATE_FAIL） |
+| 3.7 | 12 persona 落地 | 结案 No-Go（[Phase3.7-closure-report](../reports/Phase3.7-closure-report.md)） |
+| 3.8 / 3.9 | A0 逐字 + 客观扩展 + 中性通道 + 三桶 + LLM-judge | 3.9 GATE no-go；judge 校准达标采信为预筛 |
+| **3.10** | 双轴 rubric + judge 转评测预筛 | **GATE GO**（2026-06-10，D1–D5） |
+| **3.11.8** | fragment ladder / search unit 架构 | **GATE GO**（2026-06-13；net-new 2-rate 15.9% ≥ baseline 13.6%，守卫零硬失败） |
 
-> 注 1：MVP 跑 A2/A4/A7 + 基线 A1；评测闸门见 `docs/eval-the-bet.md` 与 `output/Eval/GATE_RESULT.md`（当前 **GATE_FAIL · 发布**）。
-> 注 2：语种——Step 2/3 **英文**；Step 4/7 **中文审核 + 中英定稿**（Step 4/7 待闸门通过）。
+**当前结论**：架构链路已收敛、闸门 GO，可进入 Phase 4。**遗留技术债**（[ADR-0010](../adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md) D4）：① 5 条 baseline human-2 因新排序落出预算（可经 retention floor 调优恢复）；② judge 仍 screening-only，人工打分未覆盖净新增候选，接 RSS 新分布前须补校准。
 
 ---
 
-## 9. 网页端承接能力（现有基础）
+## 9. 实施计划（Roadmap）
 
-前端稳定深链入口为 **`/movie/{tmdb_id}`**（Phase 30 契约,分享/OG/`_redirects` 均以此为准）。`{tmdb_id}` = `cleaned.csv` 的 `id` 列（TMDB 数字 id,非 imdb_id）。可附 `?lang=` / `?theme=` / `?timeline=` 等 query。
+### 已完成（Phase 0–3）
 
-> ⚠️ 旧版 PRD 写的 `?focus_movie=xxx` **当前代码库不存在该参数**,勿用。海报完整 URL = `https://image.tmdb.org/t/p/w780` + `poster_path`（MVP 简报不渲染图,低优先）。
+* 索引复用（ADR-0001）、endpoint smoke test、prompts、agents/personas、retrieve、五段流水、双轴 rubric、judge 预筛、fragment ladder / search unit。Phase 3 全部 GATE GO。
 
----
+### Phase 4 · 呈现层 / 中文文案（即将启动）
 
-## 10. 实施计划（Roadmap）
+* C1 中文审核文案（batch 生成）；C2 中英多平台定稿。
+* **OPEN（[ADR-0007](../adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) a）**：是否在 reader-facing 文案做 POV 聚焦（被击中的最强位置）——本 PRD 登记为待决。
+* baseline retention 调优、judge 人工校准补齐（清 ADR-0010 D4 债）。
 
-### Phase 1 · MVP 建造期（当前）
+### Phase 5 · 新闻接入
 
-**执行顺序刻意从底向上、每步独立可验证；并显式区分「验证管线 plumbing」与「验证赌注 the bet」。**
+* `fetch_news.py` RSS 接入 + 去重；judge 在 RSS 新分布重测对齐后才当预筛。
 
-> 关键原则:**召回质量只在全量片单(59,341)上才算数**;20 行 subsample 仅用于验证脚本能跑(plumbing),不看召回质量、不评分。
+### Post-MVP（按效果排期）
 
-0. **[基建 · 索引复用,ADR-0001]** 把 cosmos 的 `cleaned.csv` + `text_embeddings.npy` 拷入 `data/output/`(已完成);`build_index.py` 仅负责:从 `cleaned.csv` 选 9 列生成 `meta.parquet`、把 `text_embeddings.npy` 接成索引、断言行数对齐(59,341,已实测)。从 CSV 重算的逻辑降级为 Post-MVP 备用。
-1. **[地基校验]** **endpoint smoke test**:拿配好的 MiMo OpenAI 兼容 endpoint 打一句 trivial prompt,确认 auth + 模型名 + 协议三件事都通,再写正式逻辑。
-2. **[Prompts]** `prompts/` **已写完**(公共去实体化规则 + 输出契约 + A1/A2/A4/A7 + C1/C2)。
-3. **[Agents]** `scripts/agents.py`:加载 prompts,异步并发调用 MiMo(默认 provider),产 4 段英文 pseudo(A2/A4/A7 + 基线 A1)。手喂新闻肉眼验去实体化质量与风格差异。
-4. **[Retrieve]** `scripts/retrieve.py`:每段 pseudo **套 `Overview: {pseudo}` 模板**(与索引同分布,ADR-0001)→ 召回 Top-2;**撞车仅作中性展示**(标命中视角列表,不加权);**可选**记一个发散度探针(查询两两余弦 + Top-K Jaccard)供观察。
-5. **[★ 验证闸门 · The Bet]** 在**全量片单**上,从真实抓取(不挑源)的新闻里**手挑 N=10 条**跑链路,总编评分,分数写进简报。
-   - **评分口径**:对每个去重后的 `(新闻, 电影)` 候选打**一次** 0/1/2 共振分(共振是 news↔电影 的属性,与召回它的 agent 无关),再把该分**归属给所有召回了它的视角**。
-   - **通过线**:≥60% 批次至少出 1 个 2 分候选,**且** A1 基线候选集的 2 分率 < 创作视角(A2/A4/A7)合并候选集的 2 分率(看频率差,A1 偶中 2 分无妨)。
-   - **没过 → 回到 step 3/4 调 prompt 或查召回,不要往下走。**
-6. **[Copy · 闸门后]** `scripts/copywriter.py`:**闸门过了才接** C1(为候选批量生成中文审核文案);C2(中英多平台定稿)更靠后,依赖总编已勾选定稿。
-7. **[News]** `scripts/fetch_news.py`:feedparser + **宽口径中立源(MVP 不对源做偏好)** + URL 去重 + 标题相似度去重;CLI 打印带序号清单 → 人工把选中 url 传给 main。
-8. **[集成]** `scripts/main.py`:串起来 → 输出 `output/Daily_Briefing/2026-MM-DD.md`。
-
-**该顺序的好处**:链路核心风险(LLM 输出质量、召回相关性)在花时间挑 RSS 源、写文案之前就会在 step 5 闸门处暴露。
-
-### Phase 2 · Post-MVP（候选清单，按效果排期）
-
-* 补齐 Persona 至 7 个
-* 历史去重（电影维度、新闻维度）
-* `generate_planet.py` 视觉切片
-* C2 扩展更多平台 / 更多语言（Instagram、Threads、日韩语等；MVP 仅中英）
-* 候选过滤策略（评分阈值 / 成人内容 / 冷门下限）
-* 索引增量更新
-* 运维：日志、失败告警、定时调度（cron / GitHub Actions）
-* 自动化"热度评分"算法
-* 自动发布到社媒
+* 历史去重（电影/新闻维度）、`generate_planet.py` 视觉、C2 更多平台/语种、候选过滤策略、索引增量更新、运维（日志/告警/调度）、自动热度评分、自动发布、hybrid recall 子信号展开、additive vs replacement 最终口径。
 
 ---
 
-## 11. 项目结构（参考）
+## 10. 项目结构（参考）
 
 ```
 themoviecosmos-daily-stargazing/        ← Obsidian Vault Root
-├── .obsidian/                          # Obsidian 配置
 ├── data/
-│   ├── subsample/                      # 20 行样本（已有）
-│   ├── full/                           # 60k 全量（gitignore）
-│   └── index/                          # embeddings.npy + meta.parquet（gitignore）
+│   ├── index/                          # embeddings.npy + meta.parquet（gitignore）
+│   └── output/                         # 复用 cosmos 的 cleaned.csv + text_embeddings.npy
 ├── docs/
-│   └── SSOT/电影宇宙「每日星轨观测」系统 PRD.md
+│   ├── adr/                            # 0001–0010 架构决策
+│   ├── reports/                        # 各 Phase 交付报告
+│   ├── eval-the-bet.md                 # 验证闸门手册
+│   ├── eval-phase3.10-holdout-freeze-discipline.md
+│   └── SSOT/
+│       ├── 电影宇宙「每日星轨观测」系统 PRD.md   # 本文件
+│       ├── personas-12.md              # 12 persona roster
+│       ├── simplified-news-to-film-workflow.md  # fragment ladder 精简版工作流
+│       └── reality-deconstruction-contract.md  # A0 + 客观扩展契约
 ├── prompts/
 │   ├── _shared/
 │   │   ├── deentification_rules.md
+│   │   ├── objective_expansion_contract.md
+│   │   ├── persona_alt_creator_contract.md
+│   │   ├── persona_screenwriter_contract.md
+│   │   ├── resonance_definition_v2.md
+│   │   ├── multi_pseudo_output_contract.md
 │   │   └── output_contract.md
-│   ├── A1_reality_recorder.md       # 英文基线/对照（不做隐喻）
-│   ├── A2_sociologist.md            # 英文 Persona
-│   ├── A4_mythologist.md            # 英文 Persona
-│   ├── A7_chaos_theorist.md         # 英文 Persona
-│   ├── C1_copywriter_review.md      # 中文审核文案
-│   └── C2_copywriter_multiplatform.md  # 中英多平台定稿
+│   ├── personas/<persona_id>/persona_card.md   # 12 张（The-Innocent … The-Jester）
+│   ├── A0_reality_deconstructor.md
+│   ├── C1_copywriter_review.md
+│   └── C2_copywriter_multiplatform.md
+│   # 注：A1/A2/A4/A7 prompt 为历史四 agent 遗留，已被 12 persona 取代
 ├── scripts/
+│   ├── lib/                            # env / llm / paths / phase311_pilot 等
+│   ├── deconstruct.py                  # A0
+│   ├── objective_expansion.py          # P-Expand
+│   ├── personas.py                     # P-Lens / P-Compose / fragment ladder / search unit
+│   ├── retrieve.py                     # 召回 + convergent sort + 池差分解
+│   ├── llm_judge.py / judge_prescreen.py
+│   ├── resonance_rubric.py
+│   ├── run_eval.py / summarize_eval.py / score_eval_candidates.py
 │   ├── build_index.py
-│   ├── fetch_news.py
-│   ├── agents.py
-│   ├── retrieve.py
-│   ├── copywriter.py               # C1 / C2 调用
+│   ├── fetch_news.py                   # Phase 5
 │   └── main.py
 ├── output/
-│   └── Daily_Briefing/                 # 每日简报（Obsidian 阅读入口）
-├── state/
-│   └── seen_news.sqlite                # URL/标题历史去重
-├── .env.example
-├── .gitignore
-├── requirements.txt
-└── README.md
+│   ├── Eval/                           # 评测产物（phase3.x 子目录）
+│   └── Daily_Briefing/                 # 正式日报
+├── state/seen_news.sqlite
+├── CONTEXT.md                          # 术语 SSOT
+└── requirements.txt
 ```
 
 ---
 
-## 12. 显式不在 MVP 内的事项（避免范围蔓延）
+## 11. 显式不在 MVP 内的事项（避免范围蔓延）
 
-* 自动化"热度评分"挑新闻（手动指定 url 可绕过）
+* 自动化热度评分挑新闻（手动指定 url 可绕过）
 * 候选过滤（相似度阈值、评分、年代、成人内容）
 * 历史去重（电影 / 新闻）
-* 7 个创作 Persona 全量上线（MVP 只跑 A2/A4/A7 + 基线 A1）
 * `generate_planet.py` 星球视觉
-* C2 多平台 / 多语言扩展（MVP 仅中英两版，更多平台与语种留到 Post-MVP）
-* 自动发布
-* 索引增量更新
-* 日志/监控/告警/定时调度
+* C2 多平台 / 多语言扩展（MVP 仅中英两版）
+* 自动发布、索引增量更新、日志/监控/告警/定时调度
 * RSS 源内容过滤
-* JSON Schema 强约束 / 重试降级 / 模型路由
+* hybrid recall 的 lexical / weighted ladder 子信号全展开
+* additive vs replacement 的产品化最终口径（[ADR-0010](../adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md) D3 遗留）

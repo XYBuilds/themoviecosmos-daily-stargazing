@@ -1,6 +1,13 @@
 # 12 原型情绪化扩散：从注入式 An 到 A1 的情绪滤镜
 
-**Status**: proposed
+**Status**: **superseded**（2026-06-14；原为 `proposed`，3.7 GATE_FAIL 后从未升 accepted）
+
+> **被取代说明**：Phase 3.7「12 persona = A1 情绪化扩散」赌注于 2026-06-05 `GATE_FAIL`（见下方 Outcome）。其后续归宿：
+> - **情绪扩散主轴 / valence 着色** → 被 [ADR-0008](0008-salience-driven-element-composition-and-multi-vantage-pov.md) 保留但**降级**（valence 从「逐元素正中负光谱覆盖」降为元素层可选标注）。
+> - **A0 单一中性源 / 共享中性** → 被 [ADR-0005](0005-objective-extraction-neutral-channel-and-collision-vote.md)、[ADR-0006](0006-a1-as-held-out-oracle-per-persona-neutral-and-three-bucket-eval.md) 重构，最终通道结构被 [ADR-0009](0009-fragment-ladder-and-search-unit-architecture.md) 整体替换为 fragment ladder / search unit。
+> - **闸门 2（persona 2 分率 > A1）** → 随 A1 角色演变（oracle → 只读参照 → diagnostic-only）失效，被 [ADR-0007](0007-logic-resonance-judge-prescreen-and-pov-focalization.md) D1 双轴 rubric + judge 预筛取代。
+>
+> **仍然有效的资产**：12 Pearson persona roster 本身**继续是当前架构的 persona 集**，其 SSOT [`docs/SSOT/personas-12.md`](../SSOT/personas-12.md) 仍然生效（价值轴语义已由 ADR-0008「注意力清单」重定位）。本 ADR 保留全文供 persona 设计考古。
 
 > **背景**：Phase 3.6 `GATE_FAIL（发布）`；总编复盘见 `output/Eval/phase3.6/high-hit-score-review.md`。A1（忠实复述）是最强单一信号；当前 A2/A4/A7 靠 prompt 级 **Inject**（虚构关联、神话化、微因果发明）在样本外产生流畅伪关联（如 Dead Mail）。本 ADR 记录 Phase 3.7 的赌注：**12 Pearson 原型 = A1 的情绪化扩散**——只从现实里 **Select + 重配语气**，不注入新事实。
 >
