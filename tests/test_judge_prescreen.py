@@ -15,6 +15,7 @@ from scripts.judge_prescreen import (
     PrescreenConfig,
     classify_prescreen_bucket,
     compute_threshold_safety,
+    integrate_prescreen_into_review,
     item_passes_threshold,
     load_prescreen_report,
     run_prescreen,

@@ -56,6 +56,7 @@ def score_pending_pairs(
     partial: dict[tuple[str, str], dict],
     score_fn: JudgeScoreFn | None = None,
     provider: str | None = None,
+    mimo_thinking: str | None = None,
     workers: int = 1,
     checkpoint_fn: CheckpointFn | None = None,
     on_progress: Callable[[int, int, JudgeItem], None] | None = None,
@@ -75,7 +76,7 @@ def score_pending_pairs(
             )
         else:
             judge_score, judge_type, rationale, causal_test, pov_transform = (
-                call_llm_judge(item, provider=provider)
+                call_llm_judge(item, provider=provider, mimo_thinking=mimo_thinking)
             )
         row = pair_result_row(
             item, judge_score, judge_type, rationale, causal_test, pov_transform

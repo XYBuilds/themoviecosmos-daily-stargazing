@@ -293,12 +293,17 @@ flowchart TD
 **依赖：** 3.11.6b
 
 - 全批 fragment ladder design-on（同新闻集 01–10）vs 3.10 基线（**同新闻同 def 同 judge**，差异=整包新设计，按 ADR-0009 打包归因）。
+- **LLM judge 工作流更新**：MiMo judge 默认必须 `thinking=enabled`；thinking-disabled 产物只作历史对照，不作为人工筛选依据。人工筛选默认依据 thinking-on 的 `judge_score>0` 候选池。
+- **LLM judge 并行执行**：保留 pair-level 并行，默认 `--workers 4`，可按限流与稳定性调整；thinking-on 的 token 预算默认使用 4096 completion tokens，避免为省 tokens 牺牲判别质量。
+- **LLM judge 进度可观测**：批量 judge 默认打印 `items/done/pending/workers/mimo_thinking/prompt_version` 启动摘要，并在每个 pair 完成后打印 `progress/pending/batch/elapsed/eta/last`，便于长任务随时监控状态。
 - 计池差按 `search_unit_kind` 分解（surface-fragment-bundle 独家 / event-fragment-bundle 独家 / persona-semantic 独家 / 撞车增益）+ `POV变换` 人工子标签分布；按指南针口径**调优**（哪 persona / 哪类 center_element / 哪类 search unit 有用，convergent sort 权重，预算 N）。
 - 拒绝集抽审延续，监控「零 human-2 被杀」。
 
 ### 验收
 
 - [ ] 产出位于 `output/Eval/phase3.11/{run_id}/`；3.10 及更早未改写
+- [ ] thinking-on `llm-judge-scores.json` / `.md` 写入 `run_metadata.thinking_mode=enabled`，人工筛选依据 `judge_score>0` 的 thinking-on 结果
+- [ ] judge 批任务按默认并行参数可恢复执行，并在终端持续输出可监控进度
 - [ ] 池差 search_unit_kind 分解 + POV变换 分布 + 调优记录在案
 - [ ] `[需人工验收]`：用户 approve 数据 → 进 3.11.8
 

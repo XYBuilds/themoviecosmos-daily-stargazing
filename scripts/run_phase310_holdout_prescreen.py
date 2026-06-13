@@ -24,6 +24,7 @@ from scripts.judge_prescreen import (
 )
 from scripts.llm_judge import integrate_judge_into_review, load_judge_output
 from scripts.merge_phase310_judge_corpus import merge_corpus
+from scripts.run_phase39_judge_batch import DEFAULT_JUDGE_WORKERS
 from scripts.summarize_eval import parse_unified_review, summarize_runs
 
 PHASE310 = _REPO_ROOT / "output" / "Eval" / "phase3.10"
@@ -106,9 +107,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--workers",
         type=int,
-        default=8,
+        default=DEFAULT_JUDGE_WORKERS,
         metavar="N",
-        help="Concurrent judge pair scorers for holdout (default: 8)",
+        help=f"Concurrent judge pair scorers for holdout (default: {DEFAULT_JUDGE_WORKERS})",
     )
     parser.add_argument("--skip-judge", action="store_true")
     parser.add_argument("--skip-label", action="store_true")
@@ -132,6 +133,8 @@ def main(argv: list[str] | None = None) -> int:
             "--out-json",
             str(holdout_json.relative_to(_REPO_ROOT)),
             "--holdout-only",
+            "--mimo-thinking",
+            "enabled",
             "--workers",
             str(max(1, args.workers)),
         ]

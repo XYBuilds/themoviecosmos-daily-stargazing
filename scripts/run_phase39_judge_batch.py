@@ -1,10 +1,11 @@
-"""Incremental LLM judge batch for Phase 3.9.7 (obs calibrate → freeze → holdout once).
+"""Incremental LLM judge batch for Phase 3.9.7+.
 
 Scores high-hit review candidates with resume support. Observation-set human scores
 drive calibration; frozen thresholds apply to holdout without re-tuning.
 
-Pair-level parallelism: use ``--workers N`` to score multiple (news, movie) pairs
-concurrently (default 1 = serial). Checkpoint writes are thread-safe.
+Pair-level parallelism is enabled by default. Use ``--workers N`` to tune the
+number of concurrent (news, movie) scorers. Checkpoint writes are thread-safe,
+and progress is printed after every completed pair for live monitoring.
 """
 
 from __future__ import annotations
@@ -13,6 +14,7 @@ import argparse
 import json
 import shutil
 import sys
+import time
 from pathlib import Path
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -30,7 +32,8 @@ from scripts.llm_judge import (
 )
 from scripts.run_persona_batch import split_obs_holdout
 
-DEFAULT_PROMPT_VERSION = "3.10.1b-logic-0-guard"
+DEFAULT_PROMPT_VERSION = "3.11.7-mimo-v2.5-pro-thinking-enabled"
+DEFAULT_JUDGE_WORKERS = 4
 
 
 def _parse_run_ids(raw: str | None) -> list[str] | None:
@@ -57,10 +60,11 @@ def run_incremental(
     out_md: Path,
     *,
     provider: str | None,
+    mimo_thinking: str | None = None,
     obs_only: bool = False,
     holdout_only: bool = False,
     run_ids: list[str] | None = None,
-    workers: int = 1,
+    workers: int = DEFAULT_JUDGE_WORKERS,
     prompt_version: str = DEFAULT_PROMPT_VERSION,
     fresh: bool = False,
 ) -> int:
@@ -89,9 +93,12 @@ def run_incremental(
     partial = {} if fresh else _load_partial(out_json)
     pending = [i for i in items if item_key(i) not in partial]
     checkpoint_items = items
+    initial_done = len(items) - len(pending)
+    started_at = time.monotonic()
     print(
-        f"items={len(items)} done={len(items)-len(pending)} pending={len(pending)} "
-        f"workers={max(1, workers)} prompt_version={prompt_version}",
+        f"items={len(items)} done={initial_done} pending={len(pending)} "
+        f"workers={max(1, workers)} mimo_thinking={mimo_thinking or 'enabled'} "
+        f"prompt_version={prompt_version}",
         flush=True,
     )
 
@@ -104,11 +111,20 @@ def run_incremental(
             obs_ids,
             prompt_version=prompt_version,
             provider=provider,
+            mimo_thinking=mimo_thinking,
         )
 
     def on_progress(idx: int, total: int, item) -> None:
+        completed = initial_done + idx
+        remaining = max(len(items) - completed, 0)
+        elapsed = time.monotonic() - started_at
+        rate = idx / elapsed if elapsed > 0 else 0.0
+        eta = remaining / rate if rate > 0 else None
+        eta_text = f" eta={eta:.0f}s" if eta is not None else ""
         print(
-            f"[{idx}/{total}] {item.run_id} {item.tmdb_id} {item.title[:40]}",
+            f"progress={completed}/{len(items)} pending={remaining} "
+            f"batch={idx}/{total} elapsed={elapsed:.0f}s{eta_text} "
+            f"last={item.run_id}/{item.tmdb_id} {item.title[:40]}",
             flush=True,
         )
 
@@ -116,6 +132,7 @@ def run_incremental(
         pending,
         partial=partial,
         provider=provider,
+        mimo_thinking=mimo_thinking,
         workers=workers,
         checkpoint_fn=checkpoint,
         on_progress=on_progress,
@@ -146,6 +163,7 @@ def _write_checkpoint(
     *,
     prompt_version: str,
     provider: str | None,
+    mimo_thinking: str | None,
 ) -> None:
     scored_items = [i for i in all_items if item_key(i) in partial]
 
@@ -161,7 +179,7 @@ def _write_checkpoint(
 
     output = score_items(scored_items, replay, observation_run_ids=obs_ids)
     out_json.parent.mkdir(parents=True, exist_ok=True)
-    run_metadata = judge_run_metadata(provider)
+    run_metadata = judge_run_metadata(provider, mimo_thinking=mimo_thinking)
     payload = output.to_dict()
     payload["prompt_version"] = prompt_version
     payload["run_metadata"] = run_metadata
@@ -192,6 +210,12 @@ def main(argv: list[str] | None = None) -> int:
         help="Default: <eval-dir>/llm-judge-scores.md",
     )
     parser.add_argument("--provider", default=None)
+    parser.add_argument(
+        "--mimo-thinking",
+        choices=["disabled", "enabled"],
+        default="enabled",
+        help="MiMo thinking mode for judge requests (default: enabled)",
+    )
     parser.add_argument("--obs-only", action="store_true")
     parser.add_argument("--holdout-only", action="store_true")
     parser.add_argument(
@@ -203,9 +227,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--workers",
         type=int,
-        default=1,
+        default=DEFAULT_JUDGE_WORKERS,
         metavar="N",
-        help="Concurrent (news, movie) pair scorers (default: 1 = serial)",
+        help=f"Concurrent (news, movie) pair scorers (default: {DEFAULT_JUDGE_WORKERS})",
     )
     parser.add_argument(
         "--prompt-version",
@@ -236,6 +260,7 @@ def main(argv: list[str] | None = None) -> int:
         out_json,
         out_md,
         provider=args.provider,
+        mimo_thinking=args.mimo_thinking,
         obs_only=args.obs_only,
         holdout_only=args.holdout_only,
         run_ids=_parse_run_ids(args.run_ids),

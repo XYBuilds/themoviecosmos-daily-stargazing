@@ -70,6 +70,7 @@ class JudgeBatchParallelTests(unittest.TestCase):
                     obs_ids=["01-grid-outage"],
                     prompt_version="test",
                     provider="mimo",
+                    mimo_thinking="disabled",
                 )
 
             score_pending_pairs(
@@ -92,6 +93,43 @@ class JudgeBatchParallelTests(unittest.TestCase):
             self.assertIn("thinking disabled", md_text)
             for row in data["scores"]:
                 self.assertEqual(row["judge_score"], 2)
+
+    def test_checkpoint_can_mark_mimo_thinking_enabled(self):
+        items = [_item("05-a", "1")]
+        partial = {
+            ("05-a", "1"): {
+                "run_id": "05-a",
+                "tmdb_id": "1",
+                "title": "Film 1",
+                "judge_score": 2,
+                "judge_resonance_type": TYPE_STRONG,
+                "rationale": "ok",
+                "causal_test": _CAUSAL,
+                "human_score": None,
+                "human_resonance_type": None,
+                "human_pov_transform": None,
+                "judge_pov_transform": None,
+                "disagreement": False,
+            }
+        }
+        with TemporaryDirectory() as tmp:
+            out_json = Path(tmp) / "scores.json"
+            out_md = Path(tmp) / "scores.md"
+            _write_checkpoint(
+                out_json,
+                out_md,
+                items,
+                partial,
+                obs_ids=["01-grid-outage"],
+                prompt_version="test-thinking-enabled",
+                provider="mimo",
+                mimo_thinking="enabled",
+            )
+            data = json.loads(out_json.read_text(encoding="utf-8"))
+            self.assertEqual(data["run_metadata"]["thinking_mode"], "enabled")
+            self.assertIn("thinking enabled", data["run_metadata"]["judge_condition_note"])
+            md_text = out_md.read_text(encoding="utf-8")
+            self.assertIn("**thinking_mode**: enabled", md_text)
 
     def test_resume_only_scores_pending_subset(self):
         """Caller filters completed keys; parallel runner scores only *pending*."""

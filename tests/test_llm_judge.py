@@ -44,10 +44,19 @@ class JudgeSchemaTests(unittest.TestCase):
         self.assertNotIn("骨架同构", _JUDGE_RUBRIC)
         self.assertIn("falsifiable causal counter-test", _JUDGE_SYSTEM.lower())
 
-    def test_mimo_judge_uses_completion_tokens_with_thinking_disabled(self):
+    def test_mimo_judge_defaults_to_thinking_enabled_with_larger_budget(self):
         self.assertEqual(_judge_request_options("deepseek"), {"max_tokens": 700})
         self.assertEqual(
             _judge_request_options("mimo"),
+            {
+                "max_completion_tokens": 4096,
+                "extra_body": {"thinking": {"type": "enabled"}},
+            },
+        )
+
+    def test_mimo_judge_can_disable_thinking_for_legacy_comparison(self):
+        self.assertEqual(
+            _judge_request_options("mimo", mimo_thinking="disabled"),
             {
                 "max_completion_tokens": 1024,
                 "extra_body": {"thinking": {"type": "disabled"}},
