@@ -45,6 +45,6 @@
 
 【候选电影列表】
 {{candidates}}
-（每条含：title / year / overview / 触发它的 Agent 视角 / tmdb 链接）
+（每条含：片名 / 年份 / overview / 被哪些视角击中 / 切面（可选参考，非强制聚焦）/ tmdb 链接）
 
 直接输出文案，按候选顺序排列，每部一段。

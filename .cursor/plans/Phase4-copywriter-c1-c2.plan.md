@@ -4,7 +4,7 @@ overview: 把 copywriter 重构成「先验证 MVP、通过后再一点点丰富
 todos:
   - id: f4a1b2c3-0001-4000-8004-000000000001
     content: 4.1 · [MVP] copywriter --stage review（C1）：读 retrieve.json candidates[] + 新闻语境 → 每候选一段中文审核稿；persona-semantic 文本入语境；视角标签软提示
-    status: pending
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000002
     content: 4.2 · [MVP] 审核稿落 Obsidian：JSON + Markdown 候选块（供总编肉眼审核/勾选）+ CLI + README（依赖 4.1）
     status: pending
@@ -197,10 +197,10 @@ python scripts/copywriter.py --stage review --retrieve-json ... --out output/cop
 
 ### 验收
 
-- [ ] 候选 N 部 → `review_copies` 长度 N（允许单路 LLM 失败有 errors）
-- [ ] 中文、无 hashtag、无明显剧透腔
-- [ ] A1/oracle 候选**不出现**在 review_copies
-- [ ] 视角标签作为软提示透传，文案不被强制聚焦（OPEN a）
+- [x] 候选 N 部 → `review_copies` 长度 N（允许单路 LLM 失败有 errors）
+- [x] 中文、无 hashtag、无明显剧透腔
+- [x] A1/oracle 候选**不出现**在 review_copies
+- [x] 视角标签作为软提示透传，文案不被强制聚焦（OPEN a）
 
 ---
 
