@@ -122,11 +122,15 @@ Copy-Item .env.example .env
    python scripts/summarize_eval.py --dir output/Eval
    ```
 
-5. **生成中文审核文案**
+5. **生成中文审核文案（C1 审核稿）**
    ```powershell
-   python scripts/copywriter.py --stage review --candidates <retrieve_output>
+   python scripts/copywriter.py --stage review `
+     --retrieve-json output/phase2_retrieve.json `
+     --news-file output/Eval/phase3.11/full-batch-20260613-3117/01-grid-outage/reality.json `
+     --judge-scores output/Eval/phase3.11/full-batch-20260613-3117/llm-judge-scores-thinking-enabled.json `
+     --out output/copy_review.json
    ```
-   为每部候选产出一段中文文案，写进简报供总编勾选。
+   为每部候选产出一段中文文案。产物：`output/copy_review.json`（结构化）+ `output/copy_review.md`（Obsidian 可读候选块，默认与 `--out` 同名 `.md`；也可用 `--md-out` 显式指定）。总编在 Obsidian 中肉眼审核、手动勾选 `✅ 选用`（A1/oracle 不入候选）。
 
 6. **接 RSS**：`scripts/fetch_news.py`。
 

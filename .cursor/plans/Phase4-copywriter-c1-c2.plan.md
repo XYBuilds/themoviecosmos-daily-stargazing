@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000002
     content: 4.2 · [MVP] 审核稿落 Obsidian：JSON + Markdown 候选块（供总编肉眼审核/勾选）+ CLI + README（依赖 4.1）
-    status: pending
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000003
     content: 4.3 · [MVP GATE] 用一条真实新闻跑通 retrieve→C1，总编在 Obsidian 确认审核稿文本质量 OK → 决定是否解封平台定稿 [需人工验收 · Go/No-Go]（依赖 4.2）
     status: pending
@@ -231,9 +231,9 @@ python scripts/copywriter.py --stage review --retrieve-json output/phase2_retrie
 
 ### 验收
 
-- [ ] 候选 N 部 → Markdown 候选块 N 块，可直接在 Obsidian 阅读
-- [ ] 每块含片名/触发视角/审核稿文本/链接/勾选位
-- [ ] A1/oracle 候选**不出现**
+- [x] 候选 N 部 → Markdown 候选块 N 块，可直接在 Obsidian 阅读
+- [x] 每块含片名/触发视角/审核稿文本/链接/勾选位
+- [x] A1/oracle 候选**不出现**
 
 ---
 
