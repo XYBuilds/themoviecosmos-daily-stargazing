@@ -246,17 +246,20 @@ surface_match_score + event_match_score + persona_semantic_match_score
 * 前端稳定深链：`https://themoviecosmos.com/movie/{tmdb_id}`（Phase 30 契约，分享/OG/`_redirects` 均以此为准）。`{tmdb_id}` = `cleaned.csv` 的 `id` 列（TMDB 数字 id）。
 * 可附 `?lang=` / `?theme=` / `?timeline=` query。旧版 `?focus_movie=xxx` **当前代码库不存在，勿用**。
 
-### 7.3 文案定稿（多平台多语言 · Phase 4 gated）
+### 7.3 文案定稿（平台增量 · Phase 4 Stage 1 gated）
 
-总编勾选一条中文审核稿后，用 `prompts/C2_copywriter_multiplatform.md` 生成发布版本：
+> **MVP 边界（2026-06-14 收窄）**：Phase 4 MVP **只产出中文审核稿文本并落 Obsidian 供总编肉眼审核**（§5.4），**不含任何平台定稿 / 中英双语 / 图片**。文本质量过 GATE 后才解封下方定稿。
 
-* **MVP 范围：仅中、英两种语言**（中文平台 ≤140 字 / 英文平台 ≤280 字符）。
-* 英文版非直译，保留同一共振内核重写。
-* 每版附跳转链接 + 0~2 个自然话题标签。
+总编在 Obsidian 勾选一条审核稿后，用 `prompts/C2_copywriter_multiplatform.md` 生成平台发布版本：
+
+* **从最简单平台起步、增量扩展**（倾向 discord → 小红书 → X），不一次性铺全平台。
+* 每平台一个 profile（语言 / 长度 / 结构约定 / hashtag / 转贴 / 图片字段占位）：小红书=中文 + hashtag 关联新闻；X=英文 + 引用新闻原帖（需源 URL，缺失则后置）；discord=最简纯文本。
+* 每版附跳转链接 + 0~2 个自然话题标签；`image_ref` 仅占位，本 Phase 不生成图片。
 
 ### 7.4 视觉切片与发布
 
-* `generate_planet.py`（星球视觉）、更多平台/语种、社媒自动发布 = **Post-MVP**；社媒发布始终先手动。
+* **图片生成**：独立**视觉生成层 Phase**（先定义与主项目 og 图共用的一套设计逻辑）；Phase 4 仅在 profile 占位 `image_ref`，不生成。
+* `generate_planet.py`（星球视觉）、更多平台/语种、社媒自动发布 = **Post-MVP**；社媒发布始终先手动（discord 因无注册/审核门槛，为未来首个自动发布试点）。
 
 ---
 
@@ -376,7 +379,7 @@ themoviecosmos-daily-stargazing/        ← Obsidian Vault Root
 * 候选过滤（相似度阈值、评分、年代、成人内容）
 * 历史去重（电影 / 新闻）
 * `generate_planet.py` 星球视觉
-* C2 多平台 / 多语言扩展（MVP 仅中英两版）
+* C2 平台定稿 / 中英双语（属 Phase 4 Stage 1，MVP GATE 通过后才解封；MVP 只产中文审核稿落 Obsidian）
 * 自动发布、索引增量更新、日志/监控/告警/定时调度
 * RSS 源内容过滤
 * hybrid recall 的 lexical / weighted ladder 子信号全展开
