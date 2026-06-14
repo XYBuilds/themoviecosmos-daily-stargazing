@@ -56,7 +56,7 @@ class HitScore:
     fragments: list[str]
     similarity: float | None
     score: int
-    channel_role: str = "toned"
+    search_unit_kind: str = "persona-semantic"
 
 
 @dataclass
@@ -64,10 +64,8 @@ class RetrieveDiagnostics:
     """Candidate-level automatic scoring signals from retrieve.json."""
 
     quality_candidate: bool
-    neutral_hits: int
-    neutral_total: int
-    neutral_hit_rate: float
-    distinct_agents: int
+    objective_hits: int
+    persona_count: int
     objective_match: bool = False
     surface_match: bool = False
     event_match: bool = False
@@ -102,7 +100,9 @@ class RunHighHitReview:
 
 
 def _is_diagnostic_hit(hit: HitScore) -> bool:
-    return hit.channel_role == "neutral" or hit.pseudo_id.lower() == "n1"
+    """Objective surface/event bundle hits are diagnostic; not scored inline."""
+    kind = hit.search_unit_kind.strip().lower()
+    return kind in {"surface-fragment-bundle", "event-fragment-bundle"}
 
 
 def _scoring_hits(hits: list[HitScore]) -> list[HitScore]:
@@ -125,11 +125,11 @@ def _is_multi_agent_hit(*, quality_candidate: bool, agents: list[str]) -> bool:
     return len(agents) >= 2
 
 
-def _is_pure_neutral_candidate(diag: RetrieveDiagnostics | None) -> bool:
-    """Diagnostic-only: neutral vote without toned convergence."""
+def _is_objective_only_candidate(diag: RetrieveDiagnostics | None) -> bool:
+    """Diagnostic-only: objective surface/event hit without persona-semantic convergence."""
     if diag is None:
         return False
-    return diag.neutral_hits >= 1 and diag.distinct_agents == 0
+    return diag.objective_hits >= 1 and diag.persona_count == 0
 
 
 def _eligible_for_scoring_pool(
@@ -153,15 +153,8 @@ def _load_retrieve_meta(
         tmdb_id = int(cand["tmdb_id"])
         quality = bool(cand.get("quality_candidate"))
         quality_by_tmdb[tmdb_id] = quality
-        neutral_hits = int(cand.get("neutral_hits") or 0)
-        neutral_total = int(cand.get("neutral_total") or 0)
-        raw_rate = cand.get("neutral_hit_rate")
-        neutral_hit_rate = (
-            float(raw_rate)
-            if isinstance(raw_rate, (int, float))
-            else (float(neutral_hits) / neutral_total if neutral_total > 0 else 0.0)
-        )
-        distinct_agents = int(cand.get("distinct_agents") or 0)
+        objective_hits = int(cand.get("objective_hits") or 0)
+        persona_count = int(cand.get("persona_count") or 0)
         hit_sources = cand.get("hit_sources") or []
         source_hit_counts = {"surface": 0, "event": 0, "persona": 0}
         fallback_kinds: set[str] = set()
@@ -195,16 +188,14 @@ def _load_retrieve_meta(
         ]
         diagnostics_by_tmdb[tmdb_id] = RetrieveDiagnostics(
             quality_candidate=quality,
-            neutral_hits=neutral_hits,
-            neutral_total=neutral_total,
-            neutral_hit_rate=neutral_hit_rate,
-            distinct_agents=distinct_agents,
+            objective_hits=objective_hits,
+            persona_count=persona_count,
             objective_match=surface_match or event_match,
             surface_match=surface_match,
             event_match=event_match,
             persona_semantic_match=persona_semantic_match,
             convergent_score=float(raw_score) if isinstance(raw_score, (int, float)) else None,
-            persona_agent_count=int(cand.get("convergence_persona_count") or distinct_agents),
+            persona_agent_count=int(cand.get("convergence_persona_count") or persona_count),
             source_hit_counts=source_hit_counts,
             search_unit_kinds=search_unit_kinds,
             center_dimensions=center_dimensions,
@@ -222,7 +213,7 @@ def _load_retrieve_meta(
                     fragments=frags,
                     similarity=float(sim) if isinstance(sim, (int, float)) else None,
                     score=len(frags),
-                    channel_role=str(src.get("channel_role") or src.get("channel") or "toned").strip().lower(),
+                    search_unit_kind=str(src.get("search_unit_kind") or "persona-semantic").strip().lower(),
                 )
             )
         hits_by_tmdb[tmdb_id] = hits
@@ -237,11 +228,13 @@ def _load_hit_scores(retrieve_path: Path) -> dict[int, list[HitScore]]:
 _AUTO_SCORE_TOP_LEVEL_FIELDS = {
     "quality_candidate",
     "quality_candidate_annotation",
+    "objective_hits",
+    "persona_count",
+    "also_baseline",
     "neutral_hits",
     "neutral_total",
     "neutral_hit_rate",
     "distinct_agents",
-    "also_baseline",
 }
 
 

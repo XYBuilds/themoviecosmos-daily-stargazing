@@ -1,0 +1,246 @@
+{
+  "baseline_dir": "\\\\192.168.1.110\\Hermes_Workspace\\themoviecosmos-daily-stargazing\\output\\Eval\\phase3.11\\full-batch-20260613-3117",
+  "news_count": 10,
+  "summary": {
+    "candidate_set_bit_parity": true,
+    "candidate_order_bit_parity": true,
+    "kind_breakdown_parity": true,
+    "a1_oracle_parity": true,
+    "set_mismatch_news": [],
+    "order_mismatch_news": [],
+    "kind_mismatch_news": [],
+    "oracle_mismatch_news": []
+  },
+  "per_news": [
+    {
+      "news": "01-grid-outage",
+      "candidate_set_equal": true,
+      "candidate_order_equal": true,
+      "baseline_only": [],
+      "replay_only": [],
+      "baseline_count": 19,
+      "replay_count": 19,
+      "kind_breakdown_equal": true,
+      "baseline_kinds": {
+        "surface-fragment-bundle": 11,
+        "event-fragment-bundle": 11,
+        "persona-semantic": 23
+      },
+      "replay_kinds": {
+        "surface-fragment-bundle": 11,
+        "event-fragment-bundle": 11,
+        "persona-semantic": 23
+      },
+      "a1_oracle_equal": true,
+      "baseline_oracle": [],
+      "replay_oracle": []
+    },
+    {
+      "news": "02-corporate-layoff",
+      "candidate_set_equal": true,
+      "candidate_order_equal": true,
+      "baseline_only": [],
+      "replay_only": [],
+      "baseline_count": 19,
+      "replay_count": 19,
+      "kind_breakdown_equal": true,
+      "baseline_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 32
+      },
+      "replay_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 32
+      },
+      "a1_oracle_equal": true,
+      "baseline_oracle": [],
+      "replay_oracle": []
+    },
+    {
+      "news": "03-election-upset",
+      "candidate_set_equal": true,
+      "candidate_order_equal": true,
+      "baseline_only": [],
+      "replay_only": [],
+      "baseline_count": 19,
+      "replay_count": 19,
+      "kind_breakdown_equal": true,
+      "baseline_kinds": {
+        "surface-fragment-bundle": 11,
+        "event-fragment-bundle": 11,
+        "persona-semantic": 29
+      },
+      "replay_kinds": {
+        "surface-fragment-bundle": 11,
+        "event-fragment-bundle": 11,
+        "persona-semantic": 29
+      },
+      "a1_oracle_equal": true,
+      "baseline_oracle": [],
+      "replay_oracle": []
+    },
+    {
+      "news": "04-celebrity-scandal",
+      "candidate_set_equal": true,
+      "candidate_order_equal": true,
+      "baseline_only": [],
+      "replay_only": [],
+      "baseline_count": 19,
+      "replay_count": 19,
+      "kind_breakdown_equal": true,
+      "baseline_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 27
+      },
+      "replay_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 27
+      },
+      "a1_oracle_equal": true,
+      "baseline_oracle": [],
+      "replay_oracle": []
+    },
+    {
+      "news": "05-climate-disaster",
+      "candidate_set_equal": true,
+      "candidate_order_equal": true,
+      "baseline_only": [],
+      "replay_only": [],
+      "baseline_count": 19,
+      "replay_count": 19,
+      "kind_breakdown_equal": true,
+      "baseline_kinds": {
+        "surface-fragment-bundle": 10,
+        "event-fragment-bundle": 10,
+        "persona-semantic": 21
+      },
+      "replay_kinds": {
+        "surface-fragment-bundle": 10,
+        "event-fragment-bundle": 10,
+        "persona-semantic": 21
+      },
+      "a1_oracle_equal": true,
+      "baseline_oracle": [],
+      "replay_oracle": []
+    },
+    {
+      "news": "06-tech-monopoly",
+      "candidate_set_equal": true,
+      "candidate_order_equal": true,
+      "baseline_only": [],
+      "replay_only": [],
+      "baseline_count": 19,
+      "replay_count": 19,
+      "kind_breakdown_equal": true,
+      "baseline_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 25
+      },
+      "replay_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 25
+      },
+      "a1_oracle_equal": true,
+      "baseline_oracle": [],
+      "replay_oracle": []
+    },
+    {
+      "news": "07-migration-border",
+      "candidate_set_equal": true,
+      "candidate_order_equal": true,
+      "baseline_only": [],
+      "replay_only": [],
+      "baseline_count": 19,
+      "replay_count": 19,
+      "kind_breakdown_equal": true,
+      "baseline_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 35
+      },
+      "replay_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 35
+      },
+      "a1_oracle_equal": true,
+      "baseline_oracle": [],
+      "replay_oracle": []
+    },
+    {
+      "news": "08-sports-underdog",
+      "candidate_set_equal": true,
+      "candidate_order_equal": true,
+      "baseline_only": [],
+      "replay_only": [],
+      "baseline_count": 19,
+      "replay_count": 19,
+      "kind_breakdown_equal": true,
+      "baseline_kinds": {
+        "surface-fragment-bundle": 10,
+        "event-fragment-bundle": 10,
+        "persona-semantic": 18
+      },
+      "replay_kinds": {
+        "surface-fragment-bundle": 10,
+        "event-fragment-bundle": 10,
+        "persona-semantic": 18
+      },
+      "a1_oracle_equal": true,
+      "baseline_oracle": [],
+      "replay_oracle": []
+    },
+    {
+      "news": "09-cultural-backlash",
+      "candidate_set_equal": true,
+      "candidate_order_equal": true,
+      "baseline_only": [],
+      "replay_only": [],
+      "baseline_count": 19,
+      "replay_count": 19,
+      "kind_breakdown_equal": true,
+      "baseline_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 29
+      },
+      "replay_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 29
+      },
+      "a1_oracle_equal": true,
+      "baseline_oracle": [],
+      "replay_oracle": []
+    },
+    {
+      "news": "10-whistleblower-leak",
+      "candidate_set_equal": true,
+      "candidate_order_equal": true,
+      "baseline_only": [],
+      "replay_only": [],
+      "baseline_count": 19,
+      "replay_count": 19,
+      "kind_breakdown_equal": true,
+      "baseline_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 27
+      },
+      "replay_kinds": {
+        "surface-fragment-bundle": 12,
+        "event-fragment-bundle": 12,
+        "persona-semantic": 27
+      },
+      "a1_oracle_equal": true,
+      "baseline_oracle": [],
+      "replay_oracle": []
+    }
+  ]
+}

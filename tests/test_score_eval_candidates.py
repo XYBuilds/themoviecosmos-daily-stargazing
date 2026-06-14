@@ -14,7 +14,7 @@ from scripts.score_eval_candidates import (
     _format_high_hit_review,
     _inject_retrieve_diagnostics,
     _is_multi_agent_hit,
-    _is_pure_neutral_candidate,
+    _is_objective_only_candidate,
     process_eval_dir,
     score_candidates_md,
 )
@@ -25,17 +25,15 @@ _MANIFEST = _FIXTURES / "batch-manifest.json"
 
 
 class RetrieveDiagnosticsInjectionTests(unittest.TestCase):
-    def test_inject_neutral_channel_fields_after_tmdb_id(self):
+    def test_inject_objective_diagnostic_fields_after_tmdb_id(self):
         block = """### Film (2020) [A2]
 - **tmdb_id**: 42
 - **相似度**: 0.5100
 """
         diag = RetrieveDiagnostics(
             quality_candidate=True,
-            neutral_hits=6,
-            neutral_total=12,
-            neutral_hit_rate=0.5,
-            distinct_agents=2,
+            objective_hits=2,
+            persona_count=2,
         )
         patched = _inject_retrieve_diagnostics(block, diag)
         self.assertIn("- **自动打分**:", patched)
@@ -55,10 +53,8 @@ class RetrieveDiagnosticsInjectionTests(unittest.TestCase):
         diag = {
             99: RetrieveDiagnostics(
                 quality_candidate=False,
-                neutral_hits=3,
-                neutral_total=12,
-                neutral_hit_rate=0.25,
-                distinct_agents=0,
+                objective_hits=1,
+                persona_count=0,
             )
         }
         out, _ = score_candidates_md(
@@ -70,6 +66,7 @@ class RetrieveDiagnosticsInjectionTests(unittest.TestCase):
         )
         self.assertIn("- **自动打分**:", out)
         self.assertIn("  - **quality_candidate**: false", out)
+
     def test_replaces_legacy_flat_auto_score_fields(self):
         block = """### Film (2020) [A2]
 - **tmdb_id**: 42
@@ -82,10 +79,8 @@ class RetrieveDiagnosticsInjectionTests(unittest.TestCase):
 """
         diag = RetrieveDiagnostics(
             quality_candidate=True,
-            neutral_hits=1,
-            neutral_total=0,
-            neutral_hit_rate=0.0,
-            distinct_agents=2,
+            objective_hits=1,
+            persona_count=2,
             objective_match=True,
             surface_match=False,
             event_match=True,
@@ -107,26 +102,24 @@ class RetrieveDiagnosticsInjectionTests(unittest.TestCase):
         self.assertIn("  - **baseline_overlap**: false", patched)
 
 
-class PureNeutralPoolTests(unittest.TestCase):
-    def test_pure_neutral_is_diagnostic_only_below_min_score(self):
+class ObjectiveOnlyPoolTests(unittest.TestCase):
+    def test_objective_only_is_diagnostic_only_below_min_score(self):
         diag = RetrieveDiagnostics(
             quality_candidate=False,
-            neutral_hits=3,
-            neutral_total=12,
-            neutral_hit_rate=0.25,
-            distinct_agents=0,
+            objective_hits=3,
+            persona_count=0,
         )
-        self.assertTrue(_is_pure_neutral_candidate(diag))
+        self.assertTrue(_is_objective_only_candidate(diag))
         self.assertFalse(_eligible_for_scoring_pool(1, min_total_score=5, diag=diag))
 
-    def test_neutral_hits_do_not_contribute_to_high_hit_score(self):
+    def test_objective_bundle_hits_do_not_contribute_to_high_hit_score(self):
         text = """# candidates
 
-### Neutral Heavy Film (2020) [A2, A4]
+### Objective Heavy Film (2020) [A2, A4]
 - **tmdb_id**: 123
 - **相似度**: 0.50
 - **命中视角/碎片**:
-  - A2/n1: fragments=[a, b, c, d, e] · sim=0.50
+  - A2/su-event-1: fragments=[a, b, c, d, e] · sim=0.50
   - A4/p1: fragments=[x] · sim=0.49
 - **共振分**: 
 - **共振类型**: 
@@ -136,11 +129,11 @@ class PureNeutralPoolTests(unittest.TestCase):
             123: [
                 HitScore(
                     agent_id="A2",
-                    pseudo_id="n1",
+                    pseudo_id="su-event-1",
                     fragments=["a", "b", "c", "d", "e"],
                     similarity=0.50,
                     score=5,
-                    channel_role="neutral",
+                    search_unit_kind="event-fragment-bundle",
                 ),
                 HitScore(
                     agent_id="A4",
@@ -148,7 +141,7 @@ class PureNeutralPoolTests(unittest.TestCase):
                     fragments=["x"],
                     similarity=0.49,
                     score=1,
-                    channel_role="toned",
+                    search_unit_kind="persona-semantic",
                 ),
             ]
         }
@@ -177,7 +170,7 @@ class PureNeutralPoolTests(unittest.TestCase):
                     fragments=["a", "b", "c"],
                     similarity=0.40,
                     score=3,
-                    channel_role="neutral",
+                    search_unit_kind="event-fragment-bundle",
                 ),
                 HitScore(
                     agent_id="THE-SAGE",
@@ -185,7 +178,7 @@ class PureNeutralPoolTests(unittest.TestCase):
                     fragments=["x", "y"],
                     similarity=0.52,
                     score=2,
-                    channel_role="toned",
+                    search_unit_kind="persona-semantic",
                 ),
             ]
         }
@@ -197,10 +190,10 @@ class PureNeutralPoolTests(unittest.TestCase):
         self.assertNotIn("THE-SAGE/su-event-1: fragments=[a, b, c] · sim=0.40 · **命中分=3**", out)
         self.assertEqual(len(high), 1)
 
-    def test_neutral_only_run_not_included_by_n1_alone(self):
-        neutral_batch = _FIXTURES / "neutral-only-batch"
+    def test_objective_only_run_not_included_by_bundle_alone(self):
+        objective_batch = _FIXTURES / "neutral-only-batch"
         _reviews, high, missing, scanned = process_eval_dir(
-            neutral_batch,
+            objective_batch,
             write_candidates=False,
             min_total_score=5,
         )

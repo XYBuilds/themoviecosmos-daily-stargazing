@@ -1,4 +1,4 @@
-"""Unit tests for Phase 3.9.2 A1 held-out oracle retrieve path."""
+"""Unit tests for Phase 3.9.2 A1 held-out oracle retrieve path (ADR-0009 kinds)."""
 
 from __future__ import annotations
 
@@ -32,11 +32,11 @@ def _mini_meta() -> pd.DataFrame:
 
 
 class OracleQuerySplitTests(unittest.TestCase):
-    def test_a1_and_baseline_channel_route_to_oracle(self) -> None:
+    def test_a1_and_baseline_kind_route_to_oracle(self) -> None:
         queries = [
-            {"agent_id": "A1", "channel_role": "baseline", "role": "baseline"},
-            {"agent_id": "P01", "channel_role": "neutral", "role": "toned"},
-            {"agent_id": "P02", "channel_role": "toned", "role": "toned"},
+            {"agent_id": "A1", "search_unit_kind": "baseline", "role": "baseline"},
+            {"agent_id": "P01", "search_unit_kind": "surface-fragment-bundle", "role": "toned"},
+            {"agent_id": "P02", "search_unit_kind": "persona-semantic", "role": "toned"},
         ]
         oracle, judge = _split_oracle_judge_queries(queries)
         self.assertEqual(len(oracle), 1)
@@ -45,15 +45,15 @@ class OracleQuerySplitTests(unittest.TestCase):
 
 
 class OracleComparisonTests(unittest.TestCase):
-    def test_superset_when_neutral_covers_a1(self) -> None:
+    def test_superset_when_objective_covers_a1(self) -> None:
         candidates = [
             {
                 "tmdb_id": 1,
                 "hit_sources": [
                     {
                         "agent_id": "P01",
-                        "pseudo_id": "n1",
-                        "channel_role": "neutral",
+                        "pseudo_id": "su-surface-1",
+                        "search_unit_kind": "surface-fragment-bundle",
                         "similarity": 0.85,
                     }
                 ],
@@ -63,17 +63,17 @@ class OracleComparisonTests(unittest.TestCase):
                 "hit_sources": [
                     {
                         "agent_id": "P02",
-                        "pseudo_id": "n1",
-                        "channel_role": "neutral",
+                        "pseudo_id": "su-event-1",
+                        "search_unit_kind": "event-fragment-bundle",
                         "similarity": 0.80,
                     }
                 ],
             },
         ]
         comparison = _build_oracle_comparison({1, 2}, candidates, quality_floor=0.40)
-        self.assertTrue(comparison["neutral_union_superset_of_a1_hits"])
+        self.assertTrue(comparison["objective_union_superset_of_a1_hits"])
         self.assertEqual(comparison["a1_only_tmdb_ids"], [])
-        self.assertEqual(comparison["neutral_only_tmdb_ids"], [])
+        self.assertEqual(comparison["objective_only_tmdb_ids"], [])
 
     def test_superset_false_when_a1_has_unique_hits(self) -> None:
         candidates = [
@@ -82,17 +82,17 @@ class OracleComparisonTests(unittest.TestCase):
                 "hit_sources": [
                     {
                         "agent_id": "P01",
-                        "pseudo_id": "n1",
-                        "channel_role": "neutral",
+                        "pseudo_id": "su-surface-1",
+                        "search_unit_kind": "surface-fragment-bundle",
                         "similarity": 0.85,
                     }
                 ],
             }
         ]
         comparison = _build_oracle_comparison({1, 3}, candidates, quality_floor=0.40)
-        self.assertFalse(comparison["neutral_union_superset_of_a1_hits"])
+        self.assertFalse(comparison["objective_union_superset_of_a1_hits"])
         self.assertEqual(comparison["a1_only_tmdb_ids"], [3])
-        self.assertEqual(comparison["neutral_only_tmdb_ids"], [])
+        self.assertEqual(comparison["objective_only_tmdb_ids"], [])
 
 
 class RetrieveA1OracleIntegrationTests(unittest.TestCase):
@@ -110,8 +110,6 @@ class RetrieveA1OracleIntegrationTests(unittest.TestCase):
         def fake_encode(text: str, normalize_embeddings: bool = True) -> np.ndarray:
             if "baseline" in text:
                 return np.array([0.0, 1.0, 0.0, 0.0], dtype=np.float32)
-            if "neutral" in text:
-                return np.array([1.0, 0.0, 0.0, 0.0], dtype=np.float32)
             return np.array([1.0, 0.0, 0.0, 0.0], dtype=np.float32)
 
         model.encode.side_effect = fake_encode
@@ -123,14 +121,20 @@ class RetrieveA1OracleIntegrationTests(unittest.TestCase):
                 "role": "toned",
                 "pseudos": [
                     {
-                        "id": "n1",
-                        "text": "neutral persona hit",
-                        "source": {"fragments": [], "channel_role": "neutral"},
+                        "id": "su-surface-1",
+                        "text": "surface bundle hit",
+                        "source": {
+                            "fragments": ["who-0"],
+                            "search_unit_kind": "surface-fragment-bundle",
+                        },
                     },
                     {
-                        "id": "t1",
-                        "text": "toned persona hit",
-                        "source": {"fragments": [], "channel_role": "toned"},
+                        "id": "su-persona-1",
+                        "text": "persona semantic hit",
+                        "source": {
+                            "fragments": ["result-0"],
+                            "search_unit_kind": "persona-semantic",
+                        },
                     },
                 ],
             },
@@ -176,7 +180,7 @@ class RetrieveA1OracleIntegrationTests(unittest.TestCase):
         self.assertIsNotNone(comparison)
         assert comparison is not None
         self.assertEqual(comparison["a1_hit_tmdb_ids"], [2])
-        self.assertIn("neutral_union_superset_of_a1_hits", comparison)
+        self.assertIn("objective_union_superset_of_a1_hits", comparison)
 
         per_agent_ids = {row["agent_id"] for row in result["per_agent"]}
         self.assertNotIn("A1", per_agent_ids)
@@ -224,11 +228,12 @@ class RetrieveA1OracleIntegrationTests(unittest.TestCase):
         agents = [
             {
                 "agent_id": "P01",
+                "role": "toned",
                 "pseudos": [
                     {
-                        "id": "n1",
-                        "text": "neutral only",
-                        "source": {"channel_role": "neutral", "fragments": []},
+                        "id": "su-persona-1",
+                        "text": "persona semantic only",
+                        "source": {"search_unit_kind": "persona-semantic", "fragments": []},
                     }
                 ],
             }

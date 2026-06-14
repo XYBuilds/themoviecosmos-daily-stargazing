@@ -1,6 +1,8 @@
 # Multi-Pseudo Output Contract (Phase 3.5+)
 
 > Each writer agent (A1 / A2 / A4 / A7) returns **up to 3** pseudo-overviews per call (1–3), not one paragraph.
+>
+> **Scope (ADR-0009):** this `pseudos[]` contract governs the A1/A2/A4/A7 news writer agents only. The persona drafting step does **not** use this shape — it emits `search_units[]` (see `persona_screenwriter_contract.md`).
 
 ## Response format
 

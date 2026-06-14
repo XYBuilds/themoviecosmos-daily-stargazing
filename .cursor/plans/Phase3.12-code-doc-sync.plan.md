@@ -4,25 +4,25 @@ overview: 把代码侧从「ADR-0008 旧通道 + 独立 P-Expand pass」并存�
 todos:
   - id: 3.12.1
     content: objective 能力内联：迁移 touchstone/filter_hypernyms 纯函数进 ladder 模块，build_fragment_ladders 自产 objective 层，删除 objective_expansion.py + contract + reality-expanded.json 产物，更新 test_deconstruct_expansion.py
-    status: pending
+    status: completed
   - id: 3.12.2
     content: personas.py 旧通道清除：删除 build_objective_floor_neutral_pseudo/tag_toned_pseudos/assemble_persona_channel_pseudos/validate_adr8_dual_floor/derive_expected_channel 等 ADR-0008 逻辑，收敛为单一 ladder→search_unit 路径，更新 test_personas.py/test_pov_transform_label.py
-    status: pending
+    status: completed
   - id: 3.12.3
     content: LLM 契约原生 search_units[]：重写 persona_screenwriter_contract.md 去掉 pseudos wrapper/channel/expansion_json，agents.py parser 改 parse_search_units_response，同步 multi_pseudo/alt_creator 契约
-    status: pending
+    status: completed
   - id: 3.12.4
     content: retrieve.py 旧 channel 诊断清除：删除 neutral/toned/focalized 兼容分支、neutral_hit_rate、A1 oracle 诊断，保留 search_unit_kind 分解与 convergent sort，删/改相关 retrieve 测试
-    status: pending
+    status: completed
   - id: 3.12.5
     content: 编排入口对齐：run_phase311_*/run_persona_batch/run_eval 切到新路径，保证 3.11 GATE 基线可复现
-    status: pending
+    status: completed
   - id: 3.12.6
     content: 等价性验证[需人工验收]：N=10 eval 语料重跑，与 3.11.8 基线对比 net-new 2-rate/守卫硬失败/kind 分解，要求 bit-parity 或差异可解释
-    status: pending
+    status: completed
   - id: 3.12.7
     content: 文档回填：ADR-0009 future-work 标记为已落地，PRD §10 结构树移除 expansion 文件，清理 workflow 残留 docs/temp 引用
-    status: pending
+    status: completed
 isProject: false
 ---
 
