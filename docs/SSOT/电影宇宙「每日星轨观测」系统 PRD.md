@@ -338,7 +338,6 @@ themoviecosmos-daily-stargazing/        ← Obsidian Vault Root
 ├── prompts/
 │   ├── _shared/
 │   │   ├── deentification_rules.md
-│   │   ├── objective_expansion_contract.md
 │   │   ├── persona_alt_creator_contract.md
 │   │   ├── persona_screenwriter_contract.md
 │   │   ├── resonance_definition_v2.md
@@ -352,7 +351,7 @@ themoviecosmos-daily-stargazing/        ← Obsidian Vault Root
 ├── scripts/
 │   ├── lib/                            # env / llm / paths / phase311_pilot 等
 │   ├── deconstruct.py                  # A0
-│   ├── objective_expansion.py          # P-Expand
+│   ├── fragment_ladder.py              # fragment ladder + 内联 objective 生成 + 客观性试金石
 │   ├── personas.py                     # P-Lens / P-Compose / fragment ladder / search unit
 │   ├── retrieve.py                     # 召回 + convergent sort + 池差分解
 │   ├── llm_judge.py / judge_prescreen.py

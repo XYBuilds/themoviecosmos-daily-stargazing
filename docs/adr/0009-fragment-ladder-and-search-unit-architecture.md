@@ -119,16 +119,21 @@ persona-semantic 独家
 
 ## 后果 / 已知局限
 
-- 旧产物和历史测试仍含 `neutral / toned / focalized` 字段；这些字段仅作为兼容层存在，不再驱动主路径排序。
-- 当前 hybrid recall 的 lexical / weighted ladder 子信号还未完全展开；本轮先把 search unit schema、match 诊断和 convergent sort 接入，dense embedding 仍保留为召回底座。
-- LLM screenwriter 仍返回 `pseudos[]`，代码再映射到 `persona-semantic`；后续可把输出 contract 原生改成 `search_units[]`。
+> **Phase 3.12 代码-文档对齐已落地**（2026-06，stacked bundle `feat/phase3.12.*`）：下列原 future-work 项已在代码侧完成，本节相应更新。
+
+- 旧产物和历史测试仍含 `neutral / toned / focalized` 字段；运行时代码已彻底移除这些 channel 分支（3.12.4 retrieve / 3.12.5 eval consumers），仅历史 eval 产物里保留为静态记录，不再被任何活路径读取。
+- 当前 hybrid recall 的 lexical / weighted ladder 子信号还未完全展开；本轮先把 search unit schema、match 诊断和 convergent sort 接入，dense embedding 仍保留为召回底座。（仍为局限）
+- ~~LLM screenwriter 仍返回 `pseudos[]`，代码再映射到 `persona-semantic`；后续可把输出 contract 原生改成 `search_units[]`。~~ **已落地**：3.12.3 把 `persona_screenwriter_contract.md` 原生改为根节点 `search_units[]`，`agents.py` 新增 `parse_search_units_response`；`pseudos[]` 仅作 news-writer（A1/A2/A4/A7）兼容层与历史产物回放路径。
+- ~~objective 层靠外部 `objective_expansion.py` P-Expand pass 产 `reality-expanded.json`。~~ **已落地**：3.12.1 把 `passes_objectivity_touchstone` / `filter_hypernyms` 等纯函数内联进 `scripts/fragment_ladder.py`，`build_fragment_ladders` 自产 objective 层；独立 pass + `objective_expansion_contract.md` + `reality-expanded.json` 产物已删除。
+- **等价性已验证**（3.12.6）：以 3.11.7 全批基线（N=10）离线重放，候选集合 / 顺序 / `search_unit_kind` 分解 / A1 oracle 全部 10/10 bit-parity，证明本次重构未改变召回结果。验证工具 `scripts/verify_phase312_equivalence.py`，报告 `output/Eval/phase3.12/equivalence-report.json`。
 - 3.10 基线仍按历史 pseudo 产物对照；3.11.7 归因必须写明这是 ADR-0009 整包设计-on。
 
-## SSOT 待同步
+## SSOT 落地处（Phase 3.12 起代码已对齐）
 
-- [`scripts/personas.py`](../../scripts/personas.py)：fragment ladder / search unit 生成与守卫。
-- [`scripts/retrieve.py`](../../scripts/retrieve.py)：search unit 优先检索、新 convergent sort、`search_unit_kind` 池差分解。
-- [`prompts/_shared/persona_screenwriter_contract.md`](../../prompts/_shared/persona_screenwriter_contract.md)：persona-semantic 草稿契约。
+- [`scripts/fragment_ladder.py`](../../scripts/fragment_ladder.py)：fragment ladder 模块 + 内联 objective 生成 + 客观性试金石（3.12.1 起承载原 `objective_expansion.py` 纯函数）。
+- [`scripts/personas.py`](../../scripts/personas.py)：fragment ladder / search unit 生成与守卫（3.12.2 起已删除 ADR-0008 channel / dual-floor 函数群）。
+- [`scripts/retrieve.py`](../../scripts/retrieve.py)：search unit 优先检索、新 convergent sort、`search_unit_kind` 池差分解（3.12.4 起已无 channel 诊断分支）。
+- [`prompts/_shared/persona_screenwriter_contract.md`](../../prompts/_shared/persona_screenwriter_contract.md)：persona-semantic 契约，3.12.3 起根节点原生 `search_units[]`。
 - [`prompts/_shared/persona_alt_creator_contract.md`](../../prompts/_shared/persona_alt_creator_contract.md)：alt-pool 作为 fragment ladder 输入。
 - [`docs/SSOT/simplified-news-to-film-workflow.md`](../SSOT/simplified-news-to-film-workflow.md)：工作流说明源。
 - [ADR-0008](0008-salience-driven-element-composition-and-multi-vantage-pov.md)：标注通道结构被本 ADR supersede。

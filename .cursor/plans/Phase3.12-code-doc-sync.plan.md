@@ -22,7 +22,7 @@ todos:
     status: completed
   - id: 3.12.7
     content: 文档回填：ADR-0009 future-work 标记为已落地，PRD §10 结构树移除 expansion 文件，清理 workflow 残留 docs/temp 引用
-    status: pending
+    status: completed
 isProject: false
 ---
 
