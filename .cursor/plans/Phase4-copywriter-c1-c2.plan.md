@@ -346,4 +346,26 @@ python scripts/copywriter.py --stage publish --platform discord ... --out output
 - [ ] **Stage 0**：C1 审核稿命令可运行，候选块落 Obsidian，4.3 GATE Go
 - [ ] **Stage 1**：≥1 平台定稿跑通并验收；其余平台按优先级增量推进
 - [ ] **Stage 2**：同新闻下平台级选片分叉可用
-- [ ] 与 PRD §7.2 / §7.3 / §7.4 栏位语义�
+- [ ] 与 PRD §7.2 / §7.3 / §7.4 栏位语义一致
+- [ ] candidate 新字段（triggered_by / center_dimensions）正确流转
+
+## 交给后续 Phase
+
+| 产出 / 条件                          | 用途 / 下一动作                                                                   |
+| ------------------------------------ | --------------------------------------------------------------------------------- |
+| `copy_review.json` + Obsidian 候选块 | `main.py` 渲染候选中文文案 + 触发视角                                             |
+| 平台定稿 `*_copy.md`                 | 总编复制发布；发布仍全手动                                                        |
+| platform profile 抽象                | 视觉生成层 Phase 据此填 `image_ref`；自动发布 Phase 据 discord profile 做首个试点 |
+| **北极星：新闻级 fan-out**           | 每平台跑不同新闻 → 需上游 retrieve/选新闻分叉，开新 Phase 另议                    |
+| **视觉生成层**                       | 先定义「与主项目 og 图共用的一套设计逻辑」，再生成各平台图片填 `image_ref`        |
+| **自动发布层**                       | discord（无注册/审核门槛）为首个自动发布可行性试点                                |
+
+## 风险与约束
+
+- C1 一次 prompt 含多部候选 → token 随候选数增长；MVP ≤8 部通常可接受
+- **勿**在 C1 自动替总编「选用」；**勿**渲染 A1/oracle 候选
+- OPEN a 软提示**只透传不强制**：避免重蹈生成层 POV 的事实漂移（让 LLM 硬从某视角写易编内心戏）
+- **路径纪律铁律**：未过 4.3 MVP GATE（审核稿文本 OK）不启动任何平台定稿；平台定稿**增量**推进，先跑通一个再加下一个。防止在文本未验证时提前铺平台/背债。
+- **图片解耦**：本 Phase 完全不碰图片生成，profile 仅占位 `image_ref`；防止把两种生成模态塞进 copywriter 破坏内聚。
+- **X 转贴依赖上游**：quote 新闻原帖需要新闻源 URL，依赖 Phase 5 `fetch_news` 字段；缺失则 X 顺位后置。
+- 修改 `C1/C2` prompt 正文属产品迭代，与代码 PR 分开
