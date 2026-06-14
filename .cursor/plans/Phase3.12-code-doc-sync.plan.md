@@ -19,7 +19,7 @@ todos:
     status: completed
   - id: 3.12.6
     content: 等价性验证[需人工验收]：N=10 eval 语料重跑，与 3.11.8 基线对比 net-new 2-rate/守卫硬失败/kind 分解，要求 bit-parity 或差异可解释
-    status: pending
+    status: completed
   - id: 3.12.7
     content: 文档回填：ADR-0009 future-work 标记为已落地，PRD §10 结构树移除 expansion 文件，清理 workflow 残留 docs/temp 引用
     status: pending
