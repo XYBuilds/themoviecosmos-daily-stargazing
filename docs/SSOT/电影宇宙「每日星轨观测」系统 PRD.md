@@ -292,7 +292,7 @@ surface_match_score + event_match_score + persona_semantic_match_score
 | **3.10** | 双轴 rubric + judge 转评测预筛 | **GATE GO**（2026-06-10，D1–D5） |
 | **3.11.8** | fragment ladder / search unit 架构 | **GATE GO**（2026-06-13；net-new 2-rate 15.9% ≥ baseline 13.6%，守卫零硬失败） |
 
-**当前结论**：架构链路已收敛、闸门 GO，可进入 Phase 4。**遗留技术债**（[ADR-0010](../adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md) D4）：① 5 条 baseline human-2 因新排序落出预算（可经 retention floor 调优恢复）；② judge 仍 screening-only，人工打分未覆盖净新增候选，接 RSS 新分布前须补校准。
+**当前结论**：架构链路已收敛、闸门 GO，可进入 Phase 4。**遗留技术债**（[ADR-0010](../adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md) D4）：① 5 条 baseline human-2 因新排序落出预算——经复盘 **接受**这是顶替式（replacement-over-additive）排序策略下的正常代价（其中 4 条属可接受的正常流失，1 条 `A Ticket to Space`（judge=0）本就该掉出），**不**做 retention floor 调优；② judge 仍 screening-only，人工打分未覆盖净新增候选，接 RSS 新分布前须补一次轻量校准（见 Phase 5 todo 5.4）。
 
 ---
 
@@ -306,7 +306,7 @@ surface_match_score + event_match_score + persona_semantic_match_score
 
 * C1 中文审核文案（batch 生成）；C2 中英多平台定稿。
 * **OPEN（[ADR-0007](../adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) a）**：是否在 reader-facing 文案做 POV 聚焦（被击中的最强位置）——本 PRD 登记为待决。
-* baseline retention 调优、judge 人工校准补齐（清 ADR-0010 D4 债）。
+* 债1（baseline 顶替流失）**接受为正常代价**，不做 retention 调优；债2（judge 校准）移至 Phase 5 todo 5.4 在 RSS 真实分布上补齐。
 
 ### Phase 5 · 新闻接入
 

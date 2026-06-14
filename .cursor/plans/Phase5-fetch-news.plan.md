@@ -1,20 +1,25 @@
 ---
 name: Phase5-fetch-news
-overview: 实现 fetch_news.py：宽口径 RSS 抓取、URL/标题去重、CLI 序号列表供手挑；输出标准 news JSON 供 main / run_eval 使用。可与 Phase 1–4 并行开发。
+overview: 实现 fetch_news.py：宽口径 RSS 抓取、URL/标题去重、CLI 序号列表供手挑；输出标准 news JSON 供 main / run_eval 使用。RSS 部分与新架构无强耦合，原设计基本保留。新增 5.4：RSS 真实分布上线后对 llm_judge 做一次轻量分布重对齐（清 ADR-0010 D4 债2）。可与 Phase 1–4 并行开发其余 todo，但 5.4 必须在能跑出真实 RSS 候选后做。
 todos:
   - id: f5a1b2c3-0001-4000-8005-000000000001
-    content: "5.1 · RSS 抓取与 news payload：feedparser、FEEDS 常量、规范化字段"
+    content: 5.1 · RSS 抓取与 news payload：feedparser、FEEDS 常量、规范化字段
     status: pending
   - id: f5a1b2c3-0001-4000-8005-000000000002
-    content: "5.2 · 去重状态：seen_news.sqlite（URL）+ 14 天标题相似度（依赖 5.1）"
+    content: 5.2 · 去重状态：seen_news.sqlite（URL）+ 14 天标题相似度（依赖 5.1）
     status: pending
   - id: f5a1b2c3-0001-4000-8005-000000000003
-    content: "5.3 · CLI：打印序号列表、--pick / --url、news_pool JSON、README（依赖 5.1、5.2）"
+    content: 5.3 · CLI：打印序号列表、--pick / --url、news_pool JSON、README（依赖 5.1、5.2）
+    status: pending
+  - id: f5a1b2c3-0001-4000-8005-000000000004
+    content: 5.4 · judge 分布重对齐（清债2）：RSS 真实分布跑出候选 → 盲标 20–30 条 → 算 judge 一致率 → 达标继续信/不达标才调 [需人工验收]
     status: pending
 isProject: true
 ---
 
-# Phase 5 · News（RSS 抓取）
+# Phase 5 · News（RSS 抓取）+ judge 分布重对齐
+
+**重写说明（2026-06）**：5.1–5.3 的 RSS 设计与 Phase 3 的 fragment ladder / search unit 架构**无强耦合**，原设计基本保留。本稿主要新增 **5.4**——承接 [ADR-0010](../../docs/adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md) D4 债2：judge 当前是 screening-only，且在「手挑 10 条高张力新闻」上校准；RSS 接入后新闻分布会变，须在真实分布上做一次轻量重对齐才能继续把 judge 当预筛信号。
 
 ## Todo 依赖关系
 
@@ -24,28 +29,31 @@ flowchart LR
   T51["5.1 RSS"]
   T52["5.2 去重"]
   T53["5.3 CLI"]
+  T54["5.4 judge 重对齐"]
 
   P0 --> T51
   T51 --> T52
   T52 --> T53
+  T53 --> T54
 ```
 
 - **5.1** 建议依赖 Phase 0 `scripts/lib/paths`（`state/` 路径）；无 Phase 0 时可硬编码 `state/`
-- **5.2** 依赖 **5.1**
-- **5.3** 依赖 **5.1**、**5.2**
-- 与 Phase 1–4 **无硬依赖**，可并行；Phase 6 集成时需要本 Phase 完成
+- **5.2** 依赖 **5.1**；**5.3** 依赖 **5.1**、**5.2**
+- **5.4** 依赖 **5.3**（要能跑出真实 RSS 候选）+ Phase 1–4 全链可跑
+- 5.1–5.3 与 Phase 1–4 **无硬依赖**，可并行；Phase 6 集成时需要本 Phase 完成
 
 ## Scope
 
 ### In scope
 
 - 实现 `scripts/fetch_news.py`（替换 TODO 空壳）
-- **宽口径中立 RSS**（MVP **不对源做偏好**；`FEEDS` 常量可含多类国际源，避免只选单一领域）
+- **宽口径中立 RSS**（MVP **不对源做偏好**；`FEEDS` 常量可含多类国际源）
 - 输出 PRD §6.3 payload + `url`
 - URL 去重 + 14 天标题 `difflib` 相似度 ≥0.7 跳过
-- CLI：**打印带序号列表** → 用户手挑（grill 结论）
+- CLI：**打印带序号列表** → 用户手挑
 - `--url` 旁路：单条 URL 解析/抓取为 news dict（供 `main.py --url`）
-- 池子落盘：`state/news_pool_YYYY-MM-DD.json`（可选，便于 Obsidian 侧查看）
+- 池子落盘：`state/news_pool_YYYY-MM-DD.json`（可选）
+- **5.4 · judge 分布重对齐**（轻量、一次性）
 
 ### Out of scope
 
@@ -53,15 +61,19 @@ flowchart LR
 - RSS **内容过滤**（政治敏感等）
 - Post-MVP **热度算法**（多源同事件计数 + 时间加权）
 - `main.py` 集成（Phase 6）
-- 自动选 Top1 作为唯一入口（可保留 `--auto-top1` 调试开关，**非**默认）
+- 自动选 Top1（可保留 `--auto-top1` 调试开关，**非**默认）
+- **judge rubric / 阈值机制改动**（5.4 只做校准对账，不改 rubric）
+- **常态化人工标注**（5.4 是一次性保险，不是持续负担）
 
 ## SSOT
 
 | 文档 | 用途 |
-|------|------|
+| --- | --- |
 | PRD §6.1–6.5 | 字段、去重、不过滤 |
 | Phase 1 plan | `NewsItem` / `sample_news.json` schema |
-| Phase 3 plan | N=10 手挑新闻来自本模块输出 |
+| [ADR-0007](../../docs/adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) D4 | judge 阈值纪律 / 分布漂移条目（5.4 依据） |
+| [ADR-0010](../../docs/adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md) D4 | 债2 来源（judge screening-only + RSS 新分布须重对齐） |
+| [docs/eval-the-bet.md](../../docs/eval-the-bet.md) | 共振 rubric / judge 工作流 |
 
 ---
 
@@ -73,8 +85,6 @@ flowchart LR
 
 - 在 `fetch_news.py` 顶部 `FEEDS: list[str]`
 - **原则**：多源、跨领域、免费可访问；**不**在代码注释里写「高张力源优先」
-- 示例类型（实现时选能稳定解析的 URL，失败源记 warning 跳过）：
-  - 国际综合 wire（如 Reuters / BBC World 等，以实际可访问 feed 为准）
 - 至少 **3** 个 feed；解析失败不拖垮整批
 
 ### 抓取逻辑
@@ -109,8 +119,8 @@ python -c "from scripts.fetch_news import fetch_all_entries; e=fetch_all_entries
 ### 标题相似度
 
 - 表：`seen_titles(title TEXT, seen_at TEXT)` 或复用一张表
-- 保留 **14 天**内「已选用」标题（在 **5.3 `--pick`** 或 `--mark-seen` 时写入，不是仅抓取时）
-- 新条目与历史比 `SequenceMatcher.ratio()`，≥ **0.7** → 抓取列表标注 `skipped_title_dup` 或根本不展示
+- 保留 **14 天**内「已选用」标题（在 **5.3 `--pick`** 或 `--mark-seen` 时写入）
+- 新条目与历史比 `SequenceMatcher.ratio()`，≥ **0.7** → 标注 `skipped_title_dup` 或不展示
 
 ### 行为
 
@@ -141,7 +151,7 @@ python scripts/fetch_news.py --url https://example.com/article
 
 ### 默认：`fetch` 子命令或无子命令
 
-1. 拉取 → 去重 → 按 `pub_time` **降序**（无热度算法）
+1. 拉取 → 去重 → 按 `pub_time` **降序**
 2. 终端打印：
 
 ```text
@@ -154,8 +164,8 @@ python scripts/fetch_news.py --url https://example.com/article
 
 ### `--url` 旁路
 
-- 不经过 RSS 列表；尝试用 feedparser/简单 GET+解析**或**要求用户同时提供 `--title` `--description`（若纯 url 难解析，文档写「MVP 可先用 JSON 手喂」）
-- 最小实现：若无法解析，打印说明并 exit 1；推荐配合 `--title` / `--description` 可选参数
+- 不经过 RSS 列表；尝试 feedparser/简单 GET+解析，**或**要求用户同时提供 `--title` `--description`
+- 最小实现：无法解析时打印说明并 exit 1；推荐配合 `--title` / `--description`
 
 ### news JSON（与 Phase 1 一致）
 
@@ -172,7 +182,6 @@ python scripts/fetch_news.py --url https://example.com/article
 ### README
 
 - 手挑流程：`fetch_news` → 记下序号 → `main.py --url`（Phase 6）或 `run_eval --news-file`
-- Phase 3：从池中挑 10 条做闸门
 
 ### 验收
 
@@ -184,19 +193,49 @@ python -c "import json; json.load(open('output/picked_news.json')); print('ok')"
 
 ---
 
+## Todo 5.4 · judge 分布重对齐（清债2）[需人工验收]
+
+**依赖：** **5.3** + Phase 1–4 全链可跑
+
+**背景**：judge（MiMo, thinking-enabled）当前是 **screening-only**，且校准基线是「手挑 10 条高张力新闻」。RSS 进来的是真实随机新闻流（赛果/任命/产品发布/地方琐事等），分布与测试集不同。本 todo 验证 judge 在真实分布上是否仍可信，**而非**重做 rubric。
+
+### 做法（轻量、一次性）
+
+1. 用 5.3 的 RSS 跑出 ≥ **20–30 条真实新闻**的候选池（走 agents → retrieve → judge 全链）。
+2. 人工**盲标**这些候选的共振分（0/1/2，按 3.10 双轴 rubric），不看 judge 分。
+3. 算 judge 分与人工分的**一致率 / 混淆矩阵**（重点看 judge=2 的精度、judge=0 的漏杀率）。
+4. 裁决：
+   - **达标**（一致率不显著低于 3.10 校准基线）⇒ judge 继续作为 RSS 分布下的预筛信号，债2 清。
+   - **不达标** ⇒ 登记偏差方向，决定是否调 judge prompt / 阈值（仅此时才动），或人工接管预筛。
+
+### 产出
+
+- `output/Eval/phase5/judge-realdist-calibration.md`：盲标集、一致率、混淆矩阵、裁决
+- 更新 PRD §8.3 / ADR-0010 D4：债2 状态从「未清」改为「RSS 分布已对齐」或「需调整」
+
+### 验收
+
+- [ ] 盲标 ≥20 条，一致率/混淆矩阵在案
+- [ ] 给出「继续信 / 需调整」裁决
+- [ ] `[需人工验收]`：用户确认裁决 → 债2 闭环
+
+---
+
 ## Phase 5 整体验收
 
 - [ ] 能从真实 RSS 拉到 ≥1 条可喂 agent 的条目
 - [ ] `--pick` 产出合法 news JSON
 - [ ] `state/seen_news.sqlite` 产生且可重复运行
+- [ ] 5.4 judge 重对齐裁决在案（债2 闭环）
 
 ## 交给 Phase 6
 
 | 产出 | 用途 |
-|------|------|
+| --- | --- |
 | `fetch_news.py` | `main.py` 默认入口拉新闻 |
 | `picked_news.json` | 与 `--news-file` 相同契约 |
 | `news_pool_*.json` | 总编浏览候选池 |
+| judge 重对齐裁决 | 确认 RSS 分布下 judge 预筛可信度 |
 
 ## 风险与约束
 
@@ -204,3 +243,4 @@ python -c "import json; json.load(open('output/picked_news.json')); print('ok')"
 - **勿**在 MVP 实现源偏好或内容审查
 - `state/*.sqlite` 可 gitignore；`news_pool_*.json` 视需要 ignore
 - 中国网络环境部分 feed 可能超时——README 注明可换 feed 或用手喂 JSON
+- 5.4 是**一次性保险**，不是常态化人工标注；若 RSS 分布后续大幅漂移，再触发新一轮（Post-MVP）
