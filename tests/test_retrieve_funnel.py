@@ -1,17 +1,14 @@
-"""Unit tests for Phase 3.11.4 candidate funnel + pool diff channel decomposition."""
+"""Unit tests for Phase 3.11.4 candidate funnel + pool diff (ADR-0009 search_unit_kind)."""
 
 from __future__ import annotations
 
 import unittest
 
 from scripts.retrieve import (
-    DEFAULT_HUMAN_BUDGET,
     DEFAULT_QUALITY_FLOOR,
     apply_candidate_funnel,
-    compare_pool_diff_by_channel,
     compare_pool_diff_by_search_unit_kind,
     dedupe_candidates_by_tmdb_id,
-    pool_diff_by_channel_to_dict,
     pool_diff_by_search_unit_kind_to_dict,
     sort_candidates_convergent,
 )
@@ -42,8 +39,8 @@ class SearchUnitFunnelTests(unittest.TestCase):
             hit_sources=[
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "p1",
-                    "channel_role": "toned",
+                    "pseudo_id": "su-persona-1",
+                    "search_unit_kind": "persona-semantic",
                     "similarity": 0.99,
                     "fragments": [],
                 }
@@ -56,7 +53,6 @@ class SearchUnitFunnelTests(unittest.TestCase):
                 {
                     "agent_id": "A2",
                     "pseudo_id": "su-surface-1",
-                    "channel_role": "neutral",
                     "search_unit_kind": "surface-fragment-bundle",
                     "similarity": 0.5,
                     "fragments": ["who-0"],
@@ -64,7 +60,6 @@ class SearchUnitFunnelTests(unittest.TestCase):
                 {
                     "agent_id": "A2",
                     "pseudo_id": "su-event-1",
-                    "channel_role": "neutral",
                     "search_unit_kind": "event-fragment-bundle",
                     "similarity": 0.5,
                     "fragments": ["why-0", "how-0"],
@@ -72,7 +67,6 @@ class SearchUnitFunnelTests(unittest.TestCase):
                 {
                     "agent_id": "A2",
                     "pseudo_id": "su-persona-The-Ruler-p1",
-                    "channel_role": "toned",
                     "search_unit_kind": "persona-semantic",
                     "center_element": "result-0",
                     "similarity": 0.5,
@@ -99,7 +93,6 @@ class SearchUnitFunnelTests(unittest.TestCase):
                     {
                         "agent_id": "A2",
                         "pseudo_id": "su-event-1",
-                        "channel_role": "neutral",
                         "search_unit_kind": "event-fragment-bundle",
                         "similarity": 0.8,
                         "fragments": ["why-0"],
@@ -107,7 +100,6 @@ class SearchUnitFunnelTests(unittest.TestCase):
                     {
                         "agent_id": "A2",
                         "pseudo_id": "su-persona-The-Ruler-p1",
-                        "channel_role": "toned",
                         "search_unit_kind": "persona-semantic",
                         "similarity": 0.8,
                         "fragments": ["result-0"],
@@ -128,8 +120,8 @@ class DedupeTests(unittest.TestCase):
             hit_sources=[
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "t1",
-                    "channel_role": "toned",
+                    "pseudo_id": "su-persona-1",
+                    "search_unit_kind": "persona-semantic",
                     "similarity": 0.5,
                     "fragments": [],
                 }
@@ -141,8 +133,8 @@ class DedupeTests(unittest.TestCase):
             hit_sources=[
                 {
                     "agent_id": "A4",
-                    "pseudo_id": "t2",
-                    "channel_role": "focalized",
+                    "pseudo_id": "su-persona-2",
+                    "search_unit_kind": "persona-semantic",
                     "similarity": 0.7,
                     "fragments": [],
                 }
@@ -163,8 +155,8 @@ class ConvergentSortTests(unittest.TestCase):
             hit_sources=[
                 {
                     "agent_id": "A2",
-                    "pseudo_id": "t1",
-                    "channel_role": "toned",
+                    "pseudo_id": "su-persona-1",
+                    "search_unit_kind": "persona-semantic",
                     "similarity": 0.99,
                     "fragments": [],
                 }
@@ -177,7 +169,6 @@ class ConvergentSortTests(unittest.TestCase):
                 {
                     "agent_id": "A2",
                     "pseudo_id": "su-surface-1",
-                    "channel_role": "neutral",
                     "search_unit_kind": "surface-fragment-bundle",
                     "similarity": 0.5,
                     "fragments": ["who-0"],
@@ -185,7 +176,6 @@ class ConvergentSortTests(unittest.TestCase):
                 {
                     "agent_id": "A2",
                     "pseudo_id": "su-event-1",
-                    "channel_role": "neutral",
                     "search_unit_kind": "event-fragment-bundle",
                     "similarity": 0.5,
                     "fragments": ["why-0"],
@@ -193,7 +183,6 @@ class ConvergentSortTests(unittest.TestCase):
                 {
                     "agent_id": "A2",
                     "pseudo_id": "su-persona-The-Ruler-p1",
-                    "channel_role": "toned",
                     "search_unit_kind": "persona-semantic",
                     "center_element": "result-0",
                     "similarity": 0.5,
@@ -215,48 +204,6 @@ class ConvergentSortTests(unittest.TestCase):
             ranked[1]["convergent_score"],
         )
 
-    def test_neutral_channel_is_diagnostic_only_for_convergent_sort(self) -> None:
-        strong_single = _cand(
-            1,
-            similarity=0.99,
-            hit_sources=[
-                {
-                    "agent_id": "A2",
-                    "pseudo_id": "t1",
-                    "channel_role": "toned",
-                    "similarity": 0.99,
-                    "fragments": [],
-                }
-            ],
-        )
-        neutral_plus_focal = _cand(
-            2,
-            similarity=0.5,
-            hit_sources=[
-                {
-                    "agent_id": "A2",
-                    "pseudo_id": "n1",
-                    "channel_role": "neutral",
-                    "similarity": 0.5,
-                    "fragments": [],
-                },
-                {
-                    "agent_id": "A2",
-                    "pseudo_id": "f1",
-                    "channel_role": "focalized",
-                    "similarity": 0.5,
-                    "fragments": [],
-                },
-            ],
-            quality_candidate=True,
-        )
-        ranked = sort_candidates_convergent(
-            [strong_single, neutral_plus_focal], quality_floor=DEFAULT_QUALITY_FLOOR
-        )
-        self.assertEqual(ranked[0]["tmdb_id"], 1)
-        self.assertEqual(ranked[1]["convergence_channels"], ["focalized"])
-        self.assertEqual(ranked[1]["diagnostic_channels"], ["neutral"])
-
     def test_multi_persona_adds_convergent_weight(self) -> None:
         one_persona = _cand(
             10,
@@ -265,7 +212,6 @@ class ConvergentSortTests(unittest.TestCase):
                 {
                     "agent_id": "A2",
                     "pseudo_id": "su-persona-A2-p1",
-                    "channel_role": "toned",
                     "search_unit_kind": "persona-semantic",
                     "center_element": "why-0",
                     "similarity": 0.8,
@@ -280,7 +226,6 @@ class ConvergentSortTests(unittest.TestCase):
                 {
                     "agent_id": "A2",
                     "pseudo_id": "su-persona-A2-p1",
-                    "channel_role": "toned",
                     "search_unit_kind": "persona-semantic",
                     "center_element": "why-0",
                     "similarity": 0.6,
@@ -289,7 +234,6 @@ class ConvergentSortTests(unittest.TestCase):
                 {
                     "agent_id": "A7",
                     "pseudo_id": "su-persona-A7-p1",
-                    "channel_role": "toned",
                     "search_unit_kind": "persona-semantic",
                     "center_element": "result-0",
                     "similarity": 0.55,
@@ -313,8 +257,8 @@ class FunnelBudgetTests(unittest.TestCase):
                 hit_sources=[
                     {
                         "agent_id": "A2",
-                        "pseudo_id": "t1",
-                        "channel_role": "toned",
+                        "pseudo_id": "su-persona-1",
+                        "search_unit_kind": "persona-semantic",
                         "similarity": 1.0 - i * 0.01,
                         "fragments": [],
                     }
@@ -334,8 +278,8 @@ class FunnelBudgetTests(unittest.TestCase):
                 hit_sources=[
                     {
                         "agent_id": "A2",
-                        "pseudo_id": "t1",
-                        "channel_role": "toned",
+                        "pseudo_id": "su-persona-1",
+                        "search_unit_kind": "persona-semantic",
                         "similarity": 0.9,
                         "fragments": [],
                     }
@@ -347,8 +291,8 @@ class FunnelBudgetTests(unittest.TestCase):
                 hit_sources=[
                     {
                         "agent_id": "A2",
-                        "pseudo_id": "t1",
-                        "channel_role": "toned",
+                        "pseudo_id": "su-persona-1",
+                        "search_unit_kind": "persona-semantic",
                         "similarity": 0.8,
                         "fragments": [],
                     }
@@ -360,8 +304,8 @@ class FunnelBudgetTests(unittest.TestCase):
                 hit_sources=[
                     {
                         "agent_id": "A2",
-                        "pseudo_id": "t1",
-                        "channel_role": "toned",
+                        "pseudo_id": "su-persona-1",
+                        "search_unit_kind": "persona-semantic",
                         "similarity": 0.7,
                         "fragments": [],
                     }
@@ -386,7 +330,6 @@ class FunnelBudgetTests(unittest.TestCase):
                 {
                     "agent_id": "A2",
                     "pseudo_id": "su-event-1",
-                    "channel_role": "neutral",
                     "search_unit_kind": "event-fragment-bundle",
                     "similarity": 0.75,
                     "fragments": ["why-0"],
@@ -394,7 +337,6 @@ class FunnelBudgetTests(unittest.TestCase):
                 {
                     "agent_id": "A2",
                     "pseudo_id": "su-persona-A2-p1",
-                    "channel_role": "toned",
                     "search_unit_kind": "persona-semantic",
                     "center_element": "result-0",
                     "similarity": 0.75,
@@ -404,73 +346,8 @@ class FunnelBudgetTests(unittest.TestCase):
         )
         from scripts.retrieve import _apply_quality_fields
 
-        _apply_quality_fields(
-            candidate, quality_floor=DEFAULT_QUALITY_FLOOR, neutral_total=1
-        )
+        _apply_quality_fields(candidate, quality_floor=DEFAULT_QUALITY_FLOOR)
         self.assertTrue(candidate["quality_candidate"])
-
-
-class PoolDiffChannelTests(unittest.TestCase):
-    def test_decomposes_net_new_by_provenance_channel(self) -> None:
-        baseline = {
-            "candidates": [
-                {"tmdb_id": 1, "title": "Kept"},
-            ]
-        }
-        design = {
-            "candidates": [
-                {"tmdb_id": 1, "title": "Kept"},
-                {
-                    "tmdb_id": 100,
-                    "title": "Focal new",
-                    "similarity": 0.6,
-                    "hit_sources": [
-                        {
-                            "agent_id": "A2",
-                            "pseudo_id": "f1",
-                            "channel": "focalized",
-                            "similarity": 0.6,
-                            "fragments": [],
-                        }
-                    ],
-                },
-                {
-                    "tmdb_id": 101,
-                    "title": "Multi channel",
-                    "similarity": 0.55,
-                    "hit_sources": [
-                        {
-                            "agent_id": "A2",
-                            "pseudo_id": "n1",
-                            "channel_role": "neutral",
-                            "similarity": 0.55,
-                            "fragments": [],
-                        },
-                        {
-                            "agent_id": "A4",
-                            "pseudo_id": "t1",
-                            "channel_role": "toned",
-                            "similarity": 0.5,
-                            "fragments": [],
-                        },
-                    ],
-                },
-            ]
-        }
-        diff = compare_pool_diff_by_channel(
-            run_id="01-test",
-            baseline_retrieve=baseline,
-            design_retrieve=design,
-        )
-        self.assertEqual(diff.net_new_tmdb_ids, [100, 101])
-        self.assertIn(100, diff.by_channel["focalized"])
-        self.assertNotIn("neutral", diff.by_channel)
-        self.assertIn(101, diff.diagnostic_by_channel["neutral"])
-        self.assertIn(101, diff.by_channel["toned"])
-        payload = pool_diff_by_channel_to_dict(diff)
-        self.assertEqual(payload["run_id"], "01-test")
-        self.assertIn(101, payload["diagnostic_by_channel"]["neutral"])
-        self.assertEqual(len(payload["net_new_details"]), 2)
 
 
 class PoolDiffSearchUnitKindTests(unittest.TestCase):

@@ -8,8 +8,8 @@
       候选漏斗（ADR-0009）: 去重 → match 诊断 → 新 convergent sort → 可选 judge 预筛 → 预算 top-N；
       预算以下 ``judge≥1`` 进 ``audit_pool``（抽审兜底，不靠调高 judge 门槛控量）。
       主排序信号来自 surface_match / event_match / persona_semantic_match / persona diversity /
-      center dimension diversity / dense similarity；旧 neutral / toned / focalized channel 只作兼容字段。
-      A1 held-out oracle（ADR-0006）: baseline 查询独立并跑 → ``a1_oracle`` + ``oracle_comparison``；
+      center dimension diversity / dense similarity（ADR-0009 search_unit_kind 口径）。
+      A1 held-out oracle（ADR-0006）: A1/baseline 查询独立并跑 → ``a1_oracle``；
       不进 ``candidates`` / 撞车票 / 排序。
 
 不做:
@@ -59,11 +59,9 @@ _AGENT_ORDER: tuple[str, ...] = ("A2", "A4", "A7", "A1")
 
 _ORACLE_AGENT_IDS: frozenset[str] = frozenset({"A1"})
 
-_CHANNEL_ROLES: frozenset[str] = frozenset({"neutral", "toned", "focalized", "baseline"})
-_PROVENANCE_CHANNELS: frozenset[str] = frozenset({"neutral", "toned", "focalized"})
-_SIGNAL_PROVENANCE_CHANNELS: frozenset[str] = frozenset({"toned", "focalized"})
-_DIAGNOSTIC_PROVENANCE_CHANNELS: frozenset[str] = frozenset({"neutral"})
-_COMPOSITION_CHANNELS: frozenset[str] = frozenset({"toned", "focalized"})
+_OBJECTIVE_UNIT_KINDS: frozenset[str] = frozenset(
+    {"surface-fragment-bundle", "event-fragment-bundle"}
+)
 _SEARCH_UNIT_KINDS: frozenset[str] = frozenset(
     {"surface-fragment-bundle", "event-fragment-bundle", "persona-semantic"}
 )
@@ -225,32 +223,23 @@ def _normalize_fragments(source: object) -> list[str]:
     return [str(item).strip() for item in fragments if str(item).strip()]
 
 
-def _resolve_channel_role(
+def _resolve_unit_kind(
     agent: dict[str, Any],
     source: dict[str, Any],
     agent_id: str,
 ) -> str:
-    """Map pseudo/search-unit source + agent defaults to recall provenance role."""
+    """Map search-unit kind (ADR-0009). Kindless pseudos classify by agent role:
+
+    A1/baseline → ``baseline`` (held-out oracle, excluded from candidates);
+    A2/A4/A7 and other personas → ``persona-semantic``.
+    """
     kind = str(source.get("kind") or source.get("search_unit_kind") or "").strip().lower()
-    if kind == "surface-fragment-bundle":
-        return "neutral"
-    if kind == "event-fragment-bundle":
-        return "neutral"
-    if kind == "persona-semantic":
-        return "toned"
-    channel = str(
-        source.get("channel_role") or source.get("channel") or ""
-    ).strip().lower()
-    if channel in _CHANNEL_ROLES:
-        return channel
+    if kind in _SEARCH_UNIT_KINDS:
+        return kind
     agent_role = str(agent.get("role") or _ROLE_BY_AGENT.get(agent_id, "toned")).strip().lower()
-    if agent_role == "baseline":
+    if agent_role == "baseline" or agent_id in _ORACLE_AGENT_IDS:
         return "baseline"
-    if agent_role == "creative":
-        return "toned"
-    if agent_role in _CHANNEL_ROLES:
-        return agent_role
-    return "toned"
+    return "persona-semantic"
 
 
 def _expand_retrieval_queries(
@@ -265,6 +254,7 @@ def _expand_retrieval_queries(
         agent_id = str(agent.get("agent_id", "")).upper()
         if not agent_id or agent_id in failed:
             continue
+        agent_role = str(agent.get("role") or _ROLE_BY_AGENT.get(agent_id, "toned")).strip().lower()
         search_units = agent.get("search_units")
         if isinstance(search_units, dict):
             flat_units: list[dict[str, Any]] = []
@@ -285,27 +275,24 @@ def _expand_retrieval_queries(
                     source_elements = row.get("source_elements")
                     if not isinstance(source_elements, list):
                         source_elements = []
-                    kind = str(row.get("kind") or "").strip().lower()
                     source = {
-                        "kind": kind,
+                        "kind": str(row.get("kind") or "").strip().lower(),
                         "fragments": [str(item) for item in source_elements if str(item).strip()],
                     }
-                    channel_role = _resolve_channel_role(agent, source, agent_id)
+                    unit_kind = _resolve_unit_kind(agent, source, agent_id)
                     queries.append(
                         {
                             "agent_id": agent_id,
-                            "role": channel_role,
-                            "channel_role": channel_role,
+                            "role": agent_role,
                             "pseudo_id": unit_id,
                             "search_unit_id": unit_id,
-                            "search_unit_kind": kind,
+                            "search_unit_kind": unit_kind,
                             "center_element": row.get("center_element"),
                             "text": text,
                             "source": {
                                 "agent_id": agent_id,
                                 "fragments": source["fragments"],
-                                "channel_role": channel_role,
-                                "search_unit_kind": kind,
+                                "search_unit_kind": unit_kind,
                                 "center_element": row.get("center_element"),
                             },
                         }
@@ -323,18 +310,20 @@ def _expand_retrieval_queries(
                 if not pseudo_id:
                     pseudo_id = f"p{len(queries) + 1}"
                 source = row.get("source") if isinstance(row.get("source"), dict) else {}
-                channel_role = _resolve_channel_role(agent, source, agent_id)
+                unit_kind = _resolve_unit_kind(agent, source, agent_id)
                 queries.append(
                     {
                         "agent_id": agent_id,
-                        "role": channel_role,
-                        "channel_role": channel_role,
+                        "role": agent_role,
                         "pseudo_id": pseudo_id,
+                        "search_unit_kind": unit_kind,
+                        "center_element": source.get("center_element"),
                         "text": text,
                         "source": {
                             "agent_id": agent_id,
                             "fragments": _normalize_fragments(source),
-                            "channel_role": channel_role,
+                            "search_unit_kind": unit_kind,
+                            "center_element": source.get("center_element"),
                         },
                     }
                 )
@@ -343,18 +332,20 @@ def _expand_retrieval_queries(
         text = str(agent.get("text", "")).strip()
         if not text:
             continue
-        channel_role = _resolve_channel_role(agent, {}, agent_id)
+        unit_kind = _resolve_unit_kind(agent, {}, agent_id)
         queries.append(
             {
                 "agent_id": agent_id,
-                "role": channel_role,
-                "channel_role": channel_role,
+                "role": agent_role,
                 "pseudo_id": "legacy",
+                "search_unit_kind": unit_kind,
+                "center_element": None,
                 "text": text,
                 "source": {
                     "agent_id": agent_id,
                     "fragments": [],
-                    "channel_role": channel_role,
+                    "search_unit_kind": unit_kind,
+                    "center_element": None,
                 },
             }
         )
@@ -367,10 +358,8 @@ def _is_oracle_query(query: dict[str, Any]) -> bool:
     agent_id = str(query.get("agent_id", "")).upper()
     if agent_id in _ORACLE_AGENT_IDS:
         return True
-    channel = str(
-        query.get("channel_role") or query.get("role") or ""
-    ).strip().lower()
-    return channel == "baseline"
+    kind = str(query.get("search_unit_kind") or "").strip().lower()
+    return kind == "baseline"
 
 
 def _split_oracle_judge_queries(
@@ -386,15 +375,15 @@ def _split_oracle_judge_queries(
     return oracle, judge
 
 
-def _neutral_union_tmdb_ids(
+def _objective_union_tmdb_ids(
     candidates: list[dict[str, Any]],
     *,
     quality_floor: float,
 ) -> set[int]:
-    """Distinct tmdb_ids with ≥1 neutral hit at or above quality_floor."""
+    """Distinct tmdb_ids with ≥1 objective-kind (surface/event) hit at or above floor."""
     ids: set[int] = set()
     for cand in candidates:
-        if not _neutral_hits_above_floor(cand, quality_floor=quality_floor):
+        if not _objective_hits_above_floor(cand, quality_floor=quality_floor):
             continue
         tmdb_id = cand.get("tmdb_id")
         if tmdb_id is not None:
@@ -408,23 +397,23 @@ def _build_oracle_comparison(
     *,
     quality_floor: float,
 ) -> dict[str, Any]:
-    neutral_union = _neutral_union_tmdb_ids(candidates, quality_floor=quality_floor)
-    shared = sorted(a1_hit_ids & neutral_union)
-    a1_only = sorted(a1_hit_ids - neutral_union)
-    neutral_only = sorted(neutral_union - a1_hit_ids)
+    objective_union = _objective_union_tmdb_ids(candidates, quality_floor=quality_floor)
+    shared = sorted(a1_hit_ids & objective_union)
+    a1_only = sorted(a1_hit_ids - objective_union)
+    objective_only = sorted(objective_union - a1_hit_ids)
     if not a1_hit_ids:
-        superset: bool | None = True if neutral_union else None
+        superset: bool | None = True if objective_union else None
     else:
-        superset = a1_hit_ids <= neutral_union
+        superset = a1_hit_ids <= objective_union
     return {
         "a1_hit_tmdb_ids": sorted(a1_hit_ids),
-        "neutral_union_tmdb_ids": sorted(neutral_union),
+        "objective_union_tmdb_ids": sorted(objective_union),
         "shared_tmdb_ids": shared,
         "a1_only_tmdb_ids": a1_only,
-        "neutral_only_tmdb_ids": neutral_only,
-        "neutral_union_superset_of_a1_hits": superset,
+        "objective_only_tmdb_ids": objective_only,
+        "objective_union_superset_of_a1_hits": superset,
         "a1_hit_count": len(a1_hit_ids),
-        "neutral_union_hit_count": len(neutral_union),
+        "objective_union_hit_count": len(objective_union),
     }
 
 
@@ -456,13 +445,13 @@ def _build_a1_oracle_payload(
     }
 
 
-def _count_neutral_personas(queries: list[dict[str, Any]]) -> int:
-    """Persona count for neutral_hit_rate denominator (one neutral pseudo per persona)."""
+def _count_persona_semantic_personas(queries: list[dict[str, Any]]) -> int:
+    """Persona count emitting ≥1 persona-semantic search unit (diversity denominator)."""
     return len(
         {
             query["agent_id"]
             for query in queries
-            if query.get("channel_role") == "neutral"
+            if str(query.get("search_unit_kind") or "").strip().lower() == "persona-semantic"
         }
     )
 
@@ -472,19 +461,16 @@ def _append_hit_source(
     query: dict[str, Any],
     similarity: float,
 ) -> None:
-    channel_role = str(
-        query.get("channel_role") or query.get("role") or "toned"
+    search_unit_kind = str(
+        query.get("search_unit_kind") or query["source"].get("search_unit_kind") or ""
     ).strip().lower()
     entry = {
         "agent_id": query["agent_id"],
         "pseudo_id": query["pseudo_id"],
-        "channel_role": channel_role,
+        "search_unit_kind": search_unit_kind,
         "fragments": list(query["source"].get("fragments") or []),
         "similarity": float(similarity),
     }
-    search_unit_kind = query.get("search_unit_kind") or query["source"].get("search_unit_kind")
-    if search_unit_kind:
-        entry["search_unit_kind"] = str(search_unit_kind)
     center_element = query.get("center_element") or query["source"].get("center_element")
     if center_element:
         entry["center_element"] = str(center_element)
@@ -508,18 +494,15 @@ def _append_hit_source(
     sources.append(entry)
 
 
-def _hit_source_channel_role(source: dict[str, Any]) -> str:
-    channel = str(
-        source.get("channel_role") or source.get("channel") or ""
-    ).strip().lower()
-    if channel in _PROVENANCE_CHANNELS:
-        return channel
-    if channel == "baseline":
+def _hit_source_unit_kind(source: dict[str, Any]) -> str:
+    """Resolve hit source search_unit_kind; kindless A1 maps to baseline, else persona-semantic."""
+    kind = str(source.get("search_unit_kind") or "").strip().lower()
+    if kind in _SEARCH_UNIT_KINDS:
+        return kind
+    agent_id = str(source.get("agent_id", "")).upper()
+    if agent_id in _ORACLE_AGENT_IDS:
         return "baseline"
-    legacy = str(source.get("role") or "").strip().lower()
-    if legacy == "creative":
-        return "toned"
-    return legacy or "toned"
+    return "persona-semantic"
 
 
 def _hit_sources_above_floor(
@@ -534,75 +517,15 @@ def _hit_sources_above_floor(
     ]
 
 
-def _distinct_signal_provenance_channels(
-    cand: dict[str, Any],
-    *,
-    quality_floor: float,
-) -> set[str]:
-    channels: set[str] = set()
-    for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
-        channel = _hit_source_channel_role(source)
-        if channel in _SIGNAL_PROVENANCE_CHANNELS:
-            channels.add(channel)
-    return channels
-
-
-def _distinct_diagnostic_provenance_channels(
-    cand: dict[str, Any],
-    *,
-    quality_floor: float,
-) -> set[str]:
-    channels: set[str] = set()
-    for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
-        channel = _hit_source_channel_role(source)
-        if channel in _DIAGNOSTIC_PROVENANCE_CHANNELS:
-            channels.add(channel)
-    return channels
-
-
-def _distinct_personas_above_floor(
-    cand: dict[str, Any],
-    *,
-    quality_floor: float,
-) -> set[str]:
-    personas: set[str] = set()
-    for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
-        kind = str(source.get("search_unit_kind") or "").strip().lower()
-        if kind and kind != "persona-semantic":
-            continue
-        if not kind and _hit_source_channel_role(source) not in _SIGNAL_PROVENANCE_CHANNELS:
-            continue
-        agent_id = str(source.get("agent_id", "")).upper()
-        if agent_id:
-            personas.add(agent_id)
-    return personas
-
-
-def _composition_agents_above_floor(
-    cand: dict[str, Any],
-    *,
-    quality_floor: float,
-) -> set[str]:
-    """Toned + focalized agents above floor (extended collision ticket, ADR-0008)."""
-    agents: set[str] = set()
-    for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
-        if _hit_source_channel_role(source) not in _COMPOSITION_CHANNELS:
-            continue
-        agent_id = str(source.get("agent_id", "")).upper()
-        if agent_id:
-            agents.add(agent_id)
-    return agents
-
-
-def _neutral_hits_above_floor(
+def _objective_hits_above_floor(
     cand: dict[str, Any],
     *,
     quality_floor: float,
 ) -> set[tuple[str, str]]:
-    """Distinct (agent_id, pseudo_id) neutral hits at or above quality_floor."""
+    """Distinct (agent_id, pseudo_id) surface/event-bundle hits at or above floor."""
     keys: set[tuple[str, str]] = set()
     for source in cand.get("hit_sources") or []:
-        if _hit_source_channel_role(source) != "neutral":
+        if _hit_source_unit_kind(source) not in _OBJECTIVE_UNIT_KINDS:
             continue
         if float(source.get("similarity", 0.0)) < quality_floor:
             continue
@@ -613,28 +536,20 @@ def _neutral_hits_above_floor(
     return keys
 
 
-def _toned_agents_above_floor(
+def _distinct_personas_above_floor(
     cand: dict[str, Any],
     *,
     quality_floor: float,
 ) -> set[str]:
-    agents: set[str] = set()
+    """Distinct personas with a persona-semantic hit above floor."""
+    personas: set[str] = set()
     for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
-        if _hit_source_channel_role(source) != "toned":
+        if _hit_source_unit_kind(source) != "persona-semantic":
             continue
         agent_id = str(source.get("agent_id", "")).upper()
         if agent_id:
-            agents.add(agent_id)
-    return agents
-
-
-def _distinct_agents_above_floor(
-    cand: dict[str, Any],
-    *,
-    quality_floor: float,
-) -> set[str]:
-    """Distinct composition agents (toned + focalized) above floor."""
-    return _composition_agents_above_floor(cand, quality_floor=quality_floor)
+            personas.add(agent_id)
+    return personas
 
 
 def _search_unit_kinds_above_floor(
@@ -644,7 +559,7 @@ def _search_unit_kinds_above_floor(
 ) -> set[str]:
     kinds: set[str] = set()
     for source in _hit_sources_above_floor(cand, quality_floor=quality_floor):
-        kind = str(source.get("search_unit_kind") or "").strip().lower()
+        kind = _hit_source_unit_kind(source)
         if kind in _SEARCH_UNIT_KINDS:
             kinds.add(kind)
     return kinds
@@ -683,32 +598,22 @@ def _apply_quality_fields(
     cand: dict[str, Any],
     *,
     quality_floor: float,
-    neutral_total: int,
 ) -> None:
-    neutral_keys = _neutral_hits_above_floor(cand, quality_floor=quality_floor)
-    composition_agents = _composition_agents_above_floor(
-        cand, quality_floor=quality_floor
-    )
+    objective_keys = _objective_hits_above_floor(cand, quality_floor=quality_floor)
+    personas = _distinct_personas_above_floor(cand, quality_floor=quality_floor)
     kinds = _search_unit_kinds_above_floor(cand, quality_floor=quality_floor)
-    neutral_hits = len(neutral_keys)
-    objective_match = bool(
-        {"surface-fragment-bundle", "event-fragment-bundle"} & kinds
-    ) or neutral_hits >= 1
-    semantic_match = "persona-semantic" in kinds or len(composition_agents) >= 1
+    objective_match = bool(_OBJECTIVE_UNIT_KINDS & kinds) or len(objective_keys) >= 1
+    semantic_match = "persona-semantic" in kinds or len(personas) >= 1
 
-    cand["neutral_hits"] = neutral_hits
-    cand["neutral_total"] = neutral_total
-    cand["neutral_hit_rate"] = (
-        float(neutral_hits) / float(neutral_total) if neutral_total > 0 else 0.0
-    )
-    cand["distinct_agents"] = len(composition_agents)
+    cand["objective_hits"] = len(objective_keys)
+    cand["persona_count"] = len(personas)
     cand["quality_candidate"] = objective_match and semantic_match
 
     if cand["quality_candidate"]:
-        agent_list = ",".join(_sort_agent_ids(list(composition_agents)))
+        agent_list = ",".join(_sort_agent_ids(list(personas)))
         cand["quality_reason"] = (
             "objective_match=1 + persona_semantic_match=1"
-            + (f"; composition_agents={len(composition_agents)}: {agent_list}" if agent_list else "")
+            + (f"; personas={len(personas)}: {agent_list}" if agent_list else "")
         )
     elif not objective_match and not semantic_match:
         cand["quality_reason"] = (
@@ -727,12 +632,6 @@ def _apply_convergence_fields(
     quality_floor: float,
 ) -> None:
     """Candidate funnel sort: surface/event/persona-semantic match + diversity."""
-    signal_channels = _distinct_signal_provenance_channels(
-        cand, quality_floor=quality_floor
-    )
-    diagnostic_channels = _distinct_diagnostic_provenance_channels(
-        cand, quality_floor=quality_floor
-    )
     personas = _distinct_personas_above_floor(cand, quality_floor=quality_floor)
     kinds = _search_unit_kinds_above_floor(cand, quality_floor=quality_floor)
     center_dims = _center_dimensions_above_floor(cand, quality_floor=quality_floor)
@@ -742,9 +641,6 @@ def _apply_convergence_fields(
     persona_semantic_score = (
         _CONVERGENT_WEIGHT_PERSONA_SEMANTIC if "persona-semantic" in kinds else 0
     )
-    cand["convergence_channels"] = sorted(signal_channels)
-    cand["convergence_channel_count"] = len(signal_channels)
-    cand["diagnostic_channels"] = sorted(diagnostic_channels)
     cand["convergence_persona_count"] = persona_count
     _apply_match_diagnostics(cand, quality_floor=quality_floor)
     cand["convergent_score"] = (
@@ -772,12 +668,11 @@ def _merge_hit_source_record(
     query = {
         "agent_id": str(source.get("agent_id", "")).upper(),
         "pseudo_id": str(source.get("pseudo_id", "")).strip(),
-        "channel_role": _hit_source_channel_role(source),
-        "search_unit_kind": source.get("search_unit_kind"),
+        "search_unit_kind": _hit_source_unit_kind(source),
         "center_element": source.get("center_element"),
         "source": {
             "fragments": list(source.get("fragments") or []),
-            "search_unit_kind": source.get("search_unit_kind"),
+            "search_unit_kind": _hit_source_unit_kind(source),
             "center_element": source.get("center_element"),
         },
     }
@@ -813,13 +708,12 @@ def sort_candidates_convergent(
     candidates: list[dict[str, Any]],
     *,
     quality_floor: float,
-    neutral_total: int = 0,
 ) -> list[dict[str, Any]]:
-    """Layer 2 funnel: convergent sort (multi-channel / multi-persona rank higher)."""
+    """Layer 2 funnel: convergent sort (multi-kind / multi-persona rank higher)."""
     enriched: list[dict[str, Any]] = []
     for cand in candidates:
         row = dict(cand)
-        _apply_quality_fields(row, quality_floor=quality_floor, neutral_total=neutral_total)
+        _apply_quality_fields(row, quality_floor=quality_floor)
         _apply_convergence_fields(row, quality_floor=quality_floor)
         enriched.append(row)
     return sorted(enriched, key=_convergent_sort_key)
@@ -830,7 +724,6 @@ def apply_candidate_funnel(
     *,
     human_budget: int = DEFAULT_HUMAN_BUDGET,
     quality_floor: float = DEFAULT_QUALITY_FLOOR,
-    neutral_total: int = 0,
     judge_scores: dict[int, int] | None = None,
     min_judge_score: int = DEFAULT_MIN_JUDGE_SCORE,
 ) -> dict[str, Any]:
@@ -842,7 +735,6 @@ def apply_candidate_funnel(
     sorted_pool = sort_candidates_convergent(
         deduped,
         quality_floor=quality_floor,
-        neutral_total=neutral_total,
     )
 
     for cand in sorted_pool:
@@ -905,25 +797,10 @@ class PoolDiffBySearchUnitKind:
     net_new_details: list[dict[str, Any]] = field(default_factory=list)
 
 
-@dataclass
-class PoolDiffByChannel:
-    """Legacy A/B pool diff with old provenance-channel decomposition."""
-
-    run_id: str
-    baseline_candidate_count: int
-    design_candidate_count: int
-    net_new_tmdb_ids: list[int]
-    lost_tmdb_ids: list[int]
-    overlap_count: int
-    by_channel: dict[str, list[int]] = field(default_factory=dict)
-    diagnostic_by_channel: dict[str, list[int]] = field(default_factory=dict)
-    net_new_details: list[dict[str, Any]] = field(default_factory=list)
-
-
 def _search_unit_kinds_for_candidate(cand: dict[str, Any]) -> set[str]:
     kinds: set[str] = set()
     for source in cand.get("hit_sources") or []:
-        kind = str(source.get("search_unit_kind") or "").strip().lower()
+        kind = _hit_source_unit_kind(source)
         if kind in _SEARCH_UNIT_KINDS:
             kinds.add(kind)
     return kinds
@@ -1000,105 +877,6 @@ def pool_diff_by_search_unit_kind_to_dict(result: PoolDiffBySearchUnitKind) -> d
         "lost_tmdb_ids": result.lost_tmdb_ids,
         "by_search_unit_kind": result.by_search_unit_kind,
         "collision_gain_tmdb_ids": result.collision_gain_tmdb_ids,
-        "net_new_details": result.net_new_details,
-    }
-
-
-def _provenance_channels_for_candidate(cand: dict[str, Any]) -> set[str]:
-    channels: set[str] = set()
-    for source in cand.get("hit_sources") or []:
-        channel = _hit_source_channel_role(source)
-        if channel in _SIGNAL_PROVENANCE_CHANNELS:
-            channels.add(channel)
-    return channels
-
-
-def _diagnostic_channels_for_candidate(cand: dict[str, Any]) -> set[str]:
-    channels: set[str] = set()
-    for source in cand.get("hit_sources") or []:
-        channel = _hit_source_channel_role(source)
-        if channel in _DIAGNOSTIC_PROVENANCE_CHANNELS:
-            channels.add(channel)
-    return channels
-
-
-def compare_pool_diff_by_channel(
-    *,
-    run_id: str,
-    baseline_retrieve: dict[str, Any],
-    design_retrieve: dict[str, Any],
-) -> PoolDiffByChannel:
-    """Net-new candidates decomposed by neutral / toned / focalized provenance."""
-    def _ids(payload: dict[str, Any]) -> set[int]:
-        ids: set[int] = set()
-        for row in payload.get("candidates") or []:
-            if isinstance(row, dict) and row.get("tmdb_id") is not None:
-                ids.add(int(row["tmdb_id"]))
-        return ids
-
-    base_ids = _ids(baseline_retrieve)
-    design_ids = _ids(design_retrieve)
-    net_new = sorted(design_ids - base_ids)
-    lost = sorted(base_ids - design_ids)
-
-    by_channel: dict[str, list[int]] = {
-        channel: [] for channel in sorted(_SIGNAL_PROVENANCE_CHANNELS)
-    }
-    diagnostic_by_channel: dict[str, list[int]] = {
-        channel: [] for channel in sorted(_DIAGNOSTIC_PROVENANCE_CHANNELS)
-    }
-    net_new_details: list[dict[str, Any]] = []
-
-    design_index = {
-        int(row["tmdb_id"]): row
-        for row in design_retrieve.get("candidates") or []
-        if isinstance(row, dict) and row.get("tmdb_id") is not None
-    }
-
-    for tmdb_id in net_new:
-        cand = design_index.get(tmdb_id, {})
-        channels = sorted(_provenance_channels_for_candidate(cand))
-        diagnostic_channels = sorted(_diagnostic_channels_for_candidate(cand))
-        for channel in channels:
-            by_channel[channel].append(tmdb_id)
-        for channel in diagnostic_channels:
-            diagnostic_by_channel[channel].append(tmdb_id)
-        net_new_details.append(
-            {
-                "tmdb_id": tmdb_id,
-                "title": cand.get("title"),
-                "similarity": cand.get("similarity"),
-                "quality_candidate": cand.get("quality_candidate"),
-                "provenance_channels": channels,
-                "diagnostic_channels": diagnostic_channels,
-                "triggered_by": cand.get("triggered_by"),
-                "convergence_channels": cand.get("convergence_channels"),
-            }
-        )
-
-    return PoolDiffByChannel(
-        run_id=run_id,
-        baseline_candidate_count=len(base_ids),
-        design_candidate_count=len(design_ids),
-        net_new_tmdb_ids=net_new,
-        lost_tmdb_ids=lost,
-        overlap_count=len(base_ids & design_ids),
-        by_channel=by_channel,
-        diagnostic_by_channel=diagnostic_by_channel,
-        net_new_details=net_new_details,
-    )
-
-
-def pool_diff_by_channel_to_dict(result: PoolDiffByChannel) -> dict[str, Any]:
-    return {
-        "run_id": result.run_id,
-        "baseline_candidate_count": result.baseline_candidate_count,
-        "design_candidate_count": result.design_candidate_count,
-        "overlap_count": result.overlap_count,
-        "net_new_tmdb_ids": result.net_new_tmdb_ids,
-        "lost_tmdb_ids": result.lost_tmdb_ids,
-        "by_channel": result.by_channel,
-        "diagnostic_by_channel": result.diagnostic_by_channel,
         "net_new_details": result.net_new_details,
     }
 
@@ -1185,7 +963,6 @@ def _run_query_batch(
     queries: list[dict[str, Any]],
     *,
     top_k: int,
-    neutral_total: int,
     quality_floor: float,
     aggregate_candidates: bool,
 ) -> tuple[
@@ -1211,7 +988,6 @@ def _run_query_batch(
 
     for query in queries:
         agent_id = query["agent_id"]
-        role = query["role"]
         pseudo = query["text"]
 
         query_vec = _encode_query(pseudo, model)
@@ -1246,12 +1022,8 @@ def _run_query_batch(
 
             cand = candidate_map[tmdb_id]
             _append_hit_source(cand, query, similarity)
-            channel = str(query.get("channel_role") or role).strip().lower()
             search_unit_kind = str(query.get("search_unit_kind") or "").strip().lower()
-            is_persona_signal = search_unit_kind == "persona-semantic" or (
-                not search_unit_kind and channel in _COMPOSITION_CHANNELS
-            )
-            if is_persona_signal and agent_id not in cand["triggered_by"]:
+            if search_unit_kind == "persona-semantic" and agent_id not in cand["triggered_by"]:
                 cand["triggered_by"].append(agent_id)
 
         per_pseudo.append({**query, "hits": hits})
@@ -1271,7 +1043,6 @@ def _run_query_batch(
             _apply_quality_fields(
                 cand,
                 quality_floor=quality_floor,
-                neutral_total=neutral_total,
             )
 
     return (
@@ -1298,7 +1069,6 @@ def retrieve_from_agents(
     budget = human_budget if human_budget is not None else max_candidates
     queries = _expand_retrieval_queries(agents, errors)
     oracle_queries, judge_queries = _split_oracle_judge_queries(queries)
-    neutral_total = _count_neutral_personas(judge_queries)
 
     empty_meta = {
         "query_count": 0,
@@ -1342,7 +1112,6 @@ def retrieve_from_agents(
     ) = _run_query_batch(
         judge_queries,
         top_k=top_k,
-        neutral_total=neutral_total,
         quality_floor=quality_floor,
         aggregate_candidates=True,
     )
@@ -1353,7 +1122,6 @@ def retrieve_from_agents(
         oracle_per_pseudo, _, _, _, oracle_raw_hits = _run_query_batch(
             oracle_queries,
             top_k=top_k,
-            neutral_total=0,
             quality_floor=quality_floor,
             aggregate_candidates=False,
         )
@@ -1362,7 +1130,6 @@ def retrieve_from_agents(
         list(candidate_map.values()),
         human_budget=budget,
         quality_floor=quality_floor,
-        neutral_total=neutral_total,
         judge_scores=judge_scores,
         min_judge_score=min_judge_score,
     )

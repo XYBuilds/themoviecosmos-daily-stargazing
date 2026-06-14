@@ -13,7 +13,7 @@ todos:
     status: completed
   - id: 3.12.4
     content: retrieve.py 旧 channel 诊断清除：删除 neutral/toned/focalized 兼容分支、neutral_hit_rate、A1 oracle 诊断，保留 search_unit_kind 分解与 convergent sort，删/改相关 retrieve 测试
-    status: pending
+    status: completed
   - id: 3.12.5
     content: 编排入口对齐：run_phase311_*/run_persona_batch/run_eval 切到新路径，保证 3.11 GATE 基线可复现
     status: pending
