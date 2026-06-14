@@ -16,7 +16,7 @@ todos:
     status: completed
   - id: 3.12.5
     content: 编排入口对齐：run_phase311_*/run_persona_batch/run_eval 切到新路径，保证 3.11 GATE 基线可复现
-    status: pending
+    status: completed
   - id: 3.12.6
     content: 等价性验证[需人工验收]：N=10 eval 语料重跑，与 3.11.8 基线对比 net-new 2-rate/守卫硬失败/kind 分解，要求 bit-parity 或差异可解释
     status: pending

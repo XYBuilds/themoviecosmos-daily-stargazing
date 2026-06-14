@@ -15,15 +15,12 @@ if str(_REPO_ROOT) not in sys.path:
 
 from scripts.summarize_eval import (  # noqa: E402
     _AGENTS_TAG,
-    _DISTINCT_AGENTS_LINE,
-    _NEUTRAL_HIT_RATE_LINE,
-    _NEUTRAL_HITS_LINE,
     _REVIEW_RUN_SECTION,
     _parse_agents_from_heading,
 )
 
 _DEFAULT_IN = _REPO_ROOT / "output" / "Eval" / "phase3.8" / "high-hit-score-review.md"
-_DEFAULT_OUT = _REPO_ROOT / "output" / "Eval" / "phase3.8" / "multi-agent-neutral-hits-review.md"
+_DEFAULT_OUT = _REPO_ROOT / "output" / "Eval" / "phase3.8" / "multi-agent-hits-review.md"
 
 _CANDIDATE_BLOCK_START = re.compile(r"^<!-- run_id:", re.MULTILINE)
 _HIT_AGENT = re.compile(r"^\s*-\s+(THE-[A-Z]+)/", re.MULTILINE)
@@ -70,10 +67,6 @@ def _is_multi_agent(block: str) -> bool:
     heading = heading_match.group(1) if heading_match else ""
     agents_from_heading = _parse_agents_from_heading(f"### {heading}")
 
-    da_match = _DISTINCT_AGENTS_LINE.search(block)
-    if da_match and int(da_match.group(1)) >= 2:
-        return True
-
     if len(agents_from_heading) >= 2:
         return True
 
@@ -81,16 +74,6 @@ def _is_multi_agent(block: str) -> bool:
     if len(hit_agents) >= 2:
         return True
 
-    return False
-
-
-def _has_neutral_hits(block: str) -> bool:
-    nh_match = _NEUTRAL_HITS_LINE.search(block)
-    if nh_match:
-        return int(nh_match.group(1)) > 0
-    nhr_match = _NEUTRAL_HIT_RATE_LINE.search(block)
-    if nhr_match:
-        return float(nhr_match.group(1)) > 0.0
     return False
 
 
@@ -134,8 +117,7 @@ def render_filtered_review(
         "",
         f"- **Source:** `{source_name}`",
         "- **Filter criteria (ALL must match):**",
-        "  1. **多 agent 命中** — `distinct_agents` ≥ 2, or ≥2 agents in heading / hit lines; `quality_candidate` is ignored as a filter and shown only as retrieve annotation",
-        "  2. **n1 / neutral_hits** — diagnostic-only; shown when present, never used as this filter's inclusion criterion",
+        "  1. **多 agent 命中** — ≥2 agents in heading / hit lines; `quality_candidate` is ignored as a filter and shown only as retrieve annotation",
         f"- **Generated:** {gen_date}",
         f"- **Total matching candidates:** {total}",
         f"- **Runs with matches:** {len(run_counts)}",

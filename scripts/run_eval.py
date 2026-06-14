@@ -194,7 +194,7 @@ def _candidate_auto_score_lines(cand: dict[str, Any]) -> list[str]:
     objective_match = surface_match or event_match
     search_unit_kinds = list(match.get("search_unit_kinds") or sorted(kinds))
     center_dims = list(match.get("center_dimensions") or sorted(center_dimensions))
-    persona_count = cand.get("convergence_persona_count", cand.get("distinct_agents"))
+    persona_count = cand.get("convergence_persona_count", cand.get("persona_count"))
     score = cand.get("convergent_score")
     score_text = f"{score:.4f}" if isinstance(score, (int, float)) else "—"
 
