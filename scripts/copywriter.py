@@ -2,8 +2,8 @@
 
 Stage ``review`` (C1): read a ``retrieve.json`` candidate pool plus news context,
 ask the LLM to write one Chinese review-draft paragraph per candidate, and emit a
-structured JSON for editorial review. Obsidian rendering and platform finalization
-land in later 4.x todos.
+structured JSON for editorial review, and render Obsidian-readable Markdown
+candidate blocks. Platform finalization lands in later 4.x todos.
 
 ADR-0009 candidate contract (verified against phase3.11 products):
 - ``candidates[]`` holds the funnel+budget pool C1 consumes (== ``human_candidates``).
@@ -466,10 +466,93 @@ def result_to_payload(result: ReviewResult) -> dict[str, Any]:
     }
 
 
+def _md_dimension_phrase(center_dimensions: list[str]) -> str:
+    """Obsidian soft-hint label for center_dimensions (raw W-axis codes)."""
+    dims = [str(d).strip() for d in center_dimensions if str(d).strip()]
+    return ", ".join(dims) if dims else "（无）"
+
+
+def _md_triggered_phrase(triggered_by: list[str]) -> str:
+    personas = [str(p).strip() for p in triggered_by if str(p).strip()]
+    return ", ".join(personas) if personas else "（无触发视角记录）"
+
+
+def render_review_copy_block(copy: ReviewCopy) -> str:
+    """Render one review copy into an Obsidian-readable Markdown candidate block.
+
+    Block shape (per Phase 4.2 plan): title heading, triggered personas, optional
+    center-dimension soft hint, the C1 Chinese review draft, the movie link, and a
+    manual (never auto-checked) selection checkbox for the editor.
+    """
+    year_str = str(copy.year) if copy.year is not None else "—"
+    lines = [
+        f"### 《{copy.title}》({year_str})",
+        f"- 触发视角: {_md_triggered_phrase(copy.triggered_by)}",
+        f"- 切面（可选参考）: {_md_dimension_phrase(copy.center_dimensions)}",
+    ]
+    if copy.judge_score is not None:
+        lines.append(f"- judge_score（screening-only）: {copy.judge_score}")
+    text = copy.text_zh.strip() or "（本候选无审核稿文本）"
+    lines.append(f"- 中文文案（审核稿，C1）:\n\n{text}")
+    if copy.movie_url:
+        lines.append(f"- 链接: {copy.movie_url}")
+    lines.append("- [ ] ✅ 选用")
+    return "\n".join(lines)
+
+
+def result_to_markdown(
+    result: ReviewResult,
+    *,
+    news: dict[str, str] | None = None,
+    run_id: str = "",
+) -> str:
+    """Assemble the full Obsidian review document (one block per candidate)."""
+    news = news or {}
+    header: list[str] = ["# 审核稿候选（C1 · 待总编肉眼审核）"]
+    title = str(news.get("title", "") or "").strip()
+    if title:
+        header.append(f"\n> 新闻: {title}")
+    if run_id:
+        header.append(f"> run_id: {run_id}")
+    header.append(f"> 候选数: {len(result.review_copies)}")
+
+    parts = ["\n".join(header)]
+    for copy in result.review_copies:
+        parts.append(render_review_copy_block(copy))
+
+    if result.errors:
+        err_lines = ["## 生成异常（errors）"]
+        for err in result.errors:
+            err_lines.append(
+                f"- `{err.get('type', 'error')}`: "
+                f"{err.get('title') or err.get('tmdb_id') or ''} "
+                f"{err.get('message', '')}".rstrip()
+            )
+        parts.append("\n".join(err_lines))
+
+    return "\n\n".join(parts).rstrip() + "\n"
+
+
 def _infer_run_id(retrieve_path: Path) -> str:
     """Best-effort run id (== news dir name) for judge backfill keying."""
     parent = retrieve_path.parent.name
     return parent.strip()
+
+
+def _resolve_md_out(args: argparse.Namespace, out_path: Path | None) -> Path | None:
+    """Resolve the Obsidian Markdown output path.
+
+    Explicit ``--md-out`` wins. Otherwise, when ``--out`` is given, default the
+    Markdown next to it (``*.md``). With neither (stdout JSON mode), emit no file.
+    """
+    if getattr(args, "md_out", None):
+        md_path = Path(args.md_out)
+        if not md_path.is_absolute():
+            md_path = _REPO_ROOT / md_path
+        return md_path
+    if out_path is not None:
+        return out_path.with_suffix(".md")
+    return None
 
 
 def _run_review_cli(args: argparse.Namespace) -> int:
@@ -510,6 +593,7 @@ def _run_review_cli(args: argparse.Namespace) -> int:
     payload = result_to_payload(result)
     serialized = json.dumps(payload, ensure_ascii=False, indent=2)
 
+    out_path: Path | None = None
     if args.out:
         out_path = Path(args.out)
         if not out_path.is_absolute():
@@ -519,6 +603,13 @@ def _run_review_cli(args: argparse.Namespace) -> int:
         print(f"Wrote {out_path.resolve()}", file=sys.stderr)
     else:
         sys.stdout.buffer.write((serialized + "\n").encode("utf-8"))
+
+    md_path = _resolve_md_out(args, out_path)
+    if md_path is not None:
+        markdown = result_to_markdown(result, news=news, run_id=run_id)
+        md_path.parent.mkdir(parents=True, exist_ok=True)
+        md_path.write_text(markdown, encoding="utf-8")
+        print(f"Wrote {md_path.resolve()}", file=sys.stderr)
 
     if not result.review_copies and retrieve.get("candidates"):
         return 1
@@ -559,6 +650,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--out",
         help="Write review JSON to this path; otherwise print UTF-8 JSON to stdout.",
+    )
+    parser.add_argument(
+        "--md-out",
+        dest="md_out",
+        help=(
+            "Write the Obsidian-readable Markdown candidate blocks to this path. "
+            "Defaults to the --out path with a .md suffix when --out is given."
+        ),
     )
     parser.add_argument(
         "--provider",

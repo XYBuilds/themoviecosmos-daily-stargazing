@@ -21,7 +21,9 @@ from scripts.copywriter import (
     format_candidates_block,
     load_judge_scores,
     map_paragraphs_to_candidates,
+    render_review_copy_block,
     representative_persona_semantic,
+    result_to_markdown,
     result_to_payload,
     run_review,
     split_into_paragraphs,
@@ -271,6 +273,61 @@ class TestRunReview(unittest.TestCase):
             "text_zh",
         ):
             self.assertIn(key, row)
+
+
+class TestMarkdownRendering(unittest.TestCase):
+    def _result(self):
+        cands = [
+            _candidate(157336, "Interstellar", 2014, ["THE-INNOCENT", "THE-HERO"], ["who", "result"]),
+            _candidate(222, "No Year", None, [], []),
+        ]
+        return run_review(
+            _retrieve(cands, news={"title": "断网事件", "description": "D"}),
+            {"title": "断网事件", "description": "D"},
+            judge_index={("", "157336"): 2},
+            prompts_dir=_REPO / "prompts",
+            llm_call=lambda _p: (
+                "《Interstellar》(2014)\n第一段中文文案。\n\n"
+                "《No Year》(2000)\n第二段中文文案。"
+            ),
+        )
+
+    def test_block_has_required_fields(self) -> None:
+        result = self._result()
+        block = render_review_copy_block(result.review_copies[0])
+        self.assertIn("### 《Interstellar》(2014)", block)
+        self.assertIn("- 触发视角: THE-INNOCENT, THE-HERO", block)
+        self.assertIn("- 切面（可选参考）: who, result", block)
+        self.assertIn("第一段中文文案", block)
+        self.assertIn("https://themoviecosmos.com/movie/157336", block)
+        self.assertIn("- [ ] ✅ 选用", block)
+
+    def test_checkbox_is_never_pre_checked(self) -> None:
+        result = self._result()
+        for copy in result.review_copies:
+            block = render_review_copy_block(copy)
+            self.assertIn("- [ ] ✅ 选用", block)
+            self.assertNotIn("- [x]", block)
+
+    def test_missing_year_renders_dash(self) -> None:
+        result = self._result()
+        block = render_review_copy_block(result.review_copies[1])
+        self.assertIn("### 《No Year》(—)", block)
+
+    def test_document_has_one_block_per_candidate(self) -> None:
+        result = self._result()
+        md = result_to_markdown(result, news={"title": "断网事件"}, run_id="01-grid-outage")
+        self.assertEqual(md.count("### 《"), 2)
+        self.assertIn("# 审核稿候选", md)
+        self.assertIn("新闻: 断网事件", md)
+        self.assertIn("run_id: 01-grid-outage", md)
+
+    def test_no_hashtag_in_markdown(self) -> None:
+        result = self._result()
+        md = result_to_markdown(result)
+        # Headings use '#', but candidate copy must carry no hashtag tokens.
+        for copy in result.review_copies:
+            self.assertNotIn("#", copy.text_zh)
 
 
 if __name__ == "__main__":
