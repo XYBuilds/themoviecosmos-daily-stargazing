@@ -1,0 +1,91 @@
+# 审核稿候选（C1 · 待总编肉眼审核）
+
+> 原新闻: Rotational blackout risks rise in Visayas amid power crunch
+> 新闻摘要: The Philippines grid operator placed the Visayas under red alert after Kepco SPC Power's Unit 2 tripped offline, leaving more than 950 megawatts unavailable alongside other long-running plant outages. Eleven generators have failed since May began, while seasonal heat drove demand into a thin operating margin. Officials ordered emergency load shedding to keep a critical 230-kilovolt transmission line from overloading.
+> run_id: 01-grid-outage
+> 候选数: 5
+
+### 《Survival Family》(2017) | 当现代生活的血液突然凝固
+- 文案:
+
+> 维萨亚斯群岛的红色警报与负荷削减，是系统崩溃前精确到毫秒的止损程序。而电影里，整个现代文明的骤停，将一个普通家庭推向了一条漫长而原始的逃亡公路。从机构的应急预案到个体的生存本能，电力中断这一“切面”照见了人类依赖症的不同断面。
+- 电影信息: 待补 | 2017 | Comedy, Drama, Adventure
+- 电影原 overview: A world wide electrical outage occurs. Everything that requires electricity comes to a stop. Tokyo is nearly ruined. Yoshiyuki Suzuki decides to escape from Tokyo with his family.
+- 电影介绍（C1）:
+
+作为一部日本末日喜剧，《生存家族》以全球大停电的设定，将社会寓言包裹在家庭公路片的类型之中。影片在上映时凭借其清新独特的视角与强烈的人文关怀获得了良好的观众口碑，被视为对技术依赖社会的温柔反思。其热度源于切中时代焦虑的主题，质量则体现在将宏大灾难微观化、人性化处理的细腻剧本与表演，商业与作者性取得了不错的平衡。
+- judge_score（screening-only）: 2
+- 共振类型: 强共振（表层 + 逻辑）
+- 评分理由（EN 原文）: Both stories center on electrical outages as a concrete event (surface element), and share the causal-stakes engine where power shortages force urgent responses, though the news is regional and institutional while the film is global and individual. / Electrical power unavailability under societal dependence drives critical emergencies and survival actions.
+- 评分理由（中译）: 两个故事都以停电为核心事件，且共享“电力短缺迫使紧急应对”的因果引擎，尽管新闻是区域性和制度性的，而电影是全球性和个体性的。
+- Hashtag: #生存家族 #电力短缺 #负荷削减 #能源危机
+- 链接: https://themoviecosmos.com/movie/429918
+- [ ] ✅ 选用
+
+### 《2061 - Un anno eccezionale》(2007) | 在无光年代，最后一盏灯为谁而亮
+- 文案:
+
+> 当下的新闻中，一次设备故障便能让一个区域陷入能源紧张的红色状态。而在影片描绘的2061年，能源危机已是文明的慢性病，意大利半岛在黑暗中摸索着崩塌或新生的可能。从技术性的断电事故，到文明级的资源枯竭，焦虑的谱系在延伸。
+- 电影信息: 待补 | 2007 | Comedy, Science Fiction
+- 电影原 overview: In a post-apocalyptic future, the Italian peninsula is going through a dark moment due to a terrible energy crisis.
+- 电影介绍（C1）:
+
+《2061 - 非凡之年》是一部设定在后末日未来的意大利科幻喜剧，以荒诞笔触描绘能源危机后的社会图景。该片在商业上并未引起太大波澜，属于小众的类型探索。其质量在于试图用喜剧框架承载严肃的社会批判，而热度局限则反映了此类题材的市场接受度，是电影史中关于能源焦虑的一种特定文化注脚。
+- judge_score（screening-only）: 2
+- 共振类型: 强共振（表层 + 逻辑）
+- 评分理由（EN 原文）: Both news and film feature an energy crisis as the central, load-bearing element. The underlying logic of acute energy shortages driving extreme actions (load shedding in news, survival in film) holds true, with the causal engine invariant under scale shift. / Energy scarcity under the constraint of infrastructure breakdown forces emergency rationing or societal collapse.
+- 评分理由（中译）: 新闻和电影都以能源危机为承重核心。急性能源短缺在基础设施崩溃的约束下，迫使采取极端行动（新闻中的负荷削减，电影中的生存挣扎），这一深层逻辑在不同尺度下依然成立。
+- Hashtag: #2061非凡之年 #能源危机 #基础设施崩溃 #后末日
+- 链接: https://themoviecosmos.com/movie/33495
+- [ ] ✅ 选用
+
+### 《Blade Runner: Black Out 2022》(2017) | 大停电：系统崩溃的正式名称
+- 文案:
+
+> 维萨亚斯电网的红色警报，源于一台机组的意外脱网，如同精密机器中一颗齿轮的崩裂。动画短片中描述的2022年大停电，则是赛博朋克世界里压垮脆弱平衡的最后一根稻草。两者都揭示了，系统的瘫痪往往始于一个看似微小的物理故障。
+- 电影信息: 待补 | 2017 | Action, Animation, Science Fiction
+- 电影原 overview: This animated short revolves around the events causing an electrical systems failure on the west coast of the US. According to Blade Runner 2049’s official timeline, this failure leads to cities shutting down, financial and trade markets being thrown into chaos, and food supplies dwindling. There’s no proof as to what caused the blackouts, but Replicants — the bio-engineered robots featured in the original Blade Runner, are blamed.
+- 电影介绍（C1）:
+
+《银翼杀手：2022年大停电》是动画短片，为《银翼杀手2049》的世界观补全了关键历史节点。它作为IP的衍生内容，热度主要依托于整个银翼杀手宇宙的影迷文化，本身更像一个高完成度的“历史插件”。其质量体现在以短片体量高效地构建了一个标志性事件，完成了科幻视觉风格与关键情节设定的任务，在系列传播中扮演了重要桥梁角色。
+- judge_score（screening-only）: 2
+- 共振类型: 强共振（表层 + 逻辑）
+- 评分理由（EN 原文）: Both stories center on electrical blackouts causing chaos: the news details grid failures and load shedding in Visayas, while the film depicts a blackout leading to city shutdowns and market collapse. The shared causal engine of failure driving disruption holds, and the surface element of 'blackout' is load-bearing in both. / Electrical system failure under the constraint of high demand or insufficient capacity drives emergency load shedding and widespread societal disruption.
+- 评分理由（中译）: 两个故事都以停电导致混乱为核心：新闻详述了维萨亚斯的电网故障和负荷削减，电影则描绘了停电导致城市停摆和市场崩溃。共享的“故障驱动中断”因果引擎成立，且“停电”这一表面元素在两者中都是承重核心。
+- Hashtag: #银翼杀手2022 #大停电 #电网故障 #系统性崩溃
+- 链接: https://themoviecosmos.com/movie/475946
+- [ ] ✅ 选用
+
+### 《The Trigger Effect》(1996) | 当应急协议成为一张废纸
+- 文案:
+
+> 电力公司的红色警报与紧急减载指令，是一套写在纸面上的社会应急协议。而电影的灵感恰在于，当灯熄灭的那一刻，所有已知的规则便开始失效，道德的灰度在黑暗中无限蔓延。从技术故障引发的制度响应，到社会契约崩溃后的人性考验，黑暗是一面诚实的镜子。
+- 电影信息: 待补 | 1996 | Drama, Thriller
+- 电影原 overview: A blackout leaves those affected to consider what is necessary, what is legal, and what is questionable, in order to survive in a predatory environment.
+- 电影介绍（C1）:
+
+《连锁反应》是一部九十年代的惊悚剧情片，以一次大停电为引，探讨现代社会秩序在资源中断下的脆弱性。该片在上映时反响平淡，票房与口碑均未达预期，如今更多被视作一部具有前瞻性的“社会实验”类型片。其热度不高，但质量在于其冷静的叙事与对人性困境的扎实刻画，在影迷社群中拥有一定的 cult 地位，属于被时间部分验证的题材先行之作。
+- judge_score（screening-only）: 2
+- 共振类型: 强共振（表层 + 逻辑）
+- 评分理由（EN 原文）: Both stories center on a blackout as a concrete, load-bearing event, and share the underlying logic where power failure forces crisis-driven actions: institutional load shedding in the news and individual survival decisions in the film. / A sudden loss of electrical power under the constraint of critical societal or individual dependencies drives emergency survival measures.
+- 评分理由（中译）: 两个故事都以停电为具体的承重事件，且共享电力故障迫使危机驱动行动的底层逻辑：新闻中是制度性的负荷削减，电影中是个人的生存决定。
+- Hashtag: #连锁反应 #停电 #社会秩序 #生存抉择
+- 链接: https://themoviecosmos.com/movie/58770
+- [ ] ✅ 选用
+
+### 《Back to 1942》(2012) | 当“负荷”不是电，而是生命
+- 文案:
+
+> 一边是热浪中飙升的电力需求，红色警报下为保全主干网而进行的精准减载；另一边是1942年旱魃与人祸交织下，成百上千万生命被从“生存网”上减载。电力危机中的技术术语——“负荷”、“削减”、“过载”——在历史饥荒的语境下，获得了残酷而精准的隐喻重量。
+- 电影信息: 待补 | 2012 | War, Drama
+- 电影原 overview: In 1942, Henan Province was devastated by one of the most tragic famines in modern Chinese history, resulting in the deaths of at least three million men, women and children. Although the primary cause of the famine was a severe drought, it was exacerbated by locusts, windstorms, earthquakes, epidemic disease and the corruption of the ruling Kuomintang government.
+- 电影介绍（C1）:
+
+《一九四二》是一部基于历史事件的中国战争剧情片，以冷峻笔触再现河南大饥荒的惨烈。影片在华语影坛具有较高的关注度与讨论度，其热度源于沉重的历史题材与强大的主创阵容，质量则体现在史诗格局下的细节考据与人性刻画，但在叙事节奏与观众情绪承载上也引发了一些讨论，是一部厚重而略显悲怆的历史影像记录。
+- judge_score（screening-only）: 1
+- 共振类型: 深层共振（仅逻辑，无表层）
+- 评分理由（EN 原文）: News involves electricity scarcity from plant failures and heat demand, leading to blackout risks; film depicts food scarcity from drought and corruption, leading to famine. Both share the underlying logic of resource shortage under stress driving crises, but no concrete surface element like place, occupation, or event type is shared. / Resource scarcity under environmental and systemic constraints drives severe societal consequences.
+- 评分理由（中译）: 新闻涉及电厂故障和高温需求导致的电力稀缺，引发停电风险；电影描绘旱灾和腐败导致的食物稀缺，引发饥荒。两者都共享“资源短缺在环境与系统约束下驱动危机”的底层逻辑，但没有共享如地点、职业或事件类型等具体的表面元素。
+- Hashtag: #一九四二 #资源短缺 #系统性危机 #历史回响
+- 链接: https://themoviecosmos.com/movie/139329
+- [ ] ✅ 选用
