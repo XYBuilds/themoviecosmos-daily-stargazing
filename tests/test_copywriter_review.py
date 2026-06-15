@@ -18,6 +18,7 @@ if str(_REPO) not in sys.path:
 
 from scripts.copywriter import (
     build_news_context,
+    filter_candidates_by_judge,
     format_candidates_block,
     load_judge_scores,
     map_paragraphs_to_candidates,
@@ -328,6 +329,91 @@ class TestMarkdownRendering(unittest.TestCase):
         # Headings use '#', but candidate copy must carry no hashtag tokens.
         for copy in result.review_copies:
             self.assertNotIn("#", copy.text_zh)
+
+
+class TestJudgeFilter(unittest.TestCase):
+    def _pool(self):
+        return [
+            _candidate(1, "Keep2", 2001, [], []),
+            _candidate(2, "Keep1", 2002, [], []),
+            _candidate(3, "DropZero", 2003, [], []),
+            _candidate(4, "DropNone", 2004, [], []),
+        ]
+
+    def _index(self):
+        # tmdb 1→2, 2→1, 3→0, 4 absent (None)
+        return {("r", "1"): 2, ("r", "2"): 1, ("r", "3"): 0}
+
+    def test_min_judge_none_keeps_all(self) -> None:
+        kept, dropped = filter_candidates_by_judge(
+            self._pool(), self._index(), "r", None
+        )
+        self.assertEqual(len(kept), 4)
+        self.assertEqual(dropped, [])
+
+    def test_min_judge_one_drops_zero_and_none(self) -> None:
+        kept, dropped = filter_candidates_by_judge(
+            self._pool(), self._index(), "r", 1
+        )
+        self.assertEqual([c["tmdb_id"] for c in kept], [1, 2])
+        reasons = {d["tmdb_id"]: d["reason"] for d in dropped}
+        self.assertEqual(reasons[3], "below_min_judge")
+        self.assertEqual(reasons[4], "no_judge_score")
+
+    def test_min_judge_two_keeps_only_two(self) -> None:
+        kept, _ = filter_candidates_by_judge(self._pool(), self._index(), "r", 2)
+        self.assertEqual([c["tmdb_id"] for c in kept], [1])
+
+    def test_run_review_filters_before_llm(self) -> None:
+        seen: dict[str, str] = {}
+
+        def capture(prompt):
+            seen["prompt"] = prompt
+            return "《Keep2》(2001)\n甲。\n\n《Keep1》(2002)\n乙。"
+
+        result = run_review(
+            _retrieve(self._pool()),
+            {"title": "T", "description": "D"},
+            judge_index=self._index(),
+            run_id="r",
+            min_judge=1,
+            prompts_dir=_REPO / "prompts",
+            llm_call=capture,
+        )
+        self.assertEqual(len(result.review_copies), 2)
+        self.assertEqual(len(result.dropped_candidates), 2)
+        # Dropped candidates must never reach the LLM prompt.
+        self.assertNotIn("DropZero", seen["prompt"])
+        self.assertNotIn("DropNone", seen["prompt"])
+
+    def test_payload_carries_filter_summary(self) -> None:
+        result = run_review(
+            _retrieve(self._pool()),
+            {"title": "T", "description": "D"},
+            judge_index=self._index(),
+            run_id="r",
+            min_judge=1,
+            prompts_dir=_REPO / "prompts",
+            llm_call=lambda _p: "《Keep2》(2001)\n甲。\n\n《Keep1》(2002)\n乙。",
+        )
+        payload = result_to_payload(result)
+        self.assertEqual(payload["filter"]["min_judge"], 1)
+        self.assertEqual(payload["filter"]["dropped_count"], 2)
+
+    def test_no_filter_summary_when_disabled(self) -> None:
+        result = run_review(
+            _retrieve(self._pool()),
+            {"title": "T", "description": "D"},
+            judge_index=self._index(),
+            run_id="r",
+            min_judge=None,
+            prompts_dir=_REPO / "prompts",
+            llm_call=lambda _p: (
+                "《Keep2》(2001)\n甲。\n\n《Keep1》(2002)\n乙。\n\n"
+                "《DropZero》(2003)\n丙。\n\n《DropNone》(2004)\n丁。"
+            ),
+        )
+        self.assertNotIn("filter", result_to_payload(result))
 
 
 if __name__ == "__main__":

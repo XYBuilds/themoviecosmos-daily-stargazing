@@ -86,6 +86,8 @@ class ReviewCopy:
 class ReviewResult:
     review_copies: list[ReviewCopy] = field(default_factory=list)
     errors: list[dict[str, Any]] = field(default_factory=list)
+    dropped_candidates: list[dict[str, Any]] = field(default_factory=list)
+    min_judge: int | None = None
 
 
 def _resolve_provider(explicit: str | None) -> str:
@@ -396,6 +398,56 @@ def assemble_review_copies(
     return copies
 
 
+def _lookup_judge(
+    judge_index: dict[tuple[str, str], int],
+    run_id: str,
+    tmdb_id: Any,
+) -> int | None:
+    """Resolve a candidate's judge_score by (run_id, tmdb_id), blank-run fallback."""
+    score = judge_index.get((run_id, str(tmdb_id)))
+    if score is None:
+        score = judge_index.get(("", str(tmdb_id)))
+    return score
+
+
+def filter_candidates_by_judge(
+    candidates: list[dict[str, Any]],
+    judge_index: dict[tuple[str, str], int],
+    run_id: str,
+    min_judge: int | None,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Drop candidates below the judge floor before the C1 LLM call.
+
+    ``min_judge`` is ``None`` → no filtering (library default; back-compat).
+    Otherwise keep only candidates whose thinking-judge score is present AND
+    ``>= min_judge``. This single predicate drops both ``judge_score == 0`` and
+    candidates with no judge score (those that never entered the ≥5 high-hit pool
+    the judge scored), so the C1 input == the ≥5-hit ∩ judge≥min_judge pool.
+
+    Returns ``(kept, dropped)``; each dropped entry records why for audit.
+    """
+    if min_judge is None:
+        return candidates, []
+    kept: list[dict[str, Any]] = []
+    dropped: list[dict[str, Any]] = []
+    for cand in candidates:
+        score = _lookup_judge(judge_index, run_id, cand.get("tmdb_id"))
+        if score is not None and score >= min_judge:
+            kept.append(cand)
+        else:
+            dropped.append(
+                {
+                    "tmdb_id": cand.get("tmdb_id"),
+                    "title": cand.get("title"),
+                    "judge_score": score,
+                    "reason": (
+                        "no_judge_score" if score is None else "below_min_judge"
+                    ),
+                }
+            )
+    return kept, dropped
+
+
 def run_review(
     retrieve: dict[str, Any],
     news: dict[str, str],
@@ -403,14 +455,31 @@ def run_review(
     provider: str | None = None,
     judge_index: dict[tuple[str, str], int] | None = None,
     run_id: str = "",
+    min_judge: int | None = None,
     prompts_dir: Path | None = None,
     llm_call: Any = None,
 ) -> ReviewResult:
-    """Core C1 review pipeline (LLM call is injectable for offline tests)."""
+    """Core C1 review pipeline (LLM call is injectable for offline tests).
+
+    ``min_judge`` gates the C1 input: ``None`` keeps every candidate (default),
+    while an int drops candidates with no judge score or ``judge_score < min_judge``
+    *before* the LLM call (token-saving). See ``filter_candidates_by_judge``.
+    """
     candidates = [c for c in retrieve.get("candidates") or [] if isinstance(c, dict)]
     judge_index = judge_index or {}
     if not candidates:
-        return ReviewResult(review_copies=[], errors=[])
+        return ReviewResult(review_copies=[], errors=[], min_judge=min_judge)
+
+    candidates, dropped = filter_candidates_by_judge(
+        candidates, judge_index, run_id, min_judge
+    )
+    if not candidates:
+        return ReviewResult(
+            review_copies=[],
+            errors=[],
+            dropped_candidates=dropped,
+            min_judge=min_judge,
+        )
 
     template = load_c1_template(prompts_dir)
     persona_semantic = representative_persona_semantic(retrieve)
@@ -431,6 +500,8 @@ def run_review(
         return ReviewResult(
             review_copies=[],
             errors=[{"type": "llm_error", "message": str(exc)}],
+            dropped_candidates=dropped,
+            min_judge=min_judge,
         )
 
     raw = (raw or "").strip()
@@ -438,12 +509,19 @@ def run_review(
         return ReviewResult(
             review_copies=[],
             errors=[{"type": "llm_error", "message": "empty LLM response"}],
+            dropped_candidates=dropped,
+            min_judge=min_judge,
         )
 
     blocks = split_into_paragraphs(raw)
     pairs, map_errors = map_paragraphs_to_candidates(blocks, candidates)
     copies = assemble_review_copies(pairs, judge_index, run_id)
-    return ReviewResult(review_copies=copies, errors=map_errors)
+    return ReviewResult(
+        review_copies=copies,
+        errors=map_errors,
+        dropped_candidates=dropped,
+        min_judge=min_judge,
+    )
 
 
 def review_copy_to_dict(copy: ReviewCopy) -> dict[str, Any]:
@@ -460,10 +538,17 @@ def review_copy_to_dict(copy: ReviewCopy) -> dict[str, Any]:
 
 
 def result_to_payload(result: ReviewResult) -> dict[str, Any]:
-    return {
+    payload: dict[str, Any] = {
         "review_copies": [review_copy_to_dict(c) for c in result.review_copies],
         "errors": result.errors,
     }
+    if result.min_judge is not None:
+        payload["filter"] = {
+            "min_judge": result.min_judge,
+            "dropped_count": len(result.dropped_candidates),
+            "dropped_candidates": result.dropped_candidates,
+        }
+    return payload
 
 
 def _md_dimension_phrase(center_dimensions: list[str]) -> str:
@@ -583,13 +668,25 @@ def _run_review_cli(args: argparse.Namespace) -> int:
     judge_index = load_judge_scores(judge_path)
     run_id = args.run_id or _infer_run_id(retrieve_path)
 
+    # CLI contract: --min-judge 0 (or negative) disables filtering entirely
+    # (whole pool passes through), matching the documented toggle semantics.
+    min_judge = args.min_judge if args.min_judge and args.min_judge > 0 else None
+
     result = run_review(
         retrieve,
         news,
         provider=args.provider,
         judge_index=judge_index,
         run_id=run_id,
+        min_judge=min_judge,
     )
+    if result.min_judge is not None:
+        print(
+            f"judge filter: min_judge={result.min_judge} "
+            f"kept={len(result.review_copies)} "
+            f"dropped={len(result.dropped_candidates)}",
+            file=sys.stderr,
+        )
     payload = result_to_payload(result)
     serialized = json.dumps(payload, ensure_ascii=False, indent=2)
 
@@ -611,7 +708,14 @@ def _run_review_cli(args: argparse.Namespace) -> int:
         md_path.write_text(markdown, encoding="utf-8")
         print(f"Wrote {md_path.resolve()}", file=sys.stderr)
 
-    if not result.review_copies and retrieve.get("candidates"):
+    # A non-empty candidate pool that yields no copies is only a failure when no
+    # judge filter was applied; with --min-judge an empty result is a legit "all
+    # candidates fell below the floor" outcome.
+    if (
+        not result.review_copies
+        and retrieve.get("candidates")
+        and not result.dropped_candidates
+    ):
         return 1
     return 0
 
@@ -646,6 +750,17 @@ def main(argv: list[str] | None = None) -> int:
         "--run-id",
         dest="run_id",
         help="Run id for judge keying (default: retrieve.json parent dir name).",
+    )
+    parser.add_argument(
+        "--min-judge",
+        dest="min_judge",
+        type=int,
+        default=1,
+        help=(
+            "Drop candidates with no thinking-judge score or judge_score below "
+            "this floor before C1 (default: 1, i.e. drop judge==0 and unjudged). "
+            "Set 0 to disable filtering and pass the whole candidate pool."
+        ),
     )
     parser.add_argument(
         "--out",
