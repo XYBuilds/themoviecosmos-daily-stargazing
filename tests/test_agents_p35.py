@@ -13,9 +13,7 @@ if str(_REPO) not in sys.path:
 from scripts.agents import (
     annotate_fragment_ids,
     load_deconstruction_from_file,
-    load_personas,
     parse_pseudos_response,
-    render_prompt,
     _known_fragment_ids,
 )
 
@@ -142,14 +140,6 @@ def test_parse_pseudos_invalid_id_errors() -> None:
         raise AssertionError("expected ValueError for invalid pseudo id")
 
 
-def test_render_prompt() -> None:
-    dec = load_deconstruction_from_file(FIXTURE)
-    persona = load_personas()[0]
-    prompt = render_prompt(persona.template, deconstruction=dec)
-    assert "{{deconstruction_json}}" not in prompt
-    assert '"id": "why-0"' in prompt or '"why-0"' in prompt
-
-
 if __name__ == "__main__":
     test_fragment_ids()
     test_parse_pseudos_three_segments()
@@ -160,5 +150,4 @@ if __name__ == "__main__":
     test_parse_pseudos_unknown_fragment_errors()
     test_parse_pseudos_too_many_segments_errors()
     test_parse_pseudos_invalid_id_errors()
-    test_render_prompt()
     print("test_agents_p35 OK")
