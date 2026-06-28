@@ -48,7 +48,7 @@ _MODEL_ENV: dict[str, str] = {
     "deepseek": "DEEPSEEK_MODEL",
 }
 
-_C1_PROMPT_REL = "prompts/C1_copywriter_review.md"
+_C1_PROMPT_REL = "prompts/compose_review.md"
 
 _OVERVIEW_MAX_CHARS = 240
 
@@ -342,7 +342,7 @@ def build_news_context(news: dict[str, str], persona_semantic: str) -> str:
 
 def load_c1_template(prompts_dir: Path | None = None) -> str:
     base = prompts_dir or (repo_root() / "prompts")
-    path = base / "C1_copywriter_review.md"
+    path = base / "compose_review.md"
     if not path.is_file():
         path = repo_root() / _C1_PROMPT_REL
     if not path.is_file():
