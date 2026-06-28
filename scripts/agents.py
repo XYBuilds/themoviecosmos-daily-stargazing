@@ -5,6 +5,12 @@ LLM concurrently. Each agent returns 1–3 pseudos with fragment provenance.
 
 MVP scope: persona load, template render, async LLM, JSON parse, post-processing,
 and CLI.
+
+DEAD FLOW (ADR-0011 D3): 本模块是旧 pseudos 生成路径，已被 personas.py 的
+search_units 取代，不再属于 6 个生产阶段。其 PERSONA_FILENAMES 仍硬编码引用
+A2/A4/A7 的 prompt 文件，而这些文件磁盘上并不存在（既存死引用）。本模块连同
+这些死引用属待清理死流程，留待后续命名收敛轮次随本文件一并移除；本轮不改其
+代码逻辑、不删函数。
 """
 
 from __future__ import annotations
