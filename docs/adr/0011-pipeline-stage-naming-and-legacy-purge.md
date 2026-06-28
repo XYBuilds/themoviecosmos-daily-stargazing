@@ -46,7 +46,7 @@
 | `A0`（现实解构） | 废除。对外只称 `extract` / 解构。 |
 | `P-Extract` / `P-Expand` / `P-Select` / `P-Tone` | 废除。能力分别归入 `extract` / `expand` / `rewrite`。 |
 | `C1`（审核稿）/ `C2`（定稿） | 废除为独立编号；降为 `compose` 的两个 stage：`compose --stage review` / `compose --stage publish`。 |
-| 创作视角编号 `A2` / `A4` / `A7` | **对外不再暴露编号**，统一用视角名（社会学家 / 神话学者 / 混沌理论家）。编号**仅允许在 `rewrite` 内部保留**，因为 `prompts/A2_sociologist.md` 等文件名暂不重命名。 |
+| 创作视角编号 `A2` / `A4` / `A7` | **对外不再暴露编号**，统一用视角名（社会学家 / 神话学者 / 混沌理论家）。注：`scripts/agents.py` 的旧 pseudos 生成路径在 `PERSONA_FILENAMES` 中硬编码引用 `prompts/A2_sociologist.md` / `A4_*` / `A7_*`，而这些 prompt 文件**磁盘上并不存在**；该路径已被 `personas.py` 的 search_units 取代，属 D3 待清理死流程，连同其对不存在 prompt 的硬编码引用留待后续轮次随 `agents.py` 一并处理，本轮不改其代码逻辑。 |
 | `A1`（基线 / held-out oracle / baseline / 现实记录员） | 四名收一：对外统一称「基线 oracle」。它**不属于 6 生产阶段**，是 `retrieve` 旁挂的评测专用神谕（见 D3）。 |
 
 ### D3 · 诊断死流移出生产主链，仅在评测侧保留
