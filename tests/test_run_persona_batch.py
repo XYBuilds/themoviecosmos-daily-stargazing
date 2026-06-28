@@ -13,7 +13,7 @@ if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
 from scripts.agents import PseudoSegment
-from scripts.personas import PersonaPipelineResult, AltPoolOverlay
+from scripts.rewrite import PersonaPipelineResult, AltPoolOverlay
 from scripts.run_persona_batch import (
     DEFAULT_CONCURRENCY,
     is_retryable_llm_error,

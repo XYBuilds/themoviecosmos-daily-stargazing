@@ -1,4 +1,4 @@
-"""personas.py · persona pipeline (ADR-0009 fragment ladder / search unit).
+"""rewrite.py · persona pipeline (ADR-0009 fragment ladder / search unit).
 
 Pipeline: verbatim decon + expansion → alt_creator(persona) → screenwriter(persona)
 emitting native ``search_units[]`` (center_element + supporting_elements + fit) →

@@ -1,4 +1,4 @@
-"""deconstruct.py · Reality deconstruction agent (A0).
+"""extract.py · Reality deconstruction agent (A0).
 
 News JSON → LLM (MiMo 2.5 Pro by default) → validate contract JSON →
 write reality-deconstructed.json + reality-deconstructed.md.

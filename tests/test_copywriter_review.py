@@ -16,7 +16,7 @@ _REPO = Path(__file__).resolve().parents[1]
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
-from scripts.copywriter import (
+from scripts.compose import (
     JudgeEntry,
     build_news_context,
     filter_candidates_by_judge,

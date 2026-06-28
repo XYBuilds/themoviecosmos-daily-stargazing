@@ -28,7 +28,7 @@ from scripts.agents import (
     news_to_dict,
     run_all,
 )
-from scripts.deconstruct import render_deconstruction_md, run_deconstruct
+from scripts.extract import render_deconstruction_md, run_deconstruct
 from scripts.eval_editor_fields import append_resonance_editor_lines
 from scripts.retrieve import retrieve_from_agents
 
