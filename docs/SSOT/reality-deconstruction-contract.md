@@ -2,7 +2,7 @@
 
 > **当前状态（2026-06-14）**：本文件中 **P-Extract（A0）逐字抽取契约仍是 SSOT**，fragment ladder 的 `surface` 层与所有 element 引用都依赖它。
 >
-> **已被取代的部分**：原 **P-Expand 独立 hypernym 层（`reality-expanded.json`）、三层 provenance（surface/hypernym/lens）、中性通道 / 语气通道、撞车票** 已由 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 的 **fragment ladder / search unit** 整体替换——hypernym 并入 ladder 的 `objective_*` 层，lens 并入 `interpretive / perspective` 层，召回改由 surface/event/persona search unit 承担。工作流权威源见 [`docs/SSOT/simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md)。
+> **已被取代的部分**：原 **P-Expand 独立 hypernym 层（`reality-expanded.json`）、三层 provenance（surface/hypernym/lens）、中性通道 / 语气通道、撞车票** 已由 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 的 **fragment ladder / search unit** 整体替换——hypernym 并入 ladder 的 `objective_*` 层，lens 并入 `interpretive / perspective` 层，召回改由 surface/event/persona search unit 承担。工作流权威源见 [`docs/SSOT/news-to-film-pipeline.md`](news-to-film-pipeline.md)。
 >
 > 决策来源：[ADR-0005](../adr/0005-objective-extraction-neutral-channel-and-collision-vote.md)（已 superseded，A0 抽取部分被本契约延续）。承接 [ADR-0002](../adr/0002-pivot-to-event-logic-resonance.md) 的对题召回前提。
 
@@ -15,11 +15,11 @@
 ```text
 1. 网络接口收热点新闻（英文）     → reality.md（现实波澜，人类可读）
 2. P-Extract · A0                → reality-deconstructed.json（逐字抽取）
-3. Fragment ladder + search unit  → 见 simplified-news-to-film-workflow.md §3.4 起
+3. Fragment ladder + search unit  → 见 news-to-film-pipeline.md §3.4 起
 4. Hybrid recall                 → 候选聚合
 ```
 
-- **本契约只覆盖第 2 段（A0）**。第 3 段起（fragment ladder 生成、search unit、hybrid recall、候选漏斗）以 [`simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md) 为权威源。
+- **本契约只覆盖第 2 段（A0）**。第 3 段起（fragment ladder 生成、search unit、hybrid recall、候选漏斗）以 [`news-to-film-pipeline.md`](news-to-film-pipeline.md) 为权威源。
 - **语言链**：新闻输入为**英文** → A0 → ladder → search unit → 检索。**英进英出，无翻译步骤**（唯一中文化 = 最终推荐文案给总编）。
 - **A0 产物（双写）**：
   - `reality-deconstructed.json`：A0 契约本体，机器读。
@@ -128,7 +128,7 @@
 
 ## 2. 客观扩展 / hypernym（已迁移 · 不在本契约）
 
-> 原 **P-Expand 共享客观扩展 pass（`reality-expanded.json` · hypernym 梯）已被 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 取代**。hypernym 能力并入每个 element 的 **fragment ladder 的 `objective_close / objective_mid / objective_broad` 层**，不再作为独立 overlay 维护。生成规则、客观性试金石、fact-entailed 约束均迁移至 [`simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md) §2.3 / §3.4。本契约只保证 A0 产出稳定的 element 与 `element_id` 供 ladder 消费。
+> 原 **P-Expand 共享客观扩展 pass（`reality-expanded.json` · hypernym 梯）已被 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 取代**。hypernym 能力并入每个 element 的 **fragment ladder 的 `objective_close / objective_mid / objective_broad` 层**，不再作为独立 overlay 维护。生成规则、客观性试金石、fact-entailed 约束均迁移至 [`news-to-film-pipeline.md`](news-to-film-pipeline.md) §2.3 / §3.4。本契约只保证 A0 产出稳定的 element 与 `element_id` 供 ladder 消费。
 
 ---
 
@@ -170,7 +170,7 @@
 
 ## 4. 下游消费（已迁移 · 不在本契约）
 
-> 原 §4 三层 provenance（surface/hypernym/lens）、中性通道 / 语气通道、§5 撞车票与 A1 退场口径**均已被 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 取代**，当前架构对照如下（权威定义见 [`simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md) §9 新旧映射）：
+> 原 §4 三层 provenance（surface/hypernym/lens）、中性通道 / 语气通道、§5 撞车票与 A1 退场口径**均已被 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 取代**，当前架构对照如下（权威定义见 [`news-to-film-pipeline.md`](news-to-film-pipeline.md) §9 新旧映射）：
 
 | 旧概念（本契约 v2） | 新位置（ADR-0009） |
 | --- | --- |
@@ -241,4 +241,4 @@
 }
 ```
 
-> A0 保留原文事实与措辞；「体制碾压边缘群体」类骨架属下游 fragment ladder 的 interpretive 层，不在此层。「穷人买不起空调」若原文未陈述，亦不在此层。fragment ladder 如何在这些 element 上展开 objective / interpretive 层，见 [`simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md) §2.2。
+> A0 保留原文事实与措辞；「体制碾压边缘群体」类骨架属下游 fragment ladder 的 interpretive 层，不在此层。「穷人买不起空调」若原文未陈述，亦不在此层。fragment ladder 如何在这些 element 上展开 objective / interpretive 层，见 [`news-to-film-pipeline.md`](news-to-film-pipeline.md) §2.2。

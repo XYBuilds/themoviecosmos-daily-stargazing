@@ -51,4 +51,4 @@ prompts/personas/The-Everyman/persona_card.md
 ## 与 fragment ladder / search unit 的关系
 
 - **素材来源**：每 persona 读 **同一份** A0 decon（[`reality-deconstruction-contract.md`](reality-deconstruction-contract.md)），结合 salience 选材，在 element 上展开 fragment ladder 的 `interpretive / perspective` 层；`valence` 只作为正/中/负的可选着色标注，不是覆盖目标或选择判据。
-- **产出**：persona 结合 salience 与 interpretive/perspective 材料生成 **persona-semantic search unit**（绑定 `center_element` + `supporting_elements`）。上表「典型替换取向」仅为 **取向示例**，实际用词须 **事实蕴含**；04 对 Ruler / Sage / Outlaw 等应 **`fit` 偏高**，对 Innocent / Everyman / Explorer / Lover 等可 **`fit` 偏低** 但仍强迫产出。详见 [`simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md) §4.3。
+- **产出**：persona 结合 salience 与 interpretive/perspective 材料生成 **persona-semantic search unit**（绑定 `center_element` + `supporting_elements`）。上表「典型替换取向」仅为 **取向示例**，实际用词须 **事实蕴含**；04 对 Ruler / Sage / Outlaw 等应 **`fit` 偏高**，对 Innocent / Everyman / Explorer / Lover 等可 **`fit` 偏低** 但仍强迫产出。详见 [`news-to-film-pipeline.md`](news-to-film-pipeline.md) §4.3。

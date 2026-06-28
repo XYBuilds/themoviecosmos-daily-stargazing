@@ -2,7 +2,7 @@
 
 **Status**: accepted（Phase 3.11.8 GATE go, 2026-06-13）；**supersedes ADR-0008 的通道结构部分**（D3 保留元素中心思想；D4 POV 下线为通用 `center_element`；D5 双地板下线；D6 provenance 粗归因改为 `search_unit_kind` 分解；D8 漏斗改为 match 诊断 + 新 convergent sort）
 
-> 权威设计源：[`docs/SSOT/simplified-news-to-film-workflow.md`](../SSOT/simplified-news-to-film-workflow.md)。本 ADR 把 3.11.6b 的工程迁移决策钉成可执行口径。
+> 权威设计源：[`docs/SSOT/news-to-film-pipeline.md`](../SSOT/news-to-film-pipeline.md)。本 ADR 把 3.11.6b 的工程迁移决策钉成可执行口径。
 
 ## 背景
 
@@ -135,11 +135,11 @@ persona-semantic 独家
 - [`scripts/retrieve.py`](../../scripts/retrieve.py)：search unit 优先检索、新 convergent sort、`search_unit_kind` 池差分解（3.12.4 起已无 channel 诊断分支）。
 - [`prompts/_shared/persona_screenwriter_contract.md`](../../prompts/_shared/persona_screenwriter_contract.md)：persona-semantic 契约，3.12.3 起根节点原生 `search_units[]`。
 - [`prompts/_shared/persona_alt_creator_contract.md`](../../prompts/_shared/persona_alt_creator_contract.md)：alt-pool 作为 fragment ladder 输入。
-- [`docs/SSOT/simplified-news-to-film-workflow.md`](../SSOT/simplified-news-to-film-workflow.md)：工作流说明源。
+- [`docs/SSOT/news-to-film-pipeline.md`](../SSOT/news-to-film-pipeline.md)：工作流说明源。
 - [ADR-0008](0008-salience-driven-element-composition-and-multi-vantage-pov.md)：标注通道结构被本 ADR supersede。
 
 ## 相关 ADR / 文档
 
 - [ADR-0008](0008-salience-driven-element-composition-and-multi-vantage-pov.md) — 元素中心构图与 POV 追加通道；本 ADR supersede 其通道结构与双地板。
 - [ADR-0007](0007-logic-resonance-judge-prescreen-and-pov-focalization.md) — 双轴 rubric 与 judge 预筛继续有效。
-- [`docs/SSOT/simplified-news-to-film-workflow.md`](../SSOT/simplified-news-to-film-workflow.md) — fragment ladder 精简版工作流草案。
+- [`docs/SSOT/news-to-film-pipeline.md`](../SSOT/news-to-film-pipeline.md) — fragment ladder 精简版工作流草案。

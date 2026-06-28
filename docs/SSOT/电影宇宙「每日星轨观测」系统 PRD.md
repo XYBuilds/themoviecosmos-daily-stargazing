@@ -99,7 +99,7 @@ embedding 输入文本模板（**已对齐 3D 宇宙索引**，ADR-0001）：
 
 ## 4. 多智能体编剧室（Multi-Agent Screenwriting Room）
 
-> 管线的结构化素材层契约 SSOT：[`docs/SSOT/reality-deconstruction-contract.md`](reality-deconstruction-contract.md)（A0 逐字抽取）、[`docs/SSOT/personas-12.md`](personas-12.md)（12 persona roster）；完整 workflow 见 [`docs/SSOT/simplified-news-to-film-workflow.md`](simplified-news-to-film-workflow.md)（fragment ladder / search unit）。
+> 管线的结构化素材层契约 SSOT：[`docs/SSOT/reality-deconstruction-contract.md`](reality-deconstruction-contract.md)（A0 逐字抽取）、[`docs/SSOT/personas-12.md`](personas-12.md)（12 persona roster）；完整 workflow 见 [`docs/SSOT/news-to-film-pipeline.md`](news-to-film-pipeline.md)（fragment ladder / search unit）。
 
 ### 4.0 五段流水（当前架构 · ADR-0009）
 
@@ -336,7 +336,7 @@ themoviecosmos-daily-stargazing/        ← Obsidian Vault Root
 │   └── SSOT/
 │       ├── 电影宇宙「每日星轨观测」系统 PRD.md   # 本文件
 │       ├── personas-12.md              # 12 persona roster
-│       ├── simplified-news-to-film-workflow.md  # fragment ladder 精简版工作流
+│       ├── news-to-film-pipeline.md  # fragment ladder 精简版工作流
 │       └── reality-deconstruction-contract.md  # A0 逐字抽取契约
 ├── prompts/
 │   ├── _shared/

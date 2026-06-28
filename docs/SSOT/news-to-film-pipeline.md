@@ -1,8 +1,48 @@
-# 新闻到电影候选工作流：fragment ladder / search unit 架构
+# 新闻到电影候选管线：唯一 SSOT 与阶段命名权威
 
-> **状态**：当前 workflow SSOT（权威设计源，见 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md)，Phase 3.11.8 GATE go · 2026-06-13）。
+> **状态**：管线唯一权威文档（阶段命名权威 + 工作流设计 SSOT）。命名收敛依据 [ADR-0011](../adr/0011-pipeline-stage-naming-and-legacy-purge.md)，架构依据 [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md)（Phase 3.11.8 GATE go · 2026-06-13）。
 >
-> **定位**：本文件登记从 A0 现实解构到人工共振评审的完整链路口径。核心是移除 `lens / neutral / toned / focalized / fact-anchor query / 独立 hypernym` 这些高负担概念，改用更底层、更可解释的 `fragment ladder`、`search unit`、`center_element` 和 hybrid recall。A0 抽取层契约见 [`reality-deconstruction-contract.md`](reality-deconstruction-contract.md)。
+> **定位**：本文件同时是【阶段命名权威】与【工作流设计 SSOT】。它登记从 intake/选材 到人工共振评审的完整链路口径，并钉死管线每一步的唯一主名（英文动词主名 + 中文别名，编号体系全废，依据 ADR-0011）。核心是移除 `lens / neutral / toned / focalized / fact-anchor query / 独立 hypernym` 这些高负担概念，改用更底层、更可解释的 `fragment ladder`、`search unit`、`center_element` 和 hybrid recall。extract/解构层契约见 [`reality-deconstruction-contract.md`](reality-deconstruction-contract.md)。
+>
+> **落地物偏差说明**：本轮命名收敛不改代码，磁盘上仍是旧文件名。下文凡涉及承载脚本与产物名，均按「目标名（当前实际：旧名）」格式标注偏差；偏差清单与清理债见 ADR-0011。
+
+---
+
+## 0. 阶段总表与命名映射（阶段命名权威）
+
+> 本节为 ADR-0011 钉定的「一步一名」权威落地处：6 个生产阶段 + 1 个编排入口，每阶段唯一英文动词主名 + 唯一中文别名，编号体系全废。概念维度（阶段名 / 中文别名 / 处理 / 目的 / 边界）按目标态书写；落地物维度（承载脚本 / 产物名）暂标偏差。
+
+### 0.1 阶段总表（输入 / 处理 / 目的 / 产出 / 边界）
+
+| 阶段主名 · 中文别名 | 承载脚本（标偏差） | 产物名（标偏差） | 输入 | 处理 | 目的 | 产出 | 边界 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `intake` · 选材 | `fetch_news.py`（目标：`intake.py`） | `news.json`（当前实际：未实现） | 外部新闻源 | 拉取并固化一条新闻原文为 JSON 快照，不改写、不解释、不扩展 | 给后续全链提供稳定的事实原文与复盘入口 | 新闻快照（`reality.json` / `reality.md` 为当前快照产物） | 只固化原文，主链默认英文输入以避免与英文电影 overview 的分布偏移 |
+| `extract` · 解构 | `deconstruct.py`（目标：`extract.py`） | `facts.json`（当前实际：`reality-deconstructed.json`） | 新闻快照 | 把新闻拆成 when/where/who/why/how/result 六类稳定 element，每块给稳定 `element_id` | 建立全链事实地基，防止下游伪造人物/事件/动机/因果/结果 | 结构化 element 集合（`reality-deconstructed.json` / `.md`） | 只记录新闻怎么说；不做上位扩展、人设、情绪、价值、共振解释，不新增未明说因果 |
+| `expand` · 扩展 | `fragment_ladder.py`（目标：`expand.py`） | `bridges.json`（当前实际：`reality-expanded.json`） | extract 的 element | 为每个 element 生成 fragment ladder（surface/alias/objective_*/interpretive/perspective），含距离权重；原 hypernym 并入 objective 层、原 lens/alternative 并入 interpretive/perspective 层 | 保留不同距离的可审计表达层级，供召回与诊断使用 | fragment ladder 集合（`fragment-ladders.json`） | 每项必须绑定既有 `element_id`；不新增事实；严格区分 objective 与 interpretive |
+| `rewrite` · 改写 | `personas.py`（目标：`rewrite.py`） | `queries.json`（当前实际：`search-units.json` / `personas/*`） | element + fragment ladder + persona salience | 生成三类 search unit（surface-fragment-bundle / event-fragment-bundle / persona-semantic）；persona 结合 salience 与 interpretive/perspective 材料产 persona-semantic | 把碎片按用途组织成统一的可搜索单元 | search unit 集合（`search-units.json`） | 每条 search unit 必须绑定 source elements；persona-semantic 必须有 center_element 与 objective anchor，不新增事实 |
+| `retrieve` · 召回 | `retrieve.py`（目标：`retrieve.py`） | `candidates.json`（当前实际：`retrieve.json`） | search unit + 电影库 | hybrid recall（lexical/alias + weighted ladder + dense embedding）→ 候选漏斗（去重 / match 诊断 / 汇聚排序 / judge 预筛 / 人工预算） | 收敛出真正与新闻共振的候选电影 | 候选集合（`candidates.json`），含 surface/event/persona_semantic match 诊断 | 基线 oracle 旁挂评测专用，永不进 `candidates`；judge 只预筛不裁决 |
+| `compose` · 文案 | `copywriter.py`（目标：`compose.py`） | `review.md` / `publish.md`（当前实际：`copy_review.*`） | 候选与人工评审结果 | 生成审核稿与定稿文案，分两个 stage：`compose --stage review` / `compose --stage publish` | 产出可供人工评审与对外发布的文案 | 审核稿 `review.md`、定稿 `publish.md` | 文案承重元素须与事实锚点一致，不脱离声明来源 |
+| `orchestrate` · 编排 | `main.py`（目标：`main.py`） | `Daily_Briefing/YYYY-MM-DD.md`（当前实际：未实现） | 全阶段 | 串联 intake→extract→expand→rewrite→retrieve→compose 的端到端编排入口 | 一次 run 跑通整条管线并产出每日简报 | 每日简报 `Daily_Briefing/YYYY-MM-DD.md` | 编排入口，不承载单阶段算法 |
+
+### 0.2 命名映射表（旧编号/旧名 → 唯一主名 / 归属）
+
+> 本表只做「阶段与编号」层面的命名映射，与 §9「新旧概念映射」（概念级：lens/neutral/toned/focalized/hypernym/fact-anchor 等）互补，不重复。概念级映射请直接见 §9。
+
+| 旧名 | 唯一主名 / 归属 |
+| --- | --- |
+| `A0`（现实解构） | `extract` / 解构 |
+| `P-Extract` | 归入 `extract` / 解构 |
+| `P-Expand` | 归入 `expand` / 扩展 |
+| `P-Select` | 归入 `rewrite` / 改写 |
+| `P-Tone` | 归入 `rewrite` / 改写 |
+| `C1`（审核稿） | `compose --stage review` |
+| `C2`（定稿） | `compose --stage publish` |
+| 创作视角编号 `A2` | 视角名「社会学家」（编号仅允许在 `rewrite` 内部保留，因 `prompts/A2_*.md` 文件名暂不改） |
+| 创作视角编号 `A4` | 视角名「神话学者」（编号仅 rewrite 内部保留） |
+| 创作视角编号 `A7` | 视角名「混沌理论家」（编号仅 rewrite 内部保留） |
+| `A1` 四重身份（基线 / held-out oracle / baseline / 现实记录员） | 统一称「基线 oracle」；不属于 6 生产阶段，是 `retrieve` 旁挂的评测专用神谕 |
+
+> 概念级旧名（`lens` / `neutral` / `toned` / `focalized` / `hypernym` / `fact-anchor`）的映射见 §9，本表不重复。
 
 ---
 
@@ -23,7 +63,7 @@
 ```text
 新闻输入
 → 1. 新闻快照
-→ 2. A0 现实解构：生成 element
+→ 2. extract / 解构：生成 element
 → 3. Fragment ladder：生成 surface / alias / objective / interpretive / perspective 层级
 → 4. Persona salience：决定 persona 看重哪些 element
 → 5. Search unit 生成
@@ -337,7 +377,7 @@ reality.md
 
 ---
 
-## 3.3 A0 现实解构层
+## 3.3 extract / 解构层
 
 产物：
 
@@ -345,6 +385,8 @@ reality.md
 reality-deconstructed.json
 reality-deconstructed.md
 ```
+
+> 落地物偏差：目标产物 `facts.json`（当前实际：`reality-deconstructed.json`）；承载脚本目标 `extract.py`（当前实际：`deconstruct.py`）。
 
 结构：
 
