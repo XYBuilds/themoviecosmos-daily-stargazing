@@ -1,11 +1,11 @@
-"""fragment_ladder.py · Inlined objective expansion for the fragment ladder.
+"""expand.py · Inlined objective expansion for the fragment ladder.
 
 Phase 3.12.1 folded the standalone P-Expand pass (formerly
 `scripts/objective_expansion.py`) into this module. The shared objective
 expansion still runs **once per news item** and stays persona-independent;
 only the file boundary and the on-disk `reality-expanded.json` orchestration
 moved here. The objectivity touchstone and hypernym filter remain pure
-functions reused by `scripts/personas.py` when building fragment ladders.
+functions reused by `scripts/rewrite.py` when building fragment ladders.
 """
 
 from __future__ import annotations

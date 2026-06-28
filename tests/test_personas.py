@@ -17,7 +17,7 @@ from scripts.agents import (
     load_deconstruction_from_file,
     parse_search_units_response,
 )
-from scripts.personas import (
+from scripts.rewrite import (
     AltElement,
     AltPoolOverlay,
     AltTerm,
@@ -572,12 +572,12 @@ class PersonaPipelineTests(unittest.IsolatedAsyncioTestCase):
         good = _good_search_unit_segments()
 
         with patch(
-            "scripts.personas.run_alt_creator",
+            "scripts.rewrite.run_alt_creator",
             new_callable=AsyncMock,
             return_value=(overlay, None),
         ):
             with patch(
-                "scripts.personas.run_screenwriter",
+                "scripts.rewrite.run_screenwriter",
                 new_callable=AsyncMock,
                 return_value=(good, None),
             ):
@@ -612,12 +612,12 @@ class PersonaPipelineTests(unittest.IsolatedAsyncioTestCase):
             return good, None
 
         with patch(
-            "scripts.personas.run_alt_creator",
+            "scripts.rewrite.run_alt_creator",
             new_callable=AsyncMock,
             return_value=(overlay, None),
         ):
             with patch(
-                "scripts.personas.run_screenwriter",
+                "scripts.rewrite.run_screenwriter",
                 side_effect=mock_screenwriter,
             ):
                 result = await run_persona_pipeline(
@@ -647,12 +647,12 @@ class PersonaPipelineTests(unittest.IsolatedAsyncioTestCase):
             return None, "screenwriter parse_error: invalid JSON"
 
         with patch(
-            "scripts.personas.run_alt_creator",
+            "scripts.rewrite.run_alt_creator",
             new_callable=AsyncMock,
             return_value=(overlay, None),
         ):
             with patch(
-                "scripts.personas.run_screenwriter",
+                "scripts.rewrite.run_screenwriter",
                 side_effect=mock_screenwriter,
             ):
                 result = await run_persona_pipeline(

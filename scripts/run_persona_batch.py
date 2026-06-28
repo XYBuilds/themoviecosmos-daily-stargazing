@@ -27,7 +27,7 @@ if str(_REPO_ROOT) not in sys.path:
 from scripts.agents import PseudoSegment, pseudo_to_dict
 from scripts.eval_batch_manifest import load_manifest
 from scripts.lib.paths import repo_root
-from scripts.personas import (
+from scripts.rewrite import (
     build_alt_pool_overlay,
     list_persona_ids,
     pipeline_result_to_dict,

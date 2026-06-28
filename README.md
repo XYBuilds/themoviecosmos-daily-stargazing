@@ -124,7 +124,7 @@ Copy-Item .env.example .env
 
 5. **生成中文审核文案（C1 审核稿）**
    ```powershell
-   python scripts/copywriter.py --stage review `
+   python scripts/compose.py --stage review `
      --retrieve-json output/phase2_retrieve.json `
      --news-file output/Eval/phase3.11/full-batch-20260613-3117/01-grid-outage/reality.json `
      --judge-scores output/Eval/phase3.11/full-batch-20260613-3117/llm-judge-scores-thinking-enabled.json `
@@ -142,7 +142,7 @@ Copy-Item .env.example .env
 
 8. **选定文案 → 多平台定稿（中/英）**
    ```powershell
-   python scripts/copywriter.py --stage publish --selected <copy>
+   python scripts/compose.py --stage publish --selected <copy>
    ```
    产物：`output/Daily_Briefing/2026-MM-DD_copy.md`。
 

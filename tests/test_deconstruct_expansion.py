@@ -12,8 +12,8 @@ if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
 from scripts.agents import load_deconstruction_from_file
-from scripts.deconstruct import strip_inert_fields, validate_deconstruction
-from scripts.fragment_ladder import (
+from scripts.extract import strip_inert_fields, validate_deconstruction
+from scripts.expand import (
     apply_touchstone_to_expansion,
     filter_hypernyms,
     list_expandable_elements,
@@ -173,7 +173,7 @@ class InlinedExpansionModuleTests(unittest.TestCase):
             importlib.import_module("scripts.objective_expansion")
 
     def test_expansion_contract_inlined_no_external_file(self) -> None:
-        from scripts.fragment_ladder import load_expansion_contract
+        from scripts.expand import load_expansion_contract
 
         contract = load_expansion_contract()
         self.assertIn("Objective Expansion Contract", contract)
@@ -182,7 +182,7 @@ class InlinedExpansionModuleTests(unittest.TestCase):
         self.assertFalse(legacy.exists())
 
     def test_render_prompt_self_contained(self) -> None:
-        from scripts.fragment_ladder import render_expansion_prompt
+        from scripts.expand import render_expansion_prompt
 
         dec = load_deconstruction_from_file(_INDIA_FIXTURE)
         prompt = render_expansion_prompt(dec)

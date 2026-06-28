@@ -18,7 +18,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 from scripts.eval_batch_manifest import load_manifest
 from scripts.lib.paths import repo_root
-from scripts.personas import list_persona_ids
+from scripts.rewrite import list_persona_ids
 from scripts.run_persona_batch import (
     OBS_RUN_PREFIXES,
     phase38_run_dir,

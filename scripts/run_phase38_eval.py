@@ -20,11 +20,11 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from scripts.agents import load_news_from_file, news_to_dict, pseudo_to_dict
-from scripts.deconstruct import run_deconstruct, write_outputs as write_decon_outputs
+from scripts.extract import run_deconstruct, write_outputs as write_decon_outputs
 from scripts.eval_batch_manifest import news_file_for_run_id
 from scripts.lib.paths import repo_root
-from scripts.fragment_ladder import run_expansion, write_outputs as write_expansion_outputs
-from scripts.personas import list_persona_ids, pipeline_result_to_dict, run_persona_pipeline
+from scripts.expand import run_expansion, write_outputs as write_expansion_outputs
+from scripts.rewrite import list_persona_ids, pipeline_result_to_dict, run_persona_pipeline
 from scripts.retrieve import retrieve_from_agents
 from scripts.run_eval import _format_reality_body, slugify
 from scripts.run_persona_batch import write_a1_parallel_baseline

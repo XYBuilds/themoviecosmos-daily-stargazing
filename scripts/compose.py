@@ -1,4 +1,4 @@
-"""copywriter.py · C1/C2 copywriter (Phase 4).
+"""compose.py · C1/C2 copywriter (Phase 4).
 
 Stage ``review`` (C1): read a ``retrieve.json`` candidate pool plus news context,
 ask the LLM to write one structured Chinese review card per candidate (标题短语 /

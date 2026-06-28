@@ -19,7 +19,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 from scripts.agents import load_deconstruction_from_file, pseudo_to_dict
 from scripts.lib.paths import repo_root
-from scripts.personas import (
+from scripts.rewrite import (
     build_alt_pool_overlay,
     pipeline_result_to_dict,
     run_persona_pipeline,
