@@ -64,9 +64,9 @@ def find_cjk_violations(run_dir: Path) -> list[str]:
     violations: list[str] = []
     targets = [
         "reality.json",
-        "reality-deconstructed.json",
-        "reality-expanded.json",
-        "retrieve.json",
+        "facts.json",
+        "bridges.json",
+        "candidates.json",
     ]
     for name in targets:
         path = run_dir / name
@@ -182,7 +182,7 @@ async def run_phase38_for_news(
     )
     (out_dir / "reality.md").write_text(_format_reality_body(run_id, news), encoding="utf-8")
 
-    decon_path = out_dir / "reality-deconstructed.json"
+    decon_path = out_dir / "facts.json"
     if skip_existing and decon_path.is_file():
         decon_payload = json.loads(decon_path.read_text(encoding="utf-8"))
     elif skip_decon and decon_path.is_file():
@@ -195,7 +195,7 @@ async def run_phase38_for_news(
     if not isinstance(deconstruction, dict) or not deconstruction:
         raise ValueError("A0 deconstruction missing or invalid")
 
-    expansion_path = out_dir / "reality-expanded.json"
+    expansion_path = out_dir / "bridges.json"
     expansion: dict[str, Any] | None = None
     if skip_existing and expansion_path.is_file():
         expansion = _load_expansion_payload(expansion_path)
@@ -240,7 +240,7 @@ async def run_phase38_for_news(
             json.dumps({"agents": agents, "errors": errors}, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        (out_dir / "retrieve.json").write_text(
+        (out_dir / "candidates.json").write_text(
             json.dumps(retrieve_result, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )

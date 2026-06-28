@@ -1,6 +1,6 @@
 """run_eval.py · 评测管线：新闻 → deconstruct → agents → retrieve → Eval 目录产物.
 
-每条新闻写入 output/Eval/{run_id}/：reality / reality-deconstructed、各 Agent 文档、聚合候选（填分）、retrieve.json。
+每条新闻写入 output/Eval/{run_id}/：reality / facts、各 Agent 文档、聚合候选（填分）、candidates.json。
 """
 
 from __future__ import annotations
@@ -340,10 +340,10 @@ def _format_run_index(run_id: str, errors: list[dict]) -> str:
         "|------|------|",
         "| [[reality]] | 现实波澜（人类可读） |",
         "| `reality.json` | 新闻快照（JSON） |",
-        "| [[reality-deconstructed]] | 现实解构（人类可读） |",
-        "| `reality-deconstructed.json` | 解构契约 JSON |",
+        "| [[facts]] | 现实解构（人类可读） |",
+        "| `facts.json` | 解构契约 JSON |",
         "| [[candidates]] | **总编填共振分** |",
-        "| `retrieve.json` | 完整 retrieve 输出 |",
+        "| `candidates.json` | 完整 retrieve 输出 |",
         "| [[errors]] | Agent 失败记录 |",
         "| [[agents/A2]] | 社会学家 |",
         "| [[agents/A4]] | 神话学者 |",
@@ -374,7 +374,7 @@ def _resolve_deconstruction(
         }
         return dec, payload
 
-    cached = run_dir / "reality-deconstructed.json"
+    cached = run_dir / "facts.json"
     if cached.is_file():
         dec = load_deconstruction_from_file(cached)
         return dec, json.loads(cached.read_text(encoding="utf-8"))
@@ -408,16 +408,16 @@ def write_eval_bundle(
     (run_dir / "reality.md").write_text(_format_reality_body(run_id, news), encoding="utf-8")
 
     if deconstruction_payload is not None:
-        (run_dir / "reality-deconstructed.json").write_text(
+        (run_dir / "facts.json").write_text(
             json.dumps(deconstruction_payload, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        (run_dir / "reality-deconstructed.md").write_text(
+        (run_dir / "facts.md").write_text(
             render_deconstruction_md(deconstruction_payload, run_id=run_id),
             encoding="utf-8",
         )
     (run_dir / "errors.md").write_text(_format_errors(errors), encoding="utf-8")
-    (run_dir / "retrieve.json").write_text(
+    (run_dir / "candidates.json").write_text(
         json.dumps(retrieve_result, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
@@ -527,7 +527,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--deconstruction-file",
-        help="Pre-built reality-deconstructed.json (skip A0 if set or if cached in run dir).",
+        help="Pre-built facts.json (skip A0 if set or if cached in run dir).",
     )
     args = parser.parse_args(argv)
 

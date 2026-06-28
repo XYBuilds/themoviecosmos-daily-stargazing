@@ -1,7 +1,7 @@
 """run_persona_batch.py · Phase 3.7 N=10 batch: 12 personas × news + A1 baseline per run.
 
 Reads neutral decon from output/Eval/phase3.6/{run_id}/ (read-only). Writes under
-output/Eval/phase3.7/{run_id}/ with per-persona subdirs and merged retrieve.json.
+output/Eval/phase3.7/{run_id}/ with per-persona subdirs and merged candidates.json.
 Editor scoring uses output/Eval/phase3.7/high-hit-score-review.md (from score_eval_candidates).
 
 Phase 3.9.5: concurrent persona generation (Semaphore + gather), stable agent ordering,
@@ -103,7 +103,7 @@ def startup_jitter_seconds(
 
 
 def _load_expansion_from_run(run_dir: Path) -> dict[str, Any] | None:
-    path = run_dir / "reality-expanded.json"
+    path = run_dir / "bridges.json"
     if not path.is_file():
         return None
     data = json.loads(path.read_text(encoding="utf-8"))
@@ -137,9 +137,9 @@ def _copy_phase38_static(run_id: str, out_dir: Path) -> None:
     for name in (
         "reality.json",
         "reality.md",
-        "reality-deconstructed.json",
-        "reality-deconstructed.md",
-        "reality-expanded.json",
+        "facts.json",
+        "facts.md",
+        "bridges.json",
     ):
         src_file = src / name
         if src_file.is_file():
@@ -369,7 +369,7 @@ async def finalize_run(
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "retrieve.json").write_text(
+    (out_dir / "candidates.json").write_text(
         json.dumps(retrieve_result, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
@@ -461,7 +461,7 @@ async def run_batch_for_news(
 ) -> dict[str, Any]:
     if eval_phase == "3.9":
         src38 = phase38_run_dir(run_id)
-        decon_path = src38 / "reality-deconstructed.json"
+        decon_path = src38 / "facts.json"
         if not decon_path.is_file():
             raise FileNotFoundError(
                 f"phase3.8 decon missing: {decon_path} "
@@ -472,7 +472,7 @@ async def run_batch_for_news(
         expansion = _load_expansion_from_run(src38)
     elif eval_phase == "3.8":
         out_dir = phase38_run_dir(run_id)
-        decon_path = out_dir / "reality-deconstructed.json"
+        decon_path = out_dir / "facts.json"
         if not decon_path.is_file():
             raise FileNotFoundError(
                 f"phase3.8 decon missing: {decon_path} "

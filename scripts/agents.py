@@ -1,6 +1,6 @@
 """agents.py · Multi-agent writers' room (pseudo-overview).
 
-Loads A1/A2/A4/A7 persona prompts, injects reality-deconstructed JSON, and calls the
+Loads A1/A2/A4/A7 persona prompts, injects facts (deconstruction) JSON, and calls the
 LLM concurrently. Each agent returns 1–3 pseudos with fragment provenance.
 
 MVP scope: persona load, template render, async LLM, JSON parse, post-processing,
@@ -996,12 +996,12 @@ async def _run_cli(args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Run A1/A2/A4/A7 pseudo agents on reality-deconstructed JSON.",
+        description="Run A1/A2/A4/A7 pseudo agents on facts (deconstruction) JSON.",
     )
     parser.add_argument(
         "--deconstruction-file",
         required=True,
-        help="Path to reality-deconstructed.json (or raw deconstruction object).",
+        help="Path to facts.json (or raw deconstruction object).",
     )
     parser.add_argument(
         "--news-file",

@@ -1,4 +1,4 @@
-"""extract_multi_agent_hits.py · 从 Eval retrieve.json 提取多 agent 命中并生成统一审阅 Markdown."""
+"""extract_multi_agent_hits.py · 从 Eval candidates.json 提取多 agent 命中并生成统一审阅 Markdown."""
 
 from __future__ import annotations
 
@@ -131,7 +131,7 @@ def _eval_run_ids(eval_root: Path) -> list[str]:
     return sorted(
         p.name
         for p in eval_root.iterdir()
-        if p.is_dir() and (p / "retrieve.json").is_file()
+        if p.is_dir() and (p / "candidates.json").is_file()
     )
 
 
@@ -148,7 +148,7 @@ def _load_multi_agent_candidates(eval_root: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     run_dirs = sorted(p for p in eval_root.iterdir() if p.is_dir())
     for run_dir in run_dirs:
-        retrieve_path = run_dir / "retrieve.json"
+        retrieve_path = run_dir / "candidates.json"
         if not retrieve_path.is_file():
             continue
         run_id = run_dir.name
@@ -208,7 +208,7 @@ def render_markdown(rows: list[dict[str, Any]], *, eval_root: Path) -> str:
         "",
         "### Sources",
         "",
-        "- **Primary:** `hit_sources` in each run's `retrieve.json` (fragment arrays).",
+        "- **Primary:** `hit_sources` in each run's `candidates.json` (fragment arrays).",
         "- **Cross-check:** `命中视角/碎片` in `candidates.md` when present.",
         "- **Editor fields:** 共振分 / 共振类型 / 打分备注 are placeholders only (not filled by this extract).",
         "",
