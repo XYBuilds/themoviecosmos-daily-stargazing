@@ -1,8 +1,8 @@
 # 管线阶段唯一命名（英文动词体系）、编号全废、诊断死流移出生产主链
 
-**Status**: accepted（命名与收敛口径拍板；阶段契约 SSOT 待 [`pipeline-stages-contract.md`] 落地后并入引用）
+**Status**: accepted（命名与收敛口径拍板；命名与 5 维阶段契约已并入 [`docs/SSOT/news-to-film-pipeline.md`](../SSOT/news-to-film-pipeline.md)）
 
-> **本 ADR 的性质**：命名与边界治理。它不改变任何一个步骤的内部算法（fragment ladder / search unit / 双轴评审等口径全部沿用 [ADR-0009](0009-fragment-ladder-and-search-unit-architecture.md) 与 [`docs/SSOT/simplified-news-to-film-workflow.md`](../SSOT/simplified-news-to-film-workflow.md)），只解决一个长期遗留问题：**同一个步骤有 2–4 套并行叫法，且没有任何一套是权威主名**。本 ADR 钉死「一步一名」。
+> **本 ADR 的性质**：命名与边界治理。它不改变任何一个步骤的内部算法（fragment ladder / search unit / 双轴评审等口径全部沿用 [ADR-0009](0009-fragment-ladder-and-search-unit-architecture.md) 与 [`docs/SSOT/news-to-film-pipeline.md`](../SSOT/news-to-film-pipeline.md)），只解决一个长期遗留问题：**同一个步骤有 2–4 套并行叫法，且没有任何一套是权威主名**。本 ADR 钉死「一步一名」。
 >
 > 架构主线见 ADR-0009；执行纪律见 [ADR-0010](0010-pseudo-drop-granularity-and-pipeline-first-derisking.md)；本 ADR 只覆盖**命名权威**与**生产/诊断职责边界**。
 
@@ -66,9 +66,11 @@
 
 ### D4 · 已知偏差与待决项（显式登记，不在本 ADR 决断）
 
-- **SSOT 与代码存在偏差**：[`simplified-news-to-film-workflow.md`](../SSOT/simplified-news-to-film-workflow.md) §12 声明「删除独立 `reality-expanded` / hypernym 层」，但当前 `fragment_ladder.py` 仍产出 `reality-expanded.json`。SSOT 描述的是 ADR-0009 **目标态**，代码停在**中间态**。该偏差登记为已知事实。
-- **契约以哪个状态为准未定**：阶段契约文档（`pipeline-stages-contract.md`）应写「目标态 / 当前态 / 双态并列」中的哪一种，留待 SSOT 环节由总编确认，本 ADR 不预设。
+- **SSOT 与代码存在偏差**：[`news-to-film-pipeline.md`](../SSOT/news-to-film-pipeline.md) §12 声明「删除独立 `reality-expanded` / hypernym 层」，但当前 `fragment_ladder.py` 仍产出 `reality-expanded.json`。SSOT 描述的是 ADR-0009 **目标态**，代码停在**中间态**。该偏差登记为已知事实。
+- **契约落地处已定**：命名与 5 维阶段契约**并入** [`docs/SSOT/news-to-film-pipeline.md`](../SSOT/news-to-film-pipeline.md)（由 `simplified-news-to-film-workflow.md` 更名而来），**不再单独建 `pipeline-stages-contract.md`**。该文件同时是阶段命名权威与工作流设计 SSOT，概念维度按目标态书写、落地物维度暂标偏差。
 - **产物重命名未执行**：D1 的统一产物名为目标名，现有产物文件是否即刻改名待定。
+- **【文件更名映射】（技术债）**：`simplified-news-to-film-workflow.md` → `news-to-film-pipeline.md`。历史记录（`docs/reports/Phase3.12.7-doc-backfill-report.md`、`.cursor/plans/Phase3.11-pov-focalization-additive.plan.md`、`.cursor/plans/Phase3.12-code-doc-sync.plan.md`）中对旧文件名的引用为**已知死链，遵循历史不回改原则，不予回改**，更名映射由本 ADR 统一登记。
+- **【落地物清理债】（技术债）**：未来重构代码时，需把承载脚本名（`deconstruct.py`→`extract.py`、`fragment_ladder.py`→`expand.py`、`personas.py`→`rewrite.py`、`copywriter.py`→`compose.py` 等）、产物名（`reality-deconstructed.json`→`facts.json`、`reality-expanded.json`→`bridges.json`、`search-units.json`→`queries.json`、`retrieve.json`→`candidates.json` 等）、prompts 名一并落地；落地后须**同步清除 `news-to-film-pipeline.md` 表与正文中的「当前实际」偏差标注**，使该文档收敛为纯目标态。
 
 ## 为什么
 
@@ -80,4 +82,4 @@
 
 - **过渡期双名并存**：代码文件名与 prompts 文件名（`deconstruct.py`、`A2_sociologist.md`）短期内仍是旧名，与新主名暂不一致；本 ADR 接受这一过渡态，重命名属后续重构。
 - **本 ADR 是命名/边界宪法，不是迁移工单**：D3 的死流移出、D1 的产物改名均为口径声明；落地改动需在 SSOT 阶段契约确定「以哪态为准」后，再拆分为可执行的重构 TODO。
-- **SSOT 偏差需尽快定调**：D4 登记的偏差若长期不决，`simplified-workflow` SSOT 会持续描述一个代码未达的世界，命名收敛的收益会被偏差重新稀释。
+- **SSOT 偏差需尽快定调**：D4 登记的偏差若长期不决，`news-to-film-pipeline.md` SSOT 会持续描述一个代码未达的世界，命名收敛的收益会被偏差重新稀释。
