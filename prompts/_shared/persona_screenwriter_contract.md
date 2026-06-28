@@ -56,5 +56,5 @@ Return **only** valid JSON with a root `search_units` array:
 
 ## Propagation contract
 
-- ADR-0009 architecture lives in this section, `docs/adr/0009-*.md`, and `docs/SSOT/simplified-news-to-film-workflow.md`.
+- ADR-0009 architecture lives in this section, `docs/adr/0009-*.md`, and `docs/SSOT/news-to-film-pipeline.md`.
 - Any future change to search unit kinds, center/supporting rules, or objective-anchor semantics must update those three sources together.
