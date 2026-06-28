@@ -17,10 +17,13 @@ if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
 from scripts.copywriter import (
+    JudgeEntry,
     build_news_context,
+    filter_candidates_by_judge,
     format_candidates_block,
     load_judge_scores,
     map_paragraphs_to_candidates,
+    parse_card_fields,
     render_review_copy_block,
     representative_persona_semantic,
     result_to_markdown,
@@ -30,11 +33,24 @@ from scripts.copywriter import (
 )
 
 
-def _candidate(tmdb_id, title, year, triggered, dims, overview="An overview."):
+def _card(title, year, headline="短语", copy="文案句。", intro="介绍。", tags="#标签", rzh="理由中译。"):
+    """Build a structured C1 card block string matching the DSL contract."""
+    return (
+        f"《{title}》({year})\n"
+        f"标题: {headline}\n"
+        f"文案: {copy}\n"
+        f"电影介绍: {intro}\n"
+        f"Hashtag: {tags}\n"
+        f"评分理由中译: {rzh}"
+    )
+
+
+def _candidate(tmdb_id, title, year, triggered, dims, overview="An overview.", genres="Drama"):
     return {
         "tmdb_id": tmdb_id,
         "title": title,
         "overview": overview,
+        "genres": genres,
         "release_year": year,
         "movie_url": f"https://themoviecosmos.com/movie/{tmdb_id}",
         "triggered_by": triggered,
@@ -103,14 +119,17 @@ class TestPersonaSemantic(unittest.TestCase):
 
 
 class TestCandidateBlock(unittest.TestCase):
-    def test_block_has_soft_hints_and_no_hashtag(self) -> None:
+    def test_block_has_soft_hints_genres_and_judge_rationale(self) -> None:
         cands = [_candidate(111, "Survival Family", 2017, ["THE-INNOCENT"], ["how", "result"])]
-        block = format_candidates_block(cands)
+        index = {("", "111"): JudgeEntry(score=2, rationale="Both center on outages.", causal_test="Power loss drives crisis.")}
+        block = format_candidates_block(cands, index, "")
         self.assertIn("《Survival Family》(2017)", block)
         self.assertIn("被这些视角击中: THE-INNOCENT", block)
         self.assertIn("切面（可选参考，非强制聚焦）: 过程、结果", block)
+        self.assertIn("genres: Drama", block)
         self.assertIn("https://themoviecosmos.com/movie/111", block)
-        self.assertNotIn("#", block)
+        self.assertIn("Both center on outages.", block)
+        self.assertIn("Power loss drives crisis.", block)
 
     def test_missing_year_renders_dash(self) -> None:
         cands = [_candidate(222, "No Year", None, [], [])]
@@ -184,7 +203,14 @@ class TestJudgeBackfill(unittest.TestCase):
 
         data = {
             "scores": [
-                {"run_id": "01-grid-outage", "tmdb_id": "429918", "judge_score": 2},
+                {
+                    "run_id": "01-grid-outage",
+                    "tmdb_id": "429918",
+                    "judge_score": 2,
+                    "rationale": "Both center on outages.",
+                    "causal_test": "Power loss drives crisis.",
+                    "judge_resonance_type": "强共振",
+                },
                 {"run_id": "01-grid-outage", "tmdb_id": "33495", "judge_score": 1},
             ]
         }
@@ -194,7 +220,11 @@ class TestJudgeBackfill(unittest.TestCase):
             json.dump(data, fh)
             path = Path(fh.name)
         index = load_judge_scores(path)
-        self.assertEqual(index[("01-grid-outage", "429918")], 2)
+        entry = index[("01-grid-outage", "429918")]
+        self.assertEqual(entry.score, 2)
+        self.assertEqual(entry.rationale, "Both center on outages.")
+        self.assertEqual(entry.causal_test, "Power loss drives crisis.")
+        self.assertEqual(entry.resonance_type, "强共振")
         path.unlink()
 
     def test_missing_file_returns_empty(self) -> None:
@@ -210,11 +240,11 @@ class TestRunReview(unittest.TestCase):
             _candidate(1, "Alpha", 2001, ["THE-HERO"], ["who"]),
             _candidate(2, "Beta", 1999, ["THE-SAGE"], ["why"]),
         ]
-        fake_output = "《Alpha》(2001)\n甲文案。\n\n《Beta》(1999)\n乙文案。"
+        fake_output = _card("Alpha", 2001, copy="甲文案。") + "\n\n" + _card("Beta", 1999, copy="乙文案。")
         result = run_review(
             _retrieve(cands, news={"title": "T", "description": "D"}),
             {"title": "T", "description": "D"},
-            judge_index={("", "1"): 2},
+            judge_index={("", "1"): JudgeEntry(score=2, rationale="EN reason.")},
             prompts_dir=self._prompts_dir(),
             llm_call=lambda _prompt: fake_output,
         )
@@ -223,9 +253,12 @@ class TestRunReview(unittest.TestCase):
         first = result.review_copies[0]
         self.assertEqual(first.tmdb_id, 1)
         self.assertEqual(first.judge_score, 2)
+        self.assertEqual(first.judge_rationale_en, "EN reason.")
         self.assertEqual(first.triggered_by, ["THE-HERO"])
         self.assertEqual(first.center_dimensions, ["who"])
-        self.assertIn("甲文案", first.text_zh)
+        self.assertIn("甲文案", first.copy_text)
+        self.assertEqual(first.director, "待补")
+        self.assertEqual(first.genres, "Drama")
 
     def test_empty_candidates_returns_empty(self) -> None:
         result = run_review(
@@ -256,7 +289,7 @@ class TestRunReview(unittest.TestCase):
             _retrieve(cands),
             {"title": "T", "description": "D"},
             prompts_dir=self._prompts_dir(),
-            llm_call=lambda _p: "《Alpha》(2001)\n文案。",
+            llm_call=lambda _p: _card("Alpha", 2001),
         )
         payload = result_to_payload(result)
         self.assertIn("review_copies", payload)
@@ -268,11 +301,18 @@ class TestRunReview(unittest.TestCase):
             "year",
             "triggered_by",
             "center_dimensions",
-            "judge_score",
+            "overview",
+            "genres",
+            "director",
             "movie_url",
-            "text_zh",
+            "judge",
+            "card",
         ):
             self.assertIn(key, row)
+        for key in ("score", "resonance_type", "rationale_en", "causal_test_en", "rationale_zh"):
+            self.assertIn(key, row["judge"])
+        for key in ("headline", "copy_text", "intro", "hashtags"):
+            self.assertIn(key, row["card"])
 
 
 class TestMarkdownRendering(unittest.TestCase):
@@ -284,21 +324,25 @@ class TestMarkdownRendering(unittest.TestCase):
         return run_review(
             _retrieve(cands, news={"title": "断网事件", "description": "D"}),
             {"title": "断网事件", "description": "D"},
-            judge_index={("", "157336"): 2},
+            judge_index={("", "157336"): JudgeEntry(score=2, rationale="EN reason.", resonance_type="强共振")},
             prompts_dir=_REPO / "prompts",
             llm_call=lambda _p: (
-                "《Interstellar》(2014)\n第一段中文文案。\n\n"
-                "《No Year》(2000)\n第二段中文文案。"
+                _card("Interstellar", 2014, headline="当星辰熄灭", copy="第一段中文文案。", rzh="评分理由译文。")
+                + "\n\n"
+                + _card("No Year", 2000, copy="第二段中文文案。")
             ),
         )
 
     def test_block_has_required_fields(self) -> None:
         result = self._result()
         block = render_review_copy_block(result.review_copies[0])
-        self.assertIn("### 《Interstellar》(2014)", block)
-        self.assertIn("- 触发视角: THE-INNOCENT, THE-HERO", block)
-        self.assertIn("- 切面（可选参考）: who, result", block)
+        self.assertIn("### 《Interstellar》(2014) | 当星辰熄灭", block)
         self.assertIn("第一段中文文案", block)
+        self.assertIn("电影信息: 待补 | 2014 | Drama", block)
+        self.assertIn("电影原 overview: An overview.", block)
+        self.assertIn("评分理由（EN 原文）: EN reason.", block)
+        self.assertIn("评分理由（中译）: 评分理由译文。", block)
+        self.assertIn("共振类型: 强共振", block)
         self.assertIn("https://themoviecosmos.com/movie/157336", block)
         self.assertIn("- [ ] ✅ 选用", block)
 
@@ -316,18 +360,112 @@ class TestMarkdownRendering(unittest.TestCase):
 
     def test_document_has_one_block_per_candidate(self) -> None:
         result = self._result()
-        md = result_to_markdown(result, news={"title": "断网事件"}, run_id="01-grid-outage")
+        md = result_to_markdown(result, news={"title": "断网事件", "description": "D"}, run_id="01-grid-outage")
         self.assertEqual(md.count("### 《"), 2)
         self.assertIn("# 审核稿候选", md)
-        self.assertIn("新闻: 断网事件", md)
+        self.assertIn("原新闻: 断网事件", md)
+        self.assertIn("新闻摘要: D", md)
         self.assertIn("run_id: 01-grid-outage", md)
 
-    def test_no_hashtag_in_markdown(self) -> None:
+    def test_copy_text_carries_no_hashtag(self) -> None:
         result = self._result()
-        md = result_to_markdown(result)
-        # Headings use '#', but candidate copy must carry no hashtag tokens.
+        # Hashtags live in their own card field; the quote/copy must stay clean.
         for copy in result.review_copies:
-            self.assertNotIn("#", copy.text_zh)
+            self.assertNotIn("#", copy.copy_text)
+
+
+class TestJudgeFilter(unittest.TestCase):
+    def _pool(self):
+        return [
+            _candidate(1, "Keep2", 2001, [], []),
+            _candidate(2, "Keep1", 2002, [], []),
+            _candidate(3, "DropZero", 2003, [], []),
+            _candidate(4, "DropNone", 2004, [], []),
+        ]
+
+    def _index(self):
+        # tmdb 1→2, 2→1, 3→0, 4 absent (None)
+        return {
+            ("r", "1"): JudgeEntry(score=2),
+            ("r", "2"): JudgeEntry(score=1),
+            ("r", "3"): JudgeEntry(score=0),
+        }
+
+    def test_min_judge_none_keeps_all(self) -> None:
+        kept, dropped = filter_candidates_by_judge(
+            self._pool(), self._index(), "r", None
+        )
+        self.assertEqual(len(kept), 4)
+        self.assertEqual(dropped, [])
+
+    def test_min_judge_one_drops_zero_and_none(self) -> None:
+        kept, dropped = filter_candidates_by_judge(
+            self._pool(), self._index(), "r", 1
+        )
+        self.assertEqual([c["tmdb_id"] for c in kept], [1, 2])
+        reasons = {d["tmdb_id"]: d["reason"] for d in dropped}
+        self.assertEqual(reasons[3], "below_min_judge")
+        self.assertEqual(reasons[4], "no_judge_score")
+
+    def test_min_judge_two_keeps_only_two(self) -> None:
+        kept, _ = filter_candidates_by_judge(self._pool(), self._index(), "r", 2)
+        self.assertEqual([c["tmdb_id"] for c in kept], [1])
+
+    def test_run_review_filters_before_llm(self) -> None:
+        seen: dict[str, str] = {}
+
+        def capture(prompt):
+            seen["prompt"] = prompt
+            return _card("Keep2", 2001) + "\n\n" + _card("Keep1", 2002)
+
+        result = run_review(
+            _retrieve(self._pool()),
+            {"title": "T", "description": "D"},
+            judge_index=self._index(),
+            run_id="r",
+            min_judge=1,
+            prompts_dir=_REPO / "prompts",
+            llm_call=capture,
+        )
+        self.assertEqual(len(result.review_copies), 2)
+        self.assertEqual(len(result.dropped_candidates), 2)
+        # Dropped candidates must never reach the LLM prompt.
+        self.assertNotIn("DropZero", seen["prompt"])
+        self.assertNotIn("DropNone", seen["prompt"])
+
+    def test_payload_carries_filter_summary(self) -> None:
+        result = run_review(
+            _retrieve(self._pool()),
+            {"title": "T", "description": "D"},
+            judge_index=self._index(),
+            run_id="r",
+            min_judge=1,
+            prompts_dir=_REPO / "prompts",
+            llm_call=lambda _p: _card("Keep2", 2001) + "\n\n" + _card("Keep1", 2002),
+        )
+        payload = result_to_payload(result)
+        self.assertEqual(payload["filter"]["min_judge"], 1)
+        self.assertEqual(payload["filter"]["dropped_count"], 2)
+
+    def test_no_filter_summary_when_disabled(self) -> None:
+        result = run_review(
+            _retrieve(self._pool()),
+            {"title": "T", "description": "D"},
+            judge_index=self._index(),
+            run_id="r",
+            min_judge=None,
+            prompts_dir=_REPO / "prompts",
+            llm_call=lambda _p: (
+                _card("Keep2", 2001)
+                + "\n\n"
+                + _card("Keep1", 2002)
+                + "\n\n"
+                + _card("DropZero", 2003)
+                + "\n\n"
+                + _card("DropNone", 2004)
+            ),
+        )
+        self.assertNotIn("filter", result_to_payload(result))
 
 
 if __name__ == "__main__":
