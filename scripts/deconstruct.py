@@ -29,7 +29,7 @@ from scripts.lib.env import default_llm_provider, load_env
 from scripts.lib.llm import get_llm_client
 from scripts.lib.paths import repo_root
 
-_PROMPT_FILE = "A0_reality_deconstructor.md"
+_PROMPT_FILE = "extract_deconstructor.md"
 
 _MODEL_ENV: dict[str, str] = {
     "mimo": "MIMO_MODEL",

@@ -239,6 +239,14 @@ python scripts/copywriter.py --stage review --retrieve-json output/phase2_retrie
 
 ## Todo 4.3 · [MVP GATE] 真实新闻审核稿验证 [需人工验收 · Go/No-Go]
 
+> **【冻结中 · 2026-06】**
+>
+> 总编选择在**命名收敛重构之后**再做 4.3 的 Go/No-Go 决策。本节点保持 `pending` 属规则内正常状态（人工 GATE 未触发即未推进），**不是阻塞或遗漏**。
+>
+> - 命名收敛重构期间**不推进 Stage 1**（4.4 及之后一律不启动）。
+> - 4.1（C1 审核稿）+ 4.2（落 Obsidian）的实现代码已合并入 `main`（PR #74）。
+> - **回归基准位置**：`docs/temp/golden/`（已在干净 main 基线 commit `d474943` 上跑出 copywriter `review` golden 快照：`copy_review.golden.json` + `copy_review.golden.md`，并留档输入文件与比对口径 `README.md`）。重构后用同一输入重跑，按 README 的比对口径校验回归。
+
 **依赖：** **4.2**
 
 - 用**一条真实新闻**跑通 `agents → retrieve → C1`，把审核稿候选块落到 Obsidian。
