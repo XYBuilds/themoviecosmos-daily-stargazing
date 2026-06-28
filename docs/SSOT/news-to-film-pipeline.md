@@ -17,10 +17,10 @@
 | 阶段主名 · 中文别名 | 承载脚本（标偏差） | 产物名（标偏差） | 输入 | 处理 | 目的 | 产出 | 边界 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `intake` · 选材 | `fetch_news.py`（目标：`intake.py`） | `news.json`（当前实际：未实现） | 外部新闻源 | 拉取并固化一条新闻原文为 JSON 快照，不改写、不解释、不扩展 | 给后续全链提供稳定的事实原文与复盘入口 | 新闻快照（`reality.json` / `reality.md` 为当前快照产物） | 只固化原文，主链默认英文输入以避免与英文电影 overview 的分布偏移 |
-| `extract` · 解构 | `deconstruct.py`（目标：`extract.py`） | `facts.json`（当前实际：`reality-deconstructed.json`） | 新闻快照 | 把新闻拆成 when/where/who/why/how/result 六类稳定 element，每块给稳定 `element_id` | 建立全链事实地基，防止下游伪造人物/事件/动机/因果/结果 | 结构化 element 集合（`reality-deconstructed.json` / `.md`） | 只记录新闻怎么说；不做上位扩展、人设、情绪、价值、共振解释，不新增未明说因果 |
-| `expand` · 扩展 | `fragment_ladder.py`（目标：`expand.py`） | `bridges.json`（当前实际：`reality-expanded.json`） | extract 的 element | 为每个 element 生成 fragment ladder（surface/alias/objective_*/interpretive/perspective），含距离权重；原 hypernym 并入 objective 层、原 lens/alternative 并入 interpretive/perspective 层 | 保留不同距离的可审计表达层级，供召回与诊断使用 | fragment ladder 集合（`fragment-ladders.json`） | 每项必须绑定既有 `element_id`；不新增事实；严格区分 objective 与 interpretive |
+| `extract` · 解构 | `deconstruct.py`（目标：`extract.py`） | `facts.json`（当前实际：`facts.json`） | 新闻快照 | 把新闻拆成 when/where/who/why/how/result 六类稳定 element，每块给稳定 `element_id` | 建立全链事实地基，防止下游伪造人物/事件/动机/因果/结果 | 结构化 element 集合（`facts.json` / `.md`） | 只记录新闻怎么说；不做上位扩展、人设、情绪、价值、共振解释，不新增未明说因果 |
+| `expand` · 扩展 | `fragment_ladder.py`（目标：`expand.py`） | `bridges.json`（当前实际：`bridges.json`） | extract 的 element | 为每个 element 生成 fragment ladder（surface/alias/objective_*/interpretive/perspective），含距离权重；原 hypernym 并入 objective 层、原 lens/alternative 并入 interpretive/perspective 层 | 保留不同距离的可审计表达层级，供召回与诊断使用 | fragment ladder 集合（`fragment-ladders.json`） | 每项必须绑定既有 `element_id`；不新增事实；严格区分 objective 与 interpretive |
 | `rewrite` · 改写 | `personas.py`（目标：`rewrite.py`） | `queries.json`（当前实际：`search-units.json` / `personas/*`） | element + fragment ladder + persona salience | 生成三类 search unit（surface-fragment-bundle / event-fragment-bundle / persona-semantic）；persona 结合 salience 与 interpretive/perspective 材料产 persona-semantic | 把碎片按用途组织成统一的可搜索单元 | search unit 集合（`search-units.json`） | 每条 search unit 必须绑定 source elements；persona-semantic 必须有 center_element 与 objective anchor，不新增事实 |
-| `retrieve` · 召回 | `retrieve.py`（目标：`retrieve.py`） | `candidates.json`（当前实际：`retrieve.json`） | search unit + 电影库 | hybrid recall（lexical/alias + weighted ladder + dense embedding）→ 候选漏斗（去重 / match 诊断 / 汇聚排序 / judge 预筛 / 人工预算） | 收敛出真正与新闻共振的候选电影 | 候选集合（`candidates.json`），含 surface/event/persona_semantic match 诊断 | 基线 oracle 旁挂评测专用，永不进 `candidates`；judge 只预筛不裁决 |
+| `retrieve` · 召回 | `retrieve.py`（目标：`retrieve.py`） | `candidates.json`（当前实际：`candidates.json`） | search unit + 电影库 | hybrid recall（lexical/alias + weighted ladder + dense embedding）→ 候选漏斗（去重 / match 诊断 / 汇聚排序 / judge 预筛 / 人工预算） | 收敛出真正与新闻共振的候选电影 | 候选集合（`candidates.json`），含 surface/event/persona_semantic match 诊断 | 基线 oracle 旁挂评测专用，永不进 `candidates`；judge 只预筛不裁决 |
 | `compose` · 文案 | `copywriter.py`（目标：`compose.py`） | `review.md` / `publish.md`（当前实际：`copy_review.*`） | 候选与人工评审结果 | 生成审核稿与定稿文案，分两个 stage：`compose --stage review` / `compose --stage publish` | 产出可供人工评审与对外发布的文案 | 审核稿 `review.md`、定稿 `publish.md` | 文案承重元素须与事实锚点一致，不脱离声明来源 |
 | `orchestrate` · 编排 | `main.py`（目标：`main.py`） | `Daily_Briefing/YYYY-MM-DD.md`（当前实际：未实现） | 全阶段 | 串联 intake→extract→expand→rewrite→retrieve→compose 的端到端编排入口 | 一次 run 跑通整条管线并产出每日简报 | 每日简报 `Daily_Briefing/YYYY-MM-DD.md` | 编排入口，不承载单阶段算法 |
 
@@ -103,7 +103,7 @@ focalized / POV → 删除；改为通用 center_element 机制
 
 `element` 是新闻被拆解后的稳定事实块。
 
-来源：`reality-deconstructed.json`。
+来源：`facts.json`。
 
 类型：
 
@@ -382,11 +382,11 @@ reality.md
 产物：
 
 ```text
-reality-deconstructed.json
-reality-deconstructed.md
+facts.json
+facts.md
 ```
 
-> 落地物偏差：目标产物 `facts.json`（当前实际：`reality-deconstructed.json`）；承载脚本目标 `extract.py`（当前实际：`deconstruct.py`）。
+> 落地物偏差：目标产物 `facts.json`（当前实际：`facts.json`）；承载脚本目标 `extract.py`（当前实际：`deconstruct.py`）。
 
 结构：
 
@@ -1079,7 +1079,7 @@ judge = 0 堆按比例抽审
 
 ```text
 reality.json
-reality-deconstructed.json
+facts.json
 fragment-ladders.json
 persona-salience.json
 search-units.json
