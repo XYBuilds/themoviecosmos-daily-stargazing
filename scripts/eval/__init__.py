@@ -1,0 +1,1 @@
+"""Eval scaffolding shared library (NC round 3: stateless pure helpers split out)."""

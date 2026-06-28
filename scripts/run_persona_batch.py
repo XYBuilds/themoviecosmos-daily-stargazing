@@ -18,7 +18,7 @@ import shutil
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Awaitable, Callable, TypeVar
+from typing import Any
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
@@ -34,27 +34,30 @@ from scripts.rewrite import (
     run_persona_pipeline,
 )
 from scripts.retrieve import retrieve_from_agents
-from scripts.run_eval import load_deconstruction_from_file
+from scripts.agents import load_deconstruction_from_file
+
+# NC round 3 (do_min): shared stateless constants/pure utils now live in
+# scripts.eval.persona_batch_lib. Re-exported here for backward compatibility so
+# downstream scripts and tests importing them from scripts.run_persona_batch keep
+# working. Patched / IO-orchestrating half-pipeline functions stay in this module.
+from scripts.eval.persona_batch_lib import (  # noqa: F401  (re-export)
+    DEFAULT_CONCURRENCY,
+    LLM_BACKOFF_INITIAL_SEC,
+    LLM_BACKOFF_MAX_RETRIES,
+    OBS_RUN_PREFIXES,
+    is_retryable_llm_error,
+    reorder_persona_agents,
+    split_obs_holdout,
+    with_llm_backoff,
+)
 
 PHASE36 = repo_root() / "output" / "Eval" / "phase3.6"
 PHASE37 = repo_root() / "output" / "Eval" / "phase3.7"
 PHASE38 = repo_root() / "output" / "Eval" / "phase3.8"
 PHASE39 = repo_root() / "output" / "Eval" / "phase3.9"
-OBS_RUN_PREFIXES = ("01-", "02-", "03-", "04-")
 
-DEFAULT_CONCURRENCY = 3
 JITTER_SEC_MIN = 5.0
 JITTER_SEC_MAX = 15.0
-LLM_BACKOFF_INITIAL_SEC = 2.0
-LLM_BACKOFF_MAX_RETRIES = 4
-
-_T = TypeVar("_T")
-
-
-def split_obs_holdout(run_ids: list[str]) -> tuple[list[str], list[str]]:
-    obs = [r for r in run_ids if r.startswith(OBS_RUN_PREFIXES)]
-    holdout = [r for r in run_ids if r not in obs]
-    return obs, holdout
 
 
 def phase36_run_dir(run_id: str) -> Path:
@@ -89,42 +92,6 @@ def eval_run_dir(run_id: str, eval_phase: str) -> Path:
     return phase37_run_dir(run_id)
 
 
-def is_retryable_llm_error(exc: BaseException | str | None) -> bool:
-    if exc is None:
-        return False
-    if isinstance(exc, TimeoutError):
-        return True
-    msg = str(exc).lower()
-    return (
-        "429" in msg
-        or "rate limit" in msg
-        or "rate_limit" in msg
-        or "too many requests" in msg
-        or "timed out" in msg
-        or "timeout" in msg
-    )
-
-
-async def with_llm_backoff(
-    fn: Callable[[], Awaitable[_T]],
-    *,
-    is_retryable: Callable[[BaseException | str | None], bool] = is_retryable_llm_error,
-    max_retries: int = LLM_BACKOFF_MAX_RETRIES,
-    initial_delay: float = LLM_BACKOFF_INITIAL_SEC,
-) -> _T:
-    """Exponential backoff for LLM 429 / timeout errors (raises from fn)."""
-    delay = initial_delay
-    for attempt in range(max_retries + 1):
-        try:
-            return await fn()
-        except Exception as exc:
-            if attempt >= max_retries or not is_retryable(exc):
-                raise
-            await asyncio.sleep(delay)
-            delay *= 2
-    raise RuntimeError("unreachable backoff state")
-
-
 def startup_jitter_seconds(
     *,
     jitter_min: float = JITTER_SEC_MIN,
@@ -133,21 +100,6 @@ def startup_jitter_seconds(
 ) -> float:
     r = rng or random
     return r.uniform(jitter_min, jitter_max)
-
-
-def reorder_persona_agents(
-    persona_ids: list[str],
-    persona_agents: dict[str, dict[str, Any]],
-    *,
-    prefix_agents: list[dict[str, Any]] | None = None,
-) -> list[dict[str, Any]]:
-    """Stable agents[] order matching persona_ids (retrieve.json reproducibility)."""
-    ordered: list[dict[str, Any]] = list(prefix_agents or [])
-    for persona_id in persona_ids:
-        agent = persona_agents.get(persona_id)
-        if agent is not None:
-            ordered.append(agent)
-    return ordered
 
 
 def _load_expansion_from_run(run_dir: Path) -> dict[str, Any] | None:
