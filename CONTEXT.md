@@ -63,7 +63,7 @@ _Avoid_: 全量、6 万、电影库
 索引侧电影向量按 `Tagline: {tagline}\nOverview: {overview}`(无 tagline 时 `Overview: {overview}`)编码。查询侧 pseudo-overview **必须套同一模板**(`Overview: {pseudo}`)再 encode,以保证查询与索引同分布。作废 PRD §3.2 的裸拼接公式。
 
 **现实解构 agent (Reality Deconstructor, A0 · P-Extract)**:
-在编剧之前把**英文**新闻做**纯逐字抽取**（who/where/when/why/how/result + role + relations），产出 `reality-deconstructed.json`。**逐字保留原文用词与 source valence**；**不产**中性替代词、hypernym 梯或 persona 框定。共享 **客观扩展 pass（P-Expand）** 另产 hypernym 梯（`reality-expanded.json`）。契约见 `docs/SSOT/reality-deconstruction-contract.md`；决策见 `docs/adr/0005-objective-extraction-neutral-channel-and-collision-vote.md`。
+在编剧之前把**英文**新闻做**纯逐字抽取**（who/where/when/why/how/result + role + relations），产出 `facts.json`。**逐字保留原文用词与 source valence**；**不产**中性替代词、hypernym 梯或 persona 框定。共享 **客观扩展 pass（P-Expand）** 另产 hypernym 梯（`bridges.json`）。契约见 `docs/SSOT/reality-deconstruction-contract.md`；决策见 `docs/adr/0005-objective-extraction-neutral-channel-and-collision-vote.md`。
 _Avoid_: 新闻摘要、骨架综合、skeleton、标签梯、镜头中立（旧 v1 口径）
 
 **客观地板中性 (Objective-floor neutral)**:
@@ -139,5 +139,5 @@ _Avoid_: 单层中性池、A0 内嵌 alternatives
 _Avoid_: 解构 JSON、pseudo
 
 **pseudo命中分 (Pseudo Hit Score)**:
-评测辅助指标:按 `retrieve.json` 的 `hit_sources` 统计每个候选被多少**解构碎片**命中(每 fragment id = 1 分)。由 `scripts/score_eval_candidates.py` 写入 `candidates.md`,并汇总 `output/Eval/<phase-dir>/high-hit-score-review.md`（Phase 3.5.6 对照：`phase3.5/`）。**不替代** 共振分 0/1/2 闸门。
+评测辅助指标:按 `candidates.json` 的 `hit_sources` 统计每个候选被多少**解构碎片**命中(每 fragment id = 1 分)。由 `scripts/score_eval_candidates.py` 写入 `candidates.md`,并汇总 `output/Eval/<phase-dir>/high-hit-score-review.md`（Phase 3.5.6 对照：`phase3.5/`）。**不替代** 共振分 0/1/2 闸门。
 _Avoid_: 共振分、向量相似度
