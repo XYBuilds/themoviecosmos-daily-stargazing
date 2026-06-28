@@ -219,7 +219,7 @@ async def run_pilot(
     )
 
     retrieve_result = retrieve_from_agents(agents_payload["agents"], agents_payload["errors"])
-    (out_dir / "retrieve.json").write_text(
+    (out_dir / "candidates.json").write_text(
         json.dumps(retrieve_result, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )

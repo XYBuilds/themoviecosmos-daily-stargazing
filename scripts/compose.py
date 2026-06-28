@@ -1,6 +1,6 @@
 """compose.py · C1/C2 copywriter (Phase 4).
 
-Stage ``review`` (C1): read a ``retrieve.json`` candidate pool plus news context,
+Stage ``review`` (C1): read a ``candidates.json`` candidate pool plus news context,
 ask the LLM to write one structured Chinese review card per candidate (标题短语 /
 文案 / 电影介绍 / Hashtag / 评分理由中译), and emit a structured JSON for editorial
 review, plus render an Obsidian-readable Markdown review document. The card pairs
@@ -79,7 +79,7 @@ _CARD_FIELD_PREFIXES: dict[str, str] = {
     "评分理由中译:": "rationale_zh",
 }
 
-# Director is not in retrieve.json yet; placeholder until DB backfill lands.
+# Director is not in candidates.json yet; placeholder until DB backfill lands.
 _DIRECTOR_PLACEHOLDER = "待补"
 
 
@@ -157,7 +157,7 @@ def _load_json(path: Path) -> Any:
 
 
 def load_retrieve(path: Path) -> dict[str, Any]:
-    """Load a retrieve.json product; require a ``candidates`` list."""
+    """Load a candidates.json product; require a ``candidates`` list."""
     data = _load_json(path)
     if not isinstance(data, dict):
         raise ValueError("retrieve JSON must be a JSON object")
@@ -886,7 +886,7 @@ def main(argv: list[str] | None = None) -> int:
         "--retrieve-json",
         dest="retrieve_json",
         required=True,
-        help="Path to retrieve.json (consumes candidates[]).",
+        help="Path to candidates.json (consumes candidates[]).",
     )
     parser.add_argument(
         "--news-file",
@@ -901,7 +901,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--run-id",
         dest="run_id",
-        help="Run id for judge keying (default: retrieve.json parent dir name).",
+        help="Run id for judge keying (default: candidates.json parent dir name).",
     )
     parser.add_argument(
         "--min-judge",

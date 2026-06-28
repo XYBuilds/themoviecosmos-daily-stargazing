@@ -2,7 +2,7 @@
 
 把 3.11.7 全批基线的 agents.json（含 search_units dict）喂给重构后的
 retrieve.from_agents_json，逐条对比候选 tmdb_id 集合、search_unit_kind 分解、
-守卫硬失败，与基线 retrieve.json 比对。
+守卫硬失败，与基线 candidates.json 比对。
 
 纯重构（仅删除 channel 诊断字段）下召回是确定性的，候选集应 bit-parity。
 
@@ -66,7 +66,7 @@ def _a1_oracle_ids(payload: dict[str, Any]) -> list[int]:
 
 def _compare_one(news_dir: Path) -> dict[str, Any]:
     agents_path = news_dir / "agents.json"
-    baseline_path = news_dir / "retrieve.json"
+    baseline_path = news_dir / "candidates.json"
 
     replay = from_agents_json(
         agents_path,
@@ -137,7 +137,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--baseline-dir",
         default="output/Eval/phase3.11/full-batch-20260613-3117",
-        help="3.11.7 全批基线目录（含每条新闻 agents.json + retrieve.json）",
+        help="3.11.7 全批基线目录（含每条新闻 agents.json + candidates.json）",
     )
     parser.add_argument("--out", default=None, help="报告 JSON 输出路径")
     args = parser.parse_args(argv)

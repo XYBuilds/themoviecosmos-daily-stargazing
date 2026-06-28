@@ -1,6 +1,6 @@
-"""score_eval_candidates.py · Pseudo hit scores from retrieve.json → high-hit review.
+"""score_eval_candidates.py · Pseudo hit scores from candidates.json → high-hit review.
 
-Builds `high-hit-score-review.md` from each run's `retrieve.json` (and patches
+Builds `high-hit-score-review.md` from each run's `candidates.json` (and patches
 per-run `candidates.md` when present, e.g. phase3.5/3.6). Phase 3.7 batch runs
 do not write per-run candidates.md; the review file is the editor SSOT.
 
@@ -61,7 +61,7 @@ class HitScore:
 
 @dataclass
 class RetrieveDiagnostics:
-    """Candidate-level automatic scoring signals from retrieve.json."""
+    """Candidate-level automatic scoring signals from candidates.json."""
 
     quality_candidate: bool
     objective_hits: int
@@ -408,7 +408,7 @@ def _patch_candidate_block(
 
 
 def _load_candidates_text(run_dir: Path, retrieve_path: Path) -> tuple[str, str]:
-    """Return (markdown body, run_id). Synthesize from retrieve.json if no candidates.md."""
+    """Return (markdown body, run_id). Synthesize from candidates.json if no candidates.md."""
     candidates_path = run_dir / "candidates.md"
     if candidates_path.is_file():
         text = candidates_path.read_text(encoding="utf-8")
@@ -532,7 +532,7 @@ def _ordered_run_dirs(eval_dir: Path, manifest_path: Path | None = None) -> list
     dirs_by_name = {
         p.name: p
         for p in eval_dir.iterdir()
-        if p.is_dir() and (p / "retrieve.json").is_file()
+        if p.is_dir() and (p / "candidates.json").is_file()
     }
     ordered: list[Path] = []
     seen: set[str] = set()
@@ -585,7 +585,7 @@ def _format_high_hit_review(
         "",
         "### Sources",
         "",
-        "- **Primary:** `hit_sources` in each run's `retrieve.json` (fragment arrays).",
+        "- **Primary:** `hit_sources` in each run's `candidates.json` (fragment arrays).",
         "- **Editor fields:** 共振分 / 共振类型 / 打分备注 are placeholders only (not filled by this script).",
         "",
         f"- **Generation date:** {today}",
@@ -635,7 +635,7 @@ def process_eval_dir(
     runs_scanned = 0
 
     for run_dir in _ordered_run_dirs(eval_dir, manifest_path):
-        retrieve_path = run_dir / "retrieve.json"
+        retrieve_path = run_dir / "candidates.json"
         candidates_path = run_dir / "candidates.md"
         if not retrieve_path.is_file():
             missing_retrieve.append(run_dir.name)
@@ -671,7 +671,7 @@ def process_eval_dir(
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Score eval candidates from retrieve.json hit_sources; write high-hit review.",
+        description="Score eval candidates from candidates.json hit_sources; write high-hit review.",
     )
     parser.add_argument(
         "--dir",
@@ -750,7 +750,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"Runs scanned: {runs_scanned}")
     print(f"Candidates with pseudo命中分合计 >= {args.min_score}: {len(all_high)}")
     if missing:
-        print(f"Missing retrieve.json: {', '.join(missing)}")
+        print(f"Missing candidates.json: {', '.join(missing)}")
     print("Top 5 by score:")
     for c in all_high[:5]:
         print(f"  {c.total_score:3d}  {c.run_id}  {c.tmdb_id}  {c.title}")

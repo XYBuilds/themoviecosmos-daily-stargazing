@@ -33,9 +33,9 @@ PHASE38 = repo_root() / "output" / "Eval" / "phase3.8"
 def _run_complete(run_id: str) -> bool:
     d = phase38_run_dir(run_id)
     return (
-        (d / "retrieve.json").is_file()
+        (d / "candidates.json").is_file()
         and (d / "retrieve-a1.json").is_file()
-        and (d / "reality-deconstructed.json").is_file()
+        and (d / "facts.json").is_file()
     )
 
 

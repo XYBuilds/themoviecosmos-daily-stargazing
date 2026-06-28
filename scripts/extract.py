@@ -1,7 +1,7 @@
 """extract.py · Reality deconstruction agent (A0).
 
 News JSON → LLM (MiMo 2.5 Pro by default) → validate contract JSON →
-write reality-deconstructed.json + reality-deconstructed.md.
+write facts.json + facts.md.
 
 Invalid JSON or validation issues are recorded in ``errors``; MVP does not
 hard-fail the process (exit 0 when the CLI ran, unless news input is invalid).
@@ -482,8 +482,8 @@ def write_outputs(
     run_id: str | None = None,
 ) -> tuple[Path, Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
-    json_path = out_dir / "reality-deconstructed.json"
-    md_path = out_dir / "reality-deconstructed.md"
+    json_path = out_dir / "facts.json"
+    md_path = out_dir / "facts.md"
 
     json_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
@@ -504,7 +504,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--out-dir",
-        help="Directory for reality-deconstructed.json and .md (default: output/deconstruct/<run-id>).",
+        help="Directory for facts.json and .md (default: output/deconstruct/<run-id>).",
     )
     parser.add_argument(
         "--run-id",

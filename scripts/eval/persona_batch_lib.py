@@ -68,7 +68,7 @@ def reorder_persona_agents(
     *,
     prefix_agents: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
-    """Stable agents[] order matching persona_ids (retrieve.json reproducibility)."""
+    """Stable agents[] order matching persona_ids (candidates.json reproducibility)."""
     ordered: list[dict[str, Any]] = list(prefix_agents or [])
     for persona_id in persona_ids:
         agent = persona_agents.get(persona_id)

@@ -1123,7 +1123,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--deconstruction-file",
         required=True,
-        help="Path to reality-deconstructed.json.",
+        help="Path to facts.json.",
     )
     parser.add_argument(
         "--persona-id",
