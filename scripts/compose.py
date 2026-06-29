@@ -42,6 +42,7 @@ from openai import OpenAI
 from scripts.lib.env import default_llm_provider, load_env
 from scripts.lib.llm import get_llm_client
 from scripts.lib.paths import repo_root
+from scripts.movie_metadata import get_movie_detail_by_tmdb_id
 
 _MODEL_ENV: dict[str, str] = {
     "mimo": "MIMO_MODEL",
@@ -66,21 +67,38 @@ _DIMENSION_LABELS: dict[str, str] = {
 _TITLE_LINE_RE = re.compile(r"^\s*《(?P<title>.+?)》\s*[（(]\s*(?P<year>\d{3,4})\s*[)）]")
 
 _SYSTEM_MESSAGE = (
-    "你是「每日星轨观测」的随刊评论员。严格按用户消息中的契约输出中文结构化审核卡，"
-    "每部候选电影一块，块首标注《片名》(年份)，块内按固定字段前缀逐行输出。不要前言后语。"
+    "你是「每日星轨观测」的编辑助理。严格按用户消息中的契约输出选片决策卡，"
+    "每部候选电影一块，块首标注《片名》(年份)，块内只保留 judge 投影与双语直译字段。"
+    "不要输出标题、读者文案、电影介绍、Hashtag 或任何发布稿内容。"
 )
 
-# Fixed field prefixes the LLM emits inside each review card (DSL contract).
+# Fixed field prefixes the LLM emits inside each decision card (DSL contract).
 _CARD_FIELD_PREFIXES: dict[str, str] = {
-    "标题:": "headline",
-    "文案:": "copy_text",
-    "电影介绍:": "intro",
-    "Hashtag:": "hashtags",
-    "评分理由中译:": "rationale_zh",
+    "judge_score:": "judge_score_text",
+    "resonance_type:": "resonance_type_text",
+    "causal_test_en:": "causal_test_en_text",
+    "causal_test_zh:": "causal_test_zh",
+    "rationale_en:": "rationale_en_text",
+    "rationale_zh:": "rationale_zh",
 }
 
-# Director is not in candidates.json yet; placeholder until DB backfill lands.
-_DIRECTOR_PLACEHOLDER = "待补"
+_DB_PROJECTION_FIELDS: tuple[str, ...] = (
+    "id",
+    "title",
+    "original_title",
+    "overview",
+    "genres",
+    "release_date",
+    "runtime",
+    "director",
+    "cast",
+    "writers",
+    "vote_average",
+    "vote_count",
+    "popularity",
+    "imdb_rating",
+    "imdb_votes",
+)
 
 
 @dataclass
@@ -95,13 +113,11 @@ class JudgeEntry:
 
 @dataclass
 class ReviewCopy:
-    """One C1 structured review card mapped back to its candidate.
+    """One editor-facing decision card mapped back to its candidate.
 
-    Fields split into three provenances:
-    - candidate data (overview/genres/movie_url) — TMDB facts, never LLM-authored;
-    - judge data (score + EN rationale) — screening evidence, never LLM-authored;
-    - LLM-authored card fields (headline/copy_text/intro/hashtags/rationale_zh).
-    ``director`` is a placeholder until a DB lookup backfills it.
+    The card is intentionally non-creative: movie facts come from DB projection,
+    judge evidence comes from the thinking judge, and the LLM only provides faithful
+    Chinese translations for the English judge fields.
     """
 
     tmdb_id: int | str
@@ -109,19 +125,15 @@ class ReviewCopy:
     year: int | None
     triggered_by: list[str]
     center_dimensions: list[str]
-    overview: str = ""
-    genres: str = ""
-    director: str = _DIRECTOR_PLACEHOLDER
+    db_projection: dict[str, Any] = field(default_factory=dict)
     movie_url: str = ""
+    news_url: str = ""
     judge_score: int | None = None
     judge_rationale_en: str = ""
     judge_causal_test_en: str = ""
     judge_resonance_type: str = ""
-    headline: str = ""
-    copy_text: str = ""
-    intro: str = ""
-    hashtags: str = ""
-    rationale_zh: str = ""
+    judge_rationale_zh: str = ""
+    judge_causal_test_zh: str = ""
 
 
 @dataclass
@@ -182,6 +194,13 @@ def load_news(path: Path | None, retrieve: dict[str, Any]) -> dict[str, str]:
     return {
         "title": str(data.get("title", "") or "").strip(),
         "description": str(data.get("description", "") or "").strip(),
+        "url": str(
+            data.get("url")
+            or data.get("source_url")
+            or data.get("link")
+            or data.get("article_url")
+            or ""
+        ).strip(),
     }
 
 
@@ -286,6 +305,48 @@ def _candidate_year(candidate: dict[str, Any]) -> int | None:
     return None
 
 
+def _detail_year(detail: dict[str, Any]) -> int | None:
+    raw = detail.get("release_date")
+    text = str(raw or "").strip()
+    if len(text) >= 4 and text[:4].isdigit():
+        return int(text[:4])
+    return None
+
+
+def _db_projection_for_candidate(candidate: dict[str, Any]) -> dict[str, Any]:
+    detail = get_movie_detail_by_tmdb_id(candidate.get("tmdb_id")) or {}
+    projection = {
+        key: detail.get(key)
+        for key in _DB_PROJECTION_FIELDS
+        if key in detail and detail.get(key) not in (None, "")
+    }
+    if "overview" not in projection and candidate.get("overview"):
+        projection["overview"] = candidate.get("overview")
+    if "genres" not in projection and candidate.get("genres"):
+        projection["genres"] = candidate.get("genres")
+    if "title" not in projection and candidate.get("title"):
+        projection["title"] = candidate.get("title")
+    if "release_date" not in projection and _candidate_year(candidate) is not None:
+        projection["release_year"] = _candidate_year(candidate)
+    return projection
+
+
+def _format_db_projection(projection: dict[str, Any]) -> str:
+    if not projection:
+        return "（无 DB 明细）"
+    lines: list[str] = []
+    for key in _DB_PROJECTION_FIELDS:
+        if key not in projection:
+            continue
+        value = projection[key]
+        if value is None or str(value).strip() == "":
+            continue
+        lines.append(f"     - {key}: {value}")
+    if "release_year" in projection:
+        lines.append(f"     - release_year: {projection['release_year']}")
+    return "\n".join(lines) if lines else "（无 DB 明细）"
+
+
 def format_candidates_block(
     candidates: list[dict[str, Any]],
     judge_index: dict[tuple[str, str], "JudgeEntry"] | None = None,
@@ -301,28 +362,33 @@ def format_candidates_block(
     lines: list[str] = []
     for idx, cand in enumerate(candidates, start=1):
         title = str(cand.get("title", "") or "").strip()
-        year = _candidate_year(cand)
+        detail_projection = _db_projection_for_candidate(cand)
+        year = _detail_year(detail_projection) or _candidate_year(cand)
         year_str = str(year) if year is not None else "—"
-        overview = _truncate_overview(str(cand.get("overview", "") or ""))
-        genres = str(cand.get("genres", "") or "").strip()
         triggered = [str(p) for p in cand.get("triggered_by") or [] if str(p).strip()]
         dims = _dimension_phrase(_candidate_center_dimensions(cand))
         movie_url = str(cand.get("movie_url", "") or "").strip()
         judge = _lookup_judge(judge_index, run_id, cand.get("tmdb_id"))
 
         lines.append(f"{idx}. 《{title}》({year_str})")
-        if overview:
-            lines.append(f"   - overview: {overview}")
-        if genres:
-            lines.append(f"   - genres: {genres}")
+        lines.append("   - DB 投影（照事实使用，不要改写）:")
+        lines.append(_format_db_projection(detail_projection))
         lines.append(f"   - 被这些视角击中: {_persona_phrase(triggered)}")
         if dims:
             lines.append(f"   - 切面（可选参考，非强制聚焦）: {dims}")
         if movie_url:
-            lines.append(f"   - 链接: {movie_url}")
-        rationale_en = _judge_rationale_en(judge)
-        if rationale_en:
-            lines.append(f"   - judge 英文评分理由（请翻译为中文）: {rationale_en}")
+            lines.append(f"   - 电影链接: {movie_url}")
+        if judge is not None:
+            score = "" if judge.score is None else str(judge.score)
+            lines.append(f"   - judge_score: {score}")
+            lines.append(f"   - resonance_type: {judge.resonance_type or '（无）'}")
+            lines.append(f"   - causal_test_en: {judge.causal_test or '（无）'}")
+            lines.append(f"   - rationale_en: {judge.rationale or '（无）'}")
+        else:
+            lines.append("   - judge_score: （无）")
+            lines.append("   - resonance_type: （无）")
+            lines.append("   - causal_test_en: （无）")
+            lines.append("   - rationale_en: （无）")
         lines.append("")
     return "\n".join(lines).rstrip()
 
@@ -335,6 +401,9 @@ def build_news_context(news: dict[str, str], persona_semantic: str) -> str:
         parts.append(f"标题: {title}")
     if description:
         parts.append(f"摘要: {description}")
+    url = news.get("url", "").strip()
+    if url:
+        parts.append(f"原文链接: {url}")
     if persona_semantic:
         parts.append(f"代表性视角片段（persona-semantic）: {persona_semantic}")
     return "\n".join(parts).strip()
@@ -469,6 +538,7 @@ def assemble_review_copies(
     pairs: list[tuple[dict[str, Any], str]],
     judge_index: dict[tuple[str, str], "JudgeEntry"],
     run_id: str,
+    news_url: str = "",
 ) -> list[ReviewCopy]:
     copies: list[ReviewCopy] = []
     for cand, text in pairs:
@@ -477,28 +547,25 @@ def assemble_review_copies(
         tmdb_id = cand.get("tmdb_id")
         judge = _lookup_judge(judge_index, run_id, tmdb_id)
         card = parse_card_fields(text)
+        db_projection = _db_projection_for_candidate(cand)
         copies.append(
             ReviewCopy(
                 tmdb_id=tmdb_id,
                 title=str(cand.get("title", "") or ""),
-                year=_candidate_year(cand),
+                year=_detail_year(db_projection) or _candidate_year(cand),
                 triggered_by=[
                     str(p) for p in cand.get("triggered_by") or [] if str(p).strip()
                 ],
                 center_dimensions=_candidate_center_dimensions(cand),
-                overview=str(cand.get("overview", "") or "").strip(),
-                genres=str(cand.get("genres", "") or "").strip(),
-                director=_DIRECTOR_PLACEHOLDER,
+                db_projection=db_projection,
                 movie_url=str(cand.get("movie_url", "") or ""),
+                news_url=news_url,
                 judge_score=judge.score if judge else None,
                 judge_rationale_en=judge.rationale if judge else "",
                 judge_causal_test_en=judge.causal_test if judge else "",
                 judge_resonance_type=judge.resonance_type if judge else "",
-                headline=card.get("headline", ""),
-                copy_text=card.get("copy_text", ""),
-                intro=card.get("intro", ""),
-                hashtags=card.get("hashtags", ""),
-                rationale_zh=card.get("rationale_zh", ""),
+                judge_rationale_zh=card.get("rationale_zh", ""),
+                judge_causal_test_zh=card.get("causal_test_zh", ""),
             )
         )
     return copies
@@ -568,7 +635,7 @@ def run_review(
     news: dict[str, str],
     *,
     provider: str | None = None,
-    judge_index: dict[tuple[str, str], int] | None = None,
+    judge_index: dict[tuple[str, str], JudgeEntry] | None = None,
     run_id: str = "",
     min_judge: int | None = None,
     prompts_dir: Path | None = None,
@@ -630,7 +697,12 @@ def run_review(
 
     blocks = split_into_paragraphs(raw)
     pairs, map_errors = map_paragraphs_to_candidates(blocks, candidates)
-    copies = assemble_review_copies(pairs, judge_index, run_id)
+    copies = assemble_review_copies(
+        pairs,
+        judge_index,
+        run_id,
+        news_url=str(news.get("url", "") or "").strip(),
+    )
     return ReviewResult(
         review_copies=copies,
         errors=map_errors,
@@ -646,22 +718,20 @@ def review_copy_to_dict(copy: ReviewCopy) -> dict[str, Any]:
         "year": copy.year,
         "triggered_by": copy.triggered_by,
         "center_dimensions": copy.center_dimensions,
-        "overview": copy.overview,
-        "genres": copy.genres,
-        "director": copy.director,
+        "db_projection": copy.db_projection,
         "movie_url": copy.movie_url,
+        "news_url": copy.news_url,
         "judge": {
             "score": copy.judge_score,
             "resonance_type": copy.judge_resonance_type,
-            "rationale_en": copy.judge_rationale_en,
-            "causal_test_en": copy.judge_causal_test_en,
-            "rationale_zh": copy.rationale_zh,
-        },
-        "card": {
-            "headline": copy.headline,
-            "copy_text": copy.copy_text,
-            "intro": copy.intro,
-            "hashtags": copy.hashtags,
+            "causal_test": {
+                "en": copy.judge_causal_test_en,
+                "zh": copy.judge_causal_test_zh,
+            },
+            "rationale": {
+                "en": copy.judge_rationale_en,
+                "zh": copy.judge_rationale_zh,
+            },
         },
     }
 
@@ -681,51 +751,39 @@ def result_to_payload(result: ReviewResult) -> dict[str, Any]:
 
 
 def render_review_copy_block(copy: ReviewCopy) -> str:
-    """Render one structured review card into Obsidian-readable Markdown.
-
-    Layout mirrors the upgraded template: a 片名 | 标题短语 heading, the C1
-    copy/quote, the 电影信息 line (导演占位「待补」｜年份｜genres), the movie's
-    original overview, the C1 movie intro, the judge's rationale in both English
-    (data原文) and Chinese (C1 译文), Hashtag, the link, and a manual selection
-    checkbox the editor never sees pre-checked.
-    """
+    """Render one non-creative decision card into Obsidian-readable Markdown."""
     year_str = str(copy.year) if copy.year is not None else "—"
-    headline = copy.headline.strip()
-    heading = f"### 《{copy.title}》({year_str})"
-    if headline:
-        heading += f" | {headline}"
-    lines = [heading]
+    lines = [f"### 《{copy.title}》({year_str})"]
 
-    copy_text = copy.copy_text.strip() or "（本候选无文案）"
-    lines.append(f"- 文案:\n\n> {copy_text}")
+    if copy.db_projection:
+        lines.append("- DB 投影:")
+        for key in _DB_PROJECTION_FIELDS:
+            value = copy.db_projection.get(key)
+            if value is not None and str(value).strip():
+                lines.append(f"  - {key}: {value}")
+        if copy.db_projection.get("release_year") is not None:
+            lines.append(f"  - release_year: {copy.db_projection['release_year']}")
 
-    genres = copy.genres.strip() or "—"
-    lines.append(f"- 电影信息: {copy.director} | {year_str} | {genres}")
-
-    if copy.overview.strip():
-        lines.append(f"- 电影原 overview: {copy.overview.strip()}")
-    if copy.intro.strip():
-        lines.append(f"- 电影介绍（C1）:\n\n{copy.intro.strip()}")
-
+    if copy.triggered_by:
+        lines.append(f"- 触发视角: {', '.join(copy.triggered_by)}")
+    if copy.center_dimensions:
+        lines.append(f"- 切面（可选参考）: {', '.join(copy.center_dimensions)}")
     if copy.judge_score is not None:
         lines.append(f"- judge_score（screening-only）: {copy.judge_score}")
     if copy.judge_resonance_type.strip():
-        lines.append(f"- 共振类型: {copy.judge_resonance_type.strip()}")
-    rationale_en = _judge_rationale_en(
-        JudgeEntry(
-            rationale=copy.judge_rationale_en,
-            causal_test=copy.judge_causal_test_en,
-        )
-    )
-    if rationale_en:
-        lines.append(f"- 评分理由（EN 原文）: {rationale_en}")
-    if copy.rationale_zh.strip():
-        lines.append(f"- 评分理由（中译）: {copy.rationale_zh.strip()}")
-
-    if copy.hashtags.strip():
-        lines.append(f"- Hashtag: {copy.hashtags.strip()}")
+        lines.append(f"- resonance_type: {copy.judge_resonance_type.strip()}")
+    if copy.judge_causal_test_en.strip():
+        lines.append(f"- causal_test EN: {copy.judge_causal_test_en.strip()}")
+    if copy.judge_causal_test_zh.strip():
+        lines.append(f"- causal_test ZH: {copy.judge_causal_test_zh.strip()}")
+    if copy.judge_rationale_en.strip():
+        lines.append(f"- rationale EN: {copy.judge_rationale_en.strip()}")
+    if copy.judge_rationale_zh.strip():
+        lines.append(f"- rationale ZH: {copy.judge_rationale_zh.strip()}")
+    if copy.news_url:
+        lines.append(f"- 新闻原文链接: {copy.news_url}")
     if copy.movie_url:
-        lines.append(f"- 链接: {copy.movie_url}")
+        lines.append(f"- 电影链接: {copy.movie_url}")
     lines.append("- [ ] ✅ 选用")
     return "\n".join(lines)
 
@@ -742,7 +800,7 @@ def result_to_markdown(
     each candidate group against the source event.
     """
     news = news or {}
-    header: list[str] = ["# 审核稿候选（C1 · 待总编肉眼审核）"]
+    header: list[str] = ["# 选片决策卡（Decision Card · 待总编肉眼审核）"]
     title = str(news.get("title", "") or "").strip()
     description = str(news.get("description", "") or "").strip()
     if title:
@@ -874,7 +932,7 @@ def _run_review_cli(args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Copywriter: C1 Chinese review drafts (Phase 4 MVP).",
+        description="Compose: editor-facing decision cards (Phase 4 4.3-fix).",
     )
     parser.add_argument(
         "--stage",

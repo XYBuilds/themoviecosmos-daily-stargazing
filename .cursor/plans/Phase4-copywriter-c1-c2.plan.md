@@ -19,7 +19,7 @@ todos:
     status: complete
   - id: f4a1b2c3-0001-4000-8004-000000000012
     content: "4.3-fix.2 · [整改] 选片决策卡（原 review）重构：judge 投影 + DB 投影 + 极轻双语翻译（causal_test/rationale 原文 EN + 译文 ZH 并列、逐句忠实禁润色），移除标题/读者文案/Hashtag（ADR-0012 D1/D2）"
-    status: todo
+    status: complete
   - id: f4a1b2c3-0001-4000-8004-000000000013
     content: "4.3-fix.3 · [整改] 发布稿（原 publish）重构为唯一创作环节：电影介绍（热度 vs 质量，真实数字支撑）为主体 + 共振钩子；输入=选定片 + DB 全列 + judge 内核 + 新闻语境；暂不分平台；director 等可选透传（ADR-0012 D1）"
     status: todo
