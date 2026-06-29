@@ -22,7 +22,7 @@ todos:
     status: complete
   - id: f4a1b2c3-0001-4000-8004-000000000013
     content: "4.3-fix.3 · [整改] 发布稿（原 publish）重构为唯一创作环节：电影介绍（热度 vs 质量，真实数字支撑）为主体 + 共振钩子；输入=选定片 + DB 全列 + judge 内核 + 新闻语境；暂不分平台；director 等可选透传（ADR-0012 D1）"
-    status: todo
+    status: complete
   - id: f4a1b2c3-0001-4000-8004-000000000014
     content: "4.3-fix.4 · [MVP GATE · 重做] 整改后用一条真实新闻重跑 retrieve→决策卡→发布稿，总编确认产出格式/内容 OK [需人工验收 · Go/No-Go]（依赖 4.3-fix.1/2/3）"
     status: todo
