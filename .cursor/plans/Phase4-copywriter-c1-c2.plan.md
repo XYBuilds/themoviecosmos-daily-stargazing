@@ -10,7 +10,22 @@ todos:
     status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000003
     content: 4.3 · [MVP GATE] 用一条真实新闻跑通 retrieve→C1，总编在 Obsidian 确认审核稿文本质量 OK → 决定是否解封平台定稿 [需人工验收 · Go/No-Go]（依赖 4.2）
-    status: pending
+    status: complete
+  - id: f4a1b2c3-0001-4000-8004-000000000010
+    content: "4.3-fix · [No-Go 整改] 4.3 判定 No-Go：审核稿产出格式/内容不达标（双受众焊死/数据流回溯/N 部浪费）。按 ADR-0012 整改后重做 4.3。本节点为整改循环锚点（依赖 4.3 No-Go 结论）"
+    status: in_progress
+  - id: f4a1b2c3-0001-4000-8004-000000000011
+    content: "4.3-fix.1 · [基建·前置] DB 数据回填：保持 meta.parquet 检索路径精简，新增 by-id 全列 lookup 通路（cleaned.csv 28 列经 tmdb_id 可查），给下游稳定取字段接口。验收：任取 tmdb_id 得全 28 列 + 检索无 regression（ADR-0012 D3）"
+    status: todo
+  - id: f4a1b2c3-0001-4000-8004-000000000012
+    content: "4.3-fix.2 · [整改] 选片决策卡（原 review）重构：judge 投影 + DB 投影 + 极轻双语翻译（causal_test/rationale 原文 EN + 译文 ZH 并列、逐句忠实禁润色），移除标题/读者文案/Hashtag（ADR-0012 D1/D2）"
+    status: todo
+  - id: f4a1b2c3-0001-4000-8004-000000000013
+    content: "4.3-fix.3 · [整改] 发布稿（原 publish）重构为唯一创作环节：电影介绍（热度 vs 质量，真实数字支撑）为主体 + 共振钩子；输入=选定片 + DB 全列 + judge 内核 + 新闻语境；暂不分平台；director 等可选透传（ADR-0012 D1）"
+    status: todo
+  - id: f4a1b2c3-0001-4000-8004-000000000014
+    content: "4.3-fix.4 · [MVP GATE · 重做] 整改后用一条真实新闻重跑 retrieve→决策卡→发布稿，总编确认产出格式/内容 OK [需人工验收 · Go/No-Go]（依赖 4.3-fix.1/2/3）"
+    status: todo
   - id: f4a1b2c3-0001-4000-8004-000000000004
     content: 4.4 · [Stage1] 评估各平台实现难度 + 平台 profile 抽象，选最简单平台（倾向 discord）作首发目标，落配置 + 文档（依赖 4.3 Go）
     status: pending
@@ -68,7 +83,11 @@ flowchart TD
   P2["Phase 2 retrieve"]
   T41["4.1 C1 审核稿 (MVP)"]
   T42["4.2 落 Obsidian (MVP)"]
-  T43["4.3 MVP GATE Go/No-Go"]
+  T43["4.3 MVP GATE → No-Go"]
+  F1["4.3-fix.1 DB 全列 lookup (基建)"]
+  F2["4.3-fix.2 决策卡重构 (投影+双语)"]
+  F3["4.3-fix.3 发布稿重构 (唯一创作)"]
+  F4["4.3-fix.4 重做 GATE Go/No-Go"]
   T44["4.4 平台难度评估 + profile (Stage1)"]
   T45["4.5 首发平台定稿 (Stage1)"]
   T46["4.6 增量扩展其余平台 (Stage1)"]
@@ -80,12 +99,14 @@ flowchart TD
   P2 --> T41
   T41 --> T42
   T42 --> T43
-  T43 -->|Go| T44
-  T43 -->|No-Go| Fix["回 4.1 收紧审核稿文案质量"]
+  T43 -->|No-Go 整改 ADR-0012| F1
+  F1 --> F2 --> F3 --> F4
+  F4 -->|Go| T44
+  F4 -->|No-Go| F2
   T44 --> T45 --> T46 --> T47 --> NS
 ```
 
-> **Stage 边界即解封 gate**：`4.3` 不通过，平台定稿一律不启动；这是「先验证文本、再谈平台」纪律的硬约束点。
+> **Stage 边界即解封 gate**：`4.3` 判 No-Go，进入 **4.3-fix 整改循环**（ADR-0012）；整改后由 `4.3-fix.4` 重做 GATE，**未 Go 一律不启动 Stage 1**。这是「先验证文本、再谈平台」纪律的硬约束点。
 
 ## Scope
 
@@ -239,25 +260,90 @@ python scripts/copywriter.py --stage review --retrieve-json output/phase2_retrie
 
 ## Todo 4.3 · [MVP GATE] 真实新闻审核稿验证 [需人工验收 · Go/No-Go]
 
-> **【冻结中 · 2026-06】**
+> **【结论：No-Go · 2026-06】**
 >
-> 总编选择在**命名收敛重构之后**再做 4.3 的 Go/No-Go 决策。本节点保持 `pending` 属规则内正常状态（人工 GATE 未触发即未推进），**不是阻塞或遗漏**。
+> 总编判定 4.3 **No-Go**：当前审核稿产出的**格式与内容不达标**——根因是 `compose --stage review` 把「面向总编的决策材料」与「面向读者的内容初稿」焊在同一 prompt（双受众），叠加「内核数据流回溯」「为 N 部候选写读者文案最终只用 1 部」三重结构问题。详见 [ADR-0012](../../docs/adr/0012-compose-responsibility-split-and-db-fullcolumn-lookup.md)。
 >
-> - 命名收敛重构期间**不推进 Stage 1**（4.4 及之后一律不启动）。
-> - 4.1（C1 审核稿）+ 4.2（落 Obsidian）的实现代码已合并入 `main`（PR #74）。
-> - **回归基准位置**：`docs/temp/golden/`（已在干净 main 基线 commit `d474943` 上跑出 copywriter `review` golden 快照：`copy_review.golden.json` + `copy_review.golden.md`，并留档输入文件与比对口径 `README.md`）。重构后用同一输入重跑，按 README 的比对口径校验回归。
+> - No-Go 不回退已合并代码（4.1/4.2 实现仍在 `main`，PR #74）；整改在 **4.3-fix 循环**内进行，仍属 Phase 4，不违反顺序执行。
+> - 整改完成后由 **4.3-fix.4** 重做本 GATE 的 Go/No-Go。
+> - **整改期间不推进 Stage 1**（4.4 及之后一律不启动），直到 4.3-fix.4 Go。
+> - **回归基准位置**：`docs/temp/golden/`（干净 main 基线 commit `d474943` 上的 `review` golden 快照）。整改后用同一输入重跑，按 README 比对口径校验回归。
 
 **依赖：** **4.2**
 
+- （原始 GATE 已执行并得出 No-Go 结论，下列为当时的验收口径，保留备查。）
 - 用**一条真实新闻**跑通 `agents → retrieve → C1`，把审核稿候选块落到 Obsidian。
-- 总编在 Obsidian 肉眼审：审核稿文本**读起来对不对**（共振点准不准、有无剧透腔/影评腔、是否需要收紧 C1 措辞）。
-- **此 gate 只看文本质量，不涉及任何平台/定稿。**
+- 总编在 Obsidian 肉眼审：审核稿文本**读起来对不对**。
 
 ### 验收
 
-- [ ] 全链无致命错误，审核稿候选块在 Obsidian 可读
-- [ ] 总编确认审核稿文本质量 OK
-- [ ] `[需人工验收 · Go/No-Go]`：approve → 解封 Stage 1（4.4，开始评估平台）；No-Go → 回 4.1 收紧 C1 措辞，不进平台阶段
+- [x] 全链无致命错误，审核稿候选块在 Obsidian 可读
+- [ ] ~~总编确认审核稿文本质量 OK~~ → **No-Go**：格式/内容不达标，转 4.3-fix 整改
+- [x] `[需人工验收 · Go/No-Go]`：**No-Go** → 进入 4.3-fix 整改循环（按 ADR-0012），整改后由 4.3-fix.4 重做 GATE
+
+---
+
+# Stage 0.5 · 4.3 No-Go 整改循环（ADR-0012 · 先于 Stage 1）
+
+> 目标：按 [ADR-0012](../../docs/adr/0012-compose-responsibility-split-and-db-fullcolumn-lookup.md) 把 `compose` 的职责按「投影 vs 创作」重切，并打通 DB 全列 lookup，再重做 4.3 GATE。**本循环全程不启动 Stage 1。**
+
+## Todo 4.3-fix.1 · [基建·前置] DB 数据回填（by-id 全列 lookup）
+
+**依赖：** 4.3 No-Go 结论
+
+- 区分两条通路（ADR-0012 D3）：
+  - **通路 A**：`meta.parquet` 保持检索精简（`META_COLUMNS` 维持现状或仅按需微调展示列），不进多余列。
+  - **通路 B**（新增）：按 `tmdb_id` 点查的全列明细 lookup —— `cleaned.csv` 全 28 列经此可得，不进检索热路径。
+- 给下游（决策卡 / 发布稿）一个稳定的「按 tmdb_id 取字段」接口。
+- **不在本 TODO 决定**决策卡/发布稿具体用哪些列（那是下游 prompt 设计，解耦）。
+
+### 验收
+
+- [ ] 任取一个 `tmdb_id` 能拿到全部 28 列
+- [ ] 检索路径（retrieve）无 regression（对 `docs/temp/golden/` 重跑比对）
+- [ ] 通路 A 元数据未被无谓撑大
+
+## Todo 4.3-fix.2 · [整改] 选片决策卡重构（投影 + 极轻双语翻译）
+
+**依赖：** 4.3-fix.1
+
+- 决策卡**不创作**：移除标题 / 读者文案 / Hashtag（全部转入发布稿）。
+- 字段 = judge 投影（`judge_score` / `resonance_type` / `causal_test` / `rationale`）+ DB 投影（overview/title/year…经通路 B）+ 新闻原文链接。
+- 翻译（ADR-0012 D2）：`causal_test` / `rationale` **原文 EN + 译文 ZH 成对并列**，逐句忠实、禁止润色加工。
+
+### 验收
+
+- [ ] 决策卡不含任何读者级创作内容（标题/文案/Hashtag）
+- [ ] judge 内核字段齐全；causal_test/rationale 双语并列
+- [ ] 翻译为忠实直译，可对照原文兜底
+
+## Todo 4.3-fix.3 · [整改] 发布稿重构（唯一创作环节）
+
+**依赖：** 4.3-fix.2
+
+- 发布稿是**唯一创作环节**，只对**选定的 1 部**精写。
+- 主体 = 电影介绍（热度 vs 质量，由通路 B 的真实评分/热度数字支撑，而非 LLM 臆测）+ 共振钩子（消费 judge 的 `resonance_type` / `causal_test`）。
+- 输入 = 选定片 + DB 全列（通路 B）+ judge 内核 + 新闻语境；**暂不分平台**。
+- `director` 等字段**可选透传**（有则用、无则省略该句），不被回填进度阻塞。
+
+### 验收
+
+- [ ] 发布稿以「电影介绍（热度 vs 质量）」为主体，数字有 DB 来源
+- [ ] 共振钩子来自 judge 内核，不重新逆向考古
+- [ ] 单平台产出；无平台变体；director 可选透传不报错
+
+## Todo 4.3-fix.4 · [MVP GATE · 重做] 整改后重做 Go/No-Go [需人工验收]
+
+**依赖：** 4.3-fix.1 / 4.3-fix.2 / 4.3-fix.3
+
+- 用一条真实新闻重跑 `retrieve → 决策卡 → 发布稿`，落 Obsidian。
+- 总编确认**产出格式与内容**达标（决策卡可判断、发布稿可发布）。
+
+### 验收
+
+- [ ] 全链无致命错误，决策卡 + 发布稿在 Obsidian 可读
+- [ ] 总编确认格式/内容 OK
+- [ ] `[需人工验收 · Go/No-Go]`：Go → 解封 Stage 1（4.4）；No-Go → 回 4.3-fix.2/4.3-fix.3 继续整改
 
 ---
 
