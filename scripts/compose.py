@@ -50,6 +50,7 @@ _MODEL_ENV: dict[str, str] = {
 }
 
 _C1_PROMPT_REL = "prompts/compose_review.md"
+_C2_PROMPT_REL = "prompts/compose_publish.md"
 
 _OVERVIEW_MAX_CHARS = 240
 
@@ -347,6 +348,60 @@ def _format_db_projection(projection: dict[str, Any]) -> str:
     return "\n".join(lines) if lines else "（无 DB 明细）"
 
 
+def format_selected_movie_block(candidate: dict[str, Any]) -> str:
+    projection = _db_projection_for_candidate(candidate)
+    title = str(projection.get("title") or candidate.get("title") or "").strip()
+    year = _detail_year(projection) or _candidate_year(candidate)
+    year_str = str(year) if year is not None else "—"
+    tmdb_id = candidate.get("tmdb_id") or projection.get("id") or ""
+    movie_url = str(candidate.get("movie_url") or "").strip()
+    lines = [f"《{title}》({year_str}) — tmdb_id: {tmdb_id}", "DB 字段:"]
+    lines.append(_format_db_projection(projection))
+    if movie_url:
+        lines.append(f"电影链接: {movie_url}")
+    return "\n".join(lines)
+
+
+def format_judge_kernel(judge: JudgeEntry | None) -> str:
+    if judge is None:
+        return "（无 judge 内核）"
+    score = "" if judge.score is None else str(judge.score)
+    return "\n".join(
+        [
+            f"judge_score: {score or '（无）'}",
+            f"resonance_type: {judge.resonance_type or '（无）'}",
+            f"causal_test: {judge.causal_test or '（无）'}",
+            f"rationale: {judge.rationale or '（无）'}",
+        ]
+    )
+
+
+def run_publish(
+    candidate: dict[str, Any],
+    news: dict[str, str],
+    *,
+    provider: str | None = None,
+    judge: JudgeEntry | None = None,
+    prompts_dir: Path | None = None,
+    llm_call: Any = None,
+) -> str:
+    """Single-movie publish draft: the only creative compose step."""
+    template = load_c2_template(prompts_dir)
+    news_context = build_news_context(news, "")
+    selected_movie = format_selected_movie_block(candidate)
+    judge_kernel = format_judge_kernel(judge)
+    prompt = render_c2_prompt(template, news_context, selected_movie, judge_kernel)
+
+    if llm_call is not None:
+        return str(llm_call(prompt) or "").strip()
+
+    load_env()
+    resolved = _resolve_provider(provider)
+    client = get_llm_client(resolved)
+    model = _model_name(resolved)
+    return _sync_llm_call(client, model, prompt)
+
+
 def format_candidates_block(
     candidates: list[dict[str, Any]],
     judge_index: dict[tuple[str, str], "JudgeEntry"] | None = None,
@@ -417,6 +472,28 @@ def load_c1_template(prompts_dir: Path | None = None) -> str:
     if not path.is_file():
         raise FileNotFoundError(f"C1 prompt not found: {path}")
     return path.read_text(encoding="utf-8")
+
+
+def load_c2_template(prompts_dir: Path | None = None) -> str:
+    base = prompts_dir or (repo_root() / "prompts")
+    path = base / "compose_publish.md"
+    if not path.is_file():
+        path = repo_root() / _C2_PROMPT_REL
+    if not path.is_file():
+        raise FileNotFoundError(f"C2 prompt not found: {path}")
+    return path.read_text(encoding="utf-8")
+
+
+def render_c2_prompt(
+    template: str,
+    news_context: str,
+    selected_movie: str,
+    judge_kernel: str,
+) -> str:
+    rendered = template.replace("{{news_context}}", news_context or "（无新闻语境）")
+    rendered = rendered.replace("{{selected_movie}}", selected_movie or "（无选定电影）")
+    rendered = rendered.replace("{{judge_kernel}}", judge_kernel or "（无 judge 内核）")
+    return rendered
 
 
 def render_c1_prompt(template: str, news_context: str, candidates_block: str) -> str:
@@ -851,6 +928,9 @@ def _resolve_md_out(args: argparse.Namespace, out_path: Path | None) -> Path | N
 
 
 def _run_review_cli(args: argparse.Namespace) -> int:
+    if not args.retrieve_json:
+        print("error: --retrieve-json is required for review", file=sys.stderr)
+        return 2
     retrieve_path = Path(args.retrieve_json)
     if not retrieve_path.is_absolute():
         retrieve_path = _REPO_ROOT / retrieve_path
@@ -930,21 +1010,91 @@ def _run_review_cli(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_publish_cli(args: argparse.Namespace) -> int:
+    if not args.retrieve_json:
+        print("error: --retrieve-json is required for publish", file=sys.stderr)
+        return 2
+    if not args.tmdb_id:
+        print("error: --tmdb-id is required for publish", file=sys.stderr)
+        return 2
+
+    retrieve_path = Path(args.retrieve_json)
+    if not retrieve_path.is_absolute():
+        retrieve_path = _REPO_ROOT / retrieve_path
+    if not retrieve_path.is_file():
+        print(f"error: retrieve JSON not found: {retrieve_path}", file=sys.stderr)
+        return 2
+    retrieve = load_retrieve(retrieve_path)
+    candidate = next(
+        (
+            c
+            for c in retrieve.get("candidates") or []
+            if isinstance(c, dict) and str(c.get("tmdb_id")) == str(args.tmdb_id)
+        ),
+        None,
+    )
+    if candidate is None:
+        print(f"error: tmdb_id not found in candidates: {args.tmdb_id}", file=sys.stderr)
+        return 2
+
+    news_path: Path | None = None
+    if args.news_file:
+        news_path = Path(args.news_file)
+        if not news_path.is_absolute():
+            news_path = _REPO_ROOT / news_path
+        if not news_path.is_file():
+            print(f"error: news file not found: {news_path}", file=sys.stderr)
+            return 2
+    news = load_news(news_path, retrieve)
+
+    judge_path: Path | None = None
+    if args.judge_scores:
+        judge_path = Path(args.judge_scores)
+        if not judge_path.is_absolute():
+            judge_path = _REPO_ROOT / judge_path
+    judge_index = load_judge_scores(judge_path)
+    run_id = args.run_id or _infer_run_id(retrieve_path)
+    judge = _lookup_judge(judge_index, run_id, args.tmdb_id)
+
+    try:
+        draft = run_publish(
+            candidate,
+            news,
+            provider=args.provider,
+            judge=judge,
+        )
+    except Exception as exc:  # noqa: BLE001
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    out_path: Path | None = None
+    if args.out:
+        out_path = Path(args.out)
+        if not out_path.is_absolute():
+            out_path = _REPO_ROOT / out_path
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(draft.rstrip() + "\n", encoding="utf-8")
+        print(f"Wrote {out_path.resolve()}", file=sys.stderr)
+    else:
+        sys.stdout.buffer.write((draft.rstrip() + "\n").encode("utf-8"))
+    return 0 if draft.strip() else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="Compose: editor-facing decision cards (Phase 4 4.3-fix).",
     )
     parser.add_argument(
         "--stage",
-        choices=["review"],
+        choices=["review", "publish"],
         default="review",
-        help="Pipeline stage (MVP: review only; publish lands in Stage 1).",
+        help="Pipeline stage: review decision card or single-movie publish draft.",
     )
     parser.add_argument(
         "--retrieve-json",
         dest="retrieve_json",
-        required=True,
-        help="Path to candidates.json (consumes candidates[]).",
+        required=False,
+        help="Path to candidates.json (review consumes candidates[]; publish selects one candidate).",
     )
     parser.add_argument(
         "--news-file",
@@ -989,9 +1139,16 @@ def main(argv: list[str] | None = None) -> int:
         choices=["mimo", "deepseek"],
         help="LLM provider override (default: DEFAULT_LLM_PROVIDER from .env).",
     )
+    parser.add_argument(
+        "--tmdb-id",
+        dest="tmdb_id",
+        help="Selected TMDB id for --stage publish.",
+    )
     args = parser.parse_args(argv)
 
     try:
+        if args.stage == "publish":
+            return _run_publish_cli(args)
         return _run_review_cli(args)
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)
