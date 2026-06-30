@@ -348,6 +348,23 @@ def _format_db_projection(projection: dict[str, Any]) -> str:
     return "\n".join(lines) if lines else "（无 DB 明细）"
 
 
+def clean_publish_body(body: str) -> str:
+    """清洗 LLM 正文：剥除其可能误吐的《片名》(年份) 标题行与电影链接。
+
+    C2 是唯一创作环节，只产正文；骨架（片名 / 年份 / 链接）与 DB 投影由下游平台
+    适配阶段按各平台呈现规则自行拼接，不在本阶段固化。
+    """
+    kept: list[str] = []
+    for line in (body or "").splitlines():
+        stripped = line.strip()
+        if _TITLE_LINE_RE.match(stripped):
+            continue  # 剥除 LLM 误吐的《片名》(年份)
+        if stripped.startswith("https://themoviecosmos.com/movie/"):
+            continue  # 剥除 LLM 误吐的链接
+        kept.append(line)
+    return "\n".join(kept).strip()
+
+
 def format_selected_movie_block(candidate: dict[str, Any]) -> str:
     projection = _db_projection_for_candidate(candidate)
     title = str(projection.get("title") or candidate.get("title") or "").strip()
@@ -384,8 +401,12 @@ def run_publish(
     judge: JudgeEntry | None = None,
     prompts_dir: Path | None = None,
     llm_call: Any = None,
-) -> str:
-    """Single-movie publish draft: the only creative compose step."""
+) -> dict[str, Any]:
+    """Single-movie publish draft: the only creative compose step.
+
+    本阶段只产「电影 id + 正文」结构化产物；骨架（片名 / 年份 / 链接）与各平台
+    所需 DB 投影留给下游平台适配阶段，按各平台呈现规则自行拼接。
+    """
     template = load_c2_template(prompts_dir)
     news_context = build_news_context(news, "")
     selected_movie = format_selected_movie_block(candidate)
@@ -393,13 +414,18 @@ def run_publish(
     prompt = render_c2_prompt(template, news_context, selected_movie, judge_kernel)
 
     if llm_call is not None:
-        return str(llm_call(prompt) or "").strip()
+        raw = str(llm_call(prompt) or "").strip()
+    else:
+        load_env()
+        resolved = _resolve_provider(provider)
+        client = get_llm_client(resolved)
+        model = _model_name(resolved)
+        raw = _sync_llm_call(client, model, prompt)
 
-    load_env()
-    resolved = _resolve_provider(provider)
-    client = get_llm_client(resolved)
-    model = _model_name(resolved)
-    return _sync_llm_call(client, model, prompt)
+    return {
+        "tmdb_id": candidate.get("tmdb_id"),
+        "body": clean_publish_body(raw),
+    }
 
 
 def format_candidates_block(
@@ -1067,17 +1093,20 @@ def _run_publish_cli(args: argparse.Namespace) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
+    # C2 产物契约：只保留电影 id + 正文，序列化为 JSON。
+    serialized = json.dumps(draft, ensure_ascii=False, indent=2)
+
     out_path: Path | None = None
     if args.out:
         out_path = Path(args.out)
         if not out_path.is_absolute():
             out_path = _REPO_ROOT / out_path
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_text(draft.rstrip() + "\n", encoding="utf-8")
+        out_path.write_text(serialized + "\n", encoding="utf-8")
         print(f"Wrote {out_path.resolve()}", file=sys.stderr)
     else:
-        sys.stdout.buffer.write((draft.rstrip() + "\n").encode("utf-8"))
-    return 0 if draft.strip() else 1
+        sys.stdout.buffer.write((serialized + "\n").encode("utf-8"))
+    return 0 if str(draft.get("body", "")).strip() else 1
 
 
 def main(argv: list[str] | None = None) -> int:
