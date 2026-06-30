@@ -1,0 +1,143 @@
+# 选片决策卡（Decision Card · 待总编肉眼审核）
+> run_id: 01-grid-outage
+> 候选数: 5
+
+### 《Survival Family》(2017)
+- DB 投影:
+  - id: 429918
+  - title: Survival Family
+  - original_title: サバイバルファミリー
+  - overview: A world wide electrical outage occurs. Everything that requires electricity comes to a stop. Tokyo is nearly ruined. Yoshiyuki Suzuki decides to escape from Tokyo with his family.
+  - genres: Comedy, Drama, Adventure
+  - release_date: 2017-02-11
+  - runtime: 117.0
+  - director: Shinobu Yaguchi
+  - cast: Eri Fukatsu, Fumiyo Kohinata, Haruka Uchimura, Daikichi Sugawara, Shunpei Kawagoshi, Yoji Tanaka, Yoshiyuki Morishita, Akira Emoto, Yasuo Daichi, Wakana Aoi, Eri Watanabe, Seina Nakata, Norika Fujiwara, Miyabi Matsuura, Mickey Curtis, Tokie Hidari, Takuro Ohno, Yuu Tokui, Yuki Izumisawa, Miki Hayashida, Shin Takuma, Masashi Arifuku, Kentaro Tomita, Jun Shison, Saburo Tokito
+  - writers: Shinobu Yaguchi
+  - vote_average: 7.3
+  - vote_count: 143.0
+  - popularity: 2.2857
+  - imdb_rating: 7.2
+  - imdb_votes: 3390.0
+- 触发视角: THE-INNOCENT, THE-EVERYMAN, THE-HERO, THE-CAREGIVER, THE-OUTLAW, THE-LOVER, THE-CREATOR, THE-MAGICIAN, THE-SAGE
+- 切面（可选参考）: how, result, who, why
+- judge_score（screening-only）: 2
+- resonance_type: 强共振（表层 + 逻辑）
+- causal_test EN: Electrical power unavailability under societal dependence drives critical emergencies and survival actions.
+- causal_test ZH: 电力不可用在社会依赖下驱动紧急情况和生存行动。
+- rationale EN: Both stories center on electrical outages as a concrete event (surface element), and share the causal-stakes engine where power shortages force urgent responses, though the news is regional and institutional while the film is global and individual.
+- rationale ZH: 两个故事都以停电作为一个具体事件（表层元素），并共享因果- stakes引擎，其中电力短缺迫使紧急响应，尽管新闻是区域性和制度性的，而电影是全球性和个人性的。
+- 电影链接: https://themoviecosmos.com/movie/429918
+- [ ] ✅ 选用
+
+### 《2061 - Un anno eccezionale》(2007)
+- DB 投影:
+  - id: 33495
+  - title: 2061 - Un anno eccezionale
+  - original_title: 2061 - Un anno eccezionale
+  - overview: In a post-apocalyptic future, the Italian peninsula is going through a dark moment due to a terrible energy crisis.
+  - genres: Comedy, Science Fiction
+  - release_date: 2007-10-26
+  - runtime: 100.0
+  - director: Carlo Vanzina
+  - cast: Michele Placido, Diego Abatantuono, Andrea Osvárt, Paolo Macedonio, René Fiorentini, Dino Abbrescia, Bed Cerchiai, Nini Salerno, Stefano Fregni, Ugo Conti, Sabrina Impacciatore, Emilio Solfrizzi, Mariano d'Angelo, Gennaro Diana, Roberto D'Alessandro, Angela Tuccia, Alessandro Paci, Massimo Ceccherini, Paolo Cevoli, Elena Cantarone, Stefano Chiodaroli, Antonello Costa, Anna Maria Barbera, Enzo Salvi, Jonathan Kashanian, Giuseppe Lo Console
+  - writers: Diego Abatantuono, Carlo Vanzina, Enrico Vanzina
+  - vote_average: 4.1
+  - vote_count: 102.0
+  - popularity: 0.7791
+  - imdb_rating: 3.7
+  - imdb_votes: 482.0
+- 触发视角: THE-CAREGIVER, THE-EXPLORER, THE-CREATOR
+- 切面（可选参考）: who
+- judge_score（screening-only）: 2
+- resonance_type: 强共振（表层 + 逻辑）
+- causal_test EN: Energy scarcity under the constraint of infrastructure breakdown forces emergency rationing or societal collapse.
+- causal_test ZH: 能源短缺在基础设施崩溃的约束下迫使紧急配给或社会崩溃。
+- rationale EN: Both news and film feature an energy crisis as the central, load-bearing element. The underlying logic of acute energy shortages driving extreme actions (load shedding in news, survival in film) holds true, with the causal engine invariant under scale shift.
+- rationale ZH: 新闻和电影都以能源危机作为中心、承重元素。能源短缺驱动极端行动（新闻中的减载，电影中的生存）的底层逻辑成立，因果引擎在规模变化下保持不变。
+- 电影链接: https://themoviecosmos.com/movie/33495
+- [ ] ✅ 选用
+
+### 《Blade Runner: Black Out 2022》(2017)
+- DB 投影:
+  - id: 475946
+  - title: Blade Runner: Black Out 2022
+  - original_title: ブレードランナー ブラックアウト 2022
+  - overview: This animated short revolves around the events causing an electrical systems failure on the west coast of the US. According to Blade Runner 2049’s official timeline, this failure leads to cities shutting down, financial and trade markets being thrown into chaos, and food supplies dwindling. There’s no proof as to what caused the blackouts, but Replicants — the bio-engineered robots featured in the original Blade Runner, are blamed.
+  - genres: Action, Animation, Science Fiction
+  - release_date: 2017-09-26
+  - runtime: 16.0
+  - director: Shinichiro Watanabe
+  - cast: Edward James Olmos, David Anthony Matranga, Jovan Jackson, Bryson Baugus, Kenichirou Matsuda, Joel McCrary, Ichiko Aoba, Makoto Furukawa, Jay Hickman, Luci Christian
+  - writers: Shinichiro Watanabe
+  - vote_average: 7.123
+  - vote_count: 435.0
+  - popularity: 1.2904
+  - imdb_rating: 7.3
+  - imdb_votes: 10754.0
+- 触发视角: THE-OUTLAW, THE-MAGICIAN
+- 切面（可选参考）: how, why
+- judge_score（screening-only）: 2
+- resonance_type: 强共振（表层 + 逻辑）
+- causal_test EN: Electrical system failure under the constraint of high demand or insufficient capacity drives emergency load shedding and widespread societal disruption.
+- causal_test ZH: 电力系统故障在高需求或容量不足的约束下驱动紧急减载和广泛的社会 disruption。
+- rationale EN: Both stories center on electrical blackouts causing chaos: the news details grid failures and load shedding in Visayas, while the film depicts a blackout leading to city shutdowns and market collapse. The shared causal engine of failure driving disruption holds, and the surface element of 'blackout' is load-bearing in both.
+- rationale ZH: 两个故事都以停电导致混乱为中心：新闻详述了米沙鄢群岛的电网故障和减载，而电影描绘了停电导致城市关闭和市场崩溃。故障驱动 disruption 的共享因果引擎成立，'停电'的表层元素在两者中都是承重的。
+- 电影链接: https://themoviecosmos.com/movie/475946
+- [ ] ✅ 选用
+
+### 《The Trigger Effect》(1996)
+- DB 投影:
+  - id: 58770
+  - title: The Trigger Effect
+  - original_title: The Trigger Effect
+  - overview: A blackout leaves those affected to consider what is necessary, what is legal, and what is questionable, in order to survive in a predatory environment.
+  - genres: Drama, Thriller
+  - release_date: 1996-08-30
+  - runtime: 94.0
+  - director: David Koepp
+  - cast: Kyle MacLachlan, Richard Schiff, William Lucking, Sherry Lynn, Richard T. Jones, Philip Bruns, Michael Rooker, Tyra Kristiansen, David O'Donnell, Elisabeth Shue, Conor O'Farrell, Jack Noseworthy, Edhem Barker, Molly Morgan, Tyrone Tann, Rick Worthy, Bill Smitrovich, Kirk Fox, Mônica Torres, Dermot Mulroney, Tori Kristiansen, Kerri Vickers, Greg Grunberg, Shishir Kurup, Evan Jones
+  - writers: David Koepp
+  - vote_average: 5.8
+  - vote_count: 119.0
+  - popularity: 0.9285
+  - imdb_rating: 5.7
+  - imdb_votes: 8482.0
+- 触发视角: THE-HERO, THE-CAREGIVER
+- 切面（可选参考）: why
+- judge_score（screening-only）: 2
+- resonance_type: 强共振（表层 + 逻辑）
+- causal_test EN: A sudden loss of electrical power under the constraint of critical societal or individual dependencies drives emergency survival measures.
+- causal_test ZH: 电力突然丧失在关键社会或个人依赖的约束下驱动紧急生存措施。
+- rationale EN: Both stories center on a blackout as a concrete, load-bearing event, and share the underlying logic where power failure forces crisis-driven actions: institutional load shedding in the news and individual survival decisions in the film.
+- rationale ZH: 两个故事都以停电作为一个具体、承重事件，并共享底层逻辑，其中电力故障迫使危机驱动的行动：新闻中的制度性减载和电影中的个人生存决策。
+- 电影链接: https://themoviecosmos.com/movie/58770
+- [ ] ✅ 选用
+
+### 《Back to 1942》(2012)
+- DB 投影:
+  - id: 139329
+  - title: Back to 1942
+  - original_title: 一九四二
+  - overview: In 1942, Henan Province was devastated by one of the most tragic famines in modern Chinese history, resulting in the deaths of at least three million men, women and children. Although the primary cause of the famine was a severe drought, it was exacerbated by locusts, windstorms, earthquakes, epidemic disease and the corruption of the ruling Kuomintang government.
+  - genres: War, Drama
+  - release_date: 2012-11-01
+  - runtime: 145.0
+  - director: Feng Xiaogang
+  - cast: Zhang Guoli, Lü Zhong, Fan Wei, Yoneoka Hirosumi, Yu Zhen, Tian Xiaojie, Yu Fei, Wang Ziwen, Takagi Sadahiro, Alec Su, Adrien Brody, Alfred Hsing, Li Xuejian, Zhu Yongteng, Ke Lan, Qiao Zhenyu, Feng Yuanzheng, Du Chun, Li Qian, Chen Daoming, Xu Fan, Miura Kenichi, Zhang Mo, Zhao Yi, Zhang Guoqiang, Zhang Hanyu, Shaohua Zhang, Lin Yongjian, Tim Robbins, Duan Yihong
+  - writers: Liu Zhenyun
+  - vote_average: 6.6
+  - vote_count: 83.0
+  - popularity: 3.5426
+  - imdb_rating: 6.9
+  - imdb_votes: 3977.0
+- 触发视角: THE-RULER
+- 切面（可选参考）: result
+- judge_score（screening-only）: 1
+- resonance_type: 深层共振（仅逻辑，无表层）
+- causal_test EN: Resource scarcity under environmental and systemic constraints drives severe societal consequences.
+- causal_test ZH: 资源短缺在环境和系统约束下驱动严重的社会后果。
+- rationale EN: News involves electricity scarcity from plant failures and heat demand, leading to blackout risks; film depicts food scarcity from drought and corruption, leading to famine. Both share the underlying logic of resource shortage under stress driving crises, but no concrete surface element like place, occupation, or event type is shared.
+- rationale ZH: 新闻涉及工厂故障和热需求导致的电力短缺，导致停电风险；电影描绘了干旱和腐败导致的食物短缺，导致饥荒。两者共享资源短缺在压力下驱动危机的底层逻辑，但没有共享地点、职业或事件类型等具体表层元素。
+- 电影链接: https://themoviecosmos.com/movie/139329
+- [ ] ✅ 选用

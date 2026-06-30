@@ -10,28 +10,28 @@ todos:
     status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000003
     content: 4.3 · [MVP GATE] 用一条真实新闻跑通 retrieve→C1，总编在 Obsidian 确认审核稿文本质量 OK → 决定是否解封平台定稿 [需人工验收 · Go/No-Go]（依赖 4.2）
-    status: complete
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000010
-    content: "4.3-fix · [No-Go 整改] 4.3 判定 No-Go：审核稿产出格式/内容不达标（双受众焊死/数据流回溯/N 部浪费）。按 ADR-0012 整改后重做 4.3。本节点为整改循环锚点（依赖 4.3 No-Go 结论）"
-    status: in_progress
+    content: 4.3-fix · [No-Go 整改] 4.3 判定 No-Go：审核稿产出格式/内容不达标（双受众焊死/数据流回溯/N 部浪费）。按 ADR-0012 整改后重做 4.3。本节点为整改循环锚点（依赖 4.3 No-Go 结论）。【已闭合】fix.1~fix.6 整改完成，4.3-fix.4 GATE 重判 Go，整条链并入 main
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000011
-    content: "4.3-fix.1 · [基建·前置] DB 数据回填：保持 meta.parquet 检索路径精简，新增 by-id 全列 lookup 通路（cleaned.csv 28 列经 tmdb_id 可查），给下游稳定取字段接口。验收：任取 tmdb_id 得全 28 列 + 检索无 regression（ADR-0012 D3）"
-    status: complete
+    content: 4.3-fix.1 · [基建·前置] DB 数据回填：保持 meta.parquet 检索路径精简，新增 by-id 全列 lookup 通路（cleaned.csv 28 列经 tmdb_id 可查），给下游稳定取字段接口。验收：任取 tmdb_id 得全 28 列 + 检索无 regression（ADR-0012 D3）
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000012
-    content: "4.3-fix.2 · [整改] 选片决策卡（原 review）重构：judge 投影 + DB 投影 + 极轻双语翻译（causal_test/rationale 原文 EN + 译文 ZH 并列、逐句忠实禁润色），移除标题/读者文案/Hashtag（ADR-0012 D1/D2）"
-    status: complete
+    content: 4.3-fix.2 · [整改] 选片决策卡（原 review）重构：judge 投影 + DB 投影 + 极轻双语翻译（causal_test/rationale 原文 EN + 译文 ZH 并列、逐句忠实禁润色），移除标题/读者文案/Hashtag（ADR-0012 D1/D2）
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000013
-    content: "4.3-fix.3 · [整改] 发布稿（原 publish）重构为唯一创作环节：电影介绍（热度 vs 质量，真实数字支撑）为主体 + 共振钩子；输入=选定片 + DB 全列 + judge 内核 + 新闻语境；暂不分平台；director 等可选透传（ADR-0012 D1）"
-    status: complete
+    content: 4.3-fix.3 · [整改] 发布稿（原 publish）重构为唯一创作环节：电影介绍（热度 vs 质量，真实数字支撑）为主体 + 共振钩子；输入=选定片 + DB 全列 + judge 内核 + 新闻语境；暂不分平台；director 等可选透传（ADR-0012 D1）
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000015
-    content: "4.3-fix.5 · [整改] 确立「影像平权」创作宪法：新建 ADR-0013（影评人机位→平视机位价值观决策 + 调性契约附录）+ PRD 核心理念段补影像平权原则 + compose_publish 按平视调性重写（身份/边界/共振钩子/正例/反例，引用 ADR-0013）。排在 fix.4 GATE 之前以稳定验收基准（依赖 4.3-fix.3）"
-    status: complete
+    content: 4.3-fix.5 · [整改] 确立「影像平权」创作宪法：新建 ADR-0013（影评人机位→平视机位价值观决策 + 调性契约附录）+ PRD 核心理念段补影像平权原则 + compose_publish 按平视调性重写（身份/边界/共振钩子/正例/反例，引用 ADR-0013）。排在 fix.4 GATE 之前以稳定验收基准（依赖 4.3-fix.3）
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000014
-    content: "4.3-fix.4 · [MVP GATE · 重做] 整改后用一条真实新闻重跑 retrieve→决策卡→发布稿，总编确认产出格式/内容 OK [需人工验收 · Go/No-Go]（依赖 4.3-fix.1/2/3/5）。【2026-06-30 GATE 判定 No-Go】fix.5 平视调性四契约达标（v7/v8/v9 复验 0/3 无数据裸露），但总编尚有其他调整项 → 转 4.3-fix.6 继续整改后重判。【fix.6 后 GATE 重判 Go】JSON 产物（publish_draft_v11.json，仅 tmdb_id + 正文）经总编确认格式/内容 OK，4.3 整改循环通过，授权 fix.1~fix.6 整条链并入 main"
-    status: complete
+    content: 4.3-fix.4 · [MVP GATE · 重做] 整改后用一条真实新闻重跑 retrieve→决策卡→发布稿，总编确认产出格式/内容 OK [需人工验收 · Go/No-Go]（依赖 4.3-fix.1/2/3/5）。【2026-06-30 GATE 判定 No-Go】fix.5 平视调性四契约达标（v7/v8/v9 复验 0/3 无数据裸露），但总编尚有其他调整项 → 转 4.3-fix.6 继续整改后重判。【fix.6 后 GATE 重判 Go】JSON 产物（publish_draft_v11.json，仅 tmdb_id + 正文）经总编确认格式/内容 OK，4.3 整改循环通过，授权 fix.1~fix.6 整条链并入 main
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000016
-    content: "4.3-fix.6 · [整改] 发布稿调性后续调整（待总编明确具体改动项后展开；继承 fix.5 平视调性基线，从 fix.5 最新开发分支检出）（依赖 4.3-fix.5）。【已落地】C2 产物契约改为结构化 JSON，只保留电影 id + 正文文本；骨架（片名/年份/链接）与 DB 投影下沉到下游平台适配阶段（4.4+）按各平台呈现规则拼接"
-    status: complete
+    content: 4.3-fix.6 · [整改] 发布稿调性后续调整（待总编明确具体改动项后展开；继承 fix.5 平视调性基线，从 fix.5 最新开发分支检出）（依赖 4.3-fix.5）。【已落地】C2 产物契约改为结构化 JSON，只保留电影 id + 正文文本；骨架（片名/年份/链接）与 DB 投影下沉到下游平台适配阶段（4.4+）按各平台呈现规则拼接
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000004
     content: 4.4 · [Stage1] 评估各平台实现难度 + 平台 profile 抽象，选最简单平台（倾向 discord）作首发目标，落配置 + 文档（依赖 4.3 Go）
     status: pending
@@ -305,9 +305,9 @@ python scripts/copywriter.py --stage review --retrieve-json output/phase2_retrie
 
 ### 验收
 
-- [ ] 任取一个 `tmdb_id` 能拿到全部 28 列
-- [ ] 检索路径（retrieve）无 regression（对 `docs/temp/golden/` 重跑比对）
-- [ ] 通路 A 元数据未被无谓撑大
+- [x] 任取一个 `tmdb_id` 能拿到全部 28 列
+- [x] 检索路径（retrieve）无 regression（对 `docs/temp/golden/` 重跑比对）
+- [x] 通路 A 元数据未被无谓撑大
 
 ## Todo 4.3-fix.2 · [整改] 选片决策卡重构（投影 + 极轻双语翻译）
 
@@ -319,9 +319,9 @@ python scripts/copywriter.py --stage review --retrieve-json output/phase2_retrie
 
 ### 验收
 
-- [ ] 决策卡不含任何读者级创作内容（标题/文案/Hashtag）
-- [ ] judge 内核字段齐全；causal_test/rationale 双语并列
-- [ ] 翻译为忠实直译，可对照原文兜底
+- [x] 决策卡不含任何读者级创作内容（标题/文案/Hashtag）
+- [x] judge 内核字段齐全；causal_test/rationale 双语并列
+- [x] 翻译为忠实直译，可对照原文兜底
 
 ## Todo 4.3-fix.3 · [整改] 发布稿重构（唯一创作环节）
 
@@ -334,9 +334,9 @@ python scripts/copywriter.py --stage review --retrieve-json output/phase2_retrie
 
 ### 验收
 
-- [ ] 发布稿以「电影介绍（热度 vs 质量）」为主体，数字有 DB 来源
-- [ ] 共振钩子来自 judge 内核，不重新逆向考古
-- [ ] 单平台产出；无平台变体；director 可选透传不报错
+- [x] 发布稿以「电影介绍（热度 vs 质量）」为主体，数字有 DB 来源
+- [x] 共振钩子来自 judge 内核，不重新逆向考古
+- [x] 单平台产出；无平台变体；director 可选透传不报错
 
 ## Todo 4.3-fix.4 · [MVP GATE · 重做] 整改后重做 Go/No-Go [需人工验收]
 
@@ -347,9 +347,9 @@ python scripts/copywriter.py --stage review --retrieve-json output/phase2_retrie
 
 ### 验收
 
-- [ ] 全链无致命错误，决策卡 + 发布稿在 Obsidian 可读
-- [ ] 总编确认格式/内容 OK
-- [ ] `[需人工验收 · Go/No-Go]`：Go → 解封 Stage 1（4.4）；No-Go → 回 4.3-fix.2/4.3-fix.3 继续整改
+- [x] 全链无致命错误，决策卡 + 发布稿在 Obsidian 可读
+- [x] 总编确认格式/内容 OK
+- [x] `[需人工验收 · Go/No-Go]`：Go → 解封 Stage 1（4.4）；No-Go → 回 4.3-fix.2/4.3-fix.3 继续整改
 
 ---
 
@@ -443,7 +443,7 @@ python scripts/copywriter.py --stage publish --platform discord ... --out output
 
 ## Phase 4 整体验收
 
-- [ ] **Stage 0**：C1 审核稿命令可运行，候选块落 Obsidian，4.3 GATE Go
+- [x] **Stage 0**：C1 审核稿命令可运行，候选块落 Obsidian，4.3 GATE Go
 - [ ] **Stage 1**：≥1 平台定稿跑通并验收；其余平台按优先级增量推进
 - [ ] **Stage 2**：同新闻下平台级选片分叉可用
 - [ ] 与 PRD §7.2 / §7.3 / §7.4 栏位语义一致
