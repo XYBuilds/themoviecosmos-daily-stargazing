@@ -38,6 +38,7 @@ from sentence_transformers import SentenceTransformer
 
 from scripts.lib.env import load_env
 from scripts.lib.paths import embeddings_npy, meta_parquet
+from scripts.movie_metadata import get_movie_detail_by_tmdb_id, get_movie_details_by_tmdb_ids
 
 MODEL_NAME = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 QUERY_TEMPLATE = "Overview: {pseudo}"

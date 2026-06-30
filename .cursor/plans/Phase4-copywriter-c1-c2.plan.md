@@ -16,7 +16,7 @@ todos:
     status: in_progress
   - id: f4a1b2c3-0001-4000-8004-000000000011
     content: "4.3-fix.1 · [基建·前置] DB 数据回填：保持 meta.parquet 检索路径精简，新增 by-id 全列 lookup 通路（cleaned.csv 28 列经 tmdb_id 可查），给下游稳定取字段接口。验收：任取 tmdb_id 得全 28 列 + 检索无 regression（ADR-0012 D3）"
-    status: todo
+    status: complete
   - id: f4a1b2c3-0001-4000-8004-000000000012
     content: "4.3-fix.2 · [整改] 选片决策卡（原 review）重构：judge 投影 + DB 投影 + 极轻双语翻译（causal_test/rationale 原文 EN + 译文 ZH 并列、逐句忠实禁润色），移除标题/读者文案/Hashtag（ADR-0012 D1/D2）"
     status: todo
