@@ -25,7 +25,7 @@ todos:
     status: complete
   - id: f4a1b2c3-0001-4000-8004-000000000015
     content: "4.3-fix.5 · [整改] 确立「影像平权」创作宪法：新建 ADR-0013（影评人机位→平视机位价值观决策 + 调性契约附录）+ PRD 核心理念段补影像平权原则 + compose_publish 按平视调性重写（身份/边界/共振钩子/正例/反例，引用 ADR-0013）。排在 fix.4 GATE 之前以稳定验收基准（依赖 4.3-fix.3）"
-    status: in_progress
+    status: complete
   - id: f4a1b2c3-0001-4000-8004-000000000014
     content: "4.3-fix.4 · [MVP GATE · 重做] 整改后用一条真实新闻重跑 retrieve→决策卡→发布稿，总编确认产出格式/内容 OK [需人工验收 · Go/No-Go]（依赖 4.3-fix.1/2/3/5）"
     status: todo
