@@ -68,7 +68,7 @@ class ComposePublishTests(unittest.TestCase):
 
         def fake_llm(prompt: str) -> str:
             captured["prompt"] = prompt
-            return "《Interstellar》(2014)\n正文\n\nhttps://themoviecosmos.com/movie/157336"
+            return "这是一段正文。"
 
         with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
             draft = run_publish(
@@ -80,9 +80,33 @@ class ComposePublishTests(unittest.TestCase):
 
         self.assertIn("vote_average: 8.5", captured["prompt"])
         self.assertIn("causal_test: X drives Y", captured["prompt"])
-        self.assertIn("《Interstellar》(2014)", draft)
-        self.assertNotIn("[discord]", draft.lower())
-        self.assertNotIn("#", draft)
+        # C2 产物契约：只保留电影 id + 正文，不含骨架（片名/年份/链接）。
+        self.assertEqual(draft["tmdb_id"], 157336)
+        self.assertEqual(draft["body"], "这是一段正文。")
+        self.assertNotIn("《Interstellar》", draft["body"])
+        self.assertNotIn("https://themoviecosmos.com/movie/", draft["body"])
+        self.assertNotIn("#", draft["body"])
+
+    def test_run_publish_strips_llm_emitted_skeleton(self) -> None:
+        # LLM 误吐标题行/链接时，正文清洗应剥除，只留纯正文。
+        def fake_llm(prompt: str) -> str:
+            return (
+                "《Interstellar》(2014)\n这是正文。\n\n"
+                "https://themoviecosmos.com/movie/157336"
+            )
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            draft = run_publish(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                judge=JudgeEntry(2, "same engine", "X drives Y", "strong"),
+                llm_call=fake_llm,
+            )
+
+        self.assertEqual(draft["tmdb_id"], 157336)
+        self.assertEqual(draft["body"], "这是正文。")
+        self.assertNotIn("《Interstellar》(2014)", draft["body"])
+        self.assertNotIn("https://themoviecosmos.com/movie/157336", draft["body"])
 
 
 if __name__ == "__main__":
