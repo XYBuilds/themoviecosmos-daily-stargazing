@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: f5a1b2c3-0001-4000-8005-000000000002
     content: 5.2 · 去重状态：seen_news.sqlite（URL）+ 14 天标题相似度（依赖 5.1）
-    status: pending
+    status: completed
   - id: f5a1b2c3-0001-4000-8005-000000000003
     content: 5.3 · CLI：打印序号列表、--pick / --url、news_pool JSON、README（依赖 5.1、5.2）
     status: pending
