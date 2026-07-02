@@ -33,11 +33,11 @@ todos:
     content: 4.3-fix.6 · [整改] 发布稿调性后续调整（待总编明确具体改动项后展开；继承 fix.5 平视调性基线，从 fix.5 最新开发分支检出）（依赖 4.3-fix.5）。【已落地】C2 产物契约改为结构化 JSON，只保留电影 id + 正文文本；骨架（片名/年份/链接）与 DB 投影下沉到下游平台适配阶段（4.4+）按各平台呈现规则拼接
     status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000004
-    content: 4.4 · [Stage1] 评估各平台实现难度 + 平台 profile 抽象，选最简单平台（倾向 discord）作首发目标，落配置 + 文档（依赖 4.3 Go）
-    status: pending
+    content: 4.4 · [Stage1] 首发平台选定 discord + 发布模板定义（独立脚本架构，不走 copywriter 子命令）（依赖 4.3 Go）
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000005
-    content: 4.5 · [Stage1] copywriter --stage publish（C2）：选定审核稿 + 首发平台 profile → 该平台定稿（依赖 4.4）
-    status: pending
+    content: 4.5 · [Stage1] publish_discord.py：C2 发布稿 + DB 元数据 → Discord 可发布资产（markdown + 海报）（依赖 4.4）
+    status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000006
     content: 4.6 · [Stage1] 增量扩展其余平台（小红书 hashtag 关联新闻 / X 引用新闻原帖），逐平台验收（依赖 4.5）
     status: pending
@@ -357,52 +357,48 @@ python scripts/copywriter.py --stage review --retrieve-json output/phase2_retrie
 
 > 目标：把确认 OK 的审核稿改写成平台发布版本。**从最简单平台起步，一个一个加**，不一次性铺三平台。同新闻、同选定片。
 
-## Todo 4.4 · [Stage1] 平台难度评估 + profile 抽象 + 选首发平台
+## Todo 4.4 · [Stage1] 首发平台选定 discord + 发布模板定义
 
 **依赖：** **4.3 Go**
 
-- 评估三平台的实现难度与依赖，确定**首发平台**（倾向 discord——无注册/审核门槛、结构最简）。
-- 定义 platform profile 数据结构（落配置常量或 `prompts/_shared/platform_profiles.*`），先把首发平台填满，其余平台留骨架：
-
-| profile     | 语言              | 长度上限    | 结构约定                    | hashtag | 转贴                           | 图片字段                 | 难度             |
-| ----------- | ----------------- | ----------- | --------------------------- | ------- | ------------------------------ | ------------------------ | ---------------- |
-| **discord** | 中/英（先定一种） | 宽松        | 最简纯文本 + 链接           | 无      | 无                             | 占位 `image_ref`（暂空） | 最低（首发倾向） |
-| **小红书**  | 中文              | ≤140 字正文 | 正文 + hashtag 关联新闻话题 | 1–3 个  | 无                             | 占位 `image_ref`（暂空） | 中               |
-| **X**       | English           | ≤280 字符   | 引用新闻原帖（quote）+ 短评 | 0–2     | **quote 新闻原帖**（需源 URL） | 占位 `image_ref`（暂空） | 高（依赖源 URL） |
-
-- **图片字段只占位不生成**：`image_ref` 预留，关联未来视觉生成层。
-- **X 转贴依赖**：profile 需要「新闻原帖 URL」入参——确认 Phase 5 `fetch_news` 的新闻字段是否含可引用的源链接；缺失则记为上游待补，X 顺位后置。
-- 文档：在 PRD §7.3 / §7.4 或新建 `docs/SSOT/platform-profiles.md` 登记 profile 口径 + 平台优先级。
+- **首发平台：discord**。选择理由：零注册 / 零审核门槛、发布结构最简单，最适合作为 4.3 Go 后的首个手动发布目标。
+- **架构决策：独立 per-platform 发布脚本**。采用 `publish_discord.py` 这类按平台内聚的脚本；后续小红书扩展时新增 `publish_xiaohongshu.py`，不把平台定稿塞回 `copywriter.py --platform` / `--stage publish`。
+- **放弃 platform profile 抽象**。各平台的输出形态差异过大：Discord 是可复制 markdown + 海报，小红书会是短正文 / hashtag / 图片结构，X 还依赖新闻源 URL 与引用结构。强行共享 profile 配置层会降低内聚，独立脚本更清晰。
+- **发布模板**：新增 `docs/templates/discord_template.md`，把 Discord 可发布稿的结构固定下来，作为人工复制发布的参考模板。
+- **图片策略**：当前使用 TMDB poster 作为占位资产，先把“发布资产需要图片位”这件事结构化；未来视觉生成层会替换为定制图片。
+- **X 平台后置**：X 依赖 Phase 5 `fetch_news` 的新闻源 URL / 原帖引用字段，当前无限期后置，不阻塞 discord-first 策略。
 
 ### 验收
 
-- [ ] 首发平台确定，理由（难度/依赖）在案
-- [ ] profile 数据结构落地（首发平台填满，其余留骨架）
-- [ ] X 的新闻原帖 URL 来源已确认（有则接，无则记上游待补）
+- [x] 首发平台确定为 discord，理由（零门槛 / 结构最简 / 最适合首发）在案
+- [x] 架构改为独立 per-platform 发布脚本，不走 monolithic `copywriter.py --platform` + profile 抽象
+- [x] X 的新闻源 URL 依赖已记录为 Phase 5 后置条件，不阻塞 Discord 首发
 
 ---
 
-## Todo 4.5 · [Stage1] 首发平台定稿 `--stage publish`
+## Todo 4.5 · [Stage1] `publish_discord.py` 生成 Discord 可发布资产
 
 **依赖：** **4.4**
 
 ### CLI
 
 ```text
-python scripts/copywriter.py --stage publish --platform discord --tmdb-id 157336 --selected-file path/to_selected.txt
-python scripts/copywriter.py --stage publish --platform discord ... --out output/Daily_Briefing/2026-05-29_copy.md
+python scripts/publish_discord.py --draft path/to/draft.md --date 2026-07-02
 ```
 
-### 输入 / 输出
+### 输入 / 处理 / 输出
 
-- 输入：`{{selected_copy}}`（总编在 Obsidian 勾选的审核稿）+ `{{movie_title}}` / `{{year}}` / `{{tmdb_id}}` + 首发平台 profile + `{{news_context}}`
-- 输出：首发平台的可复制粘贴成品，含 `https://themoviecosmos.com/movie/{tmdb_id}`；`image_ref` 占位字段透传（空）
+- 输入：C2 发布稿 markdown（正文文本 + 最后一行电影 URL）。
+- 处理：从电影 URL 提取 `tmdb_id` → 按 `tmdb_id` 读取 DB 全列元数据 → 用 LLM 将片名 / 导演翻译为中文 → 组装 Discord markdown → 下载 TMDB poster。
+- 输出：
+  - `output/discord/{date}-discord-{tmdb_id}.md`
+  - `output/discord/{date}-discord-{tmdb_id}-poster.jpg`
 
 ### 验收
 
-- [ ] 首发平台产出可直接复制粘贴的成品，结构符合该 profile
-- [ ] 含跳转链接；`image_ref` 占位在场
-- [ ] 总编确认该平台成品质量
+- [x] 首发平台产出可直接复制粘贴的 Discord markdown
+- [x] 产物含跳转链接，并生成对应海报资产
+- [x] 总编确认该平台成品质量
 
 ---
 
