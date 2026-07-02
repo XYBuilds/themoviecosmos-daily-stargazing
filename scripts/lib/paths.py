@@ -36,6 +36,16 @@ def index_dir() -> Path:
     return _resolve_path("INDEX_DIR", "data/index")
 
 
+def state_dir() -> Path:
+    """Directory for runtime state artifacts."""
+    return _resolve_path("STATE_DIR", "state")
+
+
+def seen_news_db() -> Path:
+    """SQLite database for RSS news dedup state."""
+    return _resolve_path("SEEN_NEWS_DB", str(state_dir() / "seen_news.sqlite"))
+
+
 def embeddings_npy() -> Path:
     """Retrieval embeddings entry under index_dir."""
     return index_dir() / "embeddings.npy"

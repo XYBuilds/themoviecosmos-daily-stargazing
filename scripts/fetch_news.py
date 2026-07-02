@@ -21,14 +21,20 @@ MVP 决策:
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from contextlib import closing
+from datetime import datetime, timedelta, timezone
+import difflib
 import html
 import logging
+from pathlib import Path
 import re
+import sqlite3
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 import feedparser
+
+from scripts.lib.paths import seen_news_db
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +47,188 @@ FEEDS: list[str] = [
 
 _TAG_RE = re.compile(r"<[^>]+>")
 _WHITESPACE_RE = re.compile(r"\s+")
+_TRACKING_QUERY_KEYS = {"fbclid", "gclid", "dclid", "msclkid", "mc_cid", "mc_eid", "igshid"}
+
+
+def _db_path(db_path: Path | None = None) -> Path:
+    """Resolve the dedup SQLite path; tests can inject a temp file."""
+
+    return seen_news_db() if db_path is None else Path(db_path)
+
+
+def _ensure_schema(conn: sqlite3.Connection) -> None:
+    """Create RSS dedup tables if this is the first database access."""
+
+    conn.execute(
+        "CREATE TABLE IF NOT EXISTS seen_urls (url_norm TEXT PRIMARY KEY, seen_at TEXT)"
+    )
+    conn.execute("CREATE TABLE IF NOT EXISTS seen_titles (title TEXT, seen_at TEXT)")
+    conn.commit()
+
+
+def _connect(db_path: Path | None = None) -> sqlite3.Connection:
+    """Open the dedup database and ensure URL/title state tables exist."""
+
+    resolved = _db_path(db_path)
+    resolved.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(resolved)
+    _ensure_schema(conn)
+    return conn
+
+
+def _utc_now(now: datetime | None = None) -> datetime:
+    if now is None:
+        return datetime.now(timezone.utc)
+    if now.tzinfo is None:
+        return now.replace(tzinfo=timezone.utc)
+    return now.astimezone(timezone.utc)
+
+
+def _iso_now(now: datetime | None = None) -> str:
+    return _utc_now(now).isoformat()
+
+
+def normalize_url(url: str) -> str:
+    """Normalize an RSS article URL for deterministic URL-level deduplication.
+
+    Tracking query parameters are removed, scheme/host are lower-cased, fragments are
+    discarded, and normal query parameters are preserved. Path case is intentionally
+    unchanged because URL paths can be case-sensitive.
+    """
+
+    split = urlsplit(url.strip())
+    query_pairs = []
+    for key, value in parse_qsl(split.query, keep_blank_values=True):
+        key_lower = key.lower()
+        if key_lower.startswith("utm_") or key_lower in _TRACKING_QUERY_KEYS:
+            continue
+        query_pairs.append((key, value))
+
+    # 数据流向：RSS 原始 URL -> 去营销参数/fragment -> 规范化 URL -> seen_urls 主键。
+    return urlunsplit(
+        (
+            split.scheme.lower(),
+            split.netloc.lower(),
+            split.path,
+            urlencode(query_pairs, doseq=True),
+            "",
+        )
+    )
+
+
+def is_url_seen(url: str, db_path: Path | None = None) -> bool:
+    """Return True when the normalized URL already exists in seen_urls."""
+
+    url_norm = normalize_url(url)
+    with closing(_connect(db_path)) as conn:
+        row = conn.execute(
+            "SELECT 1 FROM seen_urls WHERE url_norm = ? LIMIT 1", (url_norm,)
+        ).fetchone()
+    return row is not None
+
+
+def mark_url_seen(
+    url: str, db_path: Path | None = None, seen_at: str | None = None
+) -> None:
+    """Persist a normalized selected URL in seen_urls.
+
+    This write belongs to the selection stage (5.3), not the RSS fetch/filter stage.
+    """
+
+    with closing(_connect(db_path)) as conn:
+        conn.execute(
+            "INSERT OR IGNORE INTO seen_urls (url_norm, seen_at) VALUES (?, ?)",
+            (normalize_url(url), seen_at or _iso_now()),
+        )
+        conn.commit()
+
+
+def _normalize_title(title: str) -> str:
+    return _WHITESPACE_RE.sub(" ", title.strip().lower())
+
+
+def is_title_similar(
+    title: str,
+    db_path: Path | None = None,
+    *,
+    threshold: float = 0.7,
+    within_days: int = 14,
+    now: datetime | None = None,
+) -> bool:
+    """Return True if title resembles a selected title within the recent window.
+
+    标题相似度只供 5.3 选用阶段标注/展示；抓取阶段的 filter_new_entries
+    不会因为标题相似而丢弃候选。
+    """
+
+    cutoff = _utc_now(now) - timedelta(days=within_days)
+    candidate = _normalize_title(title)
+    with closing(_connect(db_path)) as conn:
+        rows = conn.execute(
+            "SELECT title FROM seen_titles WHERE seen_at >= ?", (cutoff.isoformat(),)
+        ).fetchall()
+
+    for (seen_title,) in rows:
+        ratio = difflib.SequenceMatcher(
+            None, candidate, _normalize_title(str(seen_title))
+        ).ratio()
+        if ratio >= threshold:
+            return True
+    return False
+
+
+def mark_title_seen(
+    title: str, db_path: Path | None = None, seen_at: str | None = None
+) -> None:
+    """Persist a selected title for later 14-day similarity checks."""
+
+    with closing(_connect(db_path)) as conn:
+        conn.execute(
+            "INSERT INTO seen_titles (title, seen_at) VALUES (?, ?)",
+            (title.strip(), seen_at or _iso_now()),
+        )
+        conn.commit()
+
+
+def filter_new_entries(
+    entries: list[dict],
+    db_path: Path | None = None,
+    *,
+    title_threshold: float = 0.7,
+    within_days: int = 14,
+    now: datetime | None = None,
+) -> list[dict]:
+    """Filter RSS candidates by URL seen state only, preserving input order.
+
+    抓取阶段语义边界：这里只读 seen_urls，不写库，也不按标题相似度过滤。
+    title_threshold/within_days/now 预留给 5.3 选用阶段 UI 标注，不参与本函数判定。
+    """
+
+    del title_threshold, within_days, now
+    new_entries: list[dict] = []
+    for entry in entries:
+        url = entry.get("url")
+        if not isinstance(url, str) or not url.strip():
+            new_entries.append(entry)
+            continue
+        if not is_url_seen(url, db_path):
+            new_entries.append(entry)
+    return new_entries
+
+
+def mark_selected(
+    entry: dict, db_path: Path | None = None, now: datetime | None = None
+) -> None:
+    """Mark a picked news payload as seen by both URL and title for 5.3."""
+
+    seen_at = _iso_now(now)
+    url = entry.get("url")
+    title = entry.get("title")
+    # 数据流向：用户选中的 payload -> 同一时间戳写入 URL 去重 + 标题相似度状态。
+    if isinstance(url, str) and url.strip():
+        mark_url_seen(url, db_path, seen_at=seen_at)
+    if isinstance(title, str) and title.strip():
+        mark_title_seen(title, db_path, seen_at=seen_at)
 
 
 def _get_value(obj: Any, key: str, default: Any = None) -> Any:
