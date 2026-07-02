@@ -1,6 +1,6 @@
 ---
 name: Phase4-copywriter-c1-c2
-overview: 把 copywriter 重构成「先验证 MVP、通过后再一点点丰富」的分层渐进计划，对齐 fragment ladder / search unit / 12 persona 架构。Stage 0（MVP）只做一件事：retrieve 候选 → C1 中文审核稿 → 落 Obsidian 供总编肉眼审核，不含任何平台定稿 / 中英双语 / 图片。总编确认审核稿文本质量 OK 后才解封 Stage 1（平台定稿，从最简单平台起步、增量扩展，倾向先 discord 再小红书 / X），再 Stage 2（同新闻下平台级选片分叉）。北极星=新闻级全分叉 + 视觉生成层 + 自动发布，均指向后续独立 Phase。A1 是 held-out oracle 不进候选；发布全手动；图片与文案解耦。
+overview: 把 copywriter 重构成「先验证 MVP、通过后再一点点丰富」的分层渐进计划，对齐 fragment ladder / search unit / 12 persona 架构。Stage 0（MVP）只做一件事：retrieve 候选 → C1 中文审核稿 → 落 Obsidian 供总编肉眼审核，不含任何平台定稿 / 中英双语 / 图片。总编确认审核稿文本质量 OK 后才解封 Stage 1（平台定稿，从最简单平台起步、增量扩展，倾向先 discord 再小红书 / X），再 Stage 2（同新闻下平台级选片分叉）。北极星=新闻级全分叉 + 视觉生成层 + 自动发布，均指向后续独立 Phase。A1 是 held-out oracle 不进候选；发布全手动；图片与文案解耦。4.6/4.7 已按用户 2026-07 决策作为非 MVP 跳过，Phase4 在 MVP 口径下视为完成。
 todos:
   - id: f4a1b2c3-0001-4000-8004-000000000001
     content: 4.1 · [MVP] copywriter --stage review（C1）：读 retrieve.json candidates[] + 新闻语境 → 每候选一段中文审核稿；persona-semantic 文本入语境；视角标签软提示
@@ -40,10 +40,10 @@ todos:
     status: completed
   - id: f4a1b2c3-0001-4000-8004-000000000006
     content: 4.6 · [Stage1] 增量扩展其余平台（小红书 hashtag 关联新闻 / X 引用新闻原帖），逐平台验收（依赖 4.5）
-    status: pending
+    status: cancelled
   - id: f4a1b2c3-0001-4000-8004-000000000007
     content: 4.7 · [Stage2] 平台级选片分叉：同一条新闻下每平台可选不同电影（平台偏好 / 人工按平台挑）+ 验收 [需人工验收]（依赖 4.6）
-    status: pending
+    status: cancelled
 isProject: true
 ---
 
@@ -404,6 +404,8 @@ python scripts/publish_discord.py --draft path/to/draft.md --date 2026-07-02
 
 ## Todo 4.6 · [Stage1] 增量扩展其余平台
 
+> **[SKIPPED · 非 MVP]** 经用户 2026-07 决策：本 TODO 不在 MVP 范围，跳过；如后续需要再作为 Post-MVP 独立 Phase 重启。
+
 **依赖：** **4.5**
 
 - 在首发平台跑通后，**逐个**加入其余平台（按 4.4 优先级，倾向 小红书 → X）：
@@ -423,6 +425,8 @@ python scripts/publish_discord.py --draft path/to/draft.md --date 2026-07-02
 
 ## Todo 4.7 · [Stage2] 同新闻下每平台可选不同电影 [需人工验收]
 
+> **[SKIPPED · 非 MVP]** 经用户 2026-07 决策：本 TODO 不在 MVP 范围，跳过；如后续需要再作为 Post-MVP 独立 Phase 重启。
+
 **依赖：** **4.6**
 
 - fan-out 点从「定稿」提前到「**选片环节**」：同一条新闻的候选池，允许每平台挑/分到**不同电影**（人工按平台偏好挑，或规则按 `triggered_by` / `center_dimensions` 的平台亲和度初筛）。
@@ -438,6 +442,8 @@ python scripts/publish_discord.py --draft path/to/draft.md --date 2026-07-02
 ---
 
 ## Phase 4 整体验收
+
+> **[MVP 口径说明]** 4.6/4.7 已按用户 2026-07 决策作为非 MVP 跳过；Phase4 在 MVP 口径下视为完成，后续如需多平台扩展/平台级选片分叉，另开 Post-MVP Phase。
 
 - [x] **Stage 0**：C1 审核稿命令可运行，候选块落 Obsidian，4.3 GATE Go
 - [ ] **Stage 1**：≥1 平台定稿跑通并验收；其余平台按优先级增量推进
