@@ -10,7 +10,7 @@ todos:
     status: completed
   - id: f5a1b2c3-0001-4000-8005-000000000003
     content: 5.3 · CLI：打印序号列表、--pick / --url、news_pool JSON、README（依赖 5.1、5.2）
-    status: pending
+    status: completed
   - id: f5a1b2c3-0001-4000-8005-000000000004
     content: 5.4 · judge 分布重对齐（清债2）：RSS 真实分布跑出候选 → 盲标 20–30 条 → 算 judge 一致率 → 达标继续信/不达标才调 [需人工验收]
     status: pending

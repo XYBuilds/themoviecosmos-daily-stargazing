@@ -21,15 +21,18 @@ MVP 决策:
 
 from __future__ import annotations
 
+import argparse
 from contextlib import closing
 from datetime import datetime, timedelta, timezone
 import difflib
 import html
+import json
 import logging
 from pathlib import Path
 import re
 import sqlite3
-from typing import Any
+import sys
+from typing import Any, TextIO
 from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 import feedparser
@@ -345,3 +348,257 @@ def fetch_all_entries(feeds: list[str] | None = None) -> list[dict]:
             logger.warning("Skipping RSS feed %s after unexpected error: %s", feed_url, exc)
 
     return entries
+
+
+NEWS_KEYS = ("title", "description", "pub_time", "source_name", "url")
+DEFAULT_LIMIT = 30
+_TITLE_DISPLAY_LIMIT = 80
+
+
+def _positive_int(value: str) -> int:
+    try:
+        parsed = int(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("must be an integer >= 1") from exc
+    if parsed < 1:
+        raise argparse.ArgumentTypeError("must be >= 1")
+    return parsed
+
+
+def build_parser() -> argparse.ArgumentParser:
+    """Build the fetch_news CLI parser."""
+
+    parser = argparse.ArgumentParser(
+        description="Fetch RSS news candidates, pick one, or provide one URL directly."
+    )
+    parser.add_argument(
+        "--limit",
+        type=_positive_int,
+        default=DEFAULT_LIMIT,
+        help=f"maximum candidates to print in list mode (default: {DEFAULT_LIMIT})",
+    )
+    parser.add_argument(
+        "--out",
+        type=Path,
+        help="write the full deduplicated candidate pool as JSON",
+    )
+    parser.add_argument(
+        "--out-json",
+        type=Path,
+        help="write the selected news JSON to this path instead of stdout",
+    )
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument(
+        "--pick",
+        type=_positive_int,
+        help="1-based candidate number to output and mark as seen",
+    )
+    mode.add_argument(
+        "--url",
+        help="single article/feed URL bypassing the RSS candidate list",
+    )
+    parser.add_argument("--title", help="fallback title for --url")
+    parser.add_argument("--description", help="fallback description for --url")
+    parser.add_argument("--source-name", help="optional source name for --url fallback")
+    parser.add_argument("--pub-time", help="optional publication time for --url fallback")
+    return parser
+
+
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    return build_parser().parse_args(argv)
+
+
+def _parse_pub_time(value: Any) -> datetime | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    text = value.strip()
+    if text.endswith("Z"):
+        text = f"{text[:-1]}+00:00"
+    try:
+        parsed = datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def sort_entries_by_pub_time(entries: list[dict]) -> list[dict]:
+    """Return candidates sorted by pub_time descending; missing/invalid dates stay last."""
+
+    def sort_key(item: dict) -> tuple[int, float]:
+        parsed = _parse_pub_time(item.get("pub_time"))
+        if parsed is None:
+            return (1, 0.0)
+        return (0, -parsed.timestamp())
+
+    return sorted(entries, key=sort_key)
+
+
+def _display_date(pub_time: Any) -> str:
+    parsed = _parse_pub_time(pub_time)
+    if parsed is not None:
+        return parsed.date().isoformat()
+    if isinstance(pub_time, str) and pub_time.strip():
+        return pub_time.strip()
+    return "-"
+
+
+def _display_text(value: Any, fallback: str) -> str:
+    if isinstance(value, str) and value.strip():
+        return _WHITESPACE_RE.sub(" ", value.strip())
+    return fallback
+
+
+def _truncate(text: str, limit: int = _TITLE_DISPLAY_LIMIT) -> str:
+    if len(text) <= limit:
+        return text
+    return f"{text[: max(0, limit - 1)].rstrip()}…"
+
+
+def render_news_list(entries: list[dict], *, limit: int = DEFAULT_LIMIT) -> str:
+    """Render numbered candidates for a human editor."""
+
+    lines: list[str] = []
+    for index, entry in enumerate(entries[:limit], start=1):
+        date = _display_date(entry.get("pub_time"))
+        source = _display_text(entry.get("source_name"), "Unknown Source")
+        title = _truncate(_display_text(entry.get("title"), "Untitled"))
+        url = _display_text(entry.get("url"), "-")
+        lines.append(f"[{index}] {date} · {source} · {title}")
+        lines.append(f"    {url}")
+    if not lines:
+        return "No new news candidates."
+    return "\n".join(lines)
+
+
+def _news_json_payload(entry: dict) -> dict[str, str | None]:
+    return {key: entry.get(key) for key in NEWS_KEYS}
+
+
+def write_json(payload: Any, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def emit_news_json(
+    entry: dict,
+    *,
+    out_json: Path | None = None,
+    stdout: TextIO | None = None,
+) -> dict[str, str | None]:
+    payload = _news_json_payload(entry)
+    if out_json is not None:
+        write_json(payload, out_json)
+    else:
+        stream = sys.stdout if stdout is None else stdout
+        print(json.dumps(payload, ensure_ascii=False, indent=2), file=stream)
+    return payload
+
+
+def fetch_candidate_pool(db_path: Path | None = None) -> list[dict]:
+    """Fetch, URL-deduplicate, and sort the candidate pool."""
+
+    entries = fetch_all_entries()
+    return sort_entries_by_pub_time(filter_new_entries(entries, db_path=db_path))
+
+
+def build_url_news_payload(
+    url: str,
+    *,
+    title: str | None = None,
+    description: str | None = None,
+    source_name: str | None = None,
+    pub_time: str | None = None,
+) -> dict[str, str | None]:
+    """Resolve a single URL to a news payload, using title/description fallback when needed."""
+
+    parse_error: Exception | None = None
+    try:
+        parsed_feed = feedparser.parse(url)
+        source = _source_name(parsed_feed, url)
+        entries = _get_value(parsed_feed, "entries", []) or []
+        if entries:
+            payload = _entry_to_payload(entries[0], source)
+            if payload is not None:
+                return payload
+    except Exception as exc:  # noqa: BLE001 - CLI must report cleanly, not traceback
+        parse_error = exc
+
+    clean_title = title.strip() if isinstance(title, str) else ""
+    clean_description = _strip_html(description) if isinstance(description, str) else ""
+    if not clean_title or not clean_description:
+        detail = f" Parse error: {parse_error}" if parse_error is not None else ""
+        raise ValueError(
+            "Unable to parse required title/description from --url; "
+            "please provide both --title and --description." + detail
+        )
+
+    return {
+        "title": clean_title,
+        "description": clean_description,
+        "pub_time": pub_time.strip() if isinstance(pub_time, str) and pub_time.strip() else None,
+        "source_name": source_name.strip()
+        if isinstance(source_name, str) and source_name.strip()
+        else None,
+        "url": url.strip(),
+    }
+
+
+def run_cli(
+    argv: list[str] | None = None,
+    *,
+    db_path: Path | None = None,
+    stdout: TextIO | None = None,
+    stderr: TextIO | None = None,
+) -> int:
+    """Run CLI logic with injectable streams/database path for tests."""
+
+    args = parse_args(argv)
+    out = sys.stdout if stdout is None else stdout
+    err = sys.stderr if stderr is None else stderr
+
+    if args.url:
+        try:
+            entry = build_url_news_payload(
+                args.url,
+                title=args.title,
+                description=args.description,
+                source_name=args.source_name,
+                pub_time=args.pub_time,
+            )
+        except ValueError as exc:
+            print(f"Error: {exc}", file=err)
+            return 1
+        emit_news_json(entry, out_json=args.out_json, stdout=out)
+        mark_selected(entry, db_path=db_path)
+        return 0
+
+    candidates = fetch_candidate_pool(db_path=db_path)
+    if args.out is not None:
+        write_json(candidates, args.out)
+
+    if args.pick is not None:
+        pick_index = args.pick - 1
+        if pick_index >= len(candidates):
+            print(
+                f"Error: --pick {args.pick} is out of range; "
+                f"only {len(candidates)} candidate(s) available.",
+                file=err,
+            )
+            return 1
+        selected = candidates[pick_index]
+        emit_news_json(selected, out_json=args.out_json, stdout=out)
+        mark_selected(selected, db_path=db_path)
+        return 0
+
+    print(render_news_list(candidates, limit=args.limit), file=out)
+    return 0
+
+
+def main(argv: list[str] | None = None) -> None:
+    raise SystemExit(run_cli(argv))
+
+
+if __name__ == "__main__":
+    main()

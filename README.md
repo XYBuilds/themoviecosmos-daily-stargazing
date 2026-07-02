@@ -150,6 +150,43 @@ Copy-Item .env.example .env
 
 ---
 
+## 新闻抓取与手挑（fetch_news）
+
+RSS 候选新闻进入主链路前，先由总编手挑一条结构化 news JSON：
+
+1. 查看带序号候选列表：
+   ```powershell
+   python scripts/fetch_news.py
+   ```
+2. 记下要使用的序号，例如 `N`。
+3. 导出选中的单条新闻：
+   ```powershell
+   python scripts/fetch_news.py --pick N --out-json output/picked_news.json
+   ```
+4. 将 `output/picked_news.json` 交给后续链路：
+   ```powershell
+   python scripts/main.py --news-file output/picked_news.json
+   python scripts/run_eval.py --news-file output/picked_news.json
+   ```
+
+需要留档候选池给总编浏览时，可把去重后的完整候选列表写到 `state/`：
+
+```powershell
+python scripts/fetch_news.py --out state/news_pool_2026-05-29.json
+```
+
+`state/news_pool_*.json` 是候选列表；`output/picked_news.json` 是单条 news JSON，字段与 `--news-file` 契约一致：`title`、`description`、`pub_time`、`source_name`、`url`。
+
+若 RSS 不可用或要临时旁路某条链接，可直接提供 URL：
+
+```powershell
+python scripts/fetch_news.py --url https://example.com/article --title "新闻标题" --description "新闻摘要" --out-json output/picked_news.json
+```
+
+`--url` 会先尝试解析链接；解析不出必填字段时，需要同时补 `--title` 与 `--description`，可选补 `--source-name`、`--pub-time`。中国网络环境下部分 feed 可能超时；可换 feed、使用 `--url` 旁路，或手工准备同契约 JSON 后交给 `main.py --news-file` / `run_eval.py --news-file`。
+
+---
+
 ## 设计原则备忘
 
 * **embedding 不翻译**：直接用 TMDB 英文原文；库为全英文，故检索侧 pseudo 也统一英文，同分布召回更稳。
