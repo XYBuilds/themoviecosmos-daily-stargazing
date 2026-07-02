@@ -4,7 +4,7 @@ overview: 实现 fetch_news.py：宽口径 RSS 抓取、URL/标题去重、CLI �
 todos:
   - id: f5a1b2c3-0001-4000-8005-000000000001
     content: 5.1 · RSS 抓取与 news payload：feedparser、FEEDS 常量、规范化字段
-    status: pending
+    status: completed
   - id: f5a1b2c3-0001-4000-8005-000000000002
     content: 5.2 · 去重状态：seen_news.sqlite（URL）+ 14 天标题相似度（依赖 5.1）
     status: pending
