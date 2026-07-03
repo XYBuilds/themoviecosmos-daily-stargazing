@@ -9,6 +9,7 @@ threshold marks judge output as 不采信 (screening only).
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import re
 import sys
@@ -46,6 +47,7 @@ _JUDGE_SCHEMA_VERSION = 4
 _VALID_SCORES = frozenset({0, 1, 2})
 _JSON_FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)\s*```", re.IGNORECASE)
 _DEFAULT_JUDGE_MAX_TOKENS = 700
+DEFAULT_JUDGE_WORKERS = 4
 _MIMO_JUDGE_MAX_COMPLETION_TOKENS = 1024
 _MIMO_JUDGE_THINKING_MAX_COMPLETION_TOKENS = 4096
 _MIMO_THINKING_DISABLED = "disabled"
@@ -648,19 +650,19 @@ def score_items(
     min_exact_agreement: float = DEFAULT_MIN_EXACT_AGREEMENT,
     min_pearson: float = DEFAULT_MIN_PEARSON,
     min_pairs: int = DEFAULT_MIN_CALIBRATION_PAIRS,
+    workers: int = 1,
 ) -> JudgeOutput:
     obs_ids = observation_run_ids or [
         r for r in {i.run_id for i in items} if r.startswith(OBS_RUN_PREFIXES)
     ]
-    results: list[JudgeResult] = []
-    cal_pairs: list[tuple[int, int]] = []
+    workers = max(1, workers)
 
-    for item in items:
+    def _score_one(item: JudgeItem) -> JudgeResult:
         judge_score, judge_type, rationale, causal_test, pov_transform = judge_fn(item)
         disagreement = (
             item.human_score is not None and item.human_score != judge_score
         )
-        result = JudgeResult(
+        return JudgeResult(
             run_id=item.run_id,
             tmdb_id=item.tmdb_id,
             title=item.title,
@@ -675,9 +677,22 @@ def score_items(
             disagreement=disagreement,
             trusted=True,
         )
-        results.append(result)
+
+    results: list[JudgeResult | None] = [None] * len(items)
+    if workers == 1 or len(items) <= 1:
+        for idx, item in enumerate(items):
+            results[idx] = _score_one(item)
+    else:
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = {pool.submit(_score_one, item): idx for idx, item in enumerate(items)}
+            for future in as_completed(futures):
+                results[futures[future]] = future.result()
+
+    ordered_results = [result for result in results if result is not None]
+    cal_pairs: list[tuple[int, int]] = []
+    for item, result in zip(items, ordered_results):
         if item.run_id in obs_ids and item.human_score is not None:
-            cal_pairs.append((item.human_score, judge_score))
+            cal_pairs.append((item.human_score, result.judge_score))
 
     calibration = compute_calibration(
         cal_pairs,
@@ -686,12 +701,12 @@ def score_items(
         min_pearson=min_pearson,
         min_pairs=min_pairs,
     )
-    for result in results:
+    for result in ordered_results:
         result.trusted = calibration.trusted
     return JudgeOutput(
         version=_JUDGE_SCHEMA_VERSION,
         calibration=calibration,
-        scores=results,
+        scores=ordered_results,
     )
 
 
@@ -1005,6 +1020,19 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--provider", default=None, help="LLM provider (mimo/deepseek)")
     parser.add_argument(
+        "--mimo-thinking",
+        choices=["disabled", "enabled"],
+        default="enabled",
+        help="MiMo thinking mode for judge requests (default: enabled)",
+    )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=DEFAULT_JUDGE_WORKERS,
+        metavar="N",
+        help=f"Concurrent judge pair scorers (default: {DEFAULT_JUDGE_WORKERS})",
+    )
+    parser.add_argument(
         "--calibrate-only",
         action="store_true",
         help="Skip LLM calls; use existing judge JSON scores for calibration replay",
@@ -1030,6 +1058,10 @@ def main(argv: list[str] | None = None) -> int:
         help="Merge existing judge JSON into high-hit-score-review.md (no LLM calls)",
     )
     args = parser.parse_args(argv)
+
+    if args.workers < 1:
+        print("error: --workers must be >= 1", file=sys.stderr)
+        return 2
 
     eval_dir = args.eval_dir if args.eval_dir.is_absolute() else _REPO_ROOT / args.eval_dir
     review = args.review or (eval_dir / "high-hit-score-review.md")
@@ -1085,7 +1117,7 @@ def main(argv: list[str] | None = None) -> int:
         provider = args.provider
 
         def _llm(item: JudgeItem) -> tuple[int, str | None, str, str, bool | None]:
-            return call_llm_judge(item, provider=provider)
+            return call_llm_judge(item, provider=provider, mimo_thinking=args.mimo_thinking)
 
         judge_fn = _llm
 
@@ -1096,6 +1128,7 @@ def main(argv: list[str] | None = None) -> int:
         min_exact_agreement=args.min_exact_agreement,
         min_pearson=args.min_pearson,
         min_pairs=args.min_pairs,
+        workers=args.workers,
     )
 
     out_json = args.out_json or (eval_dir / "llm-judge-scores.json")
@@ -1104,7 +1137,11 @@ def main(argv: list[str] | None = None) -> int:
         encoding="utf-8",
     )
     out_md = args.out_md or (eval_dir / "llm-judge-scores.md")
-    write_judge_markdown(out_md, output)
+    write_judge_markdown(
+        out_md,
+        output,
+        run_metadata=judge_run_metadata(args.provider, mimo_thinking=args.mimo_thinking),
+    )
 
     cal = output.calibration
     print(

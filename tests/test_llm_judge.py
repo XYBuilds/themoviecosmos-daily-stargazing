@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import time
 import unittest
 from pathlib import Path
 
@@ -289,6 +290,29 @@ class ScoreItemsTests(unittest.TestCase):
             return mapping[(item.run_id, item.tmdb_id)]
 
         return _fn
+
+    def test_score_items_workers_preserves_input_order(self):
+        items = [
+            JudgeItem(
+                run_id="05-a",
+                tmdb_id=str(i),
+                title=f"Film {i}",
+                news_title="News",
+                news_summary="Summary",
+                movie_overview="Overview",
+            )
+            for i in range(4)
+        ]
+
+        def judge_fn(item: JudgeItem):
+            if item.tmdb_id == "0":
+                time.sleep(0.05)
+            return 1, TYPE_SURFACE, f"ok {item.tmdb_id}", "", None
+
+        output = score_items(items, judge_fn, workers=4)
+
+        self.assertEqual([row.tmdb_id for row in output.scores], ["0", "1", "2", "3"])
+        self.assertEqual([row.rationale for row in output.scores], ["ok 0", "ok 1", "ok 2", "ok 3"])
 
     def test_score_items_marks_disagreement_and_untrusted(self):
         items = [

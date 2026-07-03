@@ -42,14 +42,15 @@ from scripts.lib.paths import seen_news_db
 logger = logging.getLogger(__name__)
 
 FEEDS: list[str] = [
-    "https://feeds.bbci.co.uk/news/world/rss.xml",
-    "https://www.npr.org/rss/rss.php?id=1001",
-    "https://www.aljazeera.com/xml/rss/all.xml",
+    "https://www.theguardian.com/world/rss",
+    "https://www.theguardian.com/us-news/rss",
+    "https://www.theguardian.com/uk-news/rss",
 ]
 
 
 _TAG_RE = re.compile(r"<[^>]+>")
 _WHITESPACE_RE = re.compile(r"\s+")
+_GUARDIAN_CONTINUE_RE = re.compile(r"(?:\s*Continue reading\.{0,3}\s*)+$", re.IGNORECASE)
 _TRACKING_QUERY_KEYS = {"fbclid", "gclid", "dclid", "msclkid", "mc_cid", "mc_eid", "igshid"}
 
 
@@ -246,8 +247,9 @@ def _strip_html(text: str) -> str:
     """移除 RSS 摘要里的轻量 HTML，并压平多余空白。"""
 
     unescaped = html.unescape(text)
-    without_tags = _TAG_RE.sub("", unescaped)
-    return _WHITESPACE_RE.sub(" ", without_tags).strip()
+    without_tags = _TAG_RE.sub(" ", unescaped)
+    normalized = _WHITESPACE_RE.sub(" ", without_tags).strip()
+    return _GUARDIAN_CONTINUE_RE.sub("", normalized).strip()
 
 
 def _published_to_iso(published_parsed: Any) -> str | None:

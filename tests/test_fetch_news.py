@@ -35,6 +35,33 @@ class FetchNewsTests(unittest.TestCase):
             },
         )
 
+    def test_fetch_feed_removes_guardian_continue_reading_tail(self):
+        fake_feed = SimpleNamespace(
+            bozo=False,
+            feed=SimpleNamespace(title="The Guardian"),
+            entries=[
+                SimpleNamespace(
+                    title="Guardian title",
+                    summary=(
+                        "<p>Officials said the policy would affect families in several cities "
+                        "after weeks of public pressure.</p>"
+                        '<p><a href="https://www.theguardian.com/example">Continue reading...</a></p>'
+                    ),
+                    link="https://www.theguardian.com/example",
+                )
+            ],
+        )
+
+        with patch("scripts.fetch_news.feedparser.parse", return_value=fake_feed):
+            payloads = fetch_feed("https://www.theguardian.com/world/rss")
+
+        self.assertEqual(len(payloads), 1)
+        self.assertEqual(
+            payloads[0]["description"],
+            "Officials said the policy would affect families in several cities after weeks of public pressure.",
+        )
+        self.assertNotIn("Continue reading", payloads[0]["description"])
+
     def test_fetch_feed_drops_entries_missing_required_fields(self):
         fake_feed = SimpleNamespace(
             bozo=False,
