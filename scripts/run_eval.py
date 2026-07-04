@@ -31,6 +31,7 @@ from scripts.agents import (
 from scripts.expand import run_expansion
 from scripts.extract import render_deconstruction_md, run_deconstruct
 from scripts.eval_editor_fields import append_resonance_editor_lines
+from scripts.lib.run_options import RunOptions
 from scripts.retrieve import retrieve_from_agents
 from scripts.rewrite import list_persona_ids, pipeline_result_to_dict, run_persona_pipeline
 
@@ -533,16 +534,27 @@ async def run_eval_pipeline(
     provider: str | None = None,
     deconstruction: dict[str, Any],
     run_dir: Path | None = None,
+    run_options: RunOptions | None = None,
 ) -> tuple[list, list[dict], dict[str, Any], dict[str, Any], dict[str, Any], dict[str, dict[str, Any]]]:
-    """Run P-Expand → 12 persona search-units → retrieve."""
-    stage_start = time.perf_counter()
-    _progress("[stage 3/6] expand start")
-    expansion, expansion_payload = _resolve_expansion(
-        deconstruction,
-        run_dir or (_REPO_ROOT / "output" / "Eval" / "_tmp"),
-        provider=provider,
-    )
-    _progress(f"[stage 3/6] expand done ({_elapsed(stage_start)})")
+    """Run P-Expand → N persona search-units → retrieve.
+
+    *run_options* applies dev-loop shortcuts (persona slice / skip expand /
+    judge top-k) without touching the underlying function signatures.
+    """
+    options = run_options or RunOptions()
+
+    if options.skip_expand:
+        _progress("[stage 3/6] expand skipped (--skip-expand)")
+        expansion, expansion_payload = None, {"expansion": None, "errors": [], "warnings": [], "skipped": True}
+    else:
+        stage_start = time.perf_counter()
+        _progress("[stage 3/6] expand start")
+        expansion, expansion_payload = _resolve_expansion(
+            deconstruction,
+            run_dir or (_REPO_ROOT / "output" / "Eval" / "_tmp"),
+            provider=provider,
+        )
+        _progress(f"[stage 3/6] expand done ({_elapsed(stage_start)})")
 
     outputs: list[AgentOutput] = []
     errors: list[dict[str, Any]] = []
@@ -550,6 +562,8 @@ async def run_eval_pipeline(
     persona_payloads: dict[str, dict[str, Any]] = {}
 
     persona_ids = list_persona_ids()
+    if options.persona_limit is not None:
+        persona_ids = persona_ids[: options.persona_limit]
     stage_start = time.perf_counter()
     _progress(f"[stage 4/6] persona start total={len(persona_ids)}")
     for idx, persona_id in enumerate(persona_ids, start=1):
@@ -574,7 +588,7 @@ async def run_eval_pipeline(
 
     stage_start = time.perf_counter()
     _progress("[stage 5/6] retrieve start")
-    retrieve_result = retrieve_from_agents(agents_list, errors)
+    retrieve_result = retrieve_from_agents(agents_list, errors, top_k=options.judge_topk)
     _progress(f"[stage 5/6] retrieve done ({_elapsed(stage_start)})")
     agents_payload = {"agents": agents_list, "errors": errors}
     return outputs, errors, retrieve_result, expansion_payload, agents_payload, persona_payloads
@@ -592,6 +606,19 @@ async def _run_cli(args: argparse.Namespace) -> int:
     _progress(f"[stage 1/6] load news done ({_elapsed(stage_start)})")
     run_id = (args.run_id or "").strip() or default_run_id(news.title)
     run_dir = resolve_run_dir(run_id, args.out)
+
+    run_options = RunOptions(
+        persona_limit=args.personas,
+        skip_expand=args.skip_expand,
+        judge_topk=args.judge_topk,
+        force=args.force,
+    )
+    if run_dir.is_dir() and any(run_dir.iterdir()) and not run_options.force:
+        print(
+            f"error: run dir already has output: {run_dir} (use --force to overwrite)",
+            file=sys.stderr,
+        )
+        return 2
 
     decon_path = Path(args.deconstruction_file) if args.deconstruction_file else None
     if decon_path and not decon_path.is_absolute():
@@ -612,6 +639,7 @@ async def _run_cli(args: argparse.Namespace) -> int:
         provider=args.provider,
         deconstruction=deconstruction,
         run_dir=run_dir,
+        run_options=run_options,
     )
     stage_start = time.perf_counter()
     _progress(f"[stage 6/6] write outputs -> {run_dir} start")
@@ -661,6 +689,30 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--deconstruction-file",
         help="Pre-built facts.json (skip A0 if set or if cached in run dir).",
+    )
+    parser.add_argument(
+        "--personas",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Dev shortcut: only run the first N personas (default: all 12).",
+    )
+    parser.add_argument(
+        "--skip-expand",
+        action="store_true",
+        help="Dev shortcut: skip the P-Expand stage (personas run without expansion bridges).",
+    )
+    parser.add_argument(
+        "--judge-topk",
+        type=int,
+        default=2,
+        metavar="K",
+        help="Retrieve top-k per pseudo (default: 2).",
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Overwrite an existing non-empty run dir instead of erroring out.",
     )
     args = parser.parse_args(argv)
 
