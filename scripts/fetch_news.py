@@ -102,6 +102,10 @@ GUARDIAN_SECTION_META_TOOL_BLACKLIST: set[str] = {
     "thefilter-us",
 }
 GUARDIAN_SECTION_FUNCTIONAL_BLACKLIST: set[str] = {"weather", "travel-offers"}
+# Low-event sections are article-bearing but dominated by personal travelogue/
+# service texture rather than public event narratives. They are excluded at the
+# section layer instead of being mixed into the pure functional-page blacklist.
+GUARDIAN_SECTION_LOW_EVENT_BLACKLIST: set[str] = {"travel"}
 GUARDIAN_SECTION_LOCAL_BLACKLIST: set[str] = {
     "local",
     "cardiff",
@@ -113,6 +117,7 @@ GUARDIAN_SECTION_SUFFIX_BLACKLIST = ("-network", "professional")
 GUARDIAN_SECTION_EXACT_BLACKLIST: set[str] = (
     GUARDIAN_SECTION_META_TOOL_BLACKLIST
     | GUARDIAN_SECTION_FUNCTIONAL_BLACKLIST
+    | GUARDIAN_SECTION_LOW_EVENT_BLACKLIST
     | GUARDIAN_SECTION_LOCAL_BLACKLIST
 )
 
@@ -345,11 +350,17 @@ _RELATED_RE = re.compile(r"^Related:\s", re.IGNORECASE)
 # Data-table DSL for tone-driven extraction. Strategy rows are deliberately data,
 # so adding a new Guardian tone should mean adding a row rather than changing the
 # routing logic.
+# These tones are immediate streams / reader letters / contribution calls rather
+# than complete cause-process-result event narratives. Product needs complete
+# event structure, so they are dropped as whole articles before extraction.
+TONE_DROP_BLACKLIST: set[str] = {
+    "tone/minutebyminute",
+    "tone/letters",
+    "tone/competitions",
+}
+
 EXTRACTION_TABLE: dict[str, dict[str, int | str]] = {
     "tone/recipes": {"strategy": "front", "paragraphs": 1},
-    "tone/minutebyminute": {"strategy": "front", "paragraphs": 1},
-    "tone/letters": {"strategy": "front", "paragraphs": 1},
-    "tone/competitions": {"strategy": "front", "paragraphs": 1},
     "tone/reviews": {"strategy": "front", "paragraphs": 3},
     "tone/interview": {"strategy": "front", "paragraphs": 3},
     "tone/analysis": {"strategy": "front", "paragraphs": 4},
@@ -364,7 +375,7 @@ DEFAULT_NO_TONE_EXTRACTION = {"strategy": "front", "paragraphs": 3}
 
 
 def is_guardian_section_allowed(section: str) -> bool:
-    """Return True unless a Guardian section belongs to one of four blacklists."""
+    """Return True unless a Guardian section belongs to one of five blacklists."""
 
     normalized = section.strip().lower()
     if not normalized:
@@ -461,9 +472,17 @@ def _sort_tones_by_specificity(tones: list[str]) -> list[str]:
     return sorted(tones, key=lambda tone: _TONE_SPECIFICITY_ORDER.get(tone, 10_000))
 
 
+def should_drop_article(tags: list[Any] | None) -> bool:
+    """Return True for tone-level whole-article drops before extraction routing."""
+
+    return any(tone in TONE_DROP_BLACKLIST for tone in _article_tones(tags))
+
+
 def route_extraction_strategy(tags: list[Any] | None) -> dict[str, int | str]:
     """Route Guardian article extraction by tone/* tags, specific before generic."""
 
+    if should_drop_article(tags):
+        return {"strategy": "drop"}
     tones = _article_tones(tags)
     for tone in _sort_tones_by_specificity(tones):
         strategy = EXTRACTION_TABLE.get(tone)
@@ -481,6 +500,8 @@ def extract_guardian_description(body: str, tags: list[Any] | None = None) -> st
 
     paragraphs = _extract_paragraphs(body)
     strategy = route_extraction_strategy(tags)
+    if strategy.get("strategy") == "drop":
+        return ""
     if strategy.get("strategy") == "paragraph_decay":
         return _paragraph_decay_heuristic(paragraphs)
     count = int(strategy.get("paragraphs", DEFAULT_NO_TONE_EXTRACTION["paragraphs"]))
@@ -633,9 +654,11 @@ def fetch_guardian_api(
         fields = result.get("fields") or {}
         title = fields.get("headline") or result["webTitle"]
         body = fields.get("bodyText") or fields.get("body") or fields.get("trailText") or ""
+        tags = result.get("tags") or []
+        if should_drop_article(tags):
+            continue
         if len(body) < min_body_len:
             continue
-        tags = result.get("tags") or []
         description = extract_guardian_description(body, tags)
         if not description:
             continue

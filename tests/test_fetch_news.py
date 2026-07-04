@@ -288,12 +288,64 @@ class FetchNewsTests(unittest.TestCase):
             timeout=30,
         )
 
-    def test_guardian_section_blacklist_filters_four_categories(self):
+    def test_guardian_tone_drop_blacklist_excludes_articles_before_payload_pool(self):
+        body = " ".join(f"Sentence {index} with enough public event context." for index in range(1, 30))
+
+        def result(title, tones, url_suffix):
+            return {
+                "webTitle": title,
+                "fields": {"bodyText": body},
+                "tags": [{"id": tone} for tone in tones],
+                "webPublicationDate": "2026-07-03T10:00:00Z",
+                "sectionName": "World news",
+                "webUrl": f"https://www.theguardian.com/world/{url_suffix}",
+            }
+
+        class FakeResponse:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return {
+                    "response": {
+                        "results": [
+                            result("Live updates", ["tone/minutebyminute"], "live"),
+                            result("Reader letter", ["tone/letters"], "letter"),
+                            result("Competition call", ["tone/competitions"], "competition"),
+                            result(
+                                "Live news hybrid",
+                                ["tone/minutebyminute", "tone/news"],
+                                "live-news",
+                            ),
+                            result("Pure news", ["tone/news"], "pure-news"),
+                        ]
+                    }
+                }
+
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            with patch("scripts.fetch_news.requests.get", return_value=FakeResponse()):
+                payloads = fetch_guardian_api(
+                    sections=["world"],
+                    min_body_len=100,
+                    db_path=db_path,
+                    api_key="test-key",
+                )
+
+        self.assertEqual([payload["title"] for payload in payloads], ["Pure news"])
+
+    def test_guardian_section_blacklist_filters_low_event_travel_but_keeps_mixed_sections(self):
+        sections = ["travel", "culture", "film"]
+
+        self.assertEqual(filter_guardian_sections(sections), ["culture", "film"])
+
+    def test_guardian_section_blacklist_filters_five_categories(self):
         sections = [
             "media-network",  # suffix/B2B
             "professional",  # professional class
             "about",  # meta/tool
             "weather",  # functional
+            "travel",  # low-event travelogue/service texture
             "local",  # local news
             "film",
             "education",
@@ -311,14 +363,12 @@ class FetchNewsTests(unittest.TestCase):
         self.assertIn("paragraph 5", description)
         self.assertNotIn("paragraph 6", description)
 
-    def test_tone_extraction_routes_recipes_and_minutebyminute_to_lede(self):
+    def test_tone_extraction_routes_recipes_to_lede(self):
         body = "".join(f"<p>paragraph {index} with text.</p>" for index in range(1, 4))
 
         recipe = extract_guardian_description(body, [{"id": "tone/recipes"}])
-        minute_by_minute = extract_guardian_description(body, [{"id": "tone/minutebyminute"}])
 
         self.assertEqual(recipe, "paragraph 1 with text.")
-        self.assertEqual(minute_by_minute, "paragraph 1 with text.")
 
     def test_tone_extraction_uses_specific_tone_before_features(self):
         body = "".join(f"<p>paragraph {index} with text.</p>" for index in range(1, 4))

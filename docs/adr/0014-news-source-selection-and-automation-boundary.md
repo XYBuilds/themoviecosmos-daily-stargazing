@@ -44,20 +44,23 @@ PRD §6 的原始口径是「选新闻：按热度 Top1；评测期允许人工�
 | **黑名单 2 · Guardian meta / 工具页** | `about` / `community` / `crosswords` / `extra` / `guardian-foundation` / `help` / `info` / `jobsadvice` / `katine` / `membership` / `search` / `theguardian` / `theobserver` / `thefilter` / `thefilter-us`。 |
 | **黑名单 3 · 纯功能页** | `weather` / `travel-offers`。 |
 | **黑名单 4 · 地方新闻** | `local` / `cardiff` / `edinburgh` / `leeds` / `cities`。 |
-| **其余 section** | 全部放行，包括 `film` / `culture` / `education` / `food` / `sport` 等。 |
+| **黑名单 5 · 低事件旅行内容** | `travel`；它以游记散文 / 攻略服务为主，极少完整公共事件，个性化强、难形成共鸣。 |
+| **其余 section** | 全部放行，包括 `film` / `culture` / `education` / `food` / `sport` 等；`culture` 等混合 section 既有公共事件也有个性化随笔，section 级不处理，后者归 D4 热度排序。 |
 | **理由** | 匹配失败成本低，宁放勿缺；真正的选题闸门是热度排序（见 D4），不是 section。 |
 
-### D3 · tone 标签驱动的格式感知抽取
+### D3 · tone 标签驱动的格式感知抽取 + tone DROP 结构闸门
 
 | 条目 | 定稿 |
 | --- | --- |
 | **实证基础** | Guardian API `show-tags=all` 返回 `tone/*` 标签；已抽样 240 篇，tone 覆盖率 97.1%。 |
 | **替代旧行为** | 用 tone 驱动抽取策略，替代「盲取前 5 段」。 |
-| **核心原因** | 不同体裁结构不同：硬新闻 `tone/news` 是倒金字塔，取前 5 段通常有增益；菜谱 `tone/recipes`、直播 `tone/minutebyminute`、读者来信 `tone/letters`、投稿 `tone/competitions` 是平铺体，取前 5 段反而会引入噪声，应只取 lede。 |
-| **设计口径** | 按 tone 优先级有序查表决定取几段；具体体裁（如 `recipes`）优先于泛化体裁（如 `news` / `features`）。 |
-| **多 tone 仲裁** | 多 tone 文章按「具体度」仲裁，优先采用信息更强、更能决定版式的 tone。 |
+| **抽取表边界** | `EXTRACTION_TABLE` 只决定「抽几段」，不做整条丢弃；硬新闻 `tone/news` 取前 5 段，`tone/recipes` 只取 lede，`tone/features` 走段长衰减启发式，无 tone 默认前 3 段。 |
+| **tone DROP 黑名单** | 新增 `tone/minutebyminute` / `tone/letters` / `tone/competitions` 文章层 DROP；三者分别是即时直播流水、读者来信、投稿/征集，缺少完整起因-经过-结果叙事结构。 |
+| **DROP 优先级** | DROP 检查优先于多 tone 仲裁与抽取；只要任一 tone 命中 DROP 黑名单，整条丢弃，即使同时带 `tone/news` 也不能救回。 |
+| **多 tone 仲裁** | 非 DROP 文章按「具体度」仲裁，优先采用信息更强、更能决定版式的 tone；具体体裁（如 `recipes`）优先于泛化体裁（如 `news` / `features`）。 |
 | **`tone/features` 特例** | `tone/features` 占比最高（107/240），但它是「体裁黑洞」，无法单靠标签判断结构；回退到「段长衰减比」启发式。 |
-| **无 tone 默认** | 无 tone 约 3%，采用保守默认：取前 3 段。 |
+| **与 section 黑名单边界** | section 黑名单（D2）排除结构性不合适的整个 section；tone DROP 在文章层按体裁结构丢弃少数非事件体裁。 |
+| **与 D4 热度边界** | 个性化随笔是否低共鸣属于语义级选题价值判断，归 D4 热度排序；不得用 tone 或相似度提前冒充热度 / 共鸣价值判断。 |
 | **明确反对** | 绝不能用「新闻原文表层文本相似度」做任何筛选；这会与项目追求「深层共振、非字面联想」的灵魂冲突。 |
 
 ### D4 · 热度排序是核心选题机制（Post-MVP 实现）
@@ -104,7 +107,7 @@ PRD §6 的原始口径是「选新闻：按热度 Top1；评测期允许人工�
 
 1. **D1 先锁自动化边界**：新闻侧全自动，人工只在电影侧做总编判断，避免产品退化成「人先挑新闻」。
 2. **D2 把 section 从选题职责中解放出来**：section 只做结构性排除，宁放勿缺；真正的选题责任交给 D4 热度排序。
-3. **D3 保证喂给 agents 的信噪比**：既然 D2 会宽进，就必须用 tone 感知不同体裁，避免把菜谱、直播、来信等平铺体的前 5 段噪声原样喂进 agents。
+3. **D3 保证喂给 agents 的信噪比**：既然 D2 会宽进，就必须用 tone 感知不同体裁；抽取表只负责抽几段，tone DROP 只负责丢弃直播、来信、投稿征集这类无完整事件叙事结构的文章。
 4. **D5 让 MVP 先跑通**：在 D4 未实现前，不再叠加前置共振闸门；用全量 + 高成本换完整链路闭环。
 5. **D4 / D6 是后续收敛手段**：热度排序从产品、开发、成本三方面收敛新闻规模；小快灵开关只服务开发体验，不改变生产产品语义。
 
@@ -117,6 +120,7 @@ PRD §6 的原始口径是「选新闻：按热度 Top1；评测期允许人工�
 - **judge 分布校准挂起**：原 plan 5.4 中的 judge 分布校准因新闻分布尚未稳定而挂起；在热度机制与真实输入分布明确前，不应冻结 judge 阈值或把 judge 当生产删除器。这与 [ADR-0007 D4](0007-logic-resonance-judge-prescreen-and-pov-focalization.md) 的阈值纪律一致。
 - **`--pick` 仍可存在，但语义变窄**：它只能服务评测、调试、复现，不得成为生产默认入口。
 - **section 黑名单会漏掉少量低价值内容**：这是 D2 选择「宁放勿缺」的必然后果；后续由 D4 热度与 D3 抽取质量控制，而不是用 section 白名单提前砍掉潜在选题。
+- **section / tone DROP 仍只处理结构边界**：`travel` 与三类 DROP tone 是因事件叙事结构不适合而排除；个性化随笔的低共鸣问题仍归 D4 热度排序，不能用 tone 或相似度做语义价值捷径。
 - **小快灵方向未定实现**：D6 只登记开发者体验方向，不承诺具体开关名、默认值、并行模型或缓存协议。
 
 ## 相关 ADR / 文档

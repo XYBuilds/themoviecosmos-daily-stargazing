@@ -72,7 +72,7 @@ GET https://content.guardianapis.com/search
 
 理由：section **不是**成本闸门也**不是**相关性闸门。匹配失败的成本很低（下游自然 miss），宁放勿缺。真正的选题闸门是**热度排序**（决策 D），不是 section。film/culture/education/food/sport 等全部放行——最坏情况只是下游匹配失败。
 
-### 3.2 黑名单（只排除这四类）
+### 3.2 黑名单（只排除这五类）
 
 | 类别 | 排除项 | 为什么排 |
 | --- | --- | --- |
@@ -80,8 +80,9 @@ GET https://content.guardianapis.com/search
 | ② Guardian meta / 工具页 | about, community, crosswords, extra, guardian-foundation, help, info, jobsadvice, katine, membership, search, theguardian, theobserver, thefilter, thefilter-us | 站务/工具页，无事件内容 |
 | ③ 纯功能页 | weather, travel-offers | 服务信息，非事件 |
 | ④ 地方新闻 | local, cardiff, edinburgh, leeds, cities | 地方性过强，共振受众面窄 |
+| ⑤ 低事件旅行内容 | travel | 以游记散文/攻略服务为主，极少完整公共事件，个性化强、难形成共鸣 |
 
-其余全部放行。黑名单以常量形式集中维护，便于审计增删。
+其余全部放行。`culture` / `film` 等混合 section 不在 section 层处理：其中既有文化事件也有个性化随笔，后者属于 D4 热度排序的语义价值判断，不用 tone 或相似度提前处理。黑名单以常量形式集中维护，便于审计增删。
 
 ---
 
@@ -94,24 +95,30 @@ GET https://content.guardianapis.com/search
 | 结构类型 | 代表体裁 | 前 5 段 |
 | --- | --- | --- |
 | 倒金字塔（硬新闻） | `tone/news` | ✅ 增益：核心事实在前 |
-| 平铺 / 列表 / 论述 | `tone/recipes`、`tone/minutebyminute`、`tone/letters`、`tone/competitions` | ❌ 噪声：前几段是配料表/比分流水/寒暄，核心分散 |
+| 平铺 / 列表 / 论述 | `tone/recipes` | ❌ 噪声：前几段可能是配料/步骤铺陈，核心分散 |
+| 即时 / 非事件体裁 | `tone/minutebyminute`、`tone/letters`、`tone/competitions` | 🚫 整条丢弃：直播流水/读者来信/投稿征集缺少完整起因-经过-结果叙事结构 |
 
 已实证（`state/guardian_3v5_comparison.md`）：软文（菜谱等）取前 5 段明显被污染，只取 lede 更干净。
 
 **硬/软的本质是结构（倒金字塔 vs 平铺），不是话题严肃度。**
 
-### 4.2 抽取路由（tone 优先级有序查表）
+### 4.2 抽取路由（DROP 优先，然后 tone 优先级有序查表）
 
 ```text
 输入：article.tags (含 0..n 个 tone/*)、article.bodyText
-输出：抽取策略 → 取哪几段
+输出：DROP 或抽取策略 → 取哪几段
 
 # 决策优先级（自上而下，命中即停）
 route(article):
     tones = [t for t in article.tags if t.startswith("tone/")]
 
+    # (0) tone DROP 黑名单优先于一切仲裁：任意命中即整条丢弃
+    #     即使同一篇同时带 tone/minutebyminute + tone/news，也不能被 news 救回。
+    if any(t in TONE_DROP_BLACKLIST for t in tones):
+        return DROP
+
     # (1) 具体体裁优先于泛化体裁：多 tone 时按"具体度"仲裁
-    #     具体度高 = 结构强绑定抽取策略（recipes/minutebyminute/letters...）
+    #     具体度高 = 结构强绑定抽取策略（recipes/reviews/interview...）
     #     具体度低 = 泛化（news/features/analysis）
     for tone in sort_by_specificity(tones):     # 具体 → 泛化
         if tone in EXTRACTION_TABLE:
@@ -126,6 +133,21 @@ route(article):
     return take_front(3)
 ```
 
+### 4.2.1 tone DROP 黑名单（整条丢弃，不是抽几段）
+
+| tone | DROP 理由 |
+| --- | --- |
+| `tone/minutebyminute` | 即时直播流水，缺少稳定的起因-经过-结果叙事结构 |
+| `tone/letters` | 读者来信/回信体，核心是个人意见与寒暄，不是完整公共事件 |
+| `tone/competitions` | 投稿/征集/活动通知，通常不是事件叙事 |
+
+边界：
+
+- **section 黑名单（§3）**：结构性排除整个 section，例如 meta、功能页、地方性过强或 `travel` 低事件 section。
+- **tone DROP 黑名单（本节）**：在文章层按体裁结构整条丢弃，只针对明显没有完整事件叙事结构的 tone。
+- **EXTRACTION_TABLE（§4.3）**：只决定保留几段，**不再承担整条丢弃职责**。
+- **热度排序 D4（§6）**：负责语义级选题价值，例如个性化随笔是否低共鸣；不得用 tone 或表层相似度冒充 D4。
+
 ### 4.3 EXTRACTION_TABLE 初始映射（可迭代）
 
 | tone | 结构 | 策略 |
@@ -133,8 +155,6 @@ route(article):
 | `tone/news` | 倒金字塔 | 前 5 段 |
 | `tone/analysis`、`tone/comment` | 论点先行 | 前 4 段 |
 | `tone/recipes` | 配料+步骤 | 仅标题 + lede（1 段） |
-| `tone/minutebyminute` | 直播流水 | 仅 lede（1 段） |
-| `tone/letters`、`tone/competitions` | 寒暄/罗列 | 仅 lede（1 段） |
 | `tone/reviews`、`tone/interview` | 平铺论述 | 前 3 段 |
 | `tone/features` | 不定 | → 段长衰减启发式（见 4.2） |
 | （无 / 未知） | — | 前 3 段（保守默认） |
@@ -145,11 +165,11 @@ route(article):
 
 > **严禁**用"新闻原文表层文本相似度"做任何预筛 / 打分 / 排序。
 
-下游召回用 MiniLM（paraphrase 模型）从电影 overview 召回——它**不做隐喻跳跃**。若在新闻侧加"新闻原文 → embedding → 预检"，测的是**表层话题相似度**，与项目"深层共振、非字面联想"的灵魂**直接冲突**。格式感知抽取只改**每条的正文质量**，不改**放行与否**，也不引入任何相似度判断。
+下游召回用 MiniLM（paraphrase 模型）从电影 overview 召回——它**不做隐喻跳跃**。若在新闻侧加"新闻原文 → embedding → 预检"，测的是**表层话题相似度**，与项目"深层共振、非字面联想"的灵魂**直接冲突**。格式感知抽取只改**每条的正文质量**；tone DROP 只按体裁结构排除缺少完整事件叙事的少数类型。二者都不得引入任何相似度判断或语义价值打分。
 
-### 4.5 边界澄清：抽取 ≠ 条数控制
+### 4.5 边界澄清：抽取 ≠ 条数控制；DROP 是独立结构闸门
 
-格式感知抽取改变的是**单条新闻的描述质量**；它**不改变**流入 agents 的**新闻条数**。条数由 `page-size / min_body_len / 去重 / --limit` 控制（不同的管线位置）。两者不要混淆。
+格式感知抽取改变的是**单条新闻的描述质量**；它本身**不改变**流入 agents 的**新闻条数**。tone DROP 是新增的文章层结构闸门，只丢弃 `minutebyminute` / `letters` / `competitions` 这类无完整事件叙事结构的条目。其余条数仍由 `page-size / min_body_len / 去重 / --limit` 控制（不同的管线位置）。两者不要混淆。
 
 ---
 
