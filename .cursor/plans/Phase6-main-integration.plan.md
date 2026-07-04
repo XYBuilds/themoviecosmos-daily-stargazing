@@ -20,7 +20,7 @@ todos:
     status: pending
   - id: p6-docs
     content: 6.4 · README 更新 + plumbing 说明 + run_eval 对齐 render_briefing 调用
-    status: pending
+    status: completed
 isProject: true
 ---
 
