@@ -132,27 +132,54 @@ Copy-Item .env.example .env
    ```
    为每部候选产出一段中文文案。产物：`output/copy_review.json`（结构化）+ `output/copy_review.md`（Obsidian 可读候选块，默认与 `--out` 同名 `.md`；也可用 `--md-out` 显式指定）。总编在 Obsidian 中肉眼审核、手动勾选 `✅ 选用`（A1/oracle 不入候选）。
 
-6. **接 RSS**：`scripts/fetch_news.py`。
+6. **接 RSS / Guardian API**：`scripts/fetch_news.py`（默认 `--provider guardian-api`，Guardian 各 section 默认全放行，不需要手挑）。
 
-7. **端到端跑通**
+7. **端到端跑通（`main.py` 生产管线）**
    ```powershell
-   python scripts/main.py --url <news_url>
+   python scripts/main.py --pick 3
+   # 或
+   python scripts/main.py --news-file output/picked_news.json
+   # 或
+   python scripts/main.py --url <news_url> --title "..." --description "..."
    ```
-   产物：`output/Daily_Briefing/2026-MM-DD.md`，在 Obsidian 中阅读、勾选文案。
+   管线：`resolve_news → deconstruct(A0) → expand(可 --skip-expand) → persona_pipeline×N(可 --personas 限制) → retrieve → (可选 --no-copy) compose.run_review(C1) → build_daily_briefing`。  
+   产物：`output/Daily_Briefing/{date}.md` + 同目录 `{date}_candidates.json`（date 默认今天 UTC，可用 `--date` 覆盖；同日重复跑默认报错，需 `--force` 覆盖）。在 Obsidian 中阅读 `.md`、人工审阅候选与 C1 中文文案。
 
 8. **选定文案 → 多平台定稿（中/英）**
    ```powershell
-   python scripts/compose.py --stage publish --selected <copy>
+   python scripts/main.py publish --date 2026-07-04 --tmdb-id 157336
    ```
-   产物：`output/Daily_Briefing/2026-MM-DD_copy.md`。
+   从 `{date}_candidates.json` 按 `tmdb_id` 定位候选，调 `compose.py --stage publish`（C2）生成中英文定稿。产物：`output/Daily_Briefing/{date}_copy.md`。（`main.py publish` 子命令由 Phase 6.3 交付；若与本文档描述的参数有出入，以该 todo 实际合并后的 `--help` 输出为准。）
 
 9. **切全量索引**：把 `--csv` 换成 `data/full/TMDB_all_movies.csv`。
 
 ---
 
+## `run_eval.py` vs `main.py`
+
+两者共享同一条底层管线（`deconstruct → expand → persona_pipeline → retrieve`），也共享 `scripts/lib/render_briefing.py` 里的候选/现实波澜/errors 渲染函数（Phase 6.1 从 `run_eval.py` 抽出，`run_eval.py` 现在从该模块 import，未再内联维护这些渲染逻辑），但用途和产物目录不同：
+
+- **`run_eval.py`**：面向开发调试与回归验证，产物写 `output/Eval/{run_id}/`（`reality.md`/`facts.md`/`candidates.md`/`errors.md`/`run.md` 等一组文档），用于「验证闸门（The Bet）」之类的离线评测，不进入生产日报流程。`run.md` 里的 persona 链接是按当次运行实际参与的 persona 列表动态生成的。
+- **`main.py`**：面向生产日报流程，产物写 `output/Daily_Briefing/{date}.md` + `{date}_candidates.json`，并额外接入 C1 中文审核文案（`--no-copy` 可跳过调试）和 A1 held-out oracle 附录。
+
+两者都支持 `--personas N`（只跑前 N 个 persona）/ `--skip-expand`（跳过 P-Expand）/ `--judge-topk K`（retrieve 阶段每个 pseudo 的 top-k）/ `--force`（覆盖已有同 run/同日产物）这组 Phase 6.0 引入的开发快捷开关。
+
+## plumbing 说明：索引/小规模脚本仅用于测通
+
+以下脚本是管线搭建期的联调/验证工具，**不是日更生产脚本**，日常生产只走 `scripts/main.py`：
+
+- `scripts/build_index.py`：构建 `data/index/embeddings.npy` + `meta.parquet`，只在索引改动或首次搭建环境时跑一次；日常生产不重复调用。
+- `scripts/smoke_llm.py`：仅测试 LLM Provider（MIMO/DeepSeek）连通性，不产出任何业务数据。
+- `scripts/agents.py`：旧版 4-persona（A1/A2/A4/A7）pseudo 生成路径，已被 `personas.py` + `rewrite.py` 的 persona pipeline 取代（ADR-0011 D3 判定为 DEAD FLOW），仅保留用于历史对照/测试 fixture，不接入 `main.py`。
+- `scripts/retrieve.py --pseudo ...` 单条命令行调用：仅用于手工验证召回是否连通，生产链路走 `retrieve_from_agents()` 函数调用，不走这个 CLI 入口。
+
+---
+
 ## 新闻抓取与手挑（fetch_news）
 
-RSS 候选新闻进入主链路前，先由总编手挑一条结构化 news JSON：
+`fetch_news.py` 默认 `--provider guardian-api`：按黑名单过滤后的一批宽泛 section（`GUARDIAN_API_SECTIONS`，剔除 about/help/weather 等非事件类栏目）自动拉取候选，**不需要总编逐条手挑才能继续**——`main.py --pick N` 可以直接从这批自动放行的候选里按序号选一条进入生产管线。
+
+`--pick` 更多用作调试期的手工干预开关：查看/临时锁定某一条候选、或在自动化之外做人工复核时使用：
 
 1. 查看带序号候选列表：
    ```powershell
@@ -168,6 +195,11 @@ RSS 候选新闻进入主链路前，先由总编手挑一条结构化 news JSON
    python scripts/main.py --news-file output/picked_news.json
    python scripts/run_eval.py --news-file output/picked_news.json
    ```
+
+也可以跳过导出 JSON 这一步，让 `main.py`/`fetch_news.py` 各自直连 Guardian API 按序号选取：
+```powershell
+python scripts/main.py --pick 3
+```
 
 需要留档候选池给总编浏览时，可把去重后的完整候选列表写到 `state/`：
 
