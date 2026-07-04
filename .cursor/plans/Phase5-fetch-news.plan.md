@@ -238,11 +238,11 @@ python -c "import json; json.load(open('output/picked_news.json')); print('ok')"
 
 ## 交给 Phase 6
 
-| 产出               | 用途                                    |
-| ------------------ | --------------------------------------- |
+| 产出               | 用途                                                                         |
+| ------------------ | ---------------------------------------------------------------------------- |
 | `fetch_news.py`    | `orchestrate`(`main.py`) 默认入口拉 Guardian API 新闻；RSS 可作可选 provider |
-| `news_pool_*.json` | 自动候选池 / 调试浏览候选池                          |
-| 抓取源验收结论     | 确认真实 API 下 section 放行与 tone 抽取质量        |
+| `news_pool_*.json` | 自动候选池 / 调试浏览候选池                                                  |
+| 抓取源验收结论     | 确认真实 API 下 section 放行与 tone 抽取质量                                 |
 
 ## 风险与约束
 
