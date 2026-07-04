@@ -17,7 +17,7 @@ todos:
     status: completed
   - id: p6-publish
     content: 6.3 · main publish 子命令：总编勾选后触发 C2 → YYYY-MM-DD_copy.md
-    status: pending
+    status: completed
   - id: p6-docs
     content: 6.4 · README 更新 + plumbing 说明 + run_eval 对齐 render_briefing 调用
     status: completed

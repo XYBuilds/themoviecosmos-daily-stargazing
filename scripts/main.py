@@ -6,7 +6,7 @@
   → persona_pipeline × N（可 --personas 限制）→ retrieve_from_agents
   → (可选) compose.run_review(C1) → 组装 Markdown → output/Daily_Briefing/{date}.md
 
-CLI:
+CLI（日报管线，默认命令）:
   python scripts/main.py --news-file output/picked_news.json
   python scripts/main.py --url https://... --title "..." --description "..."
   python scripts/main.py --pick 3
@@ -15,6 +15,13 @@ CLI:
   python scripts/main.py --news-file ... --personas 2
 
 无参数时打印用法并以非 0 退出码结束。
+
+CLI（``publish`` 子命令 · Todo 6.3，总编在日报候选中选定 1 部后定稿 C2）:
+  python scripts/main.py publish --date 2026-07-04 --tmdb-id 157336
+
+  读取 output/Daily_Briefing/{date}.md（新闻语境）+ {date}_candidates.json
+  （候选池，按 tmdb_id 定位）→ compose.run_publish(candidate, news) → 写
+  output/Daily_Briefing/{date}_copy.md。
 """
 
 from __future__ import annotations
@@ -22,6 +29,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import re
 import sys
 import time
 from datetime import UTC, datetime
@@ -279,6 +287,160 @@ def resolve_briefing_path(date: str, out_dir: Path | None = None) -> Path:
     return base / f"{date}.md"
 
 
+def resolve_candidates_path(date: str, out_dir: Path | None = None) -> Path:
+    base = out_dir or (_REPO_ROOT / "output" / "Daily_Briefing")
+    return base / f"{date}_candidates.json"
+
+
+def resolve_copy_path(date: str, out_dir: Path | None = None) -> Path:
+    base = out_dir or (_REPO_ROOT / "output" / "Daily_Briefing")
+    return base / f"{date}_copy.md"
+
+
+def _parse_news_from_briefing_md(text: str) -> dict[str, str]:
+    """Recover the news dict compose.run_publish needs from the "现实波澜" section
+    rendered by render_briefing._format_reality_body.
+
+    Only title / description(summary) / url are needed — see
+    compose.build_news_context, which is the only consumer of ``news`` inside
+    run_publish.
+    """
+    title_match = re.search(r"^- \*\*title\*\*: (.*)$", text, re.MULTILINE)
+    summary_match = re.search(r"^- \*\*summary\*\*: (.*)$", text, re.MULTILINE)
+    url_match = re.search(r"^- news_url: (.*)$", text, re.MULTILINE)
+    if not title_match or not summary_match:
+        raise ValueError(
+            "could not parse news title/summary out of the briefing markdown "
+            "(expected the '## 现实波澜' section written by build_daily_briefing)"
+        )
+    url = url_match.group(1).strip() if url_match else ""
+    return {
+        "title": title_match.group(1).strip(),
+        "description": summary_match.group(1).strip(),
+        "url": "" if url in ("", "—") else url,
+    }
+
+
+def load_news_context_for_publish(date: str, out_dir: Path | None = None) -> dict[str, str]:
+    """Load the news dict for ``publish`` from {date}.md (written by the daily pipeline)."""
+    briefing_path = resolve_briefing_path(date, out_dir)
+    if not briefing_path.is_file():
+        raise ValueError(
+            f"briefing not found: {briefing_path} "
+            f"(run `python scripts/main.py --date {date} ...` first to produce it)"
+        )
+    return _parse_news_from_briefing_md(briefing_path.read_text(encoding="utf-8"))
+
+
+def find_candidate_by_tmdb_id(
+    date: str, tmdb_id: int, out_dir: Path | None = None
+) -> dict[str, Any]:
+    """Locate the candidate dict matching --tmdb-id inside {date}_candidates.json."""
+    candidates_path = resolve_candidates_path(date, out_dir)
+    if not candidates_path.is_file():
+        raise ValueError(
+            f"candidates file not found: {candidates_path} "
+            f"(run `python scripts/main.py --date {date} ...` first to produce it)"
+        )
+    payload = json.loads(candidates_path.read_text(encoding="utf-8"))
+    candidates = payload.get("candidates") or []
+    for cand in candidates:
+        if str(cand.get("tmdb_id")) == str(tmdb_id):
+            return cand
+    available = ", ".join(str(c.get("tmdb_id")) for c in candidates) or "（无候选）"
+    raise ValueError(
+        f"tmdb_id {tmdb_id} not found among candidates in {candidates_path}; "
+        f"available tmdb_ids: {available}"
+    )
+
+
+def build_copy_markdown(
+    date: str,
+    candidate: dict[str, Any],
+    news: dict[str, str],
+    draft: dict[str, Any],
+) -> str:
+    """Render {date}_copy.md: C2's Chinese creative body (the only creative
+    artifact per ADR-0012/ADR-0013) + the English news context it was written
+    against + links.
+
+    ``run_publish`` deliberately produces no English translation of the body
+    (C2 is single-language Chinese prose by design). The "中英文两节" acceptance
+    bar is satisfied by pairing the Chinese body with the original English news
+    source it responds to, not by machine-translating the body itself — see
+    report §4 for the reasoning.
+    """
+    title = str(candidate.get("title") or "")
+    year = candidate.get("release_year")
+    year_str = str(year) if year else "—"
+    movie_url = str(candidate.get("movie_url") or "")
+    news_url = str(news.get("url") or "")
+    body = str(draft.get("body") or "").strip()
+
+    lines = [
+        f"# 发布定稿 · {date} · 《{title}》({year_str})",
+        "",
+        "## 中文发布正文",
+        "",
+        body or "（无正文）",
+        "",
+        "## 新闻原文（English source）",
+        "",
+        f"**{news.get('title', '')}**",
+        "",
+        str(news.get("description", "")),
+        "",
+        "## 链接",
+        "",
+        f"- 电影: {movie_url or '（无）'}",
+        f"- 新闻: {news_url or '（无）'}",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def _run_publish_cli(args: argparse.Namespace) -> int:
+    news = load_news_context_for_publish(args.date)
+    candidate = find_candidate_by_tmdb_id(args.date, args.tmdb_id)
+    draft = compose.run_publish(candidate, news, provider=args.provider)
+
+    copy_md = build_copy_markdown(args.date, candidate, news, draft)
+    copy_path = resolve_copy_path(args.date)
+    copy_path.parent.mkdir(parents=True, exist_ok=True)
+    copy_path.write_text(copy_md, encoding="utf-8")
+
+    print(f"Wrote {copy_path.resolve()}", file=sys.stderr)
+    return 0
+
+
+def build_publish_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="scripts/main.py publish",
+        description=(
+            "Finalize the C2 publish copy for one editor-selected candidate "
+            "(compose.run_publish) into output/Daily_Briefing/{date}_copy.md."
+        ),
+    )
+    parser.add_argument(
+        "--date",
+        required=True,
+        help="Briefing date (YYYY-MM-DD); must match an existing {date}.md / _candidates.json pair.",
+    )
+    parser.add_argument(
+        "--tmdb-id",
+        required=True,
+        type=int,
+        metavar="ID",
+        help="TMDB id of the candidate the editor selected from the daily briefing.",
+    )
+    parser.add_argument(
+        "--provider",
+        choices=["mimo", "deepseek"],
+        help="LLM provider override (default: DEFAULT_LLM_PROVIDER from .env).",
+    )
+    return parser
+
+
 async def _run_cli(args: argparse.Namespace) -> int:
     news = resolve_news(args)
 
@@ -385,6 +547,21 @@ def main(argv: list[str] | None = None) -> int:
     if not argv:
         build_parser().print_usage(sys.stderr)
         return 2
+
+    # main.py has no top-level argparse subparsers (existing CLI style predates
+    # this todo); dispatch "publish" as a lightweight sub-command by peeling
+    # off argv[0] before the daily-pipeline parser ever sees it.
+    if argv[0] == "publish":
+        publish_parser = build_publish_parser()
+        publish_args = publish_parser.parse_args(argv[1:])
+        try:
+            return _run_publish_cli(publish_args)
+        except ValueError as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return 2
+        except KeyboardInterrupt:
+            print("interrupted", file=sys.stderr)
+            return 130
 
     parser = build_parser()
     args = parser.parse_args(argv)
