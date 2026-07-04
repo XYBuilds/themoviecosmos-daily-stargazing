@@ -8,7 +8,7 @@ overview: |
 todos:
   - id: p6-debt-dev-switch
     content: 6.0 · Phase5 债务：开发快捷开关（--personas N / --skip-expand / --judge-topk K）注入 run_eval + main 共用
-    status: pending
+    status: completed
   - id: p6-render-module
     content: 6.1 · 抽离 render_briefing.py：从 run_eval.py 提取可复用渲染函数（reality/candidates/errors/oracle），eval 与 main 单点维护
     status: pending
