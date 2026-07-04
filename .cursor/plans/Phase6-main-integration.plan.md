@@ -14,7 +14,7 @@ todos:
     status: completed
   - id: p6-main-pipeline
     content: 6.2 · main.py 日报管线：news → deconstruct → expand → persona_pipeline → retrieve → C1 → Daily_Briefing.md
-    status: pending
+    status: completed
   - id: p6-publish
     content: 6.3 · main publish 子命令：总编勾选后触发 C2 → YYYY-MM-DD_copy.md
     status: pending
