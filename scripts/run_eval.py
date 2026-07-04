@@ -10,6 +10,7 @@ import asyncio
 import json
 import re
 import sys
+import time
 import unicodedata
 from datetime import UTC, datetime
 from pathlib import Path
@@ -34,6 +35,15 @@ from scripts.retrieve import retrieve_from_agents
 from scripts.rewrite import list_persona_ids, pipeline_result_to_dict, run_persona_pipeline
 
 _PSEUDO_ORDER: tuple[str, ...] = RUN_ORDER
+
+
+def _progress(message: str) -> None:
+    ts = datetime.now(UTC).isoformat(timespec="seconds")
+    print(f"{ts} {message}", file=sys.stderr, flush=True)
+
+
+def _elapsed(start: float) -> str:
+    return f"{time.perf_counter() - start:.1f}s"
 
 
 def slugify(text: str, *, max_len: int = 60) -> str:
@@ -525,24 +535,33 @@ async def run_eval_pipeline(
     run_dir: Path | None = None,
 ) -> tuple[list, list[dict], dict[str, Any], dict[str, Any], dict[str, Any], dict[str, dict[str, Any]]]:
     """Run P-Expand → 12 persona search-units → retrieve."""
+    stage_start = time.perf_counter()
+    _progress("[stage 3/6] expand start")
     expansion, expansion_payload = _resolve_expansion(
         deconstruction,
         run_dir or (_REPO_ROOT / "output" / "Eval" / "_tmp"),
         provider=provider,
     )
+    _progress(f"[stage 3/6] expand done ({_elapsed(stage_start)})")
 
     outputs: list[AgentOutput] = []
     errors: list[dict[str, Any]] = []
     agents_list: list[dict[str, Any]] = []
     persona_payloads: dict[str, dict[str, Any]] = {}
 
-    for persona_id in list_persona_ids():
+    persona_ids = list_persona_ids()
+    stage_start = time.perf_counter()
+    _progress(f"[stage 4/6] persona start total={len(persona_ids)}")
+    for idx, persona_id in enumerate(persona_ids, start=1):
+        persona_start = time.perf_counter()
+        _progress(f"[persona {idx}/{len(persona_ids)}] {persona_id} start")
         result = await run_persona_pipeline(
             persona_id,
             deconstruction,
             provider=provider,
             expansion=expansion,
         )
+        _progress(f"[persona {idx}/{len(persona_ids)}] {persona_id} done ({_elapsed(persona_start)})")
         payload = pipeline_result_to_dict(result)
         persona_payloads[persona_id] = payload
         outputs.append(_persona_result_to_output(result))
@@ -551,7 +570,12 @@ async def run_eval_pipeline(
             continue
         agents_list.append(_persona_result_to_agent(result))
 
+    _progress(f"[stage 4/6] persona done ({_elapsed(stage_start)})")
+
+    stage_start = time.perf_counter()
+    _progress("[stage 5/6] retrieve start")
     retrieve_result = retrieve_from_agents(agents_list, errors)
+    _progress(f"[stage 5/6] retrieve done ({_elapsed(stage_start)})")
     agents_payload = {"agents": agents_list, "errors": errors}
     return outputs, errors, retrieve_result, expansion_payload, agents_payload, persona_payloads
 
@@ -562,7 +586,10 @@ async def _run_cli(args: argparse.Namespace) -> int:
         print(f"error: news file not found: {news_path}", file=sys.stderr)
         return 2
 
+    stage_start = time.perf_counter()
+    _progress("[stage 1/6] load news start")
     news = load_news_from_file(news_path)
+    _progress(f"[stage 1/6] load news done ({_elapsed(stage_start)})")
     run_id = (args.run_id or "").strip() or default_run_id(news.title)
     run_dir = resolve_run_dir(run_id, args.out)
 
@@ -570,12 +597,15 @@ async def _run_cli(args: argparse.Namespace) -> int:
     if decon_path and not decon_path.is_absolute():
         decon_path = _REPO_ROOT / decon_path
 
+    stage_start = time.perf_counter()
+    _progress("[stage 2/6] deconstruct start")
     deconstruction, decon_payload = _resolve_deconstruction(
         news,
         run_dir,
         provider=args.provider,
         deconstruction_file=decon_path,
     )
+    _progress(f"[stage 2/6] deconstruct done ({_elapsed(stage_start)})")
 
     outputs, errors, retrieve_result, expansion_payload, agents_payload, persona_payloads = await run_eval_pipeline(
         news,
@@ -583,6 +613,8 @@ async def _run_cli(args: argparse.Namespace) -> int:
         deconstruction=deconstruction,
         run_dir=run_dir,
     )
+    stage_start = time.perf_counter()
+    _progress(f"[stage 6/6] write outputs -> {run_dir} start")
     write_eval_bundle(
         run_dir,
         run_id,
@@ -595,6 +627,7 @@ async def _run_cli(args: argparse.Namespace) -> int:
         agents_payload=agents_payload,
         persona_payloads=persona_payloads,
     )
+    _progress(f"[stage 6/6] write outputs -> {run_dir} done ({_elapsed(stage_start)})")
     print(f"Wrote {run_dir.resolve()}/", file=sys.stderr)
 
     successes = sum(1 for o in outputs if o.pseudos and not o.error)

@@ -129,7 +129,7 @@ def _load_index() -> tuple[np.ndarray, pd.DataFrame]:
 def _get_model() -> SentenceTransformer:
     global _model
     if _model is None:
-        _model = SentenceTransformer(MODEL_NAME)
+        _model = SentenceTransformer(MODEL_NAME, local_files_only=True)
     return _model
 
 

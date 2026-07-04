@@ -29,7 +29,9 @@ import json
 import os
 import re
 import sys
+import time
 from dataclasses import dataclass, field
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -53,6 +55,12 @@ _C1_PROMPT_REL = "prompts/compose_review.md"
 _C2_PROMPT_REL = "prompts/compose_publish.md"
 
 _OVERVIEW_MAX_CHARS = 240
+
+
+def _progress(message: str) -> None:
+    ts = datetime.now(UTC).isoformat(timespec="seconds")
+    print(f"{ts} {message}", file=sys.stderr, flush=True)
+
 
 # OPEN-a soft hint: human-readable labels for center_dimensions (W-axes).
 _DIMENSION_LABELS: dict[str, str] = {
@@ -988,6 +996,9 @@ def _run_review_cli(args: argparse.Namespace) -> int:
     # (whole pool passes through), matching the documented toggle semantics.
     min_judge = args.min_judge if args.min_judge and args.min_judge > 0 else None
 
+    review_start = time.perf_counter()
+    candidate_count = len([c for c in retrieve.get("candidates") or [] if isinstance(c, dict)])
+    _progress(f"[compose] review start candidates={candidate_count}")
     result = run_review(
         retrieve,
         news,
@@ -1023,6 +1034,9 @@ def _run_review_cli(args: argparse.Namespace) -> int:
         md_path.parent.mkdir(parents=True, exist_ok=True)
         md_path.write_text(markdown, encoding="utf-8")
         print(f"Wrote {md_path.resolve()}", file=sys.stderr)
+
+    done_target = str(out_path.resolve()) if out_path is not None else "stdout"
+    _progress(f"[compose] review done -> {done_target} ({time.perf_counter() - review_start:.1f}s)")
 
     # A non-empty candidate pool that yields no copies is only a failure when no
     # judge filter was applied; with --min-judge an empty result is a legit "all

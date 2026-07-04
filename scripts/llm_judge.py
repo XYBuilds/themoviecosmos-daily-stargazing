@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import UTC, datetime
 import json
 import re
 import sys
@@ -55,6 +56,11 @@ _MIMO_THINKING_ENABLED = "enabled"
 _MIMO_DEFAULT_THINKING_MODE = _MIMO_THINKING_ENABLED
 _MIMO_RETRY_ATTEMPTS = 4
 _MIMO_RETRY_BASE_SECONDS = 8.0
+
+
+def _progress(message: str) -> None:
+    ts = datetime.now(UTC).isoformat(timespec="seconds")
+    print(f"{ts} {message}", file=sys.stderr, flush=True)
 
 
 def _is_retryable_llm_error(exc: Exception) -> bool:
@@ -679,14 +685,23 @@ def score_items(
         )
 
     results: list[JudgeResult | None] = [None] * len(items)
+    total = len(items)
+    done_count = 0
     if workers == 1 or len(items) <= 1:
         for idx, item in enumerate(items):
+            _progress(f"[judge] scoring {idx + 1}/{total} {item.run_id}/{item.tmdb_id}")
             results[idx] = _score_one(item)
+            done_count += 1
+            _progress(f"[judge] done {done_count}/{total} {item.run_id}/{item.tmdb_id}")
     else:
         with ThreadPoolExecutor(max_workers=workers) as pool:
             futures = {pool.submit(_score_one, item): idx for idx, item in enumerate(items)}
             for future in as_completed(futures):
-                results[futures[future]] = future.result()
+                idx = futures[future]
+                results[idx] = future.result()
+                done_count += 1
+                item = items[idx]
+                _progress(f"[judge] done {done_count}/{total} {item.run_id}/{item.tmdb_id}")
 
     ordered_results = [result for result in results if result is not None]
     cal_pairs: list[tuple[int, int]] = []
@@ -700,6 +715,10 @@ def score_items(
         min_exact_agreement=min_exact_agreement,
         min_pearson=min_pearson,
         min_pairs=min_pairs,
+    )
+    _progress(
+        f"[judge] summary scored={len(ordered_results)} "
+        f"calibration_pairs={calibration.n_pairs} trust_status={calibration.trust_status}"
     )
     for result in ordered_results:
         result.trusted = calibration.trusted
