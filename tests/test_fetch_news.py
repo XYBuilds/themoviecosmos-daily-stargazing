@@ -1,8 +1,14 @@
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from scripts.fetch_news import fetch_all_entries, fetch_feed
+from scripts.fetch_news import (
+    fetch_all_entries,
+    fetch_feed,
+    fetch_guardian_api,
+)
 
 
 class FetchNewsTests(unittest.TestCase):
@@ -167,6 +173,111 @@ class FetchNewsTests(unittest.TestCase):
         self.assertEqual(
             set(entries[0].keys()),
             {"title", "description", "pub_time", "source_name", "url"},
+        )
+
+    def test_fetch_guardian_api_no_key(self):
+        with patch.dict("os.environ", {}, clear=True):
+            with self.assertRaisesRegex(RuntimeError, "GUARDIAN_API_KEY not set"):
+                fetch_guardian_api(api_key=None)
+
+    def test_fetch_guardian_api_success(self):
+        # HTML body with paragraph tags
+        body_html = (
+            "<p>Death and rescue story in the city centre.</p>"
+            "<p>Police arrived at the scene within minutes.</p>"
+            "<p>Witnesses described chaos and heroism.</p>"
+            "<p>The mayor issued a statement of condolence.</p>"
+            "<p>Investigations are ongoing into the cause.</p>"
+            "<p>Extra paragraph that should not be included.</p>"
+        )
+        trail_body_html = (
+            "<p>A survivor describes an attack in detail.</p>"
+            "<p>The community rallied around the victims.</p>"
+            "<p>Related: Another story link</p>"
+            "<p>Authorities launched a full inquiry.</p>"
+            "<p>Support services were deployed immediately.</p>"
+            "<p>The event shook the nation.</p>"
+        )
+
+        class FakeResponse:
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return {
+                    "response": {
+                        "results": [
+                            {
+                                "webTitle": "Death and rescue in city",
+                                "fields": {"body": body_html, "trailText": "short trail"},
+                                "webPublicationDate": "2026-07-03T10:00:00Z",
+                                "sectionName": "World news",
+                                "webUrl": "https://www.theguardian.com/world/one",
+                            },
+                            {
+                                "webTitle": "Too short",
+                                "fields": {"body": "<p>short</p>"},
+                                "webPublicationDate": "2026-07-03T09:00:00Z",
+                                "sectionName": "Society",
+                                "webUrl": "https://www.theguardian.com/society/short",
+                            },
+                            {
+                                "webTitle": "Fallback trail story",
+                                "fields": {"body": trail_body_html},
+                                "webPublicationDate": "2026-07-03T08:00:00Z",
+                                "sectionName": "Law",
+                                "webUrl": "https://www.theguardian.com/law/fallback",
+                            },
+                        ]
+                    }
+                }
+
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            with patch("scripts.fetch_news.requests.get", return_value=FakeResponse()) as mock_get:
+                payloads = fetch_guardian_api(
+                    sections=["world", "law"],
+                    order_by="relevance",
+                    page_size=3,
+                    min_body_len=100,
+                    tag="world/example",
+                    db_path=db_path,
+                    api_key="test-key",
+                )
+
+        self.assertEqual(len(payloads), 2)
+        # First item: 5 paragraphs (6th excluded by max_paragraphs=5)
+        expected_desc_0 = (
+            "Death and rescue story in the city centre. "
+            "Police arrived at the scene within minutes. "
+            "Witnesses described chaos and heroism. "
+            "The mayor issued a statement of condolence. "
+            "Investigations are ongoing into the cause."
+        )
+        self.assertEqual(payloads[0]["title"], "Death and rescue in city")
+        self.assertEqual(payloads[0]["description"], expected_desc_0)
+        self.assertEqual(payloads[0]["pub_time"], "2026-07-03T10:00:00Z")
+        # Second item: "Related:" paragraph skipped, so 5 kept from remaining
+        expected_desc_1 = (
+            "A survivor describes an attack in detail. "
+            "The community rallied around the victims. "
+            "Authorities launched a full inquiry. "
+            "Support services were deployed immediately. "
+            "The event shook the nation."
+        )
+        self.assertEqual(payloads[1]["description"], expected_desc_1)
+        mock_get.assert_called_once_with(
+            "https://content.guardianapis.com/search",
+            params={
+                "api-key": "test-key",
+                "section": "world|law",
+                "order-by": "relevance",
+                "from-date": __import__("datetime").date.today().isoformat(),
+                "page-size": 3,
+                "show-fields": "body,trailText,headline",
+                "tag": "world/example",
+            },
+            timeout=30,
         )
 
 

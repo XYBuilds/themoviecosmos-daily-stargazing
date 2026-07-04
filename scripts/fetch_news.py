@@ -15,7 +15,6 @@ MVP 决策:
     "description": str,
     "pub_time": str | None,
     "source_name": str | None,
-    "url": str,
   }
 """
 
@@ -28,6 +27,7 @@ import difflib
 import html
 import json
 import logging
+import os
 from pathlib import Path
 import re
 import sqlite3
@@ -36,6 +36,7 @@ from typing import Any, TextIO
 from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 import feedparser
+import requests
 
 from scripts.lib.paths import seen_news_db
 
@@ -46,6 +47,8 @@ FEEDS: list[str] = [
     "https://www.theguardian.com/us-news/rss",
     "https://www.theguardian.com/uk-news/rss",
 ]
+
+GUARDIAN_API_SECTIONS: list[str] = ["society", "world", "law", "environment"]  # disabled for now
 
 
 _TAG_RE = re.compile(r"<[^>]+>")
@@ -252,6 +255,35 @@ def _strip_html(text: str) -> str:
     return _GUARDIAN_CONTINUE_RE.sub("", normalized).strip()
 
 
+_PARA_RE = re.compile(r"<p>(.*?)</p>", re.DOTALL)
+_RELATED_RE = re.compile(r"^Related:\s", re.IGNORECASE)
+
+
+def _extract_lead_paragraphs(body_html: str, max_paragraphs: int = 5) -> str:
+    """Extract first N meaningful paragraphs from Guardian HTML body.
+
+    Skips short 'Related:' link paragraphs. Falls back to plain truncation
+    if no <p> tags found (e.g. bodyText fallback).
+    """
+    paragraphs = _PARA_RE.findall(body_html)
+    if not paragraphs:
+        # Fallback for plain text (no HTML structure)
+        return body_html[:1500].rsplit(". ", 1)[0] + "." if len(body_html) > 1500 else body_html
+
+    kept: list[str] = []
+    for p in paragraphs:
+        clean = _TAG_RE.sub("", p).strip()
+        if not clean:
+            continue
+        # Skip "Related: ..." link-only paragraphs
+        if _RELATED_RE.match(clean):
+            continue
+        kept.append(clean)
+        if len(kept) >= max_paragraphs:
+            break
+    return " ".join(kept)
+
+
 def _published_to_iso(published_parsed: Any) -> str | None:
     """将 feedparser 的 published_parsed 转成 UTC ISO8601 字符串。"""
 
@@ -277,7 +309,7 @@ def _source_name(parsed_feed: Any, feed_url: str) -> str | None:
     return hostname or None
 
 
-def _entry_to_payload(entry: Any, source_name: str | None) -> dict[str, str | None] | None:
+def _entry_to_payload(entry: Any, source_name: str | None) -> dict[str, str | int | None] | None:
     """把单条 RSS entry 规范化为 news payload；缺必填字段则返回 None。"""
 
     title = _get_value(entry, "title")
@@ -352,6 +384,64 @@ def fetch_all_entries(feeds: list[str] | None = None) -> list[dict]:
     return entries
 
 
+def fetch_guardian_api(
+    sections: list[str] | None = None,
+    order_by: str = "newest",
+    page_size: int = 30,
+    min_body_len: int = 400,
+    tag: str | None = None,
+    *,
+    db_path: Path | None = None,
+    api_key: str | None = None,
+) -> list[dict]:
+    """Fetch Guardian Open Platform search results as news payloads."""
+
+    resolved_api_key = api_key or os.environ.get("GUARDIAN_API_KEY")
+    if resolved_api_key is None:
+        raise RuntimeError("GUARDIAN_API_KEY not set")
+
+    params = {
+        "api-key": resolved_api_key,
+        "order-by": order_by,
+        "from-date": __import__("datetime").date.today().isoformat(),
+        "page-size": page_size,
+        "show-fields": "body,trailText,headline",
+    }
+    # Section filtering (disabled for now — fetch across all sections)
+    if sections is not None:
+        params["section"] = "|".join(sections)
+    if tag is not None:
+        params["tag"] = tag
+
+    response = requests.get("https://content.guardianapis.com/search", params=params, timeout=30)
+    response.raise_for_status()
+    results = response.json()["response"]["results"]
+
+    payloads: list[dict] = []
+    for result in results:
+        fields = result.get("fields") or {}
+        title = result["webTitle"]
+        body_html = fields.get("body") or ""
+        if len(body_html) < min_body_len:
+            continue
+        # Extract first 5 meaningful paragraphs as the lead
+        description = _extract_lead_paragraphs(body_html, max_paragraphs=5)
+        url = result["webUrl"]
+        if is_url_seen(url, db_path):
+            continue
+        payloads.append(
+            {
+                "title": title,
+                "description": description,
+                "pub_time": result["webPublicationDate"],
+                "source_name": f"The Guardian | {result.get('sectionName', '')}",
+                "url": url,
+            }
+        )
+
+    return payloads
+
+
 NEWS_KEYS = ("title", "description", "pub_time", "source_name", "url")
 DEFAULT_LIMIT = 30
 _TITLE_DISPLAY_LIMIT = 80
@@ -389,6 +479,22 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         help="write the selected news JSON to this path instead of stdout",
     )
+    parser.add_argument(
+        "--provider",
+        choices=["rss", "guardian-api"],
+        default="rss",
+        help="news provider to use in candidate list mode (default: rss)",
+    )
+    parser.add_argument(
+        "--sections",
+        help="comma-separated Guardian API sections; defaults to built-in sections",
+    )
+    parser.add_argument(
+        "--order-by",
+        default="newest",
+        help="Guardian API order-by value (default: newest)",
+    )
+    parser.add_argument("--tag", default=None, help="optional Guardian API tag filter")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument(
         "--pick",
@@ -408,6 +514,13 @@ def build_parser() -> argparse.ArgumentParser:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     return build_parser().parse_args(argv)
+
+
+def _parse_sections_arg(value: str | None) -> list[str] | None:
+    if value is None:
+        return None
+    sections = [section.strip() for section in value.split(",") if section.strip()]
+    return sections or None
 
 
 def _parse_pub_time(value: Any) -> datetime | None:
@@ -474,7 +587,7 @@ def render_news_list(entries: list[dict], *, limit: int = DEFAULT_LIMIT) -> str:
     return "\n".join(lines)
 
 
-def _news_json_payload(entry: dict) -> dict[str, str | None]:
+def _news_json_payload(entry: dict) -> dict[str, str | int | None]:
     return {key: entry.get(key) for key in NEWS_KEYS}
 
 
@@ -488,7 +601,7 @@ def emit_news_json(
     *,
     out_json: Path | None = None,
     stdout: TextIO | None = None,
-) -> dict[str, str | None]:
+) -> dict[str, str | int | None]:
     payload = _news_json_payload(entry)
     if out_json is not None:
         write_json(payload, out_json)
@@ -576,7 +689,15 @@ def run_cli(
         mark_selected(entry, db_path=db_path)
         return 0
 
-    candidates = fetch_candidate_pool(db_path=db_path)
+    if args.provider == "guardian-api":
+        candidates = fetch_guardian_api(
+            sections=_parse_sections_arg(args.sections),
+            order_by=args.order_by,
+            tag=args.tag,
+            db_path=db_path,
+        )
+    else:
+        candidates = fetch_candidate_pool(db_path=db_path)
     if args.out is not None:
         write_json(candidates, args.out)
 
