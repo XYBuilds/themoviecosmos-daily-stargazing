@@ -1,3 +1,5 @@
+from io import StringIO
+import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
@@ -5,9 +7,12 @@ import unittest
 from unittest.mock import patch
 
 from scripts.fetch_news import (
+    extract_guardian_description,
     fetch_all_entries,
     fetch_feed,
     fetch_guardian_api,
+    filter_guardian_sections,
+    run_cli,
 )
 
 
@@ -176,7 +181,7 @@ class FetchNewsTests(unittest.TestCase):
         )
 
     def test_fetch_guardian_api_no_key(self):
-        with patch.dict("os.environ", {}, clear=True):
+        with patch("scripts.fetch_news._load_env_value", return_value=None):
             with self.assertRaisesRegex(RuntimeError, "GUARDIAN_API_KEY not set"):
                 fetch_guardian_api(api_key=None)
 
@@ -210,6 +215,7 @@ class FetchNewsTests(unittest.TestCase):
                             {
                                 "webTitle": "Death and rescue in city",
                                 "fields": {"body": body_html, "trailText": "short trail"},
+                                "tags": [{"id": "tone/news"}],
                                 "webPublicationDate": "2026-07-03T10:00:00Z",
                                 "sectionName": "World news",
                                 "webUrl": "https://www.theguardian.com/world/one",
@@ -224,6 +230,7 @@ class FetchNewsTests(unittest.TestCase):
                             {
                                 "webTitle": "Fallback trail story",
                                 "fields": {"body": trail_body_html},
+                                "tags": [{"id": "tone/news"}],
                                 "webPublicationDate": "2026-07-03T08:00:00Z",
                                 "sectionName": "Law",
                                 "webUrl": "https://www.theguardian.com/law/fallback",
@@ -274,11 +281,102 @@ class FetchNewsTests(unittest.TestCase):
                 "order-by": "relevance",
                 "from-date": __import__("datetime").date.today().isoformat(),
                 "page-size": 3,
-                "show-fields": "body,trailText,headline",
+                "show-fields": "bodyText,trailText,headline",
+                "show-tags": "all",
                 "tag": "world/example",
             },
             timeout=30,
         )
+
+    def test_guardian_section_blacklist_filters_four_categories(self):
+        sections = [
+            "media-network",  # suffix/B2B
+            "professional",  # professional class
+            "about",  # meta/tool
+            "weather",  # functional
+            "local",  # local news
+            "film",
+            "education",
+            "sport",
+        ]
+
+        self.assertEqual(filter_guardian_sections(sections), ["film", "education", "sport"])
+
+    def test_tone_extraction_routes_news_to_front_five(self):
+        body = "".join(f"<p>paragraph {index} with useful hard news facts.</p>" for index in range(1, 7))
+
+        description = extract_guardian_description(body, [{"id": "tone/news"}])
+
+        self.assertIn("paragraph 1", description)
+        self.assertIn("paragraph 5", description)
+        self.assertNotIn("paragraph 6", description)
+
+    def test_tone_extraction_routes_recipes_and_minutebyminute_to_lede(self):
+        body = "".join(f"<p>paragraph {index} with text.</p>" for index in range(1, 4))
+
+        recipe = extract_guardian_description(body, [{"id": "tone/recipes"}])
+        minute_by_minute = extract_guardian_description(body, [{"id": "tone/minutebyminute"}])
+
+        self.assertEqual(recipe, "paragraph 1 with text.")
+        self.assertEqual(minute_by_minute, "paragraph 1 with text.")
+
+    def test_tone_extraction_uses_specific_tone_before_features(self):
+        body = "".join(f"<p>paragraph {index} with text.</p>" for index in range(1, 4))
+
+        description = extract_guardian_description(
+            body,
+            [{"id": "tone/features"}, {"id": "tone/recipes"}],
+        )
+
+        self.assertEqual(description, "paragraph 1 with text.")
+
+    def test_tone_features_uses_paragraph_decay_heuristic(self):
+        long_lede = "Lede " + "core setup " * 30
+        strong_followup = "Followup " + "context detail " * 20
+        short_bridge = "Short bridge."
+        body = f"<p>{long_lede}</p><p>{strong_followup}</p><p>{short_bridge}</p><p>Later texture.</p>"
+
+        description = extract_guardian_description(body, [{"id": "tone/features"}])
+
+        self.assertIn(long_lede.strip(), description)
+        self.assertIn(strong_followup.strip(), description)
+        self.assertNotIn(short_bridge, description)
+
+    def test_tone_extraction_without_tone_defaults_to_front_three(self):
+        body = "".join(f"<p>paragraph {index} with text.</p>" for index in range(1, 5))
+
+        description = extract_guardian_description(body, [])
+
+        self.assertIn("paragraph 1", description)
+        self.assertIn("paragraph 3", description)
+        self.assertNotIn("paragraph 4", description)
+
+    def test_cli_without_pick_auto_outputs_limited_news_collection(self):
+        fake_payloads = [
+            {
+                "title": "First automatic story",
+                "description": "Description one",
+                "pub_time": "2026-07-03T10:00:00Z",
+                "source_name": "The Guardian | World",
+                "url": "https://example.com/one",
+            },
+            {
+                "title": "Second automatic story",
+                "description": "Description two",
+                "pub_time": "2026-07-03T09:00:00Z",
+                "source_name": "The Guardian | Film",
+                "url": "https://example.com/two",
+            },
+        ]
+        stdout = StringIO()
+
+        with patch("scripts.fetch_news.fetch_guardian_api", return_value=fake_payloads):
+            code = run_cli(["--limit", "1"], stdout=stdout)
+
+        self.assertEqual(code, 0)
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(len(payload), 1)
+        self.assertEqual(payload[0]["title"], "First automatic story")
 
 
 if __name__ == "__main__":
