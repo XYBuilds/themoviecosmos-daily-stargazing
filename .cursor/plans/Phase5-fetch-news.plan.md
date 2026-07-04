@@ -13,7 +13,7 @@ todos:
     status: completed
   - id: f5a1b2c3-0001-4000-8005-000000000004
     content: 5.4 · 抓取源改进：换 Guardian API 为默认源 + section 宽进黑名单 + tone 格式感知抽取 + --pick 降级为调试开关（依据 ADR-0014 与 news-source-selection-design.md）[需人工验收]
-    status: pending
+    status: completed
 isProject: true
 ---
 
