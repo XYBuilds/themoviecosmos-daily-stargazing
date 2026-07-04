@@ -15,7 +15,6 @@ MVP 决策:
     "description": str,
     "pub_time": str | None,
     "source_name": str | None,
-    "url": str,
   }
 """
 
@@ -28,6 +27,7 @@ import difflib
 import html
 import json
 import logging
+import os
 from pathlib import Path
 import re
 import sqlite3
@@ -36,21 +36,114 @@ from typing import Any, TextIO
 from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 import feedparser
+import requests
 
 from scripts.lib.paths import seen_news_db
 
 logger = logging.getLogger(__name__)
 
 FEEDS: list[str] = [
-    "https://feeds.bbci.co.uk/news/world/rss.xml",
-    "https://www.npr.org/rss/rss.php?id=1001",
-    "https://www.aljazeera.com/xml/rss/all.xml",
+    "https://www.theguardian.com/world/rss",
+    "https://www.theguardian.com/us-news/rss",
+    "https://www.theguardian.com/uk-news/rss",
 ]
+
+# Guardian API defaults: wide-in section policy. The list is intentionally broad;
+# the allow decision is made by the blacklist helpers below, not by hand-picking a
+# small editorial whitelist.
+GUARDIAN_API_SECTIONS: list[str] = [
+    "artanddesign",
+    "australia-news",
+    "books",
+    "business",
+    "commentisfree",
+    "culture",
+    "education",
+    "environment",
+    "fashion",
+    "film",
+    "football",
+    "food",
+    "games",
+    "global-development",
+    "law",
+    "lifeandstyle",
+    "media",
+    "money",
+    "music",
+    "politics",
+    "science",
+    "society",
+    "sport",
+    "stage",
+    "technology",
+    "travel",
+    "tv-and-radio",
+    "uk-news",
+    "us-news",
+    "world",
+]
+
+GUARDIAN_SECTION_META_TOOL_BLACKLIST: set[str] = {
+    "about",
+    "community",
+    "crosswords",
+    "extra",
+    "guardian-foundation",
+    "help",
+    "info",
+    "jobsadvice",
+    "katine",
+    "membership",
+    "search",
+    "theguardian",
+    "theobserver",
+    "thefilter",
+    "thefilter-us",
+}
+GUARDIAN_SECTION_FUNCTIONAL_BLACKLIST: set[str] = {"weather", "travel-offers"}
+# Low-event sections are article-bearing but dominated by personal travelogue/
+# service texture rather than public event narratives. They are excluded at the
+# section layer instead of being mixed into the pure functional-page blacklist.
+GUARDIAN_SECTION_LOW_EVENT_BLACKLIST: set[str] = {"travel"}
+GUARDIAN_SECTION_LOCAL_BLACKLIST: set[str] = {
+    "local",
+    "cardiff",
+    "edinburgh",
+    "leeds",
+    "cities",
+}
+GUARDIAN_SECTION_SUFFIX_BLACKLIST = ("-network", "professional")
+GUARDIAN_SECTION_EXACT_BLACKLIST: set[str] = (
+    GUARDIAN_SECTION_META_TOOL_BLACKLIST
+    | GUARDIAN_SECTION_FUNCTIONAL_BLACKLIST
+    | GUARDIAN_SECTION_LOW_EVENT_BLACKLIST
+    | GUARDIAN_SECTION_LOCAL_BLACKLIST
+)
 
 
 _TAG_RE = re.compile(r"<[^>]+>")
 _WHITESPACE_RE = re.compile(r"\s+")
+_GUARDIAN_CONTINUE_RE = re.compile(r"(?:\s*Continue reading\.{0,3}\s*)+$", re.IGNORECASE)
 _TRACKING_QUERY_KEYS = {"fbclid", "gclid", "dclid", "msclkid", "mc_cid", "mc_eid", "igshid"}
+
+
+def _load_env_value(name: str, env_path: Path | None = None) -> str | None:
+    """Read a single KEY=value from .env without adding a runtime dependency."""
+
+    if name in os.environ:
+        return os.environ[name]
+    path = env_path or Path(".env")
+    if not path.exists():
+        return None
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        if key.strip() == name:
+            return value.strip().strip('"').strip("'")
+    return None
 
 
 def _db_path(db_path: Path | None = None) -> Path:
@@ -246,8 +339,179 @@ def _strip_html(text: str) -> str:
     """移除 RSS 摘要里的轻量 HTML，并压平多余空白。"""
 
     unescaped = html.unescape(text)
-    without_tags = _TAG_RE.sub("", unescaped)
-    return _WHITESPACE_RE.sub(" ", without_tags).strip()
+    without_tags = _TAG_RE.sub(" ", unescaped)
+    normalized = _WHITESPACE_RE.sub(" ", without_tags).strip()
+    return _GUARDIAN_CONTINUE_RE.sub("", normalized).strip()
+
+
+_PARA_RE = re.compile(r"<p>(.*?)</p>", re.DOTALL)
+_RELATED_RE = re.compile(r"^Related:\s", re.IGNORECASE)
+
+# Data-table DSL for tone-driven extraction. Strategy rows are deliberately data,
+# so adding a new Guardian tone should mean adding a row rather than changing the
+# routing logic.
+# These tones are immediate streams / reader letters / contribution calls rather
+# than complete cause-process-result event narratives. Product needs complete
+# event structure, so they are dropped as whole articles before extraction.
+TONE_DROP_BLACKLIST: set[str] = {
+    "tone/minutebyminute",
+    "tone/letters",
+    "tone/competitions",
+}
+
+EXTRACTION_TABLE: dict[str, dict[str, int | str]] = {
+    "tone/recipes": {"strategy": "front", "paragraphs": 1},
+    "tone/reviews": {"strategy": "front", "paragraphs": 3},
+    "tone/interview": {"strategy": "front", "paragraphs": 3},
+    "tone/analysis": {"strategy": "front", "paragraphs": 4},
+    "tone/comment": {"strategy": "front", "paragraphs": 4},
+    "tone/news": {"strategy": "front", "paragraphs": 5},
+    "tone/features": {"strategy": "paragraph_decay"},
+}
+_TONE_SPECIFICITY_ORDER: dict[str, int] = {
+    tone: rank for rank, tone in enumerate(EXTRACTION_TABLE.keys())
+}
+DEFAULT_NO_TONE_EXTRACTION = {"strategy": "front", "paragraphs": 3}
+
+
+def is_guardian_section_allowed(section: str) -> bool:
+    """Return True unless a Guardian section belongs to one of five blacklists."""
+
+    normalized = section.strip().lower()
+    if not normalized:
+        return False
+    if normalized in GUARDIAN_SECTION_EXACT_BLACKLIST:
+        return False
+    return not any(normalized.endswith(suffix) for suffix in GUARDIAN_SECTION_SUFFIX_BLACKLIST)
+
+
+def filter_guardian_sections(sections: list[str]) -> list[str]:
+    """Apply the wide-in blacklist policy while preserving section order."""
+
+    kept: list[str] = []
+    seen: set[str] = set()
+    for section in sections:
+        normalized = section.strip().lower()
+        if normalized in seen or not is_guardian_section_allowed(normalized):
+            continue
+        kept.append(normalized)
+        seen.add(normalized)
+    return kept
+
+
+def _extract_paragraphs(body: str) -> list[str]:
+    """Extract meaningful Guardian paragraphs from HTML or bodyText/plain text."""
+
+    paragraphs = _PARA_RE.findall(body)
+    if paragraphs:
+        raw_paragraphs = paragraphs
+    else:
+        # Guardian bodyText is plain text. Prefer blank-line paragraphs; if the API
+        # flattens everything into one block, sentence splitting below still gives
+        # the tone router bounded, paragraph-like chunks instead of one huge lead.
+        raw_paragraphs = [part for part in re.split(r"\n\s*\n", body) if part.strip()]
+        if len(raw_paragraphs) <= 1:
+            raw_paragraphs = re.split(r"(?<=[.!?])\s+", body)
+
+    kept: list[str] = []
+    for paragraph in raw_paragraphs:
+        clean = _WHITESPACE_RE.sub(" ", _TAG_RE.sub("", paragraph)).strip()
+        if not clean or _RELATED_RE.match(clean):
+            continue
+        kept.append(clean)
+    return kept
+
+
+def _join_paragraphs(paragraphs: list[str]) -> str:
+    return " ".join(paragraphs).strip()
+
+
+def _take_front(paragraphs: list[str], count: int) -> str:
+    return _join_paragraphs(paragraphs[:count])
+
+
+def _paragraph_decay_heuristic(paragraphs: list[str]) -> str:
+    """Heuristic for tone/features, Guardian's broad "format black hole" tone.
+
+    The signal is paragraph-length decay: keep the lede, then keep follow-up
+    paragraphs while they remain substantial compared with the lede/previous
+    paragraph. Stop when a short bridge/list-like paragraph suggests the article
+    has moved from core setup into looser feature texture. Cap at 4 paragraphs so
+    this never becomes an implicit broad-news 5 paragraph extractor.
+    """
+
+    if not paragraphs:
+        return ""
+    if len(paragraphs) == 1:
+        return paragraphs[0]
+
+    kept = [paragraphs[0]]
+    first_len = max(len(paragraphs[0]), 1)
+    previous_len = first_len
+    for paragraph in paragraphs[1:4]:
+        length = len(paragraph)
+        first_ratio = length / first_len
+        previous_ratio = length / max(previous_len, 1)
+        if length < 180 and first_ratio < 0.55 and previous_ratio < 0.75:
+            break
+        kept.append(paragraph)
+        previous_len = length
+    return _join_paragraphs(kept)
+
+
+def _article_tones(tags: list[Any] | None) -> list[str]:
+    tones: list[str] = []
+    for tag in tags or []:
+        value = tag.get("id") if isinstance(tag, dict) else getattr(tag, "id", None)
+        if isinstance(value, str) and value.startswith("tone/"):
+            tones.append(value)
+    return tones
+
+
+def _sort_tones_by_specificity(tones: list[str]) -> list[str]:
+    return sorted(tones, key=lambda tone: _TONE_SPECIFICITY_ORDER.get(tone, 10_000))
+
+
+def should_drop_article(tags: list[Any] | None) -> bool:
+    """Return True for tone-level whole-article drops before extraction routing."""
+
+    return any(tone in TONE_DROP_BLACKLIST for tone in _article_tones(tags))
+
+
+def route_extraction_strategy(tags: list[Any] | None) -> dict[str, int | str]:
+    """Route Guardian article extraction by tone/* tags, specific before generic."""
+
+    if should_drop_article(tags):
+        return {"strategy": "drop"}
+    tones = _article_tones(tags)
+    for tone in _sort_tones_by_specificity(tones):
+        strategy = EXTRACTION_TABLE.get(tone)
+        if strategy is not None:
+            return strategy
+    return DEFAULT_NO_TONE_EXTRACTION
+
+
+def extract_guardian_description(body: str, tags: list[Any] | None = None) -> str:
+    """Apply tone-driven extraction to a Guardian body.
+
+    This only improves one article's description quality; it intentionally never
+    introduces news-surface-similarity filtering, scoring, or ranking.
+    """
+
+    paragraphs = _extract_paragraphs(body)
+    strategy = route_extraction_strategy(tags)
+    if strategy.get("strategy") == "drop":
+        return ""
+    if strategy.get("strategy") == "paragraph_decay":
+        return _paragraph_decay_heuristic(paragraphs)
+    count = int(strategy.get("paragraphs", DEFAULT_NO_TONE_EXTRACTION["paragraphs"]))
+    return _take_front(paragraphs, count)
+
+
+def _extract_lead_paragraphs(body_html: str, max_paragraphs: int = 5) -> str:
+    """Backward-compatible lead extractor for older RSS/API tests."""
+
+    return _take_front(_extract_paragraphs(body_html), max_paragraphs)
 
 
 def _published_to_iso(published_parsed: Any) -> str | None:
@@ -275,7 +539,7 @@ def _source_name(parsed_feed: Any, feed_url: str) -> str | None:
     return hostname or None
 
 
-def _entry_to_payload(entry: Any, source_name: str | None) -> dict[str, str | None] | None:
+def _entry_to_payload(entry: Any, source_name: str | None) -> dict[str, str | int | None] | None:
     """把单条 RSS entry 规范化为 news payload；缺必填字段则返回 None。"""
 
     title = _get_value(entry, "title")
@@ -350,6 +614,70 @@ def fetch_all_entries(feeds: list[str] | None = None) -> list[dict]:
     return entries
 
 
+def fetch_guardian_api(
+    sections: list[str] | None = None,
+    order_by: str = "newest",
+    page_size: int = 30,
+    min_body_len: int = 400,
+    tag: str | None = None,
+    *,
+    db_path: Path | None = None,
+    api_key: str | None = None,
+) -> list[dict]:
+    """Fetch Guardian Content API search results as news payloads."""
+
+    resolved_api_key = api_key or _load_env_value("GUARDIAN_API_KEY")
+    if resolved_api_key is None:
+        raise RuntimeError("GUARDIAN_API_KEY not set")
+
+    requested_sections = GUARDIAN_API_SECTIONS if sections is None else sections
+    allowed_sections = filter_guardian_sections(requested_sections)
+    params = {
+        "api-key": resolved_api_key,
+        "order-by": order_by,
+        "from-date": __import__("datetime").date.today().isoformat(),
+        "page-size": page_size,
+        "show-fields": "bodyText,trailText,headline",
+        "show-tags": "all",
+    }
+    if allowed_sections:
+        params["section"] = "|".join(allowed_sections)
+    if tag is not None:
+        params["tag"] = tag
+
+    response = requests.get("https://content.guardianapis.com/search", params=params, timeout=30)
+    response.raise_for_status()
+    results = response.json()["response"]["results"]
+
+    payloads: list[dict] = []
+    for result in results:
+        fields = result.get("fields") or {}
+        title = fields.get("headline") or result["webTitle"]
+        body = fields.get("bodyText") or fields.get("body") or fields.get("trailText") or ""
+        tags = result.get("tags") or []
+        if should_drop_article(tags):
+            continue
+        if len(body) < min_body_len:
+            continue
+        description = extract_guardian_description(body, tags)
+        if not description:
+            continue
+        url = result["webUrl"]
+        if is_url_seen(url, db_path):
+            continue
+        payloads.append(
+            {
+                "title": title,
+                "description": description,
+                "pub_time": result["webPublicationDate"],
+                "source_name": f"The Guardian | {result.get('sectionName', '')}",
+                "url": url,
+            }
+        )
+
+    return payloads
+
+
 NEWS_KEYS = ("title", "description", "pub_time", "source_name", "url")
 DEFAULT_LIMIT = 30
 _TITLE_DISPLAY_LIMIT = 80
@@ -369,7 +697,7 @@ def build_parser() -> argparse.ArgumentParser:
     """Build the fetch_news CLI parser."""
 
     parser = argparse.ArgumentParser(
-        description="Fetch RSS news candidates, pick one, or provide one URL directly."
+        description="Fetch Guardian API news candidates automatically, or use RSS/debug overrides."
     )
     parser.add_argument(
         "--limit",
@@ -387,6 +715,22 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         help="write the selected news JSON to this path instead of stdout",
     )
+    parser.add_argument(
+        "--provider",
+        choices=["rss", "guardian-api"],
+        default="guardian-api",
+        help="news provider to use in candidate list mode (default: guardian-api)",
+    )
+    parser.add_argument(
+        "--sections",
+        help="comma-separated Guardian API sections; defaults to blacklist-filtered broad sections",
+    )
+    parser.add_argument(
+        "--order-by",
+        default="newest",
+        help="Guardian API order-by value (default: newest)",
+    )
+    parser.add_argument("--tag", default=None, help="optional Guardian API tag filter")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument(
         "--pick",
@@ -406,6 +750,13 @@ def build_parser() -> argparse.ArgumentParser:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     return build_parser().parse_args(argv)
+
+
+def _parse_sections_arg(value: str | None) -> list[str] | None:
+    if value is None:
+        return None
+    sections = [section.strip() for section in value.split(",") if section.strip()]
+    return sections or None
 
 
 def _parse_pub_time(value: Any) -> datetime | None:
@@ -472,7 +823,7 @@ def render_news_list(entries: list[dict], *, limit: int = DEFAULT_LIMIT) -> str:
     return "\n".join(lines)
 
 
-def _news_json_payload(entry: dict) -> dict[str, str | None]:
+def _news_json_payload(entry: dict) -> dict[str, str | int | None]:
     return {key: entry.get(key) for key in NEWS_KEYS}
 
 
@@ -486,7 +837,7 @@ def emit_news_json(
     *,
     out_json: Path | None = None,
     stdout: TextIO | None = None,
-) -> dict[str, str | None]:
+) -> dict[str, str | int | None]:
     payload = _news_json_payload(entry)
     if out_json is not None:
         write_json(payload, out_json)
@@ -574,7 +925,15 @@ def run_cli(
         mark_selected(entry, db_path=db_path)
         return 0
 
-    candidates = fetch_candidate_pool(db_path=db_path)
+    if args.provider == "guardian-api":
+        candidates = fetch_guardian_api(
+            sections=_parse_sections_arg(args.sections),
+            order_by=args.order_by,
+            tag=args.tag,
+            db_path=db_path,
+        )
+    else:
+        candidates = fetch_candidate_pool(db_path=db_path)
     if args.out is not None:
         write_json(candidates, args.out)
 
@@ -592,7 +951,18 @@ def run_cli(
         mark_selected(selected, db_path=db_path)
         return 0
 
-    print(render_news_list(candidates, limit=args.limit), file=out)
+    selected_candidates = candidates[: args.limit]
+    if args.out_json is not None:
+        write_json([_news_json_payload(entry) for entry in selected_candidates], args.out_json)
+    else:
+        print(
+            json.dumps(
+                [_news_json_payload(entry) for entry in selected_candidates],
+                ensure_ascii=False,
+                indent=2,
+            ),
+            file=out,
+        )
     return 0
 
 

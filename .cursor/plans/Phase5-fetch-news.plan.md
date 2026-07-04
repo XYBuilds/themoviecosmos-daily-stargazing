@@ -1,6 +1,6 @@
 ---
 name: Phase5-fetch-news
-overview: 实现 fetch_news.py：宽口径 RSS 抓取、URL/标题去重、CLI 序号列表供手挑；输出标准 news JSON 供 `orchestrate`(`main.py`) / `run_eval.py --news-file` 使用。RSS 部分与新架构无强耦合，原设计基本保留。新增 5.4：RSS 真实分布上线后对 llm_judge 做一次轻量分布重对齐（清 ADR-0010 D4 债2）。可与 Phase 1–4 并行开发其余 todo，但 5.4 必须在能跑出真实 RSS 候选后做。
+overview: 实现 fetch_news.py：5.1–5.3 保留 RSS 抓取、URL/标题去重、CLI 与 news JSON 输出基础；5.4 改为抓取源改进：换 Guardian API 为默认源 + section 宽进黑名单 + tone 格式感知抽取 + --pick 降级为调试开关。5.4 以 ADR-0014 与 docs/SSOT/news-source-selection-design.md 为权威；原 judge 分布重对齐因新闻分布未定挂起为后续 TODO。
 todos:
   - id: f5a1b2c3-0001-4000-8005-000000000001
     content: 5.1 · RSS 抓取与 news payload：feedparser、FEEDS 常量、规范化字段
@@ -12,14 +12,14 @@ todos:
     content: 5.3 · CLI：打印序号列表、--pick / --url、news_pool JSON、README（依赖 5.1、5.2）
     status: completed
   - id: f5a1b2c3-0001-4000-8005-000000000004
-    content: 5.4 · judge 分布重对齐（清债2）：RSS 真实分布跑出候选 → 盲标 20–30 条 → 算 judge 一致率 → 达标继续信/不达标才调 [需人工验收]
-    status: pending
+    content: 5.4 · 抓取源改进：换 Guardian API 为默认源 + section 宽进黑名单 + tone 格式感知抽取 + --pick 降级为调试开关（依据 ADR-0014 与 news-source-selection-design.md）[需人工验收]
+    status: completed
 isProject: true
 ---
 
-# Phase 5 · News（RSS 抓取）+ judge 分布重对齐
+# Phase 5 · News（RSS 基础 + Guardian API 抓取源改进）
 
-**重写说明（2026-06）**：5.1–5.3 的 RSS 设计与 Phase 3 的 fragment ladder / search unit 架构**无强耦合**，原设计基本保留。本稿主要新增 **5.4**——承接 [ADR-0010](../../docs/adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md) D4 债2：judge 当前是 screening-only，且在「手挑 10 条高张力新闻」上校准；RSS 接入后新闻分布会变，须在真实分布上做一次轻量重对齐才能继续把 judge 当预筛信号。
+**重写说明（2026-06）**：5.1–5.3 的 RSS 设计与 Phase 3 的 fragment ladder / search unit 架构**无强耦合**，原设计基本保留。**5.4 已按 ADR-0014 与 `docs/SSOT/news-source-selection-design.md` 改为抓取源改进**：Guardian API 默认源、section 宽进黑名单、tone 格式感知抽取、`--pick` 降级为调试开关。原 judge 分布重对齐因真实新闻分布未定，挂起为后续 TODO。
 
 ## Todo 依赖关系
 
@@ -29,7 +29,7 @@ flowchart LR
   T51["5.1 RSS"]
   T52["5.2 去重"]
   T53["5.3 CLI"]
-  T54["5.4 judge 重对齐"]
+  T54["5.4 抓取源改进"]
 
   P0 --> T51
   T51 --> T52
@@ -39,7 +39,7 @@ flowchart LR
 
 - **5.1** `state/` 路径策略：优先在 `scripts/lib/paths.py` 新增 `state_dir()` / `seen_news_db()` helper；若不改 paths，则在 `fetch_news.py` 内用 `repo_root() / "state"`。当前 paths.py 尚无 state helper，本 Phase 需自行补齐或本地构造
 - **5.2** 依赖 **5.1**；**5.3** 依赖 **5.1**、**5.2**
-- **5.4** 依赖 **5.3**（要能跑出真实 RSS 候选）+ `extract → expand → rewrite → retrieve → compose` 链路可跑
+- **5.4** 依赖 **5.3**（要能产出候选集合）+ ADR-0014 / `news-source-selection-design.md` 的抓取源与自动化边界口径
 - 5.1–5.3 与 Phase 1–4 **无硬依赖**，可并行；Phase 6 集成时需要本 Phase 完成
 
 ## Scope
@@ -53,17 +53,17 @@ flowchart LR
 - CLI：**打印带序号列表** → 用户手挑
 - `--url` 旁路：单条 URL 解析/抓取为 news dict（供 `orchestrate`(`main.py`) `--url`）
 - 池子落盘：`state/news_pool_YYYY-MM-DD.json`（可选）
-- **5.4 · judge 分布重对齐**（轻量、一次性）
+- **5.4 · 抓取源改进**：Guardian API 默认源、section 宽进黑名单、tone 格式感知抽取、`--pick` 降级为调试开关
 
 ### Out of scope
 
 - 全文爬虫
 - RSS **内容过滤**（政治敏感等）
 - Post-MVP **热度算法**（多源同事件计数 + 时间加权）
+- Post-MVP **小快灵开发开关**（`--personas N`、`--judge-topk`、缓存/并行等）
 - `orchestrate`(`main.py`) 集成（Phase 6）
-- 自动选 Top1（可保留 `--auto-top1` 调试开关，**非**默认）
-- **judge rubric / 阈值机制改动**（5.4 只做校准对账，不改 rubric）
-- **常态化人工标注**（5.4 是一次性保险，不是持续负担）
+- **judge 分布校准 / judge rubric / 阈值机制改动**（原 5.4 因新闻分布未定挂起为后续 TODO）
+- **常态化人工标注**
 
 ## SSOT
 
@@ -194,54 +194,61 @@ python -c "import json; json.load(open('output/picked_news.json')); print('ok')"
 
 ---
 
-## Todo 5.4 · judge 分布重对齐（清债2）[需人工验收]
+## Todo 5.4 · 抓取源改进：Guardian API 默认源 + section 宽进黑名单 + tone 格式感知抽取 + --pick 降级 [需人工验收]
 
-**依赖：** **5.3** + `extract → expand → rewrite → retrieve → compose` 链路可跑
+**依赖：** **5.3** + [ADR-0014](../../docs/adr/0014-news-source-selection-and-automation-boundary.md) + [news-source-selection-design.md](../../docs/SSOT/news-source-selection-design.md)
 
-**背景**：judge（MiMo, thinking-enabled）当前是 **screening-only**，且校准基线是「手挑 10 条高张力新闻」。RSS 进来的是真实随机新闻流（赛果/任命/产品发布/地方琐事等），分布与测试集不同。本 todo 验证 judge 在真实分布上是否仍可信，**而非**重做 rubric。
+**背景**：ADR-0014 已确认新闻侧生产语义为全自动，`--pick` 只保留为评测/调试开关；`news-source-selection-design.md` 进一步规定 Phase 5.4 只交付抓取源改进，不做热度排序、小快灵开关或 judge 校准。
 
-### 做法（轻量、一次性）
+### 做法（本 Phase）
 
-1. 用 5.3 的 RSS 跑出 ≥ **20–30 条真实新闻**的候选池（走 `extract → expand → rewrite → retrieve` 链路，并执行 `judge_prescreen` / `llm_judge` 预筛）。
-2. 人工**盲标**这些候选的共振分（0/1/2，按 3.10 双轴 rubric），不看 judge 分。
-3. 算 judge 分与人工分的**一致率 / 混淆矩阵**（重点看 judge=2 的精度、judge=0 的漏杀率）。
-4. 裁决：
-   - **达标**（一致率不显著低于 3.10 校准基线）⇒ judge 继续作为 RSS 分布下的预筛信号，债2 清。
-   - **不达标** ⇒ 登记偏差方向，决定是否调 judge prompt / 阈值（仅此时才动），或人工接管预筛。
+1. Guardian Content API 设为默认抓取源；RSS provider 保留为 `--provider rss` 可选路径。
+2. section 策略改为「默认全放行，只排除结构性非内容」：`*-network` / professional 类、Guardian meta/工具页、纯功能页、地方新闻四类黑名单集中维护。
+3. 正文抽取改为 tone 标签驱动：按 `tone/*` 查 `EXTRACTION_TABLE`；多 tone 按具体度仲裁；`tone/features` 回退段长衰减启发式；无 tone 默认前 3 段。
+4. `--pick` 降级为评测/调试覆盖；未指定 `--pick` 时默认自动放行候选集合（可由 `--limit` 截断），不要求人工挑新闻才能继续。
 
 ### 产出
 
-- `output/Eval/phase5/judge-realdist-calibration.md`：盲标集、一致率、混淆矩阵、裁决
-- 更新 PRD §8.3 / ADR-0010 D4：债2 状态从「未清」改为「RSS 分布已对齐」或「需调整」
+- `scripts/fetch_news.py`：Guardian API 默认 provider、section 黑名单、tone 路由表、自动放行默认路径。
+- `tests/test_fetch_news.py`：mock Guardian API，不打真实 HTTP；覆盖 section 黑名单、tone 抽取路由、`--pick` 未指定自动放行。
+- 本计划 5.4 描述更新，保持 `status: pending`，等待人工验收后再由后续流程标记 complete。
+
+### 挂起 / 后续 TODO
+
+- **热度排序**：Guardian API 无热度维度，按 ADR-0014 D4 / 设计文档 §6 挂起到 Post-MVP。
+- **小快灵开发开关**：只登记方向，不在本 Phase 实现。
+- **原 5.4 judge 分布重对齐**：因真实新闻分布尚未稳定，挂起为后续 TODO；待热度机制与真实输入分布明确后再盲标、算一致率 / 混淆矩阵、决定是否调 judge。
 
 ### 验收
 
-- [ ] 盲标 ≥20 条，一致率/混淆矩阵在案
-- [ ] 给出「继续信 / 需调整」裁决
-- [ ] `[需人工验收]`：用户确认裁决 → 债2 闭环
+- [ ] 默认 provider 为 Guardian API，请求包含 `show-fields=bodyText,trailText,headline`、`show-tags=all`、`order-by`、`section`、`page-size`。
+- [ ] 四类 section 黑名单生效，film / culture / education / food / sport 等正常放行。
+- [ ] tone 抽取覆盖 `tone/news`、`tone/recipes`、`tone/minutebyminute`、多 tone、`tone/features`、无 tone。
+- [ ] 未指定 `--pick` 时可自动产出新闻集合；`--pick` 仍可用于调试指定单条。
+- [ ] `[需人工验收]`：用户用真实 Guardian API 结果肉眼确认默认抓取和正文抽取效果。
 
 ---
 
 ## Phase 5 整体验收
 
-- [ ] 能从真实 RSS 拉到 ≥1 条可喂 `extract → expand → rewrite → retrieve → compose` 链路的条目
-- [ ] `--pick` 产出合法 news JSON
+- [ ] 能从真实 Guardian API 拉到 ≥1 条可喂 `extract → expand → rewrite → retrieve → compose` 链路的条目
+- [ ] `--pick` 未指定时自动产出候选集合；`--pick` 指定时仍产出合法单条 news JSON
 - [ ] `state/seen_news.sqlite` 产生且可重复运行
-- [ ] 5.4 judge 重对齐裁决在案（债2 闭环）
+- [ ] 5.4 抓取源改进通过真实 API 肉眼验收；原 judge 分布校准保持挂起
 
 ## 交给 Phase 6
 
 | 产出               | 用途                                    |
 | ------------------ | --------------------------------------- |
-| `fetch_news.py`    | `orchestrate`(`main.py`) 默认入口拉新闻 |
-| `picked_news.json` | 与 `--news-file` 相同契约               |
-| `news_pool_*.json` | 总编浏览候选池                          |
-| judge 重对齐裁决   | 确认 RSS 分布下 judge 预筛可信度        |
+| `fetch_news.py`    | `orchestrate`(`main.py`) 默认入口拉 Guardian API 新闻；RSS 可作可选 provider |
+| `news_pool_*.json` | 自动候选池 / 调试浏览候选池                          |
+| 抓取源验收结论     | 确认真实 API 下 section 放行与 tone 抽取质量        |
 
 ## 风险与约束
 
-- 免费 RSS 不稳定：解析失败要可见（logging/warning）
-- **勿**在 MVP 实现源偏好或内容审查
+- Guardian API 需要 `.env` / 环境变量中的 `GUARDIAN_API_KEY`；真实源效果需人工肉眼验收
+- 免费 RSS 不稳定：保留为 `--provider rss` 可选路径，解析失败要可见（logging/warning）
+- **勿**在 MVP 实现源偏好、内容审查或新闻原文表层相似度筛选
 - `state/*.sqlite` 可 gitignore；`news_pool_*.json` 视需要 ignore
-- 中国网络环境部分 feed 可能超时——README 注明可换 feed 或用手喂 JSON
-- 5.4 是**一次性保险**，不是常态化人工标注；若 RSS 分布后续大幅漂移，再触发新一轮（Post-MVP）
+- 中国网络环境部分源可能超时——可用 RSS provider 或手喂 JSON 旁路
+- 原 5.4 judge 分布重对齐因新闻分布未定挂起；待热度机制与真实输入分布明确后再触发

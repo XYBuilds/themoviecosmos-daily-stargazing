@@ -86,7 +86,7 @@ class FetchNewsCliTests(unittest.TestCase):
             out_path = Path(tmpdir) / "state" / "news_pool.json"
 
             with patch("scripts.fetch_news.fetch_all_entries", return_value=self._entries()):
-                code = run_cli(["--out", str(out_path), "--limit", "2"], db_path=db_path, stdout=StringIO())
+                code = run_cli(["--provider", "rss", "--out", str(out_path), "--limit", "2"], db_path=db_path, stdout=StringIO())
 
             self.assertEqual(code, 0)
             loaded = json.loads(out_path.read_text(encoding="utf-8"))
@@ -100,7 +100,7 @@ class FetchNewsCliTests(unittest.TestCase):
             stdout = StringIO()
 
             with patch("scripts.fetch_news.fetch_all_entries", return_value=self._entries()):
-                code = run_cli(["--pick", "2"], db_path=db_path, stdout=stdout)
+                code = run_cli(["--provider", "rss", "--pick", "2"], db_path=db_path, stdout=stdout)
 
             self.assertEqual(code, 0)
             payload = json.loads(stdout.getvalue())
@@ -114,7 +114,7 @@ class FetchNewsCliTests(unittest.TestCase):
             stderr = StringIO()
 
             with patch("scripts.fetch_news.fetch_all_entries", return_value=self._entries()):
-                code = run_cli(["--pick", "99"], db_path=db_path, stdout=StringIO(), stderr=stderr)
+                code = run_cli(["--provider", "rss", "--pick", "99"], db_path=db_path, stdout=StringIO(), stderr=stderr)
 
             self.assertEqual(code, 1)
             self.assertIn("out of range", stderr.getvalue())
@@ -169,7 +169,7 @@ class FetchNewsCliTests(unittest.TestCase):
             out_path = Path(tmpdir) / "output" / "picked_news.json"
 
             with patch("scripts.fetch_news.fetch_all_entries", return_value=self._entries()):
-                code = run_cli(["--pick", "1", "--out-json", str(out_path)], db_path=db_path)
+                code = run_cli(["--provider", "rss", "--pick", "1", "--out-json", str(out_path)], db_path=db_path)
 
             self.assertEqual(code, 0)
             payload = json.loads(out_path.read_text(encoding="utf-8"))
