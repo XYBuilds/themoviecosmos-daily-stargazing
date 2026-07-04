@@ -149,7 +149,7 @@ Copy-Item .env.example .env
    ```powershell
    python scripts/main.py publish --date 2026-07-04 --tmdb-id 157336
    ```
-   从 `{date}_candidates.json` 按 `tmdb_id` 定位候选，调 `compose.py --stage publish`（C2）生成中英文定稿。产物：`output/Daily_Briefing/{date}_copy.md`。（`main.py publish` 子命令由 Phase 6.3 交付；若与本文档描述的参数有出入，以该 todo 实际合并后的 `--help` 输出为准。）
+   从 `{date}_candidates.json` 按 `tmdb_id` 定位候选，调用 `compose.run_publish()`（C2）生成中文发布正文，与原始英文新闻源配对写入产物（C2 按设计只产出单语中文正文，不做英文回译）。产物：`output/Daily_Briefing/{date}_copy.md`。（`main.py publish` 子命令已由 Phase 6.3 交付合并，参数以 `python scripts/main.py publish --help` 为准。）
 
 9. **切全量索引**：把 `--csv` 换成 `data/full/TMDB_all_movies.csv`。
 
