@@ -11,7 +11,7 @@ todos:
     status: completed
   - id: p6-render-module
     content: 6.1 · 抽离 render_briefing.py：从 run_eval.py 提取可复用渲染函数（reality/candidates/errors/oracle），eval 与 main 单点维护
-    status: pending
+    status: completed
   - id: p6-main-pipeline
     content: 6.2 · main.py 日报管线：news → deconstruct → expand → persona_pipeline → retrieve → C1 → Daily_Briefing.md
     status: pending
