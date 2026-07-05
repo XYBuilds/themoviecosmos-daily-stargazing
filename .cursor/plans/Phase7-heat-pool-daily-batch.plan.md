@@ -13,7 +13,7 @@ todos:
     status: completed
   - id: p7.3-mimo-parallel-baseline
     content: 7.3 · Mimo 2.5 Pro 并行设计与调优基线
-    status: todo
+    status: completed
   - id: p7.4-integration-smoke
     content: 7.4 · 集成冒烟测试 [需人工验收]
     status: completed
