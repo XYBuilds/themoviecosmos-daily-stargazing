@@ -6,16 +6,16 @@ overview: |
   按 composite score 排序选 top-N(≥10)，逐条喂入现有管线，stage+persona 级断点续跑。
 todos:
   - id: p7.1-heat-pool
-    content: "7.1 · Heat Pool 采集与计分模块（scripts/heat_pool.py）"
+    content: 7.1 · Heat Pool 采集与计分模块（scripts/heat_pool.py）
     status: completed
   - id: p7.2-daily-batch
-    content: "7.2 · Daily Batch 编排器 + 断点续跑（scripts/daily_batch.py）"
+    content: 7.2 · Daily Batch 编排器 + 断点续跑（scripts/daily_batch.py）
     status: completed
   - id: p7.3-mimo-parallel-baseline
-    content: "7.3 · Mimo 2.5 Pro 并行设计与调优基线"
+    content: 7.3 · Mimo 2.5 Pro 并行设计与调优基线
     status: todo
   - id: p7.4-integration-smoke
-    content: "7.4 · 集成冒烟测试 [需人工验收]"
+    content: 7.4 · 集成冒烟测试 [需人工验收]
     status: completed
 isProject: true
 ---
@@ -29,26 +29,26 @@ Phase 6 完成了单条 news 的端到端管线（`main.py`）。本 Phase 将�
 
 ## 前置条件
 
-| Phase | 交付物 | 状态 |
-|-------|--------|------|
-| 5 | `fetch_news.py`（Guardian API + RSS + dedup） | ✅ merged |
-| 6 | `main.py` 端到端管线 + `render_briefing` + `RunOptions` | ✅ merged |
+| Phase | 交付物                                                  | 状态     |
+| ----- | ------------------------------------------------------- | -------- |
+| 5     | `fetch_news.py`（Guardian API + RSS + dedup）           | ✅ merged |
+| 6     | `main.py` 端到端管线 + `render_briefing` + `RunOptions` | ✅ merged |
 
 ## 设计决策（grill session 2026-07-05）
 
-| 决策 | 结论 |
-|------|------|
-| 术语 | 热度池 (Heat Pool)，见 CONTEXT.md |
-| 总编职责 | 退出选题环节，只审终稿（CONTEXT.md 已更新） |
-| 架构 | 新增 `daily_batch.py` 编排器，`main.py` 保持单条语义 |
-| 信号源 | mostViewed + editorsPicks，两信号独立入池 |
-| 计分 | `sum(1/rank_per_section) + 0.5 * editorsPicks_count` |
-| 正文补取 | rank 后 top-N 再逐条调 Content API 拿 bodyText |
-| 断点粒度 | stage 级 + persona 内部 checkpoint |
-| 产出目录 | `output/daily_batch/{date}/` 独立结构 |
-| 不够时回退 | 用 `order-by=newest` 补齐到 min_count |
-| sections | 32 个内容 section 全拉 |
-| seen 过滤 | 排序后再过滤 |
+| 决策       | 结论                                                 |
+| ---------- | ---------------------------------------------------- |
+| 术语       | 热度池 (Heat Pool)，见 CONTEXT.md                    |
+| 总编职责   | 退出选题环节，只审终稿（CONTEXT.md 已更新）          |
+| 架构       | 新增 `daily_batch.py` 编排器，`main.py` 保持单条语义 |
+| 信号源     | mostViewed + editorsPicks，两信号独立入池            |
+| 计分       | `sum(1/rank_per_section) + 0.5 * editorsPicks_count` |
+| 正文补取   | rank 后 top-N 再逐条调 Content API 拿 bodyText       |
+| 断点粒度   | stage 级 + persona 内部 checkpoint                   |
+| 产出目录   | `output/daily_batch/{date}/` 独立结构                |
+| 不够时回退 | 用 `order-by=newest` 补齐到 min_count                |
+| sections   | 32 个内容 section 全拉                               |
+| seen 过滤  | 排序后再过滤                                         |
 
 ## 模块关系
 
@@ -302,7 +302,7 @@ pytest tests/test_daily_batch.py -v
 
 **依赖**：7.2
 
-**SSOT**：执行本 TODO 前必须阅读 `.cursor/plans/ssot/mimo-2.5-pro-parallelism.md`，并以该文档作为参数、调参、恢复与验证口径的唯一来源。
+**SSOT**：执行本 TODO 前必须阅读 `docs/SSOT/mimo-2.5-pro-parallelism.md`，并以该文档作为参数、调参、恢复与验证口径的唯一来源。
 
 **目标**：固化 daily_batch 的并行实现边界与默认值，确认 item / persona / 全局限流的分工与 baseline；不改 `heat_pool` 语义、不改 prompt、不改 `retrieve` 排序。
 
@@ -318,7 +318,7 @@ pytest tests/test_daily_batch.py -v
 
 **依赖**：7.3
 
-**SSOT**：执行本 TODO 前必须先读 `7.3` 与 `.cursor/plans/ssot/mimo-2.5-pro-parallelism.md`，冒烟命令、矩阵、降级与恢复口径均以 SSOT 为准。
+**SSOT**：执行本 TODO 前必须先读 `7.3` 与 `docs/SSOT/mimo-2.5-pro-parallelism.md`，冒烟命令、矩阵、降级与恢复口径均以 SSOT 为准。
 
 **目标**：用真实 API key 跑一次小批量，验证端到端与断点恢复；本 TODO 仅做冒烟确认，不扩写参数细节。
 
