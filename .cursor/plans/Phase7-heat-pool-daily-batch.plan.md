@@ -7,7 +7,7 @@ overview: |
 todos:
   - id: p7.1-heat-pool
     content: "7.1 · Heat Pool 采集与计分模块（scripts/heat_pool.py）"
-    status: todo
+    status: completed
   - id: p7.2-daily-batch
     content: "7.2 · Daily Batch 编排器 + 断点续跑（scripts/daily_batch.py）"
     status: todo
