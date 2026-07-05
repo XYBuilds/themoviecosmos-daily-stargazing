@@ -115,11 +115,21 @@ def fetch_heat_signals(
             "show-most-viewed": "true",
             "show-editors-picks": "true",
         }
-        try:
+
+        def _request_section() -> dict[str, Any]:
             response = requests.get(f"{_SECTION_API_BASE}/{section}", params=params, timeout=30)
             response.raise_for_status()
-            payload = response.json()
+            return response.json()
+
+        try:
+            payload = _request_guardian_with_retry(
+                f"section {section}",
+                _request_section,
+                max_attempts=_SECTION_RETRY_ATTEMPTS,
+                base_seconds=_SECTION_RETRY_BASE_SECONDS,
+            )
         except (requests.RequestException, OSError, ValueError):
+            _log_heat_pool(f"[heat_pool] section {section} skipped after repeated Guardian failures")
             continue
 
         section_response = payload.get("response") or {}
@@ -198,16 +208,18 @@ def _guardian_result_to_pool_item(result: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _log_heat_pool(message: str) -> None:
+    print(message, file=sys.stderr, flush=True)
+
+
+_SECTION_RETRY_ATTEMPTS = 4
+_SECTION_RETRY_BASE_SECONDS = 2.0
 _FALLBACK_RETRY_ATTEMPTS = 4
 _FALLBACK_RETRY_BASE_SECONDS = 8.0
 
 
-def _guardian_retry_delay_seconds(exc: Exception, attempt: int) -> float:
-    """Return retry delay for Guardian fallback requests.
-
-    Guardian may return 429 during daily batch heat-pool collection.  Honor
-    Retry-After when present; otherwise use bounded exponential backoff.
-    """
+def _guardian_retry_delay_seconds(exc: Exception, attempt: int, *, base_seconds: float) -> float:
+    """Return retry delay for Guardian requests, honoring Retry-After when present."""
 
     response = getattr(exc, "response", None)
     retry_after = getattr(response, "headers", {}).get("Retry-After") if response is not None else None
@@ -218,7 +230,7 @@ def _guardian_retry_delay_seconds(exc: Exception, attempt: int) -> float:
                 return min(parsed, 120.0)
         except ValueError:
             pass
-    return min(_FALLBACK_RETRY_BASE_SECONDS * (2 ** max(attempt - 1, 0)), 120.0)
+    return min(base_seconds * (2 ** max(attempt - 1, 0)), 120.0)
 
 
 def _is_retryable_guardian_error(exc: Exception) -> bool:
@@ -227,15 +239,30 @@ def _is_retryable_guardian_error(exc: Exception) -> bool:
     return status_code == 429 or (isinstance(status_code, int) and 500 <= status_code < 600)
 
 
-def _fetch_guardian_api_with_retry(fetch_guardian_api, **kwargs: Any) -> list[dict[str, Any]]:
-    for attempt in range(1, _FALLBACK_RETRY_ATTEMPTS + 1):
+def _request_guardian_with_retry(
+    operation: str,
+    request_fn,
+    *,
+    max_attempts: int,
+    base_seconds: float,
+) -> Any:
+    last_exc: Exception | None = None
+    for attempt in range(1, max_attempts + 1):
         try:
-            return fetch_guardian_api(**kwargs)
+            return request_fn()
         except requests.RequestException as exc:
-            if attempt >= _FALLBACK_RETRY_ATTEMPTS or not _is_retryable_guardian_error(exc):
+            last_exc = exc
+            if attempt >= max_attempts or not _is_retryable_guardian_error(exc):
                 raise
-            time.sleep(_guardian_retry_delay_seconds(exc, attempt))
-    return []
+            delay = _guardian_retry_delay_seconds(exc, attempt, base_seconds=base_seconds)
+            status_code = getattr(getattr(exc, "response", None), "status_code", "unknown")
+            _log_heat_pool(
+                f"[heat_pool] {operation} hit Guardian {status_code}; retry {attempt}/{max_attempts} in {delay:.1f}s"
+            )
+            time.sleep(delay)
+    if last_exc is not None:
+        raise last_exc
+    raise RuntimeError(f"{operation} failed unexpectedly")
 
 
 def fallback_newest(
@@ -259,14 +286,23 @@ def fallback_newest(
     existing_urls = {item["url"] for item in ranked}
     needed = min_count - len(ranked)
 
-    newest_results = _fetch_guardian_api_with_retry(
-        fetch_guardian_api,
-        sections=RANKED_SECTIONS,
-        order_by="newest",
-        page_size=max(needed * 2, min_count),
-        db_path=db_path,
-        api_key=api_key,
-    )
+    try:
+        newest_results = _request_guardian_with_retry(
+            "guardian newest fallback",
+            lambda: fetch_guardian_api(
+                sections=RANKED_SECTIONS,
+                order_by="newest",
+                page_size=max(needed * 2, min_count),
+                db_path=db_path,
+                api_key=api_key,
+            ),
+            max_attempts=_FALLBACK_RETRY_ATTEMPTS,
+            base_seconds=_FALLBACK_RETRY_BASE_SECONDS,
+        )
+    except requests.RequestException as exc:
+        raise RuntimeError(
+            f"Guardian newest fallback failed after retries with only {len(ranked)} ranked items; need {min_count}"
+        ) from exc
 
     supplemented = list(ranked)
     for result in newest_results:
@@ -277,6 +313,11 @@ def fallback_newest(
             continue
         supplemented.append(_guardian_result_to_pool_item(result))
         existing_urls.add(url)
+
+    if len(supplemented) < min_count:
+        raise RuntimeError(
+            f"Guardian newest fallback returned only {len(supplemented)} items; need {min_count}"
+        )
 
     return supplemented
 

@@ -198,6 +198,73 @@ class FallbackNewestTests(unittest.TestCase):
             "https://example.com/new1",
         ])
 
+    def test_fetch_heat_pool_continues_when_ranked_enough_and_fallback_would_429(self):
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            out_dir = Path(temp_dir) / "daily_batch"
+
+            fake_signals = [
+                {
+                    "url": f"https://example.com/{i}",
+                    "title": f"T{i}",
+                    "pub_time": None,
+                    "section": "world",
+                    "signal_type": "mostViewed",
+                    "rank_position": i + 1,
+                }
+                for i in range(10)
+            ]
+            with (
+                patch("scripts.heat_pool.fetch_heat_signals", return_value=fake_signals),
+                patch("scripts.fetch_news.fetch_guardian_api", side_effect=AssertionError("fallback should not run")),
+                patch("scripts.heat_pool.enrich_descriptions", side_effect=lambda items, **_: items),
+            ):
+                pool = fetch_heat_pool(
+                    date="2026-07-05",
+                    min_count=10,
+                    db_path=db_path,
+                    api_key="test-key",
+                    dry_run=True,
+                    out_dir=out_dir,
+                )
+
+        self.assertEqual(len(pool), 10)
+        self.assertEqual([item["url"] for item in pool], [f"https://example.com/{i}" for i in range(10)])
+
+    def test_fetch_heat_pool_fails_when_ranked_insufficient_and_fallback_keeps_429ing(self):
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            out_dir = Path(temp_dir) / "daily_batch"
+
+            fake_signals = [
+                {
+                    "url": "https://example.com/only",
+                    "title": "Only",
+                    "pub_time": None,
+                    "section": "world",
+                    "signal_type": "mostViewed",
+                    "rank_position": 1,
+                }
+            ]
+            response = requests.Response()
+            response.status_code = 429
+            response.headers["Retry-After"] = "0"
+            error = requests.HTTPError("rate limited", response=response)
+
+            with (
+                patch("scripts.heat_pool.fetch_heat_signals", return_value=fake_signals),
+                patch("scripts.fetch_news.fetch_guardian_api", side_effect=error),
+                patch("scripts.heat_pool.enrich_descriptions", side_effect=lambda items, **_: items),
+            ):
+                with self.assertRaises(RuntimeError):
+                    fetch_heat_pool(
+                        date="2026-07-05",
+                        min_count=10,
+                        db_path=db_path,
+                        api_key="test-key",
+                        dry_run=True,
+                        out_dir=out_dir,
+                    )
 
 class EnrichDescriptionsTests(unittest.TestCase):
     def test_enrich_descriptions_fills_missing_description_via_content_api(self):
