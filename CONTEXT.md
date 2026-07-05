@@ -52,8 +52,12 @@ _Avoid_: 默认、基础、平权竞争者(ADR-0003 旧口径)
 _Avoid_: 12 票饱和、纯 An+An 对称计票（旧口径）、把 `quality_candidate` 当判据或质量分
 
 **总编 (Editor-in-chief)**:
-唯一的人类裁决者。负责:从抓取的新闻池手挑要跑的新闻、对候选电影评分(共振 0/1/2,见 `docs/eval-the-bet.md` §4 两轴 rubric)、从中文审核稿勾选定稿。
+唯一的人类裁决者。负责:对候选电影评分(共振 0/1/2,见 `docs/eval-the-bet.md` §4 两轴 rubric)、从中文审核稿勾选定稿。选题环节已让渡给热度池自动化流程;总编仍可通过 `--url` / `--pick` 单条 override。
 _Avoid_: 用户、审核员、运营
+
+**热度池 (Heat Pool)**:
+纯数据信号驱动的候选新闻集。从 Guardian 32 个内容 section 拉取 `mostViewed` + `editorsPicks`,按跨 section 重合度计算 composite score 排序,取 top-N(≥10)喂入管线。不够 10 条时用 `order-by=newest` 补齐。热度池替代总编手挑选题,但不影响下游任何共振判断逻辑。
+_Avoid_: 人工选题、手挑新闻(旧流程)
 
 **片单 (Galaxy Roster)**:
 3D 宇宙站点实际收录的 **59,341 部**清洗后电影(从 119 万行 Kaggle 原始表经去重 + 强制字段 + 按年份动态票数阈值筛出),与 `galaxy_data.json` 及深链 id 集合一一对齐。**检索宇宙必须等于片单**——召回片单外的电影会导致 `/movie/{id}` 死链,引流失效。冷门佳片若不在片单内,本系统设计上够不到。
