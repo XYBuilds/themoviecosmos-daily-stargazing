@@ -77,6 +77,25 @@ class FetchHeatSignalsTests(unittest.TestCase):
 
         self.assertEqual(signals, [])
 
+    def test_fetch_heat_signals_circuit_breaks_after_consecutive_guardian_429_sections(self):
+        response = requests.Response()
+        response.status_code = 429
+        response.headers["Retry-After"] = "0"
+        rate_limited = requests.HTTPError("rate limited", response=response)
+
+        with (
+            patch("scripts.heat_pool.requests.get", side_effect=rate_limited) as mock_get,
+            patch("scripts.heat_pool.time.sleep", return_value=None),
+        ):
+            signals = fetch_heat_signals(
+                ["animals-farmed", "artanddesign", "world"],
+                api_key="test-key",
+                sleep_seconds=0,
+            )
+
+        self.assertEqual(signals, [])
+        self.assertEqual(mock_get.call_count, 4)
+
 
 class ScoreAndRankTests(unittest.TestCase):
     def test_score_and_rank_sums_cross_section_overlap(self):

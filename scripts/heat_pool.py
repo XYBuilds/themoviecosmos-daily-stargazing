@@ -105,6 +105,7 @@ def fetch_heat_signals(
 
     resolved_api_key = _resolve_api_key(api_key)
     signals: list[dict[str, Any]] = []
+    consecutive_rate_limited_sections = 0
 
     for index, section in enumerate(sections):
         if index > 0 and sleep_seconds > 0:
@@ -133,8 +134,20 @@ def fetch_heat_signals(
             _log_heat_pool(
                 f"[heat_pool] section {section} skipped after {_SECTION_RETRY_ATTEMPTS} Guardian {status_code} retries"
             )
+            if status_code == 429:
+                consecutive_rate_limited_sections += 1
+                if consecutive_rate_limited_sections >= _SECTION_CONSECUTIVE_429_CIRCUIT_BREAKER:
+                    _log_heat_pool(
+                        "[heat_pool] Guardian section scan circuit-open after "
+                        f"{consecutive_rate_limited_sections} consecutive 429 sections; "
+                        "remaining sections skipped"
+                    )
+                    break
+            else:
+                consecutive_rate_limited_sections = 0
             continue
 
+        consecutive_rate_limited_sections = 0
         section_response = payload.get("response") or {}
         # 数据流向: section response -> mostViewed[]/editorsPicks[] -> 按数组下标算 rank_position(1-based) -> raw signal。
         for signal_type, key in (("mostViewed", "mostViewed"), ("editorsPicks", "editorsPicks")):
@@ -215,8 +228,9 @@ def _log_heat_pool(message: str) -> None:
     print(message, file=sys.stderr, flush=True)
 
 
-_SECTION_RETRY_ATTEMPTS = 4
-_SECTION_RETRY_BASE_SECONDS = 2.0
+_SECTION_RETRY_ATTEMPTS = 2
+_SECTION_RETRY_BASE_SECONDS = 5.0
+_SECTION_CONSECUTIVE_429_CIRCUIT_BREAKER = 2
 _FALLBACK_RETRY_ATTEMPTS = 4
 _FALLBACK_RETRY_BASE_SECONDS = 8.0
 
