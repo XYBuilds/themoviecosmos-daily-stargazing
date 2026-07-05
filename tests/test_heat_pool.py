@@ -231,6 +231,81 @@ class FallbackNewestTests(unittest.TestCase):
         self.assertEqual(len(pool), 10)
         self.assertEqual([item["url"] for item in pool], [f"https://example.com/{i}" for i in range(10)])
 
+    def test_fetch_heat_pool_continues_when_section_keeps_429ing_but_others_fill_top_n(self):
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            out_dir = Path(temp_dir) / "daily_batch"
+            response_429 = requests.Response()
+            response_429.status_code = 429
+            response_429.headers["Retry-After"] = "0"
+            rate_limited = requests.HTTPError("rate limited", response=response_429)
+
+            world_payload = _section_response(
+                most_viewed=[
+                    {"webUrl": "https://example.com/a", "webTitle": "A", "webPublicationDate": "2026-07-05T00:00:00Z"},
+                ],
+                editors_picks=[],
+            )
+            science_payload = _section_response(
+                most_viewed=[
+                    {"webUrl": "https://example.com/b", "webTitle": "B", "webPublicationDate": "2026-07-05T00:00:00Z"},
+                ],
+                editors_picks=[],
+            )
+
+            def fake_get(url, params=None, timeout=None):
+                if url.endswith("/animals-farmed"):
+                    raise rate_limited
+                if url.endswith("/world"):
+                    return FakeResponse(world_payload)
+                if url.endswith("/science"):
+                    return FakeResponse(science_payload)
+                return FakeResponse(_section_response([], []))
+
+            with (
+                patch("scripts.heat_pool.requests.get", side_effect=fake_get),
+                patch("scripts.heat_pool.time.sleep", return_value=None),
+                patch("scripts.heat_pool.enrich_descriptions", side_effect=lambda items, **_: items),
+            ):
+                pool = fetch_heat_pool(
+                    date="2026-07-05",
+                    min_count=2,
+                    db_path=db_path,
+                    api_key="test-key",
+                    dry_run=True,
+                    out_dir=out_dir,
+                )
+
+        self.assertEqual([item["url"] for item in pool], ["https://example.com/b", "https://example.com/a"])
+
+    def test_fetch_heat_pool_fails_when_section_keeps_429ing_and_ranked_insufficient(self):
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            out_dir = Path(temp_dir) / "daily_batch"
+            response_429 = requests.Response()
+            response_429.status_code = 429
+            response_429.headers["Retry-After"] = "0"
+            rate_limited = requests.HTTPError("rate limited", response=response_429)
+
+            def fake_get(url, params=None, timeout=None):
+                raise rate_limited
+
+            with (
+                patch("scripts.heat_pool.requests.get", side_effect=fake_get),
+                patch("scripts.heat_pool.time.sleep", return_value=None),
+                patch("scripts.fetch_news.fetch_guardian_api", side_effect=rate_limited),
+                patch("scripts.heat_pool.enrich_descriptions", side_effect=lambda items, **_: items),
+            ):
+                with self.assertRaises(RuntimeError):
+                    fetch_heat_pool(
+                        date="2026-07-05",
+                        min_count=2,
+                        db_path=db_path,
+                        api_key="test-key",
+                        dry_run=True,
+                        out_dir=out_dir,
+                    )
+
     def test_fetch_heat_pool_fails_when_ranked_insufficient_and_fallback_keeps_429ing(self):
         with TemporaryDirectory() as temp_dir:
             db_path = Path(temp_dir) / "seen_news.sqlite"

@@ -128,8 +128,11 @@ def fetch_heat_signals(
                 max_attempts=_SECTION_RETRY_ATTEMPTS,
                 base_seconds=_SECTION_RETRY_BASE_SECONDS,
             )
-        except (requests.RequestException, OSError, ValueError):
-            _log_heat_pool(f"[heat_pool] section {section} skipped after repeated Guardian failures")
+        except (requests.RequestException, OSError, ValueError) as exc:
+            status_code = getattr(getattr(exc, "response", None), "status_code", "unknown")
+            _log_heat_pool(
+                f"[heat_pool] section {section} skipped after {_SECTION_RETRY_ATTEMPTS} Guardian {status_code} retries"
+            )
             continue
 
         section_response = payload.get("response") or {}
