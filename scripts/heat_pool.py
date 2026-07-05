@@ -326,7 +326,11 @@ def fetch_heat_pool(
     supplemented = fallback_newest(
         filtered, min_count=target_count, db_path=resolved_db_path, api_key=api_key
     )
-    selected = supplemented[:max_items] if max_items is not None else supplemented
+    # Heat Pool may rank hundreds of Guardian items across 32 sections, but the daily
+    # batch contract is top-N selection.  The default N is min_count (10); smoke/dev
+    # callers can narrow it further with max_items.  Description enrichment is the
+    # expensive Content API step, so it must only run on the selected batch items.
+    selected = supplemented[:target_count]
     pool = enrich_descriptions(selected, api_key=api_key)
 
     if not dry_run:

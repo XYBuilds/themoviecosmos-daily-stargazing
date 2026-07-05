@@ -245,6 +245,48 @@ class FetchHeatPoolTests(unittest.TestCase):
             self.assertEqual(len(pool), 1)
             self.assertFalse((out_dir / "2026-07-05" / "pool.json").exists())
 
+    def test_fetch_heat_pool_selects_top_min_count_before_enrichment(self):
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            out_dir = Path(temp_dir) / "daily_batch"
+
+            fake_signals = [
+                {
+                    "url": f"https://example.com/{i}",
+                    "title": f"T{i}",
+                    "pub_time": None,
+                    "section": "world",
+                    "signal_type": "mostViewed",
+                    "rank_position": i + 1,
+                }
+                for i in range(5)
+            ]
+            enriched_batches: list[list[dict]] = []
+
+            def fake_enrich(items, **_):
+                enriched_batches.append(list(items))
+                return items
+
+            with (
+                patch("scripts.heat_pool.fetch_heat_signals", return_value=fake_signals),
+                patch("scripts.heat_pool.enrich_descriptions", side_effect=fake_enrich),
+            ):
+                pool = fetch_heat_pool(
+                    date="2026-07-05",
+                    min_count=2,
+                    db_path=db_path,
+                    api_key="test-key",
+                    dry_run=True,
+                    out_dir=out_dir,
+                )
+
+            self.assertEqual(len(pool), 2)
+            self.assertEqual(len(enriched_batches), 1)
+            self.assertEqual([item["url"] for item in enriched_batches[0]], [
+                "https://example.com/0",
+                "https://example.com/1",
+            ])
+
     def test_fetch_heat_pool_writes_pool_json_when_not_dry_run(self):
         with TemporaryDirectory() as temp_dir:
             db_path = Path(temp_dir) / "seen_news.sqlite"
