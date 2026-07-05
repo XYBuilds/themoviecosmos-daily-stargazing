@@ -433,6 +433,14 @@ def fetch_heat_pool(
     signals = fetch_heat_signals(resolved_sections, api_key=api_key)
     ranked = score_and_rank(signals)
     filtered = filter_seen(ranked, db_path=resolved_db_path)
+
+    if not signals:
+        _log_heat_pool(
+            "[heat_pool] no Guardian section signals collected; skipping newest fallback "
+            "to avoid repeated 429 waits"
+        )
+        raise RuntimeError("Guardian heat signal scan returned no items; need at least 1 signal")
+
     supplemented = fallback_newest(
         filtered, min_count=target_count, db_path=resolved_db_path, api_key=api_key
     )
