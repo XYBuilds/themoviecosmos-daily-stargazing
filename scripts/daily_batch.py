@@ -171,6 +171,7 @@ class BatchState:
     date: str
     pool_file: str
     created_at: str
+    parallel_baseline: dict[str, Any] = field(default_factory=dict)
     items: list[BatchItemState] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
@@ -178,6 +179,7 @@ class BatchState:
             "date": self.date,
             "pool_file": self.pool_file,
             "created_at": self.created_at,
+            "parallel_baseline": dict(self.parallel_baseline),
             "items": [it.to_dict() for it in self.items],
         }
 
@@ -187,6 +189,7 @@ class BatchState:
             date=str(data["date"]),
             pool_file=str(data.get("pool_file") or ""),
             created_at=str(data.get("created_at") or ""),
+            parallel_baseline=dict(data.get("parallel_baseline") or {}),
             items=[BatchItemState.from_dict(it) for it in data.get("items") or []],
         )
 
@@ -209,6 +212,7 @@ def init_batch_state(date: str, pool: list[dict[str, Any]], pool_file: str) -> B
         date=date,
         pool_file=pool_file,
         created_at=datetime.now(UTC).isoformat(timespec="seconds"),
+        parallel_baseline={},
         items=items,
     )
 
@@ -228,7 +232,7 @@ def _news_item_for_pool_entry(entry: dict[str, Any]) -> NewsItem:
 
 
 def _persona_result_to_agent(result: Any) -> dict[str, Any]:
-    """Mirror main._persona_result_to_agent (agents_list entry for retrieve)."""
+    """Convert a persona pipeline result into retrieve-facing agent dict."""
     payload = pipeline_result_to_dict(result)
     pseudos = payload.get("pseudos") or []
     agent: dict[str, Any] = {
@@ -251,6 +255,72 @@ def _persona_agent_dict_to_dict(agent: dict[str, Any]) -> dict[str, Any]:
     return agent
 
 
+def _parallel_baseline_summary(run_options: RunOptions) -> str:
+    """Return a compact, human-readable parallel baseline summary."""
+    return (
+        f"item={run_options.item_concurrency} "
+        f"persona={run_options.persona_concurrency} "
+        f"global_llm={run_options.global_llm_concurrency} "
+        f"rpm={run_options.global_rpm_budget} "
+        f"tpm={run_options.global_tpm_budget} "
+        f"retry={run_options.retry_attempts} "
+        f"backoff={run_options.backoff}"
+    )
+
+
+def _parallel_baseline(run_options: RunOptions) -> dict[str, Any]:
+    return {
+        "item_concurrency": run_options.item_concurrency,
+        "persona_concurrency": run_options.persona_concurrency,
+        "global_llm_concurrency": run_options.global_llm_concurrency,
+        "global_rpm_budget": run_options.global_rpm_budget,
+        "global_tpm_budget": run_options.global_tpm_budget,
+        "retry_attempts": run_options.retry_attempts,
+        "backoff": run_options.backoff,
+    }
+
+
+def _validate_parallel_baseline(run_options: RunOptions) -> None:
+    if run_options.item_concurrency <= 0:
+        raise ValueError(f"item_concurrency must be a positive integer, got {run_options.item_concurrency}")
+    if run_options.persona_concurrency <= 0:
+        raise ValueError(
+            f"persona_concurrency must be a positive integer, got {run_options.persona_concurrency}"
+        )
+    if run_options.global_llm_concurrency <= 0:
+        raise ValueError(
+            f"global_llm_concurrency must be a positive integer, got {run_options.global_llm_concurrency}"
+        )
+    if run_options.global_rpm_budget <= 0:
+        raise ValueError(f"global_rpm_budget must be a positive integer, got {run_options.global_rpm_budget}")
+    if run_options.global_tpm_budget <= 0:
+        raise ValueError(f"global_tpm_budget must be a positive integer, got {run_options.global_tpm_budget}")
+    if run_options.retry_attempts <= 0:
+        raise ValueError(f"retry_attempts must be a positive integer, got {run_options.retry_attempts}")
+
+
+async def _run_sync_with_budget(
+    sem: asyncio.Semaphore,
+    fn,
+    /,
+    *args: Any,
+    **kwargs: Any,
+) -> Any:
+    async with sem:
+        return await asyncio.to_thread(fn, *args, **kwargs)
+
+
+async def _run_async_with_budget(
+    sem: asyncio.Semaphore,
+    coro_fn,
+    /,
+    *args: Any,
+    **kwargs: Any,
+) -> Any:
+    async with sem:
+        return await coro_fn(*args, **kwargs)
+
+
 async def _run_persona_stage(
     deconstruction: dict[str, Any],
     *,
@@ -266,6 +336,7 @@ async def _run_persona_stage(
     if run_options.persona_limit is not None:
         persona_ids = persona_ids[: run_options.persona_limit]
 
+    _validate_parallel_baseline(run_options)
     sem = asyncio.Semaphore(run_options.persona_concurrency)
     completed = set(item_state.completed_personas)
 
@@ -284,8 +355,8 @@ async def _run_persona_stage(
 
         async with sem:
             _progress(
-                f"[item {item_state.index}] persona {persona_id} start "
-                f"(concurrency={run_options.persona_concurrency})"
+                f"[item {item_state.index}] persona stage start "
+                f"({_parallel_baseline_summary(run_options)})"
             )
             try:
                 result = await run_persona_pipeline(
@@ -501,6 +572,7 @@ async def run_daily_batch(
     """
     resolved_date = date or _today_iso()
     resolved_run_options = run_options or RunOptions()
+    _validate_parallel_baseline(resolved_run_options)
     provider = provider or getattr(resolved_run_options, "provider", None)
     resolved_state_path = state_path(resolved_date, base_state_dir)
 
@@ -516,6 +588,8 @@ async def run_daily_batch(
             raise ValueError(f"--resume requested but no state file found: {resolved_state_path}")
         batch_state = load_batch_state(resolved_state_path)
         pool_file_path = Path(batch_state.pool_file)
+        if not batch_state.parallel_baseline:
+            batch_state.parallel_baseline = _parallel_baseline(resolved_run_options)
         if not pool_file_path.is_absolute():
             pool_file_path = repo_root() / pool_file_path
         pool = _read_json(pool_file_path)
@@ -531,12 +605,15 @@ async def run_daily_batch(
             pool = pool[:max_items]
         pool_file_path = pool_output_path(resolved_date, out_dir)
         batch_state = init_batch_state(resolved_date, pool, str(pool_file_path))
+        batch_state.parallel_baseline = _parallel_baseline(resolved_run_options)
         batch_state.save(resolved_state_path)
 
     for item_state in batch_state.items:
         if item_state.index >= len(pool):
             continue
         entry = pool[item_state.index]
+        if item_state.status == "done":
+            continue
         if not _has_sufficient_description(entry):
             _progress(
                 f"[item {item_state.index}] skipped: insufficient description"
