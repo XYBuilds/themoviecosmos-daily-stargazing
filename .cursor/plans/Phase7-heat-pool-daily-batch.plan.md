@@ -10,7 +10,7 @@ todos:
     status: completed
   - id: p7.2-daily-batch
     content: "7.2 · Daily Batch 编排器 + 断点续跑（scripts/daily_batch.py）"
-    status: todo
+    status: completed
   - id: p7.3-integration-smoke
     content: "7.3 · 集成冒烟测试 [需人工验收]"
     status: todo
