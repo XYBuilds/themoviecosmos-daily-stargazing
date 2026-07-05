@@ -7,6 +7,7 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
+import requests
 from scripts.fetch_news import mark_url_seen
 from scripts.heat_pool import (
     enrich_descriptions,
@@ -171,6 +172,31 @@ class FallbackNewestTests(unittest.TestCase):
         self.assertEqual(urls, ["https://example.com/existing", "https://example.com/new1", "https://example.com/new2"])
         self.assertEqual(result[1]["description"], "Desc 1")
         self.assertTrue(result[1]["fallback"])
+
+    def test_fallback_newest_retries_guardian_429(self):
+        ranked = [{"url": "https://example.com/existing", "title": "Existing", "score": 1.0, "sources": []}]
+        response = requests.Response()
+        response.status_code = 429
+        response.headers["Retry-After"] = "0"
+        error = requests.HTTPError("rate limited", response=response)
+        newest_results = [
+            {
+                "title": "New 1",
+                "description": "Desc 1",
+                "pub_time": "2026-07-05T00:00:00Z",
+                "source_name": "The Guardian | World",
+                "url": "https://example.com/new1",
+            }
+        ]
+
+        with patch("scripts.fetch_news.fetch_guardian_api", side_effect=[error, newest_results]) as mock_fetch:
+            result = fallback_newest(ranked, min_count=2)
+
+        self.assertEqual(mock_fetch.call_count, 2)
+        self.assertEqual([item["url"] for item in result], [
+            "https://example.com/existing",
+            "https://example.com/new1",
+        ])
 
 
 class EnrichDescriptionsTests(unittest.TestCase):

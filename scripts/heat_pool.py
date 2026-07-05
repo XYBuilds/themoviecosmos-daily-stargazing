@@ -198,6 +198,46 @@ def _guardian_result_to_pool_item(result: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+_FALLBACK_RETRY_ATTEMPTS = 4
+_FALLBACK_RETRY_BASE_SECONDS = 8.0
+
+
+def _guardian_retry_delay_seconds(exc: Exception, attempt: int) -> float:
+    """Return retry delay for Guardian fallback requests.
+
+    Guardian may return 429 during daily batch heat-pool collection.  Honor
+    Retry-After when present; otherwise use bounded exponential backoff.
+    """
+
+    response = getattr(exc, "response", None)
+    retry_after = getattr(response, "headers", {}).get("Retry-After") if response is not None else None
+    if retry_after is not None:
+        try:
+            parsed = float(retry_after)
+            if parsed >= 0:
+                return min(parsed, 120.0)
+        except ValueError:
+            pass
+    return min(_FALLBACK_RETRY_BASE_SECONDS * (2 ** max(attempt - 1, 0)), 120.0)
+
+
+def _is_retryable_guardian_error(exc: Exception) -> bool:
+    response = getattr(exc, "response", None)
+    status_code = getattr(response, "status_code", None)
+    return status_code == 429 or (isinstance(status_code, int) and 500 <= status_code < 600)
+
+
+def _fetch_guardian_api_with_retry(fetch_guardian_api, **kwargs: Any) -> list[dict[str, Any]]:
+    for attempt in range(1, _FALLBACK_RETRY_ATTEMPTS + 1):
+        try:
+            return fetch_guardian_api(**kwargs)
+        except requests.RequestException as exc:
+            if attempt >= _FALLBACK_RETRY_ATTEMPTS or not _is_retryable_guardian_error(exc):
+                raise
+            time.sleep(_guardian_retry_delay_seconds(exc, attempt))
+    return []
+
+
 def fallback_newest(
     ranked: list[dict[str, Any]],
     *,
@@ -219,7 +259,8 @@ def fallback_newest(
     existing_urls = {item["url"] for item in ranked}
     needed = min_count - len(ranked)
 
-    newest_results = fetch_guardian_api(
+    newest_results = _fetch_guardian_api_with_retry(
+        fetch_guardian_api,
         sections=RANKED_SECTIONS,
         order_by="newest",
         page_size=max(needed * 2, min_count),
