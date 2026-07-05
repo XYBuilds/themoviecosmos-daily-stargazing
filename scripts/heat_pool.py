@@ -218,7 +218,13 @@ _FALLBACK_RETRY_ATTEMPTS = 4
 _FALLBACK_RETRY_BASE_SECONDS = 8.0
 
 
-def _guardian_retry_delay_seconds(exc: Exception, attempt: int, *, base_seconds: float) -> float:
+def _guardian_retry_delay_seconds(
+    exc: Exception,
+    attempt: int,
+    *,
+    base_seconds: float,
+    max_delay_seconds: float,
+) -> float:
     """Return retry delay for Guardian requests, honoring Retry-After when present."""
 
     response = getattr(exc, "response", None)
@@ -227,10 +233,10 @@ def _guardian_retry_delay_seconds(exc: Exception, attempt: int, *, base_seconds:
         try:
             parsed = float(retry_after)
             if parsed >= 0:
-                return min(parsed, 120.0)
+                return min(parsed, max_delay_seconds)
         except ValueError:
             pass
-    return min(base_seconds * (2 ** max(attempt - 1, 0)), 120.0)
+    return min(base_seconds * (2 ** max(attempt - 1, 0)), max_delay_seconds)
 
 
 def _is_retryable_guardian_error(exc: Exception) -> bool:
@@ -254,7 +260,12 @@ def _request_guardian_with_retry(
             last_exc = exc
             if attempt >= max_attempts or not _is_retryable_guardian_error(exc):
                 raise
-            delay = _guardian_retry_delay_seconds(exc, attempt, base_seconds=base_seconds)
+            delay = _guardian_retry_delay_seconds(
+                exc,
+                attempt,
+                base_seconds=base_seconds,
+                max_delay_seconds=10.0 if operation.startswith("section ") else 120.0,
+            )
             status_code = getattr(getattr(exc, "response", None), "status_code", "unknown")
             _log_heat_pool(
                 f"[heat_pool] {operation} hit Guardian {status_code}; retry {attempt}/{max_attempts} in {delay:.1f}s"
