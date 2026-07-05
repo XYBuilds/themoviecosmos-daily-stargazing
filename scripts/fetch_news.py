@@ -672,6 +672,8 @@ def fetch_guardian_api(
                 "pub_time": result["webPublicationDate"],
                 "source_name": f"The Guardian | {result.get('sectionName', '')}",
                 "url": url,
+                "id": result.get("id"),
+                "api_url": result.get("apiUrl"),
             }
         )
 

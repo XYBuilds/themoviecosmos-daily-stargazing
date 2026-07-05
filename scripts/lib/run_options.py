@@ -14,6 +14,7 @@ class RunOptions:
     """开发/CI 用快捷开关，默认值保持生产管线原有行为不变。"""
 
     persona_limit: int | None = None  # --personas N：只跑前 N 个 persona
+    persona_concurrency: int = 4  # --persona-concurrency N：persona stage 并发上限
     skip_expand: bool = False  # --skip-expand：跳过 P-Expand
     judge_topk: int = 2  # --judge-topk K：retrieve top_k 覆盖
     force: bool = False  # --force：覆盖已有同日输出

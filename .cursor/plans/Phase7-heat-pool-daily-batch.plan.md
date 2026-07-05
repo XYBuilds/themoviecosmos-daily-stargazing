@@ -11,9 +11,12 @@ todos:
   - id: p7.2-daily-batch
     content: "7.2 · Daily Batch 编排器 + 断点续跑（scripts/daily_batch.py）"
     status: completed
-  - id: p7.3-integration-smoke
-    content: "7.3 · 集成冒烟测试 [需人工验收]"
+  - id: p7.3-mimo-parallel-baseline
+    content: "7.3 · Mimo 2.5 Pro 并行设计与调优基线"
     status: todo
+  - id: p7.4-integration-smoke
+    content: "7.4 · 集成冒烟测试 [需人工验收]"
+    status: completed
 isProject: true
 ---
 
@@ -295,50 +298,32 @@ pytest tests/test_daily_batch.py -v
 
 ---
 
-## Todo 7.3 · 集成冒烟测试 [需人工验收]
+## Todo 7.3 · 并行设计与调优基线
 
 **依赖**：7.2
 
-**目标**：用真实 API key 跑一次小批量，验证端到端。
+**SSOT**：执行本 TODO 前必须阅读 `.cursor/plans/ssot/mimo-2.5-pro-parallelism.md`，并以该文档作为参数、调参、恢复与验证口径的唯一来源。
 
-### 测试流程
+**目标**：固化 daily_batch 的并行实现边界与默认值，确认 item / persona / 全局限流的分工与 baseline；不改 `heat_pool` 语义、不改 prompt、不改 `retrieve` 排序。
 
-1. 跑一次小批量：
-   ```powershell
-   python scripts/daily_batch.py --min-count 3 --personas 2
-   ```
+**执行边界**：仅收敛并行调度、恢复与观测口径；具体参数、测试矩阵、降级顺序、错误字段和命令以 SSOT 为准。
 
-2. 验证产出：
-   - `output/daily_batch/{date}/pool.json` 存在且含 score
-   - `state/daily_batch_{date}.json` 所有 items status == "done"
-   - 至少 1 条 news 产出了完整的 `briefing.md`
+**验收口径**：完成后应能明确 baseline 拓扑、默认并发档位、恢复边界与需要记录的关键状态；不要求在本 TODO 内重复维护完整矩阵。
 
-3. 断点恢复测试：
-   - 跑到一半 Ctrl+C
-   - 再 `python scripts/daily_batch.py --resume`
-   - 验证从断点继续，不重跑已完成的
-
-### 验收
-
-人工检查 pool.json 的新闻质量（是否确实是热门新闻）+ briefing.md 内容合理性。
+**人工验收阻断说明**：无人工验收阻断；若后续 smoke/tuning 需要人工确认，再按 7.4 处理。
 
 ---
 
-## 风险与约束
+## Todo 7.4 · 集成冒烟测试 [需人工验收]
 
-| 风险 | 缓解 |
-|------|------|
-| Guardian 免费 tier rate limit (12 req/s) | 32 section 请求间加 100ms sleep |
-| mostViewed 全是老新闻，filter_seen 后为空 | fallback_newest 兜底 |
-| 批量跑 10 条 × 12 persona = 120 次 LLM 调用 | `--personas N` 开发开关控成本 |
-| 断点 state 文件损坏 | 每次写 checkpoint 先写 .tmp 再 rename |
-| 现有 main.py 接口不够 | 只调 `run_daily_pipeline()` 函数，不走 CLI |
+**依赖**：7.3
 
-## SSOT
+**SSOT**：执行本 TODO 前必须先读 `7.3` 与 `.cursor/plans/ssot/mimo-2.5-pro-parallelism.md`，冒烟命令、矩阵、降级与恢复口径均以 SSOT 为准。
 
-| 文档 | 用途 |
-|------|------|
-| `CONTEXT.md` | 热度池术语定义 + 总编职责更新 |
-| `scripts/main.py::run_daily_pipeline()` | 单条管线接口（零改动） |
-| `scripts/fetch_news.py` | 复用 `is_url_seen`, `mark_selected`, `extract_guardian_description` |
-| Guardian Section API | `show-most-viewed=true` + `show-editors-picks=true` 返回格式 |
+**目标**：用真实 API key 跑一次小批量，验证端到端与断点恢复；本 TODO 仅做冒烟确认，不扩写参数细节。
+
+**执行边界**：冒烟执行前必须参考 7.3 与 SSOT；若出现 429 / timeout / retry 异常，按 SSOT 口径处理。
+
+**验收口径**：能完成小批量跑通、产出文件齐全、`resume` 可从稳定 checkpoint 继续；冒烟命令与阈值不在 plan 内重复展开。
+
+**人工验收阻断说明**：此 TODO 为 `[需人工验收]`；在人工验收通过前，不要标 complete、不要写 report、不要 merge。
