@@ -44,7 +44,7 @@ if str(_REPO_ROOT) not in sys.path:
 from scripts import compose
 from scripts.agents import NewsItem, news_to_dict
 from scripts.extract import run_deconstruct
-from scripts.heat_pool import DEFAULT_MIN_COUNT, fetch_heat_pool, pool_output_path
+from scripts.heat_pool import DEFAULT_MIN_COUNT, RANKED_SECTIONS, fetch_heat_pool, pool_output_path
 from scripts.lib.paths import repo_root, state_dir
 from scripts.lib.run_options import RunOptions
 from scripts.retrieve import retrieve_from_agents
@@ -61,14 +61,24 @@ STAGE_ORDER: tuple[str, ...] = (
     "done",
 )
 
-_SLUG_WORD_COUNT = 6
-_SLUG_STRIP_RE = re.compile(r"[^a-z0-9\s-]")
-_SLUG_WS_RE = re.compile(r"\s+")
+_MIN_DESCRIPTION_CHARS = 24
 
+
+def _has_sufficient_description(entry: dict[str, Any]) -> bool:
+    description = str(entry.get("description") or "").strip()
+    if len(description) < _MIN_DESCRIPTION_CHARS:
+        return False
+    title = str(entry.get("title") or "").strip()
+    return description.lower() != title.lower()
 
 def _progress(message: str) -> None:
     ts = datetime.now(UTC).isoformat(timespec="seconds")
     print(f"{ts} {message}", file=sys.stderr, flush=True)
+
+
+_SLUG_WORD_COUNT = 6
+_SLUG_STRIP_RE = re.compile(r"[^a-z0-9\s-]")
+_SLUG_WS_RE = re.compile(r"\s+")
 
 
 def slugify(title: str, *, max_words: int = _SLUG_WORD_COUNT) -> str:
@@ -237,10 +247,88 @@ def _persona_result_to_agent(result: Any) -> dict[str, Any]:
 
 
 def _persona_agent_dict_to_dict(agent: dict[str, Any]) -> dict[str, Any]:
-    """personas/{id}.json 落盘的是 pipeline_result_to_dict() payload 加 agent 视图，
-    resume 时直接把落盘的 agent 视图原样喂回 agents_list（无需还原 PersonaPipelineResult）。
-    """
+    """Resume path stores the retrieve-facing agent dict directly."""
     return agent
+
+
+async def _run_persona_stage(
+    deconstruction: dict[str, Any],
+    *,
+    expansion: dict[str, Any] | None,
+    personas_dir: Path,
+    item_state: BatchItemState,
+    run_options: RunOptions,
+    provider: str | None,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[str]]:
+    """Run persona stage with bounded concurrency and local persona checkpoints."""
+    personas_dir.mkdir(parents=True, exist_ok=True)
+    persona_ids = list_persona_ids()
+    if run_options.persona_limit is not None:
+        persona_ids = persona_ids[: run_options.persona_limit]
+
+    sem = asyncio.Semaphore(run_options.persona_concurrency)
+    completed = set(item_state.completed_personas)
+
+    async def _load_cached(persona_id: str, persona_json_path: Path) -> dict[str, Any] | None:
+        if not persona_json_path.is_file():
+            return None
+        cached = _read_json(persona_json_path)
+        completed.add(persona_id)
+        return cached
+
+    async def _run_one(persona_id: str) -> dict[str, Any]:
+        persona_json_path = personas_dir / f"{persona_id}.json"
+        cached = await _load_cached(persona_id, persona_json_path)
+        if cached is not None:
+            return {"persona_id": persona_id, "cached": True, "payload": cached}
+
+        async with sem:
+            _progress(
+                f"[item {item_state.index}] persona {persona_id} start "
+                f"(concurrency={run_options.persona_concurrency})"
+            )
+            try:
+                result = await run_persona_pipeline(
+                    persona_id,
+                    deconstruction,
+                    provider=provider,
+                    expansion=expansion,
+                )
+            except Exception as exc:  # noqa: BLE001 - single persona failure must not fail the item
+                error_message = f"{type(exc).__name__}: {exc}"
+                _write_json(persona_json_path, {"error": error_message})
+                return {"persona_id": persona_id, "error": error_message}
+
+        if result.error or not result.pseudos:
+            error_message = result.error or "no pseudos"
+            _write_json(persona_json_path, {"error": error_message})
+            return {"persona_id": persona_id, "error": error_message}
+
+        agent = _persona_result_to_agent(result)
+        _write_json(persona_json_path, {"agent": agent})
+        return {"persona_id": persona_id, "agent": agent}
+
+    results = await asyncio.gather(*(_run_one(persona_id) for persona_id in persona_ids))
+
+    agents_by_id: dict[str, dict[str, Any]] = {}
+    errors_by_id: dict[str, dict[str, Any]] = {}
+    for result in results:
+        persona_id = result["persona_id"]
+        if result.get("agent") is not None:
+            agents_by_id[persona_id] = _persona_agent_dict_to_dict(result["agent"])
+        elif result.get("cached"):
+            cached = result.get("payload") or {}
+            if "agent" in cached and isinstance(cached["agent"], dict):
+                agents_by_id[persona_id] = _persona_agent_dict_to_dict(cached["agent"])
+            elif cached.get("error"):
+                errors_by_id[persona_id] = {"agent_id": persona_id, "message": str(cached["error"])}
+        else:
+            message = str(result.get("error") or "unknown persona error")
+            errors_by_id[persona_id] = {"agent_id": persona_id, "message": message}
+
+    agents_list = [agents_by_id[persona_id] for persona_id in persona_ids if persona_id in agents_by_id]
+    errors = [errors_by_id[persona_id] for persona_id in persona_ids if persona_id in errors_by_id]
+    return agents_list, errors, persona_ids
 
 
 async def _process_item(
@@ -260,6 +348,12 @@ async def _process_item(
     """
     if item_state.status == "done":
         return
+
+    if not _has_sufficient_description(entry):
+        raise ValueError(
+            f"item {item_state.index}: insufficient description from heat pool; "
+            "skip or fix enrichment before daily batch"
+        )
 
     news = _news_item_for_pool_entry(entry)
     item_out_dir.mkdir(parents=True, exist_ok=True)
@@ -303,47 +397,20 @@ async def _process_item(
 
     # --- Stage: persona × N (per-persona checkpoint) ---
     personas_dir = item_out_dir / "personas"
-    persona_ids = list_persona_ids()
-    if run_options.persona_limit is not None:
-        persona_ids = persona_ids[: run_options.persona_limit]
+    agents_list, errors, persona_ids = await _run_persona_stage(
+        deconstruction,
+        expansion=expansion,
+        personas_dir=personas_dir,
+        item_state=item_state,
+        run_options=run_options,
+        provider=provider,
+    )
 
-    errors: list[dict[str, Any]] = []
-    agents_list: list[dict[str, Any]] = []
-    completed = set(item_state.completed_personas)
-
-    for idx, persona_id in enumerate(persona_ids, start=1):
-        persona_json_path = personas_dir / f"{persona_id}.json"
-        if persona_id in completed and persona_json_path.is_file():
-            cached = _read_json(persona_json_path)
-            if cached.get("error"):
-                errors.append({"agent_id": persona_id, "message": cached["error"]})
-            else:
-                agents_list.append(_persona_agent_dict_to_dict(cached["agent"]))
-            continue
-
-        _progress(f"[item {item_state.index}] persona {idx}/{len(persona_ids)} {persona_id} start")
-        result = await run_persona_pipeline(
-            persona_id,
-            deconstruction,
-            provider=provider,
-            expansion=expansion,
-        )
-        if result.error or not result.pseudos:
-            error_message = result.error or "no pseudos"
-            errors.append({"agent_id": persona_id, "message": error_message})
-            _write_json(persona_json_path, {"error": error_message})
-        else:
-            agent = _persona_result_to_agent(result)
-            agents_list.append(agent)
-            _write_json(persona_json_path, {"agent": agent})
-
-        if persona_id not in item_state.completed_personas:
+    completed_set = set(item_state.completed_personas)
+    for persona_id in persona_ids:
+        if persona_id not in completed_set:
             item_state.completed_personas.append(persona_id)
-        item_state.status = "persona"
-        item_state.last_completed_stage = "expand" if item_state.last_completed_stage in (None, "deconstruct") else item_state.last_completed_stage
-        batch_state.save(state_file)
-        _progress(f"[item {item_state.index}] persona {idx}/{len(persona_ids)} {persona_id} done")
-
+            completed_set.add(persona_id)
     item_state.last_completed_stage = "persona"
     item_state.status = "persona"
     batch_state.save(state_file)
@@ -422,6 +489,8 @@ async def run_daily_batch(
     date: str | None = None,
     resume: bool = False,
     min_count: int = DEFAULT_MIN_COUNT,
+    max_items: int | None = None,
+    heat_sections: list[str] | None = None,
     run_options: RunOptions | None = None,
     provider: str | None = None,
     out_dir: Path | None = None,
@@ -432,7 +501,15 @@ async def run_daily_batch(
     """
     resolved_date = date or _today_iso()
     resolved_run_options = run_options or RunOptions()
+    provider = provider or getattr(resolved_run_options, "provider", None)
     resolved_state_path = state_path(resolved_date, base_state_dir)
+
+    if max_items is not None and max_items <= 0:
+        raise ValueError(f"max_items must be a positive integer, got {max_items}")
+    if resolved_run_options.persona_concurrency <= 0:
+        raise ValueError(
+            f"persona_concurrency must be a positive integer, got {resolved_run_options.persona_concurrency}"
+        )
 
     if resume:
         if not resolved_state_path.is_file():
@@ -443,7 +520,15 @@ async def run_daily_batch(
             pool_file_path = repo_root() / pool_file_path
         pool = _read_json(pool_file_path)
     else:
-        pool = fetch_heat_pool(date=resolved_date, min_count=min_count, out_dir=out_dir)
+        pool = fetch_heat_pool(
+            date=resolved_date,
+            min_count=min_count,
+            max_items=max_items,
+            sections=heat_sections,
+            out_dir=out_dir,
+        )
+        if max_items is not None:
+            pool = pool[:max_items]
         pool_file_path = pool_output_path(resolved_date, out_dir)
         batch_state = init_batch_state(resolved_date, pool, str(pool_file_path))
         batch_state.save(resolved_state_path)
@@ -452,6 +537,14 @@ async def run_daily_batch(
         if item_state.index >= len(pool):
             continue
         entry = pool[item_state.index]
+        if not _has_sufficient_description(entry):
+            _progress(
+                f"[item {item_state.index}] skipped: insufficient description"
+            )
+            item_state.status = "done"
+            item_state.last_completed_stage = "done"
+            batch_state.save(resolved_state_path)
+            continue
         target_dir = item_dir(resolved_date, item_state.index, item_state.slug, out_dir)
         await _process_item(
             entry,
@@ -481,11 +574,32 @@ def build_parser() -> argparse.ArgumentParser:
         help=f"Minimum heat pool size after fallback (default: {DEFAULT_MIN_COUNT}).",
     )
     parser.add_argument(
+        "--max-items",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Limit the number of items initialized from the heat pool (default: all).",
+    )
+    parser.add_argument(
+        "--max-sections",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Limit Guardian heat-pool sections for smoke/dev runs (default: all).",
+    )
+    parser.add_argument(
         "--personas",
         type=int,
         default=None,
         metavar="N",
         help="Dev shortcut: only run the first N personas per item (default: all 12).",
+    )
+    parser.add_argument(
+        "--persona-concurrency",
+        type=int,
+        default=4,
+        metavar="N",
+        help="Persona stage concurrency limit (default: 4).",
     )
     parser.add_argument("--skip-expand", action="store_true", help="Dev shortcut: skip the P-Expand stage.")
     parser.add_argument(
@@ -498,13 +612,20 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    run_options = RunOptions(persona_limit=args.personas, skip_expand=args.skip_expand)
+    run_options = RunOptions(
+        persona_limit=args.personas,
+        persona_concurrency=args.persona_concurrency,
+        skip_expand=args.skip_expand,
+    )
+    heat_sections = RANKED_SECTIONS[: args.max_sections] if args.max_sections is not None else None
     try:
         asyncio.run(
             run_daily_batch(
                 date=args.date,
                 resume=args.resume,
                 min_count=args.min_count,
+                max_items=args.max_items,
+                heat_sections=heat_sections,
                 run_options=run_options,
                 provider=args.provider,
             )

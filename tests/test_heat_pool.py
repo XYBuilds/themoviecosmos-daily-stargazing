@@ -189,7 +189,14 @@ class EnrichDescriptionsTests(unittest.TestCase):
             }
         }
         selected = [
-            {"url": "https://example.com/needs-body", "title": "Needs body", "score": 1.0, "sources": []},
+            {
+                "url": "https://example.com/needs-body",
+                "title": "Needs body",
+                "score": 1.0,
+                "sources": [],
+                "id": "world/2026/jul/05/needs-body",
+                "api_url": "https://content.guardianapis.com/world/2026/jul/05/needs-body",
+            },
             {"url": "https://example.com/has-body", "title": "Has body", "score": 0.5, "sources": [], "description": "Already there"},
         ]
 
@@ -197,6 +204,10 @@ class EnrichDescriptionsTests(unittest.TestCase):
             enriched = enrich_descriptions(selected, api_key="test-key")
 
         mock_get.assert_called_once()
+        self.assertEqual(
+            mock_get.call_args.args[0],
+            "https://content.guardianapis.com/world/2026/jul/05/needs-body",
+        )
         self.assertIn("Officials confirmed the incident occurred near the harbour.", enriched[0]["description"])
         self.assertEqual(enriched[1]["description"], "Already there")
 

@@ -7,6 +7,7 @@
 用法：
   python tests/smoke_daily_batch.py
   python tests/smoke_daily_batch.py --min-count 3 --personas 2
+  python tests/smoke_daily_batch.py --date 2026-07-05-smoke-max1 --min-count 1 --max-items 1 --personas 1
   python tests/smoke_daily_batch.py --date 2026-07-05 --resume
 
 检查项：
@@ -36,6 +37,7 @@ from scripts.daily_batch import (  # noqa: E402
     state_path,
 )
 from scripts.lib.run_options import RunOptions  # noqa: E402
+from scripts.heat_pool import RANKED_SECTIONS  # noqa: E402
 
 
 def _today_iso() -> str:
@@ -57,6 +59,20 @@ def build_parser() -> argparse.ArgumentParser:
         help=f"热度池最小条数（默认 3；生产默认 {DEFAULT_MIN_COUNT}）",
     )
     parser.add_argument(
+        "--max-items",
+        type=int,
+        default=None,
+        metavar="N",
+        help="限制初始化的 item 数量（默认：全部）。",
+    )
+    parser.add_argument(
+        "--max-sections",
+        type=int,
+        default=None,
+        metavar="N",
+        help="限制 Guardian heat-pool section 数量；传 --max-items 且未指定时默认 1。",
+    )
+    parser.add_argument(
         "--personas",
         type=int,
         default=2,
@@ -66,9 +82,16 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--resume", action="store_true", help="从既有 state 断点续跑")
     parser.add_argument("--skip-expand", action="store_true", help="跳过 P-Expand 阶段")
     parser.add_argument(
+        "--persona-concurrency",
+        type=int,
+        default=4,
+        metavar="N",
+        help="Persona stage concurrency limit (default: 4).",
+    )
+    parser.add_argument(
         "--provider",
-        choices=["mimo", "deepseek"],
-        help="LLM provider 覆盖（默认 DEFAULT_LLM_PROVIDER from .env）",
+        default=None,
+        help="LLM provider override passed through to daily_batch.",
     )
     return parser
 
@@ -130,15 +153,28 @@ def _check_briefings(date: str) -> tuple[bool, str]:
 
 def run_smoke(args: argparse.Namespace) -> int:
     date = args.date or _today_iso()
-    run_options = RunOptions(persona_limit=args.personas, skip_expand=args.skip_expand)
+    run_options = RunOptions(
+        persona_limit=args.personas,
+        persona_concurrency=args.persona_concurrency,
+        skip_expand=args.skip_expand,
+    )
+    max_sections = args.max_sections
+    if max_sections is None and args.max_items is not None:
+        max_sections = 1
+    heat_sections = RANKED_SECTIONS[:max_sections] if max_sections is not None else None
 
-    print(f"=== Phase 7.3 冒烟测试 · date={date} min_count={args.min_count} personas={args.personas} ===")
+    print(
+        f"=== Phase 7.3 冒烟测试 · date={date} min_count={args.min_count} "
+        f"personas={args.personas} max_items={args.max_items} max_sections={max_sections} ==="
+    )
     try:
         asyncio.run(
             run_daily_batch(
                 date=date,
                 resume=args.resume,
                 min_count=args.min_count,
+                max_items=args.max_items,
+                heat_sections=heat_sections,
                 run_options=run_options,
                 provider=args.provider,
             )

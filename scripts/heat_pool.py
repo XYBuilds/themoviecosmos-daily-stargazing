@@ -60,6 +60,22 @@ def _resolve_api_key(api_key: str | None) -> str:
     return resolved
 
 
+def _guardian_content_endpoint(item: dict[str, Any]) -> str | None:
+    api_url = item.get("api_url")
+    if isinstance(api_url, str) and api_url.strip():
+        return api_url.strip()
+
+    guardian_id = item.get("id")
+    if isinstance(guardian_id, str) and guardian_id.strip():
+        return f"{_SECTION_API_BASE}/{guardian_id.strip()}"
+
+    url = item.get("url")
+    if isinstance(url, str) and url.strip():
+        return url.strip()
+
+    return None
+
+
 def _signal_from_result(result: dict[str, Any], section: str, signal_type: str, rank_position: int) -> dict[str, Any]:
     """把 Guardian mostViewed/editorsPicks 单条 result 规范化为 raw signal dict."""
 
@@ -70,6 +86,8 @@ def _signal_from_result(result: dict[str, Any], section: str, signal_type: str, 
         "section": section,
         "signal_type": signal_type,
         "rank_position": rank_position,
+        "id": result.get("id"),
+        "api_url": result.get("apiUrl"),
     }
 
 
@@ -134,6 +152,8 @@ def score_and_rank(signals: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "pub_time": signal.get("pub_time"),
                 "score": 0.0,
                 "sources": [],
+                "id": signal.get("id"),
+                "api_url": signal.get("api_url"),
             }
             aggregated[url] = entry
 
@@ -227,8 +247,7 @@ def enrich_descriptions(
 ) -> list[dict[str, Any]]:
     """对每条尚缺 description 的候选调 Content API 拿正文，提取 description 字段。
 
-    fallback_newest 补齐的条目已带 description（来自 fetch_guardian_api），此处跳过
-    不重复请求；只对纯 heat-signal 来源（无 description）的条目补正文。
+    优先使用 Guardian Content API 结果里的 apiUrl / id；fallback 到 url 仅用于兼容旧数据。
     """
 
     resolved_api_key = _resolve_api_key(api_key)
@@ -239,15 +258,20 @@ def enrich_descriptions(
             enriched.append(item)
             continue
 
-        url = item.get("url")
+        endpoint = _guardian_content_endpoint(item)
         item = dict(item)
+        if endpoint is None:
+            item["description"] = ""
+            enriched.append(item)
+            continue
+
         params = {
             "api-key": resolved_api_key,
             "show-fields": "bodyText,trailText",
             "show-tags": "all",
         }
         try:
-            response = requests.get(url, params=params, timeout=30)
+            response = requests.get(endpoint, params=params, timeout=30)
             response.raise_for_status()
             payload = response.json()
             result = (payload.get("response") or {}).get("content") or {}
@@ -276,6 +300,8 @@ def fetch_heat_pool(
     *,
     date: str | None = None,
     min_count: int = DEFAULT_MIN_COUNT,
+    max_items: int | None = None,
+    sections: list[str] | None = None,
     db_path: Path | None = None,
     api_key: str | None = None,
     dry_run: bool = False,
@@ -288,14 +314,20 @@ def fetch_heat_pool(
 
     resolved_date = date or _today_iso()
     resolved_db_path = db_path if db_path is not None else seen_news_db()
+    resolved_sections = sections if sections is not None else RANKED_SECTIONS
+    target_count = max_items if max_items is not None else min_count
 
-    signals = fetch_heat_signals(RANKED_SECTIONS, api_key=api_key)
+    if max_items is not None and max_items <= 0:
+        raise ValueError(f"max_items must be a positive integer, got {max_items}")
+
+    signals = fetch_heat_signals(resolved_sections, api_key=api_key)
     ranked = score_and_rank(signals)
     filtered = filter_seen(ranked, db_path=resolved_db_path)
     supplemented = fallback_newest(
-        filtered, min_count=min_count, db_path=resolved_db_path, api_key=api_key
+        filtered, min_count=target_count, db_path=resolved_db_path, api_key=api_key
     )
-    pool = enrich_descriptions(supplemented, api_key=api_key)
+    selected = supplemented[:max_items] if max_items is not None else supplemented
+    pool = enrich_descriptions(selected, api_key=api_key)
 
     if not dry_run:
         output_path = pool_output_path(resolved_date, out_dir)
