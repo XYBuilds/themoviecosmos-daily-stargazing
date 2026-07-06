@@ -8,7 +8,7 @@ overview: |
 todos:
   - id: p8.1-build-data
     content: 8.1 · build_data.py 数据聚合瘦身（review_panel/build_data.py）
-    status: todo
+    status: complete
   - id: p8.2-publish-adapter
     content: 8.2 · publish_adapter.py 薄适配脚本，解决 daily_batch 产物结构冲突
     status: todo
