@@ -14,7 +14,7 @@ todos:
     status: complete
   - id: p8.3-serve
     content: 8.3 · serve.py 本地 stdlib HTTP 服务器 + 4 个 JSON API
-    status: todo
+    status: complete
   - id: p8.4-frontend
     content: 8.4 · index.html 单文件原生 JS 前端面板
     status: todo
