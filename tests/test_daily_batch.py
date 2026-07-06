@@ -229,7 +229,7 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
             self.assertEqual(len(saved.items), 1)
             self.assertEqual(state.items[0].slug, "england-heatwave-grips-the-nation-today")
 
-    def test_daily_batch_skips_items_with_insufficient_description(self) -> None:
+    def test_daily_batch_raises_on_insufficient_description(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             out_dir = tmp_path / "output"
@@ -244,19 +244,62 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
             with ExitStack() as stack:
                 _apply_common_patches(stack)
                 stack.enter_context(patch("scripts.daily_batch.fetch_heat_pool", return_value=bad_pool))
-                state = asyncio.run(
+                with self.assertRaisesRegex(ValueError, "insufficient description"):
+                    asyncio.run(
+                        run_daily_batch(
+                            date="2026-07-05",
+                            run_options=RunOptions(persona_limit=1, skip_expand=True),
+                            out_dir=out_dir,
+                            base_state_dir=state_dir,
+                        )
+                    )
+
+            saved_path = state_path("2026-07-05", state_dir)
+            self.assertTrue(saved_path.is_file())
+            saved = BatchState.from_dict(json.loads(saved_path.read_text(encoding="utf-8")))
+            self.assertEqual([item.status for item in saved.items], ["pending", "pending", "pending"])
+            self.assertFalse((out_dir / "2026-07-05" / "01-a" / "deconstruct.json").exists())
+
+    def test_resume_reprocesses_incomplete_done_item(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            out_dir = tmp_path / "output"
+            state_dir = tmp_path / "state"
+
+            pool = [
+                {"url": "https://example.com/a", "title": "A", "description": "This description is sufficiently long and informative for the batch.", "pub_time": "2026-07-05T00:00:00Z"},
+            ]
+            state = init_batch_state("2026-07-05", pool, "output/daily_batch/2026-07-05/pool.json")
+            state.items[0].status = "done"
+            state.items[0].last_completed_stage = "done"
+            pool_dir = out_dir / "2026-07-05"
+            pool_dir.mkdir(parents=True, exist_ok=True)
+            pool_file = pool_dir / "pool.json"
+            pool_file.write_text(json.dumps(pool), encoding="utf-8")
+            state.pool_file = str(pool_file)
+            state.save(state_path("2026-07-05", state_dir))
+
+            called_personas: list[str] = []
+
+            async def track_pipeline(persona_id, deconstruction, *, provider, expansion):
+                called_personas.append(persona_id)
+                return _FakePersonaResult(persona_id=persona_id)
+
+            with ExitStack() as stack:
+                _apply_common_patches(stack, persona_side_effect=track_pipeline, persona_ids=["The-Hero", "The-Sage"])
+                final_state = asyncio.run(
                     run_daily_batch(
                         date="2026-07-05",
+                        resume=True,
                         run_options=RunOptions(persona_limit=1, skip_expand=True),
                         out_dir=out_dir,
                         base_state_dir=state_dir,
                     )
                 )
 
-            self.assertEqual([item.status for item in state.items], ["done", "done", "done"])
-            self.assertFalse((out_dir / "2026-07-05" / "01-a" / "deconstruct.json").exists())
-            self.assertFalse((out_dir / "2026-07-05" / "02-b" / "deconstruct.json").exists())
-            self.assertTrue((out_dir / "2026-07-05" / "03-c" / "deconstruct.json").exists())
+            self.assertEqual(called_personas, ["The-Hero"])
+            self.assertEqual(final_state.items[0].status, "done")
+            self.assertEqual(final_state.items[0].last_completed_stage, "compose")
 
     def test_full_run_marks_all_items_done_and_writes_checkpoint(self) -> None:
         with TemporaryDirectory() as tmp:
