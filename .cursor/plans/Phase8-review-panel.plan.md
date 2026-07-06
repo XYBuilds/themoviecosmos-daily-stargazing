@@ -11,7 +11,7 @@ todos:
     status: complete
   - id: p8.2-publish-adapter
     content: 8.2 · publish_adapter.py 薄适配脚本，解决 daily_batch 产物结构冲突
-    status: todo
+    status: complete
   - id: p8.3-serve
     content: 8.3 · serve.py 本地 stdlib HTTP 服务器 + 4 个 JSON API
     status: todo
