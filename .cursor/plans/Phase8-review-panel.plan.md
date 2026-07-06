@@ -17,7 +17,7 @@ todos:
     status: complete
   - id: p8.4-frontend
     content: 8.4 · index.html 单文件原生 JS 前端面板
-    status: todo
+    status: complete
   - id: p8.5-integration-smoke
     content: 8.5 · 集成冒烟测试 [需人工验收]
     status: todo
