@@ -71,6 +71,11 @@ def _has_sufficient_description(entry: dict[str, Any]) -> bool:
     title = str(entry.get("title") or "").strip()
     return description.lower() != title.lower()
 
+
+def _item_is_fully_complete(item_state: BatchItemState) -> bool:
+    return item_state.status == "done" and item_state.last_completed_stage == "compose"
+
+
 def _progress(message: str) -> None:
     ts = datetime.now(UTC).isoformat(timespec="seconds")
     print(f"{ts} {message}", file=sys.stderr, flush=True)
@@ -423,7 +428,7 @@ async def _process_item(
     if not _has_sufficient_description(entry):
         raise ValueError(
             f"item {item_state.index}: insufficient description from heat pool; "
-            "skip or fix enrichment before daily batch"
+            "refresh pool.json before resuming daily batch"
         )
 
     news = _news_item_for_pool_entry(entry)
@@ -612,16 +617,17 @@ async def run_daily_batch(
         if item_state.index >= len(pool):
             continue
         entry = pool[item_state.index]
+        if _item_is_fully_complete(item_state):
+            continue
         if item_state.status == "done":
-            continue
-        if not _has_sufficient_description(entry):
-            _progress(
-                f"[item {item_state.index}] skipped: insufficient description"
-            )
-            item_state.status = "done"
-            item_state.last_completed_stage = "done"
+            item_state.status = "pending"
+            item_state.last_completed_stage = None
             batch_state.save(resolved_state_path)
-            continue
+        if not _has_sufficient_description(entry):
+            raise ValueError(
+                f"item {item_state.index}: insufficient description from heat pool; "
+                "refresh pool.json before resuming daily batch"
+            )
         target_dir = item_dir(resolved_date, item_state.index, item_state.slug, out_dir)
         await _process_item(
             entry,

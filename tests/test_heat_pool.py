@@ -7,6 +7,7 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
+import requests
 from scripts.fetch_news import mark_url_seen
 from scripts.heat_pool import (
     enrich_descriptions,
@@ -75,6 +76,25 @@ class FetchHeatSignalsTests(unittest.TestCase):
             signals = fetch_heat_signals(["world", "science"], api_key="test-key", sleep_seconds=0)
 
         self.assertEqual(signals, [])
+
+    def test_fetch_heat_signals_circuit_breaks_after_consecutive_guardian_429_sections(self):
+        response = requests.Response()
+        response.status_code = 429
+        response.headers["Retry-After"] = "0"
+        rate_limited = requests.HTTPError("rate limited", response=response)
+
+        with (
+            patch("scripts.heat_pool.requests.get", side_effect=rate_limited) as mock_get,
+            patch("scripts.heat_pool.time.sleep", return_value=None),
+        ):
+            signals = fetch_heat_signals(
+                ["animals-farmed", "artanddesign", "world"],
+                api_key="test-key",
+                sleep_seconds=0,
+            )
+
+        self.assertEqual(signals, [])
+        self.assertEqual(mock_get.call_count, 4)
 
 
 class ScoreAndRankTests(unittest.TestCase):
@@ -172,6 +192,158 @@ class FallbackNewestTests(unittest.TestCase):
         self.assertEqual(result[1]["description"], "Desc 1")
         self.assertTrue(result[1]["fallback"])
 
+    def test_fallback_newest_retries_guardian_429(self):
+        ranked = [{"url": "https://example.com/existing", "title": "Existing", "score": 1.0, "sources": []}]
+        response = requests.Response()
+        response.status_code = 429
+        response.headers["Retry-After"] = "0"
+        error = requests.HTTPError("rate limited", response=response)
+        newest_results = [
+            {
+                "title": "New 1",
+                "description": "Desc 1",
+                "pub_time": "2026-07-05T00:00:00Z",
+                "source_name": "The Guardian | World",
+                "url": "https://example.com/new1",
+            }
+        ]
+
+        with patch("scripts.fetch_news.fetch_guardian_api", side_effect=[error, newest_results]) as mock_fetch:
+            result = fallback_newest(ranked, min_count=2)
+
+        self.assertEqual(mock_fetch.call_count, 2)
+        self.assertEqual([item["url"] for item in result], [
+            "https://example.com/existing",
+            "https://example.com/new1",
+        ])
+
+    def test_fetch_heat_pool_continues_when_ranked_enough_and_fallback_would_429(self):
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            out_dir = Path(temp_dir) / "daily_batch"
+
+            fake_signals = [
+                {
+                    "url": f"https://example.com/{i}",
+                    "title": f"T{i}",
+                    "pub_time": None,
+                    "section": "world",
+                    "signal_type": "mostViewed",
+                    "rank_position": i + 1,
+                }
+                for i in range(10)
+            ]
+            with (
+                patch("scripts.heat_pool.fetch_heat_signals", return_value=fake_signals),
+                patch("scripts.fetch_news.fetch_guardian_api", side_effect=AssertionError("fallback should not run")),
+                patch("scripts.heat_pool.enrich_descriptions", side_effect=lambda items, **_: items),
+            ):
+                pool = fetch_heat_pool(
+                    date="2026-07-05",
+                    min_count=10,
+                    db_path=db_path,
+                    api_key="test-key",
+                    dry_run=True,
+                    out_dir=out_dir,
+                )
+
+        self.assertEqual(len(pool), 10)
+        self.assertEqual([item["url"] for item in pool], [f"https://example.com/{i}" for i in range(10)])
+
+    def test_fetch_heat_pool_continues_when_section_keeps_429ing_but_others_fill_top_n(self):
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            out_dir = Path(temp_dir) / "daily_batch"
+            response_429 = requests.Response()
+            response_429.status_code = 429
+            response_429.headers["Retry-After"] = "0"
+            rate_limited = requests.HTTPError("rate limited", response=response_429)
+
+            world_payload = _section_response(
+                most_viewed=[
+                    {"webUrl": "https://example.com/a", "webTitle": "A", "webPublicationDate": "2026-07-05T00:00:00Z"},
+                ],
+                editors_picks=[],
+            )
+            science_payload = _section_response(
+                most_viewed=[
+                    {"webUrl": "https://example.com/b", "webTitle": "B", "webPublicationDate": "2026-07-05T00:00:00Z"},
+                ],
+                editors_picks=[],
+            )
+
+            def fake_get(url, params=None, timeout=None):
+                if url.endswith("/animals-farmed"):
+                    raise rate_limited
+                if url.endswith("/world"):
+                    return FakeResponse(world_payload)
+                if url.endswith("/science"):
+                    return FakeResponse(science_payload)
+                return FakeResponse(_section_response([], []))
+
+            with (
+                patch("scripts.heat_pool.requests.get", side_effect=fake_get),
+                patch("scripts.heat_pool.time.sleep", return_value=None),
+                patch("scripts.heat_pool.enrich_descriptions", side_effect=lambda items, **_: items),
+            ):
+                pool = fetch_heat_pool(
+                    date="2026-07-05",
+                    min_count=2,
+                    db_path=db_path,
+                    api_key="test-key",
+                    dry_run=True,
+                    out_dir=out_dir,
+                )
+
+        self.assertEqual([item["url"] for item in pool], ["https://example.com/b", "https://example.com/a"])
+
+    def test_fetch_heat_pool_fails_when_section_keeps_429ing_and_ranked_insufficient(self):
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            out_dir = Path(temp_dir) / "daily_batch"
+            response_429 = requests.Response()
+            response_429.status_code = 429
+            response_429.headers["Retry-After"] = "0"
+            rate_limited = requests.HTTPError("rate limited", response=response_429)
+
+            def fake_get(url, params=None, timeout=None):
+                raise rate_limited
+
+            with (
+                patch("scripts.heat_pool.requests.get", side_effect=fake_get),
+                patch("scripts.heat_pool.time.sleep", return_value=None),
+                patch("scripts.fetch_news.fetch_guardian_api", side_effect=rate_limited),
+                patch("scripts.heat_pool.enrich_descriptions", side_effect=lambda items, **_: items),
+            ):
+                with self.assertRaises(RuntimeError):
+                    fetch_heat_pool(
+                        date="2026-07-05",
+                        min_count=2,
+                        db_path=db_path,
+                        api_key="test-key",
+                        dry_run=True,
+                        out_dir=out_dir,
+                    )
+
+    def test_fetch_heat_pool_skips_newest_fallback_when_section_scan_yields_nothing(self):
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            out_dir = Path(temp_dir) / "daily_batch"
+
+            with (
+                patch("scripts.heat_pool.fetch_heat_signals", return_value=[]),
+                patch("scripts.fetch_news.fetch_guardian_api", side_effect=AssertionError("fallback should not run")),
+                patch("scripts.heat_pool.enrich_descriptions", side_effect=lambda items, **_: items),
+            ):
+                with self.assertRaises(RuntimeError):
+                    fetch_heat_pool(
+                        date="2026-07-05",
+                        min_count=10,
+                        db_path=db_path,
+                        api_key="test-key",
+                        dry_run=True,
+                        out_dir=out_dir,
+                    )
 
 class EnrichDescriptionsTests(unittest.TestCase):
     def test_enrich_descriptions_fills_missing_description_via_content_api(self):
@@ -244,6 +416,48 @@ class FetchHeatPoolTests(unittest.TestCase):
 
             self.assertEqual(len(pool), 1)
             self.assertFalse((out_dir / "2026-07-05" / "pool.json").exists())
+
+    def test_fetch_heat_pool_selects_top_min_count_before_enrichment(self):
+        with TemporaryDirectory() as temp_dir:
+            db_path = Path(temp_dir) / "seen_news.sqlite"
+            out_dir = Path(temp_dir) / "daily_batch"
+
+            fake_signals = [
+                {
+                    "url": f"https://example.com/{i}",
+                    "title": f"T{i}",
+                    "pub_time": None,
+                    "section": "world",
+                    "signal_type": "mostViewed",
+                    "rank_position": i + 1,
+                }
+                for i in range(5)
+            ]
+            enriched_batches: list[list[dict]] = []
+
+            def fake_enrich(items, **_):
+                enriched_batches.append(list(items))
+                return items
+
+            with (
+                patch("scripts.heat_pool.fetch_heat_signals", return_value=fake_signals),
+                patch("scripts.heat_pool.enrich_descriptions", side_effect=fake_enrich),
+            ):
+                pool = fetch_heat_pool(
+                    date="2026-07-05",
+                    min_count=2,
+                    db_path=db_path,
+                    api_key="test-key",
+                    dry_run=True,
+                    out_dir=out_dir,
+                )
+
+            self.assertEqual(len(pool), 2)
+            self.assertEqual(len(enriched_batches), 1)
+            self.assertEqual([item["url"] for item in enriched_batches[0]], [
+                "https://example.com/0",
+                "https://example.com/1",
+            ])
 
     def test_fetch_heat_pool_writes_pool_json_when_not_dry_run(self):
         with TemporaryDirectory() as temp_dir:

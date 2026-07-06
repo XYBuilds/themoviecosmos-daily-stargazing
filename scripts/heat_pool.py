@@ -105,6 +105,7 @@ def fetch_heat_signals(
 
     resolved_api_key = _resolve_api_key(api_key)
     signals: list[dict[str, Any]] = []
+    consecutive_rate_limited_sections = 0
 
     for index, section in enumerate(sections):
         if index > 0 and sleep_seconds > 0:
@@ -115,13 +116,38 @@ def fetch_heat_signals(
             "show-most-viewed": "true",
             "show-editors-picks": "true",
         }
-        try:
+
+        def _request_section() -> dict[str, Any]:
             response = requests.get(f"{_SECTION_API_BASE}/{section}", params=params, timeout=30)
             response.raise_for_status()
-            payload = response.json()
-        except (requests.RequestException, OSError, ValueError):
+            return response.json()
+
+        try:
+            payload = _request_guardian_with_retry(
+                f"section {section}",
+                _request_section,
+                max_attempts=_SECTION_RETRY_ATTEMPTS,
+                base_seconds=_SECTION_RETRY_BASE_SECONDS,
+            )
+        except (requests.RequestException, OSError, ValueError) as exc:
+            status_code = getattr(getattr(exc, "response", None), "status_code", "unknown")
+            _log_heat_pool(
+                f"[heat_pool] section {section} skipped after {_SECTION_RETRY_ATTEMPTS} Guardian {status_code} retries"
+            )
+            if status_code == 429:
+                consecutive_rate_limited_sections += 1
+                if consecutive_rate_limited_sections >= _SECTION_CONSECUTIVE_429_CIRCUIT_BREAKER:
+                    _log_heat_pool(
+                        "[heat_pool] Guardian section scan circuit-open after "
+                        f"{consecutive_rate_limited_sections} consecutive 429 sections; "
+                        "remaining sections skipped"
+                    )
+                    break
+            else:
+                consecutive_rate_limited_sections = 0
             continue
 
+        consecutive_rate_limited_sections = 0
         section_response = payload.get("response") or {}
         # 数据流向: section response -> mostViewed[]/editorsPicks[] -> 按数组下标算 rank_position(1-based) -> raw signal。
         for signal_type, key in (("mostViewed", "mostViewed"), ("editorsPicks", "editorsPicks")):
@@ -198,6 +224,75 @@ def _guardian_result_to_pool_item(result: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _log_heat_pool(message: str) -> None:
+    print(message, file=sys.stderr, flush=True)
+
+
+_SECTION_RETRY_ATTEMPTS = 2
+_SECTION_RETRY_BASE_SECONDS = 5.0
+_SECTION_CONSECUTIVE_429_CIRCUIT_BREAKER = 2
+_FALLBACK_RETRY_ATTEMPTS = 4
+_FALLBACK_RETRY_BASE_SECONDS = 8.0
+
+
+def _guardian_retry_delay_seconds(
+    exc: Exception,
+    attempt: int,
+    *,
+    base_seconds: float,
+    max_delay_seconds: float,
+) -> float:
+    """Return retry delay for Guardian requests, honoring Retry-After when present."""
+
+    response = getattr(exc, "response", None)
+    retry_after = getattr(response, "headers", {}).get("Retry-After") if response is not None else None
+    if retry_after is not None:
+        try:
+            parsed = float(retry_after)
+            if parsed >= 0:
+                return min(parsed, max_delay_seconds)
+        except ValueError:
+            pass
+    return min(base_seconds * (2 ** max(attempt - 1, 0)), max_delay_seconds)
+
+
+def _is_retryable_guardian_error(exc: Exception) -> bool:
+    response = getattr(exc, "response", None)
+    status_code = getattr(response, "status_code", None)
+    return status_code == 429 or (isinstance(status_code, int) and 500 <= status_code < 600)
+
+
+def _request_guardian_with_retry(
+    operation: str,
+    request_fn,
+    *,
+    max_attempts: int,
+    base_seconds: float,
+) -> Any:
+    last_exc: Exception | None = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return request_fn()
+        except requests.RequestException as exc:
+            last_exc = exc
+            if attempt >= max_attempts or not _is_retryable_guardian_error(exc):
+                raise
+            delay = _guardian_retry_delay_seconds(
+                exc,
+                attempt,
+                base_seconds=base_seconds,
+                max_delay_seconds=10.0 if operation.startswith("section ") else 120.0,
+            )
+            status_code = getattr(getattr(exc, "response", None), "status_code", "unknown")
+            _log_heat_pool(
+                f"[heat_pool] {operation} hit Guardian {status_code}; retry {attempt}/{max_attempts} in {delay:.1f}s"
+            )
+            time.sleep(delay)
+    if last_exc is not None:
+        raise last_exc
+    raise RuntimeError(f"{operation} failed unexpectedly")
+
+
 def fallback_newest(
     ranked: list[dict[str, Any]],
     *,
@@ -219,13 +314,23 @@ def fallback_newest(
     existing_urls = {item["url"] for item in ranked}
     needed = min_count - len(ranked)
 
-    newest_results = fetch_guardian_api(
-        sections=RANKED_SECTIONS,
-        order_by="newest",
-        page_size=max(needed * 2, min_count),
-        db_path=db_path,
-        api_key=api_key,
-    )
+    try:
+        newest_results = _request_guardian_with_retry(
+            "guardian newest fallback",
+            lambda: fetch_guardian_api(
+                sections=RANKED_SECTIONS,
+                order_by="newest",
+                page_size=max(needed * 2, min_count),
+                db_path=db_path,
+                api_key=api_key,
+            ),
+            max_attempts=_FALLBACK_RETRY_ATTEMPTS,
+            base_seconds=_FALLBACK_RETRY_BASE_SECONDS,
+        )
+    except requests.RequestException as exc:
+        raise RuntimeError(
+            f"Guardian newest fallback failed after retries with only {len(ranked)} ranked items; need {min_count}"
+        ) from exc
 
     supplemented = list(ranked)
     for result in newest_results:
@@ -236,6 +341,11 @@ def fallback_newest(
             continue
         supplemented.append(_guardian_result_to_pool_item(result))
         existing_urls.add(url)
+
+    if len(supplemented) < min_count:
+        raise RuntimeError(
+            f"Guardian newest fallback returned only {len(supplemented)} items; need {min_count}"
+        )
 
     return supplemented
 
@@ -323,10 +433,22 @@ def fetch_heat_pool(
     signals = fetch_heat_signals(resolved_sections, api_key=api_key)
     ranked = score_and_rank(signals)
     filtered = filter_seen(ranked, db_path=resolved_db_path)
+
+    if not signals:
+        _log_heat_pool(
+            "[heat_pool] no Guardian section signals collected; skipping newest fallback "
+            "to avoid repeated 429 waits"
+        )
+        raise RuntimeError("Guardian heat signal scan returned no items; need at least 1 signal")
+
     supplemented = fallback_newest(
         filtered, min_count=target_count, db_path=resolved_db_path, api_key=api_key
     )
-    selected = supplemented[:max_items] if max_items is not None else supplemented
+    # Heat Pool may rank hundreds of Guardian items across 32 sections, but the daily
+    # batch contract is top-N selection.  The default N is min_count (10); smoke/dev
+    # callers can narrow it further with max_items.  Description enrichment is the
+    # expensive Content API step, so it must only run on the selected batch items.
+    selected = supplemented[:target_count]
     pool = enrich_descriptions(selected, api_key=api_key)
 
     if not dry_run:
