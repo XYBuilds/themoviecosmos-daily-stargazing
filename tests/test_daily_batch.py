@@ -143,8 +143,32 @@ def _apply_common_patches(stack: ExitStack, *, persona_side_effect=None, persona
         )
     )
     stack.enter_context(patch("scripts.daily_batch.compose.run_review", return_value=_FakeReviewResult()))
-    stack.enter_context(patch("scripts.daily_batch.score_items", return_value=_FakeJudgeOutput(scores=[])))
-    # run_expansion is imported lazily (`from scripts.expand import run_expansion`)
+
+    def fake_score_items(items, judge_fn, *, observation_run_ids=None, workers=1):
+        return _FakeJudgeOutput(
+            scores=[
+                {
+                    "run_id": item.run_id,
+                    "tmdb_id": item.tmdb_id,
+                    "title": item.title,
+                    "judge_score": 2,
+                    "judge_resonance_type": "弱共振",
+                    "rationale": f"Mock rationale for {item.title}.",
+                    "causal_test": "Mock causal test.",
+                }
+                for item in items
+            ]
+        )
+
+    stack.enter_context(patch("scripts.daily_batch.score_items", side_effect=fake_score_items))
+    stack.enter_context(
+        patch(
+            "scripts.daily_batch._translate_texts_to_zh",
+            side_effect=lambda texts, *, kind, date_dir, provider=None: {
+                text: f"ZH[{kind}] {text}" for text in texts
+            },
+        )
+    )
     # inside daily_batch's expand stage, so it must be patched at its source module.
     stack.enter_context(
         patch("scripts.expand.run_expansion", return_value={"expansion": {"fake": "expansion"}})
@@ -319,7 +343,7 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
             self.assertEqual(final_state.items[0].status, "done")
             self.assertEqual(final_state.items[0].last_completed_stage, "compose")
 
-    def test_resume_repairs_briefing_with_generated_judge_copies(self) -> None:
+    def test_resume_skips_compose_when_judge_scores_exist_without_item_briefing(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             out_dir = tmp_path / "output"
@@ -344,8 +368,22 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
             )
             retrieve_result = _fake_retrieve_result()
             (pool_dir / "retrieve.json").write_text(json.dumps(retrieve_result), encoding="utf-8")
-            (pool_dir / "briefing.md").write_text(
-                "# Daily Batch item 01\n\n## Review copies\n- tmdb:42: （无）\n",
+            (pool_dir / "llm-judge-scores.json").write_text(
+                json.dumps(
+                    {
+                        "scores": [
+                            {
+                                "run_id": pool_dir.name,
+                                "tmdb_id": "42",
+                                "title": "Prod Movie",
+                                "judge_score": 2,
+                                "judge_resonance_type": "强共振",
+                                "rationale": "Both center on outages.",
+                                "causal_test": "Power loss drives crisis.",
+                            }
+                        ]
+                    }
+                ),
                 encoding="utf-8",
             )
 
@@ -354,43 +392,19 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
             state.items[0].last_completed_stage = "compose"
             state.save(state_path("2026-07-05", state_dir))
 
-            def fake_score_items(items, judge_fn, *, observation_run_ids=None, workers=1):
-                self.assertEqual(len(items), 1)
-                self.assertEqual(items[0].run_id, pool_dir.name)
-                return _FakeJudgeOutput(
-                    scores=[
-                        {
-                            "run_id": pool_dir.name,
-                            "tmdb_id": "42",
-                            "title": "Prod Movie",
-                            "judge_score": 2,
-                            "judge_resonance_type": "强共振",
-                            "rationale": "Both center on outages.",
-                            "causal_test": "Power loss drives crisis.",
-                        }
-                    ]
-                )
-
-            def fake_review(retrieve_result_arg, news_dict, *, provider=None, judge_index=None, run_id="", min_judge=None, prompts_dir=None, llm_call=None):
-                self.assertEqual(run_id, pool_dir.name)
-                self.assertIn((pool_dir.name, "42"), judge_index)
-                entry = judge_index[(pool_dir.name, "42")]
-                self.assertEqual(entry.rationale, "Both center on outages.")
-                self.assertEqual(entry.causal_test, "Power loss drives crisis.")
-                return SimpleNamespace(
-                    review_copies=[
-                        SimpleNamespace(
-                            tmdb_id=42,
-                            judge_rationale_zh="中文理由",
-                            judge_causal_test_zh="",
-                        )
-                    ],
-                    errors=[],
-                )
+            def fake_review(*args, **kwargs):
+                raise AssertionError("compose.run_review should not run when judge scores already exist")
 
             with ExitStack() as stack:
-                stack.enter_context(patch("scripts.daily_batch.score_items", side_effect=fake_score_items))
                 stack.enter_context(patch("scripts.daily_batch.compose.run_review", side_effect=fake_review))
+                stack.enter_context(
+                    patch(
+                        "scripts.daily_batch._translate_texts_to_zh",
+                        side_effect=lambda texts, *, kind, date_dir, provider=None: {
+                            text: f"ZH[{kind}] {text}" for text in texts
+                        },
+                    )
+                )
                 final_state = asyncio.run(
                     run_daily_batch(
                         date="2026-07-05",
@@ -401,13 +415,18 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
                     )
                 )
 
+            self.assertFalse((pool_dir / "briefing.md").exists())
             self.assertTrue((out_dir / "2026-07-05" / "briefing.md").is_file())
+            self.assertTrue((out_dir / "2026-07-05" / "briefing.zh.md").is_file())
             root_briefing = (out_dir / "2026-07-05" / "briefing.md").read_text(encoding="utf-8")
+            root_briefing_zh = (out_dir / "2026-07-05" / "briefing.zh.md").read_text(encoding="utf-8")
             self.assertIn("England Heatwave Grips the Nation Today", root_briefing)
             self.assertIn("A longer description about the first story that is clearly sufficient.", root_briefing)
             self.assertIn("candidate Prod Movie (2020) [tmdb:42]", root_briefing)
             self.assertIn("llm_judge_score: 2", root_briefing)
             self.assertIn("llm_judge_rationale: Both center on outages.", root_briefing)
+            self.assertIn("候选电影 Prod Movie (2020) [tmdb:42]", root_briefing_zh)
+            self.assertIn("LLM judge 理由: ZH[rationale] Both center on outages.", root_briefing_zh)
 
     def test_render_daily_batch_briefing_aggregates_item_news_and_candidates(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -434,16 +453,25 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
                     {
                         "candidates": [
                             {
-                                "title": "Candidate One",
-                                "release_year": 2024,
-                                "tmdb_id": 111,
-                                "overview": "Candidate one overview.",
-                            },
-                            {
                                 "title": "Candidate Two",
                                 "release_date": "2022-04-01",
                                 "tmdb_id": 222,
                                 "overview": "Candidate two overview.",
+                                "triggered_by": ["THE-SAGE", "THE-HERO"],
+                            },
+                            {
+                                "title": "Candidate One",
+                                "release_year": 2024,
+                                "tmdb_id": 111,
+                                "overview": "Candidate one overview.",
+                                "triggered_by": ["THE-HERO"],
+                            },
+                            {
+                                "title": "Candidate Zero",
+                                "release_year": 2021,
+                                "tmdb_id": 333,
+                                "overview": "Candidate zero overview.",
+                                "triggered_by": ["THE-JESTER"],
                             },
                         ]
                     }
@@ -457,8 +485,18 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
                             {
                                 "tmdb_id": "111",
                                 "judge_score": 3,
-                                "rationale": "English judge rationale.",
-                            }
+                                "rationale": "English judge rationale one.",
+                            },
+                            {
+                                "tmdb_id": "222",
+                                "judge_score": 2,
+                                "rationale": "English judge rationale two.",
+                            },
+                            {
+                                "tmdb_id": "333",
+                                "judge_score": 0,
+                                "rationale": "Should not be rendered.",
+                            },
                         ]
                     }
                 ),
@@ -469,7 +507,20 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            written = write_daily_batch_briefing(date_dir)
+            def fake_translate(texts, *, kind, date_dir, provider=None):
+                mapping = {
+                    "Short body used by downstream processing.": "用于下游处理的简短正文。",
+                    "Candidate one overview.": "候选一简介。",
+                    "Candidate two overview.": "候选二简介。",
+                    "English judge rationale one.": "英文判定理由一。",
+                    "English judge rationale two.": "英文判定理由二。",
+                }
+                return {text: mapping.get(text, f"译文：{text}") for text in texts}
+
+            with ExitStack() as stack:
+                stack.enter_context(patch("scripts.daily_batch._translate_texts_to_zh", side_effect=fake_translate))
+                written = write_daily_batch_briefing(date_dir)
+
             self.assertEqual(written, date_dir / "briefing.md")
             zh_written = date_dir / "briefing.zh.md"
             self.assertTrue(zh_written.is_file())
@@ -478,20 +529,26 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
             self.assertIn("Daily News Title", briefing)
             self.assertIn("Short body used by downstream processing.", briefing)
             self.assertIn("candidate Candidate One (2024) [tmdb:111]", briefing)
-            self.assertIn("Candidate one overview.", briefing)
-            self.assertIn("llm_judge_score: 3", briefing)
-            self.assertIn("llm_judge_rationale: English judge rationale.", briefing)
             self.assertIn("candidate Candidate Two (2022) [tmdb:222]", briefing)
-            self.assertIn("llm_judge_rationale: 中文兜底理由", briefing)
+            self.assertIn("共振agent(s): THE-HERO", briefing)
+            self.assertIn("共振agent(s): THE-SAGE, THE-HERO", briefing)
+            self.assertIn("llm_judge_score: 3", briefing)
+            self.assertIn("llm_judge_score: 2", briefing)
+            self.assertNotIn("Candidate Zero", briefing)
+            self.assertNotIn("llm_judge_score: 0", briefing)
+            self.assertLess(briefing.index("candidate Candidate One (2024) [tmdb:111]"), briefing.index("candidate Candidate Two (2022) [tmdb:222]"))
+            self.assertIn("llm_judge_rationale: English judge rationale one.", briefing)
+            self.assertIn("llm_judge_rationale: English judge rationale two.", briefing)
             self.assertIn("新闻标题", briefing_zh)
             self.assertIn("新闻正文", briefing_zh)
-            self.assertIn("候选电影", briefing_zh)
-            self.assertIn("剧情简介", briefing_zh)
-            self.assertIn("LLM judge 分数", briefing_zh)
-            self.assertIn("LLM judge 理由", briefing_zh)
-            self.assertIn("Candidate One (2024) [tmdb:111]", briefing_zh)
-            self.assertIn("English judge rationale.", briefing_zh)
-            self.assertIn("中文兜底理由", briefing_zh)
+            self.assertIn("候选电影 Candidate One (2024) [tmdb:111]", briefing_zh)
+            self.assertIn("候选电影 Candidate Two (2022) [tmdb:222]", briefing_zh)
+            self.assertIn("共振agent(s): THE-HERO", briefing_zh)
+            self.assertIn("共振agent(s): THE-SAGE, THE-HERO", briefing_zh)
+            self.assertIn("剧情简介: 候选一简介。", briefing_zh)
+            self.assertIn("剧情简介: 候选二简介。", briefing_zh)
+            self.assertIn("LLM judge 理由: 英文判定理由一。", briefing_zh)
+            self.assertIn("LLM judge 理由: 英文判定理由二。", briefing_zh)
 
     def test_full_run_marks_all_items_done_and_writes_checkpoint(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -524,7 +581,7 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
             item_dir_0 = out_dir / "2026-07-05" / "01-england-heatwave-grips-the-nation-today"
             self.assertTrue((item_dir_0 / "deconstruct.json").is_file())
             self.assertTrue((item_dir_0 / "retrieve.json").is_file())
-            self.assertTrue((item_dir_0 / "briefing.md").is_file())
+            self.assertFalse((item_dir_0 / "briefing.md").exists())
             self.assertTrue((item_dir_0 / "personas" / "The-Hero.json").is_file())
             self.assertTrue((item_dir_0 / "personas" / "The-Sage.json").is_file())
 
@@ -557,6 +614,14 @@ class PersonaConcurrencyTests(unittest.TestCase):
                 stack.enter_context(patch("scripts.daily_batch.retrieve_from_agents", side_effect=capture_retrieve))
                 stack.enter_context(patch("scripts.daily_batch.compose.run_review", return_value=_FakeReviewResult()))
                 stack.enter_context(patch("scripts.daily_batch.score_items", return_value=_FakeJudgeOutput(scores=[])))
+                stack.enter_context(
+                    patch(
+                        "scripts.daily_batch._translate_texts_to_zh",
+                        side_effect=lambda texts, *, kind, date_dir, provider=None: {
+                            text: f"ZH[{kind}] {text}" for text in texts
+                        },
+                    )
+                )
                 stack.enter_context(patch("scripts.expand.run_expansion", return_value={"expansion": {"fake": "expansion"}}))
                 stack.enter_context(
                     patch(
@@ -668,7 +733,7 @@ class ResumeAfterInterruptionTests(unittest.TestCase):
             self.assertTrue((item1_dir / "personas" / "The-Hero.json").is_file())
             error_payload = json.loads((item1_dir / "personas" / "The-Sage.json").read_text(encoding="utf-8"))
             self.assertIn("simulated crash mid-persona", error_payload["error"])
-            self.assertTrue((item1_dir / "briefing.md").is_file())
+            self.assertFalse((item1_dir / "briefing.md").exists())
 
 
 class PersonaLevelCheckpointTests(unittest.TestCase):

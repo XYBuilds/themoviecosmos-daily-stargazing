@@ -45,6 +45,8 @@ from scripts import compose
 from scripts.agents import NewsItem, news_to_dict
 from scripts.extract import run_deconstruct
 from scripts.heat_pool import DEFAULT_MIN_COUNT, RANKED_SECTIONS, fetch_heat_pool, pool_output_path
+from scripts.lib.env import default_llm_provider
+from scripts.lib.llm import get_llm_client
 from scripts.lib.paths import repo_root, state_dir
 from scripts.lib.run_options import RunOptions
 from scripts.llm_judge import JudgeItem, call_llm_judge, score_items
@@ -201,16 +203,6 @@ def _load_or_generate_judge_scores(
     return judge_path, True
 
 
-def _briefing_needs_judge_repair(briefing_path: Path) -> bool:
-    if not briefing_path.is_file():
-        return True
-    text = briefing_path.read_text(encoding="utf-8")
-    if "## Review copies" not in text:
-        return True
-    review_block = text.split("## Review copies", 1)[1]
-    return "（无）" in review_block
-
-
 _JUDGE_RATIONALE_FALLBACK_RE = re.compile(r"^- tmdb:(?P<tmdb_id>\d+):\s*(?P<text>.*)$")
 
 
@@ -260,6 +252,32 @@ def _load_review_copy_fallbacks(briefing_path: Path) -> dict[str, str]:
     return fallbacks
 
 
+
+
+_BRIEFING_ZH_TRANSLATION_CACHE_VERSION = 1
+_BRIEFING_ZH_TRANSLATION_CACHE_NAME = "briefing.zh.translations.json"
+
+
+def _briefing_zh_cache_path(date_dir: Path) -> Path:
+    return date_dir / _BRIEFING_ZH_TRANSLATION_CACHE_NAME
+
+
+def _load_briefing_zh_cache(date_dir: Path) -> dict[str, Any]:
+    path = _briefing_zh_cache_path(date_dir)
+    if not path.is_file():
+        return {"version": _BRIEFING_ZH_TRANSLATION_CACHE_VERSION, "overview": {}, "rationale": {}}
+    payload = _read_json(path)
+    if not isinstance(payload, dict):
+        return {"version": _BRIEFING_ZH_TRANSLATION_CACHE_VERSION, "overview": {}, "rationale": {}}
+    payload.setdefault("version", _BRIEFING_ZH_TRANSLATION_CACHE_VERSION)
+    payload.setdefault("overview", {})
+    payload.setdefault("rationale", {})
+    return payload
+
+
+def _save_briefing_zh_cache(date_dir: Path, cache: dict[str, Any]) -> None:
+    _write_json(_briefing_zh_cache_path(date_dir), cache)
+
 def _load_judge_rows_by_tmdb(judge_scores_path: Path) -> dict[str, dict[str, Any]]:
     if not judge_scores_path.is_file():
         return {}
@@ -273,6 +291,288 @@ def _load_judge_rows_by_tmdb(judge_scores_path: Path) -> dict[str, dict[str, Any
         if tmdb_id:
             judge_rows[tmdb_id] = row
     return judge_rows
+
+
+def _candidate_judge_row(
+    candidate: dict[str, Any], judge_rows: dict[str, dict[str, Any]]
+) -> dict[str, Any]:
+    tmdb_id = str(candidate.get("tmdb_id") or "").strip()
+    return judge_rows.get(tmdb_id, {}) if tmdb_id else {}
+
+
+def _candidate_judge_score(candidate: dict[str, Any], judge_rows: dict[str, dict[str, Any]]) -> int | None:
+    row = _candidate_judge_row(candidate, judge_rows)
+    score = row.get("judge_score")
+    if isinstance(score, bool):
+        return None
+    if isinstance(score, int):
+        return score
+    if isinstance(score, float) and score.is_integer():
+        return int(score)
+    try:
+        return int(score)
+    except (TypeError, ValueError):
+        return None
+
+
+def _candidate_sort_key(
+    candidate: dict[str, Any],
+    *,
+    original_index: int,
+    judge_rows: dict[str, dict[str, Any]],
+) -> tuple[int, int]:
+    score = _candidate_judge_score(candidate, judge_rows)
+    sortable_score = score if score is not None else -1
+    return (-sortable_score, original_index)
+
+
+def _candidate_resonance_agents(
+    candidate: dict[str, Any],
+    retrieve_result: dict[str, Any],
+) -> list[str]:
+    agents: list[str] = []
+
+    def add_many(values: Any) -> None:
+        if isinstance(values, str):
+            values = [values]
+        if not isinstance(values, list):
+            return
+        for value in values:
+            agent_id = str(value or "").strip().upper()
+            if agent_id and agent_id not in agents:
+                agents.append(agent_id)
+
+    add_many(candidate.get("triggered_by"))
+    match_diagnostics = candidate.get("match_diagnostics")
+    if isinstance(match_diagnostics, dict):
+        add_many(match_diagnostics.get("triggered_by"))
+        add_many(match_diagnostics.get("agent_ids"))
+        add_many(match_diagnostics.get("agents"))
+        add_many(match_diagnostics.get("resonance_agents"))
+    add_many(candidate.get("agents"))
+    add_many(candidate.get("agent_ids"))
+    for source in candidate.get("hit_sources") or []:
+        if not isinstance(source, dict):
+            continue
+        add_many([source.get("agent_id")])
+
+    if agents:
+        return agents
+
+    per_agent = retrieve_result.get("per_agent") or []
+    if isinstance(per_agent, list):
+        target_tmdb = str(candidate.get("tmdb_id") or "").strip()
+        for agent in per_agent:
+            if not isinstance(agent, dict):
+                continue
+            agent_id = str(agent.get("agent_id") or "").strip().upper()
+            if not agent_id:
+                continue
+            for pseudo in agent.get("pseudos") or []:
+                if not isinstance(pseudo, dict):
+                    continue
+                hits = pseudo.get("hits") or []
+                for hit in hits:
+                    if not isinstance(hit, dict):
+                        continue
+                    if str(hit.get("tmdb_id") or "").strip() == target_tmdb:
+                        if agent_id not in agents:
+                            agents.append(agent_id)
+                        break
+                if agent_id in agents:
+                    break
+    return agents
+
+
+
+
+def _text_looks_like_zh(text: str) -> bool:
+    zh_count = len(re.findall(r"[\u4e00-\u9fff]", str(text or "")))
+    if zh_count == 0:
+        return False
+    latin_count = len(re.findall(r"[A-Za-z]", str(text or "")))
+    return zh_count >= max(2, latin_count // 2)
+
+
+def _translate_texts_to_zh(
+    texts: list[str],
+    *,
+    kind: str,
+    date_dir: Path,
+    provider: str | None = None,
+) -> dict[str, str]:
+    unique_texts = []
+    seen: set[str] = set()
+    for text in texts:
+        cleaned = str(text or "").strip()
+        if cleaned and cleaned not in seen:
+            seen.add(cleaned)
+            unique_texts.append(cleaned)
+    if not unique_texts:
+        return {}
+
+    cache = _load_briefing_zh_cache(date_dir)
+    bucket = cache.setdefault(kind, {})
+    if not isinstance(bucket, dict):
+        bucket = {}
+        cache[kind] = bucket
+
+    for text in list(unique_texts):
+        if _text_looks_like_zh(text):
+            bucket[text] = text
+
+    missing = [text for text in unique_texts if text not in bucket]
+    if missing:
+        resolved_provider = (provider or default_llm_provider()).strip().lower()
+        model_env = {
+            "mimo": "MIMO_MODEL",
+            "deepseek": "DEEPSEEK_MODEL",
+        }.get(resolved_provider)
+        model = os.getenv(model_env or "", "").strip() if model_env else ""
+        if not model:
+            raise RuntimeError("Missing LLM model env for briefing translation")
+        system = "你是忠实翻译器。只做简体中文翻译，不要改写、补充或总结。"
+        client = get_llm_client(resolved_provider)
+
+        def _strip_response_fence(raw_text: str) -> str:
+            text = raw_text.strip()
+            fence = re.search(r"```(?:json)?\s*(.*?)```", text, re.S | re.I)
+            if fence:
+                return fence.group(1).strip()
+            return text
+
+        def _coerce_translation_value(value: Any) -> str:
+            if isinstance(value, dict):
+                for key in ("translation", "translated", "zh", "target", "text", "value"):
+                    nested = str(value.get(key) or "").strip()
+                    if nested:
+                        return nested
+                return ""
+            return str(value or "").strip()
+
+        def _translation_looks_rejected(value: str) -> bool:
+            lowered = value.lower()
+            return any(
+                marker in lowered
+                for marker in (
+                    "request was rejected",
+                    "considered high risk",
+                    "i can't assist",
+                    "i cannot assist",
+                    "cannot comply",
+                    "无法处理",
+                    "不能处理",
+                    "无法翻译",
+                )
+            )
+
+        def _parse_translation_response(raw_text: str, batch: list[str]) -> list[str] | None:
+            cleaned = _strip_response_fence(raw_text)
+            parsed: Any | None = None
+            for candidate in (cleaned,):
+                try:
+                    parsed = json.loads(candidate)
+                    break
+                except json.JSONDecodeError:
+                    parsed = None
+            if parsed is None:
+                json_block = re.search(r"(\[[\s\S]*\]|\{[\s\S]*\})", cleaned)
+                if json_block:
+                    try:
+                        parsed = json.loads(json_block.group(1))
+                    except json.JSONDecodeError:
+                        parsed = None
+
+            values: list[str] | None = None
+            if isinstance(parsed, list):
+                values = [_coerce_translation_value(item) for item in parsed]
+            elif isinstance(parsed, dict):
+                for key in ("translations", "translated", "items", "results", "texts"):
+                    nested = parsed.get(key)
+                    if isinstance(nested, list):
+                        values = [_coerce_translation_value(item) for item in nested]
+                        break
+                if values is None:
+                    numeric_values = [_coerce_translation_value(parsed.get(str(i))) for i in range(len(batch))]
+                    if all(numeric_values):
+                        values = numeric_values
+                if values is None:
+                    source_values = [_coerce_translation_value(parsed.get(source)) for source in batch]
+                    if all(source_values):
+                        values = source_values
+
+            if values is None:
+                lines = []
+                for line in cleaned.splitlines():
+                    stripped = re.sub(r"^[-*\d.、)\s]+", "", line).strip()
+                    if stripped:
+                        lines.append(stripped)
+                values = lines
+
+            if len(values) == len(batch) and all(values) and not any(_translation_looks_rejected(value) for value in values):
+                return values
+            if len(batch) == 1 and cleaned and not _translation_looks_rejected(cleaned):
+                return [cleaned.strip().strip('"')]
+            return None
+
+        def _request_translation_batch(batch: list[str]) -> list[str] | None:
+            user = (
+                "请把下面的英文文本逐条翻译成简体中文，保持原有含义和语气，不要添加解释。"
+                "返回严格 JSON 对象：{\"translations\":[...]}，数组顺序必须与输入一致。\n\n"
+                f"kind: {kind}\n"
+                f"texts: {json.dumps(batch, ensure_ascii=False)}"
+            )
+            response = client.chat.completions.create(
+                model=model,
+                messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+            )
+            raw = (response.choices[0].message.content or "").strip()
+            return _parse_translation_response(raw, batch)
+
+        chunk_size = 6
+        for start in range(0, len(missing), chunk_size):
+            batch = missing[start : start + chunk_size]
+            translated = _request_translation_batch(batch)
+            if translated is None and len(batch) > 1:
+                translated = []
+                for source in batch:
+                    single = _request_translation_batch([source])
+                    translated.append((single or [source])[0])
+            if translated is None or len(translated) != len(batch):
+                translated = batch
+            for source, target in zip(batch, translated):
+                bucket[source] = target or source
+            _save_briefing_zh_cache(date_dir, cache)
+
+    return {text: str(bucket.get(text) or text) for text in unique_texts}
+
+
+def _translate_texts_to_zh_safe(
+    texts: list[str],
+    *,
+    kind: str,
+    date_dir: Path,
+    provider: str | None = None,
+) -> dict[str, str]:
+    """Translate only non-Chinese unique texts; preserve Chinese text as-is."""
+    unique_texts: list[str] = []
+    direct_map: dict[str, str] = {}
+    seen: set[str] = set()
+    for text in texts:
+        cleaned = str(text or "").strip()
+        if not cleaned or cleaned in seen:
+            continue
+        seen.add(cleaned)
+        if _text_looks_like_zh(cleaned):
+            direct_map[cleaned] = cleaned
+        else:
+            unique_texts.append(cleaned)
+    translated = _translate_texts_to_zh(unique_texts, kind=kind, date_dir=date_dir, provider=provider)
+    direct_map.update(translated)
+    return direct_map
+
+
+
 
 
 _BRIEFING_LABELS_EN = {
@@ -294,39 +594,89 @@ _BRIEFING_LABELS_ZH = {
 }
 
 
+def _candidate_overview_text(candidate: dict[str, Any], *, zh: bool) -> str:
+    if zh:
+        for key in ("overview_zh", "zh_overview", "overview_cn", "cn_overview"):
+            value = str(candidate.get(key) or "").strip()
+            if value:
+                return value
+    return _candidate_overview(candidate)
+
+
+def _candidate_rationale_text(
+    candidate: dict[str, Any],
+    *,
+    judge_row: dict[str, Any],
+    review_copy_fallbacks: dict[str, str],
+) -> str:
+    tmdb_id = str(candidate.get("tmdb_id") or "").strip()
+    rationale = str(judge_row.get("rationale") or "").strip()
+    if rationale:
+        return rationale
+    for key in ("rationale_zh", "judge_rationale_zh", "rationale_cn", "cn_rationale"):
+        value = str(judge_row.get(key) or "").strip()
+        if value:
+            return value
+    if tmdb_id:
+        fallback = review_copy_fallbacks.get(tmdb_id, "").strip()
+        if fallback:
+            return fallback
+    return ""
+
+
 def _render_candidate_briefing_lines(
     candidate: dict[str, Any],
     *,
     judge_rows: dict[str, dict[str, Any]],
     review_copy_fallbacks: dict[str, str],
+    retrieve_result: dict[str, Any],
     labels: dict[str, str],
+    zh_overview_map: dict[str, str] | None = None,
+    zh_rationale_map: dict[str, str] | None = None,
 ) -> list[str]:
     tmdb_id = str(candidate.get("tmdb_id") or "").strip()
     judge_row = judge_rows.get(tmdb_id, {}) if tmdb_id else {}
-    rationale = str(judge_row.get("rationale") or "").strip()
-    if not rationale and tmdb_id:
-        rationale = review_copy_fallbacks.get(tmdb_id, "")
+    rationale = _candidate_rationale_text(
+        candidate,
+        judge_row=judge_row,
+        review_copy_fallbacks=review_copy_fallbacks,
+    )
     score = judge_row.get("judge_score")
     score_text = str(score) if score is not None else "—"
     candidate_line = f"{labels['candidate']} {_candidate_title_line(candidate).removeprefix('candidate ').strip()}"
+    overview_source = _candidate_overview_text(candidate, zh=False)
+    overview_text = overview_source or "—"
+    rationale_text = rationale or "—"
+    if zh_overview_map is not None and overview_source:
+        overview_text = zh_overview_map.get(overview_source, overview_text)
+    if zh_rationale_map is not None and rationale:
+        rationale_text = zh_rationale_map.get(rationale, rationale_text)
+    agents = _candidate_resonance_agents(candidate, retrieve_result)
+    resonance_text = ", ".join(agents) if agents else "—"
     lines = [
         candidate_line,
-        f"{labels['overview'] + ': ' if labels['overview'] else ''}{_candidate_overview(candidate) or '—'}",
+        f"共振agent(s): {resonance_text}",
+        f"{labels['overview'] + ': ' if labels['overview'] else ''}{overview_text}",
         f"{labels['score']}: {score_text}",
-        f"{labels['rationale']}: {rationale or '—'}",
+        f"{labels['rationale']}: {rationale_text}",
         "",
     ]
     return lines
 
 
-def _render_daily_batch_briefing(date_dir: Path, *, labels: dict[str, str]) -> str:
+def _render_daily_batch_briefing(
+    date_dir: Path,
+    *,
+    labels: dict[str, str],
+    zh: bool = False,
+) -> str:
     """Render the date-root briefing by aggregating item subdirs."""
     lines: list[str] = []
     item_dirs = sorted(
         (path for path in date_dir.iterdir() if path.is_dir() and re.match(r"^\d{2}-", path.name)),
         key=lambda path: path.name,
     )
-    for idx, item_dir_path in enumerate(item_dirs):
+    for item_dir_path in item_dirs:
         news_path = item_dir_path / "news.json"
         retrieve_path = item_dir_path / "retrieve.json"
         if not news_path.is_file() or not retrieve_path.is_file():
@@ -335,6 +685,16 @@ def _render_daily_batch_briefing(date_dir: Path, *, labels: dict[str, str]) -> s
         retrieve_result = _read_json(retrieve_path)
         judge_rows = _load_judge_rows_by_tmdb(_judge_scores_path(item_dir_path))
         review_copy_fallbacks = _load_review_copy_fallbacks(item_dir_path / "briefing.md")
+
+        candidates = [cand for cand in retrieve_result.get("candidates") or [] if isinstance(cand, dict)]
+        ranked_candidates = [
+            cand
+            for cand, _ in sorted(
+                ((cand, idx) for idx, cand in enumerate(candidates)),
+                key=lambda pair: _candidate_sort_key(pair[0], original_index=pair[1], judge_rows=judge_rows),
+            )
+            if _candidate_judge_score(cand, judge_rows) not in (None, 0)
+        ]
 
         if lines:
             lines.append("")
@@ -345,30 +705,59 @@ def _render_daily_batch_briefing(date_dir: Path, *, labels: dict[str, str]) -> s
             lines.append(title)
         news_body = _news_briefing_body_text(news_dict)
         if news_body:
-            if labels["news_body"]:
+            if zh:
+                translated_news_body = _translate_texts_to_zh_safe(
+                    [news_body], kind="news_body", date_dir=date_dir
+                ).get(news_body, news_body)
+                lines.append(f"{labels['news_body']}: {translated_news_body}")
+            elif labels["news_body"]:
                 lines.append(f"{labels['news_body']}: {news_body}")
             else:
                 lines.append(news_body)
         lines.append("")
-        candidates = [cand for cand in retrieve_result.get("candidates") or [] if isinstance(cand, dict)]
-        for candidate in candidates:
+
+        zh_overview_map: dict[str, str] | None = None
+        zh_rationale_map: dict[str, str] | None = None
+        if zh and ranked_candidates:
+            overview_sources = [
+                _candidate_overview_text(candidate, zh=False) for candidate in ranked_candidates
+            ]
+            rationale_sources = [
+                _candidate_rationale_text(
+                    candidate,
+                    judge_row=judge_rows.get(str(candidate.get("tmdb_id") or "").strip(), {}),
+                    review_copy_fallbacks=review_copy_fallbacks,
+                )
+                for candidate in ranked_candidates
+            ]
+            zh_overview_map = _translate_texts_to_zh_safe(
+                overview_sources, kind="overview", date_dir=date_dir
+            )
+            zh_rationale_map = _translate_texts_to_zh_safe(
+                rationale_sources, kind="rationale", date_dir=date_dir
+            )
+
+        for candidate in ranked_candidates:
             lines.extend(
                 _render_candidate_briefing_lines(
                     candidate,
                     judge_rows=judge_rows,
                     review_copy_fallbacks=review_copy_fallbacks,
+                    retrieve_result=retrieve_result,
                     labels=labels,
+                    zh_overview_map=zh_overview_map,
+                    zh_rationale_map=zh_rationale_map,
                 )
             )
     return "\n".join(lines).rstrip() + "\n"
 
 
 def render_daily_batch_briefing(date_dir: Path) -> str:
-    return _render_daily_batch_briefing(date_dir, labels=_BRIEFING_LABELS_EN)
+    return _render_daily_batch_briefing(date_dir, labels=_BRIEFING_LABELS_EN, zh=False)
 
 
 def render_daily_batch_briefing_zh(date_dir: Path) -> str:
-    return _render_daily_batch_briefing(date_dir, labels=_BRIEFING_LABELS_ZH)
+    return _render_daily_batch_briefing(date_dir, labels=_BRIEFING_LABELS_ZH, zh=True)
 
 
 def write_daily_batch_briefing(date_dir: Path) -> Path:
@@ -670,9 +1059,8 @@ async def _process_item(
     persona 逐个检查 personas/{id}.json 是否已存在于 completed_personas 中。
     """
     if item_state.status == "done":
-        briefing_path = item_out_dir / "briefing.md"
         judge_path = _judge_scores_path(item_out_dir)
-        if briefing_path.is_file() and judge_path.is_file() and not _briefing_needs_judge_repair(briefing_path):
+        if judge_path.is_file():
             return
         news_path = item_out_dir / "news.json"
         retrieve_path = item_out_dir / "retrieve.json"
@@ -689,19 +1077,14 @@ async def _process_item(
             provider=provider,
         )
         judge_index = compose.load_judge_scores(judge_path)
-        if judge_created or not briefing_path.is_file() or _briefing_needs_judge_repair(briefing_path):
-            review_result = compose.run_review(
+        if judge_created:
+            compose.run_review(
                 retrieve_result,
                 news_dict,
                 provider=provider,
                 judge_index=judge_index,
                 run_id=item_out_dir.name,
             )
-            briefing_md = _build_item_briefing(
-                item_state.index, news_dict, [], retrieve_result, review_result
-            )
-            briefing_path.parent.mkdir(parents=True, exist_ok=True)
-            briefing_path.write_text(briefing_md, encoding="utf-8")
             _progress(f"[item {item_state.index}] compose repair done")
         return
 
@@ -785,7 +1168,6 @@ async def _process_item(
         _progress(f"[item {item_state.index}] retrieve done")
 
     # --- Stage: compose(C1) + briefing ---
-    briefing_path = item_out_dir / "briefing.md"
     news_dict = news_to_dict(news)
     judge_path, judge_created = _load_or_generate_judge_scores(
         item_out_dir=item_out_dir,
@@ -795,7 +1177,7 @@ async def _process_item(
         provider=provider,
     )
     judge_index = compose.load_judge_scores(judge_path)
-    if judge_created or not briefing_path.is_file():
+    if judge_created:
         _progress(f"[item {item_state.index}] compose start")
         review_result = compose.run_review(
             retrieve_result,
@@ -806,9 +1188,6 @@ async def _process_item(
         )
         for err in review_result.errors:
             errors.append({"agent_id": "C1", "message": err.get("message", str(err))})
-        briefing_md = _build_item_briefing(item_state.index, news_dict, errors, retrieve_result, review_result)
-        briefing_path.parent.mkdir(parents=True, exist_ok=True)
-        briefing_path.write_text(briefing_md, encoding="utf-8")
         item_state.status = "compose"
         item_state.last_completed_stage = "compose"
         batch_state.save(state_file)
@@ -817,41 +1196,6 @@ async def _process_item(
     item_state.status = "done"
     item_state.last_completed_stage = "compose"
     batch_state.save(state_file)
-
-
-def _build_item_briefing(
-    index: int,
-    news_dict: dict[str, Any],
-    errors: list[dict[str, Any]],
-    retrieve_result: dict[str, Any],
-    review_result: Any,
-) -> str:
-    """单条 item 的简化 Markdown（daily_batch 场景下每条各自独立成文件）。"""
-    candidates = retrieve_result.get("candidates") or []
-    lines = [f"# Daily Batch item {index + 1:02d}", ""]
-    lines.append(f"- title: {news_dict.get('title', '')}")
-    lines.append(f"- url: {news_dict.get('url', '')}")
-    lines.append("")
-    lines.append("## Candidates")
-    for cand in candidates:
-        title = cand.get("title")
-        year = cand.get("release_year")
-        tmdb_id = cand.get("tmdb_id")
-        lines.append(f"- {title} ({year}) [tmdb:{tmdb_id}]")
-    if not candidates:
-        lines.append("（无候选）")
-    lines.append("")
-    lines.append("## Review copies")
-    for copy in getattr(review_result, "review_copies", []) or []:
-        text = getattr(copy, "judge_rationale_zh", "") or getattr(copy, "judge_causal_test_zh", "") or ""
-        lines.append(f"- tmdb:{copy.tmdb_id}: {text}")
-    if errors:
-        lines.append("")
-        lines.append("## Errors")
-        for err in errors:
-            lines.append(f"- {err.get('agent_id')}: {err.get('message')}")
-    lines.append("")
-    return "\n".join(lines)
 
 
 async def run_daily_batch(
@@ -912,11 +1256,10 @@ async def run_daily_batch(
             continue
         entry = pool[item_state.index]
         target_dir = item_dir(resolved_date, item_state.index, item_state.slug, out_dir)
-        briefing_path = target_dir / "briefing.md"
         judge_path = _judge_scores_path(target_dir)
-        if _item_is_fully_complete(item_state) and briefing_path.is_file() and judge_path.is_file() and not _briefing_needs_judge_repair(briefing_path):
+        if _item_is_fully_complete(item_state) and judge_path.is_file():
             continue
-        if item_state.status == "done":
+        if item_state.status == "done" and not _item_is_fully_complete(item_state):
             item_state.status = "pending"
             item_state.last_completed_stage = None
             batch_state.save(resolved_state_path)
