@@ -47,6 +47,7 @@ from scripts.extract import run_deconstruct
 from scripts.heat_pool import DEFAULT_MIN_COUNT, RANKED_SECTIONS, fetch_heat_pool, pool_output_path
 from scripts.lib.paths import repo_root, state_dir
 from scripts.lib.run_options import RunOptions
+from scripts.llm_judge import JudgeItem, call_llm_judge, score_items
 from scripts.retrieve import retrieve_from_agents
 from scripts.rewrite import list_persona_ids, pipeline_result_to_dict, run_persona_pipeline
 
@@ -129,8 +130,254 @@ def _write_json(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+
 def _read_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _judge_scores_path(item_out_dir: Path) -> Path:
+    return item_out_dir / "llm-judge-scores.json"
+
+
+def _candidate_overview(candidate: dict[str, Any]) -> str:
+    overview = str(candidate.get("overview") or "").strip()
+    if overview:
+        return overview
+    db_projection = compose._db_projection_for_candidate(candidate)
+    return str(db_projection.get("overview") or "").strip()
+
+
+def _build_judge_items(
+    *,
+    run_id: str,
+    news_dict: dict[str, Any],
+    retrieve_result: dict[str, Any],
+) -> list[JudgeItem]:
+    candidates = [c for c in retrieve_result.get("candidates") or [] if isinstance(c, dict)]
+    return [
+        JudgeItem(
+            run_id=run_id,
+            tmdb_id=str(cand.get("tmdb_id") or ""),
+            title=str(cand.get("title") or ""),
+            news_title=str(news_dict.get("title") or ""),
+            news_summary=str(news_dict.get("description") or ""),
+            movie_overview=_candidate_overview(cand),
+        )
+        for cand in candidates
+        if str(cand.get("tmdb_id") or "").strip()
+    ]
+
+
+def _load_or_generate_judge_scores(
+    *,
+    item_out_dir: Path,
+    run_id: str,
+    news_dict: dict[str, Any],
+    retrieve_result: dict[str, Any],
+    provider: str | None,
+) -> tuple[Path, bool]:
+    """Materialize judge scores so compose can backfill rationale by tmdb_id."""
+    judge_path = _judge_scores_path(item_out_dir)
+    if judge_path.is_file():
+        return judge_path, False
+
+    judge_items = _build_judge_items(
+        run_id=run_id,
+        news_dict=news_dict,
+        retrieve_result=retrieve_result,
+    )
+    if not judge_items:
+        payload = {"version": 4, "calibration": {}, "scores": []}
+        _write_json(judge_path, payload)
+        return judge_path, True
+
+    judge_output = score_items(
+        judge_items,
+        lambda item: call_llm_judge(item, provider=provider),
+        observation_run_ids=[],
+        workers=min(4, len(judge_items)),
+    )
+    _write_json(judge_path, judge_output.to_dict())
+    return judge_path, True
+
+
+def _briefing_needs_judge_repair(briefing_path: Path) -> bool:
+    if not briefing_path.is_file():
+        return True
+    text = briefing_path.read_text(encoding="utf-8")
+    if "## Review copies" not in text:
+        return True
+    review_block = text.split("## Review copies", 1)[1]
+    return "（无）" in review_block
+
+
+_JUDGE_RATIONALE_FALLBACK_RE = re.compile(r"^- tmdb:(?P<tmdb_id>\d+):\s*(?P<text>.*)$")
+
+
+def _news_briefing_body_text(news_dict: dict[str, Any]) -> str:
+    """Prefer the downstream excerpt/body text, then fallback to other summary fields."""
+    for key in ("excerpt", "body", "content", "summary", "description", "text"):
+        value = str(news_dict.get(key) or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def _candidate_year(candidate: dict[str, Any]) -> str:
+    year = candidate.get("release_year")
+    if year:
+        return str(year)
+    release_date = str(candidate.get("release_date") or "").strip()
+    if len(release_date) >= 4 and release_date[:4].isdigit():
+        return release_date[:4]
+    return ""
+
+
+def _candidate_title_line(candidate: dict[str, Any]) -> str:
+    title = str(candidate.get("title") or "Untitled").strip() or "Untitled"
+    year = _candidate_year(candidate)
+    year_part = f" ({year})" if year else ""
+    tmdb_id = str(candidate.get("tmdb_id") or "").strip()
+    tmdb_part = f" [tmdb:{tmdb_id}]" if tmdb_id else ""
+    return f"candidate {title}{year_part}{tmdb_part}"
+
+
+def _load_review_copy_fallbacks(briefing_path: Path) -> dict[str, str]:
+    if not briefing_path.is_file():
+        return {}
+    text = briefing_path.read_text(encoding="utf-8")
+    if "## Review copies" not in text:
+        return {}
+    review_block = text.split("## Review copies", 1)[1].split("\n## ", 1)[0]
+    fallbacks: dict[str, str] = {}
+    for raw_line in review_block.splitlines():
+        match = _JUDGE_RATIONALE_FALLBACK_RE.match(raw_line.strip())
+        if match:
+            tmdb_id = match.group("tmdb_id")
+            text_value = match.group("text").strip()
+            if text_value:
+                fallbacks[tmdb_id] = text_value
+    return fallbacks
+
+
+def _load_judge_rows_by_tmdb(judge_scores_path: Path) -> dict[str, dict[str, Any]]:
+    if not judge_scores_path.is_file():
+        return {}
+    payload = _read_json(judge_scores_path)
+    rows = payload.get("scores") if isinstance(payload, dict) else []
+    judge_rows: dict[str, dict[str, Any]] = {}
+    for row in rows or []:
+        if not isinstance(row, dict):
+            continue
+        tmdb_id = str(row.get("tmdb_id") or "").strip()
+        if tmdb_id:
+            judge_rows[tmdb_id] = row
+    return judge_rows
+
+
+_BRIEFING_LABELS_EN = {
+    "news_title": "",
+    "news_body": "",
+    "candidate": "candidate",
+    "overview": "",
+    "score": "llm_judge_score",
+    "rationale": "llm_judge_rationale",
+}
+
+_BRIEFING_LABELS_ZH = {
+    "news_title": "新闻标题",
+    "news_body": "新闻正文",
+    "candidate": "候选电影",
+    "overview": "剧情简介",
+    "score": "LLM judge 分数",
+    "rationale": "LLM judge 理由",
+}
+
+
+def _render_candidate_briefing_lines(
+    candidate: dict[str, Any],
+    *,
+    judge_rows: dict[str, dict[str, Any]],
+    review_copy_fallbacks: dict[str, str],
+    labels: dict[str, str],
+) -> list[str]:
+    tmdb_id = str(candidate.get("tmdb_id") or "").strip()
+    judge_row = judge_rows.get(tmdb_id, {}) if tmdb_id else {}
+    rationale = str(judge_row.get("rationale") or "").strip()
+    if not rationale and tmdb_id:
+        rationale = review_copy_fallbacks.get(tmdb_id, "")
+    score = judge_row.get("judge_score")
+    score_text = str(score) if score is not None else "—"
+    candidate_line = f"{labels['candidate']} {_candidate_title_line(candidate).removeprefix('candidate ').strip()}"
+    lines = [
+        candidate_line,
+        f"{labels['overview'] + ': ' if labels['overview'] else ''}{_candidate_overview(candidate) or '—'}",
+        f"{labels['score']}: {score_text}",
+        f"{labels['rationale']}: {rationale or '—'}",
+        "",
+    ]
+    return lines
+
+
+def _render_daily_batch_briefing(date_dir: Path, *, labels: dict[str, str]) -> str:
+    """Render the date-root briefing by aggregating item subdirs."""
+    lines: list[str] = []
+    item_dirs = sorted(
+        (path for path in date_dir.iterdir() if path.is_dir() and re.match(r"^\d{2}-", path.name)),
+        key=lambda path: path.name,
+    )
+    for idx, item_dir_path in enumerate(item_dirs):
+        news_path = item_dir_path / "news.json"
+        retrieve_path = item_dir_path / "retrieve.json"
+        if not news_path.is_file() or not retrieve_path.is_file():
+            continue
+        news_dict = _read_json(news_path)
+        retrieve_result = _read_json(retrieve_path)
+        judge_rows = _load_judge_rows_by_tmdb(_judge_scores_path(item_dir_path))
+        review_copy_fallbacks = _load_review_copy_fallbacks(item_dir_path / "briefing.md")
+
+        if lines:
+            lines.append("")
+        title = str(news_dict.get("title") or "").strip()
+        if labels["news_title"]:
+            lines.append(f"{labels['news_title']}: {title}")
+        else:
+            lines.append(title)
+        news_body = _news_briefing_body_text(news_dict)
+        if news_body:
+            if labels["news_body"]:
+                lines.append(f"{labels['news_body']}: {news_body}")
+            else:
+                lines.append(news_body)
+        lines.append("")
+        candidates = [cand for cand in retrieve_result.get("candidates") or [] if isinstance(cand, dict)]
+        for candidate in candidates:
+            lines.extend(
+                _render_candidate_briefing_lines(
+                    candidate,
+                    judge_rows=judge_rows,
+                    review_copy_fallbacks=review_copy_fallbacks,
+                    labels=labels,
+                )
+            )
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def render_daily_batch_briefing(date_dir: Path) -> str:
+    return _render_daily_batch_briefing(date_dir, labels=_BRIEFING_LABELS_EN)
+
+
+def render_daily_batch_briefing_zh(date_dir: Path) -> str:
+    return _render_daily_batch_briefing(date_dir, labels=_BRIEFING_LABELS_ZH)
+
+
+def write_daily_batch_briefing(date_dir: Path) -> Path:
+    path = date_dir / "briefing.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(render_daily_batch_briefing(date_dir), encoding="utf-8")
+    zh_path = date_dir / "briefing.zh.md"
+    zh_path.write_text(render_daily_batch_briefing_zh(date_dir), encoding="utf-8")
+    return path
 
 
 @dataclass
@@ -423,6 +670,39 @@ async def _process_item(
     persona 逐个检查 personas/{id}.json 是否已存在于 completed_personas 中。
     """
     if item_state.status == "done":
+        briefing_path = item_out_dir / "briefing.md"
+        judge_path = _judge_scores_path(item_out_dir)
+        if briefing_path.is_file() and judge_path.is_file() and not _briefing_needs_judge_repair(briefing_path):
+            return
+        news_path = item_out_dir / "news.json"
+        retrieve_path = item_out_dir / "retrieve.json"
+        if not news_path.is_file() or not retrieve_path.is_file():
+            return
+        _progress(f"[item {item_state.index}] compose repair start")
+        news_dict = _read_json(news_path)
+        retrieve_result = _read_json(retrieve_path)
+        judge_path, judge_created = _load_or_generate_judge_scores(
+            item_out_dir=item_out_dir,
+            run_id=item_out_dir.name,
+            news_dict=news_dict,
+            retrieve_result=retrieve_result,
+            provider=provider,
+        )
+        judge_index = compose.load_judge_scores(judge_path)
+        if judge_created or not briefing_path.is_file() or _briefing_needs_judge_repair(briefing_path):
+            review_result = compose.run_review(
+                retrieve_result,
+                news_dict,
+                provider=provider,
+                judge_index=judge_index,
+                run_id=item_out_dir.name,
+            )
+            briefing_md = _build_item_briefing(
+                item_state.index, news_dict, [], retrieve_result, review_result
+            )
+            briefing_path.parent.mkdir(parents=True, exist_ok=True)
+            briefing_path.write_text(briefing_md, encoding="utf-8")
+            _progress(f"[item {item_state.index}] compose repair done")
         return
 
     if not _has_sufficient_description(entry):
@@ -506,10 +786,24 @@ async def _process_item(
 
     # --- Stage: compose(C1) + briefing ---
     briefing_path = item_out_dir / "briefing.md"
-    if not briefing_path.is_file():
+    news_dict = news_to_dict(news)
+    judge_path, judge_created = _load_or_generate_judge_scores(
+        item_out_dir=item_out_dir,
+        run_id=item_out_dir.name,
+        news_dict=news_dict,
+        retrieve_result=retrieve_result,
+        provider=provider,
+    )
+    judge_index = compose.load_judge_scores(judge_path)
+    if judge_created or not briefing_path.is_file():
         _progress(f"[item {item_state.index}] compose start")
-        news_dict = news_to_dict(news)
-        review_result = compose.run_review(retrieve_result, news_dict, provider=provider)
+        review_result = compose.run_review(
+            retrieve_result,
+            news_dict,
+            provider=provider,
+            judge_index=judge_index,
+            run_id=item_out_dir.name,
+        )
         for err in review_result.errors:
             errors.append({"agent_id": "C1", "message": err.get("message", str(err))})
         briefing_md = _build_item_briefing(item_state.index, news_dict, errors, retrieve_result, review_result)
@@ -617,7 +911,10 @@ async def run_daily_batch(
         if item_state.index >= len(pool):
             continue
         entry = pool[item_state.index]
-        if _item_is_fully_complete(item_state):
+        target_dir = item_dir(resolved_date, item_state.index, item_state.slug, out_dir)
+        briefing_path = target_dir / "briefing.md"
+        judge_path = _judge_scores_path(target_dir)
+        if _item_is_fully_complete(item_state) and briefing_path.is_file() and judge_path.is_file() and not _briefing_needs_judge_repair(briefing_path):
             continue
         if item_state.status == "done":
             item_state.status = "pending"
@@ -628,7 +925,6 @@ async def run_daily_batch(
                 f"item {item_state.index}: insufficient description from heat pool; "
                 "refresh pool.json before resuming daily batch"
             )
-        target_dir = item_dir(resolved_date, item_state.index, item_state.slug, out_dir)
         await _process_item(
             entry,
             item_state,
@@ -639,6 +935,7 @@ async def run_daily_batch(
             state_file=resolved_state_path,
         )
 
+    write_daily_batch_briefing(batch_output_dir(resolved_date, out_dir))
     return batch_state
 
 

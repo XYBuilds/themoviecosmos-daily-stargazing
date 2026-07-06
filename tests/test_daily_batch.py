@@ -10,6 +10,7 @@ from contextlib import ExitStack
 from dataclasses import dataclass, field
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from types import SimpleNamespace
 from typing import Any
 from unittest.mock import patch
 
@@ -17,9 +18,11 @@ from scripts.daily_batch import (
     BatchState,
     build_parser,
     init_batch_state,
+    render_daily_batch_briefing,
     run_daily_batch,
     slugify,
     state_path,
+    write_daily_batch_briefing,
 )
 from scripts.lib.run_options import RunOptions
 from tests.smoke_daily_batch import build_parser as build_smoke_parser
@@ -71,7 +74,11 @@ def _fake_retrieve_result() -> dict[str, Any]:
 
 @dataclass
 class _FakePseudo:
+    id: str = "pseudo-1"
     text: str = "a pseudo line"
+    source: dict[str, Any] = field(default_factory=dict)
+    warnings: list[str] = field(default_factory=list)
+    fit: float | None = None
 
 
 @dataclass
@@ -80,6 +87,15 @@ class _FakePersonaResult:
     pseudos: list[Any] = field(default_factory=lambda: [_FakePseudo()])
     warnings: list[str] = field(default_factory=list)
     error: str | None = None
+    overlay: Any = field(default_factory=lambda: SimpleNamespace(to_dict=lambda: {}))
+
+
+@dataclass
+class _FakeJudgeOutput:
+    scores: list[dict[str, Any]] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {"version": 4, "calibration": {}, "scores": list(self.scores)}
 
 
 @dataclass
@@ -116,7 +132,6 @@ def _apply_common_patches(stack: ExitStack, *, persona_side_effect=None, persona
     stack.enter_context(
         patch("scripts.daily_batch.retrieve_from_agents", return_value=_fake_retrieve_result())
     )
-    stack.enter_context(patch("scripts.daily_batch.compose.run_review", return_value=_FakeReviewResult()))
     stack.enter_context(
         patch(
             "scripts.daily_batch.pipeline_result_to_dict",
@@ -127,6 +142,8 @@ def _apply_common_patches(stack: ExitStack, *, persona_side_effect=None, persona
             },
         )
     )
+    stack.enter_context(patch("scripts.daily_batch.compose.run_review", return_value=_FakeReviewResult()))
+    stack.enter_context(patch("scripts.daily_batch.score_items", return_value=_FakeJudgeOutput(scores=[])))
     # run_expansion is imported lazily (`from scripts.expand import run_expansion`)
     # inside daily_batch's expand stage, so it must be patched at its source module.
     stack.enter_context(
@@ -140,6 +157,7 @@ def _apply_common_patches(stack: ExitStack, *, persona_side_effect=None, persona
             return _FakePersonaResult(persona_id=persona_id)
 
         stack.enter_context(patch("scripts.daily_batch.run_persona_pipeline", side_effect=default_pipeline))
+
 
 
 class SlugifyTests(unittest.TestCase):
@@ -301,6 +319,180 @@ class RunDailyBatchCheckpointTests(unittest.TestCase):
             self.assertEqual(final_state.items[0].status, "done")
             self.assertEqual(final_state.items[0].last_completed_stage, "compose")
 
+    def test_resume_repairs_briefing_with_generated_judge_copies(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            out_dir = tmp_path / "output"
+            state_dir = tmp_path / "state"
+
+            pool = _fake_pool()[:1]
+            pool_dir = out_dir / "2026-07-05" / "01-england-heatwave-grips-the-nation-today"
+            pool_dir.mkdir(parents=True, exist_ok=True)
+            pool_file = tmp_path / "pool.json"
+            pool_file.write_text(json.dumps(pool), encoding="utf-8")
+            (pool_dir / "news.json").write_text(
+                json.dumps(
+                    {
+                        "title": pool[0]["title"],
+                        "description": pool[0]["description"],
+                        "pub_time": pool[0]["pub_time"],
+                        "source_name": "Guardian",
+                        "url": pool[0]["url"],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            retrieve_result = _fake_retrieve_result()
+            (pool_dir / "retrieve.json").write_text(json.dumps(retrieve_result), encoding="utf-8")
+            (pool_dir / "briefing.md").write_text(
+                "# Daily Batch item 01\n\n## Review copies\n- tmdb:42: （无）\n",
+                encoding="utf-8",
+            )
+
+            state = init_batch_state("2026-07-05", pool, str(pool_file))
+            state.items[0].status = "done"
+            state.items[0].last_completed_stage = "compose"
+            state.save(state_path("2026-07-05", state_dir))
+
+            def fake_score_items(items, judge_fn, *, observation_run_ids=None, workers=1):
+                self.assertEqual(len(items), 1)
+                self.assertEqual(items[0].run_id, pool_dir.name)
+                return _FakeJudgeOutput(
+                    scores=[
+                        {
+                            "run_id": pool_dir.name,
+                            "tmdb_id": "42",
+                            "title": "Prod Movie",
+                            "judge_score": 2,
+                            "judge_resonance_type": "强共振",
+                            "rationale": "Both center on outages.",
+                            "causal_test": "Power loss drives crisis.",
+                        }
+                    ]
+                )
+
+            def fake_review(retrieve_result_arg, news_dict, *, provider=None, judge_index=None, run_id="", min_judge=None, prompts_dir=None, llm_call=None):
+                self.assertEqual(run_id, pool_dir.name)
+                self.assertIn((pool_dir.name, "42"), judge_index)
+                entry = judge_index[(pool_dir.name, "42")]
+                self.assertEqual(entry.rationale, "Both center on outages.")
+                self.assertEqual(entry.causal_test, "Power loss drives crisis.")
+                return SimpleNamespace(
+                    review_copies=[
+                        SimpleNamespace(
+                            tmdb_id=42,
+                            judge_rationale_zh="中文理由",
+                            judge_causal_test_zh="",
+                        )
+                    ],
+                    errors=[],
+                )
+
+            with ExitStack() as stack:
+                stack.enter_context(patch("scripts.daily_batch.score_items", side_effect=fake_score_items))
+                stack.enter_context(patch("scripts.daily_batch.compose.run_review", side_effect=fake_review))
+                final_state = asyncio.run(
+                    run_daily_batch(
+                        date="2026-07-05",
+                        resume=True,
+                        run_options=RunOptions(persona_limit=1, skip_expand=True),
+                        out_dir=out_dir,
+                        base_state_dir=state_dir,
+                    )
+                )
+
+            self.assertTrue((out_dir / "2026-07-05" / "briefing.md").is_file())
+            root_briefing = (out_dir / "2026-07-05" / "briefing.md").read_text(encoding="utf-8")
+            self.assertIn("England Heatwave Grips the Nation Today", root_briefing)
+            self.assertIn("A longer description about the first story that is clearly sufficient.", root_briefing)
+            self.assertIn("candidate Prod Movie (2020) [tmdb:42]", root_briefing)
+            self.assertIn("llm_judge_score: 2", root_briefing)
+            self.assertIn("llm_judge_rationale: Both center on outages.", root_briefing)
+
+    def test_render_daily_batch_briefing_aggregates_item_news_and_candidates(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            out_dir = tmp_path / "output" / "daily_batch"
+            date_dir = out_dir / "2026-07-06"
+            item_dir = date_dir / "01-foo"
+            item_dir.mkdir(parents=True, exist_ok=True)
+
+            (item_dir / "news.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Daily News Title",
+                        "description": "Short body used by downstream processing.",
+                        "pub_time": "2026-07-06T00:00:00Z",
+                        "source_name": "Guardian",
+                        "url": "https://example.com/news",
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (item_dir / "retrieve.json").write_text(
+                json.dumps(
+                    {
+                        "candidates": [
+                            {
+                                "title": "Candidate One",
+                                "release_year": 2024,
+                                "tmdb_id": 111,
+                                "overview": "Candidate one overview.",
+                            },
+                            {
+                                "title": "Candidate Two",
+                                "release_date": "2022-04-01",
+                                "tmdb_id": 222,
+                                "overview": "Candidate two overview.",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (item_dir / "llm-judge-scores.json").write_text(
+                json.dumps(
+                    {
+                        "scores": [
+                            {
+                                "tmdb_id": "111",
+                                "judge_score": 3,
+                                "rationale": "English judge rationale.",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (item_dir / "briefing.md").write_text(
+                "# Daily Batch item 01\n\n## Review copies\n- tmdb:222: 中文兜底理由\n",
+                encoding="utf-8",
+            )
+
+            written = write_daily_batch_briefing(date_dir)
+            self.assertEqual(written, date_dir / "briefing.md")
+            zh_written = date_dir / "briefing.zh.md"
+            self.assertTrue(zh_written.is_file())
+            briefing = written.read_text(encoding="utf-8")
+            briefing_zh = zh_written.read_text(encoding="utf-8")
+            self.assertIn("Daily News Title", briefing)
+            self.assertIn("Short body used by downstream processing.", briefing)
+            self.assertIn("candidate Candidate One (2024) [tmdb:111]", briefing)
+            self.assertIn("Candidate one overview.", briefing)
+            self.assertIn("llm_judge_score: 3", briefing)
+            self.assertIn("llm_judge_rationale: English judge rationale.", briefing)
+            self.assertIn("candidate Candidate Two (2022) [tmdb:222]", briefing)
+            self.assertIn("llm_judge_rationale: 中文兜底理由", briefing)
+            self.assertIn("新闻标题", briefing_zh)
+            self.assertIn("新闻正文", briefing_zh)
+            self.assertIn("候选电影", briefing_zh)
+            self.assertIn("剧情简介", briefing_zh)
+            self.assertIn("LLM judge 分数", briefing_zh)
+            self.assertIn("LLM judge 理由", briefing_zh)
+            self.assertIn("Candidate One (2024) [tmdb:111]", briefing_zh)
+            self.assertIn("English judge rationale.", briefing_zh)
+            self.assertIn("中文兜底理由", briefing_zh)
+
     def test_full_run_marks_all_items_done_and_writes_checkpoint(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
@@ -364,6 +556,7 @@ class PersonaConcurrencyTests(unittest.TestCase):
                 stack.enter_context(patch("scripts.daily_batch.run_persona_pipeline", side_effect=slow_pipeline))
                 stack.enter_context(patch("scripts.daily_batch.retrieve_from_agents", side_effect=capture_retrieve))
                 stack.enter_context(patch("scripts.daily_batch.compose.run_review", return_value=_FakeReviewResult()))
+                stack.enter_context(patch("scripts.daily_batch.score_items", return_value=_FakeJudgeOutput(scores=[])))
                 stack.enter_context(patch("scripts.expand.run_expansion", return_value={"expansion": {"fake": "expansion"}}))
                 stack.enter_context(
                     patch(
