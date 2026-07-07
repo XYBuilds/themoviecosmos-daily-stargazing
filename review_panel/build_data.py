@@ -62,18 +62,36 @@ def _judge_index_by_tmdb_id(judge_scores: dict) -> dict[str, dict]:
     return index
 
 
-def _join_judge_scores(candidates: list[dict], judge_scores: dict) -> list[dict]:
-    """按 tmdb_id（str 归一化）把 judge 的评分字段 join 进瘦身后的 candidates。"""
+def _join_judge_scores(
+    candidates: list[dict],
+    judge_scores: dict,
+    zh_cache: dict | None = None,
+) -> list[dict]:
+    """按 tmdb_id（str 归一化）把 judge 的评分字段 join 进瘦身后的 candidates。
+
+    口径与 daily_batch briefing 完全一致：过滤掉 judge_score 为 0 或 None 的
+    candidate，剩余按 judge_score 降序排列（同分保持原 retrieve 顺序稳定）。
+    causal_test 是 judge 内部审计工件，不对外展示，因此不 join 进输出。
+    """
     judge_by_id = _judge_index_by_tmdb_id(judge_scores)
+    overview_zh_map = (zh_cache or {}).get("overview", {})
+    rationale_zh_map = (zh_cache or {}).get("rationale", {})
+
     joined: list[dict] = []
-    for candidate in candidates:
+    for original_index, candidate in enumerate(candidates):
         judge_entry = judge_by_id.get(str(candidate.get("tmdb_id")), {})
+        judge_score = judge_entry.get("judge_score")
+        if judge_score in (None, 0):
+            continue
+        overview = candidate.get("overview")
+        rationale = judge_entry.get("rationale")
         joined.append(
             {
                 "tmdb_id": candidate.get("tmdb_id"),
                 "title": candidate.get("title"),
                 "release_year": candidate.get("release_year"),
-                "overview": candidate.get("overview"),
+                "overview": overview,
+                "overview_zh": overview_zh_map.get(str(overview or "").strip(), ""),
                 "genres": candidate.get("genres"),
                 "language": candidate.get("language"),
                 "similarity": candidate.get("similarity"),
@@ -82,12 +100,20 @@ def _join_judge_scores(candidates: list[dict], judge_scores: dict) -> list[dict]
                 "resonance_agents": _extract_resonance_agents(
                     candidate.get("hit_sources", [])
                 ),
-                "judge_score": judge_entry.get("judge_score"),
+                "judge_score": judge_score,
                 "judge_resonance_type": judge_entry.get("judge_resonance_type"),
-                "judge_rationale": judge_entry.get("rationale"),
-                "causal_test": judge_entry.get("causal_test"),
+                "judge_rationale": rationale,
+                "judge_rationale_zh": rationale_zh_map.get(
+                    str(rationale or "").strip(), ""
+                ),
+                "_original_index": original_index,
             }
         )
+
+    # judge_score 降序；同分时按原 retrieve 顺序（original_index）保持稳定。
+    joined.sort(key=lambda c: (-c["judge_score"], c["_original_index"]))
+    for candidate in joined:
+        del candidate["_original_index"]
     return joined
 
 
@@ -99,7 +125,25 @@ def _load_judge_scores(news_dir: Path) -> dict:
     return _read_json(judge_path)
 
 
-def _build_news_item(news_dir: Path, fallback_index: int) -> dict | None:
+def _load_zh_cache(date_dir: Path) -> dict:
+    """读 date_dir 根级的 briefing.zh.translations.json（daily_batch 写入的缓存）。
+
+    build_data.py 保持纯聚合、无 LLM 副作用：缓存缺失或格式异常都容错为空 dict，
+    不触发翻译也不抛异常。
+    """
+    cache_path = date_dir / "briefing.zh.translations.json"
+    if not cache_path.is_file():
+        return {}
+    try:
+        payload = _read_json(cache_path)
+    except (json.JSONDecodeError, OSError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _build_news_item(
+    news_dir: Path, fallback_index: int, zh_cache: dict
+) -> dict | None:
     news_path = news_dir / "news.json"
     if not news_path.is_file():
         return None
@@ -108,18 +152,29 @@ def _build_news_item(news_dir: Path, fallback_index: int) -> dict | None:
     retrieve = _read_json(news_dir / "retrieve.json")
     judge_scores = _load_judge_scores(news_dir)
 
+    title = news.get("title")
+    description = news.get("description")
+    title_zh_map = zh_cache.get("news_title", {})
+    news_body_zh_map = zh_cache.get("news_body", {})
+
     return {
         "index": _parse_index(news_dir.name, fallback_index),
         "slug": news_dir.name,
         "news": {
-            "title": news.get("title"),
-            "description": news.get("description"),
+            "title": title,
+            "title_zh": title_zh_map.get(str(title or "").strip(), ""),
+            "description": description,
+            # news_body 翻译缓存的 key 是 daily_batch 实际翻译的源文本
+            # （_news_briefing_body_text 优先 excerpt/body/content/summary，
+            # 缺失时才回退到 description）；这里的 news.json 只有 description
+            # 字段，因此源文本与 description 一致，可直接按 description 查表。
+            "description_zh": news_body_zh_map.get(str(description or "").strip(), ""),
             "source_name": news.get("source_name"),
             "pub_time": news.get("pub_time"),
             "url": news.get("url"),
         },
         "candidates": _join_judge_scores(
-            retrieve.get("candidates", []), judge_scores
+            retrieve.get("candidates", []), judge_scores, zh_cache
         ),
     }
 
@@ -128,6 +183,7 @@ def build_panel_data(date: str, batch_root: Path | None = None) -> dict:
     """聚合返回 panel dict（结构见 panel.json schema）。"""
     root = batch_root or _default_batch_root()
     date_dir = root / date
+    zh_cache = _load_zh_cache(date_dir)
 
     news_dirs = sorted(
         (p for p in date_dir.iterdir() if p.is_dir() and (p / "news.json").is_file()),
@@ -136,7 +192,7 @@ def build_panel_data(date: str, batch_root: Path | None = None) -> dict:
 
     news_items = []
     for fallback_index, news_dir in enumerate(news_dirs, start=1):
-        item = _build_news_item(news_dir, fallback_index)
+        item = _build_news_item(news_dir, fallback_index, zh_cache)
         if item is not None:
             news_items.append(item)
     news_items.sort(key=lambda item: item["index"])
