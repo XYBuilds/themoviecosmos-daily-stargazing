@@ -235,9 +235,16 @@
 
   .candidate-list {
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+    align-items: start;
+  }
+
+  @media (max-width: 680px) {
+    .candidate-list {
+      grid-template-columns: 1fr;
+    }
   }
 
   .candidate {
@@ -248,6 +255,7 @@
     display: flex;
     gap: 12px;
     align-items: flex-start;
+    min-width: 0;
   }
 
   .candidate-select {
@@ -338,7 +346,9 @@
     font-size: 12.5px;
     color: var(--ink-dim);
     line-height: 1.5;
-    max-width: 70ch;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .candidate-line .label {
@@ -617,8 +627,8 @@
       head +
       (agents ? '<div class="candidate-agents">' + agents + '</div>' : "") +
       renderCandidateLine("类型", cand.judge_resonance_type) +
-      renderCandidateLine("Rationale", textFor(cand.judge_rationale, cand.judge_rationale_zh)) +
       renderCandidateLine("Overview", textFor(cand.overview, cand.overview_zh), "overview") +
+      renderCandidateLine("Rationale", textFor(cand.judge_rationale, cand.judge_rationale_zh)) +
       (hasText(cand.movie_url)
         ? '<div class="candidate-line"><a class="candidate-link" href="' +
           escapeHtml(cand.movie_url) + '" target="_blank" rel="noopener noreferrer">movie_url ↗</a></div>'
