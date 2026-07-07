@@ -102,6 +102,7 @@ _DB_PROJECTION_FIELDS: tuple[str, ...] = (
     "director",
     "cast",
     "writers",
+    "production_countries",
     "vote_average",
     "vote_count",
     "popularity",
