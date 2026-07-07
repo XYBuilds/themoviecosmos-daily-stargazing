@@ -1,4 +1,4 @@
-"""Unit tests for Phase 8.1 review_panel/build_data.py."""
+"""Unit tests for Phase 8.1/8.6 review_panel/build_data.py."""
 
 from __future__ import annotations
 
@@ -10,6 +10,7 @@ from tempfile import TemporaryDirectory
 from review_panel.build_data import (
     _extract_resonance_agents,
     _join_judge_scores,
+    _load_zh_cache,
     build_panel_data,
     list_available_dates,
     write_panel_json,
@@ -21,10 +22,10 @@ def _write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
 
 
-def _news_payload(title: str = "Headline") -> dict:
+def _news_payload(title: str = "Headline", description: str = "A description.") -> dict:
     return {
         "title": title,
-        "description": "A description.",
+        "description": description,
         "pub_time": "2026-07-05T14:02:46Z",
         "source_name": "Guardian",
         "url": "https://example.com/article",
@@ -39,11 +40,12 @@ def _candidate(
     tmdb_id: int,
     title: str,
     hit_sources: list[dict] | None = None,
+    overview: str = "An overview.",
 ) -> dict:
     return {
         "tmdb_id": tmdb_id,
         "title": title,
-        "overview": "An overview.",
+        "overview": overview,
         "genres": "Comedy, Drama",
         "release_year": 2024,
         "language": "fr",
@@ -60,14 +62,14 @@ def _judge_payload(scores: list[dict]) -> dict:
     return {"version": 4, "calibration": {}, "scores": scores}
 
 
-def _judge_entry(tmdb_id: str, title: str, score: int = 1) -> dict:
+def _judge_entry(tmdb_id: str, title: str, score: int | None = 1, rationale: str = "some rationale") -> dict:
     return {
         "run_id": "run",
         "tmdb_id": tmdb_id,
         "title": title,
         "judge_score": score,
         "judge_resonance_type": "表层沾边",
-        "rationale": "some rationale",
+        "rationale": rationale,
         "causal_test": "",
     }
 
@@ -99,17 +101,21 @@ class JoinJudgeScoresTests(unittest.TestCase):
         self.assertEqual(joined[0]["judge_score"], 2)
         self.assertEqual(joined[0]["judge_resonance_type"], "表层沾边")
         self.assertEqual(joined[0]["judge_rationale"], "some rationale")
-        self.assertEqual(joined[0]["causal_test"], "")
 
-    def test_slims_fields_to_schema_only(self) -> None:
-        candidates = [_candidate(1083324, "A Mother's Special Love", hit_sources=[{"agent_id": "THE-INNOCENT"}])]
-        joined = _join_judge_scores(candidates, _judge_payload([]))
+    def test_slims_fields_to_schema_only_and_drops_causal_test(self) -> None:
+        candidates = [
+            _candidate(1083324, "A Mother's Special Love", hit_sources=[{"agent_id": "THE-INNOCENT"}])
+        ]
+        joined = _join_judge_scores(
+            candidates, _judge_payload([_judge_entry("1083324", "A Mother's Special Love", score=1)])
+        )
 
         expected_keys = {
             "tmdb_id",
             "title",
             "release_year",
             "overview",
+            "overview_zh",
             "genres",
             "language",
             "similarity",
@@ -119,35 +125,160 @@ class JoinJudgeScoresTests(unittest.TestCase):
             "judge_score",
             "judge_resonance_type",
             "judge_rationale",
-            "causal_test",
+            "judge_rationale_zh",
         }
         self.assertEqual(set(joined[0].keys()), expected_keys)
         self.assertNotIn("triggered_by", joined[0])
         self.assertNotIn("hit_sources", joined[0])
         self.assertNotIn("also_baseline", joined[0])
+        # causal_test is a judge-internal audit artifact and must not be exposed.
+        self.assertNotIn("causal_test", joined[0])
 
-    def test_missing_tmdb_id_in_judge_scores_falls_back_to_none(self) -> None:
+    def test_missing_tmdb_id_in_judge_scores_is_filtered_out(self) -> None:
+        # A candidate absent from judge scores has judge_score=None, which is
+        # filtered out entirely (same cutoff as daily_batch briefing).
         candidates = [_candidate(999999, "Unscored Movie")]
         judge_scores = _judge_payload([_judge_entry("1083324", "Other Movie")])
 
         joined = _join_judge_scores(candidates, judge_scores)
 
-        self.assertIsNone(joined[0]["judge_score"])
-        self.assertIsNone(joined[0]["judge_resonance_type"])
-        self.assertIsNone(joined[0]["judge_rationale"])
-        self.assertIsNone(joined[0]["causal_test"])
+        self.assertEqual(joined, [])
 
-    def test_empty_judge_scores_dict_does_not_raise(self) -> None:
+    def test_empty_judge_scores_dict_does_not_raise_and_filters_all(self) -> None:
         candidates = [_candidate(1083324, "A Mother's Special Love")]
         joined = _join_judge_scores(candidates, {})
-        self.assertIsNone(joined[0]["judge_score"])
+        self.assertEqual(joined, [])
+
+    def test_judge_score_zero_is_filtered_out(self) -> None:
+        candidates = [
+            _candidate(1, "Zero Score Movie"),
+            _candidate(2, "Kept Movie"),
+        ]
+        judge_scores = _judge_payload(
+            [
+                _judge_entry("1", "Zero Score Movie", score=0),
+                _judge_entry("2", "Kept Movie", score=1),
+            ]
+        )
+
+        joined = _join_judge_scores(candidates, judge_scores)
+
+        self.assertEqual(len(joined), 1)
+        self.assertEqual(joined[0]["tmdb_id"], 2)
+
+    def test_sorted_descending_by_judge_score(self) -> None:
+        candidates = [
+            _candidate(1, "Low"),
+            _candidate(2, "High"),
+            _candidate(3, "Mid"),
+        ]
+        judge_scores = _judge_payload(
+            [
+                _judge_entry("1", "Low", score=1),
+                _judge_entry("2", "High", score=3),
+                _judge_entry("3", "Mid", score=2),
+            ]
+        )
+
+        joined = _join_judge_scores(candidates, judge_scores)
+
+        self.assertEqual([c["tmdb_id"] for c in joined], [2, 3, 1])
+        self.assertEqual([c["judge_score"] for c in joined], [3, 2, 1])
+
+    def test_tied_score_keeps_original_retrieve_order_stable(self) -> None:
+        candidates = [
+            _candidate(1, "First"),
+            _candidate(2, "Second"),
+            _candidate(3, "Third"),
+        ]
+        judge_scores = _judge_payload(
+            [
+                _judge_entry("1", "First", score=1),
+                _judge_entry("2", "Second", score=1),
+                _judge_entry("3", "Third", score=1),
+            ]
+        )
+
+        joined = _join_judge_scores(candidates, judge_scores)
+
+        self.assertEqual([c["tmdb_id"] for c in joined], [1, 2, 3])
+
+    def test_zh_cache_joins_overview_and_rationale_translations(self) -> None:
+        candidates = [_candidate(1083324, "Movie", overview="An overview.")]
+        judge_scores = _judge_payload(
+            [_judge_entry("1083324", "Movie", score=1, rationale="some rationale")]
+        )
+        zh_cache = {
+            "overview": {"An overview.": "一段简介。"},
+            "rationale": {"some rationale": "一些理由。"},
+        }
+
+        joined = _join_judge_scores(candidates, judge_scores, zh_cache)
+
+        self.assertEqual(joined[0]["overview_zh"], "一段简介。")
+        self.assertEqual(joined[0]["judge_rationale_zh"], "一些理由。")
+
+    def test_zh_cache_miss_falls_back_to_empty_string(self) -> None:
+        candidates = [_candidate(1083324, "Movie", overview="Untranslated overview.")]
+        judge_scores = _judge_payload(
+            [_judge_entry("1083324", "Movie", score=1, rationale="Untranslated rationale.")]
+        )
+        zh_cache = {"overview": {}, "rationale": {}}
+
+        joined = _join_judge_scores(candidates, judge_scores, zh_cache)
+
+        self.assertEqual(joined[0]["overview_zh"], "")
+        self.assertEqual(joined[0]["judge_rationale_zh"], "")
+
+    def test_missing_zh_cache_does_not_raise(self) -> None:
+        candidates = [_candidate(1083324, "Movie")]
+        judge_scores = _judge_payload([_judge_entry("1083324", "Movie", score=1)])
+
+        joined = _join_judge_scores(candidates, judge_scores, None)
+
+        self.assertEqual(joined[0]["overview_zh"], "")
+        self.assertEqual(joined[0]["judge_rationale_zh"], "")
+
+
+class LoadZhCacheTests(unittest.TestCase):
+    def test_missing_cache_file_returns_empty_dict(self) -> None:
+        with TemporaryDirectory() as tmp:
+            date_dir = Path(tmp) / "2026-07-06"
+            date_dir.mkdir()
+            self.assertEqual(_load_zh_cache(date_dir), {})
+
+    def test_reads_existing_cache_file(self) -> None:
+        with TemporaryDirectory() as tmp:
+            date_dir = Path(tmp) / "2026-07-06"
+            date_dir.mkdir()
+            cache = {
+                "version": 1,
+                "news_body": {"Hello.": "你好。"},
+                "news_title": {"Title": "标题"},
+                "overview": {},
+                "rationale": {},
+            }
+            _write_json(date_dir / "briefing.zh.translations.json", cache)
+
+            loaded = _load_zh_cache(date_dir)
+            self.assertEqual(loaded["news_body"]["Hello."], "你好。")
+            self.assertEqual(loaded["news_title"]["Title"], "标题")
+
+    def test_malformed_cache_file_does_not_raise(self) -> None:
+        with TemporaryDirectory() as tmp:
+            date_dir = Path(tmp) / "2026-07-06"
+            date_dir.mkdir()
+            (date_dir / "briefing.zh.translations.json").write_text("not json", encoding="utf-8")
+
+            self.assertEqual(_load_zh_cache(date_dir), {})
 
 
 class BuildPanelDataTests(unittest.TestCase):
     def _write_mini_batch(self, root: Path, date: str) -> None:
         date_dir = root / date
 
-        # News 1: full retrieve + judge, one candidate missing from judge scores.
+        # News 1: full retrieve + judge, one candidate missing from judge scores
+        # (filtered out), one candidate scored and kept.
         news1_dir = date_dir / "01-first-news"
         _write_json(news1_dir / "news.json", _news_payload("First headline"))
         _write_json(
@@ -164,7 +295,8 @@ class BuildPanelDataTests(unittest.TestCase):
             _judge_payload([_judge_entry("1083324", "Scored Movie", score=1)]),
         )
 
-        # News 2 (deliberately created out of NN order on disk): no judge file at all.
+        # News 2 (deliberately created out of NN order on disk): no judge file at all
+        # -> its only candidate is filtered out entirely.
         news2_dir = date_dir / "02-second-news"
         _write_json(news2_dir / "news.json", _news_payload("Second headline"))
         _write_json(
@@ -192,19 +324,17 @@ class BuildPanelDataTests(unittest.TestCase):
             self.assertEqual(second["index"], 2)
             self.assertEqual(second["slug"], "02-second-news")
 
-            scored, unscored = first["candidates"]
+            # Unscored candidate (judge_score=None) is filtered out entirely.
+            self.assertEqual(len(first["candidates"]), 1)
+            scored = first["candidates"][0]
             self.assertEqual(scored["tmdb_id"], 1083324)
             self.assertEqual(scored["judge_score"], 1)
             self.assertEqual(scored["resonance_agents"], ["THE-INNOCENT", "THE-HERO"])
+            self.assertNotIn("causal_test", scored)
 
-            # Candidate absent from judge scores must fall back to empty, not raise.
-            self.assertEqual(unscored["tmdb_id"], 999999)
-            self.assertIsNone(unscored["judge_score"])
-
-            # News dir with no llm-judge-scores.json at all must also degrade gracefully.
-            no_judge_candidate = second["candidates"][0]
-            self.assertIsNone(no_judge_candidate["judge_score"])
-            self.assertIsNone(no_judge_candidate["judge_resonance_type"])
+            # News dir with no llm-judge-scores.json at all: its only candidate
+            # is unscored (None) and therefore filtered out, leaving an empty list.
+            self.assertEqual(second["candidates"], [])
 
     def test_news_items_sorted_ascending_by_nn_prefix(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -232,6 +362,79 @@ class BuildPanelDataTests(unittest.TestCase):
 
             panel = build_panel_data("2026-07-06", batch_root=root)
             self.assertEqual(len(panel["news_items"]), 1)
+
+    def test_candidates_sorted_descending_by_judge_score_end_to_end(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            date_dir = root / "2026-07-06"
+            news_dir = date_dir / "01-news"
+            _write_json(news_dir / "news.json", _news_payload())
+            _write_json(
+                news_dir / "retrieve.json",
+                _retrieve_payload(
+                    [
+                        _candidate(1, "Low"),
+                        _candidate(2, "High"),
+                        _candidate(3, "Zero"),
+                    ]
+                ),
+            )
+            _write_json(
+                news_dir / "llm-judge-scores.json",
+                _judge_payload(
+                    [
+                        _judge_entry("1", "Low", score=1),
+                        _judge_entry("2", "High", score=2),
+                        _judge_entry("3", "Zero", score=0),
+                    ]
+                ),
+            )
+
+            panel = build_panel_data("2026-07-06", batch_root=root)
+            candidates = panel["news_items"][0]["candidates"]
+            # judge_score=0 is filtered; remaining candidates sorted descending.
+            self.assertEqual([c["tmdb_id"] for c in candidates], [2, 1])
+
+    def test_news_title_and_description_zh_joined_from_cache(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            date_dir = root / "2026-07-06"
+            news_dir = date_dir / "01-news"
+            _write_json(
+                news_dir / "news.json",
+                _news_payload(title="English Title", description="English body."),
+            )
+            _write_json(news_dir / "retrieve.json", _retrieve_payload([]))
+            _write_json(
+                date_dir / "briefing.zh.translations.json",
+                {
+                    "version": 1,
+                    "news_title": {"English Title": "中文标题"},
+                    "news_body": {"English body.": "中文正文。"},
+                    "overview": {},
+                    "rationale": {},
+                },
+            )
+
+            panel = build_panel_data("2026-07-06", batch_root=root)
+            news = panel["news_items"][0]["news"]
+            self.assertEqual(news["title"], "English Title")
+            self.assertEqual(news["title_zh"], "中文标题")
+            self.assertEqual(news["description"], "English body.")
+            self.assertEqual(news["description_zh"], "中文正文。")
+
+    def test_missing_zh_translation_cache_file_does_not_raise(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            date_dir = root / "2026-07-06"
+            news_dir = date_dir / "01-news"
+            _write_json(news_dir / "news.json", _news_payload())
+            _write_json(news_dir / "retrieve.json", _retrieve_payload([]))
+
+            panel = build_panel_data("2026-07-06", batch_root=root)
+            news = panel["news_items"][0]["news"]
+            self.assertEqual(news["title_zh"], "")
+            self.assertEqual(news["description_zh"], "")
 
 
 class WritePanelJsonTests(unittest.TestCase):

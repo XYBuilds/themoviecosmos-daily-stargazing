@@ -1,791 +1,911 @@
 <!doctype html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>每日星轨 · 审核面板</title>
-<style>
-  :root {
-    /* 编辑部深色主题：暗炭底 + 暖纸白文字 + 琥珀强调色，等宽字体点数据。 */
-    --bg: #14130f;
-    --bg-raised: #1b1a15;
-    --bg-card: #201f19;
-    --line: #37352a;
-    --line-soft: #2a2920;
-    --ink: #e8e3d4;
-    --ink-dim: #a8a291;
-    --ink-faint: #706a5a;
-    --accent: #c98a3c;
-    --accent-dim: #8a5f2c;
-    --link: #d9b26a;
-    --score-2-bg: #234d33;
-    --score-2-fg: #8fe3ac;
-    --score-2-border: #3a7a53;
-    --score-1-bg: #3a3826;
-    --score-1-fg: #cbc094;
-    --score-1-border: #56502f;
-    --score-0-bg: #262521;
-    --score-0-fg: #7a7566;
-    --score-0-border: #37352a;
-    --danger-bg: #3d2222;
-    --danger-fg: #f0a3a3;
-    --danger-border: #6b3232;
-    --ok-bg: #1f3a2a;
-    --ok-fg: #9fdcb3;
-    --ok-border: #3a6b4a;
-    --mono: "SF Mono", "Cascadia Mono", "Consolas", "Menlo", "Liberation Mono", monospace;
-    --sans: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>每日星轨 · 审核面板</title>
+  <style>
+    :root {
+      /* 编辑部深色主题：暗炭底 + 暖纸白文字 + 琥珀强调色，等宽字体点数据。 */
+      --bg: #14130f;
+      --bg-raised: #1b1a15;
+      --bg-card: #201f19;
+      --line: #37352a;
+      --line-soft: #2a2920;
+      --ink: #e8e3d4;
+      --ink-dim: #a8a291;
+      --ink-faint: #706a5a;
+      --accent: #c98a3c;
+      --accent-dim: #8a5f2c;
+      --link: #d9b26a;
+      --score-2-bg: #234d33;
+      --score-2-fg: #8fe3ac;
+      --score-2-border: #3a7a53;
+      --score-1-bg: #3a3826;
+      --score-1-fg: #cbc094;
+      --score-1-border: #56502f;
+      --score-0-bg: #262521;
+      --score-0-fg: #7a7566;
+      --score-0-border: #37352a;
+      --danger-bg: #3d2222;
+      --danger-fg: #f0a3a3;
+      --danger-border: #6b3232;
+      --ok-bg: #1f3a2a;
+      --ok-fg: #9fdcb3;
+      --ok-border: #3a6b4a;
+      --mono: "SF Mono", "Cascadia Mono", "Consolas", "Menlo", "Liberation Mono", monospace;
+      --sans: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    }
 
-  * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.5;
-  }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
-  #topbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 20px;
-    background: var(--bg-raised);
-    border-bottom: 1px solid var(--line);
-  }
+    #topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 20px;
+      background: var(--bg-raised);
+      border-bottom: 1px solid var(--line);
+    }
 
-  #topbar h1 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--ink);
-    white-space: nowrap;
-  }
+    #topbar h1 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      white-space: nowrap;
+    }
 
-  #topbar h1 .accent { color: var(--accent); }
+    #topbar h1 .accent {
+      color: var(--accent);
+    }
 
-  #date-select {
-    background: var(--bg-card);
-    color: var(--ink);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 6px 10px;
-    font-family: var(--mono);
-    font-size: 13px;
-  }
+    #date-select {
+      background: var(--bg-card);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
 
-  #selection-status {
-    flex: 1;
-    font-size: 13px;
-    color: var(--ink-dim);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+    #lang-toggle {
+      background: var(--bg-card);
+      color: var(--ink-dim);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
 
-  #selection-status .picked {
-    color: var(--accent);
-    font-weight: 600;
-  }
+    #lang-toggle:hover {
+      color: var(--ink);
+      border-color: var(--accent-dim);
+    }
 
-  #publish-btn {
-    background: var(--accent);
-    color: #1a1408;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 18px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.15s ease;
-  }
+    #selection-status {
+      flex: 1;
+      font-size: 13px;
+      color: var(--ink-dim);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
-  #publish-btn:hover:not(:disabled) { background: #dd9c4f; }
+    #selection-status .picked {
+      color: var(--accent);
+      font-weight: 600;
+    }
 
-  #publish-btn:disabled {
-    background: var(--bg-card);
-    color: var(--ink-faint);
-    cursor: not-allowed;
-    border: 1px solid var(--line);
-  }
+    #publish-btn {
+      background: var(--accent);
+      color: #1a1408;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s ease;
+    }
 
-  #error-banner {
-    display: none;
-    background: var(--danger-bg);
-    color: var(--danger-fg);
-    border-bottom: 1px solid var(--danger-border);
-    padding: 10px 20px;
-    font-size: 13px;
-  }
+    #publish-btn:hover:not(:disabled) {
+      background: #dd9c4f;
+    }
 
-  #error-banner.visible { display: block; }
+    #publish-btn:disabled {
+      background: var(--bg-card);
+      color: var(--ink-faint);
+      cursor: not-allowed;
+      border: 1px solid var(--line);
+    }
 
-  #publish-result {
-    display: none;
-    padding: 10px 20px;
-    font-size: 13px;
-    border-bottom: 1px solid var(--line);
-    font-family: var(--mono);
-  }
+    #error-banner {
+      display: none;
+      background: var(--danger-bg);
+      color: var(--danger-fg);
+      border-bottom: 1px solid var(--danger-border);
+      padding: 10px 20px;
+      font-size: 13px;
+    }
 
-  #publish-result.visible { display: block; }
+    #error-banner.visible {
+      display: block;
+    }
 
-  #publish-result.ok {
-    background: var(--ok-bg);
-    color: var(--ok-fg);
-    border-bottom-color: var(--ok-border);
-  }
+    #publish-result {
+      display: none;
+      padding: 10px 20px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--mono);
+    }
 
-  #publish-result.fail {
-    background: var(--danger-bg);
-    color: var(--danger-fg);
-    border-bottom-color: var(--danger-border);
-  }
+    #publish-result.visible {
+      display: block;
+    }
 
-  #main {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 20px 20px 80px;
-  }
+    #publish-result.ok {
+      background: var(--ok-bg);
+      color: var(--ok-fg);
+      border-bottom-color: var(--ok-border);
+    }
 
-  #empty-state, #loading-state {
-    text-align: center;
-    color: var(--ink-faint);
-    padding: 60px 20px;
-    font-size: 14px;
-  }
+    #publish-result.fail {
+      background: var(--danger-bg);
+      color: var(--danger-fg);
+      border-bottom-color: var(--danger-border);
+    }
 
-  .news-card {
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    margin-bottom: 18px;
-    overflow: hidden;
-  }
+    #main {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 20px 20px 80px;
+    }
 
-  .news-head {
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--line-soft);
-  }
+    #empty-state,
+    #loading-state {
+      text-align: center;
+      color: var(--ink-faint);
+      padding: 60px 20px;
+      font-size: 14px;
+    }
 
-  .news-head-top {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-  }
+    .news-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
 
-  .news-index {
-    font-family: var(--mono);
-    color: var(--accent);
-    font-weight: 700;
-    font-size: 13px;
-  }
+    .news-head {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line-soft);
+    }
 
-  .news-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--ink);
-    flex: 1;
-  }
+    .news-head-top {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
 
-  .news-meta {
-    margin-top: 4px;
-    font-size: 12px;
-    color: var(--ink-faint);
-    font-family: var(--mono);
-  }
+    .news-index {
+      font-family: var(--mono);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+    }
 
-  .news-meta a {
-    color: var(--link);
-    text-decoration: none;
-  }
+    .news-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      flex: 1;
+    }
 
-  .news-meta a:hover { text-decoration: underline; }
+    .news-meta {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--ink-faint);
+      font-family: var(--mono);
+    }
 
-  .news-desc {
-    margin-top: 8px;
-    color: var(--ink-dim);
-    font-size: 13px;
-    line-height: 1.55;
-  }
+    .news-meta a {
+      color: var(--link);
+      text-decoration: none;
+    }
 
-  .candidate-list {
-    padding: 4px 0;
-  }
+    .news-meta a:hover {
+      text-decoration: underline;
+    }
 
-  .candidate {
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--line-soft);
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
+    .news-desc {
+      margin-top: 8px;
+      color: var(--ink-dim);
+      font-size: 13px;
+      line-height: 1.55;
+    }
 
-  .candidate:last-child { border-bottom: none; }
+    .candidate-list {
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 12px;
+      align-items: start;
+    }
 
-  .candidate-select {
-    margin-top: 3px;
-    width: 15px;
-    height: 15px;
-    accent-color: var(--accent);
-    cursor: pointer;
-    flex-shrink: 0;
-  }
+    @media (max-width: 680px) {
+      .candidate-list {
+        grid-template-columns: 1fr;
+      }
+    }
 
-  .candidate-body { flex: 1; min-width: 0; }
+    .candidate {
+      padding: 14px 16px;
+      border: 1px solid var(--line-soft);
+      border-radius: 5px;
+      background: var(--bg-raised);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      min-width: 0;
+    }
 
-  .candidate-head {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+    .candidate-select {
+      margin-top: 3px;
+      width: 15px;
+      height: 15px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
 
-  .candidate-title {
-    font-weight: 700;
-    color: var(--ink);
-    font-size: 13.5px;
-  }
+    .candidate-body {
+      flex: 1;
+      min-width: 0;
+    }
 
-  .candidate-year {
-    color: var(--ink-faint);
-    font-family: var(--mono);
-    font-size: 12px;
-  }
+    .candidate-head {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
 
-  .candidate-lang {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--ink-faint);
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    padding: 1px 5px;
-    text-transform: uppercase;
-  }
+    .candidate-title-row {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
 
-  .candidate-genres {
-    color: var(--ink-faint);
-    font-size: 12px;
-  }
+    .candidate-title {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 13.5px;
+      line-height: 1.35;
+    }
 
-  .candidate-sim {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--ink-dim);
-    margin-left: auto;
-    flex-shrink: 0;
-  }
+    .candidate-year {
+      color: var(--ink-faint);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
 
-  .score-badge {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 1px 7px;
-    border-radius: 3px;
-    border: 1px solid;
-    letter-spacing: 0.02em;
-  }
+    .candidate-meta-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px 8px;
+    }
 
-  .score-2 { background: var(--score-2-bg); color: var(--score-2-fg); border-color: var(--score-2-border); }
-  .score-1 { background: var(--score-1-bg); color: var(--score-1-fg); border-color: var(--score-1-border); }
-  .score-0 { background: var(--score-0-bg); color: var(--score-0-fg); border-color: var(--score-0-border); }
+    .candidate-lang {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-faint);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 1px 5px;
+      text-transform: uppercase;
+    }
 
-  .agent-badge {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 10.5px;
-    color: var(--ink-dim);
-    background: var(--bg-raised);
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    padding: 1px 6px;
-    margin-right: 4px;
-    margin-top: 4px;
-  }
+    .candidate-genres {
+      color: var(--ink-faint);
+      font-size: 11.5px;
+      line-height: 1.4;
+    }
 
-  .candidate-agents { margin-top: 2px; }
+    .candidate-sim {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-dim);
+    }
 
-  .candidate-line {
-    margin-top: 6px;
-    font-size: 12.5px;
-    color: var(--ink-dim);
-    line-height: 1.5;
-  }
+    .score-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 3px;
+      border: 1px solid;
+      letter-spacing: 0.02em;
+    }
 
-  .candidate-line .label {
-    color: var(--ink-faint);
-    font-family: var(--mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    margin-right: 6px;
-  }
+    .score-2 {
+      background: var(--score-2-bg);
+      color: var(--score-2-fg);
+      border-color: var(--score-2-border);
+    }
 
-  .candidate-line.overview { color: var(--ink-dim); }
+    .score-1 {
+      background: var(--score-1-bg);
+      color: var(--score-1-fg);
+      border-color: var(--score-1-border);
+    }
 
-  .candidate-link {
-    font-size: 12px;
-    color: var(--link);
-    text-decoration: none;
-    font-family: var(--mono);
-  }
+    .score-0 {
+      background: var(--score-0-bg);
+      color: var(--score-0-fg);
+      border-color: var(--score-0-border);
+    }
 
-  .candidate-link:hover { text-decoration: underline; }
+    .agent-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-dim);
+      background: var(--bg-raised);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 1px 6px;
+      margin-right: 4px;
+      margin-top: 4px;
+    }
 
-  .picked-marker {
-    display: inline-block;
-    margin-left: 6px;
-    color: var(--accent);
-    font-size: 11px;
-    font-family: var(--mono);
-  }
+    .candidate-agents {
+      margin-top: 2px;
+    }
 
-  .candidate.is-selected {
-    background: rgba(201, 138, 60, 0.08);
-  }
+    .candidate-line {
+      margin-top: 6px;
+      font-size: 12.5px;
+      color: var(--ink-dim);
+      line-height: 1.5;
+      max-width: 100%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
 
-  footer {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 16px 20px 40px;
-    color: var(--ink-faint);
-    font-size: 11.5px;
-    font-family: var(--mono);
-    border-top: 1px solid var(--line);
-    margin-top: 20px;
-  }
+    .candidate-line .label {
+      color: var(--ink-faint);
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      margin-right: 6px;
+    }
 
-  .spinner {
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    border: 2px solid rgba(0,0,0,0.25);
-    border-top-color: #1a1408;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    vertical-align: -1px;
-    margin-right: 6px;
-  }
+    .candidate-line.overview {
+      color: var(--ink-dim);
+    }
 
-  @keyframes spin { to { transform: rotate(360deg); } }
-</style>
+    .candidate-link {
+      font-size: 12px;
+      color: var(--link);
+      text-decoration: none;
+      font-family: var(--mono);
+    }
+
+    .candidate-link:hover {
+      text-decoration: underline;
+    }
+
+    .picked-marker {
+      display: inline-block;
+      margin-left: 6px;
+      color: var(--accent);
+      font-size: 11px;
+      font-family: var(--mono);
+    }
+
+    .candidate.is-selected {
+      background: rgba(201, 138, 60, 0.08);
+    }
+
+    .candidate-empty {
+      padding: 16px 18px;
+      color: var(--ink-faint);
+      font-size: 12.5px;
+      font-style: italic;
+    }
+
+    footer {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 16px 20px 40px;
+      color: var(--ink-faint);
+      font-size: 11.5px;
+      font-family: var(--mono);
+      border-top: 1px solid var(--line);
+      margin-top: 20px;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border: 2px solid rgba(0, 0, 0, 0.25);
+      border-top-color: #1a1408;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: -1px;
+      margin-right: 6px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="topbar">
-  <h1><span class="accent">每日星轨</span> · 审核面板</h1>
-  <select id="date-select" aria-label="选择日期"></select>
-  <div id="selection-status">尚未选定候选</div>
-  <button id="publish-btn" disabled>写推文</button>
-</div>
+  <div id="topbar">
+    <h1><span class="accent">每日星轨</span> · 审核面板</h1>
+    <select id="date-select" aria-label="选择日期"></select>
+    <button id="lang-toggle" type="button" aria-label="切换语言">EN / 中</button>
+    <div id="selection-status">尚未选定候选</div>
+    <button id="publish-btn" disabled>写推文</button>
+  </div>
 
-<div id="error-banner"></div>
-<div id="publish-result"></div>
+  <div id="error-banner"></div>
+  <div id="publish-result"></div>
 
-<div id="main">
-  <div id="loading-state" style="display:none;">加载中…</div>
-  <div id="empty-state" style="display:none;">当天没有新闻数据。</div>
-  <div id="news-list"></div>
-</div>
+  <div id="main">
+    <div id="loading-state" style="display:none;">加载中…</div>
+    <div id="empty-state" style="display:none;">当天没有新闻数据。</div>
+    <div id="news-list"></div>
+  </div>
 
-<footer>本地面板 · 无鉴权 · 勿公网暴露</footer>
+  <footer>本地面板 · 无鉴权 · 勿公网暴露</footer>
 
-<script>
-(function () {
-  "use strict";
+  <script>
+    (function () {
+      "use strict";
 
-  var state = {
-    date: null,
-    panel: null,
-    selection: null, // {news_slug, tmdb_id, title}
-  };
+      var state = {
+        date: null,
+        panel: null,
+        selection: null, // {news_slug, tmdb_id, title}
+        lang: "en", // "en" | "zh"; pure front-end toggle, does not refetch data
+      };
 
-  var els = {
-    dateSelect: document.getElementById("date-select"),
-    selectionStatus: document.getElementById("selection-status"),
-    publishBtn: document.getElementById("publish-btn"),
-    errorBanner: document.getElementById("error-banner"),
-    publishResult: document.getElementById("publish-result"),
-    newsList: document.getElementById("news-list"),
-    loadingState: document.getElementById("loading-state"),
-    emptyState: document.getElementById("empty-state"),
-  };
+      var els = {
+        dateSelect: document.getElementById("date-select"),
+        langToggle: document.getElementById("lang-toggle"),
+        selectionStatus: document.getElementById("selection-status"),
+        publishBtn: document.getElementById("publish-btn"),
+        errorBanner: document.getElementById("error-banner"),
+        publishResult: document.getElementById("publish-result"),
+        newsList: document.getElementById("news-list"),
+        loadingState: document.getElementById("loading-state"),
+        emptyState: document.getElementById("empty-state"),
+      };
 
-  // ---------------------------------------------------------------------
-  // 工具函数
-  // ---------------------------------------------------------------------
+      // ---------------------------------------------------------------------
+      // 工具函数
+      // ---------------------------------------------------------------------
 
-  function escapeHtml(value) {
-    var s = value === null || value === undefined ? "" : String(value);
-    return s
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  }
+      function escapeHtml(value) {
+        var s = value === null || value === undefined ? "" : String(value);
+        return s
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
 
-  // 把可能为 null/undefined/空字符串的字段统一变成空串，避免渲染出 "null"/"undefined"。
-  function safeText(value) {
-    if (value === null || value === undefined) return "";
-    var s = String(value);
-    if (s === "null" || s === "undefined") return "";
-    return s;
-  }
+      // 把可能为 null/undefined/空字符串的字段统一变成空串，避免渲染出 "null"/"undefined"。
+      function safeText(value) {
+        if (value === null || value === undefined) return "";
+        var s = String(value);
+        if (s === "null" || s === "undefined") return "";
+        return s;
+      }
 
-  function hasText(value) {
-    return safeText(value).trim().length > 0;
-  }
+      function hasText(value) {
+        return safeText(value).trim().length > 0;
+      }
 
-  function formatPubTime(iso) {
-    if (!hasText(iso)) return "";
-    var d = new Date(iso);
-    if (isNaN(d.getTime())) return safeText(iso);
-    var pad = function (n) { return n < 10 ? "0" + n : String(n); };
-    return (
-      d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) +
-      " " + pad(d.getHours()) + ":" + pad(d.getMinutes())
-    );
-  }
+      // 按当前语言选文本；ZH 缺失时回退到 EN（纯前端状态切换，不重新请求数据）。
+      function textFor(enValue, zhValue) {
+        if (state.lang === "zh" && hasText(zhValue)) return zhValue;
+        return enValue;
+      }
 
-  function formatSimilarity(value) {
-    if (value === null || value === undefined || isNaN(value)) return "—";
-    return (Number(value) * 100).toFixed(1) + "%";
-  }
+      function formatPubTime(iso) {
+        if (!hasText(iso)) return "";
+        var d = new Date(iso);
+        if (isNaN(d.getTime())) return safeText(iso);
+        var pad = function (n) { return n < 10 ? "0" + n : String(n); };
+        return (
+          d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) +
+          " " + pad(d.getHours()) + ":" + pad(d.getMinutes())
+        );
+      }
 
-  function scoreClass(score) {
-    if (score === 2) return "score-2";
-    if (score === 1) return "score-1";
-    return "score-0";
-  }
+      function formatSimilarity(value) {
+        if (value === null || value === undefined || isNaN(value)) return "—";
+        return (Number(value) * 100).toFixed(1) + "%";
+      }
 
-  function scoreLabel(score) {
-    if (score === 2) return "JUDGE 2 · 强共振";
-    if (score === 1) return "JUDGE 1 · 弱共振";
-    if (score === 0) return "JUDGE 0";
-    return "JUDGE —";
-  }
+      function scoreClass(score) {
+        if (score === 2) return "score-2";
+        if (score === 1) return "score-1";
+        return "score-0";
+      }
 
-  function showError(message) {
-    els.errorBanner.textContent = "⚠ " + message;
-    els.errorBanner.classList.add("visible");
-  }
+      function scoreLabel(score) {
+        if (score === 2) return "JUDGE 2 · 强共振";
+        if (score === 1) return "JUDGE 1 · 弱共振";
+        if (score === 0) return "JUDGE 0";
+        return "JUDGE —";
+      }
 
-  function clearError() {
-    els.errorBanner.classList.remove("visible");
-    els.errorBanner.textContent = "";
-  }
+      function showError(message) {
+        els.errorBanner.textContent = "⚠ " + message;
+        els.errorBanner.classList.add("visible");
+      }
 
-  // ---------------------------------------------------------------------
-  // API 调用（严格对接契约字段名）
-  // ---------------------------------------------------------------------
+      function clearError() {
+        els.errorBanner.classList.remove("visible");
+        els.errorBanner.textContent = "";
+      }
 
-  function apiGet(url) {
-    return fetch(url).then(function (res) {
-      return res.json().catch(function () {
-        throw new Error("响应不是合法 JSON（HTTP " + res.status + "）");
-      }).then(function (body) {
-        if (!res.ok) {
-          var msg = (body && body.error) ? body.error : ("HTTP " + res.status);
-          var err = new Error(msg);
-          err.status = res.status;
-          err.body = body;
-          throw err;
+      // ---------------------------------------------------------------------
+      // API 调用（严格对接契约字段名）
+      // ---------------------------------------------------------------------
+
+      function apiGet(url) {
+        return fetch(url).then(function (res) {
+          return res.json().catch(function () {
+            throw new Error("响应不是合法 JSON（HTTP " + res.status + "）");
+          }).then(function (body) {
+            if (!res.ok) {
+              var msg = (body && body.error) ? body.error : ("HTTP " + res.status);
+              var err = new Error(msg);
+              err.status = res.status;
+              err.body = body;
+              throw err;
+            }
+            return body;
+          });
+        });
+      }
+
+      function apiPost(url, payload) {
+        return fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }).then(function (res) {
+          return res.json().catch(function () {
+            throw new Error("响应不是合法 JSON（HTTP " + res.status + "）");
+          }).then(function (body) {
+            // 契约里 400/500 也返回结构化 JSON（ok:false + error/stderr），
+            // 由调用方按业务语义处理，这里只在完全解析不出 JSON 时才当传输层错误抛出。
+            return { status: res.status, ok: res.ok, body: body };
+          });
+        });
+      }
+
+      // ---------------------------------------------------------------------
+      // 渲染
+      // ---------------------------------------------------------------------
+
+      function renderDateOptions(dates) {
+        els.dateSelect.innerHTML = "";
+        dates.forEach(function (d) {
+          var opt = document.createElement("option");
+          opt.value = d;
+          opt.textContent = d;
+          els.dateSelect.appendChild(opt);
+        });
+      }
+
+      function renderAgentBadges(agents) {
+        if (!agents || !agents.length) return "";
+        return agents.map(function (a) {
+          return '<span class="agent-badge">' + escapeHtml(a) + "</span>";
+        }).join("");
+      }
+
+      function renderCandidateLine(label, value, extraClass) {
+        if (!hasText(value)) return "";
+        return (
+          '<div class="candidate-line' + (extraClass ? " " + extraClass : "") + '">' +
+          '<span class="label">' + escapeHtml(label) + '</span>' +
+          escapeHtml(safeText(value)) +
+          "</div>"
+        );
+      }
+
+      function candidateRadioName() {
+        // 全天所有候选共享同一个 radio group（name 固定不随新闻/日期变化），
+        // 由浏览器原生 radio 语义保证"全天唯一单选"：勾选任意一个会自动取消其它所有。
+        return "daily-pick";
+      }
+
+      function renderCandidate(newsSlug, cand) {
+        var tmdbId = cand.tmdb_id;
+        var isSelected = !!(
+          state.selection &&
+          state.selection.news_slug === newsSlug &&
+          String(state.selection.tmdb_id) === String(tmdbId)
+        );
+        var score = (cand.judge_score === 0 || cand.judge_score === 1 || cand.judge_score === 2)
+          ? cand.judge_score
+          : null;
+
+        var radioId = "cand-" + newsSlug + "-" + tmdbId;
+
+        var head =
+          '<div class="candidate-head">' +
+          '<div class="candidate-title-row">' +
+          '<span class="candidate-title">' + escapeHtml(safeText(cand.title)) + '</span>' +
+          (cand.release_year ? '<span class="candidate-year">' + escapeHtml(cand.release_year) + '</span>' : "") +
+          (isSelected ? '<span class="picked-marker">★ 已选</span>' : "") +
+          "</div>" +
+          '<div class="candidate-meta-row">' +
+          '<span class="score-badge ' + scoreClass(score) + '">' + scoreLabel(score) + '</span>' +
+          (hasText(cand.language) ? '<span class="candidate-lang">' + escapeHtml(cand.language) + '</span>' : "") +
+          '<span class="candidate-sim">sim ' + formatSimilarity(cand.similarity) + '</span>' +
+          "</div>" +
+          (hasText(cand.genres) ? '<div class="candidate-genres">' + escapeHtml(cand.genres) + '</div>' : "") +
+          "</div>";
+
+        var agents = renderAgentBadges(cand.resonance_agents);
+
+        var body =
+          head +
+          (agents ? '<div class="candidate-agents">' + agents + '</div>' : "") +
+          renderCandidateLine("类型", cand.judge_resonance_type) +
+          renderCandidateLine("Overview", textFor(cand.overview, cand.overview_zh), "overview") +
+          renderCandidateLine("Rationale", textFor(cand.judge_rationale, cand.judge_rationale_zh)) +
+          (hasText(cand.movie_url)
+            ? '<div class="candidate-line"><a class="candidate-link" href="' +
+            escapeHtml(cand.movie_url) + '" target="_blank" rel="noopener noreferrer">movie_url ↗</a></div>'
+            : "");
+
+        return (
+          '<div class="candidate' + (isSelected ? " is-selected" : "") + '" ' +
+          'data-news-slug="' + escapeHtml(newsSlug) + '" data-tmdb-id="' + escapeHtml(tmdbId) + '">' +
+          '<input type="radio" class="candidate-select" name="' + candidateRadioName() + '" ' +
+          'id="' + escapeHtml(radioId) + '" ' + (isSelected ? "checked" : "") + ' ' +
+          'data-news-slug="' + escapeHtml(newsSlug) + '" data-tmdb-id="' + escapeHtml(tmdbId) + '" ' +
+          'data-title="' + escapeHtml(cand.title) + '" />' +
+          '<label class="candidate-body" for="' + escapeHtml(radioId) + '">' + body + '</label>' +
+          "</div>"
+        );
+      }
+
+      function renderNewsCard(item) {
+        var news = item.news || {};
+        var metaParts = [];
+        if (hasText(news.source_name)) metaParts.push(escapeHtml(news.source_name));
+        var pub = formatPubTime(news.pub_time);
+        if (pub) metaParts.push(escapeHtml(pub));
+        var metaLine = metaParts.join(" · ");
+        if (hasText(news.url)) {
+          metaLine += (metaLine ? " · " : "") +
+            '<a href="' + escapeHtml(news.url) + '" target="_blank" rel="noopener noreferrer">原文 ↗</a>';
         }
-        return body;
-      });
-    });
-  }
 
-  function apiPost(url, payload) {
-    return fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    }).then(function (res) {
-      return res.json().catch(function () {
-        throw new Error("响应不是合法 JSON（HTTP " + res.status + "）");
-      }).then(function (body) {
-        // 契约里 400/500 也返回结构化 JSON（ok:false + error/stderr），
-        // 由调用方按业务语义处理，这里只在完全解析不出 JSON 时才当传输层错误抛出。
-        return { status: res.status, ok: res.ok, body: body };
-      });
-    });
-  }
+        var candidatesHtml = (item.candidates || [])
+          .map(function (c) { return renderCandidate(item.slug, c); })
+          .join("");
 
-  // ---------------------------------------------------------------------
-  // 渲染
-  // ---------------------------------------------------------------------
+        if (!candidatesHtml) {
+          candidatesHtml = '<div class="candidate-empty">' +
+            escapeHtml(textFor(
+              "No resonant candidates \u00b7 all scored 0 by judge",
+              "无共振候选 \u00b7 全部候选被 judge 判为 0 分"
+            )) + '</div>';
+        }
 
-  function renderDateOptions(dates) {
-    els.dateSelect.innerHTML = "";
-    dates.forEach(function (d) {
-      var opt = document.createElement("option");
-      opt.value = d;
-      opt.textContent = d;
-      els.dateSelect.appendChild(opt);
-    });
-  }
-
-  function renderAgentBadges(agents) {
-    if (!agents || !agents.length) return "";
-    return agents.map(function (a) {
-      return '<span class="agent-badge">' + escapeHtml(a) + "</span>";
-    }).join("");
-  }
-
-  function renderCandidateLine(label, value, extraClass) {
-    if (!hasText(value)) return "";
-    return (
-      '<div class="candidate-line' + (extraClass ? " " + extraClass : "") + '">' +
-      '<span class="label">' + escapeHtml(label) + '</span>' +
-      escapeHtml(safeText(value)) +
-      "</div>"
-    );
-  }
-
-  function candidateRadioName() {
-    // 全天所有候选共享同一个 radio group（name 固定不随新闻/日期变化），
-    // 由浏览器原生 radio 语义保证"全天唯一单选"：勾选任意一个会自动取消其它所有。
-    return "daily-pick";
-  }
-
-  function renderCandidate(newsSlug, cand) {
-    var tmdbId = cand.tmdb_id;
-    var isSelected = !!(
-      state.selection &&
-      state.selection.news_slug === newsSlug &&
-      String(state.selection.tmdb_id) === String(tmdbId)
-    );
-    var score = (cand.judge_score === 0 || cand.judge_score === 1 || cand.judge_score === 2)
-      ? cand.judge_score
-      : null;
-
-    var radioId = "cand-" + newsSlug + "-" + tmdbId;
-
-    var head =
-      '<div class="candidate-head">' +
-      '<span class="candidate-title">《' + escapeHtml(safeText(cand.title)) + '》</span>' +
-      (cand.release_year ? '<span class="candidate-year">' + escapeHtml(cand.release_year) + '</span>' : "") +
-      (hasText(cand.language) ? '<span class="candidate-lang">' + escapeHtml(cand.language) + '</span>' : "") +
-      (hasText(cand.genres) ? '<span class="candidate-genres">' + escapeHtml(cand.genres) + '</span>' : "") +
-      '<span class="score-badge ' + scoreClass(score) + '">' + scoreLabel(score) + '</span>' +
-      '<span class="candidate-sim">sim ' + formatSimilarity(cand.similarity) + '</span>' +
-      (isSelected ? '<span class="picked-marker">★ 已选</span>' : "") +
-      "</div>";
-
-    var agents = renderAgentBadges(cand.resonance_agents);
-
-    var body =
-      head +
-      (agents ? '<div class="candidate-agents">' + agents + '</div>' : "") +
-      renderCandidateLine("类型", cand.judge_resonance_type) +
-      renderCandidateLine("Rationale", cand.judge_rationale) +
-      renderCandidateLine("Causal test", cand.causal_test) +
-      renderCandidateLine("Overview", cand.overview, "overview") +
-      (hasText(cand.movie_url)
-        ? '<div class="candidate-line"><a class="candidate-link" href="' +
-          escapeHtml(cand.movie_url) + '" target="_blank" rel="noopener noreferrer">movie_url ↗</a></div>'
-        : "");
-
-    return (
-      '<div class="candidate' + (isSelected ? " is-selected" : "") + '" ' +
-      'data-news-slug="' + escapeHtml(newsSlug) + '" data-tmdb-id="' + escapeHtml(tmdbId) + '">' +
-      '<input type="radio" class="candidate-select" name="' + candidateRadioName() + '" ' +
-      'id="' + escapeHtml(radioId) + '" ' + (isSelected ? "checked" : "") + ' ' +
-      'data-news-slug="' + escapeHtml(newsSlug) + '" data-tmdb-id="' + escapeHtml(tmdbId) + '" ' +
-      'data-title="' + escapeHtml(cand.title) + '" />' +
-      '<label class="candidate-body" for="' + escapeHtml(radioId) + '">' + body + '</label>' +
-      "</div>"
-    );
-  }
-
-  function renderNewsCard(item) {
-    var news = item.news || {};
-    var metaParts = [];
-    if (hasText(news.source_name)) metaParts.push(escapeHtml(news.source_name));
-    var pub = formatPubTime(news.pub_time);
-    if (pub) metaParts.push(escapeHtml(pub));
-    var metaLine = metaParts.join(" · ");
-    if (hasText(news.url)) {
-      metaLine += (metaLine ? " · " : "") +
-        '<a href="' + escapeHtml(news.url) + '" target="_blank" rel="noopener noreferrer">原文 ↗</a>';
-    }
-
-    var candidatesHtml = (item.candidates || [])
-      .map(function (c) { return renderCandidate(item.slug, c); })
-      .join("");
-
-    if (!candidatesHtml) {
-      candidatesHtml = '<div class="candidate-line" style="padding:12px 18px;">（无候选电影）</div>';
-    }
-
-    return (
-      '<div class="news-card">' +
-      '<div class="news-head">' +
-      '<div class="news-head-top">' +
-      '<span class="news-index">#' + escapeHtml(item.index) + '</span>' +
-      '<span class="news-title">' + escapeHtml(safeText(news.title)) + '</span>' +
-      "</div>" +
-      (metaLine ? '<div class="news-meta">' + metaLine + '</div>' : "") +
-      (hasText(news.description) ? '<div class="news-desc">' + escapeHtml(news.description) + '</div>' : "") +
-      "</div>" +
-      '<div class="candidate-list">' + candidatesHtml + "</div>" +
-      "</div>"
-    );
-  }
-
-  function renderPanel(panel) {
-    state.panel = panel;
-    var items = panel.news_items || [];
-    if (!items.length) {
-      els.newsList.innerHTML = "";
-      els.emptyState.style.display = "block";
-      return;
-    }
-    els.emptyState.style.display = "none";
-    els.newsList.innerHTML = items.map(renderNewsCard).join("");
-  }
-
-  function renderSelectionStatus() {
-    if (state.selection && state.selection.title) {
-      els.selectionStatus.innerHTML = '已选：<span class="picked">《' +
-        escapeHtml(state.selection.title) + '》</span>';
-      els.publishBtn.disabled = false;
-    } else {
-      els.selectionStatus.textContent = "尚未选定候选";
-      els.publishBtn.disabled = true;
-    }
-  }
-
-  // ---------------------------------------------------------------------
-  // 数据加载与交互
-  // ---------------------------------------------------------------------
-
-  function loadDates() {
-    return apiGet("/api/dates").then(function (body) {
-      var dates = body.dates || [];
-      renderDateOptions(dates);
-      if (dates.length) {
-        state.date = dates[0];
-        els.dateSelect.value = state.date;
-        return loadDate(state.date);
+        return (
+          '<div class="news-card">' +
+          '<div class="news-head">' +
+          '<div class="news-head-top">' +
+          '<span class="news-index">#' + escapeHtml(item.index) + '</span>' +
+          '<span class="news-title">' + escapeHtml(safeText(textFor(news.title, news.title_zh))) + '</span>' +
+          "</div>" +
+          (metaLine ? '<div class="news-meta">' + metaLine + '</div>' : "") +
+          (hasText(textFor(news.description, news.description_zh))
+            ? '<div class="news-desc">' + escapeHtml(textFor(news.description, news.description_zh)) + '</div>'
+            : "") +
+          "</div>" +
+          '<div class="candidate-list">' + candidatesHtml + "</div>" +
+          "</div>"
+        );
       }
-      els.emptyState.style.display = "block";
-      els.emptyState.textContent = "没有可用的日批数据。";
-    }).catch(function (err) {
-      showError("加载日期列表失败：" + err.message);
-    });
-  }
 
-  function loadDate(date) {
-    clearError();
-    els.publishResult.classList.remove("visible", "ok", "fail");
-    state.date = date;
-    state.selection = null;
-    renderSelectionStatus();
-    els.loadingState.style.display = "block";
-    els.newsList.innerHTML = "";
-    els.emptyState.style.display = "none";
-
-    return apiGet("/api/data?date=" + encodeURIComponent(date))
-      .then(function (panel) {
-        renderPanel(panel);
-      })
-      .catch(function (err) {
-        var msg = (err.status === 404)
-          ? "该日期无数据：" + (err.body && err.body.error ? err.body.error : err.message)
-          : "加载数据失败：" + err.message;
-        showError(msg);
-      })
-      .then(function () {
-        els.loadingState.style.display = "none";
-      });
-  }
-
-  function onSelectCandidate(newsSlug, tmdbId, title) {
-    clearError();
-    return apiPost("/api/select", {
-      date: state.date,
-      news_slug: newsSlug,
-      tmdb_id: tmdbId,
-      title: title,
-    }).then(function (res) {
-      if (!res.ok) {
-        var msg = (res.body && res.body.error) ? res.body.error : ("HTTP " + res.status);
-        showError("选择失败：" + msg);
-        return;
+      function renderPanel(panel) {
+        state.panel = panel;
+        var items = panel.news_items || [];
+        if (!items.length) {
+          els.newsList.innerHTML = "";
+          els.emptyState.style.display = "block";
+          return;
+        }
+        els.emptyState.style.display = "none";
+        els.newsList.innerHTML = items.map(renderNewsCard).join("");
       }
-      state.selection = { news_slug: newsSlug, tmdb_id: tmdbId, title: title };
-      renderSelectionStatus();
-      // 重渲染以更新每张卡上的"★ 已选"标记与高亮态。
-      if (state.panel) renderPanel(state.panel);
-    }).catch(function (err) {
-      showError("选择请求失败（网络错误）：" + err.message);
-    });
-  }
 
-  function onPublish() {
-    if (!state.selection) return;
-    clearError();
-    els.publishResult.classList.remove("visible", "ok", "fail");
-    els.publishBtn.disabled = true;
-    els.publishBtn.innerHTML = '<span class="spinner"></span>写推文中…';
-
-    apiPost("/api/publish", { date: state.date })
-      .then(function (res) {
-        if (res.ok && res.body && res.body.ok) {
-          els.publishResult.className = "visible ok";
-          els.publishResult.textContent = "✓ 定稿成功 → " + res.body.copy_path;
+      function renderSelectionStatus() {
+        if (state.selection && state.selection.title) {
+          els.selectionStatus.innerHTML = '已选：<span class="picked">' +
+            escapeHtml(state.selection.title) + '</span>';
+          els.publishBtn.disabled = false;
         } else {
-          var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
-          els.publishResult.className = "visible fail";
-          els.publishResult.textContent = "✗ 定稿失败：" + stderr;
+          els.selectionStatus.textContent = "尚未选定候选";
+          els.publishBtn.disabled = true;
         }
-      })
-      .catch(function (err) {
-        els.publishResult.className = "visible fail";
-        els.publishResult.textContent = "✗ 请求失败（网络错误）：" + err.message;
-      })
-      .then(function () {
-        els.publishBtn.innerHTML = "写推文";
-        els.publishBtn.disabled = !state.selection;
+      }
+
+      // ---------------------------------------------------------------------
+      // 数据加载与交互
+      // ---------------------------------------------------------------------
+
+      function loadDates() {
+        return apiGet("/api/dates").then(function (body) {
+          var dates = body.dates || [];
+          renderDateOptions(dates);
+          if (dates.length) {
+            state.date = dates[0];
+            els.dateSelect.value = state.date;
+            return loadDate(state.date);
+          }
+          els.emptyState.style.display = "block";
+          els.emptyState.textContent = "没有可用的日批数据。";
+        }).catch(function (err) {
+          showError("加载日期列表失败：" + err.message);
+        });
+      }
+
+      function loadDate(date) {
+        clearError();
+        els.publishResult.classList.remove("visible", "ok", "fail");
+        state.date = date;
+        state.selection = null;
+        renderSelectionStatus();
+        els.loadingState.style.display = "block";
+        els.newsList.innerHTML = "";
+        els.emptyState.style.display = "none";
+
+        return apiGet("/api/data?date=" + encodeURIComponent(date))
+          .then(function (panel) {
+            renderPanel(panel);
+          })
+          .catch(function (err) {
+            var msg = (err.status === 404)
+              ? "该日期无数据：" + (err.body && err.body.error ? err.body.error : err.message)
+              : "加载数据失败：" + err.message;
+            showError(msg);
+          })
+          .then(function () {
+            els.loadingState.style.display = "none";
+          });
+      }
+
+      function onSelectCandidate(newsSlug, tmdbId, title) {
+        clearError();
+        return apiPost("/api/select", {
+          date: state.date,
+          news_slug: newsSlug,
+          tmdb_id: tmdbId,
+          title: title,
+        }).then(function (res) {
+          if (!res.ok) {
+            var msg = (res.body && res.body.error) ? res.body.error : ("HTTP " + res.status);
+            showError("选择失败：" + msg);
+            return;
+          }
+          state.selection = { news_slug: newsSlug, tmdb_id: tmdbId, title: title };
+          renderSelectionStatus();
+          // 重渲染以更新每张卡上的"★ 已选"标记与高亮态。
+          if (state.panel) renderPanel(state.panel);
+        }).catch(function (err) {
+          showError("选择请求失败（网络错误）：" + err.message);
+        });
+      }
+
+      function onPublish() {
+        if (!state.selection) return;
+        clearError();
+        els.publishResult.classList.remove("visible", "ok", "fail");
+        els.publishBtn.disabled = true;
+        els.publishBtn.innerHTML = '<span class="spinner"></span>写推文中…';
+
+        apiPost("/api/publish", { date: state.date })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.ok) {
+              els.publishResult.className = "visible ok";
+              els.publishResult.textContent = "✓ 定稿成功 → " + res.body.copy_path;
+            } else {
+              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              els.publishResult.className = "visible fail";
+              els.publishResult.textContent = "✗ 定稿失败：" + stderr;
+            }
+          })
+          .catch(function (err) {
+            els.publishResult.className = "visible fail";
+            els.publishResult.textContent = "✗ 请求失败（网络错误）：" + err.message;
+          })
+          .then(function () {
+            els.publishBtn.innerHTML = "写推文";
+            els.publishBtn.disabled = !state.selection;
+          });
+      }
+
+      // ---------------------------------------------------------------------
+      // 事件绑定
+      // ---------------------------------------------------------------------
+
+      els.dateSelect.addEventListener("change", function () {
+        loadDate(els.dateSelect.value);
       });
-  }
 
-  // ---------------------------------------------------------------------
-  // 事件绑定
-  // ---------------------------------------------------------------------
+      els.publishBtn.addEventListener("click", onPublish);
 
-  els.dateSelect.addEventListener("change", function () {
-    loadDate(els.dateSelect.value);
-  });
+      // 纯前端语言切换：不重新请求 /api/data，只重渲染已加载的 panel。
+      els.langToggle.addEventListener("click", function () {
+        state.lang = state.lang === "en" ? "zh" : "en";
+        els.langToggle.textContent = state.lang === "zh" ? "中 / EN" : "EN / 中";
+        if (state.panel) renderPanel(state.panel);
+      });
 
-  els.publishBtn.addEventListener("click", onPublish);
+      // 事件委托：候选 radio 的 change 统一在 #news-list 上捕获，
+      // 避免每次 renderPanel 重建 DOM 后要重新逐个绑定监听器。
+      els.newsList.addEventListener("change", function (evt) {
+        var target = evt.target;
+        if (!target.classList || !target.classList.contains("candidate-select")) return;
+        var newsSlug = target.getAttribute("data-news-slug");
+        var tmdbId = target.getAttribute("data-tmdb-id");
+        var title = target.getAttribute("data-title");
+        onSelectCandidate(newsSlug, tmdbId, title);
+      });
 
-  // 事件委托：候选 radio 的 change 统一在 #news-list 上捕获，
-  // 避免每次 renderPanel 重建 DOM 后要重新逐个绑定监听器。
-  els.newsList.addEventListener("change", function (evt) {
-    var target = evt.target;
-    if (!target.classList || !target.classList.contains("candidate-select")) return;
-    var newsSlug = target.getAttribute("data-news-slug");
-    var tmdbId = target.getAttribute("data-tmdb-id");
-    var title = target.getAttribute("data-title");
-    onSelectCandidate(newsSlug, tmdbId, title);
-  });
-
-  loadDates();
-})();
-</script>
+      loadDates();
+    })();
+  </script>
 
 </body>
+
 </html>

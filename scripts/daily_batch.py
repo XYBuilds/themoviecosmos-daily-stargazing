@@ -699,6 +699,10 @@ def _render_daily_batch_briefing(
         if lines:
             lines.append("")
         title = str(news_dict.get("title") or "").strip()
+        if zh and title:
+            title = _translate_texts_to_zh_safe(
+                [title], kind="news_title", date_dir=date_dir
+            ).get(title, title)
         if labels["news_title"]:
             lines.append(f"{labels['news_title']}: {title}")
         else:

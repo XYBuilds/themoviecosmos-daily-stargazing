@@ -129,7 +129,7 @@ def render_copy_markdown(
     body = str(draft.get("body") or "").strip()
 
     lines = [
-        f"# 发布定稿 · {date} · 《{title}》({year_str})",
+        f"# 发布定稿 · {date} · {title}({year_str})",
         "",
         "## 中文发布正文",
         "",

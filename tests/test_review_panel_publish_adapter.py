@@ -175,7 +175,8 @@ class RunAdapterTests(unittest.TestCase):
             self.assertIn("这是中文正文。", content)
             self.assertIn("https://themoviecosmos.com/movie/429918", content)
             self.assertIn("https://example.com/article/1", content)
-            self.assertIn("《Survival Family》(2017)", content)
+            self.assertIn("Survival Family(2017)", content)
+            self.assertNotIn("《Survival Family》", content)
 
     def test_judge_entry_passed_into_run_publish(self) -> None:
         with TemporaryDirectory() as tmp:

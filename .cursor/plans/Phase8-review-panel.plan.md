@@ -21,6 +21,9 @@ todos:
   - id: p8.5-integration-smoke
     content: 8.5 · 集成冒烟测试 [需人工验收]
     status: todo
+  - id: p8.6-i18n-ux
+    content: 8.6 · Review Panel i18n + UX 增强（EN/ZH 切换·滤 judge=0·降序·卡片自适应·去 causal_test·去书名号）[需人工验收]
+    status: complete
 isProject: true
 ---
 
@@ -327,3 +330,33 @@ python review_panel/serve.py --port 8770
 | `scripts/lib/render_briefing.py`                                        | Phase6 渲染模块参考，本 Phase 前端不复用其渲染逻辑，仅参考字段口径 |
 | `output/daily_batch/{date}/` 产物契约                                    | Phase7 定义的日批目录结构（news.json/retrieve.json/llm-judge-scores.json） |
 | ADR-0009                                                                | candidate 字段口径（tmdb_id/title/release_year/overview/genres/language/similarity/movie_url 等） |
+
+---
+
+## Todo 8.6 · Review Panel i18n + UX 增强 [需人工验收]
+
+**依赖**：8.1-8.4（本 TODO 在 8.4 合并入 main 后，从最新 `main` 检出 `feat/phase8.6-review-panel-i18n-ux`；与 8.5 集成冒烟并行，不互相阻塞）
+
+**背景**：8.1-8.4 面板跑通后，人工验收阶段用户提出一批展示/交互增强诉求，收敛为 8.6。
+
+**需求与处置**：
+
+1. **中英文切换 + 翻译**（方案 A：复用 daily_batch 已有翻译机制，`build_data` 保持纯聚合无 LLM 副作用）
+   - `daily_batch.py` 渲染 zh briefing 时补 `kind="news_title"` 翻译，写入既有 `briefing.zh.translations.json` 缓存（新增 news_title 分组，不破坏 overview/rationale/news_body）。
+   - `build_data.py` 读该缓存 join 出 `news.title_zh`/`news.description_zh`/`candidate.overview_zh`/`candidate.judge_rationale_zh`；缓存缺失容错为空，不抛异常、无 LLM 调用。
+   - `index.html` 顶部 `#lang-toggle`，纯前端 `textFor(en, zh)` 切换，zh 缺失回退 en，不重新请求。
+2. **过滤 judge_score=0 候选**：`build_data.py` 生成 panel.json 时口径与 daily_batch briefing 一致（`judge_score not in (None, 0)` 才保留）。
+3. **候选按 judge_score 降序**：同分用原 retrieve 序做稳定次级 key。
+4. **卡片自适应布局**：`.candidate-list` 用 CSS grid `repeat(auto-fill, minmax(480px, 1fr))`，宽屏多列铺开、窄屏（≤680px）回落单列；`#main`/`footer` max-width 980→1600px 解决宽屏两侧留白；`.candidate-head` 拆成标题行/元信息行/genres 行三段垂直结构，消除头部换行错位。
+5. **移除 causal_test 展示**：panel.json 不再输出 `causal_test`（judge 内部审计工件，多为空串）；前端同步移除。
+6. **候选电影标题去书名号《》**：`index.html` 与 `publish_adapter.py` md 定稿标题均去掉《》（`compose.py` 的 C1 解析/渲染格式不动，属另一条管线契约）。
+
+**空态处理**（8.6 期间发现）：某条 news 候选被 judge=0 全部过滤后为空数组时（如 #4 nigel-farage 全 19 条 0 分），前端显示低调空态占位「无共振候选 · 全部候选被 judge 判为 0 分」（跟随 EN/ZH），不隐藏整条 news。
+
+**candidate 字段顺序**：overview 先于 rationale。
+
+**测试**：`tests/test_review_panel_build_data.py` + `tests/test_review_panel_publish_adapter.py` 全绿（39 passed，含翻译 join / judge=0 过滤 / 降序 / 同分稳定序 / causal_test 移除 / 缓存缺失容错的新增覆盖）；`tests/test_daily_batch.py` 19 passed 无 regression。前端 `node --check` 内嵌 JS 语法通过。
+
+**技术债**：`news.json` 当前只有 `description` 字段，`description_zh` 按 description 做翻译缓存 key 安全；若未来 news.json 增加 excerpt/body 字段，daily_batch 翻译源会变，build_data 查表 key 需同步调整（已在代码注释标注）。
+
+**人工验收阻断说明**：标注 `[需人工验收]`；前端视觉效果经人工浏览器验收通过后方可标 complete、写 report、merge。
