@@ -15,7 +15,7 @@ todos:
     status: complete
   - id: p9.2-projection-country
     content: 9.2 · [基建] compose.py _DB_PROJECTION_FIELDS 增 production_countries（通路 B 加列穿透；C1/C2 共用，决策卡多一列无害）
-    status: pending
+    status: complete
   - id: p9.3-xhs-prompt
     content: 9.3 · [prompt] 新建 prompts/compose_publish_xiaohongshu.md：必含元素清单替代规定结构 + 归属行 D3 + headline D4 + 关系侧 D5 + 来源纪律 D6；改造正/反例避免模板固化；沿用 ADR-0013 调性
     status: pending
