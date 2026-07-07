@@ -46,11 +46,33 @@ def _write_retrieve(news_dir: Path, tmdb_id: int = 429918) -> None:
     (news_dir / "retrieve.json").write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
 
 
+def _write_judge_scores(news_dir: Path, tmdb_id: int = 429918) -> None:
+    payload = {
+        "version": "1",
+        "calibration": {},
+        "scores": [
+            {
+                "tmdb_id": str(tmdb_id),
+                "judge_score": 3,
+                "judge_resonance_type": "深层共振",
+                "rationale": "rationale text",
+                "causal_test": "causal test text",
+            }
+        ],
+    }
+    (news_dir / "llm-judge-scores.json").write_text(
+        json.dumps(payload, ensure_ascii=False), encoding="utf-8"
+    )
+
+
 def _make_batch(tmp_path: Path, date: str, slug: str, tmdb_id: int = 429918) -> None:
     news_dir = tmp_path / date / slug
     news_dir.mkdir(parents=True)
     _write_news(news_dir)
     _write_retrieve(news_dir, tmdb_id=tmdb_id)
+    # build_data 会过滤掉无 judge_score 的候选（与 briefing 口径一致），故 fixture 必须
+    # 带一条 judge 分，否则 /api/data 的 candidates 会被过滤空。
+    _write_judge_scores(news_dir, tmdb_id=tmdb_id)
 
 
 class DatesRouteTests(unittest.TestCase):
@@ -243,6 +265,68 @@ class PublishRouteTests(unittest.TestCase):
 
             self.assertEqual(status, 400)
             self.assertFalse(payload["ok"])
+
+
+class SelectDeletesStaleCopyTests(unittest.TestCase):
+    """G8 修复：改选时删旧 {slug}_copy.md，恢复 copy_path=null ⇔ 无 _copy.md 不变量。"""
+
+    def _select(self, tmp_path: Path, slug: str, tmdb_id: int) -> None:
+        route(
+            "POST",
+            "/api/select",
+            {},
+            {"date": "2026-07-06", "news_slug": slug, "tmdb_id": tmdb_id, "title": slug},
+            batch_root=tmp_path,
+        )
+
+    def test_reselect_other_slug_deletes_previous_orphan_copy(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+            _make_batch(tmp_path, "2026-07-06", "10-slug", tmdb_id=99)
+
+            # 选 09-slug 并模拟已 publish 出稿。
+            self._select(tmp_path, "09-slug", 429918)
+            stale = tmp_path / "2026-07-06" / "09-slug_copy.md"
+            stale.write_text("旧稿 Rule Breakers", encoding="utf-8")
+
+            # 改选到别的新闻 10-slug：旧孤儿稿应被删除。
+            self._select(tmp_path, "10-slug", 99)
+
+            self.assertFalse(stale.exists())
+            selection = read_selection(tmp_path, "2026-07-06")
+            self.assertEqual(selection["selected"]["news_slug"], "10-slug")
+            self.assertIsNone(selection["copy_path"])
+
+    def test_reselect_same_slug_deletes_its_copy(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+
+            self._select(tmp_path, "09-slug", 429918)
+            copy = tmp_path / "2026-07-06" / "09-slug_copy.md"
+            copy.write_text("已出稿", encoding="utf-8")
+
+            # 重复选同片：其稿也应删除，强制重新 publish。
+            self._select(tmp_path, "09-slug", 429918)
+
+            self.assertFalse(copy.exists())
+
+    def test_select_without_existing_copy_is_idempotent(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+
+            status, payload = route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": "2026-07-06", "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
 
 
 class UnknownRouteTests(unittest.TestCase):

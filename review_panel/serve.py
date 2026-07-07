@@ -86,6 +86,14 @@ def _parse_wrote_path(stderr: str) -> str | None:
     return match.group(1).strip() if match else None
 
 
+def _delete_copy_if_exists(path: Path) -> bool:
+    """删一份 {slug}_copy.md（存在才删），返回是否真的删了（幂等）。"""
+    if path.is_file():
+        path.unlink()
+        return True
+    return False
+
+
 # ---------------------------------------------------------------------------
 # 纯路由处理函数（不摸 socket，可直接单测）
 # ---------------------------------------------------------------------------
@@ -131,6 +139,19 @@ def handle_select(batch_root: Path, body: dict[str, Any] | None) -> tuple[int, d
     title = body.get("title")
     if not date or not news_slug or tmdb_id is None:
         return 400, {"ok": False, "error": "missing required fields: date/news_slug/tmdb_id"}
+
+    # G8 修复（变体 A）：改选时清掉上一次选片遗留的 {slug}_copy.md，恢复
+    # 「selection.copy_path=null ⇔ 磁盘无对应 _copy.md」不变量。否则改选后新 selection
+    # 被重置为 published:false / copy_path:null，但旧稿仍在盘上，导致陈旧稿（如 Rule
+    # Breakers）与新选片（如 The Girl）对不上。删两处（存在才删，幂等）：
+    #   ① 上一份 selection 指向的旧 slug 稿——可能是别的新闻，否则会变成孤儿稿；
+    #   ② 本次 slug 稿——重复选同片时强制重新 publish（稿可再生，安全）。
+    prev = read_selection(batch_root, date)
+    if prev:
+        prev_slug = (prev.get("selected") or {}).get("news_slug")
+        if prev_slug:
+            _delete_copy_if_exists(batch_root / date / f"{prev_slug}_copy.md")
+    _delete_copy_if_exists(batch_root / date / f"{news_slug}_copy.md")
 
     payload = {
         "date": date,
