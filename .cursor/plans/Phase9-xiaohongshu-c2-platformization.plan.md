@@ -21,7 +21,7 @@ todos:
     status: complete
   - id: p9.4-publish-contract
     content: 9.4 · [契约] compose.py 加 --platform xiaohongshu、按平台选 prompt；给 publish 单独 system message（现复用决策卡 message，明写「不要输出标题」，与 headline 冲突）；run_publish 返回 {tmdb_id, headline, body} + headline/body 解析
-    status: pending
+    status: complete
   - id: p9.5-downstream-adapter
     content: 9.5 · [下游] publish_adapter.render_copy_markdown 消费 headline、不再另拼《片名》(年份) 标题行；clean_publish_body 保留「片名」(YYYY) 归属行、继续剥《》行与裸链接；--platform 透传（adapter/serve 默认 xiaohongshu）
     status: pending
