@@ -10,6 +10,7 @@ alwaysApply: true
 ## 严格顺序
 
 - 前一个 Phase 未**完全 complete** 且未**合并入 `main`** 之前，**禁止**启动或预研后续 Phase。
+- 每个 Phase 计划（`Phase*.plan.md`）应在正文开头写「前置条件」表 + **判定依据**：用 `git log --oneline` / `git branch -a` 佐证前置 Phase 已合并入 `main`（或识别出未合并的残留 `feat/phase*` 分支），据此决定下方新分支的检出来源。
 
 ## 新 TODO 的分支检出来源
 

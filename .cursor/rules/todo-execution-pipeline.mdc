@@ -5,7 +5,7 @@ alwaysApply: true
 
 # 单 TODO 执行标准流水线
 
-对计划（`.cursor/plans/Phase*.md` 或 `.yaml`）中的每个 TODO 节点，无条件按顺序执行：
+对计划（`.cursor/plans/Phase*.plan.md`，YAML frontmatter 内的 `todos:` 列表，每项含 `id: pN.N-slug` / `content` / `status`）中的每个 TODO 节点，无条件按顺序执行：
 
 `[1.Check&Branch] → [2.Code&Test] → [3.Commit] → [4.Update Plan] → [5.Write Report] → [6.Merge]`
 
@@ -17,7 +17,7 @@ alwaysApply: true
 ## 2. 执行与本地验证
 
 - 编写符合项目架构、高内聚低耦合的代码。
-- 完成后**必须主动在终端运行**相关测试/编译命令（如 `npm run test`、`pytest`、构建命令），确认无 regression。
+- 完成后**必须主动在终端运行**相关测试，确认无 regression。本项目为纯 Python（无 npm / 无构建步骤），用 `pytest`；可只跑相关文件，如 `pytest tests/test_xxx.py`。
 
 ## 3. 代码提交（Conventional Commits）
 
@@ -26,7 +26,9 @@ alwaysApply: true
 
 ## 4. 状态标记
 
-- 提交后立即修改对应 `.cursor/plans/Phase*.md` / `.yaml`，将 TODO 由 `[ ]`/`todo` 改为 `[x]`/`complete`。
+- 提交后立即修改对应 `.cursor/plans/Phase*.plan.md`：在 frontmatter 的 `todos:` 列表中，按 `id: pN.N-slug` 定位该项，将 `status: todo`（或 `in_progress`）改为 `status: complete`。
+  > 计划用的是 YAML frontmatter 的 `status:` 字段，**不是** `- [ ]` / `- [x]` 复选框。
+- 本步（状态标记）与第 5 步（交付报告）通常合并为**一个独立的 `docs(<scope>): pN.N-mark-complete-and-report` 提交**，与第 3 步的代码提交分开。
 
 ## 5. 交付报告
 
