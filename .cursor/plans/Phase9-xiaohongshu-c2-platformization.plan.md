@@ -18,7 +18,7 @@ todos:
     status: complete
   - id: p9.3-xhs-prompt
     content: 9.3 · [prompt] 新建 prompts/compose_publish_xiaohongshu.md：必含元素清单替代规定结构 + 归属行 D3 + headline D4 + 关系侧 D5 + 来源纪律 D6；改造正/反例避免模板固化；沿用 ADR-0013 调性
-    status: pending
+    status: complete
   - id: p9.4-publish-contract
     content: 9.4 · [契约] compose.py 加 --platform xiaohongshu、按平台选 prompt；给 publish 单独 system message（现复用决策卡 message，明写「不要输出标题」，与 headline 冲突）；run_publish 返回 {tmdb_id, headline, body} + headline/body 解析
     status: pending
