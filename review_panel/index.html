@@ -166,7 +166,7 @@
   }
 
   #main {
-    max-width: 980px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 20px 20px 80px;
   }
@@ -230,13 +230,12 @@
     color: var(--ink-dim);
     font-size: 13px;
     line-height: 1.55;
-    max-width: 72ch;
   }
 
   .candidate-list {
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 12px;
     align-items: start;
   }
@@ -382,8 +381,15 @@
     background: rgba(201, 138, 60, 0.08);
   }
 
+  .candidate-empty {
+    padding: 16px 18px;
+    color: var(--ink-faint);
+    font-size: 12.5px;
+    font-style: italic;
+  }
+
   footer {
-    max-width: 980px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 16px 20px 40px;
     color: var(--ink-faint);
@@ -663,7 +669,11 @@
       .join("");
 
     if (!candidatesHtml) {
-      candidatesHtml = '<div class="candidate-line" style="padding:12px 18px;">（无候选电影）</div>';
+      candidatesHtml = '<div class="candidate-empty">' +
+        escapeHtml(textFor(
+          "No resonant candidates \u00b7 all scored 0 by judge",
+          "无共振候选 \u00b7 全部候选被 judge 判为 0 分"
+        )) + '</div>';
     }
 
     return (
