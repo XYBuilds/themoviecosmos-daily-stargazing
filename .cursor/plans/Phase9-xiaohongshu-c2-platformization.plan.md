@@ -24,7 +24,7 @@ todos:
     status: complete
   - id: p9.5-downstream-adapter
     content: 9.5 · [下游] publish_adapter.render_copy_markdown 消费 headline、不再另拼《片名》(年份) 标题行；clean_publish_body 保留「片名」(YYYY) 归属行、继续剥《》行与裸链接；--platform 透传（adapter/serve 默认 xiaohongshu）
-    status: pending
+    status: complete
   - id: p9.6-tests
     content: 9.6 · [测试] 更新 test_compose_publish / test_compose_decision_card / test_review_panel_publish_adapter / test_review_panel_serve 过绿
     status: pending
