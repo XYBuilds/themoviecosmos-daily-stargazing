@@ -377,16 +377,17 @@ def _format_db_projection(projection: dict[str, Any]) -> str:
 
 
 def clean_publish_body(body: str) -> str:
-    """清洗 LLM 正文：剥除其可能误吐的《片名》(年份) 标题行与电影链接。
+    """清洗 publish 正文：剥除 LLM 误吐的《片名》(年份) 书名号标题行与电影链接。
 
-    C2 是唯一创作环节，只产正文；骨架（片名 / 年份 / 链接）与 DB 投影由下游平台
-    适配阶段按各平台呈现规则自行拼接，不在本阶段固化。
+    ADR-0015 D3：`「片名」(YYYY) 导演名` **归属行**由创作环节落进正文首行，用直角引号
+    「」承载电影真名——`_TITLE_LINE_RE` 只匹配书名号《》(年)，故「」归属行**被有意保留**，
+    仅《》(年) 误吐行与裸链接被剥除。片名 / 年份不再由下游拼机械标题行。
     """
     kept: list[str] = []
     for line in (body or "").splitlines():
         stripped = line.strip()
         if _TITLE_LINE_RE.match(stripped):
-            continue  # 剥除 LLM 误吐的《片名》(年份)
+            continue  # 剥除 LLM 误吐的《片名》(年份)；「片名」(YYYY) 归属行保留
         if stripped.startswith("https://themoviecosmos.com/movie/"):
             continue  # 剥除 LLM 误吐的链接
         kept.append(line)

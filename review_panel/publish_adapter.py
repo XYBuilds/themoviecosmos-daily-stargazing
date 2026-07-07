@@ -116,20 +116,23 @@ def render_copy_markdown(
     news: dict[str, str],
     draft: dict[str, Any],
 ) -> str:
-    """渲染 ``_copy.md``：与 ``scripts.main.build_copy_markdown`` 风格等价的轻量版本
+    """渲染 ``_copy.md``：headline / 中文发布正文 / 新闻原文 / 链接四段。
 
-    （标题行 / 中文发布正文 / 新闻原文 / 链接四段），自带而非 import 的理由见本
-    文件模块 docstring。
+    ADR-0015 D3/D4：消费创作环节产出的 ``draft["headline"]`` 作醒目标题；**不再**用
+    ``{title}({year})`` 另拼机械标题行——电影真名已由正文首行的 `「片名」(YYYY) 导演名`
+    归属行承载，避免重复。自带而非 import ``scripts.main`` 的理由见本文件模块 docstring。
     """
-    title = str(candidate.get("title") or "")
-    year = candidate.get("release_year")
-    year_str = str(year) if year else "—"
+    headline = str(draft.get("headline") or "").strip()
     movie_url = str(candidate.get("movie_url") or "")
     news_url = str(news.get("url") or "")
     body = str(draft.get("body") or "").strip()
 
     lines = [
-        f"# 发布定稿 · {date} · {title}({year_str})",
+        f"# 发布定稿 · {date} · 小红书",
+        "",
+        "## 小红书标题（headline）",
+        "",
+        headline or "（无标题）",
         "",
         "## 中文发布正文",
         "",
@@ -156,13 +159,14 @@ def run_adapter(
     tmdb_id: int | str,
     *,
     provider: str | None = None,
+    platform: str = "xiaohongshu",
     batch_root: Path | None = None,
     run_publish: Any = compose.run_publish,
 ) -> Path:
     """薄适配 orchestrator：news+candidate+judge → run_publish → 写 ``_copy.md``。
 
-    ``run_publish`` 可注入（默认 ``compose.run_publish``），测试用 stub 替换，
-    避免真调 LLM。
+    ``platform`` 透传给 ``run_publish``（ADR-0015 D1，默认 xiaohongshu——本期唯一平台）。
+    ``run_publish`` 可注入（默认 ``compose.run_publish``），测试用 stub 替换，避免真调 LLM。
     """
     root = batch_root or _default_batch_root()
     news_dir = locate_news_dir(date, slug, batch_root=root)
@@ -170,7 +174,9 @@ def run_adapter(
     candidate = find_candidate(news_dir, tmdb_id)
     judge = load_judge_entry(news_dir, tmdb_id)
 
-    draft = run_publish(candidate, news, provider=provider, judge=judge)
+    draft = run_publish(
+        candidate, news, provider=provider, judge=judge, platform=platform
+    )
 
     copy_path = news_dir.parent / f"{slug}_copy.md"
     copy_path.write_text(
@@ -187,6 +193,12 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--news-slug", dest="news_slug", required=True, help="新闻目录 slug")
     parser.add_argument("--tmdb-id", dest="tmdb_id", required=True, help="选定候选的 tmdb_id")
     parser.add_argument("--provider", choices=["mimo", "deepseek"], default=None)
+    parser.add_argument(
+        "--platform",
+        choices=["xiaohongshu"],
+        default="xiaohongshu",
+        help="发布平台（默认 xiaohongshu），透传给 compose.run_publish。",
+    )
     return parser
 
 
@@ -198,6 +210,7 @@ def main(argv: list[str] | None = None) -> int:
             args.news_slug,
             args.tmdb_id,
             provider=args.provider,
+            platform=args.platform,
         )
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)

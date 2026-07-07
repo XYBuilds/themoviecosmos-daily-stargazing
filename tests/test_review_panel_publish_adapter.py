@@ -79,8 +79,12 @@ def _make_batch(tmp_path: Path, date: str, slug: str, tmdb_id: int = 429918, wit
     return tmp_path
 
 
-def _fake_run_publish(candidate, news, *, provider=None, judge=None):
-    return {"tmdb_id": candidate["tmdb_id"], "body": "这是中文正文。"}
+def _fake_run_publish(candidate, news, *, provider=None, judge=None, platform=None):
+    return {
+        "tmdb_id": candidate["tmdb_id"],
+        "headline": "当风向不站在她们这边",
+        "body": "「Survival Family」(2017) 矢口史靖\n这是中文正文。",
+    }
 
 
 class LocateNewsDirTests(unittest.TestCase):
@@ -172,10 +176,16 @@ class RunAdapterTests(unittest.TestCase):
             self.assertEqual(copy_path, tmp_path / "2026-07-06" / "09-slug_copy.md")
             self.assertTrue(copy_path.is_file())
             content = copy_path.read_text(encoding="utf-8")
+            # ADR-0015 D4：headline 展示在顶部。
+            self.assertIn("当风向不站在她们这边", content)
+            self.assertIn("## 小红书标题（headline）", content)
+            # 归属行「」在正文内，未被剥除。
+            self.assertIn("「Survival Family」(2017) 矢口史靖", content)
             self.assertIn("这是中文正文。", content)
             self.assertIn("https://themoviecosmos.com/movie/429918", content)
             self.assertIn("https://example.com/article/1", content)
-            self.assertIn("Survival Family(2017)", content)
+            # ADR-0015 D3：不再拼机械标题行 {title}(year)，也不用《》。
+            self.assertNotIn("Survival Family(2017)", content)
             self.assertNotIn("《Survival Family》", content)
 
     def test_judge_entry_passed_into_run_publish(self) -> None:
@@ -185,7 +195,7 @@ class RunAdapterTests(unittest.TestCase):
 
             captured: dict = {}
 
-            def capturing_run_publish(candidate, news, *, provider=None, judge=None):
+            def capturing_run_publish(candidate, news, *, provider=None, judge=None, platform=None):
                 captured["judge"] = judge
                 return {"tmdb_id": candidate["tmdb_id"], "body": "正文"}
 
@@ -211,7 +221,7 @@ class RunAdapterTests(unittest.TestCase):
 
             captured: dict = {}
 
-            def capturing_run_publish(candidate, news, *, provider=None, judge=None):
+            def capturing_run_publish(candidate, news, *, provider=None, judge=None, platform=None):
                 captured["judge"] = judge
                 return {"tmdb_id": candidate["tmdb_id"], "body": "正文"}
 
