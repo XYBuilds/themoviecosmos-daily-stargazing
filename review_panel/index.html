@@ -82,6 +82,20 @@
     font-size: 13px;
   }
 
+  #lang-toggle {
+    background: var(--bg-card);
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  #lang-toggle:hover { color: var(--ink); border-color: var(--accent-dim); }
+
   #selection-status {
     flex: 1;
     font-size: 13px;
@@ -216,21 +230,25 @@
     color: var(--ink-dim);
     font-size: 13px;
     line-height: 1.55;
+    max-width: 72ch;
   }
 
   .candidate-list {
-    padding: 4px 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .candidate {
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--line-soft);
+    padding: 14px 16px;
+    border: 1px solid var(--line-soft);
+    border-radius: 5px;
+    background: var(--bg-raised);
     display: flex;
     gap: 12px;
     align-items: flex-start;
   }
-
-  .candidate:last-child { border-bottom: none; }
 
   .candidate-select {
     margin-top: 3px;
@@ -320,6 +338,7 @@
     font-size: 12.5px;
     color: var(--ink-dim);
     line-height: 1.5;
+    max-width: 70ch;
   }
 
   .candidate-line .label {
@@ -384,6 +403,7 @@
 <div id="topbar">
   <h1><span class="accent">每日星轨</span> · 审核面板</h1>
   <select id="date-select" aria-label="选择日期"></select>
+  <button id="lang-toggle" type="button" aria-label="切换语言">EN / 中</button>
   <div id="selection-status">尚未选定候选</div>
   <button id="publish-btn" disabled>写推文</button>
 </div>
@@ -407,10 +427,12 @@
     date: null,
     panel: null,
     selection: null, // {news_slug, tmdb_id, title}
+    lang: "en", // "en" | "zh"; pure front-end toggle, does not refetch data
   };
 
   var els = {
     dateSelect: document.getElementById("date-select"),
+    langToggle: document.getElementById("lang-toggle"),
     selectionStatus: document.getElementById("selection-status"),
     publishBtn: document.getElementById("publish-btn"),
     errorBanner: document.getElementById("error-banner"),
@@ -444,6 +466,12 @@
 
   function hasText(value) {
     return safeText(value).trim().length > 0;
+  }
+
+  // 按当前语言选文本；ZH 缺失时回退到 EN（纯前端状态切换，不重新请求数据）。
+  function textFor(enValue, zhValue) {
+    if (state.lang === "zh" && hasText(zhValue)) return zhValue;
+    return enValue;
   }
 
   function formatPubTime(iso) {
@@ -574,7 +602,7 @@
 
     var head =
       '<div class="candidate-head">' +
-      '<span class="candidate-title">《' + escapeHtml(safeText(cand.title)) + '》</span>' +
+      '<span class="candidate-title">' + escapeHtml(safeText(cand.title)) + '</span>' +
       (cand.release_year ? '<span class="candidate-year">' + escapeHtml(cand.release_year) + '</span>' : "") +
       (hasText(cand.language) ? '<span class="candidate-lang">' + escapeHtml(cand.language) + '</span>' : "") +
       (hasText(cand.genres) ? '<span class="candidate-genres">' + escapeHtml(cand.genres) + '</span>' : "") +
@@ -589,9 +617,8 @@
       head +
       (agents ? '<div class="candidate-agents">' + agents + '</div>' : "") +
       renderCandidateLine("类型", cand.judge_resonance_type) +
-      renderCandidateLine("Rationale", cand.judge_rationale) +
-      renderCandidateLine("Causal test", cand.causal_test) +
-      renderCandidateLine("Overview", cand.overview, "overview") +
+      renderCandidateLine("Rationale", textFor(cand.judge_rationale, cand.judge_rationale_zh)) +
+      renderCandidateLine("Overview", textFor(cand.overview, cand.overview_zh), "overview") +
       (hasText(cand.movie_url)
         ? '<div class="candidate-line"><a class="candidate-link" href="' +
           escapeHtml(cand.movie_url) + '" target="_blank" rel="noopener noreferrer">movie_url ↗</a></div>'
@@ -634,10 +661,12 @@
       '<div class="news-head">' +
       '<div class="news-head-top">' +
       '<span class="news-index">#' + escapeHtml(item.index) + '</span>' +
-      '<span class="news-title">' + escapeHtml(safeText(news.title)) + '</span>' +
+      '<span class="news-title">' + escapeHtml(safeText(textFor(news.title, news.title_zh))) + '</span>' +
       "</div>" +
       (metaLine ? '<div class="news-meta">' + metaLine + '</div>' : "") +
-      (hasText(news.description) ? '<div class="news-desc">' + escapeHtml(news.description) + '</div>' : "") +
+      (hasText(textFor(news.description, news.description_zh))
+        ? '<div class="news-desc">' + escapeHtml(textFor(news.description, news.description_zh)) + '</div>'
+        : "") +
       "</div>" +
       '<div class="candidate-list">' + candidatesHtml + "</div>" +
       "</div>"
@@ -658,8 +687,8 @@
 
   function renderSelectionStatus() {
     if (state.selection && state.selection.title) {
-      els.selectionStatus.innerHTML = '已选：<span class="picked">《' +
-        escapeHtml(state.selection.title) + '》</span>';
+      els.selectionStatus.innerHTML = '已选：<span class="picked">' +
+        escapeHtml(state.selection.title) + '</span>';
       els.publishBtn.disabled = false;
     } else {
       els.selectionStatus.textContent = "尚未选定候选";
@@ -771,6 +800,13 @@
   });
 
   els.publishBtn.addEventListener("click", onPublish);
+
+  // 纯前端语言切换：不重新请求 /api/data，只重渲染已加载的 panel。
+  els.langToggle.addEventListener("click", function () {
+    state.lang = state.lang === "en" ? "zh" : "en";
+    els.langToggle.textContent = state.lang === "zh" ? "中 / EN" : "EN / 中";
+    if (state.panel) renderPanel(state.panel);
+  });
 
   // 事件委托：候选 radio 的 change 统一在 #news-list 上捕获，
   // 避免每次 renderPanel 重建 DOM 后要重新逐个绑定监听器。
