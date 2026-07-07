@@ -12,7 +12,7 @@ overview: |
 todos:
   - id: p9.1-panel-stale-copy-fix
     content: 9.1 · [bugfix·首步] G8：handle_select 变体 A——改选时删旧 {slug}_copy.md，恢复「copy_path=null ⇔ 无 _copy.md」不变量 + serve 测试（独立于主线，先做）
-    status: pending
+    status: complete
   - id: p9.2-projection-country
     content: 9.2 · [基建] compose.py _DB_PROJECTION_FIELDS 增 production_countries（通路 B 加列穿透；C1/C2 共用，决策卡多一列无害）
     status: pending
