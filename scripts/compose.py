@@ -52,10 +52,7 @@ _MODEL_ENV: dict[str, str] = {
 }
 
 _C1_PROMPT_REL = "prompts/compose_review.md"
-# C2 发布稿 prompt 按平台选取（ADR-0015 D1）：prompts/compose_publish_<platform>.md。
-_C2_PROMPT_FILENAME = "compose_publish_{platform}.md"
-_DEFAULT_PLATFORM = "xiaohongshu"
-_PLATFORMS: tuple[str, ...] = ("xiaohongshu",)
+_C2_PROMPT_REL = "prompts/compose_publish.md"
 
 _OVERVIEW_MAX_CHARS = 240
 
@@ -78,26 +75,10 @@ _DIMENSION_LABELS: dict[str, str] = {
 # Section-leader pattern for parsing C1 multi-paragraph output: 《片名》(年份).
 _TITLE_LINE_RE = re.compile(r"^\s*《(?P<title>.+?)》\s*[（(]\s*(?P<year>\d{3,4})\s*[)）]")
 
-# ADR-0015 D4 sentinel 契约：publish LLM 输出用这两个标记分隔标题与正文，
-# sentinel 由 parse_publish_output 剥离，不进成品。
-_HEADLINE_SENTINEL = "【标题】"
-_BODY_SENTINEL = "【正文】"
-
 _SYSTEM_MESSAGE = (
     "你是「每日星轨观测」的编辑助理。严格按用户消息中的契约输出选片决策卡，"
     "每部候选电影一块，块首标注《片名》(年份)，块内只保留 judge 投影与双语直译字段。"
     "不要输出标题、读者文案、电影介绍、Hashtag 或任何发布稿内容。"
-)
-
-# C2 发布稿（创作环节）专用 system message。决策卡 message 明写「不要输出标题」，
-# 与 headline + 读者正文直接冲突（ADR-0015 D4 / 风险清单），故 publish 单独一份：
-# 允许并要求产出标题 + 正文，且守 ADR-0013 平视调性与 sentinel 契约。
-_PUBLISH_SYSTEM_MESSAGE = (
-    "你是「每日星轨观测」的发布稿创作者，为总编选定的 1 部电影写一版小红书笔记："
-    "一句标题 + 一段中文正文，遵循影像平权的平视调性（不排名 / 不盖章 / 不煽动 / "
-    "数字文字化 / 不回显输入结构 / 不编造）。严格按用户消息里的 sentinel 契约输出："
-    "【标题】一行标题，随后 【正文】一段正文，正文首行为「片名」(YYYY) 导演名 归属行。"
-    "只输出这两块，不要输出决策卡、字段键值、Hashtag、电影链接或任何额外说明。"
 )
 
 # Fixed field prefixes the LLM emits inside each decision card (DSL contract).
@@ -121,7 +102,6 @@ _DB_PROJECTION_FIELDS: tuple[str, ...] = (
     "director",
     "cast",
     "writers",
-    "production_countries",
     "vote_average",
     "vote_count",
     "popularity",
@@ -377,17 +357,16 @@ def _format_db_projection(projection: dict[str, Any]) -> str:
 
 
 def clean_publish_body(body: str) -> str:
-    """清洗 publish 正文：剥除 LLM 误吐的《片名》(年份) 书名号标题行与电影链接。
+    """清洗 LLM 正文：剥除其可能误吐的《片名》(年份) 标题行与电影链接。
 
-    ADR-0015 D3：`「片名」(YYYY) 导演名` **归属行**由创作环节落进正文首行，用直角引号
-    「」承载电影真名——`_TITLE_LINE_RE` 只匹配书名号《》(年)，故「」归属行**被有意保留**，
-    仅《》(年) 误吐行与裸链接被剥除。片名 / 年份不再由下游拼机械标题行。
+    C2 是唯一创作环节，只产正文；骨架（片名 / 年份 / 链接）与 DB 投影由下游平台
+    适配阶段按各平台呈现规则自行拼接，不在本阶段固化。
     """
     kept: list[str] = []
     for line in (body or "").splitlines():
         stripped = line.strip()
         if _TITLE_LINE_RE.match(stripped):
-            continue  # 剥除 LLM 误吐的《片名》(年份)；「片名」(YYYY) 归属行保留
+            continue  # 剥除 LLM 误吐的《片名》(年份)
         if stripped.startswith("https://themoviecosmos.com/movie/"):
             continue  # 剥除 LLM 误吐的链接
         kept.append(line)
@@ -422,52 +401,21 @@ def format_judge_kernel(judge: JudgeEntry | None) -> str:
     )
 
 
-def parse_publish_output(raw: str) -> tuple[str, str]:
-    """按 ADR-0015 D4 sentinel 契约把 publish LLM 原始输出解析为 (headline, body)。
-
-    契约：``【标题】<一行标题>\\n【正文】\\n<正文…>``。解析规则：
-    - 以 ``【正文】`` 切分：其前段取 ``【标题】`` 之后的首行为 headline，其后段为 body。
-    - 缺 ``【正文】`` 时退化：若有 ``【标题】``，其后首行作 headline、余下作 body；
-      两个 sentinel 都缺时 headline 为空、整段作 body（交由上层按「body 空则失败」
-      判定，不静默出半稿）。
-    headline 只取首行（LLM 若误吐多行标题，仅保留第一行）。
-    """
-    text = raw or ""
-    if _BODY_SENTINEL in text:
-        head_part, _, body_part = text.partition(_BODY_SENTINEL)
-        body = body_part.strip()
-        if _HEADLINE_SENTINEL in head_part:
-            head_part = head_part.split(_HEADLINE_SENTINEL, 1)[1]
-        headline = head_part.strip()
-    elif _HEADLINE_SENTINEL in text:
-        after = text.split(_HEADLINE_SENTINEL, 1)[1]
-        lines = after.splitlines()
-        headline = lines[0].strip() if lines else ""
-        body = "\n".join(lines[1:]).strip()
-    else:
-        headline = ""
-        body = text.strip()
-    headline = headline.splitlines()[0].strip() if headline else ""
-    return headline, body
-
-
 def run_publish(
     candidate: dict[str, Any],
     news: dict[str, str],
     *,
     provider: str | None = None,
     judge: JudgeEntry | None = None,
-    platform: str = _DEFAULT_PLATFORM,
     prompts_dir: Path | None = None,
     llm_call: Any = None,
 ) -> dict[str, Any]:
-    """Single-movie platform publish draft: the only creative compose step.
+    """Single-movie publish draft: the only creative compose step.
 
-    产「电影 id + 标题(headline) + 正文(body)」结构化产物（ADR-0015 D4）；片名 / 年份 /
-    导演由创作环节经归属行 D3 落进正文，链接与平台呈现规则留给下游平台适配阶段。
-    ``platform`` 选取 ``compose_publish_<platform>.md``（默认 xiaohongshu）。
+    本阶段只产「电影 id + 正文」结构化产物；骨架（片名 / 年份 / 链接）与各平台
+    所需 DB 投影留给下游平台适配阶段，按各平台呈现规则自行拼接。
     """
-    template = load_c2_template(platform, prompts_dir)
+    template = load_c2_template(prompts_dir)
     news_context = build_news_context(news, "")
     selected_movie = format_selected_movie_block(candidate)
     judge_kernel = format_judge_kernel(judge)
@@ -480,13 +428,11 @@ def run_publish(
         resolved = _resolve_provider(provider)
         client = get_llm_client(resolved)
         model = _model_name(resolved)
-        raw = _sync_llm_call(client, model, prompt, _PUBLISH_SYSTEM_MESSAGE)
+        raw = _sync_llm_call(client, model, prompt)
 
-    headline, body = parse_publish_output(raw)
     return {
         "tmdb_id": candidate.get("tmdb_id"),
-        "headline": headline,
-        "body": clean_publish_body(body),
+        "body": clean_publish_body(raw),
     }
 
 
@@ -562,19 +508,13 @@ def load_c1_template(prompts_dir: Path | None = None) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def load_c2_template(
-    platform: str = _DEFAULT_PLATFORM, prompts_dir: Path | None = None
-) -> str:
-    """按平台选取 C2 发布 prompt（ADR-0015 D1）：compose_publish_<platform>.md。"""
-    filename = _C2_PROMPT_FILENAME.format(platform=platform)
+def load_c2_template(prompts_dir: Path | None = None) -> str:
     base = prompts_dir or (repo_root() / "prompts")
-    path = base / filename
+    path = base / "compose_publish.md"
     if not path.is_file():
-        path = repo_root() / "prompts" / filename
+        path = repo_root() / _C2_PROMPT_REL
     if not path.is_file():
-        raise FileNotFoundError(
-            f"C2 prompt not found for platform {platform!r}: {path}"
-        )
+        raise FileNotFoundError(f"C2 prompt not found: {path}")
     return path.read_text(encoding="utf-8")
 
 
@@ -596,14 +536,9 @@ def render_c1_prompt(template: str, news_context: str, candidates_block: str) ->
     return rendered
 
 
-def _sync_llm_call(
-    client: OpenAI,
-    model: str,
-    user_prompt: str,
-    system_message: str = _SYSTEM_MESSAGE,
-) -> str:
+def _sync_llm_call(client: OpenAI, model: str, user_prompt: str) -> str:
     messages = [
-        {"role": "system", "content": system_message},
+        {"role": "system", "content": _SYSTEM_MESSAGE},
         {"role": "user", "content": user_prompt},
     ]
     response = client.chat.completions.create(model=model, messages=messages)
@@ -1167,13 +1102,12 @@ def _run_publish_cli(args: argparse.Namespace) -> int:
             news,
             provider=args.provider,
             judge=judge,
-            platform=args.platform,
         )
     except Exception as exc:  # noqa: BLE001
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
-    # C2 产物契约（ADR-0015 D4）：电影 id + headline + body，序列化为 JSON。
+    # C2 产物契约：只保留电影 id + 正文，序列化为 JSON。
     serialized = json.dumps(draft, ensure_ascii=False, indent=2)
 
     out_path: Path | None = None
@@ -1252,15 +1186,6 @@ def main(argv: list[str] | None = None) -> int:
         "--tmdb-id",
         dest="tmdb_id",
         help="Selected TMDB id for --stage publish.",
-    )
-    parser.add_argument(
-        "--platform",
-        choices=list(_PLATFORMS),
-        default=_DEFAULT_PLATFORM,
-        help=(
-            "Publish platform for --stage publish (default: xiaohongshu). "
-            "Selects prompts/compose_publish_<platform>.md."
-        ),
     )
     args = parser.parse_args(argv)
 
