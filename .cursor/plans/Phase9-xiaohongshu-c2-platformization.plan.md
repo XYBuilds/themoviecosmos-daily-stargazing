@@ -27,7 +27,7 @@ todos:
     status: complete
   - id: p9.6-tests
     content: 9.6 · [测试] 更新 test_compose_publish / test_compose_decision_card / test_review_panel_publish_adapter / test_review_panel_serve 过绿
-    status: pending
+    status: complete
   - id: p9.7-ssot-sync
     content: 9.7 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD（若涉及）同步平台化与元素化描述，引用 ADR-0015
     status: pending
