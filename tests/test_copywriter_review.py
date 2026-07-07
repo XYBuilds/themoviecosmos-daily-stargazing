@@ -1,9 +1,17 @@
-"""Offline tests for copywriter --stage review (C1).
+"""Offline tests for compose --stage review (C1) helper functions.
 
-Covers candidate assembly, news-context build, persona-semantic selection (never
-A1/oracle), OPEN-a soft hints passthrough, judge backfill, multi-paragraph parsing
-with title/year and positional fallback, and missing-paragraph error recording.
-The LLM call is injected, so no network or API key is needed.
+Covers persona-semantic selection (never A1/oracle), news-context build,
+multi-paragraph parsing (title/year + positional fallback + missing-paragraph
+errors), judge-score backfill, run_review empty/error handling, and the judge
+floor filter. The LLM call is injected, so no network or API key is needed.
+
+Note (Phase 9.6): the old copywriter「审核稿」contract tests (ReviewCopy.copy_text /
+.director / row["card"] / `# 审核稿候选` / `### 《片名》(年) | headline` blocks) were
+removed here — that contract was replaced by the decision-card format (ADR-0012),
+and those assertions had been red on `main` since that refactor. The DB-projection /
+decision-card render + payload shape are covered by ``test_compose_decision_card.py``.
+The live helpers exercised below are covered ONLY here, so the file is retained
+(trimmed) rather than deleted.
 """
 
 from __future__ import annotations
@@ -20,13 +28,9 @@ from scripts.compose import (
     JudgeEntry,
     build_news_context,
     filter_candidates_by_judge,
-    format_candidates_block,
     load_judge_scores,
     map_paragraphs_to_candidates,
-    parse_card_fields,
-    render_review_copy_block,
     representative_persona_semantic,
-    result_to_markdown,
     result_to_payload,
     run_review,
     split_into_paragraphs,
@@ -116,25 +120,6 @@ class TestPersonaSemantic(unittest.TestCase):
             }
         ]
         self.assertEqual(representative_persona_semantic(_retrieve([], per_agent)), "")
-
-
-class TestCandidateBlock(unittest.TestCase):
-    def test_block_has_soft_hints_genres_and_judge_rationale(self) -> None:
-        cands = [_candidate(111, "Survival Family", 2017, ["THE-INNOCENT"], ["how", "result"])]
-        index = {("", "111"): JudgeEntry(score=2, rationale="Both center on outages.", causal_test="Power loss drives crisis.")}
-        block = format_candidates_block(cands, index, "")
-        self.assertIn("《Survival Family》(2017)", block)
-        self.assertIn("被这些视角击中: THE-INNOCENT", block)
-        self.assertIn("切面（可选参考，非强制聚焦）: 过程、结果", block)
-        self.assertIn("genres: Drama", block)
-        self.assertIn("https://themoviecosmos.com/movie/111", block)
-        self.assertIn("Both center on outages.", block)
-        self.assertIn("Power loss drives crisis.", block)
-
-    def test_missing_year_renders_dash(self) -> None:
-        cands = [_candidate(222, "No Year", None, [], [])]
-        block = format_candidates_block(cands)
-        self.assertIn("《No Year》(—)", block)
 
 
 class TestNewsContext(unittest.TestCase):
@@ -235,31 +220,6 @@ class TestRunReview(unittest.TestCase):
     def _prompts_dir(self) -> Path:
         return _REPO / "prompts"
 
-    def test_n_candidates_yield_n_copies(self) -> None:
-        cands = [
-            _candidate(1, "Alpha", 2001, ["THE-HERO"], ["who"]),
-            _candidate(2, "Beta", 1999, ["THE-SAGE"], ["why"]),
-        ]
-        fake_output = _card("Alpha", 2001, copy="甲文案。") + "\n\n" + _card("Beta", 1999, copy="乙文案。")
-        result = run_review(
-            _retrieve(cands, news={"title": "T", "description": "D"}),
-            {"title": "T", "description": "D"},
-            judge_index={("", "1"): JudgeEntry(score=2, rationale="EN reason.")},
-            prompts_dir=self._prompts_dir(),
-            llm_call=lambda _prompt: fake_output,
-        )
-        self.assertEqual(len(result.review_copies), 2)
-        self.assertEqual(result.errors, [])
-        first = result.review_copies[0]
-        self.assertEqual(first.tmdb_id, 1)
-        self.assertEqual(first.judge_score, 2)
-        self.assertEqual(first.judge_rationale_en, "EN reason.")
-        self.assertEqual(first.triggered_by, ["THE-HERO"])
-        self.assertEqual(first.center_dimensions, ["who"])
-        self.assertIn("甲文案", first.copy_text)
-        self.assertEqual(first.director, "待补")
-        self.assertEqual(first.genres, "Drama")
-
     def test_empty_candidates_returns_empty(self) -> None:
         result = run_review(
             _retrieve([]),
@@ -282,96 +242,6 @@ class TestRunReview(unittest.TestCase):
         )
         self.assertEqual(result.review_copies, [])
         self.assertEqual(result.errors[0]["type"], "llm_error")
-
-    def test_payload_shape(self) -> None:
-        cands = [_candidate(1, "Alpha", 2001, ["THE-HERO"], ["who"])]
-        result = run_review(
-            _retrieve(cands),
-            {"title": "T", "description": "D"},
-            prompts_dir=self._prompts_dir(),
-            llm_call=lambda _p: _card("Alpha", 2001),
-        )
-        payload = result_to_payload(result)
-        self.assertIn("review_copies", payload)
-        self.assertIn("errors", payload)
-        row = payload["review_copies"][0]
-        for key in (
-            "tmdb_id",
-            "title",
-            "year",
-            "triggered_by",
-            "center_dimensions",
-            "overview",
-            "genres",
-            "director",
-            "movie_url",
-            "judge",
-            "card",
-        ):
-            self.assertIn(key, row)
-        for key in ("score", "resonance_type", "rationale_en", "causal_test_en", "rationale_zh"):
-            self.assertIn(key, row["judge"])
-        for key in ("headline", "copy_text", "intro", "hashtags"):
-            self.assertIn(key, row["card"])
-
-
-class TestMarkdownRendering(unittest.TestCase):
-    def _result(self):
-        cands = [
-            _candidate(157336, "Interstellar", 2014, ["THE-INNOCENT", "THE-HERO"], ["who", "result"]),
-            _candidate(222, "No Year", None, [], []),
-        ]
-        return run_review(
-            _retrieve(cands, news={"title": "断网事件", "description": "D"}),
-            {"title": "断网事件", "description": "D"},
-            judge_index={("", "157336"): JudgeEntry(score=2, rationale="EN reason.", resonance_type="强共振")},
-            prompts_dir=_REPO / "prompts",
-            llm_call=lambda _p: (
-                _card("Interstellar", 2014, headline="当星辰熄灭", copy="第一段中文文案。", rzh="评分理由译文。")
-                + "\n\n"
-                + _card("No Year", 2000, copy="第二段中文文案。")
-            ),
-        )
-
-    def test_block_has_required_fields(self) -> None:
-        result = self._result()
-        block = render_review_copy_block(result.review_copies[0])
-        self.assertIn("### 《Interstellar》(2014) | 当星辰熄灭", block)
-        self.assertIn("第一段中文文案", block)
-        self.assertIn("电影信息: 待补 | 2014 | Drama", block)
-        self.assertIn("电影原 overview: An overview.", block)
-        self.assertIn("评分理由（EN 原文）: EN reason.", block)
-        self.assertIn("评分理由（中译）: 评分理由译文。", block)
-        self.assertIn("共振类型: 强共振", block)
-        self.assertIn("https://themoviecosmos.com/movie/157336", block)
-        self.assertIn("- [ ] ✅ 选用", block)
-
-    def test_checkbox_is_never_pre_checked(self) -> None:
-        result = self._result()
-        for copy in result.review_copies:
-            block = render_review_copy_block(copy)
-            self.assertIn("- [ ] ✅ 选用", block)
-            self.assertNotIn("- [x]", block)
-
-    def test_missing_year_renders_dash(self) -> None:
-        result = self._result()
-        block = render_review_copy_block(result.review_copies[1])
-        self.assertIn("### 《No Year》(—)", block)
-
-    def test_document_has_one_block_per_candidate(self) -> None:
-        result = self._result()
-        md = result_to_markdown(result, news={"title": "断网事件", "description": "D"}, run_id="01-grid-outage")
-        self.assertEqual(md.count("### 《"), 2)
-        self.assertIn("# 审核稿候选", md)
-        self.assertIn("原新闻: 断网事件", md)
-        self.assertIn("新闻摘要: D", md)
-        self.assertIn("run_id: 01-grid-outage", md)
-
-    def test_copy_text_carries_no_hashtag(self) -> None:
-        result = self._result()
-        # Hashtags live in their own card field; the quote/copy must stay clean.
-        for copy in result.review_copies:
-            self.assertNotIn("#", copy.copy_text)
 
 
 class TestJudgeFilter(unittest.TestCase):
