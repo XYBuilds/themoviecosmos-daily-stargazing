@@ -20,7 +20,7 @@ todos:
     status: complete
   - id: p8.5-integration-smoke
     content: 8.5 · 集成冒烟测试 [需人工验收]
-    status: todo
+    status: complete
   - id: p8.6-i18n-ux
     content: 8.6 · Review Panel i18n + UX 增强（EN/ZH 切换·滤 judge=0·降序·卡片自适应·去 causal_test·去书名号）[需人工验收]
     status: complete
