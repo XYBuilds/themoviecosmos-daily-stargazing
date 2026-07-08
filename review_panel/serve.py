@@ -54,6 +54,10 @@ def _default_publish_adapter_path() -> Path:
     return Path(__file__).resolve().parent / "publish_adapter.py"
 
 
+def _default_rewrite_adapter_path() -> Path:
+    return Path(__file__).resolve().parent / "rewrite_adapter.py"
+
+
 def _default_index_html_path() -> Path:
     return Path(__file__).resolve().parent / "index.html"
 
@@ -269,6 +273,95 @@ def handle_publish(
     return 500, {"ok": False, "copy_path": None, "stderr": result.stderr}
 
 
+def handle_rewrite(
+    batch_root: Path,
+    body: dict[str, Any] | None,
+    *,
+    rewrite_adapter_path: Path,
+    run_subprocess: Any = subprocess.run,
+) -> tuple[int, dict[str, Any]]:
+    """D5：subprocess 调 rewrite_adapter.py，落 humanized 稿 + 更新 selection.json。
+
+    slug 未传时从 selection.json 的 selected.news_slug 兜底（读 selection 已经过 D4
+    迁移，只会看到 copies dict 形状）；platform 未传默认 xiaohongshu（当前唯一实装平台）。
+    """
+    body = body or {}
+    date = body.get("date")
+    platform = body.get("platform") or "xiaohongshu"
+    if not date:
+        return 400, {
+            "ok": False,
+            "humanized_path": None,
+            "stderr": "missing required field: date",
+        }
+
+    slug = body.get("slug")
+    selection: dict[str, Any] | None = None
+    if not slug:
+        selection = read_selection(batch_root, date)
+        if selection is None:
+            return 400, {
+                "ok": False,
+                "humanized_path": None,
+                "stderr": f"no selection.json for date {date!r}; call /api/select first",
+            }
+        slug = (selection.get("selected") or {}).get("news_slug")
+        if not slug:
+            return 400, {
+                "ok": False,
+                "humanized_path": None,
+                "stderr": "selection.json missing news_slug",
+            }
+
+    result = run_subprocess(
+        [
+            sys.executable,
+            str(rewrite_adapter_path),
+            "--date",
+            date,
+            "--slug",
+            str(slug),
+            "--platform",
+            platform,
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode != 0:
+        return 500, {"ok": False, "humanized_path": None, "stderr": result.stderr}
+
+    humanized_path_str = _parse_wrote_path(result.stderr) or str(
+        batch_root / date / f"{slug}_copy_{platform}_humanized.md"
+    )
+    humanized_path = Path(humanized_path_str)
+    humanized_body: str | None = None
+    if humanized_path.is_file():
+        humanized_body = parse_copy_markdown(
+            humanized_path.read_text(encoding="utf-8")
+        )["body"]
+
+    # 读 selection（若上面因 slug 已传而未读过）以保留 published/copy_path，
+    # 只更新本平台的 humanized_path 字段。
+    if selection is None:
+        selection = read_selection(batch_root, date)
+    if selection is not None:
+        existing_entry = selection.get("copies", {}).get(platform) or {}
+        selection.setdefault("copies", {})[platform] = {
+            "published": existing_entry.get("published", False),
+            "copy_path": existing_entry.get("copy_path"),
+            "humanized_path": humanized_path_str,
+        }
+        write_selection(batch_root, date, selection)
+
+    return 200, {
+        "ok": True,
+        "humanized_path": humanized_path_str,
+        "humanized_body": humanized_body,
+        "stderr": result.stderr,
+    }
+
+
 def parse_copy_markdown(text: str) -> dict[str, str]:
     """纯函数：解析 ``{slug}_copy_{platform}.md`` 的固定 D1 排版，抽出 headline/body。
 
@@ -350,6 +443,7 @@ def route(
     batch_root: Path,
     index_html_path: Path | None = None,
     publish_adapter_path: Path | None = None,
+    rewrite_adapter_path: Path | None = None,
     run_subprocess: Any = subprocess.run,
 ) -> tuple[int, dict[str, Any] | str]:
     """纯路由分发：无 socket 依赖，单测与真实服务器共用同一份逻辑。"""
@@ -372,6 +466,13 @@ def route(
             publish_adapter_path=publish_adapter_path or _default_publish_adapter_path(),
             run_subprocess=run_subprocess,
         )
+    if method == "POST" and path == "/api/rewrite":
+        return handle_rewrite(
+            batch_root,
+            body,
+            rewrite_adapter_path=rewrite_adapter_path or _default_rewrite_adapter_path(),
+            run_subprocess=run_subprocess,
+        )
     return 404, {"error": f"not found: {method} {path}"}
 
 
@@ -385,6 +486,7 @@ def make_handler_class(
     batch_root: Path,
     index_html_path: Path,
     publish_adapter_path: Path,
+    rewrite_adapter_path: Path,
 ) -> type[BaseHTTPRequestHandler]:
     """按注入的 batch_root/路径生成一个 handler 类（闭包避免用全局可变状态）。"""
 
@@ -417,6 +519,7 @@ def make_handler_class(
                 batch_root=batch_root,
                 index_html_path=index_html_path,
                 publish_adapter_path=publish_adapter_path,
+                rewrite_adapter_path=rewrite_adapter_path,
             )
             if isinstance(payload, str):
                 self._send_html(status, payload)
@@ -452,6 +555,7 @@ def serve(
     batch_root: Path | None = None,
     index_html_path: Path | None = None,
     publish_adapter_path: Path | None = None,
+    rewrite_adapter_path: Path | None = None,
 ) -> ThreadingHTTPServer:
     """构建并返回一个已 bind 但尚未 serve_forever 的服务器实例（便于测试注入）。"""
     root = batch_root or _default_batch_root()
@@ -459,6 +563,7 @@ def serve(
         batch_root=root,
         index_html_path=index_html_path or _default_index_html_path(),
         publish_adapter_path=publish_adapter_path or _default_publish_adapter_path(),
+        rewrite_adapter_path=rewrite_adapter_path or _default_rewrite_adapter_path(),
     )
     # 只绑 127.0.0.1（loopback）：这是无鉴权本地面板，绝不能改绑 0.0.0.0 对外暴露。
     return ThreadingHTTPServer(("127.0.0.1", port), handler_cls)
