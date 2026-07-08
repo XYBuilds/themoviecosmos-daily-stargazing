@@ -140,8 +140,11 @@ class SelectRouteTests(unittest.TestCase):
             selection = read_selection(tmp_path, "2026-07-06")
             self.assertEqual(selection["selected"]["news_slug"], "09-slug")
             self.assertEqual(selection["selected"]["tmdb_id"], 429918)
-            self.assertFalse(selection["published"])
-            self.assertIsNone(selection["copy_path"])
+            # D4：新写入的 selection 用 copies dict，未发布时为空 dict，
+            # 不再有顶层 published/copy_path 字段。
+            self.assertEqual(selection["copies"], {})
+            self.assertNotIn("published", selection)
+            self.assertNotIn("copy_path", selection)
 
     def test_repeated_select_is_idempotent_last_wins(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -191,16 +194,18 @@ class PublishRouteTests(unittest.TestCase):
                 batch_root=tmp_path,
             )
 
-            expected_copy_path = tmp_path / "2026-07-06" / "09-slug_copy.md"
+            expected_copy_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu.md"
 
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
-                # 断言子进程命令行的确切形态：脚本路径 + --date/--news-slug/--tmdb-id。
+                # 断言子进程命令行的确切形态：脚本路径 + --date/--news-slug/--tmdb-id/--platform。
                 self.assertIn("--date", cmd)
                 self.assertIn("2026-07-06", cmd)
                 self.assertIn("--news-slug", cmd)
                 self.assertIn("09-slug", cmd)
                 self.assertIn("--tmdb-id", cmd)
                 self.assertIn("429918", cmd)
+                self.assertIn("--platform", cmd)
+                self.assertIn("xiaohongshu", cmd)
                 return SimpleNamespace(
                     returncode=0, stdout="", stderr=f"Wrote {expected_copy_path}\n"
                 )
@@ -219,8 +224,11 @@ class PublishRouteTests(unittest.TestCase):
             self.assertEqual(payload["copy_path"], str(expected_copy_path))
 
             selection = read_selection(tmp_path, "2026-07-06")
-            self.assertTrue(selection["published"])
-            self.assertEqual(selection["copy_path"], str(expected_copy_path))
+            # D4：发布结果写入 copies.xiaohongshu，humanized_path 初始为 None。
+            entry = selection["copies"]["xiaohongshu"]
+            self.assertTrue(entry["published"])
+            self.assertEqual(entry["copy_path"], str(expected_copy_path))
+            self.assertIsNone(entry["humanized_path"])
 
     def test_failure_returns_ok_false_and_stderr(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -252,7 +260,7 @@ class PublishRouteTests(unittest.TestCase):
             self.assertEqual(payload["stderr"], "error: tmdb_id not found")
 
             selection = read_selection(tmp_path, "2026-07-06")
-            self.assertFalse(selection["published"])
+            self.assertEqual(selection["copies"], {})
 
     def test_missing_selection_returns_400(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -287,7 +295,7 @@ class SelectDeletesStaleCopyTests(unittest.TestCase):
 
             # 选 09-slug 并模拟已 publish 出稿。
             self._select(tmp_path, "09-slug", 429918)
-            stale = tmp_path / "2026-07-06" / "09-slug_copy.md"
+            stale = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu.md"
             stale.write_text("旧稿 Rule Breakers", encoding="utf-8")
 
             # 改选到别的新闻 10-slug：旧孤儿稿应被删除。
@@ -296,7 +304,7 @@ class SelectDeletesStaleCopyTests(unittest.TestCase):
             self.assertFalse(stale.exists())
             selection = read_selection(tmp_path, "2026-07-06")
             self.assertEqual(selection["selected"]["news_slug"], "10-slug")
-            self.assertIsNone(selection["copy_path"])
+            self.assertEqual(selection["copies"], {})
 
     def test_reselect_same_slug_deletes_its_copy(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -304,7 +312,7 @@ class SelectDeletesStaleCopyTests(unittest.TestCase):
             _make_batch(tmp_path, "2026-07-06", "09-slug")
 
             self._select(tmp_path, "09-slug", 429918)
-            copy = tmp_path / "2026-07-06" / "09-slug_copy.md"
+            copy = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu.md"
             copy.write_text("已出稿", encoding="utf-8")
 
             # 重复选同片：其稿也应删除，强制重新 publish。
@@ -327,6 +335,60 @@ class SelectDeletesStaleCopyTests(unittest.TestCase):
 
             self.assertEqual(status, 200)
             self.assertTrue(payload["ok"])
+
+
+class SelectionMigrationTests(unittest.TestCase):
+    """D4 向后兼容：旧格式（顶层 published/copy_path）读出时应无损迁移为 copies dict。"""
+
+    def test_old_format_selection_is_migrated_losslessly(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            old_payload = {
+                "date": date,
+                "selected": {"news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                "selected_at": "2026-07-06T00:00:00+00:00",
+                "published": True,
+                "copy_path": str(tmp_path / date / "09-slug_copy.md"),
+            }
+            selection_path = tmp_path / date / "selection.json"
+            selection_path.parent.mkdir(parents=True)
+            selection_path.write_text(json.dumps(old_payload, ensure_ascii=False), encoding="utf-8")
+
+            migrated = read_selection(tmp_path, date)
+
+            self.assertNotIn("published", migrated)
+            self.assertNotIn("copy_path", migrated)
+            entry = migrated["copies"]["xiaohongshu"]
+            self.assertTrue(entry["published"])
+            self.assertEqual(entry["copy_path"], old_payload["copy_path"])
+            self.assertIsNone(entry["humanized_path"])
+            # selected/selected_at 等其他字段无损保留。
+            self.assertEqual(migrated["selected"], old_payload["selected"])
+            self.assertEqual(migrated["selected_at"], old_payload["selected_at"])
+
+    def test_new_format_selection_passes_through_unchanged(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            new_payload = {
+                "date": date,
+                "selected": {"news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                "selected_at": "2026-07-06T00:00:00+00:00",
+                "copies": {
+                    "xiaohongshu": {
+                        "published": True,
+                        "copy_path": "some/path_copy_xiaohongshu.md",
+                        "humanized_path": None,
+                    }
+                },
+            }
+            selection_path = tmp_path / date / "selection.json"
+            selection_path.parent.mkdir(parents=True)
+            selection_path.write_text(json.dumps(new_payload, ensure_ascii=False), encoding="utf-8")
+
+            result = read_selection(tmp_path, date)
+            self.assertEqual(result, new_payload)
 
 
 class UnknownRouteTests(unittest.TestCase):
