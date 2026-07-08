@@ -332,6 +332,25 @@ class RunHeadlineTests(unittest.TestCase):
 
         self.assertEqual(result["headline"], "只保留第一行")
 
+    def test_run_headline_does_not_leak_body_sentinel_if_llm_misbehaves(self) -> None:
+        # headline-only 鲁棒性：即使被注入的 stub LLM 违反契约误吐了 【正文】 段，
+        # run_headline 也只取 headline，不应把正文内容泄漏进返回值。
+        def fake_llm(prompt: str) -> str:
+            return "【标题】误吐正文的标题\n【正文】\n不该出现在结果里的正文内容"
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            result = run_headline(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                "当前正文",
+                llm_call=fake_llm,
+            )
+
+        self.assertEqual(result, {"tmdb_id": 157336, "headline": "误吐正文的标题"})
+        self.assertNotIn("body", result)
+        self.assertNotIn("【正文】", result["headline"])
+        self.assertNotIn("不该出现在结果里的正文内容", result["headline"])
+
     def test_render_headline_prompt_embeds_shared_contract(self) -> None:
         template = load_headline_template()
         contract = load_headline_contract()

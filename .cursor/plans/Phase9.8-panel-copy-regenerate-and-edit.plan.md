@@ -34,7 +34,7 @@ todos:
     status: complete
   - id: p9.8.6-tests
     content: 9.8.6 · [测试] 覆盖 run_headline/regenerate_adapter/api regenerate/api edit-body/headline body-aware/humanized 失效
-    status: todo
+    status: complete
   - id: p9.8.7-gate-doc-sync
     content: 9.8.7 · [GATE] 真实重跑：三种操作面板验收（重生成正文/标题、正文编辑、覆盖语义、humanized 失效）；Go 后同步 SSOT/PRD 并引用 ADR-0016 收尾 [需人工验收]
     status: todo
