@@ -180,6 +180,94 @@
       border-bottom-color: var(--danger-border);
     }
 
+    #copy-panel {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .copy-panel {
+      margin-top: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .copy-panel-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--line-soft);
+      background: var(--bg-raised);
+    }
+
+    .copy-panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .copy-platform-tabs {
+      display: flex;
+      gap: 6px;
+    }
+
+    .copy-platform-tab {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      padding: 3px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--line);
+      color: var(--ink-dim);
+      background: var(--bg-card);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .copy-platform-tab.active {
+      color: #1a1408;
+      background: var(--accent);
+      border-color: var(--accent);
+      font-weight: 700;
+      cursor: default;
+    }
+
+    .copy-platform-tab.disabled {
+      color: var(--ink-faint);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .copy-panel-body {
+      padding: 16px 18px;
+    }
+
+    .copy-empty-state {
+      color: var(--ink-faint);
+      font-size: 13px;
+      font-style: italic;
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    .copy-headline {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .copy-body {
+      color: var(--ink);
+      font-size: 13.5px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
     #main {
       max-width: 1600px;
       margin: 0 auto;
@@ -486,6 +574,22 @@
   <div id="error-banner"></div>
   <div id="publish-result"></div>
 
+  <div id="copy-panel" class="copy-panel" style="display:none;">
+    <div class="copy-panel-head">
+      <span class="copy-panel-title">定稿展示</span>
+      <div id="copy-platform-tabs" class="copy-platform-tabs"></div>
+    </div>
+    <div id="copy-panel-body" class="copy-panel-body">
+      <div id="copy-empty-state" class="copy-empty-state">尚未定稿</div>
+      <div id="copy-content" class="copy-content" style="display:none;">
+        <!-- 9.7.4 会在这里插入「去AI化」toggle 按钮 -->
+        <div id="copy-humanize-toggle-slot"></div>
+        <div id="copy-headline" class="copy-headline"></div>
+        <div id="copy-body" class="copy-body"></div>
+      </div>
+    </div>
+  </div>
+
   <div id="main">
     <div id="loading-state" style="display:none;">加载中…</div>
     <div id="empty-state" style="display:none;">当天没有新闻数据。</div>
@@ -503,7 +607,17 @@
         panel: null,
         selection: null, // {news_slug, tmdb_id, title}
         lang: "en", // "en" | "zh"; pure front-end toggle, does not refetch data
+        copyPlatform: "xiaohongshu", // 9.7.3 D6：当前定稿展示区选中的平台 tab
       };
+
+      // 9.7.3 D6：目前只实装小红书，其余平台先占坑展示为 "coming soon"，
+      // 新平台落地时只需把对应 key 挪进 ACTIVE_COPY_PLATFORMS。
+      var COPY_PLATFORMS = [
+        { key: "xiaohongshu", label: "小红书" },
+        { key: "x", label: "X" },
+        { key: "reddit", label: "Reddit" },
+      ];
+      var ACTIVE_COPY_PLATFORMS = ["xiaohongshu"];
 
       var els = {
         dateSelect: document.getElementById("date-select"),
@@ -515,6 +629,12 @@
         newsList: document.getElementById("news-list"),
         loadingState: document.getElementById("loading-state"),
         emptyState: document.getElementById("empty-state"),
+        copyPanel: document.getElementById("copy-panel"),
+        copyPlatformTabs: document.getElementById("copy-platform-tabs"),
+        copyEmptyState: document.getElementById("copy-empty-state"),
+        copyContent: document.getElementById("copy-content"),
+        copyHeadline: document.getElementById("copy-headline"),
+        copyBody: document.getElementById("copy-body"),
       };
 
       // ---------------------------------------------------------------------
@@ -768,6 +888,70 @@
         els.newsList.innerHTML = items.map(renderNewsCard).join("");
       }
 
+      // ---------------------------------------------------------------------
+      // 定稿展示区（9.7.3 D6）：platform tabs + GET /api/copy 渲染 headline/body
+      // ---------------------------------------------------------------------
+
+      function renderCopyPlatformTabs() {
+        els.copyPlatformTabs.innerHTML = COPY_PLATFORMS.map(function (p) {
+          var isActive = p.key === state.copyPlatform;
+          var isDisabled = ACTIVE_COPY_PLATFORMS.indexOf(p.key) === -1;
+          var cls = "copy-platform-tab" + (isActive ? " active" : "") + (isDisabled ? " disabled" : "");
+          var title = isDisabled ? "coming soon" : "";
+          return (
+            '<button type="button" class="' + cls + '" data-platform="' + escapeHtml(p.key) + '" ' +
+            (isDisabled ? "disabled " : "") +
+            'title="' + escapeHtml(title) + '">' + escapeHtml(p.label) + "</button>"
+          );
+        }).join("");
+      }
+
+      function showCopyEmptyState(message) {
+        els.copyContent.style.display = "none";
+        els.copyEmptyState.style.display = "block";
+        els.copyEmptyState.textContent = message || "尚未定稿";
+      }
+
+      function showCopyContent(headline, body) {
+        els.copyEmptyState.style.display = "none";
+        els.copyContent.style.display = "block";
+        els.copyHeadline.textContent = safeText(headline);
+        els.copyBody.textContent = safeText(body);
+      }
+
+      // 有选中候选时才展示定稿区（哪怕尚未 publish，也先展示空态，让总编知道去哪看结果）。
+      function updateCopyPanelVisibility() {
+        if (state.selection) {
+          els.copyPanel.style.display = "block";
+        } else {
+          els.copyPanel.style.display = "none";
+        }
+      }
+
+      function loadCopy() {
+        renderCopyPlatformTabs();
+        updateCopyPanelVisibility();
+        if (!state.selection) return;
+        if (ACTIVE_COPY_PLATFORMS.indexOf(state.copyPlatform) === -1) {
+          showCopyEmptyState("该平台暂未开放（coming soon）");
+          return;
+        }
+        var url = "/api/copy?date=" + encodeURIComponent(state.date) +
+          "&slug=" + encodeURIComponent(state.selection.news_slug) +
+          "&platform=" + encodeURIComponent(state.copyPlatform);
+        apiGet(url)
+          .then(function (body) {
+            showCopyContent(body.headline, body.body);
+          })
+          .catch(function (err) {
+            if (err.status === 404) {
+              showCopyEmptyState("尚未定稿");
+            } else {
+              showCopyEmptyState("加载定稿失败：" + err.message);
+            }
+          });
+      }
+
       function renderSelectionStatus() {
         if (state.selection && state.selection.title) {
           els.selectionStatus.innerHTML = '已选：<span class="picked">' +
@@ -805,6 +989,7 @@
         state.date = date;
         state.selection = null;
         renderSelectionStatus();
+        updateCopyPanelVisibility();
         els.loadingState.style.display = "block";
         els.newsList.innerHTML = "";
         els.emptyState.style.display = "none";
@@ -841,6 +1026,8 @@
           renderSelectionStatus();
           // 重渲染以更新每张卡上的"★ 已选"标记与高亮态。
           if (state.panel) renderPanel(state.panel);
+          // 改选后旧定稿会被后端删除（G8），刷新定稿区避免展示陈旧内容。
+          loadCopy();
         }).catch(function (err) {
           showError("选择请求失败（网络错误）：" + err.message);
         });
@@ -858,6 +1045,7 @@
             if (res.ok && res.body && res.body.ok) {
               els.publishResult.className = "visible ok";
               els.publishResult.textContent = "✓ 定稿成功 → " + res.body.copy_path;
+              loadCopy();
             } else {
               var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
               els.publishResult.className = "visible fail";
@@ -884,6 +1072,15 @@
 
       els.publishBtn.addEventListener("click", onPublish);
 
+      els.copyPlatformTabs.addEventListener("click", function (evt) {
+        var btn = evt.target.closest ? evt.target.closest(".copy-platform-tab") : null;
+        if (!btn || btn.disabled) return;
+        var platform = btn.getAttribute("data-platform");
+        if (platform === state.copyPlatform) return;
+        state.copyPlatform = platform;
+        loadCopy();
+      });
+
       // 纯前端语言切换：不重新请求 /api/data，只重渲染已加载的 panel。
       els.langToggle.addEventListener("click", function () {
         state.lang = state.lang === "en" ? "zh" : "en";
@@ -902,6 +1099,7 @@
         onSelectCandidate(newsSlug, tmdbId, title);
       });
 
+      renderCopyPlatformTabs();
       loadDates();
     })();
   </script>

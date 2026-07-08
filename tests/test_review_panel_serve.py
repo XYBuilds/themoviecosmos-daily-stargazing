@@ -12,7 +12,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 
-from review_panel.serve import read_selection, route
+from review_panel.serve import parse_copy_markdown, read_selection, route
 
 
 def _write_news(news_dir: Path) -> None:
@@ -389,6 +389,160 @@ class SelectionMigrationTests(unittest.TestCase):
 
             result = read_selection(tmp_path, date)
             self.assertEqual(result, new_payload)
+
+
+class ParseCopyMarkdownTests(unittest.TestCase):
+    """9.7.3 · parse_copy_markdown 是纯函数，直接喂文本断言即可，不用起 batch_root。"""
+
+    def test_extracts_headline_and_body(self) -> None:
+        text = (
+            "# 发布定稿 · 2026-07-06 · 小红书\n"
+            "\n"
+            "这是标题\n"
+            "\n"
+            "这是正文第一行。\n"
+            "\n"
+            "## 链接\n"
+            "\n"
+            "- 电影: https://example.com/movie/1\n"
+            "- 新闻: https://example.com/news/1\n"
+        )
+        result = parse_copy_markdown(text)
+        self.assertEqual(result["headline"], "这是标题")
+        self.assertEqual(result["body"], "这是正文第一行。")
+
+    def test_multi_paragraph_body_preserved(self) -> None:
+        text = (
+            "# 发布定稿 · 2026-07-06 · 小红书\n"
+            "\n"
+            "标题\n"
+            "\n"
+            "第一段。\n"
+            "\n"
+            "第二段。\n"
+            "\n"
+            "## 链接\n"
+            "- 电影: https://example.com\n"
+        )
+        result = parse_copy_markdown(text)
+        self.assertEqual(result["headline"], "标题")
+        self.assertEqual(result["body"], "第一段。\n\n第二段。")
+
+    def test_missing_links_section_returns_all_remaining_as_body(self) -> None:
+        text = "# 发布定稿 · 2026-07-06 · 小红书\n\n标题\n\n正文没有链接分区。\n"
+        result = parse_copy_markdown(text)
+        self.assertEqual(result["headline"], "标题")
+        self.assertEqual(result["body"], "正文没有链接分区。")
+
+    def test_missing_h1_and_content_returns_empty_strings(self) -> None:
+        result = parse_copy_markdown("")
+        self.assertEqual(result, {"headline": "", "body": ""})
+
+
+class CopyRouteTests(unittest.TestCase):
+    """9.7.3 · GET /api/copy：读 {slug}_copy_{platform}.md，解析 headline/body/humanized。"""
+
+    def _write_copy(self, tmp_path: Path, date: str, slug: str, platform: str = "xiaohongshu") -> Path:
+        path = tmp_path / date / f"{slug}_copy_{platform}.md"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            "# 发布定稿 · " + date + " · 小红书\n\n"
+            "原版标题\n\n"
+            "原版正文。\n\n"
+            "## 链接\n\n"
+            "- 电影: https://example.com/movie/1\n"
+            "- 新闻: https://example.com/news/1\n",
+            encoding="utf-8",
+        )
+        return path
+
+    def test_returns_parsed_content_when_copy_exists(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            self._write_copy(tmp_path, "2026-07-06", "09-slug")
+
+            status, payload = route(
+                "GET",
+                "/api/copy",
+                {"date": "2026-07-06", "slug": "09-slug", "platform": "xiaohongshu"},
+                None,
+                batch_root=tmp_path,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertEqual(payload["headline"], "原版标题")
+            self.assertEqual(payload["body"], "原版正文。")
+            self.assertIsNone(payload["humanized_body"])
+            self.assertFalse(payload["has_humanized"])
+            self.assertEqual(payload["platform"], "xiaohongshu")
+
+    def test_defaults_platform_to_xiaohongshu(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            self._write_copy(tmp_path, "2026-07-06", "09-slug")
+
+            status, payload = route(
+                "GET", "/api/copy", {"date": "2026-07-06", "slug": "09-slug"}, None, batch_root=tmp_path
+            )
+
+            self.assertEqual(status, 200)
+            self.assertEqual(payload["platform"], "xiaohongshu")
+
+    def test_missing_copy_file_returns_404(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            status, payload = route(
+                "GET",
+                "/api/copy",
+                {"date": "2026-07-06", "slug": "09-slug"},
+                None,
+                batch_root=tmp_path,
+            )
+            self.assertEqual(status, 404)
+            self.assertIn("error", payload)
+
+    def test_missing_date_or_slug_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            status, payload = route(
+                "GET", "/api/copy", {"slug": "09-slug"}, None, batch_root=tmp_path
+            )
+            self.assertEqual(status, 400)
+            self.assertIn("error", payload)
+
+            status, payload = route(
+                "GET", "/api/copy", {"date": "2026-07-06"}, None, batch_root=tmp_path
+            )
+            self.assertEqual(status, 400)
+            self.assertIn("error", payload)
+
+    def test_has_humanized_true_when_humanized_file_present(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            self._write_copy(tmp_path, "2026-07-06", "09-slug")
+            humanized_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu_humanized.md"
+            humanized_path.write_text(
+                "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+                "去AI化标题\n\n"
+                "去AI化正文。\n\n"
+                "## 链接\n\n"
+                "- 电影: https://example.com/movie/1\n",
+                encoding="utf-8",
+            )
+
+            status, payload = route(
+                "GET",
+                "/api/copy",
+                {"date": "2026-07-06", "slug": "09-slug"},
+                None,
+                batch_root=tmp_path,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["has_humanized"])
+            self.assertEqual(payload["humanized_body"], "去AI化正文。")
+            # 原版 body 不受 humanized 影响。
+            self.assertEqual(payload["body"], "原版正文。")
 
 
 class UnknownRouteTests(unittest.TestCase):
