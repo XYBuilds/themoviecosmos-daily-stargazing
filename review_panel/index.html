@@ -180,18 +180,44 @@
       border-bottom-color: var(--danger-border);
     }
 
-    #copy-panel {
+    #copy-view {
       max-width: 1600px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 20px 20px 80px;
     }
 
     .copy-panel {
-      margin-top: 14px;
       background: var(--bg-card);
       border: 1px solid var(--line);
       border-radius: 6px;
       overflow: hidden;
+    }
+
+    .copy-back-btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      color: var(--ink-dim);
+      background: var(--bg-card);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .copy-back-btn:hover {
+      color: var(--ink);
+      border-color: var(--accent-dim);
+    }
+
+    .copy-selected-title {
+      flex: 1;
+      font-size: 12.5px;
+      color: var(--accent);
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .copy-panel-head {
@@ -641,26 +667,33 @@
   <div id="error-banner"></div>
   <div id="publish-result"></div>
 
-  <div id="copy-panel" class="copy-panel" style="display:none;">
-    <div class="copy-panel-head">
-      <span class="copy-panel-title">定稿展示</span>
-      <div id="copy-platform-tabs" class="copy-platform-tabs"></div>
-    </div>
-    <div id="copy-panel-body" class="copy-panel-body">
-      <div id="copy-empty-state" class="copy-empty-state">尚未定稿</div>
-      <div id="copy-content" class="copy-content" style="display:none;">
-        <!-- 9.7.4 会在这里插入「去AI化」toggle 按钮 -->
-        <div id="copy-humanize-toggle-slot"></div>
-        <div id="copy-headline" class="copy-headline"></div>
-        <div id="copy-body" class="copy-body"></div>
-      </div>
+  <!-- 选片视图：候选列表。产出定稿后隐藏，切到 #copy-view。 -->
+  <div id="candidates-view">
+    <div id="main">
+      <div id="loading-state" style="display:none;">加载中…</div>
+      <div id="empty-state" style="display:none;">当天没有新闻数据。</div>
+      <div id="news-list"></div>
     </div>
   </div>
 
-  <div id="main">
-    <div id="loading-state" style="display:none;">加载中…</div>
-    <div id="empty-state" style="display:none;">当天没有新闻数据。</div>
-    <div id="news-list"></div>
+  <!-- 定稿视图：产出定稿后展示，全宽。顶部「← 返回选片」切回 #candidates-view。 -->
+  <div id="copy-view" style="display:none;">
+    <div id="copy-panel" class="copy-panel">
+      <div class="copy-panel-head">
+        <button type="button" id="copy-back-btn" class="copy-back-btn">← 返回选片</button>
+        <span class="copy-panel-title">定稿展示</span>
+        <span id="copy-selected-title" class="copy-selected-title"></span>
+        <div id="copy-platform-tabs" class="copy-platform-tabs"></div>
+      </div>
+      <div id="copy-panel-body" class="copy-panel-body">
+        <div id="copy-empty-state" class="copy-empty-state">尚未定稿</div>
+        <div id="copy-content" class="copy-content" style="display:none;">
+          <div id="copy-humanize-toggle-slot"></div>
+          <div id="copy-headline" class="copy-headline"></div>
+          <div id="copy-body" class="copy-body"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <footer>本地面板 · 无鉴权 · 勿公网暴露</footer>
@@ -674,6 +707,7 @@
         panel: null,
         selection: null, // {news_slug, tmdb_id, title}
         lang: "en", // "en" | "zh"; pure front-end toggle, does not refetch data
+        view: "candidates", // "candidates" | "copy"：当前视图（互斥切换）
         copyPlatform: "xiaohongshu", // 9.7.3 D6：当前定稿展示区选中的平台 tab
         originalBody: "", // 9.7.4：/api/copy 返回的原版正文（headline 不参与 toggle，恒定显示）
         humanizedBody: null, // 9.7.4：去AI化正文；null 表示尚未生成
@@ -699,6 +733,10 @@
         newsList: document.getElementById("news-list"),
         loadingState: document.getElementById("loading-state"),
         emptyState: document.getElementById("empty-state"),
+        candidatesView: document.getElementById("candidates-view"),
+        copyView: document.getElementById("copy-view"),
+        copyBackBtn: document.getElementById("copy-back-btn"),
+        copySelectedTitle: document.getElementById("copy-selected-title"),
         copyPanel: document.getElementById("copy-panel"),
         copyPlatformTabs: document.getElementById("copy-platform-tabs"),
         copyEmptyState: document.getElementById("copy-empty-state"),
@@ -1080,20 +1118,29 @@
           });
       }
 
-      // 有选中候选时才展示定稿区（哪怕尚未 publish，也先展示空态，让总编知道去哪看结果）。
-      function updateCopyPanelVisibility() {
-        if (state.selection) {
-          els.copyPanel.style.display = "block";
+      // 选片视图 / 定稿视图互斥切换（不再把定稿塞在页面顶端）。
+      function switchView(view) {
+        state.view = view;
+        var isCopy = view === "copy";
+        els.candidatesView.style.display = isCopy ? "none" : "block";
+        els.copyView.style.display = isCopy ? "block" : "none";
+        if (isCopy && state.selection && state.selection.title) {
+          els.copySelectedTitle.textContent = "已选：" + state.selection.title;
         } else {
-          els.copyPanel.style.display = "none";
+          els.copySelectedTitle.textContent = "";
         }
       }
 
+      // 拉取定稿并进入定稿视图。以磁盘产物为准：命中(200)进定稿视图，未命中(404)回选片视图，
+      // 这是刷新后恢复（refresh sync）的核心——不依赖内存态，只信 /api/copy 的实际产物。
       function loadCopy() {
         renderCopyPlatformTabs();
-        updateCopyPanelVisibility();
-        if (!state.selection) return;
+        if (!state.selection) {
+          switchView("candidates");
+          return;
+        }
         if (ACTIVE_COPY_PLATFORMS.indexOf(state.copyPlatform) === -1) {
+          switchView("copy");
           showCopyEmptyState("该平台暂未开放（coming soon）");
           return;
         }
@@ -1107,6 +1154,7 @@
             // 直接带出 humanized_body 让 toggle 一进来就可用，不用再点一次「去AI化」。
             state.humanizedBody = body.has_humanized ? body.humanized_body : null;
             state.humanizeView = "original";
+            switchView("copy");
             showCopyContent(body.headline, body.body);
           })
           .catch(function (err) {
@@ -1114,8 +1162,10 @@
             state.humanizedBody = null;
             state.humanizeView = "original";
             if (err.status === 404) {
-              showCopyEmptyState("尚未定稿");
+              // 该平台还没出稿：留在选片视图，让总编去写推文，而不是弹一个空定稿视图。
+              switchView("candidates");
             } else {
+              switchView("copy");
               showCopyEmptyState("加载定稿失败：" + err.message);
             }
           });
@@ -1158,7 +1208,7 @@
         state.date = date;
         state.selection = null;
         renderSelectionStatus();
-        updateCopyPanelVisibility();
+        switchView("candidates");
         els.loadingState.style.display = "block";
         els.newsList.innerHTML = "";
         els.emptyState.style.display = "none";
@@ -1175,6 +1225,33 @@
           })
           .then(function () {
             els.loadingState.style.display = "none";
+          })
+          .then(function () {
+            // 刷新后恢复：从磁盘 selection.json 恢复选中态，再让 loadCopy 按实际产物决定
+            // 停在选片视图还是直接进定稿视图。修「产物已存在但界面不同步」的 desync bug。
+            return restoreSelection(date);
+          });
+      }
+
+      // 读已落盘 selection，回填 state.selection + 候选卡勾选态，然后按磁盘定稿产物切视图。
+      function restoreSelection(date) {
+        return apiGet("/api/selection?date=" + encodeURIComponent(date))
+          .then(function (body) {
+            var sel = body && body.selection;
+            var picked = sel && sel.selected;
+            if (!picked || !picked.news_slug) return;
+            state.selection = {
+              news_slug: picked.news_slug,
+              tmdb_id: picked.tmdb_id,
+              title: picked.title,
+            };
+            renderSelectionStatus();
+            if (state.panel) renderPanel(state.panel);
+            // loadCopy 命中定稿→进定稿视图；未命中→留选片视图（内部已处理）。
+            loadCopy();
+          })
+          .catch(function () {
+            // selection 读取失败不阻塞主流程：留在选片视图即可。
           });
       }
 
@@ -1240,6 +1317,11 @@
       });
 
       els.publishBtn.addEventListener("click", onPublish);
+
+      // 「← 返回选片」：从定稿视图切回候选列表以便换 candidate；选中态与已落盘定稿都保留。
+      els.copyBackBtn.addEventListener("click", function () {
+        switchView("candidates");
+      });
 
       els.copyPlatformTabs.addEventListener("click", function (evt) {
         var btn = evt.target.closest ? evt.target.closest(".copy-platform-tab") : null;

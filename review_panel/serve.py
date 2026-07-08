@@ -171,6 +171,20 @@ def handle_data(batch_root: Path, query: dict[str, str]) -> tuple[int, dict[str,
     return 200, panel
 
 
+def handle_selection(batch_root: Path, query: dict[str, str] | None) -> tuple[int, dict[str, Any]]:
+    """读某日期已落盘的 selection.json（经 D4 迁移），供前端刷新后恢复选中态与视图。
+
+    尚未选片是正常状态：返回 200 + ``selection: null``，而不是 404（前端据此留在选片视图）。
+    这是修 refresh desync 的服务端支点——磁盘 selection 是刷新后恢复的唯一事实来源。
+    """
+    query = query or {}
+    date = query.get("date")
+    if not date:
+        return 400, {"error": "missing required query param 'date'"}
+    selection = read_selection(batch_root, date)
+    return 200, {"selection": selection}
+
+
 def handle_select(batch_root: Path, body: dict[str, Any] | None) -> tuple[int, dict[str, Any]]:
     body = body or {}
     date = body.get("date")
@@ -457,6 +471,8 @@ def route(
         return handle_data(batch_root, query)
     if method == "GET" and path == "/api/copy":
         return handle_copy(batch_root, query)
+    if method == "GET" and path == "/api/selection":
+        return handle_selection(batch_root, query)
     if method == "POST" and path == "/api/select":
         return handle_select(batch_root, body)
     if method == "POST" and path == "/api/publish":

@@ -391,6 +391,52 @@ class SelectionMigrationTests(unittest.TestCase):
             self.assertEqual(result, new_payload)
 
 
+class SelectionRouteTests(unittest.TestCase):
+    """9.7.7 · GET /api/selection：刷新后恢复选中态的服务端支点。"""
+
+    def test_missing_date_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            status, payload = route("GET", "/api/selection", {}, None, batch_root=Path(tmp))
+            self.assertEqual(status, 400)
+            self.assertIn("error", payload)
+
+    def test_no_selection_file_returns_200_null(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+            status, payload = route(
+                "GET", "/api/selection", {"date": "2026-07-06"}, None, batch_root=tmp_path
+            )
+            self.assertEqual(status, 200)
+            self.assertIsNone(payload["selection"])
+
+    def test_existing_selection_returned_and_migrated(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            # 旧格式落盘，验证 /api/selection 返回的是迁移后的 copies dict 形状。
+            old_payload = {
+                "date": date,
+                "selected": {"news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                "selected_at": "2026-07-06T00:00:00+00:00",
+                "published": True,
+                "copy_path": str(tmp_path / date / "09-slug_copy_xiaohongshu.md"),
+            }
+            selection_path = tmp_path / date / "selection.json"
+            selection_path.parent.mkdir(parents=True)
+            selection_path.write_text(json.dumps(old_payload, ensure_ascii=False), encoding="utf-8")
+
+            status, payload = route(
+                "GET", "/api/selection", {"date": date}, None, batch_root=tmp_path
+            )
+            self.assertEqual(status, 200)
+            sel = payload["selection"]
+            self.assertEqual(sel["selected"]["news_slug"], "09-slug")
+            self.assertIn("copies", sel)
+            self.assertNotIn("published", sel)
+            self.assertTrue(sel["copies"]["xiaohongshu"]["published"])
+
+
 class ParseCopyMarkdownTests(unittest.TestCase):
     """9.7.3 · parse_copy_markdown 是纯函数，直接喂文本断言即可，不用起 batch_root。"""
 
