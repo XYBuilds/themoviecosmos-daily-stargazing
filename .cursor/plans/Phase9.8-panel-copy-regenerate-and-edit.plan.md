@@ -28,7 +28,7 @@ todos:
     status: complete
   - id: p9.8.4-backend-endpoints
     content: 9.8.4 · [面板] serve 新增 POST /api/regenerate（subprocess 调 regenerate_adapter）+ POST /api/edit-body（无 LLM，直接经 render_copy_markdown 写回 + 失效 humanized）
-    status: todo
+    status: complete
   - id: p9.8.5-frontend-edit-regenerate
     content: 9.8.5 · [面板] 定稿区正文改为可编辑 textarea + 保存；新增「重生成标题」「重生成正文」按钮；覆盖后刷新展示；理清与去AI化 toggle 的交互
     status: todo
