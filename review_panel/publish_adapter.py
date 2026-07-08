@@ -191,16 +191,19 @@ def run_adapter(
         candidate, news, provider=provider, judge=judge, platform=platform
     )
 
-    copy_path = news_dir.parent / f"{slug}_copy.md"
+    # D3 文件名平台化：{slug}_copy.md → {slug}_copy_{platform}.md，
+    # 为未来多平台（X/Reddit）留扩展口，避免不同平台互相覆盖同一份稿。
+    copy_path = news_dir.parent / f"{slug}_copy_{platform}.md"
     copy_path.write_text(
-        render_copy_markdown(date, candidate, news, draft), encoding="utf-8"
+        render_copy_markdown(date, candidate, news, draft, platform=platform),
+        encoding="utf-8",
     )
     return copy_path
 
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Publish a daily_batch candidate's C2 draft as {slug}_copy.md.",
+        description="Publish a daily_batch candidate's C2 draft as {slug}_copy_{platform}.md.",
     )
     parser.add_argument("--date", required=True, help="日期，如 2026-07-06")
     parser.add_argument("--news-slug", dest="news_slug", required=True, help="新闻目录 slug")

@@ -173,9 +173,11 @@ class RunAdapterTests(unittest.TestCase):
                 run_publish=_fake_run_publish,
             )
 
-            self.assertEqual(copy_path, tmp_path / "2026-07-06" / "09-slug_copy.md")
+            self.assertEqual(copy_path, tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu.md")
             self.assertTrue(copy_path.is_file())
             content = copy_path.read_text(encoding="utf-8")
+            # Phase 9.7.2：platform 透传进渲染，标题行带平台标签。
+            self.assertIn("· 小红书", content)
             # ADR-0015 D4：headline 独立成行展示在顶部。
             self.assertIn("当风向不站在她们这边", content)
             # Phase 9.7.1：精简格式，去掉标签行和新闻原文 section。
@@ -335,7 +337,9 @@ class MainCliTests(unittest.TestCase):
                     ]
                 )
             self.assertEqual(code, 0)
-            self.assertTrue((tmp_path / "2026-07-06" / "09-slug_copy.md").is_file())
+            self.assertTrue(
+                (tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu.md").is_file()
+            )
 
     def test_cli_missing_slug_exits_nonzero(self) -> None:
         with TemporaryDirectory() as tmp:

@@ -37,9 +37,13 @@ from review_panel.build_data import build_panel_data, list_available_dates  # no
 from scripts.lib.paths import repo_root  # noqa: E402
 
 # 子进程调 publish_adapter.py 时用 stderr 里这一行定位「Wrote <path>」的产出路径，
-# 比自己拼 {slug}_copy.md 更可靠：adapter 内部用的是 news_dir.parent 拼路径，
+# 比自己拼 {slug}_copy_{platform}.md 更可靠：adapter 内部用的是 news_dir.parent 拼路径，
 # 这里直接信它自己汇报的路径，避免两处拼路径逻辑长期漂移不一致。
 _WROTE_LINE_RE = re.compile(r"^Wrote (.+)$", re.MULTILINE)
+
+# 当前已实现的发布平台清单（D3）。新增平台时只需在此追加一项，改选时的陈旧稿清理、
+# selection.json 的 copies dict 初始化等下游逻辑无需改动即可覆盖新平台。
+_ACTIVE_PLATFORMS: tuple[str, ...] = ("xiaohongshu",)
 
 
 def _default_batch_root() -> Path:
@@ -63,12 +67,38 @@ def _selection_path(batch_root: Path, date: str) -> Path:
     return batch_root / date / "selection.json"
 
 
+def _migrate_selection(selection: dict[str, Any]) -> dict[str, Any]:
+    """D4 向后兼容：旧格式（顶层 published/copy_path）无损迁移为 copies dict。
+
+    旧格式没有 platform 维度，历史数据只可能是 xiaohongshu；迁移后不留旧字段，
+    保证下游代码只需认识 ``copies`` 这一种形状。已是新格式（存在 ``copies``）时原样返回。
+    """
+    if "copies" in selection:
+        return selection
+
+    migrated = dict(selection)
+    old_published = migrated.pop("published", False)
+    old_copy_path = migrated.pop("copy_path", None)
+    migrated["copies"] = {
+        "xiaohongshu": {
+            "published": bool(old_published),
+            "copy_path": old_copy_path,
+            "humanized_path": None,
+        }
+    }
+    return migrated
+
+
 def read_selection(batch_root: Path, date: str) -> dict[str, Any] | None:
-    """读 selection.json；不存在返回 None（正常状态：审核者尚未做出选择）。"""
+    """读 selection.json；不存在返回 None（正常状态：审核者尚未做出选择）。
+
+    读出后立即做 D4 迁移，让所有下游调用点只看到新的 ``copies`` dict 形状。
+    """
     path = _selection_path(batch_root, date)
     if not path.is_file():
         return None
-    return json.loads(path.read_text(encoding="utf-8"))
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    return _migrate_selection(raw)
 
 
 def write_selection(batch_root: Path, date: str, payload: dict[str, Any]) -> Path:
@@ -87,11 +117,17 @@ def _parse_wrote_path(stderr: str) -> str | None:
 
 
 def _delete_copy_if_exists(path: Path) -> bool:
-    """删一份 {slug}_copy.md（存在才删），返回是否真的删了（幂等）。"""
+    """删一份 {slug}_copy_{platform}.md（存在才删），返回是否真的删了（幂等）。"""
     if path.is_file():
         path.unlink()
         return True
     return False
+
+
+def _delete_stale_copies(batch_root: Path, date: str, slug: str) -> None:
+    """按 _ACTIVE_PLATFORMS 逐平台删 {slug}_copy_{platform}.md（存在才删，幂等）。"""
+    for platform in _ACTIVE_PLATFORMS:
+        _delete_copy_if_exists(batch_root / date / f"{slug}_copy_{platform}.md")
 
 
 # ---------------------------------------------------------------------------
@@ -150,15 +186,15 @@ def handle_select(batch_root: Path, body: dict[str, Any] | None) -> tuple[int, d
     if prev:
         prev_slug = (prev.get("selected") or {}).get("news_slug")
         if prev_slug:
-            _delete_copy_if_exists(batch_root / date / f"{prev_slug}_copy.md")
-    _delete_copy_if_exists(batch_root / date / f"{news_slug}_copy.md")
+            _delete_stale_copies(batch_root, date, prev_slug)
+    _delete_stale_copies(batch_root, date, news_slug)
 
     payload = {
         "date": date,
         "selected": {"news_slug": news_slug, "tmdb_id": tmdb_id, "title": title},
         "selected_at": datetime.now(UTC).isoformat(),
-        "published": False,
-        "copy_path": None,
+        # D4：改选即清空所有平台的发布状态——新选片尚未对任何平台出稿。
+        "copies": {},
     }
     path = write_selection(batch_root, date, payload)
     return 200, {"ok": True, "path": str(path), "selection": payload}
@@ -173,6 +209,8 @@ def handle_publish(
 ) -> tuple[int, dict[str, Any]]:
     body = body or {}
     date = body.get("date")
+    # 本期唯一实装平台；body 未传时默认 xiaohongshu，为未来平台留 body 覆盖口。
+    platform = body.get("platform") or "xiaohongshu"
     if not date:
         return 400, {"ok": False, "copy_path": None, "stderr": "missing required field: date"}
 
@@ -204,6 +242,8 @@ def handle_publish(
             str(news_slug),
             "--tmdb-id",
             str(tmdb_id),
+            "--platform",
+            platform,
         ],
         capture_output=True,
         text=True,
@@ -213,10 +253,16 @@ def handle_publish(
         # 优先信 adapter 自己汇报的 "Wrote <path>"（stderr），推导路径只作兜底，
         # 避免两处拼路径规则长期漂移不一致。
         copy_path = _parse_wrote_path(result.stderr) or str(
-            batch_root / date / f"{news_slug}_copy.md"
+            batch_root / date / f"{news_slug}_copy_{platform}.md"
         )
-        selection["published"] = True
-        selection["copy_path"] = copy_path
+        # D4：只更新本平台的 copies 条目，保留可能已存在的 humanized_path（9.7.4
+        # 才会真正写入非 None 值，这里先占位保留字段结构）。
+        existing_entry = selection.get("copies", {}).get(platform) or {}
+        selection.setdefault("copies", {})[platform] = {
+            "published": True,
+            "copy_path": copy_path,
+            "humanized_path": existing_entry.get("humanized_path"),
+        }
         write_selection(batch_root, date, selection)
         return 200, {"ok": True, "copy_path": copy_path, "stderr": result.stderr}
 
