@@ -58,6 +58,10 @@ def _default_rewrite_adapter_path() -> Path:
     return Path(__file__).resolve().parent / "rewrite_adapter.py"
 
 
+def _default_regenerate_adapter_path() -> Path:
+    return Path(__file__).resolve().parent / "regenerate_adapter.py"
+
+
 def _default_index_html_path() -> Path:
     return Path(__file__).resolve().parent / "index.html"
 
@@ -376,6 +380,183 @@ def handle_rewrite(
     }
 
 
+def handle_regenerate(
+    batch_root: Path,
+    body: dict[str, Any] | None,
+    *,
+    regenerate_adapter_path: Path,
+    run_subprocess: Any = subprocess.run,
+) -> tuple[int, dict[str, Any]]:
+    """9.8.4：subprocess 调 regenerate_adapter.py 覆盖重生成 headline 或 body。
+
+    tmdb_id 面板不会随请求传来（面板只知道 date/slug/platform/target），必须从
+    selection.json 兜底读出——这是 regenerate_adapter 定位 candidate 的唯一途径。
+    body 目标成功后 adapter 已自行删掉 humanized 文件，这里只需同步清空
+    selection.json 里的 humanized_path 字段，让磁盘与元数据保持一致。
+    """
+    body = body or {}
+    date = body.get("date")
+    platform = body.get("platform") or "xiaohongshu"
+    target = body.get("target")
+
+    if not date:
+        return 400, {
+            "ok": False,
+            "headline": None,
+            "body": None,
+            "stderr": "missing required field: date",
+        }
+    if target not in ("headline", "body"):
+        return 400, {
+            "ok": False,
+            "headline": None,
+            "body": None,
+            "stderr": "target must be 'headline' or 'body'",
+        }
+
+    slug = body.get("slug")
+    selection = read_selection(batch_root, date)
+    if not slug:
+        if selection is None:
+            return 400, {
+                "ok": False,
+                "headline": None,
+                "body": None,
+                "stderr": f"no selection.json for date {date!r}; call /api/select first",
+            }
+        slug = (selection.get("selected") or {}).get("news_slug")
+        if not slug:
+            return 400, {
+                "ok": False,
+                "headline": None,
+                "body": None,
+                "stderr": "selection.json missing news_slug",
+            }
+
+    if selection is None:
+        return 400, {
+            "ok": False,
+            "headline": None,
+            "body": None,
+            "stderr": f"no selection.json for date {date!r}; call /api/select first",
+        }
+    tmdb_id = (selection.get("selected") or {}).get("tmdb_id")
+    if tmdb_id is None:
+        return 400, {
+            "ok": False,
+            "headline": None,
+            "body": None,
+            "stderr": "selection.json missing tmdb_id",
+        }
+
+    result = run_subprocess(
+        [
+            sys.executable,
+            str(regenerate_adapter_path),
+            "--date",
+            date,
+            "--slug",
+            str(slug),
+            "--tmdb-id",
+            str(tmdb_id),
+            "--platform",
+            platform,
+            "--target",
+            target,
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode != 0:
+        return 500, {"ok": False, "headline": None, "body": None, "stderr": result.stderr}
+
+    copy_path_str = _parse_wrote_path(result.stderr) or str(
+        batch_root / date / f"{slug}_copy_{platform}.md"
+    )
+    copy_path = Path(copy_path_str)
+    parsed = parse_copy_markdown(copy_path.read_text(encoding="utf-8"))
+
+    if target == "body":
+        # regenerate_adapter 已自行删掉 humanized 文件（D4），这里只需把
+        # selection.json 的 humanized_path 同步清空，保留 published/copy_path。
+        selection = read_selection(batch_root, date) or selection
+        existing_entry = selection.get("copies", {}).get(platform) or {}
+        selection.setdefault("copies", {})[platform] = {
+            "published": existing_entry.get("published", False),
+            "copy_path": existing_entry.get("copy_path"),
+            "humanized_path": None,
+        }
+        write_selection(batch_root, date, selection)
+
+    return 200, {
+        "ok": True,
+        "target": target,
+        "headline": parsed["headline"],
+        "body": parsed["body"],
+        "copy_path": copy_path_str,
+        "stderr": result.stderr,
+    }
+
+
+def handle_edit_body(batch_root: Path, body: dict[str, Any] | None) -> tuple[int, dict[str, Any]]:
+    """9.8.4：/api/edit-body 无 LLM，纯 in-serve 文本拼接直改 body。
+
+    与 handle_regenerate 的 body 分支一样要失效 humanized（D4），但这里没有
+    adapter 子进程替我们删文件，需自己调 _delete_copy_if_exists。
+    """
+    body = body or {}
+    date = body.get("date")
+    platform = body.get("platform") or "xiaohongshu"
+    new_body = body.get("body")
+
+    if not date:
+        return 400, {"ok": False, "error": "missing required field: date"}
+    if new_body is None or str(new_body).strip() == "":
+        return 400, {"ok": False, "error": "missing or empty body"}
+
+    slug = body.get("slug")
+    selection: dict[str, Any] | None = None
+    if not slug:
+        selection = read_selection(batch_root, date)
+        if selection is None:
+            return 400, {
+                "ok": False,
+                "error": f"no selection.json for date {date!r}; call /api/select first",
+            }
+        slug = (selection.get("selected") or {}).get("news_slug")
+        if not slug:
+            return 400, {"ok": False, "error": "selection.json missing news_slug"}
+
+    copy_path = batch_root / date / f"{slug}_copy_{platform}.md"
+    if not copy_path.is_file():
+        return 404, {"ok": False, "error": f"copy not found: {copy_path}"}
+
+    text = copy_path.read_text(encoding="utf-8")
+    new_text = replace_body_in_copy_markdown(text, str(new_body))
+    copy_path.write_text(new_text, encoding="utf-8")
+
+    _delete_copy_if_exists(batch_root / date / f"{slug}_copy_{platform}_humanized.md")
+    if selection is None:
+        selection = read_selection(batch_root, date)
+    if selection is not None and platform in selection.get("copies", {}):
+        existing_entry = selection["copies"][platform]
+        selection["copies"][platform] = {
+            "published": existing_entry.get("published", False),
+            "copy_path": existing_entry.get("copy_path"),
+            "humanized_path": None,
+        }
+        write_selection(batch_root, date, selection)
+
+    parsed = parse_copy_markdown(new_text)
+    return 200, {
+        "ok": True,
+        "headline": parsed["headline"],
+        "body": parsed["body"],
+        "platform": platform,
+    }
+
+
 def parse_copy_markdown(text: str) -> dict[str, str]:
     """纯函数：解析 ``{slug}_copy_{platform}.md`` 的固定 D1 排版，抽出 headline/body。
 
@@ -410,6 +591,41 @@ def parse_copy_markdown(text: str) -> dict[str, str]:
     body = "\n".join(body_lines).strip()
 
     return {"headline": headline, "body": body}
+
+
+def replace_body_in_copy_markdown(text: str, new_body: str) -> str:
+    """纯函数：原地替换 body，逐字保留 header/headline/``## 链接`` 分区。
+
+    存在的意义：/api/edit-body 是无 LLM 的直改，若复用 publish_adapter 的
+    render_copy_markdown 重新拼装整份文件，就得 import compose 相关重模块，
+    违反 serve.py「薄传输层」的耦合边界；同时逐字保留（而非重新渲染）headline
+    与链接分区，天然满足「headline/链接不变」的验收标准，不必额外断言。
+    """
+    lines = text.splitlines()
+    n = len(lines)
+    idx = 0
+
+    while idx < n and not lines[idx].strip():
+        idx += 1
+    if idx < n and lines[idx].strip().startswith("# "):
+        idx += 1
+    while idx < n and not lines[idx].strip():
+        idx += 1
+
+    headline_idx = idx
+    links_idx: int | None = None
+    for j in range(idx, n):
+        if lines[j].strip() == "## 链接":
+            links_idx = j
+            break
+
+    prefix_lines = lines[: headline_idx + 1]
+    parts = ["\n".join(prefix_lines), "", new_body.strip()]
+    if links_idx is not None:
+        links_block = "\n".join(lines[links_idx:]).rstrip("\n")
+        parts += ["", links_block]
+
+    return "\n".join(parts).rstrip("\n") + "\n"
 
 
 def handle_copy(batch_root: Path, query: dict[str, str] | None) -> tuple[int, dict[str, Any]]:
@@ -458,6 +674,7 @@ def route(
     index_html_path: Path | None = None,
     publish_adapter_path: Path | None = None,
     rewrite_adapter_path: Path | None = None,
+    regenerate_adapter_path: Path | None = None,
     run_subprocess: Any = subprocess.run,
 ) -> tuple[int, dict[str, Any] | str]:
     """纯路由分发：无 socket 依赖，单测与真实服务器共用同一份逻辑。"""
@@ -489,6 +706,15 @@ def route(
             rewrite_adapter_path=rewrite_adapter_path or _default_rewrite_adapter_path(),
             run_subprocess=run_subprocess,
         )
+    if method == "POST" and path == "/api/regenerate":
+        return handle_regenerate(
+            batch_root,
+            body,
+            regenerate_adapter_path=regenerate_adapter_path or _default_regenerate_adapter_path(),
+            run_subprocess=run_subprocess,
+        )
+    if method == "POST" and path == "/api/edit-body":
+        return handle_edit_body(batch_root, body)
     return 404, {"error": f"not found: {method} {path}"}
 
 
@@ -503,6 +729,7 @@ def make_handler_class(
     index_html_path: Path,
     publish_adapter_path: Path,
     rewrite_adapter_path: Path,
+    regenerate_adapter_path: Path,
 ) -> type[BaseHTTPRequestHandler]:
     """按注入的 batch_root/路径生成一个 handler 类（闭包避免用全局可变状态）。"""
 
@@ -536,6 +763,7 @@ def make_handler_class(
                 index_html_path=index_html_path,
                 publish_adapter_path=publish_adapter_path,
                 rewrite_adapter_path=rewrite_adapter_path,
+                regenerate_adapter_path=regenerate_adapter_path,
             )
             if isinstance(payload, str):
                 self._send_html(status, payload)
@@ -572,6 +800,7 @@ def serve(
     index_html_path: Path | None = None,
     publish_adapter_path: Path | None = None,
     rewrite_adapter_path: Path | None = None,
+    regenerate_adapter_path: Path | None = None,
 ) -> ThreadingHTTPServer:
     """构建并返回一个已 bind 但尚未 serve_forever 的服务器实例（便于测试注入）。"""
     root = batch_root or _default_batch_root()
@@ -580,6 +809,7 @@ def serve(
         index_html_path=index_html_path or _default_index_html_path(),
         publish_adapter_path=publish_adapter_path or _default_publish_adapter_path(),
         rewrite_adapter_path=rewrite_adapter_path or _default_rewrite_adapter_path(),
+        regenerate_adapter_path=regenerate_adapter_path or _default_regenerate_adapter_path(),
     )
     # 只绑 127.0.0.1（loopback）：这是无鉴权本地面板，绝不能改绑 0.0.0.0 对外暴露。
     return ThreadingHTTPServer(("127.0.0.1", port), handler_cls)
