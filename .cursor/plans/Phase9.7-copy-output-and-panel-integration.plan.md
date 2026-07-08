@@ -27,7 +27,7 @@ todos:
     status: complete
   - id: p9.7.6-gate-doc-sync
     content: 9.7.6 · [GATE] Rule Breakers 真实重跑：验证新格式 + 面板定稿展示/移动宽度预览 + avoid-ai-writing toggle；Go 后同步 SSOT/PRD 并收尾 [需人工验收]
-    status: todo
+    status: complete
 isProject: true
 ---
 
