@@ -25,7 +25,7 @@ todos:
     status: complete
   - id: p9.8.3-regenerate-adapter
     content: 9.8.3 · [adapter] review_panel/regenerate_adapter.py（--target headline|body）：读当前 _copy_{platform}.md → 调 compose → 覆盖对应字段回写 + body 变更时删陈旧 _humanized.md
-    status: todo
+    status: complete
   - id: p9.8.4-backend-endpoints
     content: 9.8.4 · [面板] serve 新增 POST /api/regenerate（subprocess 调 regenerate_adapter）+ POST /api/edit-body（无 LLM，直接经 render_copy_markdown 写回 + 失效 humanized）
     status: todo
