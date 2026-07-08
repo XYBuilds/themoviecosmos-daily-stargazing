@@ -1,12 +1,12 @@
 # 电影宇宙「每日星轨观测」系统 PRD
 
-> **当前版本**：v0.5（12 Pearson persona · fragment ladder / search unit · 双轴共振 + judge 预筛）
-> **更新日期**：2026-06-14
-> **状态**：MVP 建造期 · **Phase 3 全部 GATE GO**（3.10 双轴 rubric + judge 预筛收敛 2026-06-10；3.11.8 fragment ladder / search unit 架构收敛 2026-06-13），**即将进入 Phase 4（呈现层 / 中文文案）**。
+> **当前版本**：v0.6（12 Pearson persona · fragment ladder / search unit · 双轴共振 + judge 预筛 · C2 平台化定稿）
+> **更新日期**：2026-07-09
+> **状态**：MVP 建造期 · Phase 9.7 GATE GO 后收尾。当前链路已覆盖：热度池日批、审核面板、C2 小红书平台化定稿、定稿展示、可逆 avoid-ai-writing 改写。
 >
 > **本版定位**：本 PRD 是项目 SSOT，登记**当前真实设计**。Phase 3 经历了从「A2/A4/A7 + A1 四 agent」到「12 Pearson 原型 persona」、从「pseudo 通道」到「fragment ladder / search unit」的两次大重构，散落在 [ADR-0004](../adr/0004-persona-emotional-diffusion.md) / [ADR-0007](../adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) / [ADR-0008](../adr/0008-salience-driven-element-composition-and-multi-vantage-pov.md) / [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) / [ADR-0010](../adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md) 中。本版把这些决策收口进 SSOT。历史四 agent 写法（A1/A2/A4/A7）已**作废**，仅在历史报告中保留。
 >
-> **语种链**：电影库为全英文。**新闻输入 → 解构 → 扩展 → persona lens → search unit → 检索全程英文**（英进英出，无翻译步骤）。唯一中文化 = 召回后为候选写中文推荐文案给总编审核（Phase 4）；多平台多语言定稿在更下游。
+> **语种链**：电影库为全英文。**新闻输入 → 解构 → 扩展 → persona lens → search unit → 检索全程英文**（英进英出，无翻译步骤）。召回后先生成中文审核稿给总编决策；总编选定后进入 C2 平台化定稿，当前小红书中文首发，按 [ADR-0015](../adr/0015-publish-platformization-and-element-checklist.md) 产出 headline、正文与归属行。
 
 ---
 
@@ -307,11 +307,10 @@ surface_match_score + event_match_score + persona_semantic_match_score
 
 * 索引复用（ADR-0001）、endpoint smoke test、prompts、agents/personas、retrieve、五段流水、双轴 rubric、judge 预筛、fragment ladder / search unit。Phase 3 全部 GATE GO。
 
-### Phase 4 · 呈现层 / 中文文案（即将启动）
+### Phase 4–9.7 · 已落地的生产化链路
 
-* C1 中文审核文案（batch 生成）；C2 中英多平台定稿。
-* **OPEN（[ADR-0007](../adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) a）**：是否在 reader-facing 文案做 POV 聚焦（被击中的最强位置）——本 PRD 登记为待决。
-* 债1（baseline 顶替流失）**接受为正常代价**，不做 retention 调优；债2（judge 校准）移至 Phase 5 todo 5.4 在 RSS 真实分布上补齐。
+* C1 中文审核文案、C2 小红书平台化定稿、headline、归属行、平台化文件命名、审核面板定稿展示、可逆 avoid-ai-writing 改写已落地。
+* C2 定稿按 [ADR-0015](../adr/0015-publish-platformization-and-element-checklist.md) 执行：每平台一个创作步骤，当前只开放 `xiaohongshu`；产物落 `{slug}_copy_{platform}.md`，humanized 派生产物落 `{slug}_copy_{platform}_humanized.md`。
 
 ### Phase 5 · 新闻接入
 
