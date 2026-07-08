@@ -18,7 +18,7 @@ todos:
     status: complete
   - id: p9.7.3-panel-copy-display
     content: 9.7.3 · [面板] 审核面板新增定稿展示区：GET /api/copy + 前端 platform tabs + 渲染 headline/body
-    status: todo
+    status: complete
   - id: p9.7.4-avoid-ai-rewrite
     content: 9.7.4 · [面板] avoid-ai-writing 集成：POST /api/rewrite + _humanized.md 产出 + 前端 toggle 可逆切换
     status: todo

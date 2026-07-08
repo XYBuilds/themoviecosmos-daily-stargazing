@@ -269,6 +269,78 @@ def handle_publish(
     return 500, {"ok": False, "copy_path": None, "stderr": result.stderr}
 
 
+def parse_copy_markdown(text: str) -> dict[str, str]:
+    """纯函数：解析 ``{slug}_copy_{platform}.md`` 的固定 D1 排版，抽出 headline/body。
+
+    规则（对齐 publish_adapter.render_copy_markdown 的输出形状）：
+    - 跳过开头的 ``# 发布定稿...`` H1 标题行（及其前的空行）；
+    - H1 之后第一个非空行即 headline；
+    - body 是 headline 之后、直到（不含）``## 链接`` 分区之前的所有内容，整体 strip；
+    - 缺 H1 / 缺 headline / 缺链接分区都不报错，容错返回空串——供 handle_copy 对已知产出
+      文件解析，也允许直接单测喂任意残缺文本。
+    """
+    lines = text.splitlines()
+    n = len(lines)
+    idx = 0
+
+    while idx < n and not lines[idx].strip():
+        idx += 1
+    if idx < n and lines[idx].strip().startswith("# "):
+        idx += 1
+
+    while idx < n and not lines[idx].strip():
+        idx += 1
+
+    headline = lines[idx].strip() if idx < n else ""
+    if idx < n:
+        idx += 1
+
+    body_lines: list[str] = []
+    for line in lines[idx:]:
+        if line.strip() == "## 链接":
+            break
+        body_lines.append(line)
+    body = "\n".join(body_lines).strip()
+
+    return {"headline": headline, "body": body}
+
+
+def handle_copy(batch_root: Path, query: dict[str, str] | None) -> tuple[int, dict[str, Any]]:
+    """读 ``{slug}_copy_{platform}.md``（D6）：面板定稿展示区的数据源。
+
+    humanized 文件的解析是 9.7.4 的前瞻只读兼容：本 TODO 不产出/不写它，只在它已存在时
+    （未来 9.7.4 落地后）顺带解析出 humanized_body，避免 9.7.4 还要再改这个 handler。
+    """
+    query = query or {}
+    date = query.get("date")
+    slug = query.get("slug")
+    platform = query.get("platform") or "xiaohongshu"
+    if not date or not slug:
+        return 400, {"error": "missing required query params: date/slug"}
+
+    copy_path = batch_root / date / f"{slug}_copy_{platform}.md"
+    if not copy_path.is_file():
+        return 404, {"error": f"copy not found: {copy_path}"}
+
+    parsed = parse_copy_markdown(copy_path.read_text(encoding="utf-8"))
+
+    humanized_path = batch_root / date / f"{slug}_copy_{platform}_humanized.md"
+    has_humanized = humanized_path.is_file()
+    humanized_body: str | None = None
+    if has_humanized:
+        humanized_body = parse_copy_markdown(
+            humanized_path.read_text(encoding="utf-8")
+        )["body"]
+
+    return 200, {
+        "headline": parsed["headline"],
+        "body": parsed["body"],
+        "humanized_body": humanized_body,
+        "has_humanized": has_humanized,
+        "platform": platform,
+    }
+
+
 def route(
     method: str,
     path: str,
@@ -289,6 +361,8 @@ def route(
         return handle_dates(batch_root)
     if method == "GET" and path == "/api/data":
         return handle_data(batch_root, query)
+    if method == "GET" and path == "/api/copy":
+        return handle_copy(batch_root, query)
     if method == "POST" and path == "/api/select":
         return handle_select(batch_root, body)
     if method == "POST" and path == "/api/publish":
