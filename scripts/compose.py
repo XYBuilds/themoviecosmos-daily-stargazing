@@ -54,6 +54,9 @@ _MODEL_ENV: dict[str, str] = {
 _C1_PROMPT_REL = "prompts/compose_review.md"
 # C2 发布稿 prompt 按平台选取（ADR-0015 D1）：prompts/compose_publish_<platform>.md。
 _C2_PROMPT_FILENAME = "compose_publish_{platform}.md"
+# headline-only 重生成 prompt（ADR-0016 D3）：body-aware，只吃现有正文重出标题，
+# 与 monolithic 首发稿 _C2_PROMPT_FILENAME 分开选取，不共用同一份模板。
+_HEADLINE_PROMPT_FILENAME = "compose_publish_{platform}_headline.md"
 _DEFAULT_PLATFORM = "xiaohongshu"
 _PLATFORMS: tuple[str, ...] = ("xiaohongshu",)
 
@@ -102,6 +105,17 @@ _PUBLISH_SYSTEM_MESSAGE = (
     "数字文字化 / 不回显输入结构 / 不编造）。严格按用户消息里的 sentinel 契约输出："
     "【标题】一行标题，随后 【正文】一段正文，正文首行为「片名」(YYYY) 导演名 归属行。"
     "只输出这两块，不要输出决策卡、字段键值、Hashtag、电影链接或任何额外说明。"
+)
+
+# headline-only 重生成（ADR-0016 D3）专用 system message。与 _PUBLISH_SYSTEM_MESSAGE
+# 不同：这里只允许模型产一句标题，不产正文，因为下游只取 headline 字段（body 仍由
+# run_publish 走首发路径产出，此路径不碰正文），避免模型误吐正文块与 sentinel 契约冲突。
+_HEADLINE_SYSTEM_MESSAGE = (
+    "你是「每日星轨观测」的标题重生成助理，只为总编已有的一版正文重出一句小红书标题，"
+    "不产正文、不改正文。遵循影像平权的平视调性（不排名 / 不盖章 / 不煽动 / 数字文字化 / "
+    "不回显输入结构 / 不编造）。严格按用户消息里的 sentinel 契约输出：只写 "
+    "【标题】一行标题，这一行。不要输出【正文】、正文内容、字段键值、Hashtag、电影链接"
+    "或任何额外说明。"
 )
 
 # Fixed field prefixes the LLM emits inside each decision card (DSL contract).
@@ -498,6 +512,50 @@ def run_publish(
     }
 
 
+def run_headline(
+    candidate: dict[str, Any],
+    news: dict[str, str],
+    current_body: str,
+    *,
+    provider: str | None = None,
+    judge: JudgeEntry | None = None,
+    platform: str = _DEFAULT_PLATFORM,
+    prompts_dir: Path | None = None,
+    llm_call: Any = None,
+) -> dict[str, Any]:
+    """headline-only、body-aware 重生成（ADR-0016 D3）：只重出标题，不碰正文。
+
+    正文重生成不设独立函数——下游适配器（后续 TODO）直接复用 run_publish 并只取其
+    ``body``。本函数只贴合 ``current_body`` 重出一句标题，供总编「只改标题」时调用。
+    """
+    # judge 当前未被 headline prompt 消费（该 prompt 无 judge 占位符，是有意的
+    # judge-free 设计）；参数保留仅为与 run_publish 签名对齐，供未来复用。
+    template = load_headline_template(platform, prompts_dir)
+    news_context = build_news_context(news, "")
+    selected_movie = format_selected_movie_block(candidate)
+    headline_contract = load_headline_contract(prompts_dir)
+    prompt = render_headline_prompt(
+        template, news_context, selected_movie, current_body, headline_contract
+    )
+
+    if llm_call is not None:
+        raw = str(llm_call(prompt) or "").strip()
+    else:
+        load_env()
+        resolved = _resolve_provider(provider)
+        client = get_llm_client(resolved)
+        model = _model_name(resolved)
+        raw = _sync_llm_call(client, model, prompt, _HEADLINE_SYSTEM_MESSAGE)
+
+    # 复用 parse_publish_output 的 headline 分支：即使模型误吐多行，也只取首行，
+    # 无需为 headline-only 另写一套解析逻辑（ADR-0016 D3）。
+    headline, _ = parse_publish_output(raw)
+    return {
+        "tmdb_id": candidate.get("tmdb_id"),
+        "headline": headline,
+    }
+
+
 def format_candidates_block(
     candidates: list[dict[str, Any]],
     judge_index: dict[tuple[str, str], "JudgeEntry"] | None = None,
@@ -614,6 +672,36 @@ def load_headline_contract(prompts_dir: Path | None = None) -> str:
     if not path.is_file():
         raise FileNotFoundError(f"headline contract not found: {path}")
     return path.read_text(encoding="utf-8")
+
+
+def load_headline_template(
+    platform: str = _DEFAULT_PLATFORM, prompts_dir: Path | None = None
+) -> str:
+    """按平台选取 headline-only 重生成 prompt（ADR-0016 D3）：沿用 load_c2_template 查找模式。"""
+    filename = _HEADLINE_PROMPT_FILENAME.format(platform=platform)
+    base = prompts_dir or (repo_root() / "prompts")
+    path = base / filename
+    if not path.is_file():
+        path = repo_root() / "prompts" / filename
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"headline prompt not found for platform {platform!r}: {path}"
+        )
+    return path.read_text(encoding="utf-8")
+
+
+def render_headline_prompt(
+    template: str,
+    news_context: str,
+    selected_movie: str,
+    current_body: str,
+    headline_contract: str = "",
+) -> str:
+    rendered = template.replace("{{news_context}}", news_context or "（无新闻语境）")
+    rendered = rendered.replace("{{selected_movie}}", selected_movie or "（无选定电影）")
+    rendered = rendered.replace("{{current_body}}", current_body or "（无当前正文）")
+    rendered = rendered.replace("{{headline_contract}}", headline_contract or "")
+    return rendered
 
 
 def render_c1_prompt(template: str, news_context: str, candidates_block: str) -> str:
