@@ -27,7 +27,7 @@ todos:
     status: complete
   - id: p9.7.6-ssot-sync
     content: 9.7.6 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD 同步平台化与元素化描述
-    status: todo
+    status: complete
   - id: p9.7.7-gate
     content: 9.7.7 · [GATE] Rule Breakers 真实重跑：验证新格式 + 面板定稿展示 + avoid-ai-writing toggle [需人工验收]
     status: todo
