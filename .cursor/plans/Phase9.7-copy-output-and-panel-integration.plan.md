@@ -15,7 +15,7 @@ todos:
     status: complete
   - id: p9.7.2-platform-filename
     content: 9.7.2 · [命名] 文件名 {slug}_copy_{platform}.md + selection.json 结构升级为 copies dict + 下游适配
-    status: todo
+    status: complete
   - id: p9.7.3-panel-copy-display
     content: 9.7.3 · [面板] 审核面板新增定稿展示区：GET /api/copy + 前端 platform tabs + 渲染 headline/body
     status: todo
