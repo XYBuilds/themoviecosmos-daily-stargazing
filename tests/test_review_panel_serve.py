@@ -688,6 +688,121 @@ class RewriteRouteTests(unittest.TestCase):
             self.assertTrue(payload["ok"])
 
 
+class PublishThenRewriteE2ETests(unittest.TestCase):
+    """9.7.5 gap-fill: select→publish→rewrite 全链路，验证 copies.xiaohongshu 三字段。"""
+
+    def test_publish_then_rewrite_preserves_published_and_copy_path(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": "2026-07-06", "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+
+            copy_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu.md"
+
+            def fake_publish_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                copy_path.write_text(
+                    "# 发布定稿 · 2026-07-06 · 小红书\n\n一句标题\n\n原版正文。\n\n"
+                    "## 链接\n\n- 电影: https://example.com/movie/1\n",
+                    encoding="utf-8",
+                )
+                return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {copy_path}\n")
+
+            status, publish_payload = route(
+                "POST",
+                "/api/publish",
+                {},
+                {"date": "2026-07-06"},
+                batch_root=tmp_path,
+                run_subprocess=fake_publish_subprocess,
+            )
+            self.assertEqual(status, 200)
+
+            humanized_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu_humanized.md"
+
+            def fake_rewrite_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                humanized_path.write_text(
+                    "# 发布定稿 · 2026-07-06 · 小红书\n\n一句标题\n\n去AI化正文。\n\n"
+                    "## 链接\n\n- 电影: https://example.com/movie/1\n",
+                    encoding="utf-8",
+                )
+                return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {humanized_path}\n")
+
+            status, rewrite_payload = route(
+                "POST",
+                "/api/rewrite",
+                {},
+                {"date": "2026-07-06"},
+                batch_root=tmp_path,
+                run_subprocess=fake_rewrite_subprocess,
+            )
+            self.assertEqual(status, 200)
+
+            selection = read_selection(tmp_path, "2026-07-06")
+            entry = selection["copies"]["xiaohongshu"]
+            self.assertTrue(entry["published"])
+            self.assertEqual(entry["copy_path"], str(copy_path))
+            self.assertEqual(entry["humanized_path"], str(humanized_path))
+
+
+class PublishMigratesOldFormatSelectionTests(unittest.TestCase):
+    """9.7.5 gap-fill: handle_publish 读到旧格式 selection.json 时应先迁移再写回。"""
+
+    def test_legacy_selection_migrated_through_handle_publish(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            _make_batch(tmp_path, date, "09-slug")
+
+            legacy_payload = {
+                "date": date,
+                "selected": {"news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                "selected_at": "2026-07-06T00:00:00+00:00",
+                "published": False,
+                "copy_path": None,
+            }
+            selection_path = tmp_path / date / "selection.json"
+            selection_path.parent.mkdir(parents=True, exist_ok=True)
+            selection_path.write_text(json.dumps(legacy_payload, ensure_ascii=False), encoding="utf-8")
+
+            expected_copy_path = tmp_path / date / "09-slug_copy_xiaohongshu.md"
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                return SimpleNamespace(
+                    returncode=0, stdout="", stderr=f"Wrote {expected_copy_path}\n"
+                )
+
+            status, payload = route(
+                "POST",
+                "/api/publish",
+                {},
+                {"date": date},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+
+            selection = read_selection(tmp_path, date)
+            self.assertNotIn("published", selection)
+            self.assertNotIn("copy_path", selection)
+            entry = selection["copies"]["xiaohongshu"]
+            self.assertTrue(entry["published"])
+            self.assertEqual(entry["copy_path"], str(expected_copy_path))
+
+            # 写回磁盘的原始 JSON 也不应有顶层 published/copy_path 残留。
+            raw_on_disk = json.loads(selection_path.read_text(encoding="utf-8"))
+            self.assertNotIn("published", raw_on_disk)
+            self.assertNotIn("copy_path", raw_on_disk)
+            self.assertIn("copies", raw_on_disk)
+
+
 class UnknownRouteTests(unittest.TestCase):
     def test_unknown_path_returns_404(self) -> None:
         with TemporaryDirectory() as tmp:

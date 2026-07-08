@@ -24,7 +24,7 @@ todos:
     status: complete
   - id: p9.7.5-tests
     content: 9.7.5 · [测试] 新增/更新 test_publish_adapter + test_serve 覆盖新格式/新文件名/新 API
-    status: todo
+    status: complete
   - id: p9.7.6-ssot-sync
     content: 9.7.6 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD 同步平台化与元素化描述
     status: todo
