@@ -57,6 +57,10 @@ _C2_PROMPT_FILENAME = "compose_publish_{platform}.md"
 _DEFAULT_PLATFORM = "xiaohongshu"
 _PLATFORMS: tuple[str, ...] = ("xiaohongshu",)
 
+# headline 硬规则单一事实源（ADR-0016 D1）：monolithic 首发稿与 headline-only 重生成稿
+# 共享同一份契约文件，通过 {{headline_contract}} 占位符注入，防止两处规则各写一份而漂移。
+_HEADLINE_CONTRACT_REL = "prompts/_shared/xiaohongshu_headline_contract.md"
+
 _OVERVIEW_MAX_CHARS = 240
 
 
@@ -471,7 +475,11 @@ def run_publish(
     news_context = build_news_context(news, "")
     selected_movie = format_selected_movie_block(candidate)
     judge_kernel = format_judge_kernel(judge)
-    prompt = render_c2_prompt(template, news_context, selected_movie, judge_kernel)
+    # ADR-0016 D1：注入 headline 硬规则共享契约，monolithic 不再自带一份规则文本。
+    headline_contract = load_headline_contract(prompts_dir)
+    prompt = render_c2_prompt(
+        template, news_context, selected_movie, judge_kernel, headline_contract
+    )
 
     if llm_call is not None:
         raw = str(llm_call(prompt) or "").strip()
@@ -583,11 +591,29 @@ def render_c2_prompt(
     news_context: str,
     selected_movie: str,
     judge_kernel: str,
+    headline_contract: str = "",
 ) -> str:
     rendered = template.replace("{{news_context}}", news_context or "（无新闻语境）")
     rendered = rendered.replace("{{selected_movie}}", selected_movie or "（无选定电影）")
     rendered = rendered.replace("{{judge_kernel}}", judge_kernel or "（无 judge 内核）")
+    # ADR-0016 D1：headline 规则单一事实源注入；模板无此占位符时 replace 为 no-op，
+    # 渲染结果与抽取前完全一致（向后兼容，见 golden-snapshot 测试）。
+    rendered = rendered.replace("{{headline_contract}}", headline_contract or "")
     return rendered
+
+
+def load_headline_contract(prompts_dir: Path | None = None) -> str:
+    """加载 headline 硬规则共享契约（ADR-0016 D1 SSOT），供 render_c2_prompt 注入。
+
+    查找顺序与 load_c2_template 一致：优先 prompts_dir/_shared/…，回退 repo 根路径。
+    """
+    base = prompts_dir or (repo_root() / "prompts")
+    path = base / "_shared" / "xiaohongshu_headline_contract.md"
+    if not path.is_file():
+        path = repo_root() / _HEADLINE_CONTRACT_REL
+    if not path.is_file():
+        raise FileNotFoundError(f"headline contract not found: {path}")
+    return path.read_text(encoding="utf-8")
 
 
 def render_c1_prompt(template: str, news_context: str, candidates_block: str) -> str:

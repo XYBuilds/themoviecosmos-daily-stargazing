@@ -10,6 +10,7 @@ from scripts.compose import (
     format_judge_kernel,
     format_selected_movie_block,
     load_c2_template,
+    load_headline_contract,
     parse_publish_output,
     render_c2_prompt,
     run_publish,
@@ -227,6 +228,51 @@ class LoadC2TemplateTests(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             with self.assertRaises(FileNotFoundError):
                 load_c2_template("nosuch", prompts_dir=Path(tmp))
+
+
+class HeadlineContractInjectionTests(unittest.TestCase):
+    """ADR-0016 D1：headline 硬规则单一事实源 + monolithic 注入无回归的 golden-snapshot。"""
+
+    # 每条硬规则的关键短语，抽取前后都必须在渲染结果里出现（一条不丢）。
+    _KEY_PHRASES = (
+        "≤ 10 个中文字",
+        "不用推荐 / 煽动词",
+        "不容错过",
+        "不剧透结局",
+        "不裸露字面片名",
+        "一句话，别写成两三句或带换行",
+    )
+
+    def test_load_headline_contract_reads_shared_file(self) -> None:
+        contract = load_headline_contract()
+        self.assertIn("≤ 10", contract)
+        self.assertIn("不裸露", contract)
+        self.assertIn("不剧透", contract)
+
+    def test_monolithic_render_loses_no_headline_rule_text(self) -> None:
+        # 用真实仓库 prompt 文件（默认 prompts_dir）渲染，证明抽取后规则文本未丢失。
+        template = load_c2_template("xiaohongshu")
+        contract = load_headline_contract()
+        rendered = render_c2_prompt(
+            template,
+            "News",
+            "Movie",
+            "Judge",
+            headline_contract=contract,
+        )
+        self.assertNotIn("{{headline_contract}}", rendered)
+        for phrase in self._KEY_PHRASES:
+            self.assertIn(phrase, rendered)
+
+    def test_render_c2_prompt_backward_compatible_without_placeholder(self) -> None:
+        # 模板缺 {{headline_contract}} 占位符时，新增参数不改变渲染结果（back-compat）。
+        template = "{{news_context}}\n{{selected_movie}}\n{{judge_kernel}}"
+        rendered_without = render_c2_prompt(template, "News", "Movie", "Judge")
+        rendered_with = render_c2_prompt(
+            template, "News", "Movie", "Judge", headline_contract="some rules"
+        )
+        self.assertEqual(rendered_without, rendered_with)
+        self.assertEqual(rendered_without, "News\nMovie\nJudge")
 
 
 if __name__ == "__main__":
