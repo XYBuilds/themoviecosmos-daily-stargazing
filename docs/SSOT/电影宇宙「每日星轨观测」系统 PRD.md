@@ -252,9 +252,9 @@ surface_match_score + event_match_score + persona_semantic_match_score
 
 > **MVP 边界（2026-06-14 收窄）**：Phase 4 MVP **只产出中文审核稿文本并落 Obsidian 供总编肉眼审核**（§5.4），**不含任何平台定稿 / 中英双语 / 图片**。文本质量过 GATE 后才解封下方定稿。
 
-总编在 Obsidian 勾选一条审核稿后，用 `prompts/C2_copywriter_multiplatform.md` 生成平台发布版本：
+总编在 Obsidian 勾选一条审核稿后，按 [ADR-0015](../adr/0015-publish-platformization-and-element-checklist.md) 生成平台发布版本：每平台一个创作步骤（`compose --stage publish --platform xiaohongshu`），MVP 小红书首发，X / Reddit 预留；产出正文（必含新闻侧/关系侧/电影侧三类元素，顺序自由）+ headline（≤10 中文字）+ 归属行 `「片名」(YYYY) 导演名`。
 
-* **从最简单平台起步、增量扩展**（倾向 discord → 小红书 → X），不一次性铺全平台。
+* **从最简单平台起步、增量扩展**（小红书 → X → discord），不一次性铺全平台。
 * 每平台一个 profile（语言 / 长度 / 结构约定 / hashtag / 转贴 / 图片字段占位）：小红书=中文 + hashtag 关联新闻；X=英文 + 引用新闻原帖（需源 URL，缺失则后置）；discord=最简纯文本。
 * 每版附跳转链接 + 0~2 个自然话题标签；`image_ref` 仅占位，本 Phase 不生成图片。
 

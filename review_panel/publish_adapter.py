@@ -22,9 +22,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import sys
 from pathlib import Path
 from typing import Any
+
+logger = logging.getLogger(__name__)
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
@@ -110,36 +113,49 @@ def load_judge_entry(news_dir: Path, tmdb_id: int | str) -> JudgeEntry | None:
     return None
 
 
+_PLATFORM_LABELS: dict[str, str] = {
+    "xiaohongshu": "小红书",
+    "x": "X (Twitter)",
+    "reddit": "Reddit",
+}
+
+
+def _count_chinese_chars(text: str) -> int:
+    """统计中文字数（不含标点）。"""
+    return sum(1 for ch in text if "\u4e00" <= ch <= "\u9fff")
+
+
 def render_copy_markdown(
     date: str,
     candidate: dict[str, Any],
     news: dict[str, str],
     draft: dict[str, Any],
+    *,
+    platform: str = "xiaohongshu",
 ) -> str:
-    """渲染 ``_copy.md``：与 ``scripts.main.build_copy_markdown`` 风格等价的轻量版本
+    """渲染精简定稿：headline 独立成行 + body + 链接。
 
-    （标题行 / 中文发布正文 / 新闻原文 / 链接四段），自带而非 import 的理由见本
-    文件模块 docstring。
+    Phase 9.7.1：去掉标签行和新闻原文 section，headline ≤ 10 中文字（prompt 端保证，
+    渲染层仅 warning 不截断）。
     """
-    title = str(candidate.get("title") or "")
-    year = candidate.get("release_year")
-    year_str = str(year) if year else "—"
+    headline = str(draft.get("headline") or "").strip()
     movie_url = str(candidate.get("movie_url") or "")
     news_url = str(news.get("url") or "")
     body = str(draft.get("body") or "").strip()
+    platform_label = _PLATFORM_LABELS.get(platform, platform)
+
+    cn_count = _count_chinese_chars(headline)
+    if cn_count > 10:
+        logger.warning(
+            "headline 中文字数 %d 超出 ≤10 约束: %r", cn_count, headline
+        )
 
     lines = [
-        f"# 发布定稿 · {date} · {title}({year_str})",
+        f"# 发布定稿 · {date} · {platform_label}",
         "",
-        "## 中文发布正文",
+        headline or "（无标题）",
         "",
         body or "（无正文）",
-        "",
-        "## 新闻原文（English source）",
-        "",
-        f"**{news.get('title', '')}**",
-        "",
-        str(news.get("description", "")),
         "",
         "## 链接",
         "",
@@ -156,13 +172,14 @@ def run_adapter(
     tmdb_id: int | str,
     *,
     provider: str | None = None,
+    platform: str = "xiaohongshu",
     batch_root: Path | None = None,
     run_publish: Any = compose.run_publish,
 ) -> Path:
     """薄适配 orchestrator：news+candidate+judge → run_publish → 写 ``_copy.md``。
 
-    ``run_publish`` 可注入（默认 ``compose.run_publish``），测试用 stub 替换，
-    避免真调 LLM。
+    ``platform`` 透传给 ``run_publish``（ADR-0015 D1，默认 xiaohongshu——本期唯一平台）。
+    ``run_publish`` 可注入（默认 ``compose.run_publish``），测试用 stub 替换，避免真调 LLM。
     """
     root = batch_root or _default_batch_root()
     news_dir = locate_news_dir(date, slug, batch_root=root)
@@ -170,23 +187,34 @@ def run_adapter(
     candidate = find_candidate(news_dir, tmdb_id)
     judge = load_judge_entry(news_dir, tmdb_id)
 
-    draft = run_publish(candidate, news, provider=provider, judge=judge)
+    draft = run_publish(
+        candidate, news, provider=provider, judge=judge, platform=platform
+    )
 
-    copy_path = news_dir.parent / f"{slug}_copy.md"
+    # D3 文件名平台化：{slug}_copy.md → {slug}_copy_{platform}.md，
+    # 为未来多平台（X/Reddit）留扩展口，避免不同平台互相覆盖同一份稿。
+    copy_path = news_dir.parent / f"{slug}_copy_{platform}.md"
     copy_path.write_text(
-        render_copy_markdown(date, candidate, news, draft), encoding="utf-8"
+        render_copy_markdown(date, candidate, news, draft, platform=platform),
+        encoding="utf-8",
     )
     return copy_path
 
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Publish a daily_batch candidate's C2 draft as {slug}_copy.md.",
+        description="Publish a daily_batch candidate's C2 draft as {slug}_copy_{platform}.md.",
     )
     parser.add_argument("--date", required=True, help="日期，如 2026-07-06")
     parser.add_argument("--news-slug", dest="news_slug", required=True, help="新闻目录 slug")
     parser.add_argument("--tmdb-id", dest="tmdb_id", required=True, help="选定候选的 tmdb_id")
     parser.add_argument("--provider", choices=["mimo", "deepseek"], default=None)
+    parser.add_argument(
+        "--platform",
+        choices=["xiaohongshu"],
+        default="xiaohongshu",
+        help="发布平台（默认 xiaohongshu），透传给 compose.run_publish。",
+    )
     return parser
 
 
@@ -198,6 +226,7 @@ def main(argv: list[str] | None = None) -> int:
             args.news_slug,
             args.tmdb_id,
             provider=args.provider,
+            platform=args.platform,
         )
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)

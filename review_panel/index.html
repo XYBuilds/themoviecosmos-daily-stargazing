@@ -180,6 +180,244 @@
       border-bottom-color: var(--danger-border);
     }
 
+    #copy-view {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 20px 20px 80px;
+    }
+
+    .copy-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .copy-back-btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      color: var(--ink-dim);
+      background: var(--bg-card);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .copy-back-btn:hover {
+      color: var(--ink);
+      border-color: var(--accent-dim);
+    }
+
+    .copy-selected-title {
+      flex: 1;
+      font-size: 12.5px;
+      color: var(--accent);
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .copy-panel-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--line-soft);
+      background: var(--bg-raised);
+    }
+
+    .copy-panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .copy-platform-tabs {
+      display: flex;
+      gap: 6px;
+    }
+
+    .copy-platform-tab {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      padding: 3px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--line);
+      color: var(--ink-dim);
+      background: var(--bg-card);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .copy-platform-tab.active {
+      color: #1a1408;
+      background: var(--accent);
+      border-color: var(--accent);
+      font-weight: 700;
+      cursor: default;
+    }
+
+    .copy-platform-tab.disabled {
+      color: var(--ink-faint);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .copy-panel-body {
+      padding: 16px 18px;
+    }
+
+    .copy-preview-toolbar {
+      display: none;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .copy-preview-toolbar.visible {
+      display: flex;
+    }
+
+    .copy-preview-label {
+      color: var(--ink-faint);
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .copy-preview-btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 3px;
+      border: 1px solid var(--line);
+      color: var(--ink-dim);
+      background: var(--bg-card);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .copy-preview-btn.active {
+      color: #1a1408;
+      background: var(--accent);
+      border-color: var(--accent);
+      font-weight: 700;
+      cursor: default;
+    }
+
+    .copy-content {
+      max-width: none;
+      transition: max-width 0.16s ease, padding 0.16s ease, border-color 0.16s ease;
+    }
+
+    .copy-content.mobile-preview {
+      max-width: 390px;
+      margin: 0 auto;
+      padding: 18px 16px;
+      border: 1px solid var(--line-soft);
+      border-radius: 22px;
+      background: #171611;
+    }
+
+    .copy-content.mobile-preview .copy-body {
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .copy-empty-state {
+      color: var(--ink-faint);
+      font-size: 13px;
+      font-style: italic;
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    #copy-humanize-toggle-slot {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .humanize-btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: var(--bg-card);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .humanize-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .humanize-btn:disabled {
+      color: var(--ink-faint);
+      cursor: not-allowed;
+    }
+
+    .humanize-view-toggle {
+      display: none;
+      gap: 4px;
+    }
+
+    .humanize-view-toggle.visible {
+      display: flex;
+    }
+
+    .humanize-view-btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 3px;
+      border: 1px solid var(--line);
+      color: var(--ink-dim);
+      background: var(--bg-card);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .humanize-view-btn.active {
+      color: #1a1408;
+      background: var(--accent);
+      border-color: var(--accent);
+      font-weight: 700;
+      cursor: default;
+    }
+
+    .humanize-result {
+      font-size: 11.5px;
+      color: var(--ink-faint);
+    }
+
+    .humanize-result.fail {
+      color: var(--danger-fg);
+    }
+
+    .copy-headline {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .copy-body {
+      color: var(--ink);
+      font-size: 13.5px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
     #main {
       max-width: 1600px;
       margin: 0 auto;
@@ -486,10 +724,38 @@
   <div id="error-banner"></div>
   <div id="publish-result"></div>
 
-  <div id="main">
-    <div id="loading-state" style="display:none;">加载中…</div>
-    <div id="empty-state" style="display:none;">当天没有新闻数据。</div>
-    <div id="news-list"></div>
+  <!-- 选片视图：候选列表。产出定稿后隐藏，切到 #copy-view。 -->
+  <div id="candidates-view">
+    <div id="main">
+      <div id="loading-state" style="display:none;">加载中…</div>
+      <div id="empty-state" style="display:none;">当天没有新闻数据。</div>
+      <div id="news-list"></div>
+    </div>
+  </div>
+
+  <!-- 定稿视图：产出定稿后展示，全宽。顶部「← 返回选片」切回 #candidates-view。 -->
+  <div id="copy-view" style="display:none;">
+    <div id="copy-panel" class="copy-panel">
+      <div class="copy-panel-head">
+        <button type="button" id="copy-back-btn" class="copy-back-btn">← 返回选片</button>
+        <span class="copy-panel-title">定稿展示</span>
+        <span id="copy-selected-title" class="copy-selected-title"></span>
+        <div id="copy-platform-tabs" class="copy-platform-tabs"></div>
+      </div>
+      <div id="copy-panel-body" class="copy-panel-body">
+        <div id="copy-empty-state" class="copy-empty-state">尚未定稿</div>
+        <div id="copy-preview-toolbar" class="copy-preview-toolbar">
+          <span class="copy-preview-label">预览宽度</span>
+          <button type="button" class="copy-preview-btn active" data-preview="desktop">桌面</button>
+          <button type="button" class="copy-preview-btn" data-preview="mobile">移动</button>
+        </div>
+        <div id="copy-content" class="copy-content" style="display:none;">
+          <div id="copy-humanize-toggle-slot"></div>
+          <div id="copy-headline" class="copy-headline"></div>
+          <div id="copy-body" class="copy-body"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <footer>本地面板 · 无鉴权 · 勿公网暴露</footer>
@@ -503,7 +769,22 @@
         panel: null,
         selection: null, // {news_slug, tmdb_id, title}
         lang: "en", // "en" | "zh"; pure front-end toggle, does not refetch data
+        view: "candidates", // "candidates" | "copy"：当前视图（互斥切换）
+        copyPlatform: "xiaohongshu", // 9.7.3 D6：当前定稿展示区选中的平台 tab
+        copyPreviewMode: "desktop", // "desktop" | "mobile"：只改变定稿预览宽度，不改变产物内容
+        originalBody: "", // 9.7.4：/api/copy 返回的原版正文（headline 不参与 toggle，恒定显示）
+        humanizedBody: null, // 9.7.4：去AI化正文；null 表示尚未生成
+        humanizeView: "original", // "original" | "humanized"：当前展示哪一版
       };
+
+      // 9.7.3 D6：目前只实装小红书，其余平台先占坑展示为 "coming soon"，
+      // 新平台落地时只需把对应 key 挪进 ACTIVE_COPY_PLATFORMS。
+      var COPY_PLATFORMS = [
+        { key: "xiaohongshu", label: "小红书" },
+        { key: "x", label: "X" },
+        { key: "reddit", label: "Reddit" },
+      ];
+      var ACTIVE_COPY_PLATFORMS = ["xiaohongshu"];
 
       var els = {
         dateSelect: document.getElementById("date-select"),
@@ -515,6 +796,18 @@
         newsList: document.getElementById("news-list"),
         loadingState: document.getElementById("loading-state"),
         emptyState: document.getElementById("empty-state"),
+        candidatesView: document.getElementById("candidates-view"),
+        copyView: document.getElementById("copy-view"),
+        copyBackBtn: document.getElementById("copy-back-btn"),
+        copySelectedTitle: document.getElementById("copy-selected-title"),
+        copyPanel: document.getElementById("copy-panel"),
+        copyPlatformTabs: document.getElementById("copy-platform-tabs"),
+        copyEmptyState: document.getElementById("copy-empty-state"),
+        copyContent: document.getElementById("copy-content"),
+        copyPreviewToolbar: document.getElementById("copy-preview-toolbar"),
+        copyHeadline: document.getElementById("copy-headline"),
+        copyBody: document.getElementById("copy-body"),
+        copyHumanizeSlot: document.getElementById("copy-humanize-toggle-slot"),
       };
 
       // ---------------------------------------------------------------------
@@ -768,6 +1061,202 @@
         els.newsList.innerHTML = items.map(renderNewsCard).join("");
       }
 
+      // ---------------------------------------------------------------------
+      // 定稿展示区（9.7.3 D6）：platform tabs + GET /api/copy 渲染 headline/body
+      // ---------------------------------------------------------------------
+
+      function renderCopyPlatformTabs() {
+        els.copyPlatformTabs.innerHTML = COPY_PLATFORMS.map(function (p) {
+          var isActive = p.key === state.copyPlatform;
+          var isDisabled = ACTIVE_COPY_PLATFORMS.indexOf(p.key) === -1;
+          var cls = "copy-platform-tab" + (isActive ? " active" : "") + (isDisabled ? " disabled" : "");
+          var title = isDisabled ? "coming soon" : "";
+          return (
+            '<button type="button" class="' + cls + '" data-platform="' + escapeHtml(p.key) + '" ' +
+            (isDisabled ? "disabled " : "") +
+            'title="' + escapeHtml(title) + '">' + escapeHtml(p.label) + "</button>"
+          );
+        }).join("");
+      }
+
+      function showCopyEmptyState(message) {
+        els.copyContent.style.display = "none";
+        els.copyPreviewToolbar.classList.remove("visible");
+        els.copyEmptyState.style.display = "block";
+        els.copyEmptyState.textContent = message || "尚未定稿";
+      }
+
+      function showCopyContent(headline, body) {
+        els.copyEmptyState.style.display = "none";
+        els.copyPreviewToolbar.classList.add("visible");
+        els.copyContent.style.display = "block";
+        els.copyHeadline.textContent = safeText(headline);
+        renderCopyPreviewMode();
+        renderHumanizeSlot();
+        renderCopyBody();
+      }
+
+      function renderCopyPreviewMode() {
+        var isMobile = state.copyPreviewMode === "mobile";
+        els.copyContent.classList.toggle("mobile-preview", isMobile);
+        var buttons = els.copyPreviewToolbar.querySelectorAll(".copy-preview-btn");
+        buttons.forEach(function (btn) {
+          btn.classList.toggle("active", btn.getAttribute("data-preview") === state.copyPreviewMode);
+        });
+      }
+
+      function onCopyPreviewToggle(evt) {
+        var target = evt.target.closest ? evt.target.closest(".copy-preview-btn") : null;
+        if (!target) return;
+        var mode = target.getAttribute("data-preview");
+        if (mode !== "desktop" && mode !== "mobile") return;
+        if (mode === state.copyPreviewMode) return;
+        state.copyPreviewMode = mode;
+        renderCopyPreviewMode();
+      }
+
+      // 9.7.4：headline 不参与 toggle（原版/去AI化版只切换正文），body 依 state.humanizeView 显示。
+      function renderCopyBody() {
+        var body = state.humanizeView === "humanized" && state.humanizedBody !== null
+          ? state.humanizedBody
+          : state.originalBody;
+        els.copyBody.textContent = safeText(body);
+      }
+
+      // 渲染「去AI化」按钮 + 原版/去AI化版 toggle。按钮态：
+      // - 无 humanizedBody：只显示「去AI化」按钮（首次生成）
+      // - 有 humanizedBody：额外显示 原版/去AI化版 toggle；按钮文案变「重新生成」
+      function renderHumanizeSlot() {
+        var hasHumanized = state.humanizedBody !== null;
+        var toggleCls = "humanize-view-toggle" + (hasHumanized ? " visible" : "");
+        els.copyHumanizeSlot.innerHTML =
+          '<button type="button" id="humanize-btn" class="humanize-btn">' +
+          (hasHumanized ? "重新生成" : "去AI化") + "</button>" +
+          '<div class="' + toggleCls + '">' +
+          '<button type="button" class="humanize-view-btn' +
+          (state.humanizeView === "original" ? " active" : "") +
+          '" data-view="original">原版</button>' +
+          '<button type="button" class="humanize-view-btn' +
+          (state.humanizeView === "humanized" ? " active" : "") +
+          '" data-view="humanized">去AI化版</button>' +
+          "</div>" +
+          '<span id="humanize-result" class="humanize-result"></span>';
+
+        var btn = document.getElementById("humanize-btn");
+        if (btn) btn.addEventListener("click", onHumanize);
+
+        var toggleWrap = els.copyHumanizeSlot.querySelector(".humanize-view-toggle");
+        if (toggleWrap) {
+          toggleWrap.addEventListener("click", function (evt) {
+            var target = evt.target.closest ? evt.target.closest(".humanize-view-btn") : null;
+            if (!target) return;
+            var view = target.getAttribute("data-view");
+            if (view === state.humanizeView) return;
+            state.humanizeView = view;
+            renderHumanizeSlot();
+            renderCopyBody();
+          });
+        }
+      }
+
+      // 点击「去AI化」/「重新生成」：POST /api/rewrite，成功后覆盖 humanizedBody 并切到该视图；
+      // 可反复点击重新生成（覆盖磁盘上的 humanized 文件与内存态），原版正文不受影响。
+      function onHumanize() {
+        if (!state.selection) return;
+        var btn = document.getElementById("humanize-btn");
+        var resultEl = document.getElementById("humanize-result");
+        if (btn) {
+          btn.disabled = true;
+          btn.innerHTML = '<span class="spinner"></span>改写中…';
+        }
+        if (resultEl) {
+          resultEl.className = "humanize-result";
+          resultEl.textContent = "";
+        }
+        apiPost("/api/rewrite", {
+          date: state.date,
+          slug: state.selection.news_slug,
+          platform: state.copyPlatform,
+        })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.ok) {
+              state.humanizedBody = res.body.humanized_body;
+              state.humanizeView = "humanized";
+              renderHumanizeSlot();
+              renderCopyBody();
+            } else {
+              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              renderHumanizeSlot();
+              var errEl = document.getElementById("humanize-result");
+              if (errEl) {
+                errEl.className = "humanize-result fail";
+                errEl.textContent = "✗ 去AI化失败：" + stderr;
+              }
+            }
+          })
+          .catch(function (err) {
+            renderHumanizeSlot();
+            var errEl = document.getElementById("humanize-result");
+            if (errEl) {
+              errEl.className = "humanize-result fail";
+              errEl.textContent = "✗ 请求失败（网络错误）：" + err.message;
+            }
+          });
+      }
+
+      // 选片视图 / 定稿视图互斥切换（不再把定稿塞在页面顶端）。
+      function switchView(view) {
+        state.view = view;
+        var isCopy = view === "copy";
+        els.candidatesView.style.display = isCopy ? "none" : "block";
+        els.copyView.style.display = isCopy ? "block" : "none";
+        if (isCopy && state.selection && state.selection.title) {
+          els.copySelectedTitle.textContent = "已选：" + state.selection.title;
+        } else {
+          els.copySelectedTitle.textContent = "";
+        }
+      }
+
+      // 拉取定稿并进入定稿视图。以磁盘产物为准：命中(200)进定稿视图，未命中(404)回选片视图，
+      // 这是刷新后恢复（refresh sync）的核心——不依赖内存态，只信 /api/copy 的实际产物。
+      function loadCopy() {
+        renderCopyPlatformTabs();
+        if (!state.selection) {
+          switchView("candidates");
+          return;
+        }
+        if (ACTIVE_COPY_PLATFORMS.indexOf(state.copyPlatform) === -1) {
+          switchView("copy");
+          showCopyEmptyState("该平台暂未开放（coming soon）");
+          return;
+        }
+        var url = "/api/copy?date=" + encodeURIComponent(state.date) +
+          "&slug=" + encodeURIComponent(state.selection.news_slug) +
+          "&platform=" + encodeURIComponent(state.copyPlatform);
+        apiGet(url)
+          .then(function (body) {
+            state.originalBody = body.body || "";
+            // has_humanized:true 说明磁盘已有 humanized 文件（如刷新页面后回来），
+            // 直接带出 humanized_body 让 toggle 一进来就可用，不用再点一次「去AI化」。
+            state.humanizedBody = body.has_humanized ? body.humanized_body : null;
+            state.humanizeView = "original";
+            switchView("copy");
+            showCopyContent(body.headline, body.body);
+          })
+          .catch(function (err) {
+            state.originalBody = "";
+            state.humanizedBody = null;
+            state.humanizeView = "original";
+            if (err.status === 404) {
+              // 该平台还没出稿：留在选片视图，让总编去写推文，而不是弹一个空定稿视图。
+              switchView("candidates");
+            } else {
+              switchView("copy");
+              showCopyEmptyState("加载定稿失败：" + err.message);
+            }
+          });
+      }
+
       function renderSelectionStatus() {
         if (state.selection && state.selection.title) {
           els.selectionStatus.innerHTML = '已选：<span class="picked">' +
@@ -805,6 +1294,7 @@
         state.date = date;
         state.selection = null;
         renderSelectionStatus();
+        switchView("candidates");
         els.loadingState.style.display = "block";
         els.newsList.innerHTML = "";
         els.emptyState.style.display = "none";
@@ -821,6 +1311,33 @@
           })
           .then(function () {
             els.loadingState.style.display = "none";
+          })
+          .then(function () {
+            // 刷新后恢复：从磁盘 selection.json 恢复选中态，再让 loadCopy 按实际产物决定
+            // 停在选片视图还是直接进定稿视图。修「产物已存在但界面不同步」的 desync bug。
+            return restoreSelection(date);
+          });
+      }
+
+      // 读已落盘 selection，回填 state.selection + 候选卡勾选态，然后按磁盘定稿产物切视图。
+      function restoreSelection(date) {
+        return apiGet("/api/selection?date=" + encodeURIComponent(date))
+          .then(function (body) {
+            var sel = body && body.selection;
+            var picked = sel && sel.selected;
+            if (!picked || !picked.news_slug) return;
+            state.selection = {
+              news_slug: picked.news_slug,
+              tmdb_id: picked.tmdb_id,
+              title: picked.title,
+            };
+            renderSelectionStatus();
+            if (state.panel) renderPanel(state.panel);
+            // loadCopy 命中定稿→进定稿视图；未命中→留选片视图（内部已处理）。
+            loadCopy();
+          })
+          .catch(function () {
+            // selection 读取失败不阻塞主流程：留在选片视图即可。
           });
       }
 
@@ -841,6 +1358,8 @@
           renderSelectionStatus();
           // 重渲染以更新每张卡上的"★ 已选"标记与高亮态。
           if (state.panel) renderPanel(state.panel);
+          // 改选后旧定稿会被后端删除（G8），刷新定稿区避免展示陈旧内容。
+          loadCopy();
         }).catch(function (err) {
           showError("选择请求失败（网络错误）：" + err.message);
         });
@@ -858,6 +1377,7 @@
             if (res.ok && res.body && res.body.ok) {
               els.publishResult.className = "visible ok";
               els.publishResult.textContent = "✓ 定稿成功 → " + res.body.copy_path;
+              loadCopy();
             } else {
               var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
               els.publishResult.className = "visible fail";
@@ -884,6 +1404,22 @@
 
       els.publishBtn.addEventListener("click", onPublish);
 
+      // 「← 返回选片」：从定稿视图切回候选列表以便换 candidate；选中态与已落盘定稿都保留。
+      els.copyBackBtn.addEventListener("click", function () {
+        switchView("candidates");
+      });
+
+      els.copyPlatformTabs.addEventListener("click", function (evt) {
+        var btn = evt.target.closest ? evt.target.closest(".copy-platform-tab") : null;
+        if (!btn || btn.disabled) return;
+        var platform = btn.getAttribute("data-platform");
+        if (platform === state.copyPlatform) return;
+        state.copyPlatform = platform;
+        loadCopy();
+      });
+
+      els.copyPreviewToolbar.addEventListener("click", onCopyPreviewToggle);
+
       // 纯前端语言切换：不重新请求 /api/data，只重渲染已加载的 panel。
       els.langToggle.addEventListener("click", function () {
         state.lang = state.lang === "en" ? "zh" : "en";
@@ -902,6 +1438,7 @@
         onSelectCandidate(newsSlug, tmdbId, title);
       });
 
+      renderCopyPlatformTabs();
       loadDates();
     })();
   </script>

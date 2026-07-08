@@ -38,6 +38,7 @@ _DETAIL = {
     "release_date": "2014-11-05",
     "runtime": 169,
     "director": "Christopher Nolan",
+    "production_countries": "United States of America, United Kingdom",
     "vote_average": 8.5,
     "vote_count": 37000,
     "popularity": 154.2,
@@ -55,6 +56,8 @@ class ComposeDecisionCardTests(unittest.TestCase):
         self.assertIn("DB 投影", block)
         self.assertIn("director: Christopher Nolan", block)
         self.assertIn("vote_average: 8.5", block)
+        # ADR-0015 D6：production_countries 进投影白名单，C1 决策卡也带该列（无害透传）。
+        self.assertIn("production_countries: United States of America, United Kingdom", block)
         self.assertIn("causal_test_en: X drives Y", block)
         self.assertNotIn("Hashtag", block)
         self.assertNotIn("文案", block)

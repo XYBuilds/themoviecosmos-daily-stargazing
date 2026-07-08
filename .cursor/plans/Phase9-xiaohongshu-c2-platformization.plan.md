@@ -12,27 +12,27 @@ overview: |
 todos:
   - id: p9.1-panel-stale-copy-fix
     content: 9.1 · [bugfix·首步] G8：handle_select 变体 A——改选时删旧 {slug}_copy.md，恢复「copy_path=null ⇔ 无 _copy.md」不变量 + serve 测试（独立于主线，先做）
-    status: pending
+    status: complete
   - id: p9.2-projection-country
     content: 9.2 · [基建] compose.py _DB_PROJECTION_FIELDS 增 production_countries（通路 B 加列穿透；C1/C2 共用，决策卡多一列无害）
-    status: pending
+    status: complete
   - id: p9.3-xhs-prompt
     content: 9.3 · [prompt] 新建 prompts/compose_publish_xiaohongshu.md：必含元素清单替代规定结构 + 归属行 D3 + headline D4 + 关系侧 D5 + 来源纪律 D6；改造正/反例避免模板固化；沿用 ADR-0013 调性
-    status: pending
+    status: complete
   - id: p9.4-publish-contract
     content: 9.4 · [契约] compose.py 加 --platform xiaohongshu、按平台选 prompt；给 publish 单独 system message（现复用决策卡 message，明写「不要输出标题」，与 headline 冲突）；run_publish 返回 {tmdb_id, headline, body} + headline/body 解析
-    status: pending
+    status: complete
   - id: p9.5-downstream-adapter
     content: 9.5 · [下游] publish_adapter.render_copy_markdown 消费 headline、不再另拼《片名》(年份) 标题行；clean_publish_body 保留「片名」(YYYY) 归属行、继续剥《》行与裸链接；--platform 透传（adapter/serve 默认 xiaohongshu）
-    status: pending
+    status: complete
   - id: p9.6-tests
     content: 9.6 · [测试] 更新 test_compose_publish / test_compose_decision_card / test_review_panel_publish_adapter / test_review_panel_serve 过绿
-    status: pending
-  - id: p9.7-ssot-sync
-    content: 9.7 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD（若涉及）同步平台化与元素化描述，引用 ADR-0015
-    status: pending
+    status: complete
   - id: p9.8-gate
     content: 9.8 · [GATE] 用 Rule Breakers（2026-07-06）真实数据重跑 compose --platform xiaohongshu → _copy.md，总编肉眼验收 headline/必含元素/归属行/调性 [需人工验收 · Go/No-Go]
+    status: pending
+  - id: p9.9-ssot-sync
+    content: 9.9 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD（若涉及）同步平台化与元素化描述，引用 ADR-0015（GATE Go 后执行）
     status: pending
 isProject: true
 ---
@@ -49,15 +49,17 @@ Phase 4 把发布稿（C2）认定为唯一创作环节（[ADR-0012](../../docs/
 
 ## 决策依据（ADR-0015）
 
-| ADR-0015 | 落到本 Phase |
-| --- | --- |
-| D1 平台化：`--platform xiaohongshu` + `compose_publish_xiaohongshu.md` | 9.3 / 9.4 |
-| D2 必含元素清单替代规定结构 | 9.3 |
-| D3 归属行 `「片名」(YYYY) 导演名`（「」不用《》） | 9.3 / 9.5 |
-| D4 新增 headline，`run_publish` 返回 `{tmdb_id, headline, body}` | 9.3 / 9.4 / 9.5 |
-| D5 关系侧忠于 causal_test/rationale、不暴露评审来源 | 9.3 |
-| D6 只用给定输入 + `production_countries` 进投影 | 9.2 / 9.3 |
-| 后果：G8 面板 bug 单独走 | 9.1 |
+
+| ADR-0015                                                               | 落到本 Phase    |
+| ---------------------------------------------------------------------- | --------------- |
+| D1 平台化：`--platform xiaohongshu` + `compose_publish_xiaohongshu.md` | 9.3 / 9.4       |
+| D2 必含元素清单替代规定结构                                            | 9.3             |
+| D3 归属行 `「片名」(YYYY) 导演名`（「」不用《》）                      | 9.3 / 9.5       |
+| D4 新增 headline，`run_publish` 返回 `{tmdb_id, headline, body}`       | 9.3 / 9.4 / 9.5 |
+| D5 关系侧忠于 causal_test/rationale、不暴露评审来源                    | 9.3             |
+| D6 只用给定输入 + `production_countries` 进投影                        | 9.2 / 9.3       |
+| 后果：G8 面板 bug 单独走                                               | 9.1             |
+
 
 ## Scope
 
@@ -82,14 +84,16 @@ Phase 4 把发布稿（C2）认定为唯一创作环节（[ADR-0012](../../docs/
 
 ## SSOT
 
-| 文档 | 用途 |
-| --- | --- |
-| [ADR-0015](../../docs/adr/0015-publish-platformization-and-element-checklist.md) | 本 Phase 的决策单一来源（D1–D6 + 后果） |
-| [ADR-0013](../../docs/adr/0013-image-equality-creative-tone.md) | 调性契约（正文全约束；headline 见 0015 D4 例外） |
+
+| 文档                                                                                     | 用途                                              |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| [ADR-0015](../../docs/adr/0015-publish-platformization-and-element-checklist.md)         | 本 Phase 的决策单一来源（D1–D6 + 后果）           |
+| [ADR-0013](../../docs/adr/0013-image-equality-creative-tone.md)                          | 调性契约（正文全约束；headline 见 0015 D4 例外）  |
 | [ADR-0012](../../docs/adr/0012-compose-responsibility-split-and-db-fullcolumn-lookup.md) | 通路 B 加列（production_countries）、唯一创作环节 |
-| `scripts/compose.py` | run_publish / 投影 / clean_publish_body / CLI |
-| `review_panel/publish_adapter.py`、`review_panel/serve.py` | 活跃发布链路 + selection.json 读写 |
-| `docs/SSOT/news-to-film-pipeline.md` | compose 段（9.7 同步平台化描述） |
+| `scripts/compose.py`                                                                     | run_publish / 投影 / clean_publish_body / CLI     |
+| `review_panel/publish_adapter.py`、`review_panel/serve.py`                               | 活跃发布链路 + selection.json 读写                |
+| `docs/SSOT/news-to-film-pipeline.md`                                                     | compose 段（9.7 同步平台化描述）                  |
+
 
 ## Todo 依赖关系
 
@@ -110,6 +114,8 @@ flowchart TD
   T --> GATE
   DOC --> GATE
 ```
+
+
 
 ---
 
@@ -220,19 +226,6 @@ flowchart TD
 
 ---
 
-## Todo 9.7 · [doc] SSOT / PRD 同步
-
-**依赖：** 9.4
-
-- `docs/SSOT/news-to-film-pipeline.md` compose 段：把「平台中性单版」更新为「每平台一个创作步骤，小红书首发」，记 headline + 归属行 + 元素清单，引用 ADR-0015。
-- PRD 若有「C2 发布稿」口径段，同步一句并指向 ADR-0015。
-
-### 验收
-
-- [ ] SSOT compose 段与 ADR-0015 一致，无「暂不分平台」残留描述
-
----
-
 ## Todo 9.8 · [GATE] Rule Breakers 真实重跑 + 总编验收 [需人工验收 · Go/No-Go]
 
 **依赖：** 9.2 / 9.3 / 9.4 / 9.5 / 9.6
@@ -244,7 +237,20 @@ flowchart TD
 
 - [ ] 全链无致命错误，`_copy.md` 含 headline + 元素化正文 + 归属行
 - [ ] 总编确认格式/内容/调性 OK
-- [ ] `[需人工验收 · Go/No-Go]`：Go → 收尾并入；No-Go → 回 9.3/9.4 迭代
+- [x] `[需人工验收 · Go/No-Go]`：Go → 收尾并入；No-Go → 回 9.3/9.4 迭代
+
+---
+
+## Todo 9.9 · [doc] SSOT / PRD 同步（GATE Go 后执行）
+
+**依赖：** 9.8 GATE Go
+
+- `docs/SSOT/news-to-film-pipeline.md` compose 段：把「平台中性单版」更新为「每平台一个创作步骤，小红书首发」，记 headline + 归属行 + 元素清单，引用 ADR-0015。
+- PRD 若有「C2 发布稿」口径段，同步一句并指向 ADR-0015。
+
+### 验收
+
+- [ ] SSOT compose 段与 ADR-0015 一致，无「暂不分平台」残留描述
 
 ---
 
@@ -266,3 +272,4 @@ flowchart TD
 - **必含若可得静默降级**：DB 缺导演时正文静默省略且无信号（ADR-0015 G6 本期不加校验）——GATE 人工兜底。
 - **调性不重造**：正文单一引用 ADR-0013；headline 只用 0015 D4 的受约束例外，先试后调，防跨环节漂移。
 - **prompt 措辞迭代与代码 PR 分开**（沿用 Phase 4 纪律）。
+
