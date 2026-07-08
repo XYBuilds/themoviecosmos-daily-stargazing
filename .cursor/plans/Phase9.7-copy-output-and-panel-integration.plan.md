@@ -12,7 +12,7 @@ overview: |
 todos:
   - id: p9.7.1-copy-format-slim
     content: 9.7.1 · [渲染] render_copy_markdown 去掉标签行 + 新闻原文 section + headline ≤ 10 中文字约束（prompt + 渲染层双保证）
-    status: todo
+    status: complete
   - id: p9.7.2-platform-filename
     content: 9.7.2 · [命名] 文件名 {slug}_copy_{platform}.md + selection.json 结构升级为 copies dict + 下游适配
     status: todo
@@ -38,10 +38,10 @@ isProject: true
 
 ## 前置条件
 
-| Phase | 状态 | 依据 |
-|-------|------|------|
-| 9.1–9.6 | complete | `git log --oneline` 可见 p9.1–p9.6 全部提交；plan frontmatter 均 `status: complete` |
-| 当前分支 | `feat/phase9.7-copy-output-and-panel-integration` | 从 9.6 检出，无额外 diff |
+| Phase    | 状态                                              | 依据                                                                                |
+| -------- | ------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| 9.1–9.6  | complete                                          | `git log --oneline` 可见 p9.1–p9.6 全部提交；plan frontmatter 均 `status: complete` |
+| 当前分支 | `feat/phase9.7-copy-output-and-panel-integration` | 从 9.6 检出，无额外 diff                                                            |
 
 ## 背景
 
