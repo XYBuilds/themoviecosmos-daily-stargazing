@@ -19,7 +19,7 @@ overview: |
 todos:
   - id: p9.8.1-headline-prompt-split
     content: 9.8.1 · [prompt] 抽 _shared/xiaohongshu_headline_contract.md（headline 契约 SSOT）+ 新 compose_publish_xiaohongshu_headline.md（body-aware headline-only）+ monolithic 改引用共享契约（golden-snapshot 证等价）+ 写 ADR-0016
-    status: todo
+    status: complete
   - id: p9.8.2-compose-run-headline
     content: 9.8.2 · [compose] run_headline(candidate, news, current_body, ...) headline-only + 复用 parse_publish_output 的 headline 分支；body 重生成经 run_publish 取 body（不建独立 body prompt）
     status: todo
