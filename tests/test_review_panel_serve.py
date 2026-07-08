@@ -902,6 +902,29 @@ class ReplaceBodyInCopyMarkdownTests(unittest.TestCase):
         self.assertTrue(result.endswith("\n"))
 
 
+    def test_new_body_containing_h1_and_links_heading_lookalikes_preserved_verbatim(self) -> None:
+        # 新正文里若恰好含 "# ..." 或字面 "## 链接" 行，替换逐字保留原链接分区不受干扰
+        # （replace_body_in_copy_markdown 只按原文件结构定位链接分区起点，不重新扫描新 body）。
+        text = (
+            "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+            "原版标题\n\n"
+            "原版正文。\n\n"
+            "## 链接\n\n"
+            "- 电影: https://example.com/movie/1\n"
+            "- 新闻: https://example.com/news/1\n"
+        )
+        new_body = "# 这是正文里的一级标题\n\n这段提到了 ## 链接 这个词但不是分区。"
+        result = replace_body_in_copy_markdown(text, new_body)
+        parsed = parse_copy_markdown(result)
+
+        self.assertEqual(parsed["headline"], "原版标题")
+        self.assertEqual(parsed["body"], new_body)
+        # 原链接分区完整保留，不被 body 里的字面 "## 链接" 误吞。
+        self.assertIn("- 电影: https://example.com/movie/1", result)
+        self.assertIn("- 新闻: https://example.com/news/1", result)
+        self.assertEqual(result.count("## 链接"), 2)
+
+
 class EditBodyRouteTests(unittest.TestCase):
     """9.8.4：POST /api/edit-body 无 LLM，纯文本直改。"""
 
