@@ -271,6 +271,63 @@
       padding: 16px 18px;
     }
 
+    .copy-preview-toolbar {
+      display: none;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .copy-preview-toolbar.visible {
+      display: flex;
+    }
+
+    .copy-preview-label {
+      color: var(--ink-faint);
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .copy-preview-btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 3px;
+      border: 1px solid var(--line);
+      color: var(--ink-dim);
+      background: var(--bg-card);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .copy-preview-btn.active {
+      color: #1a1408;
+      background: var(--accent);
+      border-color: var(--accent);
+      font-weight: 700;
+      cursor: default;
+    }
+
+    .copy-content {
+      max-width: none;
+      transition: max-width 0.16s ease, padding 0.16s ease, border-color 0.16s ease;
+    }
+
+    .copy-content.mobile-preview {
+      max-width: 390px;
+      margin: 0 auto;
+      padding: 18px 16px;
+      border: 1px solid var(--line-soft);
+      border-radius: 22px;
+      background: #171611;
+    }
+
+    .copy-content.mobile-preview .copy-body {
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
     .copy-empty-state {
       color: var(--ink-faint);
       font-size: 13px;
@@ -687,6 +744,11 @@
       </div>
       <div id="copy-panel-body" class="copy-panel-body">
         <div id="copy-empty-state" class="copy-empty-state">尚未定稿</div>
+        <div id="copy-preview-toolbar" class="copy-preview-toolbar">
+          <span class="copy-preview-label">预览宽度</span>
+          <button type="button" class="copy-preview-btn active" data-preview="desktop">桌面</button>
+          <button type="button" class="copy-preview-btn" data-preview="mobile">移动</button>
+        </div>
         <div id="copy-content" class="copy-content" style="display:none;">
           <div id="copy-humanize-toggle-slot"></div>
           <div id="copy-headline" class="copy-headline"></div>
@@ -709,6 +771,7 @@
         lang: "en", // "en" | "zh"; pure front-end toggle, does not refetch data
         view: "candidates", // "candidates" | "copy"：当前视图（互斥切换）
         copyPlatform: "xiaohongshu", // 9.7.3 D6：当前定稿展示区选中的平台 tab
+        copyPreviewMode: "desktop", // "desktop" | "mobile"：只改变定稿预览宽度，不改变产物内容
         originalBody: "", // 9.7.4：/api/copy 返回的原版正文（headline 不参与 toggle，恒定显示）
         humanizedBody: null, // 9.7.4：去AI化正文；null 表示尚未生成
         humanizeView: "original", // "original" | "humanized"：当前展示哪一版
@@ -741,6 +804,7 @@
         copyPlatformTabs: document.getElementById("copy-platform-tabs"),
         copyEmptyState: document.getElementById("copy-empty-state"),
         copyContent: document.getElementById("copy-content"),
+        copyPreviewToolbar: document.getElementById("copy-preview-toolbar"),
         copyHeadline: document.getElementById("copy-headline"),
         copyBody: document.getElementById("copy-body"),
         copyHumanizeSlot: document.getElementById("copy-humanize-toggle-slot"),
@@ -1017,16 +1081,38 @@
 
       function showCopyEmptyState(message) {
         els.copyContent.style.display = "none";
+        els.copyPreviewToolbar.classList.remove("visible");
         els.copyEmptyState.style.display = "block";
         els.copyEmptyState.textContent = message || "尚未定稿";
       }
 
       function showCopyContent(headline, body) {
         els.copyEmptyState.style.display = "none";
+        els.copyPreviewToolbar.classList.add("visible");
         els.copyContent.style.display = "block";
         els.copyHeadline.textContent = safeText(headline);
+        renderCopyPreviewMode();
         renderHumanizeSlot();
         renderCopyBody();
+      }
+
+      function renderCopyPreviewMode() {
+        var isMobile = state.copyPreviewMode === "mobile";
+        els.copyContent.classList.toggle("mobile-preview", isMobile);
+        var buttons = els.copyPreviewToolbar.querySelectorAll(".copy-preview-btn");
+        buttons.forEach(function (btn) {
+          btn.classList.toggle("active", btn.getAttribute("data-preview") === state.copyPreviewMode);
+        });
+      }
+
+      function onCopyPreviewToggle(evt) {
+        var target = evt.target.closest ? evt.target.closest(".copy-preview-btn") : null;
+        if (!target) return;
+        var mode = target.getAttribute("data-preview");
+        if (mode !== "desktop" && mode !== "mobile") return;
+        if (mode === state.copyPreviewMode) return;
+        state.copyPreviewMode = mode;
+        renderCopyPreviewMode();
       }
 
       // 9.7.4：headline 不参与 toggle（原版/去AI化版只切换正文），body 依 state.humanizeView 显示。
@@ -1331,6 +1417,8 @@
         state.copyPlatform = platform;
         loadCopy();
       });
+
+      els.copyPreviewToolbar.addEventListener("click", onCopyPreviewToggle);
 
       // 纯前端语言切换：不重新请求 /api/data，只重渲染已加载的 panel。
       els.langToggle.addEventListener("click", function () {

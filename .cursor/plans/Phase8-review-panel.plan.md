@@ -44,9 +44,9 @@ Phase 7 让系统能「跑一次全量日批」，产出落在 `output/daily_bat
 
 ## 前置条件
 
-| Phase | 交付物                                                        | 状态      |
-| ----- | -------------------------------------------------------------- | --------- |
-| 6     | `main.py` 端到端管线 + `compose.run_publish` + `render_briefing` | ✅ merged |
+| Phase | 交付物                                                                     | 状态     |
+| ----- | -------------------------------------------------------------------------- | -------- |
+| 6     | `main.py` 端到端管线 + `compose.run_publish` + `render_briefing`           | ✅ merged |
 | 7     | `heat_pool.py` + `daily_batch.py`（`output/daily_batch/{date}/` 产物结构） | ✅ merged |
 
 Phase 7 判定依据：`git log --oneline -20` 显示 `dc12935 Merge pull request #101 from XYBuilds/feat/phase7.4-integration-smoke`（合并 7.4 集成冒烟分支），其后 `81a1e62`/`c7964f3` 两个 batch 相关提交也已直接落在 `main` 上；`git branch -a` 无残留的 `feat/phase7.*` 未合并远端分支。故 Phase 7 判定为已完全合并入 main，本 Phase 从最新 `main` 检出新分支。
@@ -59,17 +59,17 @@ Phase 7 判定依据：`git log --oneline -20` 显示 `dc12935 Merge pull reques
 
 ## 设计决策
 
-| 决策         | 结论                                                             |
-| ------------ | ---------------------------------------------------------------- |
-| 形态         | 本地 stdlib HTTP server + 单文件原生 JS HTML                    |
-| 目录         | 独立 `review_panel/`，不改 scripts/                              |
-| 数据源       | `build_data.py` 聚合瘦身出 `panel.json`，前端只读它；服务器按需重建 |
-| 审核粒度     | 全天 1 条新闻 × 1 部电影                                          |
-| 多日期       | 扫描 `output/daily_batch/*/` 提供日期列表                        |
-| 决策落盘     | `output/daily_batch/{date}/selection.json`（幂等，先落盘后触发） |
+| 决策         | 结论                                                                  |
+| ------------ | --------------------------------------------------------------------- |
+| 形态         | 本地 stdlib HTTP server + 单文件原生 JS HTML                          |
+| 目录         | 独立 `review_panel/`，不改 scripts/                                   |
+| 数据源       | `build_data.py` 聚合瘦身出 `panel.json`，前端只读它；服务器按需重建   |
+| 审核粒度     | 全天 1 条新闻 × 1 部电影                                              |
+| 多日期       | 扫描 `output/daily_batch/*/` 提供日期列表                             |
+| 决策落盘     | `output/daily_batch/{date}/selection.json`（幂等，先落盘后触发）      |
 | 触发下游     | `serve.py` subprocess 调 `publish_adapter.py`；不 import 项目内部模块 |
-| publish 耦合 | 仅 `publish_adapter.py` import `compose.run_publish`，收敛耦合    |
-| 依赖         | 零第三方依赖（Python 标准库 + 原生前端）                          |
+| publish 耦合 | 仅 `publish_adapter.py` import `compose.run_publish`，收敛耦合        |
+| 依赖         | 零第三方依赖（Python 标准库 + 原生前端）                              |
 
 ## 模块关系
 
@@ -149,12 +149,12 @@ review_panel/  (独立小部件，不改 scripts/)
 
 ## API 契约
 
-| Method | Path                     | 入参                                                | 返回                                    | 说明                                                    |
-| ------ | ------------------------ | --------------------------------------------------- | --------------------------------------- | --------------------------------------------------------- |
-| GET    | `/api/dates`             | 无                                                   | `{dates:[...]}`                        | 扫描 daily_batch 子目录，倒序                              |
-| GET    | `/api/data?date=YYYY-MM-DD` | query: `date`                                   | panel.json 内容                        | 服务器按需调 build_data 重建                               |
-| POST   | `/api/select`            | body `{date, news_slug, tmdb_id, title}`            | 落盘结果                                | 写 selection.json，幂等覆盖                                |
-| POST   | `/api/publish`           | body `{date}`                                       | `{ok, copy_path, stderr}`              | 读 selection.json，subprocess 调 publish_adapter           |
+| Method | Path                        | 入参                                     | 返回                      | 说明                                             |
+| ------ | --------------------------- | ---------------------------------------- | ------------------------- | ------------------------------------------------ |
+| GET    | `/api/dates`                | 无                                       | `{dates:[...]}`           | 扫描 daily_batch 子目录，倒序                    |
+| GET    | `/api/data?date=YYYY-MM-DD` | query: `date`                            | panel.json 内容           | 服务器按需调 build_data 重建                     |
+| POST   | `/api/select`               | body `{date, news_slug, tmdb_id, title}` | 落盘结果                  | 写 selection.json，幂等覆盖                      |
+| POST   | `/api/publish`              | body `{date}`                            | `{ok, copy_path, stderr}` | 读 selection.json，subprocess 调 publish_adapter |
 
 ---
 
@@ -313,23 +313,23 @@ python review_panel/serve.py --port 8770
 
 ## 风险与约束
 
-| 风险                              | 缓解                                                        |
-| --------------------------------- | ------------------------------------------------------------- |
-| 无鉴权本地面板不可公网暴露        | `serve.py` 仅绑 `127.0.0.1`，plan 与 README 中明确标注安全边界 |
-| 两套 publish 入口（main.py / adapter）的技术债 | 8.2 已注明技术债，长期考虑 `main.py publish --from-daily-batch` 统一 |
-| panel.json 重建性能（retrieve.json 数千行） | `build_data.py` 只做按需重建，避免不必要的全量重算            |
-| selection 幂等覆盖语义            | 每次 `/api/select` 直接覆盖写 selection.json，明确「最后一次选择生效」 |
-| 前端零依赖约束                    | 原生 JS 无框架无构建，避免引入前端工具链耦合                  |
+| 风险                                           | 缓解                                                                   |
+| ---------------------------------------------- | ---------------------------------------------------------------------- |
+| 无鉴权本地面板不可公网暴露                     | `serve.py` 仅绑 `127.0.0.1`，plan 与 README 中明确标注安全边界         |
+| 两套 publish 入口（main.py / adapter）的技术债 | 8.2 已注明技术债，长期考虑 `main.py publish --from-daily-batch` 统一   |
+| panel.json 重建性能（retrieve.json 数千行）    | `build_data.py` 只做按需重建，避免不必要的全量重算                     |
+| selection 幂等覆盖语义                         | 每次 `/api/select` 直接覆盖写 selection.json，明确「最后一次选择生效」 |
+| 前端零依赖约束                                 | 原生 JS 无框架无构建，避免引入前端工具链耦合                           |
 
 ## SSOT
 
-| 文档                                                                 | 用途                                                           |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `scripts/compose.py` `run_publish`（line ~404）                        | C2 定稿唯一入口，`publish_adapter.py` 的耦合点                  |
+| 文档                                                                                                                  | 用途                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `scripts/compose.py` `run_publish`（line ~404）                                                                       | C2 定稿唯一入口，`publish_adapter.py` 的耦合点                                                         |
 | `scripts/main.py` `_run_publish_cli` / `find_candidate_by_tmdb_id` / `load_news_context_for_publish`（line ~324-410） | 佐证 publish 依赖 `Daily_Briefing/{date}.md` + `{date}_candidates.json`，与 daily_batch 产物结构不一致 |
-| `scripts/lib/render_briefing.py`                                        | Phase6 渲染模块参考，本 Phase 前端不复用其渲染逻辑，仅参考字段口径 |
-| `output/daily_batch/{date}/` 产物契约                                    | Phase7 定义的日批目录结构（news.json/retrieve.json/llm-judge-scores.json） |
-| ADR-0009                                                                | candidate 字段口径（tmdb_id/title/release_year/overview/genres/language/similarity/movie_url 等） |
+| `scripts/lib/render_briefing.py`                                                                                      | Phase6 渲染模块参考，本 Phase 前端不复用其渲染逻辑，仅参考字段口径                                     |
+| `output/daily_batch/{date}/` 产物契约                                                                                 | Phase7 定义的日批目录结构（news.json/retrieve.json/llm-judge-scores.json）                             |
+| ADR-0009                                                                                                              | candidate 字段口径（tmdb_id/title/release_year/overview/genres/language/similarity/movie_url 等）      |
 
 ---
 

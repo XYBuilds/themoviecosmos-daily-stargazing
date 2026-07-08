@@ -6,9 +6,9 @@ overview: |
   核心改动：
   ① render_copy_markdown 去掉冗余标签行和新闻原文 section，headline 加 ≤ 10 中文字硬约束；
   ② 文件名从 {slug}_copy.md → {slug}_copy_{platform}.md，为多平台定稿留扩展口；
-  ③ 审核面板新增定稿展示区（带 platform tabs），读 _copy_{platform}.md 呈现；
+  ③ 审核面板新增定稿展示区（带 platform tabs + 移动宽度预览），读 _copy_{platform}.md 呈现；
   ④ 面板集成 avoid-ai-writing：后端 /api/rewrite 调 LLM 改写，写 _copy_{platform}_humanized.md，前端 toggle 原版/去AI化版（可逆）；
-  ⑤ docs/SSOT 同步平台化描述。
+  ⑤ GATE 通过后同步 docs/SSOT 与 PRD。
 todos:
   - id: p9.7.1-copy-format-slim
     content: 9.7.1 · [渲染] render_copy_markdown 去掉标签行 + 新闻原文 section + headline ≤ 10 中文字约束（prompt + 渲染层双保证）
@@ -25,11 +25,8 @@ todos:
   - id: p9.7.5-tests
     content: 9.7.5 · [测试] 新增/更新 test_publish_adapter + test_serve 覆盖新格式/新文件名/新 API
     status: complete
-  - id: p9.7.6-ssot-sync
-    content: 9.7.6 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD 同步平台化与元素化描述
-    status: complete
-  - id: p9.7.7-gate
-    content: 9.7.7 · [GATE] Rule Breakers 真实重跑：验证新格式 + 面板定稿展示 + avoid-ai-writing toggle [需人工验收]
+  - id: p9.7.6-gate-doc-sync
+    content: 9.7.6 · [GATE] Rule Breakers 真实重跑：验证新格式 + 面板定稿展示/移动宽度预览 + avoid-ai-writing toggle；Go 后同步 SSOT/PRD 并收尾 [需人工验收]
     status: todo
 isProject: true
 ---
@@ -50,9 +47,9 @@ Phase 9.1–9.6 落地了 C2 平台化核心能力（xiaohongshu prompt + headli
 本子阶段解决五个问题：
 1. **产出格式精简**：去标签行、去新闻原文 section、headline ≤ 10 中文字
 2. **多平台文件命名**：为未来 X / Reddit 等平台预留扩展，文件名带 platform 维度
-3. **面板定稿展示**：总编在面板直接阅读定稿，无需开文件
+3. **面板定稿展示**：总编在面板直接阅读定稿，并可用移动宽度预览检查小红书观感
 4. **avoid-ai-writing 可逆改写**：面板内一键去 AI 写作痕迹，保留原版可回退
-5. **SSOT 同步**
+5. **GATE 后文档同步**：Rule Breakers 验收 Go 后再同步 SSOT / PRD 并收尾 9.7
 
 ## 设计决策
 
@@ -137,7 +134,8 @@ Phase 9.1–9.6 落地了 C2 平台化核心能力（xiaohongshu prompt + headli
 ### D6 面板定稿展示
 
 - `GET /api/copy?date=&slug=&platform=` → 返回 `{ headline, body, humanized_body, has_humanized }`
-- 前端：在候选区右侧或下方新增定稿区，带 platform tabs（当前只有 xiaohongshu 可用，其他灰置）
+- 前端：定稿独立视图，带 platform tabs（当前只有 xiaohongshu 可用，其他灰置）
+- 移动宽度预览：定稿正文容器支持桌面宽度 / 小红书移动宽度两档切换；只改变预览容器宽度，不改变产物内容
 - 未 publish 时显示空态提示
 
 ---
@@ -185,12 +183,14 @@ Phase 9.1–9.6 落地了 C2 平台化核心能力（xiaohongshu prompt + headli
 
 **改动：**
 - `serve.py`：新增 `GET /api/copy` 路由（读 _copy_{platform}.md 解析返回 headline/body/humanized 状态）
-- `index.html`：定稿展示 UI（platform tabs + headline + body + 空态）
+- `index.html`：定稿独立视图（platform tabs + headline + body + 空态）
+- `index.html`：增加移动宽度预览切换，用于模拟小红书发布后的窄屏阅读宽度
 
 ### 验收
 - [ ] 面板可展示已 publish 的定稿内容
 - [ ] 未 publish 时显示空态
 - [ ] platform tab 切换有效（当前只有 xiaohongshu）
+- [ ] 可切换桌面宽度 / 移动宽度预览，且不改变 copy 文件内容
 
 ---
 
@@ -232,28 +232,22 @@ Phase 9.1–9.6 落地了 C2 平台化核心能力（xiaohongshu prompt + headli
 
 ---
 
-## Todo 9.7.6 · [doc] SSOT / PRD 同步
+## Todo 9.7.6 · [GATE] Rule Breakers 真实重跑 + 面板验收 + 文档同步 [需人工验收]
 
-**依赖：** 9.7.2
+**依赖：** 9.7.1–9.7.5 全部
 
-**改动：**
-- `docs/SSOT/news-to-film-pipeline.md` compose 段：更新为「每平台一个创作步骤，小红书首发」+ headline + 归属行 + 元素清单，引用 ADR-0015
-- PRD 若有「C2 发布稿」口径段，同步一句并指向 ADR-0015
-
-### 验收
-- [ ] SSOT compose 段与 ADR-0015 一致，无「暂不分平台」残留描述
-
----
-
-## Todo 9.7.7 · [GATE] Rule Breakers 真实重跑 + 面板验收 [需人工验收]
-
-**依赖：** 9.7.1–9.7.6 全部
+**执行顺序：**
+1. 先做 Rule Breakers 真实重跑与面板验收。
+2. 等待人工 Go/No-Go；No-Go 则回到对应实现 TODO 修正。
+3. Go 后再同步 docs/SSOT 与 PRD，并按 9.7 收尾。
 
 **验收项：**
 - [ ] 用 2026-07-06 / Rule Breakers 重跑 publish → `_copy_xiaohongshu.md` 格式正确
 - [ ] headline ≤ 10 中文字
 - [ ] 面板定稿区正常展示
+- [ ] 定稿区可切换桌面宽度 / 移动宽度预览
 - [ ] avoid-ai-writing toggle 工作正常
+- [ ] Go 后同步 `docs/SSOT/news-to-film-pipeline.md` compose 段与 PRD 平台化/元素化描述，引用 ADR-0015
 - [ ] `[需人工验收 · Go/No-Go]`
 
 ---
