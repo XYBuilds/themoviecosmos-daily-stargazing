@@ -101,6 +101,70 @@ class RunAdapterTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 locate_copy_path("2026-07-06", "nope", "xiaohongshu", batch_root=tmp_path)
 
+    def test_headline_and_links_block_preserved_only_body_changes(self) -> None:
+        """9.7.5 gap-fill: 通过 run_adapter 端到端验证 headline/链接 与原稿逐字一致。"""
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            copy_path = _write_copy_md(tmp_path, "2026-07-06", "09-slug")
+            original_text = copy_path.read_text(encoding="utf-8")
+            original_lines = original_text.splitlines()
+            original_headline_line = original_lines[2]
+            original_links_block = original_text[original_text.find("## 链接"):].rstrip("\n")
+
+            humanized_path = run_adapter(
+                "2026-07-06",
+                "09-slug",
+                platform="xiaohongshu",
+                batch_root=tmp_path,
+                call_llm=lambda prompt: "全新的去AI化正文内容。",
+            )
+
+            humanized_lines = humanized_path.read_text(encoding="utf-8").splitlines()
+            humanized_text = humanized_path.read_text(encoding="utf-8")
+            humanized_links_block = humanized_text[
+                humanized_text.find("## 链接") :
+            ].rstrip("\n")
+
+            # headline 逐字保留。
+            self.assertEqual(humanized_lines[2], original_headline_line)
+            # 链接分区逐字保留。
+            self.assertEqual(humanized_links_block, original_links_block)
+            # body 确实变了。
+            self.assertIn("全新的去AI化正文内容。", humanized_text)
+            self.assertNotIn("原版正文", humanized_text)
+
+    def test_regenerate_overwrites_humanized_original_copy_unchanged(self) -> None:
+        """9.7.5 gap-fill: 二次 run_adapter 覆盖 humanized，原 _copy_ 文件字节不变。"""
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            copy_path = _write_copy_md(tmp_path, "2026-07-06", "09-slug")
+            original_bytes_before = copy_path.read_bytes()
+
+            humanized_path_1 = run_adapter(
+                "2026-07-06",
+                "09-slug",
+                platform="xiaohongshu",
+                batch_root=tmp_path,
+                call_llm=lambda prompt: "第一次改写结果。",
+            )
+            self.assertIn("第一次改写结果。", humanized_path_1.read_text(encoding="utf-8"))
+
+            humanized_path_2 = run_adapter(
+                "2026-07-06",
+                "09-slug",
+                platform="xiaohongshu",
+                batch_root=tmp_path,
+                call_llm=lambda prompt: "第二次改写结果。",
+            )
+
+            self.assertEqual(humanized_path_1, humanized_path_2)
+            humanized_text = humanized_path_2.read_text(encoding="utf-8")
+            self.assertIn("第二次改写结果。", humanized_text)
+            self.assertNotIn("第一次改写结果。", humanized_text)
+
+            # 原 _copy_ 文件字节完全未变。
+            self.assertEqual(copy_path.read_bytes(), original_bytes_before)
+
 
 class RenderHumanizedMarkdownTests(unittest.TestCase):
     def test_renders_slimmed_format(self) -> None:

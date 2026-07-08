@@ -237,6 +237,34 @@ class RunAdapterTests(unittest.TestCase):
             content = copy_path.read_text(encoding="utf-8")
             self.assertIn(long_headline, content)
 
+    def test_headline_over_10_chinese_chars_emits_warning_log(self) -> None:
+        """9.7.5 gap-fill: 渲染层不仅不截断，还应真的 warning（而不仅仅是不截断）。"""
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug", tmdb_id=429918)
+
+            long_headline = "这是一句超过十个中文字的超长标题内容"  # 17 个中文字
+
+            def _run_publish_long_headline(candidate, news, *, provider=None, judge=None, platform=None):
+                return {
+                    "tmdb_id": candidate["tmdb_id"],
+                    "headline": long_headline,
+                    "body": "正文内容。",
+                }
+
+            with self.assertLogs("review_panel.publish_adapter", level="WARNING") as ctx:
+                run_adapter(
+                    "2026-07-06",
+                    "09-slug",
+                    429918,
+                    batch_root=tmp_path,
+                    run_publish=_run_publish_long_headline,
+                )
+            self.assertTrue(
+                any("headline" in record for record in ctx.output),
+                ctx.output,
+            )
+
     def test_judge_entry_passed_into_run_publish(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
