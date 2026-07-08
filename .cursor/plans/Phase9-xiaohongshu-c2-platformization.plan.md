@@ -49,15 +49,17 @@ Phase 4 把发布稿（C2）认定为唯一创作环节（[ADR-0012](../../docs/
 
 ## 决策依据（ADR-0015）
 
-| ADR-0015 | 落到本 Phase |
-| --- | --- |
-| D1 平台化：`--platform xiaohongshu` + `compose_publish_xiaohongshu.md` | 9.3 / 9.4 |
-| D2 必含元素清单替代规定结构 | 9.3 |
-| D3 归属行 `「片名」(YYYY) 导演名`（「」不用《》） | 9.3 / 9.5 |
-| D4 新增 headline，`run_publish` 返回 `{tmdb_id, headline, body}` | 9.3 / 9.4 / 9.5 |
-| D5 关系侧忠于 causal_test/rationale、不暴露评审来源 | 9.3 |
-| D6 只用给定输入 + `production_countries` 进投影 | 9.2 / 9.3 |
-| 后果：G8 面板 bug 单独走 | 9.1 |
+
+| ADR-0015                                                               | 落到本 Phase    |
+| ---------------------------------------------------------------------- | --------------- |
+| D1 平台化：`--platform xiaohongshu` + `compose_publish_xiaohongshu.md` | 9.3 / 9.4       |
+| D2 必含元素清单替代规定结构                                            | 9.3             |
+| D3 归属行 `「片名」(YYYY) 导演名`（「」不用《》）                      | 9.3 / 9.5       |
+| D4 新增 headline，`run_publish` 返回 `{tmdb_id, headline, body}`       | 9.3 / 9.4 / 9.5 |
+| D5 关系侧忠于 causal_test/rationale、不暴露评审来源                    | 9.3             |
+| D6 只用给定输入 + `production_countries` 进投影                        | 9.2 / 9.3       |
+| 后果：G8 面板 bug 单独走                                               | 9.1             |
+
 
 ## Scope
 
@@ -82,14 +84,16 @@ Phase 4 把发布稿（C2）认定为唯一创作环节（[ADR-0012](../../docs/
 
 ## SSOT
 
-| 文档 | 用途 |
-| --- | --- |
-| [ADR-0015](../../docs/adr/0015-publish-platformization-and-element-checklist.md) | 本 Phase 的决策单一来源（D1–D6 + 后果） |
-| [ADR-0013](../../docs/adr/0013-image-equality-creative-tone.md) | 调性契约（正文全约束；headline 见 0015 D4 例外） |
+
+| 文档                                                                                     | 用途                                              |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| [ADR-0015](../../docs/adr/0015-publish-platformization-and-element-checklist.md)         | 本 Phase 的决策单一来源（D1–D6 + 后果）           |
+| [ADR-0013](../../docs/adr/0013-image-equality-creative-tone.md)                          | 调性契约（正文全约束；headline 见 0015 D4 例外）  |
 | [ADR-0012](../../docs/adr/0012-compose-responsibility-split-and-db-fullcolumn-lookup.md) | 通路 B 加列（production_countries）、唯一创作环节 |
-| `scripts/compose.py` | run_publish / 投影 / clean_publish_body / CLI |
-| `review_panel/publish_adapter.py`、`review_panel/serve.py` | 活跃发布链路 + selection.json 读写 |
-| `docs/SSOT/news-to-film-pipeline.md` | compose 段（9.7 同步平台化描述） |
+| `scripts/compose.py`                                                                     | run_publish / 投影 / clean_publish_body / CLI     |
+| `review_panel/publish_adapter.py`、`review_panel/serve.py`                               | 活跃发布链路 + selection.json 读写                |
+| `docs/SSOT/news-to-film-pipeline.md`                                                     | compose 段（9.7 同步平台化描述）                  |
+
 
 ## Todo 依赖关系
 
@@ -110,6 +114,8 @@ flowchart TD
   T --> GATE
   DOC --> GATE
 ```
+
+
 
 ---
 
@@ -244,7 +250,7 @@ flowchart TD
 
 - [ ] 全链无致命错误，`_copy.md` 含 headline + 元素化正文 + 归属行
 - [ ] 总编确认格式/内容/调性 OK
-- [ ] `[需人工验收 · Go/No-Go]`：Go → 收尾并入；No-Go → 回 9.3/9.4 迭代
+- [x] `[需人工验收 · Go/No-Go]`：Go → 收尾并入；No-Go → 回 9.3/9.4 迭代
 
 ---
 
@@ -266,3 +272,4 @@ flowchart TD
 - **必含若可得静默降级**：DB 缺导演时正文静默省略且无信号（ADR-0015 G6 本期不加校验）——GATE 人工兜底。
 - **调性不重造**：正文单一引用 ADR-0013；headline 只用 0015 D4 的受约束例外，先试后调，防跨环节漂移。
 - **prompt 措辞迭代与代码 PR 分开**（沿用 Phase 4 纪律）。
+
