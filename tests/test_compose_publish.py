@@ -11,8 +11,11 @@ from scripts.compose import (
     format_selected_movie_block,
     load_c2_template,
     load_headline_contract,
+    load_headline_template,
     parse_publish_output,
     render_c2_prompt,
+    render_headline_prompt,
+    run_headline,
     run_publish,
 )
 
@@ -273,6 +276,70 @@ class HeadlineContractInjectionTests(unittest.TestCase):
         )
         self.assertEqual(rendered_without, rendered_with)
         self.assertEqual(rendered_without, "News\nMovie\nJudge")
+
+
+class RunHeadlineTests(unittest.TestCase):
+    """ADR-0016 D3：headline-only、body-aware 重生成。"""
+
+    def test_run_headline_returns_headline_only_no_body_key(self) -> None:
+        def fake_llm(prompt: str) -> str:
+            return "【标题】穿越星海的思念"
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            result = run_headline(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                "这是当前正文。",
+                llm_call=fake_llm,
+            )
+
+        self.assertEqual(result, {"tmdb_id": 157336, "headline": "穿越星海的思念"})
+        self.assertNotIn("body", result)
+
+    def test_run_headline_prompt_is_body_aware_and_fully_rendered(self) -> None:
+        captured: dict[str, str] = {}
+
+        def fake_llm(prompt: str) -> str:
+            captured["prompt"] = prompt
+            return "【标题】标题"
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            run_headline(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                "独一无二的当前正文标记ABC123",
+                llm_call=fake_llm,
+            )
+
+        prompt = captured["prompt"]
+        self.assertIn("独一无二的当前正文标记ABC123", prompt)
+        self.assertNotIn("{{current_body}}", prompt)
+        self.assertNotIn("{{headline_contract}}", prompt)
+        self.assertNotIn("{{news_context}}", prompt)
+        self.assertNotIn("{{selected_movie}}", prompt)
+
+    def test_run_headline_multiline_takes_first_line_only(self) -> None:
+        def fake_llm(prompt: str) -> str:
+            return "【标题】只保留第一行\n多余的第二行"
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            result = run_headline(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                "当前正文",
+                llm_call=fake_llm,
+            )
+
+        self.assertEqual(result["headline"], "只保留第一行")
+
+    def test_render_headline_prompt_embeds_shared_contract(self) -> None:
+        template = load_headline_template()
+        contract = load_headline_contract()
+        rendered = render_headline_prompt(
+            template, "News", "Movie", "Body", headline_contract=contract
+        )
+        self.assertIn("≤ 10", rendered)
+        self.assertNotIn("{{headline_contract}}", rendered)
 
 
 if __name__ == "__main__":
