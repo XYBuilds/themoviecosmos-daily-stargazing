@@ -31,7 +31,7 @@ todos:
     status: complete
   - id: p9.8.5-frontend-edit-regenerate
     content: 9.8.5 · [面板] 定稿区正文改为可编辑 textarea + 保存；新增「重生成标题」「重生成正文」按钮；覆盖后刷新展示；理清与去AI化 toggle 的交互
-    status: todo
+    status: complete
   - id: p9.8.6-tests
     content: 9.8.6 · [测试] 覆盖 run_headline/regenerate_adapter/api regenerate/api edit-body/headline body-aware/humanized 失效
     status: todo

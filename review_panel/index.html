@@ -418,6 +418,69 @@
       word-wrap: break-word;
     }
 
+    .copy-body-editor {
+      width: 100%;
+      min-height: 220px;
+      box-sizing: border-box;
+      color: var(--ink);
+      font-size: 13.5px;
+      line-height: 1.7;
+      font-family: inherit;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 10px 12px;
+      resize: vertical;
+    }
+
+    .copy-body-editor:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .copy-actions-slot {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .copy-action-btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: var(--bg-card);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .copy-action-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .copy-action-btn:disabled {
+      color: var(--ink-faint);
+      cursor: not-allowed;
+    }
+
+    .copy-action-btn.primary {
+      border-color: var(--accent);
+      color: #1a1408;
+      background: var(--accent);
+      font-weight: 700;
+    }
+
+    .copy-action-btn.primary:hover:not(:disabled) {
+      color: #1a1408;
+    }
+
     #main {
       max-width: 1600px;
       margin: 0 auto;
@@ -753,6 +816,7 @@
           <div id="copy-humanize-toggle-slot"></div>
           <div id="copy-headline" class="copy-headline"></div>
           <div id="copy-body" class="copy-body"></div>
+          <div id="copy-actions-slot" class="copy-actions-slot"></div>
         </div>
       </div>
     </div>
@@ -775,6 +839,9 @@
         originalBody: "", // 9.7.4：/api/copy 返回的原版正文（headline 不参与 toggle，恒定显示）
         humanizedBody: null, // 9.7.4：去AI化正文；null 表示尚未生成
         humanizeView: "original", // "original" | "humanized"：当前展示哪一版
+        headline: "", // 9.8.5：定稿标题（可被「重生成标题」覆盖，通过 state 驱动 renderCopyHeadline）
+        editingBody: false, // 9.8.5：是否处于「编辑正文」textarea 模式
+        copyOpInFlight: false, // 9.8.5：编辑/重生成正文/重生成标题 互斥锁，防止并发操作
       };
 
       // 9.7.3 D6：目前只实装小红书，其余平台先占坑展示为 "coming soon"，
@@ -808,6 +875,7 @@
         copyHeadline: document.getElementById("copy-headline"),
         copyBody: document.getElementById("copy-body"),
         copyHumanizeSlot: document.getElementById("copy-humanize-toggle-slot"),
+        copyActionsSlot: document.getElementById("copy-actions-slot"),
       };
 
       // ---------------------------------------------------------------------
@@ -1090,10 +1158,17 @@
         els.copyEmptyState.style.display = "none";
         els.copyPreviewToolbar.classList.add("visible");
         els.copyContent.style.display = "block";
-        els.copyHeadline.textContent = safeText(headline);
+        state.headline = headline;
+        renderCopyHeadline();
         renderCopyPreviewMode();
         renderHumanizeSlot();
         renderCopyBody();
+        renderCopyActions();
+      }
+
+      // 9.8.5：headline 由 state 驱动，「重生成标题」只需改 state.headline 再调用本函数重渲染。
+      function renderCopyHeadline() {
+        els.copyHeadline.textContent = safeText(state.headline);
       }
 
       function renderCopyPreviewMode() {
@@ -1117,10 +1192,217 @@
 
       // 9.7.4：headline 不参与 toggle（原版/去AI化版只切换正文），body 依 state.humanizeView 显示。
       function renderCopyBody() {
+        if (state.editingBody) {
+          els.copyBody.innerHTML = '<textarea id="copy-body-editor" class="copy-body-editor">' +
+            escapeHtml(state.originalBody) + "</textarea>";
+          return;
+        }
         var body = state.humanizeView === "humanized" && state.humanizedBody !== null
           ? state.humanizedBody
           : state.originalBody;
         els.copyBody.textContent = safeText(body);
+      }
+
+      // 9.8.5：编辑正文/重生成正文/重生成标题 三个操作按钮 + 去AI化按钮 的统一互斥锁，
+      // 防止两个 LLM 操作同时在飞、或在编辑态下误触重生成。
+      function setCopyOpButtonsDisabled(disabled) {
+        var ids = ["edit-body-btn", "regen-body-btn", "regen-headline-btn", "humanize-btn"];
+        ids.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.disabled = disabled;
+        });
+      }
+
+      function clearCopyOpResult() {
+        var el = document.getElementById("copy-op-result");
+        if (el) {
+          el.className = "humanize-result";
+          el.textContent = "";
+        }
+      }
+
+      function showCopyOpResult(message, isFail) {
+        var el = document.getElementById("copy-op-result");
+        if (el) {
+          el.className = "humanize-result" + (isFail ? " fail" : "");
+          el.textContent = message;
+        }
+      }
+
+      // 渲染「编辑正文」「重生成正文」「重生成标题」按钮行 + 结果提示 span。
+      // 编辑态下改为渲染「保存」「取消」，并整体禁用重生成/去AI化，避免冲突操作。
+      function renderCopyActions() {
+        if (!els.copyActionsSlot) return;
+        if (state.editingBody) {
+          els.copyActionsSlot.innerHTML =
+            '<button type="button" id="save-body-btn" class="copy-action-btn primary">保存</button>' +
+            '<button type="button" id="cancel-body-btn" class="copy-action-btn">取消</button>' +
+            '<span id="copy-op-result" class="humanize-result"></span>';
+          var saveBtn = document.getElementById("save-body-btn");
+          var cancelBtn = document.getElementById("cancel-body-btn");
+          if (saveBtn) saveBtn.addEventListener("click", onSaveBody);
+          if (cancelBtn) cancelBtn.addEventListener("click", onCancelEditBody);
+          setCopyOpButtonsDisabled(true);
+          return;
+        }
+        els.copyActionsSlot.innerHTML =
+          '<button type="button" id="edit-body-btn" class="copy-action-btn">编辑正文</button>' +
+          '<button type="button" id="regen-body-btn" class="copy-action-btn">重生成正文</button>' +
+          '<button type="button" id="regen-headline-btn" class="copy-action-btn">重生成标题</button>' +
+          '<span id="copy-op-result" class="humanize-result"></span>';
+        var editBtn = document.getElementById("edit-body-btn");
+        var regenBodyBtn = document.getElementById("regen-body-btn");
+        var regenHeadlineBtn = document.getElementById("regen-headline-btn");
+        if (editBtn) editBtn.addEventListener("click", onEditBodyClick);
+        if (regenBodyBtn) regenBodyBtn.addEventListener("click", onRegenerateBody);
+        if (regenHeadlineBtn) regenHeadlineBtn.addEventListener("click", onRegenerateHeadline);
+        if (state.copyOpInFlight) setCopyOpButtonsDisabled(true);
+      }
+
+      // 点击「编辑正文」：进入编辑态。编辑只作用于原版正文（去AI化版是派生/只读产物），
+      // 所以先强制切回原版视图，再把 #copy-body 换成 textarea。
+      function onEditBodyClick() {
+        if (state.copyOpInFlight) return;
+        state.humanizeView = "original";
+        state.editingBody = true;
+        renderHumanizeSlot();
+        renderCopyBody();
+        renderCopyActions();
+      }
+
+      // 「取消」：退出编辑态，重渲染原版正文，不发请求。
+      function onCancelEditBody() {
+        state.editingBody = false;
+        renderCopyBody();
+        renderCopyActions();
+      }
+
+      // 「保存」：POST /api/edit-body，成功后覆盖 originalBody 并使去AI化版失效（D4：
+      // 覆盖语义要求人工编辑后重置去AI化产物，逼迫总编重新生成或直接用新原版）。
+      function onSaveBody() {
+        var editor = document.getElementById("copy-body-editor");
+        var newBody = editor ? editor.value : "";
+        if (!hasText(newBody)) {
+          showCopyOpResult("✗ 正文不能为空", true);
+          return;
+        }
+        if (!state.selection) return;
+        var saveBtn = document.getElementById("save-body-btn");
+        var cancelBtn = document.getElementById("cancel-body-btn");
+        if (saveBtn) {
+          saveBtn.disabled = true;
+          saveBtn.innerHTML = '<span class="spinner"></span>保存中…';
+        }
+        if (cancelBtn) cancelBtn.disabled = true;
+        clearCopyOpResult();
+        apiPost("/api/edit-body", {
+          date: state.date,
+          slug: state.selection.news_slug,
+          platform: state.copyPlatform,
+          body: newBody,
+        })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.ok) {
+              state.originalBody = res.body.body;
+              state.humanizedBody = null; // D4：编辑后清空去AI化版，触发 toggle 隐藏
+              state.humanizeView = "original";
+              state.editingBody = false;
+              renderCopyHeadline();
+              renderHumanizeSlot();
+              renderCopyBody();
+              renderCopyActions();
+              showCopyOpResult("✓ 已保存", false);
+            } else {
+              var msg = (res.body && res.body.error) ? res.body.error : "未知错误";
+              showCopyOpResult("✗ 保存失败：" + msg, true);
+              if (saveBtn) {
+                saveBtn.disabled = false;
+                saveBtn.textContent = "保存";
+              }
+              if (cancelBtn) cancelBtn.disabled = false;
+            }
+          })
+          .catch(function (err) {
+            showCopyOpResult("✗ 请求失败（网络错误）：" + err.message, true);
+            if (saveBtn) {
+              saveBtn.disabled = false;
+              saveBtn.textContent = "保存";
+            }
+            if (cancelBtn) cancelBtn.disabled = false;
+          });
+      }
+
+      // 「重生成正文」：POST /api/regenerate target=body。LLM 耗时操作，全程锁定其余按钮。
+      // 成功后同样清空去AI化版（D4），可反复点击，每次都是整份覆盖。
+      function onRegenerateBody() {
+        if (state.copyOpInFlight || !state.selection) return;
+        state.copyOpInFlight = true;
+        setCopyOpButtonsDisabled(true);
+        clearCopyOpResult();
+        var btn = document.getElementById("regen-body-btn");
+        if (btn) btn.innerHTML = '<span class="spinner"></span>重生成中…';
+        apiPost("/api/regenerate", {
+          date: state.date,
+          slug: state.selection.news_slug,
+          platform: state.copyPlatform,
+          target: "body",
+        })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.ok) {
+              state.originalBody = res.body.body;
+              state.headline = res.body.headline;
+              state.humanizedBody = null; // D4
+              state.humanizeView = "original";
+              renderCopyHeadline();
+              renderHumanizeSlot();
+              renderCopyBody();
+              showCopyOpResult("✓ 正文已重生成", false);
+            } else {
+              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              showCopyOpResult("✗ 重生成失败：" + stderr, true);
+            }
+          })
+          .catch(function (err) {
+            showCopyOpResult("✗ 请求失败（网络错误）：" + err.message, true);
+          })
+          .finally(function () {
+            state.copyOpInFlight = false;
+            renderCopyActions();
+          });
+      }
+
+      // 「重生成标题」：POST /api/regenerate target=headline（LLM 会参考当前正文）。
+      // 成功后只改 headline，正文与去AI化版都不受影响。
+      function onRegenerateHeadline() {
+        if (state.copyOpInFlight || !state.selection) return;
+        state.copyOpInFlight = true;
+        setCopyOpButtonsDisabled(true);
+        clearCopyOpResult();
+        var btn = document.getElementById("regen-headline-btn");
+        if (btn) btn.innerHTML = '<span class="spinner"></span>重生成中…';
+        apiPost("/api/regenerate", {
+          date: state.date,
+          slug: state.selection.news_slug,
+          platform: state.copyPlatform,
+          target: "headline",
+        })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.ok) {
+              state.headline = res.body.headline;
+              renderCopyHeadline();
+              showCopyOpResult("✓ 标题已重生成", false);
+            } else {
+              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              showCopyOpResult("✗ 重生成失败：" + stderr, true);
+            }
+          })
+          .catch(function (err) {
+            showCopyOpResult("✗ 请求失败（网络错误）：" + err.message, true);
+          })
+          .finally(function () {
+            state.copyOpInFlight = false;
+            renderCopyActions();
+          });
       }
 
       // 渲染「去AI化」按钮 + 原版/去AI化版 toggle。按钮态：
@@ -1236,6 +1518,7 @@
         apiGet(url)
           .then(function (body) {
             state.originalBody = body.body || "";
+            state.headline = body.headline || "";
             // has_humanized:true 说明磁盘已有 humanized 文件（如刷新页面后回来），
             // 直接带出 humanized_body 让 toggle 一进来就可用，不用再点一次「去AI化」。
             state.humanizedBody = body.has_humanized ? body.humanized_body : null;
