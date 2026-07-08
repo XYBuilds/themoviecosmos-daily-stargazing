@@ -1444,7 +1444,9 @@
       // 点击「去AI化」/「重新生成」：POST /api/rewrite，成功后覆盖 humanizedBody 并切到该视图；
       // 可反复点击重新生成（覆盖磁盘上的 humanized 文件与内存态），原版正文不受影响。
       function onHumanize() {
-        if (!state.selection) return;
+        if (state.copyOpInFlight || !state.selection) return;
+        state.copyOpInFlight = true;
+        setCopyOpButtonsDisabled(true); // 与重生成正文/标题共用互斥锁，去AI化进行中锁全组
         var btn = document.getElementById("humanize-btn");
         var resultEl = document.getElementById("humanize-result");
         if (btn) {
@@ -1483,6 +1485,10 @@
               errEl.className = "humanize-result fail";
               errEl.textContent = "✗ 请求失败（网络错误）：" + err.message;
             }
+          })
+          .then(function () {
+            state.copyOpInFlight = false;
+            renderCopyActions(); // 解锁编辑/重生成按钮（renderHumanizeSlot 已在上面重建去AI化按钮）
           });
       }
 
