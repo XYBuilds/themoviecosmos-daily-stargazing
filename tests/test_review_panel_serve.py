@@ -545,6 +545,149 @@ class CopyRouteTests(unittest.TestCase):
             self.assertEqual(payload["body"], "原版正文。")
 
 
+class RewriteRouteTests(unittest.TestCase):
+    """9.7.4：/api/rewrite 通过注入的 run_subprocess stub 验证，不调真实 LLM。"""
+
+    def _write_copy_md(self, tmp_path: Path, date: str, slug: str, platform: str = "xiaohongshu") -> Path:
+        copy_path = tmp_path / date / f"{slug}_copy_{platform}.md"
+        copy_path.parent.mkdir(parents=True, exist_ok=True)
+        copy_path.write_text(
+            "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+            "一句标题\n\n"
+            "「Survival Family」(2017) 矢口史靖 原版正文。\n\n"
+            "## 链接\n\n"
+            "- 电影: https://themoviecosmos.com/movie/429918\n"
+            "- 新闻: https://example.com/article/1\n",
+            encoding="utf-8",
+        )
+        return copy_path
+
+    def test_success_updates_selection_and_returns_humanized_body(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": "2026-07-06", "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+            self._write_copy_md(tmp_path, "2026-07-06", "09-slug")
+
+            humanized_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu_humanized.md"
+
+            def fake_write_humanized() -> None:
+                humanized_path.write_text(
+                    "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+                    "一句标题\n\n"
+                    "「Survival Family」(2017) 矢口史靖 去AI化正文。\n\n"
+                    "## 链接\n\n"
+                    "- 电影: https://themoviecosmos.com/movie/429918\n"
+                    "- 新闻: https://example.com/article/1\n",
+                    encoding="utf-8",
+                )
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                self.assertIn("--date", cmd)
+                self.assertIn("2026-07-06", cmd)
+                self.assertIn("--slug", cmd)
+                self.assertIn("09-slug", cmd)
+                self.assertIn("--platform", cmd)
+                self.assertIn("xiaohongshu", cmd)
+                fake_write_humanized()
+                return SimpleNamespace(
+                    returncode=0, stdout="", stderr=f"Wrote {humanized_path}\n"
+                )
+
+            status, payload = route(
+                "POST",
+                "/api/rewrite",
+                {},
+                {"date": "2026-07-06", "slug": "09-slug", "platform": "xiaohongshu"},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["humanized_path"], str(humanized_path))
+            self.assertIn("去AI化正文", payload["humanized_body"])
+
+            selection = read_selection(tmp_path, "2026-07-06")
+            entry = selection["copies"]["xiaohongshu"]
+            self.assertEqual(entry["humanized_path"], str(humanized_path))
+            # copy_path/published 字段应保持原状（本测试未先 publish，故 copy_path 为空占位）。
+            self.assertIsNone(entry.get("copy_path"))
+
+    def test_failure_returns_500(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": "2026-07-06", "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+            self._write_copy_md(tmp_path, "2026-07-06", "09-slug")
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                return SimpleNamespace(returncode=2, stdout="", stderr="error: empty body")
+
+            status, payload = route(
+                "POST",
+                "/api/rewrite",
+                {},
+                {"date": "2026-07-06", "slug": "09-slug"},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+
+            self.assertEqual(status, 500)
+            self.assertFalse(payload["ok"])
+            self.assertIsNone(payload["humanized_path"])
+            self.assertEqual(payload["stderr"], "error: empty body")
+
+    def test_slug_fallback_from_selection(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": "2026-07-06", "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+            self._write_copy_md(tmp_path, "2026-07-06", "09-slug")
+            humanized_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu_humanized.md"
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                # slug 未在 body 里传，应从 selection.json 兜底解析出 09-slug。
+                self.assertIn("--slug", cmd)
+                self.assertIn("09-slug", cmd)
+                humanized_path.write_text(
+                    "# 发布定稿 · 2026-07-06 · 小红书\n\n一句标题\n\n去AI化正文。\n\n## 链接\n\n- 电影: x\n- 新闻: y\n",
+                    encoding="utf-8",
+                )
+                return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {humanized_path}\n")
+
+            # body 不含 slug，只给 date，走 selection.json 兜底分支。
+            status, payload = route(
+                "POST",
+                "/api/rewrite",
+                {},
+                {"date": "2026-07-06"},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+
+
 class UnknownRouteTests(unittest.TestCase):
     def test_unknown_path_returns_404(self) -> None:
         with TemporaryDirectory() as tmp:
