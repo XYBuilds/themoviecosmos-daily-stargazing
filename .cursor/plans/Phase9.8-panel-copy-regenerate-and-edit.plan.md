@@ -22,7 +22,7 @@ todos:
     status: complete
   - id: p9.8.2-compose-run-headline
     content: 9.8.2 · [compose] run_headline(candidate, news, current_body, ...) headline-only + 复用 parse_publish_output 的 headline 分支；body 重生成经 run_publish 取 body（不建独立 body prompt）
-    status: todo
+    status: complete
   - id: p9.8.3-regenerate-adapter
     content: 9.8.3 · [adapter] review_panel/regenerate_adapter.py（--target headline|body）：读当前 _copy_{platform}.md → 调 compose → 覆盖对应字段回写 + body 变更时删陈旧 _humanized.md
     status: todo
