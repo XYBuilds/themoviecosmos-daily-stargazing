@@ -28,11 +28,11 @@ todos:
   - id: p9.6-tests
     content: 9.6 · [测试] 更新 test_compose_publish / test_compose_decision_card / test_review_panel_publish_adapter / test_review_panel_serve 过绿
     status: complete
-  - id: p9.7-ssot-sync
-    content: 9.7 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD（若涉及）同步平台化与元素化描述，引用 ADR-0015
-    status: pending
   - id: p9.8-gate
     content: 9.8 · [GATE] 用 Rule Breakers（2026-07-06）真实数据重跑 compose --platform xiaohongshu → _copy.md，总编肉眼验收 headline/必含元素/归属行/调性 [需人工验收 · Go/No-Go]
+    status: pending
+  - id: p9.9-ssot-sync
+    content: 9.9 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD（若涉及）同步平台化与元素化描述，引用 ADR-0015（GATE Go 后执行）
     status: pending
 isProject: true
 ---
@@ -226,19 +226,6 @@ flowchart TD
 
 ---
 
-## Todo 9.7 · [doc] SSOT / PRD 同步
-
-**依赖：** 9.4
-
-- `docs/SSOT/news-to-film-pipeline.md` compose 段：把「平台中性单版」更新为「每平台一个创作步骤，小红书首发」，记 headline + 归属行 + 元素清单，引用 ADR-0015。
-- PRD 若有「C2 发布稿」口径段，同步一句并指向 ADR-0015。
-
-### 验收
-
-- [ ] SSOT compose 段与 ADR-0015 一致，无「暂不分平台」残留描述
-
----
-
 ## Todo 9.8 · [GATE] Rule Breakers 真实重跑 + 总编验收 [需人工验收 · Go/No-Go]
 
 **依赖：** 9.2 / 9.3 / 9.4 / 9.5 / 9.6
@@ -251,6 +238,19 @@ flowchart TD
 - [ ] 全链无致命错误，`_copy.md` 含 headline + 元素化正文 + 归属行
 - [ ] 总编确认格式/内容/调性 OK
 - [x] `[需人工验收 · Go/No-Go]`：Go → 收尾并入；No-Go → 回 9.3/9.4 迭代
+
+---
+
+## Todo 9.9 · [doc] SSOT / PRD 同步（GATE Go 后执行）
+
+**依赖：** 9.8 GATE Go
+
+- `docs/SSOT/news-to-film-pipeline.md` compose 段：把「平台中性单版」更新为「每平台一个创作步骤，小红书首发」，记 headline + 归属行 + 元素清单，引用 ADR-0015。
+- PRD 若有「C2 发布稿」口径段，同步一句并指向 ADR-0015。
+
+### 验收
+
+- [ ] SSOT compose 段与 ADR-0015 一致，无「暂不分平台」残留描述
 
 ---
 
