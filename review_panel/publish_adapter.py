@@ -22,9 +22,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import sys
 from pathlib import Path
 from typing import Any
+
+logger = logging.getLogger(__name__)
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
@@ -110,39 +113,49 @@ def load_judge_entry(news_dir: Path, tmdb_id: int | str) -> JudgeEntry | None:
     return None
 
 
+_PLATFORM_LABELS: dict[str, str] = {
+    "xiaohongshu": "小红书",
+    "x": "X (Twitter)",
+    "reddit": "Reddit",
+}
+
+
+def _count_chinese_chars(text: str) -> int:
+    """统计中文字数（不含标点）。"""
+    return sum(1 for ch in text if "\u4e00" <= ch <= "\u9fff")
+
+
 def render_copy_markdown(
     date: str,
     candidate: dict[str, Any],
     news: dict[str, str],
     draft: dict[str, Any],
+    *,
+    platform: str = "xiaohongshu",
 ) -> str:
-    """渲染 ``_copy.md``：headline / 中文发布正文 / 新闻原文 / 链接四段。
+    """渲染精简定稿：headline 独立成行 + body + 链接。
 
-    ADR-0015 D3/D4：消费创作环节产出的 ``draft["headline"]`` 作醒目标题；**不再**用
-    ``{title}({year})`` 另拼机械标题行——电影真名已由正文首行的 `「片名」(YYYY) 导演名`
-    归属行承载，避免重复。自带而非 import ``scripts.main`` 的理由见本文件模块 docstring。
+    Phase 9.7.1：去掉标签行和新闻原文 section，headline ≤ 10 中文字（prompt 端保证，
+    渲染层仅 warning 不截断）。
     """
     headline = str(draft.get("headline") or "").strip()
     movie_url = str(candidate.get("movie_url") or "")
     news_url = str(news.get("url") or "")
     body = str(draft.get("body") or "").strip()
+    platform_label = _PLATFORM_LABELS.get(platform, platform)
+
+    cn_count = _count_chinese_chars(headline)
+    if cn_count > 10:
+        logger.warning(
+            "headline 中文字数 %d 超出 ≤10 约束: %r", cn_count, headline
+        )
 
     lines = [
-        f"# 发布定稿 · {date} · 小红书",
-        "",
-        "## 小红书标题（headline）",
+        f"# 发布定稿 · {date} · {platform_label}",
         "",
         headline or "（无标题）",
         "",
-        "## 中文发布正文",
-        "",
         body or "（无正文）",
-        "",
-        "## 新闻原文（English source）",
-        "",
-        f"**{news.get('title', '')}**",
-        "",
-        str(news.get("description", "")),
         "",
         "## 链接",
         "",

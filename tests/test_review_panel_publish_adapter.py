@@ -176,9 +176,13 @@ class RunAdapterTests(unittest.TestCase):
             self.assertEqual(copy_path, tmp_path / "2026-07-06" / "09-slug_copy.md")
             self.assertTrue(copy_path.is_file())
             content = copy_path.read_text(encoding="utf-8")
-            # ADR-0015 D4：headline 展示在顶部。
+            # ADR-0015 D4：headline 独立成行展示在顶部。
             self.assertIn("当风向不站在她们这边", content)
-            self.assertIn("## 小红书标题（headline）", content)
+            # Phase 9.7.1：精简格式，去掉标签行和新闻原文 section。
+            self.assertNotIn("## 小红书标题（headline）", content)
+            self.assertNotIn("## 中文发布正文", content)
+            self.assertNotIn("## 新闻原文（English source）", content)
+            self.assertIn("## 链接", content)
             # 归属行「」在正文内，未被剥除。
             self.assertIn("「Survival Family」(2017) 矢口史靖", content)
             self.assertIn("这是中文正文。", content)
@@ -187,6 +191,49 @@ class RunAdapterTests(unittest.TestCase):
             # ADR-0015 D3：不再拼机械标题行 {title}(year)，也不用《》。
             self.assertNotIn("Survival Family(2017)", content)
             self.assertNotIn("《Survival Family》", content)
+
+    def test_headline_standalone_line(self) -> None:
+        """headline 独立成行：紧跟标题行之后是空行，再是 headline 单独一行。"""
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug", tmdb_id=429918)
+
+            copy_path = run_adapter(
+                "2026-07-06",
+                "09-slug",
+                429918,
+                batch_root=tmp_path,
+                run_publish=_fake_run_publish,
+            )
+            lines = copy_path.read_text(encoding="utf-8").splitlines()
+            self.assertTrue(lines[0].startswith("# 发布定稿 · 2026-07-06 · 小红书"))
+            self.assertEqual(lines[1], "")
+            self.assertEqual(lines[2], "当风向不站在她们这边")
+
+    def test_headline_over_10_chinese_chars_still_renders_without_truncation(self) -> None:
+        """渲染层不截断超长 headline，只 warning（prompt 端保证 ≤10 字约束）。"""
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug", tmdb_id=429918)
+
+            long_headline = "这是一句超过十个中文字的超长标题内容"  # 17 个中文字
+
+            def _run_publish_long_headline(candidate, news, *, provider=None, judge=None, platform=None):
+                return {
+                    "tmdb_id": candidate["tmdb_id"],
+                    "headline": long_headline,
+                    "body": "正文内容。",
+                }
+
+            copy_path = run_adapter(
+                "2026-07-06",
+                "09-slug",
+                429918,
+                batch_root=tmp_path,
+                run_publish=_run_publish_long_headline,
+            )
+            content = copy_path.read_text(encoding="utf-8")
+            self.assertIn(long_headline, content)
 
     def test_judge_entry_passed_into_run_publish(self) -> None:
         with TemporaryDirectory() as tmp:
