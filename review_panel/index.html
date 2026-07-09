@@ -586,6 +586,27 @@
       color: #1a1408;
     }
 
+    /* 10.5.1 · pick(选型)阶段的只读预览区：展示当前预览视角的标题/正文（复用 copy-headline/body
+       样式，纯只读，无编辑按钮），底部「进入微调」CTA 是唯一落盘入口。 */
+    .pick-preview {
+      margin-top: 4px;
+    }
+
+    .enter-refine-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .enter-refine-hint {
+      font-size: 11.5px;
+      color: var(--ink-faint);
+    }
+
     #main {
       max-width: 1600px;
       margin: 0 auto;
@@ -900,37 +921,55 @@
     </div>
   </div>
 
-  <!-- 定稿视图：产出定稿后展示，全宽。顶部「← 返回选片」切回 #candidates-view。 -->
+  <!-- 定稿视图：分两阶段兄弟区，共享 copy-panel-head。pick(选型)=只读浏览多视角草稿池；
+       refine(微调)=对选定主视角做去AI化/编辑/重生成/定稿。back 两级回退（见 switchStage）。 -->
   <div id="copy-view" style="display:none;">
     <div id="copy-panel" class="copy-panel">
       <div class="copy-panel-head">
-        <button type="button" id="copy-back-btn" class="copy-back-btn">← 返回选片</button>
-        <span class="copy-panel-title">定稿展示</span>
+        <button type="button" id="copy-back-btn" class="copy-back-btn">← 返回</button>
+        <span id="copy-panel-title" class="copy-panel-title">选型</span>
         <span id="copy-selected-title" class="copy-selected-title"></span>
         <div id="copy-platform-tabs" class="copy-platform-tabs"></div>
       </div>
       <div id="copy-panel-body" class="copy-panel-body">
         <div id="copy-empty-state" class="copy-empty-state">尚未定稿</div>
-        <div id="copy-preview-toolbar" class="copy-preview-toolbar">
-          <span class="copy-preview-label">预览宽度</span>
-          <button type="button" class="copy-preview-btn active" data-preview="desktop">桌面</button>
-          <button type="button" class="copy-preview-btn" data-preview="mobile">移动</button>
-        </div>
-        <!-- 草稿池 = persona 标签行：点标签即选主视角（D4 可变指针派生当前稿）；标签自身极简。 -->
-        <div id="draft-pool-section" class="draft-pool-section" style="display:none;">
-          <div class="draft-pool-head">
-            <span class="draft-pool-title">草稿池 · 多视角</span>
-            <span class="draft-pool-hint">点标签切主视角（派生当前稿）；勾选 ≤2 再合并生成</span>
-            <button type="button" id="combine-drafts-btn" class="copy-action-btn" disabled>合并生成</button>
-            <span id="draft-pool-result" class="draft-pool-result"></span>
+
+        <!-- 阶段2 · 选型(pick)：只读来源层（ADR-0017 D3）。点 persona 标签只切换只读预览，
+             零副作用；勾选 ≤2 合并生成；「进入微调」是唯一落盘点（调 select-draft 派生当前稿）。 -->
+        <div id="pick-stage" style="display:none;">
+          <div id="draft-pool-section" class="draft-pool-section">
+            <div class="draft-pool-head">
+              <span class="draft-pool-title">草稿池 · 多视角</span>
+              <span class="draft-pool-hint">点标签预览各视角；勾选 ≤2 合并生成</span>
+              <button type="button" id="combine-drafts-btn" class="copy-action-btn" disabled>合并生成</button>
+              <span id="draft-pool-result" class="draft-pool-result"></span>
+            </div>
+            <div id="draft-pool-tabs" class="draft-pool-tabs"></div>
           </div>
-          <div id="draft-pool-tabs" class="draft-pool-tabs"></div>
+          <div id="pick-preview" class="pick-preview" style="display:none;">
+            <div id="pick-preview-headline" class="copy-headline"></div>
+            <div id="pick-preview-body" class="copy-body"></div>
+            <div class="enter-refine-bar">
+              <button type="button" id="enter-refine-btn" class="copy-action-btn primary" disabled>进入微调 →</button>
+              <span class="enter-refine-hint">以此视角为主视角，进入去AI化 / 编辑 / 重生成</span>
+              <span id="enter-refine-result" class="draft-pool-result"></span>
+            </div>
+          </div>
         </div>
-        <div id="copy-content" class="copy-content" style="display:none;">
-          <div id="copy-humanize-toggle-slot"></div>
-          <div id="copy-headline" class="copy-headline"></div>
-          <div id="copy-body" class="copy-body"></div>
-          <div id="copy-actions-slot" class="copy-actions-slot"></div>
+
+        <!-- 阶段3 · 微调(refine)：进入时才落盘。去AI化/编辑正文/重生成正文/重生成标题/定稿。 -->
+        <div id="refine-stage" style="display:none;">
+          <div id="copy-preview-toolbar" class="copy-preview-toolbar">
+            <span class="copy-preview-label">预览宽度</span>
+            <button type="button" class="copy-preview-btn active" data-preview="desktop">桌面</button>
+            <button type="button" class="copy-preview-btn" data-preview="mobile">移动</button>
+          </div>
+          <div id="copy-content" class="copy-content" style="display:none;">
+            <div id="copy-humanize-toggle-slot"></div>
+            <div id="copy-headline" class="copy-headline"></div>
+            <div id="copy-body" class="copy-body"></div>
+            <div id="copy-actions-slot" class="copy-actions-slot"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -947,7 +986,7 @@
         panel: null,
         selection: null, // {news_slug, tmdb_id, title}
         lang: "en", // "en" | "zh"; pure front-end toggle, does not refetch data
-        view: "candidates", // "candidates" | "copy"：当前视图（互斥切换）
+        stage: "candidates", // 10.5.1：三态导航机 "candidates"(选片) | "pick"(选型) | "refine"(微调)
         copyPlatform: "xiaohongshu", // 9.7.3 D6：当前定稿展示区选中的平台 tab
         copyPreviewMode: "desktop", // "desktop" | "mobile"：只改变定稿预览宽度，不改变产物内容
         originalBody: "", // 9.7.4：/api/copy 返回的原版正文（headline 不参与 toggle，恒定显示）
@@ -957,7 +996,8 @@
         editingBody: false, // 9.8.5：是否处于「编辑正文」textarea 模式
         copyOpInFlight: false, // 9.8.5：编辑/重生成正文/重生成标题 互斥锁，防止并发操作
         drafts: [], // 10.5：内存态只读草稿池 [{draft_id, headline, body}]（ADR-0017 D3）
-        selectedDraftId: null, // 10.5：当前主视角指针（D4）；null 表示尚未选主视角
+        previewDraftId: null, // 10.5.1：pick 阶段「正在预览」的 draft_id（纯前端只读，零副作用）
+        selectedDraftId: null, // 10.5：refine 阶段已落盘的主视角指针（D4）；唯一落盘点为「进入微调」
         combineChecked: [], // 10.5：勾选待合并的 draft_id（上限 2）
         draftOpInFlight: false, // 10.5：生成/选中/合并草稿 互斥锁
       };
@@ -987,10 +1027,18 @@
         candidatesView: document.getElementById("candidates-view"),
         copyView: document.getElementById("copy-view"),
         copyBackBtn: document.getElementById("copy-back-btn"),
+        copyPanelTitle: document.getElementById("copy-panel-title"),
         copySelectedTitle: document.getElementById("copy-selected-title"),
         copyPanel: document.getElementById("copy-panel"),
         copyPlatformTabs: document.getElementById("copy-platform-tabs"),
         copyEmptyState: document.getElementById("copy-empty-state"),
+        pickStage: document.getElementById("pick-stage"),
+        pickPreview: document.getElementById("pick-preview"),
+        pickPreviewHeadline: document.getElementById("pick-preview-headline"),
+        pickPreviewBody: document.getElementById("pick-preview-body"),
+        enterRefineBtn: document.getElementById("enter-refine-btn"),
+        enterRefineResult: document.getElementById("enter-refine-result"),
+        refineStage: document.getElementById("refine-stage"),
         copyContent: document.getElementById("copy-content"),
         copyPreviewToolbar: document.getElementById("copy-preview-toolbar"),
         copyHeadline: document.getElementById("copy-headline"),
@@ -1282,6 +1330,7 @@
       function showCopyEmptyState(message) {
         els.copyContent.style.display = "none";
         els.copyPreviewToolbar.classList.remove("visible");
+        if (els.pickPreview) els.pickPreview.style.display = "none";
         els.copyEmptyState.classList.remove("loading");
         els.copyEmptyState.style.display = "block";
         els.copyEmptyState.textContent = message || "尚未定稿";
@@ -1294,6 +1343,7 @@
         els.copyContent.style.display = "none";
         els.copyPreviewToolbar.classList.remove("visible");
         els.draftPoolSection.style.display = "none";
+        if (els.pickPreview) els.pickPreview.style.display = "none";
         els.copyEmptyState.classList.add("loading");
         els.copyEmptyState.style.display = "flex";
         els.copyEmptyState.innerHTML =
@@ -1640,44 +1690,106 @@
           });
       }
 
-      // 选片视图 / 定稿视图互斥切换（不再把定稿塞在页面顶端）。
-      function switchView(view) {
-        state.view = view;
-        var isCopy = view === "copy";
+      // 10.5.1：三态导航机。candidates=选片列表；pick/refine 都在 #copy-view 内、互斥显示两个兄弟
+      // 阶段区并共享 copy-panel-head。切阶段是纯视图操作，不触发任何后端副作用（落盘只发生在
+      // 「进入微调」显式动作里）——这样 back 回退语义干净：refine→pick 丢弃微调态，pick→candidates。
+      function switchStage(stage) {
+        state.stage = stage;
+        var isCopy = stage === "pick" || stage === "refine";
         els.candidatesView.style.display = isCopy ? "none" : "block";
         els.copyView.style.display = isCopy ? "block" : "none";
-        if (isCopy && state.selection && state.selection.title) {
+        if (els.pickStage) els.pickStage.style.display = stage === "pick" ? "block" : "none";
+        if (els.refineStage) els.refineStage.style.display = stage === "refine" ? "block" : "none";
+        updateCopyHead();
+      }
+
+      // 头部随阶段变化：标题（选型/微调）+ 返回按钮文案（微调回选型 / 选型回选片）。
+      function updateCopyHead() {
+        if (els.copyPanelTitle) {
+          els.copyPanelTitle.textContent = state.stage === "refine" ? "微调" : "选型";
+        }
+        if (els.copyBackBtn) {
+          els.copyBackBtn.textContent = state.stage === "refine" ? "← 返回选型" : "← 返回选片";
+        }
+        if (state.selection && state.selection.title) {
           els.copySelectedTitle.textContent = "已选：" + state.selection.title;
         } else {
           els.copySelectedTitle.textContent = "";
         }
       }
 
-      // 拉取定稿并进入定稿视图。以磁盘产物为准：命中(200)进定稿视图，未命中(404)回选片视图，
-      // 这是刷新后恢复（refresh sync）的核心——不依赖内存态，只信 /api/copy 的实际产物。
+      // 10.5.1 · 刷新恢复的核心分诊：以磁盘产物为唯一事实来源，决定落到哪个阶段。
+      //   已落盘 selected_draft_id + copy 命中 → refine（微调）；
+      //   有池但未选主视角 → pick（选型），预览首张；
+      //   无池 → candidates（选片）。不依赖内存态残留。
       function loadCopy() {
         renderCopyPlatformTabs();
         if (!state.selection) {
-          switchView("candidates");
+          switchStage("candidates");
           return;
         }
         if (ACTIVE_COPY_PLATFORMS.indexOf(state.copyPlatform) === -1) {
-          switchView("copy");
+          state.drafts = [];
+          renderDraftPool();
+          switchStage("pick");
           showCopyEmptyState("该平台暂未开放（coming soon）");
           return;
         }
+        // 先把只读草稿池读回内存（刷新后 serve 内存没有池，磁盘是唯一来源）。
+        var poolUrl = "/api/drafts?date=" + encodeURIComponent(state.date) +
+          "&slug=" + encodeURIComponent(state.selection.news_slug) +
+          "&platform=" + encodeURIComponent(state.copyPlatform);
+        apiGet(poolUrl)
+          .then(function (poolBody) {
+            state.drafts = (poolBody && poolBody.drafts) || [];
+            state.combineChecked = [];
+            renderDraftPool();
+            // 已落盘主视角（restoreSelection 从 selection.copies[platform].selected_draft_id 回填）
+            // 且 copy 命中 → 直接进 refine；否则留在 pick。
+            if (state.selectedDraftId) {
+              return loadRefineCopy(true);
+            }
+            enterPickStage();
+          })
+          .catch(function (err) {
+            state.drafts = [];
+            renderDraftPool();
+            if (state.selectedDraftId) {
+              loadRefineCopy(true);
+            } else {
+              switchStage("candidates");
+              showError("加载草稿池失败：" + err.message);
+            }
+          });
+      }
+
+      // 进入 pick（选型）阶段：有池则预览首张（或保持已选预览），无池提示先生成。
+      function enterPickStage() {
+        switchStage("pick");
+        if (!state.drafts.length) {
+          showCopyEmptyState("尚未生成草稿池，点右上角「生成草稿池」");
+          return;
+        }
+        els.copyEmptyState.style.display = "none";
+        var keep = state.previewDraftId &&
+          state.drafts.some(function (d) { return String(d.draft_id) === state.previewDraftId; });
+        onPreviewDraft(keep ? state.previewDraftId : String(state.drafts[0].draft_id));
+      }
+
+      // 拉取已落盘当前稿进入 refine（微调）阶段。fromRestore=true 时 404 回退到 pick（选型），
+      // 而非报错——刷新场景下 selected_draft_id 与 copy 产物可能因改选被清理。
+      function loadRefineCopy(fromRestore) {
         var url = "/api/copy?date=" + encodeURIComponent(state.date) +
           "&slug=" + encodeURIComponent(state.selection.news_slug) +
           "&platform=" + encodeURIComponent(state.copyPlatform);
-        apiGet(url)
+        return apiGet(url)
           .then(function (body) {
             state.originalBody = body.body || "";
             state.headline = body.headline || "";
-            // has_humanized:true 说明磁盘已有 humanized 文件（如刷新页面后回来），
-            // 直接带出 humanized_body 让 toggle 一进来就可用，不用再点一次「去AI化」。
             state.humanizedBody = body.has_humanized ? body.humanized_body : null;
             state.humanizeView = "original";
-            switchView("copy");
+            state.editingBody = false;
+            switchStage("refine");
             showCopyContent(body.headline, body.body);
           })
           .catch(function (err) {
@@ -1685,10 +1797,10 @@
             state.humanizedBody = null;
             state.humanizeView = "original";
             if (err.status === 404) {
-              // 该平台还没出稿：留在选片视图，让总编去「生成草稿池」选主视角，而不是弹一个空定稿视图。
-              switchView("candidates");
+              state.selectedDraftId = null;
+              enterPickStage();
             } else {
-              switchView("copy");
+              switchStage("refine");
               showCopyEmptyState("加载定稿失败：" + err.message);
             }
           });
@@ -1713,6 +1825,7 @@
       // 换 candidate / 换日期时须清空——池与候选绑定，旧池对新候选无意义。
       function resetDraftPool() {
         state.drafts = [];
+        state.previewDraftId = null;
         state.selectedDraftId = null;
         state.combineChecked = [];
         renderDraftPool();
@@ -1731,8 +1844,8 @@
         els.combineDraftsBtn.disabled = state.draftOpInFlight || n !== 2;
       }
 
-      // 渲染草稿池标签行：每 persona 一个标签（仅 persona 名，选中加 ★）；点标签即切主视角，
-      // 派生的标题/正文由下方当前稿区显示。合并勾选框为次级 affordance（勾满 2 后其余禁用）。
+      // 渲染草稿池标签行：每 persona 一个标签（仅 persona 名，正在预览的加 ★）；点标签只切换
+      // 只读预览（onPreviewDraft，零副作用），不落盘。合并勾选框为次级 affordance（勾满 2 后其余禁用）。
       function renderDraftPool() {
         if (!els.draftPoolSection || !els.draftPoolTabs) return;
         if (!state.drafts.length) {
@@ -1745,15 +1858,15 @@
         var checkedFull = state.combineChecked.length >= 2;
         els.draftPoolTabs.innerHTML = state.drafts.map(function (d) {
           var id = String(d.draft_id);
-          var isSelected = id === state.selectedDraftId;
+          var isPreview = id === state.previewDraftId;
           var isChecked = state.combineChecked.indexOf(id) !== -1;
           var checkboxDisabled = state.draftOpInFlight || (checkedFull && !isChecked);
-          var tabCls = "draft-tab" + (isSelected ? " selected" : "");
+          var tabCls = "draft-tab" + (isPreview ? " selected" : "");
           return (
             '<span class="' + tabCls + '" data-draft-id="' + escapeHtml(id) + '">' +
               '<button type="button" class="draft-tab-select" data-draft-id="' + escapeHtml(id) + '"' +
               (state.draftOpInFlight ? " disabled" : "") + ">" +
-              (isSelected ? "★ " : "") + escapeHtml(id) + "</button>" +
+              (isPreview ? "★ " : "") + escapeHtml(id) + "</button>" +
               '<label class="draft-tab-combine" title="勾选后与另一个合并生成（上限 2）">' +
                 '<input type="checkbox" class="draft-combine-cb" data-draft-id="' + escapeHtml(id) + '"' +
                 (isChecked ? " checked" : "") + (checkboxDisabled ? " disabled" : "") + ">" +
@@ -1764,17 +1877,74 @@
         renderCombineButton();
       }
 
-      // 「生成草稿池」：POST /api/generate-drafts 全量扇出。成功后进入定稿视图渲染池，
-      // 选主视角前当前稿区留空（提示先选一张）。
+      // 10.5.1 · 预览某视角草稿：纯前端只读，从内存池取 headline/body 渲染，零后端副作用。
+      // 是 pick 阶段的唯一「切标签」行为——落盘推迟到「进入微调」。
+      function onPreviewDraft(draftId) {
+        if (state.draftOpInFlight) return;
+        var id = String(draftId);
+        var draft = state.drafts.filter(function (d) { return String(d.draft_id) === id; })[0];
+        if (!draft) return;
+        state.previewDraftId = id;
+        els.copyEmptyState.style.display = "none";
+        if (els.pickPreview) els.pickPreview.style.display = "block";
+        if (els.pickPreviewHeadline) els.pickPreviewHeadline.textContent = safeText(draft.headline);
+        if (els.pickPreviewBody) els.pickPreviewBody.textContent = safeText(draft.body);
+        if (els.enterRefineBtn) els.enterRefineBtn.disabled = state.draftOpInFlight;
+        if (els.enterRefineResult) els.enterRefineResult.textContent = "";
+        renderDraftPool();
+      }
+
+      // 10.5.1 · 「进入微调」：唯一落盘点。用当前预览的 previewDraftId 调 /api/select-draft 派生当前稿，
+      // 成功后 selectedDraftId 落定、loadRefineCopy 拉磁盘稿进 refine 阶段，流入既有去AI化/编辑/重生成工作流。
+      function onEnterRefine() {
+        if (state.draftOpInFlight || !state.selection || !state.previewDraftId) return;
+        state.draftOpInFlight = true;
+        if (els.enterRefineBtn) {
+          els.enterRefineBtn.disabled = true;
+          els.enterRefineBtn.innerHTML = '<span class="spinner"></span>派生中…';
+        }
+        apiPost("/api/select-draft", {
+          date: state.date,
+          slug: state.selection.news_slug,
+          platform: state.copyPlatform,
+          draft_id: state.previewDraftId,
+        })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.ok) {
+              state.selectedDraftId = String(res.body.selected_draft_id);
+              return loadRefineCopy(false);
+            }
+            if (els.enterRefineResult) {
+              els.enterRefineResult.className = "draft-pool-result fail";
+              els.enterRefineResult.textContent = "✗ 进入微调失败：" + apiErrorText(res);
+            }
+          })
+          .catch(function (err) {
+            if (els.enterRefineResult) {
+              els.enterRefineResult.className = "draft-pool-result fail";
+              els.enterRefineResult.textContent = "✗ 请求失败（网络错误）：" + err.message;
+            }
+          })
+          .then(function () {
+            state.draftOpInFlight = false;
+            if (els.enterRefineBtn) {
+              els.enterRefineBtn.innerHTML = "进入微调 →";
+              els.enterRefineBtn.disabled = !state.previewDraftId;
+            }
+          });
+      }
+
+      // 「生成草稿池」：POST /api/generate-drafts 全量扇出。成功后进入 pick（选型）阶段并预览首张；
+      // 「选主视角」不再在这里发生——推迟到 pick 阶段点标签预览、再点「进入微调」才落盘。
       function onGenerateDrafts() {
         if (state.draftOpInFlight || !state.selection) return;
         state.draftOpInFlight = true;
         els.generateDraftsBtn.disabled = true;
         els.generateDraftsBtn.innerHTML = '<span class="spinner"></span>扇出中…';
         clearError();
-        // 立即切进定稿视图并显示醒目 loading 态——扇出要逐个 persona 调模型，耗时较长，
+        // 立即切进 pick 阶段并显示醒目 loading 态——扇出要逐个 persona 调模型，耗时较长，
         // 必须让总编看到「正在跑，请等待」，而不是停在选片视图对着一个不动的按钮。
-        switchView("copy");
+        switchStage("pick");
         showCopyLoading(
           "正在为每个共鸣视角生成草稿…",
           "逐个调用模型，可能需要一两分钟，请稍候"
@@ -1787,20 +1957,21 @@
           .then(function (res) {
             if (res.ok && res.body && res.body.ok) {
               state.drafts = res.body.drafts || [];
+              state.previewDraftId = null;
               state.selectedDraftId = null;
               state.combineChecked = [];
               renderDraftPool();
-              showCopyEmptyState("已生成 " + state.drafts.length + " 版草稿，点标签选主视角");
               showDraftPoolResult("✓ 生成 " + state.drafts.length + " 版草稿", false);
+              enterPickStage();
             } else {
               var stderr = apiErrorText(res);
               showError("生成草稿池失败：" + stderr);
-              switchView("candidates");
+              switchStage("candidates");
             }
           })
           .catch(function (err) {
             showError("生成草稿池请求失败（网络错误）：" + err.message);
-            switchView("candidates");
+            switchStage("candidates");
           })
           .then(function () {
             state.draftOpInFlight = false;
@@ -1810,42 +1981,8 @@
           });
       }
 
-      // 点「选为主视角」：POST /api/select-draft 派生当前稿。成功后 selectedDraftId 更新，
-      // 复用 loadCopy 刷新当前稿区（含 humanized 失效后的复位），流入既有 publish/去AI化工作流。
-      function onSelectDraft(draftId) {
-        if (state.draftOpInFlight || !state.selection) return;
-        state.draftOpInFlight = true;
-        renderDraftPool();
-        showDraftPoolResult("选中中…", false);
-        apiPost("/api/select-draft", {
-          date: state.date,
-          slug: state.selection.news_slug,
-          platform: state.copyPlatform,
-          draft_id: draftId,
-        })
-          .then(function (res) {
-            if (res.ok && res.body && res.body.ok) {
-              state.selectedDraftId = String(res.body.selected_draft_id);
-              // 改指针 ⇒ body 变 ⇒ 去AI化版失效（后端已删 humanized）；loadCopy 从磁盘重取当前稿，
-              // humanizedBody 复位为 null，去AI化 toggle 自然隐藏。
-              loadCopy();
-              showDraftPoolResult("✓ 已选主视角：" + state.selectedDraftId, false);
-            } else {
-              var msg = apiErrorText(res);
-              showDraftPoolResult("✗ 选中失败：" + msg, true);
-            }
-          })
-          .catch(function (err) {
-            showDraftPoolResult("✗ 请求失败（网络错误）：" + err.message, true);
-          })
-          .then(function () {
-            state.draftOpInFlight = false;
-            renderDraftPool();
-          });
-      }
-
       // 「合并生成」：POST /api/combine-drafts（恒单版）。成功后用回传的池刷新，追加一张合并卡；
-      // 合并卡与普通草稿平权、可被点选为主视角。不自动切指针（需用户再点「选为主视角」）。
+      // 合并卡与普通草稿平权、可被预览/选为主视角。不自动切指针（需用户点标签预览再「进入微调」）。
       function onCombineDrafts() {
         if (state.draftOpInFlight || state.combineChecked.length !== 2) return;
         state.draftOpInFlight = true;
@@ -1904,7 +2041,7 @@
         state.selection = null;
         renderSelectionStatus();
         resetDraftPool();
-        switchView("candidates");
+        switchStage("candidates");
         els.loadingState.style.display = "block";
         els.newsList.innerHTML = "";
         els.emptyState.style.display = "none";
@@ -1941,9 +2078,14 @@
               tmdb_id: picked.tmdb_id,
               title: picked.title,
             };
+            // 从磁盘 selection.copies[platform].selected_draft_id 回填主视角指针，作为 loadCopy
+            // 分诊「落 refine 还是 pick」的依据——刷新后 pick 阶段也能凭它精确恢复到微调。
+            var copyEntry = (sel.copies || {})[state.copyPlatform] || {};
+            state.selectedDraftId = copyEntry.selected_draft_id
+              ? String(copyEntry.selected_draft_id) : null;
             renderSelectionStatus();
             if (state.panel) renderPanel(state.panel);
-            // loadCopy 命中定稿→进定稿视图；未命中→留选片视图（内部已处理）。
+            // loadCopy 三态分诊：已落盘主视角+copy命中→refine；有池未选→pick；无池→candidates。
             loadCopy();
           })
           .catch(function () {
@@ -1988,13 +2130,15 @@
 
       els.generateDraftsBtn.addEventListener("click", onGenerateDrafts);
       els.combineDraftsBtn.addEventListener("click", onCombineDrafts);
+      if (els.enterRefineBtn) els.enterRefineBtn.addEventListener("click", onEnterRefine);
 
       // 事件委托：persona 标签点击 + 合并勾选框统一在 #draft-pool-tabs 捕获，
       // 避免每次 renderDraftPool 重建 DOM 后要逐个重绑监听器（同 #news-list 的委托模式）。
+      // 10.5.1：点标签只切「只读预览」（onPreviewDraft，零副作用）；落盘推迟到「进入微调」。
       els.draftPoolTabs.addEventListener("click", function (evt) {
         var btn = evt.target.closest ? evt.target.closest(".draft-tab-select") : null;
         if (!btn || btn.disabled) return;
-        onSelectDraft(btn.getAttribute("data-draft-id"));
+        onPreviewDraft(btn.getAttribute("data-draft-id"));
       });
 
       els.draftPoolTabs.addEventListener("change", function (evt) {
@@ -2012,9 +2156,15 @@
         renderDraftPool();
       });
 
-      // 「← 返回选片」：从定稿视图切回候选列表以便换 candidate；选中态与已落盘定稿都保留。
+      // 10.5.1 · 两级返回：refine→pick（丢弃微调态回选型，磁盘已落盘的 copy/指针保留，可再进）；
+      // pick→candidates（切回候选列表换 candidate，选中态与草稿池都保留）。
       els.copyBackBtn.addEventListener("click", function () {
-        switchView("candidates");
+        if (state.stage === "refine") {
+          state.editingBody = false;
+          enterPickStage();
+        } else {
+          switchStage("candidates");
+        }
       });
 
       els.copyPlatformTabs.addEventListener("click", function (evt) {
