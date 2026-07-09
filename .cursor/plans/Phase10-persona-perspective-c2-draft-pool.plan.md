@@ -27,7 +27,7 @@ todos:
     status: complete
   - id: p10.3-drafts-adapter-fanout
     content: 10.3 · [adapter] review_panel/drafts_adapter.py：读 candidate.triggered_by 全量扇出 run_publish（各注入蒸馏视角）→ 写持久只读 {slug}_drafts_{platform}.json；含 --combine a,b（≤2）+ --combine-mode {A|B|both}（默认单版；both 仅 GATE 离线对照，产 #A/#B 两版 append）；复用 publish_adapter 的 locate/load/find；stderr 打 Wrote <path>
-    status: todo
+    status: complete
   - id: p10.4-backend-endpoints
     content: 10.4 · [面板] serve 新增 POST /api/generate-drafts（subprocess 扇出）+ POST /api/select-draft（指针派生当前稿 + 失效 humanized + 写 selected_draft_id）+ POST /api/combine-drafts（≤2 校验）+ route 注册 + _default_drafts_adapter_path 注入口
     status: todo
