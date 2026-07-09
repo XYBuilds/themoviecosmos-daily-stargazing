@@ -24,7 +24,7 @@ todos:
     status: complete
   - id: p10.2-compose-persona-injection
     content: 10.2 · [compose] load_persona_perspective(persona_id)（THE-SAGE→The-Sage 归一化）+ run_publish 加 persona_perspective 参数 + render_c2_prompt 加 {{persona_perspective}} 占位符（沿用 headline_contract 的 no-op 向后兼容 + golden-snapshot 证空注入等价）
-    status: todo
+    status: complete
   - id: p10.3-drafts-adapter-fanout
     content: 10.3 · [adapter] review_panel/drafts_adapter.py：读 candidate.triggered_by 全量扇出 run_publish（各注入蒸馏视角）→ 写持久只读 {slug}_drafts_{platform}.json；含 --combine a,b（≤2）+ --combine-mode {A|B|both}（默认单版；both 仅 GATE 离线对照，产 #A/#B 两版 append）；复用 publish_adapter 的 locate/load/find；stderr 打 Wrote <path>
     status: todo
