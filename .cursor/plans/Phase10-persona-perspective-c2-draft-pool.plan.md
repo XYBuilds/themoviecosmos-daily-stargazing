@@ -21,7 +21,7 @@ overview: |
 todos:
   - id: p10.1-distill-perspective-and-adr
     content: 10.1 · [asset] 蒸馏 12 份 prompts/personas/{Persona}/c2_perspective.md（中文视角指引，去行话）+ compose_publish_xiaohongshu.md 加 {{persona_perspective}} 段 + 写 ADR-0017（推翻 0016 D4 二档、立草稿池只读源层 + 指针派生模型）
-    status: todo
+    status: complete
   - id: p10.2-compose-persona-injection
     content: 10.2 · [compose] load_persona_perspective(persona_id)（THE-SAGE→The-Sage 归一化）+ run_publish 加 persona_perspective 参数 + render_c2_prompt 加 {{persona_perspective}} 占位符（沿用 headline_contract 的 no-op 向后兼容 + golden-snapshot 证空注入等价）
     status: todo
