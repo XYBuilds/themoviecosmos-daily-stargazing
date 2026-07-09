@@ -45,6 +45,18 @@ _WROTE_LINE_RE = re.compile(r"^Wrote (.+)$", re.MULTILINE)
 # selection.json 的 copies dict 初始化等下游逻辑无需改动即可覆盖新平台。
 _ACTIVE_PLATFORMS: tuple[str, ...] = ("xiaohongshu",)
 
+# Phase 10.4：复数视角合并上限（ADR-0017 D5）。serve 只对「>2」这一显式客户端错误做快速
+# 4xx 兜底；「恰好 2」的业务硬约束单一收敛在 drafts_adapter.run_combine，不在 serve 复刻。
+_MAX_COMBINE = 2
+
+# 派生当前稿「# 发布定稿 · {date} · {label}」标题的平台中文名，与
+# publish_adapter._PLATFORM_LABELS 保持一致（select-draft 本地渲染需逐字对齐 publish 产出）。
+_PLATFORM_LABELS: dict[str, str] = {
+    "xiaohongshu": "小红书",
+    "x": "X (Twitter)",
+    "reddit": "Reddit",
+}
+
 
 def _default_batch_root() -> Path:
     return repo_root() / "output" / "daily_batch"
@@ -60,6 +72,10 @@ def _default_rewrite_adapter_path() -> Path:
 
 def _default_regenerate_adapter_path() -> Path:
     return Path(__file__).resolve().parent / "regenerate_adapter.py"
+
+
+def _default_drafts_adapter_path() -> Path:
+    return Path(__file__).resolve().parent / "drafts_adapter.py"
 
 
 def _default_index_html_path() -> Path:
@@ -136,6 +152,90 @@ def _delete_stale_copies(batch_root: Path, date: str, slug: str) -> None:
     """按 _ACTIVE_PLATFORMS 逐平台删 {slug}_copy_{platform}.md（存在才删，幂等）。"""
     for platform in _ACTIVE_PLATFORMS:
         _delete_copy_if_exists(batch_root / date / f"{slug}_copy_{platform}.md")
+
+
+# ---------------------------------------------------------------------------
+# Phase 10.4 · 草稿池只读来源层（ADR-0017 D3/D4）：读池 + 派生当前稿的纯胶水
+# ---------------------------------------------------------------------------
+
+
+def _drafts_pool_path(batch_root: Path, date: str, slug: str, platform: str) -> Path:
+    """草稿池文件：与 drafts_adapter._drafts_path 同一命名（{slug}_drafts_{platform}.json）。"""
+    return batch_root / date / f"{slug}_drafts_{platform}.json"
+
+
+def _read_drafts_pool(path: Path) -> list[dict[str, Any]]:
+    """读只读草稿池；不存在或非数组 → 空列表（前端据此显示「尚未生成草稿池」）。"""
+    if not path.is_file():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return data if isinstance(data, list) else []
+
+
+def _load_copy_links(batch_root: Path, date: str, slug: str, tmdb_id: int | str) -> dict[str, str]:
+    """从 daily_batch 产物取派生当前稿所需的链接（movie_url / news_url）。
+
+    select-draft 无 LLM、serve 直接读池写稿，但草稿池只存 {draft_id, headline, body}，
+    不含链接；渲染当前稿的「## 链接」分区需要 movie_url（retrieve.json 按 tmdb_id 定位候选）
+    与 news_url（news.json）。这里直接读 JSON，不 import publish_adapter（那会经 scripts.compose
+    拖入检索/persona 重依赖，违反 serve.py 薄传输层耦合边界）——与本文件自带 parse/replace
+    纯函数同因。文件缺失或字段缺失都容错返回空串（渲染层用「（无）」占位，不崩溃）。
+    """
+    news_dir = batch_root / date / slug
+    movie_url = ""
+    news_url = ""
+    news_path = news_dir / "news.json"
+    if news_path.is_file():
+        try:
+            news_url = str((json.loads(news_path.read_text(encoding="utf-8")) or {}).get("url") or "")
+        except (json.JSONDecodeError, OSError):
+            news_url = ""
+    retrieve_path = news_dir / "retrieve.json"
+    if retrieve_path.is_file():
+        try:
+            retrieve = json.loads(retrieve_path.read_text(encoding="utf-8")) or {}
+            target = str(tmdb_id)
+            for cand in retrieve.get("candidates") or []:
+                if isinstance(cand, dict) and str(cand.get("tmdb_id")) == target:
+                    movie_url = str(cand.get("movie_url") or "")
+                    break
+        except (json.JSONDecodeError, OSError):
+            movie_url = ""
+    return {"movie_url": movie_url, "news_url": news_url}
+
+
+def render_copy_markdown_from_draft(
+    date: str,
+    draft: dict[str, Any],
+    links: dict[str, str],
+    *,
+    platform: str = "xiaohongshu",
+) -> str:
+    """本地渲染派生当前稿，逐字对齐 publish_adapter.render_copy_markdown 的产出形状。
+
+    存在的意义与 parse/replace 纯函数同：select-draft 无 LLM、须避免 import
+    publish_adapter（经 scripts.compose 拖入重依赖）；故自带一份风格等价的轻量渲染。
+    产物排版必须与 publish 产出一致，才能被既有 parse_copy_markdown / /api/copy 无差别消费。
+    """
+    headline = str(draft.get("headline") or "").strip()
+    body = str(draft.get("body") or "").strip()
+    movie_url = str(links.get("movie_url") or "")
+    news_url = str(links.get("news_url") or "")
+    platform_label = _PLATFORM_LABELS.get(platform, platform)
+    lines = [
+        f"# 发布定稿 · {date} · {platform_label}",
+        "",
+        headline or "（无标题）",
+        "",
+        body or "（无正文）",
+        "",
+        "## 链接",
+        "",
+        f"- 电影: {movie_url or '（无）'}",
+        f"- 新闻: {news_url or '（无）'}",
+        "",
+    ]
+    return "\n".join(lines)
 
 
 # ---------------------------------------------------------------------------
@@ -557,6 +657,219 @@ def handle_edit_body(batch_root: Path, body: dict[str, Any] | None) -> tuple[int
     }
 
 
+def _resolve_selected(
+    batch_root: Path, date: str, body: dict[str, Any]
+) -> tuple[str | None, Any, dict[str, Any] | None]:
+    """从 body 或 selection.json 兜底解出 (slug, tmdb_id, selection)。
+
+    面板通常只传 date/platform，slug/tmdb_id 从 selection.json 的 selected 兜底——
+    这是三个新端点共用的定位逻辑（同 handle_regenerate 的兜底口径）。返回的 selection
+    已过 D4 迁移；任一缺失由各 handler 自行按其响应形状报 4xx。
+    """
+    slug = body.get("slug") or body.get("news_slug")
+    tmdb_id = body.get("tmdb_id")
+    selection = read_selection(batch_root, date)
+    if selection is not None:
+        selected = selection.get("selected") or {}
+        if not slug:
+            slug = selected.get("news_slug")
+        if tmdb_id is None:
+            tmdb_id = selected.get("tmdb_id")
+    return slug, tmdb_id, selection
+
+
+def handle_generate_drafts(
+    batch_root: Path,
+    body: dict[str, Any] | None,
+    *,
+    drafts_adapter_path: Path,
+    run_subprocess: Any = subprocess.run,
+) -> tuple[int, dict[str, Any]]:
+    """POST /api/generate-drafts（ADR-0017 D3）：subprocess 调 drafts_adapter 全量扇出。
+
+    slug/tmdb_id 从 selection.json 兜底（drafts_adapter 定位 candidate.triggered_by 的唯一
+    途径）；成功后读回只读草稿池数组一并返回。本端点不动 selection.json——「产池」与「选中」
+    分离，选中是 /api/select-draft 的职责。
+    """
+    body = body or {}
+    date = body.get("date")
+    platform = body.get("platform") or "xiaohongshu"
+    if not date:
+        return 400, {"ok": False, "drafts": [], "stderr": "missing required field: date"}
+
+    slug, tmdb_id, selection = _resolve_selected(batch_root, date, body)
+    if selection is None and not (slug and tmdb_id is not None):
+        return 400, {
+            "ok": False,
+            "drafts": [],
+            "stderr": f"no selection.json for date {date!r}; call /api/select first",
+        }
+    if not slug or tmdb_id is None:
+        return 400, {"ok": False, "drafts": [], "stderr": "selection.json missing news_slug/tmdb_id"}
+
+    result = run_subprocess(
+        [
+            sys.executable,
+            str(drafts_adapter_path),
+            "--date",
+            date,
+            "--news-slug",
+            str(slug),
+            "--tmdb-id",
+            str(tmdb_id),
+            "--platform",
+            platform,
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode != 0:
+        return 500, {"ok": False, "drafts": [], "stderr": result.stderr}
+
+    pool_path_str = _parse_wrote_path(result.stderr) or str(
+        _drafts_pool_path(batch_root, date, slug, platform)
+    )
+    drafts = _read_drafts_pool(Path(pool_path_str))
+    return 200, {
+        "ok": True,
+        "drafts_path": pool_path_str,
+        "drafts": drafts,
+        "platform": platform,
+        "stderr": result.stderr,
+    }
+
+
+def handle_select_draft(batch_root: Path, body: dict[str, Any] | None) -> tuple[int, dict[str, Any]]:
+    """POST /api/select-draft（ADR-0017 D4）：可变指针派生当前稿，无 LLM。
+
+    读 {slug}_drafts_{platform}.json 取指定 draft_id → 本地渲染派生 {slug}_copy_{platform}.md →
+    失效 humanized（删 _humanized.md + 清 humanized_path，body 变即旧去AI化稿过期，复用 9.8 D4
+    不变量）→ 写 selected_draft_id（可变指针）。「选中」不消费/删除任何草稿——池永远只读。
+    """
+    body = body or {}
+    date = body.get("date")
+    platform = body.get("platform") or "xiaohongshu"
+    draft_id = body.get("draft_id")
+    if not date:
+        return 400, {"ok": False, "error": "missing required field: date"}
+    if not draft_id:
+        return 400, {"ok": False, "error": "missing required field: draft_id"}
+
+    slug, tmdb_id, selection = _resolve_selected(batch_root, date, body)
+    if not slug:
+        return 400, {"ok": False, "error": f"no news_slug for date {date!r}; call /api/select first"}
+    if tmdb_id is None:
+        return 400, {"ok": False, "error": "selection.json missing tmdb_id"}
+
+    pool_path = _drafts_pool_path(batch_root, date, slug, platform)
+    pool = _read_drafts_pool(pool_path)
+    if not pool:
+        return 404, {"ok": False, "error": f"draft pool not found: {pool_path}"}
+    match = next((d for d in pool if isinstance(d, dict) and str(d.get("draft_id")) == str(draft_id)), None)
+    if match is None:
+        available = ", ".join(str(d.get("draft_id")) for d in pool if isinstance(d, dict))
+        return 400, {"ok": False, "error": f"draft_id {draft_id!r} not in pool; available: {available or '（空池）'}"}
+
+    links = _load_copy_links(batch_root, date, slug, tmdb_id)
+    copy_path = batch_root / date / f"{slug}_copy_{platform}.md"
+    new_text = render_copy_markdown_from_draft(date, match, links, platform=platform)
+    copy_path.parent.mkdir(parents=True, exist_ok=True)
+    copy_path.write_text(new_text, encoding="utf-8")
+
+    _delete_copy_if_exists(batch_root / date / f"{slug}_copy_{platform}_humanized.md")
+
+    if selection is not None:
+        existing_entry = selection.get("copies", {}).get(platform) or {}
+        selection.setdefault("copies", {})[platform] = {
+            "published": True,
+            "copy_path": str(copy_path),
+            "humanized_path": None,
+            "selected_draft_id": str(draft_id),
+        }
+        write_selection(batch_root, date, selection)
+
+    parsed = parse_copy_markdown(new_text)
+    return 200, {
+        "ok": True,
+        "headline": parsed["headline"],
+        "body": parsed["body"],
+        "copy_path": str(copy_path),
+        "selected_draft_id": str(draft_id),
+        "platform": platform,
+    }
+
+
+def handle_combine_drafts(
+    batch_root: Path,
+    body: dict[str, Any] | None,
+    *,
+    drafts_adapter_path: Path,
+    run_subprocess: Any = subprocess.run,
+) -> tuple[int, dict[str, Any]]:
+    """POST /api/combine-drafts（ADR-0017 D5）：subprocess `--combine` 合并 ≤2 草稿 append 进池。
+
+    serve **恒调单版**（不传 --combine-mode，由 adapter 默认的生产路线决定）；A/B 双版对照
+    是开发期 CLI 的事，面板永不产双版。成功后读回池一并返回，但**不自动切指针**——切主视角
+    仍需前端显式再调 /api/select-draft。>2 目标由 serve 直接 4xx 拦掉（恰好 2 由 adapter 兜底）。
+    """
+    body = body or {}
+    date = body.get("date")
+    platform = body.get("platform") or "xiaohongshu"
+    draft_ids = body.get("draft_ids")
+    if not date:
+        return 400, {"ok": False, "drafts": [], "stderr": "missing required field: date"}
+    if not isinstance(draft_ids, list) or not all(isinstance(i, str) for i in draft_ids):
+        return 400, {"ok": False, "drafts": [], "stderr": "draft_ids must be a list of strings"}
+    ids = [i.strip() for i in draft_ids if i and i.strip()]
+    if len(ids) > _MAX_COMBINE:
+        return 400, {"ok": False, "drafts": [], "stderr": f"combine accepts at most {_MAX_COMBINE} draft_ids, got {len(ids)}"}
+
+    slug, tmdb_id, selection = _resolve_selected(batch_root, date, body)
+    if selection is None and not (slug and tmdb_id is not None):
+        return 400, {
+            "ok": False,
+            "drafts": [],
+            "stderr": f"no selection.json for date {date!r}; call /api/select first",
+        }
+    if not slug or tmdb_id is None:
+        return 400, {"ok": False, "drafts": [], "stderr": "selection.json missing news_slug/tmdb_id"}
+
+    result = run_subprocess(
+        [
+            sys.executable,
+            str(drafts_adapter_path),
+            "--date",
+            date,
+            "--news-slug",
+            str(slug),
+            "--tmdb-id",
+            str(tmdb_id),
+            "--platform",
+            platform,
+            "--combine",
+            ",".join(ids),
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode != 0:
+        return 500, {"ok": False, "drafts": [], "stderr": result.stderr}
+
+    pool_path_str = _parse_wrote_path(result.stderr) or str(
+        _drafts_pool_path(batch_root, date, slug, platform)
+    )
+    drafts = _read_drafts_pool(Path(pool_path_str))
+    return 200, {
+        "ok": True,
+        "drafts_path": pool_path_str,
+        "drafts": drafts,
+        "platform": platform,
+        "stderr": result.stderr,
+    }
+
+
 def parse_copy_markdown(text: str) -> dict[str, str]:
     """纯函数：解析 ``{slug}_copy_{platform}.md`` 的固定 D1 排版，抽出 headline/body。
 
@@ -675,6 +988,7 @@ def route(
     publish_adapter_path: Path | None = None,
     rewrite_adapter_path: Path | None = None,
     regenerate_adapter_path: Path | None = None,
+    drafts_adapter_path: Path | None = None,
     run_subprocess: Any = subprocess.run,
 ) -> tuple[int, dict[str, Any] | str]:
     """纯路由分发：无 socket 依赖，单测与真实服务器共用同一份逻辑。"""
@@ -715,6 +1029,22 @@ def route(
         )
     if method == "POST" and path == "/api/edit-body":
         return handle_edit_body(batch_root, body)
+    if method == "POST" and path == "/api/generate-drafts":
+        return handle_generate_drafts(
+            batch_root,
+            body,
+            drafts_adapter_path=drafts_adapter_path or _default_drafts_adapter_path(),
+            run_subprocess=run_subprocess,
+        )
+    if method == "POST" and path == "/api/select-draft":
+        return handle_select_draft(batch_root, body)
+    if method == "POST" and path == "/api/combine-drafts":
+        return handle_combine_drafts(
+            batch_root,
+            body,
+            drafts_adapter_path=drafts_adapter_path or _default_drafts_adapter_path(),
+            run_subprocess=run_subprocess,
+        )
     return 404, {"error": f"not found: {method} {path}"}
 
 
@@ -730,6 +1060,7 @@ def make_handler_class(
     publish_adapter_path: Path,
     rewrite_adapter_path: Path,
     regenerate_adapter_path: Path,
+    drafts_adapter_path: Path,
 ) -> type[BaseHTTPRequestHandler]:
     """按注入的 batch_root/路径生成一个 handler 类（闭包避免用全局可变状态）。"""
 
@@ -764,6 +1095,7 @@ def make_handler_class(
                 publish_adapter_path=publish_adapter_path,
                 rewrite_adapter_path=rewrite_adapter_path,
                 regenerate_adapter_path=regenerate_adapter_path,
+                drafts_adapter_path=drafts_adapter_path,
             )
             if isinstance(payload, str):
                 self._send_html(status, payload)
@@ -801,6 +1133,7 @@ def serve(
     publish_adapter_path: Path | None = None,
     rewrite_adapter_path: Path | None = None,
     regenerate_adapter_path: Path | None = None,
+    drafts_adapter_path: Path | None = None,
 ) -> ThreadingHTTPServer:
     """构建并返回一个已 bind 但尚未 serve_forever 的服务器实例（便于测试注入）。"""
     root = batch_root or _default_batch_root()
@@ -810,6 +1143,7 @@ def serve(
         publish_adapter_path=publish_adapter_path or _default_publish_adapter_path(),
         rewrite_adapter_path=rewrite_adapter_path or _default_rewrite_adapter_path(),
         regenerate_adapter_path=regenerate_adapter_path or _default_regenerate_adapter_path(),
+        drafts_adapter_path=drafts_adapter_path or _default_drafts_adapter_path(),
     )
     # 只绑 127.0.0.1（loopback）：这是无鉴权本地面板，绝不能改绑 0.0.0.0 对外暴露。
     return ThreadingHTTPServer(("127.0.0.1", port), handler_cls)

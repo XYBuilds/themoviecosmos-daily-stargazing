@@ -1235,6 +1235,321 @@ class RegenerateRouteTests(unittest.TestCase):
             self.assertEqual(payload["stderr"], "error: something broke")
 
 
+class GenerateDraftsRouteTests(unittest.TestCase):
+    """10.4：POST /api/generate-drafts 通过注入 run_subprocess stub 验证，不调真实 LLM。"""
+
+    def _write_pool(self, tmp_path: Path, date: str, slug: str, pool: list, platform: str = "xiaohongshu") -> Path:
+        path = tmp_path / date / f"{slug}_drafts_{platform}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(pool, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return path
+
+    def test_success_returns_pool_and_asserts_cmd(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            _make_batch(tmp_path, date, "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": date, "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+            pool = [
+                {"draft_id": "The-Sage", "headline": "理性之眼", "body": "「Survival Family」以求真视角。"},
+                {"draft_id": "The-Hero", "headline": "抗争之路", "body": "「Survival Family」以抗争视角。"},
+            ]
+            pool_path = self._write_pool(tmp_path, date, "09-slug", pool)
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                self.assertIn("--date", cmd)
+                self.assertIn(date, cmd)
+                self.assertIn("--news-slug", cmd)
+                self.assertIn("09-slug", cmd)
+                self.assertIn("--tmdb-id", cmd)
+                self.assertIn("429918", cmd)
+                self.assertIn("--platform", cmd)
+                self.assertIn("xiaohongshu", cmd)
+                # 全量扇出无 --combine。
+                self.assertNotIn("--combine", cmd)
+                return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {pool_path}\n")
+
+            status, payload = route(
+                "POST",
+                "/api/generate-drafts",
+                {},
+                {"date": date},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(len(payload["drafts"]), 2)
+            self.assertEqual(payload["drafts"][0]["draft_id"], "The-Sage")
+
+    def test_missing_selection_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+
+            status, payload = route(
+                "POST", "/api/generate-drafts", {}, {"date": "2026-07-06"}, batch_root=tmp_path
+            )
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+
+    def test_missing_date_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            status, payload = route("POST", "/api/generate-drafts", {}, {}, batch_root=tmp_path)
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+
+    def test_subprocess_failure_returns_500(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            _make_batch(tmp_path, date, "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": date, "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                return SimpleNamespace(returncode=2, stdout="", stderr="error: empty triggered_by")
+
+            status, payload = route(
+                "POST",
+                "/api/generate-drafts",
+                {},
+                {"date": date},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+            self.assertEqual(status, 500)
+            self.assertFalse(payload["ok"])
+            self.assertEqual(payload["stderr"], "error: empty triggered_by")
+
+
+class SelectDraftRouteTests(unittest.TestCase):
+    """10.4：POST /api/select-draft 无 LLM，指针派生当前稿 + 失效 humanized + 写 selected_draft_id。"""
+
+    def _setup_pool(self, tmp_path: Path, date: str, slug: str = "09-slug") -> Path:
+        _make_batch(tmp_path, date, slug)
+        route(
+            "POST",
+            "/api/select",
+            {},
+            {"date": date, "news_slug": slug, "tmdb_id": 429918, "title": "Survival Family"},
+            batch_root=tmp_path,
+        )
+        pool = [
+            {"draft_id": "The-Sage", "headline": "理性之眼", "body": "「Survival Family」以求真视角写正文。"},
+            {"draft_id": "The-Hero", "headline": "抗争之路", "body": "「Survival Family」以抗争视角写正文。"},
+        ]
+        pool_path = tmp_path / date / f"{slug}_drafts_xiaohongshu.json"
+        pool_path.write_text(json.dumps(pool, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return pool_path
+
+    def test_derives_current_copy_and_writes_pointer(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._setup_pool(tmp_path, date)
+
+            status, payload = route(
+                "POST",
+                "/api/select-draft",
+                {},
+                {"date": date, "draft_id": "The-Hero"},
+                batch_root=tmp_path,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["headline"], "抗争之路")
+            self.assertEqual(payload["selected_draft_id"], "The-Hero")
+
+            copy_path = tmp_path / date / "09-slug_copy_xiaohongshu.md"
+            self.assertTrue(copy_path.is_file())
+            on_disk = copy_path.read_text(encoding="utf-8")
+            # 派生当前稿逐字对齐 publish 产出：headline + body + 链接分区（movie_url 来自 retrieve.json）。
+            self.assertIn("抗争之路", on_disk)
+            self.assertIn("## 链接", on_disk)
+            self.assertIn("https://themoviecosmos.com/movie/429918", on_disk)
+
+            selection = read_selection(tmp_path, date)
+            entry = selection["copies"]["xiaohongshu"]
+            self.assertEqual(entry["selected_draft_id"], "The-Hero")
+            self.assertTrue(entry["published"])
+            self.assertEqual(entry["copy_path"], str(copy_path))
+            self.assertIsNone(entry["humanized_path"])
+
+    def test_reselect_invalidates_humanized(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._setup_pool(tmp_path, date)
+            route("POST", "/api/select-draft", {}, {"date": date, "draft_id": "The-Sage"}, batch_root=tmp_path)
+
+            # 模拟已跑过去AI化：humanized 稿存在 + selection 记录 humanized_path。
+            humanized_path = tmp_path / date / "09-slug_copy_xiaohongshu_humanized.md"
+            humanized_path.write_text("旧去AI化稿", encoding="utf-8")
+            selection = read_selection(tmp_path, date)
+            selection["copies"]["xiaohongshu"]["humanized_path"] = str(humanized_path)
+            from review_panel.serve import write_selection
+
+            write_selection(tmp_path, date, selection)
+
+            # 改选另一张卡：body 变 ⇒ humanized 必须失效。
+            status, payload = route(
+                "POST", "/api/select-draft", {}, {"date": date, "draft_id": "The-Hero"}, batch_root=tmp_path
+            )
+            self.assertEqual(status, 200)
+            self.assertFalse(humanized_path.exists())
+            entry = read_selection(tmp_path, date)["copies"]["xiaohongshu"]
+            self.assertIsNone(entry["humanized_path"])
+            self.assertEqual(entry["selected_draft_id"], "The-Hero")
+
+    def test_unknown_draft_id_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._setup_pool(tmp_path, date)
+
+            status, payload = route(
+                "POST", "/api/select-draft", {}, {"date": date, "draft_id": "The-Nobody"}, batch_root=tmp_path
+            )
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+            self.assertIn("not in pool", payload["error"])
+
+    def test_missing_pool_returns_404(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            _make_batch(tmp_path, date, "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": date, "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+
+            status, payload = route(
+                "POST", "/api/select-draft", {}, {"date": date, "draft_id": "The-Sage"}, batch_root=tmp_path
+            )
+            self.assertEqual(status, 404)
+            self.assertFalse(payload["ok"])
+
+    def test_missing_draft_id_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            status, payload = route(
+                "POST", "/api/select-draft", {}, {"date": "2026-07-06"}, batch_root=tmp_path
+            )
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+
+
+class CombineDraftsRouteTests(unittest.TestCase):
+    """10.4：POST /api/combine-drafts 恒调单版 subprocess；>2 由 serve 直接 4xx 拦掉。"""
+
+    def _setup(self, tmp_path: Path, date: str, slug: str = "09-slug") -> Path:
+        _make_batch(tmp_path, date, slug)
+        route(
+            "POST",
+            "/api/select",
+            {},
+            {"date": date, "news_slug": slug, "tmdb_id": 429918, "title": "Survival Family"},
+            batch_root=tmp_path,
+        )
+        pool = [
+            {"draft_id": "The-Sage", "headline": "理性之眼", "body": "求真正文。"},
+            {"draft_id": "The-Hero", "headline": "抗争之路", "body": "抗争正文。"},
+        ]
+        pool_path = tmp_path / date / f"{slug}_drafts_xiaohongshu.json"
+        pool_path.write_text(json.dumps(pool, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return pool_path
+
+    def test_combine_two_appends_single_version(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            pool_path = self._setup(tmp_path, date)
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                self.assertIn("--combine", cmd)
+                self.assertIn("The-Sage,The-Hero", cmd)
+                # serve 恒调单版：绝不传 --combine-mode both。
+                self.assertNotIn("--combine-mode", cmd)
+                self.assertNotIn("both", cmd)
+                pool = json.loads(pool_path.read_text(encoding="utf-8"))
+                pool.append({"draft_id": "The-Sage+The-Hero", "headline": "融合", "body": "融合正文。"})
+                pool_path.write_text(json.dumps(pool, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {pool_path}\n")
+
+            status, payload = route(
+                "POST",
+                "/api/combine-drafts",
+                {},
+                {"date": date, "draft_ids": ["The-Sage", "The-Hero"]},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(len(payload["drafts"]), 3)
+            self.assertEqual(payload["drafts"][-1]["draft_id"], "The-Sage+The-Hero")
+
+    def test_more_than_two_returns_400_without_subprocess(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._setup(tmp_path, date)
+
+            called = {"n": 0}
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                called["n"] += 1
+                return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+            status, payload = route(
+                "POST",
+                "/api/combine-drafts",
+                {},
+                {"date": date, "draft_ids": ["The-Sage", "The-Hero", "The-Lover"]},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+            # >2 应在 serve 层直接拦下，绝不启动 subprocess。
+            self.assertEqual(called["n"], 0)
+
+    def test_non_list_draft_ids_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._setup(tmp_path, date)
+            status, payload = route(
+                "POST",
+                "/api/combine-drafts",
+                {},
+                {"date": date, "draft_ids": "The-Sage"},
+                batch_root=tmp_path,
+            )
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+
+
 class UnknownRouteTests(unittest.TestCase):
     def test_unknown_path_returns_404(self) -> None:
         with TemporaryDirectory() as tmp:
