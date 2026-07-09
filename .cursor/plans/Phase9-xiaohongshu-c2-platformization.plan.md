@@ -29,11 +29,11 @@ todos:
     content: 9.6 · [测试] 更新 test_compose_publish / test_compose_decision_card / test_review_panel_publish_adapter / test_review_panel_serve 过绿
     status: complete
   - id: p9.8-gate
-    content: 9.8 · [GATE] 用 Rule Breakers（2026-07-06）真实数据重跑 compose --platform xiaohongshu → _copy.md，总编肉眼验收 headline/必含元素/归属行/调性 [需人工验收 · Go/No-Go]
-    status: pending
+    content: 9.8 · [GATE] 用 Rule Breakers（2026-07-06）真实数据重跑 compose --platform xiaohongshu → _copy.md，总编肉眼验收 headline/必含元素/归属行/调性 [需人工验收 · Go/No-Go]（已被子 Phase 9.7.6 / 9.8.7 GATE 吸收并 Go）
+    status: complete
   - id: p9.9-ssot-sync
-    content: 9.9 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD（若涉及）同步平台化与元素化描述，引用 ADR-0015（GATE Go 后执行）
-    status: pending
+    content: 9.9 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD（若涉及）同步平台化与元素化描述，引用 ADR-0015（已随子 Phase 9.7.6 / 9.8.7 同步入 main）
+    status: complete
 isProject: true
 ---
 
@@ -46,6 +46,20 @@ Phase 4 把发布稿（C2）认定为唯一创作环节（[ADR-0012](../../docs/
 本 Phase 按 [ADR-0015](../../docs/adr/0015-publish-platformization-and-element-checklist.md) 把 C2 重构为「平台专用（小红书首发）+ 必含元素清单」，并顺带修一个 Phase 8 面板的生命周期 bug（改选不清旧稿）。
 
 **与 Phase 4 「4.4 独立发布脚本」的关系（澄清，非冲突）**：4.4 定的是 **discord 的平台适配/渲染层**走独立脚本（`publish_discord.py`）；本 Phase 改的是 **创作层**（C2 本身平台化，因为小红书标题是创作元素）。二者不同层。当前日批/面板的活跃链路是 `review_panel/publish_adapter → compose.run_publish → _copy.md`，本 Phase 在此链路上落地；4.6「小红书独立脚本」在 Phase 4 已 cancelled，不构成活跃约束。
+
+## 子 Phase 拆分与收口（整合说明）
+
+Phase 9 的实际推进拆成本 plan（`p9.1`–`p9.6` 核心）+ 两个独立子 plan（各自带 GATE 与文档同步），全部已并入 `main`：
+
+| plan | 承接范围 | 交付 | 收口 |
+| ---- | -------- | ---- | ---- |
+| 本 plan（Phase9） | C2 平台化核心：G8 面板修复 / production_countries 投影 / 小红书 prompt 元素化 / `--platform` + publish system message + `run_publish` headline / 下游 adapter / 测试 | `p9.1`–`p9.6` | 已入 `main` |
+| [Phase9.7](Phase9.7-copy-output-and-panel-integration.plan.md) | 定稿产出精简 + 多平台文件命名 + 面板定稿展示（platform tabs + 移动预览）+ avoid-ai-writing 可逆改写 + SSOT/PRD 同步 | `p9.7.1`–`p9.7.6`（+`9.7.7` UX 修复） | PR #116–#121 入 `main` |
+| [Phase9.8](Phase9.8-panel-copy-regenerate-and-edit.plan.md) | 定稿界面定点操控：正文/标题重生成 + 正文人工编辑 + 覆盖语义 + humanized 失效 + ADR-0016 + SSOT/PRD 同步 | `p9.8.1`–`p9.8.7` | PR #122–#128 入 `main` |
+
+**本 plan 原 `p9.8-gate` / `p9.9-ssot-sync` 的归属**：这两项（Rule Breakers 真实重跑验收 + SSOT/PRD 同步）在子 plan 落地时被各自的 GATE 吸收并超额完成——`Phase9.7.6` 引 ADR-0015 同步 compose 段、`Phase9.8.7` 引 ADR-0016 补面板能力段，均已随子 plan 入 `main`。故本 plan 这两项直接标 `complete`，不再单独执行。
+
+> **编号消歧（三套编号并存，勿混）**：① 子 plan 文件名 `Phase9.7` / `Phase9.8` 是**独立子 Phase**；② 本 plan frontmatter 的 `p9.8-gate` / `p9.9-ssot-sync` 是**本 plan 内部 Todo 编号**，与子 plan 名恰好数字撞车但不同层；③ 下方 mermaid 图里的 `9.7 doc` / `9.8 gate` 是**早期概念草图编号**，对应 frontmatter 的 `p9.9` / `p9.8`。三者指向的实质工作一致，均已收口。
 
 ## 决策依据（ADR-0015）
 
@@ -235,8 +249,8 @@ flowchart TD
 
 ### 验收
 
-- [ ] 全链无致命错误，`_copy.md` 含 headline + 元素化正文 + 归属行
-- [ ] 总编确认格式/内容/调性 OK
+- [x] 全链无致命错误，`_copy.md` 含 headline + 元素化正文 + 归属行
+- [x] 总编确认格式/内容/调性 OK
 - [x] `[需人工验收 · Go/No-Go]`：Go → 收尾并入；No-Go → 回 9.3/9.4 迭代
 
 ---
@@ -250,18 +264,18 @@ flowchart TD
 
 ### 验收
 
-- [ ] SSOT compose 段与 ADR-0015 一致，无「暂不分平台」残留描述
+- [x] SSOT compose 段与 ADR-0015 一致，无「暂不分平台」残留描述
 
 ---
 
 ## Phase 9 整体验收
 
-- [ ] C2 平台化：`--platform xiaohongshu` + `compose_publish_xiaohongshu.md` 跑通，向后兼容
-- [ ] 正文元素化：必含三类齐全、顺序自由、归属行就位；可选项按需
-- [ ] headline 落地：`run_publish` 返回 `{tmdb_id, headline, body}`，下游消费
-- [ ] production_countries 进投影；publish 专用 system message
-- [ ] G8 面板改选清旧稿修复 + 测试
-- [ ] 全套测试绿；SSOT 同步；9.8 GATE Go
+- [x] C2 平台化：`--platform xiaohongshu` + `compose_publish_xiaohongshu.md` 跑通，向后兼容
+- [x] 正文元素化：必含三类齐全、顺序自由、归属行就位；可选项按需
+- [x] headline 落地：`run_publish` 返回 `{tmdb_id, headline, body}`，下游消费
+- [x] production_countries 进投影；publish 专用 system message
+- [x] G8 面板改选清旧稿修复 + 测试
+- [x] 全套测试绿；SSOT 同步；9.8 GATE Go
 
 ## 风险与约束
 
