@@ -257,6 +257,7 @@ surface_match_score + event_match_score + persona_semantic_match_score
 * **从最简单平台起步、增量扩展**（小红书 → X → discord），不一次性铺全平台。
 * 每平台一个 profile（语言 / 长度 / 结构约定 / hashtag / 转贴 / 图片字段占位）：小红书=中文 + hashtag 关联新闻；X=英文 + 引用新闻原帖（需源 URL，缺失则后置）；discord=最简纯文本。
 * 每版附跳转链接 + 0~2 个自然话题标签；`image_ref` 仅占位，本 Phase 不生成图片。
+* **Phase 9.8 · 面板定点重生成与人工编辑**（[ADR-0016](../adr/0016-panel-editorial-regeneration-and-inline-edit.md)）：总编在定稿区可对成品稿做三种定点操控，均**覆盖当前稿**、不新增版本层（仍是原版/去AI化版二档）——只换正文（重跑 C2 创作，丢弃顺带产出的新 headline，headline 不自动联动）、只换标题（body-aware，以当前正文为输入重出一句 headline，body/链接不动）、面板内直接编辑正文（无 LLM，写回原稿）。只换正文与编辑正文这两种改动 body 的操作会失效并删除陈旧的 `_humanized.md`；只换标题不改 body，不触发失效。
 
 ### 7.4 视觉切片与发布
 

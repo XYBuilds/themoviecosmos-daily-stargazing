@@ -12,7 +12,12 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 
-from review_panel.serve import parse_copy_markdown, read_selection, route
+from review_panel.serve import (
+    parse_copy_markdown,
+    read_selection,
+    replace_body_in_copy_markdown,
+    route,
+)
 
 
 def _write_news(news_dir: Path) -> None:
@@ -847,6 +852,387 @@ class PublishMigratesOldFormatSelectionTests(unittest.TestCase):
             self.assertNotIn("published", raw_on_disk)
             self.assertNotIn("copy_path", raw_on_disk)
             self.assertIn("copies", raw_on_disk)
+
+
+class ReplaceBodyInCopyMarkdownTests(unittest.TestCase):
+    """9.8.4：纯函数，不用起 batch_root，直接喂文本断言。"""
+
+    def test_normal_file_preserves_header_headline_and_links(self) -> None:
+        text = (
+            "# 发布定稿 · 2026-07-06 · 小红书\n"
+            "\n"
+            "原版标题\n"
+            "\n"
+            "原版正文。\n"
+            "\n"
+            "## 链接\n"
+            "\n"
+            "- 电影: https://example.com/movie/1\n"
+            "- 新闻: https://example.com/news/1\n"
+        )
+        result = replace_body_in_copy_markdown(text, "新的正文")
+        parsed = parse_copy_markdown(result)
+        self.assertEqual(parsed["headline"], "原版标题")
+        self.assertEqual(parsed["body"], "新的正文")
+        self.assertIn("## 链接", result)
+        self.assertIn("- 电影: https://example.com/movie/1", result)
+        self.assertIn("- 新闻: https://example.com/news/1", result)
+        self.assertIn("# 发布定稿 · 2026-07-06 · 小红书", result)
+
+    def test_multi_paragraph_new_body_preserved(self) -> None:
+        text = (
+            "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+            "标题\n\n"
+            "旧正文。\n\n"
+            "## 链接\n\n"
+            "- 电影: https://example.com\n"
+        )
+        result = replace_body_in_copy_markdown(text, "第一段。\n\n第二段。")
+        parsed = parse_copy_markdown(result)
+        self.assertEqual(parsed["headline"], "标题")
+        self.assertEqual(parsed["body"], "第一段。\n\n第二段。")
+
+    def test_no_links_section_still_works(self) -> None:
+        text = "# 发布定稿 · 2026-07-06 · 小红书\n\n标题\n\n旧正文没有链接分区。\n"
+        result = replace_body_in_copy_markdown(text, "新正文。")
+        parsed = parse_copy_markdown(result)
+        self.assertEqual(parsed["headline"], "标题")
+        self.assertEqual(parsed["body"], "新正文。")
+        self.assertNotIn("## 链接", result)
+        self.assertTrue(result.endswith("\n"))
+
+
+    def test_new_body_containing_h1_and_links_heading_lookalikes_preserved_verbatim(self) -> None:
+        # 新正文里若恰好含 "# ..." 或字面 "## 链接" 行，替换逐字保留原链接分区不受干扰
+        # （replace_body_in_copy_markdown 只按原文件结构定位链接分区起点，不重新扫描新 body）。
+        text = (
+            "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+            "原版标题\n\n"
+            "原版正文。\n\n"
+            "## 链接\n\n"
+            "- 电影: https://example.com/movie/1\n"
+            "- 新闻: https://example.com/news/1\n"
+        )
+        new_body = "# 这是正文里的一级标题\n\n这段提到了 ## 链接 这个词但不是分区。"
+        result = replace_body_in_copy_markdown(text, new_body)
+        parsed = parse_copy_markdown(result)
+
+        self.assertEqual(parsed["headline"], "原版标题")
+        self.assertEqual(parsed["body"], new_body)
+        # 原链接分区完整保留，不被 body 里的字面 "## 链接" 误吞。
+        self.assertIn("- 电影: https://example.com/movie/1", result)
+        self.assertIn("- 新闻: https://example.com/news/1", result)
+        self.assertEqual(result.count("## 链接"), 2)
+
+
+class EditBodyRouteTests(unittest.TestCase):
+    """9.8.4：POST /api/edit-body 无 LLM，纯文本直改。"""
+
+    def _write_copy_md(self, tmp_path: Path, date: str, slug: str, platform: str = "xiaohongshu") -> Path:
+        copy_path = tmp_path / date / f"{slug}_copy_{platform}.md"
+        copy_path.parent.mkdir(parents=True, exist_ok=True)
+        copy_path.write_text(
+            "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+            "原版标题\n\n"
+            "原版正文。\n\n"
+            "## 链接\n\n"
+            "- 电影: https://example.com/movie/1\n"
+            "- 新闻: https://example.com/news/1\n",
+            encoding="utf-8",
+        )
+        return copy_path
+
+    def test_success_updates_body_preserves_headline_and_links_invalidates_humanized(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            _make_batch(tmp_path, date, "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": date, "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+            self._write_copy_md(tmp_path, date, "09-slug")
+
+            humanized_path = tmp_path / date / "09-slug_copy_xiaohongshu_humanized.md"
+            humanized_path.write_text("旧 humanized 稿", encoding="utf-8")
+            selection = read_selection(tmp_path, date)
+            selection["copies"]["xiaohongshu"] = {
+                "published": True,
+                "copy_path": str(tmp_path / date / "09-slug_copy_xiaohongshu.md"),
+                "humanized_path": str(humanized_path),
+            }
+            from review_panel.serve import write_selection
+
+            write_selection(tmp_path, date, selection)
+
+            status, payload = route(
+                "POST",
+                "/api/edit-body",
+                {},
+                {"date": date, "slug": "09-slug", "platform": "xiaohongshu", "body": "新的正文"},
+                batch_root=tmp_path,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["headline"], "原版标题")
+            self.assertEqual(payload["body"], "新的正文")
+
+            on_disk = (tmp_path / date / "09-slug_copy_xiaohongshu.md").read_text(encoding="utf-8")
+            self.assertIn("- 电影: https://example.com/movie/1", on_disk)
+            self.assertIn("- 新闻: https://example.com/news/1", on_disk)
+
+            self.assertFalse(humanized_path.exists())
+            updated_selection = read_selection(tmp_path, date)
+            self.assertIsNone(updated_selection["copies"]["xiaohongshu"]["humanized_path"])
+            self.assertTrue(updated_selection["copies"]["xiaohongshu"]["published"])
+
+    def test_empty_body_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._write_copy_md(tmp_path, date, "09-slug")
+
+            status, payload = route(
+                "POST",
+                "/api/edit-body",
+                {},
+                {"date": date, "slug": "09-slug", "body": "   "},
+                batch_root=tmp_path,
+            )
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+
+    def test_missing_copy_file_returns_404(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            status, payload = route(
+                "POST",
+                "/api/edit-body",
+                {},
+                {"date": "2026-07-06", "slug": "09-slug", "body": "新正文"},
+                batch_root=tmp_path,
+            )
+            self.assertEqual(status, 404)
+            self.assertFalse(payload["ok"])
+
+    def test_slug_fallback_from_selection(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            _make_batch(tmp_path, date, "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": date, "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+            self._write_copy_md(tmp_path, date, "09-slug")
+
+            status, payload = route(
+                "POST",
+                "/api/edit-body",
+                {},
+                {"date": date, "body": "新正文"},
+                batch_root=tmp_path,
+            )
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["body"], "新正文")
+
+
+class RegenerateRouteTests(unittest.TestCase):
+    """9.8.4：POST /api/regenerate 通过注入 run_subprocess stub 验证，不调真实 LLM。"""
+
+    def _write_copy_md(self, tmp_path: Path, date: str, slug: str, platform: str = "xiaohongshu") -> Path:
+        copy_path = tmp_path / date / f"{slug}_copy_{platform}.md"
+        copy_path.parent.mkdir(parents=True, exist_ok=True)
+        copy_path.write_text(
+            "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+            "原版标题\n\n"
+            "原版正文。\n\n"
+            "## 链接\n\n"
+            "- 电影: https://example.com/movie/1\n"
+            "- 新闻: https://example.com/news/1\n",
+            encoding="utf-8",
+        )
+        return copy_path
+
+    def _select(self, tmp_path: Path, date: str, slug: str = "09-slug", tmdb_id: int = 429918) -> None:
+        _make_batch(tmp_path, date, slug, tmdb_id=tmdb_id)
+        route(
+            "POST",
+            "/api/select",
+            {},
+            {"date": date, "news_slug": slug, "tmdb_id": tmdb_id, "title": "Survival Family"},
+            batch_root=tmp_path,
+        )
+
+    def test_target_body_clears_humanized_path(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._select(tmp_path, date)
+            copy_path = self._write_copy_md(tmp_path, date, "09-slug")
+
+            humanized_path = tmp_path / date / "09-slug_copy_xiaohongshu_humanized.md"
+            humanized_path.write_text("旧 humanized", encoding="utf-8")
+            selection = read_selection(tmp_path, date)
+            selection["copies"]["xiaohongshu"] = {
+                "published": True,
+                "copy_path": str(copy_path),
+                "humanized_path": str(humanized_path),
+            }
+            from review_panel.serve import write_selection
+
+            write_selection(tmp_path, date, selection)
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                self.assertIn("--target", cmd)
+                self.assertIn("body", cmd)
+                self.assertIn("--tmdb-id", cmd)
+                self.assertIn("429918", cmd)
+                self.assertIn("--slug", cmd)
+                self.assertIn("09-slug", cmd)
+                self.assertIn("--date", cmd)
+                self.assertIn(date, cmd)
+                copy_path.write_text(
+                    "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+                    "原版标题\n\n"
+                    "新的正文。\n\n"
+                    "## 链接\n\n"
+                    "- 电影: https://example.com/movie/1\n"
+                    "- 新闻: https://example.com/news/1\n",
+                    encoding="utf-8",
+                )
+                humanized_path.unlink()
+                return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {copy_path}\n")
+
+            status, payload = route(
+                "POST",
+                "/api/regenerate",
+                {},
+                {"date": date, "slug": "09-slug", "platform": "xiaohongshu", "target": "body"},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["target"], "body")
+            self.assertEqual(payload["body"], "新的正文。")
+            self.assertEqual(payload["headline"], "原版标题")
+
+            updated_selection = read_selection(tmp_path, date)
+            self.assertIsNone(updated_selection["copies"]["xiaohongshu"]["humanized_path"])
+
+    def test_target_headline_does_not_clear_humanized_path(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._select(tmp_path, date)
+            copy_path = self._write_copy_md(tmp_path, date, "09-slug")
+
+            humanized_path = tmp_path / date / "09-slug_copy_xiaohongshu_humanized.md"
+            humanized_path.write_text("旧 humanized", encoding="utf-8")
+            selection = read_selection(tmp_path, date)
+            selection["copies"]["xiaohongshu"] = {
+                "published": True,
+                "copy_path": str(copy_path),
+                "humanized_path": str(humanized_path),
+            }
+            from review_panel.serve import write_selection
+
+            write_selection(tmp_path, date, selection)
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                copy_path.write_text(
+                    "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+                    "新的标题\n\n"
+                    "原版正文。\n\n"
+                    "## 链接\n\n"
+                    "- 电影: https://example.com/movie/1\n"
+                    "- 新闻: https://example.com/news/1\n",
+                    encoding="utf-8",
+                )
+                return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {copy_path}\n")
+
+            status, payload = route(
+                "POST",
+                "/api/regenerate",
+                {},
+                {"date": date, "slug": "09-slug", "platform": "xiaohongshu", "target": "headline"},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["headline"], "新的标题")
+            self.assertEqual(payload["body"], "原版正文。")
+
+            updated_selection = read_selection(tmp_path, date)
+            self.assertEqual(
+                updated_selection["copies"]["xiaohongshu"]["humanized_path"], str(humanized_path)
+            )
+
+    def test_invalid_target_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._select(tmp_path, date)
+
+            status, payload = route(
+                "POST",
+                "/api/regenerate",
+                {},
+                {"date": date, "slug": "09-slug", "target": "nope"},
+                batch_root=tmp_path,
+            )
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+
+    def test_missing_selection_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            _make_batch(tmp_path, date, "09-slug")
+
+            status, payload = route(
+                "POST",
+                "/api/regenerate",
+                {},
+                {"date": date, "target": "body"},
+                batch_root=tmp_path,
+            )
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+
+    def test_subprocess_failure_returns_500(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._select(tmp_path, date)
+            self._write_copy_md(tmp_path, date, "09-slug")
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                return SimpleNamespace(returncode=2, stdout="", stderr="error: something broke")
+
+            status, payload = route(
+                "POST",
+                "/api/regenerate",
+                {},
+                {"date": date, "slug": "09-slug", "target": "body"},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+            self.assertEqual(status, 500)
+            self.assertFalse(payload["ok"])
+            self.assertEqual(payload["stderr"], "error: something broke")
 
 
 class UnknownRouteTests(unittest.TestCase):
