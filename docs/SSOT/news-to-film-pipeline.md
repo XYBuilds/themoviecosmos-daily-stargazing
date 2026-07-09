@@ -24,6 +24,8 @@
 | `compose` · 文案 | `copywriter.py`（目标：`compose.py`） | `review.md` / `publish.md`（当前实际：`copy_review.*` / `{slug}_copy_{platform}.md`） | 候选与人工评审结果 | 生成审核稿与定稿文案，分两个 stage：`compose --stage review` / `compose --stage publish`；`publish` 按 [ADR-0015](../adr/0015-publish-platformization-and-element-checklist.md) 每平台一个创作步骤（`--platform`），小红书首发，产出正文 + headline（≤10 中文字）+ 归属行 `「片名」(YYYY) 导演名`，正文只守必含元素清单（新闻侧/关系侧/电影侧），不规定顺序或段数；审核面板消费 `{slug}_copy_{platform}.md`，并可生成可逆的 `{slug}_copy_{platform}_humanized.md` | 产出可供人工评审与对外发布的文案 | 审核稿 `review.md`、定稿 `publish.md`（小红书：`{tmdb_id, headline, body}`；面板落盘为 `{slug}_copy_{platform}.md`，`selection.json.copies` 记录平台维度） | 文案承重元素须与事实锚点一致，不脱离声明来源；avoid-ai-writing 改写只生成派生产物，不覆盖原版定稿 |
 | `orchestrate` · 编排 | `main.py`（目标：`main.py`） | `Daily_Briefing/YYYY-MM-DD.md`（当前实际：未实现） | 全阶段 | 串联 intake→extract→expand→rewrite→retrieve→compose 的端到端编排入口 | 一次 run 跑通整条管线并产出每日简报 | 每日简报 `Daily_Briefing/YYYY-MM-DD.md` | 编排入口，不承载单阶段算法 |
 
+> **Phase 9.8 补充（`compose` 定稿面板能力，[ADR-0016](../adr/0016-panel-editorial-regeneration-and-inline-edit.md)）**：审核面板对 `{slug}_copy_{platform}.md` 新增三种定点操控，均为**覆盖当前稿**，不新增版本层（仍是 原版 / 去AI化版 二档）。① 重生成正文：重跑 `run_publish`，只取新 body 覆盖，丢弃顺带产出的新 headline，headline 不自动联动；② 重生成标题：body-aware，以当前 body 为输入调 `run_headline`，只覆盖 headline，body/链接不动；③ 正文人工编辑：面板 textarea 直改正文，经 `render_copy_markdown` 无 LLM 写回原稿。三者中前两种改 body 的操作（①③）都会删除陈旧的 `_humanized.md` 并清空 `selection.json` 对应 `copies.{platform}.humanized_path`，维持「humanized_path=null ⇔ 盘上无 _humanized.md」不变量；②不改 body，不触发失效。
+
 ### 0.2 命名映射表（旧编号/旧名 → 唯一主名 / 归属）
 
 > 本表只做「阶段与编号」层面的命名映射，与 §9「新旧概念映射」（概念级：lens/neutral/toned/focalized/hypernym/fact-anchor 等）互补，不重复。概念级映射请直接见 §9。
