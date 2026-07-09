@@ -12,28 +12,28 @@ overview: |
 todos:
   - id: p9.1-panel-stale-copy-fix
     content: 9.1 · [bugfix·首步] G8：handle_select 变体 A——改选时删旧 {slug}_copy.md，恢复「copy_path=null ⇔ 无 _copy.md」不变量 + serve 测试（独立于主线，先做）
-    status: complete
+    status: completed
   - id: p9.2-projection-country
     content: 9.2 · [基建] compose.py _DB_PROJECTION_FIELDS 增 production_countries（通路 B 加列穿透；C1/C2 共用，决策卡多一列无害）
-    status: complete
+    status: completed
   - id: p9.3-xhs-prompt
     content: 9.3 · [prompt] 新建 prompts/compose_publish_xiaohongshu.md：必含元素清单替代规定结构 + 归属行 D3 + headline D4 + 关系侧 D5 + 来源纪律 D6；改造正/反例避免模板固化；沿用 ADR-0013 调性
-    status: complete
+    status: completed
   - id: p9.4-publish-contract
     content: 9.4 · [契约] compose.py 加 --platform xiaohongshu、按平台选 prompt；给 publish 单独 system message（现复用决策卡 message，明写「不要输出标题」，与 headline 冲突）；run_publish 返回 {tmdb_id, headline, body} + headline/body 解析
-    status: complete
+    status: completed
   - id: p9.5-downstream-adapter
     content: 9.5 · [下游] publish_adapter.render_copy_markdown 消费 headline、不再另拼《片名》(年份) 标题行；clean_publish_body 保留「片名」(YYYY) 归属行、继续剥《》行与裸链接；--platform 透传（adapter/serve 默认 xiaohongshu）
-    status: complete
+    status: completed
   - id: p9.6-tests
     content: 9.6 · [测试] 更新 test_compose_publish / test_compose_decision_card / test_review_panel_publish_adapter / test_review_panel_serve 过绿
-    status: complete
+    status: completed
   - id: p9.8-gate
     content: 9.8 · [GATE] 用 Rule Breakers（2026-07-06）真实数据重跑 compose --platform xiaohongshu → _copy.md，总编肉眼验收 headline/必含元素/归属行/调性 [需人工验收 · Go/No-Go]（已被子 Phase 9.7.6 / 9.8.7 GATE 吸收并 Go）
-    status: complete
+    status: completed
   - id: p9.9-ssot-sync
     content: 9.9 · [doc] docs/SSOT/news-to-film-pipeline.md compose 段 + PRD（若涉及）同步平台化与元素化描述，引用 ADR-0015（已随子 Phase 9.7.6 / 9.8.7 同步入 main）
-    status: complete
+    status: completed
 isProject: true
 ---
 
@@ -51,11 +51,11 @@ Phase 4 把发布稿（C2）认定为唯一创作环节（[ADR-0012](../../docs/
 
 Phase 9 的实际推进拆成本 plan（`p9.1`–`p9.6` 核心）+ 两个独立子 plan（各自带 GATE 与文档同步），全部已并入 `main`：
 
-| plan | 承接范围 | 交付 | 收口 |
-| ---- | -------- | ---- | ---- |
-| 本 plan（Phase9） | C2 平台化核心：G8 面板修复 / production_countries 投影 / 小红书 prompt 元素化 / `--platform` + publish system message + `run_publish` headline / 下游 adapter / 测试 | `p9.1`–`p9.6` | 已入 `main` |
-| [Phase9.7](Phase9.7-copy-output-and-panel-integration.plan.md) | 定稿产出精简 + 多平台文件命名 + 面板定稿展示（platform tabs + 移动预览）+ avoid-ai-writing 可逆改写 + SSOT/PRD 同步 | `p9.7.1`–`p9.7.6`（+`9.7.7` UX 修复） | PR #116–#121 入 `main` |
-| [Phase9.8](Phase9.8-panel-copy-regenerate-and-edit.plan.md) | 定稿界面定点操控：正文/标题重生成 + 正文人工编辑 + 覆盖语义 + humanized 失效 + ADR-0016 + SSOT/PRD 同步 | `p9.8.1`–`p9.8.7` | PR #122–#128 入 `main` |
+| plan                                                           | 承接范围                                                                                                                                                             | 交付                                  | 收口                   |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | ---------------------- |
+| 本 plan（Phase9）                                              | C2 平台化核心：G8 面板修复 / production_countries 投影 / 小红书 prompt 元素化 / `--platform` + publish system message + `run_publish` headline / 下游 adapter / 测试 | `p9.1`–`p9.6`                         | 已入 `main`            |
+| [Phase9.7](Phase9.7-copy-output-and-panel-integration.plan.md) | 定稿产出精简 + 多平台文件命名 + 面板定稿展示（platform tabs + 移动预览）+ avoid-ai-writing 可逆改写 + SSOT/PRD 同步                                                  | `p9.7.1`–`p9.7.6`（+`9.7.7` UX 修复） | PR #116–#121 入 `main` |
+| [Phase9.8](Phase9.8-panel-copy-regenerate-and-edit.plan.md)    | 定稿界面定点操控：正文/标题重生成 + 正文人工编辑 + 覆盖语义 + humanized 失效 + ADR-0016 + SSOT/PRD 同步                                                              | `p9.8.1`–`p9.8.7`                     | PR #122–#128 入 `main` |
 
 **本 plan 原 `p9.8-gate` / `p9.9-ssot-sync` 的归属**：这两项（Rule Breakers 真实重跑验收 + SSOT/PRD 同步）在子 plan 落地时被各自的 GATE 吸收并超额完成——`Phase9.7.6` 引 ADR-0015 同步 compose 段、`Phase9.8.7` 引 ADR-0016 补面板能力段，均已随子 plan 入 `main`。故本 plan 这两项直接标 `complete`，不再单独执行。
 

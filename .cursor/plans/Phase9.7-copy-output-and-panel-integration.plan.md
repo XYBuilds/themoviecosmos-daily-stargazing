@@ -12,22 +12,22 @@ overview: |
 todos:
   - id: p9.7.1-copy-format-slim
     content: 9.7.1 · [渲染] render_copy_markdown 去掉标签行 + 新闻原文 section + headline ≤ 10 中文字约束（prompt + 渲染层双保证）
-    status: complete
+    status: completed
   - id: p9.7.2-platform-filename
     content: 9.7.2 · [命名] 文件名 {slug}_copy_{platform}.md + selection.json 结构升级为 copies dict + 下游适配
-    status: complete
+    status: completed
   - id: p9.7.3-panel-copy-display
     content: 9.7.3 · [面板] 审核面板新增定稿展示区：GET /api/copy + 前端 platform tabs + 渲染 headline/body
-    status: complete
+    status: completed
   - id: p9.7.4-avoid-ai-rewrite
     content: 9.7.4 · [面板] avoid-ai-writing 集成：POST /api/rewrite + _humanized.md 产出 + 前端 toggle 可逆切换
-    status: complete
+    status: completed
   - id: p9.7.5-tests
     content: 9.7.5 · [测试] 新增/更新 test_publish_adapter + test_serve 覆盖新格式/新文件名/新 API
-    status: complete
+    status: completed
   - id: p9.7.6-gate-doc-sync
     content: 9.7.6 · [GATE] Rule Breakers 真实重跑：验证新格式 + 面板定稿展示/移动宽度预览 + avoid-ai-writing toggle；Go 后同步 SSOT/PRD 并收尾 [需人工验收]
-    status: complete
+    status: completed
 isProject: true
 ---
 
