@@ -12,6 +12,7 @@ from scripts.compose import (
     load_c2_template,
     load_headline_contract,
     load_headline_template,
+    load_persona_perspective,
     parse_publish_output,
     render_c2_prompt,
     render_headline_prompt,
@@ -359,6 +360,112 @@ class RunHeadlineTests(unittest.TestCase):
         )
         self.assertIn("≤ 10", rendered)
         self.assertNotIn("{{headline_contract}}", rendered)
+
+
+class PersonaPerspectiveInjectionTests(unittest.TestCase):
+    """ADR-0017 D1/D2：persona 视角加载归一化 + C2 注入 + 空注入 golden-snapshot 等价。"""
+
+    def test_load_persona_perspective_reads_distilled_file(self) -> None:
+        # 真实仓库文件：读到中文视角、且不含任何检索侧行话。
+        text = load_persona_perspective("The-Sage")
+        self.assertIn("主视角", text)
+        self.assertIn("求真", text)
+        for jargon in ("decon", "P-Select", "objective-floor", "focalized", "alt-creator"):
+            self.assertNotIn(jargon, text)
+
+    def test_load_persona_perspective_normalizes_uppercase_hyphen(self) -> None:
+        # triggered_by 的 THE-SAGE 大写连字符须归一到 The-Sage 目录，与首字母大写等价。
+        upper = load_persona_perspective("THE-SAGE")
+        title = load_persona_perspective("The-Sage")
+        self.assertEqual(upper, title)
+
+    def test_load_persona_perspective_missing_file_raises(self) -> None:
+        with self.assertRaises(FileNotFoundError):
+            load_persona_perspective("THE-NOSUCH")
+
+    def test_load_persona_perspective_never_falls_back_to_card(self) -> None:
+        # 缺 c2_perspective.md 时清晰报错，禁静默回退读 persona_card.md（行话泄漏防线）。
+        with TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            card_dir = base / "personas" / "The-Faux"
+            card_dir.mkdir(parents=True)
+            (card_dir / "persona_card.md").write_text("decon P-Select", encoding="utf-8")
+            with self.assertRaises(FileNotFoundError):
+                load_persona_perspective("The-Faux", prompts_dir=base)
+
+    def test_render_c2_prompt_injects_persona_perspective(self) -> None:
+        rendered = render_c2_prompt(
+            "{{news_context}}\n{{persona_perspective}}\n{{judge_kernel}}",
+            "News",
+            "Movie",
+            "Judge",
+            persona_perspective="用求真的眼光看",
+        )
+        self.assertIn("用求真的眼光看", rendered)
+        self.assertNotIn("{{persona_perspective}}", rendered)
+
+    def test_empty_persona_perspective_is_byte_identical_noop(self) -> None:
+        # 空注入 golden-snapshot：真实模板下 persona_perspective="" 与不传参逐字节等价，
+        # 证首发 publish / 9.8 重生成路径零回归。
+        template = load_c2_template("xiaohongshu")
+        contract = load_headline_contract()
+        without = render_c2_prompt(
+            template, "News", "Movie", "Judge", headline_contract=contract
+        )
+        with_empty = render_c2_prompt(
+            template,
+            "News",
+            "Movie",
+            "Judge",
+            headline_contract=contract,
+            persona_perspective="",
+        )
+        self.assertEqual(without, with_empty)
+        self.assertNotIn("{{persona_perspective}}", with_empty)
+
+    def test_run_publish_passes_persona_perspective_into_prompt(self) -> None:
+        captured: dict[str, str] = {}
+
+        def fake_llm(prompt: str) -> str:
+            captured["prompt"] = prompt
+            return "【标题】t\n【正文】\n「Interstellar」(2014) Christopher Nolan\n正文。"
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            run_publish(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                persona_perspective="以荒诞、玩味的眼光看",
+                llm_call=fake_llm,
+            )
+
+        self.assertIn("以荒诞、玩味的眼光看", captured["prompt"])
+
+    def test_run_publish_empty_perspective_matches_default(self) -> None:
+        # run_publish 默认 persona_perspective="" 时，渲染 prompt 与显式空串一致。
+        prompts: dict[str, str] = {}
+
+        def make_llm(key: str):
+            def _llm(prompt: str) -> str:
+                prompts[key] = prompt
+                return "【标题】t\n【正文】\n「x」(2025) d\n正文。"
+
+            return _llm
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            run_publish(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                llm_call=make_llm("default"),
+            )
+            run_publish(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                persona_perspective="",
+                llm_call=make_llm("explicit_empty"),
+            )
+
+        self.assertEqual(prompts["default"], prompts["explicit_empty"])
+        self.assertNotIn("{{persona_perspective}}", prompts["default"])
 
 
 if __name__ == "__main__":
