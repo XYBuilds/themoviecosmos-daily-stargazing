@@ -33,7 +33,7 @@ todos:
     status: complete
   - id: p10.5-frontend-draft-pool
     content: 10.5 · [面板] index.html 草稿池浏览区（每 persona 草稿 headline+body 卡片）+ 选主视角指针高亮 + 勾选 ≤2 合并 + 「生成草稿池」按钮 + 选中后流入既有 publish/去AI化工作流（复用 loading 锁与结果提示）
-    status: todo
+    status: complete
   - id: p10.6-tests
     content: 10.6 · [测试] 覆盖 persona 注入 run_publish/空注入 golden-snapshot/drafts_adapter 扇出与 combine≤2/api generate-drafts+select-draft+combine-drafts/指针派生失效 humanized/向后兼容（无 persona 时旧路径不回归）
     status: todo

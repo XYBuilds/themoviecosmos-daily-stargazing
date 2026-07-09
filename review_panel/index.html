@@ -477,6 +477,137 @@
       font-weight: 700;
     }
 
+    /* 10.5 · 草稿池浏览区：只读来源层（ADR-0017 D3），选主视角=可变指针（D4）。 */
+    .draft-pool-section {
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .draft-pool-head {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .draft-pool-title {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-dim);
+    }
+
+    .draft-pool-hint {
+      font-size: 11.5px;
+      color: var(--ink-faint);
+    }
+
+    .draft-pool-result {
+      font-size: 11.5px;
+      color: var(--ink-faint);
+    }
+
+    .draft-pool-result.fail {
+      color: var(--danger-fg);
+    }
+
+    .draft-pool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 10px;
+    }
+
+    .draft-card {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 12px;
+      background: var(--bg-card);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .draft-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent) inset;
+    }
+
+    .draft-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .draft-persona {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent);
+      word-break: break-all;
+    }
+
+    .draft-combine {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-faint);
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .draft-combine input:disabled {
+      cursor: not-allowed;
+    }
+
+    .draft-card-headline {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .draft-card-body {
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: var(--ink-dim);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      max-height: 96px;
+      overflow: hidden;
+    }
+
+    .draft-select-btn {
+      align-self: flex-start;
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: var(--bg-card);
+      cursor: pointer;
+    }
+
+    .draft-select-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .draft-select-btn:disabled {
+      color: var(--ink-faint);
+      cursor: not-allowed;
+    }
+
+    .draft-card.selected .draft-select-btn {
+      border-color: var(--accent);
+      color: #1a1408;
+      background: var(--accent);
+      font-weight: 700;
+    }
+
     .copy-action-btn.primary:hover:not(:disabled) {
       color: #1a1408;
     }
@@ -781,6 +912,7 @@
     <select id="date-select" aria-label="选择日期"></select>
     <button id="lang-toggle" type="button" aria-label="切换语言">EN / 中</button>
     <div id="selection-status">尚未选定候选</div>
+    <button id="generate-drafts-btn" type="button" disabled>生成草稿池</button>
     <button id="publish-btn" disabled>写推文</button>
   </div>
 
@@ -812,6 +944,16 @@
           <button type="button" class="copy-preview-btn active" data-preview="desktop">桌面</button>
           <button type="button" class="copy-preview-btn" data-preview="mobile">移动</button>
         </div>
+        <!-- 10.5 · 草稿池浏览区：多 persona 草稿卡片；选主视角=可变指针派生当前稿。 -->
+        <div id="draft-pool-section" class="draft-pool-section" style="display:none;">
+          <div class="draft-pool-head">
+            <span class="draft-pool-title">草稿池 · 多视角</span>
+            <span class="draft-pool-hint">点卡片选主视角（派生当前稿）；勾选 ≤2 合并生成</span>
+            <button type="button" id="combine-drafts-btn" class="copy-action-btn" disabled>合并生成</button>
+            <span id="draft-pool-result" class="draft-pool-result"></span>
+          </div>
+          <div id="draft-pool-grid" class="draft-pool-grid"></div>
+        </div>
         <div id="copy-content" class="copy-content" style="display:none;">
           <div id="copy-humanize-toggle-slot"></div>
           <div id="copy-headline" class="copy-headline"></div>
@@ -842,6 +984,10 @@
         headline: "", // 9.8.5：定稿标题（可被「重生成标题」覆盖，通过 state 驱动 renderCopyHeadline）
         editingBody: false, // 9.8.5：是否处于「编辑正文」textarea 模式
         copyOpInFlight: false, // 9.8.5：编辑/重生成正文/重生成标题 互斥锁，防止并发操作
+        drafts: [], // 10.5：内存态只读草稿池 [{draft_id, headline, body}]（ADR-0017 D3）
+        selectedDraftId: null, // 10.5：当前主视角指针（D4）；null 表示尚未选主视角
+        combineChecked: [], // 10.5：勾选待合并的 draft_id（上限 2）
+        draftOpInFlight: false, // 10.5：生成/选中/合并草稿 互斥锁
       };
 
       // 9.7.3 D6：目前只实装小红书，其余平台先占坑展示为 "coming soon"，
@@ -858,6 +1004,11 @@
         langToggle: document.getElementById("lang-toggle"),
         selectionStatus: document.getElementById("selection-status"),
         publishBtn: document.getElementById("publish-btn"),
+        generateDraftsBtn: document.getElementById("generate-drafts-btn"),
+        draftPoolSection: document.getElementById("draft-pool-section"),
+        draftPoolGrid: document.getElementById("draft-pool-grid"),
+        draftPoolResult: document.getElementById("draft-pool-result"),
+        combineDraftsBtn: document.getElementById("combine-drafts-btn"),
         errorBanner: document.getElementById("error-banner"),
         publishResult: document.getElementById("publish-result"),
         newsList: document.getElementById("news-list"),
@@ -1551,10 +1702,182 @@
           els.selectionStatus.innerHTML = '已选：<span class="picked">' +
             escapeHtml(state.selection.title) + '</span>';
           els.publishBtn.disabled = false;
+          els.generateDraftsBtn.disabled = false;
         } else {
           els.selectionStatus.textContent = "尚未选定候选";
           els.publishBtn.disabled = true;
+          els.generateDraftsBtn.disabled = true;
         }
+      }
+
+      // ---------------------------------------------------------------------
+      // 10.5 · 草稿池：浏览多视角草稿 + 选主视角指针 + 合并 ≤2
+      // ---------------------------------------------------------------------
+
+      // 草稿池是内存态只读来源层（ADR-0017 D3）：一次生成后仅供浏览/点选，永不 mutate。
+      // 换 candidate / 换日期时须清空——池与候选绑定，旧池对新候选无意义。
+      function resetDraftPool() {
+        state.drafts = [];
+        state.selectedDraftId = null;
+        state.combineChecked = [];
+        renderDraftPool();
+      }
+
+      function showDraftPoolResult(message, isFail) {
+        if (!els.draftPoolResult) return;
+        els.draftPoolResult.className = "draft-pool-result" + (isFail ? " fail" : "");
+        els.draftPoolResult.textContent = message || "";
+      }
+
+      // 合并按钮仅在「恰好勾选 2 张」时可用（ADR-0017 D5 上限 2）；进行中或超限一律禁用。
+      function renderCombineButton() {
+        if (!els.combineDraftsBtn) return;
+        var n = state.combineChecked.length;
+        els.combineDraftsBtn.disabled = state.draftOpInFlight || n !== 2;
+      }
+
+      // 渲染草稿池网格：每 persona 一张卡（persona 名 + headline + body 预览）；
+      // 选中卡高亮=主视角指针；勾选框控制合并（勾满 2 后其余禁用）。
+      function renderDraftPool() {
+        if (!els.draftPoolSection || !els.draftPoolGrid) return;
+        if (!state.drafts.length) {
+          els.draftPoolSection.style.display = "none";
+          els.draftPoolGrid.innerHTML = "";
+          renderCombineButton();
+          return;
+        }
+        els.draftPoolSection.style.display = "block";
+        var checkedFull = state.combineChecked.length >= 2;
+        els.draftPoolGrid.innerHTML = state.drafts.map(function (d) {
+          var id = String(d.draft_id);
+          var isSelected = id === state.selectedDraftId;
+          var isChecked = state.combineChecked.indexOf(id) !== -1;
+          var checkboxDisabled = state.draftOpInFlight || (checkedFull && !isChecked);
+          var cardCls = "draft-card" + (isSelected ? " selected" : "");
+          return (
+            '<div class="' + cardCls + '" data-draft-id="' + escapeHtml(id) + '">' +
+              '<div class="draft-card-head">' +
+                '<span class="draft-persona">' + escapeHtml(id) + "</span>" +
+                '<label class="draft-combine">' +
+                  '<input type="checkbox" class="draft-combine-cb" data-draft-id="' + escapeHtml(id) + '"' +
+                  (isChecked ? " checked" : "") + (checkboxDisabled ? " disabled" : "") + ">合并" +
+                "</label>" +
+              "</div>" +
+              '<div class="draft-card-headline">' + escapeHtml(safeText(d.headline)) + "</div>" +
+              '<div class="draft-card-body">' + escapeHtml(safeText(d.body)) + "</div>" +
+              '<button type="button" class="draft-select-btn" data-draft-id="' + escapeHtml(id) + '"' +
+              (state.draftOpInFlight ? " disabled" : "") + ">" +
+              (isSelected ? "★ 当前主视角" : "选为主视角") + "</button>" +
+            "</div>"
+          );
+        }).join("");
+        renderCombineButton();
+      }
+
+      // 「生成草稿池」：POST /api/generate-drafts 全量扇出。成功后进入定稿视图渲染池，
+      // 选主视角前当前稿区留空（提示先选一张）。
+      function onGenerateDrafts() {
+        if (state.draftOpInFlight || !state.selection) return;
+        state.draftOpInFlight = true;
+        els.generateDraftsBtn.disabled = true;
+        els.generateDraftsBtn.innerHTML = '<span class="spinner"></span>扇出中…';
+        clearError();
+        apiPost("/api/generate-drafts", {
+          date: state.date,
+          slug: state.selection.news_slug,
+          platform: state.copyPlatform,
+        })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.ok) {
+              state.drafts = res.body.drafts || [];
+              state.selectedDraftId = null;
+              state.combineChecked = [];
+              switchView("copy");
+              renderDraftPool();
+              showCopyEmptyState("已生成 " + state.drafts.length + " 版草稿，点卡片选主视角");
+              showDraftPoolResult("✓ 生成 " + state.drafts.length + " 版草稿", false);
+            } else {
+              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              showError("生成草稿池失败：" + stderr);
+            }
+          })
+          .catch(function (err) {
+            showError("生成草稿池请求失败（网络错误）：" + err.message);
+          })
+          .then(function () {
+            state.draftOpInFlight = false;
+            els.generateDraftsBtn.innerHTML = "生成草稿池";
+            els.generateDraftsBtn.disabled = !state.selection;
+            renderDraftPool();
+          });
+      }
+
+      // 点「选为主视角」：POST /api/select-draft 派生当前稿。成功后 selectedDraftId 更新，
+      // 复用 loadCopy 刷新当前稿区（含 humanized 失效后的复位），流入既有 publish/去AI化工作流。
+      function onSelectDraft(draftId) {
+        if (state.draftOpInFlight || !state.selection) return;
+        state.draftOpInFlight = true;
+        renderDraftPool();
+        showDraftPoolResult("选中中…", false);
+        apiPost("/api/select-draft", {
+          date: state.date,
+          slug: state.selection.news_slug,
+          platform: state.copyPlatform,
+          draft_id: draftId,
+        })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.ok) {
+              state.selectedDraftId = String(res.body.selected_draft_id);
+              // 改指针 ⇒ body 变 ⇒ 去AI化版失效（后端已删 humanized）；loadCopy 从磁盘重取当前稿，
+              // humanizedBody 复位为 null，去AI化 toggle 自然隐藏。
+              loadCopy();
+              showDraftPoolResult("✓ 已选主视角：" + state.selectedDraftId, false);
+            } else {
+              var msg = (res.body && res.body.error) ? res.body.error : "未知错误";
+              showDraftPoolResult("✗ 选中失败：" + msg, true);
+            }
+          })
+          .catch(function (err) {
+            showDraftPoolResult("✗ 请求失败（网络错误）：" + err.message, true);
+          })
+          .then(function () {
+            state.draftOpInFlight = false;
+            renderDraftPool();
+          });
+      }
+
+      // 「合并生成」：POST /api/combine-drafts（恒单版）。成功后用回传的池刷新，追加一张合并卡；
+      // 合并卡与普通草稿平权、可被点选为主视角。不自动切指针（需用户再点「选为主视角」）。
+      function onCombineDrafts() {
+        if (state.draftOpInFlight || state.combineChecked.length !== 2) return;
+        state.draftOpInFlight = true;
+        renderDraftPool();
+        els.combineDraftsBtn.innerHTML = '<span class="spinner"></span>合并中…';
+        showDraftPoolResult("合并中…", false);
+        apiPost("/api/combine-drafts", {
+          date: state.date,
+          slug: state.selection.news_slug,
+          platform: state.copyPlatform,
+          draft_ids: state.combineChecked.slice(),
+        })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.ok) {
+              state.drafts = res.body.drafts || state.drafts;
+              state.combineChecked = [];
+              showDraftPoolResult("✓ 已追加合并草稿", false);
+            } else {
+              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              showDraftPoolResult("✗ 合并失败：" + stderr, true);
+            }
+          })
+          .catch(function (err) {
+            showDraftPoolResult("✗ 请求失败（网络错误）：" + err.message, true);
+          })
+          .then(function () {
+            state.draftOpInFlight = false;
+            els.combineDraftsBtn.innerHTML = "合并生成";
+            renderDraftPool();
+          });
       }
 
       // ---------------------------------------------------------------------
@@ -1583,6 +1906,7 @@
         state.date = date;
         state.selection = null;
         renderSelectionStatus();
+        resetDraftPool();
         switchView("candidates");
         els.loadingState.style.display = "block";
         els.newsList.innerHTML = "";
@@ -1645,6 +1969,8 @@
           }
           state.selection = { news_slug: newsSlug, tmdb_id: tmdbId, title: title };
           renderSelectionStatus();
+          // 换候选：内存池对新候选无意义，清空（磁盘旧池不复用，需重新「生成草稿池」）。
+          resetDraftPool();
           // 重渲染以更新每张卡上的"★ 已选"标记与高亮态。
           if (state.panel) renderPanel(state.panel);
           // 改选后旧定稿会被后端删除（G8），刷新定稿区避免展示陈旧内容。
@@ -1692,6 +2018,31 @@
       });
 
       els.publishBtn.addEventListener("click", onPublish);
+      els.generateDraftsBtn.addEventListener("click", onGenerateDrafts);
+      els.combineDraftsBtn.addEventListener("click", onCombineDrafts);
+
+      // 事件委托：草稿卡「选为主视角」按钮 + 合并勾选框统一在 #draft-pool-grid 捕获，
+      // 避免每次 renderDraftPool 重建 DOM 后要逐个重绑监听器（同 #news-list 的委托模式）。
+      els.draftPoolGrid.addEventListener("click", function (evt) {
+        var btn = evt.target.closest ? evt.target.closest(".draft-select-btn") : null;
+        if (!btn || btn.disabled) return;
+        onSelectDraft(btn.getAttribute("data-draft-id"));
+      });
+
+      els.draftPoolGrid.addEventListener("change", function (evt) {
+        var cb = evt.target;
+        if (!cb.classList || !cb.classList.contains("draft-combine-cb")) return;
+        var id = cb.getAttribute("data-draft-id");
+        var idx = state.combineChecked.indexOf(id);
+        if (cb.checked && idx === -1) {
+          if (state.combineChecked.length >= 2) { cb.checked = false; return; }
+          state.combineChecked.push(id);
+        } else if (!cb.checked && idx !== -1) {
+          state.combineChecked.splice(idx, 1);
+        }
+        // 重渲染以更新「勾满 2 后其余禁用」与合并按钮可用态。
+        renderDraftPool();
+      });
 
       // 「← 返回选片」：从定稿视图切回候选列表以便换 candidate；选中态与已落盘定稿都保留。
       els.copyBackBtn.addEventListener("click", function () {
