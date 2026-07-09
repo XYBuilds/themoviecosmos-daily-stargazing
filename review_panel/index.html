@@ -512,100 +512,74 @@
       color: var(--danger-fg);
     }
 
-    .draft-pool-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 10px;
-    }
-
-    .draft-card {
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 10px 12px;
-      background: var(--bg-card);
+    /* 草稿池 = persona 标签行：标签只显 persona 名，点即切主视角（D4 可变指针），
+       派生的标题/正文由下方当前稿区显示——标签本身保持极简，不再重复正文预览。
+       合并（D5）降为次级：pill 右侧分隔线 + 小勾选框，仅在勾满 2 后其余禁用。 */
+    .draft-pool-tabs {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .draft-card.selected {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px var(--accent) inset;
-    }
-
-    .draft-card-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-wrap: wrap;
       gap: 8px;
     }
 
-    .draft-persona {
-      font-family: var(--mono);
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--accent);
-      word-break: break-all;
-    }
-
-    .draft-combine {
+    .draft-tab {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      font-family: var(--mono);
-      font-size: 10.5px;
-      color: var(--ink-faint);
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .draft-combine input:disabled {
-      cursor: not-allowed;
-    }
-
-    .draft-card-headline {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    .draft-card-body {
-      font-size: 11.5px;
-      line-height: 1.6;
-      color: var(--ink-dim);
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      max-height: 96px;
-      overflow: hidden;
-    }
-
-    .draft-select-btn {
-      align-self: flex-start;
-      font-family: var(--mono);
-      font-size: 11px;
-      padding: 3px 10px;
-      border-radius: 3px;
+      gap: 6px;
+      padding: 3px 8px 3px 10px;
       border: 1px solid var(--line);
-      color: var(--ink);
+      border-radius: 999px;
       background: var(--bg-card);
+    }
+
+    .draft-tab.selected {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .draft-tab-select {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent);
+      background: transparent;
+      border: none;
+      padding: 2px 0;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .draft-tab-select:hover:not(:disabled) {
+      text-decoration: underline;
+    }
+
+    .draft-tab-select:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .draft-tab.selected .draft-tab-select {
+      color: #1a1408;
+    }
+
+    .draft-tab-combine {
+      display: inline-flex;
+      align-items: center;
+      padding-left: 6px;
+      border-left: 1px solid var(--line);
       cursor: pointer;
     }
 
-    .draft-select-btn:hover:not(:disabled) {
-      border-color: var(--accent);
-      color: var(--accent);
+    .draft-tab.selected .draft-tab-combine {
+      border-left-color: rgba(26, 20, 8, 0.3);
     }
 
-    .draft-select-btn:disabled {
-      color: var(--ink-faint);
+    .draft-tab-combine input {
+      cursor: pointer;
+      margin: 0;
+    }
+
+    .draft-tab-combine input:disabled {
       cursor: not-allowed;
-    }
-
-    .draft-card.selected .draft-select-btn {
-      border-color: var(--accent);
-      color: #1a1408;
-      background: var(--accent);
-      font-weight: 700;
     }
 
     .copy-action-btn.primary:hover:not(:disabled) {
@@ -942,15 +916,15 @@
           <button type="button" class="copy-preview-btn active" data-preview="desktop">桌面</button>
           <button type="button" class="copy-preview-btn" data-preview="mobile">移动</button>
         </div>
-        <!-- 10.5 · 草稿池浏览区：多 persona 草稿卡片；选主视角=可变指针派生当前稿。 -->
+        <!-- 草稿池 = persona 标签行：点标签即选主视角（D4 可变指针派生当前稿）；标签自身极简。 -->
         <div id="draft-pool-section" class="draft-pool-section" style="display:none;">
           <div class="draft-pool-head">
             <span class="draft-pool-title">草稿池 · 多视角</span>
-            <span class="draft-pool-hint">点卡片选主视角（派生当前稿）；勾选 ≤2 合并生成</span>
+            <span class="draft-pool-hint">点标签切主视角（派生当前稿）；勾选 ≤2 再合并生成</span>
             <button type="button" id="combine-drafts-btn" class="copy-action-btn" disabled>合并生成</button>
             <span id="draft-pool-result" class="draft-pool-result"></span>
           </div>
-          <div id="draft-pool-grid" class="draft-pool-grid"></div>
+          <div id="draft-pool-tabs" class="draft-pool-tabs"></div>
         </div>
         <div id="copy-content" class="copy-content" style="display:none;">
           <div id="copy-humanize-toggle-slot"></div>
@@ -1003,7 +977,7 @@
         selectionStatus: document.getElementById("selection-status"),
         generateDraftsBtn: document.getElementById("generate-drafts-btn"),
         draftPoolSection: document.getElementById("draft-pool-section"),
-        draftPoolGrid: document.getElementById("draft-pool-grid"),
+        draftPoolTabs: document.getElementById("draft-pool-tabs"),
         draftPoolResult: document.getElementById("draft-pool-result"),
         combineDraftsBtn: document.getElementById("combine-drafts-btn"),
         errorBanner: document.getElementById("error-banner"),
@@ -1757,39 +1731,34 @@
         els.combineDraftsBtn.disabled = state.draftOpInFlight || n !== 2;
       }
 
-      // 渲染草稿池网格：每 persona 一张卡（persona 名 + headline + body 预览）；
-      // 选中卡高亮=主视角指针；勾选框控制合并（勾满 2 后其余禁用）。
+      // 渲染草稿池标签行：每 persona 一个标签（仅 persona 名，选中加 ★）；点标签即切主视角，
+      // 派生的标题/正文由下方当前稿区显示。合并勾选框为次级 affordance（勾满 2 后其余禁用）。
       function renderDraftPool() {
-        if (!els.draftPoolSection || !els.draftPoolGrid) return;
+        if (!els.draftPoolSection || !els.draftPoolTabs) return;
         if (!state.drafts.length) {
           els.draftPoolSection.style.display = "none";
-          els.draftPoolGrid.innerHTML = "";
+          els.draftPoolTabs.innerHTML = "";
           renderCombineButton();
           return;
         }
         els.draftPoolSection.style.display = "block";
         var checkedFull = state.combineChecked.length >= 2;
-        els.draftPoolGrid.innerHTML = state.drafts.map(function (d) {
+        els.draftPoolTabs.innerHTML = state.drafts.map(function (d) {
           var id = String(d.draft_id);
           var isSelected = id === state.selectedDraftId;
           var isChecked = state.combineChecked.indexOf(id) !== -1;
           var checkboxDisabled = state.draftOpInFlight || (checkedFull && !isChecked);
-          var cardCls = "draft-card" + (isSelected ? " selected" : "");
+          var tabCls = "draft-tab" + (isSelected ? " selected" : "");
           return (
-            '<div class="' + cardCls + '" data-draft-id="' + escapeHtml(id) + '">' +
-              '<div class="draft-card-head">' +
-                '<span class="draft-persona">' + escapeHtml(id) + "</span>" +
-                '<label class="draft-combine">' +
-                  '<input type="checkbox" class="draft-combine-cb" data-draft-id="' + escapeHtml(id) + '"' +
-                  (isChecked ? " checked" : "") + (checkboxDisabled ? " disabled" : "") + ">合并" +
-                "</label>" +
-              "</div>" +
-              '<div class="draft-card-headline">' + escapeHtml(safeText(d.headline)) + "</div>" +
-              '<div class="draft-card-body">' + escapeHtml(safeText(d.body)) + "</div>" +
-              '<button type="button" class="draft-select-btn" data-draft-id="' + escapeHtml(id) + '"' +
+            '<span class="' + tabCls + '" data-draft-id="' + escapeHtml(id) + '">' +
+              '<button type="button" class="draft-tab-select" data-draft-id="' + escapeHtml(id) + '"' +
               (state.draftOpInFlight ? " disabled" : "") + ">" +
-              (isSelected ? "★ 当前主视角" : "选为主视角") + "</button>" +
-            "</div>"
+              (isSelected ? "★ " : "") + escapeHtml(id) + "</button>" +
+              '<label class="draft-tab-combine" title="勾选后与另一个合并生成（上限 2）">' +
+                '<input type="checkbox" class="draft-combine-cb" data-draft-id="' + escapeHtml(id) + '"' +
+                (isChecked ? " checked" : "") + (checkboxDisabled ? " disabled" : "") + ">" +
+              "</label>" +
+            "</span>"
           );
         }).join("");
         renderCombineButton();
@@ -1821,7 +1790,7 @@
               state.selectedDraftId = null;
               state.combineChecked = [];
               renderDraftPool();
-              showCopyEmptyState("已生成 " + state.drafts.length + " 版草稿，点卡片选主视角");
+              showCopyEmptyState("已生成 " + state.drafts.length + " 版草稿，点标签选主视角");
               showDraftPoolResult("✓ 生成 " + state.drafts.length + " 版草稿", false);
             } else {
               var stderr = apiErrorText(res);
@@ -2020,15 +1989,15 @@
       els.generateDraftsBtn.addEventListener("click", onGenerateDrafts);
       els.combineDraftsBtn.addEventListener("click", onCombineDrafts);
 
-      // 事件委托：草稿卡「选为主视角」按钮 + 合并勾选框统一在 #draft-pool-grid 捕获，
+      // 事件委托：persona 标签点击 + 合并勾选框统一在 #draft-pool-tabs 捕获，
       // 避免每次 renderDraftPool 重建 DOM 后要逐个重绑监听器（同 #news-list 的委托模式）。
-      els.draftPoolGrid.addEventListener("click", function (evt) {
-        var btn = evt.target.closest ? evt.target.closest(".draft-select-btn") : null;
+      els.draftPoolTabs.addEventListener("click", function (evt) {
+        var btn = evt.target.closest ? evt.target.closest(".draft-tab-select") : null;
         if (!btn || btn.disabled) return;
         onSelectDraft(btn.getAttribute("data-draft-id"));
       });
 
-      els.draftPoolGrid.addEventListener("change", function (evt) {
+      els.draftPoolTabs.addEventListener("change", function (evt) {
         var cb = evt.target;
         if (!cb.classList || !cb.classList.contains("draft-combine-cb")) return;
         var id = cb.getAttribute("data-draft-id");
