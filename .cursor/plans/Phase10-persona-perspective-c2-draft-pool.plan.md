@@ -30,7 +30,7 @@ todos:
     status: complete
   - id: p10.4-backend-endpoints
     content: 10.4 · [面板] serve 新增 POST /api/generate-drafts（subprocess 扇出）+ POST /api/select-draft（指针派生当前稿 + 失效 humanized + 写 selected_draft_id）+ POST /api/combine-drafts（≤2 校验）+ route 注册 + _default_drafts_adapter_path 注入口
-    status: todo
+    status: complete
   - id: p10.5-frontend-draft-pool
     content: 10.5 · [面板] index.html 草稿池浏览区（每 persona 草稿 headline+body 卡片）+ 选主视角指针高亮 + 勾选 ≤2 合并 + 「生成草稿池」按钮 + 选中后流入既有 publish/去AI化工作流（复用 loading 锁与结果提示）
     status: todo
