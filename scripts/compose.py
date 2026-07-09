@@ -64,6 +64,10 @@ _PLATFORMS: tuple[str, ...] = ("xiaohongshu",)
 # 共享同一份契约文件，通过 {{headline_contract}} 占位符注入，防止两处规则各写一份而漂移。
 _HEADLINE_CONTRACT_REL = "prompts/_shared/xiaohongshu_headline_contract.md"
 
+# persona 视角蒸馏文件（ADR-0017 D1）：C2 侧 persona 视角单一事实源，与 persona_card.md
+# 同目录共置。C2 加载路径只认 c2_perspective.md，永不读 persona_card.md（防行话泄漏）。
+_C2_PERSPECTIVE_FILENAME = "c2_perspective.md"
+
 _OVERVIEW_MAX_CHARS = 240
 
 
@@ -477,6 +481,7 @@ def run_publish(
     judge: JudgeEntry | None = None,
     platform: str = _DEFAULT_PLATFORM,
     prompts_dir: Path | None = None,
+    persona_perspective: str = "",
     llm_call: Any = None,
 ) -> dict[str, Any]:
     """Single-movie platform publish draft: the only creative compose step.
@@ -484,6 +489,8 @@ def run_publish(
     产「电影 id + 标题(headline) + 正文(body)」结构化产物（ADR-0015 D4）；片名 / 年份 /
     导演由创作环节经归属行 D3 落进正文，链接与平台呈现规则留给下游平台适配阶段。
     ``platform`` 选取 ``compose_publish_<platform>.md``（默认 xiaohongshu）。
+    ``persona_perspective`` 注入 C2 主视角（ADR-0017 D2）；空串 = 现有默认行为，
+    首发 publish / 9.8 重生成路径零回归。
     """
     template = load_c2_template(platform, prompts_dir)
     news_context = build_news_context(news, "")
@@ -492,7 +499,12 @@ def run_publish(
     # ADR-0016 D1：注入 headline 硬规则共享契约，monolithic 不再自带一份规则文本。
     headline_contract = load_headline_contract(prompts_dir)
     prompt = render_c2_prompt(
-        template, news_context, selected_movie, judge_kernel, headline_contract
+        template,
+        news_context,
+        selected_movie,
+        judge_kernel,
+        headline_contract,
+        persona_perspective,
     )
 
     if llm_call is not None:
@@ -650,6 +662,7 @@ def render_c2_prompt(
     selected_movie: str,
     judge_kernel: str,
     headline_contract: str = "",
+    persona_perspective: str = "",
 ) -> str:
     rendered = template.replace("{{news_context}}", news_context or "（无新闻语境）")
     rendered = rendered.replace("{{selected_movie}}", selected_movie or "（无选定电影）")
@@ -657,7 +670,33 @@ def render_c2_prompt(
     # ADR-0016 D1：headline 规则单一事实源注入；模板无此占位符时 replace 为 no-op，
     # 渲染结果与抽取前完全一致（向后兼容，见 golden-snapshot 测试）。
     rendered = rendered.replace("{{headline_contract}}", headline_contract or "")
+    # ADR-0017 D2：persona 主视角注入，完全复刻 headline_contract 的 no-op 模式——
+    # 空串 = 默认平视调性（首发 publish / 9.8 重生成路径零回归，golden-snapshot 兜底）。
+    rendered = rendered.replace("{{persona_perspective}}", persona_perspective or "")
     return rendered
+
+
+def load_persona_perspective(
+    persona_id: str, prompts_dir: Path | None = None
+) -> str:
+    """加载某 persona 的 C2 侧蒸馏视角（ADR-0017 D1）。
+
+    ``persona_id`` 归一化：``triggered_by`` 用 ``THE-SAGE`` 大写连字符，persona 目录用
+    ``The-Sage`` 首字母大写；按 hyphen 段做 title-case 归一（``THE-SAGE`` → ``The-Sage``）。
+    查找顺序与 load_c2_template 一致：优先 prompts_dir/personas/…，回退 repo 根路径。
+    只认 c2_perspective.md，缺文件 → 清晰报错（禁回退读 persona_card.md）。
+    """
+    normalized = "-".join(part.capitalize() for part in persona_id.split("-"))
+    base = prompts_dir or (repo_root() / "prompts")
+    path = base / "personas" / normalized / _C2_PERSPECTIVE_FILENAME
+    if not path.is_file():
+        path = repo_root() / "prompts" / "personas" / normalized / _C2_PERSPECTIVE_FILENAME
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"c2_perspective not found for persona {persona_id!r} "
+            f"(normalized {normalized!r}): {path}"
+        )
+    return path.read_text(encoding="utf-8").strip()
 
 
 def load_headline_contract(prompts_dir: Path | None = None) -> str:
