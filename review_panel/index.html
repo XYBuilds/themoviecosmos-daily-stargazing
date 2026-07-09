@@ -1133,6 +1133,17 @@
         });
       }
 
+      // 后端错误响应有两种形状：subprocess 类 handler 返回 {stderr}，校验/路由 404 返回 {error}。
+      // 统一按 stderr → error → HTTP 状态 → 兜底 顺序提取，避免某一形状缺字段时前端把真实
+      // 原因吞成无信息的「未知错误」（典型：连到未含新端点的旧 serve 实例时的 404 not found）。
+      function apiErrorText(res) {
+        var b = res && res.body;
+        if (b && b.stderr) return b.stderr;
+        if (b && b.error) return b.error;
+        if (res && typeof res.status === "number") return "HTTP " + res.status;
+        return "未知错误";
+      }
+
       // ---------------------------------------------------------------------
       // 渲染
       // ---------------------------------------------------------------------
@@ -1476,7 +1487,7 @@
               renderCopyActions();
               showCopyOpResult("✓ 已保存", false);
             } else {
-              var msg = (res.body && res.body.error) ? res.body.error : "未知错误";
+              var msg = apiErrorText(res);
               showCopyOpResult("✗ 保存失败：" + msg, true);
               if (saveBtn) {
                 saveBtn.disabled = false;
@@ -1521,7 +1532,7 @@
               renderCopyBody();
               showCopyOpResult("✓ 正文已重生成", false);
             } else {
-              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              var stderr = apiErrorText(res);
               showCopyOpResult("✗ 重生成失败：" + stderr, true);
             }
           })
@@ -1555,7 +1566,7 @@
               renderCopyHeadline();
               showCopyOpResult("✓ 标题已重生成", false);
             } else {
-              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              var stderr = apiErrorText(res);
               showCopyOpResult("✗ 重生成失败：" + stderr, true);
             }
           })
@@ -1632,7 +1643,7 @@
               renderHumanizeSlot();
               renderCopyBody();
             } else {
-              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              var stderr = apiErrorText(res);
               renderHumanizeSlot();
               var errEl = document.getElementById("humanize-result");
               if (errEl) {
@@ -1813,7 +1824,7 @@
               showCopyEmptyState("已生成 " + state.drafts.length + " 版草稿，点卡片选主视角");
               showDraftPoolResult("✓ 生成 " + state.drafts.length + " 版草稿", false);
             } else {
-              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              var stderr = apiErrorText(res);
               showError("生成草稿池失败：" + stderr);
               switchView("candidates");
             }
@@ -1851,7 +1862,7 @@
               loadCopy();
               showDraftPoolResult("✓ 已选主视角：" + state.selectedDraftId, false);
             } else {
-              var msg = (res.body && res.body.error) ? res.body.error : "未知错误";
+              var msg = apiErrorText(res);
               showDraftPoolResult("✗ 选中失败：" + msg, true);
             }
           })
@@ -1884,7 +1895,7 @@
               state.combineChecked = [];
               showDraftPoolResult("✓ 已追加合并草稿", false);
             } else {
-              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
+              var stderr = apiErrorText(res);
               showDraftPoolResult("✗ 合并失败：" + stderr, true);
             }
           })
