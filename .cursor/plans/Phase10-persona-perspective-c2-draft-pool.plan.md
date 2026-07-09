@@ -36,7 +36,7 @@ todos:
     status: complete
   - id: p10.6-tests
     content: 10.6 · [测试] 覆盖 persona 注入 run_publish/空注入 golden-snapshot/drafts_adapter 扇出与 combine≤2/api generate-drafts+select-draft+combine-drafts/指针派生失效 humanized/向后兼容（无 persona 时旧路径不回归）
-    status: todo
+    status: complete
   - id: p10.7-gate-doc-sync
     content: 10.7 · [GATE] 真实重跑全量扇出 + 面板验收（浏览池/选主视角/合并≤2/派生当前稿/失效 humanized）+ 离线 --combine-mode both 产 A/B 两版肉眼对比二选一 + 把选中路线设为生产默认（面板恒走单版）+ Go 后同步 SSOT/PRD 并引用 ADR-0017 收尾 [需人工验收]
     status: todo

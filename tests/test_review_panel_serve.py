@@ -1416,6 +1416,40 @@ class SelectDraftRouteTests(unittest.TestCase):
             self.assertIsNone(entry["humanized_path"])
             self.assertEqual(entry["selected_draft_id"], "The-Hero")
 
+    def test_legacy_selection_without_pointer_field_is_backward_compatible(self) -> None:
+        # 向后兼容（ADR-0017 D4）：旧 selection 的 copies 条目无 selected_draft_id 字段
+        # （Phase 10 前发布产生），select-draft 应正常补上指针而不报错。
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._setup_pool(tmp_path, date)
+
+            # 构造一个缺 selected_draft_id 的旧格式条目（含 published/copy_path/humanized_path）。
+            from review_panel.serve import write_selection
+
+            selection = read_selection(tmp_path, date)
+            legacy_humanized = tmp_path / date / "09-slug_copy_xiaohongshu_humanized.md"
+            legacy_humanized.write_text("旧去AI化稿（Phase 10 前）", encoding="utf-8")
+            selection.setdefault("copies", {})["xiaohongshu"] = {
+                "published": True,
+                "copy_path": str(tmp_path / date / "09-slug_copy_xiaohongshu.md"),
+                "humanized_path": str(legacy_humanized),
+            }
+            write_selection(tmp_path, date, selection)
+
+            status, payload = route(
+                "POST", "/api/select-draft", {}, {"date": date, "draft_id": "The-Sage"}, batch_root=tmp_path
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["selected_draft_id"], "The-Sage")
+            # 旧 humanized 稿随 body 变而失效。
+            self.assertFalse(legacy_humanized.exists())
+            entry = read_selection(tmp_path, date)["copies"]["xiaohongshu"]
+            self.assertEqual(entry["selected_draft_id"], "The-Sage")
+            self.assertIsNone(entry["humanized_path"])
+
     def test_unknown_draft_id_returns_400(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
