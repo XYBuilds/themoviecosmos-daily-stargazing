@@ -119,7 +119,7 @@
       font-weight: 600;
     }
 
-    #publish-btn {
+    #generate-drafts-btn {
       background: var(--accent);
       color: #1a1408;
       border: none;
@@ -132,11 +132,11 @@
       transition: background 0.15s ease;
     }
 
-    #publish-btn:hover:not(:disabled) {
+    #generate-drafts-btn:hover:not(:disabled) {
       background: #dd9c4f;
     }
 
-    #publish-btn:disabled {
+    #generate-drafts-btn:disabled {
       background: var(--bg-card);
       color: var(--ink-faint);
       cursor: not-allowed;
@@ -154,30 +154,6 @@
 
     #error-banner.visible {
       display: block;
-    }
-
-    #publish-result {
-      display: none;
-      padding: 10px 20px;
-      font-size: 13px;
-      border-bottom: 1px solid var(--line);
-      font-family: var(--mono);
-    }
-
-    #publish-result.visible {
-      display: block;
-    }
-
-    #publish-result.ok {
-      background: var(--ok-bg);
-      color: var(--ok-fg);
-      border-bottom-color: var(--ok-border);
-    }
-
-    #publish-result.fail {
-      background: var(--danger-bg);
-      color: var(--danger-fg);
-      border-bottom-color: var(--danger-border);
     }
 
     #copy-view {
@@ -334,6 +310,30 @@
       font-style: italic;
       text-align: center;
       padding: 24px 0;
+    }
+
+    .copy-empty-state.loading {
+      color: var(--ink-dim);
+      font-style: normal;
+      padding: 48px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .copy-empty-state .spinner-lg {
+      width: 26px;
+      height: 26px;
+      border: 3px solid var(--line);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    .copy-empty-state .loading-sub {
+      font-size: 11.5px;
+      color: var(--ink-faint);
     }
 
     #copy-humanize-toggle-slot {
@@ -913,11 +913,9 @@
     <button id="lang-toggle" type="button" aria-label="切换语言">EN / 中</button>
     <div id="selection-status">尚未选定候选</div>
     <button id="generate-drafts-btn" type="button" disabled>生成草稿池</button>
-    <button id="publish-btn" disabled>写推文</button>
   </div>
 
   <div id="error-banner"></div>
-  <div id="publish-result"></div>
 
   <!-- 选片视图：候选列表。产出定稿后隐藏，切到 #copy-view。 -->
   <div id="candidates-view">
@@ -1003,14 +1001,12 @@
         dateSelect: document.getElementById("date-select"),
         langToggle: document.getElementById("lang-toggle"),
         selectionStatus: document.getElementById("selection-status"),
-        publishBtn: document.getElementById("publish-btn"),
         generateDraftsBtn: document.getElementById("generate-drafts-btn"),
         draftPoolSection: document.getElementById("draft-pool-section"),
         draftPoolGrid: document.getElementById("draft-pool-grid"),
         draftPoolResult: document.getElementById("draft-pool-result"),
         combineDraftsBtn: document.getElementById("combine-drafts-btn"),
         errorBanner: document.getElementById("error-banner"),
-        publishResult: document.getElementById("publish-result"),
         newsList: document.getElementById("news-list"),
         loadingState: document.getElementById("loading-state"),
         emptyState: document.getElementById("empty-state"),
@@ -1301,8 +1297,24 @@
       function showCopyEmptyState(message) {
         els.copyContent.style.display = "none";
         els.copyPreviewToolbar.classList.remove("visible");
+        els.copyEmptyState.classList.remove("loading");
         els.copyEmptyState.style.display = "block";
         els.copyEmptyState.textContent = message || "尚未定稿";
+      }
+
+      // 10.5.1：草稿池扇出是「逐 persona 调 LLM」的长操作（可能一两分钟），必须给醒目的
+      // 进行中反馈——把 copy-empty-state 切成 loading 态（大 spinner + 主副文案），而不是
+      // 只靠 topbar 按钮上的小 spinner（用户停在选片视图时根本看不到）。
+      function showCopyLoading(mainText, subText) {
+        els.copyContent.style.display = "none";
+        els.copyPreviewToolbar.classList.remove("visible");
+        els.draftPoolSection.style.display = "none";
+        els.copyEmptyState.classList.add("loading");
+        els.copyEmptyState.style.display = "flex";
+        els.copyEmptyState.innerHTML =
+          '<span class="spinner-lg"></span>' +
+          '<span>' + escapeHtml(mainText || "处理中…") + '</span>' +
+          (subText ? '<span class="loading-sub">' + escapeHtml(subText) + '</span>' : '');
       }
 
       function showCopyContent(headline, body) {
@@ -1688,7 +1700,7 @@
             state.humanizedBody = null;
             state.humanizeView = "original";
             if (err.status === 404) {
-              // 该平台还没出稿：留在选片视图，让总编去写推文，而不是弹一个空定稿视图。
+              // 该平台还没出稿：留在选片视图，让总编去「生成草稿池」选主视角，而不是弹一个空定稿视图。
               switchView("candidates");
             } else {
               switchView("copy");
@@ -1701,11 +1713,9 @@
         if (state.selection && state.selection.title) {
           els.selectionStatus.innerHTML = '已选：<span class="picked">' +
             escapeHtml(state.selection.title) + '</span>';
-          els.publishBtn.disabled = false;
-          els.generateDraftsBtn.disabled = false;
+          els.generateDraftsBtn.disabled = state.draftOpInFlight;
         } else {
           els.selectionStatus.textContent = "尚未选定候选";
-          els.publishBtn.disabled = true;
           els.generateDraftsBtn.disabled = true;
         }
       }
@@ -1782,6 +1792,13 @@
         els.generateDraftsBtn.disabled = true;
         els.generateDraftsBtn.innerHTML = '<span class="spinner"></span>扇出中…';
         clearError();
+        // 立即切进定稿视图并显示醒目 loading 态——扇出要逐个 persona 调模型，耗时较长，
+        // 必须让总编看到「正在跑，请等待」，而不是停在选片视图对着一个不动的按钮。
+        switchView("copy");
+        showCopyLoading(
+          "正在为每个共鸣视角生成草稿…",
+          "逐个调用模型，可能需要一两分钟，请稍候"
+        );
         apiPost("/api/generate-drafts", {
           date: state.date,
           slug: state.selection.news_slug,
@@ -1792,17 +1809,18 @@
               state.drafts = res.body.drafts || [];
               state.selectedDraftId = null;
               state.combineChecked = [];
-              switchView("copy");
               renderDraftPool();
               showCopyEmptyState("已生成 " + state.drafts.length + " 版草稿，点卡片选主视角");
               showDraftPoolResult("✓ 生成 " + state.drafts.length + " 版草稿", false);
             } else {
               var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
               showError("生成草稿池失败：" + stderr);
+              switchView("candidates");
             }
           })
           .catch(function (err) {
             showError("生成草稿池请求失败（网络错误）：" + err.message);
+            switchView("candidates");
           })
           .then(function () {
             state.draftOpInFlight = false;
@@ -1902,7 +1920,6 @@
 
       function loadDate(date) {
         clearError();
-        els.publishResult.classList.remove("visible", "ok", "fail");
         state.date = date;
         state.selection = null;
         renderSelectionStatus();
@@ -1980,34 +1997,6 @@
         });
       }
 
-      function onPublish() {
-        if (!state.selection) return;
-        clearError();
-        els.publishResult.classList.remove("visible", "ok", "fail");
-        els.publishBtn.disabled = true;
-        els.publishBtn.innerHTML = '<span class="spinner"></span>写推文中…';
-
-        apiPost("/api/publish", { date: state.date })
-          .then(function (res) {
-            if (res.ok && res.body && res.body.ok) {
-              els.publishResult.className = "visible ok";
-              els.publishResult.textContent = "✓ 定稿成功 → " + res.body.copy_path;
-              loadCopy();
-            } else {
-              var stderr = (res.body && res.body.stderr) ? res.body.stderr : "未知错误";
-              els.publishResult.className = "visible fail";
-              els.publishResult.textContent = "✗ 定稿失败：" + stderr;
-            }
-          })
-          .catch(function (err) {
-            els.publishResult.className = "visible fail";
-            els.publishResult.textContent = "✗ 请求失败（网络错误）：" + err.message;
-          })
-          .then(function () {
-            els.publishBtn.innerHTML = "写推文";
-            els.publishBtn.disabled = !state.selection;
-          });
-      }
 
       // ---------------------------------------------------------------------
       // 事件绑定
@@ -2017,7 +2006,6 @@
         loadDate(els.dateSelect.value);
       });
 
-      els.publishBtn.addEventListener("click", onPublish);
       els.generateDraftsBtn.addEventListener("click", onGenerateDrafts);
       els.combineDraftsBtn.addEventListener("click", onCombineDrafts);
 
