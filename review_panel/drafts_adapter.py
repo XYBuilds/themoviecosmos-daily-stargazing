@@ -36,6 +36,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 from scripts import compose
 from review_panel.publish_adapter import (
+    _attach_movie_header,
     _default_batch_root,
     find_candidate,
     load_judge_entry,
@@ -155,6 +156,8 @@ def run_fanout(
             platform=platform,
             persona_perspective=perspective,
         )
+        draft = dict(draft)
+        draft["body"] = _attach_movie_header(candidate, draft.get("body", ""))
         pool.append(_draft_entry(normalized, draft))
 
     # 整份覆盖（ADR-0017 D3：重新扇出 = 显式重掷全部 persona）。
@@ -225,7 +228,7 @@ def run_combine(
     def _route_b() -> dict[str, Any]:
         # 文本融合：读池内两份既有 body 走纯函数，不调 LLM。headline 取 a 的既有 headline。
         merged_body = combine_bodies(by_id[a_id].get("body", ""), by_id[b_id].get("body", ""))
-        return {"headline": by_id[a_id].get("headline", ""), "body": merged_body}
+        return {"headline": by_id[a_id].get("headline", ""), "body": _attach_movie_header(candidate, merged_body)}
 
     if combine_mode == "A":
         pool.append(_draft_entry(base_id, _route_a()))
