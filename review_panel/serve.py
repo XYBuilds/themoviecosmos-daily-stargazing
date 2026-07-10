@@ -977,6 +977,25 @@ def handle_copy(batch_root: Path, query: dict[str, str] | None) -> tuple[int, di
     }
 
 
+def handle_drafts(batch_root: Path, query: dict[str, str] | None) -> tuple[int, dict[str, Any]]:
+    """GET /api/drafts：把只读草稿池读回前端，供刷新后恢复 pick（选型）阶段。
+
+    pick 升格为可刷新恢复的真实阶段后，前端需要一个事实来源重建 persona tab 行；但草稿池
+    只落盘、不驻留 serve 内存（process 内存里没有池），刷新后前端据 selection.selected.news_slug
+    调本端点把池读回。「还没产池」是正常态：返回 200 + ``drafts: []``（前端据此留在选片视图），
+    与 handle_selection 的 ``selection: null`` 同风格，而非 404——刷新恢复不应把「未产池」当错误。
+    """
+    query = query or {}
+    date = query.get("date")
+    slug = query.get("slug")
+    platform = query.get("platform") or "xiaohongshu"
+    if not date or not slug:
+        return 400, {"error": "missing required query params: date/slug"}
+    pool_path = _drafts_pool_path(batch_root, date, slug, platform)
+    drafts = _read_drafts_pool(pool_path)
+    return 200, {"drafts": drafts, "drafts_path": str(pool_path), "platform": platform}
+
+
 def route(
     method: str,
     path: str,
@@ -1004,6 +1023,8 @@ def route(
         return handle_copy(batch_root, query)
     if method == "GET" and path == "/api/selection":
         return handle_selection(batch_root, query)
+    if method == "GET" and path == "/api/drafts":
+        return handle_drafts(batch_root, query)
     if method == "POST" and path == "/api/select":
         return handle_select(batch_root, body)
     if method == "POST" and path == "/api/publish":

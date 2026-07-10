@@ -442,6 +442,56 @@ class SelectionRouteTests(unittest.TestCase):
             self.assertTrue(sel["copies"]["xiaohongshu"]["published"])
 
 
+class DraftsGetRouteTests(unittest.TestCase):
+    """10.5.1 · GET /api/drafts：刷新后把只读草稿池读回前端，恢复 pick（选型）阶段。"""
+
+    def test_missing_params_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            status, payload = route(
+                "GET", "/api/drafts", {"date": "2026-07-06"}, None, batch_root=Path(tmp)
+            )
+            self.assertEqual(status, 400)
+            self.assertIn("error", payload)
+
+    def test_no_pool_file_returns_200_empty(self) -> None:
+        # 「还没产池」是正常态：200 + 空数组（前端据此留在选片视图），而非 404。
+        with TemporaryDirectory() as tmp:
+            status, payload = route(
+                "GET",
+                "/api/drafts",
+                {"date": "2026-07-06", "slug": "09-slug"},
+                None,
+                batch_root=Path(tmp),
+            )
+            self.assertEqual(status, 200)
+            self.assertEqual(payload["drafts"], [])
+
+    def test_existing_pool_returned(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            pool = [
+                {"draft_id": "The-Sage", "headline": "理性之眼", "body": "以求真视角。"},
+                {"draft_id": "The-Hero", "headline": "抗争之路", "body": "以抗争视角。"},
+            ]
+            pool_path = tmp_path / date / "09-slug_drafts_xiaohongshu.json"
+            pool_path.parent.mkdir(parents=True)
+            pool_path.write_text(
+                json.dumps(pool, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+            status, payload = route(
+                "GET",
+                "/api/drafts",
+                {"date": date, "slug": "09-slug"},
+                None,
+                batch_root=tmp_path,
+            )
+            self.assertEqual(status, 200)
+            self.assertEqual(len(payload["drafts"]), 2)
+            self.assertEqual(payload["drafts"][0]["draft_id"], "The-Sage")
+            self.assertEqual(payload["platform"], "xiaohongshu")
+
+
 class ParseCopyMarkdownTests(unittest.TestCase):
     """9.7.3 · parse_copy_markdown 是纯函数，直接喂文本断言即可，不用起 batch_root。"""
 

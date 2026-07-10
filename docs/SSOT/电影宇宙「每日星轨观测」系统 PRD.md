@@ -259,6 +259,8 @@ surface_match_score + event_match_score + persona_semantic_match_score
 * 每版附跳转链接 + 0~2 个自然话题标签；`image_ref` 仅占位，本 Phase 不生成图片。
 * **Phase 9.8 · 面板定点重生成与人工编辑**（[ADR-0016](../adr/0016-panel-editorial-regeneration-and-inline-edit.md)）：总编在定稿区可对成品稿做三种定点操控，均**覆盖当前稿**、不新增版本层（仍是原版/去AI化版二档）——只换正文（重跑 C2 创作，丢弃顺带产出的新 headline，headline 不自动联动）、只换标题（body-aware，以当前正文为输入重出一句 headline，body/链接不动）、面板内直接编辑正文（无 LLM，写回原稿）。只换正文与编辑正文这两种改动 body 的操作会失效并删除陈旧的 `_humanized.md`；只换标题不改 body，不触发失效。
 
+* **Phase 10 · persona 视角 C2 草稿池**（[ADR-0017](../adr/0017-persona-perspective-c2-draft-pool.md)）：修复「上游 persona 视角从未进入 C2」的架构缺口。此前样例稿的「视角感」实为 judge rationale 的回声；现每个 persona 新增 `prompts/personas/<persona_id>/c2_perspective.md`（**C2 侧视角 SSOT**，去行话中文蒸馏，与检索侧 `persona_card.md` 分层，C2 只读前者），经 `run_publish` 的 `{{persona_perspective}}` 占位符（no-op 向后兼容）注入。总编面板新增**只读草稿池**：按候选 `triggered_by` 全量扇出各 persona 一版，落 `{slug}_drafts_{platform}.json`（append-only、永不消费/删除）；「选中」= 可变指针 `selected_draft_id`，派生当前稿并失效 `_humanized.md`。层级为 `只读草稿池 → 当前稿（唯一可编辑）→ 去AI化版`——可编辑面未变宽，推翻 [ADR-0016](../adr/0016-panel-editorial-regeneration-and-inline-edit.md) D4 的字面「严格二档」而不违其本意。复数视角合并上限 2；A/B 双路线仅开发期 `--combine-mode both` 离线对照，**10.7 GATE 冻结路线 A（重跑 C2 合并视角）为生产默认**，serve 恒单版（纯文档冻结、零代码改动）。
+
 ### 7.4 视觉切片与发布
 
 * **图片生成**：独立**视觉生成层 Phase**（先定义与主项目 og 图共用的一套设计逻辑）；Phase 4 仅在 profile 占位 `image_ref`，不生成。
