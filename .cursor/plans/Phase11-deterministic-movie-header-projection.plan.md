@@ -14,7 +14,7 @@ overview: |
 todos:
   - id: p11.1-static-maps-and-adr
     content: 11.1 · [asset] 静态映射表（genres EN→中 + ISO639-1 语言码→中文语言名，纯代码零联网）+ 抬头行格式契约 prompts/_shared/xiaohongshu_movie_header_contract.md + 写 ADR-0018（确定性抬头投影：从 LLM 收回抬头行、类比 movie_url 由代码追加；中文译名作可插拔增强层留 TODO-B）
-    status: todo
+    status: complete
   - id: p11.2-render-header-pure-fn
     content: 11.2 · [compose] render_movie_header(proj) 纯函数（零 IO 可单测）：三段片名 + original_language!=en 去重规则 + release_date 拆 [Y/M/D] + 文明码.upper()+语言名 + 类型映射 + 光度/体积 + 中文片名缺失→drop_cn_seg 退化
     status: todo
