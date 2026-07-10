@@ -307,7 +307,9 @@ class ComposePublishTests(unittest.TestCase):
             )
 
         self.assertEqual(draft["headline"], "一句标题")
-        self.assertIn("这是一段正文。", draft["body"])
+        self.assertTrue(draft["body"].startswith(render_movie_header(build_header_projection(_CANDIDATE, movie_detail_loader=lambda _tmdb_id: _DETAIL))))
+        self.assertEqual(draft["body"].count(render_movie_header(build_header_projection(_CANDIDATE, movie_detail_loader=lambda _tmdb_id: _DETAIL))), 1)
+        self.assertNotIn("「Interstellar」(2014) Christopher Nolan", draft["body"])
         self.assertNotIn("《Interstellar》(2014)", draft["body"])
         self.assertNotIn("https://themoviecosmos.com/movie/157336", draft["body"])
 
