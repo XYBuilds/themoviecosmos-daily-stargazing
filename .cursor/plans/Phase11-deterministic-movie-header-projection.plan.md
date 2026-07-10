@@ -23,7 +23,7 @@ todos:
     status: complete
   - id: p11.4-wire-into-publish
     content: 11.4 · [compose+prompt] 抬头由代码追加进 run_publish 产物（类比 movie_url）+ 改 compose_publish_xiaohongshu.md 归属行段（禁 LLM 生成片名/抬头行）+ clean_publish_body 兜底剥除 LLM 误吐抬头
-    status: todo
+    status: complete
   - id: p11.5-adapter-fanout-header
     content: 11.5 · [adapter] drafts_adapter 全量扇出每份草稿装配确定性抬头 + publish_adapter 同步；复用既有 locate/load/find；golden-snapshot 证既有链路无回归
     status: todo
