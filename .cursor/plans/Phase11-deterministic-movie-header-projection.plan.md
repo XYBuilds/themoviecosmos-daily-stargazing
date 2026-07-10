@@ -29,7 +29,7 @@ todos:
     status: complete
   - id: p11.6-tests
     content: 11.6 · [测试] render_movie_header 各分支（英语片去重/非英语三段/缺中文退化/缺 director/映射命中与 fallback/release_date 异常）+ build_header_projection stub 注入 + 集成 drafts/publish 抬头装配
-    status: todo
+    status: complete
   - id: p11.7-gate
     content: 11.7 · [GATE] 真实重跑扇出对比新旧抬头 + 人工验收渲染格式（对齐冻结模板）+ 确认 title/original 混用病根消除 + 文档同步 [需人工验收]
     status: todo

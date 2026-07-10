@@ -13,6 +13,7 @@ from review_panel.drafts_adapter import (
     run_combine,
     run_fanout,
 )
+from review_panel.publish_adapter import run_adapter
 
 _TMDB_ID = 355196
 _TRIGGERED_BY = ["THE-SAGE", "THE-EXPLORER", "THE-INNOCENT"]
@@ -57,8 +58,8 @@ def _make_batch(
 ) -> None:
     news_dir = tmp_path / date / slug
     news_dir.mkdir(parents=True)
-    _write_news(news_dir)
     resolved = _TRIGGERED_BY if triggered_by is None else triggered_by
+    _write_news(news_dir)
     _write_retrieve(news_dir, resolved, tmdb_id=tmdb_id)
 
 
@@ -68,7 +69,15 @@ def _fake_perspective(persona_id: str) -> str:
 
 
 def _make_fake_publish(calls: list[dict]):
-    def _fake_publish(candidate, news, *, provider=None, judge=None, platform=None, persona_perspective=""):
+    def _fake_publish(
+        candidate,
+        news,
+        *,
+        provider=None,
+        judge=None,
+        platform=None,
+        persona_perspective="",
+    ):
         calls.append({"persona_perspective": persona_perspective})
         return {
             "tmdb_id": candidate["tmdb_id"],
@@ -106,16 +115,16 @@ class FanoutTests(unittest.TestCase):
                 [d["draft_id"] for d in pool],
                 ["The-Sage", "The-Explorer", "The-Innocent"],
             )
-            # 每条 draft 都注入了对应 persona 的蒸馏视角。
             self.assertEqual(
                 [c["persona_perspective"] for c in calls],
                 ["视角[The-Sage]", "视角[The-Explorer]", "视角[The-Innocent]"],
             )
 
-    def test_fanout_attaches_same_header_for_every_persona(self) -> None:
+    def test_fanout_and_publish_share_same_deterministic_header(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             _make_batch(tmp_path, "2026-07-06", "02-slug")
+
             run_fanout(
                 "2026-07-06",
                 "02-slug",
@@ -124,12 +133,21 @@ class FanoutTests(unittest.TestCase):
                 run_publish=_make_fake_publish([]),
                 load_persona_perspective=_fake_perspective,
             )
-
             pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
-            self.assertTrue(pool)
-            headers = {draft["body"].split("\n\n", 1)[0] for draft in pool}
-            self.assertEqual(len(headers), 1)
-            self.assertTrue(all(draft["body"].count(next(iter(headers))) == 1 for draft in pool))
+            draft_header = pool[0]["body"].split("\n\n", 1)[0]
+
+            copy_path = run_adapter(
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
+                batch_root=tmp_path,
+                run_publish=_make_fake_publish([]),
+            )
+            publish_header = "\n".join(copy_path.read_text(encoding="utf-8").splitlines()[4:6])
+
+            self.assertEqual(draft_header, publish_header)
+            self.assertIn("Some Movie", draft_header)
+            self.assertIn("\n", draft_header)
 
     def test_fanout_empty_triggered_by_raises(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -137,14 +155,15 @@ class FanoutTests(unittest.TestCase):
             _make_batch(tmp_path, "2026-07-06", "02-slug", triggered_by=[])
             with self.assertRaises(ValueError):
                 run_fanout(
-                    "2026-07-06", "02-slug", _TMDB_ID,
+                    "2026-07-06",
+                    "02-slug",
+                    _TMDB_ID,
                     batch_root=tmp_path,
                     run_publish=_make_fake_publish([]),
                     load_persona_perspective=_fake_perspective,
                 )
 
     def test_fanout_overwrites_pool(self) -> None:
-        # 重新扇出 = 整份覆盖（ADR-0017 D3）。
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             _make_batch(tmp_path, "2026-07-06", "02-slug")
@@ -154,7 +173,9 @@ class FanoutTests(unittest.TestCase):
                 encoding="utf-8",
             )
             run_fanout(
-                "2026-07-06", "02-slug", _TMDB_ID,
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
                 batch_root=tmp_path,
                 run_publish=_make_fake_publish([]),
                 load_persona_perspective=_fake_perspective,
@@ -167,7 +188,9 @@ class CombineTests(unittest.TestCase):
     def _seed_pool(self, tmp_path: Path, date: str, slug: str) -> None:
         _make_batch(tmp_path, date, slug)
         run_fanout(
-            date, slug, _TMDB_ID,
+            date,
+            slug,
+            _TMDB_ID,
             batch_root=tmp_path,
             run_publish=_make_fake_publish([]),
             load_persona_perspective=_fake_perspective,
@@ -180,7 +203,9 @@ class CombineTests(unittest.TestCase):
             calls: list[dict] = []
 
             run_combine(
-                "2026-07-06", "02-slug", _TMDB_ID,
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
                 ["The-Sage", "The-Explorer"],
                 combine_mode="A",
                 batch_root=tmp_path,
@@ -191,8 +216,7 @@ class CombineTests(unittest.TestCase):
             pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
             ids = [d["draft_id"] for d in pool]
             self.assertIn("The-Sage+The-Explorer", ids)
-            self.assertEqual(len(pool), 4)  # 3 原 + 1 合并
-            # 路线 A 走 run_publish，复合视角含两份。
+            self.assertEqual(len(pool), 4)
             self.assertEqual(len(calls), 1)
             self.assertIn("视角[The-Sage]", calls[0]["persona_perspective"])
             self.assertIn("视角[The-Explorer]", calls[0]["persona_perspective"])
@@ -208,7 +232,9 @@ class CombineTests(unittest.TestCase):
                 raise AssertionError("route B must not call run_publish")
 
             run_combine(
-                "2026-07-06", "02-slug", _TMDB_ID,
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
                 ["The-Sage", "The-Explorer"],
                 combine_mode="B",
                 batch_root=tmp_path,
@@ -226,7 +252,9 @@ class CombineTests(unittest.TestCase):
             self._seed_pool(tmp_path, "2026-07-06", "02-slug")
 
             run_combine(
-                "2026-07-06", "02-slug", _TMDB_ID,
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
                 ["The-Sage", "The-Explorer"],
                 combine_mode="both",
                 batch_root=tmp_path,
@@ -238,7 +266,7 @@ class CombineTests(unittest.TestCase):
             ids = [d["draft_id"] for d in pool]
             self.assertIn("The-Sage+The-Explorer#A", ids)
             self.assertIn("The-Sage+The-Explorer#B", ids)
-            self.assertEqual(len(pool), 5)  # 3 原 + 2 合并
+            self.assertEqual(len(pool), 5)
 
     def test_combine_more_than_two_raises(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -246,7 +274,9 @@ class CombineTests(unittest.TestCase):
             self._seed_pool(tmp_path, "2026-07-06", "02-slug")
             with self.assertRaises(ValueError):
                 run_combine(
-                    "2026-07-06", "02-slug", _TMDB_ID,
+                    "2026-07-06",
+                    "02-slug",
+                    _TMDB_ID,
                     ["The-Sage", "The-Explorer", "The-Innocent"],
                     combine_mode="A",
                     batch_root=tmp_path,
@@ -260,7 +290,9 @@ class CombineTests(unittest.TestCase):
             self._seed_pool(tmp_path, "2026-07-06", "02-slug")
             with self.assertRaises(ValueError):
                 run_combine(
-                    "2026-07-06", "02-slug", _TMDB_ID,
+                    "2026-07-06",
+                    "02-slug",
+                    _TMDB_ID,
                     ["The-Sage", "The-Nonexistent"],
                     combine_mode="A",
                     batch_root=tmp_path,
@@ -275,7 +307,9 @@ class CombineTests(unittest.TestCase):
             before = [d["draft_id"] for d in _read_pool(tmp_path, "2026-07-06", "02-slug")]
 
             run_combine(
-                "2026-07-06", "02-slug", _TMDB_ID,
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
                 ["The-Sage", "The-Explorer"],
                 combine_mode="A",
                 batch_root=tmp_path,
@@ -293,7 +327,6 @@ class CombineBodiesPureFunctionTests(unittest.TestCase):
         a = "「Some Movie」(2025) D\nA 的正文。"
         b = "「Some Movie」(2025) D\nB 的正文。"
         merged = combine_bodies(a, b)
-        # 归属行只出现一次。
         self.assertEqual(merged.count("「Some Movie」(2025) D"), 1)
         self.assertIn("A 的正文。", merged)
         self.assertIn("B 的正文。", merged)
