@@ -17,7 +17,7 @@ todos:
     status: complete
   - id: p11.2-render-header-pure-fn
     content: 11.2 · [compose] render_movie_header(proj) 纯函数（零 IO 可单测）：三段片名 + original_language!=en 去重规则 + release_date 拆 [Y/M/D] + 文明码.upper()+语言名 + 类型映射 + 光度/体积 + 中文片名缺失→drop_cn_seg 退化
-    status: todo
+    status: complete
   - id: p11.3-build-projection-byid
     content: 11.3 · [compose] build_header_projection(candidate)：retrieve candidate + get_movie_detail_by_tmdb_id 补 director/vote_average/runtime（ADR-0012 通路B）+ 静态映射；取数与渲染解耦、可注入 stub；cleaned.csv 缺失清晰降级
     status: todo

@@ -43,6 +43,7 @@ from openai import OpenAI
 
 from scripts.lib.env import default_llm_provider, load_env
 from scripts.lib.llm import get_llm_client
+from scripts.lib.movie_labels import GENRE_EN_TO_ZH, LANG_CODE_TO_ZH
 from scripts.lib.paths import repo_root
 from scripts.movie_metadata import get_movie_detail_by_tmdb_id
 
@@ -362,6 +363,91 @@ def _detail_year(detail: dict[str, Any]) -> int | None:
     if len(text) >= 4 and text[:4].isdigit():
         return int(text[:4])
     return None
+
+
+def _split_genre_values(genres: Any) -> list[str]:
+    if isinstance(genres, list):
+        return [str(item).strip() for item in genres if str(item).strip()]
+    if isinstance(genres, str):
+        raw = genres.replace("|", ",")
+        return [part.strip() for part in raw.split(",") if part.strip()]
+    return []
+
+
+def _language_display(code: Any) -> str:
+    raw = str(code or "").strip()
+    if not raw:
+        return ""
+    upper = raw.upper()
+    label = LANG_CODE_TO_ZH.get(raw.lower(), "")
+    return f"{upper} {label}".strip() if label else upper
+
+
+def _format_release_date(raw: Any) -> str:
+    text = str(raw or "").strip()
+    if len(text) >= 10 and text[:4].isdigit() and text[5:7].isdigit() and text[8:10].isdigit():
+        return f"[Y: {text[:4]}, M: {text[5:7]}, D: {text[8:10]}]"
+    return "未知"
+
+
+def _dedupe_segments(parts: list[str]) -> list[str]:
+    deduped: list[str] = []
+    for part in parts:
+        text = str(part or "").strip()
+        if text and text not in deduped:
+            deduped.append(text)
+    return deduped
+
+
+def render_movie_header(proj: dict[str, Any]) -> str:
+    """Render a deterministic movie header block for C2 output."""
+    zh_title = str(proj.get("zh_title") or "").strip()
+    original_title = str(proj.get("original_title") or proj.get("title") or "").strip()
+    title = str(proj.get("title") or original_title or "").strip()
+    language = str(proj.get("original_language") or "").strip()
+
+    title_parts: list[str] = []
+    if zh_title:
+        title_parts.append(f"「{zh_title}」")
+    if language.lower() == "en":
+        title_parts.extend([title, original_title])
+    else:
+        title_parts.extend([original_title, title])
+    title_parts = _dedupe_segments(title_parts)
+    if not title_parts and title:
+        title_parts = [title]
+
+    lines: list[str] = []
+    if title_parts:
+        lines.append(" / ".join(title_parts))
+
+    director = str(proj.get("director") or "").strip()
+    if director:
+        lines.append(director)
+
+    lines.append("")
+
+    release_line = _format_release_date(proj.get("release_date"))
+    lines.append(f"坐标：{release_line}" if release_line != "未知" else "坐标：未知")
+
+    language_line = _language_display(language)
+    if language_line:
+        lines.append(f"文明：{language_line}")
+
+    genres = _split_genre_values(proj.get("genres"))
+    if genres:
+        mapped = [GENRE_EN_TO_ZH.get(genre, genre) for genre in genres]
+        lines.append(f"类型：{'，'.join(mapped)}")
+
+    vote_average = proj.get("vote_average")
+    if vote_average not in (None, ""):
+        lines.append(f"光度：{vote_average}")
+
+    runtime = proj.get("runtime")
+    if runtime not in (None, ""):
+        lines.append(f"体积：{runtime}")
+
+    return "\n".join(lines).strip()
 
 
 def _db_projection_for_candidate(candidate: dict[str, Any]) -> dict[str, Any]:
