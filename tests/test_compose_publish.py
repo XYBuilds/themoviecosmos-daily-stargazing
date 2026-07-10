@@ -7,6 +7,7 @@ from unittest.mock import patch
 
 from scripts.compose import (
     JudgeEntry,
+    build_header_projection,
     format_judge_kernel,
     format_selected_movie_block,
     load_c2_template,
@@ -48,6 +49,108 @@ _DETAIL = {
 
 
 class ComposePublishTests(unittest.TestCase):
+    def test_build_header_projection_uses_injected_loader_and_candidate_fields(self) -> None:
+        calls: list[int | str] = []
+
+        def fake_loader(tmdb_id: int | str) -> dict[str, object]:
+            calls.append(tmdb_id)
+            return {
+                "director": "Christopher Nolan",
+                "vote_average": 8.5,
+                "runtime": 169,
+            }
+
+        projection = build_header_projection(
+            {
+                "id": "157336",
+                "title": "Interstellar",
+                "original_title": "Interstellar",
+                "genres": ["Adventure", "Drama"],
+                "release_date": "2014-11-05",
+                "original_language": "en",
+            },
+            movie_detail_loader=fake_loader,
+        )
+
+        self.assertEqual(calls, ["157336"])
+        self.assertEqual(projection["tmdb_id"], "157336")
+        self.assertEqual(projection["id"], "157336")
+        self.assertEqual(projection["title"], "Interstellar")
+        self.assertEqual(projection["original_title"], "Interstellar")
+        self.assertEqual(projection["genres"], ["Adventure", "Drama"])
+        self.assertEqual(projection["release_date"], "2014-11-05")
+        self.assertEqual(projection["original_language"], "en")
+        self.assertEqual(projection["zh_title"], "")
+        self.assertEqual(projection["director"], "Christopher Nolan")
+        self.assertEqual(projection["vote_average"], 8.5)
+        self.assertEqual(projection["runtime"], 169)
+
+    def test_build_header_projection_falls_back_when_loader_fails_or_returns_none(self) -> None:
+        def boom_loader(_tmdb_id: int | str) -> dict[str, object]:
+            raise RuntimeError("cleaned.csv missing")
+
+        failing_projection = build_header_projection(
+            {
+                "tmdb_id": 99,
+                "title": "Fallback Film",
+                "original_title": "Fallback Film",
+                "genres": "Mystery, Thriller",
+                "release_date": "2020-01-02",
+                "original_language": "es",
+            },
+            movie_detail_loader=boom_loader,
+        )
+        none_projection = build_header_projection(
+            {
+                "tmdb_id": 99,
+                "title": "Fallback Film",
+                "original_title": "Fallback Film",
+                "genres": "Mystery, Thriller",
+                "release_date": "2020-01-02",
+                "original_language": "es",
+            },
+            movie_detail_loader=lambda _tmdb_id: None,
+        )
+
+        self.assertEqual(failing_projection["title"], "Fallback Film")
+        self.assertEqual(failing_projection["original_title"], "Fallback Film")
+        self.assertEqual(failing_projection["genres"], "Mystery, Thriller")
+        self.assertEqual(failing_projection["release_date"], "2020-01-02")
+        self.assertEqual(failing_projection["original_language"], "es")
+        self.assertEqual(failing_projection["zh_title"], "")
+        self.assertNotIn("director", failing_projection)
+        self.assertNotIn("vote_average", failing_projection)
+        self.assertNotIn("runtime", failing_projection)
+        self.assertEqual(none_projection["title"], "Fallback Film")
+        self.assertNotIn("director", none_projection)
+
+    def test_build_header_projection_accepts_tmdb_id_key_and_renders(self) -> None:
+        projection = build_header_projection(
+            {
+                "tmdb_id": None,
+                "id": 157336,
+                "title": "Interstellar",
+                "original_title": "Interstellar",
+                "genres": "Adventure, Drama, Science Fiction",
+                "release_date": "2014-11-05",
+                "original_language": "en",
+            },
+            movie_detail_loader=lambda tmdb_id: {
+                "director": "Christopher Nolan",
+                "vote_average": 8.5,
+                "runtime": 169,
+                "tmdb_id": tmdb_id,
+            },
+        )
+        header = render_movie_header(projection)
+
+        self.assertEqual(projection["tmdb_id"], 157336)
+        self.assertEqual(projection["id"], 157336)
+        self.assertIn("Interstellar", header)
+        self.assertIn("Christopher Nolan", header)
+        self.assertIn("光度：8.5", header)
+        self.assertIn("体积：169", header)
+
     def test_selected_movie_block_exposes_real_numbers(self) -> None:
         with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
             block = format_selected_movie_block(_CANDIDATE)

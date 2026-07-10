@@ -20,7 +20,7 @@ todos:
     status: complete
   - id: p11.3-build-projection-byid
     content: 11.3 · [compose] build_header_projection(candidate)：retrieve candidate + get_movie_detail_by_tmdb_id 补 director/vote_average/runtime（ADR-0012 通路B）+ 静态映射；取数与渲染解耦、可注入 stub；cleaned.csv 缺失清晰降级
-    status: todo
+    status: complete
   - id: p11.4-wire-into-publish
     content: 11.4 · [compose+prompt] 抬头由代码追加进 run_publish 产物（类比 movie_url）+ 改 compose_publish_xiaohongshu.md 归属行段（禁 LLM 生成片名/抬头行）+ clean_publish_body 兜底剥除 LLM 误吐抬头
     status: todo
