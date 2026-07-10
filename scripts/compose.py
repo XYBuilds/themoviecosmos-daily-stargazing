@@ -357,21 +357,20 @@ def _candidate_year(candidate: dict[str, Any]) -> int | None:
     return None
 
 
-def _detail_year(detail: dict[str, Any]) -> int | None:
-    raw = detail.get("release_date")
+def _dedupe_segments(parts: list[str]) -> list[str]:
+    deduped: list[str] = []
+    for part in parts:
+        text = str(part or "").strip()
+        if text and text not in deduped:
+            deduped.append(text)
+    return deduped
+
+
+def _format_release_date(raw: Any) -> str:
     text = str(raw or "").strip()
-    if len(text) >= 4 and text[:4].isdigit():
-        return int(text[:4])
-    return None
-
-
-def _split_genre_values(genres: Any) -> list[str]:
-    if isinstance(genres, list):
-        return [str(item).strip() for item in genres if str(item).strip()]
-    if isinstance(genres, str):
-        raw = genres.replace("|", ",")
-        return [part.strip() for part in raw.split(",") if part.strip()]
-    return []
+    if len(text) >= 10 and text[:4].isdigit() and text[5:7].isdigit() and text[8:10].isdigit():
+        return f"[Y: {text[:4]}, M: {text[5:7]}, D: {text[8:10]}]"
+    return "未知"
 
 
 def _language_display(code: Any) -> str:
@@ -383,20 +382,13 @@ def _language_display(code: Any) -> str:
     return f"{upper} {label}".strip() if label else upper
 
 
-def _format_release_date(raw: Any) -> str:
-    text = str(raw or "").strip()
-    if len(text) >= 10 and text[:4].isdigit() and text[5:7].isdigit() and text[8:10].isdigit():
-        return f"[Y: {text[:4]}, M: {text[5:7]}, D: {text[8:10]}]"
-    return "未知"
-
-
-def _dedupe_segments(parts: list[str]) -> list[str]:
-    deduped: list[str] = []
-    for part in parts:
-        text = str(part or "").strip()
-        if text and text not in deduped:
-            deduped.append(text)
-    return deduped
+def _split_genre_values(genres: Any) -> list[str]:
+    if isinstance(genres, list):
+        return [str(item).strip() for item in genres if str(item).strip()]
+    if isinstance(genres, str):
+        raw = genres.replace("|", ",")
+        return [part.strip() for part in raw.split(",") if part.strip()]
+    return []
 
 
 def render_movie_header(proj: dict[str, Any]) -> str:
@@ -450,22 +442,80 @@ def render_movie_header(proj: dict[str, Any]) -> str:
     return "\n".join(lines).strip()
 
 
-def _db_projection_for_candidate(candidate: dict[str, Any]) -> dict[str, Any]:
-    detail = get_movie_detail_by_tmdb_id(candidate.get("tmdb_id")) or {}
-    projection = {
-        key: detail.get(key)
-        for key in _DB_PROJECTION_FIELDS
-        if key in detail and detail.get(key) not in (None, "")
+def _detail_year(detail: dict[str, Any]) -> int | None:
+    raw = detail.get("release_date")
+    text = str(raw or "").strip()
+    if len(text) >= 4 and text[:4].isdigit():
+        return int(text[:4])
+    return None
+
+
+def _candidate_tmdb_id(candidate: dict[str, Any]) -> int | str | None:
+    raw = candidate.get("tmdb_id")
+    if raw in (None, ""):
+        raw = candidate.get("id")
+    if raw in (None, ""):
+        return None
+    return raw
+
+
+def build_header_projection(
+    candidate: dict[str, Any],
+    movie_detail_loader=None,
+) -> dict[str, Any]:
+    """Build a deterministic movie-header projection from retrieve candidate facts.
+
+    The loader is injectable so tests can stub it and avoid touching cleaned.csv.
+    Any loader failure, missing file, or missing detail row degrades softly to the
+    candidate-only projection.
+    """
+    if movie_detail_loader is None:
+        movie_detail_loader = get_movie_detail_by_tmdb_id
+    tmdb_id = _candidate_tmdb_id(candidate)
+    projection: dict[str, Any] = {
+        "tmdb_id": tmdb_id,
+        "id": tmdb_id,
+        "title": str(candidate.get("title") or "").strip(),
+        "original_title": str(candidate.get("original_title") or "").strip(),
+        "genres": candidate.get("genres"),
+        "release_date": candidate.get("release_date"),
+        "original_language": candidate.get("original_language"),
+        "zh_title": "",
     }
-    if "overview" not in projection and candidate.get("overview"):
-        projection["overview"] = candidate.get("overview")
-    if "genres" not in projection and candidate.get("genres"):
-        projection["genres"] = candidate.get("genres")
-    if "title" not in projection and candidate.get("title"):
-        projection["title"] = candidate.get("title")
-    if "release_date" not in projection and _candidate_year(candidate) is not None:
-        projection["release_year"] = _candidate_year(candidate)
+
+    if tmdb_id in (None, ""):
+        return projection
+
+    try:
+        detail = movie_detail_loader(tmdb_id)
+    except Exception:
+        detail = None
+    if not isinstance(detail, dict):
+        detail = {}
+
+    for key in _DB_PROJECTION_FIELDS:
+        value = detail.get(key)
+        if value not in (None, "") and key not in projection:
+            projection[key] = value
+
+    for key in ("title", "original_title", "genres", "release_date", "original_language"):
+        value = projection.get(key)
+        if value in (None, "") and detail.get(key) not in (None, ""):
+            projection[key] = detail.get(key)
+
     return projection
+
+
+def _db_projection_for_candidate(candidate: dict[str, Any]) -> dict[str, Any]:
+    projection = build_header_projection(candidate)
+    detail_projection = {
+        key: value
+        for key, value in projection.items()
+        if key in _DB_PROJECTION_FIELDS and value not in (None, "")
+    }
+    if "release_date" not in detail_projection and projection.get("release_date"):
+        detail_projection["release_year"] = _candidate_year(candidate)
+    return detail_projection
 
 
 def _format_db_projection(projection: dict[str, Any]) -> str:
