@@ -7,6 +7,7 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+from scripts.compose import build_header_projection, render_movie_header
 from review_panel.drafts_adapter import (
     combine_bodies,
     run_combine,
@@ -72,7 +73,7 @@ def _make_fake_publish(calls: list[dict]):
         return {
             "tmdb_id": candidate["tmdb_id"],
             "headline": f"标题-{len(calls)}",
-            "body": f"「Some Movie」(2025) D\n正文-{persona_perspective}",
+            "body": f"正文-{persona_perspective}",
         }
 
     return _fake_publish
@@ -111,21 +112,24 @@ class FanoutTests(unittest.TestCase):
                 ["视角[The-Sage]", "视角[The-Explorer]", "视角[The-Innocent]"],
             )
 
-    def test_fanout_dedupes_triggered_by(self) -> None:
+    def test_fanout_attaches_same_header_for_every_persona(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
-            _make_batch(
-                tmp_path, "2026-07-06", "02-slug",
-                triggered_by=["THE-SAGE", "THE-SAGE", "THE-HERO"],
-            )
+            _make_batch(tmp_path, "2026-07-06", "02-slug")
             run_fanout(
-                "2026-07-06", "02-slug", _TMDB_ID,
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
                 batch_root=tmp_path,
                 run_publish=_make_fake_publish([]),
                 load_persona_perspective=_fake_perspective,
             )
+
             pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
-            self.assertEqual([d["draft_id"] for d in pool], ["The-Sage", "The-Hero"])
+            self.assertTrue(pool)
+            headers = {draft["body"].split("\n\n", 1)[0] for draft in pool}
+            self.assertEqual(len(headers), 1)
+            self.assertTrue(all(draft["body"].count(next(iter(headers))) == 1 for draft in pool))
 
     def test_fanout_empty_triggered_by_raises(self) -> None:
         with TemporaryDirectory() as tmp:

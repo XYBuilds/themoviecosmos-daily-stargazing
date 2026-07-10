@@ -6,8 +6,9 @@ import json
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
-from scripts.compose import JudgeEntry
+from scripts.compose import JudgeEntry, build_header_projection, render_movie_header
 from review_panel.publish_adapter import (
     find_candidate,
     load_judge_entry,
@@ -83,7 +84,7 @@ def _fake_run_publish(candidate, news, *, provider=None, judge=None, platform=No
     return {
         "tmdb_id": candidate["tmdb_id"],
         "headline": "当风向不站在她们这边",
-        "body": "「Survival Family」(2017) 矢口史靖\n这是中文正文。",
+        "body": "这是中文正文。",
     }
 
 
@@ -185,12 +186,11 @@ class RunAdapterTests(unittest.TestCase):
             self.assertNotIn("## 中文发布正文", content)
             self.assertNotIn("## 新闻原文（English source）", content)
             self.assertIn("## 链接", content)
-            # 归属行「」在正文内，未被剥除。
-            self.assertIn("「Survival Family」(2017) 矢口史靖", content)
-            self.assertIn("这是中文正文。", content)
-            self.assertIn("https://themoviecosmos.com/movie/429918", content)
-            self.assertIn("https://example.com/article/1", content)
-            # ADR-0015 D3：不再拼机械标题行 {title}(year)，也不用《》。
+            news_dir = locate_news_dir("2026-07-06", "09-slug", batch_root=tmp_path)
+            cand = find_candidate(news_dir, 429918)
+            header = render_movie_header(build_header_projection(cand))
+            self.assertEqual(content.count(header), 1)
+            self.assertEqual(content.count("这是中文正文。"), 1)
             self.assertNotIn("Survival Family(2017)", content)
             self.assertNotIn("《Survival Family》", content)
 

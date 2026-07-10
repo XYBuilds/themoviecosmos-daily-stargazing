@@ -26,7 +26,7 @@ todos:
     status: complete
   - id: p11.5-adapter-fanout-header
     content: 11.5 · [adapter] drafts_adapter 全量扇出每份草稿装配确定性抬头 + publish_adapter 同步；复用既有 locate/load/find；golden-snapshot 证既有链路无回归
-    status: todo
+    status: complete
   - id: p11.6-tests
     content: 11.6 · [测试] render_movie_header 各分支（英语片去重/非英语三段/缺中文退化/缺 director/映射命中与 fallback/release_date 异常）+ build_header_projection stub 注入 + 集成 drafts/publish 抬头装配
     status: todo

@@ -125,6 +125,28 @@ def _count_chinese_chars(text: str) -> int:
     return sum(1 for ch in text if "\u4e00" <= ch <= "\u9fff")
 
 
+def _movie_header_for_candidate(candidate: dict[str, Any]) -> str:
+    return compose.render_movie_header(compose.build_header_projection(candidate))
+
+
+def _attach_movie_header(candidate: dict[str, Any], body: str) -> str:
+    """Ensure draft body carries the deterministic movie header exactly once.
+
+    run_publish already adds the header in Phase 11.4, but adapter-side stubs/tests or
+    future callers may hand us a raw body. This helper keeps the boundary explicit:
+    - empty body → header only
+    - body already starting with the same header → pass through
+    - otherwise prepend the deterministic header once
+    """
+    header = _movie_header_for_candidate(candidate)
+    text = str(body or "").strip()
+    if not text:
+        return header
+    if text == header or text.startswith(f"{header}\n\n"):
+        return text
+    return f"{header}\n\n{text}"
+
+
 def render_copy_markdown(
     date: str,
     candidate: dict[str, Any],
@@ -190,6 +212,8 @@ def run_adapter(
     draft = run_publish(
         candidate, news, provider=provider, judge=judge, platform=platform
     )
+    draft = dict(draft)
+    draft["body"] = _attach_movie_header(candidate, draft.get("body", ""))
 
     # D3 文件名平台化：{slug}_copy.md → {slug}_copy_{platform}.md，
     # 为未来多平台（X/Reddit）留扩展口，避免不同平台互相覆盖同一份稿。
