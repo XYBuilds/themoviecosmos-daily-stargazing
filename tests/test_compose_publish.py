@@ -16,6 +16,7 @@ from scripts.compose import (
     parse_publish_output,
     render_c2_prompt,
     render_headline_prompt,
+    render_movie_header,
     run_headline,
     run_publish,
 )
@@ -63,14 +64,114 @@ class ComposePublishTests(unittest.TestCase):
         self.assertIn("causal_test: X drives Y", kernel)
         self.assertIn("rationale: same engine", kernel)
 
-    def test_publish_prompt_is_single_draft_not_platform_variants(self) -> None:
-        prompt = render_c2_prompt(
-            "{{news_context}}\n{{selected_movie}}\n{{judge_kernel}}",
-            "News",
-            "Movie",
-            "Judge",
+    def test_render_movie_header_drops_cn_segment_for_non_english(self) -> None:
+        header = render_movie_header(
+            {
+                "zh_title": "",
+                "original_title": "Sueño en otro idioma",
+                "title": "I Dream in Another Language",
+                "original_language": "es",
+                "director": "Ernesto Contreras",
+                "release_date": "2017-07-28",
+                "genres": ["Fantasy", "Drama"],
+                "vote_average": 7.9,
+                "runtime": 142,
+            }
         )
-        self.assertEqual(prompt, "News\nMovie\nJudge")
+
+        self.assertEqual(
+            header,
+            "Sueño en otro idioma / I Dream in Another Language\n"
+            "Ernesto Contreras\n"
+            "\n"
+            "坐标：[Y: 2017, M: 07, D: 28]\n"
+            "文明：ES 西班牙语\n"
+            "类型：奇幻，剧情\n"
+            "光度：7.9\n"
+            "体积：142",
+        )
+
+    def test_render_movie_header_dedupes_english_titles(self) -> None:
+        header = render_movie_header(
+            {
+                "zh_title": "",
+                "original_title": "Interstellar",
+                "title": "Interstellar",
+                "original_language": "en",
+                "release_date": "2014-11-05",
+                "genres": "Adventure, Drama, Science Fiction",
+                "vote_average": 8.5,
+                "runtime": 169,
+            }
+        )
+
+        self.assertEqual(
+            header,
+            "Interstellar\n"
+            "\n"
+            "坐标：[Y: 2014, M: 11, D: 05]\n"
+            "文明：EN 英语\n"
+            "类型：冒险，剧情，科幻\n"
+            "光度：8.5\n"
+            "体积：169",
+        )
+
+    def test_render_movie_header_keeps_three_title_segments_with_cn(self) -> None:
+        header = render_movie_header(
+            {
+                "zh_title": "梦呓雨林",
+                "original_title": "Sueño en otro idioma",
+                "title": "I Dream in Another Language",
+                "original_language": "es",
+                "director": "Ernesto Contreras",
+            }
+        )
+
+        self.assertEqual(
+            header,
+            "「梦呓雨林」 / Sueño en otro idioma / I Dream in Another Language\n"
+            "Ernesto Contreras\n"
+            "\n"
+            "坐标：未知\n"
+            "文明：ES 西班牙语",
+        )
+
+    def test_render_movie_header_omits_missing_director_and_falls_back_for_labels(self) -> None:
+        header = render_movie_header(
+            {
+                "zh_title": "",
+                "original_title": "Unknown Film",
+                "title": "Unknown Film",
+                "original_language": "xx",
+                "release_date": "",
+                "genres": ["Made Up Genre"],
+                "vote_average": "",
+                "runtime": None,
+            }
+        )
+
+        self.assertEqual(
+            header,
+            "Unknown Film\n"
+            "\n"
+            "坐标：未知\n"
+            "文明：XX\n"
+            "类型：Made Up Genre",
+        )
+
+    def test_render_movie_header_handles_invalid_release_date(self) -> None:
+        header = render_movie_header(
+            {
+                "zh_title": "",
+                "original_title": "Unknown Film",
+                "title": "Unknown Film",
+                "original_language": "es",
+                "release_date": "not-a-date",
+            }
+        )
+
+        self.assertIn("坐标：未知", header)
+        self.assertNotIn("[Y:", header)
 
     def test_run_publish_feeds_db_and_judge_and_returns_headline_body(self) -> None:
         # ADR-0015 D4：sentinel 契约输出 → run_publish 返回 {tmdb_id, headline, body}。
