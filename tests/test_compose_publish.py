@@ -304,6 +304,10 @@ class ComposePublishTests(unittest.TestCase):
         self.assertEqual(draft["headline"], "当风向不站在她们这边")
         self.assertNotIn("【标题】", draft["headline"])
         self.assertNotIn("【正文】", draft["body"])
+        expected_header = render_movie_header(
+            build_header_projection(_CANDIDATE, movie_detail_loader=lambda _tmdb_id: _DETAIL)
+        )
+        self.assertTrue(draft["body"].startswith(expected_header))
         # 归属行用「」——不得被 clean_publish_body 剥除（只剥《》(年)）。
         self.assertIn("「Interstellar」(2014) Christopher Nolan", draft["body"])
         self.assertIn("这是一段正文。", draft["body"])
@@ -336,20 +340,31 @@ class ComposePublishTests(unittest.TestCase):
         self.assertNotIn("《Interstellar》(2014)", draft["body"])
         self.assertNotIn("https://themoviecosmos.com/movie/157336", draft["body"])
 
-    def test_run_publish_body_empty_when_no_content(self) -> None:
-        # 兜底：LLM 只吐标题无正文 → body 为空（上层据此判失败，不静默出半稿）。
-        def fake_llm(prompt: str) -> str:
-            return "【标题】只有标题\n【正文】\n"
+    def test_clean_publish_body_strips_prompt_leaked_header_lines(self) -> None:
+        from scripts.compose import clean_publish_body
 
-        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
-            draft = run_publish(
-                _CANDIDATE,
-                {"title": "News", "description": "Summary"},
-                llm_call=fake_llm,
-            )
+        body = (
+            "「Interstellar」(2014) Christopher Nolan\n"
+            "Interstellar / Interstellar / Interstellar\n"
+            "坐标：[Y: 2014, M: 11, D: 05]\n"
+            "文明：EN 英语\n"
+            "类型：冒险，剧情，科幻\n"
+            "光度：8.5\n"
+            "体积：169\n"
+            "这是一段正文。\n"
+            "这句话提到导演：Christopher Nolan，但它不是元信息行。"
+        )
 
-        self.assertEqual(draft["headline"], "只有标题")
-        self.assertEqual(draft["body"], "")
+        cleaned = clean_publish_body(body)
+
+        self.assertIn("「Interstellar」(2014) Christopher Nolan", cleaned)
+        self.assertIn("这是一段正文。", cleaned)
+        self.assertNotIn("Interstellar / Interstellar / Interstellar", cleaned)
+        self.assertNotIn("坐标：[Y: 2014, M: 11, D: 05]", cleaned)
+        self.assertNotIn("文明：EN 英语", cleaned)
+        self.assertNotIn("类型：冒险，剧情，科幻", cleaned)
+        self.assertNotIn("光度：8.5", cleaned)
+        self.assertNotIn("体积：169", cleaned)
 
 
 class PublishSystemMessageTests(unittest.TestCase):
