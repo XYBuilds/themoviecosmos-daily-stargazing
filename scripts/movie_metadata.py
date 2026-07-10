@@ -8,14 +8,20 @@ source ``cleaned.csv``.
 
 from __future__ import annotations
 
+import json
+import os
 from pathlib import Path
 from typing import Any, Iterable
+from urllib.error import URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
 import pandas as pd
 
 from scripts.lib.paths import repo_root
 
 DEFAULT_MOVIE_DETAILS_CSV = repo_root() / "data" / "output" / "cleaned.csv"
+TMDB_API_BASE_URL = "https://api.themoviedb.org/3"
 
 _DETAIL_CACHE: dict[Path, pd.DataFrame] = {}
 
@@ -81,6 +87,54 @@ def get_movie_detail_by_tmdb_id(
     if isinstance(row, pd.DataFrame):
         row = row.iloc[0]
     return {str(column): _json_safe(row[column]) for column in df.columns}
+
+
+def _tmdb_api_key(explicit_api_key: str | None = None) -> str:
+    key = (explicit_api_key or os.getenv("TMDB_API_KEY", "")).strip()
+    return key
+
+
+def get_tmdb_zh_title_by_tmdb_id(
+    tmdb_id: int | str,
+    *,
+    api_key: str | None = None,
+    timeout: float = 5.0,
+    opener=urlopen,
+) -> str:
+    """Fetch TMDB's zh-CN localized title for one movie id.
+
+    The helper fails soft: missing key, HTTP/network errors, or empty/English-only
+    responses all degrade to ``""`` so callers can keep ``zh_title`` empty and
+    preserve the existing ``drop_cn_seg`` behavior.
+    """
+    key = _tmdb_api_key(api_key)
+    if not key:
+        return ""
+    movie_id = str(tmdb_id).strip()
+    if not movie_id:
+        return ""
+
+    query = urlencode({"api_key": key, "language": "zh-CN"})
+    url = f"{TMDB_API_BASE_URL}/movie/{movie_id}?{query}"
+    request = Request(
+        url,
+        headers={
+            "Accept": "application/json",
+            "User-Agent": "themoviecosmos-daily-stargazing/1.0",
+        },
+    )
+    try:
+        with opener(request, timeout=timeout) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except (OSError, URLError, ValueError, json.JSONDecodeError):
+        return ""
+
+    title = str(payload.get("title") or "").strip()
+    if not title:
+        return ""
+    if not any("\u4e00" <= ch <= "\u9fff" for ch in title):
+        return ""
+    return title
 
 
 def get_movie_details_by_tmdb_ids(

@@ -57,7 +57,7 @@ class ComposePublishTests(unittest.TestCase):
             return {
                 "director": "Christopher Nolan",
                 "vote_average": 8.5,
-                "runtime": 169,
+                "vote_count": 37000,
             }
 
         projection = build_header_projection(
@@ -70,6 +70,7 @@ class ComposePublishTests(unittest.TestCase):
                 "original_language": "en",
             },
             movie_detail_loader=fake_loader,
+            zh_title_loader=lambda _tmdb_id: "星际穿越",
         )
 
         self.assertEqual(calls, ["157336"])
@@ -80,49 +81,26 @@ class ComposePublishTests(unittest.TestCase):
         self.assertEqual(projection["genres"], ["Adventure", "Drama"])
         self.assertEqual(projection["release_date"], "2014-11-05")
         self.assertEqual(projection["original_language"], "en")
-        self.assertEqual(projection["zh_title"], "")
+        self.assertEqual(projection["zh_title"], "星际穿越")
         self.assertEqual(projection["director"], "Christopher Nolan")
         self.assertEqual(projection["vote_average"], 8.5)
-        self.assertEqual(projection["runtime"], 169)
+        self.assertEqual(projection["vote_count"], 37000)
 
-    def test_build_header_projection_falls_back_when_loader_fails_or_returns_none(self) -> None:
-        def boom_loader(_tmdb_id: int | str) -> dict[str, object]:
-            raise RuntimeError("cleaned.csv missing")
-
-        failing_projection = build_header_projection(
+    def test_build_header_projection_zh_title_loader_falls_back_to_empty(self) -> None:
+        projection = build_header_projection(
             {
-                "tmdb_id": 99,
-                "title": "Fallback Film",
-                "original_title": "Fallback Film",
-                "genres": "Mystery, Thriller",
-                "release_date": "2020-01-02",
-                "original_language": "es",
+                "tmdb_id": 157336,
+                "title": "Interstellar",
+                "original_title": "Interstellar",
+                "genres": "Adventure, Drama, Science Fiction",
+                "release_date": "2014-11-05",
+                "original_language": "en",
             },
-            movie_detail_loader=boom_loader,
-        )
-        none_projection = build_header_projection(
-            {
-                "tmdb_id": 99,
-                "title": "Fallback Film",
-                "original_title": "Fallback Film",
-                "genres": "Mystery, Thriller",
-                "release_date": "2020-01-02",
-                "original_language": "es",
-            },
-            movie_detail_loader=lambda _tmdb_id: None,
+            movie_detail_loader=lambda _tmdb_id: {},
+            zh_title_loader=lambda _tmdb_id: "",
         )
 
-        self.assertEqual(failing_projection["title"], "Fallback Film")
-        self.assertEqual(failing_projection["original_title"], "Fallback Film")
-        self.assertEqual(failing_projection["genres"], "Mystery, Thriller")
-        self.assertEqual(failing_projection["release_date"], "2020-01-02")
-        self.assertEqual(failing_projection["original_language"], "es")
-        self.assertEqual(failing_projection["zh_title"], "")
-        self.assertNotIn("director", failing_projection)
-        self.assertNotIn("vote_average", failing_projection)
-        self.assertNotIn("runtime", failing_projection)
-        self.assertEqual(none_projection["title"], "Fallback Film")
-        self.assertNotIn("director", none_projection)
+        self.assertEqual(projection["zh_title"], "")
 
     def test_build_header_projection_accepts_tmdb_id_key_and_renders(self) -> None:
         projection = build_header_projection(
@@ -138,7 +116,7 @@ class ComposePublishTests(unittest.TestCase):
             movie_detail_loader=lambda tmdb_id: {
                 "director": "Christopher Nolan",
                 "vote_average": 8.5,
-                "runtime": 169,
+                "vote_count": 37000,
                 "tmdb_id": tmdb_id,
             },
         )
@@ -148,8 +126,8 @@ class ComposePublishTests(unittest.TestCase):
         self.assertEqual(projection["id"], 157336)
         self.assertIn("Interstellar", header)
         self.assertIn("Christopher Nolan", header)
-        self.assertIn("光度：8.5", header)
-        self.assertIn("体积：169", header)
+        self.assertIn("光度：8.5/10", header)
+        self.assertIn("体积：37000 - 10⁴ 投票级别", header)
 
     def test_selected_movie_block_exposes_real_numbers(self) -> None:
         with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
@@ -178,7 +156,7 @@ class ComposePublishTests(unittest.TestCase):
                 "release_date": "2017-07-28",
                 "genres": ["Fantasy", "Drama"],
                 "vote_average": 7.9,
-                "runtime": 142,
+                "vote_count": 14200,
             }
         )
 
@@ -190,8 +168,8 @@ class ComposePublishTests(unittest.TestCase):
             "坐标：[Y: 2017, M: 07, D: 28]\n"
             "文明：ES 西班牙语\n"
             "类型：奇幻，剧情\n"
-            "光度：7.9\n"
-            "体积：142",
+            "光度：7.9/10\n"
+            "体积：14200 - 10⁴ 投票级别",
         )
 
     def test_render_movie_header_dedupes_english_titles(self) -> None:
@@ -204,7 +182,7 @@ class ComposePublishTests(unittest.TestCase):
                 "release_date": "2014-11-05",
                 "genres": "Adventure, Drama, Science Fiction",
                 "vote_average": 8.5,
-                "runtime": 169,
+                "vote_count": 37000,
             }
         )
 
@@ -215,29 +193,23 @@ class ComposePublishTests(unittest.TestCase):
             "坐标：[Y: 2014, M: 11, D: 05]\n"
             "文明：EN 英语\n"
             "类型：冒险，剧情，科幻\n"
-            "光度：8.5\n"
-            "体积：169",
+            "光度：8.5/10\n"
+            "体积：37000 - 10⁴ 投票级别",
         )
 
-    def test_render_movie_header_keeps_three_title_segments_with_cn(self) -> None:
+    def test_render_movie_header_uses_vote_count_magnitude(self) -> None:
         header = render_movie_header(
             {
-                "zh_title": "梦呓雨林",
-                "original_title": "Sueño en otro idioma",
-                "title": "I Dream in Another Language",
-                "original_language": "es",
-                "director": "Ernesto Contreras",
+                "zh_title": "",
+                "original_title": "Tiny Crowd",
+                "title": "Tiny Crowd",
+                "original_language": "en",
+                "vote_average": 6.2,
+                "vote_count": 93,
             }
         )
 
-        self.assertEqual(
-            header,
-            "「梦呓雨林」 / Sueño en otro idioma / I Dream in Another Language\n"
-            "Ernesto Contreras\n"
-            "\n"
-            "坐标：未知\n"
-            "文明：ES 西班牙语",
-        )
+        self.assertIn("体积：93 - 10¹ 投票级别", header)
 
     def test_render_movie_header_omits_missing_director_and_falls_back_for_labels(self) -> None:
         header = render_movie_header(
@@ -308,8 +280,8 @@ class ComposePublishTests(unittest.TestCase):
             build_header_projection(_CANDIDATE, movie_detail_loader=lambda _tmdb_id: _DETAIL)
         )
         self.assertTrue(draft["body"].startswith(expected_header))
-        # 归属行用「」——不得被 clean_publish_body 剥除（只剥《》(年)）。
-        self.assertIn("「Interstellar」(2014) Christopher Nolan", draft["body"])
+        # 归属行会被清洗掉，避免正文再吐标题/导演元信息。
+        self.assertNotIn("「Interstellar」(2014) Christopher Nolan", draft["body"])
         self.assertIn("这是一段正文。", draft["body"])
         self.assertNotIn("https://themoviecosmos.com/movie/", draft["body"])
         self.assertNotIn("#", draft["body"])
@@ -335,8 +307,7 @@ class ComposePublishTests(unittest.TestCase):
             )
 
         self.assertEqual(draft["headline"], "一句标题")
-        self.assertIn("「Interstellar」(2014) Christopher Nolan", draft["body"])
-        self.assertIn("这是正文。", draft["body"])
+        self.assertIn("这是一段正文。", draft["body"])
         self.assertNotIn("《Interstellar》(2014)", draft["body"])
         self.assertNotIn("https://themoviecosmos.com/movie/157336", draft["body"])
 
@@ -357,7 +328,8 @@ class ComposePublishTests(unittest.TestCase):
 
         cleaned = clean_publish_body(body)
 
-        self.assertIn("「Interstellar」(2014) Christopher Nolan", cleaned)
+        # 归属行会被清洗掉，避免正文再吐标题/导演元信息。
+        self.assertNotIn("「Interstellar」(2014) Christopher Nolan", cleaned)
         self.assertIn("这是一段正文。", cleaned)
         self.assertNotIn("Interstellar / Interstellar / Interstellar", cleaned)
         self.assertNotIn("坐标：[Y: 2014, M: 11, D: 05]", cleaned)
