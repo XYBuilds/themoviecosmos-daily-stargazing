@@ -2,6 +2,7 @@
 
 from scripts.lib.env import load_env
 from scripts.lib.llm import get_llm_client
+from scripts.lib.movie_labels import GENRE_EN_TO_ZH, LANG_CODE_TO_ZH
 from scripts.lib.paths import (
     cleaned_csv,
     embeddings_npy,
@@ -12,6 +13,8 @@ from scripts.lib.paths import (
 )
 
 __all__ = [
+    "GENRE_EN_TO_ZH",
+    "LANG_CODE_TO_ZH",
     "cleaned_csv",
     "embeddings_npy",
     "embeddings_source_npy",
