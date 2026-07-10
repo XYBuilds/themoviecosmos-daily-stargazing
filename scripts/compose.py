@@ -90,6 +90,24 @@ _DIMENSION_LABELS: dict[str, str] = {
 # Section-leader pattern for parsing C1 multi-paragraph output: 《片名》(年份).
 _TITLE_LINE_RE = re.compile(r"^\s*《(?P<title>.+?)》\s*[（(]\s*(?P<year>\d{3,4})\s*[)）]")
 
+# Publish fallback: remove LLM-emitted header-ish lines if the prompt leaks them.
+_PUBLISH_TITLE_LINE_RE = re.compile(
+    r"^\s*(?:「.+?」|《.+?》|[^/／\n]+(?:\s*[/／]\s*[^/／\n]+){1,2})\s*$"
+)
+_PUBLISH_META_PREFIXES: tuple[str, ...] = (
+    "坐标：",
+    "文明：",
+    "类型：",
+    "光度：",
+    "体积：",
+    "导演：",
+    "年份：",
+    "片名：",
+    "评分：",
+    "时长：",
+    "片长：",
+)
+
 # ADR-0015 D4 sentinel 契约：publish LLM 输出用这两个标记分隔标题与正文，
 # sentinel 由 parse_publish_output 剥离，不进成品。
 _HEADLINE_SENTINEL = "【标题】"
@@ -103,13 +121,14 @@ _SYSTEM_MESSAGE = (
 
 # C2 发布稿（创作环节）专用 system message。决策卡 message 明写「不要输出标题」，
 # 与 headline + 读者正文直接冲突（ADR-0015 D4 / 风险清单），故 publish 单独一份：
-# 允许并要求产出标题 + 正文，且守 ADR-0013 平视调性与 sentinel 契约。
+# 允许并要求产出标题 + 正文，但正文首行的电影抬头 / 元信息由下游代码拼装，
+# 模型只负责正文内容本身；同时守 ADR-0013 平视调性与 sentinel 契约。
 _PUBLISH_SYSTEM_MESSAGE = (
     "你是「每日星轨观测」的发布稿创作者，为总编选定的 1 部电影写一版小红书笔记："
     "一句标题 + 一段中文正文，遵循影像平权的平视调性（不排名 / 不盖章 / 不煽动 / "
     "数字文字化 / 不回显输入结构 / 不编造）。严格按用户消息里的 sentinel 契约输出："
-    "【标题】一行标题，随后 【正文】一段正文，正文首行为「片名」(YYYY) 导演名 归属行。"
-    "只输出这两块，不要输出决策卡、字段键值、Hashtag、电影链接或任何额外说明。"
+    "【标题】一行标题，随后 【正文】一段正文。正文里不要输出任何片名行、抬头行、元信息行（片名、年份、导演、类型、评分、时长等），"
+    "这些由下游程序拼装；也不要输出电影链接、决策卡、字段键值、Hashtag 或任何额外说明。"
 )
 
 # headline-only 重生成（ADR-0016 D3）专用 system message。与 _PUBLISH_SYSTEM_MESSAGE
@@ -540,12 +559,20 @@ def clean_publish_body(body: str) -> str:
     ADR-0015 D3：`「片名」(YYYY) 导演名` **归属行**由创作环节落进正文首行，用直角引号
     「」承载电影真名——`_TITLE_LINE_RE` 只匹配书名号《》(年)，故「」归属行**被有意保留**，
     仅《》(年) 误吐行与裸链接被剥除。片名 / 年份不再由下游拼机械标题行。
+    额外兜底会剥掉 prompt 泄漏出的抬头样式行与元信息前缀行，但不会碰正文里正常含冒号的句子。
     """
     kept: list[str] = []
     for line in (body or "").splitlines():
         stripped = line.strip()
+        if not stripped:
+            kept.append(line)
+            continue
         if _TITLE_LINE_RE.match(stripped):
             continue  # 剥除 LLM 误吐的《片名》(年份)；「片名」(YYYY) 归属行保留
+        if _PUBLISH_TITLE_LINE_RE.match(stripped):
+            continue
+        if any(stripped.startswith(prefix) for prefix in _PUBLISH_META_PREFIXES):
+            continue
         if stripped.startswith("https://themoviecosmos.com/movie/"):
             continue  # 剥除 LLM 误吐的链接
         kept.append(line)
@@ -622,8 +649,7 @@ def run_publish(
 ) -> dict[str, Any]:
     """Single-movie platform publish draft: the only creative compose step.
 
-    产「电影 id + 标题(headline) + 正文(body)」结构化产物（ADR-0015 D4）；片名 / 年份 /
-    导演由创作环节经归属行 D3 落进正文，链接与平台呈现规则留给下游平台适配阶段。
+    产「电影 id + 标题(headline) + 正文(body)」结构化产物（ADR-0015 D4）；正文内容由 LLM 产出后再由代码前置确定性电影抬头，链接与平台呈现规则留给下游平台适配阶段。
     ``platform`` 选取 ``compose_publish_<platform>.md``（默认 xiaohongshu）。
     ``persona_perspective`` 注入 C2 主视角（ADR-0017 D2）；空串 = 现有默认行为，
     首发 publish / 9.8 重生成路径零回归。
@@ -653,10 +679,13 @@ def run_publish(
         raw = _sync_llm_call(client, model, prompt, _PUBLISH_SYSTEM_MESSAGE)
 
     headline, body = parse_publish_output(raw)
+    body = clean_publish_body(body)
+    header = render_movie_header(build_header_projection(candidate))
+    body = f"{header}\n\n{body}" if body else header
     return {
         "tmdb_id": candidate.get("tmdb_id"),
         "headline": headline,
-        "body": clean_publish_body(body),
+        "body": body,
     }
 
 
