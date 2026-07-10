@@ -73,6 +73,15 @@ Phase 9 系列把 C2 做成了平台化定稿 + 面板（headline/body 重生成
   - `A` / `B`（**生产默认**）：只产选中那一版，`draft_id = "a+b"`（无 `#A/#B` 后缀）。
 - **选型冻结即生产纪律**：GATE 选定后把中选路线设为 `--combine-mode` 生产默认；`/api/combine-drafts` **恒调单版**（不带 `both`）。面板 / serve / 生产链路**永不产双版**——A/B 对照的复杂度全部留在开发期 CLI，不外泄到 UI 与产物。
 
+#### 10.7 GATE 选型冻结结论（2026-07-06 真实批次实测）
+
+**冻结：路线 A（重跑 C2 合并视角）为生产默认。**
+
+- **对照材料**：对候选 `02-learning-another-language-appears-to-slow`（tmdb 355196）离线跑 `--combine The-Sage,The-Outlaw --combine-mode both`，产 `The-Sage+The-Outlaw#A`（路线 A）/ `#B`（路线 B）两版肉眼对比。
+- **判定**：路线 A 出稿单篇浑然一体、篇幅适配小红书、Sage 理性辨识与 Outlaw 抗争坠落两种镜头真正交织；路线 B（文本拼接）出现**电影名重复 2 次、开头「今天…研究」重复、关键数据重复陈述、篇幅近乎翻倍**，实证了 D5 对路线 B「接缝与调性一致性存疑」的先验判断。路线 B 唯一优势（省 1 次 LLM 调用）不足以抵偿其质量缺陷。
+- **零代码改动即冻结**：`drafts_adapter._build_parser()` 的 `--combine-mode` argparse 默认本就是 `"A"`，且 `serve.handle_combine_drafts` 的 subprocess 命令**不传 `--combine-mode`**（落 adapter 默认）。因此「路线 A = 生产默认 + serve 恒单版」在既有代码里已然成立，冻结 = 记录，无需改动。
+- **复跑实证**：清理对照稿后以生产模式（不传 `--combine-mode`）复跑，池仅 append 一条 `The-Sage+The-Outlaw`（**无 `#` 后缀**），确认双版逻辑不外泄生产。
+
 ### D6 · 后端 / adapter 形态（沿用 9.8 既有约定）
 
 - 新 `review_panel/drafts_adapter.py`：与 publish / rewrite / regenerate adapter **同层**，唯一 import `scripts.compose` 之一；复用 publish_adapter 的 `locate_news_dir / load_news / find_candidate / load_judge_entry / render_copy_markdown`；stderr 打 `Wrote <path>` 供 serve 解析；`run_publish` / `load_persona_perspective` 可注入（测试 stub 免真调 LLM）。

@@ -26,6 +26,8 @@
 
 > **Phase 9.8 补充（`compose` 定稿面板能力，[ADR-0016](../adr/0016-panel-editorial-regeneration-and-inline-edit.md)）**：审核面板对 `{slug}_copy_{platform}.md` 新增三种定点操控，均为**覆盖当前稿**，不新增版本层（仍是 原版 / 去AI化版 二档）。① 重生成正文：重跑 `run_publish`，只取新 body 覆盖，丢弃顺带产出的新 headline，headline 不自动联动；② 重生成标题：body-aware，以当前 body 为输入调 `run_headline`，只覆盖 headline，body/链接不动；③ 正文人工编辑：面板 textarea 直改正文，经 `render_copy_markdown` 无 LLM 写回原稿。三者中前两种改 body 的操作（①③）都会删除陈旧的 `_humanized.md` 并清空 `selection.json` 对应 `copies.{platform}.humanized_path`，维持「humanized_path=null ⇔ 盘上无 _humanized.md」不变量；②不改 body，不触发失效。
 
+> **Phase 10 补充（`compose` persona 视角 C2 草稿池，[ADR-0017](../adr/0017-persona-perspective-c2-draft-pool.md)）**：C2 定稿链路新增**上游 persona 视角来源治理**。① 视角注入：每个 persona 新增 `prompts/personas/{Persona}/c2_perspective.md`（**C2 侧视角 SSOT**，去行话中文蒸馏，与检索侧 `persona_card.md` 分层，C2 只读前者），`run_publish` 经 `{{persona_perspective}}` 占位符（no-op 向后兼容）注入。② 只读草稿池：`{slug}_drafts_{platform}.json` 按候选 `triggered_by` 全量扇出，append-only、永不消费/删除；「选中」= 可变指针 `selected_draft_id`，派生当前稿并失效 `_humanized.md`（沿用 9.8 D4 stale 不变量）。层级为 `只读草稿池 → 当前稿（唯一可编辑）→ 去AI化版`，可编辑面未变宽，故推翻 0016 D4 字面（严格二档）而不违其本意。③ 复数视角合并上限 2，A/B 双路线仅 `--combine-mode both` 开发期离线对照，生产恒单版。**10.7 GATE 选型冻结：路线 A（重跑 C2 合并视角）为生产默认**（路线 B 文本拼接实测出现片名/开头/数据重复且篇幅翻倍）；因 adapter `--combine-mode` argparse 默认即 `A`、`serve.handle_combine_drafts` 不传该参数，冻结为**纯文档、零代码改动**。serve 保持薄传输：generate/combine 经 subprocess 调 `drafts_adapter.py`，select-draft 为 serve 内无 LLM 派生。
+
 ### 0.2 命名映射表（旧编号/旧名 → 唯一主名 / 归属）
 
 > 本表只做「阶段与编号」层面的命名映射，与 §9「新旧概念映射」（概念级：lens/neutral/toned/focalized/hypernym/fact-anchor 等）互补，不重复。概念级映射请直接见 §9。
