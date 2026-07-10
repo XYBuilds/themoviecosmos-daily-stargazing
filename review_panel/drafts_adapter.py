@@ -75,6 +75,28 @@ def _draft_entry(draft_id: str, draft: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _candidate_personas(candidate: dict[str, Any]) -> list[str]:
+    """Collect persona ids for draft fan-out.
+
+    Prefer candidate.triggered_by when it already contains the full persona set,
+    but fall back to persona-semantic hit_sources so truncated triggered_by data
+    does not collapse an 8-hit candidate down to the first few personas.
+    """
+    personas = _dedupe_personas(candidate.get("triggered_by"))
+    seen = set(personas)
+    for source in candidate.get("hit_sources") or []:
+        if not isinstance(source, dict):
+            continue
+        if str(source.get("search_unit_kind") or "").strip().lower() != "persona-semantic":
+            continue
+        agent_id = str(source.get("agent_id") or "").strip()
+        if not agent_id or agent_id in seen:
+            continue
+        seen.add(agent_id)
+        personas.append(agent_id)
+    return personas
+
+
 def _dedupe_personas(triggered_by: Any) -> list[str]:
     """triggered_by 去重且保序；非 str 项跳过。"""
     seen: set[str] = set()
@@ -137,7 +159,7 @@ def run_fanout(
     candidate = find_candidate(news_dir, tmdb_id)
     judge = load_judge_entry(news_dir, tmdb_id)
 
-    personas = _dedupe_personas(candidate.get("triggered_by"))
+    personas = _candidate_personas(candidate)
     if not personas:
         raise ValueError(
             f"candidate tmdb_id {tmdb_id!r} has empty triggered_by; nothing to fan out"

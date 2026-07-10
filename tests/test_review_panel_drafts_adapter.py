@@ -120,36 +120,93 @@ class FanoutTests(unittest.TestCase):
                 ["视角[The-Sage]", "视角[The-Explorer]", "视角[The-Innocent]"],
             )
 
-    def test_fanout_and_publish_share_same_deterministic_header(self) -> None:
+    def test_fanout_falls_back_to_persona_semantic_hit_sources_when_triggered_by_is_truncated(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
-            _make_batch(tmp_path, "2026-07-06", "02-slug")
+            all_personas = [
+                "THE-CAREGIVER",
+                "THE-INNOCENT",
+                "THE-OUTLAW",
+                "THE-EVERYMAN",
+                "THE-HERO",
+                "THE-EXPLORER",
+                "THE-RULER",
+                "THE-SAGE",
+            ]
+            _make_batch(
+                tmp_path,
+                "2026-07-06",
+                "02-slug",
+                triggered_by=["THE-INNOCENT", "THE-CAREGIVER", "THE-OUTLAW"],
+            )
+            news_dir = tmp_path / "2026-07-06" / "02-slug"
+            retrieve = json.loads((news_dir / "retrieve.json").read_text(encoding="utf-8"))
+            retrieve["candidates"][0]["hit_sources"] = [
+                {
+                    "agent_id": persona,
+                    "pseudo_id": f"{persona}-p1",
+                    "search_unit_kind": "persona-semantic",
+                    "similarity": 0.9 - idx * 0.01,
+                }
+                for idx, persona in enumerate(all_personas)
+            ]
+            (news_dir / "retrieve.json").write_text(
+                json.dumps(retrieve, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
 
+            calls: list[dict] = []
             run_fanout(
                 "2026-07-06",
                 "02-slug",
                 _TMDB_ID,
                 batch_root=tmp_path,
-                run_publish=_make_fake_publish([]),
+                run_publish=_make_fake_publish(calls),
                 load_persona_perspective=_fake_perspective,
             )
-            pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
-            draft_header = pool[0]["body"].split("\n\n", 1)[0]
 
-            copy_path = run_adapter(
+            pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
+            self.assertEqual(len(pool), 8)
+            self.assertEqual(
+                [d["draft_id"] for d in pool],
+                [
+                    "The-Innocent",
+                    "The-Caregiver",
+                    "The-Outlaw",
+                    "The-Everyman",
+                    "The-Hero",
+                    "The-Explorer",
+                    "The-Ruler",
+                    "The-Sage",
+                ],
+            )
+            calls: list[dict] = []
+            run_fanout(
                 "2026-07-06",
                 "02-slug",
                 _TMDB_ID,
                 batch_root=tmp_path,
-                run_publish=_make_fake_publish([]),
+                run_publish=_make_fake_publish(calls),
+                load_persona_perspective=_fake_perspective,
             )
-            publish_header = "\n".join(copy_path.read_text(encoding="utf-8").splitlines()[4:6])
 
-            self.assertEqual(draft_header, publish_header)
-            self.assertIn("Some Movie", draft_header)
-            self.assertIn("\n", draft_header)
+            pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
+            self.assertEqual(len(pool), 8)
+            self.assertEqual(
+                [d["draft_id"] for d in pool],
+                [
+                    "The-Innocent",
+                    "The-Caregiver",
+                    "The-Outlaw",
+                    "The-Everyman",
+                    "The-Hero",
+                    "The-Explorer",
+                    "The-Ruler",
+                    "The-Sage",
+                ],
+            )
+            self.assertEqual(len(calls), 8)
 
-    def test_fanout_empty_triggered_by_raises(self) -> None:
+    def test_fanout_and_publish_share_same_deterministic_header(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             _make_batch(tmp_path, "2026-07-06", "02-slug", triggered_by=[])

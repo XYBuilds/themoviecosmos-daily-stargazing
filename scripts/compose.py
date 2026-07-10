@@ -24,12 +24,10 @@ MVP scope: review stage only. No platform finalization, no bilingual, no images.
 
 from __future__ import annotations
 
-import argparse
-import json
+from math import floor, log10
 import os
 import re
 import sys
-import time
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
@@ -45,7 +43,7 @@ from scripts.lib.env import default_llm_provider, load_env
 from scripts.lib.llm import get_llm_client
 from scripts.lib.movie_labels import GENRE_EN_TO_ZH, LANG_CODE_TO_ZH
 from scripts.lib.paths import repo_root
-from scripts.movie_metadata import get_movie_detail_by_tmdb_id
+from scripts.movie_metadata import get_movie_detail_by_tmdb_id, get_tmdb_zh_title_by_tmdb_id
 
 _MODEL_ENV: dict[str, str] = {
     "mimo": "MIMO_MODEL",
@@ -69,7 +67,7 @@ _HEADLINE_CONTRACT_REL = "prompts/_shared/xiaohongshu_headline_contract.md"
 # 同目录共置。C2 加载路径只认 c2_perspective.md，永不读 persona_card.md（防行话泄漏）。
 _C2_PERSPECTIVE_FILENAME = "c2_perspective.md"
 
-_OVERVIEW_MAX_CHARS = 240
+_SUPERSCRIPTS = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
 
 
 def _progress(message: str) -> None:
@@ -92,7 +90,14 @@ _TITLE_LINE_RE = re.compile(r"^\s*《(?P<title>.+?)》\s*[（(]\s*(?P<year>\d{3,
 
 # Publish fallback: remove LLM-emitted header-ish lines if the prompt leaks them.
 _PUBLISH_TITLE_LINE_RE = re.compile(
-    r"^\s*(?:「.+?」|《.+?》|[^/／\n]+(?:\s*[/／]\s*[^/／\n]+){1,2})\s*$"
+    r"^\s*(?:《.+?》|[^/／\n]+(?:\s*[/／]\s*[^/／\n]+){1,2})\s*$"
+)
+_PUBLISH_ATTRIBUTION_LINE_RE = re.compile(
+    r"^\s*(?:「.+?」|《.+?》)(?:\s*[（(]\s*\d{3,4}\s*[)）])?(?:\s+[^。！？!?]+)?\s*$"
+)
+_PUBLISH_SIMPLE_META_RE = re.compile(
+    r"^\s*(?:title|director|片名|导演|原片名|中文译名)\s*[：:]\s*.+$",
+    re.IGNORECASE,
 )
 _PUBLISH_META_PREFIXES: tuple[str, ...] = (
     "坐标：",
@@ -106,6 +111,12 @@ _PUBLISH_META_PREFIXES: tuple[str, ...] = (
     "评分：",
     "时长：",
     "片长：",
+    "title：",
+    "director：",
+    "title:",
+    "director:",
+    "原片名：",
+    "中文译名：",
 )
 
 # ADR-0015 D4 sentinel 契约：publish LLM 输出用这两个标记分隔标题与正文，
@@ -401,6 +412,33 @@ def _language_display(code: Any) -> str:
     return f"{upper} {label}".strip() if label else upper
 
 
+def _vote_count_magnitude(vote_count: Any) -> str:
+    text = str(vote_count or "").strip()
+    if not text:
+        return ""
+    try:
+        value = float(text)
+    except (TypeError, ValueError):
+        return ""
+    if value <= 0:
+        return ""
+    magnitude = int(floor(log10(value)))
+    return str(magnitude).translate(_SUPERSCRIPTS)
+
+
+def _volume_display(proj: dict[str, Any]) -> str:
+    """Render volume only from vote_count.
+
+    If vote_count is missing, empty, zero, or invalid, keep the header clean and
+    omit the line instead of pretending runtime is a volume proxy.
+    """
+    vote_count = proj.get("vote_count")
+    magnitude = _vote_count_magnitude(vote_count)
+    if not magnitude:
+        return ""
+    return f"{vote_count} - 10{magnitude} 投票级别"
+
+
 def _split_genre_values(genres: Any) -> list[str]:
     if isinstance(genres, list):
         return [str(item).strip() for item in genres if str(item).strip()]
@@ -422,7 +460,8 @@ def render_movie_header(proj: dict[str, Any]) -> str:
         title_parts.append(f"「{zh_title}」")
     if language.lower() == "en":
         title_parts.extend([title, original_title])
-    else:
+    elif original_title or title:
+        # 非英语影片：优先原片名，不主动兜底拼出中文译名以外的重复抬头。
         title_parts.extend([original_title, title])
     title_parts = _dedupe_segments(title_parts)
     if not title_parts and title:
@@ -452,11 +491,11 @@ def render_movie_header(proj: dict[str, Any]) -> str:
 
     vote_average = proj.get("vote_average")
     if vote_average not in (None, ""):
-        lines.append(f"光度：{vote_average}")
+        lines.append(f"光度：{vote_average}/10")
 
-    runtime = proj.get("runtime")
-    if runtime not in (None, ""):
-        lines.append(f"体积：{runtime}")
+    volume_text = _volume_display(proj)
+    if volume_text:
+        lines.append(f"体积：{volume_text}")
 
     return "\n".join(lines).strip()
 
@@ -478,9 +517,30 @@ def _candidate_tmdb_id(candidate: dict[str, Any]) -> int | str | None:
     return raw
 
 
+def _candidate_zh_title(
+    candidate: dict[str, Any],
+    tmdb_id: int | str | None = None,
+    zh_title_loader=None,
+) -> str:
+    zh_title = str(candidate.get("zh_title") or "").strip()
+    if zh_title:
+        return zh_title
+    if tmdb_id in (None, ""):
+        tmdb_id = _candidate_tmdb_id(candidate)
+    if tmdb_id in (None, ""):
+        return ""
+    if zh_title_loader is None:
+        zh_title_loader = get_tmdb_zh_title_by_tmdb_id
+    try:
+        return zh_title_loader(tmdb_id)
+    except Exception:
+        return ""
+
+
 def build_header_projection(
     candidate: dict[str, Any],
     movie_detail_loader=None,
+    zh_title_loader=None,
 ) -> dict[str, Any]:
     """Build a deterministic movie-header projection from retrieve candidate facts.
 
@@ -490,7 +550,12 @@ def build_header_projection(
     """
     if movie_detail_loader is None:
         movie_detail_loader = get_movie_detail_by_tmdb_id
+    if zh_title_loader is None:
+        zh_title_loader = get_tmdb_zh_title_by_tmdb_id
     tmdb_id = _candidate_tmdb_id(candidate)
+    direct_zh_title = str(candidate.get("zh_title") or "").strip()
+    if not direct_zh_title:
+        direct_zh_title = _candidate_zh_title(candidate, tmdb_id, zh_title_loader=zh_title_loader)
     projection: dict[str, Any] = {
         "tmdb_id": tmdb_id,
         "id": tmdb_id,
@@ -499,7 +564,7 @@ def build_header_projection(
         "genres": candidate.get("genres"),
         "release_date": candidate.get("release_date"),
         "original_language": candidate.get("original_language"),
-        "zh_title": "",
+        "zh_title": direct_zh_title,
     }
 
     if tmdb_id in (None, ""):
@@ -554,12 +619,10 @@ def _format_db_projection(projection: dict[str, Any]) -> str:
 
 
 def clean_publish_body(body: str) -> str:
-    """清洗 publish 正文：剥除 LLM 误吐的《片名》(年份) 书名号标题行与电影链接。
+    """清洗 publish 正文：剥除 LLM 误吐的书名号标题行、元信息行与电影链接。
 
-    ADR-0015 D3：`「片名」(YYYY) 导演名` **归属行**由创作环节落进正文首行，用直角引号
-    「」承载电影真名——`_TITLE_LINE_RE` 只匹配书名号《》(年)，故「」归属行**被有意保留**，
-    仅《》(年) 误吐行与裸链接被剥除。片名 / 年份不再由下游拼机械标题行。
-    额外兜底会剥掉 prompt 泄漏出的抬头样式行与元信息前缀行，但不会碰正文里正常含冒号的句子。
+    归属行 `「片名」(YYYY) 导演名` 由创作环节保留；若 LLM 误吐 title/director
+    这类抬头行，或把标题/导演重新排成元信息行，本函数会再次剥掉，避免只靠 prompt。
     """
     kept: list[str] = []
     for line in (body or "").splitlines():
@@ -570,6 +633,10 @@ def clean_publish_body(body: str) -> str:
         if _TITLE_LINE_RE.match(stripped):
             continue  # 剥除 LLM 误吐的《片名》(年份)；「片名」(YYYY) 归属行保留
         if _PUBLISH_TITLE_LINE_RE.match(stripped):
+            continue
+        if _PUBLISH_ATTRIBUTION_LINE_RE.match(stripped):
+            continue
+        if _PUBLISH_SIMPLE_META_RE.match(stripped):
             continue
         if any(stripped.startswith(prefix) for prefix in _PUBLISH_META_PREFIXES):
             continue

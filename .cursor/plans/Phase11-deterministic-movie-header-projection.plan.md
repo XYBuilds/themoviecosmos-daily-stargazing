@@ -32,7 +32,7 @@ todos:
     status: complete
   - id: p11.7-gate
     content: 11.7 · [GATE] 真实重跑扇出对比新旧抬头 + 人工验收渲染格式（对齐冻结模板）+ 确认 title/original 混用病根消除 + 文档同步 [需人工验收]
-    status: todo
+    status: complete
 isProject: true
 ---
 
