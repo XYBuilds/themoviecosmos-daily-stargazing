@@ -46,6 +46,11 @@ from review_panel.publish_adapter import (
 
 _MAX_COMBINE = 2
 
+# 中性默认稿的 draft_id：不注入任何 persona 主视角（persona_perspective=""）跑一版，
+# 排在草稿池第一条。面板默认预览 drafts[0]（review_panel/index.html），故它即
+# 「编辑打开先看到的默认稿」；per-persona 各版作为加了脾气滤镜的备选跟在后面。
+_DEFAULT_DRAFT_ID = "混合视角"
+
 
 def _drafts_path(news_dir: Path, slug: str, platform: str) -> Path:
     """草稿池文件：与 ``{slug}_copy_{platform}.md`` 同目录（news_dir.parent）。"""
@@ -148,8 +153,10 @@ def run_fanout(
     run_publish: Any = compose.run_publish,
     load_persona_perspective: Any = compose.load_persona_perspective,
 ) -> Path:
-    """全量扇出 orchestrator：triggered_by 每 persona 各注入蒸馏视角跑一版 → 整份覆盖池。
+    """全量扇出 orchestrator：池首中性默认稿 + triggered_by 每 persona 各注入蒸馏视角一版 → 整份覆盖池。
 
+    池首固定放一条**中性默认稿**（``persona_perspective=""``，不注入任何原型主视角），
+    作为编辑打开面板先看到的默认版；其后按 triggered_by 逐 persona 各出一版加了脾气的备选。
     ``run_publish`` / ``load_persona_perspective`` 可注入（默认 ``compose`` 真实函数），
     测试用 stub 替换免真调 LLM。返回草稿池文件路径。
     """
@@ -165,24 +172,27 @@ def run_fanout(
             f"candidate tmdb_id {tmdb_id!r} has empty triggered_by; nothing to fan out"
         )
 
-    pool: list[dict[str, Any]] = []
-    for persona in personas:
-        # draft_id = 归一化后的 persona 名（The-Sage），与 c2_perspective 目录一致、可读。
-        normalized = "-".join(part.capitalize() for part in persona.split("-"))
-        perspective = load_persona_perspective(persona)
+    def _run_one(persona_perspective: str, draft_id: str) -> dict[str, Any]:
         draft = run_publish(
             candidate,
             news,
             provider=provider,
             judge=judge,
             platform=platform,
-            persona_perspective=perspective,
+            persona_perspective=persona_perspective,
         )
         draft = dict(draft)
         draft["body"] = _attach_movie_header(candidate, draft.get("body", ""))
-        pool.append(_draft_entry(normalized, draft))
+        return _draft_entry(draft_id, draft)
 
-    # 整份覆盖（ADR-0017 D3：重新扇出 = 显式重掷全部 persona）。
+    # 池首：中性默认稿（不注入主视角）。面板默认预览 drafts[0]，故它即默认稿。
+    pool: list[dict[str, Any]] = [_run_one("", _DEFAULT_DRAFT_ID)]
+    for persona in personas:
+        # draft_id = 归一化后的 persona 名（The-Sage），与 c2_perspective 目录一致、可读。
+        normalized = "-".join(part.capitalize() for part in persona.split("-"))
+        pool.append(_run_one(load_persona_perspective(persona), normalized))
+
+    # 整份覆盖（ADR-0017 D3：重新扇出 = 显式重掷池首中性默认 + 全部 persona）。
     drafts_path = _drafts_path(news_dir, slug, platform)
     _write_pool(drafts_path, pool)
     return drafts_path

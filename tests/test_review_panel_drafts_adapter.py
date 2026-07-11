@@ -110,14 +110,40 @@ class FanoutTests(unittest.TestCase):
             )
 
             pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
-            self.assertEqual(len(pool), 3)
+            # 池首是中性默认稿（混合视角），其后才是 triggered_by 各 persona。
+            self.assertEqual(len(pool), 4)
             self.assertEqual(
                 [d["draft_id"] for d in pool],
-                ["The-Sage", "The-Explorer", "The-Innocent"],
+                ["混合视角", "The-Sage", "The-Explorer", "The-Innocent"],
             )
             self.assertEqual(
                 [c["persona_perspective"] for c in calls],
-                ["视角[The-Sage]", "视角[The-Explorer]", "视角[The-Innocent]"],
+                ["", "视角[The-Sage]", "视角[The-Explorer]", "视角[The-Innocent]"],
+            )
+
+    def test_fanout_prepends_neutral_default_draft_at_index_0(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "02-slug")
+            calls: list[dict] = []
+
+            run_fanout(
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
+                batch_root=tmp_path,
+                run_publish=_make_fake_publish(calls),
+                load_persona_perspective=_fake_perspective,
+            )
+
+            pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
+            # 第 0 条 = 中性默认稿：draft_id「混合视角」+ 空 persona_perspective 注入。
+            self.assertEqual(pool[0]["draft_id"], "混合视角")
+            self.assertEqual(calls[0]["persona_perspective"], "")
+            # 其余顺序仍是 triggered_by 去重后的 persona。
+            self.assertEqual(
+                [d["draft_id"] for d in pool[1:]],
+                ["The-Sage", "The-Explorer", "The-Innocent"],
             )
 
     def test_fanout_falls_back_to_persona_semantic_hit_sources_when_triggered_by_is_truncated(self) -> None:
@@ -165,10 +191,11 @@ class FanoutTests(unittest.TestCase):
             )
 
             pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
-            self.assertEqual(len(pool), 8)
+            self.assertEqual(len(pool), 9)
             self.assertEqual(
                 [d["draft_id"] for d in pool],
                 [
+                    "混合视角",
                     "The-Innocent",
                     "The-Caregiver",
                     "The-Outlaw",
@@ -190,10 +217,11 @@ class FanoutTests(unittest.TestCase):
             )
 
             pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
-            self.assertEqual(len(pool), 8)
+            self.assertEqual(len(pool), 9)
             self.assertEqual(
                 [d["draft_id"] for d in pool],
                 [
+                    "混合视角",
                     "The-Innocent",
                     "The-Caregiver",
                     "The-Outlaw",
@@ -204,7 +232,7 @@ class FanoutTests(unittest.TestCase):
                     "The-Sage",
                 ],
             )
-            self.assertEqual(len(calls), 8)
+            self.assertEqual(len(calls), 9)
 
     def test_fanout_and_publish_share_same_deterministic_header(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -273,7 +301,8 @@ class CombineTests(unittest.TestCase):
             pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
             ids = [d["draft_id"] for d in pool]
             self.assertIn("The-Sage+The-Explorer", ids)
-            self.assertEqual(len(pool), 4)
+            # 池 = 中性默认(1) + 3 persona + 合并稿(1) = 5
+            self.assertEqual(len(pool), 5)
             self.assertEqual(len(calls), 1)
             self.assertIn("视角[The-Sage]", calls[0]["persona_perspective"])
             self.assertIn("视角[The-Explorer]", calls[0]["persona_perspective"])
@@ -323,7 +352,8 @@ class CombineTests(unittest.TestCase):
             ids = [d["draft_id"] for d in pool]
             self.assertIn("The-Sage+The-Explorer#A", ids)
             self.assertIn("The-Sage+The-Explorer#B", ids)
-            self.assertEqual(len(pool), 5)
+            # 池 = 中性默认(1) + 3 persona + 两个合并变体(2) = 6
+            self.assertEqual(len(pool), 6)
 
     def test_combine_more_than_two_raises(self) -> None:
         with TemporaryDirectory() as tmp:
