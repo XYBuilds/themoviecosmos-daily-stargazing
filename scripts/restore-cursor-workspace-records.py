@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
-"""
-Restore Cursor Agent chat history for themoviecosmos-daily-stargazing.
+r"""
+Restore Cursor Agent chat headers for the exact
+`t-themoviecosmos-daily-stargazing` project.
 
-Problem: Cursor created a new workspace storage ID for the same folder path.
-  OLD (has 199 conversations): ba22009a388c8a62ccf0ad32e9d62a7e
-  NEW (currently active):      21a128b166f72e212b3e64bdb21514fd
+This script intentionally does NOT search by project keywords across Cursor's
+history. It only uses the parent transcript UUIDs under:
+
+  C:\Users\pexy9\.cursor\projects\t-themoviecosmos-daily-stargazing\agent-transcripts
+
+For matching composer headers, it rewrites the workspace id to the current
+workspaceStorage id for:
+
+  T:\themoviecosmos-daily-stargazing
 
 IMPORTANT: Close ALL Cursor windows before running this script.
 """
@@ -15,22 +22,31 @@ import shutil
 import sqlite3
 import subprocess
 import sys
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
-OLD_WS = "ba22009a388c8a62ccf0ad32e9d62a7e"
-NEW_WS = "21a128b166f72e212b3e64bdb21514fd"
-TARGET_PATH = "themoviecosmos-daily-stargazing"
+TARGET_PROJECT = "t-themoviecosmos-daily-stargazing"
+TARGET_FOLDER_URI = "file:///t%3A/themoviecosmos-daily-stargazing"
+TARGET_WORKSPACE_ID = "21a128b166f72e212b3e64bdb21514fd"
+KNOWN_WRONG_WORKSPACE_ID = "11d886b61fa79e15674b233a80bd6098"
+LEGACY_OLD_WORKSPACE_ID = "ba22009a388c8a62ccf0ad32e9d62a7e"
 
-CURSOR_ROAMING = Path(r"C:\Users\pexy9\AppData\Roaming\Cursor\User")
-GLOBAL_DB = CURSOR_ROAMING / "globalStorage" / "state.vscdb"
-OLD_WS_DIR = CURSOR_ROAMING / "workspaceStorage" / OLD_WS
-NEW_WS_DIR = CURSOR_ROAMING / "workspaceStorage" / NEW_WS
-BACKUP_ROOT = CURSOR_ROAMING / "workspaceStorage"
+CURSOR_PROJECT_DIR = Path(r"C:\Users\pexy9\.cursor\projects") / TARGET_PROJECT
+TRANSCRIPTS_DIR = CURSOR_PROJECT_DIR / "agent-transcripts"
+CURSOR_USER_DIR = Path(r"C:\Users\pexy9\AppData\Roaming\Cursor\User")
+GLOBAL_DB = CURSOR_USER_DIR / "globalStorage" / "state.vscdb"
+WORKSPACE_STORAGE_DIR = CURSOR_USER_DIR / "workspaceStorage"
+TARGET_WORKSPACE_DIR = WORKSPACE_STORAGE_DIR / TARGET_WORKSPACE_ID
+TARGET_WORKSPACE_DB = TARGET_WORKSPACE_DIR / "state.vscdb"
+
+COMPOSER_HEADERS_KEY = "composer.composerHeaders"
+BACKUP_PREFIX = "_backup_stargazing_exact_restore"
 
 
-def die(msg: str, code: int = 1) -> None:
-    print(f"\n[ERROR] {msg}", file=sys.stderr)
+def die(message: str, code: int = 1) -> None:
+    print(f"\n[ERROR] {message}", file=sys.stderr)
     sys.exit(code)
 
 
@@ -43,24 +59,11 @@ def cursor_is_running() -> bool:
                 text=True,
                 check=False,
             )
-            if image.lower() in result.stdout.lower():
-                return True
         except Exception:
-            pass
+            continue
+        if image.lower() in result.stdout.lower():
+            return True
     return False
-
-
-def replace_ws_id(raw) -> tuple[object, int]:
-    if isinstance(raw, bytes):
-        text = raw.decode("utf-8", errors="surrogateescape")
-        if OLD_WS not in text:
-            return raw, 0
-        new_text = text.replace(OLD_WS, NEW_WS)
-        return new_text.encode("utf-8", errors="surrogateescape"), text.count(OLD_WS)
-    text = raw if isinstance(raw, str) else str(raw)
-    if OLD_WS not in text:
-        return raw, 0
-    return text.replace(OLD_WS, NEW_WS), text.count(OLD_WS)
 
 
 def checkpoint_db(db_path: Path) -> None:
@@ -72,177 +75,226 @@ def checkpoint_db(db_path: Path) -> None:
         conn.commit()
     finally:
         conn.close()
+
     for suffix in ("-wal", "-shm"):
         sidecar = Path(str(db_path) + suffix)
         if sidecar.exists():
             sidecar.unlink()
 
 
-def backup_all(backup_dir: Path) -> None:
+def backup_path(path: Path, backup_dir: Path, name: str) -> None:
+    if not path.exists():
+        return
+    dest = backup_dir / name
+    if path.is_dir():
+        shutil.copytree(path, dest, dirs_exist_ok=True)
+    else:
+        shutil.copy2(path, dest)
+
+
+def backup_cursor_state() -> Path:
+    backup_dir = WORKSPACE_STORAGE_DIR / f"{BACKUP_PREFIX}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     backup_dir.mkdir(parents=True, exist_ok=True)
+
     checkpoint_db(GLOBAL_DB)
-    checkpoint_db(OLD_WS_DIR / "state.vscdb")
-    checkpoint_db(NEW_WS_DIR / "state.vscdb")
+    checkpoint_db(TARGET_WORKSPACE_DB)
+    wrong_db = WORKSPACE_STORAGE_DIR / KNOWN_WRONG_WORKSPACE_ID / "state.vscdb"
+    checkpoint_db(wrong_db)
+    legacy_db = WORKSPACE_STORAGE_DIR / LEGACY_OLD_WORKSPACE_ID / "state.vscdb"
+    checkpoint_db(legacy_db)
 
-    shutil.copy2(GLOBAL_DB, backup_dir / "state.vscdb.global")
-    if OLD_WS_DIR.exists():
-        shutil.copytree(OLD_WS_DIR, backup_dir / f"workspace_{OLD_WS}", dirs_exist_ok=True)
-    if NEW_WS_DIR.exists():
-        shutil.copytree(NEW_WS_DIR, backup_dir / f"workspace_{NEW_WS}", dirs_exist_ok=True)
-    print(f"Backup: {backup_dir}")
+    backup_path(GLOBAL_DB, backup_dir, "global-state.vscdb")
+    backup_path(TARGET_WORKSPACE_DIR, backup_dir, f"workspace-{TARGET_WORKSPACE_ID}")
+    backup_path(WORKSPACE_STORAGE_DIR / KNOWN_WRONG_WORKSPACE_ID, backup_dir, f"workspace-{KNOWN_WRONG_WORKSPACE_ID}")
+    backup_path(WORKSPACE_STORAGE_DIR / LEGACY_OLD_WORKSPACE_ID, backup_dir, f"workspace-{LEGACY_OLD_WORKSPACE_ID}")
+
+    return backup_dir
 
 
-def copy_workspace_storage() -> None:
-    if not OLD_WS_DIR.exists():
-        die(f"Old workspace storage not found: {OLD_WS_DIR}")
+def load_transcript_ids() -> set[str]:
+    if not TRANSCRIPTS_DIR.exists():
+        die(f"Transcript directory not found: {TRANSCRIPTS_DIR}")
 
-    checkpoint_db(OLD_WS_DIR / "state.vscdb")
-    checkpoint_db(NEW_WS_DIR / "state.vscdb")
+    ids = {path.name for path in TRANSCRIPTS_DIR.iterdir() if path.is_dir()}
+    if not ids:
+        die(f"No transcript parent directories found: {TRANSCRIPTS_DIR}")
+    return ids
 
-    NEW_WS_DIR.mkdir(parents=True, exist_ok=True)
 
-    for item in OLD_WS_DIR.iterdir():
-        if item.name.endswith(("-wal", "-shm")):
-            continue
-        dest = NEW_WS_DIR / item.name
-        if item.is_dir():
-            if dest.exists():
-                shutil.rmtree(dest)
-            shutil.copytree(item, dest)
-        else:
-            shutil.copy2(item, dest)
+def load_headers(conn: sqlite3.Connection) -> dict[str, Any]:
+    row = conn.execute(
+        "SELECT value FROM ItemTable WHERE key = ?",
+        (COMPOSER_HEADERS_KEY,),
+    ).fetchone()
+    if row is None:
+        die(f"{COMPOSER_HEADERS_KEY!r} not found in global DB")
+    return json.loads(row[0])
 
-    # workspace.json must still point to the same folder
-    workspace_json = NEW_WS_DIR / "workspace.json"
-    workspace_json.write_text(
+
+def composer_id(header: dict[str, Any]) -> str | None:
+    value = header.get("composerId") or header.get("id")
+    return value if isinstance(value, str) else None
+
+
+def workspace_id(header: dict[str, Any]) -> str:
+    workspace = header.get("workspaceIdentifier")
+    if not isinstance(workspace, dict):
+        return "<missing>"
+    value = workspace.get("id")
+    return value if isinstance(value, str) and value else "<missing>"
+
+
+def ensure_workspace_identifier(header: dict[str, Any]) -> dict[str, Any]:
+    workspace = header.get("workspaceIdentifier")
+    if not isinstance(workspace, dict):
+        workspace = {}
+        header["workspaceIdentifier"] = workspace
+
+    workspace["id"] = TARGET_WORKSPACE_ID
+    uri = workspace.get("uri")
+    if not isinstance(uri, dict):
+        uri = {}
+        workspace["uri"] = uri
+    uri["$mid"] = uri.get("$mid") or 1
+    uri["fsPath"] = "t:\\themoviecosmos-daily-stargazing"
+    uri["external"] = TARGET_FOLDER_URI
+    uri["path"] = "/t:/themoviecosmos-daily-stargazing"
+    uri["scheme"] = "file"
+    return workspace
+
+
+def summarize(headers: list[dict[str, Any]], transcript_ids: set[str]) -> Counter[str]:
+    counts: Counter[str] = Counter()
+    for header in headers:
+        cid = composer_id(header)
+        if cid in transcript_ids:
+            counts[workspace_id(header)] += 1
+    return counts
+
+
+def write_target_workspace_json() -> None:
+    TARGET_WORKSPACE_DIR.mkdir(parents=True, exist_ok=True)
+    (TARGET_WORKSPACE_DIR / "workspace.json").write_text(
         '{\n  "folder": "file:///t%3A/themoviecosmos-daily-stargazing"\n}',
         encoding="utf-8",
     )
-    checkpoint_db(NEW_WS_DIR / "state.vscdb")
-    print("Copied old workspace storage -> new workspace storage")
 
 
-def migrate_global_db() -> None:
-    checkpoint_db(GLOBAL_DB)
+def restore_headers() -> tuple[dict[str, Any], dict[str, Any]]:
+    transcript_ids = load_transcript_ids()
     conn = sqlite3.connect(GLOBAL_DB)
-    cur = conn.cursor()
+    try:
+        headers_json = load_headers(conn)
+        all_headers = headers_json.get("allComposers")
+        if not isinstance(all_headers, list):
+            die("composer.composerHeaders has no allComposers list")
 
-    # composer headers
-    cur.execute("SELECT value FROM ItemTable WHERE key = 'composer.composerHeaders'")
-    row = cur.fetchone()
-    if not row:
-        die("composer.composerHeaders not found in global DB")
-    headers = json.loads(row[0])
-    migrated = 0
-    for composer in headers.get("allComposers", []):
-        wi = composer.get("workspaceIdentifier")
-        if not isinstance(wi, dict):
-            continue
-        fs = (wi.get("uri") or {}).get("fsPath", "")
-        if wi.get("id") == OLD_WS and TARGET_PATH in fs.replace("\\", "/").lower():
-            wi["id"] = NEW_WS
-            migrated += 1
-    cur.execute(
-        "UPDATE ItemTable SET value = ? WHERE key = 'composer.composerHeaders'",
-        (json.dumps(headers),),
-    )
-    print(f"Migrated composer headers: {migrated}")
+        before = summarize(all_headers, transcript_ids)
+        matched_ids: set[str] = set()
+        changed = 0
+        already_target = 0
+        skipped_non_project = 0
 
-    # ItemTable string values
-    cur.execute("SELECT key, value FROM ItemTable WHERE value LIKE ?", (f"%{OLD_WS}%",))
-    item_updates = 0
-    for key, value in cur.fetchall():
-        if key == "composer.composerHeaders":
-            continue
-        new_value, count = replace_ws_id(value)
-        if count:
-            cur.execute("UPDATE ItemTable SET value = ? WHERE key = ?", (new_value, key))
-            item_updates += 1
-            print(f"  ItemTable: {key} ({count})")
-    print(f"ItemTable updates: {item_updates}")
+        for header in all_headers:
+            if not isinstance(header, dict):
+                continue
+            cid = composer_id(header)
+            if cid not in transcript_ids:
+                skipped_non_project += 1
+                continue
 
-    # cursorDiskKV key renames
-    cur.execute("SELECT key, value FROM cursorDiskKV WHERE key LIKE ?", (f"inlineDiff:{OLD_WS}:%",))
-    inline_rows = cur.fetchall()
-    for key, value in inline_rows:
-        new_key, _ = replace_ws_id(key)
-        cur.execute("DELETE FROM cursorDiskKV WHERE key = ?", (key,))
-        cur.execute("INSERT OR REPLACE INTO cursorDiskKV (key, value) VALUES (?, ?)", (new_key, value))
-    print(f"inlineDiff key migrations: {len(inline_rows)}")
+            matched_ids.add(cid)
+            if workspace_id(header) == TARGET_WORKSPACE_ID:
+                already_target += 1
+                ensure_workspace_identifier(header)
+                continue
 
-    # cursorDiskKV values
-    cur.execute("SELECT key, value FROM cursorDiskKV WHERE value LIKE ?", (f"%{OLD_WS}%",))
-    kv_updates = 0
-    for key, value in cur.fetchall():
-        new_value, count = replace_ws_id(value)
-        if count:
-            cur.execute("UPDATE cursorDiskKV SET value = ? WHERE key = ?", (new_value, key))
-            kv_updates += 1
-    print(f"cursorDiskKV value updates: {kv_updates}")
+            ensure_workspace_identifier(header)
+            changed += 1
 
-    conn.commit()
-    conn.close()
-    checkpoint_db(GLOBAL_DB)
+        conn.execute(
+            "UPDATE ItemTable SET value = ? WHERE key = ?",
+            (json.dumps(headers_json, ensure_ascii=False, separators=(",", ":")), COMPOSER_HEADERS_KEY),
+        )
+        conn.commit()
+
+        after = summarize(all_headers, transcript_ids)
+        missing_ids = sorted(transcript_ids - matched_ids)
+
+        return headers_json, {
+            "transcript_parent_ids": len(transcript_ids),
+            "matched_headers": len(matched_ids),
+            "changed_headers": changed,
+            "already_target": already_target,
+            "missing_headers": len(missing_ids),
+            "missing_header_ids_sample": missing_ids[:10],
+            "skipped_non_project_headers": skipped_non_project,
+            "workspace_counts_before": dict(before),
+            "workspace_counts_after": dict(after),
+        }
+    finally:
+        conn.close()
+        checkpoint_db(GLOBAL_DB)
 
 
-def verify() -> bool:
+def verify() -> dict[str, Any]:
+    transcript_ids = load_transcript_ids()
     conn = sqlite3.connect(GLOBAL_DB)
-    cur = conn.cursor()
-    cur.execute("SELECT value FROM ItemTable WHERE key = 'composer.composerHeaders'")
-    headers = json.loads(cur.fetchone()[0])
-    old_count = new_count = 0
-    for composer in headers.get("allComposers", []):
-        if composer.get("type") != "head":
-            continue
-        wi = composer.get("workspaceIdentifier") or {}
-        fs = (wi.get("uri") or {}).get("fsPath", "")
-        if TARGET_PATH not in fs.replace("\\", "/").lower():
-            continue
-        if wi.get("id") == OLD_WS:
-            old_count += 1
-        elif wi.get("id") == NEW_WS:
-            new_count += 1
-    cur.execute("SELECT COUNT(*) FROM cursorDiskKV WHERE key LIKE ?", (f"inlineDiff:{OLD_WS}:%",))
-    inline_old = cur.fetchone()[0]
-    conn.close()
-
-    print("\n=== Verification ===")
-    print(f"Stargazing composers on OLD id: {old_count}")
-    print(f"Stargazing composers on NEW id: {new_count}")
-    print(f"Remaining inlineDiff OLD keys: {inline_old}")
-    ok = old_count == 0 and new_count > 0 and inline_old == 0
-    print("Result:", "OK" if ok else "FAILED")
-    return ok
+    try:
+        headers_json = load_headers(conn)
+        all_headers = headers_json.get("allComposers", [])
+        counts = summarize(all_headers, transcript_ids)
+        matched = sum(counts.values())
+        wrong = matched - counts.get(TARGET_WORKSPACE_ID, 0)
+        return {
+            "transcript_parent_ids": len(transcript_ids),
+            "matched_headers": matched,
+            "target_workspace_headers": counts.get(TARGET_WORKSPACE_ID, 0),
+            "non_target_workspace_headers": wrong,
+            "workspace_counts": dict(counts),
+            "ok": matched > 0 and wrong == 0,
+        }
+    finally:
+        conn.close()
 
 
 def main() -> None:
-    print("=" * 60)
-    print("Cursor workspace record restore")
-    print("=" * 60)
+    print("=" * 72)
+    print("Cursor exact project Agent chat restore")
+    print("=" * 72)
+    print(f"Project: {TARGET_PROJECT}")
+    print(f"Transcript source: {TRANSCRIPTS_DIR}")
+    print(f"Target workspace id: {TARGET_WORKSPACE_ID}")
+    print()
 
     if cursor_is_running():
-        die(
-            "Cursor is still running.\n"
-            "Please close ALL Cursor windows, then run this script again."
-        )
-
+        die("Cursor is still running. Close ALL Cursor windows, then run this script again.")
     if not GLOBAL_DB.exists():
         die(f"Global DB not found: {GLOBAL_DB}")
+    if not TARGET_WORKSPACE_DIR.exists():
+        die(f"Target workspace storage not found: {TARGET_WORKSPACE_DIR}")
 
-    backup_dir = BACKUP_ROOT / f"_backup_restore_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-    backup_all(backup_dir)
-    copy_workspace_storage()
-    migrate_global_db()
+    backup_dir = backup_cursor_state()
+    print(f"Backup: {backup_dir}")
 
-    if not verify():
+    write_target_workspace_json()
+    _, stats = restore_headers()
+    result = verify()
+
+    print("\n=== Restore stats ===")
+    print(json.dumps(stats, ensure_ascii=False, indent=2, sort_keys=True))
+    print("\n=== Verification ===")
+    print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
+
+    if not result["ok"]:
         die(
-            "Verification failed. Your backup is at:\n"
+            "Verification failed. Cursor has not been reopened. Backup is at:\n"
             f"  {backup_dir}\n"
-            "Do not reopen Cursor until this is resolved."
+            "Keep Cursor closed and inspect the stats above."
         )
 
     print("\nDone.")
-    print("Now reopen Cursor and open: t:\\themoviecosmos-daily-stargazing")
+    print("Reopen Cursor and open: T:\\themoviecosmos-daily-stargazing")
     print(f"Backup kept at: {backup_dir}")
 
 
