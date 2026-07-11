@@ -39,6 +39,8 @@ if str(_REPO_ROOT) not in sys.path:
 
 from openai import OpenAI
 
+from scripts.lib import body_lint
+from scripts.lib.body_judge import judge_body_fabrication
 from scripts.lib.env import default_llm_provider, load_env
 from scripts.lib.llm import get_llm_client
 from scripts.lib.movie_labels import GENRE_EN_TO_ZH, LANG_CODE_TO_ZH
@@ -703,6 +705,23 @@ def parse_publish_output(raw: str) -> tuple[str, str]:
     return headline, body
 
 
+def _build_body_repair_context(
+    violations: list[body_lint.Violation],
+    findings: list[Any],
+) -> str:
+    """把 body_lint 违规 + judge findings 拼成中文反馈文本（ADR-0019 D3）。
+
+    纯函数：只读传入的违规/命中列表，不做任何 IO / LLM 调用。供 `run_publish`
+    在重试轮次把「上一版命中了什么」喂回 LLM。
+    """
+    lines: list[str] = ["上一版命中以下正文质量红线，请修正后重出，保持 sentinel 契约："]
+    for violation in violations:
+        lines.append(f"- [body_lint:{violation.rule_id}] {violation.description}：「{violation.snippet}」")
+    for finding in findings:
+        lines.append(f"- [judge:{finding.kind}] {finding.reason}：「{finding.quote}」")
+    return "\n".join(lines)
+
+
 def run_publish(
     candidate: dict[str, Any],
     news: dict[str, str],
@@ -713,6 +732,8 @@ def run_publish(
     prompts_dir: Path | None = None,
     persona_perspective: str = "",
     llm_call: Any = None,
+    judge_llm_call: Any = None,
+    max_body_retries: int = 1,
 ) -> dict[str, Any]:
     """Single-movie platform publish draft: the only creative compose step.
 
@@ -720,6 +741,13 @@ def run_publish(
     ``platform`` 选取 ``compose_publish_<platform>.md``（默认 xiaohongshu）。
     ``persona_perspective`` 注入 C2 主视角（ADR-0017 D2）；空串 = 现有默认行为，
     首发 publish / 9.8 重生成路径零回归。
+
+    正文质量闸门（ADR-0019 D3/D4）：``clean_publish_body`` 之后、抬头前置之前，
+    跑 body_lint（无条件、确定性）+ judge_body_fabrication（仅当注入
+    ``judge_llm_call`` 时才跑，默认关闭，与 ``llm_call`` 独立，避免二次调用
+    捕获 prompt 的 stub 打破既有 golden-snapshot 测试）。命中则拼 repair_context
+    追加到 prompt 尾部重试，最多 ``max_body_retries`` 次；耗尽仍命中则保留最后
+    一版正文，不硬失败，改在返回值挂 ``warnings``。
     """
     template = load_c2_template(platform, prompts_dir)
     news_context = build_news_context(news, "")
@@ -736,24 +764,67 @@ def run_publish(
         persona_perspective,
     )
 
+    # 两条既有 LLM 路径（注入 llm_call / 真实 client）统一收进一个闭包，
+    # 首轮与重试轮都走它，重试自动复用当前生效的路径（ADR-0019 D3）。
     if llm_call is not None:
-        raw = str(llm_call(prompt) or "").strip()
+
+        def _generate(p: str) -> str:
+            return str(llm_call(p) or "").strip()
+
     else:
         load_env()
         resolved = _resolve_provider(provider)
         client = get_llm_client(resolved)
         model = _model_name(resolved)
-        raw = _sync_llm_call(client, model, prompt, _PUBLISH_SYSTEM_MESSAGE)
 
+        def _generate(p: str) -> str:
+            return _sync_llm_call(client, model, p, _PUBLISH_SYSTEM_MESSAGE)
+
+    db_projection = _db_projection_for_candidate(candidate)
+    overview = str(db_projection.get("overview") or "")
+    director = str(db_projection.get("director") or "").strip() or None
+
+    raw = _generate(prompt)
     headline, body = parse_publish_output(raw)
     body = clean_publish_body(body)
+
+    violations: list[body_lint.Violation] = []
+    findings: list[Any] = []
+    attempt = 0
+    while True:
+        violations = body_lint.scan(body)
+        findings = (
+            judge_body_fabrication(body, overview, llm_call=judge_llm_call, director=director)
+            if judge_llm_call is not None
+            else []
+        )
+        if not violations and not findings:
+            break
+        if attempt >= max_body_retries:
+            break
+        attempt += 1
+        repair_block = _build_body_repair_context(violations, findings)
+        retry_prompt = f"{prompt}\n\n{repair_block}"
+        raw = _generate(retry_prompt)
+        headline, body = parse_publish_output(raw)
+        body = clean_publish_body(body)
+
     header = render_movie_header(build_header_projection(candidate))
     body = f"{header}\n\n{body}" if body else header
-    return {
+    draft: dict[str, Any] = {
         "tmdb_id": candidate.get("tmdb_id"),
         "headline": headline,
         "body": body,
     }
+    if violations or findings:
+        draft["warnings"] = {
+            "body_lint": [violation.rule_id for violation in violations],
+            "fabrication": [
+                {"kind": finding.kind, "quote": finding.quote, "reason": finding.reason}
+                for finding in findings
+            ],
+        }
+    return draft
 
 
 def run_headline(
