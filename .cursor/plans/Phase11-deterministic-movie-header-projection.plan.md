@@ -40,10 +40,10 @@ isProject: true
 
 ## 前置条件
 
-| Phase | 状态 | 判定依据 |
-| --- | --- | --- |
+| Phase                    | 状态                     | 判定依据                                                                                                                                                                         |
+| ------------------------ | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 10（10.1–10.7 全子计划） | complete 且已并入 `main` | `git log --oneline -15` 见 PR #135 合并（`d5e563c`）、p10.7 收尾 `c788a74`/`82aaadc` 在 main；`git status -sb` = `## main...origin/main`（工作区干净，无未合并 `feat/phase10*`） |
-| 当前分支 | 从最新 `main` 检出 | 规则2：前置已并入 main → 从 main 检出，无 stacked 继承 |
+| 当前分支                 | 从最新 `main` 检出       | 规则2：前置已并入 main → 从 main 检出，无 stacked 继承                                                                                                                           |
 
 > 说明：本 Phase 的关注点（抬头行确定性投影）与 Phase10（persona 视角草稿池）正交，但**产物同链路**（都改 `run_publish` / `drafts_adapter`），故必须在 Phase10 合并后开工，从最新 main 检出。
 
@@ -92,15 +92,15 @@ Ernesto Contreras
 
 **两块分组**（Round3 定）：上半 = **身份**（片名 + 导演，作者归属贴一起）；下半 = **星轨读数**（坐标/文明/类型/光度/体积），中间一处空行分隔。
 
-| 行 | 内容 | 数据源 | 规则 |
-| --- | --- | --- | --- |
-| 片名 | `「中译」/ original_title / title` | 中译=TMDB在线(TODO-B，本 Phase 恒缺)；后两者=DB | 三段斜杠分隔；见 D1 去重与退化 |
-| 导演 | `Ernesto Contreras` | DB `director`（by-id 补） | **仅原名**，不做中译（Round5 定 original_only） |
-| 坐标 | `[Y: 2017, M: 07, D: 28]` | DB `release_date` 拆解 | 天文坐标味（Round4 定）；`YYYY-MM-DD` split |
-| 文明 | `ES 西班牙语` | DB `original_language` | `码.upper()` + 静态语言名；语种轴非产地（Round5 定） |
-| 类型 | `奇幻，中文用「，」分隔` | DB `genres` + 静态 EN→中表 | 不联网；表外类型退化保留英文 |
-| 光度 | `7.9` | DB `vote_average`（by-id 补） | 术语沿用 |
-| 体积 | `142` | DB `runtime`（by-id 补） | 术语沿用 |
+| 行   | 内容                               | 数据源                                          | 规则                                                 |
+| ---- | ---------------------------------- | ----------------------------------------------- | ---------------------------------------------------- |
+| 片名 | `「中译」/ original_title / title` | 中译=TMDB在线(TODO-B，本 Phase 恒缺)；后两者=DB | 三段斜杠分隔；见 D1 去重与退化                       |
+| 导演 | `Ernesto Contreras`                | DB `director`（by-id 补）                       | **仅原名**，不做中译（Round5 定 original_only）      |
+| 坐标 | `[Y: 2017, M: 07, D: 28]`          | DB `release_date` 拆解                          | 天文坐标味（Round4 定）；`YYYY-MM-DD` split          |
+| 文明 | `ES 西班牙语`                      | DB `original_language`                          | `码.upper()` + 静态语言名；语种轴非产地（Round5 定） |
+| 类型 | `奇幻，中文用「，」分隔`           | DB `genres` + 静态 EN→中表                      | 不联网；表外类型退化保留英文                         |
+| 光度 | `7.9`                              | DB `vote_average`（by-id 补）                   | 术语沿用                                             |
+| 体积 | `142`                              | DB `runtime`（by-id 补）                        | 术语沿用                                             |
 
 ### D1 · 片名三段 + original_language 去重 + 中文缺失退化
 
