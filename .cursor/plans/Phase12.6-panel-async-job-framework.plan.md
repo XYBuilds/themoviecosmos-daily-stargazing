@@ -10,7 +10,7 @@ overview: |
 todos:
   - id: p12.6.1-job-store-and-adr
     content: 12.6.1 · [asset+adr] review_panel/job_store.py（JobRecord + JobStore 内存 dict+锁 + executor 可注入 _thread/_inline）+ tests/test_job_store.py + ADR-0020（D1–D6）+ 落地动作 A（本 plan frontmatter 规范化：name slug/overview 块标量/todos 列表/isProject:true）+ 落地动作 B（Phase12 plan gate 改 12.end）
-    status: todo
+    status: complete
   - id: p12.6.2-serve-async-endpoints
     content: 12.6.2 · [serve] route() 异步化 6 长任务端点（publish/rewrite/regenerate/generate-drafts/combine-drafts/retry-draft）改 job_store.submit 立即返回 202+job_id + 新增 GET /api/job 四态（404/running/done{result}/error）+ job_store 注入穿 route/make_handler_class/_dispatch/serve + _send_json 吞 ConnectionAborted/BrokenPipe/ConnectionReset
     status: todo
