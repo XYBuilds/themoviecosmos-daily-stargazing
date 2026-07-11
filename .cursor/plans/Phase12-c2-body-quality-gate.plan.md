@@ -18,7 +18,7 @@ todos:
     status: complete
   - id: p12.3-hallucination-judge
     content: 12.3 · [gate] judge_body_fabrication(body, overview, *, llm_call)->list[Finding] 纯函数 + 配套 prompt：拿 DB overview 当唯一真值，判定 body 是否出现 overview 没写的电影细节/写错导演名；llm_call 可注入，单测用 stub
-    status: todo
+    status: complete
   - id: p12.4-lint-retry-orchestration
     content: 12.4 · [compose] 在 run_publish 的 clean_publish_body 后接闸门：body_lint.scan + judge_body_fabrication 命中→拼 repair_context 喂回 LLM 重生成（复刻 rewrite.py 模式，上限 K 次），仍失败保留最后一版 + 挂 warnings（不硬失败）；单测覆盖重试通过/耗尽 + golden-snapshot 零回归
     status: todo
