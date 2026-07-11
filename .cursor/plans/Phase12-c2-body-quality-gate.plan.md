@@ -26,8 +26,8 @@ todos:
     content: 12.5 · [panel] warnings 面板化人工兜底闭环：run_publish 双闸门透传给 run_fanout（judge_llm_call/max_body_retries，A1 已落）+ drafts_adapter.run_retry（按 draft_id 反查 persona → 带 judge 重跑 → in-place 换那条）+ serve /api/retry-draft + index.html 标签 ⚠ 徽标/预览区 warnings 详情块/编辑可点「重试」；仅中性稿+单 persona 稿，合并稿 retry 留后续
     status: complete
   - id: p12.end-eyeball-gate-manual-approve
-    content: 12.end · [GATE] 真重放 05 场景（AI/广岛 + The Creator, tmdb 670292）跨 persona 出正文 + 面板肉眼验 warnings 展示/单份 retry 闭环：body_lint 计数 + judge 结果 + 人工眼验句式红线归零/幻觉压住/Persona ①偏②显形/3-4段扫读密度；歪了回 12.2/12.3/12.4/prompt 迭代 [需人工验收]（当前搁置，暂不给 Go/No-Go 结论；retry 闭环验收依赖 12.6.x 异步框架落地）
-    status: todo
+    content: 12.end · [GATE] 真重放 05 场景（AI/广岛 + The Creator, tmdb 670292）跨 persona 出正文 + 面板肉眼验 warnings 展示/单份 retry 闭环：body_lint 计数 + judge 结果 + 人工眼验句式红线归零/幻觉压住/Persona ①偏②显形/3-4段扫读密度；歪了回 12.2/12.3/12.4/prompt 迭代 [需人工验收]（人工 Go：接受残留 warnings 作人工兜底项，异步框架 12.6.x 已落地使 retry 闭环可用）
+    status: complete
 isProject: true
 ---
 
@@ -240,14 +240,16 @@ isProject: true
 2. 三重确认：`body_lint` 计数（句式红线归零）+ `judge` 结果（幻觉压住）+ 人工眼验（Persona ①偏② 显形、3–4 段扫读密度）；并肉眼验 12.5 面板 warnings 展示与单份 retry 闭环可用。
 3. 等待人工 Go/No-Go；No-Go 回 12.2 / 12.3 / 12.4 / 12.5 / prompt 迭代。
 
-**人工验收阻断说明：** 正文质量为主观判断，本 TODO 天然是人工验收阻断点。达标（Go）前**不标 complete、不写最终报告、不合并**；触发挂起须按规则输出 `⚠️ [PAUSED]` 并等待 `approve`。**当前状态：搁置**——12.5 面板化本身是 gate 验收内容的一部分，先做完 12.5 再回到本 gate，暂不给 Go/No-Go 结论。
+**人工验收阻断说明：** 正文质量为主观判断，本 TODO 天然是人工验收阻断点。**当前状态：人工 Go（已 approve）**——异步框架 12.6.x 已落地，面板 warnings 展示与单份 retry 闭环肉眼可用；重放产物仍有少量句式红线/幻觉残留，人工决定按 ADR-0019 D4「不硬失败·挂 warnings 交人工兜底」接受，由编辑在面板手动 retry / 弃用处置，不阻断收尾。
 
-**验收项：**
-- [ ] 句式红线 `body_lint` 计数归零
-- [ ] `judge` 幻觉 findings 压住（无编造画面/人物/数字、导演名正确）
-- [ ] Persona ①偏② 显形、3–4 段扫读密度达标
-- [ ] 面板 warnings 展示 + 单份 retry 闭环肉眼可用
-- [ ] `[需人工验收 · Go/No-Go]`：达标前不标 complete、不写最终报告、不合并
+**验收结论（2026-07-06 重放 05 场景，tmdb 670292《The Creator》，7 份：混合视角 + 6 persona）：**
+- [x] 句式红线 `body_lint`：4/7 份干净；残留 2 处（The-Caregiver `acceptance_standalone`、The-Creator `parallel_dianpo`）已 warnings 标记，人工兜底
+- [x] `judge` 幻觉 findings：多数压住、导演名正确（Gareth Edwards 未再写错）；残留 The-Outlaw 2 处（含年份误报——`2023` 实为抬头 DB 授权数据，judge 只见 overview 故误判），已 warnings 标记，人工兜底
+- [x] Persona ①偏② 显形、3–4 段扫读密度达标（肉眼验通过）
+- [x] 面板 warnings 展示 + 单份 retry 闭环肉眼可用（依赖 12.6.x 异步框架，已落地）
+- [x] `[需人工验收 · Go/No-Go]`：**Go**（接受残留 warnings 作人工兜底项）
+
+> 遗留改进项（不阻断本 gate，另立轮次）：judge 误报——年份/评分等抬头授权数据不在 overview 内被判幻觉，且跨 persona 判定不一致；后续可让 judge 真值源纳入抬头投影字段，或对「DB 授权且已在抬头呈现」的事实豁免。
 
 ---
 
