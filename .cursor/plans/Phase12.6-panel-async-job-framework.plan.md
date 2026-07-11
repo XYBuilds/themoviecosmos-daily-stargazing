@@ -19,7 +19,7 @@ todos:
     status: complete
   - id: p12.6.4-tests
     content: 12.6.4 · [测试] tests/test_job_store.py（submit/get/异常落 error/inline 各分支）+ 改造 tests/test_review_panel_serve.py（6 端点 route 注入 inline job_store，POST 断言 202+job_id，GET /api/job 断言拿回原 (status,payload)，job 路由未知/running/done/error）+ 全量 pytest 无回归
-    status: todo
+    status: complete
   - id: p12.6.5-gate
     content: 12.6.5 · [GATE] 真实重跑面板异步闭环（retry+judge ~132s + generate-drafts）：POST 立即返回 202、轮询期间 loading、跑完自动刷新预览与 warnings 徽标、server 日志无 ConnectionAbortedError [需人工验收]
     status: todo

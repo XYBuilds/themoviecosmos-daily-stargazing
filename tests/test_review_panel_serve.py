@@ -1788,6 +1788,108 @@ class RetryDraftRouteTests(unittest.TestCase):
             self.assertIn("合并稿", payload["stderr"])
 
 
+class JobRouteTests(unittest.TestCase):
+    """直接测 GET /api/job 经 route() 的四态（Phase 12.6.4 验收点）。"""
+
+    def test_unknown_job_id_returns_404(self) -> None:
+        """未知 job_id（store 里查不到）→ 404 + ok:False + error 字段。"""
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            status, payload = route(
+                "GET",
+                "/api/job",
+                {"job_id": "does-not-exist"},
+                None,
+                batch_root=tmp_path,
+                job_store=JobStore(),
+            )
+            self.assertEqual(status, 404)
+            self.assertFalse(payload["ok"])
+            self.assertIn("error", payload)
+
+    def test_missing_job_id_param_returns_404(self) -> None:
+        """query 里完全没有 job_id（rec 落在 None 分支）→ 同样 404。"""
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            status, payload = route(
+                "GET",
+                "/api/job",
+                {},
+                None,
+                batch_root=tmp_path,
+                job_store=JobStore(),
+            )
+            self.assertEqual(status, 404)
+            self.assertFalse(payload["ok"])
+            self.assertIn("error", payload)
+
+    def test_running_job_returns_200_running_without_result(self) -> None:
+        """job 还没跑完（executor 只捕获不执行）→ 200 + status:running，无 result 字段。"""
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            store = JobStore()
+            job_id = store.submit(
+                lambda: (200, {"ok": True}), kind="test", executor=lambda fn: None
+            )
+            status, payload = route(
+                "GET",
+                "/api/job",
+                {"job_id": job_id},
+                None,
+                batch_root=tmp_path,
+                job_store=store,
+            )
+            self.assertEqual(status, 200)
+            self.assertEqual(payload, {"ok": True, "status": "running"})
+
+    def test_done_job_returns_200_done_with_result(self) -> None:
+        """job 用 inline executor 立即跑完 → 200 + status:done + result:{http_status,payload}。"""
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            store = JobStore()
+            job_id = store.submit(
+                lambda: (202, {"ok": True, "kind": "x"}),
+                kind="test",
+                executor=_inline_executor,
+            )
+            status, payload = route(
+                "GET",
+                "/api/job",
+                {"job_id": job_id},
+                None,
+                batch_root=tmp_path,
+                job_store=store,
+            )
+            self.assertEqual(status, 200)
+            self.assertEqual(payload["status"], "done")
+            self.assertEqual(
+                payload["result"], {"http_status": 202, "payload": {"ok": True, "kind": "x"}}
+            )
+
+    def test_error_job_returns_200_error_with_stderr_traceback(self) -> None:
+        """work 抛异常，inline executor 立即落 error → 200 + status:error + stderr 含 traceback。"""
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            store = JobStore()
+
+            def _work() -> tuple[int, dict]:
+                raise ValueError("boom")
+
+            job_id = store.submit(_work, kind="test", executor=_inline_executor)
+            status, payload = route(
+                "GET",
+                "/api/job",
+                {"job_id": job_id},
+                None,
+                batch_root=tmp_path,
+                job_store=store,
+            )
+            self.assertEqual(status, 200)
+            self.assertEqual(payload["status"], "error")
+            self.assertIn("ValueError: boom", payload["stderr"])
+            self.assertIn("Traceback", payload["stderr"])
+
+
 class UnknownRouteTests(unittest.TestCase):
     def test_unknown_path_returns_404(self) -> None:
         with TemporaryDirectory() as tmp:
