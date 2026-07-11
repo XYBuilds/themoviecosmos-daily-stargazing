@@ -1929,7 +1929,8 @@
       }
 
       // 进入 pick（选型）阶段：有池则预览首张（或保持已选预览），无池提示先生成。
-      function enterPickStage() {
+      function enterPickStage(options) {
+        options = options || {};
         switchStage("pick");
         if (!state.drafts.length) {
           showCopyEmptyState("尚未生成草稿池，点右上角「生成草稿池」");
@@ -1938,7 +1939,10 @@
         els.copyEmptyState.style.display = "none";
         var keep = state.previewDraftId &&
           state.drafts.some(function (d) { return String(d.draft_id) === state.previewDraftId; });
-        onPreviewDraft(keep ? state.previewDraftId : String(state.drafts[0].draft_id));
+        previewDraft(
+          keep ? state.previewDraftId : String(state.drafts[0].draft_id),
+          { allowDuringInFlight: !!options.allowPreviewDuringInFlight }
+        );
       }
 
       // 拉取已落盘当前稿进入 refine（微调）阶段。fromRestore=true 时 404 回退到 pick（选型），
@@ -2103,7 +2107,7 @@
             if (res.ok && res.body && res.body.ok) {
               state.drafts = res.body.drafts || state.drafts;
               state.previewDraftId = null;
-              onPreviewDraft(id);
+              previewDraft(id, { allowDuringInFlight: true });
               var still = state.drafts.filter(function (d) { return String(d.draft_id) === id; })[0];
               var msg = still && hasWarnings(still)
                 ? "✓ 已重掷（仍有残余问题，可再试或人工修）"
@@ -2123,6 +2127,7 @@
             state.draftOpInFlight = false;
             var b2 = document.getElementById("draft-retry-btn");
             if (b2) { b2.disabled = false; b2.innerHTML = "重试这一条"; }
+            if (els.enterRefineBtn) { els.enterRefineBtn.disabled = !state.previewDraftId; }
             renderDraftPool();
           });
       }
@@ -2164,8 +2169,9 @@
 
       // 10.5.1 · 预览某视角草稿：纯前端只读，从内存池取 headline/body 渲染，零后端副作用。
       // 是 pick 阶段的唯一「切标签」行为——落盘推迟到「进入微调」。12.5 起附带 warnings 详情块。
-      function onPreviewDraft(draftId) {
-        if (state.draftOpInFlight) return;
+      function previewDraft(draftId, options) {
+        options = options || {};
+        if (state.draftOpInFlight && !options.allowDuringInFlight) return;
         var id = String(draftId);
         var draft = state.drafts.filter(function (d) { return String(d.draft_id) === id; })[0];
         if (!draft) return;
@@ -2178,6 +2184,10 @@
         if (els.enterRefineBtn) els.enterRefineBtn.disabled = state.draftOpInFlight;
         if (els.enterRefineResult) els.enterRefineResult.textContent = "";
         renderDraftPool();
+      }
+
+      function onPreviewDraft(draftId) {
+        previewDraft(draftId);
       }
 
       // 10.5.1 · 「进入微调」：唯一落盘点。用当前预览的 previewDraftId 调 /api/select-draft 派生当前稿，
@@ -2248,7 +2258,7 @@
               state.combineChecked = [];
               renderDraftPool();
               showDraftPoolResult("✓ 生成 " + state.drafts.length + " 版草稿", false);
-              enterPickStage();
+              enterPickStage({ allowPreviewDuringInFlight: true });
             } else {
               var stderr = apiErrorText(res);
               showError("生成草稿池失败：" + stderr);
@@ -2263,6 +2273,7 @@
             state.draftOpInFlight = false;
             els.generateDraftsBtn.innerHTML = "生成草稿池";
             els.generateDraftsBtn.disabled = !state.selection;
+            if (els.enterRefineBtn) { els.enterRefineBtn.disabled = !state.previewDraftId; }
             renderDraftPool();
           });
       }

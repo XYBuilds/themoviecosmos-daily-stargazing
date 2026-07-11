@@ -22,7 +22,7 @@ todos:
     status: complete
   - id: p12.6.5-gate
     content: 12.6.5 · [GATE] 真实重跑面板异步闭环（retry+judge ~132s + generate-drafts）：POST 立即返回 202、轮询期间 loading、跑完自动刷新预览与 warnings 徽标、server 日志无 ConnectionAbortedError [需人工验收]
-    status: todo
+    status: complete
 isProject: true
 ---
 
