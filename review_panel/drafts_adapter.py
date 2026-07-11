@@ -17,6 +17,10 @@
   - ``--combine-mode both``（**仅 GATE 离线对照**）：一次产 ``a+b#A`` + ``a+b#B`` 两版
     append，供总编肉眼并列二选一；生产链路永不传 both（serve 恒调单版）。
 
+- **单份重试**（``--retry <draft_id>``，Phase 12.5）：编辑在面板看到某草稿挂 warnings
+  时，只重掷这一条——按 ``draft_id`` 反查视角（中性稿→空视角 / 单 persona→蒸馏视角 /
+  合并稿→拒绝）带 judge 重跑，**in-place** 换池内那条，其它草稿零改动（成本 N×→1×）。
+
 本层不碰 selection.json、不派生当前稿、不失效 humanized——那些是「选中」语义，属 serve
 （10.4）的 ``/api/select-draft`` 职责。本层纯粹「产只读来源池」。
 ``run_publish`` / ``load_persona_perspective`` 可注入，测试用 stub 免真调 LLM。
@@ -207,8 +211,8 @@ def run_fanout(
     pool: list[dict[str, Any]] = [_run_one("", _DEFAULT_DRAFT_ID)]
     for persona in personas:
         # draft_id = 归一化后的 persona 名（The-Sage），与 c2_perspective 目录一致、可读。
-        normalized = "-".join(part.capitalize() for part in persona.split("-"))
-        pool.append(_run_one(load_persona_perspective(persona), normalized))
+        # 归一化单一收敛在 _normalize_persona，run_retry 反查复用同一函数避免口径漂移。
+        pool.append(_run_one(load_persona_perspective(persona), _normalize_persona(persona)))
 
     # 整份覆盖（ADR-0017 D3：重新扇出 = 显式重掷池首中性默认 + 全部 persona）。
     drafts_path = _drafts_path(news_dir, slug, platform)
@@ -292,6 +296,111 @@ def run_combine(
     return drafts_path
 
 
+def _normalize_persona(persona: str) -> str:
+    """persona id → 池内 draft_id 的归一化名（与 run_fanout 内联逻辑对称）。
+
+    单一收敛：run_fanout 产池首字母大写化 draft_id（``the-sage`` → ``The-Sage``），
+    run_retry 反查也复用此函数，避免两处口径漂移。
+    """
+    return "-".join(part.capitalize() for part in persona.split("-"))
+
+
+def _resolve_retry_perspective(
+    draft_id: str,
+    candidate: dict[str, Any],
+    load_persona_perspective: Any,
+) -> str:
+    """按 ``draft_id`` 反查 run_publish 所需 ``persona_perspective``（run_retry 命门）。
+
+    - ``_DEFAULT_DRAFT_ID``（中性稿）→ ``""``：不注入任何主视角，与 run_fanout 池首同源。
+    - 含 ``+`` 的合并稿 → ``ValueError`` 拒绝：MVP 不支持单份重掷合并视角（拆+号重组
+      复合视角逻辑另议，见 plan 12.5「合并稿 retry 留后续」）。
+    - 单 persona 稿 → 在 ``_candidate_personas`` 里找「归一化后 == draft_id」的原始 id，
+      注入其蒸馏视角；找不到 → ``ValueError``（draft_id 不对应该候选任何 persona）。
+    """
+    if draft_id == _DEFAULT_DRAFT_ID:
+        return ""
+    if "+" in draft_id:
+        raise ValueError(
+            f"draft_id {draft_id!r} 是合并稿，单份 retry 暂不支持合并视角重掷（MVP）"
+        )
+    for persona in _candidate_personas(candidate):
+        if _normalize_persona(persona) == draft_id:
+            return load_persona_perspective(persona)
+    raise ValueError(
+        f"draft_id {draft_id!r} 不对应候选 {candidate.get('tmdb_id')!r} 的任何 persona"
+    )
+
+
+def run_retry(
+    date: str,
+    slug: str,
+    tmdb_id: int | str,
+    draft_id: str,
+    *,
+    provider: str | None = None,
+    platform: str = "xiaohongshu",
+    batch_root: Path | None = None,
+    run_publish: Any = compose.run_publish,
+    load_persona_perspective: Any = compose.load_persona_perspective,
+    judge_llm_call: Any = None,
+    max_body_retries: int = 1,
+) -> Path:
+    """单份重试 orchestrator：按 ``draft_id`` 反查视角带 judge 重跑一版，**in-place** 换池内那条。
+
+    与 run_fanout 的差异：run_fanout 整份重掷全部 persona（重新扇出），本函数只动
+    ``draft_id`` 指定的那一条——编辑在面板看到某草稿挂 warnings 时，点「重试」只重掷
+    这一条，其它草稿零改动（成本从 N× 降到 1×）。反查规则见 ``_resolve_retry_perspective``：
+    中性稿→空视角、单 persona→注入蒸馏视角、合并稿→拒绝（MVP）。
+
+    ``judge_llm_call`` / ``max_body_retries`` 逐份透传给 ``run_publish``（接 12.4 双闸门），
+    默认 ``judge_llm_call=None`` 时只跑 body_lint。重跑后若 warnings 归零，``_draft_entry``
+    自动不带该键 → 前端徽标随之消失。返回草稿池文件路径。
+    """
+    draft_id = (draft_id or "").strip()
+    if not draft_id:
+        raise ValueError("run_retry requires a non-empty draft_id")
+
+    root = batch_root or _default_batch_root()
+    news_dir = locate_news_dir(date, slug, batch_root=root)
+    news = load_news(news_dir)
+    candidate = find_candidate(news_dir, tmdb_id)
+    judge = load_judge_entry(news_dir, tmdb_id)
+
+    drafts_path = _drafts_path(news_dir, slug, platform)
+    pool = _read_pool(drafts_path)
+    idx = next(
+        (i for i, d in enumerate(pool) if isinstance(d, dict) and str(d.get("draft_id")) == draft_id),
+        None,
+    )
+    if idx is None:
+        available = ", ".join(str(d.get("draft_id")) for d in pool if isinstance(d, dict))
+        raise ValueError(
+            f"retry target {draft_id!r} not found in pool {drafts_path.name}; "
+            f"available: {available or '（空池）'}"
+        )
+
+    persona_perspective = _resolve_retry_perspective(
+        draft_id, candidate, load_persona_perspective
+    )
+    draft = run_publish(
+        candidate,
+        news,
+        provider=provider,
+        judge=judge,
+        platform=platform,
+        persona_perspective=persona_perspective,
+        judge_llm_call=judge_llm_call,
+        max_body_retries=max_body_retries,
+    )
+    draft = dict(draft)
+    draft["body"] = _attach_movie_header(candidate, draft.get("body", ""))
+    pool[idx] = _draft_entry(draft_id, draft)
+
+    _write_pool(drafts_path, pool)
+    return drafts_path
+
+
 def _parse_combine(raw: str | None) -> list[str]:
     """解析 ``--combine a,b`` 逗号列表，去空白项。校验 ≤2 留给 run_combine。"""
     if not raw:
@@ -318,6 +427,14 @@ def _build_parser() -> argparse.ArgumentParser:
         "--combine",
         default=None,
         help="合并模式：逗号分隔的两个 draft_id（如 The-Sage,The-Explorer），上限 2。",
+    )
+    parser.add_argument(
+        "--retry",
+        default=None,
+        help=(
+            "单份重试模式：给定 draft_id（如 The-Sage 或 混合视角），按其视角带 judge 重跑一版 "
+            "in-place 换池内那条。合并稿（含 +）不支持。与 --combine 互斥。"
+        ),
     )
     parser.add_argument(
         "--combine-mode",
@@ -348,8 +465,26 @@ def _build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = _build_parser().parse_args(argv)
     combine_ids = _parse_combine(args.combine)
+    retry_id = (args.retry or "").strip()
+    if retry_id and combine_ids:
+        print("error: --retry 与 --combine 互斥，一次只能做一件", file=sys.stderr)
+        return 2
     try:
-        if combine_ids:
+        if retry_id:
+            judge_llm_call = (
+                compose.make_real_llm_call(provider=args.provider) if args.judge else None
+            )
+            pool_path = run_retry(
+                args.date,
+                args.news_slug,
+                args.tmdb_id,
+                retry_id,
+                provider=args.provider,
+                platform=args.platform,
+                judge_llm_call=judge_llm_call,
+                max_body_retries=args.max_body_retries,
+            )
+        elif combine_ids:
             pool_path = run_combine(
                 args.date,
                 args.news_slug,

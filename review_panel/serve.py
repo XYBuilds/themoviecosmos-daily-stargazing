@@ -870,6 +870,75 @@ def handle_combine_drafts(
     }
 
 
+def handle_retry_draft(
+    batch_root: Path,
+    body: dict[str, Any] | None,
+    *,
+    drafts_adapter_path: Path,
+    run_subprocess: Any = subprocess.run,
+) -> tuple[int, dict[str, Any]]:
+    """POST /api/retry-draft（Phase 12.5）：subprocess 调 drafts_adapter ``--retry`` 单份重掷。
+
+    编辑在面板对某挂 warnings 的草稿点「重试」→ 本端点带 ``--judge`` 只重掷那一条
+    （in-place 换池内那条，其它草稿零改动）。slug/tmdb_id 从 selection.json 兜底，与
+    /api/generate-drafts 同源。成功后读回整份池返回，供前端刷新徽标与预览。本端点不动
+    selection.json——「重掷来源池」与「选中」分离。
+    """
+    body = body or {}
+    date = body.get("date")
+    platform = body.get("platform") or "xiaohongshu"
+    draft_id = body.get("draft_id")
+    if not date:
+        return 400, {"ok": False, "drafts": [], "stderr": "missing required field: date"}
+    if not draft_id or not str(draft_id).strip():
+        return 400, {"ok": False, "drafts": [], "stderr": "missing required field: draft_id"}
+
+    slug, tmdb_id, selection = _resolve_selected(batch_root, date, body)
+    if selection is None and not (slug and tmdb_id is not None):
+        return 400, {
+            "ok": False,
+            "drafts": [],
+            "stderr": f"no selection.json for date {date!r}; call /api/select first",
+        }
+    if not slug or tmdb_id is None:
+        return 400, {"ok": False, "drafts": [], "stderr": "selection.json missing news_slug/tmdb_id"}
+
+    result = run_subprocess(
+        [
+            sys.executable,
+            str(drafts_adapter_path),
+            "--date",
+            date,
+            "--news-slug",
+            str(slug),
+            "--tmdb-id",
+            str(tmdb_id),
+            "--platform",
+            platform,
+            "--retry",
+            str(draft_id),
+            "--judge",
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode != 0:
+        return 500, {"ok": False, "drafts": [], "stderr": result.stderr}
+
+    pool_path_str = _parse_wrote_path(result.stderr) or str(
+        _drafts_pool_path(batch_root, date, slug, platform)
+    )
+    drafts = _read_drafts_pool(Path(pool_path_str))
+    return 200, {
+        "ok": True,
+        "drafts_path": pool_path_str,
+        "drafts": drafts,
+        "platform": platform,
+        "stderr": result.stderr,
+    }
+
+
 def parse_copy_markdown(text: str) -> dict[str, str]:
     """纯函数：解析 ``{slug}_copy_{platform}.md`` 的固定 D1 排版，抽出 headline/body。
 
@@ -1061,6 +1130,13 @@ def route(
         return handle_select_draft(batch_root, body)
     if method == "POST" and path == "/api/combine-drafts":
         return handle_combine_drafts(
+            batch_root,
+            body,
+            drafts_adapter_path=drafts_adapter_path or _default_drafts_adapter_path(),
+            run_subprocess=run_subprocess,
+        )
+    if method == "POST" and path == "/api/retry-draft":
+        return handle_retry_draft(
             batch_root,
             body,
             drafts_adapter_path=drafts_adapter_path or _default_drafts_adapter_path(),

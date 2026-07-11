@@ -582,6 +582,18 @@
       cursor: not-allowed;
     }
 
+    /* 12.5 · 标签 ⚠ 徽标：草稿挂 warnings（body_lint 红线 / judge 幻觉）时提示编辑该稿有残余问题。
+       仅一个小图标，不挤标签行；详情在预览区展开。 */
+    .draft-tab-warn {
+      font-size: 12px;
+      line-height: 1;
+      cursor: help;
+    }
+
+    .draft-tab.selected .draft-tab-warn {
+      filter: none;
+    }
+
     .copy-action-btn.primary:hover:not(:disabled) {
       color: #1a1408;
     }
@@ -605,6 +617,89 @@
     .enter-refine-hint {
       font-size: 11.5px;
       color: var(--ink-faint);
+    }
+
+    /* 12.5 · 预览区 warnings 详情块：run_publish 双闸门重试耗尽仍命中时挂在草稿上的残余问题
+       （ADR-0019 D4 人工兜底）。列出 body_lint 句式红线与 judge 幻觉 quote/reason，附「重试」
+       按钮让编辑只重掷这一条。合并稿不显示重试按钮（后端 MVP 不支持）。 */
+    .draft-warnings {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border: 1px solid #a6603a;
+      border-radius: 6px;
+      background: rgba(166, 96, 58, 0.08);
+    }
+
+    .draft-warnings-head {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .draft-warnings-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #c47a4a;
+    }
+
+    .draft-warnings-group {
+      margin: 6px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .draft-warnings-group li {
+      font-size: 12px;
+      color: var(--ink);
+      margin: 3px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .draft-warnings-group li::before {
+      content: "·";
+      position: absolute;
+      left: 4px;
+      color: #c47a4a;
+    }
+
+    .draft-warnings-kind {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-faint);
+    }
+
+    .draft-warnings-quote {
+      color: #c47a4a;
+    }
+
+    .draft-retry-btn {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #c47a4a;
+      background: transparent;
+      border: 1px solid #a6603a;
+      border-radius: 999px;
+      padding: 3px 12px;
+      cursor: pointer;
+    }
+
+    .draft-retry-btn:hover:not(:disabled) {
+      background: rgba(166, 96, 58, 0.18);
+    }
+
+    .draft-retry-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .draft-retry-result {
+      font-size: 11.5px;
+      margin-top: 6px;
     }
 
     #main {
@@ -949,6 +1044,7 @@
           <div id="pick-preview" class="pick-preview" style="display:none;">
             <div id="pick-preview-headline" class="copy-headline"></div>
             <div id="pick-preview-body" class="copy-body"></div>
+            <div id="pick-preview-warnings"></div>
             <div class="enter-refine-bar">
               <button type="button" id="enter-refine-btn" class="copy-action-btn primary" disabled>进入微调 →</button>
               <span class="enter-refine-hint">以此视角为主视角，进入去AI化 / 编辑 / 重生成</span>
@@ -1036,6 +1132,7 @@
         pickPreview: document.getElementById("pick-preview"),
         pickPreviewHeadline: document.getElementById("pick-preview-headline"),
         pickPreviewBody: document.getElementById("pick-preview-body"),
+        pickPreviewWarnings: document.getElementById("pick-preview-warnings"),
         enterRefineBtn: document.getElementById("enter-refine-btn"),
         enterRefineResult: document.getElementById("enter-refine-result"),
         refineStage: document.getElementById("refine-stage"),
@@ -1828,6 +1925,10 @@
         state.previewDraftId = null;
         state.selectedDraftId = null;
         state.combineChecked = [];
+        if (els.pickPreviewWarnings) {
+          els.pickPreviewWarnings.innerHTML = "";
+          els.pickPreviewWarnings.style.display = "none";
+        }
         renderDraftPool();
       }
 
@@ -1846,6 +1947,118 @@
 
       // 渲染草稿池标签行：每 persona 一个标签（仅 persona 名，正在预览的加 ★）；点标签只切换
       // 只读预览（onPreviewDraft，零副作用），不落盘。合并勾选框为次级 affordance（勾满 2 后其余禁用）。
+      // 12.5 · body_lint rule_id → 人话标签（对齐 scripts/lib/body_lint.py 的 RULES 表意图描述）。
+      // 表外 rule_id 兜底显示原始 id，避免新增红线时前端漏标。
+      var _BODY_LINT_LABELS = {
+        hard_transition: "硬转场套话（如「而这部…电影」）",
+        parallel_dianpo: "「无论是…都…」式并列点破",
+        verdict_stamp: "「同一种/同一个」式论点盖章",
+        acceptance_standalone: "把接受度/口碑单独写成一整句",
+      };
+
+      // 12.5 · 草稿是否挂了非空 warnings（body_lint 红线或 judge 幻觉任一非空）。
+      function hasWarnings(draft) {
+        var w = draft && draft.warnings;
+        if (!w || typeof w !== "object") return false;
+        var lint = w.body_lint || [];
+        var fab = w.fabrication || [];
+        return (lint.length || 0) + (fab.length || 0) > 0;
+      }
+
+      // 12.5 · 是否可单份重试：合并稿（draft_id 含 +）后端 MVP 不支持，前端不显示重试按钮。
+      function isRetryable(draftId) {
+        return String(draftId).indexOf("+") === -1;
+      }
+
+      // 12.5 · 渲染预览区 warnings 详情块：列 body_lint 句式红线 + judge 幻觉 quote/reason，
+      // 附「重试」按钮（合并稿隐藏）。无 warnings → 清空隐藏。纯展示，重试点击走事件委托。
+      function renderDraftWarnings(draft) {
+        var slot = els.pickPreviewWarnings;
+        if (!slot) return;
+        if (!hasWarnings(draft)) {
+          slot.innerHTML = "";
+          slot.style.display = "none";
+          return;
+        }
+        var id = String(draft.draft_id);
+        var w = draft.warnings;
+        var lint = w.body_lint || [];
+        var fab = w.fabrication || [];
+        var parts = [];
+        parts.push(
+          '<div class="draft-warnings-head">' +
+            '<span class="draft-warnings-title">⚠ 残余质量问题（重试耗尽后保留，供人工兜底）</span>' +
+            (isRetryable(id)
+              ? '<button type="button" id="draft-retry-btn" class="draft-retry-btn" data-draft-id="' +
+                escapeHtml(id) + '">重试这一条</button>'
+              : '<span class="enter-refine-hint">合并稿暂不支持单份重试</span>') +
+          "</div>"
+        );
+        if (lint.length) {
+          parts.push('<div class="draft-warnings-kind">句式红线（body_lint）</div>');
+          parts.push('<ul class="draft-warnings-group">' + lint.map(function (rid) {
+            return "<li>" + escapeHtml(_BODY_LINT_LABELS[rid] || String(rid)) + "</li>";
+          }).join("") + "</ul>");
+        }
+        if (fab.length) {
+          parts.push('<div class="draft-warnings-kind">幻觉细节（judge · overview 为唯一真值）</div>');
+          parts.push('<ul class="draft-warnings-group">' + fab.map(function (f) {
+            var quote = f && f.quote ? '「' + escapeHtml(String(f.quote)) + '」' : "";
+            var reason = f && f.reason ? escapeHtml(String(f.reason)) : "";
+            return "<li><span class=\"draft-warnings-quote\">" + quote + "</span>" +
+              (reason ? " — " + reason : "") + "</li>";
+          }).join("") + "</ul>");
+        }
+        parts.push('<div id="draft-retry-result" class="draft-retry-result"></div>');
+        slot.innerHTML = parts.join("");
+        slot.style.display = "block";
+      }
+
+      // 12.5 · 单份重试：POST /api/retry-draft 只重掷当前预览这一条（带 judge），成功后用回传池刷新，
+      // 重新预览该条——warnings 归零则徽标与详情块随之消失。其它草稿零改动。
+      function onRetryDraft(draftId) {
+        if (state.draftOpInFlight || !state.selection) return;
+        var id = String(draftId);
+        state.draftOpInFlight = true;
+        var btn = document.getElementById("draft-retry-btn");
+        var resultEl = document.getElementById("draft-retry-result");
+        if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>重试中…'; }
+        if (resultEl) { resultEl.className = "draft-retry-result"; resultEl.textContent = "重掷中，稍候…"; }
+        renderDraftPool();
+        apiPost("/api/retry-draft", {
+          date: state.date,
+          slug: state.selection.news_slug,
+          platform: state.copyPlatform,
+          draft_id: id,
+        })
+          .then(function (res) {
+            if (res.ok && res.body && res.body.ok) {
+              state.drafts = res.body.drafts || state.drafts;
+              state.previewDraftId = null;
+              onPreviewDraft(id);
+              var still = state.drafts.filter(function (d) { return String(d.draft_id) === id; })[0];
+              var msg = still && hasWarnings(still)
+                ? "✓ 已重掷（仍有残余问题，可再试或人工修）"
+                : "✓ 已重掷，质量问题清零";
+              showDraftPoolResult(msg, false);
+            } else {
+              var stderr = apiErrorText(res);
+              var r1 = document.getElementById("draft-retry-result");
+              if (r1) { r1.className = "draft-retry-result fail"; r1.textContent = "✗ 重试失败：" + stderr; }
+            }
+          })
+          .catch(function (err) {
+            var r2 = document.getElementById("draft-retry-result");
+            if (r2) { r2.className = "draft-retry-result fail"; r2.textContent = "✗ 重试请求失败（网络错误）：" + err.message; }
+          })
+          .then(function () {
+            state.draftOpInFlight = false;
+            var b2 = document.getElementById("draft-retry-btn");
+            if (b2) { b2.disabled = false; b2.innerHTML = "重试这一条"; }
+            renderDraftPool();
+          });
+      }
+
       function renderDraftPool() {
         if (!els.draftPoolSection || !els.draftPoolTabs) return;
         if (!state.drafts.length) {
@@ -1862,11 +2075,15 @@
           var isChecked = state.combineChecked.indexOf(id) !== -1;
           var checkboxDisabled = state.draftOpInFlight || (checkedFull && !isChecked);
           var tabCls = "draft-tab" + (isPreview ? " selected" : "");
+          var warnBadge = hasWarnings(d)
+            ? '<span class="draft-tab-warn" title="该草稿有残余质量问题（句式红线 / 幻觉），点开预览查看并可重试">⚠</span>'
+            : "";
           return (
             '<span class="' + tabCls + '" data-draft-id="' + escapeHtml(id) + '">' +
               '<button type="button" class="draft-tab-select" data-draft-id="' + escapeHtml(id) + '"' +
               (state.draftOpInFlight ? " disabled" : "") + ">" +
               (isPreview ? "★ " : "") + escapeHtml(id) + "</button>" +
+              warnBadge +
               '<label class="draft-tab-combine" title="勾选后与另一个合并生成（上限 2）">' +
                 '<input type="checkbox" class="draft-combine-cb" data-draft-id="' + escapeHtml(id) + '"' +
                 (isChecked ? " checked" : "") + (checkboxDisabled ? " disabled" : "") + ">" +
@@ -1878,7 +2095,7 @@
       }
 
       // 10.5.1 · 预览某视角草稿：纯前端只读，从内存池取 headline/body 渲染，零后端副作用。
-      // 是 pick 阶段的唯一「切标签」行为——落盘推迟到「进入微调」。
+      // 是 pick 阶段的唯一「切标签」行为——落盘推迟到「进入微调」。12.5 起附带 warnings 详情块。
       function onPreviewDraft(draftId) {
         if (state.draftOpInFlight) return;
         var id = String(draftId);
@@ -1889,6 +2106,7 @@
         if (els.pickPreview) els.pickPreview.style.display = "block";
         if (els.pickPreviewHeadline) els.pickPreviewHeadline.textContent = safeText(draft.headline);
         if (els.pickPreviewBody) els.pickPreviewBody.textContent = safeText(draft.body);
+        renderDraftWarnings(draft);
         if (els.enterRefineBtn) els.enterRefineBtn.disabled = state.draftOpInFlight;
         if (els.enterRefineResult) els.enterRefineResult.textContent = "";
         renderDraftPool();
@@ -2131,6 +2349,15 @@
       els.generateDraftsBtn.addEventListener("click", onGenerateDrafts);
       els.combineDraftsBtn.addEventListener("click", onCombineDrafts);
       if (els.enterRefineBtn) els.enterRefineBtn.addEventListener("click", onEnterRefine);
+
+      // 12.5 · 重试按钮委托：warnings 详情块每次预览重建 DOM，故在稳定的 slot 上委托捕获点击。
+      if (els.pickPreviewWarnings) {
+        els.pickPreviewWarnings.addEventListener("click", function (evt) {
+          var btn = evt.target.closest ? evt.target.closest("#draft-retry-btn") : null;
+          if (!btn || btn.disabled) return;
+          onRetryDraft(btn.getAttribute("data-draft-id"));
+        });
+      }
 
       // 事件委托：persona 标签点击 + 合并勾选框统一在 #draft-pool-tabs 捕获，
       // 避免每次 renderDraftPool 重建 DOM 后要逐个重绑监听器（同 #news-list 的委托模式）。

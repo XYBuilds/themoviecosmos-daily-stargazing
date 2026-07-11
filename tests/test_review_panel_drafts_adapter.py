@@ -14,6 +14,7 @@ from review_panel.drafts_adapter import (
     combine_bodies,
     run_combine,
     run_fanout,
+    run_retry,
 )
 from review_panel.publish_adapter import run_adapter
 
@@ -387,6 +388,138 @@ class MakeRealLlmCallTests(unittest.TestCase):
         self.assertEqual(result, "已生成正文")
         self.assertEqual(captured["model"], "fake-model")
         self.assertEqual(captured["messages"][1]["content"], "判断这段正文是否虚构")
+
+
+class RetryTests(unittest.TestCase):
+    """Phase 12.5 · run_retry：单份重试反查视角 + in-place 替换 + warnings 归零。"""
+
+    def _seed(self, tmp_path: Path, date: str, slug: str) -> list[dict]:
+        _make_batch(tmp_path, date, slug)
+        calls: list[dict] = []
+        run_fanout(
+            date,
+            slug,
+            _TMDB_ID,
+            batch_root=tmp_path,
+            run_publish=_make_fake_publish(
+                calls,
+                warnings_by_perspective={
+                    "视角[The-Sage]": {"body_lint": ["hard_transition"], "fabrication": []}
+                },
+            ),
+            load_persona_perspective=_fake_perspective,
+        )
+        calls.clear()
+        return calls
+
+    def test_retry_single_persona_replaces_in_place_and_reverses_perspective(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            calls = self._seed(tmp_path, "2026-07-06", "02-slug")
+            before = _read_pool(tmp_path, "2026-07-06", "02-slug")
+
+            # 重掷带 warnings 的 The-Sage：这次 stub 不再返回 warnings（模拟重试后归零）。
+            run_retry(
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
+                "The-Sage",
+                batch_root=tmp_path,
+                run_publish=_make_fake_publish(calls),
+                load_persona_perspective=_fake_perspective,
+            )
+
+            after = _read_pool(tmp_path, "2026-07-06", "02-slug")
+            # 只调一次 run_publish，且反查出 The-Sage 的蒸馏视角。
+            self.assertEqual(len(calls), 1)
+            self.assertEqual(calls[0]["persona_perspective"], "视角[The-Sage]")
+            # 池长度、顺序、其它草稿不变；只有 The-Sage 那条被换（warnings 归零）。
+            self.assertEqual([d["draft_id"] for d in after], [d["draft_id"] for d in before])
+            by_id_after = {d["draft_id"]: d for d in after}
+            self.assertNotIn("warnings", by_id_after["The-Sage"])
+            self.assertEqual(by_id_after["混合视角"], {d["draft_id"]: d for d in before}["混合视角"])
+
+    def test_retry_neutral_default_uses_empty_perspective(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            calls = self._seed(tmp_path, "2026-07-06", "02-slug")
+
+            run_retry(
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
+                "混合视角",
+                batch_root=tmp_path,
+                run_publish=_make_fake_publish(calls),
+                load_persona_perspective=_fake_perspective,
+            )
+
+            self.assertEqual(len(calls), 1)
+            self.assertEqual(calls[0]["persona_perspective"], "")
+
+    def test_retry_passes_judge_llm_call_and_max_body_retries_through(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            calls = self._seed(tmp_path, "2026-07-06", "02-slug")
+            sentinel_judge = object()
+
+            run_retry(
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
+                "The-Sage",
+                batch_root=tmp_path,
+                run_publish=_make_fake_publish(calls),
+                load_persona_perspective=_fake_perspective,
+                judge_llm_call=sentinel_judge,
+                max_body_retries=2,
+            )
+
+            self.assertEqual(len(calls), 1)
+            self.assertIs(calls[0]["judge_llm_call"], sentinel_judge)
+            self.assertEqual(calls[0]["max_body_retries"], 2)
+
+    def test_retry_rejects_combined_draft_id(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            self._seed(tmp_path, "2026-07-06", "02-slug")
+            # 先造一条合并稿进池，确保「找得到但仍拒绝」，验证的是合并语义而非 not-found。
+            run_combine(
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
+                ["The-Sage", "The-Explorer"],
+                batch_root=tmp_path,
+                run_publish=_make_fake_publish([]),
+                load_persona_perspective=_fake_perspective,
+            )
+            with self.assertRaises(ValueError) as ctx:
+                run_retry(
+                    "2026-07-06",
+                    "02-slug",
+                    _TMDB_ID,
+                    "The-Sage+The-Explorer",
+                    batch_root=tmp_path,
+                    run_publish=_make_fake_publish([]),
+                    load_persona_perspective=_fake_perspective,
+                )
+            self.assertIn("合并稿", str(ctx.exception))
+
+    def test_retry_unknown_draft_id_raises(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            self._seed(tmp_path, "2026-07-06", "02-slug")
+            with self.assertRaises(ValueError) as ctx:
+                run_retry(
+                    "2026-07-06",
+                    "02-slug",
+                    _TMDB_ID,
+                    "The-Nonexistent",
+                    batch_root=tmp_path,
+                    run_publish=_make_fake_publish([]),
+                    load_persona_perspective=_fake_perspective,
+                )
+            self.assertIn("not found", str(ctx.exception))
 
 
 class CombineTests(unittest.TestCase):
