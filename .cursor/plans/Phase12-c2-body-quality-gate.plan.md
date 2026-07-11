@@ -15,7 +15,7 @@ todos:
     status: complete
   - id: p12.2-body-lint-syntax-gate
     content: 12.2 · [gate] body_lint 纯函数校验器 scripts/lib/body_lint.py：(rule_id, pattern, desc) 红线 DSL 表 + scan(body)->list[Violation] 纯函数（只检测/不改文本/不调 LLM/零 IO），覆盖硬转场/说破句/接受度单独成句；每条红线正反例单测；遵循已落地 ADR-0019 D0/D1
-    status: todo
+    status: complete
   - id: p12.3-hallucination-judge
     content: 12.3 · [gate] judge_body_fabrication(body, overview, *, llm_call)->list[Finding] 纯函数 + 配套 prompt：拿 DB overview 当唯一真值，判定 body 是否出现 overview 没写的电影细节/写错导演名；llm_call 可注入，单测用 stub
     status: todo
