@@ -12,7 +12,7 @@ overview: |
 todos:
   - id: p12.1-land-structure-baseline
     content: 12.1 · [基线] 从最新 main 检出 feat/phase12.1-structure-and-neutral-default，将工作区三文件裸改（compose_publish_xiaohongshu.md 结构层去AI腔 + drafts_adapter.py 池首中性默认稿 + test_review_panel_drafts_adapter.py）规整提交；pytest 确认 panel 测试无 regression。仅锁存基线，正文眼验达标留到 12.5
-    status: todo
+    status: complete
   - id: p12.2-body-lint-syntax-gate
     content: 12.2 · [gate] body_lint 纯函数校验器 scripts/lib/body_lint.py：(rule_id, pattern, desc) 红线 DSL 表 + scan(body)->list[Violation] 纯函数（只检测/不改文本/不调 LLM/零 IO），覆盖硬转场/说破句/接受度单独成句；每条红线正反例单测；遵循已落地 ADR-0019 D0/D1
     status: todo
