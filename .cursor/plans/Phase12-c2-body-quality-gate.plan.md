@@ -25,8 +25,8 @@ todos:
   - id: p12.5-panel-warnings-and-retry
     content: 12.5 · [panel] warnings 面板化人工兜底闭环：run_publish 双闸门透传给 run_fanout（judge_llm_call/max_body_retries，A1 已落）+ drafts_adapter.run_retry（按 draft_id 反查 persona → 带 judge 重跑 → in-place 换那条）+ serve /api/retry-draft + index.html 标签 ⚠ 徽标/预览区 warnings 详情块/编辑可点「重试」；仅中性稿+单 persona 稿，合并稿 retry 留后续
     status: complete
-  - id: p12.6-eyeball-gate-manual-approve
-    content: 12.6 · [GATE] 真重放 05 场景（AI/广岛 + The Creator, tmdb 670292）跨 persona 出正文 + 面板肉眼验 warnings 展示/单份 retry 闭环：body_lint 计数 + judge 结果 + 人工眼验句式红线归零/幻觉压住/Persona ①偏②显形/3-4段扫读密度；歪了回 12.2/12.3/12.4/prompt 迭代 [需人工验收]（当前搁置，暂不给 Go/No-Go 结论）
+  - id: p12.end-eyeball-gate-manual-approve
+    content: 12.end · [GATE] 真重放 05 场景（AI/广岛 + The Creator, tmdb 670292）跨 persona 出正文 + 面板肉眼验 warnings 展示/单份 retry 闭环：body_lint 计数 + judge 结果 + 人工眼验句式红线归零/幻觉压住/Persona ①偏②显形/3-4段扫读密度；歪了回 12.2/12.3/12.4/prompt 迭代 [需人工验收]（当前搁置，暂不给 Go/No-Go 结论；retry 闭环验收依赖 12.6.x 异步框架落地）
     status: todo
 isProject: true
 ---
@@ -229,9 +229,11 @@ isProject: true
 
 ---
 
-## Todo 12.6 · [GATE] 眼验迭代闸门 [需人工验收]（当前搁置）
+## Todo 12.end · [GATE] 眼验迭代闸门 [需人工验收]（当前搁置）
 
-**依赖：** 12.1–12.5 全部
+**依赖：** 12.1–12.5 + 12.6.x（异步框架）全部
+
+> retry 闭环验收依赖 12.6.x 落地：gate 验收内容含「面板 warnings 展示 + 单份 retry 闭环可用」，而 retry 正因同步 HTTP 断连而不可用，须待 `Phase12.6-panel-async-job-framework` 完成后方可验收。
 
 **执行顺序：**
 1. 真重放 05 场景（AI/广岛 +《The Creator》，tmdb 670292）跨 persona 出正文（不写 report、不合并）。
