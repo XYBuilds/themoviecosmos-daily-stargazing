@@ -13,7 +13,7 @@ todos:
     status: complete
   - id: p12.6.2-serve-async-endpoints
     content: 12.6.2 · [serve] route() 异步化 6 长任务端点（publish/rewrite/regenerate/generate-drafts/combine-drafts/retry-draft）改 job_store.submit 立即返回 202+job_id + 新增 GET /api/job 四态（404/running/done{result}/error）+ job_store 注入穿 route/make_handler_class/_dispatch/serve + _send_json 吞 ConnectionAborted/BrokenPipe/ConnectionReset
-    status: todo
+    status: complete
   - id: p12.6.3-frontend-submit-poll
     content: 12.6.3 · [frontend] index.html 新增 submitJob(还原 apiPost 形状)+pollJob(setTimeout 轮询 /api/job + 最大上限兜死循环) + 6 回调（onGenerateDrafts/onCombineDrafts/onRetryDraft + publish/rewrite/regenerate）由 apiPost 切 submitJob，.then/.catch 逻辑零改
     status: todo
