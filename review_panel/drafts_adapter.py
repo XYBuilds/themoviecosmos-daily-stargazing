@@ -72,12 +72,21 @@ def _write_pool(path: Path, pool: list[dict[str, Any]]) -> None:
 
 
 def _draft_entry(draft_id: str, draft: dict[str, Any]) -> dict[str, Any]:
-    """归一化池条目：只留 {draft_id, headline, body}（ADR-0017 D3）。"""
-    return {
+    """归一化池条目：{draft_id, headline, body}（ADR-0017 D3），非空 warnings 时追加保留。
+
+    Phase 12.5：``run_publish`` 重试耗尽仍命中 body_lint / judge 违规时会在返回值挂
+    ``warnings``；池条目原样透传该字段供编辑面板标注、手动再触发 retry。空/无 warnings
+    的既有条目不加键，保持池结构零回归。
+    """
+    entry: dict[str, Any] = {
         "draft_id": draft_id,
         "headline": str(draft.get("headline") or "").strip(),
         "body": str(draft.get("body") or "").strip(),
     }
+    warnings = draft.get("warnings")
+    if warnings:
+        entry["warnings"] = warnings
+    return entry
 
 
 def _candidate_personas(candidate: dict[str, Any]) -> list[str]:
@@ -152,6 +161,8 @@ def run_fanout(
     batch_root: Path | None = None,
     run_publish: Any = compose.run_publish,
     load_persona_perspective: Any = compose.load_persona_perspective,
+    judge_llm_call: Any = None,
+    max_body_retries: int = 1,
 ) -> Path:
     """全量扇出 orchestrator：池首中性默认稿 + triggered_by 每 persona 各注入蒸馏视角一版 → 整份覆盖池。
 
@@ -159,6 +170,11 @@ def run_fanout(
     作为编辑打开面板先看到的默认版；其后按 triggered_by 逐 persona 各出一版加了脾气的备选。
     ``run_publish`` / ``load_persona_perspective`` 可注入（默认 ``compose`` 真实函数），
     测试用 stub 替换免真调 LLM。返回草稿池文件路径。
+
+    ``judge_llm_call`` / ``max_body_retries``（Phase 12.5）逐份透传给 ``run_publish``，
+    接入 12.4 已建好的正文质量双闸门：body_lint 无条件跑，judge 仅当注入非 None 的
+    ``judge_llm_call`` 时才跑。默认 ``judge_llm_call=None`` → 与之前行为完全一致
+    （只跑 body_lint），既有测试零回归。
     """
     root = batch_root or _default_batch_root()
     news_dir = locate_news_dir(date, slug, batch_root=root)
@@ -180,6 +196,8 @@ def run_fanout(
             judge=judge,
             platform=platform,
             persona_perspective=persona_perspective,
+            judge_llm_call=judge_llm_call,
+            max_body_retries=max_body_retries,
         )
         draft = dict(draft)
         draft["body"] = _attach_movie_header(candidate, draft.get("body", ""))
@@ -308,6 +326,22 @@ def _build_parser() -> argparse.ArgumentParser:
         default="A",
         help="合并路线：A 重跑 C2 合并视角（生产默认）/ B 文本融合 / both 产两版（仅 GATE 离线对照）。",
     )
+    parser.add_argument(
+        "--judge",
+        action="store_true",
+        default=False,
+        help=(
+            "接入 12.4 正文质量 judge 闸门：用 compose.make_real_llm_call(provider) "
+            "构造真实 judge_llm_call 传给 run_fanout（默认关闭，只跑 body_lint）。"
+        ),
+    )
+    parser.add_argument(
+        "--max-body-retries",
+        dest="max_body_retries",
+        type=int,
+        default=1,
+        help="正文质量闸门命中后的最大重试次数，透传给 run_publish（默认 1）。",
+    )
     return parser
 
 
@@ -326,12 +360,17 @@ def main(argv: list[str] | None = None) -> int:
                 platform=args.platform,
             )
         else:
+            judge_llm_call = (
+                compose.make_real_llm_call(provider=args.provider) if args.judge else None
+            )
             pool_path = run_fanout(
                 args.date,
                 args.news_slug,
                 args.tmdb_id,
                 provider=args.provider,
                 platform=args.platform,
+                judge_llm_call=judge_llm_call,
+                max_body_retries=args.max_body_retries,
             )
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)

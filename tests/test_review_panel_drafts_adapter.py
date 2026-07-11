@@ -6,7 +6,9 @@ import json
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from typing import Any
 
+from scripts import compose
 from scripts.compose import build_header_projection, render_movie_header
 from review_panel.drafts_adapter import (
     combine_bodies,
@@ -68,7 +70,7 @@ def _fake_perspective(persona_id: str) -> str:
     return f"视角[{normalized}]"
 
 
-def _make_fake_publish(calls: list[dict]):
+def _make_fake_publish(calls: list[dict], warnings_by_perspective: dict | None = None):
     def _fake_publish(
         candidate,
         news,
@@ -77,13 +79,24 @@ def _make_fake_publish(calls: list[dict]):
         judge=None,
         platform=None,
         persona_perspective="",
+        judge_llm_call=None,
+        max_body_retries=1,
     ):
-        calls.append({"persona_perspective": persona_perspective})
-        return {
+        calls.append(
+            {
+                "persona_perspective": persona_perspective,
+                "judge_llm_call": judge_llm_call,
+                "max_body_retries": max_body_retries,
+            }
+        )
+        draft = {
             "tmdb_id": candidate["tmdb_id"],
             "headline": f"标题-{len(calls)}",
             "body": f"正文-{persona_perspective}",
         }
+        if warnings_by_perspective and persona_perspective in warnings_by_perspective:
+            draft["warnings"] = warnings_by_perspective[persona_perspective]
+        return draft
 
     return _fake_publish
 
@@ -267,6 +280,113 @@ class FanoutTests(unittest.TestCase):
             )
             pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
             self.assertNotIn("STALE", [d["draft_id"] for d in pool])
+
+    def test_fanout_keeps_warnings_in_pool_entry_when_present(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "02-slug")
+            calls: list[dict] = []
+            warnings = {"body_lint": ["hard_transition"], "fabrication": []}
+
+            run_fanout(
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
+                batch_root=tmp_path,
+                run_publish=_make_fake_publish(
+                    calls, warnings_by_perspective={"视角[The-Sage]": warnings}
+                ),
+                load_persona_perspective=_fake_perspective,
+            )
+
+            pool = _read_pool(tmp_path, "2026-07-06", "02-slug")
+            by_id = {d["draft_id"]: d for d in pool}
+            self.assertEqual(by_id["The-Sage"]["warnings"], warnings)
+            # 其余没有 warnings 的条目不应带 warnings 键。
+            self.assertNotIn("warnings", by_id["混合视角"])
+            self.assertNotIn("warnings", by_id["The-Explorer"])
+            self.assertNotIn("warnings", by_id["The-Innocent"])
+
+    def test_fanout_passes_judge_llm_call_and_max_body_retries_through(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "02-slug")
+            calls: list[dict] = []
+            sentinel_judge = object()
+
+            run_fanout(
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
+                batch_root=tmp_path,
+                run_publish=_make_fake_publish(calls),
+                load_persona_perspective=_fake_perspective,
+                judge_llm_call=sentinel_judge,
+                max_body_retries=3,
+            )
+
+            self.assertTrue(calls)
+            for call in calls:
+                self.assertIs(call["judge_llm_call"], sentinel_judge)
+                self.assertEqual(call["max_body_retries"], 3)
+
+    def test_fanout_defaults_judge_llm_call_to_none(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "02-slug")
+            calls: list[dict] = []
+
+            run_fanout(
+                "2026-07-06",
+                "02-slug",
+                _TMDB_ID,
+                batch_root=tmp_path,
+                run_publish=_make_fake_publish(calls),
+                load_persona_perspective=_fake_perspective,
+            )
+
+            self.assertTrue(calls)
+            for call in calls:
+                self.assertIsNone(call["judge_llm_call"])
+                self.assertEqual(call["max_body_retries"], 1)
+
+
+class MakeRealLlmCallTests(unittest.TestCase):
+    def test_factory_closure_calls_client_and_returns_content(self) -> None:
+        captured: dict[str, Any] = {}
+
+        class _FakeMessage:
+            content = "  已生成正文  "
+
+        class _FakeChoice:
+            message = _FakeMessage()
+
+        class _FakeResponse:
+            choices = [_FakeChoice()]
+
+        class _FakeCompletions:
+            def create(self, *, model, messages):
+                captured["model"] = model
+                captured["messages"] = messages
+                return _FakeResponse()
+
+        class _FakeChat:
+            completions = _FakeCompletions()
+
+        class _FakeClient:
+            chat = _FakeChat()
+
+        import unittest.mock as mock
+
+        with mock.patch.object(compose, "load_env", lambda: None), mock.patch.object(
+            compose, "get_llm_client", lambda provider: _FakeClient()
+        ), mock.patch.object(compose, "_model_name", lambda provider: "fake-model"):
+            llm_call = compose.make_real_llm_call(provider="mimo")
+            result = llm_call("判断这段正文是否虚构")
+
+        self.assertEqual(result, "已生成正文")
+        self.assertEqual(captured["model"], "fake-model")
+        self.assertEqual(captured["messages"][1]["content"], "判断这段正文是否虚构")
 
 
 class CombineTests(unittest.TestCase):
