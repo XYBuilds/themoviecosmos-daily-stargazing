@@ -34,6 +34,7 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from review_panel.build_data import build_panel_data, list_available_dates  # noqa: E402
+from review_panel.job_store import JobStore, job_store as _DEFAULT_JOB_STORE  # noqa: E402
 from scripts.lib.paths import repo_root  # noqa: E402
 
 # 子进程调 publish_adapter.py 时用 stderr 里这一行定位「Wrote <path>」的产出路径，
@@ -1065,6 +1066,30 @@ def handle_drafts(batch_root: Path, query: dict[str, str] | None) -> tuple[int, 
     return 200, {"drafts": drafts, "drafts_path": str(pool_path), "platform": platform}
 
 
+def handle_job(job_store: JobStore, query: dict[str, str] | None) -> tuple[int, dict[str, Any]]:
+    """GET /api/job（Phase 12.6.2 D4）：轮询后台 job 的四态。
+
+    ``rec is None``（未知 job_id）→ 404；``running`` → 200 无 result；``done`` →
+    200 + ``result: {http_status, payload}``（原 handle_* 的同步返回形状原样透出）；
+    ``error``（work 抛异常）→ 200 + ``stderr``（traceback 文本，字段名对齐既有
+    handle_* 失败时的 ``stderr`` 习惯，供前端复用同一套错误展示逻辑）。
+    """
+    query = query or {}
+    job_id = query.get("job_id")
+    rec = job_store.get(job_id) if job_id else None
+    if rec is None:
+        return 404, {"ok": False, "error": f"unknown job_id: {job_id}"}
+    if rec.status == "running":
+        return 200, {"ok": True, "status": "running"}
+    if rec.status == "done":
+        return 200, {
+            "ok": True,
+            "status": "done",
+            "result": {"http_status": rec.http_status, "payload": rec.payload},
+        }
+    return 200, {"ok": True, "status": "error", "stderr": rec.error}
+
+
 def route(
     method: str,
     path: str,
@@ -1078,8 +1103,15 @@ def route(
     regenerate_adapter_path: Path | None = None,
     drafts_adapter_path: Path | None = None,
     run_subprocess: Any = subprocess.run,
+    job_store: JobStore = _DEFAULT_JOB_STORE,
 ) -> tuple[int, dict[str, Any] | str]:
-    """纯路由分发：无 socket 依赖，单测与真实服务器共用同一份逻辑。"""
+    """纯路由分发：无 socket 依赖，单测与真实服务器共用同一份逻辑。
+
+    Phase 12.6.2：6 个长 LLM 任务端点（publish/rewrite/regenerate/generate-drafts/
+    combine-drafts/retry-draft）不再同步阻塞到跑完，而是提交后台 job 立即返回 202；
+    真正的结果需轮询 ``GET /api/job?job_id=...`` 取回（四态：unknown/running/done/error）。
+    handle_* 函数本身零改动——它们返回的 ``(status, payload)`` 正是 job work 的返回形状。
+    """
     query = query or {}
 
     if method == "GET" and path in ("/", "/index.html"):
@@ -1096,52 +1128,84 @@ def route(
         return handle_drafts(batch_root, query)
     if method == "POST" and path == "/api/select":
         return handle_select(batch_root, body)
+    if method == "GET" and path == "/api/job":
+        return handle_job(job_store, query)
     if method == "POST" and path == "/api/publish":
-        return handle_publish(
-            batch_root,
-            body,
-            publish_adapter_path=publish_adapter_path or _default_publish_adapter_path(),
-            run_subprocess=run_subprocess,
+        _publish_adapter_path = publish_adapter_path or _default_publish_adapter_path()
+        job_id = job_store.submit(
+            lambda: handle_publish(
+                batch_root,
+                body,
+                publish_adapter_path=_publish_adapter_path,
+                run_subprocess=run_subprocess,
+            ),
+            kind="publish",
         )
+        return 202, {"ok": True, "job_id": job_id, "kind": "publish"}
     if method == "POST" and path == "/api/rewrite":
-        return handle_rewrite(
-            batch_root,
-            body,
-            rewrite_adapter_path=rewrite_adapter_path or _default_rewrite_adapter_path(),
-            run_subprocess=run_subprocess,
+        _rewrite_adapter_path = rewrite_adapter_path or _default_rewrite_adapter_path()
+        job_id = job_store.submit(
+            lambda: handle_rewrite(
+                batch_root,
+                body,
+                rewrite_adapter_path=_rewrite_adapter_path,
+                run_subprocess=run_subprocess,
+            ),
+            kind="rewrite",
         )
+        return 202, {"ok": True, "job_id": job_id, "kind": "rewrite"}
     if method == "POST" and path == "/api/regenerate":
-        return handle_regenerate(
-            batch_root,
-            body,
-            regenerate_adapter_path=regenerate_adapter_path or _default_regenerate_adapter_path(),
-            run_subprocess=run_subprocess,
+        _regenerate_adapter_path = regenerate_adapter_path or _default_regenerate_adapter_path()
+        job_id = job_store.submit(
+            lambda: handle_regenerate(
+                batch_root,
+                body,
+                regenerate_adapter_path=_regenerate_adapter_path,
+                run_subprocess=run_subprocess,
+            ),
+            kind="regenerate",
         )
+        return 202, {"ok": True, "job_id": job_id, "kind": "regenerate"}
     if method == "POST" and path == "/api/edit-body":
         return handle_edit_body(batch_root, body)
     if method == "POST" and path == "/api/generate-drafts":
-        return handle_generate_drafts(
-            batch_root,
-            body,
-            drafts_adapter_path=drafts_adapter_path or _default_drafts_adapter_path(),
-            run_subprocess=run_subprocess,
+        _drafts_adapter_path = drafts_adapter_path or _default_drafts_adapter_path()
+        job_id = job_store.submit(
+            lambda: handle_generate_drafts(
+                batch_root,
+                body,
+                drafts_adapter_path=_drafts_adapter_path,
+                run_subprocess=run_subprocess,
+            ),
+            kind="generate-drafts",
         )
+        return 202, {"ok": True, "job_id": job_id, "kind": "generate-drafts"}
     if method == "POST" and path == "/api/select-draft":
         return handle_select_draft(batch_root, body)
     if method == "POST" and path == "/api/combine-drafts":
-        return handle_combine_drafts(
-            batch_root,
-            body,
-            drafts_adapter_path=drafts_adapter_path or _default_drafts_adapter_path(),
-            run_subprocess=run_subprocess,
+        _drafts_adapter_path = drafts_adapter_path or _default_drafts_adapter_path()
+        job_id = job_store.submit(
+            lambda: handle_combine_drafts(
+                batch_root,
+                body,
+                drafts_adapter_path=_drafts_adapter_path,
+                run_subprocess=run_subprocess,
+            ),
+            kind="combine-drafts",
         )
+        return 202, {"ok": True, "job_id": job_id, "kind": "combine-drafts"}
     if method == "POST" and path == "/api/retry-draft":
-        return handle_retry_draft(
-            batch_root,
-            body,
-            drafts_adapter_path=drafts_adapter_path or _default_drafts_adapter_path(),
-            run_subprocess=run_subprocess,
+        _drafts_adapter_path = drafts_adapter_path or _default_drafts_adapter_path()
+        job_id = job_store.submit(
+            lambda: handle_retry_draft(
+                batch_root,
+                body,
+                drafts_adapter_path=_drafts_adapter_path,
+                run_subprocess=run_subprocess,
+            ),
+            kind="retry-draft",
         )
+        return 202, {"ok": True, "job_id": job_id, "kind": "retry-draft"}
     return 404, {"error": f"not found: {method} {path}"}
 
 
@@ -1158,6 +1222,7 @@ def make_handler_class(
     rewrite_adapter_path: Path,
     regenerate_adapter_path: Path,
     drafts_adapter_path: Path,
+    job_store: JobStore = _DEFAULT_JOB_STORE,
 ) -> type[BaseHTTPRequestHandler]:
     """按注入的 batch_root/路径生成一个 handler 类（闭包避免用全局可变状态）。"""
 
@@ -1193,6 +1258,7 @@ def make_handler_class(
                 rewrite_adapter_path=rewrite_adapter_path,
                 regenerate_adapter_path=regenerate_adapter_path,
                 drafts_adapter_path=drafts_adapter_path,
+                job_store=job_store,
             )
             if isinstance(payload, str):
                 self._send_html(status, payload)
@@ -1201,19 +1267,27 @@ def make_handler_class(
 
         def _send_json(self, status: int, payload: dict[str, Any]) -> None:
             data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-            self.send_response(status)
-            self.send_header("Content-Type", "application/json; charset=utf-8")
-            self.send_header("Content-Length", str(len(data)))
-            self.end_headers()
-            self.wfile.write(data)
+            try:
+                self.send_response(status)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.send_header("Content-Length", str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+            except (ConnectionAbortedError, BrokenPipeError, ConnectionResetError):
+                # 客户端断开（比如前端页面被关掉/刷新中断了长轮询请求）不是服务器错误，
+                # 静默 return，不打 traceback 噪声。
+                return
 
         def _send_html(self, status: int, html: str) -> None:
             data = html.encode("utf-8")
-            self.send_response(status)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.send_header("Content-Length", str(len(data)))
-            self.end_headers()
-            self.wfile.write(data)
+            try:
+                self.send_response(status)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+            except (ConnectionAbortedError, BrokenPipeError, ConnectionResetError):
+                return
 
         def log_message(self, format: str, *args: Any) -> None:  # noqa: A002
             # 静默默认访问日志；启动/关键事件由 main() 自行 print，避免噪声。
@@ -1231,6 +1305,7 @@ def serve(
     rewrite_adapter_path: Path | None = None,
     regenerate_adapter_path: Path | None = None,
     drafts_adapter_path: Path | None = None,
+    job_store: JobStore = _DEFAULT_JOB_STORE,
 ) -> ThreadingHTTPServer:
     """构建并返回一个已 bind 但尚未 serve_forever 的服务器实例（便于测试注入）。"""
     root = batch_root or _default_batch_root()
@@ -1241,6 +1316,7 @@ def serve(
         rewrite_adapter_path=rewrite_adapter_path or _default_rewrite_adapter_path(),
         regenerate_adapter_path=regenerate_adapter_path or _default_regenerate_adapter_path(),
         drafts_adapter_path=drafts_adapter_path or _default_drafts_adapter_path(),
+        job_store=job_store,
     )
     # 只绑 127.0.0.1（loopback）：这是无鉴权本地面板，绝不能改绑 0.0.0.0 对外暴露。
     return ThreadingHTTPServer(("127.0.0.1", port), handler_cls)

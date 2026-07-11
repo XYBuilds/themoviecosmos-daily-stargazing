@@ -12,12 +12,55 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 
+from review_panel.job_store import JobStore, _inline_executor
 from review_panel.serve import (
     parse_copy_markdown,
     read_selection,
     replace_body_in_copy_markdown,
     route,
 )
+
+
+class _InlineJobStore(JobStore):
+    """测试专用：submit 默认用 inline executor，让 job 在 submit() 内同步跑完。
+
+    生产代码零改动——只在测试里覆写 executor 的默认值，使这 6 个已异步化的端点
+    在单测里表现为「提交即完成」，可以立即用 GET /api/job 查到 status="done"。
+    """
+
+    def submit(self, work, kind, *, executor=_inline_executor):  # noqa: ANN001
+        return super().submit(work, kind, executor=executor)
+
+
+def _run_job_and_get_result(tmp_path, job_store, job_id):
+    """两段式断言辅助：轮询 /api/job 直到读出终态，返回 (job_http_status, job_payload)。"""
+    status, payload = route(
+        "GET", "/api/job", {"job_id": job_id}, None, batch_root=tmp_path, job_store=job_store
+    )
+    return status, payload
+
+
+def _submit_async(tmp_path, path, body, *, expected_kind, run_subprocess=None):
+    """六个异步端点的公共两段式调用：提交 job（断言 202+kind）→ inline 跑完 → 取回 result。
+
+    返回 ``(result_http_status, result_payload)``，正是原来同步端点的 (status, payload)
+    形状，供各测试用例直接沿用改造前的断言语句，只需把 ``route(...)`` 换成
+    ``_submit_async(...)`` 即可。
+    """
+    job_store = _InlineJobStore()
+    kwargs = {"batch_root": tmp_path, "job_store": job_store}
+    if run_subprocess is not None:
+        kwargs["run_subprocess"] = run_subprocess
+    submit_status, submit_payload = route("POST", path, {}, body, **kwargs)
+    assert submit_status == 202, f"expected 202, got {submit_status}: {submit_payload}"
+    assert submit_payload["ok"] is True
+    assert submit_payload["kind"] == expected_kind
+    job_id = submit_payload["job_id"]
+    job_status, job_payload = _run_job_and_get_result(tmp_path, job_store, job_id)
+    assert job_status == 200
+    assert job_payload["status"] == "done"
+    result = job_payload["result"]
+    return result["http_status"], result["payload"]
 
 
 def _write_news(news_dir: Path) -> None:
@@ -215,6 +258,7 @@ class PublishRouteTests(unittest.TestCase):
                     returncode=0, stdout="", stderr=f"Wrote {expected_copy_path}\n"
                 )
 
+            job_store = _InlineJobStore()
             status, payload = route(
                 "POST",
                 "/api/publish",
@@ -222,9 +266,19 @@ class PublishRouteTests(unittest.TestCase):
                 {"date": "2026-07-06"},
                 batch_root=tmp_path,
                 run_subprocess=fake_run_subprocess,
+                job_store=job_store,
             )
+            self.assertEqual(status, 202)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["kind"], "publish")
+            job_id = payload["job_id"]
 
-            self.assertEqual(status, 200)
+            job_status, job_payload = _run_job_and_get_result(tmp_path, job_store, job_id)
+            self.assertEqual(job_status, 200)
+            self.assertEqual(job_payload["status"], "done")
+            result = job_payload["result"]
+            self.assertEqual(result["http_status"], 200)
+            payload = result["payload"]
             self.assertTrue(payload["ok"])
             self.assertEqual(payload["copy_path"], str(expected_copy_path))
 
@@ -250,6 +304,7 @@ class PublishRouteTests(unittest.TestCase):
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 return SimpleNamespace(returncode=2, stdout="", stderr="error: tmdb_id not found")
 
+            job_store = _InlineJobStore()
             status, payload = route(
                 "POST",
                 "/api/publish",
@@ -257,9 +312,18 @@ class PublishRouteTests(unittest.TestCase):
                 {"date": "2026-07-06"},
                 batch_root=tmp_path,
                 run_subprocess=fake_run_subprocess,
+                job_store=job_store,
             )
+            self.assertEqual(status, 202)
+            job_id = payload["job_id"]
 
-            self.assertEqual(status, 500)
+            job_status, job_payload = _run_job_and_get_result(tmp_path, job_store, job_id)
+            self.assertEqual(job_status, 200)
+            self.assertEqual(job_payload["status"], "done")
+            result = job_payload["result"]
+            # handle_publish 内部返回 500 是正常返回不是抛异常，job 仍是 done。
+            self.assertEqual(result["http_status"], 500)
+            payload = result["payload"]
             self.assertFalse(payload["ok"])
             self.assertIsNone(payload["copy_path"])
             self.assertEqual(payload["stderr"], "error: tmdb_id not found")
@@ -272,12 +336,23 @@ class PublishRouteTests(unittest.TestCase):
             tmp_path = Path(tmp)
             _make_batch(tmp_path, "2026-07-06", "09-slug")
 
+            job_store = _InlineJobStore()
             status, payload = route(
-                "POST", "/api/publish", {}, {"date": "2026-07-06"}, batch_root=tmp_path
+                "POST",
+                "/api/publish",
+                {},
+                {"date": "2026-07-06"},
+                batch_root=tmp_path,
+                job_store=job_store,
             )
+            self.assertEqual(status, 202)
+            job_id = payload["job_id"]
 
-            self.assertEqual(status, 400)
-            self.assertFalse(payload["ok"])
+            job_status, job_payload = _run_job_and_get_result(tmp_path, job_store, job_id)
+            self.assertEqual(job_payload["status"], "done")
+            result = job_payload["result"]
+            self.assertEqual(result["http_status"], 400)
+            self.assertFalse(result["payload"]["ok"])
 
 
 class SelectDeletesStaleCopyTests(unittest.TestCase):
@@ -701,12 +776,11 @@ class RewriteRouteTests(unittest.TestCase):
                     returncode=0, stdout="", stderr=f"Wrote {humanized_path}\n"
                 )
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/rewrite",
-                {},
                 {"date": "2026-07-06", "slug": "09-slug", "platform": "xiaohongshu"},
-                batch_root=tmp_path,
+                expected_kind="rewrite",
                 run_subprocess=fake_run_subprocess,
             )
 
@@ -737,12 +811,11 @@ class RewriteRouteTests(unittest.TestCase):
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 return SimpleNamespace(returncode=2, stdout="", stderr="error: empty body")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/rewrite",
-                {},
                 {"date": "2026-07-06", "slug": "09-slug"},
-                batch_root=tmp_path,
+                expected_kind="rewrite",
                 run_subprocess=fake_run_subprocess,
             )
 
@@ -776,12 +849,11 @@ class RewriteRouteTests(unittest.TestCase):
                 return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {humanized_path}\n")
 
             # body 不含 slug，只给 date，走 selection.json 兜底分支。
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/rewrite",
-                {},
                 {"date": "2026-07-06"},
-                batch_root=tmp_path,
+                expected_kind="rewrite",
                 run_subprocess=fake_run_subprocess,
             )
 
@@ -814,12 +886,11 @@ class PublishThenRewriteE2ETests(unittest.TestCase):
                 )
                 return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {copy_path}\n")
 
-            status, publish_payload = route(
-                "POST",
+            status, publish_payload = _submit_async(
+                tmp_path,
                 "/api/publish",
-                {},
                 {"date": "2026-07-06"},
-                batch_root=tmp_path,
+                expected_kind="publish",
                 run_subprocess=fake_publish_subprocess,
             )
             self.assertEqual(status, 200)
@@ -834,12 +905,11 @@ class PublishThenRewriteE2ETests(unittest.TestCase):
                 )
                 return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {humanized_path}\n")
 
-            status, rewrite_payload = route(
-                "POST",
+            status, rewrite_payload = _submit_async(
+                tmp_path,
                 "/api/rewrite",
-                {},
                 {"date": "2026-07-06"},
-                batch_root=tmp_path,
+                expected_kind="rewrite",
                 run_subprocess=fake_rewrite_subprocess,
             )
             self.assertEqual(status, 200)
@@ -878,12 +948,11 @@ class PublishMigratesOldFormatSelectionTests(unittest.TestCase):
                     returncode=0, stdout="", stderr=f"Wrote {expected_copy_path}\n"
                 )
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/publish",
-                {},
                 {"date": date},
-                batch_root=tmp_path,
+                expected_kind="publish",
                 run_subprocess=fake_run_subprocess,
             )
 
@@ -1162,12 +1231,11 @@ class RegenerateRouteTests(unittest.TestCase):
                 humanized_path.unlink()
                 return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {copy_path}\n")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/regenerate",
-                {},
                 {"date": date, "slug": "09-slug", "platform": "xiaohongshu", "target": "body"},
-                batch_root=tmp_path,
+                expected_kind="regenerate",
                 run_subprocess=fake_run_subprocess,
             )
 
@@ -1211,12 +1279,11 @@ class RegenerateRouteTests(unittest.TestCase):
                 )
                 return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {copy_path}\n")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/regenerate",
-                {},
                 {"date": date, "slug": "09-slug", "platform": "xiaohongshu", "target": "headline"},
-                batch_root=tmp_path,
+                expected_kind="regenerate",
                 run_subprocess=fake_run_subprocess,
             )
 
@@ -1236,12 +1303,11 @@ class RegenerateRouteTests(unittest.TestCase):
             date = "2026-07-06"
             self._select(tmp_path, date)
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/regenerate",
-                {},
                 {"date": date, "slug": "09-slug", "target": "nope"},
-                batch_root=tmp_path,
+                expected_kind="regenerate",
             )
             self.assertEqual(status, 400)
             self.assertFalse(payload["ok"])
@@ -1252,12 +1318,11 @@ class RegenerateRouteTests(unittest.TestCase):
             date = "2026-07-06"
             _make_batch(tmp_path, date, "09-slug")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/regenerate",
-                {},
                 {"date": date, "target": "body"},
-                batch_root=tmp_path,
+                expected_kind="regenerate",
             )
             self.assertEqual(status, 400)
             self.assertFalse(payload["ok"])
@@ -1272,12 +1337,11 @@ class RegenerateRouteTests(unittest.TestCase):
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 return SimpleNamespace(returncode=2, stdout="", stderr="error: something broke")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/regenerate",
-                {},
                 {"date": date, "slug": "09-slug", "target": "body"},
-                batch_root=tmp_path,
+                expected_kind="regenerate",
                 run_subprocess=fake_run_subprocess,
             )
             self.assertEqual(status, 500)
@@ -1325,12 +1389,11 @@ class GenerateDraftsRouteTests(unittest.TestCase):
                 self.assertNotIn("--combine", cmd)
                 return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {pool_path}\n")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/generate-drafts",
-                {},
                 {"date": date},
-                batch_root=tmp_path,
+                expected_kind="generate-drafts",
                 run_subprocess=fake_run_subprocess,
             )
 
@@ -1344,8 +1407,8 @@ class GenerateDraftsRouteTests(unittest.TestCase):
             tmp_path = Path(tmp)
             _make_batch(tmp_path, "2026-07-06", "09-slug")
 
-            status, payload = route(
-                "POST", "/api/generate-drafts", {}, {"date": "2026-07-06"}, batch_root=tmp_path
+            status, payload = _submit_async(
+                tmp_path, "/api/generate-drafts", {"date": "2026-07-06"}, expected_kind="generate-drafts"
             )
             self.assertEqual(status, 400)
             self.assertFalse(payload["ok"])
@@ -1353,7 +1416,9 @@ class GenerateDraftsRouteTests(unittest.TestCase):
     def test_missing_date_returns_400(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
-            status, payload = route("POST", "/api/generate-drafts", {}, {}, batch_root=tmp_path)
+            status, payload = _submit_async(
+                tmp_path, "/api/generate-drafts", {}, expected_kind="generate-drafts"
+            )
             self.assertEqual(status, 400)
             self.assertFalse(payload["ok"])
 
@@ -1373,12 +1438,11 @@ class GenerateDraftsRouteTests(unittest.TestCase):
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 return SimpleNamespace(returncode=2, stdout="", stderr="error: empty triggered_by")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/generate-drafts",
-                {},
                 {"date": date},
-                batch_root=tmp_path,
+                expected_kind="generate-drafts",
                 run_subprocess=fake_run_subprocess,
             )
             self.assertEqual(status, 500)
@@ -1579,12 +1643,11 @@ class CombineDraftsRouteTests(unittest.TestCase):
                 pool_path.write_text(json.dumps(pool, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
                 return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {pool_path}\n")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/combine-drafts",
-                {},
                 {"date": date, "draft_ids": ["The-Sage", "The-Hero"]},
-                batch_root=tmp_path,
+                expected_kind="combine-drafts",
                 run_subprocess=fake_run_subprocess,
             )
 
@@ -1605,17 +1668,17 @@ class CombineDraftsRouteTests(unittest.TestCase):
                 called["n"] += 1
                 return SimpleNamespace(returncode=0, stdout="", stderr="")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/combine-drafts",
-                {},
                 {"date": date, "draft_ids": ["The-Sage", "The-Hero", "The-Lover"]},
-                batch_root=tmp_path,
+                expected_kind="combine-drafts",
                 run_subprocess=fake_run_subprocess,
             )
             self.assertEqual(status, 400)
             self.assertFalse(payload["ok"])
-            # >2 应在 serve 层直接拦下，绝不启动 subprocess。
+            # >2 应在 handle_combine_drafts 里直接拦下，绝不启动 subprocess
+            # （拦截逻辑本身零改动，只是现在跑在 job 里而非同步 route() 内）。
             self.assertEqual(called["n"], 0)
 
     def test_non_list_draft_ids_returns_400(self) -> None:
@@ -1623,12 +1686,11 @@ class CombineDraftsRouteTests(unittest.TestCase):
             tmp_path = Path(tmp)
             date = "2026-07-06"
             self._setup(tmp_path, date)
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/combine-drafts",
-                {},
                 {"date": date, "draft_ids": "The-Sage"},
-                batch_root=tmp_path,
+                expected_kind="combine-drafts",
             )
             self.assertEqual(status, 400)
             self.assertFalse(payload["ok"])
@@ -1673,12 +1735,11 @@ class RetryDraftRouteTests(unittest.TestCase):
                 self.assertNotIn("--combine", cmd)
                 return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {pool_path}\n")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/retry-draft",
-                {},
                 {"date": date, "draft_id": "The-Sage"},
-                batch_root=tmp_path,
+                expected_kind="retry-draft",
                 run_subprocess=fake_run_subprocess,
             )
 
@@ -1691,8 +1752,8 @@ class RetryDraftRouteTests(unittest.TestCase):
             tmp_path = Path(tmp)
             date = "2026-07-06"
             self._select(tmp_path, date)
-            status, payload = route(
-                "POST", "/api/retry-draft", {}, {"date": date}, batch_root=tmp_path
+            status, payload = _submit_async(
+                tmp_path, "/api/retry-draft", {"date": date}, expected_kind="retry-draft"
             )
             self.assertEqual(status, 400)
             self.assertFalse(payload["ok"])
@@ -1700,8 +1761,8 @@ class RetryDraftRouteTests(unittest.TestCase):
     def test_missing_date_returns_400(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
-            status, payload = route(
-                "POST", "/api/retry-draft", {}, {"draft_id": "The-Sage"}, batch_root=tmp_path
+            status, payload = _submit_async(
+                tmp_path, "/api/retry-draft", {"draft_id": "The-Sage"}, expected_kind="retry-draft"
             )
             self.assertEqual(status, 400)
             self.assertFalse(payload["ok"])
@@ -1715,12 +1776,11 @@ class RetryDraftRouteTests(unittest.TestCase):
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 return SimpleNamespace(returncode=2, stdout="", stderr="error: 合并稿单份 retry 暂不支持")
 
-            status, payload = route(
-                "POST",
+            status, payload = _submit_async(
+                tmp_path,
                 "/api/retry-draft",
-                {},
                 {"date": date, "draft_id": "The-Sage+The-Hero"},
-                batch_root=tmp_path,
+                expected_kind="retry-draft",
                 run_subprocess=fake_run_subprocess,
             )
             self.assertEqual(status, 500)
