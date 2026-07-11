@@ -1263,6 +1263,74 @@
         return "未知错误";
       }
 
+      // 12.6.3 · 轮询最大次数与间隔。retry+judge 实测最长 ~132s；
+      // 200 次 × 1500ms = 300s（5 分钟），留出约 2.3 倍余量，覆盖偶发慢请求/LLM 抖动。
+      var JOB_POLL_MAX_ATTEMPTS = 200;
+      var JOB_POLL_INTERVAL_MS = 1500;
+
+      // 提交长任务：POST 拿 202+job_id，再交给 pollJob 轮询到终态。
+      // 返回值形状与 apiPost 完全一致（{status, ok, body}），使调用方 .then(res=>res.ok&&res.body.ok)
+      // 逻辑无需改动。提交阶段本身失败（非 202 / body.ok=false / 缺 job_id，例如连到旧版 serve
+      // 未含新端点而拿到 404）时，直接把 submitRes 原样传下去，交调用方既有的 else 分支 / apiErrorText 处理。
+      function submitJob(url, payload, kind) {
+        return apiPost(url, payload).then(function (submitRes) {
+          if (!submitRes.ok || !submitRes.body || !submitRes.body.job_id) {
+            return submitRes;
+          }
+          return pollJob(submitRes.body.job_id);
+        });
+      }
+
+      // 轮询 /api/job 到终态，把结果还原成与 apiPost 一致的 {status, ok, body} 形状。
+      function pollJob(jobId) {
+        return new Promise(function (resolve, reject) {
+          var attempts = 0;
+
+          function tick() {
+            attempts += 1;
+            apiGet("/api/job?job_id=" + encodeURIComponent(jobId))
+              .then(function (body) {
+                // apiGet 对 2xx 直接返回 body 本身（不是 {status,ok,body} 包装）。
+                if (body && body.status === "running") {
+                  if (attempts >= JOB_POLL_MAX_ATTEMPTS) {
+                    reject(new Error("任务超时（轮询超过上限），请检查后端日志"));
+                    return;
+                  }
+                  setTimeout(tick, JOB_POLL_INTERVAL_MS);
+                  return;
+                }
+                if (body && body.status === "done") {
+                  var result = body.result || {};
+                  var httpStatus = result.http_status;
+                  resolve({
+                    status: httpStatus,
+                    ok: httpStatus >= 200 && httpStatus < 300,
+                    body: result.payload,
+                  });
+                  return;
+                }
+                if (body && body.status === "error") {
+                  resolve({
+                    status: 500,
+                    ok: false,
+                    body: { ok: false, stderr: body.stderr },
+                  });
+                  return;
+                }
+                // 未预期的响应形状：当作传输层错误，走调用方 .catch。
+                reject(new Error("轮询任务状态返回未知形状（job_id=" + jobId + "）"));
+              })
+              .catch(function (err) {
+                // apiGet 对非 2xx（如未知 job_id 的 404）会 throw；网络瞬断也会到这里。
+                // 简单稳妥起见直接 reject，避免吞错，走调用方既有的 .catch(网络错误) 分支。
+                reject(err);
+              });
+          }
+
+          tick();
+        });
+      }
+
       // ---------------------------------------------------------------------
       // 渲染
       // ---------------------------------------------------------------------
@@ -1636,12 +1704,12 @@
         clearCopyOpResult();
         var btn = document.getElementById("regen-body-btn");
         if (btn) btn.innerHTML = '<span class="spinner"></span>重生成中…';
-        apiPost("/api/regenerate", {
+        submitJob("/api/regenerate", {
           date: state.date,
           slug: state.selection.news_slug,
           platform: state.copyPlatform,
           target: "body",
-        })
+        }, "regenerate")
           .then(function (res) {
             if (res.ok && res.body && res.body.ok) {
               state.originalBody = res.body.body;
@@ -1675,12 +1743,12 @@
         clearCopyOpResult();
         var btn = document.getElementById("regen-headline-btn");
         if (btn) btn.innerHTML = '<span class="spinner"></span>重生成中…';
-        apiPost("/api/regenerate", {
+        submitJob("/api/regenerate", {
           date: state.date,
           slug: state.selection.news_slug,
           platform: state.copyPlatform,
           target: "headline",
-        })
+        }, "regenerate")
           .then(function (res) {
             if (res.ok && res.body && res.body.ok) {
               state.headline = res.body.headline;
@@ -1752,11 +1820,11 @@
           resultEl.className = "humanize-result";
           resultEl.textContent = "";
         }
-        apiPost("/api/rewrite", {
+        submitJob("/api/rewrite", {
           date: state.date,
           slug: state.selection.news_slug,
           platform: state.copyPlatform,
-        })
+        }, "rewrite")
           .then(function (res) {
             if (res.ok && res.body && res.body.ok) {
               state.humanizedBody = res.body.humanized_body;
@@ -2025,12 +2093,12 @@
         if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>重试中…'; }
         if (resultEl) { resultEl.className = "draft-retry-result"; resultEl.textContent = "重掷中，稍候…"; }
         renderDraftPool();
-        apiPost("/api/retry-draft", {
+        submitJob("/api/retry-draft", {
           date: state.date,
           slug: state.selection.news_slug,
           platform: state.copyPlatform,
           draft_id: id,
-        })
+        }, "retry-draft")
           .then(function (res) {
             if (res.ok && res.body && res.body.ok) {
               state.drafts = res.body.drafts || state.drafts;
@@ -2167,11 +2235,11 @@
           "正在为每个共鸣视角生成草稿…",
           "逐个调用模型，可能需要一两分钟，请稍候"
         );
-        apiPost("/api/generate-drafts", {
+        submitJob("/api/generate-drafts", {
           date: state.date,
           slug: state.selection.news_slug,
           platform: state.copyPlatform,
-        })
+        }, "generate-drafts")
           .then(function (res) {
             if (res.ok && res.body && res.body.ok) {
               state.drafts = res.body.drafts || [];
@@ -2207,12 +2275,12 @@
         renderDraftPool();
         els.combineDraftsBtn.innerHTML = '<span class="spinner"></span>合并中…';
         showDraftPoolResult("合并中…", false);
-        apiPost("/api/combine-drafts", {
+        submitJob("/api/combine-drafts", {
           date: state.date,
           slug: state.selection.news_slug,
           platform: state.copyPlatform,
           draft_ids: state.combineChecked.slice(),
-        })
+        }, "combine-drafts")
           .then(function (res) {
             if (res.ok && res.body && res.body.ok) {
               state.drafts = res.body.drafts || state.drafts;
