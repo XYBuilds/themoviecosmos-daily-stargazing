@@ -661,5 +661,132 @@ class PersonaPerspectiveInjectionTests(unittest.TestCase):
         self.assertNotIn("{{persona_perspective}}", prompts["default"])
 
 
+class BodyQualityGateTests(unittest.TestCase):
+    """ADR-0019 D3/D4：body_lint / judge 命中带反馈重试编排（Phase 12.4）。"""
+
+    def test_retry_succeeds_and_clears_warnings(self) -> None:
+        calls: list[str] = []
+
+        def fake_llm(prompt: str) -> str:
+            calls.append(prompt)
+            if len(calls) == 1:
+                return (
+                    "【标题】一句标题\n"
+                    "【正文】\n"
+                    "「Interstellar」(2014) Christopher Nolan\n"
+                    "而这部电影恰好也在问同一个问题。"
+                )
+            return (
+                "【标题】一句标题\n"
+                "【正文】\n"
+                "「Interstellar」(2014) Christopher Nolan\n"
+                "这是一段干净的正文。"
+            )
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            draft = run_publish(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                llm_call=fake_llm,
+            )
+
+        self.assertEqual(len(calls), 2)
+        self.assertIn("这是一段干净的正文。", draft["body"])
+        self.assertNotIn("warnings", draft)
+        # 重试轮才追加 repair 段；首轮 prompt 不受影响。
+        self.assertNotIn("Repair", calls[0])
+        self.assertIn("上一版命中以下正文质量红线", calls[1])
+
+    def test_retry_exhausted_keeps_last_version_and_warns(self) -> None:
+        calls: list[str] = []
+
+        def fake_llm(prompt: str) -> str:
+            calls.append(prompt)
+            return (
+                "【标题】一句标题\n"
+                "【正文】\n"
+                "「Interstellar」(2014) Christopher Nolan\n"
+                "而这部电影恰好也在问同一个问题。"
+            )
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            draft = run_publish(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                llm_call=fake_llm,
+                max_body_retries=1,
+            )
+
+        # 1 首轮 + 1 次重试 = 2 次调用；不抛异常，不硬失败。
+        self.assertEqual(len(calls), 2)
+        self.assertIn("而这部电影恰好也在问同一个问题。", draft["body"])
+        self.assertIn("warnings", draft)
+        self.assertIn("hard_transition", draft["warnings"]["body_lint"])
+
+    def test_judge_hit_triggers_retry_and_clears_on_second_pass(self) -> None:
+        creator_calls: list[str] = []
+        judge_calls: list[str] = []
+
+        def fake_creator(prompt: str) -> str:
+            creator_calls.append(prompt)
+            if len(creator_calls) == 1:
+                return (
+                    "【标题】一句标题\n"
+                    "【正文】\n"
+                    "「Interstellar」(2014) Christopher Nolan\n"
+                    "他们在冰封的星球上遇到了外星生物。"
+                )
+            return (
+                "【标题】一句标题\n"
+                "【正文】\n"
+                "「Interstellar」(2014) Christopher Nolan\n"
+                "这是一段贴合事实的正文。"
+            )
+
+        def fake_judge(prompt: str) -> str:
+            judge_calls.append(prompt)
+            if len(judge_calls) == 1:
+                return (
+                    '```json\n[{"kind": "fabricated_detail", '
+                    '"quote": "外星生物", "reason": "overview 未提及外星生物"}]\n```'
+                )
+            return "```json\n[]\n```"
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            draft = run_publish(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                llm_call=fake_creator,
+                judge_llm_call=fake_judge,
+            )
+
+        self.assertEqual(len(creator_calls), 2)
+        self.assertEqual(len(judge_calls), 2)
+        self.assertNotIn("warnings", draft)
+        self.assertIn("这是一段贴合事实的正文。", draft["body"])
+
+    def test_judge_disabled_by_default_never_called(self) -> None:
+        def fake_llm(prompt: str) -> str:
+            return (
+                "【标题】一句标题\n"
+                "【正文】\n"
+                "「Interstellar」(2014) Christopher Nolan\n"
+                "这是一段正文。"
+            )
+
+        def exploding_judge(prompt: str) -> str:
+            raise AssertionError("judge_llm_call must not be called when not injected")
+
+        with patch("scripts.compose.get_movie_detail_by_tmdb_id", return_value=_DETAIL):
+            draft = run_publish(
+                _CANDIDATE,
+                {"title": "News", "description": "Summary"},
+                llm_call=fake_llm,
+            )
+
+        self.assertNotIn("warnings", draft)
+        self.assertIn("这是一段正文。", draft["body"])
+
+
 if __name__ == "__main__":
     unittest.main()

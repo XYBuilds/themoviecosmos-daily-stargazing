@@ -21,7 +21,7 @@ todos:
     status: complete
   - id: p12.4-lint-retry-orchestration
     content: 12.4 · [compose] 在 run_publish 的 clean_publish_body 后接闸门：body_lint.scan + judge_body_fabrication 命中→拼 repair_context 喂回 LLM 重生成（复刻 rewrite.py 模式，上限 K 次），仍失败保留最后一版 + 挂 warnings（不硬失败）；单测覆盖重试通过/耗尽 + golden-snapshot 零回归
-    status: todo
+    status: complete
   - id: p12.5-eyeball-gate-manual-approve
     content: 12.5 · [GATE] 真重放 05 场景（AI/广岛 + The Creator, tmdb 670292）跨 persona 出正文：body_lint 计数 + judge 结果 + 人工眼验三重确认句式红线归零/幻觉压住/Persona ①偏②显形/3-4段扫读密度；歪了回 12.2/12.3/12.4/prompt 迭代 [需人工验收]
     status: todo
