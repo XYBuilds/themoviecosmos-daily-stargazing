@@ -1634,6 +1634,100 @@ class CombineDraftsRouteTests(unittest.TestCase):
             self.assertFalse(payload["ok"])
 
 
+class RetryDraftRouteTests(unittest.TestCase):
+    """12.5：POST /api/retry-draft 通过注入 run_subprocess stub 验证 --retry 单份重掷。"""
+
+    def _write_pool(self, tmp_path: Path, date: str, slug: str, pool: list, platform: str = "xiaohongshu") -> Path:
+        path = tmp_path / date / f"{slug}_drafts_{platform}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(pool, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return path
+
+    def _select(self, tmp_path: Path, date: str) -> None:
+        _make_batch(tmp_path, date, "09-slug")
+        route(
+            "POST",
+            "/api/select",
+            {},
+            {"date": date, "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+            batch_root=tmp_path,
+        )
+
+    def test_success_passes_retry_and_judge_flags_and_returns_pool(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._select(tmp_path, date)
+            pool = [
+                {"draft_id": "混合视角", "headline": "中性", "body": "中性正文。"},
+                {"draft_id": "The-Sage", "headline": "理性之眼", "body": "求真正文。"},
+            ]
+            pool_path = self._write_pool(tmp_path, date, "09-slug", pool)
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                self.assertIn("--retry", cmd)
+                self.assertIn("The-Sage", cmd)
+                # 面板重试恒带 judge 闸门。
+                self.assertIn("--judge", cmd)
+                # 单份重试绝不夹带 --combine。
+                self.assertNotIn("--combine", cmd)
+                return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {pool_path}\n")
+
+            status, payload = route(
+                "POST",
+                "/api/retry-draft",
+                {},
+                {"date": date, "draft_id": "The-Sage"},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+
+            self.assertEqual(status, 200)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(len(payload["drafts"]), 2)
+
+    def test_missing_draft_id_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._select(tmp_path, date)
+            status, payload = route(
+                "POST", "/api/retry-draft", {}, {"date": date}, batch_root=tmp_path
+            )
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+
+    def test_missing_date_returns_400(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            status, payload = route(
+                "POST", "/api/retry-draft", {}, {"draft_id": "The-Sage"}, batch_root=tmp_path
+            )
+            self.assertEqual(status, 400)
+            self.assertFalse(payload["ok"])
+
+    def test_subprocess_failure_returns_500(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            date = "2026-07-06"
+            self._select(tmp_path, date)
+
+            def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                return SimpleNamespace(returncode=2, stdout="", stderr="error: 合并稿单份 retry 暂不支持")
+
+            status, payload = route(
+                "POST",
+                "/api/retry-draft",
+                {},
+                {"date": date, "draft_id": "The-Sage+The-Hero"},
+                batch_root=tmp_path,
+                run_subprocess=fake_run_subprocess,
+            )
+            self.assertEqual(status, 500)
+            self.assertFalse(payload["ok"])
+            self.assertIn("合并稿", payload["stderr"])
+
+
 class UnknownRouteTests(unittest.TestCase):
     def test_unknown_path_returns_404(self) -> None:
         with TemporaryDirectory() as tmp:

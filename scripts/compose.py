@@ -1066,6 +1066,28 @@ def _sync_llm_call(
     return (response.choices[0].message.content or "").strip()
 
 
+def make_real_llm_call(
+    provider: str | None = None,
+    system_message: str = _PUBLISH_SYSTEM_MESSAGE,
+) -> Any:
+    """构造一个真实 ``llm_call``（``(prompt: str) -> str``）闸门闭包（Phase 12.5）。
+
+    复用既有 ``load_env`` / ``_resolve_provider`` / ``get_llm_client`` / ``_model_name``；
+    client/model 只在工厂调用时构造一次，返回的闭包复用它们，避免每次调用重建 client。
+    供 ``run_fanout`` 等外部调用方给 ``run_publish`` 注入真实 ``judge_llm_call`` 用；
+    ``run_publish`` 自身的创作路径（``llm_call=None`` 时）不受影响，仍走内部既有逻辑。
+    """
+    load_env()
+    resolved = _resolve_provider(provider)
+    client = get_llm_client(resolved)
+    model = _model_name(resolved)
+
+    def _call(prompt: str) -> str:
+        return _sync_llm_call(client, model, prompt, system_message)
+
+    return _call
+
+
 def split_into_paragraphs(raw: str) -> list[tuple[str, int | None, str]]:
     """Split C1 output into (title, year, text) by 《片名》(年份) section leaders."""
     blocks: list[tuple[str, int | None, str]] = []

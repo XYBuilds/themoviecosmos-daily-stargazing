@@ -22,8 +22,11 @@ todos:
   - id: p12.4-lint-retry-orchestration
     content: 12.4 · [compose] 在 run_publish 的 clean_publish_body 后接闸门：body_lint.scan + judge_body_fabrication 命中→拼 repair_context 喂回 LLM 重生成（复刻 rewrite.py 模式，上限 K 次），仍失败保留最后一版 + 挂 warnings（不硬失败）；单测覆盖重试通过/耗尽 + golden-snapshot 零回归
     status: complete
-  - id: p12.5-eyeball-gate-manual-approve
-    content: 12.5 · [GATE] 真重放 05 场景（AI/广岛 + The Creator, tmdb 670292）跨 persona 出正文：body_lint 计数 + judge 结果 + 人工眼验三重确认句式红线归零/幻觉压住/Persona ①偏②显形/3-4段扫读密度；歪了回 12.2/12.3/12.4/prompt 迭代 [需人工验收]
+  - id: p12.5-panel-warnings-and-retry
+    content: 12.5 · [panel] warnings 面板化人工兜底闭环：run_publish 双闸门透传给 run_fanout（judge_llm_call/max_body_retries，A1 已落）+ drafts_adapter.run_retry（按 draft_id 反查 persona → 带 judge 重跑 → in-place 换那条）+ serve /api/retry-draft + index.html 标签 ⚠ 徽标/预览区 warnings 详情块/编辑可点「重试」；仅中性稿+单 persona 稿，合并稿 retry 留后续
+    status: complete
+  - id: p12.6-eyeball-gate-manual-approve
+    content: 12.6 · [GATE] 真重放 05 场景（AI/广岛 + The Creator, tmdb 670292）跨 persona 出正文 + 面板肉眼验 warnings 展示/单份 retry 闭环：body_lint 计数 + judge 结果 + 人工眼验句式红线归零/幻觉压住/Persona ①偏②显形/3-4段扫读密度；歪了回 12.2/12.3/12.4/prompt 迭代 [需人工验收]（当前搁置，暂不给 Go/No-Go 结论）
     status: todo
 isProject: true
 ---
@@ -188,21 +191,60 @@ isProject: true
 
 ---
 
-## Todo 12.5 · [GATE] 眼验迭代闸门 [需人工验收]
+## Todo 12.5 · [panel] warnings 面板化人工兜底闭环
 
-**依赖：** 12.1–12.4 全部
+**依赖：** 12.4
+
+**背景：** 12.4 让 `run_publish` 双闸门耗尽仍违规时挂 `warnings`（不硬失败，ADR-0019 D4），交人工兜底。但「人工兜底」此前只到数据面——warnings 写进池 JSON 却没在面板露出，编辑既看不见、也无法只对那一条重掷。本 TODO 补齐兜底闭环的**展示面**与**单份重试**。
+
+**数据流演变：**
+
+```
+数据面（A1 已建好，warnings 已到前端门口）:
+    run_publish 双闸门 → draft["warnings"]={body_lint:[rule_id], fabrication:[{kind,quote,reason}]}
+        → _draft_entry 保留非空 warnings → 池 JSON → serve 原样透传 → state.drafts[i].warnings
+
+本 TODO 补两件事:
+    ① 展示面: 标签 ⚠ 徽标 + 预览区 warnings 详情块（列句式红线描述 + 幻觉 quote/reason）
+    ② 单份重试（新建，此前只有全量再扇出）:
+        /api/retry-draft ─▶ drafts_adapter.run_retry
+          draft_id 反查 persona_perspective（中性稿→""；单 persona→归一化匹配 candidate 集；含"+"合并稿→拒绝）
+          → run_publish(带 judge_llm_call + max_body_retries) → _attach_movie_header
+          → in-place 按 draft_id 替换池内那一条（不动其它草稿）→ 写回 → 读池返回前端刷新
+```
+
+**改动：**
+- `review_panel/drafts_adapter.py`：
+  - `run_fanout` 已（A1）透传 `judge_llm_call` / `max_body_retries` 给 `run_publish`；`_draft_entry` 已保留非空 `warnings`。
+  - 新增 `run_retry(date, slug, tmdb_id, draft_id, *, provider, ...)`：按 `draft_id` 反查 persona（`_DEFAULT_DRAFT_ID`→空视角；单 persona→在 `_candidate_personas` 里找归一化匹配的原始 id；含 `+` 合并稿→`ValueError` 拒绝），带 judge 重跑一版，**in-place** 按 `draft_id` 替换池内那条并写回。
+  - CLI 加 `--retry <draft_id>` 分支。
+- `review_panel/serve.py`：新增 `handle_retry_draft` + 路由 `POST /api/retry-draft`（subprocess 调 `--retry`，成功后读回池返回；对齐 `handle_generate_drafts` / `handle_combine_drafts` 形状）。
+- `review_panel/index.html`：`renderDraftPool` 给带 warnings 的标签加 ⚠ 徽标；`onPreviewDraft` 在预览区渲染 warnings 详情块（句式红线描述 + 幻觉 quote/reason）+ 一个「重试」按钮；新增 `onRetryDraft` 调 `/api/retry-draft`，成功后用回传池刷新并重新预览该条。
+
+### 验收
+- [ ] 带 `warnings` 的草稿在标签行显示 ⚠ 提示；预览区列出命中的 body_lint 规则与 judge 幻觉 quote/reason
+- [ ] 点「重试」只重掷那一条（中性稿 / 单 persona 稿）；池其它草稿不动；重试后 warnings 归零则徽标消失
+- [ ] 合并稿（`a+b`）retry 被后端拒绝并给出清晰错误（MVP 不做）
+- [ ] `run_retry` 反查 / in-place 替换、serve retry 路由、warnings 保留均有单测；既有 panel/adapter 测试零回归
+
+---
+
+## Todo 12.6 · [GATE] 眼验迭代闸门 [需人工验收]（当前搁置）
+
+**依赖：** 12.1–12.5 全部
 
 **执行顺序：**
 1. 真重放 05 场景（AI/广岛 +《The Creator》，tmdb 670292）跨 persona 出正文（不写 report、不合并）。
-2. 三重确认：`body_lint` 计数（句式红线归零）+ `judge` 结果（幻觉压住）+ 人工眼验（Persona ①偏② 显形、3–4 段扫读密度）。
-3. 等待人工 Go/No-Go；No-Go 回 12.2 / 12.3 / 12.4 / prompt 迭代。
+2. 三重确认：`body_lint` 计数（句式红线归零）+ `judge` 结果（幻觉压住）+ 人工眼验（Persona ①偏② 显形、3–4 段扫读密度）；并肉眼验 12.5 面板 warnings 展示与单份 retry 闭环可用。
+3. 等待人工 Go/No-Go；No-Go 回 12.2 / 12.3 / 12.4 / 12.5 / prompt 迭代。
 
-**人工验收阻断说明：** 正文质量为主观判断，本 TODO 天然是人工验收阻断点。达标（Go）前**不标 complete、不写最终报告、不合并**；触发挂起须按规则输出 `⚠️ [PAUSED]` 并等待 `approve`。
+**人工验收阻断说明：** 正文质量为主观判断，本 TODO 天然是人工验收阻断点。达标（Go）前**不标 complete、不写最终报告、不合并**；触发挂起须按规则输出 `⚠️ [PAUSED]` 并等待 `approve`。**当前状态：搁置**——12.5 面板化本身是 gate 验收内容的一部分，先做完 12.5 再回到本 gate，暂不给 Go/No-Go 结论。
 
 **验收项：**
 - [ ] 句式红线 `body_lint` 计数归零
 - [ ] `judge` 幻觉 findings 压住（无编造画面/人物/数字、导演名正确）
 - [ ] Persona ①偏② 显形、3–4 段扫读密度达标
+- [ ] 面板 warnings 展示 + 单份 retry 闭环肉眼可用
 - [ ] `[需人工验收 · Go/No-Go]`：达标前不标 complete、不写最终报告、不合并
 
 ---
