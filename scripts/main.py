@@ -44,6 +44,7 @@ from scripts import compose
 from scripts.agents import NewsItem, load_news_from_file
 from scripts.extract import run_deconstruct
 from scripts.fetch_news import build_url_news_payload, fetch_guardian_api, mark_selected
+from scripts.lib import planet_renderer
 from scripts.lib.render_briefing import _format_candidates_markdown, _format_errors, _format_reality_body
 from scripts.lib.run_options import RunOptions
 from scripts.retrieve import retrieve_from_agents
@@ -297,6 +298,18 @@ def resolve_copy_path(date: str, out_dir: Path | None = None) -> Path:
     return base / f"{date}_copy.md"
 
 
+def resolve_planet_image_path(
+    date: str,
+    tmdb_id: int,
+    *,
+    bloom: bool,
+    out_dir: Path | None = None,
+) -> Path:
+    base = out_dir or (_REPO_ROOT / "output" / "Daily_Briefing")
+    bloom_name = "on" if bloom else "off"
+    return base / f"{date}_{tmdb_id}_planet_bloom-{bloom_name}.png"
+
+
 def _parse_news_from_briefing_md(text: str) -> dict[str, str]:
     """Recover the news dict compose.run_publish needs from the "现实波澜" section
     rendered by render_briefing._format_reality_body.
@@ -402,6 +415,17 @@ def build_copy_markdown(
 def _run_publish_cli(args: argparse.Namespace) -> int:
     news = load_news_context_for_publish(args.date)
     candidate = find_candidate_by_tmdb_id(args.date, args.tmdb_id)
+
+    planet_results: list[planet_renderer.PlanetRenderResult] = []
+    if args.no_planet_image:
+        _progress("[publish] planet image export skipped (--no-planet-image)")
+    else:
+        for bloom in (False, True):
+            output_path = resolve_planet_image_path(args.date, args.tmdb_id, bloom=bloom)
+            planet_results.append(
+                planet_renderer.render_planet(args.tmdb_id, output_path, bloom=bloom)
+            )
+
     draft = compose.run_publish(candidate, news, provider=args.provider)
 
     copy_md = build_copy_markdown(args.date, candidate, news, draft)
@@ -410,6 +434,11 @@ def _run_publish_cli(args: argparse.Namespace) -> int:
     copy_path.write_text(copy_md, encoding="utf-8")
 
     print(f"Wrote {copy_path.resolve()}", file=sys.stderr)
+    for result in planet_results:
+        print(
+            f"Wrote {result.output_path} and {result.metadata_path}",
+            file=sys.stderr,
+        )
     return 0
 
 
@@ -437,6 +466,11 @@ def build_publish_parser() -> argparse.ArgumentParser:
         "--provider",
         choices=["mimo", "deepseek"],
         help="LLM provider override (default: DEFAULT_LLM_PROVIDER from .env).",
+    )
+    parser.add_argument(
+        "--no-planet-image",
+        action="store_true",
+        help="Skip the default Bloom off/on planet image exports.",
     )
     return parser
 
@@ -559,6 +593,9 @@ def main(argv: list[str] | None = None) -> int:
         except ValueError as exc:
             print(f"error: {exc}", file=sys.stderr)
             return 2
+        except planet_renderer.PlanetRenderError as exc:
+            print(f"error: planet image export failed: {exc}", file=sys.stderr)
+            return 1
         except KeyboardInterrupt:
             print("interrupted", file=sys.stderr)
             return 130
