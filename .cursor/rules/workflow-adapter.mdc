@@ -1,0 +1,30 @@
+---
+description: Daily Stargazing adapter for the shared execute-plan-todo workflow
+alwaysApply: false
+---
+
+# Daily Stargazing Plan TODO adapter
+
+Apply this rule only while the shared `execute-plan-todo` skill is active.
+
+## Plans and branches
+
+- Phase plans live under `.cursor/plans/Phase*.plan.md` and use YAML frontmatter `todos:` entries with `id`, `content`, and `status`.
+- Use branch names in the form `<type>/phase<N.N...>-<todo-name>`.
+- Default to the latest `main` after the previous dependency is complete and merged.
+- A downstream TODO may inherit an unmerged predecessor branch only when the plan or user explicitly authorizes stacked development. Record the predecessor branch in the report.
+
+## Verification
+
+- This is a Python project; run relevant tests with `python -m pytest <test-path>`.
+- Run broader `python -m pytest` only when the TODO scope or acceptance criteria require it.
+- Preserve local environment and output artifacts that are outside the TODO scope.
+
+## Human gate and completion
+
+- A TODO requires human approval when `[需人工验收]` appears in its `content` or corresponding section title.
+- Before approval, the implementation commit is allowed when authorized, but plan completion, final report, push, PR, and merge are blocked.
+- After approval, change the canonical YAML `status` to `complete`; do not use Markdown checkboxes as the source of truth.
+- Reports live at `docs/reports/Phase<N.N...>-<todo-name>-report.md`.
+- Use Conventional Commits in the form `<type>(<scope>): p<N.N>-<description>` when compatible with recent repository history.
+- Publish through a GitHub PR and retain merge-commit topology unless the active plan explicitly requires another strategy.
