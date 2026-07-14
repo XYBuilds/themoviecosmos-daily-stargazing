@@ -4,7 +4,7 @@ overview: 把 selection 之后的文案、TMDB 海报和 Bloom ON 星球图收�
 todos:
   - id: p13.1-publication-domain-and-adr
     content: 建立 publication bundle 路径、manifest 状态模型与 ADR-0021
-    status: pending
+    status: complete
   - id: p13.2-poster-and-planet-assets
     content: 抽取通用海报下载器并接入单 Bloom ON 星球资产
     status: pending
