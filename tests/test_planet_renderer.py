@@ -92,11 +92,47 @@ class PlanetRendererTests(unittest.TestCase):
                 result = render_planet(157336, output_path, bloom=True, runner=runner)
 
             command = runner.call_args.args[0]
-            self.assertEqual(command[0:4], ("npm", "run", "planet:export", "--"))
+            expected_npm = "npm.cmd" if os.name == "nt" else "npm"
+            self.assertEqual(command[0:5], (expected_npm, "--silent", "run", "planet:export", "--"))
             self.assertIn(str(output_path.resolve()), command)
             self.assertEqual(runner.call_args.kwargs["cwd"], root.resolve())
             self.assertEqual(result.alpha_bounds, (1, 1, 1, 1))
             self.assertEqual(result.metadata_path, metadata_path.resolve())
+
+    def test_local_data_file_override_is_forwarded_to_chronicle(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            root = self._create_chronicle_root(tmp_path)
+            data_file = tmp_path / "galaxy.json.gz"
+            data_file.write_bytes(b"fixture")
+            output_path = tmp_path / "planet.png"
+            metadata_path = self._write_valid_artifacts(output_path, tmdb_id=157336, bloom="off")
+            runner = Mock(
+                return_value=subprocess.CompletedProcess(
+                    args=[],
+                    returncode=0,
+                    stdout=json.dumps(
+                        {"output": str(output_path), "metadata": str(metadata_path), "tmdb_id": 157336}
+                    ),
+                    stderr="",
+                )
+            )
+
+            with (
+                patch.dict(
+                    os.environ,
+                    {
+                        "MOVIE_COSMOS_GALAXY_ROOT": str(root),
+                        "MOVIE_COSMOS_GALAXY_DATA_FILE": str(data_file),
+                    },
+                    clear=False,
+                ),
+                patch("scripts.lib.planet_renderer.PLANET_RESOLUTION", 2),
+            ):
+                render_planet(157336, output_path, bloom=False, runner=runner)
+
+            command = runner.call_args.args[0]
+            self.assertEqual(command[-6:], ("--bloom", "off", "--size-root", "3", "--data-file", str(data_file.resolve())))
 
     def test_missing_chronicle_root_is_a_clear_error(self) -> None:
         with patch.dict(os.environ, {"MOVIE_COSMOS_GALAXY_ROOT": ""}, clear=False):

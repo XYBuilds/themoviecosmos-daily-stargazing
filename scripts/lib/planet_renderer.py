@@ -57,6 +57,17 @@ def _resolve_chronicle_root() -> Path:
     return root
 
 
+def _resolve_data_file_override() -> Path | None:
+    configured_file = os.environ.get("MOVIE_COSMOS_GALAXY_DATA_FILE", "").strip()
+    if not configured_file:
+        return None
+
+    data_file = Path(configured_file).expanduser().resolve()
+    if not data_file.is_file():
+        raise PlanetRenderError(f"MOVIE_COSMOS_GALAXY_DATA_FILE must point to an existing galaxy JSON file: {data_file}")
+    return data_file
+
+
 def _parse_cli_result(stdout: str, *, tmdb_id: int, output_path: Path) -> Path:
     try:
         payload = json.loads(stdout.strip())
@@ -216,11 +227,14 @@ def render_planet(
         raise PlanetRenderError(f"tmdb_id must be a positive integer, got {tmdb_id}")
 
     root = _resolve_chronicle_root()
+    data_file = _resolve_data_file_override()
     resolved_output = output_path.expanduser().resolve()
     resolved_output.parent.mkdir(parents=True, exist_ok=True)
     bloom_value = "on" if bloom else "off"
+    npm_executable = "npm.cmd" if os.name == "nt" else "npm"
     command: Sequence[str] = (
-        "npm",
+        npm_executable,
+        "--silent",
         "run",
         "planet:export",
         "--",
@@ -234,7 +248,11 @@ def render_planet(
         str(PLANET_PADDING),
         "--bloom",
         bloom_value,
+        "--size-root",
+        "3",
     )
+    if data_file is not None:
+        command = (*command, "--data-file", str(data_file))
     print(f"[planet_renderer] tmdb_id={tmdb_id} bloom={bloom_value} output={resolved_output}")
 
     try:
