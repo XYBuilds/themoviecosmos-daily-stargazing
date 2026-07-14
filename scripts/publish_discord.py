@@ -5,8 +5,6 @@ from __future__ import annotations
 import argparse
 import os
 import sys
-import urllib.error
-import urllib.request
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any
@@ -18,9 +16,9 @@ if str(_REPO_ROOT) not in sys.path:
 from scripts.lib.env import load_env, default_llm_provider
 from scripts.lib.llm import get_llm_client
 from scripts.lib.paths import repo_root
+from scripts.lib.poster_downloader import download_tmdb_poster
 from scripts.movie_metadata import get_movie_detail_by_tmdb_id
 
-POSTER_BASE_URL = "https://image.tmdb.org/t/p/original"
 MOVIE_URL_BASE = "https://themoviecosmos.com/movie"
 
 
@@ -167,20 +165,6 @@ def build_discord_markdown(tmdb_id: str, body: str, meta: dict[str, Any]) -> str
     )
 
 
-def download_poster(tmdb_id: str, poster_path: str, output_path: Path) -> None:
-    poster_url = f"{POSTER_BASE_URL}{poster_path}"
-    request = urllib.request.Request(
-        poster_url,
-        headers={"User-Agent": "themoviecosmos-publish-discord/1.0"},
-    )
-
-    try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            output_path.write_bytes(response.read())
-    except (urllib.error.URLError, TimeoutError, OSError) as exc:
-        raise RuntimeError(f"failed to download poster from {poster_url}: {exc}") from exc
-
-
 def write_outputs(publish_date: str, tmdb_id: str, markdown: str, meta: dict[str, Any]) -> tuple[Path, Path]:
     output_dir = repo_root() / "output" / "discord"
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -190,7 +174,7 @@ def write_outputs(publish_date: str, tmdb_id: str, markdown: str, meta: dict[str
 
     poster_source_path = require_text(meta, "poster_path", tmdb_id)
     markdown_path.write_text(markdown, encoding="utf-8")
-    download_poster(tmdb_id, poster_source_path, poster_path)
+    download_tmdb_poster(poster_source_path, poster_path)
 
     return markdown_path, poster_path
 
