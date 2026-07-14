@@ -7,7 +7,7 @@ todos:
     status: complete
   - id: p13.2-poster-and-planet-assets
     content: 抽取通用海报下载器并接入单 Bloom ON 星球资产
-    status: pending
+    status: complete
   - id: p13.3-publication-orchestration-api
     content: 实现并行 prepare adapter、manifest API、asset 读取与单项重试
     status: pending
