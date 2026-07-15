@@ -30,19 +30,43 @@ def test_retry_success_refreshes_preview_even_while_draft_operation_is_in_flight
     assert "onPreviewDraft(id);" not in retry_fn
 
 
-def test_generate_drafts_success_previews_first_draft_while_operation_is_in_flight() -> None:
-    """generate-drafts 成功后也处于 in-flight 收尾期，进入 pick 时必须允许内部预览。"""
+def test_prepare_publication_is_the_only_draft_generation_trigger() -> None:
+    """13.5：选片只落 selection；草稿、海报、星球只能经显式准备动作并行启动。"""
     html = _read_index_html()
-    generate_fn = _slice_between(html, "function onGenerateDrafts", "function onCombineDrafts")
-    enter_pick_fn = _slice_between(html, "function enterPickStage", "function loadRefineCopy")
+    prepare_fn = _slice_between(html, "function onPreparePublication", "function onRetryPublicationArtifact")
+    select_fn = _slice_between(html, "function onSelectCandidate", "// ---------------------------------------------------------------------\n      // 事件绑定")
 
-    assert "enterPickStage({ allowPreviewDuringInFlight: true });" in generate_fn
-    assert "if (els.enterRefineBtn) { els.enterRefineBtn.disabled = !state.previewDraftId; }" in generate_fn
-    assert "function enterPickStage(options)" in enter_pick_fn
-    assert "allowPreviewDuringInFlight" in enter_pick_fn
-    assert "previewDraft(" in enter_pick_fn
-    assert "onPreviewDraft(" not in enter_pick_fn
+    assert 'submitJob("/api/prepare-publication"' in prepare_fn
+    assert "onPublicationJobRunning" in prepare_fn
+    assert "showCopyLoading" in prepare_fn
+    assert "/api/generate-drafts" not in html
+    assert "/api/prepare-publication" not in select_fn
+    assert 'apiPost("/api/select"' in select_fn
 
+
+def test_publication_manifest_drives_asset_workbench_and_retries() -> None:
+    """manifest 是视觉资产状态唯一来源；图片请求和重试都经受限 API。"""
+    html = _read_index_html()
+    card_fn = _slice_between(html, "function renderAssetCard", "function renderVisualAssets")
+    retry_fn = _slice_between(html, "function onRetryPublicationArtifact", "// ---------------------------------------------------------------------\n      // 10.5")
+
+    assert 'id="visual-assets"' in html
+    assert '"/api/publication-asset?date="' in html
+    assert '"/api/retry-publication-artifact"' in retry_fn
+    assert "data-retry-artifact" in card_fn
+    assert "console.log(\"[publication] manifest\"" in html
+
+
+def test_asset_workbench_follows_pick_and_refine_stages() -> None:
+    """候选页不展示资产栏；pick/refine 使用同一个 manifest 投影，窄屏布局仍先展示资产。"""
+    html = _read_index_html()
+    switch_fn = _slice_between(html, "function switchStage", "function updateCopyHead")
+
+    assert 'stage === "pick" || stage === "refine"' in switch_fn
+    assert "renderVisualAssets();" in switch_fn
+    assert ".publication-workbench" in html
+    assert "@media (max-width: 820px)" in html
+    assert "grid-template-columns: 1fr;" in html
 
 def test_preview_draft_keeps_user_click_guard_but_allows_internal_refresh() -> None:
     """用户点击切草稿仍受 in-flight 保护；程序内部终态刷新可显式绕过。"""

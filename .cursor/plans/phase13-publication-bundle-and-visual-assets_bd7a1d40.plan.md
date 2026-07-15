@@ -16,7 +16,7 @@ todos:
     status: complete
   - id: p13.5-panel-asset-workbench
     content: 实现 Panel 显式准备动作和左侧视觉资产栏
-    status: pending
+    status: complete
   - id: p13.6-publication-tests
     content: 覆盖 publication 路径、并行状态、API、前端及兼容回归测试
     status: pending
