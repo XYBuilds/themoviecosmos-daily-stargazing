@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import subprocess
 import sys
 import unittest
 from pathlib import Path
@@ -46,6 +47,20 @@ def _snapshot() -> dict[str, object]:
 
 
 class PublicationAdapterTests(unittest.TestCase):
+    def test_cli_runs_as_a_script_from_an_external_working_directory(self) -> None:
+        adapter_path = Path(__file__).resolve().parents[1] / "review_panel" / "publication_adapter.py"
+        with TemporaryDirectory() as tmp:
+            completed = subprocess.run(
+                [sys.executable, str(adapter_path), "--help"],
+                cwd=tmp,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        self.assertIn("--batch-root", completed.stdout)
+
     def test_failure_is_isolated_and_other_targets_remain_ready(self) -> None:
         with TemporaryDirectory() as tmp:
             batch_root = Path(tmp) / "daily_batch"
