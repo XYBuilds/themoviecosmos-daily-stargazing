@@ -10,7 +10,7 @@ todos:
     status: complete
   - id: p13.3-publication-orchestration-api
     content: 实现并行 prepare adapter、manifest API、asset 读取与单项重试
-    status: pending
+    status: complete
   - id: p13.4-copy-selection-migration
     content: 把当前稿与微调产物迁入 bundle，精简 selection 并兼容旧格式
     status: pending
