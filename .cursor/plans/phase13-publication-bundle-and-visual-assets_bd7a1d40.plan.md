@@ -19,7 +19,7 @@ todos:
     status: complete
   - id: p13.6-publication-tests
     content: 覆盖 publication 路径、并行状态、API、前端及兼容回归测试
-    status: pending
+    status: complete
   - id: p13.7-publication-gate
     content: 真实生成 The Creator 发布包并完成人工 Go/No-Go 验收
     status: pending
