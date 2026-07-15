@@ -413,6 +413,21 @@ class SelectSupersededBundleTests(unittest.TestCase):
             self.assertEqual(selection["selected"]["news_slug"], "10-slug")
             self.assertEqual(set(selection), {"date", "selected", "selected_at"})
 
+    def test_switching_back_reactivates_the_retained_bundle(self) -> None:
+        with TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+            _make_batch(tmp_path, "2026-07-06", "10-slug", tmdb_id=99)
+
+            self._select(tmp_path, "09-slug", 429918)
+            manifest_file = _prepare_bundle_for_selection(tmp_path, "2026-07-06")
+            self._select(tmp_path, "10-slug", 99)
+            self.assertEqual(read_manifest(manifest_file)["status"], "superseded")
+
+            self._select(tmp_path, "09-slug", 429918)
+
+            self.assertEqual(read_manifest(manifest_file)["status"], "preparing")
+
     def test_reselect_same_candidate_is_idempotent_and_keeps_bundle(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
