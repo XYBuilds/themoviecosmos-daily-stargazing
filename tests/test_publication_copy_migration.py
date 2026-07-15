@@ -107,7 +107,7 @@ class PublicationCopyMigrationTests(unittest.TestCase):
             root = Path(temporary)
             self._write_batch(root)
             manifest_file = self._select_and_prepare_manifest(root)
-            (manifest_file.parent / "copy").mkdir(parents=True)
+            (manifest_file.parent / "copy").mkdir(parents=True, exist_ok=True)
             copy_path = manifest_file.parent / "copy" / "xiaohongshu.md"
             copy_path.write_text("审计保留", encoding="utf-8")
 

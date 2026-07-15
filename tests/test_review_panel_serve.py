@@ -7,12 +7,14 @@
 from __future__ import annotations
 
 import json
+import shutil
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 
 from review_panel.job_store import JobStore, _inline_executor
+from review_panel.publication_bundle import manifest_path, new_manifest, read_manifest, write_manifest
 from review_panel.serve import (
     parse_copy_markdown,
     read_selection,
@@ -123,6 +125,32 @@ def _make_batch(tmp_path: Path, date: str, slug: str, tmdb_id: int = 429918) -> 
     _write_judge_scores(news_dir, tmdb_id=tmdb_id)
 
 
+def _prepare_bundle_for_selection(batch_root: Path, date: str) -> Path:
+    selection = read_selection(batch_root, date)
+    assert selection is not None
+    selected = selection["selected"]
+    assert isinstance(selected, dict)
+    path = manifest_path(batch_root, date, selected["tmdb_id"], selected["title"])
+    expected_selection = {
+        "date": date,
+        "news_slug": selected["news_slug"],
+        "tmdb_id": selected["tmdb_id"],
+        "title": selected["title"],
+        "selected_at": selection["selected_at"],
+    }
+    if path.is_file() and read_manifest(path)["selection"] != expected_selection:
+        shutil.rmtree(path.parent)
+    if not path.is_file():
+        write_manifest(path, new_manifest(expected_selection))
+    return path
+
+
+def _bundle_copy_paths(batch_root: Path, date: str) -> tuple[Path, Path, Path]:
+    manifest_file = _prepare_bundle_for_selection(batch_root, date)
+    bundle_root = manifest_file.parent
+    return manifest_file, bundle_root / "copy" / "xiaohongshu.md", bundle_root / "copy" / "xiaohongshu-humanized.md"
+
+
 class DatesRouteTests(unittest.TestCase):
     def test_returns_dates_in_descending_order(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -188,9 +216,7 @@ class SelectRouteTests(unittest.TestCase):
             selection = read_selection(tmp_path, "2026-07-06")
             self.assertEqual(selection["selected"]["news_slug"], "09-slug")
             self.assertEqual(selection["selected"]["tmdb_id"], 429918)
-            # D4：新写入的 selection 用 copies dict，未发布时为空 dict，
-            # 不再有顶层 published/copy_path 字段。
-            self.assertEqual(selection["copies"], {})
+            self.assertEqual(set(selection), {"date", "selected", "selected_at"})
             self.assertNotIn("published", selection)
             self.assertNotIn("copy_path", selection)
 
@@ -242,7 +268,7 @@ class PublishRouteTests(unittest.TestCase):
                 batch_root=tmp_path,
             )
 
-            expected_copy_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu.md"
+            _, expected_copy_path, _ = _bundle_copy_paths(tmp_path, "2026-07-06")
 
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 # 断言子进程命令行的确切形态：脚本路径 + --date/--news-slug/--tmdb-id/--platform。
@@ -282,12 +308,11 @@ class PublishRouteTests(unittest.TestCase):
             self.assertTrue(payload["ok"])
             self.assertEqual(payload["copy_path"], str(expected_copy_path))
 
-            selection = read_selection(tmp_path, "2026-07-06")
-            # D4：发布结果写入 copies.xiaohongshu，humanized_path 初始为 None。
-            entry = selection["copies"]["xiaohongshu"]
-            self.assertTrue(entry["published"])
-            self.assertEqual(entry["copy_path"], str(expected_copy_path))
-            self.assertIsNone(entry["humanized_path"])
+            manifest = read_manifest(_prepare_bundle_for_selection(tmp_path, "2026-07-06"))
+            entry = manifest["artifacts"]["copies"]["xiaohongshu"]
+            self.assertEqual(entry["status"], "ready")
+            self.assertEqual(entry["copy_path"], "copy/xiaohongshu.md")
+            self.assertIsNone(entry["selected_draft_id"])
 
     def test_failure_returns_ok_false_and_stderr(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -300,6 +325,7 @@ class PublishRouteTests(unittest.TestCase):
                 {"date": "2026-07-06", "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
                 batch_root=tmp_path,
             )
+            _prepare_bundle_for_selection(tmp_path, "2026-07-06")
 
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 return SimpleNamespace(returncode=2, stdout="", stderr="error: tmdb_id not found")
@@ -329,7 +355,7 @@ class PublishRouteTests(unittest.TestCase):
             self.assertEqual(payload["stderr"], "error: tmdb_id not found")
 
             selection = read_selection(tmp_path, "2026-07-06")
-            self.assertEqual(selection["copies"], {})
+            self.assertEqual(set(selection), {"date", "selected", "selected_at"})
 
     def test_missing_selection_returns_400(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -355,8 +381,8 @@ class PublishRouteTests(unittest.TestCase):
             self.assertFalse(result["payload"]["ok"])
 
 
-class SelectDeletesStaleCopyTests(unittest.TestCase):
-    """G8 修复：改选时删旧 {slug}_copy.md，恢复 copy_path=null ⇔ 无 _copy.md 不变量。"""
+class SelectSupersededBundleTests(unittest.TestCase):
+    """Phase 13：改选仅标记旧 bundle 为 superseded，不删除任何历史产物。"""
 
     def _select(self, tmp_path: Path, slug: str, tmdb_id: int) -> None:
         route(
@@ -367,40 +393,43 @@ class SelectDeletesStaleCopyTests(unittest.TestCase):
             batch_root=tmp_path,
         )
 
-    def test_reselect_other_slug_deletes_previous_orphan_copy(self) -> None:
+    def test_reselect_other_candidate_supersedes_and_preserves_previous_bundle(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             _make_batch(tmp_path, "2026-07-06", "09-slug")
             _make_batch(tmp_path, "2026-07-06", "10-slug", tmdb_id=99)
 
-            # 选 09-slug 并模拟已 publish 出稿。
             self._select(tmp_path, "09-slug", 429918)
-            stale = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu.md"
-            stale.write_text("旧稿 Rule Breakers", encoding="utf-8")
+            manifest_file = _prepare_bundle_for_selection(tmp_path, "2026-07-06")
+            copy_path = manifest_file.parent / "copy" / "xiaohongshu.md"
+            copy_path.parent.mkdir(parents=True, exist_ok=True)
+            copy_path.write_text("审计保留", encoding="utf-8")
 
-            # 改选到别的新闻 10-slug：旧孤儿稿应被删除。
             self._select(tmp_path, "10-slug", 99)
 
-            self.assertFalse(stale.exists())
+            self.assertTrue(copy_path.is_file())
+            self.assertEqual(read_manifest(manifest_file)["status"], "superseded")
             selection = read_selection(tmp_path, "2026-07-06")
             self.assertEqual(selection["selected"]["news_slug"], "10-slug")
-            self.assertEqual(selection["copies"], {})
+            self.assertEqual(set(selection), {"date", "selected", "selected_at"})
 
-    def test_reselect_same_slug_deletes_its_copy(self) -> None:
+    def test_reselect_same_candidate_is_idempotent_and_keeps_bundle(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             _make_batch(tmp_path, "2026-07-06", "09-slug")
 
             self._select(tmp_path, "09-slug", 429918)
-            copy = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu.md"
-            copy.write_text("已出稿", encoding="utf-8")
+            manifest_file = _prepare_bundle_for_selection(tmp_path, "2026-07-06")
+            copy_path = manifest_file.parent / "copy" / "xiaohongshu.md"
+            copy_path.parent.mkdir(parents=True, exist_ok=True)
+            copy_path.write_text("已出稿", encoding="utf-8")
 
-            # 重复选同片：其稿也应删除，强制重新 publish。
             self._select(tmp_path, "09-slug", 429918)
 
-            self.assertFalse(copy.exists())
+            self.assertTrue(copy_path.is_file())
+            self.assertNotEqual(read_manifest(manifest_file)["status"], "superseded")
 
-    def test_select_without_existing_copy_is_idempotent(self) -> None:
+    def test_select_without_existing_bundle_is_idempotent(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             _make_batch(tmp_path, "2026-07-06", "09-slug")
@@ -677,7 +706,7 @@ class CopyRouteTests(unittest.TestCase):
             self.assertEqual(status, 404)
             self.assertIn("error", payload)
 
-    def test_missing_date_or_slug_returns_400(self) -> None:
+    def test_missing_date_or_slug_returns_4xx(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             status, payload = route(
@@ -689,14 +718,30 @@ class CopyRouteTests(unittest.TestCase):
             status, payload = route(
                 "GET", "/api/copy", {"date": "2026-07-06"}, None, batch_root=tmp_path
             )
-            self.assertEqual(status, 400)
+            self.assertEqual(status, 404)
             self.assertIn("error", payload)
 
-    def test_has_humanized_true_when_humanized_file_present(self) -> None:
+    def test_has_humanized_true_when_bundle_humanized_file_present(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
-            self._write_copy(tmp_path, "2026-07-06", "09-slug")
-            humanized_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu_humanized.md"
+            _make_batch(tmp_path, "2026-07-06", "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": "2026-07-06", "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+            _, copy_path, humanized_path = _bundle_copy_paths(tmp_path, "2026-07-06")
+            copy_path.parent.mkdir(parents=True, exist_ok=True)
+            copy_path.write_text(
+                "# 发布定稿 · 2026-07-06 · 小红书\n\n"
+                "原版标题\n\n"
+                "原版正文。\n\n"
+                "## 链接\n\n"
+                "- 电影: https://example.com/movie/1\n",
+                encoding="utf-8",
+            )
             humanized_path.write_text(
                 "# 发布定稿 · 2026-07-06 · 小红书\n\n"
                 "去AI化标题\n\n"
@@ -709,7 +754,7 @@ class CopyRouteTests(unittest.TestCase):
             status, payload = route(
                 "GET",
                 "/api/copy",
-                {"date": "2026-07-06", "slug": "09-slug"},
+                {"date": "2026-07-06"},
                 None,
                 batch_root=tmp_path,
             )
@@ -717,7 +762,6 @@ class CopyRouteTests(unittest.TestCase):
             self.assertEqual(status, 200)
             self.assertTrue(payload["has_humanized"])
             self.assertEqual(payload["humanized_body"], "去AI化正文。")
-            # 原版 body 不受 humanized 影响。
             self.assertEqual(payload["body"], "原版正文。")
 
 
@@ -725,7 +769,7 @@ class RewriteRouteTests(unittest.TestCase):
     """9.7.4：/api/rewrite 通过注入的 run_subprocess stub 验证，不调真实 LLM。"""
 
     def _write_copy_md(self, tmp_path: Path, date: str, slug: str, platform: str = "xiaohongshu") -> Path:
-        copy_path = tmp_path / date / f"{slug}_copy_{platform}.md"
+        _, copy_path, _ = _bundle_copy_paths(tmp_path, date)
         copy_path.parent.mkdir(parents=True, exist_ok=True)
         copy_path.write_text(
             "# 发布定稿 · 2026-07-06 · 小红书\n\n"
@@ -751,7 +795,7 @@ class RewriteRouteTests(unittest.TestCase):
             )
             self._write_copy_md(tmp_path, "2026-07-06", "09-slug")
 
-            humanized_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu_humanized.md"
+            _, _, humanized_path = _bundle_copy_paths(tmp_path, "2026-07-06")
 
             def fake_write_humanized() -> None:
                 humanized_path.write_text(
@@ -789,11 +833,11 @@ class RewriteRouteTests(unittest.TestCase):
             self.assertEqual(payload["humanized_path"], str(humanized_path))
             self.assertIn("去AI化正文", payload["humanized_body"])
 
-            selection = read_selection(tmp_path, "2026-07-06")
-            entry = selection["copies"]["xiaohongshu"]
-            self.assertEqual(entry["humanized_path"], str(humanized_path))
-            # copy_path/published 字段应保持原状（本测试未先 publish，故 copy_path 为空占位）。
-            self.assertIsNone(entry.get("copy_path"))
+            manifest = read_manifest(_prepare_bundle_for_selection(tmp_path, "2026-07-06"))
+            entry = manifest["artifacts"]["copies"]["xiaohongshu"]
+            self.assertEqual(entry["status"], "ready")
+            self.assertEqual(entry["humanized_path"], "copy/xiaohongshu-humanized.md")
+            self.assertEqual(entry["copy_path"], "copy/xiaohongshu.md")
 
     def test_failure_returns_500(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -836,7 +880,7 @@ class RewriteRouteTests(unittest.TestCase):
                 batch_root=tmp_path,
             )
             self._write_copy_md(tmp_path, "2026-07-06", "09-slug")
-            humanized_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu_humanized.md"
+            _, _, humanized_path = _bundle_copy_paths(tmp_path, "2026-07-06")
 
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 # slug 未在 body 里传，应从 selection.json 兜底解析出 09-slug。
@@ -862,9 +906,9 @@ class RewriteRouteTests(unittest.TestCase):
 
 
 class PublishThenRewriteE2ETests(unittest.TestCase):
-    """9.7.5 gap-fill: select→publish→rewrite 全链路，验证 copies.xiaohongshu 三字段。"""
+    """Phase 13：select → bundle current copy → humanized 只写 manifest。"""
 
-    def test_publish_then_rewrite_preserves_published_and_copy_path(self) -> None:
+    def test_publish_then_rewrite_updates_manifest_paths(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             _make_batch(tmp_path, "2026-07-06", "09-slug")
@@ -875,10 +919,10 @@ class PublishThenRewriteE2ETests(unittest.TestCase):
                 {"date": "2026-07-06", "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
                 batch_root=tmp_path,
             )
-
-            copy_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu.md"
+            _, copy_path, humanized_path = _bundle_copy_paths(tmp_path, "2026-07-06")
 
             def fake_publish_subprocess(cmd, capture_output, text):  # noqa: ANN001
+                copy_path.parent.mkdir(parents=True, exist_ok=True)
                 copy_path.write_text(
                     "# 发布定稿 · 2026-07-06 · 小红书\n\n一句标题\n\n原版正文。\n\n"
                     "## 链接\n\n- 电影: https://example.com/movie/1\n",
@@ -886,7 +930,7 @@ class PublishThenRewriteE2ETests(unittest.TestCase):
                 )
                 return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {copy_path}\n")
 
-            status, publish_payload = _submit_async(
+            status, _ = _submit_async(
                 tmp_path,
                 "/api/publish",
                 {"date": "2026-07-06"},
@@ -894,8 +938,6 @@ class PublishThenRewriteE2ETests(unittest.TestCase):
                 run_subprocess=fake_publish_subprocess,
             )
             self.assertEqual(status, 200)
-
-            humanized_path = tmp_path / "2026-07-06" / "09-slug_copy_xiaohongshu_humanized.md"
 
             def fake_rewrite_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 humanized_path.write_text(
@@ -905,7 +947,7 @@ class PublishThenRewriteE2ETests(unittest.TestCase):
                 )
                 return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {humanized_path}\n")
 
-            status, rewrite_payload = _submit_async(
+            status, _ = _submit_async(
                 tmp_path,
                 "/api/rewrite",
                 {"date": "2026-07-06"},
@@ -914,17 +956,18 @@ class PublishThenRewriteE2ETests(unittest.TestCase):
             )
             self.assertEqual(status, 200)
 
-            selection = read_selection(tmp_path, "2026-07-06")
-            entry = selection["copies"]["xiaohongshu"]
-            self.assertTrue(entry["published"])
-            self.assertEqual(entry["copy_path"], str(copy_path))
-            self.assertEqual(entry["humanized_path"], str(humanized_path))
+            manifest = read_manifest(_prepare_bundle_for_selection(tmp_path, "2026-07-06"))
+            entry = manifest["artifacts"]["copies"]["xiaohongshu"]
+            self.assertEqual(entry["status"], "ready")
+            self.assertEqual(entry["copy_path"], "copy/xiaohongshu.md")
+            self.assertEqual(entry["humanized_path"], "copy/xiaohongshu-humanized.md")
+            self.assertEqual(set(read_selection(tmp_path, "2026-07-06")), {"date", "selected", "selected_at"})
 
 
 class PublishMigratesOldFormatSelectionTests(unittest.TestCase):
-    """9.7.5 gap-fill: handle_publish 读到旧格式 selection.json 时应先迁移再写回。"""
+    """旧 selection 可读，但当前稿只允许写入显式准备的 publication bundle。"""
 
-    def test_legacy_selection_migrated_through_handle_publish(self) -> None:
+    def test_legacy_selection_can_prepare_bundle_then_publish(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             date = "2026-07-06"
@@ -940,13 +983,10 @@ class PublishMigratesOldFormatSelectionTests(unittest.TestCase):
             selection_path = tmp_path / date / "selection.json"
             selection_path.parent.mkdir(parents=True, exist_ok=True)
             selection_path.write_text(json.dumps(legacy_payload, ensure_ascii=False), encoding="utf-8")
-
-            expected_copy_path = tmp_path / date / "09-slug_copy_xiaohongshu.md"
+            _, expected_copy_path, _ = _bundle_copy_paths(tmp_path, date)
 
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
-                return SimpleNamespace(
-                    returncode=0, stdout="", stderr=f"Wrote {expected_copy_path}\n"
-                )
+                return SimpleNamespace(returncode=0, stdout="", stderr=f"Wrote {expected_copy_path}\n")
 
             status, payload = _submit_async(
                 tmp_path,
@@ -958,19 +998,10 @@ class PublishMigratesOldFormatSelectionTests(unittest.TestCase):
 
             self.assertEqual(status, 200)
             self.assertTrue(payload["ok"])
-
-            selection = read_selection(tmp_path, date)
-            self.assertNotIn("published", selection)
-            self.assertNotIn("copy_path", selection)
-            entry = selection["copies"]["xiaohongshu"]
-            self.assertTrue(entry["published"])
-            self.assertEqual(entry["copy_path"], str(expected_copy_path))
-
-            # 写回磁盘的原始 JSON 也不应有顶层 published/copy_path 残留。
-            raw_on_disk = json.loads(selection_path.read_text(encoding="utf-8"))
-            self.assertNotIn("published", raw_on_disk)
-            self.assertNotIn("copy_path", raw_on_disk)
-            self.assertIn("copies", raw_on_disk)
+            manifest = read_manifest(_prepare_bundle_for_selection(tmp_path, date))
+            self.assertEqual(manifest["artifacts"]["copies"]["xiaohongshu"]["status"], "ready")
+            self.assertEqual(manifest["artifacts"]["copies"]["xiaohongshu"]["copy_path"], "copy/xiaohongshu.md")
+            self.assertEqual(json.loads(selection_path.read_text(encoding="utf-8")), legacy_payload)
 
 
 class ReplaceBodyInCopyMarkdownTests(unittest.TestCase):
@@ -1048,7 +1079,7 @@ class EditBodyRouteTests(unittest.TestCase):
     """9.8.4：POST /api/edit-body 无 LLM，纯文本直改。"""
 
     def _write_copy_md(self, tmp_path: Path, date: str, slug: str, platform: str = "xiaohongshu") -> Path:
-        copy_path = tmp_path / date / f"{slug}_copy_{platform}.md"
+        _, copy_path, _ = _bundle_copy_paths(tmp_path, date)
         copy_path.parent.mkdir(parents=True, exist_ok=True)
         copy_path.write_text(
             "# 发布定稿 · 2026-07-06 · 小红书\n\n"
@@ -1073,19 +1104,9 @@ class EditBodyRouteTests(unittest.TestCase):
                 {"date": date, "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
                 batch_root=tmp_path,
             )
-            self._write_copy_md(tmp_path, date, "09-slug")
-
-            humanized_path = tmp_path / date / "09-slug_copy_xiaohongshu_humanized.md"
+            copy_path = self._write_copy_md(tmp_path, date, "09-slug")
+            _, _, humanized_path = _bundle_copy_paths(tmp_path, date)
             humanized_path.write_text("旧 humanized 稿", encoding="utf-8")
-            selection = read_selection(tmp_path, date)
-            selection["copies"]["xiaohongshu"] = {
-                "published": True,
-                "copy_path": str(tmp_path / date / "09-slug_copy_xiaohongshu.md"),
-                "humanized_path": str(humanized_path),
-            }
-            from review_panel.serve import write_selection
-
-            write_selection(tmp_path, date, selection)
 
             status, payload = route(
                 "POST",
@@ -1100,20 +1121,20 @@ class EditBodyRouteTests(unittest.TestCase):
             self.assertEqual(payload["headline"], "原版标题")
             self.assertEqual(payload["body"], "新的正文")
 
-            on_disk = (tmp_path / date / "09-slug_copy_xiaohongshu.md").read_text(encoding="utf-8")
+            on_disk = copy_path.read_text(encoding="utf-8")
             self.assertIn("- 电影: https://example.com/movie/1", on_disk)
             self.assertIn("- 新闻: https://example.com/news/1", on_disk)
 
             self.assertFalse(humanized_path.exists())
-            updated_selection = read_selection(tmp_path, date)
-            self.assertIsNone(updated_selection["copies"]["xiaohongshu"]["humanized_path"])
-            self.assertTrue(updated_selection["copies"]["xiaohongshu"]["published"])
+            manifest = read_manifest(_prepare_bundle_for_selection(tmp_path, date))
+            entry = manifest["artifacts"]["copies"]["xiaohongshu"]
+            self.assertEqual(entry["status"], "ready")
+            self.assertEqual(entry["humanized_path"], "copy/xiaohongshu-humanized.md")
 
     def test_empty_body_returns_400(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             date = "2026-07-06"
-            self._write_copy_md(tmp_path, date, "09-slug")
 
             status, payload = route(
                 "POST",
@@ -1128,11 +1149,21 @@ class EditBodyRouteTests(unittest.TestCase):
     def test_missing_copy_file_returns_404(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
+            date = "2026-07-06"
+            _make_batch(tmp_path, date, "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": date, "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+            _prepare_bundle_for_selection(tmp_path, date)
             status, payload = route(
                 "POST",
                 "/api/edit-body",
                 {},
-                {"date": "2026-07-06", "slug": "09-slug", "body": "新正文"},
+                {"date": date, "slug": "09-slug", "body": "新正文"},
                 batch_root=tmp_path,
             )
             self.assertEqual(status, 404)
@@ -1168,7 +1199,7 @@ class RegenerateRouteTests(unittest.TestCase):
     """9.8.4：POST /api/regenerate 通过注入 run_subprocess stub 验证，不调真实 LLM。"""
 
     def _write_copy_md(self, tmp_path: Path, date: str, slug: str, platform: str = "xiaohongshu") -> Path:
-        copy_path = tmp_path / date / f"{slug}_copy_{platform}.md"
+        _, copy_path, _ = _bundle_copy_paths(tmp_path, date)
         copy_path.parent.mkdir(parents=True, exist_ok=True)
         copy_path.write_text(
             "# 发布定稿 · 2026-07-06 · 小红书\n\n"
@@ -1198,17 +1229,8 @@ class RegenerateRouteTests(unittest.TestCase):
             self._select(tmp_path, date)
             copy_path = self._write_copy_md(tmp_path, date, "09-slug")
 
-            humanized_path = tmp_path / date / "09-slug_copy_xiaohongshu_humanized.md"
+            _, _, humanized_path = _bundle_copy_paths(tmp_path, date)
             humanized_path.write_text("旧 humanized", encoding="utf-8")
-            selection = read_selection(tmp_path, date)
-            selection["copies"]["xiaohongshu"] = {
-                "published": True,
-                "copy_path": str(copy_path),
-                "humanized_path": str(humanized_path),
-            }
-            from review_panel.serve import write_selection
-
-            write_selection(tmp_path, date, selection)
 
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 self.assertIn("--target", cmd)
@@ -1245,8 +1267,9 @@ class RegenerateRouteTests(unittest.TestCase):
             self.assertEqual(payload["body"], "新的正文。")
             self.assertEqual(payload["headline"], "原版标题")
 
-            updated_selection = read_selection(tmp_path, date)
-            self.assertIsNone(updated_selection["copies"]["xiaohongshu"]["humanized_path"])
+            self.assertFalse(humanized_path.exists())
+            manifest = read_manifest(_prepare_bundle_for_selection(tmp_path, date))
+            self.assertEqual(manifest["artifacts"]["copies"]["xiaohongshu"]["status"], "ready")
 
     def test_target_headline_does_not_clear_humanized_path(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -1255,17 +1278,8 @@ class RegenerateRouteTests(unittest.TestCase):
             self._select(tmp_path, date)
             copy_path = self._write_copy_md(tmp_path, date, "09-slug")
 
-            humanized_path = tmp_path / date / "09-slug_copy_xiaohongshu_humanized.md"
+            _, _, humanized_path = _bundle_copy_paths(tmp_path, date)
             humanized_path.write_text("旧 humanized", encoding="utf-8")
-            selection = read_selection(tmp_path, date)
-            selection["copies"]["xiaohongshu"] = {
-                "published": True,
-                "copy_path": str(copy_path),
-                "humanized_path": str(humanized_path),
-            }
-            from review_panel.serve import write_selection
-
-            write_selection(tmp_path, date, selection)
 
             def fake_run_subprocess(cmd, capture_output, text):  # noqa: ANN001
                 copy_path.write_text(
@@ -1292,10 +1306,8 @@ class RegenerateRouteTests(unittest.TestCase):
             self.assertEqual(payload["headline"], "新的标题")
             self.assertEqual(payload["body"], "原版正文。")
 
-            updated_selection = read_selection(tmp_path, date)
-            self.assertEqual(
-                updated_selection["copies"]["xiaohongshu"]["humanized_path"], str(humanized_path)
-            )
+            self.assertTrue(humanized_path.exists())
+            self.assertEqual(read_manifest(_prepare_bundle_for_selection(tmp_path, date))["artifacts"]["copies"]["xiaohongshu"]["humanized_path"], "copy/xiaohongshu-humanized.md")
 
     def test_invalid_target_returns_400(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -1462,6 +1474,7 @@ class SelectDraftRouteTests(unittest.TestCase):
             {"date": date, "news_slug": slug, "tmdb_id": 429918, "title": "Survival Family"},
             batch_root=tmp_path,
         )
+        _prepare_bundle_for_selection(tmp_path, date)
         pool = [
             {"draft_id": "The-Sage", "headline": "理性之眼", "body": "「Survival Family」以求真视角写正文。"},
             {"draft_id": "The-Hero", "headline": "抗争之路", "body": "「Survival Family」以抗争视角写正文。"},
@@ -1489,7 +1502,7 @@ class SelectDraftRouteTests(unittest.TestCase):
             self.assertEqual(payload["headline"], "抗争之路")
             self.assertEqual(payload["selected_draft_id"], "The-Hero")
 
-            copy_path = tmp_path / date / "09-slug_copy_xiaohongshu.md"
+            _, copy_path, _ = _bundle_copy_paths(tmp_path, date)
             self.assertTrue(copy_path.is_file())
             on_disk = copy_path.read_text(encoding="utf-8")
             # 派生当前稿逐字对齐 publish 产出：headline + body + 链接分区（movie_url 来自 retrieve.json）。
@@ -1497,12 +1510,12 @@ class SelectDraftRouteTests(unittest.TestCase):
             self.assertIn("## 链接", on_disk)
             self.assertIn("https://themoviecosmos.com/movie/429918", on_disk)
 
-            selection = read_selection(tmp_path, date)
-            entry = selection["copies"]["xiaohongshu"]
+            manifest = read_manifest(_prepare_bundle_for_selection(tmp_path, date))
+            entry = manifest["artifacts"]["copies"]["xiaohongshu"]
             self.assertEqual(entry["selected_draft_id"], "The-Hero")
-            self.assertTrue(entry["published"])
-            self.assertEqual(entry["copy_path"], str(copy_path))
-            self.assertIsNone(entry["humanized_path"])
+            self.assertEqual(entry["status"], "ready")
+            self.assertEqual(entry["copy_path"], "copy/xiaohongshu.md")
+            self.assertEqual(entry["humanized_path"], "copy/xiaohongshu-humanized.md")
 
     def test_reselect_invalidates_humanized(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -1511,14 +1524,8 @@ class SelectDraftRouteTests(unittest.TestCase):
             self._setup_pool(tmp_path, date)
             route("POST", "/api/select-draft", {}, {"date": date, "draft_id": "The-Sage"}, batch_root=tmp_path)
 
-            # 模拟已跑过去AI化：humanized 稿存在 + selection 记录 humanized_path。
-            humanized_path = tmp_path / date / "09-slug_copy_xiaohongshu_humanized.md"
+            _, _, humanized_path = _bundle_copy_paths(tmp_path, date)
             humanized_path.write_text("旧去AI化稿", encoding="utf-8")
-            selection = read_selection(tmp_path, date)
-            selection["copies"]["xiaohongshu"]["humanized_path"] = str(humanized_path)
-            from review_panel.serve import write_selection
-
-            write_selection(tmp_path, date, selection)
 
             # 改选另一张卡：body 变 ⇒ humanized 必须失效。
             status, payload = route(
@@ -1526,43 +1533,35 @@ class SelectDraftRouteTests(unittest.TestCase):
             )
             self.assertEqual(status, 200)
             self.assertFalse(humanized_path.exists())
-            entry = read_selection(tmp_path, date)["copies"]["xiaohongshu"]
-            self.assertIsNone(entry["humanized_path"])
+            entry = read_manifest(_prepare_bundle_for_selection(tmp_path, date))["artifacts"]["copies"]["xiaohongshu"]
             self.assertEqual(entry["selected_draft_id"], "The-Hero")
 
-    def test_legacy_selection_without_pointer_field_is_backward_compatible(self) -> None:
-        # 向后兼容（ADR-0017 D4）：旧 selection 的 copies 条目无 selected_draft_id 字段
-        # （Phase 10 前发布产生），select-draft 应正常补上指针而不报错。
+    def test_select_draft_requires_explicit_bundle_prepare(self) -> None:
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             date = "2026-07-06"
-            self._setup_pool(tmp_path, date)
-
-            # 构造一个缺 selected_draft_id 的旧格式条目（含 published/copy_path/humanized_path）。
-            from review_panel.serve import write_selection
-
-            selection = read_selection(tmp_path, date)
-            legacy_humanized = tmp_path / date / "09-slug_copy_xiaohongshu_humanized.md"
-            legacy_humanized.write_text("旧去AI化稿（Phase 10 前）", encoding="utf-8")
-            selection.setdefault("copies", {})["xiaohongshu"] = {
-                "published": True,
-                "copy_path": str(tmp_path / date / "09-slug_copy_xiaohongshu.md"),
-                "humanized_path": str(legacy_humanized),
-            }
-            write_selection(tmp_path, date, selection)
+            _make_batch(tmp_path, date, "09-slug")
+            route(
+                "POST",
+                "/api/select",
+                {},
+                {"date": date, "news_slug": "09-slug", "tmdb_id": 429918, "title": "Survival Family"},
+                batch_root=tmp_path,
+            )
+            unprepared_manifest = manifest_path(tmp_path, date, 429918, "Survival Family")
+            shutil.rmtree(unprepared_manifest.parent, ignore_errors=True)
+            pool_path = tmp_path / date / "09-slug_drafts_xiaohongshu.json"
+            pool_path.write_text(
+                json.dumps([{"draft_id": "The-Sage", "headline": "理性之眼", "body": "正文"}], ensure_ascii=False),
+                encoding="utf-8",
+            )
 
             status, payload = route(
                 "POST", "/api/select-draft", {}, {"date": date, "draft_id": "The-Sage"}, batch_root=tmp_path
             )
 
-            self.assertEqual(status, 200)
-            self.assertTrue(payload["ok"])
-            self.assertEqual(payload["selected_draft_id"], "The-Sage")
-            # 旧 humanized 稿随 body 变而失效。
-            self.assertFalse(legacy_humanized.exists())
-            entry = read_selection(tmp_path, date)["copies"]["xiaohongshu"]
-            self.assertEqual(entry["selected_draft_id"], "The-Sage")
-            self.assertIsNone(entry["humanized_path"])
+            self.assertEqual(status, 400)
+            self.assertIn("publication bundle is not prepared", payload["error"])
 
     def test_unknown_draft_id_returns_400(self) -> None:
         with TemporaryDirectory() as tmp:

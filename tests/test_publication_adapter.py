@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import sys
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -182,6 +183,63 @@ class PublicationRouteTests(unittest.TestCase):
             )
             self.assertEqual(denied_status, 400)
             self.assertIn("unknown publication asset", denied_payload["error"])
+
+    def test_retry_submits_exactly_one_target_and_rejects_unknown_targets(self) -> None:
+        with TemporaryDirectory() as tmp:
+            batch_root = Path(tmp)
+            write_selection(batch_root, _DATE, _selection())
+            calls: list[list[str]] = []
+
+            def run_subprocess(command, capture_output, text):  # noqa: ANN001
+                calls.append(command)
+                return SimpleNamespace(returncode=0, stdout="", stderr="retried")
+
+            job_store = _InlineJobStore()
+            status, payload = route(
+                "POST",
+                "/api/retry-publication-artifact",
+                {},
+                {"date": _DATE, "artifact": "planet"},
+                batch_root=batch_root,
+                publication_adapter_path=Path("publication_adapter.py"),
+                run_subprocess=run_subprocess,
+                job_store=job_store,
+            )
+            self.assertEqual(status, 202)
+            self.assertEqual(payload["kind"], "retry-publication-artifact")
+            _, job = route(
+                "GET", "/api/job", {"job_id": payload["job_id"]}, None, batch_root=batch_root, job_store=job_store
+            )
+            self.assertEqual(job["result"]["http_status"], 200)
+            self.assertEqual(calls, [
+                [
+                    sys.executable,
+                    "publication_adapter.py",
+                    "--date",
+                    _DATE,
+                    "--batch-root",
+                    str(batch_root),
+                    "--targets",
+                    "planet",
+                ]
+            ])
+
+            invalid_status, invalid_payload = route(
+                "POST",
+                "/api/retry-publication-artifact",
+                {},
+                {"date": _DATE, "artifact": "../poster"},
+                batch_root=batch_root,
+                publication_adapter_path=Path("publication_adapter.py"),
+                run_subprocess=run_subprocess,
+                job_store=job_store,
+            )
+            self.assertEqual(invalid_status, 202)
+            _, invalid_job = route(
+                "GET", "/api/job", {"job_id": invalid_payload["job_id"]}, None, batch_root=batch_root, job_store=job_store
+            )
+            self.assertEqual(invalid_job["result"]["http_status"], 400)
+            self.assertEqual(len(calls), 1)
 
 
 if __name__ == "__main__":
