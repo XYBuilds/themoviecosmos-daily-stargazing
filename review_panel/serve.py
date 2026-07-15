@@ -21,8 +21,10 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shutil
 import subprocess
 import sys
+from dataclasses import dataclass
 from datetime import UTC, datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -35,6 +37,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 from review_panel.build_data import build_panel_data, list_available_dates  # noqa: E402
 from review_panel.job_store import JobStore, job_store as _DEFAULT_JOB_STORE  # noqa: E402
+from review_panel.publication_bundle import manifest_path, read_manifest  # noqa: E402
 from scripts.lib.paths import repo_root  # noqa: E402
 
 # 子进程调 publish_adapter.py 时用 stderr 里这一行定位「Wrote <path>」的产出路径，
@@ -49,6 +52,15 @@ _ACTIVE_PLATFORMS: tuple[str, ...] = ("xiaohongshu",)
 # Phase 10.4：复数视角合并上限（ADR-0017 D5）。serve 只对「>2」这一显式客户端错误做快速
 # 4xx 兜底；「恰好 2」的业务硬约束单一收敛在 drafts_adapter.run_combine，不在 serve 复刻。
 _MAX_COMBINE = 2
+
+
+@dataclass(frozen=True)
+class PublicationAssetResponse:
+    """An already-authorized bundle file for the HTTP transport layer to stream."""
+
+    path: Path
+    content_type: str
+
 
 # 派生当前稿「# 发布定稿 · {date} · {label}」标题的平台中文名，与
 # publish_adapter._PLATFORM_LABELS 保持一致（select-draft 本地渲染需逐字对齐 publish 产出）。
@@ -77,6 +89,10 @@ def _default_regenerate_adapter_path() -> Path:
 
 def _default_drafts_adapter_path() -> Path:
     return Path(__file__).resolve().parent / "drafts_adapter.py"
+
+
+def _default_publication_adapter_path() -> Path:
+    return Path(__file__).resolve().parent / "publication_adapter.py"
 
 
 def _default_index_html_path() -> Path:
@@ -1066,6 +1082,137 @@ def handle_drafts(batch_root: Path, query: dict[str, str] | None) -> tuple[int, 
     return 200, {"drafts": drafts, "drafts_path": str(pool_path), "platform": platform}
 
 
+def _publication_manifest_for_date(batch_root: Path, date: str) -> tuple[Path, dict[str, Any]]:
+    """Resolve the selected movie's manifest through the bundle domain boundary."""
+    selection = read_selection(batch_root, date)
+    if selection is None:
+        raise ValueError(f"no selection.json for date {date!r}; call /api/select first")
+    selected = selection.get("selected") or {}
+    tmdb_id = selected.get("tmdb_id")
+    title = selected.get("title")
+    if tmdb_id is None or not title:
+        raise ValueError("selection.json missing tmdb_id/title")
+    path = manifest_path(batch_root, date, tmdb_id, str(title))
+    return path, dict(read_manifest(path))
+
+
+def handle_publication(batch_root: Path, query: dict[str, str] | None) -> tuple[int, dict[str, Any]]:
+    query = query or {}
+    date = query.get("date")
+    if not date:
+        return 400, {"error": "missing required query param 'date'"}
+    try:
+        _, manifest = _publication_manifest_for_date(batch_root, date)
+    except ValueError as exc:
+        return 404, {"error": str(exc)}
+    return 200, {"manifest": manifest}
+
+
+def handle_prepare_publication(
+    batch_root: Path,
+    body: dict[str, Any] | None,
+    *,
+    publication_adapter_path: Path,
+    run_subprocess: Any = subprocess.run,
+) -> tuple[int, dict[str, Any]]:
+    body = body or {}
+    date = body.get("date")
+    if not date:
+        return 400, {"ok": False, "stderr": "missing required field: date"}
+    if read_selection(batch_root, str(date)) is None:
+        return 400, {
+            "ok": False,
+            "stderr": f"no selection.json for date {date!r}; call /api/select first",
+        }
+
+    result = run_subprocess(
+        [
+            sys.executable,
+            str(publication_adapter_path),
+            "--date",
+            str(date),
+            "--batch-root",
+            str(batch_root),
+        ],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        return 500, {"ok": False, "stderr": result.stderr}
+    return 200, {"ok": True, "stderr": result.stderr}
+
+
+def handle_retry_publication_artifact(
+    batch_root: Path,
+    body: dict[str, Any] | None,
+    *,
+    publication_adapter_path: Path,
+    run_subprocess: Any = subprocess.run,
+) -> tuple[int, dict[str, Any]]:
+    body = body or {}
+    date = body.get("date")
+    artifact = body.get("artifact")
+    if not date or not artifact:
+        return 400, {"ok": False, "stderr": "missing required fields: date/artifact"}
+    if artifact not in {"drafts", "poster", "planet"}:
+        return 400, {"ok": False, "stderr": f"unknown publication artifact: {artifact!r}"}
+    if read_selection(batch_root, str(date)) is None:
+        return 400, {
+            "ok": False,
+            "stderr": f"no selection.json for date {date!r}; call /api/select first",
+        }
+
+    result = run_subprocess(
+        [
+            sys.executable,
+            str(publication_adapter_path),
+            "--date",
+            str(date),
+            "--batch-root",
+            str(batch_root),
+            "--targets",
+            str(artifact),
+        ],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        return 500, {"ok": False, "stderr": result.stderr}
+    return 200, {"ok": True, "artifact": artifact, "stderr": result.stderr}
+
+
+def handle_publication_asset(
+    batch_root: Path, query: dict[str, str] | None
+) -> tuple[int, dict[str, Any] | PublicationAssetResponse]:
+    """Resolve only manifest-registered visual assets and reject raw file paths."""
+    query = query or {}
+    date = query.get("date")
+    asset = query.get("asset")
+    if not date or not asset:
+        return 400, {"error": "missing required query params: date/asset"}
+    if asset not in {"poster", "planet"}:
+        return 400, {"error": f"unknown publication asset: {asset!r}"}
+    try:
+        manifest_file, manifest = _publication_manifest_for_date(batch_root, date)
+    except ValueError as exc:
+        return 404, {"error": str(exc)}
+
+    artifact = (manifest.get("artifacts") or {}).get(asset)
+    relative_path = artifact.get("path") if isinstance(artifact, dict) else None
+    if not isinstance(relative_path, str):
+        return 404, {"error": f"publication asset {asset!r} is not registered"}
+    bundle_root = manifest_file.parent.resolve()
+    candidate = (bundle_root / relative_path).resolve()
+    try:
+        candidate.relative_to(bundle_root)
+    except ValueError:
+        return 403, {"error": "publication asset path escapes its bundle"}
+    if not candidate.is_file():
+        return 404, {"error": f"publication asset {asset!r} is not ready"}
+    content_type = "image/jpeg" if asset == "poster" else "image/png"
+    return 200, PublicationAssetResponse(path=candidate, content_type=content_type)
+
+
 def handle_job(job_store: JobStore, query: dict[str, str] | None) -> tuple[int, dict[str, Any]]:
     """GET /api/job（Phase 12.6.2 D4）：轮询后台 job 的四态。
 
@@ -1102,9 +1249,10 @@ def route(
     rewrite_adapter_path: Path | None = None,
     regenerate_adapter_path: Path | None = None,
     drafts_adapter_path: Path | None = None,
+    publication_adapter_path: Path | None = None,
     run_subprocess: Any = subprocess.run,
     job_store: JobStore = _DEFAULT_JOB_STORE,
-) -> tuple[int, dict[str, Any] | str]:
+) -> tuple[int, dict[str, Any] | str | PublicationAssetResponse]:
     """纯路由分发：无 socket 依赖，单测与真实服务器共用同一份逻辑。
 
     Phase 12.6.2：6 个长 LLM 任务端点（publish/rewrite/regenerate/generate-drafts/
@@ -1126,10 +1274,38 @@ def route(
         return handle_selection(batch_root, query)
     if method == "GET" and path == "/api/drafts":
         return handle_drafts(batch_root, query)
+    if method == "GET" and path == "/api/publication":
+        return handle_publication(batch_root, query)
+    if method == "GET" and path == "/api/publication-asset":
+        return handle_publication_asset(batch_root, query)
     if method == "POST" and path == "/api/select":
         return handle_select(batch_root, body)
     if method == "GET" and path == "/api/job":
         return handle_job(job_store, query)
+    if method == "POST" and path == "/api/prepare-publication":
+        _publication_adapter_path = publication_adapter_path or _default_publication_adapter_path()
+        job_id = job_store.submit(
+            lambda: handle_prepare_publication(
+                batch_root,
+                body,
+                publication_adapter_path=_publication_adapter_path,
+                run_subprocess=run_subprocess,
+            ),
+            kind="prepare-publication",
+        )
+        return 202, {"ok": True, "job_id": job_id, "kind": "prepare-publication"}
+    if method == "POST" and path == "/api/retry-publication-artifact":
+        _publication_adapter_path = publication_adapter_path or _default_publication_adapter_path()
+        job_id = job_store.submit(
+            lambda: handle_retry_publication_artifact(
+                batch_root,
+                body,
+                publication_adapter_path=_publication_adapter_path,
+                run_subprocess=run_subprocess,
+            ),
+            kind="retry-publication-artifact",
+        )
+        return 202, {"ok": True, "job_id": job_id, "kind": "retry-publication-artifact"}
     if method == "POST" and path == "/api/publish":
         _publish_adapter_path = publish_adapter_path or _default_publish_adapter_path()
         job_id = job_store.submit(
@@ -1222,6 +1398,7 @@ def make_handler_class(
     rewrite_adapter_path: Path,
     regenerate_adapter_path: Path,
     drafts_adapter_path: Path,
+    publication_adapter_path: Path,
     job_store: JobStore = _DEFAULT_JOB_STORE,
 ) -> type[BaseHTTPRequestHandler]:
     """按注入的 batch_root/路径生成一个 handler 类（闭包避免用全局可变状态）。"""
@@ -1258,10 +1435,13 @@ def make_handler_class(
                 rewrite_adapter_path=rewrite_adapter_path,
                 regenerate_adapter_path=regenerate_adapter_path,
                 drafts_adapter_path=drafts_adapter_path,
+                publication_adapter_path=publication_adapter_path,
                 job_store=job_store,
             )
             if isinstance(payload, str):
                 self._send_html(status, payload)
+            elif isinstance(payload, PublicationAssetResponse):
+                self._send_file(status, payload)
             else:
                 self._send_json(status, payload)
 
@@ -1289,6 +1469,17 @@ def make_handler_class(
             except (ConnectionAbortedError, BrokenPipeError, ConnectionResetError):
                 return
 
+        def _send_file(self, status: int, asset: PublicationAssetResponse) -> None:
+            try:
+                self.send_response(status)
+                self.send_header("Content-Type", asset.content_type)
+                self.send_header("Content-Length", str(asset.path.stat().st_size))
+                self.end_headers()
+                with asset.path.open("rb") as source:
+                    shutil.copyfileobj(source, self.wfile)
+            except (ConnectionAbortedError, BrokenPipeError, ConnectionResetError):
+                return
+
         def log_message(self, format: str, *args: Any) -> None:  # noqa: A002
             # 静默默认访问日志；启动/关键事件由 main() 自行 print，避免噪声。
             pass
@@ -1305,6 +1496,7 @@ def serve(
     rewrite_adapter_path: Path | None = None,
     regenerate_adapter_path: Path | None = None,
     drafts_adapter_path: Path | None = None,
+    publication_adapter_path: Path | None = None,
     job_store: JobStore = _DEFAULT_JOB_STORE,
 ) -> ThreadingHTTPServer:
     """构建并返回一个已 bind 但尚未 serve_forever 的服务器实例（便于测试注入）。"""
@@ -1316,6 +1508,7 @@ def serve(
         rewrite_adapter_path=rewrite_adapter_path or _default_rewrite_adapter_path(),
         regenerate_adapter_path=regenerate_adapter_path or _default_regenerate_adapter_path(),
         drafts_adapter_path=drafts_adapter_path or _default_drafts_adapter_path(),
+        publication_adapter_path=publication_adapter_path or _default_publication_adapter_path(),
         job_store=job_store,
     )
     # 只绑 127.0.0.1（loopback）：这是无鉴权本地面板，绝不能改绑 0.0.0.0 对外暴露。
