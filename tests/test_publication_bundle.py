@@ -127,5 +127,25 @@ class PersistenceTests(unittest.TestCase):
             self.assertEqual(list(path.parent.glob(".manifest-*.json")), [])
 
 
-if __name__ == "__main__":
-    unittest.main()
+class CopyArtifactTests(unittest.TestCase):
+    def test_resolves_bundle_paths_and_preserves_pointer_when_editing(self) -> None:
+        from review_panel.publication_bundle import copy_artifact_paths, update_copy_artifact
+
+        selection = {
+            "date": "2026-07-06",
+            "news_slug": "05-ai",
+            "tmdb_id": 670292,
+            "title": "The Creator",
+            "selected_at": "2026-07-06T00:00:00Z",
+        }
+        with TemporaryDirectory() as temporary:
+            path = Path(temporary) / "manifest.json"
+            write_manifest(path, new_manifest(selection))
+            copy_path, humanized_path = copy_artifact_paths(read_manifest(path), path.parent, "xiaohongshu")
+            self.assertEqual(copy_path, path.parent / "copy" / "xiaohongshu.md")
+            self.assertEqual(humanized_path, path.parent / "copy" / "xiaohongshu-humanized.md")
+
+            update_copy_artifact(path, "xiaohongshu", status="ready", selected_draft_id="The-Sage")
+            update_copy_artifact(path, "xiaohongshu", status="ready")
+            copy_artifact = read_manifest(path)["artifacts"]["copies"]["xiaohongshu"]
+            self.assertEqual(copy_artifact["selected_draft_id"], "The-Sage")

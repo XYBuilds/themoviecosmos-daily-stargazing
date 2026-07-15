@@ -140,20 +140,22 @@ def run_adapter(
     platform: str = "xiaohongshu",
     provider: str | None = None,
     batch_root: Path | None = None,
+    copy_path: Path | None = None,
+    humanized_path: Path | None = None,
     call_llm: Any = None,
 ) -> Path:
-    """薄适配 orchestrator：读原稿 → 抽 body → 调 LLM 改写 → 写 humanized 稿。
+    """读当前稿，生成 humanized 稿。
 
-    ``call_llm`` 可注入（签名 ``(prompt) -> str``），默认走真实 LLM；测试用 stub 替换，
-    避免真调网络。
+    新发布包流程显式传入 ``copy_path`` 与 ``humanized_path``；省略时使用旧
+    daily_batch 路径，以保持历史脚本和产物的可读性。
     """
     root = batch_root or _default_batch_root()
-    copy_path = locate_copy_path(date, slug, platform, batch_root=root)
-    original_text = copy_path.read_text(encoding="utf-8")
+    resolved_copy_path = copy_path or locate_copy_path(date, slug, platform, batch_root=root)
+    original_text = resolved_copy_path.read_text(encoding="utf-8")
     parsed = parse_copy_markdown(original_text)
     body = parsed["body"]
     if not body:
-        raise ValueError(f"copy file has empty body, nothing to rewrite: {copy_path}")
+        raise ValueError(f"copy file has empty body, nothing to rewrite: {resolved_copy_path}")
 
     template = (repo_root() / _PROMPT_REL).read_text(encoding="utf-8")
     prompt = render_rewrite_prompt(template, body)
@@ -167,14 +169,17 @@ def run_adapter(
         raise ValueError("LLM returned empty humanized body")
 
     links_block = _extract_links_block(original_text)
-    humanized_path = copy_path.parent / f"{slug}_copy_{platform}_humanized.md"
-    humanized_path.write_text(
+    resolved_humanized_path = humanized_path or (
+        resolved_copy_path.parent / f"{slug}_copy_{platform}_humanized.md"
+    )
+    resolved_humanized_path.parent.mkdir(parents=True, exist_ok=True)
+    resolved_humanized_path.write_text(
         render_humanized_markdown(
             date, parsed["headline"], humanized_body, links_block, platform=platform
         ),
         encoding="utf-8",
     )
-    return humanized_path
+    return resolved_humanized_path
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -186,6 +191,8 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--slug", required=True, help="新闻目录 slug")
     parser.add_argument("--platform", default="xiaohongshu", help="发布平台（默认 xiaohongshu）")
     parser.add_argument("--provider", choices=["mimo", "deepseek"], default=None)
+    parser.add_argument("--copy-path", type=Path, default=None)
+    parser.add_argument("--humanized-path", type=Path, default=None)
     return parser
 
 
@@ -197,6 +204,8 @@ def main(argv: list[str] | None = None) -> int:
             args.slug,
             platform=args.platform,
             provider=args.provider,
+            copy_path=args.copy_path,
+            humanized_path=args.humanized_path,
         )
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)
