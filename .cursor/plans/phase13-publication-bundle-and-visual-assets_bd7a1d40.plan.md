@@ -13,7 +13,7 @@ todos:
     status: complete
   - id: p13.4-copy-selection-migration
     content: 把当前稿与微调产物迁入 bundle，精简 selection 并兼容旧格式
-    status: pending
+    status: complete
   - id: p13.5-panel-asset-workbench
     content: 实现 Panel 显式准备动作和左侧视觉资产栏
     status: pending

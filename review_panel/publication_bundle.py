@@ -25,6 +25,7 @@ _SCHEMA_VERSION = 1
 _SAFE_SLUG_RE = re.compile(r"[^a-z0-9]+")
 _MANIFEST_LOCKS: dict[Path, threading.RLock] = {}
 _MANIFEST_LOCKS_GUARD = threading.Lock()
+_UNSET = object()
 
 
 class Artifact(TypedDict, total=False):
@@ -309,3 +310,40 @@ def update_manifest(path: Path, mutate: Any) -> PublicationManifest:
 def supersede_manifest(path: Path) -> PublicationManifest:
     """Retain an old bundle as immutable audit evidence after a changed selection."""
     return update_manifest(path, lambda manifest: {**manifest, "status": "superseded"})
+
+
+def copy_artifact_paths(manifest: Mapping[str, Any], bundle_root: Path, platform: str) -> tuple[Path, Path]:
+    """Resolve one platform's current and humanized copy paths inside its bundle."""
+    copies = manifest.get("artifacts", {}).get("copies", {})
+    artifact = copies.get(platform) if isinstance(copies, Mapping) else None
+    if not isinstance(artifact, Mapping):
+        raise ValueError(f"manifest missing copy artifact for platform {platform!r}")
+    copy_path = artifact.get("copy_path")
+    humanized_path = artifact.get("humanized_path")
+    if not isinstance(copy_path, str) or not isinstance(humanized_path, str):
+        raise ValueError(f"manifest copy artifact has invalid paths for platform {platform!r}")
+    _validate_relative_path(copy_path, "copy_path")
+    _validate_relative_path(humanized_path, "humanized_path")
+    return bundle_root / copy_path, bundle_root / humanized_path
+
+
+def update_copy_artifact(
+    path: Path,
+    platform: str,
+    *,
+    status: ArtifactStatus | None = None,
+    selected_draft_id: str | None | object = _UNSET,
+) -> PublicationManifest:
+    """Persist editorial copy state without letting callers rewrite a manifest directly."""
+    def mutate(manifest: PublicationManifest) -> PublicationManifest:
+        copies = manifest["artifacts"].get("copies")
+        artifact = copies.get(platform) if isinstance(copies, dict) else None
+        if not isinstance(artifact, dict):
+            raise ValueError(f"manifest missing copy artifact for platform {platform!r}")
+        if status is not None:
+            artifact["status"] = status
+        if selected_draft_id is not _UNSET:
+            artifact["selected_draft_id"] = selected_draft_id
+        return manifest
+
+    return update_manifest(path, mutate)

@@ -37,7 +37,13 @@ if str(_REPO_ROOT) not in sys.path:
 
 from review_panel.build_data import build_panel_data, list_available_dates  # noqa: E402
 from review_panel.job_store import JobStore, job_store as _DEFAULT_JOB_STORE  # noqa: E402
-from review_panel.publication_bundle import manifest_path, read_manifest  # noqa: E402
+from review_panel.publication_bundle import (  # noqa: E402
+    copy_artifact_paths,
+    manifest_path,
+    read_manifest,
+    supersede_manifest,
+    update_copy_artifact,
+)
 from scripts.lib.paths import repo_root  # noqa: E402
 
 # 子进程调 publish_adapter.py 时用 stderr 里这一行定位「Wrote <path>」的产出路径，
@@ -114,7 +120,9 @@ def _migrate_selection(selection: dict[str, Any]) -> dict[str, Any]:
     旧格式没有 platform 维度，历史数据只可能是 xiaohongshu；迁移后不留旧字段，
     保证下游代码只需认识 ``copies`` 这一种形状。已是新格式（存在 ``copies``）时原样返回。
     """
-    if "copies" in selection:
+    if "copies" in selection or (
+        "published" not in selection and "copy_path" not in selection
+    ):
         return selection
 
     migrated = dict(selection)
@@ -165,10 +173,44 @@ def _delete_copy_if_exists(path: Path) -> bool:
     return False
 
 
-def _delete_stale_copies(batch_root: Path, date: str, slug: str) -> None:
-    """按 _ACTIVE_PLATFORMS 逐平台删 {slug}_copy_{platform}.md（存在才删，幂等）。"""
-    for platform in _ACTIVE_PLATFORMS:
-        _delete_copy_if_exists(batch_root / date / f"{slug}_copy_{platform}.md")
+def _same_selection(previous: dict[str, Any], candidate: dict[str, Any]) -> bool:
+    selected = previous.get("selected")
+    if not isinstance(selected, dict):
+        return False
+    return all(
+        str(selected.get(key)) == str(candidate[key])
+        for key in ("news_slug", "tmdb_id", "title")
+    )
+
+
+def _supersede_previous_bundle(batch_root: Path, date: str, selection: dict[str, Any]) -> None:
+    selected = selection.get("selected")
+    if not isinstance(selected, dict):
+        return
+    tmdb_id = selected.get("tmdb_id")
+    title = selected.get("title")
+    if tmdb_id is None or not title:
+        return
+    previous_manifest = manifest_path(batch_root, date, tmdb_id, str(title))
+    if previous_manifest.is_file():
+        supersede_manifest(previous_manifest)
+
+
+def _copy_paths_for_selection(
+    batch_root: Path, date: str, platform: str
+) -> tuple[Path, dict[str, Any], Path, Path]:
+    """Resolve current copy paths from the publication manifest, never from daily_batch."""
+    manifest_file, manifest = _publication_manifest_for_date(batch_root, date)
+    copy_path, humanized_path = copy_artifact_paths(manifest, manifest_file.parent, platform)
+    return manifest_file, manifest, copy_path, humanized_path
+
+
+def _legacy_copy_paths(batch_root: Path, date: str, slug: str, platform: str) -> tuple[Path, Path]:
+    """Read-only projection for pre-Phase-13 files lacking a publication manifest."""
+    return (
+        batch_root / date / f"{slug}_copy_{platform}.md",
+        batch_root / date / f"{slug}_copy_{platform}_humanized.md",
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -312,28 +354,20 @@ def handle_select(batch_root: Path, body: dict[str, Any] | None) -> tuple[int, d
     news_slug = body.get("news_slug")
     tmdb_id = body.get("tmdb_id")
     title = body.get("title")
-    if not date or not news_slug or tmdb_id is None:
-        return 400, {"ok": False, "error": "missing required fields: date/news_slug/tmdb_id"}
+    if not date or not news_slug or tmdb_id is None or not title:
+        return 400, {"ok": False, "error": "missing required fields: date/news_slug/tmdb_id/title"}
 
-    # G8 修复（变体 A）：改选时清掉上一次选片遗留的 {slug}_copy.md，恢复
-    # 「selection.copy_path=null ⇔ 磁盘无对应 _copy.md」不变量。否则改选后新 selection
-    # 被重置为 published:false / copy_path:null，但旧稿仍在盘上，导致陈旧稿（如 Rule
-    # Breakers）与新选片（如 The Girl）对不上。删两处（存在才删，幂等）：
-    #   ① 上一份 selection 指向的旧 slug 稿——可能是别的新闻，否则会变成孤儿稿；
-    #   ② 本次 slug 稿——重复选同片时强制重新 publish（稿可再生，安全）。
-    prev = read_selection(batch_root, date)
-    if prev:
-        prev_slug = (prev.get("selected") or {}).get("news_slug")
-        if prev_slug:
-            _delete_stale_copies(batch_root, date, prev_slug)
-    _delete_stale_copies(batch_root, date, news_slug)
+    next_selected = {"news_slug": news_slug, "tmdb_id": tmdb_id, "title": title}
+    previous = read_selection(batch_root, date)
+    if previous is not None and _same_selection(previous, next_selected):
+        return 200, {"ok": True, "path": str(_selection_path(batch_root, date)), "selection": previous}
+    if previous is not None:
+        _supersede_previous_bundle(batch_root, date, previous)
 
     payload = {
         "date": date,
-        "selected": {"news_slug": news_slug, "tmdb_id": tmdb_id, "title": title},
+        "selected": next_selected,
         "selected_at": datetime.now(UTC).isoformat(),
-        # D4：改选即清空所有平台的发布状态——新选片尚未对任何平台出稿。
-        "copies": {},
     }
     path = write_selection(batch_root, date, payload)
     return 200, {"ok": True, "path": str(path), "selection": payload}
@@ -371,6 +405,15 @@ def handle_publish(
             "stderr": "selection.json missing news_slug/tmdb_id",
         }
 
+    try:
+        manifest_file, _, bundle_copy_path, _ = _copy_paths_for_selection(batch_root, date, platform)
+    except ValueError as exc:
+        return 400, {
+            "ok": False,
+            "copy_path": None,
+            "stderr": f"publication bundle is not prepared: {exc}",
+        }
+
     result = run_subprocess(
         [
             sys.executable,
@@ -383,27 +426,16 @@ def handle_publish(
             str(tmdb_id),
             "--platform",
             platform,
+            "--output-path",
+            str(bundle_copy_path),
         ],
         capture_output=True,
         text=True,
     )
 
     if result.returncode == 0:
-        # 优先信 adapter 自己汇报的 "Wrote <path>"（stderr），推导路径只作兜底，
-        # 避免两处拼路径规则长期漂移不一致。
-        copy_path = _parse_wrote_path(result.stderr) or str(
-            batch_root / date / f"{news_slug}_copy_{platform}.md"
-        )
-        # D4：只更新本平台的 copies 条目，保留可能已存在的 humanized_path（9.7.4
-        # 才会真正写入非 None 值，这里先占位保留字段结构）。
-        existing_entry = selection.get("copies", {}).get(platform) or {}
-        selection.setdefault("copies", {})[platform] = {
-            "published": True,
-            "copy_path": copy_path,
-            "humanized_path": existing_entry.get("humanized_path"),
-        }
-        write_selection(batch_root, date, selection)
-        return 200, {"ok": True, "copy_path": copy_path, "stderr": result.stderr}
+        update_copy_artifact(manifest_file, platform, status="ready")
+        return 200, {"ok": True, "copy_path": str(bundle_copy_path), "stderr": result.stderr}
 
     return 500, {"ok": False, "copy_path": None, "stderr": result.stderr}
 
@@ -448,6 +480,15 @@ def handle_rewrite(
                 "stderr": "selection.json missing news_slug",
             }
 
+    try:
+        manifest_file, _, copy_path, humanized_path = _copy_paths_for_selection(batch_root, date, platform)
+    except ValueError as exc:
+        return 400, {
+            "ok": False,
+            "humanized_path": None,
+            "stderr": f"publication bundle is not prepared: {exc}",
+        }
+
     result = run_subprocess(
         [
             sys.executable,
@@ -458,6 +499,10 @@ def handle_rewrite(
             str(slug),
             "--platform",
             platform,
+            "--copy-path",
+            str(copy_path),
+            "--humanized-path",
+            str(humanized_path),
         ],
         capture_output=True,
         text=True,
@@ -466,28 +511,14 @@ def handle_rewrite(
     if result.returncode != 0:
         return 500, {"ok": False, "humanized_path": None, "stderr": result.stderr}
 
-    humanized_path_str = _parse_wrote_path(result.stderr) or str(
-        batch_root / date / f"{slug}_copy_{platform}_humanized.md"
-    )
-    humanized_path = Path(humanized_path_str)
+    humanized_path_str = str(humanized_path)
     humanized_body: str | None = None
     if humanized_path.is_file():
         humanized_body = parse_copy_markdown(
             humanized_path.read_text(encoding="utf-8")
         )["body"]
 
-    # 读 selection（若上面因 slug 已传而未读过）以保留 published/copy_path，
-    # 只更新本平台的 humanized_path 字段。
-    if selection is None:
-        selection = read_selection(batch_root, date)
-    if selection is not None:
-        existing_entry = selection.get("copies", {}).get(platform) or {}
-        selection.setdefault("copies", {})[platform] = {
-            "published": existing_entry.get("published", False),
-            "copy_path": existing_entry.get("copy_path"),
-            "humanized_path": humanized_path_str,
-        }
-        write_selection(batch_root, date, selection)
+    update_copy_artifact(manifest_file, platform, status="ready")
 
     return 200, {
         "ok": True,
@@ -566,6 +597,16 @@ def handle_regenerate(
             "stderr": "selection.json missing tmdb_id",
         }
 
+    try:
+        manifest_file, _, copy_path, humanized_path = _copy_paths_for_selection(batch_root, date, platform)
+    except ValueError as exc:
+        return 400, {
+            "ok": False,
+            "headline": None,
+            "body": None,
+            "stderr": f"publication bundle is not prepared: {exc}",
+        }
+
     result = run_subprocess(
         [
             sys.executable,
@@ -580,6 +621,10 @@ def handle_regenerate(
             platform,
             "--target",
             target,
+            "--copy-path",
+            str(copy_path),
+            "--humanized-path",
+            str(humanized_path),
         ],
         capture_output=True,
         text=True,
@@ -588,23 +633,11 @@ def handle_regenerate(
     if result.returncode != 0:
         return 500, {"ok": False, "headline": None, "body": None, "stderr": result.stderr}
 
-    copy_path_str = _parse_wrote_path(result.stderr) or str(
-        batch_root / date / f"{slug}_copy_{platform}.md"
-    )
-    copy_path = Path(copy_path_str)
+    copy_path_str = str(copy_path)
     parsed = parse_copy_markdown(copy_path.read_text(encoding="utf-8"))
 
     if target == "body":
-        # regenerate_adapter 已自行删掉 humanized 文件（D4），这里只需把
-        # selection.json 的 humanized_path 同步清空，保留 published/copy_path。
-        selection = read_selection(batch_root, date) or selection
-        existing_entry = selection.get("copies", {}).get(platform) or {}
-        selection.setdefault("copies", {})[platform] = {
-            "published": existing_entry.get("published", False),
-            "copy_path": existing_entry.get("copy_path"),
-            "humanized_path": None,
-        }
-        write_selection(batch_root, date, selection)
+        update_copy_artifact(manifest_file, platform, status="ready")
 
     return 200, {
         "ok": True,
@@ -645,7 +678,10 @@ def handle_edit_body(batch_root: Path, body: dict[str, Any] | None) -> tuple[int
         if not slug:
             return 400, {"ok": False, "error": "selection.json missing news_slug"}
 
-    copy_path = batch_root / date / f"{slug}_copy_{platform}.md"
+    try:
+        manifest_file, _, copy_path, humanized_path = _copy_paths_for_selection(batch_root, date, platform)
+    except ValueError as exc:
+        return 400, {"ok": False, "error": f"publication bundle is not prepared: {exc}"}
     if not copy_path.is_file():
         return 404, {"ok": False, "error": f"copy not found: {copy_path}"}
 
@@ -653,17 +689,8 @@ def handle_edit_body(batch_root: Path, body: dict[str, Any] | None) -> tuple[int
     new_text = replace_body_in_copy_markdown(text, str(new_body))
     copy_path.write_text(new_text, encoding="utf-8")
 
-    _delete_copy_if_exists(batch_root / date / f"{slug}_copy_{platform}_humanized.md")
-    if selection is None:
-        selection = read_selection(batch_root, date)
-    if selection is not None and platform in selection.get("copies", {}):
-        existing_entry = selection["copies"][platform]
-        selection["copies"][platform] = {
-            "published": existing_entry.get("published", False),
-            "copy_path": existing_entry.get("copy_path"),
-            "humanized_path": None,
-        }
-        write_selection(batch_root, date, selection)
+    _delete_copy_if_exists(humanized_path)
+    update_copy_artifact(manifest_file, platform, status="ready")
 
     parsed = parse_copy_markdown(new_text)
     return 200, {
@@ -789,22 +816,15 @@ def handle_select_draft(batch_root: Path, body: dict[str, Any] | None) -> tuple[
         return 400, {"ok": False, "error": f"draft_id {draft_id!r} not in pool; available: {available or '（空池）'}"}
 
     links = _load_copy_links(batch_root, date, slug, tmdb_id)
-    copy_path = batch_root / date / f"{slug}_copy_{platform}.md"
+    try:
+        manifest_file, _, copy_path, humanized_path = _copy_paths_for_selection(batch_root, date, platform)
+    except ValueError as exc:
+        return 400, {"ok": False, "error": f"publication bundle is not prepared: {exc}"}
     new_text = render_copy_markdown_from_draft(date, match, links, platform=platform)
     copy_path.parent.mkdir(parents=True, exist_ok=True)
     copy_path.write_text(new_text, encoding="utf-8")
-
-    _delete_copy_if_exists(batch_root / date / f"{slug}_copy_{platform}_humanized.md")
-
-    if selection is not None:
-        existing_entry = selection.get("copies", {}).get(platform) or {}
-        selection.setdefault("copies", {})[platform] = {
-            "published": True,
-            "copy_path": str(copy_path),
-            "humanized_path": None,
-            "selected_draft_id": str(draft_id),
-        }
-        write_selection(batch_root, date, selection)
+    _delete_copy_if_exists(humanized_path)
+    update_copy_artifact(manifest_file, platform, status="ready", selected_draft_id=str(draft_id))
 
     parsed = parse_copy_markdown(new_text)
     return 200, {
@@ -1028,32 +1048,30 @@ def replace_body_in_copy_markdown(text: str, new_body: str) -> str:
 
 
 def handle_copy(batch_root: Path, query: dict[str, str] | None) -> tuple[int, dict[str, Any]]:
-    """读 ``{slug}_copy_{platform}.md``（D6）：面板定稿展示区的数据源。
-
-    humanized 文件的解析是 9.7.4 的前瞻只读兼容：本 TODO 不产出/不写它，只在它已存在时
-    （未来 9.7.4 落地后）顺带解析出 humanized_body，避免 9.7.4 还要再改这个 handler。
-    """
+    """Read the current publication copy, with a read-only legacy fallback."""
     query = query or {}
     date = query.get("date")
     slug = query.get("slug")
     platform = query.get("platform") or "xiaohongshu"
-    if not date or not slug:
-        return 400, {"error": "missing required query params: date/slug"}
+    if not date:
+        return 400, {"error": "missing required query param: date"}
 
-    copy_path = batch_root / date / f"{slug}_copy_{platform}.md"
+    try:
+        _, _, copy_path, humanized_path = _copy_paths_for_selection(batch_root, date, platform)
+    except ValueError:
+        if not slug:
+            return 404, {"error": "publication copy not found; provide slug only for legacy daily_batch reads"}
+        copy_path, humanized_path = _legacy_copy_paths(batch_root, date, slug, platform)
+
     if not copy_path.is_file():
         return 404, {"error": f"copy not found: {copy_path}"}
-
     parsed = parse_copy_markdown(copy_path.read_text(encoding="utf-8"))
-
-    humanized_path = batch_root / date / f"{slug}_copy_{platform}_humanized.md"
     has_humanized = humanized_path.is_file()
-    humanized_body: str | None = None
-    if has_humanized:
-        humanized_body = parse_copy_markdown(
-            humanized_path.read_text(encoding="utf-8")
-        )["body"]
-
+    humanized_body = (
+        parse_copy_markdown(humanized_path.read_text(encoding="utf-8"))["body"]
+        if has_humanized
+        else None
+    )
     return 200, {
         "headline": parsed["headline"],
         "body": parsed["body"],

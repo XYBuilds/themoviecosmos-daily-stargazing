@@ -60,6 +60,8 @@ def run_adapter(
     provider: str | None = None,
     platform: str = "xiaohongshu",
     batch_root: Path | None = None,
+    copy_path: Path | None = None,
+    humanized_path: Path | None = None,
     run_publish: Any = compose.run_publish,
     run_headline: Any = compose.run_headline,
 ) -> Path:
@@ -75,11 +77,11 @@ def run_adapter(
     candidate = find_candidate(news_dir, tmdb_id)
     judge = load_judge_entry(news_dir, tmdb_id)
 
-    copy_path = news_dir.parent / f"{slug}_copy_{platform}.md"
-    if not copy_path.is_file():
-        raise ValueError(f"copy file not found: {copy_path}")
+    resolved_copy_path = copy_path or (news_dir.parent / f"{slug}_copy_{platform}.md")
+    if not resolved_copy_path.is_file():
+        raise ValueError(f"copy file not found: {resolved_copy_path}")
 
-    parsed = parse_copy_markdown(copy_path.read_text(encoding="utf-8"))
+    parsed = parse_copy_markdown(resolved_copy_path.read_text(encoding="utf-8"))
 
     if target == "body":
         draft = run_publish(candidate, news, provider=provider, judge=judge, platform=platform)
@@ -88,12 +90,14 @@ def run_adapter(
             raise ValueError("run_publish returned empty body, nothing to regenerate")
         # 丢弃 draft 里顺带产出的 headline（见模块 docstring）：本次只换 body。
         merged = {"headline": parsed["headline"], "body": new_body}
-        copy_path.write_text(
+        resolved_copy_path.write_text(
             render_copy_markdown(date, candidate, news, merged, platform=platform),
             encoding="utf-8",
         )
         # D4：body 变了，humanized 是对旧 body 的改写缓存，必须失效。
-        _delete_copy_if_exists(copy_path.parent / f"{slug}_copy_{platform}_humanized.md")
+        _delete_copy_if_exists(
+            humanized_path or (resolved_copy_path.parent / f"{slug}_copy_{platform}_humanized.md")
+        )
     elif target == "headline":
         current_body = parsed["body"]
         if not current_body:
@@ -105,7 +109,7 @@ def run_adapter(
         if not new_headline:
             raise ValueError("run_headline returned empty headline")
         merged = {"headline": new_headline, "body": current_body}
-        copy_path.write_text(
+        resolved_copy_path.write_text(
             render_copy_markdown(date, candidate, news, merged, platform=platform),
             encoding="utf-8",
         )
@@ -113,7 +117,7 @@ def run_adapter(
     else:
         raise ValueError(f"unknown target {target!r}, expected 'headline' or 'body'")
 
-    return copy_path
+    return resolved_copy_path
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -137,6 +141,8 @@ def _build_parser() -> argparse.ArgumentParser:
         help="重生成目标：headline 或 body。",
     )
     parser.add_argument("--provider", choices=["mimo", "deepseek"], default=None)
+    parser.add_argument("--copy-path", type=Path, default=None)
+    parser.add_argument("--humanized-path", type=Path, default=None)
     return parser
 
 
@@ -150,6 +156,9 @@ def main(argv: list[str] | None = None) -> int:
             args.target,
             provider=args.provider,
             platform=args.platform,
+            batch_root=None,
+            copy_path=args.copy_path,
+            humanized_path=args.humanized_path,
         )
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)

@@ -196,12 +196,13 @@ def run_adapter(
     provider: str | None = None,
     platform: str = "xiaohongshu",
     batch_root: Path | None = None,
+    output_path: Path | None = None,
     run_publish: Any = compose.run_publish,
 ) -> Path:
-    """薄适配 orchestrator：news+candidate+judge → run_publish → 写 ``_copy.md``。
+    """生成当前稿，并写入调用方明确提供的发布包路径。
 
-    ``platform`` 透传给 ``run_publish``（ADR-0015 D1，默认 xiaohongshu——本期唯一平台）。
-    ``run_publish`` 可注入（默认 ``compose.run_publish``），测试用 stub 替换，避免真调 LLM。
+    ``output_path`` 是 publication bundle 的唯一写入投影；省略时仍保留历史
+    daily_batch 文件名，供旧 CLI 和既有产物兼容读取。新面板流程必须传入它。
     """
     root = batch_root or _default_batch_root()
     news_dir = locate_news_dir(date, slug, batch_root=root)
@@ -215,9 +216,8 @@ def run_adapter(
     draft = dict(draft)
     draft["body"] = _attach_movie_header(candidate, draft.get("body", ""))
 
-    # D3 文件名平台化：{slug}_copy.md → {slug}_copy_{platform}.md，
-    # 为未来多平台（X/Reddit）留扩展口，避免不同平台互相覆盖同一份稿。
-    copy_path = news_dir.parent / f"{slug}_copy_{platform}.md"
+    copy_path = output_path or (news_dir.parent / f"{slug}_copy_{platform}.md")
+    copy_path.parent.mkdir(parents=True, exist_ok=True)
     copy_path.write_text(
         render_copy_markdown(date, candidate, news, draft, platform=platform),
         encoding="utf-8",
@@ -233,11 +233,12 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--news-slug", dest="news_slug", required=True, help="新闻目录 slug")
     parser.add_argument("--tmdb-id", dest="tmdb_id", required=True, help="选定候选的 tmdb_id")
     parser.add_argument("--provider", choices=["mimo", "deepseek"], default=None)
+    parser.add_argument("--platform", choices=["xiaohongshu"], default="xiaohongshu")
     parser.add_argument(
-        "--platform",
-        choices=["xiaohongshu"],
-        default="xiaohongshu",
-        help="发布平台（默认 xiaohongshu），透传给 compose.run_publish。",
+        "--output-path",
+        type=Path,
+        default=None,
+        help="publication bundle current-copy path; omitted for legacy daily_batch output",
     )
     return parser
 
@@ -251,6 +252,7 @@ def main(argv: list[str] | None = None) -> int:
             args.tmdb_id,
             provider=args.provider,
             platform=args.platform,
+            output_path=args.output_path,
         )
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)
