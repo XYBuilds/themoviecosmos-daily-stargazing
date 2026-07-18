@@ -78,7 +78,8 @@ class PlanetRendererTests(unittest.TestCase):
                 return_value=subprocess.CompletedProcess(
                     args=[],
                     returncode=0,
-                    stdout=json.dumps(
+                    stdout="[GalaxyData] loaded 59341 movies\n"
+                    + json.dumps(
                         {"output": str(output_path), "metadata": str(metadata_path), "tmdb_id": 157336}
                     ),
                     stderr="",

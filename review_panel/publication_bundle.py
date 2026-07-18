@@ -312,6 +312,11 @@ def supersede_manifest(path: Path) -> PublicationManifest:
     return update_manifest(path, lambda manifest: {**manifest, "status": "superseded"})
 
 
+def reactivate_manifest(path: Path) -> PublicationManifest:
+    """Restore a retained bundle when its candidate becomes the active selection again."""
+    return update_manifest(path, lambda manifest: {**manifest, "status": "preparing"})
+
+
 def copy_artifact_paths(manifest: Mapping[str, Any], bundle_root: Path, platform: str) -> tuple[Path, Path]:
     """Resolve one platform's current and humanized copy paths inside its bundle."""
     copies = manifest.get("artifacts", {}).get("copies", {})

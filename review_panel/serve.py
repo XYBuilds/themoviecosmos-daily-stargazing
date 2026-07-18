@@ -40,6 +40,7 @@ from review_panel.job_store import JobStore, job_store as _DEFAULT_JOB_STORE  # 
 from review_panel.publication_bundle import (  # noqa: E402
     copy_artifact_paths,
     manifest_path,
+    reactivate_manifest,
     read_manifest,
     supersede_manifest,
     update_copy_artifact,
@@ -348,6 +349,12 @@ def handle_selection(batch_root: Path, query: dict[str, str] | None) -> tuple[in
     return 200, {"selection": selection}
 
 
+def _reactivate_selected_bundle(batch_root: Path, date: str, selected: dict[str, Any]) -> None:
+    existing_manifest = manifest_path(batch_root, date, selected["tmdb_id"], str(selected["title"]))
+    if existing_manifest.is_file():
+        reactivate_manifest(existing_manifest)
+
+
 def handle_select(batch_root: Path, body: dict[str, Any] | None) -> tuple[int, dict[str, Any]]:
     body = body or {}
     date = body.get("date")
@@ -360,6 +367,7 @@ def handle_select(batch_root: Path, body: dict[str, Any] | None) -> tuple[int, d
     next_selected = {"news_slug": news_slug, "tmdb_id": tmdb_id, "title": title}
     previous = read_selection(batch_root, date)
     if previous is not None and _same_selection(previous, next_selected):
+        _reactivate_selected_bundle(batch_root, str(date), next_selected)
         return 200, {"ok": True, "path": str(_selection_path(batch_root, date)), "selection": previous}
     if previous is not None:
         _supersede_previous_bundle(batch_root, date, previous)
@@ -370,6 +378,7 @@ def handle_select(batch_root: Path, body: dict[str, Any] | None) -> tuple[int, d
         "selected_at": datetime.now(UTC).isoformat(),
     }
     path = write_selection(batch_root, date, payload)
+    _reactivate_selected_bundle(batch_root, str(date), next_selected)
     return 200, {"ok": True, "path": str(path), "selection": payload}
 
 

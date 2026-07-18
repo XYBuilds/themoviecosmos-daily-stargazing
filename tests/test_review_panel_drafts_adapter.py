@@ -7,11 +7,13 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Any
+from unittest.mock import patch
 
 from scripts import compose
 from scripts.compose import build_header_projection, render_movie_header
 from review_panel.drafts_adapter import (
     combine_bodies,
+    main,
     run_combine,
     run_fanout,
     run_retry,
@@ -676,6 +678,29 @@ class CombineBodiesPureFunctionTests(unittest.TestCase):
 
     def test_empty_b_returns_a(self) -> None:
         self.assertEqual(combine_bodies("只有 A", ""), "只有 A")
+
+
+class CliTests(unittest.TestCase):
+    def test_batch_root_is_forwarded_to_fanout(self) -> None:
+        with TemporaryDirectory() as tmp:
+            batch_root = Path(tmp)
+            output_path = batch_root / "2026-07-06" / "02-slug_drafts_xiaohongshu.json"
+            with patch("review_panel.drafts_adapter.run_fanout", return_value=output_path) as run_fanout:
+                exit_code = main(
+                    [
+                        "--date",
+                        "2026-07-06",
+                        "--news-slug",
+                        "02-slug",
+                        "--tmdb-id",
+                        str(_TMDB_ID),
+                        "--batch-root",
+                        str(batch_root),
+                    ]
+                )
+
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(run_fanout.call_args.kwargs["batch_root"], batch_root)
 
 
 if __name__ == "__main__":

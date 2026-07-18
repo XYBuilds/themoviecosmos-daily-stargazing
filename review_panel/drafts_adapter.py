@@ -416,6 +416,12 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--date", required=True, help="日期，如 2026-07-06")
     parser.add_argument("--news-slug", dest="news_slug", required=True, help="新闻目录 slug")
     parser.add_argument("--tmdb-id", dest="tmdb_id", required=True, help="选定候选的 tmdb_id")
+    parser.add_argument(
+        "--batch-root",
+        type=Path,
+        default=_default_batch_root(),
+        help="daily_batch 根目录（默认仓库 output/daily_batch）。",
+    )
     parser.add_argument("--provider", choices=["mimo", "deepseek"], default=None)
     parser.add_argument(
         "--platform",
@@ -481,6 +487,7 @@ def main(argv: list[str] | None = None) -> int:
                 retry_id,
                 provider=args.provider,
                 platform=args.platform,
+                batch_root=args.batch_root,
                 judge_llm_call=judge_llm_call,
                 max_body_retries=args.max_body_retries,
             )
@@ -493,6 +500,7 @@ def main(argv: list[str] | None = None) -> int:
                 combine_mode=args.combine_mode,
                 provider=args.provider,
                 platform=args.platform,
+                batch_root=args.batch_root,
             )
         else:
             judge_llm_call = (
@@ -504,6 +512,7 @@ def main(argv: list[str] | None = None) -> int:
                 args.tmdb_id,
                 provider=args.provider,
                 platform=args.platform,
+                batch_root=args.batch_root,
                 judge_llm_call=judge_llm_call,
                 max_body_retries=args.max_body_retries,
             )

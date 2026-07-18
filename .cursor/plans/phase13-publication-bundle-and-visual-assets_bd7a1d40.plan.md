@@ -22,7 +22,7 @@ todos:
     status: complete
   - id: p13.7-publication-gate
     content: 真实生成 The Creator 发布包并完成人工 Go/No-Go 验收
-    status: pending
+    status: complete
 isProject: false
 ---
 
