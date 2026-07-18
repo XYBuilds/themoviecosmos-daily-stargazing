@@ -1,8 +1,8 @@
 # 电影宇宙「每日星轨观测」系统 PRD
 
-> **当前版本**：v0.6（12 Pearson persona · fragment ladder / search unit · 双轴共振 + judge 预筛 · C2 平台化定稿）
-> **更新日期**：2026-07-09
-> **状态**：MVP 建造期 · Phase 9.7 GATE GO 后收尾。当前链路已覆盖：热度池日批、审核面板、C2 小红书平台化定稿、定稿展示、可逆 avoid-ai-writing 改写。
+> **当前版本**：v0.7（12 Pearson persona · fragment ladder / search unit · 双轴共振 + judge 预筛 · publication bundle + 视觉资产工作台）
+> **更新日期**：2026-07-18
+> **状态**：MVP 建造期 · Phase 13.7 人工 GATE GO。当前链路已覆盖：热度池日批、审核面板、C2 小红书草稿池与定稿、可逆 avoid-ai-writing 改写、TMDB 海报、Bloom ON 星球图和独立发布包。
 >
 > **本版定位**：本 PRD 是项目 SSOT，登记**当前真实设计**。Phase 3 经历了从「A2/A4/A7 + A1 四 agent」到「12 Pearson 原型 persona」、从「pseudo 通道」到「fragment ladder / search unit」的两次大重构，散落在 [ADR-0004](../adr/0004-persona-emotional-diffusion.md) / [ADR-0007](../adr/0007-logic-resonance-judge-prescreen-and-pov-focalization.md) / [ADR-0008](../adr/0008-salience-driven-element-composition-and-multi-vantage-pov.md) / [ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) / [ADR-0010](../adr/0010-pseudo-drop-granularity-and-pipeline-first-derisking.md) 中。本版把这些决策收口进 SSOT。历史四 agent 写法（A1/A2/A4/A7）已**作废**，仅在历史报告中保留。
 >
@@ -261,10 +261,13 @@ surface_match_score + event_match_score + persona_semantic_match_score
 
 * **Phase 10 · persona 视角 C2 草稿池**（[ADR-0017](../adr/0017-persona-perspective-c2-draft-pool.md)）：修复「上游 persona 视角从未进入 C2」的架构缺口。此前样例稿的「视角感」实为 judge rationale 的回声；现每个 persona 新增 `prompts/personas/<persona_id>/c2_perspective.md`（**C2 侧视角 SSOT**，去行话中文蒸馏，与检索侧 `persona_card.md` 分层，C2 只读前者），经 `run_publish` 的 `{{persona_perspective}}` 占位符（no-op 向后兼容）注入。总编面板新增**只读草稿池**：按候选 `triggered_by` 全量扇出各 persona 一版，落 `{slug}_drafts_{platform}.json`（append-only、永不消费/删除）；「选中」= 可变指针 `selected_draft_id`，派生当前稿并失效 `_humanized.md`。层级为 `只读草稿池 → 当前稿（唯一可编辑）→ 去AI化版`——可编辑面未变宽，推翻 [ADR-0016](../adr/0016-panel-editorial-regeneration-and-inline-edit.md) D4 的字面「严格二档」而不违其本意。复数视角合并上限 2；A/B 双路线仅开发期 `--combine-mode both` 离线对照，**10.7 GATE 冻结路线 A（重跑 C2 合并视角）为生产默认**，serve 恒单版（纯文档冻结、零代码改动）。
 
-### 7.4 视觉切片与发布
+* **Phase 13 · 独立发布包**（[ADR-0021](../adr/0021-publication-bundle-lifecycle.md)）：`selection.json` 只保存“选中了什么”，`daily_batch` 保留流水线证据与只读草稿池；当前稿、去 AI 化稿、海报和星球图进入 `output/publications/{date}/{tmdb_id}-{movie_slug}/`。包内 `manifest.json` 是发布工作区 SSOT，记录 selection 快照、artifact 状态、相对路径和错误。选片本身不生成内容；总编点击“准备发布包”后才并行准备草稿池、TMDB 海报与 Bloom ON 星球图。各 artifact 独立失败、独立重试；改选只把旧包标记为 `superseded` 并保留文件，重新选回时按稳定电影身份重新激活，避免资产错配。Phase 13.7 已用 The Creator（TMDB 670292）完成真实包与 Panel 人工验收并获得 Go。
 
-* **图片生成**：独立**视觉生成层 Phase**（先定义与主项目 og 图共用的一套设计逻辑）；Phase 4 仅在 profile 占位 `image_ref`，不生成。
-* `generate_planet.py`（星球视觉）、更多平台/语种、社媒自动发布 = **Post-MVP**；社媒发布始终先手动（discord 因无注册/审核门槛，为未来首个自动发布试点）。
+### 7.4 视觉资产与发布边界
+
+* **已实现**：Phase 13 发布包在总编显式触发后下载 TMDB original poster，并复用 Chronicle 星球渲染能力导出一份 3000×3000 RGBA、Bloom ON 的透明 PNG。海报、星球、草稿和当前稿都由 bundle `manifest.json` 管理，Panel 只通过受限资产端点预览与下载。
+* **数据边界**：星球 metadata 必须记录 TMDB ID、Galaxy data version、Chronicle commit、视觉配置 hash 和渲染环境；渲染结果校验路径、TMDB ID、PNG 与 metadata 后才能进入 `ready`。
+* **发布边界**：本系统当前只准备可独立检查的发布工作区，不自动发送到小红书或其他平台。更多平台/语种和社媒自动发布仍属 Post-MVP；discord 因无注册/审核门槛，可作为未来首个自动发布试点。
 
 ---
 
@@ -310,10 +313,11 @@ surface_match_score + event_match_score + persona_semantic_match_score
 
 * 索引复用（ADR-0001）、endpoint smoke test、prompts、agents/personas、retrieve、五段流水、双轴 rubric、judge 预筛、fragment ladder / search unit。Phase 3 全部 GATE GO。
 
-### Phase 4–9.7 · 已落地的生产化链路
+### Phase 4–13 · 已落地的生产化链路
 
-* C1 中文审核文案、C2 小红书平台化定稿、headline、归属行、平台化文件命名、审核面板定稿展示、可逆 avoid-ai-writing 改写已落地。
-* C2 定稿按 [ADR-0015](../adr/0015-publish-platformization-and-element-checklist.md) 执行：每平台一个创作步骤，当前只开放 `xiaohongshu`；产物落 `{slug}_copy_{platform}.md`，humanized 派生产物落 `{slug}_copy_{platform}_humanized.md`。
+* C1 中文审核文案、C2 小红书平台化定稿、persona 视角草稿池、定稿展示、定点重生成、人工编辑与可逆 avoid-ai-writing 改写已落地。
+* C2 定稿按 [ADR-0015](../adr/0015-publish-platformization-and-element-checklist.md) 执行：每平台一个创作步骤，当前只开放 `xiaohongshu`。只读草稿池留在 `daily_batch`；选定后的当前稿与 humanized 派生产物进入 publication bundle，旧 `selection.json.copies` 和旧 daily_batch copy 仅做兼容读取。
+* Phase 13 按 [ADR-0021](../adr/0021-publication-bundle-lifecycle.md) 落地显式准备动作、独立发布工作区、TMDB 海报、单 Bloom ON 星球、manifest 分项状态、失败隔离、单项重试和非破坏性 `superseded`。The Creator 真实 Gate 已于 13.7 人工 Go。
 
 ### Phase 5 · 新闻接入
 
@@ -321,7 +325,7 @@ surface_match_score + event_match_score + persona_semantic_match_score
 
 ### Post-MVP（按效果排期）
 
-* 历史去重（电影/新闻维度）、`generate_planet.py` 视觉、C2 更多平台/语种、候选过滤策略、索引增量更新、运维（日志/告警/调度）、自动热度评分、自动发布、hybrid recall 子信号展开、additive vs replacement 最终口径。
+* 历史去重（电影/新闻维度）、更多视觉变体、C2 更多平台/语种、候选过滤策略、索引增量更新、运维（日志/告警/调度）、自动热度评分、自动发布、hybrid recall 子信号展开、additive vs replacement 最终口径。
 
 ---
 
@@ -333,14 +337,14 @@ themoviecosmos-daily-stargazing/        ← Obsidian Vault Root
 │   ├── index/                          # embeddings.npy + meta.parquet（gitignore）
 │   └── output/                         # 复用 cosmos 的 cleaned.csv + text_embeddings.npy
 ├── docs/
-│   ├── adr/                            # 0001–0010 架构决策
+│   ├── adr/                            # 0001–0021 架构决策
 │   ├── reports/                        # 各 Phase 交付报告
 │   ├── eval-the-bet.md                 # 验证闸门手册
 │   ├── eval-phase3.10-holdout-freeze-discipline.md
 │   └── SSOT/
 │       ├── 电影宇宙「每日星轨观测」系统 PRD.md   # 本文件
 │       ├── personas-12.md              # 12 persona roster
-│       ├── news-to-film-pipeline.md  # fragment ladder 精简版工作流
+│       ├── news-to-film-pipeline.md    # fragment ladder 精简版工作流
 │       └── reality-deconstruction-contract.md  # A0 逐字抽取契约
 ├── prompts/
 │   ├── _shared/
@@ -355,8 +359,9 @@ themoviecosmos-daily-stargazing/        ← Obsidian Vault Root
 │   ├── C1_copywriter_review.md
 │   └── C2_copywriter_multiplatform.md
 │   # 注：A1/A2/A4/A7 prompt 为历史四 agent 遗留，已被 12 persona 取代
+├── review_panel/                       # 总编面板、publication 编排与 manifest 领域层
 ├── scripts/
-│   ├── lib/                            # env / llm / paths / phase311_pilot 等
+│   ├── lib/                            # env / llm / paths / planet_renderer 等
 │   ├── deconstruct.py                  # A0
 │   ├── fragment_ladder.py              # fragment ladder + 内联 objective 生成 + 客观性试金石
 │   ├── personas.py                     # P-Lens / P-Compose / fragment ladder / search unit
@@ -369,7 +374,9 @@ themoviecosmos-daily-stargazing/        ← Obsidian Vault Root
 │   └── main.py
 ├── output/
 │   ├── Eval/                           # 评测产物（phase3.x 子目录）
-│   └── Daily_Briefing/                 # 正式日报
+│   ├── Daily_Briefing/                 # 正式日报
+│   ├── daily_batch/                    # 日批证据、selection 与只读草稿池
+│   └── publications/                   # 独立发布工作区（manifest + copy + assets）
 ├── state/seen_news.sqlite
 ├── CONTEXT.md                          # 术语 SSOT
 └── requirements.txt
@@ -382,8 +389,8 @@ themoviecosmos-daily-stargazing/        ← Obsidian Vault Root
 * 自动化热度评分挑新闻（手动指定 url 可绕过）
 * 候选过滤（相似度阈值、评分、年代、成人内容）
 * 历史去重（电影 / 新闻）
-* `generate_planet.py` 星球视觉
-* C2 平台定稿 / 中英双语（属 Phase 4 Stage 1，MVP GATE 通过后才解封；MVP 只产中文审核稿落 Obsidian）
+* Bloom OFF、多尺寸或多构图视觉变体
+* C2 更多平台 / 中英双语
 * 自动发布、索引增量更新、日志/监控/告警/定时调度
 * RSS 源内容过滤
 * hybrid recall 的 lexical / weighted ladder 子信号全展开
