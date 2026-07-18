@@ -61,6 +61,30 @@ class PublicationAdapterTests(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stderr)
         self.assertIn("--batch-root", completed.stdout)
 
+    def test_reselected_candidate_reuses_bundle_when_only_selected_at_changed(self) -> None:
+        with TemporaryDirectory() as tmp:
+            batch_root = Path(tmp) / "daily_batch"
+            path = manifest_path(batch_root, _DATE, _TMDB_ID, _TITLE)
+            write_manifest(path, new_manifest(_snapshot()))
+            selection = _selection()
+            selection["selected_at"] = "2026-07-15T14:11:58Z"
+
+            def download_poster(_: str, output: Path) -> PosterDownloadResult:
+                output.parent.mkdir(parents=True, exist_ok=True)
+                output.write_bytes(b"jpg")
+                return PosterDownloadResult("https://tmdb.example/poster.jpg", output, 3, "image/jpeg")
+
+            manifest = prepare_publication(
+                batch_root,
+                selection,
+                targets=("poster",),
+                download_poster=download_poster,
+                load_candidate=lambda *_: {"poster_path": "/poster.jpg"},
+            )
+
+            self.assertEqual(manifest["selection"]["selected_at"], _snapshot()["selected_at"])
+            self.assertEqual(manifest["artifacts"]["poster"]["status"], "ready")
+
     def test_failure_is_isolated_and_other_targets_remain_ready(self) -> None:
         with TemporaryDirectory() as tmp:
             batch_root = Path(tmp) / "daily_batch"

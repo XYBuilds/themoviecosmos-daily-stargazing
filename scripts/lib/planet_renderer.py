@@ -69,8 +69,11 @@ def _resolve_data_file_override() -> Path | None:
 
 
 def _parse_cli_result(stdout: str, *, tmdb_id: int, output_path: Path) -> Path:
+    result_lines = [line.strip() for line in stdout.splitlines() if line.strip()]
+    if not result_lines:
+        raise PlanetRenderError("Chronicle CLI returned no JSON result on stdout")
     try:
-        payload = json.loads(stdout.strip())
+        payload = json.loads(result_lines[-1])
     except json.JSONDecodeError as exc:
         raise PlanetRenderError(f"Chronicle CLI returned invalid JSON on stdout: {exc}") from exc
 

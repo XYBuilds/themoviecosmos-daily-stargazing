@@ -160,12 +160,21 @@ def _update_artifact(
     return update_manifest(path, mutate)
 
 
+def _selection_identity(selection: Mapping[str, Any]) -> tuple[str, str, int, str]:
+    return (
+        str(selection["date"]),
+        str(selection["news_slug"]),
+        int(selection["tmdb_id"]),
+        str(selection["title"]),
+    )
+
+
 def _initialize_manifest(path: Path, selection: Mapping[str, Any]) -> PublicationManifest:
     snapshot = _selection_snapshot(selection)
     if not path.is_file():
         return write_manifest(path, new_manifest(snapshot))
     manifest = read_manifest(path)
-    if manifest["selection"] != snapshot:
+    if _selection_identity(manifest["selection"]) != _selection_identity(snapshot):
         raise ValueError("existing publication manifest selection does not match selection.json")
     return manifest
 
