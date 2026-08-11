@@ -108,7 +108,23 @@ class PublicationAdapterTests(unittest.TestCase):
                 output.write_bytes(b"png")
                 metadata = Path(f"{output}.render.json")
                 metadata.write_text("{}", encoding="utf-8")
-                return PlanetRenderResult(tmdb_id, output, metadata, 3, (0, 0, 1, 1), {"bloom": "on"})
+                return PlanetRenderResult(
+                    tmdb_id,
+                    output,
+                    metadata,
+                    3,
+                    (0, 0, 1, 1),
+                    {
+                        "bloom": "on",
+                        "data_version": "fixture-v1",
+                        "manifest_url": None,
+                        "profile_url": None,
+                        "chronicle_git_commit": "abc",
+                        "requested_focus_emission_profile": {"profile_id": "fixture-profile"},
+                    },
+                    observed_roster_count=2,
+                    roster_data_version="fixture-v1",
+                )
 
             manifest = prepare_publication(
                 batch_root,
@@ -141,7 +157,22 @@ class PublicationAdapterTests(unittest.TestCase):
                 output.write_bytes(b"png")
                 metadata = Path(f"{output}.render.json")
                 metadata.write_text("{}", encoding="utf-8")
-                return PlanetRenderResult(tmdb_id, output, metadata, 3, (0, 0, 1, 1), {})
+                return PlanetRenderResult(
+                    tmdb_id,
+                    output,
+                    metadata,
+                    3,
+                    (0, 0, 1, 1),
+                    {
+                        "data_version": "fixture-v1",
+                        "manifest_url": "https://example.test/data/galaxy_assets_manifest.json",
+                        "profile_url": "https://example.test/galaxy/focus-emission-profiles/p1.json",
+                        "chronicle_git_commit": "deadbeef",
+                        "focus_emission_profile": {"profile_id": "p1"},
+                    },
+                    observed_roster_count=3,
+                    roster_data_version="fixture-v1",
+                )
 
             def download_poster(_: str, output: Path) -> PosterDownloadResult:
                 output.parent.mkdir(parents=True, exist_ok=True)
@@ -161,6 +192,14 @@ class PublicationAdapterTests(unittest.TestCase):
             self.assertEqual(manifest["artifacts"]["drafts"]["status"], "ready")
             self.assertEqual(manifest["artifacts"]["planet"]["status"], "ready")
             self.assertEqual(manifest["artifacts"]["poster"]["source_url"], "https://tmdb.example/poster.jpg")
+            self.assertEqual(manifest["artifacts"]["planet"]["data_version"], "fixture-v1")
+            self.assertEqual(
+                manifest["artifacts"]["planet"]["manifest_url"],
+                "https://example.test/data/galaxy_assets_manifest.json",
+            )
+            self.assertEqual(manifest["artifacts"]["planet"]["profile_id"], "p1")
+            self.assertEqual(manifest["artifacts"]["planet"]["observed_roster_count"], 3)
+            self.assertEqual(manifest["artifacts"]["planet"]["chronicle_git_commit"], "deadbeef")
 
 
 class PublicationRouteTests(unittest.TestCase):

@@ -28,6 +28,7 @@ from review_panel.publication_bundle import (
     update_manifest,
     write_manifest,
 )
+from scripts.lib.galaxy_roster import GalaxyRosterError, assert_in_galaxy_roster, load_galaxy_roster, profile_id_from_metadata
 from scripts.lib.planet_renderer import PlanetRenderResult, render_planet
 from scripts.lib.poster_downloader import PosterDownloadResult, download_tmdb_poster
 
@@ -179,6 +180,25 @@ def _initialize_manifest(path: Path, selection: Mapping[str, Any]) -> Publicatio
     return manifest
 
 
+def _assert_selected_deep_link_safe(tmdb_id: int) -> None:
+    """Fail closed when a Chronicle release is configured and the selection is off-roster."""
+    try:
+        roster = load_galaxy_roster()
+    except GalaxyRosterError as exc:
+        message = str(exc)
+        if "release input required" in message:
+            return
+        raise ValueError(message) from exc
+    try:
+        assert_in_galaxy_roster(tmdb_id, roster)
+    except GalaxyRosterError as exc:
+        raise ValueError(str(exc)) from exc
+    print(
+        f"[publication_adapter] deep-link gate ok tmdb_id={tmdb_id} "
+        f"data_version={roster.data_version!r} observed_count={roster.observed_count}"
+    )
+
+
 def prepare_publication(
     batch_root: Path,
     selection: Mapping[str, Any],
@@ -197,6 +217,7 @@ def prepare_publication(
     selected_targets = _parse_targets(targets)
     snapshot = _selection_snapshot(selection)
     tmdb_id = int(snapshot["tmdb_id"])
+    _assert_selected_deep_link_safe(tmdb_id)
     date = str(snapshot["date"])
     news_slug = str(snapshot["news_slug"])
     title = str(snapshot["title"])
@@ -226,14 +247,20 @@ def prepare_publication(
             )
             return
         result = render_planet_image(tmdb_id, bundle / "assets" / "planet.png", bloom=True)
+        if result.output_path.name != "planet.png" or result.metadata_path.name != "planet.png.render.json":
+            raise RuntimeError("planet renderer returned unexpected publication artifact paths")
         _update_artifact(
             path,
             target,
             status="ready",
             metadata_path="assets/planet.png.render.json",
+            data_version=result.roster_data_version,
+            manifest_url=result.metadata.get("manifest_url"),
+            profile_id=profile_id_from_metadata(result.metadata),
+            profile_url=result.metadata.get("profile_url"),
+            observed_roster_count=result.observed_roster_count,
+            chronicle_git_commit=result.metadata.get("chronicle_git_commit"),
         )
-        if result.output_path.name != "planet.png" or result.metadata_path.name != "planet.png.render.json":
-            raise RuntimeError("planet renderer returned unexpected publication artifact paths")
 
     with ThreadPoolExecutor(max_workers=len(selected_targets), thread_name_prefix="publication") as executor:
         futures = {executor.submit(run_target, target): target for target in selected_targets}

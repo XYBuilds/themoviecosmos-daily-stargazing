@@ -53,8 +53,8 @@
   * 输入：与 3D 宇宙对齐，**直接使用 TMDB 原文（清洗后的 tagline + overview），不做机器翻译**；库为全英文，故检索侧 search unit 文本也统一英文，同分布召回更稳。
   * 输出：`embeddings.npy`（L2 归一化）+ `meta.parquet`。
   * 不做 UMAP / 不拼接 Genres / 不拼接 Language——纯粹基于剧情结构与隐喻做跨界检索。
-  * 数据规模：**59,341 部**（3D 宇宙策展片单）。6 万级用 NumPy 矩阵乘法 + `argpartition` 毫秒级即可，**不引入 FAISS**。
-  * **索引来源（[ADR-0001](../adr/0001-reuse-cosmos-text-embeddings.md)）**：MVP **直接复用** 3D 宇宙项目产出的 `cleaned.csv` + `text_embeddings.npy`（同模型、384 维、已 L2 归一、行序对齐），不自建。`build_index.py` 重算逻辑降级为 Post-MVP 备用。
+  * 数据规模：与当前 Chronicle Galaxy Roster 对齐的策展片单（行数随 release 的 `data_version` 变化，不以冻结常数为权威）。数万级用 NumPy 矩阵乘法 + `argpartition` 毫秒级即可，**不引入 FAISS**。
+  * **索引来源（[ADR-0001](../adr/0001-reuse-cosmos-text-embeddings.md)）**：MVP **直接复用** 3D 宇宙项目产出的 `cleaned.csv` + `text_embeddings.npy`（同模型、384 维、已 L2 归一、行序对齐），不自建。`build_index.py` 重算逻辑降级为 Post-MVP 备用。发布时以 `MOVIE_COSMOS_GALAXY_MANIFEST_URL`（或离线 `MOVIE_COSMOS_GALAXY_DATA_FILE`）所选 galaxy 产物做深链成员资格校验；Daily 索引可为 Chronicle 片单子集。
   * **召回底座**：当前 dense embedding 余弦检索为主；hybrid recall 的 lexical / weighted ladder 子信号尚未完全展开（[ADR-0009](../adr/0009-fragment-ladder-and-search-unit-architecture.md) 已知局限）。
 
 ---
@@ -64,7 +64,7 @@
 ### 3.1 源数据与规模
 
 * **进入索引的必需字段**：`id, title, original_title, overview, tagline, genres, original_language, release_date, poster_path`。
-* **数据库规模**：**59,341 行**（策展片单 `cleaned.csv`）。subsample 仅用于验证管线（plumbing），**召回质量/评分只在全量片单上才算数**（[ADR-0001](../adr/0001-reuse-cosmos-text-embeddings.md)）。
+* **数据库规模**：策展片单 `cleaned.csv` 行数随 Chronicle release 变化（不以冻结常数为权威）。subsample 仅用于验证管线（plumbing），**召回质量/评分应在当前全量策展片单上才算数**（[ADR-0001](../adr/0001-reuse-cosmos-text-embeddings.md)）。
 
 ### 3.2 文本清洗与缺失值处理
 

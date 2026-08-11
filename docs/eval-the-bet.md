@@ -18,7 +18,7 @@
 | **Phase 1** | `python scripts/agents.py --news-file tests/sample_news.json` 产出 4 段英文 pseudo（A2/A4/A7 + 基线 A1） |
 | **Phase 2** | 全量索引已构建（`data/index/embeddings.npy` + `meta.parquet`）；`retrieve.py` 可召回候选 |
 
-**环境**：从仓库根目录运行；虚拟环境已激活；首次 `run_eval` 会加载 sentence-transformers 模型与 59,341 行索引（注意内存与首次下载耗时）。
+**环境**：从仓库根目录运行；虚拟环境已激活；首次 `run_eval` 会加载 sentence-transformers 模型与当前全量策展索引（注意内存与首次下载耗时）。
 
 ---
 
