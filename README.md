@@ -96,7 +96,7 @@ Copy-Item .env.example .env
    ```powershell
    python scripts/build_index.py
    ```
-   产物：`data/index/embeddings.npy` + `data/index/meta.parquet`（59,341 行）。  
+   产物：`data/index/embeddings.npy` + `data/index/meta.parquet`（行数与策展片单对齐，随 Chronicle release 变化）。  
    仅调试索引管线时可用 `--csv data/subsample/TMDB_all_movies_random20.csv`。
 
 2. **跑一次 Agent**（从仓库根目录；需已配置 `.env` 中 `MIMO_*` 或 `DEEPSEEK_*`）
@@ -114,7 +114,7 @@ Copy-Item .env.example .env
    python scripts/retrieve.py --agents-json output/phase1_agents.json --out output/phase2_retrieve.json
    python -c "import json; d=json.load(open('output/phase2_retrieve.json')); print(len(d['candidates']), 'candidates')"
    ```
-   在全量 59,341 索引上肉眼检查：候选与 pseudo 至少有表层相关，便于进入 Phase 3 闸门评分。
+   在当前全量策展索引上肉眼检查：候选与 pseudo 至少有表层相关，便于进入 Phase 3 闸门评分。
 
 4. **验证闸门（The Bet）** — N=10 手挑新闻、填共振分、汇总判定；详见 [`docs/eval-the-bet.md`](docs/eval-the-bet.md)。
    ```powershell

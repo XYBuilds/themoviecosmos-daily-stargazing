@@ -6,15 +6,15 @@
 
 MVP 不自己 encode 索引,而是**直接复用** 3D 宇宙项目(`chronicle_v3_3d_galaxy`)产出的两份产物作为检索基建:
 
-- `data/output/cleaned.csv`(59,341 部策展片单)
-- `data/output/text_embeddings.npy`(`(59341, 384)`,float32,行级 L2 归一化,与 cleaned.csv 行序一一对齐——已实测验证)
+- `data/output/cleaned.csv`(策展片单；行数随 Chronicle release 变化，不以冻结常数为权威)
+- `data/output/text_embeddings.npy`(`(N, 384)`,float32,行级 L2 归一化,与 cleaned.csv 行序一一对齐)
 
 两者用同一模型 `paraphrase-multilingual-MiniLM-L12-v2` 生成,只用 `tagline + overview`、不拼 genres/language、不翻译,正是 PRD §2 想要的"纯文本搜索库"。`build_index.py` 的从 CSV 重算逻辑降级为 Post-MVP 备用。
 
 ## 为什么(关键约束)
 
-1. **深链硬约束**:引流的全部价值是点进 `themoviecosmos.com/movie/{id}` 落地。站点只收录这 59,341 部。**检索宇宙必须等于站点片单**——召回片单外的电影 = 死链。这条直接排除了"用 119 万行 Kaggle 原始表重算"。
-2. **零成本对齐**:复用产物天然与线上 id 集合一致,且省掉 6 万行 encode。
+1. **深链硬约束**:引流的全部价值是点进 `themoviecosmos.com/movie/{id}` 落地。站点只收录当前 Chronicle Galaxy Roster。**每个发布/检索到的 Daily 电影 id 必须属于当次所选 Chronicle 片单**——片单外的电影 = 死链。Daily 索引可以是 Chronicle 片单的子集；不以冻结行数或精确相等闸门为权威。这条直接排除了"用 119 万行 Kaggle 原始表重算"。
+2. **零成本对齐**:复用产物天然与线上 id 集合同源,且省掉全量 encode；发布时再以 manifest 所选 galaxy 产物做成员资格校验。
 
 ## 后果 / 已知局限
 

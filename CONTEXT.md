@@ -60,8 +60,8 @@ _Avoid_: 用户、审核员、运营
 _Avoid_: 人工选题、手挑新闻(旧流程)
 
 **片单 (Galaxy Roster)**:
-3D 宇宙站点实际收录的 **59,341 部**清洗后电影(从 119 万行 Kaggle 原始表经去重 + 强制字段 + 按年份动态票数阈值筛出),与 `galaxy_data.json` 及深链 id 集合一一对齐。**检索宇宙必须等于片单**——召回片单外的电影会导致 `/movie/{id}` 死链,引流失效。冷门佳片若不在片单内,本系统设计上够不到。
-_Avoid_: 全量、6 万、电影库
+3D 宇宙站点当前收录的清洗后电影集合(从 119 万行 Kaggle 原始表经去重 + 强制字段 + 按年份动态票数阈值筛出)。权威身份集合来自**当次发布所选 Chronicle release**（`MOVIE_COSMOS_GALAXY_MANIFEST_URL` 指向的 galaxy 产物，或显式离线 `MOVIE_COSMOS_GALAXY_DATA_FILE`），并记录其 `data_version` 与观测到的电影数。Daily 检索索引可以是该片单的**子集**；安全不变量是每个发布/深链的 TMDB id 都必须属于所选 Chronicle 片单——片单外的 `/movie/{id}` 会死链。
+_Avoid_: 冻结行数权威、全量、电影库、检索宇宙必须精确等于片单行数
 
 **伪剧情模板 (Pseudo-overview Template)**:
 索引侧电影向量按 `Tagline: {tagline}\nOverview: {overview}`(无 tagline 时 `Overview: {overview}`)编码。查询侧 pseudo-overview **必须套同一模板**(`Overview: {pseudo}`)再 encode,以保证查询与索引同分布。作废 PRD §3.2 的裸拼接公式。

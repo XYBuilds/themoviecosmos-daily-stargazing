@@ -37,6 +37,12 @@ class Artifact(TypedDict, total=False):
     selected_draft_id: str | None
     copy_path: str | None
     humanized_path: str | None
+    data_version: str | None
+    manifest_url: str | None
+    profile_id: str | None
+    profile_url: str | None
+    observed_roster_count: int | None
+    chronicle_git_commit: str | None
 
 
 class SelectionSnapshot(TypedDict):

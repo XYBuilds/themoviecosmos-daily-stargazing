@@ -43,7 +43,9 @@ class PublicationAssetTests(unittest.TestCase):
                 metadata_path=Path(tmp) / "planet.png.render.json",
                 file_size=9,
                 alpha_bounds=(1, 1, 2, 2),
-                metadata={"bloom": "on"},
+                metadata={"bloom": "on", "data_version": "fixture-v1"},
+                observed_roster_count=1,
+                roster_data_version="fixture-v1",
             )
             download = Mock(return_value=poster_result)
             render = Mock(return_value=planet_result)

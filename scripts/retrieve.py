@@ -37,6 +37,7 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 
 from scripts.lib.env import load_env
+from scripts.lib.galaxy_roster import assert_movie_url_allowed
 from scripts.lib.paths import embeddings_npy, meta_parquet
 from scripts.movie_metadata import get_movie_detail_by_tmdb_id, get_movie_details_by_tmdb_ids
 
@@ -85,7 +86,7 @@ def _movie_link_prefix() -> str:
 
 
 def _movie_url(tmdb_id: int, prefix: str) -> str:
-    return f"{prefix.rstrip('/')}/{tmdb_id}"
+    return assert_movie_url_allowed(tmdb_id, prefix=prefix)
 
 
 def _release_year(value: object) -> int | None:

@@ -15,6 +15,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+from scripts.lib.galaxy_roster import (
+    ChronicleReleaseInput,
+    GalaxyRosterError,
+    assert_in_galaxy_roster,
+    load_galaxy_roster,
+    resolve_chronicle_release_input,
+)
+
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 PLANET_RESOLUTION = 3000
 PLANET_PADDING = 0.08
@@ -32,6 +40,8 @@ class PlanetRenderResult:
     file_size: int
     alpha_bounds: tuple[int, int, int, int]
     metadata: Mapping[str, Any]
+    observed_roster_count: int
+    roster_data_version: str
 
 
 def _resolve_chronicle_root() -> Path:
@@ -57,15 +67,11 @@ def _resolve_chronicle_root() -> Path:
     return root
 
 
-def _resolve_data_file_override() -> Path | None:
-    configured_file = os.environ.get("MOVIE_COSMOS_GALAXY_DATA_FILE", "").strip()
-    if not configured_file:
-        return None
-
-    data_file = Path(configured_file).expanduser().resolve()
-    if not data_file.is_file():
-        raise PlanetRenderError(f"MOVIE_COSMOS_GALAXY_DATA_FILE must point to an existing galaxy JSON file: {data_file}")
-    return data_file
+def _resolve_release_input() -> ChronicleReleaseInput:
+    try:
+        return resolve_chronicle_release_input()
+    except GalaxyRosterError as exc:
+        raise PlanetRenderError(str(exc)) from exc
 
 
 def _parse_cli_result(stdout: str, *, tmdb_id: int, output_path: Path) -> Path:
@@ -198,7 +204,53 @@ def _validate_rgba_png(png_path: Path, *, expected_resolution: int) -> tuple[int
     return visible_left, visible_top, visible_right, visible_bottom
 
 
-def _read_metadata(metadata_path: Path, *, tmdb_id: int, bloom: bool) -> Mapping[str, Any]:
+def _verify_provenance(
+    metadata: Mapping[str, Any],
+    *,
+    release: ChronicleReleaseInput,
+    roster_data_version: str,
+) -> None:
+    data_version = metadata.get("data_version")
+    if not isinstance(data_version, str) or not data_version.strip():
+        raise PlanetRenderError("planet render metadata missing data_version provenance")
+    if data_version.strip() != roster_data_version:
+        raise PlanetRenderError(
+            f"metadata data_version={data_version!r} does not match roster "
+            f"data_version={roster_data_version!r}"
+        )
+
+    if release.kind == "manifest_url":
+        if metadata.get("manifest_url") != release.manifest_url:
+            raise PlanetRenderError(
+                f"metadata manifest_url={metadata.get('manifest_url')!r}, "
+                f"expected {release.manifest_url!r}"
+            )
+        profile = metadata.get("requested_focus_emission_profile")
+        if profile is None:
+            profile = metadata.get("focus_emission_profile")
+        if not isinstance(profile, dict) or not profile:
+            raise PlanetRenderError("planet render metadata missing focus emission profile provenance")
+        profile_id = profile.get("profile_id")
+        if not isinstance(profile_id, str) or not profile_id.strip():
+            raise PlanetRenderError("planet render metadata missing focus emission profile_id")
+        return
+
+    # Offline/test path: Chronicle may return null manifest_url and a fixture profile.
+    if metadata.get("manifest_url") not in (None, ""):
+        raise PlanetRenderError(
+            f"offline --data-file render must not claim production manifest_url="
+            f"{metadata.get('manifest_url')!r}"
+        )
+
+
+def _read_metadata(
+    metadata_path: Path,
+    *,
+    tmdb_id: int,
+    bloom: bool,
+    release: ChronicleReleaseInput,
+    roster_data_version: str,
+) -> Mapping[str, Any]:
     try:
         metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -215,6 +267,7 @@ def _read_metadata(metadata_path: Path, *, tmdb_id: int, bloom: bool) -> Mapping
         raise PlanetRenderError(f"metadata padding={metadata.get('padding')!r}, expected {PLANET_PADDING}")
     if metadata.get("bloom") != expected_bloom:
         raise PlanetRenderError(f"metadata bloom={metadata.get('bloom')!r}, expected {expected_bloom!r}")
+    _verify_provenance(metadata, release=release, roster_data_version=roster_data_version)
     return metadata
 
 
@@ -230,7 +283,13 @@ def render_planet(
         raise PlanetRenderError(f"tmdb_id must be a positive integer, got {tmdb_id}")
 
     root = _resolve_chronicle_root()
-    data_file = _resolve_data_file_override()
+    release = _resolve_release_input()
+    try:
+        roster = load_galaxy_roster(release=release)
+        assert_in_galaxy_roster(tmdb_id, roster)
+    except GalaxyRosterError as exc:
+        raise PlanetRenderError(str(exc)) from exc
+
     resolved_output = output_path.expanduser().resolve()
     resolved_output.parent.mkdir(parents=True, exist_ok=True)
     bloom_value = "on" if bloom else "off"
@@ -254,9 +313,16 @@ def render_planet(
         "--size-root",
         "3",
     )
-    if data_file is not None:
-        command = (*command, "--data-file", str(data_file))
-    print(f"[planet_renderer] tmdb_id={tmdb_id} bloom={bloom_value} output={resolved_output}")
+    if release.kind == "manifest_url":
+        assert release.manifest_url is not None
+        command = (*command, "--manifest-url", release.manifest_url)
+    else:
+        assert release.data_file is not None
+        command = (*command, "--data-file", str(release.data_file))
+    print(
+        f"[planet_renderer] tmdb_id={tmdb_id} bloom={bloom_value} output={resolved_output} "
+        f"release={release.kind} roster_count={roster.observed_count} data_version={roster.data_version!r}"
+    )
 
     try:
         completed = runner(command, cwd=root, capture_output=True, text=True, check=False)
@@ -269,7 +335,13 @@ def render_planet(
 
     metadata_path = _parse_cli_result(completed.stdout, tmdb_id=tmdb_id, output_path=resolved_output)
     alpha_bounds = _validate_rgba_png(resolved_output, expected_resolution=PLANET_RESOLUTION)
-    metadata = _read_metadata(metadata_path, tmdb_id=tmdb_id, bloom=bloom)
+    metadata = _read_metadata(
+        metadata_path,
+        tmdb_id=tmdb_id,
+        bloom=bloom,
+        release=release,
+        roster_data_version=roster.data_version,
+    )
     file_size = resolved_output.stat().st_size
     print(
         f"[planet_renderer] complete tmdb_id={tmdb_id} bytes={file_size} "
@@ -282,4 +354,6 @@ def render_planet(
         file_size=file_size,
         alpha_bounds=alpha_bounds,
         metadata=metadata,
+        observed_roster_count=roster.observed_count,
+        roster_data_version=roster.data_version,
     )

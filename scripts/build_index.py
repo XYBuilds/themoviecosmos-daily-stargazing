@@ -23,7 +23,8 @@ import pandas as pd
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CSV = REPO_ROOT / "data" / "output" / "cleaned.csv"
 DEFAULT_EMBEDDINGS_SOURCE = REPO_ROOT / "data" / "output" / "text_embeddings.npy"
-EXPECTED_ROWS = 59_341
+EXPECTED_EMBEDDING_DIM = 384
+
 
 META_COLUMNS = [
     "id",
@@ -58,11 +59,7 @@ def _reuse(csv_path: Path, index_dir: Path, embeddings_source: Path) -> None:
 
     df = pd.read_csv(csv_path)
     row_count = len(df)
-    if row_count != EXPECTED_ROWS:
-        print(
-            f"warning: CSV has {row_count} rows, expected {EXPECTED_ROWS}",
-            file=sys.stderr,
-        )
+    print(f"[build_index] csv rows={row_count} path={csv_path}")
 
     missing_cols = [c for c in META_COLUMNS if c not in df.columns]
     if missing_cols:
@@ -82,12 +79,16 @@ def _reuse(csv_path: Path, index_dir: Path, embeddings_source: Path) -> None:
             file=sys.stderr,
         )
         sys.exit(1)
-    if embeddings.shape != (EXPECTED_ROWS, 384):
+    if embeddings.ndim != 2 or embeddings.shape[1] != EXPECTED_EMBEDDING_DIM:
         print(
-            f"error: expected embeddings shape ({EXPECTED_ROWS}, 384), got {embeddings.shape}",
+            f"error: expected embeddings shape (N, {EXPECTED_EMBEDDING_DIM}), got {embeddings.shape}",
             file=sys.stderr,
         )
         sys.exit(1)
+    print(
+        f"[build_index] embeddings shape={embeddings.shape} "
+        f"dtype={embeddings.dtype} rows={len(meta)}"
+    )
 
     dest_embeddings = index_dir / "embeddings.npy"
     shutil.copy2(embeddings_source, dest_embeddings)
