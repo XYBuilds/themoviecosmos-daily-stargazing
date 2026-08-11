@@ -9,6 +9,9 @@ from __future__ import annotations
 import gzip
 import json
 import os
+import shutil
+import ssl
+import subprocess
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
@@ -84,11 +87,41 @@ def _assert_http_json_url(raw: str, label: str) -> None:
 
 
 def _default_fetch_bytes(url: str) -> bytes:
+    """Fetch release artifacts with a real User-Agent and current CA bundle.
+
+    Cloudflare/Pages and R2 reject bare urllib defaults on some hosts; curl remains
+    a Windows-safe fallback when the Python TLS stack still fails closed.
+    """
+    headers = {
+        "User-Agent": "themoviecosmos-daily-stargazing/1.0 (+planet-export; issue-166)",
+        "Accept": "application/json,application/gzip,*/*",
+    }
+    request = urllib.request.Request(url, headers=headers)
+    context = None
     try:
-        with urllib.request.urlopen(url, timeout=60) as response:  # noqa: S310 - explicit release URLs only
+        import certifi  # type: ignore
+
+        context = ssl.create_default_context(cafile=certifi.where())
+    except Exception:
+        context = ssl.create_default_context()
+
+    try:
+        with urllib.request.urlopen(request, timeout=120, context=context) as response:  # noqa: S310
             return response.read()
-    except (urllib.error.URLError, TimeoutError, OSError) as exc:
-        raise GalaxyRosterError(f"unable to fetch Chronicle release artifact: {url}: {exc}") from exc
+    except (urllib.error.URLError, TimeoutError, OSError) as urllib_exc:
+        curl = shutil.which("curl.exe") or shutil.which("curl")
+        if not curl:
+            raise GalaxyRosterError(f"unable to fetch Chronicle release artifact: {url}: {urllib_exc}") from urllib_exc
+        completed = subprocess.run(
+            [curl, "--fail", "--silent", "--show-error", "--location", "--max-time", "120", url],
+            capture_output=True,
+            check=False,
+        )
+        if completed.returncode != 0:
+            detail = completed.stderr.decode("utf-8", errors="replace").strip() or str(urllib_exc)
+            raise GalaxyRosterError(f"unable to fetch Chronicle release artifact: {url}: {detail}") from urllib_exc
+        print(f"[galaxy_roster] fetched via curl fallback url={url}")
+        return completed.stdout
 
 
 def _maybe_gunzip(payload: bytes) -> bytes:
