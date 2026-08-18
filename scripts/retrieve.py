@@ -26,7 +26,10 @@ import os
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from sentence_transformers import SentenceTransformer
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
@@ -34,7 +37,6 @@ if str(_REPO_ROOT) not in sys.path:
 
 import numpy as np
 import pandas as pd
-from sentence_transformers import SentenceTransformer
 
 from scripts.lib.env import load_env
 from scripts.lib.galaxy_roster import assert_movie_url_allowed
@@ -130,6 +132,8 @@ def _load_index() -> tuple[np.ndarray, pd.DataFrame]:
 def _get_model() -> SentenceTransformer:
     global _model
     if _model is None:
+        from sentence_transformers import SentenceTransformer
+
         _model = SentenceTransformer(MODEL_NAME, local_files_only=True)
     return _model
 

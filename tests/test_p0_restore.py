@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import ast
 from pathlib import Path
 
 _ROOT = Path(__file__).resolve().parents[1]
@@ -45,6 +46,15 @@ def test_ci_runs_pytest_without_deploy_schedules_or_production_credentials() -> 
     assert "sentence-transformers" not in _CI
     for name in PRODUCTION_CREDENTIAL_NAMES:
         assert name not in _CI
+
+
+def test_retrieve_does_not_import_sentence_transformers_until_model_load() -> None:
+    tree = ast.parse((_ROOT / "scripts" / "retrieve.py").read_text(encoding="utf-8"))
+    for node in tree.body:
+        if isinstance(node, ast.ImportFrom) and node.module == "sentence_transformers":
+            raise AssertionError("sentence_transformers must not be imported at module load")
+        if isinstance(node, ast.Import) and any(alias.name == "sentence_transformers" for alias in node.names):
+            raise AssertionError("sentence_transformers must not be imported at module load")
 
 
 def test_env_files_are_bitwarden_deployment_copies_not_secrets_authority() -> None:
