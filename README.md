@@ -83,9 +83,11 @@ install_env.cmd -MonitorOnly
 
 ### 2. 环境变量
 
+**Secrets authority:** Bitwarden. Ignored `.env` values are replaceable deployment copies, not the secrets authority.
+
 ```powershell
 Copy-Item .env.example .env
-# 编辑 .env，填入 MIMO_* 或 DEEPSEEK_* 的 API Key
+# 编辑 .env，从 Bitwarden 填入 MIMO_* 或 DEEPSEEK_* 的部署副本
 ```
 
 ---

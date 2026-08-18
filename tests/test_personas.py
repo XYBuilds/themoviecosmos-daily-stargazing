@@ -522,6 +522,10 @@ class PersonaScaffoldTests(unittest.TestCase):
 
         from scripts.run_persona_batch import write_a1_parallel_baseline
 
+        embeddings = _REPO / "data" / "index" / "embeddings.npy"
+        if not embeddings.is_file():
+            self.skipTest("requires local embeddings index")
+
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp)
             meta = write_a1_parallel_baseline("04-celebrity-scandal", out)
