@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -344,6 +345,10 @@ class RunAdapterTests(unittest.TestCase):
 
 class MainCliTests(unittest.TestCase):
     def test_cli_success_path_writes_copy_md(self) -> None:
+        env_file = Path(__file__).resolve().parents[1] / ".env"
+        if not os.getenv("MIMO_API_KEY", "").strip() and not env_file.is_file():
+            self.skipTest("requires local LLM deployment copy")
+
         with TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             _make_batch(tmp_path, "2026-07-06", "09-slug", tmdb_id=429918)

@@ -1,13 +1,13 @@
-# Triage labels
+# Triage Labels
 
-Matt Skills 使用五个标准 triage 状态角色。本文件把角色映射到 Daily Stargazing 的 GitHub label。
+The skills speak in terms of five canonical triage roles. This file maps those roles to the actual label strings used in this repository's issue tracker.
 
-| Matt Skills 角色 | GitHub label | 含义 |
-| --- | --- | --- |
-| `needs-triage` | `needs-triage` | 等待维护者评估 |
-| `needs-info` | `needs-info` | 等待报告者补充信息 |
-| `ready-for-agent` | `ready-for-agent` | 规格完整，可交给 Agent 实现 |
-| `ready-for-human` | `ready-for-human` | 需要人工实现或裁决 |
-| `wontfix` | `wontfix` | 不会执行 |
+| Label in mattpocock/skills | Label in our tracker | Meaning                                  |
+| -------------------------- | -------------------- | ---------------------------------------- |
+| `needs-triage`             | `needs-triage`       | Maintainer needs to evaluate this issue  |
+| `needs-info`               | `needs-info`         | Waiting on reporter for more information |
+| `ready-for-agent`          | `ready-for-agent`    | Fully specified, ready for an AFK agent  |
+| `ready-for-human`          | `ready-for-human`    | Requires human implementation            |
+| `wontfix`                  | `wontfix`            | Will not be actioned                     |
 
-当 skill 提到 triage 角色时，使用本表右侧对应的 GitHub label。若仓库以后改名，只修改右侧列，不改变标准角色。
+When a skill mentions a triage role, use the corresponding label string from this table.

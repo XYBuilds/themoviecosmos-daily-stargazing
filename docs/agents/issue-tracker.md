@@ -1,28 +1,47 @@
-# Issue tracker：GitHub
+# Issue tracker: GitLab
 
-本仓库使用 GitHub Issues 跟踪 Matt Skills 创建的新需求与规格。所有操作通过 `gh` CLI 完成，仓库由当前目录的 Git remote 自动推断。
+Issues and specifications for Daily Stargazing live in the private GitLab project. Use the `glab` CLI for Issue and merge-request operations. Provider Issue numbers and URLs are aliases; portable identities use `tmc:daily:<ULID>`.
 
-## 与既有 Phase 工作流的边界
+## New work
 
-- `.cursor/plans/Phase*.plan.md` 和 `docs/reports/` 保留原位，不迁移、不重新编号，也不批量转换为 Issues。
-- GitHub Issues 是 Matt Skills 的需求与规格入口。
-- 当已接受的 Phase TODO 进入实现时，其分支、验收、状态和交付仍遵循 `.cursor/rules/workflow-adapter.mdc`。
-- Issue 可以链接到对应计划或报告，但不要在多个位置维护相互独立的 TODO 状态。
+- Bug reports and feature requests enter through GitLab Issues.
+- Maintainer triage decides whether an Issue is a duplicate, needs more information, is accepted, or needs design work.
+- A Spec Issue receives `ready-for-agent` only when its acceptance criteria and implementation seams are sufficiently clear.
 
-## 常用操作
+## Cross-repository Initiatives
 
-- 创建：`gh issue create --title "..." --body "..."`
-- 查看：`gh issue view <number> --comments`
-- 列表：`gh issue list --state open --json number,title,body,labels,comments`
-- 评论：`gh issue comment <number> --body "..."`
-- 标签：`gh issue edit <number> --add-label "..."` 或 `--remove-label "..."`
-- 关闭：`gh issue close <number> --comment "..."`
+- Product-level Initiatives live in Chronicle unless the work is primarily Daily-domain work.
+- This repository receives a child implementation Issue for Daily-owned delivery.
+- Child Issues link back to the parent with a titled portable parent reference and name local tests and delivery constraints. The current Recovery Initiative parent is Restore development and operations without a GitHub account single point of failure (`tmc:chronicle:01M08QA80S7XA8P5ZVKM3EVD8Q`).
+- Use portable identities plus titled references when linking across repositories.
 
-## Pull requests 是否作为需求入口
+## History
 
-**否。** PR 只用于代码交付，不进入需求分流队列。
+Existing `.cursor/plans/` and `docs/reports/` remain historical records. Accepted Phase TODOs keep their branch, verification, and report conventions in `.cursor/rules/workflow-adapter.mdc`. Do not maintain a second writable TODO status in Issues.
 
-## Skill 语义
+## Merge requests
 
-- 当 skill 要求“发布到 issue tracker”时，创建 GitHub Issue。
-- 当 skill 要求“读取相关 ticket”时，使用 `gh issue view <number> --comments`。
+Merge requests are implementation and review surfaces, not substitutes for accepted product specifications. The repository does not currently treat external merge requests as an untriaged feature-request queue. Human merge approval is mandatory; do not bypass protected `main`.
+
+## Current labels
+
+The repository keeps ordinary labels such as `bug`, `enhancement`, `documentation`, `duplicate`, `good first issue`, `help wanted`, `invalid`, and `question`. Matt workflows use the canonical `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, and `wontfix` labels defined in `docs/agents/triage-labels.md`.
+
+Wayfinder maps use `wayfinder:map`. Their child tickets use exactly one of `wayfinder:research`, `wayfinder:prototype`, `wayfinder:grilling`, or `wayfinder:task`.
+
+## Wayfinding operations
+
+Wayfinder uses ordinary GitLab Issues plus portable identities. GitLab Free records parent and blocker meaning in the Issue body; a native relationship may mirror those lines where available. Do not maintain a second writable tracker.
+
+- **Map:** create one Issue labelled `wayfinder:map`. Its body contains Destination, Notes, Decisions so far, Not yet specified, and Out of scope.
+- **Child ticket:** create an Issue with exactly one `wayfinder:<type>` label. The body includes `Part of: <map title> (\`<map portable id>\`)`.
+- **Blocking:** keep a `Blocked by: <title> (\`<portable id>\`)` line in the Issue body. GitLab Free does not treat native relationships as the only readable truth.
+- **Frontier:** list the map's open child Issues in map order, then exclude any Issue with an assignee or a `Blocked by` line whose blockers are still open.
+- **Claim:** assign the ticket before any work with `glab issue update <iid> --assignee @me`.
+- **Resolve:** post the answer as a resolution comment, close the ticket, and append one linked gist of the answer to the map's Decisions so far section.
+
+If the active tracker becomes unavailable, promote the newest verified normalized export as the sole writable local Markdown tracker and record the failover time. Never reconcile by writing two trackers at once.
+
+## Tracker transition
+
+A tracker transition freezes the predecessor, exports and verifies a normalized Markdown bundle, imports and verifies the destination, and only then promotes the destination. Local Markdown, GitHub, and GitLab are never writable at the same time. Suspended GitHub Issues remain alias candidates for capture-first reconciliation if access returns.
