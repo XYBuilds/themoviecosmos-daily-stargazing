@@ -50,6 +50,7 @@ class TestRunEvalBatchWhatIf(unittest.TestCase):
                 "-File",
                 str(_BATCH_PS1),
                 "-WhatIf",
+                "-SkipExisting:$false",
             ],
             cwd=_REPO_ROOT,
             capture_output=True,

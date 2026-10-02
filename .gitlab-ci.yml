@@ -1,0 +1,24 @@
+# Daily Stargazing P0 non-deploying development adapter.
+# Editorial/publication behavior, production secrets, and deployment stay disabled.
+
+# GitHub cutback: predecessor pipelines remain disabled.
+workflow:
+  rules:
+    - when: never
+
+stages:
+  - verify
+
+default:
+  interruptible: true
+
+daily_verify:
+  stage: verify
+  image: python:3.12-bookworm
+  before_script:
+    - apt-get update && apt-get install -y git
+    - python -m pip install --upgrade pip
+    - pip install pytest pandas numpy pyarrow scikit-learn httpx openai python-dotenv feedparser tqdm requests
+  script:
+    - python -m pytest
+    - git diff --check
