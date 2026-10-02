@@ -36,7 +36,7 @@ PRODUCTION_CREDENTIAL_NAMES = (
 def test_ci_runs_pytest_without_deploy_schedules_or_production_credentials() -> None:
     assert "python -m pytest" in _CI
     assert "git diff --check" in _CI
-    assert 'CI_PIPELINE_SOURCE == "schedule"' in _CI
+    assert 'workflow:' in _CI
     assert "when: never" in _CI
     assert "\nschedule:" not in f"\n{_CI}"
     assert "\ndeploy:" not in f"\n{_CI.lower()}"
@@ -65,15 +65,15 @@ def test_env_files_are_bitwarden_deployment_copies_not_secrets_authority() -> No
     assert "secrets authority" in _ENV_EXAMPLE.lower()
 
 
-def test_agents_and_tracker_name_gitlab_and_portable_parent() -> None:
-    assert "GitLab" in _AGENTS
-    assert "glab" in _AGENTS
+def test_agents_and_tracker_name_github_and_preserve_portable_parent() -> None:
+    assert "GitHub" in _AGENTS
+    assert "gh" in _AGENTS
     assert "docs/agents/issue-tracker.md" in _AGENTS
     assert "Human merge and Issue closure approval are mandatory" in _AGENTS
-    assert "GitLab" in _TRACKER
-    assert "glab" in _TRACKER
+    assert "GitHub" in _TRACKER
+    assert "gh" in _TRACKER
     assert "tmc:daily:" in _TRACKER
     assert "Blocked by" in _TRACKER
     assert "tmc:chronicle:01M08QA80S7XA8P5ZVKM3EVD8Q" in _TRACKER
-    assert "`gh` CLI" not in _TRACKER
+    assert "`glab` CLI" not in _TRACKER
     assert "Do not copy Chronicle-owned runtime" in _AGENTS

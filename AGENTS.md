@@ -6,7 +6,7 @@ Daily Stargazing is an independently owned editorial and publication repository 
 
 ### Issue tracker
 
-Issues live in the private Daily Stargazing GitLab project. Use the `glab` CLI for Issue and merge-request operations. See [`docs/agents/issue-tracker.md`](docs/agents/issue-tracker.md). Provider Issue numbers and URLs are aliases; portable identities use `tmc:daily:<ULID>`.
+Issues live in the Daily Stargazing GitHub repository under XYBuilds. Use the `gh` CLI for Issue and pull-request operations. See [`docs/agents/issue-tracker.md`](docs/agents/issue-tracker.md). Provider Issue numbers and URLs are aliases; portable identities use `tmc:daily:<ULID>`.
 
 ### Triage labels
 
@@ -24,8 +24,8 @@ Required delivery checks, regardless of host:
 
 - Work from an Issue-owned branch off an up-to-date default base (`main` unless otherwise specified).
 - Run the verification that matches the changed scope (`python -m pytest` for the existing suite, plus any Issue-named checks). `git diff --check` is required.
-- Delivery Issues and merge requests must include an explicit human risk declaration (R0–R3 + protected surfaces). Do not invent a path classifier.
+- Delivery Issues and pull requests must include an explicit human risk declaration (R0–R3 + protected surfaces). Do not invent a path classifier.
 - Do not rewrite accepted ADRs as silent edits.
-- **Human merge and Issue closure approval are mandatory.** Agents may prepare evidence and open a merge request when authorized, but must not merge or close the Issue without explicit human approval.
+- **Human merge and Issue closure approval are mandatory.** Agents may prepare evidence and open a pull request when authorized, but must not merge or close the Issue without explicit human approval.
 
 Ignored `.env` values are replaceable Bitwarden deployment copies, not the secrets authority. Editorial and publication behavior stay outside P0 development-restore work.

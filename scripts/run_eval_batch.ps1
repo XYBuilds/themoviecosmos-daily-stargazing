@@ -43,7 +43,6 @@
 #>
 [CmdletBinding(SupportsShouldProcess = $true)]
 param(
-    [switch]$WhatIf,
     [switch]$RetryFailed,
     [bool]$SkipExisting = $true,
     [string]$SkipMarkerFile = "candidates.md",
@@ -142,7 +141,7 @@ Write-Host "ThrottleLimit: $effectiveThrottle"
 Write-Host "Logs:          $LogsDir"
 Write-Host ""
 
-if ($WhatIf -or $WhatIfPreference) {
+if ($WhatIfPreference) {
     foreach ($rid in $targetRunIds) {
         $newsFile = Join-Path $NewsDir "$rid.json"
         $outDir = Join-Path $RepoRoot (Join-Path $PhaseDir $rid)
